@@ -12,10 +12,15 @@
 
 
 .switchers {
-  position: absolute;
+position: absolute;
   bottom:20px;
   display: flex;
   justify-content: center;
+  transform: translateX(50%);
+}
+
+.langSwitcher {
+  margin-left: 20px;
 }
 
 
