@@ -9,12 +9,12 @@ interface LangSwitcherProps {
 
 export const LangSwitcher = ({ className }: LangSwitcherProps) => {
     const { t, i18n } = useTranslation();
-    const toggle = () => {
-        i18n.changeLanguage(i18n.language === 'uk' ? 'en' : 'uk');
+
+    const toggle = async () => {
+        await i18n.changeLanguage(i18n.language === 'uk' ? 'en' : 'uk');
     };
 
     return (
-
         <Button
             className={classNames('', {}, [className])}
             theme={ThemeButton.CLEAR}
@@ -22,6 +22,5 @@ export const LangSwitcher = ({ className }: LangSwitcherProps) => {
         >
             {t('Мова')}
         </Button>
-
     );
 };
