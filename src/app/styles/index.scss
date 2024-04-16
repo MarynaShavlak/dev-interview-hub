@@ -1,7 +1,8 @@
 @import "./reset";
 @import "./variables/global";
-@import "./themes/normal";
 @import "./themes/dark";
+@import "./themes/normal";
+
 
 .app {
     font: var(--font-m);
