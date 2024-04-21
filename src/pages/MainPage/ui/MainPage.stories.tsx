@@ -7,10 +7,11 @@ import MainPage from './MainPage';
 export default {
     title: 'pages/MainPage',
     component: MainPage,
-    argTypes: {},
+    argTypes: {
+        backgroundColor: { control: 'color' },
+    },
 } as ComponentMeta<typeof MainPage>;
 
-// @ts-ignore
 const Template: ComponentStory<typeof MainPage> = (args) => <MainPage {...args} />;
 
 export const Normal = Template.bind({});

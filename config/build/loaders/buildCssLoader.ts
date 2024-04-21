@@ -9,7 +9,6 @@ export function buildCssLoader(isDev: boolean) {
                 loader: 'css-loader',
                 options: {
                     modules: {
-                        // eslint-disable-next-line max-len
                         auto: (resPath: string) => Boolean(resPath.includes('.module.')),
                         localIdentName: isDev
                             ? '[path][name]__[local]--[hash:base64:5]'

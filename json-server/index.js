@@ -9,7 +9,7 @@ const router = jsonServer.router(path.resolve(__dirname, 'db.json'));
 server.use(jsonServer.defaults({}));
 server.use(jsonServer.bodyParser);
 
-// Потрібно для невеликої затримки, щоб запит проходив не миттєво, імітація реального апі
+// Нужно для небольшой задержки, чтобы запрос проходил не мгновенно, имитация реального апи
 server.use(async (req, res, next) => {
     await new Promise((res) => {
         setTimeout(res, 800);
@@ -17,7 +17,7 @@ server.use(async (req, res, next) => {
     next();
 });
 
-// Ендпоінт для логіну
+// Эндпоинт для логина
 server.post('/login', (req, res) => {
     try {
         const { username, password } = req.body;
@@ -39,7 +39,7 @@ server.post('/login', (req, res) => {
     }
 });
 
-// перевірити чи авторизований користувач
+// проверяем, авторизован ли пользователь
 // eslint-disable-next-line
 server.use((req, res, next) => {
     if (!req.headers.authorization) {
