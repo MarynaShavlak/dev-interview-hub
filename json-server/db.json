@@ -1,29 +1,38 @@
 {
   "posts": [
     {
-      "id": 1,
+      "id": "1",
       "title": "json-server",
-      "userId": 1
+      "userId": "1"
     },
     {
-      "id": 2,
+      "id": "2",
       "title": "json-server",
-      "userId": 2
+      "userId": "2"
     }
   ],
   "comments": [
     {
-      "id": 1,
+      "id": "1",
       "body": "some comment",
-      "postId": 1
+      "postId": "1"
     }
   ],
   "users": [
     {
-      "id": 1,
+      "id": "1",
       "username": "admin",
       "password": "123"
     }
   ],
-  "profile": { "name": "typicode" }
+  "profile": {
+    "first": "Марина",
+    "lastname": "Шавлак",
+    "age": 29,
+    "currency": "UAH",
+    "country": "Ukraine",
+    "city": "Kharkiv",
+    "username": "admin",
+    "avatar": "https://drive.google.com/file/d/1RD0jSAm8kdTLKa-Vr0daeE8T9-QcfPCa/view?usp=sharing"
+  }
 }
