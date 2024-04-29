@@ -39,7 +39,7 @@ server.post('/login', (req, res) => {
     }
 });
 
-// проверяем, авторизован ли пользователь
+// check if user is authorized
 // eslint-disable-next-line
 server.use((req, res, next) => {
     if (!req.headers.authorization) {

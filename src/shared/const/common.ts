@@ -9,5 +9,4 @@ export enum Country {
     Poland = 'Poland',
     Ireland = 'Ireland',
     Germany = 'Germany',
-
 }
