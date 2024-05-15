@@ -15,36 +15,6 @@ export default {
 
 const Template: ComponentStory<typeof ProfileCard> = (args) => <ProfileCard {...args} />;
 
-export const Primary = Template.bind({});
-Primary.args = {
-    data: {
-        username: 'admin',
-        age: 29,
-        country: Country.Ukraine,
-        lastname: 'Shavlak',
-        first: 'Maryna',
-        city: 'Kharkiv',
-        currency: Currency.UAH,
-        avatar,
-    },
-    readonly: true,
-};
-
-export const isEddited = Template.bind({});
-isEddited.args = {
-    data: {
-        username: 'admin',
-        age: 29,
-        country: Country.Ukraine,
-        lastname: 'Shavlak',
-        first: 'Maryna',
-        city: 'Kharkiv',
-        currency: Currency.UAH,
-        avatar,
-    },
-    readonly: false,
-};
-
 export const withError = Template.bind({});
 withError.args = {
     error: 'true',
