@@ -19,7 +19,9 @@
       "img": "https://teknotower.com/wp-content/uploads/2020/11/js.png",
       "views": 1022,
       "createdAt": "26.02.2022",
-      "type": ["IT"],
+      "type": [
+        "IT"
+      ],
       "blocks": [
         {
           "id": "1",
@@ -100,32 +102,52 @@
       "text": "some comment 3",
       "articleId": "1",
       "userId": "1"
+    },
+    {
+      "articleId": "1",
+      "userId": "2",
+      "text": "new comment",
+      "id": "ebzf8jJ"
     }
   ],
-
   "users": [
     {
       "id": "1",
       "username": "admin",
       "password": "123",
-      "role": "ADMIN"
+      "role": "ADMIN",
+      "avatar": "https://drive.google.com/thumbnail?id=1RD0jSAm8kdTLKa-Vr0daeE8T9-QcfPCa&sz=w1000"
     },
     {
       "id": "2",
       "username": "user",
       "password": "123",
-      "role": "USER"
+      "role": "USER",
+      "avatar": "https://drive.google.com/thumbnail?id=1J1xUPYYkJeOsBTpDuf36vsV7UfxlM2uG&sz=w1000"
     }
   ],
-
-  "profile": {
-    "first": "Марина",
-    "lastname": "Шавлак",
-    "age": 29,
-    "currency": "EUR",
-    "country": "Ukraine",
-    "city": "Kharkiv",
-    "username": "admin",
-    "avatar": "https://drive.google.com/thumbnail?id=1RD0jSAm8kdTLKa-Vr0daeE8T9-QcfPCa&sz=w1000"
-  }
+  "profile": [
+    {
+      "id": "1",
+      "first": "Марина",
+      "lastname": "Шавлак",
+      "age": 29,
+      "currency": "UAH",
+      "country": "Ukraine",
+      "city": "Kharkiv",
+      "username": "admin",
+      "avatar": "https://drive.google.com/thumbnail?id=1RD0jSAm8kdTLKa-Vr0daeE8T9-QcfPCa&sz=w1000"
+    },
+    {
+      "id": "2",
+      "first": "Максим",
+      "lastname": "Шавлак",
+      "age": 27,
+      "currency": "EUR",
+      "country": "Croatia",
+      "city": "Zagreb",
+      "username": "user1",
+      "avatar": "https://drive.google.com/thumbnail?id=1J1xUPYYkJeOsBTpDuf36vsV7UfxlM2uG&sz=w1000"
+    }
+  ]
 }

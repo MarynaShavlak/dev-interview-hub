@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { memo, useCallback, useEffect } from 'react';
+import { memo, useCallback } from 'react';
 import { DynamicModuleLoader, ReducersList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import {
     fetchProfileData,
@@ -16,6 +16,8 @@ import { useSelector } from 'react-redux';
 import { Currency } from 'entities/Currency';
 import { Country } from 'entities/Country';
 import { Text, TextTheme } from 'shared/ui/Text/Text';
+import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect';
+import { useParams } from 'react-router-dom';
 import { ProfilePageHeader } from '../ui/ProfilePageHeader/ProfilePageHeader';
 
 interface ProfilePageProps {
@@ -33,6 +35,7 @@ const ProfilePage = memo(({ className }: ProfilePageProps) => {
     const error = useSelector(getProfileError);
     const readonly = useSelector(getProfileReadonly);
     const validateErrors = useSelector(getProfileValidateErrors);
+    const { id } = useParams<{id: string}>();
 
     const validateErrorTranslates = {
         [ValidateProfileError.SERVER_ERROR]: t('Помилка сервера при збереженні даннних'),
@@ -42,12 +45,11 @@ const ProfilePage = memo(({ className }: ProfilePageProps) => {
         [ValidateProfileError.INCORRECT_USER_DATA]: t("Прізвище та ім'я є обов'язковими полями"),
         [ValidateProfileError.INCORRECT_AGE]: t('Некоректний формат віку'),
     };
-
-    useEffect(() => {
-        if (__PROJECT__ !== 'storybook') {
-            dispatch(fetchProfileData());
+    useInitialEffect(() => {
+        if (id) {
+            dispatch(fetchProfileData(id));
         }
-    }, [dispatch]);
+    });
 
     const onChangeFirstname = useCallback((value?: string) => {
         dispatch(profileActions.updateProfile({ first: value || '' }));
@@ -82,7 +84,7 @@ const ProfilePage = memo(({ className }: ProfilePageProps) => {
     }, [dispatch]);
 
     return (
-        <DynamicModuleLoader reducers={initialReducers} removeAfterUnmount>
+        <DynamicModuleLoader reducers={initialReducers}>
             <ProfilePageHeader />
             {validateErrors?.length && validateErrors.map((err) => (
                 <Text
