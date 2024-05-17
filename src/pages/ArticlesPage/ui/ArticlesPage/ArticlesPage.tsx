@@ -6,12 +6,15 @@ import { DynamicModuleLoader, ReducersList } from 'shared/lib/components/Dynamic
 import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useSelector } from 'react-redux';
+import { Page } from 'shared/ui/Page/Page';
+import { fetchNextArticlesPage } from 'pages/ArticlesPage/model/services/fetchNextArticlesPage/fetchNextArticlesPage';
+import { Text, TextAlign } from 'shared/ui/Text/Text';
 import { articlesPageActions, articlesPageReducer, getArticles } from '../../model/slices/articlesPageSlice';
 import cls from './ArticlesPage.module.scss';
 import { fetchArticlesList } from '../../model/services/fetchArticlesList/fetchArticlesList';
 import {
-    getArticlesPageError,
-    getArticlesPageIsLoading,
+    getArticlesPageError, getArticlesPageHasMore,
+    getArticlesPageIsLoading, getArticlesPageNum,
     getArticlesPageView,
 } from '../../model/selectors/articlesPageSelectors';
 
@@ -31,25 +34,34 @@ const ArticlesPage = ({ className }: ArticlesPageProps) => {
     const view = useSelector(getArticlesPageView);
     const error = useSelector(getArticlesPageError);
 
+    const onLoadNextPart = useCallback(() => {
+        dispatch(fetchNextArticlesPage());
+    }, [dispatch]);
+
     useInitialEffect(() => {
-        dispatch(fetchArticlesList());
+        dispatch(articlesPageActions.initState());
+        dispatch(fetchArticlesList({
+            page: 1,
+        }));
     });
 
     const onChangeView = useCallback((view: ArticleView) => {
         dispatch(articlesPageActions.setView(view));
-        dispatch(articlesPageActions.initState());
     }, [dispatch]);
-
     return (
         <DynamicModuleLoader reducers={reducers}>
-            <div className={classNames(cls.ArticlesPage, {}, [className])}>
+            <Page className={classNames(cls.ArticlesPage, {}, [className])} onScrollEnd={onLoadNextPart}>
                 <ArticleViewSelector view={view} onViewClick={onChangeView} />
-                <ArticleList
-                    isLoading={isLoading}
-                    view={view}
-                    articles={articles}
-                />
-            </div>
+                {error ? (
+                    <Text text={t('Помилка запиту статей')} align={TextAlign.CENTER} />
+                ) : (
+                    <ArticleList
+                        isLoading={isLoading}
+                        view={view}
+                        articles={articles}
+                    />
+                )}
+            </Page>
         </DynamicModuleLoader>
 
     );
