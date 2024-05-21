@@ -1,18 +1,16 @@
-import { UserSchema } from 'entities/User';
-import { LoginSchema } from 'features/AuthByUsername';
-import {
-    AnyAction, EnhancedStore, Reducer, ReducersMapObject,
-} from '@reduxjs/toolkit';
-import { CombinedState } from 'redux';
-import { ProfileSchema } from 'entities/Profile';
+import { AnyAction, EnhancedStore, Reducer, ReducersMapObject, } from '@reduxjs/toolkit';
 import { AxiosInstance } from 'axios';
-import { To } from 'react-router-dom';
-import { NavigateOptions } from 'react-router';
 import { ArticleDetailsSchema } from 'entities/Article';
-import { ArticleDetailsCommentsSchema } from 'pages/ArticleDetailsPage';
+import { ProfileSchema } from 'entities/Profile';
+import { UserSchema } from 'entities/User';
 import { AddCommentFormSchema } from 'features/addCommentForm';
-import { ArticlesPageSchema } from 'pages/ArticlesPage/model/types/articlesPageSchema';
+import { LoginSchema } from 'features/AuthByUsername';
 import { ScrollRestorationSchema } from 'features/ScrollRestoration';
+import {
+    ArticleDetailsPageSchema,
+} from 'pages/ArticleDetailsPage';
+import { ArticlesPageSchema } from 'pages/ArticlesPage/model/types/articlesPageSchema';
+import { CombinedState } from 'redux';
 
 export interface StateSchema {
     user: UserSchema;
@@ -22,9 +20,9 @@ export interface StateSchema {
     loginForm?: LoginSchema;
     profile?: ProfileSchema;
     articleDetails?: ArticleDetailsSchema;
-    articleDetailsComments?: ArticleDetailsCommentsSchema;
     addCommentForm?: AddCommentFormSchema;
     articlesPage?: ArticlesPageSchema;
+    articleDetailsPage?: ArticleDetailsPageSchema;
 }
 
 export type StateSchemaKey = keyof StateSchema;
