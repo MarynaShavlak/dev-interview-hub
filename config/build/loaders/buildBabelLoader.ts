@@ -12,7 +12,7 @@ export function buildBabelLoader({ isDev }: BuildOptions) {
                     [
                         'i18next-extract',
                         {
-                            locales: ['ru', 'en'],
+                            locales: ['uk', 'en'],
                             keyAsDefaultValue: true,
                         },
                     ],

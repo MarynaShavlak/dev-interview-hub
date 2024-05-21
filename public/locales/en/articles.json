@@ -1,5 +1,16 @@
 {
-  "Articles Page": "Articles Page",
-  "Читати більше": "Читати більше...",
-  "Помилка запиту статей": "An error occurred while fetching articles. Please try again later."
+  "Читати більше": "Read more...",
+  "Помилка запиту статей": "An error occurred while fetching articles. Please try again later.",
+  "даті створення": "creation date",
+  "назві": "title",
+  "переглядам": "views",
+  "зростанню": "ascending",
+  "спаданню": "descending",
+  "Сортувати ПО": "Sort by",
+  "по": "by",
+  "Вcі статті": "All articles",
+  "IT": "IT",
+  "Економіка": "Economics",
+  "Наука": "Science",
+  "Статті не знайдено": "Articles not found"
 }

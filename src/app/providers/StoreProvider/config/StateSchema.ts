@@ -1,4 +1,3 @@
-import { CounterSchema } from 'entities/Counter';
 import { UserSchema } from 'entities/User';
 import { LoginSchema } from 'features/AuthByUsername';
 import {
@@ -16,7 +15,6 @@ import { ArticlesPageSchema } from 'pages/ArticlesPage/model/types/articlesPageS
 import { ScrollRestorationSchema } from 'features/ScrollRestoration';
 
 export interface StateSchema {
-    counter: CounterSchema;
     user: UserSchema;
     scroll: ScrollRestorationSchema;
 

@@ -18,9 +18,9 @@ export const ErrorPage = memo(({ className }: ErrorPageProps) => {
 
     return (
         <div className={classNames(cls.ErrorPage, {}, [className])}>
-            <p>{t('Произошла непредвиденная ошибка')}</p>
+            <p>{t('Виникла непередбачена помилка')}</p>
             <Button onClick={reloadPage}>
-                {t('Обновить страницу')}
+                {t('Оновити сторінку')}
             </Button>
         </div>
     );
