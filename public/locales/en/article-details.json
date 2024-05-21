@@ -4,5 +4,8 @@
   "Назад до списку": "Back to list",
   "Введіть текст коментаря": "Enter comment text",
   "Відправити": "Send",
-  "Рекомендуємо": "Recommendations"
+  "Рекомендуємо": "Recommendations",
+  "Редагувати статтю": "Edit article",
+  "Створення нової статті": "New article creation",
+  "Редагування статтті із ID = ": "Edit Article with ID = "
 }

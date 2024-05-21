@@ -1,9 +1,14 @@
 import { createSelector } from '@reduxjs/toolkit';
 
-import { getUserAuthData, User } from 'entities/User';
-import { getProfileData, Profile } from 'entities/Profile';
+import { getUserAuthData } from 'entities/User';
+import { getProfileData } from 'entities/Profile';
 
 export const getCanProfileEdit = createSelector(
     [getUserAuthData, getProfileData],
-    (authData, profileData) => authData?.id === profileData?.id,
+    (authData, profileData) => {
+        if (!authData || !profileData) {
+            return false;
+        }
+        return authData?.id === profileData?.id;
+    },
 );
