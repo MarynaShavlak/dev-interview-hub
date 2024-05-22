@@ -3,7 +3,7 @@ import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 export default {
-    title: 'shared/ArticleEditPage',
+    title: 'pages/ArticleEditPage',
     component: ArticleEditPage,
     argTypes: {
         backgroundColor: { control: 'color' },
