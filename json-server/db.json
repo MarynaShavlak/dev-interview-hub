@@ -59,6 +59,48 @@
       "userId": "2",
       "text": "fdhgkhj.lj",
       "id": "SIj5b7h"
+    },
+    {
+      "articleId": "7",
+      "userId": "1",
+      "text": "VFNFGK",
+      "id": "QeaB8mf"
+    },
+    {
+      "articleId": "7",
+      "userId": "1",
+      "text": "DSHDJ",
+      "id": "NwpXqcZ"
+    },
+    {
+      "articleId": "7",
+      "userId": "1",
+      "text": "VFNJG",
+      "id": "b3qcoZp"
+    },
+    {
+      "articleId": "7",
+      "userId": "1",
+      "text": "hhh",
+      "id": "382QXsA"
+    },
+    {
+      "articleId": "7",
+      "userId": "1",
+      "text": "ffff",
+      "id": "ogV8Y27"
+    },
+    {
+      "articleId": "7",
+      "userId": "1",
+      "text": "gggg",
+      "id": "HcOrGvi"
+    },
+    {
+      "articleId": "7",
+      "userId": "1",
+      "text": "ffff",
+      "id": "2_F4h7z"
     }
   ],
   "users": [
@@ -659,7 +701,7 @@
       "title": "Экономическая статья - ИНФЛЯЦИЯ!",
       "subtitle": "Экономика",
       "img": "https://msu.edu.ua/wp-content/uploads/2021/06/%D0%9F%D0%9E%D0%95.png",
-      "views":1522,
+      "views": 1522,
       "createdAt": "13.11.2020",
       "userId": "1",
       "type": [
