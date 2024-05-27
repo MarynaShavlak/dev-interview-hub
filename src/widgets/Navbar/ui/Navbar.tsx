@@ -1,5 +1,5 @@
 import {
- getUserAuthData, isUserAdmin, isUserManager, userActions 
+    getUserAuthData, isUserAdmin, isUserManager, userActions,
 } from 'entities/User';
 import { LoginModal } from 'features/AuthByUsername';
 import React, { memo, useCallback, useState } from 'react';

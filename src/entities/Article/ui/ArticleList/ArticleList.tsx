@@ -11,10 +11,11 @@ import { HTMLAttributeAnchorTarget, memo } from 'react';
 import { getItemCountPerRow } from 'shared/lib/getItemCountPerRow/getItemCountPerRow';
 import { Text, TextSize } from 'shared/ui/Text/Text';
 import { List, ListRowProps, WindowScroller } from 'react-virtualized';
+import { ArticleView } from '../../model/consts/consts';
 import { ArticleListItemSkeleton } from '../../ui/ArticleListItem/ArticleListItemSkeleton';
 import { ArticleListItem } from '../ArticleListItem/ArticleListItem';
 import cls from './ArticleList.module.scss';
-import { Article, ArticleView } from '../../model/types/article';
+import { Article } from '../../model/types/article';
 
 interface ArticleListProps {
     className?: string;
