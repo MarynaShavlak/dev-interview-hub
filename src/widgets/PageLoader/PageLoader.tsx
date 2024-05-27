@@ -1,5 +1,6 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Loader } from 'shared/ui/Loader/Loader';
+import { VStack } from 'shared/ui/Stack';
 import cls from './PageLoader.module.scss';
 
 interface PageLoaderProps {
@@ -7,7 +8,7 @@ interface PageLoaderProps {
 }
 
 export const PageLoader = ({ className }: PageLoaderProps) => (
-    <div className={classNames(cls.PageLoader, {}, [className])}>
+    <VStack max justify="center" className={classNames(cls.PageLoader, {}, [className])}>
         <Loader />
-    </div>
+    </VStack>
 );

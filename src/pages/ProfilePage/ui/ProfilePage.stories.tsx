@@ -7,44 +7,34 @@ import { Country } from 'entities/Country';
 import { Currency } from 'entities/Currency';
 import ProfilePage from './ProfilePage';
 
+const data = {
+    profile: {
+        form: {
+            username: 'admin',
+            age: 29,
+            country: Country.Ukraine,
+            lastname: 'Shavlak',
+            first: 'Maryna',
+            city: 'Kharkiv',
+            currency: Currency.UAH,
+        },
+    },
+};
+
 export default {
     title: 'pages/ProfilePage',
     component: ProfilePage,
     argTypes: {
         backgroundColor: { control: 'color' },
     },
+    decorators: [StoreDecorator(data)],
 } as ComponentMeta<typeof ProfilePage>;
 
 const Template: ComponentStory<typeof ProfilePage> = (args) => <ProfilePage {...args} />;
 
 export const Normal = Template.bind({});
 Normal.args = {};
-Normal.decorators = [StoreDecorator({
-    profile: {
-        form: {
-            username: 'admin',
-            age: 29,
-            country: Country.Ukraine,
-            lastname: 'Shavlak',
-            first: 'Maryna',
-            city: 'Kharkiv',
-            currency: Currency.UAH,
-        },
-    },
-})];
 
 export const Dark = Template.bind({});
 Dark.args = {};
-Dark.decorators = [ThemeDecorator(Theme.DARK), StoreDecorator({
-    profile: {
-        form: {
-            username: 'admin',
-            age: 29,
-            country: Country.Ukraine,
-            lastname: 'Shavlak',
-            first: 'Maryna',
-            city: 'Kharkiv',
-            currency: Currency.UAH,
-        },
-    },
-})];
+Dark.decorators = [ThemeDecorator(Theme.DARK)];

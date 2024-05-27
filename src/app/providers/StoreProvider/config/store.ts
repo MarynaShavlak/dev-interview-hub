@@ -31,8 +31,7 @@ export function createReduxStore(
             thunk: {
                 extraArgument: extraArg,
             },
-
-        }),
+        }).concat(rtkApi.middleware),
 
     });
     // @ts-ignore
