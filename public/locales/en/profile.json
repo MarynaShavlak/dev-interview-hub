@@ -17,5 +17,6 @@
   "Дані не вказано": "Data not provided",
   "Прізвище та ім'я є обов'язковими полями": "Surname and name are required fields",
   "Місто є обов'язковим полем": "City is a required field",
-  "Некоректний формат віку": "Incorrect age format"
+  "Некоректний формат віку": "Incorrect age format",
+  "Профіль не знайдено": "Профіль не знайдено"
 }

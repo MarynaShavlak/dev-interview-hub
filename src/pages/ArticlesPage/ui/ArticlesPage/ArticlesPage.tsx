@@ -9,6 +9,7 @@ import { useSelector } from 'react-redux';
 import { Page } from 'widgets/Page/Page';
 import { Text, TextAlign } from 'shared/ui/Text/Text';
 import { useSearchParams } from 'react-router-dom';
+import { ArticleInfiniteList } from '../../ui/ArticleInfiniteList/ArticleInfiniteList';
 import { ArticlesPageFilters } from '../../ui/ArticlesPageFilters/ArticlesPageFilters';
 import { fetchNextArticlesPage } from '../../model/services/fetchNextArticlesPage/fetchNextArticlesPage';
 import { initArticlesPage } from '../../model/services/initArticlesPage/initArticlesPage';
@@ -30,12 +31,7 @@ const reducers: ReducersList = {
 };
 
 const ArticlesPage = ({ className }: ArticlesPageProps) => {
-    const { t } = useTranslation('articles');
     const dispatch = useAppDispatch();
-    const articles = useSelector(getArticles.selectAll);
-    const isLoading = useSelector(getArticlesPageIsLoading);
-    const view = useSelector(getArticlesPageView);
-    const error = useSelector(getArticlesPageError);
     const [searchParams] = useSearchParams();
 
     const onLoadNextPart = useCallback(() => {
@@ -48,17 +44,12 @@ const ArticlesPage = ({ className }: ArticlesPageProps) => {
 
     return (
         <DynamicModuleLoader reducers={reducers} removeAfterUnmount={false}>
-            <Page className={classNames(cls.ArticlesPage, {}, [className])} onScrollEnd={onLoadNextPart}>
+            <Page
+                className={classNames(cls.ArticlesPage, {}, [className])}
+                onScrollEnd={onLoadNextPart}
+            >
                 <ArticlesPageFilters />
-                {error ? (
-                    <Text text={t('Помилка запиту статей')} align={TextAlign.CENTER} />
-                ) : (
-                    <ArticleList
-                        isLoading={isLoading}
-                        view={view}
-                        articles={articles}
-                    />
-                )}
+                <ArticleInfiniteList className={cls.list} />
             </Page>
         </DynamicModuleLoader>
 
