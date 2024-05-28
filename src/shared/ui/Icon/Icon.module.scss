@@ -1,3 +1,23 @@
 .Icon {
     fill: var(--primary-color);
 }
+
+.inverted {
+    fill: var(--inverted-primary-color);
+}
+
+.size_s {
+    width: var(--icon-s);
+}
+
+.size_m {
+    width: var(--icon-m);
+}
+
+.size_l {
+    width: var(--icon-l);
+}
+
+.size_xl {
+    width: var(--icon-xl);
+}

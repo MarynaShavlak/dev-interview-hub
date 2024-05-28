@@ -1,11 +1,13 @@
-import { Fragment, ReactNode, useState } from 'react';
 import { Listbox as HListBox } from '@headlessui/react';
-import { classNames, Mods } from 'shared/lib/classNames/classNames';
+import { Fragment, ReactNode } from 'react';
 import CheckedIcon from 'shared/assets/icons/done-20-20.svg';
+import { classNames } from 'shared/lib/classNames/classNames';
 import { DropdownDirection } from 'shared/types/ui';
-import { Icon } from '../../ui/Icon/Icon';
-import { HStack } from '../Stack';
-import { Button } from '../Button/Button';
+import { Button } from '../../../Button/Button';
+import { Icon, IconSize } from '../../../Icon/Icon';
+import { HStack } from '../../../Stack';
+import { mapDirectionClass } from '../../styles/consts';
+import popupCls from '../../styles/popup.module.scss';
 import cls from './ListBox.module.scss';
 
 export interface ListBoxItem {
@@ -24,13 +26,6 @@ interface ListBoxProps {
     direction?: DropdownDirection;
     label?: string;
 }
-
-const mapDirectionClass: Record<DropdownDirection, string> = {
-    'bottom left': cls.optionsBottomLeft,
-    'bottom right': cls.optionsBottomRight,
-    'top right': cls.optionsTopRight,
-    'top left': cls.optionsTopLeft,
-};
 
 export function ListBox(props: ListBoxProps) {
     const {
@@ -52,7 +47,7 @@ export function ListBox(props: ListBoxProps) {
             <HListBox
                 disabled={readonly}
                 as="div"
-                className={classNames(cls.ListBox, {}, [className])}
+                className={classNames(cls.ListBox, {}, [className, popupCls.popup])}
                 value={value}
                 onChange={onChange}
             >
@@ -74,15 +69,16 @@ export function ListBox(props: ListBoxProps) {
                                     className={classNames(
                                         cls.item,
                                         {
-                                            [cls.active]: active,
-                                            [cls.disabled]: item.disabled,
+                                            [popupCls.active]: active,
+                                            [popupCls.disabled]: item.disabled,
                                         },
                                     )}
                                 >
                                     <HStack gap="8">
-                                        {selected && <Icon Svg={CheckedIcon} />}
+                                        {selected && <Icon Svg={CheckedIcon} size={IconSize.S} />}
                                         {item.content}
                                     </HStack>
+
                                 </li>
                             )}
                         </HListBox.Option>
