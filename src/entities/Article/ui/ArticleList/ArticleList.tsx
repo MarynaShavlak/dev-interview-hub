@@ -1,18 +1,9 @@
 import { useTranslation } from 'react-i18next';
 import { HTMLAttributeAnchorTarget, memo } from 'react';
-import { List, ListRowProps, WindowScroller } from 'react-virtualized';
-import { PAGE_ID } from '@/shared/const/id';
-import {
-    ARTICLE_LIST_GAP,
-    ARTICLE_LIST_ITEM_BIG_HEIGHT,
-    ARTICLE_LIST_ITEM_SMALL_HEIGHT,
-    ARTICLE_LIST_ITEM_SMALL_WIDTH,
-} from '@/shared/const/size';
+import { ArticleView } from '@/entities/Article';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import { getItemCountPerRow } from '@/shared/lib/getItemCountPerRow/getItemCountPerRow';
 import { Text, TextSize } from '@/shared/ui/Text/Text';
-import { ArticleView } from '../../model/consts/consts';
-import { ArticleListItemSkeleton } from '../../ui/ArticleListItem/ArticleListItemSkeleton';
+import { ArticleListItemSkeleton } from '../ArticleListItem/ArticleListItemSkeleton';
 import { ArticleListItem } from '../ArticleListItem/ArticleListItem';
 import cls from './ArticleList.module.scss';
 import { Article } from '../../model/types/article';
@@ -23,7 +14,6 @@ interface ArticleListProps {
     isLoading?: boolean;
     target?: HTMLAttributeAnchorTarget;
     view?: ArticleView;
-    virtualized?: boolean;
 }
 
 const getSkeletons = (view: ArticleView) => new Array(view === ArticleView.SMALL ? 9 : 3)
@@ -32,11 +22,6 @@ const getSkeletons = (view: ArticleView) => new Array(view === ArticleView.SMALL
         <ArticleListItemSkeleton className={cls.card} key={index} view={view} />
     ));
 
-const calculateItemsQuantity = (isBig: boolean, pageWidth: number | null) => {
-    if (isBig) return 1;
-    return pageWidth ? getItemCountPerRow(pageWidth, ARTICLE_LIST_ITEM_SMALL_WIDTH, ARTICLE_LIST_GAP) : 3;
-};
-
 export const ArticleList = memo((props: ArticleListProps) => {
     const {
         className,
@@ -44,45 +29,8 @@ export const ArticleList = memo((props: ArticleListProps) => {
         view = ArticleView.SMALL,
         isLoading,
         target,
-        virtualized = true,
     } = props;
     const { t } = useTranslation('articles');
-
-    const isBig = view === ArticleView.BIG;
-    const PageElement = document.getElementById(PAGE_ID);
-    const pageWidth = PageElement?.offsetWidth || null;
-    const itemsQuantity = calculateItemsQuantity(isBig, pageWidth);
-    const itemsPerRow = isBig ? 1 : itemsQuantity;
-    const rowCount = isBig ? articles.length : Math.ceil(articles.length / itemsPerRow);
-
-    const rowRender = ({
-        index, isScrolling, key, style,
-    }: ListRowProps) => {
-        const items = [];
-        const fromIndex = index * itemsPerRow;
-        const toIndex = Math.min(fromIndex + itemsPerRow, articles.length);
-        for (let i = fromIndex; i < toIndex; i += 1) {
-            items.push(
-                <ArticleListItem
-                    article={articles[i]}
-                    view={view}
-                    target={target}
-                    key={`str${i}`}
-                    className={cls.card}
-                />,
-            );
-        }
-
-        return (
-            <div
-                key={key}
-                style={style}
-                className={cls.row}
-            >
-                {items}
-            </div>
-        );
-    };
 
     if (!isLoading && !articles.length) {
         return (
@@ -93,52 +41,20 @@ export const ArticleList = memo((props: ArticleListProps) => {
     }
 
     return (
-        <WindowScroller
-            scrollElement={PageElement as Element}
+        <div
+            className={classNames(cls.ArticleList, {}, [className, cls[view]])}
         >
-            {({
-                height,
-                width,
-                registerChild,
-                onChildScroll,
-                isScrolling,
-                scrollTop,
-            }) => {
-                return (
-                    <div
-                        // @ts-ignore
-                        ref={registerChild}
-                        className={classNames(cls.ArticleList, {}, [className, cls[view]])}
-                    >
-                        {virtualized
-                            ? (
-                                <List
-                                    height={height ?? ARTICLE_LIST_ITEM_BIG_HEIGHT}
-                                    rowCount={rowCount}
-                                    rowHeight={isBig ? ARTICLE_LIST_ITEM_BIG_HEIGHT : ARTICLE_LIST_ITEM_SMALL_HEIGHT + ARTICLE_LIST_GAP}
-                                    rowRenderer={rowRender}
-                                    width={width ? width - 80 : ARTICLE_LIST_ITEM_BIG_HEIGHT}
-                                    autoHeight
-                                    onScroll={onChildScroll}
-                                    isScrolling={isScrolling}
-                                    scrollTop={scrollTop}
-                                />
-                            ) : (
-                                articles.map((item) => (
-                                    <ArticleListItem
-                                        article={item}
-                                        view={view}
-                                        target={target}
-                                        key={item.id}
-                                        className={cls.card}
-                                    />
-                                ))
-                            )}
+            {articles.map((item) => (
+                <ArticleListItem
+                    article={item}
+                    view={view}
+                    target={target}
+                    key={item.id}
+                    className={cls.card}
+                />
+            ))}
+            {isLoading && getSkeletons(view)}
+        </div>
 
-                        {isLoading && getSkeletons(view)}
-                    </div>
-                );
-            }}
-        </WindowScroller>
     );
 });

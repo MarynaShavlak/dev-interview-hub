@@ -43,7 +43,7 @@ export const EditableProfileCardHeader = memo((props: EditableProfileCardHeaderP
 
     return (
         <HStack max justify="between" className={classNames('', {}, [className])}>
-            <Text title={t('Профиль')} />
+            <Text title={t('Профіль')} />
             {canEdit && (
                 <div>
                     {readonly
@@ -53,7 +53,7 @@ export const EditableProfileCardHeader = memo((props: EditableProfileCardHeaderP
                                 onClick={onEdit}
                                 data-testid="EditableProfileCardHeader.EditButton"
                             >
-                                {t('Редактировать')}
+                                {t('Редагувати')}
                             </Button>
                         )
                         : (
@@ -63,14 +63,14 @@ export const EditableProfileCardHeader = memo((props: EditableProfileCardHeaderP
                                     onClick={onCancelEdit}
                                     data-testid="EditableProfileCardHeader.CancelButton"
                                 >
-                                    {t('Отменить')}
+                                    {t('Відмінити')}
                                 </Button>
                                 <Button
                                     theme={ButtonTheme.OUTLINE}
                                     onClick={onSave}
                                     data-testid="EditableProfileCardHeader.SaveButton"
                                 >
-                                    {t('Сохранить')}
+                                    {t('Зберегти')}
                                 </Button>
                             </HStack>
                         )}

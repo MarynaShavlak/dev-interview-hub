@@ -11,7 +11,6 @@ interface ProfilePageProps {
     className?: string;
 }
 const ProfilePage = memo(({ className }: ProfilePageProps) => {
-    const { t } = useTranslation('profile');
     const { id } = useParams<{id: string}>();
 
     return (
