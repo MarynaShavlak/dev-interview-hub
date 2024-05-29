@@ -1,16 +1,16 @@
-import { PAGE_ID } from 'shared/const/id';
+import { useTranslation } from 'react-i18next';
+import { HTMLAttributeAnchorTarget, memo } from 'react';
+import { List, ListRowProps, WindowScroller } from 'react-virtualized';
+import { PAGE_ID } from '@/shared/const/id';
 import {
     ARTICLE_LIST_GAP,
     ARTICLE_LIST_ITEM_BIG_HEIGHT,
     ARTICLE_LIST_ITEM_SMALL_HEIGHT,
     ARTICLE_LIST_ITEM_SMALL_WIDTH,
-} from 'shared/const/size';
-import { classNames } from 'shared/lib/classNames/classNames';
-import { useTranslation } from 'react-i18next';
-import { HTMLAttributeAnchorTarget, memo } from 'react';
-import { getItemCountPerRow } from 'shared/lib/getItemCountPerRow/getItemCountPerRow';
-import { Text, TextSize } from 'shared/ui/Text/Text';
-import { List, ListRowProps, WindowScroller } from 'react-virtualized';
+} from '@/shared/const/size';
+import { classNames } from '@/shared/lib/classNames/classNames';
+import { getItemCountPerRow } from '@/shared/lib/getItemCountPerRow/getItemCountPerRow';
+import { Text, TextSize } from '@/shared/ui/Text/Text';
 import { ArticleView } from '../../model/consts/consts';
 import { ArticleListItemSkeleton } from '../../ui/ArticleListItem/ArticleListItemSkeleton';
 import { ArticleListItem } from '../ArticleListItem/ArticleListItem';

@@ -9,9 +9,9 @@ export function buildResolvers(options: BuildOptions): ResolveOptions {
         modules: [options.paths.src, 'node_modules'],
         mainFiles: ['index'],
         alias: {
-            root: __dirname,
-            src: path.resolve(__dirname, 'src'),
-
+            // root: __dirname,
+            // src: path.resolve(__dirname, 'src'),
+            '@': options.paths.src,
         },
     };
 }

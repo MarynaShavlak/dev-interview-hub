@@ -20,12 +20,12 @@
     transition: 0.3s transform;
     transform: scale(0.5);
     max-width: 70%;
+    z-index: var(--modal-z-index);
 }
 
 .opened {
     pointer-events: auto;
     opacity: 1;
-    z-index: var(--modal-z-index);
 
     .content {
         transform: scale(1);
