@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { memo, Suspense, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Skeleton } from '@/shared/ui/Skeleton/Skeleton';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { Loader } from '@/shared/ui/Loader/Loader';
 import { Text, TextSize } from '@/shared/ui/Text/Text';
@@ -41,9 +42,7 @@ export const ArticleDetailsComments = memo((props: ArticleDetailsCommentsProps) 
                 size={TextSize.L}
                 title={t('Коментарі')}
             />
-            <Suspense fallback={<Loader />}>
-                <AddCommentForm onSendComment={onSendComment} />
-            </Suspense>
+            <AddCommentForm onSendComment={onSendComment} />
             <CommentList
                 isLoading={commentsIsLoading}
                 comments={comments}

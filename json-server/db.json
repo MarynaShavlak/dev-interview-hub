@@ -165,6 +165,18 @@
       "userId": "1",
       "text": "cfnhv,",
       "id": "2lTyFGy"
+    },
+    {
+      "articleId": "19",
+      "userId": "2",
+      "text": "gdfhfgtk",
+      "id": "CDr2jmV"
+    },
+    {
+      "articleId": "19",
+      "userId": "2",
+      "text": "dfnjgh,k",
+      "id": "zTXZ5JY"
     }
   ],
   "users": [
@@ -820,6 +832,107 @@
           ]
         }
       ]
+    }
+  ],
+  "article-ratings": [
+    {
+      "id": "1",
+      "rate": 4,
+      "feedback": "Хорошая статья",
+      "userId": "1",
+      "articleId": "1"
+    },
+    {
+      "id": "2",
+      "rate": 4,
+      "feedback": "Хорошая статья",
+      "userId": "1",
+      "articleId": "2"
+    },
+    {
+      "userId": "1",
+      "articleId": "3",
+      "rate": 3,
+      "feedback": "",
+      "id": "I7ofk1u"
+    },
+    {
+      "userId": "1",
+      "articleId": "9",
+      "rate": 5,
+      "feedback": "asdasdasdasd",
+      "id": "Y7MhPzo"
+    },
+    {
+      "userId": "1",
+      "articleId": "10",
+      "rate": 1,
+      "feedback": "отстой",
+      "id": "II0a75O"
+    },
+    {
+      "userId": "1",
+      "articleId": "7",
+      "rate": 3,
+      "feedback": "",
+      "id": "bcPnbbZ"
+    },
+    {
+      "userId": "2",
+      "articleId": "12",
+      "rate": 4,
+      "id": "BBSSVkP"
+    },
+    {
+      "userId": "2",
+      "articleId": "3",
+      "rate": 1,
+      "feedback": "fdhfj",
+      "id": "d6_RtW2"
+    },
+    {
+      "userId": "2",
+      "articleId": "7",
+      "rate": 5,
+      "feedback": "авраопнрлрою",
+      "id": "d5s37Ly"
+    },
+    {
+      "userId": "2",
+      "articleId": "7",
+      "rate": 5,
+      "feedback": "",
+      "id": "6of8CAJ"
+    },
+    {
+      "userId": "2",
+      "articleId": "7",
+      "rate": 5,
+      "feedback": "fsdhdj",
+      "id": "LvT5cZq"
+    },
+    {
+      "userId": "2",
+      "articleId": "8",
+      "rate": 5,
+      "feedback": "rutoy",
+      "id": "4-la43K"
+    }
+  ],
+  "profile-ratings": [
+    {
+      "id": "1",
+      "rate": 4,
+      "feedback": "Хорошая статья",
+      "userId": "1",
+      "profileId": "1"
+    },
+    {
+      "id": "2",
+      "rate": 4,
+      "feedback": "Хорошая статья",
+      "userId": "1",
+      "profileId": "2"
     }
   ]
 }

@@ -75,7 +75,7 @@ export function ListBox(props: ListBoxProps) {
                                     )}
                                 >
                                     <HStack gap="8">
-                                        {selected && <Icon Svg={CheckedIcon} size={IconSize.S} />}
+                                        {selected && <Icon Svg={CheckedIcon} />}
                                         {item.content}
                                     </HStack>
 
