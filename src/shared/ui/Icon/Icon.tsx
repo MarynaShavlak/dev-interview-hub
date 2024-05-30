@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React, { memo, SVGProps } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './Icon.module.scss';
 
@@ -9,7 +9,7 @@ export enum IconSize {
     XL = 'size_xl',
 }
 
-interface IconProps {
+interface IconProps extends SVGProps<SVGSVGElement>{
     className?: string;
     Svg: React.FC<React.SVGProps<SVGSVGElement>>;
     inverted?:boolean;
@@ -18,10 +18,13 @@ interface IconProps {
 
 export const Icon = memo((props: IconProps) => {
     const {
-        className, Svg, inverted, size = IconSize.M,
+        className, Svg, inverted, size = IconSize.M, ...otherProps
     } = props;
 
     return (
-        <Svg className={classNames(inverted ? cls.inverted : cls.Icon, { [cls[size]]: true }, [className])} />
+        <Svg
+            className={classNames(inverted ? cls.inverted : cls.Icon, { [cls[size]]: true }, [className])}
+            {...otherProps}
+        />
     );
 });
