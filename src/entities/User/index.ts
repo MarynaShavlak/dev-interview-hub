@@ -1,3 +1,4 @@
+export { getUserRoles } from './model/selectors/roleSelectors';
 export {
     getUserAuthData,
 } from './model/selectors/getUserAuthData/getUserAuthData';

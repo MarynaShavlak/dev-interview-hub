@@ -12,7 +12,7 @@ import { ScrollRestorationSchema } from '@/features/ScrollRestoration';
 import {
     ArticleDetailsPageSchema,
 } from '@/pages/ArticleDetailsPage';
-import { ArticlesPageSchema } from '@/pages/ArticlesPage/model/types/articlesPageSchema';
+import { ArticlesPageSchema } from '@/pages/ArticlesPage';
 import { rtkApi } from '@/shared/api/rtkApi';
 
 export interface StateSchema {

@@ -22,7 +22,7 @@ module.exports = {
         '@typescript-eslint',
         'i18next',
         'react-hooks',
-        'ms-production-project-plugin'
+        'ms-production-project-plugin',
     ],
     rules: {
         'react/jsx-indent': [2, 4],
@@ -60,7 +60,11 @@ module.exports = {
         'linebreak-style': 'off',
         'react/no-array-index-key': 'off',
         'arrow-body-style': 'off',
-        'ms-production-project-plugin/path-checker': ['error', { alias: '@'}],
+        'ms-production-project-plugin/path-checker': ['error', { alias: '@' }],
+        'ms-production-project-plugin/public-api-imports': ['error', {
+            alias: '@',
+            testFilesPatterns: ['**/*.test.*', '**/*.stories.*', '**/StoreDecorator.tsx'],
+        }],
     },
     globals: {
         __IS_DEV__: true,
