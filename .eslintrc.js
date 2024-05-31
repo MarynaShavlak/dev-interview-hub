@@ -60,7 +60,7 @@ module.exports = {
         'linebreak-style': 'off',
         'react/no-array-index-key': 'off',
         'arrow-body-style': 'off',
-        'ms-production-project-plugin/path-checker': 'error',
+        'ms-production-project-plugin/path-checker': ['error', { alias: '@'}],
     },
     globals: {
         __IS_DEV__: true,

@@ -1,7 +1,7 @@
-import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import ArticlesPage from './ArticlesPage';
+import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 
 export default {
     title: 'pages/ArticlesPage',
