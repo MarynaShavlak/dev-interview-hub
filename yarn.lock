@@ -7430,10 +7430,10 @@
     "language-tags" "^1.0.5"
     "minimatch" "^3.0.4"
 
-"eslint-plugin-ms-production-project-plugin@^0.0.4":
-  "integrity" "sha512-yi3c08NNiyHo3pCuw6uL8sNFyLzeb5GacseU98SyJEALJnTrE8UzOTelSNxgQRlMjPtyiqP7EW+fvVHIkzRUmg=="
-  "resolved" "https://registry.npmjs.org/eslint-plugin-ms-production-project-plugin/-/eslint-plugin-ms-production-project-plugin-0.0.4.tgz"
-  "version" "0.0.4"
+"eslint-plugin-ms-production-project-plugin@^0.0.6":
+  "integrity" "sha512-5U3ii92pYQdJfKPRLlstl8Ufjoo2c/3uLdPGsORi9qTQb0RN6dAlu+JeuW0vCkX3gt+0Tgkw33nBqu5+GDdGaA=="
+  "resolved" "https://registry.npmjs.org/eslint-plugin-ms-production-project-plugin/-/eslint-plugin-ms-production-project-plugin-0.0.6.tgz"
+  "version" "0.0.6"
   dependencies:
     "micromatch" "^4.0.5"
     "requireindex" "^1.2.0"

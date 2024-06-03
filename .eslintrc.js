@@ -61,6 +61,12 @@ module.exports = {
         'react/no-array-index-key': 'off',
         'arrow-body-style': 'off',
         'ms-production-project-plugin/path-checker': ['error', { alias: '@' }],
+        'ms-production-project-plugin/layer-imports': ['error',
+            {
+                alias: '@',
+                ignoreImportPatterns: ['**/StoreProvider', '**/testing'],
+            },
+        ],
         'ms-production-project-plugin/public-api-imports': ['error', {
             alias: '@',
             testFilesPatterns: ['**/*.test.*', '**/*.stories.*', '**/StoreDecorator.tsx'],
