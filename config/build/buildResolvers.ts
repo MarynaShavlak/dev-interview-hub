@@ -1,4 +1,3 @@
-import path from 'path';
 import { ResolveOptions } from 'webpack';
 import { BuildOptions } from './types/config';
 

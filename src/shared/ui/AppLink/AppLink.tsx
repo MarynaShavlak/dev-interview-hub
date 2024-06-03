@@ -1,6 +1,6 @@
 import { Link, LinkProps } from 'react-router-dom';
 import {
-    memo, forwardRef, Ref, ForwardedRef, ReactNode,
+    memo, forwardRef, ForwardedRef, ReactNode,
 } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './AppLink.module.scss';
