@@ -2,6 +2,13 @@ import {
     MutableRefObject, useCallback, useEffect, useRef, useState,
 } from 'react';
 
+/**
+ * Повторно використовуваний хук для модальних компонентів (drawer/modal)
+ * @param animationDelay
+ * @param isOpen
+ * @param onClose
+ */
+
 interface UseModalProps {
     onClose?: () => void;
     isOpen?: boolean;
@@ -31,7 +38,7 @@ export function useModal({
         }
     }, [animationDelay, onClose]);
 
-    // Новые ссылки!!!
+    // Нові посилання!!!
     const onKeyDown = useCallback((e: KeyboardEvent) => {
         if (e.key === 'Escape') {
             close();
