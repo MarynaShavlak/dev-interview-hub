@@ -1,7 +1,7 @@
 import React, { memo, useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
-import { RoutePath } from '@/shared/const/router';
+import { getRouteArticleCreate } from '@/shared/const/router';
 import {
     getUserAuthData,
 } from '@/entities/User';
@@ -45,7 +45,7 @@ export const Navbar = memo(({ className }: NavbarProps) => {
                     title={t('PRODUCTION TEMPLATE APP')}
                 />
                 <AppLink
-                    to={RoutePath.article_create}
+                    to={getRouteArticleCreate()}
                     theme={AppLinkTheme.SECONDARY}
                     className={cls.createBtn}
                 >
