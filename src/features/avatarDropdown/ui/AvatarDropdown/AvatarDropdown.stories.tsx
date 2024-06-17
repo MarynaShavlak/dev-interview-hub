@@ -2,6 +2,7 @@ import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { UserRole } from '@/entities/User';
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
+import avatar from '@/shared/assets/tests/avatar-dropdown.png';
 
 import { AvatarDropdown } from './AvatarDropdown';
 
@@ -22,7 +23,7 @@ Normal.decorators = [
         user: {
             authData: {
                 id: '1',
-                avatar: 'https://img.freepik.com/free-psd/3d-illustration-of-person-with-sunglasses_23-2149436188.jpg?size=338&ext=jpg&ga=GA1.1.44546679.1716422400&semt=ais_user',
+                avatar,
                 roles: [],
             },
         },
@@ -36,7 +37,7 @@ Admin.decorators = [
         user: {
             authData: {
                 id: '1',
-                avatar: 'https://img.freepik.com/free-psd/3d-illustration-of-person-with-sunglasses_23-2149436188.jpg?size=338&ext=jpg&ga=GA1.1.44546679.1716422400&semt=ais_user',
+                avatar,
                 roles: [UserRole.ADMIN],
             },
         },
@@ -50,7 +51,7 @@ Manager.decorators = [
         user: {
             authData: {
                 id: '1',
-                avatar: 'https://img.freepik.com/free-psd/3d-illustration-of-person-with-sunglasses_23-2149436188.jpg?size=338&ext=jpg&ga=GA1.1.44546679.1716422400&semt=ais_user',
+                avatar,
                 roles: [UserRole.MANAGER],
             },
         },
