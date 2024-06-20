@@ -2,10 +2,10 @@ import { useTranslation } from 'react-i18next';
 import { memo, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { useArticleDetailsData } from '@/entities/Article';
 import { getRouteArticleEdit, getRouteArticles } from '@/shared/const/router';
 import { Button, ButtonTheme } from '@/shared/ui/Button';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import { getArticleDetailsData } from '@/entities/Article';
 import { HStack } from '@/shared/ui/Stack';
 import { getCanEditArticle } from '../../model/selectors/article';
 
@@ -18,7 +18,7 @@ export const ArticleDetailsPageHeader = memo((props: ArticleDetailsPageHeaderPro
     const { t } = useTranslation('article-details');
     const navigate = useNavigate();
     const canEdit = useSelector(getCanEditArticle);
-    const article = useSelector(getArticleDetailsData);
+    const article = useArticleDetailsData();
 
     const onBackToList = useCallback(() => {
         navigate(getRouteArticles());

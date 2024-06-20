@@ -1,28 +1,27 @@
 import { useTranslation } from 'react-i18next';
 import React, { memo, useCallback } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { getRouteAdmin, getRouteProfile } from '@/shared/const/router';
 import { Avatar } from '@/shared/ui/Avatar';
 import { Dropdown } from '@/shared/ui/Popups';
 import {
-    getUserAuthData, isUserAdmin, isUserManager, userActions,
+    isUserAdmin, isUserManager, useUserActions, useUserAuthData,
 } from '@/entities/User';
 
 interface AvatarDropdownProps {
     className?: string;
 }
 
-export const AvatarDropdown = memo((props: AvatarDropdownProps) => {
-    const { className } = props;
+export const AvatarDropdown = memo(({ className }: AvatarDropdownProps) => {
     const { t } = useTranslation();
-    const dispatch = useDispatch();
     const isAdmin = useSelector(isUserAdmin);
     const isManager = useSelector(isUserManager);
-    const authData = useSelector(getUserAuthData);
+    const authData = useUserAuthData();
+    const { logout } = useUserActions();
 
     const onLogout = useCallback(() => {
-        dispatch(userActions.logout());
-    }, [dispatch]);
+        logout();
+    }, [logout]);
 
     const isAdminPanelAvailable = isAdmin || isManager;
 

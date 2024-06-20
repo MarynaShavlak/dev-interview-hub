@@ -1,10 +1,8 @@
 import React, { memo, useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useSelector } from 'react-redux';
+import { useUserAuthData } from '@/entities/User';
 import { getRouteArticleCreate } from '@/shared/const/router';
-import {
-    getUserAuthData,
-} from '@/entities/User';
+
 import { LoginModal } from '@/features/AuthByUsername';
 import { AvatarDropdown } from '@/features/avatarDropdown';
 import { NotificationButton } from '@/features/notificationButton';
@@ -24,7 +22,7 @@ interface NavbarProps {
 export const Navbar = memo(({ className }: NavbarProps) => {
     const { t } = useTranslation();
     const [isAuthModal, setIsAuthModal] = useState(false);
-    const authData = useSelector(getUserAuthData);
+    const authData = useUserAuthData();
 
     const onCloseModal = useCallback(() => {
         setIsAuthModal(false);

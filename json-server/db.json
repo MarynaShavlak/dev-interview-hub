@@ -177,6 +177,12 @@
       "userId": "2",
       "text": "dfnjgh,k",
       "id": "zTXZ5JY"
+    },
+    {
+      "articleId": "4",
+      "userId": "2",
+      "text": "fnvh,bjj.nkk/",
+      "id": "sWL0CbW"
     }
   ],
   "users": [
@@ -227,7 +233,7 @@
       "age": 27,
       "currency": "EUR",
       "country": "Croatia",
-      "city": "Zagreb",
+      "city": "Rijeka",
       "username": "user1",
       "avatar": "https://drive.google.com/thumbnail?id=1J1xUPYYkJeOsBTpDuf36vsV7UfxlM2uG&sz=w1000"
     }

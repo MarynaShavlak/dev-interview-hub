@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { memo, useCallback } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { Text, TextSize } from '@/shared/ui/Text';
 import { AddCommentForm } from '@/features/addCommentForm';
@@ -11,7 +12,7 @@ import {
     fetchCommentsByArticleId,
 } from '../../model/services/fetchCommentsByArticleId/fetchCommentsByArticleId';
 import { getArticleComments } from '../../model/slices/articleDetailsCommentsSlice';
-import { getArticleCommentsIsLoading } from '../../model/selectors/comments';
+import { useArticleCommentsIsLoading } from '../../model/selectors/comments';
 import { addCommentForArticle } from '../../model/services/addCommentForArticle/addCommentForArticle';
 
 interface ArticleDetailsCommentsProps {
@@ -23,8 +24,8 @@ export const ArticleDetailsComments = memo((props: ArticleDetailsCommentsProps) 
     const { className, id } = props;
     const { t } = useTranslation('article-details');
     const comments = useSelector(getArticleComments.selectAll);
-    const commentsIsLoading = useSelector(getArticleCommentsIsLoading);
-    const dispatch = useDispatch();
+    const commentsIsLoading = useArticleCommentsIsLoading();
+    const dispatch = useAppDispatch();
 
     const onSendComment = useCallback((text: string) => {
         dispatch(addCommentForArticle(text));

@@ -34,6 +34,7 @@ export function buildPlugins({
                 },
             },
         }),
+
     ];
 
     if (isDev) {

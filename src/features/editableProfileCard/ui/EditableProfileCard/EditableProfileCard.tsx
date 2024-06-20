@@ -1,6 +1,5 @@
 import { useTranslation } from 'react-i18next';
 import { memo, useCallback } from 'react';
-import { useSelector } from 'react-redux';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect/useInitialEffect';
@@ -11,13 +10,17 @@ import { ProfileCard } from '@/entities/Profile';
 import { DynamicModuleLoader, ReducersList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { VStack } from '@/shared/ui/Stack';
 import { ValidateProfileError } from '../../model/consts/consts';
-import { getProfileForm } from '../../model/selectors/getProfileForm/getProfileForm';
-import { getProfileIsLoading } from '../../model/selectors/getProfileIsLoading/getProfileIsLoading';
-import { getProfileError } from '../../model/selectors/getProfileError/getProfileError';
-import { getProfileReadonly } from '../../model/selectors/getProfileReadonly/getProfileReadonly';
-import { getProfileValidateErrors } from '../../model/selectors/getProfileValidateErrors/getProfileValidateErrors';
+import { useProfileForm } from '../../model/selectors/getProfileForm/getProfileForm';
+import {
+    useProfileIsLoading,
+} from '../../model/selectors/getProfileIsLoading/getProfileIsLoading';
+import { useProfileError } from '../../model/selectors/getProfileError/getProfileError';
+import { useProfileReadonly } from '../../model/selectors/getProfileReadonly/getProfileReadonly';
+import {
+    useProfileValidateErrors,
+} from '../../model/selectors/getProfileValidateErrors/getProfileValidateErrors';
 import { fetchProfileData } from '../../model/services/fetchProfileData/fetchProfileData';
-import { profileActions, profileReducer } from '../../model/slice/profileSlice';
+import { profileReducer, useProfileActions } from '../../model/slice/profileSlice';
 import { EditableProfileCardHeader } from '../EditableProfileCardHeader/EditableProfileCardHeader';
 
 interface EditableProfileCardProps {
@@ -32,13 +35,14 @@ const reducers: ReducersList = {
 export const EditableProfileCard = memo((props: EditableProfileCardProps) => {
     const { className, id } = props;
     const { t } = useTranslation('profile');
+    const { updateProfile } = useProfileActions();
 
     const dispatch = useAppDispatch();
-    const formData = useSelector(getProfileForm);
-    const isLoading = useSelector(getProfileIsLoading);
-    const error = useSelector(getProfileError);
-    const readonly = useSelector(getProfileReadonly);
-    const validateErrors = useSelector(getProfileValidateErrors);
+    const formData = useProfileForm();
+    const isLoading = useProfileIsLoading();
+    const error = useProfileError();
+    const readonly = useProfileReadonly();
+    const validateErrors = useProfileValidateErrors();
 
     const validateErrorTranslates = {
         [ValidateProfileError.SERVER_ERROR]: t('Помилка сервера при збереженні даннних'),
@@ -55,36 +59,36 @@ export const EditableProfileCard = memo((props: EditableProfileCardProps) => {
     });
 
     const onChangeFirstname = useCallback((value?: string) => {
-        dispatch(profileActions.updateProfile({ first: value || '' }));
-    }, [dispatch]);
+        updateProfile({ first: value || '' });
+    }, [updateProfile]);
 
     const onChangeLastname = useCallback((value?: string) => {
-        dispatch(profileActions.updateProfile({ lastname: value || '' }));
-    }, [dispatch]);
+        updateProfile({ lastname: value || '' });
+    }, [updateProfile]);
 
     const onChangeCity = useCallback((value?: string) => {
-        dispatch(profileActions.updateProfile({ city: value || '' }));
-    }, [dispatch]);
+        updateProfile({ city: value || '' });
+    }, [updateProfile]);
 
     const onChangeAge = useCallback((value?: string) => {
-        dispatch(profileActions.updateProfile({ age: Number(value || 0) }));
-    }, [dispatch]);
+        updateProfile({ age: Number(value || 0) });
+    }, [updateProfile]);
 
     const onChangeUsername = useCallback((value?: string) => {
-        dispatch(profileActions.updateProfile({ username: value || '' }));
-    }, [dispatch]);
+        updateProfile({ username: value || '' });
+    }, [updateProfile]);
 
     const onChangeAvatar = useCallback((value?: string) => {
-        dispatch(profileActions.updateProfile({ avatar: value || '' }));
-    }, [dispatch]);
+        updateProfile({ avatar: value || '' });
+    }, [updateProfile]);
 
     const onChangeCurrency = useCallback((currency: Currency) => {
-        dispatch(profileActions.updateProfile({ currency }));
-    }, [dispatch]);
+        updateProfile({ currency });
+    }, [updateProfile]);
 
     const onChangeCountry = useCallback((country: Country) => {
-        dispatch(profileActions.updateProfile({ country }));
-    }, [dispatch]);
+        updateProfile({ country });
+    }, [updateProfile]);
 
     return (
         <DynamicModuleLoader reducers={reducers}>
