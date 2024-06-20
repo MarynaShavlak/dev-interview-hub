@@ -13,15 +13,9 @@ export function buildBabelLoader({ isDev, isTsx }: BuildBabelLoaderProps) {
         use: {
             loader: 'babel-loader',
             options: {
+                cacheDirectory: true,
                 presets: ['@babel/preset-env'],
                 plugins: [
-                    [
-                        'i18next-extract',
-                        {
-                            locales: ['uk', 'en'],
-                            keyAsDefaultValue: true,
-                        },
-                    ],
                     [
                         '@babel/plugin-transform-typescript',
                         {
