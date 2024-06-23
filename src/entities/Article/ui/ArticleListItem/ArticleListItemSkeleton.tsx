@@ -4,6 +4,7 @@ import { Card } from '@/shared/ui/Card';
 import { Skeleton } from '@/shared/ui/Skeleton';
 import { ArticleView } from '../../model/consts/consts';
 import cls from './ArticleListItem.module.scss';
+import { HStack, VStack } from '@/shared/ui/Stack';
 
 interface ArticleListItemSkeletonProps {
     className?: string;
@@ -17,11 +18,13 @@ export const ArticleListItemSkeleton = memo((props: ArticleListItemSkeletonProps
         return (
             <div className={classNames(cls.ArticleListItem, {}, [className, cls[view]])}>
                 <Card className={cls.card}>
-                    <div className={cls.header}>
-                        <Skeleton border="50%" height={30} width={30} />
-                        <Skeleton width={150} height={16} className={cls.username} />
+                    <VStack className={cls.header} gap="16">
+                        <HStack gap="16">
+                            <Skeleton border="50%" height={30} width={30} />
+                            <Skeleton width={150} height={16} className={cls.username} />
+                        </HStack>
                         <Skeleton width={150} height={16} className={cls.date} />
-                    </div>
+                    </VStack>
                     <Skeleton width={250} height={24} className={cls.title} />
                     <Skeleton height={200} className={cls.img} />
                     <div className={cls.footer}>

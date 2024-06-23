@@ -1,4 +1,5 @@
 import { HTMLAttributeAnchorTarget, memo } from 'react';
+import { HStack } from '@/shared/ui/Stack';
 import { ArticleContent } from './ArticleContent/ArticleContent';
 import { ArticleFooter } from './ArticleFooter/ArticleFooter';
 import { ArticleHeader } from './ArticleHeader/ArticleHeader';
@@ -31,10 +32,10 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
 
     const types = <Text text={article.type.join(', ')} className={cls.types} />;
     const views = (
-        <>
-            <Text text={String(article.views)} className={cls.views} />
+        <HStack gap="8" className={cls.views}>
+            <Text text={String(article.views)} />
             <Icon Svg={EyeIcon} />
-        </>
+        </HStack>
     );
 
     const renderBigView = () => {
@@ -75,7 +76,7 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
     };
 
     if (view === ArticleView.BIG) {
-        renderBigView();
+        return renderBigView();
     }
 
     return (
