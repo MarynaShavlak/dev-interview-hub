@@ -13,6 +13,7 @@ interface ArticleInfiniteListProps {
 export const ArticleInfiniteList = memo((props: ArticleInfiniteListProps) => {
     const { className } = props;
     const articles = useSelector(getArticles.selectAll);
+    console.log('articles', articles);
     const isLoading = useArticlesPageIsLoading();
     const view = useArticlesPageView();
     const error = useArticlesPageError();

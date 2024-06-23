@@ -6,7 +6,7 @@ import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch
 import { HStack } from '@/shared/ui/Stack';
 import { Text } from '@/shared/ui/Text';
 import { Button, ButtonTheme } from '@/shared/ui/Button';
-import { useProfileActions } from '../../model/slice/profileSlice';
+import { profileActions } from '../../model/slice/profileSlice';
 import { useProfileReadonly } from '../../model/selectors/getProfileReadonly/getProfileReadonly';
 import { useProfileData } from '../../model/selectors/getProfileData/getProfileData';
 import { updateProfileData } from '../../model/services/updateProfileData/updateProfileData';
@@ -26,18 +26,26 @@ export const EditableProfileCardHeader = memo((props: EditableProfileCardHeaderP
     const canEdit = authData?.id === profileData?.id;
     const readonly = useProfileReadonly();
     const dispatch = useAppDispatch();
-    const { cancelEdit, setReadonly } = useProfileActions();
+    // const { cancelEdit, setReadonly } = useProfileActions();
 
-    const onEdit = useCallback(() => {
-        setReadonly(false);
-    }, [setReadonly]);
-
-    const onCancelEdit = useCallback(() => {
-        cancelEdit();
-    }, [cancelEdit]);
+    // const onEdit = useCallback(() => {
+    //     setReadonly(false);
+    // }, [setReadonly]);
+    //
+    // const onCancelEdit = useCallback(() => {
+    //     cancelEdit();
+    // }, [cancelEdit]);
 
     const onSave = useCallback(() => {
         dispatch(updateProfileData());
+    }, [dispatch]);
+
+    const onEdit = useCallback(() => {
+        dispatch(profileActions.setReadonly(false));
+    }, [dispatch]);
+
+    const onCancelEdit = useCallback(() => {
+        dispatch(profileActions.cancelEdit());
     }, [dispatch]);
 
     return (
