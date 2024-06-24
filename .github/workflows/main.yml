@@ -102,6 +102,8 @@ jobs:
 
   checks:
     runs-on: ubuntu-latest
+    # To ensure job dependencies, we need to specify the names of jobs on which this job should depend.
+#    needs: [building, linting]
     strategy:
       matrix:
         node-version: [ 17.x ]
