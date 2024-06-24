@@ -1,0 +1,1 @@
+The componentRender function is a utility that renders a component with the necessary context providers and initial state for testing. It simplifies setting up the test environment and ensures consistency across tests.
