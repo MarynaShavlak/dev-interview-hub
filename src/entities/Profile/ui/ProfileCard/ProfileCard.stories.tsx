@@ -3,7 +3,6 @@ import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { Country } from '@/entities/Country';
 import { Currency } from '@/entities/Currency';
 import { ProfileCard } from './ProfileCard';
-import avatar from '../../../../shared/assets/tests/storybook.jpg';
 
 export default {
     title: 'entities/Profile/ProfileCard',
@@ -26,7 +25,7 @@ Normal.args = {
         first: 'Maryna',
         city: 'Kharkiv',
         currency: Currency.USD,
-        avatar,
+        avatar: 'https://drive.google.com/thumbnail?id=1RD0jSAm8kdTLKa-Vr0daeE8T9-QcfPCa&sz=w1000',
     },
 };
 
