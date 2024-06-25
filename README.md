@@ -169,7 +169,21 @@ Clear.args = {
 [DynamicModuleLoader](/src/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader.tsx)
 
 ----
+## Робота із feature-flags
+Дозволено використання feature flags тільки за допомогою хелпера toggleFeatures
 
+В нього передається об'єкт з опціями: 
+
+{
+name: назва фіча-прапора,
+on: функція, яка відпрацює після Увімкнення фічі
+of: функція, яка відпрацює після Вимкнення фічі
+}
+
+Для автоматичного видалення фічі використовувати скрипт remove-feature.ts,
+який приймає 2 аргументи
+1. Назва фіча-прапора, що видаляється
+2. Стан (on\off)
 
 ## Сутності (entities)
 
