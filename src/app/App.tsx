@@ -1,19 +1,25 @@
 import React, { Suspense, useEffect } from 'react';
+import { PageLoader } from '@/widgets/PageLoader';
+import { initAuthData, useUserInited } from '@/entities/User';
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { AppRouter } from './providers/router';
 import { useTheme } from '@/shared/lib/hooks/useTheme/useTheme';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { Navbar } from '@/widgets/Navbar';
 import { Sidebar } from '@/widgets/Sidebar';
-import { useUserActions, useUserInited } from '@/entities/User';
 
 function App() {
     const { theme } = useTheme();
     const inited = useUserInited();
-    const { initAuthData } = useUserActions();
+    const dispatch = useAppDispatch();
 
     useEffect(() => {
-        initAuthData();
-    }, [initAuthData]);
+        dispatch(initAuthData());
+    }, [dispatch]);
+
+    if (!inited) {
+        return <PageLoader />;
+    }
 
     return (
         <div className={classNames('app', {}, [theme])}>

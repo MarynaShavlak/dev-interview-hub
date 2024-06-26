@@ -8,7 +8,7 @@ interface PageLoaderProps {
 }
 
 export const PageLoader = ({ className }: PageLoaderProps) => (
-    <VStack max justify="center" className={classNames(cls.PageLoader, {}, [className])}>
+    <VStack max justify="center" align="center" className={classNames(cls.PageLoader, {}, [className])}>
         <Loader />
     </VStack>
 );
