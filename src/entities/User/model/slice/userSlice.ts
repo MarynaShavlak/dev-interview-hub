@@ -1,4 +1,6 @@
 import { PayloadAction } from '@reduxjs/toolkit';
+import { saveJsonSettings } from '../services/saveJsonSettings';
+import { JsonSettings } from '../types/jsonSettings';
 import { setFeatureFlags } from '@/shared/lib/features';
 import { buildSlice } from '@/shared/lib/store';
 import { USER_LOCALSTORAGE_KEY } from '@/shared/const/localstorage';
@@ -29,6 +31,16 @@ export const userSlice = buildSlice({
             state.authData = undefined;
             localStorage.removeItem(USER_LOCALSTORAGE_KEY);
         },
+    },
+    extraReducers: (builder) => {
+        builder.addCase(
+            saveJsonSettings.fulfilled,
+            (state, { payload }: PayloadAction<JsonSettings>) => {
+                if (state.authData) {
+                    state.authData.jsonSettings = payload;
+                }
+            },
+        );
     },
 });
 
