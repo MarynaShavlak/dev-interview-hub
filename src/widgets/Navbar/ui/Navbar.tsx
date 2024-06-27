@@ -1,16 +1,15 @@
 import React, { memo, useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { DeprecatedNavbar } from './DeprecatedNavbar/DeprecatedNavbar';
+import { ToggleFeaturesComponent } from '@/shared/lib/features';
 import { useUserAuthData } from '@/entities/User';
-import { getRouteArticleCreate } from '@/shared/const/router';
 
 import { LoginModal } from '@/features/AuthByUsername';
 import { AvatarDropdown } from '@/features/avatarDropdown';
 import { NotificationButton } from '@/features/notificationButton';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import { AppLink, AppLinkTheme } from '@/shared/ui/AppLink';
 import { Button, ButtonTheme } from '@/shared/ui/Button';
 import { HStack } from '@/shared/ui/Stack';
-import { Text, TextAlign, TextSize, TextTheme } from '@/shared/ui/Text';
 import cls from './Navbar.module.scss';
 
 interface NavbarProps {
@@ -32,26 +31,22 @@ export const Navbar = memo(({ className }: NavbarProps) => {
 
     if (authData) {
         return (
-            <header className={classNames(cls.Navbar, {}, [className])}>
-                <Text
-                    size={TextSize.M}
-                    align={TextAlign.CENTER}
-                    theme={TextTheme.INVERTED}
-                    className={classNames(cls.appName, {}, [className])}
-                    title={t('PRODUCTION TEMPLATE APP')}
-                />
-                <AppLink
-                    to={getRouteArticleCreate()}
-                    theme={AppLinkTheme.SECONDARY}
-                    className={cls.createBtn}
-                >
-                    {t('Додати статтю')}
-                </AppLink>
-                <HStack gap="16" className={cls.actions}>
-                    <NotificationButton />
-                    <AvatarDropdown />
-                </HStack>
-            </header>
+            <ToggleFeaturesComponent
+                feature="isAppRedesigned"
+                on={
+                    <header
+                        className={classNames(cls.NavbarRedesigned, {}, [
+                            className,
+                        ])}
+                    >
+                        <HStack gap="16" className={cls.actions}>
+                            <NotificationButton />
+                            <AvatarDropdown />
+                        </HStack>
+                    </header>
+                }
+                off={<DeprecatedNavbar />}
+            />
         );
     }
 
