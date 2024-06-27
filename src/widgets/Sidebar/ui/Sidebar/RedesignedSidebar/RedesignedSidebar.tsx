@@ -1,27 +1,40 @@
 import { memo, ReactNode } from 'react';
-import { AppLogo } from '@/shared/ui/deprecated/AppLogo';
+import { VStack } from '@/shared/ui/deprecated/Stack';
+import { AppLogo } from '@/shared/ui/redesigned/AppLogo';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './RedesignedSidebar.module.scss';
+import { Icon } from '@/shared/ui/redesigned/Icon';
+import ArrowIcon from '@/shared/assets/icons/arrow-bottom.svg';
 
 interface RedesignedSidebarProps {
     className?: string;
     collapsed: boolean;
     itemsList: ReactNode[];
+    onToggle: () => void;
 }
 
 export const RedesignSidebar = memo((props: RedesignedSidebarProps) => {
-    const { className, collapsed, itemsList } = props;
+    const { className, collapsed, itemsList, onToggle } = props;
     return (
         <aside
             data-testid="sidebar"
             className={classNames(
                 cls.SidebarRedesigned,
-                { [cls.collapsed]: collapsed },
+                { [cls.collapsedRedesigned]: collapsed },
                 [className],
             )}
         >
-            <AppLogo />
-            {itemsList}
+            <AppLogo size={collapsed ? 30 : 50} className={cls.appLogo} />
+            <VStack role="navigation" gap="8" className={cls.items}>
+                {itemsList}
+            </VStack>
+            <Icon
+                data-testid="sidebar-toggle"
+                onClick={onToggle}
+                className={cls.collapseBtn}
+                Svg={ArrowIcon}
+                clickable
+            />
         </aside>
     );
 });

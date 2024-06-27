@@ -37,6 +37,7 @@ export const Sidebar = memo(({ className }: SidebarProps) => {
                 <RedesignSidebar
                     className={className}
                     collapsed={collapsed}
+                    onToggle={onToggle}
                     itemsList={itemsList}
                 />
             }
