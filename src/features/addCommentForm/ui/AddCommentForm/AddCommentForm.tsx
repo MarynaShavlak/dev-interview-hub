@@ -5,13 +5,13 @@ import {
     useAddCommentFormText,
 } from '../../model/selectors/addCommentFormSelectors';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import { Input } from '@/shared/ui/Input';
-import { Button, ButtonTheme } from '@/shared/ui/Button';
+import { Input } from '@/shared/ui/deprecated/Input';
+import { Button, ButtonTheme } from '@/shared/ui/deprecated/Button';
 import {
     DynamicModuleLoader,
     ReducersList,
 } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
-import { HStack } from '@/shared/ui/Stack';
+import { HStack } from '@/shared/ui/deprecated/Stack';
 import {
     addCommentFormReducer,
     useAddCommentFormActions,

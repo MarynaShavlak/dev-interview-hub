@@ -2,8 +2,8 @@ import { useTranslation } from 'react-i18next';
 import React, { memo, useCallback } from 'react';
 import { useSelector } from 'react-redux';
 import { getRouteAdmin, getRouteProfile } from '@/shared/const/router';
-import { Avatar } from '@/shared/ui/Avatar';
-import { Dropdown } from '@/shared/ui/Popups';
+import { Avatar } from '@/shared/ui/deprecated/Avatar';
+import { Dropdown } from '@/shared/ui/deprecated/Popups';
 import {
     isUserAdmin,
     isUserManager,

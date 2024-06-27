@@ -1,8 +1,8 @@
-import { HStack, VStack } from '@/shared/ui/Stack';
+import { HStack, VStack } from '@/shared/ui/deprecated/Stack';
 import { Article } from '../../../model/types/article';
-import { Text } from '@/shared/ui/Text';
+import { Text } from '@/shared/ui/deprecated/Text';
 import cls from './ArticleHeader.module.scss';
-import { Avatar } from '@/shared/ui/Avatar';
+import { Avatar } from '@/shared/ui/deprecated/Avatar';
 
 export const ArticleHeader = ({ article }: { article: Article }) => (
     <VStack className={cls.header} gap="16">

@@ -1,20 +1,20 @@
 import { HTMLAttributeAnchorTarget, memo } from 'react';
-import { HStack } from '@/shared/ui/Stack';
+import { HStack } from '@/shared/ui/deprecated/Stack';
 import { ArticleContent } from './ArticleContent/ArticleContent';
 import { ArticleFooter } from './ArticleFooter/ArticleFooter';
 import { ArticleHeader } from './ArticleHeader/ArticleHeader';
-import { AppImage } from '@/shared/ui/AppImage';
+import { AppImage } from '@/shared/ui/deprecated/AppImage';
 import { getRouteArticleDetails } from '@/shared/const/router';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import { Text } from '@/shared/ui/Text';
-import { Icon } from '@/shared/ui/Icon';
+import { Text } from '@/shared/ui/deprecated/Text';
+import { Icon } from '@/shared/ui/deprecated/Icon';
 import EyeIcon from '@/shared/assets/icons/eye-20-20.svg';
-import { Card } from '@/shared/ui/Card';
-import { AppLink } from '@/shared/ui/AppLink';
+import { Card } from '@/shared/ui/deprecated/Card';
+import { AppLink } from '@/shared/ui/deprecated/AppLink';
 import { ArticleBlockType, ArticleView } from '../../model/consts/consts';
 import cls from './ArticleListItem.module.scss';
 import { Article, ArticleTextBlock } from '../../model/types/article';
-import { Skeleton } from '@/shared/ui/Skeleton';
+import { Skeleton } from '@/shared/ui/deprecated/Skeleton';
 
 interface ArticleListItemProps {
     className?: string;

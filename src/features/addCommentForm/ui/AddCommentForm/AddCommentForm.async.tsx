@@ -1,5 +1,5 @@
 import { lazy, Suspense } from 'react';
-import { Skeleton } from '@/shared/ui/Skeleton';
+import { Skeleton } from '@/shared/ui/deprecated/Skeleton';
 import { AddCommentFormProps } from './AddCommentForm';
 
 const AddCommentFormLazy = lazy(() => import('./AddCommentForm'));

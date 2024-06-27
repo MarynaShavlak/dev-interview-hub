@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { getRouteArticleDetails } from '@/shared/const/router';
-import { AppLink } from '@/shared/ui/AppLink';
-import { Button, ButtonTheme } from '@/shared/ui/Button';
+import { AppLink } from '@/shared/ui/deprecated/AppLink';
+import { Button, ButtonTheme } from '@/shared/ui/deprecated/Button';
 import { Article } from '../../../model/types/article';
 import cls from './ArticleFooter.module.scss';
 

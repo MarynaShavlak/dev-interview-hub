@@ -5,13 +5,13 @@ import { Currency } from '@/entities/Currency';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect/useInitialEffect';
-import { Text, TextTheme } from '@/shared/ui/Text';
+import { Text, TextTheme } from '@/shared/ui/deprecated/Text';
 import { ProfileCard } from '@/entities/Profile';
 import {
     DynamicModuleLoader,
     ReducersList,
 } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
-import { VStack } from '@/shared/ui/Stack';
+import { VStack } from '@/shared/ui/deprecated/Stack';
 import { ValidateProfileError } from '../../model/consts/consts';
 import { useProfileForm } from '../../model/selectors/getProfileForm/getProfileForm';
 import { useProfileIsLoading } from '../../model/selectors/getProfileIsLoading/getProfileIsLoading';

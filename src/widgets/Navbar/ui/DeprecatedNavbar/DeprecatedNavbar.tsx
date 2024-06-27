@@ -1,9 +1,9 @@
 import { useTranslation } from 'react-i18next';
 import React, { memo } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import { Text, TextTheme } from '@/shared/ui/Text';
-import { AppLink, AppLinkTheme } from '@/shared/ui/AppLink';
-import { HStack } from '@/shared/ui/Stack';
+import { Text, TextTheme } from '@/shared/ui/deprecated/Text';
+import { AppLink, AppLinkTheme } from '@/shared/ui/deprecated/AppLink';
+import { HStack } from '@/shared/ui/deprecated/Stack';
 import { NotificationButton } from '@/features/notificationButton';
 import { AvatarDropdown } from '@/features/avatarDropdown';
 import cls from '../Navbar.module.scss';

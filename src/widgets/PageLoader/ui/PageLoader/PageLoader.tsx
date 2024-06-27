@@ -1,6 +1,6 @@
 import { classNames } from '@/shared/lib/classNames/classNames';
-import { Loader } from '@/shared/ui/Loader';
-import { VStack } from '@/shared/ui/Stack';
+import { Loader } from '@/shared/ui/deprecated/Loader';
+import { VStack } from '@/shared/ui/deprecated/Stack';
 import cls from './PageLoader.module.scss';
 
 interface PageLoaderProps {

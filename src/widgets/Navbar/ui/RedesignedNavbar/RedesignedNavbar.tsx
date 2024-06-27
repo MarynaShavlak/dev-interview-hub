@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import { HStack } from '@/shared/ui/Stack';
+import { HStack } from '@/shared/ui/deprecated/Stack';
 import { NotificationButton } from '@/features/notificationButton';
 import { AvatarDropdown } from '@/features/avatarDropdown';
 import cls from '../Navbar.module.scss';
