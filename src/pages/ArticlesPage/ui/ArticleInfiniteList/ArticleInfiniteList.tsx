@@ -4,7 +4,11 @@ import { useSelector } from 'react-redux';
 import { ArticleList } from '@/entities/Article';
 import { Text, TextAlign } from '@/shared/ui/Text';
 import { getArticles } from '../../model/slices/articlesPageSlice';
-import { useArticlesPageError, useArticlesPageIsLoading, useArticlesPageView } from '../../model/selectors/articlesPageSelectors';
+import {
+    useArticlesPageError,
+    useArticlesPageIsLoading,
+    useArticlesPageView,
+} from '../../model/selectors/articlesPageSelectors';
 
 interface ArticleInfiniteListProps {
     className?: string;
@@ -20,7 +24,9 @@ export const ArticleInfiniteList = memo((props: ArticleInfiniteListProps) => {
     const { t } = useTranslation('articles');
 
     if (error) {
-        return <Text text={t('Помилка запиту статей')} align={TextAlign.CENTER} />;
+        return (
+            <Text text={t('Помилка запиту статей')} align={TextAlign.CENTER} />
+        );
     }
 
     return (

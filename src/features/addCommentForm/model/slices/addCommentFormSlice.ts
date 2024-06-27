@@ -14,7 +14,6 @@ export const addCommentFormSlice = buildSlice({
             state.text = action.payload;
         },
     },
-
 });
 
 // Action creators are generated for each case reducer function

@@ -1,10 +1,16 @@
 import { useTranslation } from 'react-i18next';
 import { memo, useCallback } from 'react';
-import { useAddCommentFormError, useAddCommentFormText } from '../../model/selectors/addCommentFormSelectors';
+import {
+    useAddCommentFormError,
+    useAddCommentFormText,
+} from '../../model/selectors/addCommentFormSelectors';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { Input } from '@/shared/ui/Input';
 import { Button, ButtonTheme } from '@/shared/ui/Button';
-import { DynamicModuleLoader, ReducersList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
+import {
+    DynamicModuleLoader,
+    ReducersList,
+} from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { HStack } from '@/shared/ui/Stack';
 import {
     addCommentFormReducer,
@@ -27,9 +33,12 @@ const AddCommentForm = memo((props: AddCommentFormProps) => {
     const text = useAddCommentFormText();
     const error = useAddCommentFormError();
     const { setText } = useAddCommentFormActions();
-    const onCommentTextChange = useCallback((value: string) => {
-        setText(value);
-    }, [setText]);
+    const onCommentTextChange = useCallback(
+        (value: string) => {
+            setText(value);
+        },
+        [setText],
+    );
 
     const onSendHandler = useCallback(() => {
         onSendComment(text || '');
@@ -38,17 +47,18 @@ const AddCommentForm = memo((props: AddCommentFormProps) => {
 
     return (
         <DynamicModuleLoader reducers={reducers}>
-            <HStack justify="between" max className={classNames(cls.AddCommentForm, {}, [className])}>
+            <HStack
+                justify="between"
+                max
+                className={classNames(cls.AddCommentForm, {}, [className])}
+            >
                 <Input
                     className={cls.input}
                     placeholder={t('Введіть текст коментаря')}
                     value={text}
                     onChange={onCommentTextChange}
                 />
-                <Button
-                    theme={ButtonTheme.OUTLINE}
-                    onClick={onSendHandler}
-                >
+                <Button theme={ButtonTheme.OUTLINE} onClick={onSendHandler}>
                     {t('Відправити')}
                 </Button>
             </HStack>

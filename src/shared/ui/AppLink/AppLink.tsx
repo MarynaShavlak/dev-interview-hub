@@ -1,7 +1,5 @@
 import { Link, LinkProps } from 'react-router-dom';
-import {
-    memo, forwardRef, ForwardedRef, ReactNode,
-} from 'react';
+import { memo, forwardRef, ForwardedRef, ReactNode } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './AppLink.module.scss';
 
@@ -18,25 +16,29 @@ export interface AppLinkProps extends LinkProps {
     children: ReactNode;
 }
 
-export const AppLinkComponent = forwardRef<HTMLAnchorElement, AppLinkProps>((props, ref: ForwardedRef<HTMLAnchorElement>) => {
-    const {
-        to,
-        className,
-        children,
-        theme = AppLinkTheme.PRIMARY,
-        ...otherProps
-    } = props;
+export const AppLinkComponent = forwardRef<HTMLAnchorElement, AppLinkProps>(
+    (props, ref: ForwardedRef<HTMLAnchorElement>) => {
+        const {
+            to,
+            className,
+            children,
+            theme = AppLinkTheme.PRIMARY,
+            ...otherProps
+        } = props;
 
-    return (
-        <Link
-            to={to}
-            ref={ref}
-            className={classNames(cls.AppLink, { [cls[theme]]: true }, [className])}
-            {...otherProps}
-        >
-            {children}
-        </Link>
-    );
-});
+        return (
+            <Link
+                to={to}
+                ref={ref}
+                className={classNames(cls.AppLink, { [cls[theme]]: true }, [
+                    className,
+                ])}
+                {...otherProps}
+            >
+                {children}
+            </Link>
+        );
+    },
+);
 
 export const AppLink = memo(AppLinkComponent);

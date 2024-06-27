@@ -8,6 +8,7 @@ module.exports = {
         'plugin:react/recommended',
         'airbnb',
         'plugin:i18next/recommended',
+        'plugin:prettier/recommended',
     ],
     parser: '@typescript-eslint/parser',
     parserOptions: {
@@ -26,10 +27,7 @@ module.exports = {
         'unused-imports',
     ],
     rules: {
-        'react/jsx-indent': [2, 4],
-        'react/jsx-indent-props': [2, 4],
         'unused-imports/no-unused-imports': 'error',
-        indent: [2, 4],
         'react/jsx-filename-extension': [
             2,
             { extensions: ['.js', '.jsx', '.tsx'] },
@@ -49,7 +47,19 @@ module.exports = {
             'error',
             {
                 markupOnly: true,
-                ignoreAttribute: ['data-testid', 'to', 'target', 'direction', 'justify', 'align', 'gap', 'role', 'as', 'border', 'feature'],
+                ignoreAttribute: [
+                    'data-testid',
+                    'to',
+                    'target',
+                    'direction',
+                    'justify',
+                    'align',
+                    'gap',
+                    'role',
+                    'as',
+                    'border',
+                    'feature',
+                ],
             },
         ],
         'max-len': ['error', { ignoreComments: true, code: 140 }],
@@ -63,16 +73,25 @@ module.exports = {
         'react/no-array-index-key': 'off',
         'arrow-body-style': 'off',
         'ms-production-project-plugin/path-checker': ['error', { alias: '@' }],
-        'ms-production-project-plugin/layer-imports': ['error',
+        'ms-production-project-plugin/layer-imports': [
+            'error',
             {
                 alias: '@',
                 ignoreImportPatterns: ['**/StoreProvider', '**/testing'],
             },
         ],
-        'ms-production-project-plugin/public-api-imports': ['error', {
-            alias: '@',
-            testFilesPatterns: ['**/*.test.*', '**/*.stories.*', '**/StoreDecorator.tsx'],
-        }],
+        'ms-production-project-plugin/public-api-imports': [
+            'error',
+            {
+                alias: '@',
+                testFilesPatterns: [
+                    '**/*.test.*',
+                    '**/*.stories.*',
+                    '**/StoreDecorator.tsx',
+                ],
+            },
+        ],
+        'react/jsx-max-props-per-line': ['error', { maximum: 4 }],
     },
     globals: {
         __IS_DEV__: true,

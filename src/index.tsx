@@ -10,7 +10,9 @@ import { ErrorBoundary } from './app/providers/ErrorBoundary';
 const container = document.getElementById('root');
 
 if (!container) {
-    throw new Error('The root container was not found. FAILED to mount the react application');
+    throw new Error(
+        'The root container was not found. FAILED to mount the react application',
+    );
 }
 
 const root = createRoot(container);

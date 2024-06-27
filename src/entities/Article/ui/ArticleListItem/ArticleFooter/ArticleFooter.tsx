@@ -5,7 +5,13 @@ import { Button, ButtonTheme } from '@/shared/ui/Button';
 import { Article } from '../../../model/types/article';
 import cls from './ArticleFooter.module.scss';
 
-export const ArticleFooter = ({ article, views }: { article: Article; views: JSX.Element }) => {
+export const ArticleFooter = ({
+    article,
+    views,
+}: {
+    article: Article;
+    views: JSX.Element;
+}) => {
     const { t } = useTranslation('articles');
     return (
         <div className={cls.footer}>

@@ -37,4 +37,8 @@ export const loginSlice = buildSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { actions: loginActions, reducer: loginReducer, useActions: useLoginActions } = loginSlice;
+export const {
+    actions: loginActions,
+    reducer: loginReducer,
+    useActions: useLoginActions,
+} = loginSlice;

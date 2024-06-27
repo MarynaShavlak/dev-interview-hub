@@ -17,21 +17,18 @@ export const initArticlesPage = createAsyncThunk<
     void,
     URLSearchParams,
     ThunkConfig<string>
-    >(
-        'articlesPage/initArticlesPage',
-        async (searchParams, thunkApi) => {
-            const { getState, dispatch } = thunkApi;
-            const inited = getArticlesPageInited(getState());
+>('articlesPage/initArticlesPage', async (searchParams, thunkApi) => {
+    const { getState, dispatch } = thunkApi;
+    const inited = getArticlesPageInited(getState());
 
-            if (!inited) {
-                Object.keys(searchParamActions).forEach((param) => {
-                    const value = searchParams.get(param);
-                    if (value !== null) {
-                        dispatch(searchParamActions[param](value));
-                    }
-                });
-                dispatch(articlesPageActions.initState());
-                dispatch(fetchArticlesList({}));
+    if (!inited) {
+        Object.keys(searchParamActions).forEach((param) => {
+            const value = searchParams.get(param);
+            if (value !== null) {
+                dispatch(searchParamActions[param](value));
             }
-        },
-    );
+        });
+        dispatch(articlesPageActions.initState());
+        dispatch(fetchArticlesList({}));
+    }
+});

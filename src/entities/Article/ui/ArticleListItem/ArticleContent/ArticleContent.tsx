@@ -12,7 +12,11 @@ interface ArticleContentProps {
     types: ReactElement;
 }
 
-export const ArticleContent = ({ article, textBlock, types }: ArticleContentProps) => (
+export const ArticleContent = ({
+    article,
+    textBlock,
+    types,
+}: ArticleContentProps) => (
     <>
         <Text title={article.title} className={cls.title} />
         {types}
@@ -23,7 +27,10 @@ export const ArticleContent = ({ article, textBlock, types }: ArticleContentProp
             alt={article.title}
         />
         {textBlock && (
-            <ArticleTextBlockComponent block={textBlock} className={cls.textBlock} />
+            <ArticleTextBlockComponent
+                block={textBlock}
+                className={cls.textBlock}
+            />
         )}
     </>
 );

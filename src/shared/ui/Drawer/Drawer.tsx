@@ -1,9 +1,10 @@
-import React, {
-    memo, ReactNode, useCallback, useEffect,
-} from 'react';
+import React, { memo, ReactNode, useCallback, useEffect } from 'react';
 import { useTheme } from '@/shared/lib/hooks/useTheme/useTheme';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import { AnimationProvider, useAnimationLibs } from '@/shared/lib/components/AnimationProvider';
+import {
+    AnimationProvider,
+    useAnimationLibs,
+} from '@/shared/lib/components/AnimationProvider';
 import { Overlay } from '../Overlay/Overlay';
 import cls from './Drawer.module.scss';
 import { Portal } from '../Portal/Portal';
@@ -24,13 +25,7 @@ export const DrawerContent = memo((props: DrawerProps) => {
     console.log(Gesture);
     const [{ y }, api] = Spring.useSpring(() => ({ y: height }));
     const { theme } = useTheme();
-    const {
-        className,
-        children,
-        onClose,
-        isOpen,
-        lazy,
-    } = props;
+    const { className, children, onClose, isOpen, lazy } = props;
 
     const openDrawer = useCallback(() => {
         api.start({ y: 0, immediate: false });
@@ -72,7 +67,10 @@ export const DrawerContent = memo((props: DrawerProps) => {
             }
         },
         {
-            from: () => [0, y.get()], filterTaps: true, bounds: { top: 0 }, rubberband: true,
+            from: () => [0, y.get()],
+            filterTaps: true,
+            bounds: { top: 0 },
+            rubberband: true,
         },
     );
 
@@ -84,11 +82,21 @@ export const DrawerContent = memo((props: DrawerProps) => {
 
     return (
         <Portal>
-            <div className={classNames(cls.Drawer, {}, [className, theme, 'app_drawer'])}>
+            <div
+                className={classNames(cls.Drawer, {}, [
+                    className,
+                    theme,
+                    'app_drawer',
+                ])}
+            >
                 <Overlay onClick={close} />
                 <Spring.a.div
                     className={cls.sheet}
-                    style={{ display, bottom: `calc(-100vh + ${height - 100}px)`, y }}
+                    style={{
+                        display,
+                        bottom: `calc(-100vh + ${height - 100}px)`,
+                        y,
+                    }}
                     {...bind()}
                 >
                     {children}

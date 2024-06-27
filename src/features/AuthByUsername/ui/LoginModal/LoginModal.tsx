@@ -10,15 +10,17 @@ interface LoginModalProps {
     onClose: () => void;
 }
 
-export const LoginModal = memo(({ className, isOpen, onClose }: LoginModalProps) => (
-    <Modal
-        className={classNames('', {}, [className])}
-        isOpen={isOpen}
-        onClose={onClose}
-        lazy
-    >
-        <Suspense fallback={<Loader />}>
-            <LoginFormAsync onSuccess={onClose} />
-        </Suspense>
-    </Modal>
-));
+export const LoginModal = memo(
+    ({ className, isOpen, onClose }: LoginModalProps) => (
+        <Modal
+            className={classNames('', {}, [className])}
+            isOpen={isOpen}
+            onClose={onClose}
+            lazy
+        >
+            <Suspense fallback={<Loader />}>
+                <LoginFormAsync onSuccess={onClose} />
+            </Suspense>
+        </Modal>
+    ),
+);

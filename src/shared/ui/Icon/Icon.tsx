@@ -9,20 +9,20 @@ export enum IconSize {
     XL = 'size_xl',
 }
 
-interface IconProps extends SVGProps<SVGSVGElement>{
+interface IconProps extends SVGProps<SVGSVGElement> {
     className?: string;
     Svg: React.FC<React.SVGProps<SVGSVGElement>>;
-    inverted?:boolean;
+    inverted?: boolean;
 }
 
 export const Icon = memo((props: IconProps) => {
-    const {
-        className, Svg, inverted, ...otherProps
-    } = props;
+    const { className, Svg, inverted, ...otherProps } = props;
 
     return (
         <Svg
-            className={classNames(inverted ? cls.inverted : cls.Icon, { }, [className])}
+            className={classNames(inverted ? cls.inverted : cls.Icon, {}, [
+                className,
+            ])}
             {...otherProps}
         />
     );

@@ -64,17 +64,21 @@ describe('features/EditableProfileCard', () => {
             'lastname1',
         );
 
-        expect(screen.getByTestId('ProfileCard.firstname')).toHaveValue('name1');
-        expect(screen.getByTestId('ProfileCard.lastname')).toHaveValue('lastname1');
+        expect(screen.getByTestId('ProfileCard.firstname')).toHaveValue(
+            'name1',
+        );
+        expect(screen.getByTestId('ProfileCard.lastname')).toHaveValue(
+            'lastname1',
+        );
 
         await userEvent.click(
             screen.getByTestId('EditableProfileCardHeader.CancelButton'),
         );
 
-        expect(screen.getByTestId('ProfileCard.firstname')).toHaveValue(
-            'Max',
+        expect(screen.getByTestId('ProfileCard.firstname')).toHaveValue('Max');
+        expect(screen.getByTestId('ProfileCard.lastname')).toHaveValue(
+            'Shavlak',
         );
-        expect(screen.getByTestId('ProfileCard.lastname')).toHaveValue('Shavlak');
     });
 
     test('An error should appear.', async () => {

@@ -5,11 +5,7 @@ import { Page } from '@/widgets/Page';
 const MainPage = memo(() => {
     const { t } = useTranslation();
 
-    return (
-        <Page data-testid="MainPage">
-            {t('Головна сторінка')}
-        </Page>
-    );
+    return <Page data-testid="MainPage">{t('Головна сторінка')}</Page>;
 });
 
 export default MainPage;

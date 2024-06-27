@@ -1,10 +1,11 @@
-import {
-    memo, MutableRefObject, ReactNode, UIEvent, useRef,
-} from 'react';
+import { memo, MutableRefObject, ReactNode, UIEvent, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { TestProps } from '@/shared/types/tests';
-import { useScrollRestorationActions, getScrollByPath } from '@/features/ScrollRestoration';
+import {
+    useScrollRestorationActions,
+    getScrollByPath,
+} from '@/features/ScrollRestoration';
 import { PAGE_ID } from '@/shared/const/id';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { useInfiniteScroll } from '@/shared/lib/hooks/useInfiniteScroll/useInfiniteScroll';
@@ -13,7 +14,7 @@ import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect/useInitial
 import { useThrottle } from '@/shared/lib/hooks/useThrottle/useThrottle';
 import cls from './Page.module.scss';
 
-interface PageProps extends TestProps{
+interface PageProps extends TestProps {
     className?: string;
     children: ReactNode;
     onScrollEnd?: () => void;
@@ -24,7 +25,9 @@ export const Page = memo((props: PageProps) => {
     const wrapperRef = useRef() as MutableRefObject<HTMLDivElement>;
     const triggerRef = useRef() as MutableRefObject<HTMLDivElement>;
     const { pathname } = useLocation();
-    const scrollPosition = useSelector((state:StateSchema) => getScrollByPath(state, pathname));
+    const scrollPosition = useSelector((state: StateSchema) =>
+        getScrollByPath(state, pathname),
+    );
     const { setScrollPosition } = useScrollRestorationActions();
 
     useInfiniteScroll({
@@ -53,7 +56,9 @@ export const Page = memo((props: PageProps) => {
             data-testid={props['data-testid'] ?? 'Page'}
         >
             {children}
-            { onScrollEnd ? <div className={cls.trigger} ref={triggerRef} /> : null }
+            {onScrollEnd ? (
+                <div className={cls.trigger} ref={triggerRef} />
+            ) : null}
         </main>
     );
 });

@@ -3,7 +3,10 @@ import { memo, useCallback } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { Button, ButtonTheme } from '@/shared/ui/Button';
 import { Input } from '@/shared/ui/Input';
-import { DynamicModuleLoader, ReducersList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
+import {
+    DynamicModuleLoader,
+    ReducersList,
+} from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { Text, TextTheme } from '@/shared/ui/Text';
 import { loginByUsername } from '../../model/services/loginByUsername/loginByUsername';
@@ -16,7 +19,7 @@ import { useLoginUsername } from '../../model/selectors/getLoginUsername/getLogi
 
 export interface LoginFormProps {
     className?: string;
-    onSuccess: ()=> void;
+    onSuccess: () => void;
 }
 
 const initialReducers: ReducersList = {
@@ -32,13 +35,19 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
     const error = useLoginError();
     const { setPassword, setUsername } = useLoginActions();
 
-    const onChangeUsername = useCallback((value: string) => {
-        setUsername(value);
-    }, [setUsername]);
+    const onChangeUsername = useCallback(
+        (value: string) => {
+            setUsername(value);
+        },
+        [setUsername],
+    );
 
-    const onChangePassword = useCallback((value: string) => {
-        setPassword(value);
-    }, [setPassword]);
+    const onChangePassword = useCallback(
+        (value: string) => {
+            setPassword(value);
+        },
+        [setPassword],
+    );
 
     const onLoginClick = useCallback(async () => {
         const result = await dispatch(loginByUsername({ username, password }));
@@ -48,12 +57,15 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
     }, [dispatch, onSuccess, password, username]);
 
     return (
-        <DynamicModuleLoader
-            reducers={initialReducers}
-        >
+        <DynamicModuleLoader reducers={initialReducers}>
             <div className={classNames(cls.LoginForm, {}, [className])}>
                 <Text title={t('Форма авторизації')} />
-                {error && <Text text={t('Ви ввели невірний логін або пароль')} theme={TextTheme.ERROR} />}
+                {error && (
+                    <Text
+                        text={t('Ви ввели невірний логін або пароль')}
+                        theme={TextTheme.ERROR}
+                    />
+                )}
                 <Input
                     autofocus
                     type="text"
@@ -79,7 +91,6 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
                 </Button>
             </div>
         </DynamicModuleLoader>
-
     );
 });
 

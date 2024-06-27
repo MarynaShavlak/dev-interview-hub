@@ -13,9 +13,7 @@ import { Card } from '@/shared/ui/Card';
 import { AppLink } from '@/shared/ui/AppLink';
 import { ArticleBlockType, ArticleView } from '../../model/consts/consts';
 import cls from './ArticleListItem.module.scss';
-import {
-    Article, ArticleTextBlock,
-} from '../../model/types/article';
+import { Article, ArticleTextBlock } from '../../model/types/article';
 import { Skeleton } from '@/shared/ui/Skeleton';
 
 interface ArticleListItemProps {
@@ -26,9 +24,7 @@ interface ArticleListItemProps {
 }
 
 export const ArticleListItem = memo((props: ArticleListItemProps) => {
-    const {
-        className, article, view, target,
-    } = props;
+    const { className, article, view, target } = props;
 
     const types = <Text text={article.type.join(', ')} className={cls.types} />;
     const views = (
@@ -44,10 +40,19 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
         ) as ArticleTextBlock;
 
         return (
-            <div className={classNames(cls.ArticleListItem, {}, [className, cls[view]])}>
+            <div
+                className={classNames(cls.ArticleListItem, {}, [
+                    className,
+                    cls[view],
+                ])}
+            >
                 <Card className={cls.card}>
                     <ArticleHeader article={article} />
-                    <ArticleContent article={article} textBlock={textBlock} types={types} />
+                    <ArticleContent
+                        article={article}
+                        textBlock={textBlock}
+                        types={types}
+                    />
                     <ArticleFooter article={article} views={views} />
                 </Card>
             </div>
@@ -83,10 +88,12 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
         <AppLink
             target={target}
             to={getRouteArticleDetails(article.id)}
-            className={classNames(cls.ArticleListItem, {}, [className, cls[view]])}
+            className={classNames(cls.ArticleListItem, {}, [
+                className,
+                cls[view],
+            ])}
         >
             {renderSmallView()}
         </AppLink>
-
     );
 });

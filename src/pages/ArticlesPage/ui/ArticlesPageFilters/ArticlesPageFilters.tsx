@@ -3,9 +3,7 @@ import { memo, useCallback } from 'react';
 import { ArticleSortSelector } from '@/features/ArticleSortSelector';
 import { ArticleTypeTabs } from '@/features/ArticleTypeTabs';
 import { ArticleViewSelector } from '@/features/ArticleViewSelector';
-import {
-    ArticleSortField, ArticleType, ArticleView,
-} from '@/entities/Article';
+import { ArticleSortField, ArticleType, ArticleView } from '@/entities/Article';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { Card } from '@/shared/ui/Card';
@@ -37,7 +35,13 @@ export const ArticlesPageFilters = memo((props: ArticlesPageFiltersProps) => {
     const search = useArticlesPageSearch();
     const type = useArticlesPageType();
     const {
-        setPage, setOrder, setSort, setType, setView, setSearch, initState,
+        setPage,
+        setOrder,
+        setSort,
+        setType,
+        setView,
+        setSearch,
+        initState,
     } = useArticlesPageActions();
 
     const fetchData = useCallback(() => {
@@ -46,33 +50,48 @@ export const ArticlesPageFilters = memo((props: ArticlesPageFiltersProps) => {
 
     const debouncedFetchData = useDebounce(fetchData, 500);
 
-    const onChangeView = useCallback((view: ArticleView) => {
-        setView(view);
-    }, [setView]);
+    const onChangeView = useCallback(
+        (view: ArticleView) => {
+            setView(view);
+        },
+        [setView],
+    );
 
-    const onChangeSort = useCallback((newSort: ArticleSortField) => {
-        setSort(newSort);
-        setPage(1);
-        fetchData();
-    }, [setSort, setPage, fetchData]);
+    const onChangeSort = useCallback(
+        (newSort: ArticleSortField) => {
+            setSort(newSort);
+            setPage(1);
+            fetchData();
+        },
+        [setSort, setPage, fetchData],
+    );
 
-    const onChangeOrder = useCallback((newOrder: SortOrder) => {
-        setOrder(newOrder);
-        setPage(1);
-        fetchData();
-    }, [setOrder, setPage, fetchData]);
+    const onChangeOrder = useCallback(
+        (newOrder: SortOrder) => {
+            setOrder(newOrder);
+            setPage(1);
+            fetchData();
+        },
+        [setOrder, setPage, fetchData],
+    );
 
-    const onChangeSearch = useCallback((search: string) => {
-        setSearch(search);
-        setPage(1);
-        debouncedFetchData();
-    }, [setPage, setSearch, debouncedFetchData]);
+    const onChangeSearch = useCallback(
+        (search: string) => {
+            setSearch(search);
+            setPage(1);
+            debouncedFetchData();
+        },
+        [setPage, setSearch, debouncedFetchData],
+    );
 
-    const onChangeType = useCallback((value: ArticleType) => {
-        setType(value);
-        setPage(1);
-        fetchData();
-    }, [setPage, setType, fetchData]);
+    const onChangeType = useCallback(
+        (value: ArticleType) => {
+            setType(value);
+            setPage(1);
+            fetchData();
+        },
+        [setPage, setType, fetchData],
+    );
 
     return (
         <div className={classNames(cls.ArticlesPageFilters, {}, [className])}>
@@ -83,10 +102,7 @@ export const ArticlesPageFilters = memo((props: ArticlesPageFiltersProps) => {
                     onChangeOrder={onChangeOrder}
                     onChangeSort={onChangeSort}
                 />
-                <ArticleViewSelector
-                    view={view}
-                    onViewClick={onChangeView}
-                />
+                <ArticleViewSelector view={view} onViewClick={onChangeView} />
             </div>
             <Card className={cls.search}>
                 <Input

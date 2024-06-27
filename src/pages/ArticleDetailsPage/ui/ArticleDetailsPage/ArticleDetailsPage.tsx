@@ -6,7 +6,10 @@ import { ToggleFeaturesComponent } from '@/shared/lib/features';
 import { ArticleRecommendationsList } from '@/features/articleRecommendationsList';
 import { ArticleDetails } from '@/entities/Article';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import { DynamicModuleLoader, ReducersList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
+import {
+    DynamicModuleLoader,
+    ReducersList,
+} from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { VStack } from '@/shared/ui/Stack';
 import { Page } from '@/widgets/Page';
 import { articleDetailsPageReducer } from '../../model/slices';
@@ -16,7 +19,7 @@ import cls from './ArticleDetailsPage.module.scss';
 import { ArticleRating } from '@/features/articleRating';
 
 interface ArticleDetailsPageProps {
-  className?: string;
+    className?: string;
 }
 const reducers: ReducersList = {
     articleDetailsPage: articleDetailsPageReducer,
@@ -32,19 +35,20 @@ const ArticleDetailsPage = ({ className }: ArticleDetailsPageProps) => {
 
     return (
         <DynamicModuleLoader reducers={reducers}>
-            <Page className={classNames(cls.ArticleDetailsPage, {}, [className])}>
+            <Page
+                className={classNames(cls.ArticleDetailsPage, {}, [className])}
+            >
                 <VStack gap="16" max>
                     <ArticleDetailsPageHeader />
                     <ArticleDetails id={id} />
                     <ToggleFeaturesComponent
                         feature="isArticleRatingEnabled"
                         on={<ArticleRating articleId={id} />}
-                        off={<Card>{t('Оцінка статей скоро з\'явиться')}</Card>}
+                        off={<Card>{t("Оцінка статей скоро з'явиться")}</Card>}
                     />
                     <ArticleRecommendationsList />
                     <ArticleDetailsComments id={id} />
                 </VStack>
-
             </Page>
         </DynamicModuleLoader>
     );

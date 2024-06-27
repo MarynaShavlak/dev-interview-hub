@@ -1,13 +1,13 @@
 {
-  "Cтаттю не знайдено": "Article not found",
-  "Коментарі": "Comments",
-  "Назад до списку": "Back to list",
-  "Введіть текст коментаря": "Enter comment text",
-  "Відправити": "Send",
-  "Коментарів немає": "There are no comments yet",
-  "Рекомендуємо": "Recommendations",
-  "Редагувати статтю": "Edit article",
-  "Створення нової статті": "New article creation",
-  "Редагування статтті із ID = ": "Edit Article with ID = ",
-  "Оцінка статей скоро з'явиться": "Article ratings coming soon"
+    "Cтаттю не знайдено": "Article not found",
+    "Коментарі": "Comments",
+    "Назад до списку": "Back to list",
+    "Введіть текст коментаря": "Enter comment text",
+    "Відправити": "Send",
+    "Коментарів немає": "There are no comments yet",
+    "Рекомендуємо": "Recommendations",
+    "Редагувати статтю": "Edit article",
+    "Створення нової статті": "New article creation",
+    "Редагування статтті із ID = ": "Edit Article with ID = ",
+    "Оцінка статей скоро з'явиться": "Article ratings coming soon"
 }

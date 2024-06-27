@@ -26,7 +26,7 @@ interface ProfileCardProps {
     onChangeCountry?: (country: Country) => void;
 }
 
-export const ProfileCard = (props : ProfileCardProps) => {
+export const ProfileCard = (props: ProfileCardProps) => {
     const {
         className,
         data,
@@ -46,23 +46,37 @@ export const ProfileCard = (props : ProfileCardProps) => {
 
     if (isLoading) {
         return (
-            <HStack justify="center" max className={classNames(cls.ProfileCard, { }, [className, cls.loading])}>
+            <HStack
+                justify="center"
+                max
+                className={classNames(cls.ProfileCard, {}, [
+                    className,
+                    cls.loading,
+                ])}
+            >
                 <Loader />
             </HStack>
-
         );
     }
     if (error) {
         return (
-            <HStack justify="center" max className={classNames(cls.ProfileCard, { }, [className, cls.error])}>
+            <HStack
+                justify="center"
+                max
+                className={classNames(cls.ProfileCard, {}, [
+                    className,
+                    cls.error,
+                ])}
+            >
                 <Text
                     theme={TextTheme.ERROR}
-                    title={t('Виникла помилка при завантаженні даних користувача')}
+                    title={t(
+                        'Виникла помилка при завантаженні даних користувача',
+                    )}
                     text={t('Спробуйте оновити сторінку')}
                     align={TextAlign.CENTER}
                 />
             </HStack>
-
         );
     }
 
@@ -71,7 +85,11 @@ export const ProfileCard = (props : ProfileCardProps) => {
     };
 
     return (
-        <VStack gap="8" max className={classNames(cls.ProfileCard, mods, [className])}>
+        <VStack
+            gap="8"
+            max
+            className={classNames(cls.ProfileCard, mods, [className])}
+        >
             {data?.avatar && (
                 <HStack justify="center" max>
                     <Avatar

@@ -2,9 +2,10 @@ import { StateSchema } from '@/app/providers/StoreProvider';
 import { ArticleSortField, ArticleType, ArticleView } from '@/entities/Article';
 import { buildSelector } from '@/shared/lib/store';
 
-export const [useArticlesPageIsLoading, getArticlesPageIsLoading] = buildSelector(
-    (state: StateSchema) => state.articlesPage?.isLoading || false,
-);
+export const [useArticlesPageIsLoading, getArticlesPageIsLoading] =
+    buildSelector(
+        (state: StateSchema) => state.articlesPage?.isLoading || false,
+    );
 
 export const [useArticlesPageError, getArticlesPageError] = buildSelector(
     (state: StateSchema) => state.articlesPage?.error,
@@ -35,7 +36,8 @@ export const [useArticlesPageOrder, getArticlesPageOrder] = buildSelector(
 );
 
 export const [useArticlesPageSort, getArticlesPageSort] = buildSelector(
-    (state: StateSchema) => state.articlesPage?.sort || ArticleSortField.CREATED,
+    (state: StateSchema) =>
+        state.articlesPage?.sort || ArticleSortField.CREATED,
 );
 
 export const [useArticlesPageSearch, getArticlesPageSearch] = buildSelector(
