@@ -1,13 +1,9 @@
 import React, { memo, useCallback, useState } from 'react';
 import { BrowserView, MobileView } from 'react-device-detect';
+import { BrowserNotificationPopover } from './BrowserNotificationPopover/BrowserNotificationPopover';
+import { Trigger } from './Trigger/Trigger';
 import { NotificationList } from '@/entities/Notification';
-import { classNames } from '@/shared/lib/classNames/classNames';
-import { Button, ButtonTheme } from '@/shared/ui/deprecated/Button';
 import { Drawer } from '@/shared/ui/deprecated/Drawer';
-import { Icon } from '@/shared/ui/deprecated/Icon';
-import NotificationIcon from '@/shared/assets/icons/notification-20-20.svg';
-import { Popover } from '@/shared/ui/deprecated/Popups';
-import cls from './NotificationButton.module.scss';
 
 interface NotificationButtonProps {
     className?: string;
@@ -26,27 +22,16 @@ export const NotificationButton = memo((props: NotificationButtonProps) => {
         setIsOpen(false);
     }, []);
 
-    const trigger = (
-        <Button onClick={onOpenDrawer} theme={ButtonTheme.CLEAR}>
-            <Icon Svg={NotificationIcon} inverted />
-        </Button>
-    );
-
     return (
         <div>
             <BrowserView>
-                <Popover
-                    className={classNames(cls.NotificationButton, {}, [
-                        className,
-                    ])}
-                    direction="bottom left"
-                    trigger={trigger}
-                >
-                    <NotificationList className={cls.notifications} />
-                </Popover>
+                <BrowserNotificationPopover
+                    className={className}
+                    trigger={<Trigger onClick={onOpenDrawer} />}
+                />
             </BrowserView>
             <MobileView>
-                {trigger}
+                <Trigger onClick={onOpenDrawer} />
                 <Drawer isOpen={isOpen} onClose={onCloseDrawer}>
                     <NotificationList />
                 </Drawer>

@@ -1,9 +1,12 @@
 import { useTranslation } from 'react-i18next';
 import React, { memo, useCallback } from 'react';
 import { useSelector } from 'react-redux';
+import { Dropdown as DropdownDeprecated } from '@/shared/ui/deprecated/Popups';
+import { Dropdown } from '@/shared/ui/redesigned/Popups';
+import { Avatar as AvatarDeprecated } from '@/shared/ui/deprecated/Avatar';
+import { Avatar } from '@/shared/ui/redesigned/Avatar';
+import { ToggleFeaturesComponent } from '@/shared/lib/features';
 import { getRouteAdmin, getRouteProfile } from '@/shared/const/router';
-import { Avatar } from '@/shared/ui/deprecated/Avatar';
-import { Dropdown } from '@/shared/ui/deprecated/Popups';
 import {
     isUserAdmin,
     isUserManager,
@@ -31,30 +34,47 @@ export const AvatarDropdown = memo(({ className }: AvatarDropdownProps) => {
     if (!authData) {
         return null;
     }
+    const items = [
+        ...(isAdminPanelAvailable
+            ? [
+                  {
+                      content: t('Адмін панель'),
+                      href: getRouteAdmin(),
+                  },
+              ]
+            : []),
+        {
+            content: t('Профіль'),
+            href: getRouteProfile(authData.id),
+        },
+        {
+            content: t('Вийти'),
+            onClick: onLogout,
+        },
+    ];
 
     return (
-        <Dropdown
-            direction="bottom left"
-            items={[
-                ...(isAdminPanelAvailable
-                    ? [
-                          {
-                              content: t('Адмін панель'),
-                              href: getRouteAdmin(),
-                          },
-                      ]
-                    : []),
-                {
-                    content: t('Профіль'),
-                    href: getRouteProfile(authData.id),
-                },
-                {
-                    content: t('Вийти'),
-                    onClick: onLogout,
-                },
-            ]}
-            trigger={
-                <Avatar fallbackInverted size={30} src={authData.avatar} />
+        <ToggleFeaturesComponent
+            feature="isAppRedesigned"
+            on={
+                <Dropdown
+                    direction="bottom left"
+                    items={items}
+                    trigger={<Avatar size={40} src={authData.avatar} />}
+                />
+            }
+            off={
+                <DropdownDeprecated
+                    direction="bottom left"
+                    items={items}
+                    trigger={
+                        <AvatarDeprecated
+                            fallbackInverted
+                            size={30}
+                            src={authData.avatar}
+                        />
+                    }
+                />
             }
         />
     );

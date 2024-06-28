@@ -13,11 +13,6 @@ interface AppImageProps extends ImgHTMLAttributes<HTMLImageElement> {
 }
 
 /**
- * Deprecated, use new component from directory redesigned
- * @deprecated
- */
-
-/**
  * AppImage component to handle image loading and error states gracefully.
  * Extends the standard HTML <img> element with additional properties for custom fallbacks.
  *

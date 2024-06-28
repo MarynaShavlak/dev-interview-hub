@@ -6,7 +6,7 @@ import { Input } from '@/shared/ui/deprecated/Input';
 import { Modal } from '@/shared/ui/deprecated/Modal';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { Card } from '@/shared/ui/deprecated/Card';
-import { HStack, VStack } from '@/shared/ui/deprecated/Stack';
+import { HStack, VStack } from '@/shared/ui/redesigned/Stack';
 import { Text } from '@/shared/ui/deprecated/Text';
 import { StarRating } from '@/shared/ui/deprecated/StarRating';
 import { Button, ButtonSize, ButtonTheme } from '@/shared/ui/deprecated/Button';

@@ -11,7 +11,7 @@ import {
     DynamicModuleLoader,
     ReducersList,
 } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
-import { VStack } from '@/shared/ui/deprecated/Stack';
+import { VStack } from '@/shared/ui/redesigned/Stack';
 import { ValidateProfileError } from '../../model/consts/consts';
 import { useProfileForm } from '../../model/selectors/getProfileForm/getProfileForm';
 import { useProfileIsLoading } from '../../model/selectors/getProfileIsLoading/getProfileIsLoading';
