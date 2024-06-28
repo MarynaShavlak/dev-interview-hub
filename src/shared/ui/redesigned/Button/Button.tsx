@@ -2,27 +2,16 @@ import { ButtonHTMLAttributes, memo, ReactNode } from 'react';
 import { classNames, Mods } from '@/shared/lib/classNames/classNames';
 import cls from './Button.module.scss';
 
-export enum ButtonTheme {
-    CLEAR = 'clear',
-    CLEAR_INVERTED = 'clearInverted',
-    OUTLINE = 'outline',
-    BACKGROUND = 'background',
-    BACKGROUND_INVERTED = 'backgroundInverted',
-    OUTLINE_RED = 'outline_red',
-}
+export type ButtonVariant = 'clear' | 'outline';
 
-export enum ButtonSize {
-    M = 'size_m',
-    L = 'size_l',
-    XL = 'size_xl',
-}
+export type ButtonSize = 'm' | 'l' | 'xl';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     className?: string;
     /**
-     * Тема кнопки. Відповідає за візуальний стиль (у рамці, без стилів, протилежний кольору теми додатка тощо)
+     * Варіант кнопки. Відповідає за візуальний стиль (у рамці, без стилів)
      */
-    theme?: ButtonTheme;
+    variant?: ButtonVariant;
     /**
      * Прапорець, що робить кнопку квадратною
      */
@@ -44,27 +33,21 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
      */
     fullWidth?: boolean;
 }
-/**
- * Deprecated, use new component from directory redesigned
- * @deprecated
- */
 
 export const Button = memo((props: ButtonProps) => {
     const {
         className,
         children,
-        theme = ButtonTheme.OUTLINE,
+        variant = 'outline',
         square,
         disabled,
         fullWidth,
-        size = ButtonSize.M,
+        size = 'm',
         ...otherProps
     } = props;
 
     const mods: Mods = {
-        [cls[theme]]: true,
         [cls.square]: square,
-        [cls[size]]: true,
         [cls.disabled]: disabled,
         [cls.fullWidth]: fullWidth,
     };
@@ -72,7 +55,11 @@ export const Button = memo((props: ButtonProps) => {
     return (
         <button
             type="button"
-            className={classNames(cls.Button, mods, [className])}
+            className={classNames(cls.Button, mods, [
+                className,
+                cls[variant],
+                cls[size],
+            ])}
             disabled={disabled}
             {...otherProps}
         >

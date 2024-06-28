@@ -1,4 +1,4 @@
-import { Link, LinkProps } from 'react-router-dom';
+import { NavLink, LinkProps } from 'react-router-dom';
 import { memo, forwardRef, ForwardedRef, ReactNode } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './AppLink.module.scss';
@@ -20,21 +20,23 @@ export const AppLinkComponent = forwardRef<HTMLAnchorElement, AppLinkProps>(
             className,
             children,
             variant = 'primary',
+            activeClassName = '',
             ...otherProps
         } = props;
 
         return (
-            <Link
+            <NavLink
                 to={to}
-                ref={ref}
-                className={classNames(cls.AppLinkRedesigned, {}, [
-                    className,
-                    cls[variant],
-                ])}
+                className={({ isActive }) =>
+                    classNames(cls.AppLink, { [activeClassName]: isActive }, [
+                        className,
+                        cls[variant],
+                    ])
+                }
                 {...otherProps}
             >
                 {children}
-            </Link>
+            </NavLink>
         );
     },
 );

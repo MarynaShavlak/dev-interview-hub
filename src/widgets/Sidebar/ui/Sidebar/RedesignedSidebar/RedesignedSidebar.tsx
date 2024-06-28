@@ -1,4 +1,6 @@
 import { memo, ReactNode } from 'react';
+import { LangSwitcher } from '@/features/LangSwitcher';
+import { ThemeSwitcher } from '@/features/ThemeSwitcher';
 import { VStack } from '@/shared/ui/deprecated/Stack';
 import { AppLogo } from '@/shared/ui/redesigned/AppLogo';
 import { classNames } from '@/shared/lib/classNames/classNames';
@@ -35,6 +37,10 @@ export const RedesignSidebar = memo((props: RedesignedSidebarProps) => {
                 Svg={ArrowIcon}
                 clickable
             />
+            <div className={cls.switchers}>
+                <ThemeSwitcher />
+                <LangSwitcher short={collapsed} className={cls.lang} />
+            </div>
         </aside>
     );
 });
