@@ -199,7 +199,7 @@
         "isAppRedesigned": true
       },
       "jsonSettings": {
-        "theme": "app_dark_theme",
+        "theme": "app_light_theme",
         "isFirstVisit": true,
         "settingsPageHasBeenOpen": false,
         "isArticlesPageWasOpened": true
@@ -281,7 +281,7 @@
       "views": 2000,
       "createdAt": "21.02.2019",
       "userId": "1",
-      "type": [
+      "category": [
         "ECONOMICS"
       ],
       "blocks": [
@@ -355,8 +355,8 @@
       "views": 2000,
       "createdAt": "09.04.2020",
       "userId": "1",
-      "type": [
-        "Public administration"
+      "category": [
+        "PUBLIC_ADMINISTRATION"
       ],
       "blocks": [
         {
@@ -422,8 +422,8 @@
       "views": 209,
       "createdAt": "11.10.2018",
       "userId": "1",
-      "type": [
-        "Public administration"
+      "category": [
+        "PUBLIC_ADMINISTRATION"
       ],
       "blocks": [
         {
@@ -504,8 +504,8 @@
       "views": 345,
       "createdAt": "05.12.2022",
       "userId": "1",
-      "type": [
-        "Economics"
+      "category": [
+        "ECONOMICS"
       ],
       "blocks": [
         {
@@ -617,8 +617,8 @@
       "views": 1567,
       "createdAt": "11.09.2019",
       "userId": "1",
-      "type": [
-        "Economics"
+      "category": [
+        "ECONOMICS"
       ],
       "blocks": [
         {
@@ -706,8 +706,8 @@
       "views": 980,
       "createdAt": "08.08.2018",
       "userId": "1",
-      "type": [
-        "Economics"
+      "category": [
+        "ECONOMICS"
       ],
       "blocks": [
         {
@@ -822,8 +822,8 @@
       "views": 2244,
       "createdAt": "02.09.2021",
       "userId": "1",
-      "type": [
-        "Economics"
+      "category": [
+        "ECONOMICS"
       ],
       "blocks": [
         {
@@ -891,8 +891,8 @@
       "views": 2244,
       "createdAt": "03.04.2020",
       "userId": "1",
-      "type": [
-        "Economics"
+      "category": [
+        "ECONOMICS"
       ],
       "blocks": [
         {
@@ -990,8 +990,8 @@
       "views": 12345,
       "createdAt": "06.05.2018",
       "userId": "1",
-      "type": [
-        "Public Administration"
+      "category": [
+        "PUBLIC_ADMINISTRATION"
       ],
       "blocks": [
         {
@@ -1121,8 +1121,8 @@
       "views": 567,
       "createdAt": "25.12.2020",
       "userId": "1",
-      "type": [
-        "Economics"
+      "category": [
+        "ECONOMICS"
       ],
       "blocks": [
         {
@@ -1190,8 +1190,8 @@
       "views": 78,
       "createdAt": "14.10.2016",
       "userId": "2",
-      "type": [
-        "Sociology"
+      "category": [
+        "SOCIOLOGY"
       ],
       "blocks": [
         {
@@ -1218,8 +1218,8 @@
       "views": 357,
       "createdAt": "04.03.2015",
       "userId": "2",
-      "type": [
-        "Sociology"
+      "category": [
+        "SOCIOLOGY"
       ],
       "blocks": [
         {
@@ -1315,7 +1315,7 @@
       "views": 878,
       "createdAt": "17.06.2023",
       "userId": "3",
-      "type": [
+      "category": [
         "IT"
       ],
       "blocks": [
@@ -1366,7 +1366,7 @@
       "views": 501,
       "createdAt": "05.08.2022",
       "userId": "3",
-      "type": [
+      "category": [
         "IT"
       ],
       "blocks": [
@@ -1451,7 +1451,7 @@
       "views": 7656,
       "createdAt": "05.09.2023",
       "userId": "3",
-      "type": [
+      "category": [
         "IT"
       ],
       "blocks": [
@@ -1637,7 +1637,7 @@
       "views": 1001,
       "createdAt": "26.09.2016",
       "userId": "3",
-      "type": [
+      "category": [
         "IT"
       ],
       "blocks": [
@@ -1725,7 +1725,7 @@
       "views": 783,
       "createdAt": "08.03.2017",
       "userId": "3",
-      "type": [
+      "category": [
         "IT"
       ],
       "blocks": [
@@ -1841,7 +1841,7 @@
       "views": 341,
       "createdAt": "08.11.2023",
       "userId": "3",
-      "type": [
+      "category": [
         "IT"
       ],
       "blocks": [
@@ -1905,7 +1905,7 @@
       "views": 890,
       "createdAt": "25.07.2022",
       "userId": "3",
-      "type": [
+      "category": [
         "IT"
       ],
       "blocks": [
@@ -1968,7 +1968,7 @@
       "views": 334,
       "createdAt": "29.07.2022",
       "userId": "3",
-      "type": [
+      "category": [
         "IT"
       ],
       "blocks": [

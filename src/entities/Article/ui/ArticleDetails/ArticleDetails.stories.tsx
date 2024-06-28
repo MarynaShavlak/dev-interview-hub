@@ -1,7 +1,7 @@
 import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
-import { ArticleBlockType, ArticleType } from '../../model/consts/consts';
+import { ArticleBlockType, ArticleCategory } from '../../model/consts/consts';
 import { Article } from '../../model/types/article';
 import { ArticleDetails } from './ArticleDetails';
 
@@ -24,7 +24,7 @@ const article: Article = {
     img: 'https://cyberhoot.com/wp-content/uploads/2020/07/Free-Courses-to-learn-JavaScript-1024x576.jpg',
     views: 1022,
     createdAt: '26.02.2022',
-    type: [ArticleType.IT],
+    category: [ArticleCategory.IT],
     user: {
         id: '1',
         username: 'username',

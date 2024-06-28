@@ -1,6 +1,6 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { Article, ArticleBlockType, ArticleType } from '@/entities/Article';
+import { Article, ArticleBlockType, ArticleCategory } from '@/entities/Article';
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 import ArticleDetailsPage from './ArticleDetailsPage';
 
@@ -23,7 +23,7 @@ const article: Article = {
     img: 'https://teknotower.com/wp-content/uploads/2020/11/js.png',
     views: 1022,
     createdAt: '26.02.2022',
-    type: [ArticleType.IT],
+    category: [ArticleCategory.IT],
     user: {
         id: '1',
         username: 'user 1',

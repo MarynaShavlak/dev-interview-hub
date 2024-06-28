@@ -1,5 +1,9 @@
 import { memo, useCallback } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import { FiltersContainer } from '../FiltersContainer/FiltersContainer';
+import { ViewSelectorContainer } from '../ViewSelectorContainer/ViewSelectorContainer';
+import { StickyContentLayout } from '@/shared/layouts/StickyContentLayout';
+import { ToggleFeaturesComponent } from '@/shared/lib/features';
 import { ArticlePageGreeting } from '@/features/articlePageGreeting';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import {
@@ -36,16 +40,46 @@ const ArticlesPage = ({ className }: ArticlesPageProps) => {
         dispatch(initArticlesPage(searchParams));
     });
 
+    const content = (
+        <ToggleFeaturesComponent
+            feature="isAppRedesigned"
+            on={
+                <StickyContentLayout
+                    left={<ViewSelectorContainer />}
+                    right={<FiltersContainer />}
+                    content={
+                        <Page
+                            data-testid="ArticlesPage"
+                            onScrollEnd={onLoadNextPart}
+                            className={classNames(
+                                cls.ArticlesPageRedesigned,
+                                {},
+                                [className],
+                            )}
+                        >
+                            <ArticleInfiniteList className={cls.list} />
+                            <ArticlePageGreeting />
+                        </Page>
+                    }
+                />
+            }
+            off={
+                <Page
+                    data-testid="ArticlesPage"
+                    onScrollEnd={onLoadNextPart}
+                    className={classNames(cls.ArticlesPage, {}, [className])}
+                >
+                    <ArticlesPageFilters />
+                    <ArticleInfiniteList className={cls.list} />
+                    <ArticlePageGreeting />
+                </Page>
+            }
+        />
+    );
+
     return (
         <DynamicModuleLoader reducers={reducers} removeAfterUnmount={false}>
-            <Page
-                className={classNames(cls.ArticlesPage, {}, [className])}
-                onScrollEnd={onLoadNextPart}
-            >
-                <ArticlesPageFilters />
-                <ArticleInfiniteList className={cls.list} />
-                <ArticlePageGreeting />
-            </Page>
+            {content}
         </DynamicModuleLoader>
     );
 };

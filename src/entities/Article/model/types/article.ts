@@ -1,5 +1,5 @@
 import type { User } from '@/entities/User';
-import { ArticleBlockType, ArticleType } from '../consts/consts';
+import { ArticleBlockType, ArticleCategory } from '../consts/consts';
 
 export interface ArticleBlockBase {
     id: string;
@@ -36,6 +36,6 @@ export interface Article {
     img: string;
     views: number;
     createdAt: string;
-    type: ArticleType[];
+    category: ArticleCategory[];
     blocks: ArticleBlock[];
 }

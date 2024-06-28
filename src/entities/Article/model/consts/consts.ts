@@ -10,11 +10,12 @@ export enum ArticleBlockType {
     TEXT = 'TEXT',
 }
 
-export enum ArticleType {
+export enum ArticleCategory {
     ALL = 'ALL',
     IT = 'IT',
-    SCIENCE = 'SCIENCE',
+    SOCIOLOGY = 'SOCIOLOGY',
     ECONOMICS = 'ECONOMICS',
+    PUBLIC_ADMINISTRATION = 'PUBLIC_ADMINISTRATION',
 }
 
 export enum ArticleView {

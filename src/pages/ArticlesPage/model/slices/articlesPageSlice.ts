@@ -5,7 +5,7 @@ import {
     Article,
     ArticleSortField,
     ArticleView,
-    ArticleType,
+    ArticleCategory,
 } from '@/entities/Article';
 import { ARTICLES_VIEW_LOCALSTORAGE_KEY } from '@/shared/const/localstorage';
 import { SortOrder } from '@/shared/types/sortOrder';
@@ -35,7 +35,7 @@ const articlesPageSlice = buildSlice({
         sort: ArticleSortField.CREATED,
         search: '',
         order: 'asc',
-        type: ArticleType.ALL,
+        category: ArticleCategory.ALL,
     }),
     reducers: {
         setView: (state, action: PayloadAction<ArticleView>) => {
@@ -54,8 +54,8 @@ const articlesPageSlice = buildSlice({
         setSort: (state, action: PayloadAction<ArticleSortField>) => {
             state.sort = action.payload;
         },
-        setType: (state, action: PayloadAction<ArticleType>) => {
-            state.type = action.payload;
+        setCategory: (state, action: PayloadAction<ArticleCategory>) => {
+            state.category = action.payload;
         },
         setSearch: (state, action: PayloadAction<string>) => {
             state.search = action.payload;

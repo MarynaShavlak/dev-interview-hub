@@ -26,7 +26,7 @@ const article: Article = {
     views: 123,
     user: { id: '1', username: '123' },
     blocks: [],
-    type: [],
+    category: [],
     title: '123',
     subtitle: 'asfsa',
 };

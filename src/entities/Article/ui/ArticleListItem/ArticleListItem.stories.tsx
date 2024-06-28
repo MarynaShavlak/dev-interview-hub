@@ -29,7 +29,7 @@ const article = {
         username: 'USER IT',
         avatar: 'https://cdn.pixabay.com/photo/2023/09/26/16/43/programmer-8277836_1280.jpg',
     },
-    type: ['IT', 'SCIENCE', 'POLITICS', 'ECONOMICS'],
+    category: ['IT', 'SOCIOLOGY', 'PUBLIC_ADMINISTRATION', 'ECONOMICS'],
     blocks: [
         {
             id: '1',

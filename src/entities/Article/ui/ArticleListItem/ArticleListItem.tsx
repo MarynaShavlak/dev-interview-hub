@@ -26,7 +26,9 @@ interface ArticleListItemProps {
 export const ArticleListItem = memo((props: ArticleListItemProps) => {
     const { className, article, view, target } = props;
 
-    const types = <Text text={article.type.join(', ')} className={cls.types} />;
+    const types = (
+        <Text text={article.category.join(', ')} className={cls.types} />
+    );
     const views = (
         <HStack gap="8" className={cls.views}>
             <Text text={String(article.views)} />

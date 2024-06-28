@@ -1,0 +1,35 @@
+import { memo } from 'react';
+import { ArticlesFilters } from '@/widgets/ArticlesFilters';
+import { useArticleFilters } from '../../lib/hooks/useArticleFilters';
+
+interface FiltersContainerProps {
+    className?: string;
+}
+
+export const FiltersContainer = memo((props: FiltersContainerProps) => {
+    const { className } = props;
+    const {
+        onChangeSort,
+        onChangeCategory,
+        sort,
+        category,
+        onChangeSearch,
+        search,
+        onChangeOrder,
+        order,
+    } = useArticleFilters();
+
+    return (
+        <ArticlesFilters
+            category={category}
+            onChangeSearch={onChangeSearch}
+            order={order}
+            onChangeOrder={onChangeOrder}
+            search={search}
+            sort={sort}
+            onChangeSort={onChangeSort}
+            onChangeCategory={onChangeCategory}
+            className={className}
+        />
+    );
+});

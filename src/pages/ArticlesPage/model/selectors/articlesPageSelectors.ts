@@ -1,5 +1,9 @@
 import { StateSchema } from '@/app/providers/StoreProvider';
-import { ArticleSortField, ArticleType, ArticleView } from '@/entities/Article';
+import {
+    ArticleSortField,
+    ArticleCategory,
+    ArticleView,
+} from '@/entities/Article';
 import { buildSelector } from '@/shared/lib/store';
 
 export const [useArticlesPageIsLoading, getArticlesPageIsLoading] =
@@ -44,6 +48,6 @@ export const [useArticlesPageSearch, getArticlesPageSearch] = buildSelector(
     (state: StateSchema) => state.articlesPage?.search ?? '',
 );
 
-export const [useArticlesPageType, getArticlesPageType] = buildSelector(
-    (state: StateSchema) => state.articlesPage?.type || ArticleType.ALL,
+export const [useArticlesPageCategory, getArticlesPageCategory] = buildSelector(
+    (state: StateSchema) => state.articlesPage?.category || ArticleCategory.ALL,
 );
