@@ -1,5 +1,4 @@
 import { memo } from 'react';
-import { getHStack } from '@/shared/lib/getHStack/getHStack';
 import { Icon } from '@/shared/ui/redesigned/Icon';
 import { HStack } from '@/shared/ui/redesigned/Stack';
 import { toggleFeatures, ToggleFeaturesComponent } from '@/shared/lib/features';
@@ -49,8 +48,6 @@ export const ArticleViewSelector = memo((props: ArticleViewSelectorProps) => {
     const onClick = (newView: ArticleView) => () => {
         onViewClick?.(newView);
     };
-    const additionalClasses = getHStack({ gap: '8' });
-    console.log(additionalClasses);
 
     return (
         <ToggleFeaturesComponent
@@ -105,3 +102,13 @@ export const ArticleViewSelector = memo((props: ArticleViewSelectorProps) => {
         />
     );
 });
+
+{
+    /* {items?.map((item) => ( */
+}
+{
+    /*     <OptionItem key={item.value} item={item} /> */
+}
+{
+    /* ))} */
+}

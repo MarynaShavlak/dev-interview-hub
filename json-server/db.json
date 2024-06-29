@@ -199,7 +199,7 @@
         "isAppRedesigned": true
       },
       "jsonSettings": {
-        "theme": "app_light_theme",
+        "theme": "app_dark_theme",
         "isFirstVisit": true,
         "settingsPageHasBeenOpen": false,
         "isArticlesPageWasOpened": true
@@ -254,7 +254,7 @@
       "first": "Марина",
       "lastname": "Шавлак",
       "age": 29,
-      "currency": "UAH",
+      "currency": "EUR",
       "country": "Ukraine",
       "city": "Kharkiv",
       "username": "admin",

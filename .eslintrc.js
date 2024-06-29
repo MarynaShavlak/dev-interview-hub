@@ -93,7 +93,7 @@ module.exports = {
                 ],
             },
         ],
-        'react/jsx-max-props-per-line': ['error', { maximum: 4 }],
+        'react/jsx-max-props-per-line': ['error', { maximum: 5 }],
     },
     globals: {
         __IS_DEV__: true,

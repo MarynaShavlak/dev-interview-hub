@@ -1,21 +1,14 @@
 import { Listbox as HListBox } from '@headlessui/react';
-import { Fragment, ReactNode, useMemo } from 'react';
-import { Icon } from '../../../Icon';
-import CheckedIcon from '@/shared/assets/icons/done-20-20.svg';
+import { useMemo } from 'react';
+import { Each } from '@/shared/lib/components/Each/Each';
+import { SelectedItem } from './SelectedItem/SelectedItem';
+import { ListBoxItem, OptionItem } from './OptionItem/OptionItem';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { DropdownDirection } from '@/shared/types/ui';
-import { Button } from '../../../Button/Button';
 import { HStack } from '../../../../redesigned/Stack';
 import { mapDirectionClass } from '../../styles/consts';
 import popupCls from '../../styles/popup.module.scss';
 import cls from './ListBox.module.scss';
-import ArrowIcon from '@/shared/assets/icons/arrow-bottom.svg';
-
-export interface ListBoxItem<T extends string> {
-    value: string;
-    content: ReactNode;
-    disabled?: boolean;
-}
 
 interface ListBoxProps<T extends string> {
     items?: ListBoxItem<T>[];
@@ -41,9 +34,23 @@ export function ListBox<T extends string>(props: ListBoxProps<T>) {
     } = props;
 
     const optionsClasses = [mapDirectionClass[direction], popupCls.menu];
+    const listBoxClasses = classNames(cls.ListBox, {}, [
+        className,
+        popupCls.popup,
+    ]);
     const selectedItem = useMemo(() => {
         return items?.find((item) => item.value === value);
     }, [items, value]);
+
+    const renderOptions = () => {
+        if (!items) return null;
+        return (
+            <Each
+                of={items}
+                render={(item) => <OptionItem key={item.value} item={item} />}
+            />
+        );
+    };
 
     return (
         <HStack gap="4">
@@ -51,57 +58,19 @@ export function ListBox<T extends string>(props: ListBoxProps<T>) {
             <HListBox
                 disabled={readonly}
                 as="div"
-                className={classNames(cls.ListBox, {}, [
-                    className,
-                    popupCls.popup,
-                ])}
+                className={listBoxClasses}
                 value={value}
                 onChange={onChange}
             >
-                <HListBox.Button className={cls.trigger} as="div">
-                    <Button
-                        variant="filled"
-                        disabled={readonly}
-                        addonRight={<Icon Svg={ArrowIcon} />}
-                    >
-                        {selectedItem?.content ?? defaultValue}
-                    </Button>
-                </HListBox.Button>
+                <SelectedItem
+                    selectedItem={selectedItem}
+                    defaultValue={defaultValue}
+                    readonly={readonly}
+                />
                 <HListBox.Options
                     className={classNames(cls.options, {}, optionsClasses)}
                 >
-                    {items?.map((item) => (
-                        <HListBox.Option
-                            key={item.value}
-                            value={item.value}
-                            disabled={item.disabled}
-                            as={Fragment}
-                        >
-                            {({ active, selected }) => (
-                                <li
-                                    className={classNames(cls.item, {
-                                        [popupCls.active]: active,
-                                        [popupCls.disabled]: item.disabled,
-                                        [popupCls.selected]: selected,
-                                    })}
-                                >
-                                    <HStack
-                                        gap="8"
-                                        className={classNames(cls.wrap, {})}
-                                    >
-                                        {selected && (
-                                            <Icon
-                                                Svg={CheckedIcon}
-                                                width="16"
-                                                height="16"
-                                            />
-                                        )}
-                                        {item.content}
-                                    </HStack>
-                                </li>
-                            )}
-                        </HListBox.Option>
-                    ))}
+                    {renderOptions()}
                 </HListBox.Options>
             </HListBox>
         </HStack>
