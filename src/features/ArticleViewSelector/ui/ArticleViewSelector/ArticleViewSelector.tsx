@@ -1,4 +1,5 @@
 import { memo } from 'react';
+import { Each } from '@/shared/lib/components/Each/Each';
 import { Icon } from '@/shared/ui/redesigned/Icon';
 import { HStack } from '@/shared/ui/redesigned/Stack';
 import { toggleFeatures, ToggleFeaturesComponent } from '@/shared/lib/features';
@@ -62,16 +63,22 @@ export const ArticleViewSelector = memo((props: ArticleViewSelectorProps) => {
                     border="round"
                 >
                     <HStack gap="8">
-                        {viewTypes.map((viewType) => (
-                            <Icon
-                                clickable
-                                onClick={onClick(viewType.view)}
-                                Svg={viewType.icon}
-                                className={classNames('', {
-                                    [cls.notSelected]: viewType.view !== view,
-                                })}
-                            />
-                        ))}
+                        <Each
+                            of={viewTypes}
+                            render={(viewType) => {
+                                return (
+                                    <Icon
+                                        clickable
+                                        onClick={onClick(viewType.view)}
+                                        Svg={viewType.icon}
+                                        className={classNames('', {
+                                            [cls.notSelected]:
+                                                viewType.view !== view,
+                                        })}
+                                    />
+                                );
+                            }}
+                        />
                     </HStack>
                 </Card>
             }
@@ -81,34 +88,30 @@ export const ArticleViewSelector = memo((props: ArticleViewSelectorProps) => {
                         className,
                     ])}
                 >
-                    {viewTypes.map((viewType) => (
-                        <ButtonDeprecated
-                            key={viewType.view}
-                            theme={ButtonTheme.CLEAR}
-                            onClick={onClick(viewType.view)}
-                        >
-                            <IconDeprecated
-                                width={24}
-                                height={24}
-                                Svg={viewType.icon}
-                                className={classNames('', {
-                                    [cls.notSelected]: viewType.view !== view,
-                                })}
-                            />
-                        </ButtonDeprecated>
-                    ))}
+                    <Each
+                        of={viewTypes}
+                        render={(viewType) => {
+                            return (
+                                <ButtonDeprecated
+                                    key={viewType.view}
+                                    theme={ButtonTheme.CLEAR}
+                                    onClick={onClick(viewType.view)}
+                                >
+                                    <IconDeprecated
+                                        width={24}
+                                        height={24}
+                                        Svg={viewType.icon}
+                                        className={classNames('', {
+                                            [cls.notSelected]:
+                                                viewType.view !== view,
+                                        })}
+                                    />
+                                </ButtonDeprecated>
+                            );
+                        }}
+                    />
                 </div>
             }
         />
     );
 });
-
-{
-    /* {items?.map((item) => ( */
-}
-{
-    /*     <OptionItem key={item.value} item={item} /> */
-}
-{
-    /* ))} */
-}

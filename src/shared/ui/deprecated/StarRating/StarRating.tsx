@@ -1,4 +1,5 @@
 import { memo, useState } from 'react';
+import { Each } from '@/shared/lib/components/Each/Each';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './StarRating.module.scss';
 import { Icon } from '../Icon/Icon';
@@ -44,26 +45,31 @@ export const StarRating = memo((props: StarRatingProps) => {
 
     return (
         <div className={classNames(cls.StarRating, {}, [className])}>
-            {stars.map((starNumber) => (
-                <Icon
-                    className={classNames(
-                        cls.starIcon,
-                        { [cls.selected]: isSelected },
-                        [
-                            currentStarsCount >= starNumber
-                                ? cls.hovered
-                                : cls.normal,
-                        ],
-                    )}
-                    Svg={StarIcon}
-                    key={starNumber}
-                    width={size}
-                    height={size}
-                    onMouseLeave={onLeave}
-                    onMouseEnter={onHover(starNumber)}
-                    onClick={onClick(starNumber)}
-                />
-            ))}
+            <Each
+                of={stars}
+                render={(starNumber) => {
+                    return (
+                        <Icon
+                            className={classNames(
+                                cls.starIcon,
+                                { [cls.selected]: isSelected },
+                                [
+                                    currentStarsCount >= starNumber
+                                        ? cls.hovered
+                                        : cls.normal,
+                                ],
+                            )}
+                            Svg={StarIcon}
+                            key={starNumber}
+                            width={size}
+                            height={size}
+                            onMouseLeave={onLeave}
+                            onMouseEnter={onHover(starNumber)}
+                            onClick={onClick(starNumber)}
+                        />
+                    );
+                }}
+            />
         </div>
     );
 });

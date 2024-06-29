@@ -1,5 +1,6 @@
 import { Listbox as HListBox } from '@headlessui/react';
 import { Fragment, ReactNode } from 'react';
+import { Each } from '@/shared/lib/components/Each/Each';
 import CheckedIcon from '@/shared/assets/icons/done-20-20.svg';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { DropdownDirection } from '@/shared/types/ui';
@@ -61,32 +62,40 @@ export function ListBox(props: ListBoxProps) {
                 <HListBox.Button className={cls.trigger} as="div">
                     <Button disabled={readonly}>{value ?? defaultValue}</Button>
                 </HListBox.Button>
-                <HListBox.Options
-                    className={classNames(cls.options, {}, optionsClasses)}
-                >
-                    {items?.map((item) => (
-                        <HListBox.Option
-                            key={item.value}
-                            value={item.value}
-                            disabled={item.disabled}
-                            as={Fragment}
-                        >
-                            {({ active, selected }) => (
-                                <li
-                                    className={classNames(cls.item, {
-                                        [popupCls.active]: active,
-                                        [popupCls.disabled]: item.disabled,
-                                    })}
+                {items && (
+                    <HListBox.Options
+                        className={classNames(cls.options, {}, optionsClasses)}
+                    >
+                        <Each
+                            of={items}
+                            render={(item) => (
+                                <HListBox.Option
+                                    key={item.value}
+                                    value={item.value}
+                                    disabled={item.disabled}
+                                    as={Fragment}
                                 >
-                                    <HStack gap="8">
-                                        {selected && <Icon Svg={CheckedIcon} />}
-                                        {item.content}
-                                    </HStack>
-                                </li>
+                                    {({ active, selected }) => (
+                                        <li
+                                            className={classNames(cls.item, {
+                                                [popupCls.active]: active,
+                                                [popupCls.disabled]:
+                                                    item.disabled,
+                                            })}
+                                        >
+                                            <HStack gap="8">
+                                                {item.content}
+                                                {selected && (
+                                                    <Icon Svg={CheckedIcon} />
+                                                )}
+                                            </HStack>
+                                        </li>
+                                    )}
+                                </HListBox.Option>
                             )}
-                        </HListBox.Option>
-                    ))}
-                </HListBox.Options>
+                        />
+                    </HListBox.Options>
+                )}
             </HListBox>
         </HStack>
     );

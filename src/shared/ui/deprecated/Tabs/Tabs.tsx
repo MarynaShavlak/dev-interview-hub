@@ -1,4 +1,5 @@
 import { memo, ReactNode, useCallback } from 'react';
+import { Each } from '@/shared/lib/components/Each/Each';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { Card, CardTheme } from '../Card/Card';
 import cls from './Tabs.module.scss';
@@ -31,20 +32,25 @@ export const Tabs = memo((props: TabsProps) => {
 
     return (
         <div className={classNames(cls.Tabs, {}, [className])}>
-            {tabs.map((tab) => (
-                <Card
-                    theme={
-                        tab.value === value
-                            ? CardTheme.NORMAL
-                            : CardTheme.OUTLINED
-                    }
-                    className={cls.tab}
-                    key={tab.value}
-                    onClick={clickHandle(tab)}
-                >
-                    {tab.content}
-                </Card>
-            ))}
+            <Each
+                of={tabs}
+                render={(tab) => {
+                    return (
+                        <Card
+                            theme={
+                                tab.value === value
+                                    ? CardTheme.NORMAL
+                                    : CardTheme.OUTLINED
+                            }
+                            className={cls.tab}
+                            key={tab.value}
+                            onClick={clickHandle(tab)}
+                        >
+                            {tab.content}
+                        </Card>
+                    );
+                }}
+            />
         </div>
     );
 });

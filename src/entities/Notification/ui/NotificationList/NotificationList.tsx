@@ -1,4 +1,5 @@
 import { memo } from 'react';
+import { Each } from '@/shared/lib/components/Each/Each';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { VStack } from '@/shared/ui/redesigned/Stack';
 import { Skeleton } from '@/shared/ui/deprecated/Skeleton';
@@ -36,9 +37,14 @@ export const NotificationList = memo((props: NotificationListProps) => {
             max
             className={classNames(cls.NotificationList, {}, [className])}
         >
-            {data?.map((item) => (
-                <NotificationItem key={item.id} item={item} />
-            ))}
+            {data && (
+                <Each
+                    of={data}
+                    render={(item) => (
+                        <NotificationItem key={item.id} item={item} />
+                    )}
+                />
+            )}
         </VStack>
     );
 });

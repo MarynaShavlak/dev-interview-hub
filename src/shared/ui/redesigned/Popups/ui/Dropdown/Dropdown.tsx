@@ -1,5 +1,6 @@
 import { Menu } from '@headlessui/react';
 import { ReactNode } from 'react';
+import { Each } from '@/shared/lib/components/Each/Each';
 import { DropdownMenuItem } from './DropdownMenuItem/DropdownMenuItem';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { DropdownDirection } from '@/shared/types/ui';
@@ -25,11 +26,6 @@ export function Dropdown(props: DropdownProps) {
     const { className, trigger, items, direction = 'bottom right' } = props;
 
     const menuClasses = [mapDirectionClass[direction], popupCls.menu];
-    const renderDropdownItems = () => {
-        return items.map((item, index) => (
-            <DropdownMenuItem key={`dropdown-key-${index}`} item={item} />
-        ));
-    };
 
     return (
         <Menu
@@ -41,7 +37,15 @@ export function Dropdown(props: DropdownProps) {
         >
             <Menu.Button className={popupCls.trigger}>{trigger}</Menu.Button>
             <Menu.Items className={classNames(cls.menu, {}, menuClasses)}>
-                {renderDropdownItems()}
+                <Each
+                    of={items}
+                    render={(item, index) => (
+                        <DropdownMenuItem
+                            key={`dropdown-key-${index}`}
+                            item={item}
+                        />
+                    )}
+                />
             </Menu.Items>
         </Menu>
     );

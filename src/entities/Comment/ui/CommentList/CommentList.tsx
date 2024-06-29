@@ -1,5 +1,6 @@
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
+import { Each } from '@/shared/lib/components/Each/Each';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { VStack } from '@/shared/ui/redesigned/Stack';
 import { Text } from '@/shared/ui/deprecated/Text';
@@ -28,13 +29,16 @@ export const CommentList = memo((props: CommentListProps) => {
     return (
         <VStack gap="16" max className={classNames('', {}, [className])}>
             {comments?.length ? (
-                comments.map((comment) => (
-                    <CommentCard
-                        key={comment.id}
-                        isLoading={isLoading}
-                        comment={comment}
-                    />
-                ))
+                <Each
+                    of={comments}
+                    render={(item) => (
+                        <CommentCard
+                            key={item.id}
+                            comment={item}
+                            isLoading={isLoading}
+                        />
+                    )}
+                />
             ) : (
                 <Text text={t('Коментарів немає')} />
             )}
