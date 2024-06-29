@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { memo, useCallback } from 'react';
-import { ToggleFeaturesComponent } from '@/shared/lib/features';
+import { toggleFeatures, ToggleFeaturesComponent } from '@/shared/lib/features';
 import { ListBox as ListBoxDeprecated } from '@/shared/ui/deprecated/Popups';
 import { ListBox } from '@/shared/ui/redesigned/Popups';
 import { Country } from '../../model/types/country';
@@ -30,12 +30,17 @@ export const CountrySelect = memo(
             },
             [onChange],
         );
+        const label = toggleFeatures({
+            name: 'isAppRedesigned',
+            off: () => t('Укажіть країну'),
+            on: () => t('Країна'),
+        });
 
         const props = {
             className,
             value,
             defaultValue: t('Укажіть країну'),
-            label: t('Укажіть країну'),
+            label,
             items: options,
             onChange: onChangeHandler,
             readonly,

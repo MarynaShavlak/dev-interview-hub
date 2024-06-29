@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { memo, useCallback } from 'react';
-import { ToggleFeaturesComponent } from '@/shared/lib/features';
+import { toggleFeatures, ToggleFeaturesComponent } from '@/shared/lib/features';
 import { ListBox } from '@/shared/ui/redesigned/Popups';
 import { ListBox as ListBoxDeprecated } from '@/shared/ui/deprecated/Popups';
 import { Currency } from '../../model/types/currency';
@@ -28,12 +28,17 @@ export const CurrencySelect = memo(
             },
             [onChange],
         );
+        const label = toggleFeatures({
+            name: 'isAppRedesigned',
+            off: () => t('Укажіть валюту'),
+            on: () => t('Валюта'),
+        });
 
         const props = {
             className,
             value,
             defaultValue: t('Укажіть валюту'),
-            label: t('Укажіть валюту'),
+            label: label as string,
             items: options,
             onChange: onChangeHandler,
             readonly,
