@@ -1,9 +1,9 @@
 import { useTranslation } from 'react-i18next';
 import { HTMLAttributeAnchorTarget, memo } from 'react';
+import { ArticleListItemSkeleton } from '../ArticleListItem/ArticleListItemSkeleton/ArticleListItemSkeleton';
 import { Each } from '@/shared/lib/components/Each/Each';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { Text, TextSize } from '@/shared/ui/deprecated/Text';
-import { ArticleListItemSkeleton } from '../ArticleListItem/ArticleListItemSkeleton';
 import { ArticleListItem } from '../ArticleListItem/ArticleListItem';
 import cls from './ArticleList.module.scss';
 import { Article } from '../../model/types/article';
@@ -18,7 +18,7 @@ interface ArticleListProps {
 }
 
 const getSkeletons = (view: ArticleView) =>
-    new Array(view === ArticleView.SMALL ? 9 : 3)
+    new Array(view === ArticleView.GRID ? 9 : 3)
         .fill(0)
         .map((item, index) => (
             <ArticleListItemSkeleton
@@ -32,7 +32,7 @@ export const ArticleList = memo((props: ArticleListProps) => {
     const {
         className,
         articles,
-        view = ArticleView.SMALL,
+        view = ArticleView.GRID,
         isLoading,
         target,
     } = props;
@@ -55,6 +55,7 @@ export const ArticleList = memo((props: ArticleListProps) => {
         <div
             className={classNames(cls.ArticleList, {}, [className, cls[view]])}
         >
+            {isLoading && getSkeletons(view)}
             <Each
                 of={articles}
                 render={(item) => {
@@ -69,7 +70,6 @@ export const ArticleList = memo((props: ArticleListProps) => {
                     );
                 }}
             />
-            {isLoading && getSkeletons(view)}
         </div>
     );
 });

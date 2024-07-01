@@ -16,7 +16,7 @@ export const [useArticlesPageError, getArticlesPageError] = buildSelector(
 );
 
 export const [useArticlesPageView, getArticlesPageView] = buildSelector(
-    (state: StateSchema) => state.articlesPage?.view || ArticleView.SMALL,
+    (state: StateSchema) => state.articlesPage?.view || ArticleView.GRID,
 );
 
 export const [useArticlesPageNum, getArticlesPageNum] = buildSelector(

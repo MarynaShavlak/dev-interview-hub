@@ -19,6 +19,6 @@ export enum ArticleCategory {
 }
 
 export enum ArticleView {
-    BIG = 'BIG',
-    SMALL = 'SMALL',
+    LIST = 'LIST',
+    GRID = 'GRID',
 }

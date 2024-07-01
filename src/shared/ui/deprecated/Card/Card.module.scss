@@ -14,3 +14,34 @@
 .fullWidth {
     width: 100%;
 }
+
+.hStack {
+    display: flex;
+    flex-direction: row;
+}
+
+.vStack {
+    display: flex;
+    flex-direction: column;
+}
+.gap_0 {
+    gap: 0;
+}
+
+
+.gap_8 {
+    gap: 8px;
+}
+
+.gap_16 {
+    gap: 16px;
+}
+
+
+.gap_24 {
+    gap: 24px
+}
+
+.gap_32 {
+    gap: 32px
+}

@@ -26,7 +26,7 @@ interface ArticleViewSelectorProps {
 
 const viewTypes = [
     {
-        view: ArticleView.SMALL,
+        view: ArticleView.GRID,
         icon: toggleFeatures({
             name: 'isAppRedesigned',
             on: () => TiledIcon,
@@ -34,7 +34,7 @@ const viewTypes = [
         }),
     },
     {
-        view: ArticleView.BIG,
+        view: ArticleView.LIST,
         icon: toggleFeatures({
             name: 'isAppRedesigned',
             on: () => ListIcon,
