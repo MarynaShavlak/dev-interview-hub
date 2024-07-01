@@ -1,19 +1,7 @@
-.LIST {
-    .views {
-        margin-left: auto;
-    }
-
-    .textBlock {
-        max-height: 200px;
-        overflow-y: hidden;
-    }
-}
-
 .GRID {
     width: 230px;
     transition: 0.2s;
     cursor: pointer;
-
     .date {
         position: absolute;
         right: 0;
@@ -26,43 +14,26 @@
         transform: scale(1.01);
 
         .date {
-            opacity:1;
+            opacity: 1;
         }
     }
+}
 
-    .imageWrapper {
-        width: 200px;
-        height: 200px;
-        position: relative;
-    }
+.imageWrapper {
+    width: 200px;
+    height: 200px;
+    position: relative;
+}
 
-    .img {
-        width: 200px;
-        height: 200px;
-        object-fit: cover;
-    }
+.img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+}
 
-    .infoWrapper {
-        display: flex;
-        align-items: center;
-        margin-top: 8px;
-    }
-
-
-
-    .views {
-        margin-left: auto;
-        margin-right: 8px;
-    }
-
-    .title {
-        margin-top: 8px;
-    }
-
-    .title p {
-        width: 200px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
+.title p {
+    width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }

@@ -1,6 +1,6 @@
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
 import { HStack, VStack } from '@/shared/ui/redesigned/Stack';
-import { Article } from '../../../model/types/article';
+import { Article } from '../../../../../model/types/article';
 import { Text } from '@/shared/ui/redesigned/Text';
 import { Text as TextDeprecated } from '@/shared/ui/deprecated/Text';
 import { Avatar as AvatarDeprecated } from '@/shared/ui/deprecated/Avatar';
@@ -27,7 +27,7 @@ const RedesignedHeader = ({ article }: ArticleHeaderProps) => {
         <HStack gap="8" max>
             <Avatar size={32} src={article.user.avatar} />
             <Text bold text={article.user.username} />
-            <Text text={article.createdAt} />
+            <Text text={article.createdAt} size="s" />
         </HStack>
     );
 };

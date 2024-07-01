@@ -1,13 +1,13 @@
-import { Article, ArticleTextBlock } from '../../../model/types/article';
+import { Article, ArticleTextBlock } from '../../../../../model/types/article';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
-import { Categories } from '../Categories/Categories';
-import { ArticleTextBlockComponent } from '../../ArticleTextBlockComponent/ArticleTextBlockComponent';
+import { Categories } from '../../Categories/Categories';
+import { ArticleTextBlockComponent } from '../../../../ArticleTextBlockComponent/ArticleTextBlockComponent';
 import { AppImage } from '@/shared/ui/redesigned/AppImage';
 import { Skeleton as SkeletonDeprecated } from '@/shared/ui/deprecated/Skeleton';
 import { Skeleton } from '@/shared/ui/redesigned/Skeleton';
 import { Text as TextDeprecated } from '@/shared/ui/deprecated/Text';
 import { Text } from '@/shared/ui/redesigned/Text';
-import { ArticleBlockType } from '../../../model/consts/consts';
+import { ArticleBlockType } from '../../../../../model/consts/consts';
 import cls from './ArticleContent.module.scss';
 
 interface ArticleContentBaseProps {

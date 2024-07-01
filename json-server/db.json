@@ -199,7 +199,7 @@
         "isAppRedesigned": true
       },
       "jsonSettings": {
-        "theme": "app_dark_theme",
+        "theme": "app_light_theme",
         "isFirstVisit": true,
         "settingsPageHasBeenOpen": false,
         "isArticlesPageWasOpened": true
@@ -275,7 +275,7 @@
   "articles": [
     {
       "id": "1",
-      "title": "ДИСФУНКЦІЇ РИНКУ ЗЕМЕЛЬ В УКРАЇНІ",
+      "title": "Дисфункції ринку земель в Україні",
       "subtitle": "Шавлак Марина Андріївна, Науково-дослідний центр індустріальних проблем розвитку НАН України",
       "img": "https://media.slovoidilo.ua/media/publications/14/138610/ilyustratyvne-foto_large.jpg",
       "views": 2000,
@@ -416,7 +416,7 @@
     },
     {
       "id": "3",
-      "title": "НАЦІОНАЛЬНА СТРАТЕГІЯ ДЕРЖАВНО-ПРИВАТНОГО ПАРТНЕРСТВА В СФЕРІ ІННОВАЦІЙНОЇ ДІЯЛЬНОСТІ: ПРОБЛЕМИ РОЗРОБКИ ТА ПЕРСПЕКТИВИ ВПРОВАДЖЕННЯ ",
+      "title": "Національна стратегія державно-приватного партнерства в сфері інноваційної діяльності: проблеми розробки та перспективи впровадження",
       "subtitle": "Шавлак Марина Андріївна, Науково-дослідний центр індустріальних проблем розвитку НАН України",
       "img": "https://everlegal.ua/uploads/content/295/source/derzhavno-pryvatne-partnerstvo-v-ukrayini-806.png",
       "views": 209,
@@ -498,7 +498,7 @@
     },
     {
       "id": "4",
-      "title": "ЕФЕКТИВНІСТЬ ВИКОРИСТАННЯ СІЛЬСЬКОГОСПОДАРСЬКИХ ЗЕМЕЛЬНИХ РЕСУРСІВ УКРАЇНИ",
+      "title": "Ефективність використання сільськогосподарських земельних ресурсів України",
       "subtitle": "Шавлак Марина Андріївна, Науково-дослідний центр індустріальних проблем розвитку НАН України",
       "img": "https://tehnouspih.com.ua/files/blog_resized/43739ea4c38cf2b4801aa616da7cee874f625410577981caadfdc1549d7cf958_.1200x1200.jpg",
       "views": 345,
@@ -611,7 +611,7 @@
     },
     {
       "id": "5",
-      "title": "ЗЕМЛЕУСТРІЙ ЯК ОСНОВА ДЕРЖАВНОГО УПРАВЛІННЯ ЗЕМЕЛЬНИМИ РЕСУРСАМИ",
+      "title": "Землеустрій як основа державного управління земельними ресурсами",
       "subtitle": "Шавлак Марина Андріївна, Науково-дослідний центр індустріальних проблем розвитку НАН України",
       "img": "https://i.vuzopedia.ru/storage/app/resources/resize/605_0_0_0_auto/img_6c0ec57e455ba74eff6a9cdcd25ced2a.jpg",
       "views": 1567,
@@ -700,7 +700,7 @@
     },
     {
       "id": "6",
-      "title": "РЕГІОНАЛЬНІ ОСОБЛИВОСТІ ВИКОРИСТАННЯ СІЛЬСЬКОГОСПОДАРСЬКИХ ЗЕМЕЛЬНИХ РЕСУРСІВ УКРАЇНИ",
+      "title": "Регіональні особливості використання сільськогосподарських земельних ресурсів України",
       "subtitle": "Шавлак Марина Андріївна, Науково-дослідний центр індустріальних проблем розвитку НАН України",
       "img": "https://upload.wikimedia.org/wikipedia/commons/0/00/Map_of_Ukraine_political_Ekonomichni_raiony.png",
       "views": 980,
@@ -816,7 +816,7 @@
     },
     {
       "id": "7",
-      "title": "ТОЧНЕ ЗЕМЛЕРОБСТВО ЯК ІННОВАЦІЙНА ФОРМА УПРАВЛІННЯ ЗЕМЕЛЬНИМИ РЕСУРСАМИ",
+      "title": "Точне землеробство як інноваційна форма управління земельними ресурсами",
       "subtitle": "Шавлак Марина Андріївна, Науково-дослідний центр індустріальних проблем розвитку НАН України",
       "img": "https://agrostartup.pp.ua/sites/default/files/styles/wide/public/blog-images/precision_farming.png?itok=Njiroz5S",
       "views": 2244,
@@ -885,7 +885,7 @@
     },
     {
       "id": "8",
-      "title": "АНАЛІЗ ДИНАМІКИ ВИРОБНИЦТВА ЗЕРНА ЯК ОСНОВИ ЕФЕКТИВНОГО ЗЕМЛЕКОРИСТУВАННЯ: УКРАЇНА ТА СВІТ",
+      "title": "Аналіз динаміки виробництва зерна як основи ефективного землекористування: Україна та світ",
       "subtitle": "Шавлак Марина Андріївна, Науково-дослідний центр індустріальних проблем розвитку НАН України",
       "img": "https://agro-business.com.ua/media/k2/items/cache/e10c8903b59b13364ebf3f8420c11b39_M.jpg",
       "views": 2244,
@@ -1115,7 +1115,7 @@
     },
     {
       "id": "10",
-      "title": "ПРОБЛЕМИ УПРАВЛІННЯ ЗЕМЕЛЬНИМИ РЕСУРСАМИ В УМОВАХ ДЕЦЕНТРАЛІЗАЦІЇ ВЛАДИ",
+      "title": "Проблеми управління земельними ресурсами в умовах децентралізації влади",
       "subtitle": "Шавлак Марина Андріївна, Науково-дослідний центр індустріальних проблем розвитку НАН України",
       "img": "https://www.auc.org.ua/sites/default/files/field/image/zemlya_kartynka_0.jpg",
       "views": 567,
@@ -1184,7 +1184,7 @@
     },
     {
       "id": "11",
-      "title": "THE BENEFITS OF GENDER MAINSTREAMING TO AN ORGANIZATION",
+      "title": "The benefits of gender mainstreaming to an organization",
       "subtitle": "Shavlak M., Shypilova M.,Kharkiv Institute of Banking of the University of Banking of the National Bank of Ukraine",
       "img": "https://aiu1.b-cdn.net/wp-content/uploads/2023/08/gender-inequality-scaled-removebg-preview.png",
       "views": 78,

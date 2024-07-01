@@ -1,14 +1,14 @@
 import { useTranslation } from 'react-i18next';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
 import { HStack } from '@/shared/ui/redesigned/Stack';
-import { Views } from '../Views/Views';
+import { Views } from '../../Views/Views';
 import { getRouteArticleDetails } from '@/shared/const/router';
 import { AppLink as AppLinkDeprecated } from '@/shared/ui/deprecated/AppLink';
 import {
     Button as ButtonDeprecated,
     ButtonTheme,
 } from '@/shared/ui/deprecated/Button';
-import { Article } from '../../../model/types/article';
+import { Article } from '../../../../../model/types/article';
 import { AppLink } from '@/shared/ui/redesigned/AppLink';
 import { Button } from '@/shared/ui/redesigned/Button';
 

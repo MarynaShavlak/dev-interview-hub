@@ -19,7 +19,8 @@
     height: 44px;
 }
 
-.addonLeft, .addonRight {
+.addonLeft,
+.addonRight {
     display: flex;
 }
 
@@ -34,7 +35,8 @@
 .focused {
     border: 2px solid var(--accent-redesigned);
 
-    .addonLeft svg, .addonRight svg {
+    .addonLeft svg,
+    .addonRight svg {
         color: var(--accent-redesigned);
     }
 }
@@ -50,7 +52,6 @@
         color: var(--hint-redesigned);
     }
 }
-
 
 .readonly {
     opacity: 0.7;

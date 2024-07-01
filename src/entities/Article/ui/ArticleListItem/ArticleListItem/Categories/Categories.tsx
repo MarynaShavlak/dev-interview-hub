@@ -1,4 +1,4 @@
-import { Article } from '../../../model/types/article';
+import { Article } from '../../../../model/types/article';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
 import { Text as TextDeprecated } from '@/shared/ui/deprecated/Text';
 import { Text } from '@/shared/ui/redesigned/Text';

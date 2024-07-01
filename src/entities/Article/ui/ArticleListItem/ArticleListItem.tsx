@@ -6,26 +6,19 @@ import { Article } from '../../model/types/article';
 
 export interface ArticleListItemProps {
     className?: string;
-    article: Article;
     view: ArticleView;
+    article: Article;
     target?: HTMLAttributeAnchorTarget;
 }
 
 export const ArticleListItem = memo((props: ArticleListItemProps) => {
-    const { className, article, view, target } = props;
+    const { className, article, target, view } = props;
 
     if (view === ArticleView.LIST) {
-        return (
-            <ListViewItem className={className} article={article} view={view} />
-        );
+        return <ListViewItem className={className} article={article} />;
     }
 
     return (
-        <GridViewItem
-            className={className}
-            article={article}
-            view={view}
-            target={target}
-        />
+        <GridViewItem className={className} article={article} target={target} />
     );
 });

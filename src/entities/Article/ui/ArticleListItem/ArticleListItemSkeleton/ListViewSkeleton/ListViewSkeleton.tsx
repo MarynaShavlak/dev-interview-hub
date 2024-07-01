@@ -37,7 +37,7 @@ export const ListViewSkeleton = memo((props: ArticleListItemSkeletonProps) => {
                 cls[view],
             ])}
         >
-            <Card className={cls.card} vStack gap="8">
+            <Card className={cls.card} vStack gap="8" padding="16">
                 <VStack className={cls.header} gap="8">
                     <HStack gap="16">
                         <Skeleton border="50%" height={30} width={30} />

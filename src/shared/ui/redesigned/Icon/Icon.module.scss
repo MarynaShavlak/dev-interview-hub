@@ -1,7 +1,7 @@
 .Icon {
-    fill:var(--icon-redesigned);
+    fill: var(--icon-redesigned);
     color: var(--icon-redesigned);
-    transition:color 300ms ease;
+    transition: color 300ms ease;
 }
 
 .button {
@@ -11,7 +11,7 @@
     outline: none;
     background: none;
     cursor: pointer;
-    transition:color 300ms ease;
+    transition: color 300ms ease;
 }
 
 .button:hover .Icon {

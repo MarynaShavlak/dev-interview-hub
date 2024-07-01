@@ -1,5 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { HTMLAttributeAnchorTarget, memo } from 'react';
+import { HStack } from '@/shared/ui/redesigned/Stack';
+import { ToggleFeaturesComponent } from '@/shared/lib/features';
 import { ArticleListItemSkeleton } from '../ArticleListItem/ArticleListItemSkeleton/ArticleListItemSkeleton';
 import { Each } from '@/shared/lib/components/Each/Each';
 import { classNames } from '@/shared/lib/classNames/classNames';
@@ -52,24 +54,55 @@ export const ArticleList = memo((props: ArticleListProps) => {
     }
 
     return (
-        <div
-            className={classNames(cls.ArticleList, {}, [className, cls[view]])}
-        >
-            {isLoading && getSkeletons(view)}
-            <Each
-                of={articles}
-                render={(item) => {
-                    return (
-                        <ArticleListItem
-                            article={item}
-                            view={view}
-                            target={target}
-                            key={item.id}
-                            className={cls.card}
-                        />
-                    );
-                }}
-            />
-        </div>
+        <ToggleFeaturesComponent
+            feature="isAppRedesigned"
+            on={
+                <HStack
+                    wrap="wrap"
+                    gap="16"
+                    className={classNames(cls.ArticleListRedesigned, {}, [])}
+                >
+                    {isLoading && getSkeletons(view)}
+                    <Each
+                        of={articles}
+                        render={(item) => {
+                            return (
+                                <ArticleListItem
+                                    article={item}
+                                    view={view}
+                                    target={target}
+                                    key={item.id}
+                                    className={cls.card}
+                                />
+                            );
+                        }}
+                    />
+                </HStack>
+            }
+            off={
+                <div
+                    className={classNames(cls.ArticleList, {}, [
+                        className,
+                        cls[view],
+                    ])}
+                >
+                    {isLoading && getSkeletons(view)}
+                    <Each
+                        of={articles}
+                        render={(item) => {
+                            return (
+                                <ArticleListItem
+                                    article={item}
+                                    view={view}
+                                    target={target}
+                                    key={item.id}
+                                    className={cls.card}
+                                />
+                            );
+                        }}
+                    />
+                </div>
+            }
+        />
     );
 });
