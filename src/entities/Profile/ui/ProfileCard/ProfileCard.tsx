@@ -1,4 +1,3 @@
-import { useTranslation } from 'react-i18next';
 import { DeprecatedProfileCardError } from '../DeprecatedProfileCard/DeprecatedProfileCardError/DeprecatedProfileCardError';
 import { DeprecatedProfileCard } from '../DeprecatedProfileCard/DeprecatedProfileCard';
 import { DeprecatedProfileCardLoader } from '../DeprecatedProfileCard/DeprecatedProfileCardLoader/DeprecatedProfileCardLoader';
@@ -29,7 +28,6 @@ export interface ProfileCardProps {
 
 export const ProfileCard = (props: ProfileCardProps) => {
     const { isLoading, error } = props;
-    const { t } = useTranslation();
 
     if (isLoading) {
         return (

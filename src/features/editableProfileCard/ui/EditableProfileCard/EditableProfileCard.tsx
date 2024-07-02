@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { memo, useCallback } from 'react';
+import { toggleFeatures } from '@/shared/lib/features';
 import { Country } from '@/entities/Country';
 import { Currency } from '@/entities/Currency';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
@@ -21,6 +22,7 @@ import { useProfileValidateErrors } from '../../model/selectors/getProfileValida
 import { fetchProfileData } from '../../model/services/fetchProfileData/fetchProfileData';
 import { profileActions, profileReducer } from '../../model/slice/profileSlice';
 import { EditableProfileCardHeader } from '../EditableProfileCardHeader/EditableProfileCardHeader';
+import cls from './EditableProfileCard.module.scss';
 
 interface EditableProfileCardProps {
     className?: string;
@@ -150,9 +152,19 @@ export const EditableProfileCard = memo((props: EditableProfileCardProps) => {
         [dispatch],
     );
 
+    const mainClass = toggleFeatures({
+        name: 'isAppRedesigned',
+        on: () => cls.RedesignedProfileCard,
+        off: () => cls.DeprecatedProfileCard,
+    });
+
     return (
         <DynamicModuleLoader reducers={reducers}>
-            <VStack gap="8" max className={classNames('', {}, [className])}>
+            <VStack
+                gap="8"
+                max
+                className={classNames(mainClass, {}, [className])}
+            >
                 <EditableProfileCardHeader />
                 {validateErrors?.length &&
                     validateErrors.map((err) => (

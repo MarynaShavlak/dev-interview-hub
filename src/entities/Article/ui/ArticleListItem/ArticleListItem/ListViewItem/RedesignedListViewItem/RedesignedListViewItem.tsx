@@ -46,7 +46,13 @@ export const RedesignedListViewItem = memo((props: ListViewItemProps) => {
                 <Text title={article.title} bold />
                 <Text title={article.subtitle} size="s" />
                 <AppImage
-                    fallback={<Skeleton width="100%" height={250} />}
+                    fallback={
+                        <Skeleton
+                            width="100%"
+                            height={250}
+                            className={cls.img}
+                        />
+                    }
                     src={article.img}
                     className={cls.img}
                     alt={article.title}

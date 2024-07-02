@@ -35,7 +35,7 @@ export const RedesignedGridViewItem = memo((props: GridViewItemProps) => {
                 className={cls.card}
             >
                 <AppImage
-                    fallback={<Skeleton width={200} height={200} />}
+                    fallback={<Skeleton className={cls.img} />}
                     errorFallback={
                         <AppImage
                             src={defaultImage}
