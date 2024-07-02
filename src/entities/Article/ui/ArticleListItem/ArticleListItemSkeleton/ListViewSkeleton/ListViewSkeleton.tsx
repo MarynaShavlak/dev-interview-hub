@@ -1,16 +1,19 @@
 import { memo } from 'react';
 import { toggleFeatures } from '@/shared/lib/features';
-import { ArticleListItemSkeletonProps } from '../ArticleListItemSkeleton';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { Skeleton as SkeletonDeprecated } from '@/shared/ui/deprecated/Skeleton';
 import { Skeleton as SkeletonRedesigned } from '@/shared/ui/redesigned/Skeleton';
 import { Card as CardDeprecated } from '@/shared/ui/deprecated/Card';
 import { Card as CardRedesigned } from '@/shared/ui/redesigned/Card';
-import cls from '../../ArticleListItem.module.scss';
+import cls from '../../ArticleListItem/ArticleListItem.module.scss';
 import { HStack, VStack } from '@/shared/ui/redesigned/Stack';
 
-export const ListViewSkeleton = memo((props: ArticleListItemSkeletonProps) => {
-    const { className, view } = props;
+export const ListViewSkeleton = memo(() => {
+    const mainClass = toggleFeatures({
+        name: 'isAppRedesigned',
+        on: () => cls.ArticleListItemRedesigned,
+        off: () => cls.ArticleListItem,
+    });
 
     const Skeleton = toggleFeatures({
         name: 'isAppRedesigned',
@@ -31,13 +34,8 @@ export const ListViewSkeleton = memo((props: ArticleListItemSkeletonProps) => {
     });
 
     return (
-        <div
-            className={classNames(cls.ArticleListItem, {}, [
-                className,
-                cls[view],
-            ])}
-        >
-            <Card className={cls.card} vStack gap="8" padding="16">
+        <div className={classNames(mainClass, {}, [cls.LIST])}>
+            <Card vStack gap="8" padding="16">
                 <VStack className={cls.header} gap="8">
                     <HStack gap="16">
                         <Skeleton border="50%" height={30} width={30} />

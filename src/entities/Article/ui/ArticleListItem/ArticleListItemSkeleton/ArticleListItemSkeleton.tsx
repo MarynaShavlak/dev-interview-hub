@@ -4,17 +4,16 @@ import { GridViewSkeleton } from './GridViewSkeleton/GridViewSkeleton';
 import { ArticleView } from '../../../model/consts/consts';
 
 export interface ArticleListItemSkeletonProps {
-    className?: string;
     view: ArticleView;
 }
 
 export const ArticleListItemSkeleton = memo(
     (props: ArticleListItemSkeletonProps) => {
-        const { className, view } = props;
+        const { view } = props;
 
         if (view === ArticleView.LIST) {
-            return <ListViewSkeleton view={view} className={className} />;
+            return <ListViewSkeleton />;
         }
-        return <GridViewSkeleton view={view} className={className} />;
+        return <GridViewSkeleton />;
     },
 );

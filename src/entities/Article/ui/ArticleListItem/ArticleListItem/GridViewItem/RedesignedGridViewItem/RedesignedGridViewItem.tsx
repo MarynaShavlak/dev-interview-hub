@@ -1,4 +1,5 @@
 import { memo } from 'react';
+import defaultImage from '@/shared/assets/images/default-img.png';
 import { Avatar } from '@/shared/ui/redesigned/Avatar';
 import { GridViewItemProps } from '../GridViewItem';
 import { Views } from '../../Views/Views';
@@ -19,11 +20,28 @@ export const RedesignedGridViewItem = memo((props: GridViewItemProps) => {
             data-testid="ArticleListItem"
             target={target}
             to={getRouteArticleDetails(article.id)}
-            className={classNames(cls.GRID, {}, [className])}
+            className={classNames(cls.ArticleListItemRedesigned, {}, [
+                className,
+                cls.GRID,
+            ])}
         >
-            <Card className={cls.card} border="round" padding="0">
+            <Card
+                className={cls.card}
+                vStack
+                gap="8"
+                border="round"
+                padding="0"
+            >
                 <AppImage
                     fallback={<Skeleton width={200} height={200} />}
+                    errorFallback={
+                        <AppImage
+                            src={defaultImage}
+                            width="200px"
+                            height="200px"
+                            className={cls.img}
+                        />
+                    }
                     alt={article.title}
                     src={article.img}
                     className={cls.img}

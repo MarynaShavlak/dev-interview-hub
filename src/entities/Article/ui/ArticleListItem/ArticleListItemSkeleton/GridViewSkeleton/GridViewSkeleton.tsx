@@ -1,44 +1,64 @@
 import { memo } from 'react';
-import { toggleFeatures } from '@/shared/lib/features';
-import { ArticleListItemSkeletonProps } from '../ArticleListItemSkeleton';
+import { HStack, VStack } from '@/shared/ui/redesigned/Stack';
+import { Card } from '@/shared/ui/redesigned/Card';
+import { Skeleton } from '@/shared/ui/redesigned/Skeleton';
+import { toggleFeatures, ToggleFeaturesComponent } from '@/shared/lib/features';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { Skeleton as SkeletonDeprecated } from '@/shared/ui/deprecated/Skeleton';
-import { Skeleton as SkeletonRedesigned } from '@/shared/ui/redesigned/Skeleton';
 import { Card as CardDeprecated } from '@/shared/ui/deprecated/Card';
-import { Card as CardRedesigned } from '@/shared/ui/redesigned/Card';
-import cls from '../../ArticleListItem.module.scss';
+import cls from '../../ArticleListItem/ArticleListItem.module.scss';
 
-export const GridViewSkeleton = memo((props: ArticleListItemSkeletonProps) => {
-    const { className, view } = props;
+const DeprecatedGridViewSkeleton = () => {
+    return (
+        <CardDeprecated className={cls.card} vStack gap="8">
+            <div className={cls.imageWrapper}>
+                <SkeletonDeprecated
+                    width={200}
+                    height={200}
+                    className={cls.img}
+                />
+            </div>
+            <div className={cls.infoWrapper}>
+                <SkeletonDeprecated width={130} height={16} />
+            </div>
+            <SkeletonDeprecated width={150} height={16} className={cls.title} />
+        </CardDeprecated>
+    );
+};
 
-    const Skeleton = toggleFeatures({
+const RedesignedGridViewSkeleton = () => {
+    return (
+        <Card className={cls.card} vStack border="round" padding="0" gap="8">
+            <Skeleton width={240} height={140} />
+            <VStack className={cls.info} gap="32">
+                <Skeleton width="100%" height={70} />
+                <HStack justify="between" max>
+                    <Skeleton width={100} height={16} />
+                    <Skeleton width={80} height={16} />
+                </HStack>
+                <HStack gap="4" max className={cls.user}>
+                    <Skeleton border="50%" height={32} width={32} />
+                    <Skeleton width={80} height={16} />
+                </HStack>
+            </VStack>
+        </Card>
+    );
+};
+
+export const GridViewSkeleton = memo(() => {
+    const mainClass = toggleFeatures({
         name: 'isAppRedesigned',
-        on: () => SkeletonRedesigned,
-        off: () => SkeletonDeprecated,
-    });
-
-    const Card = toggleFeatures({
-        name: 'isAppRedesigned',
-        on: () => CardRedesigned,
-        off: () => CardDeprecated,
+        on: () => cls.ArticleListItemRedesigned,
+        off: () => cls.ArticleListItem,
     });
 
     return (
-        <div
-            className={classNames(cls.ArticleListItem, {}, [
-                className,
-                cls[view],
-            ])}
-        >
-            <Card className={cls.card}>
-                <div className={cls.imageWrapper}>
-                    <Skeleton width={200} height={200} className={cls.img} />
-                </div>
-                <div className={cls.infoWrapper}>
-                    <Skeleton width={130} height={16} />
-                </div>
-                <Skeleton width={150} height={16} className={cls.title} />
-            </Card>
+        <div className={classNames(mainClass, {}, [cls.GRID])}>
+            <ToggleFeaturesComponent
+                feature="isAppRedesigned"
+                on={<RedesignedGridViewSkeleton />}
+                off={<DeprecatedGridViewSkeleton />}
+            />
         </div>
     );
 });

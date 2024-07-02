@@ -9,8 +9,9 @@ import { classNames } from '@/shared/lib/classNames/classNames';
 import { Text } from '@/shared/ui/deprecated/Text';
 import { Card } from '@/shared/ui/deprecated/Card';
 import { AppLink } from '@/shared/ui/deprecated/AppLink';
-import cls from '../../../ArticleListItem.module.scss';
+import cls from '../../ArticleListItem.module.scss';
 import { Skeleton } from '@/shared/ui/deprecated/Skeleton';
+import defaultImage from '@/shared/assets/images/default-img.png';
 
 export const DeprecatedGridViewItem = memo((props: GridViewItemProps) => {
     const { className, article, target } = props;
@@ -19,12 +20,23 @@ export const DeprecatedGridViewItem = memo((props: GridViewItemProps) => {
             data-testid="ArticleListItem"
             target={target}
             to={getRouteArticleDetails(article.id)}
-            className={classNames(cls.GRID, {}, [className])}
+            className={classNames(cls.ArticleListItem, {}, [
+                className,
+                cls.GRID,
+            ])}
         >
             <Card className={cls.card} vStack gap="8">
                 <div className={cls.imageWrapper}>
                     <AppImage
                         fallback={<Skeleton width="200px" height="200px" />}
+                        errorFallback={
+                            <AppImage
+                                className={cls.img}
+                                src={defaultImage}
+                                width="200px"
+                                height="200px"
+                            />
+                        }
                         alt={article.title}
                         src={article.img}
                         className={cls.img}
