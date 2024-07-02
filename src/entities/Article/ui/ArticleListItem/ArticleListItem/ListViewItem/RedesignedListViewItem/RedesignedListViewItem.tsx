@@ -1,5 +1,6 @@
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
+import defaultImage from '@/shared/assets/images/default-img-list.png';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { ArticleBlockType } from '../../../../../model/consts/consts';
 import { Article, ArticleTextBlock } from '../../../../../model/types/article';
@@ -28,8 +29,13 @@ export const RedesignedListViewItem = memo((props: ListViewItemProps) => {
     ) as ArticleTextBlock;
 
     return (
-        <div className={classNames(cls.ArticleListItem, {}, [className])}>
-            <Card vStack gap="16" className={cls.card} padding="16">
+        <div
+            className={classNames(cls.ArticleListItemRedesigned, {}, [
+                className,
+                cls.LIST,
+            ])}
+        >
+            <Card vStack gap="16" padding="16">
                 <VStack gap="8" max>
                     <HStack gap="8" max>
                         <Avatar size={32} src={article.user.avatar} />
@@ -42,8 +48,15 @@ export const RedesignedListViewItem = memo((props: ListViewItemProps) => {
                 <AppImage
                     fallback={<Skeleton width="100%" height={250} />}
                     src={article.img}
-                    className={cls.imgRedesigned}
+                    className={cls.img}
                     alt={article.title}
+                    errorFallback={
+                        <AppImage
+                            className={cls.img}
+                            src={defaultImage}
+                            alt={t('Дефолтне зображення картинки статті')}
+                        />
+                    }
                 />
                 {textBlock?.paragraphs && (
                     <Text

@@ -11,17 +11,9 @@ import cls from '../../ArticleListItem/ArticleListItem.module.scss';
 const DeprecatedGridViewSkeleton = () => {
     return (
         <CardDeprecated className={cls.card} vStack gap="8">
-            <div className={cls.imageWrapper}>
-                <SkeletonDeprecated
-                    width={200}
-                    height={200}
-                    className={cls.img}
-                />
-            </div>
-            <div className={cls.infoWrapper}>
-                <SkeletonDeprecated width={130} height={16} />
-            </div>
-            <SkeletonDeprecated width={150} height={16} className={cls.title} />
+            <SkeletonDeprecated width={200} height={200} />
+            <SkeletonDeprecated width={130} height={16} />
+            <SkeletonDeprecated width={150} height={16} />
         </CardDeprecated>
     );
 };

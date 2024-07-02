@@ -13,7 +13,7 @@ import { Skeleton } from '@/shared/ui/deprecated/Skeleton';
 import { Text } from '@/shared/ui/deprecated/Text';
 import { AppImage } from '@/shared/ui/redesigned/AppImage';
 import { HStack, VStack } from '@/shared/ui/redesigned/Stack';
-import defaultImage from '@/shared/assets/images/default-img.png';
+import defaultImage from '@/shared/assets/images/default-img-list.png';
 
 import { Card } from '@/shared/ui/deprecated/Card';
 import { classNames } from '@/shared/lib/classNames/classNames';
@@ -53,8 +53,8 @@ export const DeprecatedListViewItem = memo((props: ListViewItemProps) => {
                         <AppImage
                             className={cls.img}
                             src={defaultImage}
-                            width="200px"
-                            height="200px"
+                            width="100%"
+                            height="250px"
                             alt={t('Дефолтне зображення картинки статті')}
                         />
                     }
@@ -62,7 +62,9 @@ export const DeprecatedListViewItem = memo((props: ListViewItemProps) => {
                     className={cls.img}
                     alt={article.title}
                 />
-                {textBlock && <ArticleTextBlockComponent block={textBlock} />}
+                {textBlock.paragraphs.slice(0, 1).join(' ') && (
+                    <ArticleTextBlockComponent block={textBlock} />
+                )}
                 <HStack justify="between" max>
                     <AppLink to={getRouteArticleDetails(article.id)}>
                         <Button theme={ButtonTheme.OUTLINE}>

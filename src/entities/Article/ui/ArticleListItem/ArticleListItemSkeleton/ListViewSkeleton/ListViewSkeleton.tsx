@@ -36,22 +36,16 @@ export const ListViewSkeleton = memo(() => {
     return (
         <div className={classNames(mainClass, {}, [cls.LIST])}>
             <Card vStack gap="8" padding="16">
-                <VStack className={cls.header} gap="8">
+                <VStack gap="8">
                     <HStack gap="16">
                         <Skeleton border="50%" height={30} width={30} />
-                        <Skeleton
-                            width={150}
-                            height={16}
-                            className={cls.username}
-                        />
+                        <Skeleton width={150} height={16} />
                     </HStack>
-                    <Skeleton width={150} height={16} className={cls.date} />
+                    <Skeleton width={150} height={16} />
                 </VStack>
-                <Skeleton width={250} height={24} className={cls.title} />
-                <Skeleton height={imgSkeletonHeight} className={cls.img} />
-                <div className={cls.footer}>
-                    <Skeleton height={36} width={200} />
-                </div>
+                <Skeleton width={250} height={24} />
+                <Skeleton height={imgSkeletonHeight} />
+                <Skeleton height={36} width={200} />
             </Card>
         </div>
     );

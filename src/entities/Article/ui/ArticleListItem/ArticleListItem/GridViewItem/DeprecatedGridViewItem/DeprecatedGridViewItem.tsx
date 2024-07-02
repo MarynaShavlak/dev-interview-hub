@@ -1,4 +1,5 @@
 import { memo } from 'react';
+import { useTranslation } from 'react-i18next';
 import { GridViewItemProps } from '../GridViewItem';
 import { Views } from '../../Views/Views';
 import { Categories } from '../../Categories/Categories';
@@ -15,6 +16,7 @@ import defaultImage from '@/shared/assets/images/default-img.png';
 
 export const DeprecatedGridViewItem = memo((props: GridViewItemProps) => {
     const { className, article, target } = props;
+    const { t } = useTranslation('articles');
     return (
         <AppLink
             data-testid="ArticleListItem"
@@ -35,6 +37,7 @@ export const DeprecatedGridViewItem = memo((props: GridViewItemProps) => {
                                 src={defaultImage}
                                 width="200px"
                                 height="200px"
+                                alt={t('Дефолтне зображення картинки статті')}
                             />
                         }
                         alt={article.title}

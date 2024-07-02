@@ -49,7 +49,6 @@ export const ArticleList = memo((props: ArticleListProps) => {
             }}
         />
     );
-
     if (!isLoading && !articles.length && view) {
         return <ArticleListError view={view} />;
     }
