@@ -1,15 +1,9 @@
 import { useTranslation } from 'react-i18next';
 import { memo, useCallback, useState } from 'react';
-import { BrowserView, MobileView } from 'react-device-detect';
-import { Drawer } from '@/shared/ui/redesigned/Drawer';
-import { Input } from '@/shared/ui/deprecated/Input';
-import { Modal } from '@/shared/ui/redesigned/Modal';
-import { classNames } from '@/shared/lib/classNames/classNames';
-import { Card } from '@/shared/ui/deprecated/Card';
-import { HStack, VStack } from '@/shared/ui/redesigned/Stack';
-import { Text } from '@/shared/ui/deprecated/Text';
-import { StarRating } from '@/shared/ui/deprecated/StarRating';
-import { Button, ButtonSize, ButtonTheme } from '@/shared/ui/deprecated/Button';
+import { RedesignedRating } from './RedesignedRating/RedesignedRating';
+import { ToggleFeaturesComponent } from '@/shared/lib/features';
+import { DeprecatedRating } from './DeprecatedRating/DeprecatedRating';
+import { FeedbackContainer } from '../FeedbackContainer/FeedbackContainer';
 
 interface RatingCardProps {
     className?: string;
@@ -58,59 +52,37 @@ export const Rating = memo((props: RatingCardProps) => {
         onCancel?.(starsCount);
     }, [onCancel, starsCount]);
 
-    const modalContent = (
-        <>
-            <Text title={feedbackTitle} />
-            <Input
-                value={feedback}
-                onChange={setFeedback}
-                placeholder={t('Ваш відгук')}
-            />
-        </>
+    const feedbackContainer = (
+        <FeedbackContainer
+            isOpen={isModalOpen}
+            onClose={cancelHandle}
+            onAccept={acceptHandle}
+            feedback={feedback}
+            setFeedback={setFeedback}
+            feedbackTitle={feedbackTitle}
+        />
     );
-
     return (
-        <Card fullWidth className={classNames('', {}, [className])}>
-            <VStack align="center" gap="8">
-                <Text title={starsCount ? t('Дякуємо за оцінку!') : title} />
-                <StarRating
-                    size={40}
+        <ToggleFeaturesComponent
+            feature="isAppRedesigned"
+            on={
+                <RedesignedRating
+                    feedbackContainer={feedbackContainer}
+                    starsCount={starsCount}
+                    className={className}
                     onSelect={onSelectStars}
-                    selectedStars={starsCount}
+                    title={title}
                 />
-            </VStack>
-            <BrowserView>
-                <Modal isOpen={isModalOpen} lazy onClose={cancelHandle}>
-                    <VStack max gap="32">
-                        {modalContent}
-                        <HStack max gap="16" justify="end">
-                            <Button
-                                onClick={cancelHandle}
-                                theme={ButtonTheme.OUTLINE_RED}
-                            >
-                                {t('Закрити')}
-                            </Button>
-                            <Button onClick={acceptHandle}>
-                                {t('Відправити')}
-                            </Button>
-                        </HStack>
-                    </VStack>
-                </Modal>
-            </BrowserView>
-            <MobileView>
-                <Drawer isOpen={isModalOpen} lazy onClose={cancelHandle}>
-                    <VStack gap="32">
-                        {modalContent}
-                        <Button
-                            fullWidth
-                            onClick={acceptHandle}
-                            size={ButtonSize.L}
-                        >
-                            {t('Відправити')}
-                        </Button>
-                    </VStack>
-                </Drawer>
-            </MobileView>
-        </Card>
+            }
+            off={
+                <DeprecatedRating
+                    feedbackContainer={feedbackContainer}
+                    starsCount={starsCount}
+                    className={className}
+                    onSelect={onSelectStars}
+                    title={title}
+                />
+            }
+        />
     );
 });

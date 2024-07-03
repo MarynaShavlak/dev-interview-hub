@@ -1,5 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { memo, useCallback } from 'react';
+import { ToggleFeaturesComponent } from '@/shared/lib/features';
+import { Card } from '@/shared/ui/deprecated/Card';
 import { Skeleton } from '@/shared/ui/deprecated/Skeleton';
 import { Rating } from '@/entities/Rating';
 import {
@@ -61,16 +63,22 @@ const ArticleRating = memo((props: ArticleRatingProps) => {
 
     const rating = data?.[0];
     return (
-        <Rating
-            onCancel={onCancel}
-            onAccept={onAccept}
-            rate={rating?.rate}
-            className={className}
-            title={t('Оцініть статтю')}
-            feedbackTitle={t(
-                'Залишіть свій відгук про статтю, це допоможе покращити якість',
-            )}
-            hasFeedback
+        <ToggleFeaturesComponent
+            feature="isArticleRatingEnabled"
+            on={
+                <Rating
+                    onCancel={onCancel}
+                    onAccept={onAccept}
+                    rate={rating?.rate}
+                    className={className}
+                    title={t('Оцініть статтю')}
+                    feedbackTitle={t(
+                        'Залишіть свій відгук про статтю, це допоможе покращити якість',
+                    )}
+                    hasFeedback
+                />
+            }
+            off={<Card>{t("Оцінка статей скоро з'явиться")}</Card>}
         />
     );
 });

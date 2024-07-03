@@ -9,7 +9,6 @@ import { ArticleRecommendationsList } from '@/features/articleRecommendationsLis
 import { ArticleDetailsComments } from '../ArticleDetailsComments/ArticleDetailsComments';
 import { ArticleDetailsPageHeader } from '../ArticleDetailsPageHeader/ArticleDetailsPageHeader';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import { Card } from '@/shared/ui/deprecated/Card';
 import { VStack } from '@/shared/ui/redesigned/Stack';
 import { Page } from '@/widgets/Page';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
@@ -52,17 +51,7 @@ const ArticleDetailsPage = ({ className }: ArticleDetailsPageProps) => {
                             >
                                 <VStack gap="16" max>
                                     <DetailsContainer />
-                                    <ToggleFeaturesComponent
-                                        feature="isArticleRatingEnabled"
-                                        on={<ArticleRating articleId={id} />}
-                                        off={
-                                            <Card>
-                                                {t(
-                                                    "Оцінка статей скоро з'явиться",
-                                                )}
-                                            </Card>
-                                        }
-                                    />
+                                    <ArticleRating articleId={id} />
                                     <ArticleRecommendationsList />
                                     <ArticleDetailsComments id={id} />
                                 </VStack>
@@ -80,15 +69,7 @@ const ArticleDetailsPage = ({ className }: ArticleDetailsPageProps) => {
                         <VStack gap="16" max>
                             <ArticleDetailsPageHeader />
                             <ArticleDetails id={id} />
-                            <ToggleFeaturesComponent
-                                feature="isArticleRatingEnabled"
-                                on={<ArticleRating articleId={id} />}
-                                off={
-                                    <Card>
-                                        {t("Оцінка статей скоро з'явиться")}
-                                    </Card>
-                                }
-                            />
+                            <ArticleRating articleId={id} />
                             <ArticleRecommendationsList />
                             <ArticleDetailsComments id={id} />
                         </VStack>
