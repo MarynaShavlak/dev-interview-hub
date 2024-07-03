@@ -1,7 +1,9 @@
 import { memo } from 'react';
+import { ToggleFeaturesComponent } from '@/shared/lib/features';
 import { Each } from '@/shared/lib/components/Each/Each';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import { Text } from '@/shared/ui/deprecated/Text';
+import { Text as TextDeprecated } from '@/shared/ui/deprecated/Text';
+import { Text } from '@/shared/ui/redesigned/Text';
 import cls from './ArticleTextBlockComponent.module.scss';
 import { ArticleTextBlock } from '../../model/types/article';
 
@@ -10,6 +12,13 @@ interface ArticleTextBlockComponentProps {
     block: ArticleTextBlock;
 }
 
+const renderText = (text: string) => (
+    <ToggleFeaturesComponent
+        feature="isAppRedesigned"
+        on={<Text text={text} className={cls.paragraph} />}
+        off={<TextDeprecated text={text} className={cls.paragraph} />}
+    />
+);
 export const ArticleTextBlockComponent = memo(
     (props: ArticleTextBlockComponentProps) => {
         const { className, block } = props;
@@ -21,18 +30,18 @@ export const ArticleTextBlockComponent = memo(
                 ])}
             >
                 {block.title && (
-                    <Text title={block.title} className={cls.title} />
+                    <ToggleFeaturesComponent
+                        feature="isAppRedesigned"
+                        on={<Text title={block.title} className={cls.title} />}
+                        off={
+                            <TextDeprecated
+                                title={block.title}
+                                className={cls.title}
+                            />
+                        }
+                    />
                 )}
-                <Each
-                    of={block.paragraphs}
-                    render={(item) => (
-                        <Text
-                            key={item}
-                            text={item}
-                            className={cls.paragraph}
-                        />
-                    )}
-                />
+                <Each of={block.paragraphs} render={renderText} />
             </div>
         );
     },

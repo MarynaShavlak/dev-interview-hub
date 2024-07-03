@@ -1,6 +1,6 @@
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ArticleBlockType } from '../../../../../model/consts/consts';
+import { ArticleBlockType } from '../../../../../model/consts/articleConsts';
 import { Article, ArticleTextBlock } from '../../../../../model/types/article';
 import { Categories } from '../../Categories/Categories';
 import { Views } from '../../Views/Views';

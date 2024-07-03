@@ -1,8 +1,8 @@
-import { memo, useCallback } from 'react';
+import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ArticleTextBlockComponent } from '../ArticleTextBlockComponent/ArticleTextBlockComponent';
-import CalendarIcon from '@/shared/assets/icons/calendar-20-20.svg';
-import EyeIcon from '@/shared/assets/icons/eye-20-20.svg';
+import { RedesignedArticleDetails } from './RedesignedArticleDetails/RedesignedArticleDetails';
+import { ToggleFeaturesComponent } from '@/shared/lib/features';
+import { DeprecatedArticleDetails } from './DeprecatedArticleDetails/DeprecatedArticleDetails';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import {
     DynamicModuleLoader,
@@ -10,21 +10,15 @@ import {
 } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect/useInitialEffect';
-import { Avatar } from '@/shared/ui/deprecated/Avatar';
-import { Icon } from '@/shared/ui/deprecated/Icon';
 import { Skeleton } from '@/shared/ui/deprecated/Skeleton';
-import { HStack, VStack } from '@/shared/ui/redesigned/Stack';
-import { Text, TextAlign, TextSize } from '@/shared/ui/deprecated/Text';
-import { ArticleBlockType } from '../../model/consts/consts';
-import { ArticleImageBlockComponent } from '../../ui/ArticleImageBlockComponent/ArticleImageBlockComponent';
-import { ArticleCodeBlockComponent } from '../../ui/ArticleCodeBlockComponent/ArticleCodeBlockComponent';
+import { VStack } from '@/shared/ui/redesigned/Stack';
+import { Text, TextAlign } from '@/shared/ui/deprecated/Text';
 import {
     useArticleDetailsData,
     useArticleDetailsError,
     useArticleDetailsIsLoading,
 } from '../../model/selectors/articleDetails';
 import { fetchArticleById } from '../../model/services/fetchArticleById/fetchArticleById';
-import { ArticleBlock } from '../../model/types/article';
 import cls from './ArticleDetails.module.scss';
 import { articleDetailsReducer } from '../../model/slice/articleDetailsSlice';
 
@@ -44,25 +38,6 @@ export const ArticleDetails = memo((props: ArticleDetailsProps) => {
     const isLoading = useArticleDetailsIsLoading();
     const article = useArticleDetailsData();
     const error = useArticleDetailsError();
-
-    const renderBlock = useCallback((block: ArticleBlock) => {
-        switch (block.type) {
-            case ArticleBlockType.CODE:
-                return (
-                    <ArticleCodeBlockComponent key={block.id} block={block} />
-                );
-            case ArticleBlockType.IMAGE:
-                return (
-                    <ArticleImageBlockComponent key={block.id} block={block} />
-                );
-            case ArticleBlockType.TEXT:
-                return (
-                    <ArticleTextBlockComponent key={block.id} block={block} />
-                );
-            default:
-                return null;
-        }
-    }, []);
 
     useInitialEffect(() => {
         dispatch(fetchArticleById(id));
@@ -94,31 +69,11 @@ export const ArticleDetails = memo((props: ArticleDetailsProps) => {
         );
     } else {
         content = (
-            <>
-                <HStack justify="center" max>
-                    <Avatar
-                        size={200}
-                        src={article?.img}
-                        className={cls.avatar}
-                    />
-                </HStack>
-                <VStack gap="4" max>
-                    <Text
-                        title={article?.title}
-                        text={article?.subtitle}
-                        size={TextSize.L}
-                    />
-                    <HStack gap="8">
-                        <Icon Svg={EyeIcon} />
-                        <Text text={String(article?.views)} />
-                    </HStack>
-                    <HStack gap="8">
-                        <Icon Svg={CalendarIcon} />
-                        <Text text={article?.createdAt} />
-                    </HStack>
-                </VStack>
-                {article?.blocks.map(renderBlock)}
-            </>
+            <ToggleFeaturesComponent
+                feature="isAppRedesigned"
+                on={<RedesignedArticleDetails />}
+                off={<DeprecatedArticleDetails />}
+            />
         );
     }
 

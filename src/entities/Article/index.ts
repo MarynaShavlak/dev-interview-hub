@@ -6,7 +6,7 @@ export {
     ArticleSortField,
     ArticleCategory,
     ArticleBlockType,
-} from './model/consts/consts';
+} from './model/consts/articleConsts';
 export type { ArticleDetailsSchema } from './model/types/articleDetailsSchema';
 export {
     getArticleDetailsData,

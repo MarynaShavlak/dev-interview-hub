@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { memo } from 'react';
 import { HStack } from '@/shared/ui/redesigned/Stack';
 import { toggleFeatures, ToggleFeaturesComponent } from '@/shared/lib/features';
-import { ArticleView } from '../../../model/consts/consts';
+import { ArticleView } from '../../../model/consts/articleConsts';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { Text as TextDeprecated, TextSize } from '@/shared/ui/deprecated/Text';
 import { Text } from '@/shared/ui/redesigned/Text';

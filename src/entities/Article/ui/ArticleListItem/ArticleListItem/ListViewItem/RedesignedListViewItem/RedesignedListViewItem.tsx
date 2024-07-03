@@ -2,7 +2,7 @@ import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import defaultImage from '@/shared/assets/images/default-img-list.png';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import { ArticleBlockType } from '../../../../../model/consts/consts';
+import { ArticleBlockType } from '../../../../../model/consts/articleConsts';
 import { Article, ArticleTextBlock } from '../../../../../model/types/article';
 import { Views } from '../../Views/Views';
 import { getRouteArticleDetails } from '@/shared/const/router';

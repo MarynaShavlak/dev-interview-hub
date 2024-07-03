@@ -4,7 +4,7 @@ import { toggleFeatures } from '@/shared/lib/features';
 import { HStack, VStack } from '@/shared/ui/redesigned/Stack';
 import { ArticleListItemSkeleton } from '../../ArticleListItem/ArticleListItemSkeleton/ArticleListItemSkeleton';
 import cls from '../ArticleList.module.scss';
-import { ArticleView } from '../../../model/consts/consts';
+import { ArticleView } from '../../../model/consts/articleConsts';
 
 interface ArticleListSkeletonProps {
     view: ArticleView;

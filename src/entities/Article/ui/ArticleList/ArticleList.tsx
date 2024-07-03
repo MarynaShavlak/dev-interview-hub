@@ -8,7 +8,7 @@ import { ArticleListSkeleton } from './ArticleListSkeleton/ArticleListSkeleton';
 import { ArticleListError } from './ArticleListError/ArticleListError';
 import { toggleFeatures } from '@/shared/lib/features';
 import { Article } from '../../model/types/article';
-import { ArticleView } from '../../model/consts/consts';
+import { ArticleView } from '../../model/consts/articleConsts';
 
 export interface ArticleListProps {
     className?: string;

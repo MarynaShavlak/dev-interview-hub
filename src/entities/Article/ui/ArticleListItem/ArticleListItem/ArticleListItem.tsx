@@ -1,7 +1,7 @@
 import { HTMLAttributeAnchorTarget, memo } from 'react';
 import { GridViewItem } from './GridViewItem/GridViewItem';
 import { ListViewItem } from './ListViewItem/ListViewItem';
-import { ArticleView } from '../../../model/consts/consts';
+import { ArticleView } from '../../../model/consts/articleConsts';
 import { Article } from '../../../model/types/article';
 
 export interface ArticleListItemProps {
