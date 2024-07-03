@@ -38,8 +38,11 @@ export const RedesignedListViewItem = memo((props: ListViewItemProps) => {
             <Card vStack gap="16" padding="16">
                 <VStack gap="8" max>
                     <HStack gap="8" max>
-                        <Avatar size={32} src={article.user.avatar} />
-                        <Text bold text={article.user.username} />
+                        <Avatar
+                            size={32}
+                            src={article.user.avatar}
+                            userName={article.user.username}
+                        />
                         <Text text={article.createdAt} size="s" />
                     </HStack>
                 </VStack>

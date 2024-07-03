@@ -9,5 +9,9 @@
     "Редагувати статтю": "Edit article",
     "Створення нової статті": "New article creation",
     "Редагування статтті із ID = ": "Edit Article with ID = ",
-    "Оцінка статей скоро з'явиться": "Article ratings coming soon"
+    "Оцінка статей скоро з'явиться": "Article ratings coming soon",
+    "Редагувати": "Edit",
+    "{{count}} переглядів_zero": "{{count}} views",
+    "{{count}} переглядів_one": "{{count}} view",
+    "{{count}} переглядів_other": "{{count}} views"
 }

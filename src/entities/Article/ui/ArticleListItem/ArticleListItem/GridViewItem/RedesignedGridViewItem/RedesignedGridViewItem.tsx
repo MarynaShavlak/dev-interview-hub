@@ -63,10 +63,12 @@ export const RedesignedGridViewItem = memo((props: GridViewItemProps) => {
                             />
                             <Views article={article} />
                         </HStack>
-                        <HStack gap="8" className={cls.user}>
-                            <Avatar size={32} src={article.user.avatar} />
-                            <Text bold text={article.user.username} />
-                        </HStack>
+                        <Avatar
+                            size={32}
+                            src={article.user.avatar}
+                            className={cls.user}
+                            userName={article.user.username}
+                        />
                     </VStack>
                 </VStack>
             </Card>
