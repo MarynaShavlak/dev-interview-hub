@@ -6,7 +6,11 @@ import { Dropdown } from '@/shared/ui/redesigned/Popups';
 import { Avatar as AvatarDeprecated } from '@/shared/ui/deprecated/Avatar';
 import { Avatar } from '@/shared/ui/redesigned/Avatar';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
-import { getRouteAdmin, getRouteProfile } from '@/shared/const/router';
+import {
+    getRouteAdmin,
+    getRouteProfile,
+    getRouteSettings,
+} from '@/shared/const/router';
 import {
     isUserAdmin,
     isUserManager,
@@ -46,6 +50,10 @@ export const AvatarDropdown = memo(({ className }: AvatarDropdownProps) => {
         {
             content: t('Профіль'),
             href: getRouteProfile(authData.id),
+        },
+        {
+            content: t('Налаштування'),
+            href: getRouteSettings(),
         },
         {
             content: t('Вийти'),

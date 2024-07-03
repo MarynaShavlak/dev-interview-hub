@@ -1,5 +1,5 @@
 import { Listbox as HListBox } from '@headlessui/react';
-import { Fragment, ReactNode } from 'react';
+import { Fragment, ReactNode, useMemo } from 'react';
 import { Each } from '@/shared/lib/components/Each/Each';
 import CheckedIcon from '@/shared/assets/icons/done-20-20.svg';
 import { classNames } from '@/shared/lib/classNames/classNames';
@@ -43,8 +43,14 @@ export function ListBox(props: ListBoxProps) {
         direction = 'bottom right',
         label,
     } = props;
+    console.log(value);
+    console.log(items);
 
     const optionsClasses = [mapDirectionClass[direction]];
+
+    const selectedItem = useMemo(() => {
+        return items?.find((item) => item.value === value);
+    }, [items, value]);
 
     return (
         <HStack gap="4">
@@ -60,7 +66,9 @@ export function ListBox(props: ListBoxProps) {
                 onChange={onChange}
             >
                 <HListBox.Button className={cls.trigger} as="div">
-                    <Button disabled={readonly}>{value ?? defaultValue}</Button>
+                    <Button disabled={readonly}>
+                        {selectedItem?.content ?? defaultValue}
+                    </Button>
                 </HListBox.Button>
                 {items && (
                     <HListBox.Options
