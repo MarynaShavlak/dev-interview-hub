@@ -1,5 +1,5 @@
-import { useTranslation } from 'react-i18next';
-import { memo, useCallback, useMemo } from 'react';
+import { memo, useCallback } from 'react';
+import { useCategoryTabs } from '../../lib/hooks/useCategoryTabs';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
 import { ArticleCategory } from '@/entities/Article';
 import { classNames } from '@/shared/lib/classNames/classNames';
@@ -14,33 +14,7 @@ interface ArticleCategoryTabsProps {
 
 export const ArticleCategoryTabs = memo((props: ArticleCategoryTabsProps) => {
     const { className, value, onChangeCategory } = props;
-    const { t } = useTranslation('articles');
-
-    const typeTabs = useMemo<TabItem[]>(
-        () => [
-            {
-                value: ArticleCategory.ALL,
-                content: t('Вcі статті'),
-            },
-            {
-                value: ArticleCategory.IT,
-                content: t('IT'),
-            },
-            {
-                value: ArticleCategory.ECONOMICS,
-                content: t('Економіка'),
-            },
-            {
-                value: ArticleCategory.SOCIOLOGY,
-                content: t('Соціологія'),
-            },
-            {
-                value: ArticleCategory.PUBLIC_ADMINISTRATION,
-                content: t('Публічне адміністрування'),
-            },
-        ],
-        [t],
-    );
+    const categoryTabs = useCategoryTabs();
 
     const onTabClick = useCallback(
         (tab: TabItem) => {
@@ -55,7 +29,7 @@ export const ArticleCategoryTabs = memo((props: ArticleCategoryTabsProps) => {
             on={
                 <Tabs
                     direction="column"
-                    tabs={typeTabs}
+                    tabs={categoryTabs}
                     value={value}
                     onTabClick={onTabClick}
                     className={classNames('', {}, [className])}
@@ -63,7 +37,7 @@ export const ArticleCategoryTabs = memo((props: ArticleCategoryTabsProps) => {
             }
             off={
                 <TabsDeprecated
-                    tabs={typeTabs}
+                    tabs={categoryTabs}
                     value={value}
                     onTabClick={onTabClick}
                     className={classNames('', {}, [className])}
