@@ -1,16 +1,12 @@
-import { createSelector } from '@reduxjs/toolkit';
-import { getUserAuthData } from '@/entities/User';
-import MainIconDeprecated from '@/shared/assets/icons/main-20-20.svg';
+import { useUserAuthData } from '@/entities/User';
 import AboutIconDeprecated from '@/shared/assets/icons/about-20-20.svg';
-import ProfileIconDeprecated from '@/shared/assets/icons/profile-20-20.svg';
 import ArticleIconDeprecated from '@/shared/assets/icons/article-20-20.svg';
-
-import MainIcon from '@/shared/assets/icons/home.svg';
 import ArticleIcon from '@/shared/assets/icons/article.svg';
-import AboutIcon from '@/shared/assets/icons/Info.svg';
 import ProfileIcon from '@/shared/assets/icons/avatar.svg';
-
-import { SidebarItemType } from '../types/sidebar';
+import MainIcon from '@/shared/assets/icons/home.svg';
+import AboutIcon from '@/shared/assets/icons/Info.svg';
+import MainIconDeprecated from '@/shared/assets/icons/main-20-20.svg';
+import ProfileIconDeprecated from '@/shared/assets/icons/profile-20-20.svg';
 import {
     getRouteAbout,
     getRouteArticles,
@@ -18,8 +14,10 @@ import {
     getRouteProfile,
 } from '@/shared/const/router';
 import { toggleFeatures } from '@/shared/lib/features';
+import { SidebarItemType } from '../../model/types/sidebar';
 
-export const getSidebarItems = createSelector(getUserAuthData, (userData) => {
+export const useSidebarItems = () => {
+    const userData = useUserAuthData();
     const sidebarItemsList: SidebarItemType[] = [
         {
             path: getRouteMain(),
@@ -67,4 +65,4 @@ export const getSidebarItems = createSelector(getUserAuthData, (userData) => {
     }
 
     return sidebarItemsList;
-});
+};

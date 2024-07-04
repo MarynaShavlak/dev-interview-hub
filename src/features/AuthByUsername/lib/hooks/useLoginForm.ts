@@ -1,4 +1,5 @@
 import { useCallback } from 'react';
+import { useForceUpdate } from '@/shared/lib/render/forceUpdate';
 import { loginByUsername } from '../../model/services/loginByUsername/loginByUsername';
 import { useLoginError } from '../../model/selectors/getLoginError/getLoginError';
 import { useLoginIsLoading } from '../../model/selectors/getLoginIsLoading/getLoginIsLoading';
@@ -13,6 +14,7 @@ export const useLoginForm = (onSuccess: () => void) => {
     const password = useLoginPassword();
     const isLoading = useLoginIsLoading();
     const error = useLoginError();
+    const forceUpdate = useForceUpdate();
     const { setPassword, setUsername } = useLoginActions();
 
     const onChangeUsername = useCallback(
@@ -33,8 +35,9 @@ export const useLoginForm = (onSuccess: () => void) => {
         const result = await dispatch(loginByUsername({ username, password }));
         if (result.meta.requestStatus === 'fulfilled') {
             onSuccess();
+            forceUpdate();
         }
-    }, [dispatch, onSuccess, password, username]);
+    }, [dispatch, onSuccess, password, username, forceUpdate]);
 
     return {
         username,

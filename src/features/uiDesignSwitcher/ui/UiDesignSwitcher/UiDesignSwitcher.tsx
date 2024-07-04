@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { memo, useState } from 'react';
+import { useForceUpdate } from '@/shared/lib/render/forceUpdate';
 import { useUserAuthData } from '@/entities/User';
 import { ListBox } from '@/shared/ui/redesigned/Popups';
 import { Text, Text as TextDeprecated } from '@/shared/ui/redesigned/Text';
@@ -25,6 +26,7 @@ export const UiDesignSwitcher = memo((props: UiDesignSwitcherProps) => {
     const dispatch = useAppDispatch();
     const authData = useUserAuthData();
     const [isLoading, setIsLoading] = useState(false);
+    const forceUpdate = useForceUpdate();
 
     const items = [
         {
@@ -49,6 +51,7 @@ export const UiDesignSwitcher = memo((props: UiDesignSwitcherProps) => {
                 }),
             ).unwrap();
             setIsLoading(false);
+            forceUpdate();
         }
     };
 
