@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { memo, useCallback } from 'react';
+import { StarRating } from '@/shared/ui/redesigned/StarRating';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
-import { Card } from '@/shared/ui/deprecated/Card';
 import { Skeleton } from '@/shared/ui/deprecated/Skeleton';
 import { Rating } from '@/entities/Rating';
 import {
@@ -9,6 +9,8 @@ import {
     useRateArticle,
 } from '../../api/articleRatingApi';
 import { useUserAuthData } from '@/entities/User';
+import { Card } from '@/shared/ui/redesigned/Card';
+import { Card as CardDeprecated } from '@/shared/ui/deprecated/Card';
 
 export interface ArticleRatingProps {
     className?: string;
@@ -62,6 +64,7 @@ const ArticleRating = memo((props: ArticleRatingProps) => {
     }
 
     const rating = data?.[0];
+
     return (
         <ToggleFeaturesComponent
             feature="isArticleRatingEnabled"
@@ -78,7 +81,22 @@ const ArticleRating = memo((props: ArticleRatingProps) => {
                     hasFeedback
                 />
             }
-            off={<Card>{t("Оцінка статей скоро з'явиться")}</Card>}
+            off={
+                <ToggleFeaturesComponent
+                    feature="isAppRedesigned"
+                    on={
+                        <Card max border="round">
+                            {t("Оцінка статей скоро з'явиться")}
+                            <StarRating size={30} disabled />
+                        </Card>
+                    }
+                    off={
+                        <CardDeprecated fullWidth>
+                            {t("Оцінка статей скоро з'явиться")}
+                        </CardDeprecated>
+                    }
+                />
+            }
         />
     );
 });

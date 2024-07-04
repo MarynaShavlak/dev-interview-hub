@@ -1,4 +1,3 @@
-import { useTranslation } from 'react-i18next';
 import { memo, useCallback, useState } from 'react';
 import { RedesignedRating } from './RedesignedRating/RedesignedRating';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
@@ -25,7 +24,6 @@ export const Rating = memo((props: RatingCardProps) => {
         title,
         rate = 0,
     } = props;
-    const { t } = useTranslation();
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [starsCount, setStarsCount] = useState(rate);
     const [feedback, setFeedback] = useState('');
@@ -62,27 +60,18 @@ export const Rating = memo((props: RatingCardProps) => {
             feedbackTitle={feedbackTitle}
         />
     );
+    const commonProps = {
+        feedbackContainer,
+        starsCount,
+        className,
+        onSelect: onSelectStars,
+        title,
+    };
     return (
         <ToggleFeaturesComponent
             feature="isAppRedesigned"
-            on={
-                <RedesignedRating
-                    feedbackContainer={feedbackContainer}
-                    starsCount={starsCount}
-                    className={className}
-                    onSelect={onSelectStars}
-                    title={title}
-                />
-            }
-            off={
-                <DeprecatedRating
-                    feedbackContainer={feedbackContainer}
-                    starsCount={starsCount}
-                    className={className}
-                    onSelect={onSelectStars}
-                    title={title}
-                />
-            }
+            on={<RedesignedRating {...commonProps} />}
+            off={<DeprecatedRating {...commonProps} />}
         />
     );
 });

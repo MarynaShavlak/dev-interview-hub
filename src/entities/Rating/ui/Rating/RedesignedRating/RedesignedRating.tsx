@@ -3,7 +3,7 @@ import { memo, ReactElement } from 'react';
 import { Card } from '@/shared/ui/redesigned/Card';
 import { VStack } from '@/shared/ui/redesigned/Stack';
 import { Text } from '@/shared/ui/redesigned/Text';
-import { StarRating } from '@/shared/ui/deprecated/StarRating';
+import { StarRating } from '@/shared/ui/redesigned/StarRating';
 
 interface RedesignedRatingProps {
     feedbackContainer: ReactElement;
