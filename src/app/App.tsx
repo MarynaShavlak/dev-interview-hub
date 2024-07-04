@@ -1,4 +1,5 @@
 import React, { Suspense, useEffect } from 'react';
+import { useAppToolbar } from '@/app/lib/useAppToolbar';
 import { AppLoaderLayout } from '@/shared/layouts/AppLoaderLayout';
 import { MainLayout } from '@/shared/layouts/MainLayout';
 import { AppRouter } from './providers/router';
@@ -14,6 +15,7 @@ import { Sidebar } from '@/widgets/Sidebar';
 function App() {
     const { theme } = useTheme();
     const inited = useUserInited();
+    const toolbar = useAppToolbar();
     const dispatch = useAppDispatch();
 
     useEffect(() => {
@@ -52,6 +54,7 @@ function App() {
                             header={<Navbar />}
                             content={<AppRouter />}
                             sidebar={<Sidebar />}
+                            toolbar={toolbar}
                         />
                     </Suspense>
                 </div>
