@@ -21,7 +21,7 @@ export const RedesignedAddCommentForm = memo(
         const { t } = useTranslation('article-details');
 
         return (
-            <Card padding="24" max>
+            <Card padding="24" max border="partial">
                 <HStack
                     data-testid="AddCommentForm"
                     justify="between"

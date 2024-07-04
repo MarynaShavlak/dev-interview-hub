@@ -222,7 +222,7 @@
       "features": {
         "isArticleRatingEnabled": false,
         "isCounterEnabled": false,
-        "isAppRedesigned": false
+        "isAppRedesigned": true
       },
       "avatar": "https://drive.google.com/thumbnail?id=1J1xUPYYkJeOsBTpDuf36vsV7UfxlM2uG&sz=w1000",
       "jsonSettings": {
@@ -2050,6 +2050,13 @@
       "rate": 3,
       "feedback": "55555",
       "id": "XIfT9oF"
+    },
+    {
+      "userId": "1",
+      "articleId": "17",
+      "rate": 1,
+      "feedback": "мпчаоспл",
+      "id": "GuvNaeT"
     }
   ],
   "profile-ratings": [
