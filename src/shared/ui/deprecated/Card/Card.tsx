@@ -1,4 +1,6 @@
 import { HTMLAttributes, memo, ReactNode } from 'react';
+import { FlexAlign, FlexJustify } from '@/shared/types/flexTypes';
+import { alignClasses, justifyClasses } from '@/shared/const/flexClasses';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './Card.module.scss';
 
@@ -16,6 +18,8 @@ interface CardProps extends HTMLAttributes<HTMLDivElement> {
     fullWidth?: boolean;
     vStack?: boolean;
     hStack?: boolean;
+    justify?: FlexJustify;
+    align?: FlexAlign;
     gap?: CardGap;
 }
 const mapGapToClass: Record<CardGap, string> = {
@@ -38,6 +42,8 @@ export const Card = memo((props: CardProps) => {
         fullWidth,
         vStack,
         hStack,
+        justify = 'start',
+        align = 'center',
         gap = '0',
         ...otherProps
     } = props;
@@ -51,7 +57,13 @@ export const Card = memo((props: CardProps) => {
                     [cls.vStack]: vStack,
                     [cls.hStack]: hStack,
                 },
-                [className, cls[theme], cls[gapClass]],
+                [
+                    className,
+                    cls[theme],
+                    cls[gapClass],
+                    justifyClasses[justify],
+                    alignClasses[align],
+                ],
             )}
             {...otherProps}
         >

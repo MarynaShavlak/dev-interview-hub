@@ -1,9 +1,10 @@
 import { memo, ReactNode, useCallback } from 'react';
+import { FlexDirection } from '@/shared/types/flexTypes';
 import { Each } from '@/shared/lib/components/Each/Each';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { Card } from '../Card/Card';
 import cls from './Tabs.module.scss';
-import { Flex, FlexDirection } from '../Stack/Flex/Flex';
+import { Flex } from '../Stack/Flex/Flex';
 
 export interface TabItem {
     value: string;

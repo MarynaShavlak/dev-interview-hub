@@ -1,16 +1,11 @@
+import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { memo, useCallback } from 'react';
-import { StarRating } from '@/shared/ui/redesigned/StarRating';
-import { ToggleFeaturesComponent } from '@/shared/lib/features';
-import { Skeleton } from '@/shared/ui/deprecated/Skeleton';
+import { DisabledRatingBlock } from './DisabledRatingBlock/DisabledRatingBlock';
+import { useArticleRating } from '../../lib/hook/useArticleRating';
+import { toggleFeatures, ToggleFeaturesComponent } from '@/shared/lib/features';
+import { Skeleton as SkeletonDeprecated } from '@/shared/ui/deprecated/Skeleton';
+import { Skeleton as SkeletonRedesigned } from '@/shared/ui/redesigned/Skeleton';
 import { Rating } from '@/entities/Rating';
-import {
-    useGetArticleRating,
-    useRateArticle,
-} from '../../api/articleRatingApi';
-import { useUserAuthData } from '@/entities/User';
-import { Card } from '@/shared/ui/redesigned/Card';
-import { Card as CardDeprecated } from '@/shared/ui/deprecated/Card';
 
 export interface ArticleRatingProps {
     className?: string;
@@ -19,51 +14,19 @@ export interface ArticleRatingProps {
 
 const ArticleRating = memo((props: ArticleRatingProps) => {
     const { className, articleId } = props;
+    const { rating, isLoading, error, onAccept, onCancel } =
+        useArticleRating(articleId);
     const { t } = useTranslation();
-    const userData = useUserAuthData();
 
-    const { data, isLoading } = useGetArticleRating({
-        articleId,
-        userId: userData?.id ?? '',
+    const Skeleton = toggleFeatures({
+        name: 'isAppRedesigned',
+        on: () => SkeletonRedesigned,
+        off: () => SkeletonDeprecated,
     });
-    const [rateArticleMutation] = useRateArticle();
-
-    const handleRateArticle = useCallback(
-        (starsCount: number, feedback?: string) => {
-            try {
-                rateArticleMutation({
-                    userId: userData?.id ?? '',
-                    articleId,
-                    rate: starsCount,
-                    feedback,
-                });
-            } catch (e) {
-                // handle error
-                console.log(e);
-            }
-        },
-        [articleId, rateArticleMutation, userData?.id],
-    );
-
-    const onAccept = useCallback(
-        (starsCount: number, feedback?: string) => {
-            handleRateArticle(starsCount, feedback);
-        },
-        [handleRateArticle],
-    );
-
-    const onCancel = useCallback(
-        (starsCount: number) => {
-            handleRateArticle(starsCount);
-        },
-        [handleRateArticle],
-    );
-
+    if (error) return null;
     if (isLoading) {
-        return <Skeleton width="100%" height={120} />;
+        return <Skeleton width="100%" height={120} border="40px" />;
     }
-
-    const rating = data?.[0];
 
     return (
         <ToggleFeaturesComponent
@@ -81,22 +44,7 @@ const ArticleRating = memo((props: ArticleRatingProps) => {
                     hasFeedback
                 />
             }
-            off={
-                <ToggleFeaturesComponent
-                    feature="isAppRedesigned"
-                    on={
-                        <Card max border="round">
-                            {t("Оцінка статей скоро з'явиться")}
-                            <StarRating size={30} disabled />
-                        </Card>
-                    }
-                    off={
-                        <CardDeprecated fullWidth>
-                            {t("Оцінка статей скоро з'явиться")}
-                        </CardDeprecated>
-                    }
-                />
-            }
+            off={<DisabledRatingBlock />}
         />
     );
 });

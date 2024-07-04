@@ -1,4 +1,6 @@
 import { HTMLAttributes, memo, ReactNode } from 'react';
+import { alignClasses, justifyClasses } from '@/shared/const/flexClasses';
+import { FlexAlign, FlexJustify } from '@/shared/types/flexTypes';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './Card.module.scss';
 
@@ -15,6 +17,8 @@ interface CardProps extends HTMLAttributes<HTMLDivElement> {
     fullHeight?: boolean;
     vStack?: boolean;
     hStack?: boolean;
+    justify?: FlexJustify;
+    align?: FlexAlign;
     padding?: CardPadding;
     gap?: CardGap;
     border?: CardBorder;
@@ -44,6 +48,8 @@ export const Card = memo((props: CardProps) => {
         fullHeight,
         vStack,
         hStack,
+        justify = 'start',
+        align = 'center',
         padding = '8',
         gap = '0',
         border = 'classic',
@@ -68,6 +74,9 @@ export const Card = memo((props: CardProps) => {
                     cls[paddingClass],
                     cls[border],
                     cls[gapClass],
+                    cls[gapClass],
+                    justifyClasses[justify],
+                    alignClasses[align],
                 ],
             )}
             {...otherProps}
