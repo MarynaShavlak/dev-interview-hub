@@ -4,7 +4,11 @@ import { ToggleFeaturesComponent } from '@/shared/lib/features';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { Text as TextDeprecated, TextSize } from '@/shared/ui/deprecated/Text';
 import { Text } from '@/shared/ui/redesigned/Text';
-import { ArticleList } from '@/entities/Article';
+import {
+    ArticleCategory,
+    ArticleList,
+    useArticleDetailsData,
+} from '@/entities/Article';
 import { VStack } from '@/shared/ui/redesigned/Stack';
 import { useArticleRecommendationsList } from '../../api/aritcleRecommendationsApi';
 
@@ -15,12 +19,19 @@ interface ArticleRecommendationsListProps {
 export const ArticleRecommendationsList = memo(
     (props: ArticleRecommendationsListProps) => {
         const { className } = props;
+        const article = useArticleDetailsData();
+        const articleCategory = article?.category[0] || ArticleCategory.ALL;
+
         const { t } = useTranslation('article-details');
         const {
             isLoading,
             data: articles,
             error,
-        } = useArticleRecommendationsList(3);
+        } = useArticleRecommendationsList({
+            limit: 3,
+            category: articleCategory,
+            exceptArticleId: article?.id || '0',
+        });
 
         if (isLoading || error || !articles) {
             return null;
