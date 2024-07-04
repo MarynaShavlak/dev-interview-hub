@@ -22,8 +22,8 @@ const RedesignedGridViewSkeleton = () => {
     return (
         <Card className={cls.card} vStack border="round" padding="0" gap="8">
             <Skeleton width={240} height={140} />
+            <Skeleton width="100%" height={70} />
             <VStack className={cls.info} gap="32">
-                <Skeleton width="100%" height={70} />
                 <HStack justify="between" max>
                     <Skeleton width={100} height={16} />
                     <Skeleton width={80} height={16} />
