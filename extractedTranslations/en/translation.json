@@ -18,6 +18,8 @@
   "decrement": "decrement",
   "increment": "increment",
   "throw error": "throw error",
+  "{{count}} переглядів": "",
+  "{{count}} переглядів_plural": "",
   "{{count}} просмотров": "",
   "{{count}} просмотров_plural": "",
   "Ім'я користувача": "Ім'я користувача",

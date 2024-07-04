@@ -183,6 +183,12 @@
       "userId": "2",
       "text": "fnvh,bjj.nkk/",
       "id": "sWL0CbW"
+    },
+    {
+      "articleId": "16",
+      "userId": "1",
+      "text": "it is the first comment",
+      "id": "Mtq4aFZ"
     }
   ],
   "users": [
@@ -548,7 +554,7 @@
           "title": "Рис.1 Зміна структури земельного фонду України за 1994-2017 рр. [3]"
         },
         {
-          "id": "4",
+          "id": "56",
           "type": "TEXT",
           "title": "",
           "paragraphs": [
@@ -561,13 +567,13 @@
           ]
         },
         {
-          "id": "8",
+          "id": "907",
           "type": "IMAGE",
           "src": "https://drive.google.com/thumbnail?id=151Hs2LCtjlMVrS4zHLdVN_78xd5Jtez2&sz=w1000",
           "title": "Рис.2. Розораність території в країнах світу та в Україні на 2018 р. [2, 11]"
         },
         {
-          "id": "4",
+          "id": "53564",
           "type": "TEXT",
           "title": "",
           "paragraphs": [
@@ -577,7 +583,7 @@
           ]
         },
         {
-          "id": "10",
+          "id": "54356",
           "type": "TEXT",
           "title": "Висновки",
           "paragraphs": [
@@ -587,7 +593,7 @@
           ]
         },
         {
-          "id": "11",
+          "id": "1244",
           "type": "TEXT",
           "title": "Список використаної літератури",
           "paragraphs": [
@@ -663,7 +669,7 @@
           "title": "Проблеми та наслідки недооцінки значення землеустрою [4, с.6]"
         },
         {
-          "id": "4",
+          "id": "4000",
           "type": "TEXT",
           "title": "",
           "paragraphs": [
@@ -671,13 +677,13 @@
           ]
         },
         {
-          "id": "8",
+          "id": "83434",
           "type": "IMAGE",
           "src": "https://drive.google.com/thumbnail?id=1LNXVkcGLXi8EsgQbGVkWt3j7_3XWN-s2&sz=w1000",
           "title": "Рис.1. Заходи забезпечення ефективного землеустрою [5, с.170"
         },
         {
-          "id": "10",
+          "id": "467548569",
           "type": "TEXT",
           "title": "Висновки",
           "paragraphs": [
@@ -685,7 +691,7 @@
           ]
         },
         {
-          "id": "11",
+          "id": "2353475",
           "type": "TEXT",
           "title": "Список використаної літератури",
           "paragraphs": [
@@ -789,7 +795,7 @@
           ]
         },
         {
-          "id": "10",
+          "id": "1326470",
           "type": "TEXT",
           "title": "Висновки",
           "paragraphs": [
@@ -799,7 +805,7 @@
           ]
         },
         {
-          "id": "11",
+          "id": "1143765",
           "type": "TEXT",
           "title": "Список використаної літератури",
           "paragraphs": [
@@ -1515,7 +1521,7 @@
           "title": "Рис.1 Створення замикання"
         },
         {
-          "id": "8",
+          "id": "82437",
           "type": "TEXT",
           "title": "Приклад 1. Замикання з використанням аргументу функції",
           "paragraphs": []
@@ -1604,12 +1610,12 @@
           ]
         },
         {
-          "id": "41",
+          "id": "412436",
           "type": "CODE",
           "code": "function fetchData(url, callback) {\n\n  // Логіка отримання даних з API\n\n  var data = '...'; // Отримані дані\n\n  callback(data);\n\n}\n\nfetchData('https://api.example.com', function(data) {\n\n  console.log('Отримані дані:', data);\n\n});"
         },
         {
-          "id": "921",
+          "id": "9543721",
           "type": "TEXT",
           "title": "",
           "paragraphs": [
@@ -1619,7 +1625,7 @@
           ]
         },
         {
-          "id": "909",
+          "id": "909547",
           "type": "TEXT",
           "title": "Висновок",
           "paragraphs": [
@@ -1685,7 +1691,7 @@
           "paragraphs": []
         },
         {
-          "id": "8",
+          "id": "125348",
           "type": "TEXT",
           "title": "Отримання даних з сервера",
           "paragraphs": []
@@ -1767,7 +1773,7 @@
           "code": "useEffect(() => {\n    fetchUsers();\n }, []);"
         },
         {
-          "id": "3",
+          "id": "33658",
           "type": "TEXT",
           "title": "",
           "paragraphs": [
@@ -1781,7 +1787,7 @@
           "code": "useEffect(() => {  \n    fetchUser(userId);\n  }, [userId]);"
         },
         {
-          "id": "3",
+          "id": "354585693",
           "type": "TEXT",
           "title": "",
           "paragraphs": [
@@ -1794,7 +1800,7 @@
           "code": "useEffect(() => {\n  return () => {\n    clearTimeout(timeoutId);\n  };\n}, []);"
         },
         {
-          "id": "5",
+          "id": "51256",
           "type": "TEXT",
           "title": "Кастомні хуки",
           "paragraphs": [
@@ -1809,7 +1815,7 @@
           "code": "function useApiData(endpoint) {\n  // State to store the fetched data\n  const [data, setData] = useState(null);\n  const [loading, setLoading] = useState(true);\n  const [error, setError] = useState(null);\n  useEffect(() => {\n    const fetchData = async () => {\n      try {\n        const response = await fetch(apiEndpoint);\n        if (!response.ok) {\n          throw new Error(`Error: ${response.status}`);\n        }\n        const result = await response.json();\n        setData(result);\n      } catch (error) {\n        setError(error.message);\n      } finally {\n        setLoading(false);\n      }\n    };\n    fetchData();\n  }, [apiEndpoint]);\n  // Return the state and loading/error information for external use\n  return { data, loading, error };\n}"
         },
         {
-          "id": "90",
+          "id": "904365",
           "type": "TEXT",
           "title": "",
           "paragraphs": [
@@ -1821,7 +1827,7 @@
           ]
         },
         {
-          "id": "8",
+          "id": "148234678",
           "type": "TEXT",
           "title": "Висновки",
           "paragraphs": [
@@ -1929,7 +1935,7 @@
           ]
         },
         {
-          "id": "55",
+          "id": "8644",
           "type": "TEXT",
           "title": "Синтаксис та структура JSON",
           "paragraphs": [
@@ -1942,7 +1948,7 @@
           "code": "{\n  \"id\": \"1\",\n  \"title\": \"JSON це що?\",\n  \"paragraphs\": [\n    {\n      \"heading\": \"JSON (JavaScript Object Notation)\",\n      \"content\": \"JSON – це текстовий формат, призначений для зберігання структурованих даних. Він був створений американським програмістом Дугласом Крокфордом на базі JavaScript, але при цьому не прив'язаний до нього і є незалежним. JSON легко поєднується з будь-яким сучасним середовищем програмування, зокрема, код для введення та обробки даних у цьому форматі присутній у мовах PHP, Python, Java та Ruby.\"\n    },\n  ]\n}"
         },
         {
-          "id": "55",
+          "id": "13252",
           "type": "TEXT",
           "title": "Як працювати з JSON?",
           "paragraphs": [
@@ -1950,7 +1956,7 @@
           ]
         },
         {
-          "id": "8",
+          "id": "22228",
           "type": "TEXT",
           "title": "Висновок. Користь JSON",
           "paragraphs": [
@@ -1961,7 +1967,7 @@
       ]
     },
     {
-      "id": "20",
+      "id": "207777",
       "title": "Швидкодія сайту: скільки секунд ви насправді готові чекати?",
       "subtitle": "Джерело: https://support.sitegist.com/shvydkodiya-sajtu-skilky-sekund-vy-naspravdi-gotovi-chekaty/",
       "img": "https://support.sitegist.com/wp-content/uploads/2022/07/4669572.jpg",
