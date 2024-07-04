@@ -1,5 +1,8 @@
 import { useTranslation } from 'react-i18next';
 import React, { memo } from 'react';
+import { useAuthModal } from '../../lib/hooks/useAuthModal';
+import { LoginModal } from '@/features/AuthByUsername';
+import { Button, ButtonTheme } from '@/shared/ui/deprecated/Button';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { Text, TextTheme } from '@/shared/ui/deprecated/Text';
 import { AppLink, AppLinkTheme } from '@/shared/ui/deprecated/AppLink';
@@ -13,7 +16,7 @@ interface NavbarProps {
     className?: string;
 }
 
-export const DeprecatedNavbar = memo(({ className }: NavbarProps) => {
+export const AuthorizedDeprecatedNavbar = memo(({ className }: NavbarProps) => {
     const { t } = useTranslation();
 
     return (
@@ -37,3 +40,25 @@ export const DeprecatedNavbar = memo(({ className }: NavbarProps) => {
         </header>
     );
 });
+
+export const NotAuthorizedDeprecatedNavbar = memo(
+    ({ className }: NavbarProps) => {
+        const { t } = useTranslation();
+        const { isAuthModal, onShowModal, onCloseModal } = useAuthModal();
+
+        return (
+            <header className={classNames(cls.Navbar, {}, [className])}>
+                <Button
+                    theme={ButtonTheme.CLEAR_INVERTED}
+                    className={cls.links}
+                    onClick={onShowModal}
+                >
+                    {t('Вхід')}
+                </Button>
+                {isAuthModal && (
+                    <LoginModal isOpen={isAuthModal} onClose={onCloseModal} />
+                )}
+            </header>
+        );
+    },
+);
