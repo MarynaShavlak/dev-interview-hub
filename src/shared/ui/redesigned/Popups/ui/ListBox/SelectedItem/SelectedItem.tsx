@@ -15,14 +15,14 @@ export function SelectedItem<T extends string>(props: SelectedItemProps<T>) {
     const { selectedItem, defaultValue, readonly } = props;
 
     return (
-        <HListBox.Button className={cls.trigger} as="div">
-            <Button
-                variant="filled"
-                disabled={readonly}
-                addonRight={<Icon Svg={ArrowIcon} />}
-            >
-                {selectedItem?.content ?? defaultValue}
-            </Button>
+        <HListBox.Button
+            className={cls.trigger}
+            as={Button}
+            variant="filled"
+            disabled={readonly}
+            addonRight={<Icon Svg={ArrowIcon} />}
+        >
+            {selectedItem?.content ?? defaultValue}
         </HListBox.Button>
     );
 }

@@ -32,6 +32,7 @@ export const RedesignedArticleViewSelector = memo(
                             return (
                                 <Icon
                                     clickable
+                                    key={viewType.view}
                                     onClick={onClick(viewType.view)}
                                     Svg={viewType.icon}
                                     className={classNames('', {

@@ -15,7 +15,7 @@ interface CardProps extends HTMLAttributes<HTMLDivElement> {
     className?: string;
     children: ReactNode;
     theme?: CardTheme;
-    fullWidth?: boolean;
+    max?: boolean;
     vStack?: boolean;
     hStack?: boolean;
     justify?: FlexJustify;
@@ -39,7 +39,7 @@ export const Card = memo((props: CardProps) => {
         className,
         children,
         theme = CardTheme.NORMAL,
-        fullWidth,
+        max,
         vStack,
         hStack,
         justify = 'start',
@@ -53,7 +53,7 @@ export const Card = memo((props: CardProps) => {
             className={classNames(
                 cls.Card,
                 {
-                    [cls.fullWidth]: fullWidth,
+                    [cls.max]: max,
                     [cls.vStack]: vStack,
                     [cls.hStack]: hStack,
                 },

@@ -32,12 +32,14 @@ const files = project.getSourceFiles();
 function isToggleFunction(node: Node) {
     let isToggleFeatures = false;
 
+    // eslint-disable-next-line consistent-return
     node.forEachChild((child) => {
         if (
             child.isKind(SyntaxKind.Identifier) &&
             child.getText() === toggleFunctionName
         ) {
-            isToggleFeatures = true;
+            // eslint-disable-next-line no-return-assign
+            return (isToggleFeatures = true);
         }
     });
 
@@ -51,6 +53,7 @@ function isToggleComponent(node: Node) {
 }
 
 files.forEach((sourceFile) => {
+    // eslint-disable-next-line consistent-return
     sourceFile.forEachDescendant((node) => {
         if (node.isKind(SyntaxKind.CallExpression) && isToggleFunction(node)) {
             return replaceToggleFunction(node);

@@ -21,7 +21,7 @@ export const DisabledRatingBlock = memo(() => {
                 </Card>
             }
             off={
-                <CardDeprecated fullWidth vStack gap="8">
+                <CardDeprecated max vStack gap="8">
                     <StarRating size={20} disabled />
                     <TextDeprecated text={text} />
                 </CardDeprecated>

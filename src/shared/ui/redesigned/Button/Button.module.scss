@@ -1,3 +1,13 @@
+.addonLeft,
+.addonRight {
+    display: flex;
+}
+
+.addonRight svg,
+.addonLeft svg {
+    color: var(--hint-redesigned);
+}
+
 .Button {
     cursor: pointer;
     color: var(--text-redesigned);
@@ -18,16 +28,6 @@
 
 .withAddon {
     padding: 0 16px;
-}
-
-.addonLeft,
-.addonRight {
-    display: flex;
-}
-
-.addonRight svg,
-.addonLeft svg {
-    color: var(--hint-redesigned);
 }
 
 .clear {
@@ -74,7 +74,6 @@
     }
 }
 
-
 .square {
     padding: 0;
 }
@@ -110,6 +109,6 @@
     opacity: 0.5;
 }
 
-.fullWidth {
+.max {
     width: 100%;
 }

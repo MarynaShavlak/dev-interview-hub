@@ -18,7 +18,7 @@ export const RedesignedFeedbackDrawerContent = memo(
                     onChange={setFeedback}
                     placeholder={t('Ваш відгук')}
                 />
-                <Button fullWidth onClick={onAccept} size="l">
+                <Button max onClick={onAccept} size="l">
                     {t('Відправити')}
                 </Button>
             </>

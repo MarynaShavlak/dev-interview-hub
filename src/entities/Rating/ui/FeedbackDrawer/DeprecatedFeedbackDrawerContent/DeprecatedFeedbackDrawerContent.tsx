@@ -18,7 +18,7 @@ export const DeprecatedFeedbackDrawerContent = memo(
                     onChange={setFeedback}
                     placeholder={t('Ваш відгук')}
                 />
-                <Button fullWidth onClick={onAccept} size={ButtonSize.L}>
+                <Button max onClick={onAccept} size={ButtonSize.L}>
                     {t('Відправити')}
                 </Button>
             </>

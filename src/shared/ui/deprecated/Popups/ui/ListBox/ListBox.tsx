@@ -43,8 +43,6 @@ export function ListBox(props: ListBoxProps) {
         direction = 'bottom right',
         label,
     } = props;
-    console.log(value);
-    console.log(items);
 
     const optionsClasses = [mapDirectionClass[direction]];
 
@@ -65,10 +63,12 @@ export function ListBox(props: ListBoxProps) {
                 value={value}
                 onChange={onChange}
             >
-                <HListBox.Button className={cls.trigger} as="div">
-                    <Button disabled={readonly}>
-                        {selectedItem?.content ?? defaultValue}
-                    </Button>
+                <HListBox.Button
+                    className={cls.trigger}
+                    as={Button}
+                    disabled={readonly}
+                >
+                    {selectedItem?.content ?? defaultValue}
                 </HListBox.Button>
                 {items && (
                     <HListBox.Options

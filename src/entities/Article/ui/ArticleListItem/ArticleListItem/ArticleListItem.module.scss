@@ -80,37 +80,38 @@
             padding: 8px 8px 16px;
         }
 
-            .infoWrap {
-                padding: 8px 8px 16px;
-                height: 100%;
-            }
+        .infoWrap {
+            padding: 8px 8px 16px;
+            height: 100%;
+        }
 
         .user {
             padding-left: 4px;
         }
-            .title h3 {
-                max-width: 240px;
-                max-height: 95px;
-                overflow-y: hidden;
-            }
-            .footer {
-                height: 100%;
-            }
+
+        .title h3 {
+            max-width: 240px;
+            max-height: 95px;
+            overflow-y: hidden;
+        }
+
+        .footer {
+            height: 100%;
+        }
     }
 
     &.LIST {
         width: 100%;
 
-            .img {
-                width: 100%;
-                max-height: 250px;
-                object-fit: cover;
-            }
-            .textBlock {
-                max-height: 195px;
-                overflow-y: hidden;
-            }
+        .img {
+            width: 100%;
+            max-height: 250px;
+            object-fit: cover;
+        }
+
+        .textBlock {
+            max-height: 195px;
+            overflow-y: hidden;
+        }
     }
-
 }
-

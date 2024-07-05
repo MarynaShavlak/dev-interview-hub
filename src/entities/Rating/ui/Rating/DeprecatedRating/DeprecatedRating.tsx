@@ -19,7 +19,7 @@ export const DeprecatedRating = memo((props: DeprecatedRatingProps) => {
     const { t } = useTranslation();
 
     return (
-        <CardDeprecated fullWidth className={classNames('', {}, [className])}>
+        <CardDeprecated max className={classNames('', {}, [className])}>
             <VStack align="center" gap="8">
                 <TextDeprecated
                     title={starsCount ? t('Дякуємо за оцінку!') : title}
