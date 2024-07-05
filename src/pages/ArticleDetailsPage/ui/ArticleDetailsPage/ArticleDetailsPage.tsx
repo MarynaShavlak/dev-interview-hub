@@ -1,16 +1,14 @@
 import { memo } from 'react';
-import { ArticleListButton } from '@/features/ArticleListButton';
-import { ArticleDetailsPageContent } from './ArticleDetailsPageContent';
-import { AdditionalInfoContainer } from '../AdditionalInfoContainer/AdditionalInfoContainer';
+import { RedesignedArticleDetailsPage } from './RedesignedArticleDetailsPage/RedesignedArticleDetailsPage';
+import { DeprecatedArticleDetailsPage } from './DeprecatedArticleDetailsPage/DeprecatedArticleDetailsPage';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
 import {
     DynamicModuleLoader,
     ReducersList,
 } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { articleDetailsPageReducer } from '../../model/slices';
-import { StickyContentLayout } from '@/shared/layouts/StickyContentLayout';
 
-interface ArticleDetailsPageProps {
+export interface ArticleDetailsPageProps {
     className?: string;
 }
 const reducers: ReducersList = {
@@ -22,20 +20,8 @@ const ArticleDetailsPage = ({ className }: ArticleDetailsPageProps) => {
         <DynamicModuleLoader reducers={reducers}>
             <ToggleFeaturesComponent
                 feature="isAppRedesigned"
-                on={
-                    <StickyContentLayout
-                        left={<ArticleListButton />}
-                        content={ArticleDetailsPageContent({
-                            isRedesigned: true,
-                            className,
-                        })}
-                        right={<AdditionalInfoContainer />}
-                    />
-                }
-                off={ArticleDetailsPageContent({
-                    isRedesigned: false,
-                    className,
-                })}
+                on={<RedesignedArticleDetailsPage className={className} />}
+                off={<DeprecatedArticleDetailsPage className={className} />}
             />
         </DynamicModuleLoader>
     );
