@@ -27,42 +27,6 @@ export const DeprecatedProfileCard = (props: ProfileCardProps) => {
     } = props;
     const { t } = useTranslation('profile');
 
-    // if (isLoading) {
-    //     return (
-    //         <HStack
-    //             justify="center"
-    //             max
-    //             className={classNames(cls.ProfileCard, {}, [
-    //                 className,
-    //                 cls.loading,
-    //             ])}
-    //         >
-    //             <Loader />
-    //         </HStack>
-    //     );
-    // }
-    // if (error) {
-    //     return (
-    //         <HStack
-    //             justify="center"
-    //             max
-    //             className={classNames(cls.ProfileCard, {}, [
-    //                 className,
-    //                 cls.error,
-    //             ])}
-    //         >
-    //             <TextDeprecated
-    //                 theme={TextTheme.ERROR}
-    //                 title={t(
-    //                     'Виникла помилка при завантаженні даних користувача',
-    //                 )}
-    //                 text={t('Спробуйте оновити сторінку')}
-    //                 align={TextAlign.CENTER}
-    //             />
-    //         </HStack>
-    //     );
-    // }
-
     const mods: Mods = {
         [cls.editing]: !readonly,
     };
@@ -108,7 +72,7 @@ export const DeprecatedProfileCard = (props: ProfileCardProps) => {
                 placeholder={t('Ваш вік')}
                 onChange={onChangeAge}
                 readonly={readonly}
-                restrictDigits
+                digitsOnly
             />
             <InputDeprecated
                 value={data?.city}

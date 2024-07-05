@@ -23,6 +23,7 @@ export const RedesignedProfileCard = memo((props: ProfileCardProps) => {
         onChangeCurrency,
     } = props;
     const { t } = useTranslation('profile');
+    console.log('profile', data);
     return (
         <Card gap="32" padding="24" max className={className} vStack>
             {data?.avatar && (
@@ -55,6 +56,7 @@ export const RedesignedProfileCard = memo((props: ProfileCardProps) => {
                         label={`${t('Вік')}:`}
                         onChange={onChangeAge}
                         readonly={readonly}
+                        digitsOnly
                     />
                     <Input
                         value={data?.city}

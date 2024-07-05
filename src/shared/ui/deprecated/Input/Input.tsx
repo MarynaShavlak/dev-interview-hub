@@ -5,6 +5,7 @@ import React, {
     useRef,
     useState,
 } from 'react';
+import { trimText } from '@/shared/lib/trimText/trimText';
 import { classNames, Mods } from '@/shared/lib/classNames/classNames';
 import cls from './Input.module.scss';
 
@@ -19,7 +20,7 @@ interface InputProps extends HTMLInputProps {
     onChange?: (value: string) => void;
     autofocus?: boolean;
     readonly?: boolean;
-    restrictDigits?: boolean;
+    digitsOnly?: boolean;
 }
 
 /**
@@ -36,7 +37,7 @@ export const Input = memo((props: InputProps) => {
         placeholder,
         autofocus,
         readonly,
-        restrictDigits,
+        digitsOnly = false,
         ...otherProps
     } = props;
     const ref = useRef<HTMLInputElement>(null);
@@ -53,15 +54,16 @@ export const Input = memo((props: InputProps) => {
     }, [autofocus]);
 
     const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const newValue = restrictDigits
-            ? e.target.value.replace(/\D/g, '')
-            : e.target.value;
-        onChange?.(newValue);
-        setCaretPosition(newValue.length);
+        if (digitsOnly && !/^\d*$/.test(e.target.value)) {
+            return;
+        }
+        onChange?.(e.target.value);
+        setCaretPosition(e.target.value.length);
     };
 
-    const onBlur = () => {
+    const onBlurHandler = (e: React.FocusEvent<HTMLInputElement>) => {
         setIsFocused(false);
+        onChange?.(trimText(e.target.value));
     };
 
     const onFocus = () => {
@@ -76,7 +78,7 @@ export const Input = memo((props: InputProps) => {
         [cls.readonly]: readonly,
     };
     return (
-        <div className={classNames(cls.InputWrapper, {}, [className])}>
+        <div className={classNames(cls.InputWrapper, mods, [className])}>
             {placeholder && (
                 <div className={cls.placeholder}>{`${placeholder}>`}</div>
             )}
@@ -88,7 +90,7 @@ export const Input = memo((props: InputProps) => {
                     onChange={onChangeHandler}
                     className={cls.input}
                     onFocus={onFocus}
-                    onBlur={onBlur}
+                    onBlur={onBlurHandler}
                     onSelect={onSelect}
                     readOnly={readonly}
                     {...otherProps}

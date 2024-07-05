@@ -6,6 +6,7 @@ import React, {
     useRef,
     useState,
 } from 'react';
+import { trimText } from '@/shared/lib/trimText/trimText';
 import { HStack } from '../Stack';
 import { classNames, Mods } from '@/shared/lib/classNames/classNames';
 import { Text } from '../Text';
@@ -28,6 +29,7 @@ interface InputProps extends HTMLInputProps {
     addonLeft?: ReactNode;
     addonRight?: ReactNode;
     size?: InputSize;
+    digitsOnly?: boolean;
 }
 
 export const Input = memo((props: InputProps) => {
@@ -43,6 +45,7 @@ export const Input = memo((props: InputProps) => {
         readonly,
         addonLeft,
         addonRight,
+        digitsOnly = false,
         ...otherProps
     } = props;
     const ref = useRef<HTMLInputElement>(null);
@@ -56,11 +59,16 @@ export const Input = memo((props: InputProps) => {
     }, [autofocus]);
 
     const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (digitsOnly && !/^\d*$/.test(e.target.value)) {
+            return;
+        }
+
         onChange?.(e.target.value);
     };
 
-    const onBlur = () => {
+    const onBlurHandler = (e: React.FocusEvent<HTMLInputElement>) => {
         setIsFocused(false);
+        onChange?.(trimText(e.target.value));
     };
 
     const onFocus = () => {
@@ -89,7 +97,7 @@ export const Input = memo((props: InputProps) => {
                 onChange={onChangeHandler}
                 className={cls.input}
                 onFocus={onFocus}
-                onBlur={onBlur}
+                onBlur={onBlurHandler}
                 readOnly={readonly}
                 placeholder={placeholder}
                 {...otherProps}

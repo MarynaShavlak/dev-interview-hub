@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { memo, useCallback } from 'react';
+import { useCurrencyOptions } from '../../lib/hooks/useCurrencyOptions';
 import { toggleFeatures, ToggleFeaturesComponent } from '@/shared/lib/features';
 import { ListBox } from '@/shared/ui/redesigned/Popups';
 import { ListBox as ListBoxDeprecated } from '@/shared/ui/deprecated/Popups';
@@ -12,15 +13,10 @@ interface CurrencySelectProps {
     readonly?: boolean;
 }
 
-const options = [
-    { value: Currency.UAH, content: Currency.UAH },
-    { value: Currency.EUR, content: Currency.EUR },
-    { value: Currency.USD, content: Currency.USD },
-];
-
 export const CurrencySelect = memo(
     ({ className, value, onChange, readonly }: CurrencySelectProps) => {
         const { t } = useTranslation();
+        const options = useCurrencyOptions();
 
         const onChangeHandler = useCallback(
             (value: string) => {

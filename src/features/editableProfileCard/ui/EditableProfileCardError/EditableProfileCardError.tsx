@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { memo } from 'react';
+import { Each } from '@/shared/lib/components/Each/Each';
 import { VStack } from '@/shared/ui/redesigned/Stack';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
 import { Text as TextDeprecated, TextTheme } from '@/shared/ui/deprecated/Text';
@@ -11,32 +12,31 @@ interface EditableProfileCardErrorProps {
     validateErrors: ValidateProfileError[];
 }
 
-interface ErrorProps {
-    err: string;
+interface ErrorTextProps {
     text: string;
 }
 
-const DeprecatedError = ({ err, text }: ErrorProps) => {
+const ErrorText = memo(({ text }: ErrorTextProps) => {
     return (
-        <TextDeprecated
-            key={err}
-            theme={TextTheme.ERROR}
-            text={text}
-            data-testid="EditableProfileCard.Error"
+        <ToggleFeaturesComponent
+            feature="isAppRedesigned"
+            on={
+                <Text
+                    variant="error"
+                    text={text}
+                    data-testid="EditableProfileCard.Error"
+                />
+            }
+            off={
+                <TextDeprecated
+                    theme={TextTheme.ERROR}
+                    text={text}
+                    data-testid="EditableProfileCard.Error"
+                />
+            }
         />
     );
-};
-
-const RedesignedError = ({ err, text }: ErrorProps) => {
-    return (
-        <Text
-            key={err}
-            variant="error"
-            text={text}
-            data-testid="EditableProfileCard.Error"
-        />
-    );
-};
+});
 
 export const EditableProfileCardError = memo(
     ({ validateErrors }: EditableProfileCardErrorProps) => {
@@ -46,10 +46,12 @@ export const EditableProfileCardError = memo(
             [ValidateProfileError.SERVER_ERROR]: t(
                 'Помилка сервера при збереженні даннних',
             ),
-            [ValidateProfileError.INCORRECT_COUNTRY]: t('Некоректний регіон'),
             [ValidateProfileError.NO_DATA]: t('Дані не вказано'),
             [ValidateProfileError.INCORRECT_USER_DATA]: t(
                 "Прізвище та ім'я є обов'язковими полями",
+            ),
+            [ValidateProfileError.INCORRECT_USERNAME]: t(
+                "Ім'я користувача є обов'язковим полем",
             ),
             [ValidateProfileError.INCORRECT_AGE]: t('Некоректний формат віку'),
         };
@@ -60,16 +62,12 @@ export const EditableProfileCardError = memo(
 
         return (
             <VStack gap="16">
-                {validateErrors.map((err) => {
-                    const text = validateErrorTranslates[err];
-                    return (
-                        <ToggleFeaturesComponent
-                            feature="isAppRedesigned"
-                            on={<RedesignedError err={err} text={text} />}
-                            off={<DeprecatedError err={err} text={text} />}
-                        />
-                    );
-                })}
+                <Each
+                    of={validateErrors}
+                    render={(err) => (
+                        <ErrorText text={validateErrorTranslates[err]} />
+                    )}
+                />
             </VStack>
         );
     },

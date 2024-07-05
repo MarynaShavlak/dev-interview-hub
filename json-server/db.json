@@ -222,12 +222,12 @@
       "features": {
         "isArticleRatingEnabled": false,
         "isCounterEnabled": false,
-        "isAppRedesigned": true
+        "isAppRedesigned": false
       },
       "avatar": "https://drive.google.com/thumbnail?id=1J1xUPYYkJeOsBTpDuf36vsV7UfxlM2uG&sz=w1000",
       "jsonSettings": {
         "isArticlesPageWasOpened": true,
-        "theme": "app_dark_theme"
+        "theme": "app_light_theme"
       }
     },
     {
@@ -270,11 +270,11 @@
       "id": "2",
       "first": "Максим",
       "lastname": "Шавлак",
-      "age": 27,
+      "age": 7777,
       "currency": "EUR",
-      "country": "Croatia",
-      "city": "Rijeka",
-      "username": "user1",
+      "country": "Ukraine",
+      "city": "San Francisco",
+      "username": "user",
       "avatar": "https://drive.google.com/thumbnail?id=1J1xUPYYkJeOsBTpDuf36vsV7UfxlM2uG&sz=w1000"
     }
   ],
