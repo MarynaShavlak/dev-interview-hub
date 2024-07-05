@@ -1,7 +1,7 @@
 import { memo, useCallback } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { RedesignedArticlesPageContent } from './RedesignedArticlesPage/RedesignedArticlesPage';
-import { DeprecatedArticlesPageContent } from './DeprecatedArticlesPage/DeprecatedArticlesPage';
+import { RedesignedArticlesPage } from './RedesignedArticlesPage/RedesignedArticlesPage';
+import { DeprecatedArticlesPage } from './DeprecatedArticlesPage/DeprecatedArticlesPage';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
 import {
     DynamicModuleLoader,
@@ -38,13 +38,13 @@ const ArticlesPage = ({ className }: ArticlesPageProps) => {
             <ToggleFeaturesComponent
                 feature="isAppRedesigned"
                 on={
-                    <RedesignedArticlesPageContent
+                    <RedesignedArticlesPage
                         onScrollEnd={onLoadNextPart}
                         className={className}
                     />
                 }
                 off={
-                    <DeprecatedArticlesPageContent
+                    <DeprecatedArticlesPage
                         onScrollEnd={onLoadNextPart}
                         className={className}
                     />

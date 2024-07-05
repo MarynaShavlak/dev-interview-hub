@@ -27,7 +27,7 @@ export const DeprecatedGridViewItem = memo((props: GridViewItemProps) => {
                 cls.GRID,
             ])}
         >
-            <Card className={cls.card} vStack gap="8">
+            <Card className={cls.card} vStack gap="8" align="start">
                 <div className={cls.imageWrapper}>
                     <AppImage
                         fallback={<Skeleton width="200px" height="200px" />}
@@ -46,7 +46,7 @@ export const DeprecatedGridViewItem = memo((props: GridViewItemProps) => {
                     />
                     <Text text={article.createdAt} className={cls.date} />
                 </div>
-                <HStack justify="between">
+                <HStack justify="between" max>
                     <Categories article={article} />
                     <Views article={article} />
                 </HStack>

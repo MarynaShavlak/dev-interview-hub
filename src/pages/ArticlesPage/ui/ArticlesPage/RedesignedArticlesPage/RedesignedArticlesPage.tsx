@@ -12,7 +12,7 @@ interface ContentProps {
     className?: string;
 }
 
-export const RedesignedArticlesPageContent = ({
+export const RedesignedArticlesPage = ({
     onScrollEnd,
     className,
 }: ContentProps) => {

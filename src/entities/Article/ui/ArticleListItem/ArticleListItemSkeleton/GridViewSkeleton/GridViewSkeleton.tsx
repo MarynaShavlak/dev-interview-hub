@@ -10,7 +10,7 @@ import cls from '../../ArticleListItem/ArticleListItem.module.scss';
 
 const DeprecatedGridViewSkeleton = () => {
     return (
-        <CardDeprecated className={cls.card} vStack gap="8">
+        <CardDeprecated className={cls.card} vStack gap="8" align="start">
             <SkeletonDeprecated width={200} height={200} />
             <SkeletonDeprecated width={130} height={16} />
             <SkeletonDeprecated width={150} height={16} />

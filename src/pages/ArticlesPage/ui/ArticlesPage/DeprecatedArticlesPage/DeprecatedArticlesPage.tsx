@@ -1,6 +1,7 @@
 import { ArticlePageGreeting } from '@/features/articlePageGreeting';
+import { ViewSelectorContainer } from '../../ViewSelectorContainer/ViewSelectorContainer';
+import { FiltersContainer } from '../../FiltersContainer/FiltersContainer';
 import { ArticleInfiniteList } from '../../ArticleInfiniteList/ArticleInfiniteList';
-import { ArticlesPageFilters } from '../../ArticlesPageFilters/ArticlesPageFilters';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { Page } from '@/widgets/Page';
 import cls from '../ArticlesPage.module.scss';
@@ -10,7 +11,7 @@ interface ContentProps {
     className?: string;
 }
 
-export const DeprecatedArticlesPageContent = ({
+export const DeprecatedArticlesPage = ({
     onScrollEnd,
     className,
 }: ContentProps) => {
@@ -20,7 +21,11 @@ export const DeprecatedArticlesPageContent = ({
             onScrollEnd={onScrollEnd}
             className={classNames(cls.ArticlesPage, {}, [className])}
         >
-            <ArticlesPageFilters />
+            <div className={cls.controlsWrap}>
+                <FiltersContainer />
+                <ViewSelectorContainer className={cls.viewSelector} />
+            </div>
+
             <ArticleInfiniteList className={cls.list} />
             <ArticlePageGreeting />
         </Page>

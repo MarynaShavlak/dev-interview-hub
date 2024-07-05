@@ -49,7 +49,7 @@ export const Card = memo((props: CardProps) => {
         vStack,
         hStack,
         justify = 'start',
-        align = 'center',
+        align = 'start',
         padding = '8',
         gap = '0',
         border = 'classic',
