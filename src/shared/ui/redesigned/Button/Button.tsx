@@ -9,7 +9,7 @@ import cls from './Button.module.scss';
 
 export type ButtonVariant = 'clear' | 'outline' | 'filled' | 'save' | 'cancel';
 
-export type ButtonSize = 'm' | 'l' | 'xl';
+export type ButtonSize = 's' | 'm' | 'l' | 'xl';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     className?: string;

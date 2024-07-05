@@ -1,4 +1,5 @@
 import { memo } from 'react';
+import { ArticleListButton } from '@/features/ArticleListButton';
 import { ArticleDetailsPageContent } from './ArticleDetailsPageContent';
 import { AdditionalInfoContainer } from '../AdditionalInfoContainer/AdditionalInfoContainer';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
@@ -23,6 +24,7 @@ const ArticleDetailsPage = ({ className }: ArticleDetailsPageProps) => {
                 feature="isAppRedesigned"
                 on={
                     <StickyContentLayout
+                        left={<ArticleListButton />}
                         content={ArticleDetailsPageContent({
                             isRedesigned: true,
                             className,

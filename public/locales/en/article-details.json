@@ -14,5 +14,6 @@
     "{{count}} переглядів_zero": "{{count}} views",
     "{{count}} переглядів_one": "{{count}} view",
     "{{count}} переглядів_other": "{{count}} views",
-    "Стаття не доступна": "Article is not available"
+    "Стаття не доступна": "Article is not available",
+  "Всі статті": "All articles"
 }

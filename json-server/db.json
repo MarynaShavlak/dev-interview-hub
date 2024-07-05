@@ -202,10 +202,10 @@
       "features": {
         "isArticleRatingEnabled": true,
         "isCounterEnabled": true,
-        "isAppRedesigned": false
+        "isAppRedesigned": true
       },
       "jsonSettings": {
-        "theme": "app_dark_theme",
+        "theme": "app_light_theme",
         "isFirstVisit": true,
         "settingsPageHasBeenOpen": false,
         "isArticlesPageWasOpened": true
@@ -273,7 +273,7 @@
       "age": 7777,
       "currency": "EUR",
       "country": "Ukraine",
-      "city": "San Francisco",
+      "city": "",
       "username": "user",
       "avatar": "https://drive.google.com/thumbnail?id=1J1xUPYYkJeOsBTpDuf36vsV7UfxlM2uG&sz=w1000"
     }

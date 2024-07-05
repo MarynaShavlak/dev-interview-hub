@@ -1,7 +1,17 @@
 .addonLeft,
 .addonRight {
     display: flex;
+
 }
+
+.addonRight {
+    margin-left: 4px;
+}
+
+.addonLeft {
+    margin-right: 4px;
+}
+
 
 .addonRight svg,
 .addonLeft svg {
@@ -26,9 +36,7 @@
     }
 }
 
-.withAddon {
-    padding: 0 16px;
-}
+
 
 .clear {
     padding: 0;
@@ -77,6 +85,10 @@
 .square {
     padding: 0;
 }
+.square.s {
+    width: var(--font-line-s);
+    height: var(--font-line-s);
+}
 
 .square.m {
     width: var(--font-line-m);
@@ -91,6 +103,10 @@
 .square.xl {
     width: var(--font-line-xl);
     height: var(--font-line-xl);
+}
+
+.s {
+    font: var(--font-s-redesigned);
 }
 
 .m {
