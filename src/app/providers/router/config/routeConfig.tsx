@@ -1,3 +1,4 @@
+import { RedesignedProfileCardSkeleton as ProfileSkeleton } from '@/entities/Profile';
 import { UserRole } from '@/entities/User';
 import { AboutPage } from '@/pages/AboutPage';
 import { AdminPanelPage } from '@/pages/AdminPanelPage';
@@ -32,6 +33,7 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
     [AppRoutes.SETTINGS]: {
         path: getRouteSettings(),
         element: <SettingsPage />,
+        authOnly: true,
     },
     [AppRoutes.ABOUT]: {
         path: getRouteAbout(),
@@ -41,6 +43,7 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
         path: getRouteProfile(':id'),
         element: <ProfilePage />,
         authOnly: true,
+        skeleton: <ProfileSkeleton />,
     },
     [AppRoutes.ARTICLES]: {
         path: getRouteArticles(),

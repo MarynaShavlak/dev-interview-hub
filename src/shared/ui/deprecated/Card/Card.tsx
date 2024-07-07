@@ -43,7 +43,7 @@ export const Card = memo((props: CardProps) => {
         vStack,
         hStack,
         justify = 'start',
-        align = 'center',
+        align = 'start',
         gap = '0',
         ...otherProps
     } = props;

@@ -36,7 +36,11 @@ function App() {
                         <AppLoaderLayout />
                     </div>
                 }
-                off={<PageLoader />}
+                off={
+                    <div id="app" className={classNames('app', {}, [theme])}>
+                        <PageLoader />
+                    </div>
+                }
             />
         );
     }

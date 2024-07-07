@@ -222,12 +222,12 @@
       "features": {
         "isArticleRatingEnabled": false,
         "isCounterEnabled": false,
-        "isAppRedesigned": false
+        "isAppRedesigned": true
       },
       "avatar": "https://drive.google.com/thumbnail?id=1J1xUPYYkJeOsBTpDuf36vsV7UfxlM2uG&sz=w1000",
       "jsonSettings": {
         "isArticlesPageWasOpened": true,
-        "theme": "app_light_theme"
+        "theme": "app_dark_theme"
       }
     },
     {

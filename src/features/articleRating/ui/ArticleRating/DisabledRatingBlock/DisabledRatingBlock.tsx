@@ -15,13 +15,20 @@ export const DisabledRatingBlock = memo(() => {
         <ToggleFeaturesComponent
             feature="isAppRedesigned"
             on={
-                <Card max border="partial" vStack gap="8" padding="24">
+                <Card
+                    max
+                    border="partial"
+                    vStack
+                    gap="8"
+                    padding="24"
+                    align="center"
+                >
                     <StarRating size={20} disabled />
                     <Text text={text} />
                 </Card>
             }
             off={
-                <CardDeprecated max vStack gap="8">
+                <CardDeprecated max vStack gap="8" align="center">
                     <StarRating size={20} disabled />
                     <TextDeprecated text={text} />
                 </CardDeprecated>
