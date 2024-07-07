@@ -1,15 +1,21 @@
 import { RedesignedProfileCardSkeleton as ProfileSkeleton } from '@/entities/Profile';
 import { UserRole } from '@/entities/User';
-import { AboutPage } from '@/pages/AboutPage';
-import { AdminPanelPage } from '@/pages/AdminPanelPage';
-import { ArticleDetailsPage } from '@/pages/ArticleDetailsPage';
-import { ArticleEditPage } from '@/pages/ArticleEditPage';
-import { ArticlesPage } from '@/pages/ArticlesPage';
-import { ForbiddenPage } from '@/pages/ForbiddenPage';
-import { MainPage } from '@/pages/MainPage';
-import { NotFoundPage } from '@/pages/NotFoundPage';
+import { AboutPage, AboutPageSkeleton } from '@/pages/AboutPage';
+import { AdminPanelPage, AdminPanelPageSkeleton } from '@/pages/AdminPanelPage';
+import {
+    ArticleDetailsPage,
+    ArticleDetailsPageSkeleton,
+} from '@/pages/ArticleDetailsPage';
+import {
+    ArticleEditPage,
+    ArticleEditPageSkeleton,
+} from '@/pages/ArticleEditPage';
+import { ArticlesPage, ArticlesPageSkeleton } from '@/pages/ArticlesPage';
+import { ForbiddenPage, ForbiddenPageSkeleton } from '@/pages/ForbiddenPage';
+import { MainPage, MainPageSkeleton } from '@/pages/MainPage';
+import { NotFoundPage, NotFoundPageSkeleton } from '@/pages/NotFoundPage';
 import { ProfilePage } from '@/pages/ProfilePage';
-import { SettingsPage } from '@/pages/SettingsPage';
+import { SettingsPage, SettingsPageSkeleton } from '@/pages/SettingsPage';
 import {
     AppRoutes,
     getRouteAbout,
@@ -29,15 +35,18 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
     [AppRoutes.MAIN]: {
         path: getRouteMain(),
         element: <MainPage />,
+        skeleton: <MainPageSkeleton />,
     },
     [AppRoutes.SETTINGS]: {
         path: getRouteSettings(),
         element: <SettingsPage />,
         authOnly: true,
+        skeleton: <SettingsPageSkeleton />,
     },
     [AppRoutes.ABOUT]: {
         path: getRouteAbout(),
         element: <AboutPage />,
+        skeleton: <AboutPageSkeleton />,
     },
     [AppRoutes.PROFILE]: {
         path: getRouteProfile(':id'),
@@ -49,35 +58,42 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
         path: getRouteArticles(),
         element: <ArticlesPage />,
         authOnly: true,
+        skeleton: <ArticlesPageSkeleton />,
     },
     [AppRoutes.ARTICLE_DETAILS]: {
         path: getRouteArticleDetails(':id'),
         element: <ArticleDetailsPage />,
         authOnly: true,
+        skeleton: <ArticleDetailsPageSkeleton />,
     },
     [AppRoutes.ARTICLE_CREATE]: {
         path: getRouteArticleCreate(),
         element: <ArticleEditPage />,
         authOnly: true,
+        skeleton: <ArticleEditPageSkeleton />,
     },
     [AppRoutes.ARTICLE_EDIT]: {
         path: getRouteArticleEdit(':id'),
         element: <ArticleEditPage />,
         authOnly: true,
+        skeleton: <ArticleEditPageSkeleton />,
     },
     [AppRoutes.ADMIN_PANEL]: {
         path: getRouteAdmin(),
         element: <AdminPanelPage />,
         authOnly: true,
         roles: [UserRole.MANAGER, UserRole.ADMIN],
+        skeleton: <AdminPanelPageSkeleton />,
     },
     [AppRoutes.FORBIDDEN]: {
         path: getRouteForbidden(),
         element: <ForbiddenPage />,
+        skeleton: <ForbiddenPageSkeleton />,
     },
     // last
     [AppRoutes.NOT_FOUND]: {
         path: '*',
         element: <NotFoundPage />,
+        skeleton: <NotFoundPageSkeleton />,
     },
 };

@@ -8,7 +8,7 @@ import { RequireAuth } from './RequireAuth';
 
 const AppRouter = () => {
     const renderWithWrapper = useCallback((route: AppRoutesProps) => {
-        const skeleton = route.skeleton ?? <div> 8675756</div>;
+        const { skeleton } = route;
 
         const fallback = (
             <ToggleFeaturesComponent
