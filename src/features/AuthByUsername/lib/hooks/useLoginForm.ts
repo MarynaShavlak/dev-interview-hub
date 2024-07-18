@@ -1,4 +1,5 @@
 import { useCallback } from 'react';
+import { USER_LOCALSTORAGE_KEY } from '@/shared/const/localstorage';
 import { useForceUpdate } from '@/shared/lib/render/forceUpdate';
 import { loginByUsername } from '../../model/services/loginByUsername/loginByUsername';
 import { useLoginError } from '../../model/selectors/getLoginError/getLoginError';
@@ -36,6 +37,7 @@ export const useLoginForm = (onSuccess: () => void) => {
         if (result.meta.requestStatus === 'fulfilled') {
             onSuccess();
             forceUpdate();
+            const userId = localStorage.getItem(USER_LOCALSTORAGE_KEY);
         }
     }, [dispatch, onSuccess, password, username, forceUpdate]);
 

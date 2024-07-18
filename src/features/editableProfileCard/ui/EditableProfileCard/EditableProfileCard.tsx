@@ -28,7 +28,6 @@ const reducers: ReducersList = {
 export const EditableProfileCard = memo((props: EditableProfileCardProps) => {
     const { className, id } = props;
     const { validateErrors } = useProfile();
-    console.log('validateErrors', validateErrors);
 
     const dispatch = useAppDispatch();
 

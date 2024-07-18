@@ -1,11 +1,12 @@
-import { HTMLAttributeAnchorTarget, memo } from 'react';
+import { HTMLAttributeAnchorTarget, memo, useEffect, useState } from 'react';
+import { ArticleListSkeleton } from './ArticleListSkeleton/ArticleListSkeleton';
+import { ArticleListError } from './ArticleListError/ArticleListError';
+
 import cls from './ArticleList.module.scss';
 import { ArticleListItem } from '../ArticleListItem/ArticleListItem/ArticleListItem';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { Each } from '@/shared/lib/components/Each/Each';
 import { HStack, VStack } from '@/shared/ui/redesigned/Stack';
-import { ArticleListSkeleton } from './ArticleListSkeleton/ArticleListSkeleton';
-import { ArticleListError } from './ArticleListError/ArticleListError';
 import { toggleFeatures } from '@/shared/lib/features';
 import { Article } from '../../model/types/article';
 import { ArticleView } from '../../model/consts/articleConsts';
@@ -26,6 +27,17 @@ export const ArticleList = memo((props: ArticleListProps) => {
         isLoading,
         target,
     } = props;
+
+    const [hasLoaded, setHasLoaded] = useState(false);
+
+    useEffect(() => {
+        if (isLoading === false && articles.length > 0) {
+            setHasLoaded(true);
+        }
+    }, [isLoading, articles]);
+
+    const hasSkeletonBeShown = isLoading;
+    const hasErrorBeShown = !articles.length && !isLoading && hasLoaded;
 
     const mainClass = toggleFeatures({
         name: 'isAppRedesigned',
@@ -49,11 +61,14 @@ export const ArticleList = memo((props: ArticleListProps) => {
             }}
         />
     );
-    if (!isLoading && !articles.length && view) {
-        return <ArticleListError view={view} />;
+    if (!view) {
+        return null;
     }
-    if (isLoading && view) {
+    if (hasSkeletonBeShown) {
         return <ArticleListSkeleton view={view} />;
+    }
+    if (hasErrorBeShown) {
+        return <ArticleListError view={view} />;
     }
 
     if (view === ArticleView.LIST) {

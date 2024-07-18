@@ -257,7 +257,7 @@
   "profile": [
     {
       "id": "1",
-      "first": "Марина",
+      "first": "Maryna",
       "lastname": "Шавлак",
       "age": 29,
       "currency": "UAH",
@@ -269,12 +269,12 @@
     {
       "id": "2",
       "first": "Максим",
-      "lastname": "Шавлак",
+      "lastname": "Shavlak",
       "age": 7777,
       "currency": "EUR",
       "country": "Ukraine",
       "city": "",
-      "username": "user",
+      "username": "user111",
       "avatar": "https://drive.google.com/thumbnail?id=1J1xUPYYkJeOsBTpDuf36vsV7UfxlM2uG&sz=w1000"
     }
   ],

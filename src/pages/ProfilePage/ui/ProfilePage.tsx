@@ -10,7 +10,6 @@ interface ProfilePageProps {
 }
 const ProfilePage = memo(({ className }: ProfilePageProps) => {
     const { id } = useParams<{ id: string }>();
-
     return (
         <Page
             className={classNames('', {}, [className])}
