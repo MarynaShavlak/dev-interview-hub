@@ -48,7 +48,7 @@ const InfiniteScrollComponent = () => {
 
     return (
         <div ref={wrapperRef} style={{ height: '400px', overflow: 'auto' }}>
-            {/* Your content here */}
+            {/* Scrollable content here...*/}
             <div ref={triggerRef} style={{ height: '20px' }} />
         </div>
     );
