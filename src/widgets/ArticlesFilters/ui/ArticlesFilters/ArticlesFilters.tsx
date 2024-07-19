@@ -18,6 +18,7 @@ export interface ArticlesFiltersProps {
 }
 
 export const ArticlesFilters = memo((props: ArticlesFiltersProps) => {
+    console.log('ArticlesFilters');
     return (
         <ToggleFeaturesComponent
             feature="isAppRedesigned"

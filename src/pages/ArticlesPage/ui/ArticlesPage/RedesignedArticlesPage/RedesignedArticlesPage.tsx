@@ -1,11 +1,11 @@
-import { ArticlePageGreeting } from '@/features/articlePageGreeting';
-import { FiltersContainer } from '../../FiltersContainer/FiltersContainer';
-import { ViewSelectorContainer } from '../../ViewSelectorContainer/ViewSelectorContainer';
-import { StickyContentLayout } from '@/shared/layouts/StickyContentLayout';
 import { ArticleInfiniteList } from '../../ArticleInfiniteList/ArticleInfiniteList';
 import { classNames } from '@/shared/lib/classNames/classNames';
+import { StickyContentLayout } from '@/shared/layouts/StickyContentLayout';
 import { Page } from '@/widgets/Page';
 import cls from '../ArticlesPage.module.scss';
+import { ViewSelectorContainer } from '../../ViewSelectorContainer/ViewSelectorContainer';
+import { FiltersContainer } from '../../FiltersContainer/FiltersContainer';
+import { ArticlePageGreeting } from '@/features/articlePageGreeting';
 
 interface ContentProps {
     onScrollEnd: () => void;

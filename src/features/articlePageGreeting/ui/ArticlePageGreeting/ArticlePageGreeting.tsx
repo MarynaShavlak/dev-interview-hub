@@ -1,8 +1,10 @@
 import { useTranslation } from 'react-i18next';
 import { memo, useEffect, useState } from 'react';
 import { isMobile } from 'react-device-detect';
+import { ToggleFeaturesComponent } from '@/shared/lib/features';
 import { Modal } from '@/shared/ui/redesigned/Modal';
-import { Text } from '@/shared/ui/deprecated/Text';
+import { Text as TextDeprecated } from '@/shared/ui/deprecated/Text';
+import { Text } from '@/shared/ui/redesigned/Text';
 import { saveJsonSettings, useJsonSettings } from '@/entities/User';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { Drawer } from '@/shared/ui/redesigned/Drawer';
@@ -22,24 +24,32 @@ export const ArticlePageGreeting = memo(() => {
 
     const onClose = () => setIsOpen(false);
 
-    const text = (
-        <Text
-            title={t('Ласкаво просимо на сторінку перегляду статей')}
-            text={t('Тут ви можете шукати та переглядати статті на різні теми')}
-        />
+    const titleText = t('Ласкаво просимо на сторінку перегляду статей');
+    const messageText = t(
+        'Тут ви можете шукати та переглядати статті на різні теми',
     );
 
     if (isMobile) {
         return (
             <Drawer lazy isOpen={isOpen} onClose={onClose}>
-                {text}
+                <ToggleFeaturesComponent
+                    feature="isAppRedesigned"
+                    on={<Text title={titleText} text={messageText} />}
+                    off={
+                        <TextDeprecated title={titleText} text={messageText} />
+                    }
+                />
             </Drawer>
         );
     }
 
     return (
         <Modal lazy isOpen={isOpen} onClose={onClose}>
-            {text}
+            <ToggleFeaturesComponent
+                feature="isAppRedesigned"
+                on={<Text title={titleText} text={messageText} />}
+                off={<TextDeprecated title={titleText} text={messageText} />}
+            />
         </Modal>
     );
 });

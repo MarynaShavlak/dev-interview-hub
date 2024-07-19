@@ -1,9 +1,6 @@
 import { useTranslation } from 'react-i18next';
-import { memo } from 'react';
-import {
-    useOrderOptions,
-    useSortFieldOptions,
-} from '../../../lib/hooks/useOptions';
+import { memo, useMemo } from 'react';
+import { useOrderOptions } from '../../../lib/hooks/useOptions';
 import { ListBox } from '@/shared/ui/redesigned/Popups';
 import { VStack } from '@/shared/ui/redesigned/Stack';
 import { Text } from '@/shared/ui/redesigned/Text';
@@ -15,9 +12,17 @@ export const RedesignedArticleSortSelector = memo(
     (props: ArticleSortSelectorProps) => {
         const { className, onChangeOrder, onChangeSort, order, sort } = props;
         const { t } = useTranslation('articles');
-        const orderOptions = useOrderOptions();
-        const sortFieldOptions = useSortFieldOptions();
 
+        const rawOrderOptions = useOrderOptions();
+        const orderOptions = useMemo(() => rawOrderOptions, [rawOrderOptions]);
+        console.log('orderOptions', orderOptions);
+
+        const rawSortFieldOptions = useOrderOptions();
+        const sortFieldOptions = useMemo(
+            () => rawSortFieldOptions,
+            [rawSortFieldOptions],
+        );
+        console.log('sortFieldOptions', sortFieldOptions);
         return (
             <div
                 className={classNames(cls.ArticleSortSelectorRedesigned, {}, [

@@ -207,4 +207,4 @@ of: функція, яка відпрацює після Вимкнення фі
 - [LangSwitcher](/src/features/LangSwitcher)
 - [notificationButton](/src/features/notificationButton)
 - [ThemeSwitcher](/src/features/ThemeSwitcher)
-- [ScrollRestoration](/src/features/ScrollRestoration)
+- [ScrollRestoration](/src/features/UI)

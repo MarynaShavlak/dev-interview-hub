@@ -32,24 +32,27 @@ const ArticlesPage = ({ className }: ArticlesPageProps) => {
     useInitialEffect(() => {
         dispatch(initArticlesPage(searchParams));
     });
+    const content = (
+        <ToggleFeaturesComponent
+            feature="isAppRedesigned"
+            on={
+                <RedesignedArticlesPage
+                    onScrollEnd={onLoadNextPart}
+                    className={className}
+                />
+            }
+            off={
+                <DeprecatedArticlesPage
+                    onScrollEnd={onLoadNextPart}
+                    className={className}
+                />
+            }
+        />
+    );
 
     return (
         <DynamicModuleLoader reducers={reducers} removeAfterUnmount={false}>
-            <ToggleFeaturesComponent
-                feature="isAppRedesigned"
-                on={
-                    <RedesignedArticlesPage
-                        onScrollEnd={onLoadNextPart}
-                        className={className}
-                    />
-                }
-                off={
-                    <DeprecatedArticlesPage
-                        onScrollEnd={onLoadNextPart}
-                        className={className}
-                    />
-                }
-            />
+            {content}
         </DynamicModuleLoader>
     );
 };

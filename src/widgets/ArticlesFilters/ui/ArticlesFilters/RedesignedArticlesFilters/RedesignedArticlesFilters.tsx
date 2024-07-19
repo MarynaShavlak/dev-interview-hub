@@ -1,17 +1,16 @@
-import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
+import { ArticleCategoryTabs } from '@/features/ArticleCategoryTabs';
+import { ArticleSortSelector } from '@/features/ArticleSortSelector';
 import { ArticlesFiltersProps } from '../ArticlesFilters';
 import { Icon } from '@/shared/ui/redesigned/Icon';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from '../ArticlesFilters.module.scss';
 import { Card } from '@/shared/ui/redesigned/Card';
-import { ArticleSortSelector } from '@/features/ArticleSortSelector';
-import { ArticleCategoryTabs } from '@/features/ArticleCategoryTabs';
 import { VStack } from '@/shared/ui/redesigned/Stack';
 import { Input } from '@/shared/ui/redesigned/Input';
 import SearchIcon from '@/shared/assets/icons/search.svg';
 
-export const RedesignedArticlesFilters = memo((props: ArticlesFiltersProps) => {
+export const RedesignedArticlesFilters = (props: ArticlesFiltersProps) => {
     const {
         className,
         onChangeCategory,
@@ -24,7 +23,6 @@ export const RedesignedArticlesFilters = memo((props: ArticlesFiltersProps) => {
         category,
     } = props;
     const { t } = useTranslation();
-
     return (
         <Card
             className={classNames(cls.ArticlesFilters, {}, [className])}
@@ -51,4 +49,4 @@ export const RedesignedArticlesFilters = memo((props: ArticlesFiltersProps) => {
             </VStack>
         </Card>
     );
-});
+};

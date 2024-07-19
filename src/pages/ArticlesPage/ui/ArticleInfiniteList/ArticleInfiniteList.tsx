@@ -1,5 +1,5 @@
-import { useTranslation } from 'react-i18next';
 import { memo } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { ArticleList } from '@/entities/Article';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
@@ -27,6 +27,7 @@ export const ArticleInfiniteList = memo((props: ArticleInfiniteListProps) => {
     const isLoading = useArticlesPageIsLoading();
     const view = useArticlesPageView();
     const error = useArticlesPageError();
+
     const { t } = useTranslation('articles');
     const errorMessage = t('Помилка запиту статей');
 

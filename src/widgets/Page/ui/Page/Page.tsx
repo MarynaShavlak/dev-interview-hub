@@ -1,12 +1,10 @@
-import { memo, MutableRefObject, ReactNode, UIEvent, useRef } from 'react';
+import { MutableRefObject, ReactNode, UIEvent, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { toggleFeatures } from '@/shared/lib/features';
 import { TestProps } from '@/shared/types/tests';
-import {
-    useScrollRestorationActions,
-    getScrollByPath,
-} from '@/features/ScrollRestoration';
+import { getUIScrollByPath, uiActions } from '@/features/UI';
 import { PAGE_ID } from '@/shared/const/id';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { useInfiniteScroll } from '@/shared/lib/hooks/useInfiniteScroll/useInfiniteScroll';
@@ -21,16 +19,16 @@ interface PageProps extends TestProps {
     onScrollEnd?: () => void;
 }
 
-export const Page = memo((props: PageProps) => {
+export const Page = (props: PageProps) => {
     const { className, children, onScrollEnd } = props;
     const wrapperRef = useRef() as MutableRefObject<HTMLDivElement>;
     const triggerRef = useRef() as MutableRefObject<HTMLDivElement>;
+
+    const dispatch = useAppDispatch();
     const { pathname } = useLocation();
     const scrollPosition = useSelector((state: StateSchema) =>
-        getScrollByPath(state, pathname),
+        getUIScrollByPath(state, pathname),
     );
-    const { setScrollPosition } = useScrollRestorationActions();
-
     useInfiniteScroll({
         triggerRef,
         wrapperRef: toggleFeatures({
@@ -46,10 +44,12 @@ export const Page = memo((props: PageProps) => {
     });
 
     const onScroll = useThrottle((e: UIEvent<HTMLDivElement>) => {
-        setScrollPosition({
-            position: e.currentTarget.scrollTop,
-            path: pathname,
-        });
+        dispatch(
+            uiActions.setScrollPosition({
+                position: e.currentTarget.scrollTop,
+                path: pathname,
+            }),
+        );
     }, 500);
 
     return (
@@ -74,4 +74,4 @@ export const Page = memo((props: PageProps) => {
             ) : null}
         </main>
     );
-});
+};
