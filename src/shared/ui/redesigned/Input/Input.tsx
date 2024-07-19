@@ -1,4 +1,6 @@
 import React, {
+    FocusEvent,
+    ChangeEvent,
     InputHTMLAttributes,
     memo,
     ReactNode,
@@ -58,7 +60,7 @@ export const Input = memo((props: InputProps) => {
         }
     }, [autofocus]);
 
-    const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
         if (digitsOnly && !/^\d*$/.test(e.target.value)) {
             return;
         }
@@ -66,7 +68,7 @@ export const Input = memo((props: InputProps) => {
         onChange?.(e.target.value);
     };
 
-    const onBlurHandler = (e: React.FocusEvent<HTMLInputElement>) => {
+    const onBlurHandler = (e: FocusEvent<HTMLInputElement>) => {
         setIsFocused(false);
         onChange?.(trimText(e.target.value));
     };
