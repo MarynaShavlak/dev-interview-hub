@@ -29,7 +29,7 @@ export const ArticleListSkeleton = memo(
 
         if (view === ArticleView.LIST) {
             return (
-                <VStack gap="16" className={classes}>
+                <VStack gap="16" className={classes} max>
                     {getSkeletons(view)}
                 </VStack>
             );
