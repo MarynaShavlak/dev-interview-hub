@@ -1,9 +1,9 @@
 import { MutableRefObject, useEffect, useRef } from 'react';
 
 export interface UseInfiniteScrollOptions {
-    callback?: () => void;
     triggerRef: MutableRefObject<HTMLElement>;
     wrapperRef?: MutableRefObject<HTMLElement>;
+    callback?: () => void;
 }
 
 export function useInfiniteScroll({
