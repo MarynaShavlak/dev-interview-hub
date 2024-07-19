@@ -46,8 +46,8 @@ export const Modal = (props: ModalProps) => {
         'app_modal',
         toggleFeatures({
             name: 'isAppRedesigned',
-            on: () => cls.modalNew,
-            off: () => cls.modalOld,
+            on: () => cls.modalRedesigned,
+            off: () => cls.modalDeprecated,
         }),
     ];
     return (

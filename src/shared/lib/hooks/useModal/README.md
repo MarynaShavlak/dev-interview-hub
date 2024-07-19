@@ -31,5 +31,45 @@ An object with the following properties:
     - The first **`useEffect`** runs when **`isOpen`** changes. If **`isOpen`** is **`true`**, it sets **`isMounted`** to **`true`**.
     - The second **`useEffect`** runs when **`isOpen`** or **`onKeyDown`** changes. If **`isOpen`** is **`true`**, it adds a `keydown` event listener to the window to listen for the Escape key to close the modal. Clears any existing timeouts and removes the event listener when the component unmounts or **`isOpen`** changes to **`false`**.
 
+
+## Usage Example
+```typescript
+import React, { ReactNode, useState } from 'react';
+import { useModal } from '@/shared/lib/hooks/useModal/useModal';
+import { Portal } from '../Portal/Portal';
+import { Overlay } from '../Overlay/Overlay';
+import cls from './Modal.module.scss';
+
+interface ModalProps {
+    isOpen: boolean;
+    onClose: () => void;
+    children?: ReactNode;
+}
+
+const Modal = (props: ModalProps) => {
+    const { children, isOpen, onClose } = props;
+    const { isClosing, isMounted, close } = useModal({
+        animationDelay: 300,
+        onClose,
+        isOpen,
+    });
+    
+   if (!isMounted) {
+      return null;
+   }
+
+    return (
+        <Portal element={document.getElementById('app')}>
+                <div className={isClosing && cls.isClosing}>
+                    <Overlay onClick={close} />
+                    <div>{children}</div>
+                </div>
+        </Portal>
+    );
+};
+
+export default Modal;
+```
+
 ## Conclusion 
 The **`useModal`** hook manages the modal's visibility, handles closing animations, and adds keyboard accessibility. It uses two pieces of state (**`isClosing`** and **`isMounted`**) to control the modal`s visibility and closing animations. It also sets up event listeners to handle closing the modal when the Escape key is pressed and manages the timeout using a ref to ensure proper cleanup and prevent errors when the component is unmounted.

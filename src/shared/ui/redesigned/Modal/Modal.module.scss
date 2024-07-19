@@ -21,13 +21,13 @@
     z-index: var(--modal-z-index);
 }
 
-.modalNew {
+.modalRedesigned {
     .content {
         background: var(--light-bg-redesigned);
     }
 }
 
-.modalOld {
+.modalDeprecated {
     .content {
         background: var(--bg-color);
     }
