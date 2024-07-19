@@ -7,16 +7,25 @@ import {
 } from 'react';
 
 /**
- * Повторно використовуваний хук для модальних компонентів (drawer/modal)
- * @param animationDelay
- * @param isOpen
- * @param onClose
+ * Custom hook for managing modal state, animations, and event listeners.
+ * @param {number} animationDelay - The duration (in milliseconds) of the closing animation.
+ * @param {boolean} isOpen -  Boolean indicating whether the modal is currently open.
+ * @param {() => void} onClose - Optional callback function to be invoked when the modal is closed.
+ *
+ * @returns {{
+ *    isClosing: boolean;
+ *    isMounted: boolean;
+ *    close: () => void;
+ *  }} An object with the following properties:
+ *  *  - `isClosing`: Boolean indicating if the modal is in the process of closing.
+ *  *  - `isMounted`: Boolean indicating if the modal is currently mounted.
+ *  *  - `close`: Function to trigger the modal closing sequence.
  */
 
 interface UseModalProps {
+    animationDelay: number;
     onClose?: () => void;
     isOpen?: boolean;
-    animationDelay: number;
 }
 
 export function useModal({ animationDelay, isOpen, onClose }: UseModalProps) {
@@ -25,12 +34,6 @@ export function useModal({ animationDelay, isOpen, onClose }: UseModalProps) {
     const timerRef = useRef() as MutableRefObject<
         ReturnType<typeof setTimeout>
     >;
-
-    useEffect(() => {
-        if (isOpen) {
-            setIsMounted(true);
-        }
-    }, [isOpen]);
 
     const close = useCallback(() => {
         if (onClose) {
@@ -42,7 +45,6 @@ export function useModal({ animationDelay, isOpen, onClose }: UseModalProps) {
         }
     }, [animationDelay, onClose]);
 
-    // Нові посилання!!!
     const onKeyDown = useCallback(
         (e: KeyboardEvent) => {
             if (e.key === 'Escape') {
@@ -51,6 +53,12 @@ export function useModal({ animationDelay, isOpen, onClose }: UseModalProps) {
         },
         [close],
     );
+
+    useEffect(() => {
+        if (isOpen) {
+            setIsMounted(true);
+        }
+    }, [isOpen]);
 
     useEffect(() => {
         if (isOpen) {
