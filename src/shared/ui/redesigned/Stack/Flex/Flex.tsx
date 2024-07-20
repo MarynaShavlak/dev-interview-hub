@@ -1,27 +1,19 @@
 import { DetailedHTMLProps, HTMLAttributes, ReactNode } from 'react';
 import {
-    alignClasses,
-    directionClasses,
-    justifyClasses,
+    mapAlignToClass,
+    mapDirectionToClass,
+    mapJustifyToClass,
+    mapGapToClass,
 } from '@/shared/const/flexClasses';
 import { classNames, Mods } from '@/shared/lib/classNames/classNames';
 import {
     FlexAlign,
     FlexDirection,
     FlexJustify,
+    FlexGap,
+    FlexWrap,
 } from '@/shared/types/flexTypes';
 import cls from './Flex.module.scss';
-
-export type FlexWrap = 'wrap' | 'nowrap';
-export type FlexGap = '4' | '8' | '16' | '24' | '32';
-
-const gapClasses: Record<FlexGap, string> = {
-    4: cls.gap4,
-    8: cls.gap8,
-    16: cls.gap16,
-    24: cls.gap24,
-    32: cls.gap32,
-};
 
 type DivProps = DetailedHTMLProps<
     HTMLAttributes<HTMLDivElement>,
@@ -53,13 +45,13 @@ export const Flex = (props: FlexProps) => {
         fullHeight,
     } = props;
 
-    const classes = [
+    const additionalClasses = [
         className,
-        justifyClasses[justify],
-        alignClasses[align],
-        directionClasses[direction],
+        mapJustifyToClass[justify],
+        mapAlignToClass[align],
+        mapDirectionToClass[direction],
         cls[wrap],
-        gap && gapClasses[gap],
+        gap && mapGapToClass[gap],
     ];
 
     const mods: Mods = {
@@ -68,6 +60,8 @@ export const Flex = (props: FlexProps) => {
     };
 
     return (
-        <div className={classNames(cls.Flex, mods, classes)}>{children}</div>
+        <div className={classNames(cls.Flex, mods, additionalClasses)}>
+            {children}
+        </div>
     );
 };

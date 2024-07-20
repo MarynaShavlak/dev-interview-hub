@@ -1,22 +1,32 @@
 import {
     FlexAlign,
     FlexDirection,
+    FlexGap,
     FlexJustify,
 } from '@/shared/types/flexTypes';
-import cls from '@/shared/ui/redesigned/Stack/Flex/Flex.module.scss';
+import cls from '@/shared/styles/flexStyles.module.scss';
 
-export const justifyClasses: Record<FlexJustify, string> = {
+export const mapJustifyToClass: Record<FlexJustify, string> = {
     start: cls.justifyStart,
     center: cls.justifyCenter,
     end: cls.justifyEnd,
     between: cls.justifyBetween,
 };
-export const alignClasses: Record<FlexAlign, string> = {
+export const mapAlignToClass: Record<FlexAlign, string> = {
     start: cls.alignStart,
     center: cls.alignCenter,
     end: cls.alignEnd,
 };
-export const directionClasses: Record<FlexDirection, string> = {
+export const mapDirectionToClass: Record<FlexDirection, string> = {
     row: cls.directionRow,
     column: cls.directionColumn,
+};
+
+export const mapGapToClass: Record<FlexGap, string> = {
+    0: cls.gap0,
+    4: cls.gap4,
+    8: cls.gap8,
+    16: cls.gap16,
+    24: cls.gap24,
+    32: cls.gap32,
 };

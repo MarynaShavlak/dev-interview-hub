@@ -1,9 +1,18 @@
 import { memo } from 'react';
+import { classNames } from '@/shared/lib/classNames/classNames';
+import { getFlexClasses } from '@/shared/lib/getFlexClasses/getFlexClasses';
 import { Card } from '@/shared/ui/redesigned/Card';
 import { VStack } from '@/shared/ui/redesigned/Stack';
 import { StickyContentLayout } from '@/shared/layouts/StickyContentLayout';
 import { Skeleton } from '@/shared/ui/redesigned/Skeleton';
 import cls from './ArticlesPage.module.scss';
+
+const additionalClasses = getFlexClasses({
+    hStack: true,
+    gap: '24',
+    align: 'center',
+    justify: 'center',
+});
 
 export const ArticlesPageSkeleton = memo(() => {
     return (
@@ -11,11 +20,11 @@ export const ArticlesPageSkeleton = memo(() => {
             left={
                 <Card
                     border="round"
-                    className={cls.ViewSkeletonContainer}
-                    align="center"
-                    justify="center"
-                    hStack
-                    gap="24"
+                    className={classNames(
+                        cls.ViewSkeletonContainer,
+                        {},
+                        additionalClasses,
+                    )}
                 >
                     <Skeleton width="18px" height="18px" />
                     <Skeleton width="18px" height="18px" />

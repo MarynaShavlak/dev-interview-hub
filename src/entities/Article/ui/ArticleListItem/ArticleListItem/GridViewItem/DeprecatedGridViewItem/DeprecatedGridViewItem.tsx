@@ -1,5 +1,6 @@
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
+import { getFlexClasses } from '@/shared/lib/getFlexClasses/getFlexClasses';
 import { GridViewItemProps } from '../GridViewItem';
 import { Views } from '../../Views/Views';
 import { Categories } from '../../Categories/Categories';
@@ -9,14 +10,16 @@ import { getRouteArticleDetails } from '@/shared/const/router';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { Text } from '@/shared/ui/deprecated/Text';
 import { Card } from '@/shared/ui/deprecated/Card';
-import { AppLink } from '@/shared/ui/deprecated/AppLink';
 import cls from '../../ArticleListItem.module.scss';
 import { Skeleton } from '@/shared/ui/deprecated/Skeleton';
 import defaultImage from '@/shared/assets/images/default-img.png';
+import { AppLink } from '@/shared/ui/deprecated/AppLink';
 
 export const DeprecatedGridViewItem = memo((props: GridViewItemProps) => {
     const { className, article, target } = props;
     const { t } = useTranslation('articles');
+    const additionalClasses = getFlexClasses({ vStack: true, gap: '8' });
+
     return (
         <AppLink
             data-testid="ArticleListItem"
@@ -27,7 +30,7 @@ export const DeprecatedGridViewItem = memo((props: GridViewItemProps) => {
                 cls.GRID,
             ])}
         >
-            <Card className={cls.card} vStack gap="8" align="start">
+            <Card className={classNames(cls.card, {}, additionalClasses)}>
                 <div className={cls.imageWrapper}>
                     <AppImage
                         fallback={<Skeleton width="200px" height="200px" />}

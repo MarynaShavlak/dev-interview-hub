@@ -1,5 +1,7 @@
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
+import { classNames } from '@/shared/lib/classNames/classNames';
+import { getFlexClasses } from '@/shared/lib/getFlexClasses/getFlexClasses';
 import { Text } from '@/shared/ui/redesigned/Text';
 import { Text as TextDeprecated } from '@/shared/ui/deprecated/Text';
 import { StarRating } from '@/shared/ui/redesigned/StarRating';
@@ -10,25 +12,31 @@ import { Card as CardDeprecated } from '@/shared/ui/deprecated/Card';
 export const DisabledRatingBlock = memo(() => {
     const { t } = useTranslation();
     const text = t("Оцінка статей скоро з'явиться");
+    const additionalClasses = getFlexClasses({
+        vStack: true,
+        gap: '8',
+        align: 'center',
+    });
 
     return (
         <ToggleFeaturesComponent
             feature="isAppRedesigned"
             on={
                 <Card
+                    className={classNames('', {}, additionalClasses)}
                     max
                     border="partial"
-                    vStack
-                    gap="8"
                     padding="24"
-                    align="center"
                 >
                     <StarRating size={20} disabled />
                     <Text text={text} />
                 </Card>
             }
             off={
-                <CardDeprecated max vStack gap="8" align="center">
+                <CardDeprecated
+                    className={classNames('', {}, additionalClasses)}
+                    max
+                >
                     <StarRating size={20} disabled />
                     <TextDeprecated text={text} />
                 </CardDeprecated>

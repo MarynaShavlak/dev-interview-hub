@@ -1,4 +1,5 @@
 import { memo } from 'react';
+import { getFlexClasses } from '@/shared/lib/getFlexClasses/getFlexClasses';
 import { toggleFeatures } from '@/shared/lib/features';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { Skeleton as SkeletonDeprecated } from '@/shared/ui/deprecated/Skeleton';
@@ -32,10 +33,14 @@ export const ListViewSkeleton = memo(() => {
         on: () => 320,
         off: () => 200,
     });
+    const additionalClasses = getFlexClasses({ vStack: true, gap: '8' });
 
     return (
         <div className={classNames(mainClass, {}, [cls.LIST])}>
-            <Card vStack gap="8" padding="16">
+            <Card
+                padding="16"
+                className={classNames('', {}, additionalClasses)}
+            >
                 <VStack gap="8">
                     <HStack gap="16">
                         <Skeleton border="50%" height={30} width={30} />

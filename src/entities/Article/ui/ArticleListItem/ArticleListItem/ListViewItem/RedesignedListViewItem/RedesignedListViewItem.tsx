@@ -1,5 +1,6 @@
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
+import { getFlexClasses } from '@/shared/lib/getFlexClasses/getFlexClasses';
 import defaultImage from '@/shared/assets/images/default-img-list.png';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { ArticleBlockType } from '../../../../../model/consts/articleConsts';
@@ -27,6 +28,8 @@ export const RedesignedListViewItem = memo((props: ListViewItemProps) => {
     const textBlock = article.blocks.find(
         (block) => block.type === ArticleBlockType.TEXT,
     ) as ArticleTextBlock;
+    const additionalClasses = getFlexClasses({ vStack: true, gap: '16' });
+    console.log(additionalClasses);
 
     return (
         <div
@@ -35,7 +38,12 @@ export const RedesignedListViewItem = memo((props: ListViewItemProps) => {
                 cls.LIST,
             ])}
         >
-            <Card vStack gap="16" padding="16">
+            <Card
+                className={classNames('', {}, additionalClasses)}
+                // vStack
+                // gap="16"
+                padding="16"
+            >
                 <VStack gap="8" max>
                     <HStack gap="8" max>
                         <Avatar

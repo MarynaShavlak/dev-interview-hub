@@ -1,5 +1,7 @@
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
+import { classNames } from '@/shared/lib/classNames/classNames';
+import { getFlexClasses } from '@/shared/lib/getFlexClasses/getFlexClasses';
 import { Card } from '@/shared/ui/redesigned/Card';
 import { HStack, VStack } from '@/shared/ui/redesigned/Stack';
 import { Avatar } from '@/shared/ui/redesigned/Avatar';
@@ -23,8 +25,13 @@ export const RedesignedProfileCard = memo((props: ProfileCardProps) => {
         onChangeCurrency,
     } = props;
     const { t } = useTranslation('profile');
+    const additionalClasses = getFlexClasses({ vStack: true, gap: '32' });
     return (
-        <Card gap="32" padding="24" max className={className} vStack>
+        <Card
+            padding="24"
+            max
+            className={classNames(className ?? '', {}, additionalClasses)}
+        >
             {data?.avatar && (
                 <HStack justify="center" max>
                     <Avatar

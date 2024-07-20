@@ -16,7 +16,7 @@ interface NavbarProps {
 export const AuthorizedRedesignedNavbar = memo(({ className }: NavbarProps) => {
     return (
         <header className={classNames(cls.NavbarRedesigned, {}, [className])}>
-            <HStack gap="16" className={cls.actions}>
+            <HStack gap="8" className={cls.actions}>
                 <NotificationButton />
                 <AvatarDropdown />
             </HStack>

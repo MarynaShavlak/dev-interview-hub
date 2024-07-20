@@ -1,4 +1,5 @@
 import { memo } from 'react';
+import { getFlexClasses } from '@/shared/lib/getFlexClasses/getFlexClasses';
 import { HStack, VStack } from '@/shared/ui/redesigned/Stack';
 import { Card } from '@/shared/ui/redesigned/Card';
 import { Skeleton } from '@/shared/ui/redesigned/Skeleton';
@@ -8,9 +9,11 @@ import { Skeleton as SkeletonDeprecated } from '@/shared/ui/deprecated/Skeleton'
 import { Card as CardDeprecated } from '@/shared/ui/deprecated/Card';
 import cls from '../../ArticleListItem/ArticleListItem.module.scss';
 
+const additionalClasses = getFlexClasses({ vStack: true, gap: '8' });
+
 const DeprecatedGridViewSkeleton = () => {
     return (
-        <CardDeprecated className={cls.card} vStack gap="8" align="start">
+        <CardDeprecated className={classNames(cls.card, {}, additionalClasses)}>
             <SkeletonDeprecated width={200} height={200} />
             <SkeletonDeprecated width={130} height={16} />
             <SkeletonDeprecated width={150} height={16} />
@@ -20,7 +23,11 @@ const DeprecatedGridViewSkeleton = () => {
 
 const RedesignedGridViewSkeleton = () => {
     return (
-        <Card className={cls.card} vStack border="round" padding="0" gap="8">
+        <Card
+            className={classNames(cls.card, {}, additionalClasses)}
+            border="round"
+            padding="0"
+        >
             <Skeleton width={240} height={140} />
             <Skeleton width="100%" height={70} />
             <VStack className={cls.info} gap="32">
