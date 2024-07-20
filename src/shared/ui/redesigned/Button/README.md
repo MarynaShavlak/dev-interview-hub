@@ -38,6 +38,12 @@ The **`Button`** component extends **`ButtonHTMLAttributes<HTMLButtonElement>`**
 - **Full-Width Option**: The **`max`** prop allows the button to expand to the full width of its container, making it suitable for responsive designs.
 
 - **Additional Content**: Add content to the left and right sides of the button using **`addonLeft`** and **`addonRight`** props, perfect for adding icons or supplementary text to enhance functionality and user experience.
+  
+## Ref Forwarding
+The **`Button`** component uses **`forwardRef`** to enable ref forwarding. This is particularly important in scenarios where the button needs to integrate with external libraries or components that rely on refs for internal operations, such as the **`Listbox`** component from **[Headless UI](https://headlessui.com/)**.
+
+Using **`forwardRef`** allows the button to forward refs to its underlying HTML element, making it compatible with components that require a ref to be passed down. This is crucial for ensuring that the button functions correctly within complex UI libraries and maintains compatibility with various interactive elements.
+
 
 ## Usage Examples
 
@@ -89,6 +95,30 @@ export const ButtonWithOtherProps = () => {
         </Button>
     );
 };
+```
+
+### 4. Button with Headless UI Listbox
+```jsx
+import { Listbox as HListBox } from '@headlessui/react';
+import { Button } from '@/shared/ui/redesigned/Button';
+import { Icon } from '@/shared/ui/redesigned/Icon';
+import { ListBoxItem } from '../OptionItem/OptionItem';
+import ArrowIcon from '@/shared/assets/icons/arrow-bottom.svg';
+
+export function SelectedItem() {
+    const { readonly } = props;
+
+    return (
+        <HListBox.Button
+            as={Button}
+            variant="filled"
+            disabled={readonly}
+            addonRight={<Icon Svg={ArrowIcon} />}
+        >
+            content of button 
+        </HListBox.Button>
+    );
+}
 ```
 
 ## Conclusion
