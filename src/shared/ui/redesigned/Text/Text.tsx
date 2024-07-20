@@ -1,14 +1,13 @@
 import { memo } from 'react';
+import { TestProps } from '@/shared/types/tests';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './Text.module.scss';
 
 export type TextVariant = 'primary' | 'error' | 'accent';
-
 export type TextAlign = 'right' | 'left' | 'center';
-
 export type TextSize = 's' | 'm' | 'l';
 
-interface TextProps {
+interface TextProps extends TestProps {
     className?: string;
     title?: string;
     text?: string;
@@ -16,8 +15,6 @@ interface TextProps {
     align?: TextAlign;
     size?: TextSize;
     bold?: boolean;
-
-    'data-testid'?: string;
 }
 
 type HeaderTagType = 'h1' | 'h2' | 'h3';
