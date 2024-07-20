@@ -1,7 +1,7 @@
 import { memo, useCallback } from 'react';
-import { Icon } from '../Icon';
+import { Button, ButtonTheme } from '../Button';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import CopyIconNew from '@/shared/assets/icons/copy.svg';
+import CopyIcon from '@/shared/assets/icons/copy-20-20.svg';
 import cls from './Code.module.scss';
 
 interface CodeProps {
@@ -17,13 +17,14 @@ export const Code = memo((props: CodeProps) => {
     }, [text]);
 
     return (
-        <pre className={classNames(cls.CodeRedesigned, {}, [className])}>
-            <Icon
-                clickable
+        <pre className={classNames(cls.Code, {}, [className])}>
+            <Button
                 onClick={onCopy}
                 className={cls.copyBtn}
-                Svg={CopyIconNew}
-            />
+                theme={ButtonTheme.CLEAR}
+            >
+                <CopyIcon className={cls.copyIcon} />
+            </Button>
             <code>{text}</code>
         </pre>
     );
