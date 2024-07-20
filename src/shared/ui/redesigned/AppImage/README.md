@@ -26,7 +26,7 @@ The component also inherits all standard HTML image attributes from **_'ImgHTMLA
 ## Usage
 ### Basic Example
 
-```javascript
+```jsx
 import React from 'react';
 import { AppImage } from './AppImage';
 

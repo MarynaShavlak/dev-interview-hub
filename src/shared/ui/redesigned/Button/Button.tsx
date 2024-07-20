@@ -13,29 +13,11 @@ export type ButtonSize = 's' | 'm' | 'l' | 'xl';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     className?: string;
-    /**
-     * Варіант кнопки. Відповідає за візуальний стиль (у рамці, без стилів)
-     */
     variant?: ButtonVariant;
-    /**
-     * Прапорець, що робить кнопку квадратною
-     */
     square?: boolean;
-    /**
-     * Розмір кнопки відповідно до дизайн-системи
-     */
     size?: ButtonSize;
-    /**
-     * Прапорець, що відповідає за працездатність кнопки
-     */
     disabled?: boolean;
-    /**
-     * Вміст кнопки
-     */
     children?: ReactNode;
-    /**
-     * Розширює кнопку на всю доступну ширину
-     */
     max?: boolean;
     addonLeft?: ReactNode;
     addonRight?: ReactNode;

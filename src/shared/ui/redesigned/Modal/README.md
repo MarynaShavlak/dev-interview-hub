@@ -42,7 +42,7 @@ This is controlled through the **`useModal`** hook, which manages the modal's st
 
 ## Usage Example
 Here's an example of using the Modal component with lazy loading:
-```typescript
+```jsx
 import { memo, Suspense } from 'react';
 import { Modal } from '@/shared/ui/redesigned/Modal';
 import { LoginFormAsync } from '../LoginForm/LoginForm.async';

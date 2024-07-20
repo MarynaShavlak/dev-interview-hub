@@ -16,7 +16,7 @@ interface OverlayProps {
 
 
 ## Usage Example 
-```typescript
+```jsx
 import { Overlay } from '@/shared/components/Overlay/Overlay';
 
 const MyComponent = () => {
