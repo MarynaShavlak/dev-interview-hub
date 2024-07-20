@@ -21,13 +21,13 @@ type DivProps = DetailedHTMLProps<
 >;
 
 export interface FlexProps extends DivProps {
-    className?: string;
     children: ReactNode;
-    justify?: FlexJustify;
-    align?: FlexAlign;
     direction: FlexDirection;
     wrap?: FlexWrap;
+    justify?: FlexJustify;
+    align?: FlexAlign;
     gap?: FlexGap;
+    className?: string;
     max?: boolean;
     fullHeight?: boolean;
 }
@@ -38,7 +38,7 @@ export const Flex = (props: FlexProps) => {
         children,
         justify = 'start',
         align = 'center',
-        direction = 'row',
+        direction,
         gap,
         wrap = 'nowrap',
         max,
