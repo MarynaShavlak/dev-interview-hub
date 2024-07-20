@@ -11,18 +11,18 @@ export type ButtonSize = 's' | 'm' | 'l' | 'xl';
 ## Props 
 The **`Button`** component extends **`ButtonHTMLAttributes<HTMLButtonElement>`** and it  accepts the following props:
 
-| Prop         | Type                                        | Required / Optional | Description                                                                 |
-|--------------|---------------------------------------------|:-------------------:|-----------------------------------------------------------------------------|
-| `className`  | `string`                                    | Optional            | Additional custom class names to style the button.                          |
-| `variant`    | `ButtonVariant` | Optional (default: `'outline'`) | Determines the visual style of the button.                                  |
-| `square`     | `boolean`                                   | Optional            | If `true`, the button will have a square shape.                             |
-| `size`       | `ButtonSize`                 | Optional (default: `'m'`) | Specifies the size of the button.                                           |
-| `disabled`   | `boolean`                                   | Optional            | If `true`, the button will be disabled and non-interactive.                 |
-| `children`   | `ReactNode`                                 | Optional            | The content to be displayed inside the button.                              |
-| `max`        | `boolean`                                   | Optional            | If `true`, the button will expand to take the full available width.         |
-| `addonLeft`  | `ReactNode`                                 | Optional            | Content to be placed on the left side of the button.                        |
-| `addonRight` | `ReactNode`                                 | Optional            | Content to be placed on the right side of the button.                       |
-| `otherProps` | `ButtonHTMLAttributes<HTMLButtonElement>`   | Optional            | Any additional button HTML attributes.                                      |
+| Prop         | Type                                        |          Required / Optional          | Description                                                                 |
+|--------------|---------------------------------------------|:-------------------------------------:|-----------------------------------------------------------------------------|
+| `className`  | `string`                                    |               Optional                | Additional custom class names to style the button.                          |
+| `variant`    | `ButtonVariant` | Optional <br/> (default: `'outline'`) | Determines the visual style of the button.                                  |
+| `square`     | `boolean`                                   |               Optional                | If `true`, the button will have a square shape.                             |
+| `size`       | `ButtonSize`                 |      Optional <br/> (default: `'m'`)       | Specifies the size of the button.                                           |
+| `disabled`   | `boolean`                                   |               Optional                | If `true`, the button will be disabled and non-interactive.                 |
+| `children`   | `ReactNode`                                 |               Optional                | The content to be displayed inside the button.                              |
+| `max`        | `boolean`                                   |               Optional                | If `true`, the button will expand to take the full available width.         |
+| `addonLeft`  | `ReactNode`                                 |               Optional                | Content to be placed on the left side of the button.                        |
+| `addonRight` | `ReactNode`                                 |               Optional                | Content to be placed on the right side of the button.                       |
+| `otherProps` | `ButtonHTMLAttributes<HTMLButtonElement>`   |               Optional                | Any additional button HTML attributes.                                      |
 
 ## Features
 - **Customizable Variants**: Choose from multiple visual styles (**'clear'**, **'outline'**, **filled'**, **'save'**, **'cancel'**), allowing the button to fit different contexts and design needs.
