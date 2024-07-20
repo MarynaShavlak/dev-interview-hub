@@ -1,14 +1,5 @@
-import React, {
-    FocusEvent,
-    ChangeEvent,
-    InputHTMLAttributes,
-    memo,
-    ReactNode,
-    useEffect,
-    useRef,
-    useState,
-} from 'react';
-import { trimText } from '@/shared/lib/trimText/trimText';
+import React, { InputHTMLAttributes, memo, ReactNode } from 'react';
+import { useInput } from '@/shared/lib/hooks/useInput/useInput';
 import { HStack } from '../Stack';
 import { classNames, Mods } from '@/shared/lib/classNames/classNames';
 import { Text } from '../Text';
@@ -50,33 +41,8 @@ export const Input = memo((props: InputProps) => {
         digitsOnly = false,
         ...otherProps
     } = props;
-    const ref = useRef<HTMLInputElement>(null);
-    const [isFocused, setIsFocused] = useState(false);
-
-    useEffect(() => {
-        if (autofocus) {
-            setIsFocused(true);
-            ref.current?.focus();
-        }
-    }, [autofocus]);
-
-    const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        if (digitsOnly && !/^\d*$/.test(e.target.value)) {
-            return;
-        }
-
-        onChange?.(e.target.value);
-    };
-
-    const onBlurHandler = (e: FocusEvent<HTMLInputElement>) => {
-        setIsFocused(false);
-        onChange?.(trimText(e.target.value));
-    };
-
-    const onFocus = () => {
-        setIsFocused(true);
-    };
-
+    const { ref, isFocused, onChangeHandler, onBlurHandler, onFocus } =
+        useInput({ autofocus, digitsOnly, onChange });
     const mods: Mods = {
         [cls.readonly]: readonly,
         [cls.focused]: isFocused,

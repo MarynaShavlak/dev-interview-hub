@@ -33,7 +33,7 @@ An object with the following properties:
 
 
 ## Usage Example
-```typescript
+```jsx
 import React, { ReactNode, useState } from 'react';
 import { useModal } from '@/shared/lib/hooks/useModal/useModal';
 import { Portal } from '../Portal/Portal';
@@ -60,10 +60,10 @@ const Modal = (props: ModalProps) => {
 
     return (
         <Portal element={document.getElementById('app')}>
-                <div className={isClosing && cls.isClosing}>
-                    <Overlay onClick={close} />
-                    <div>{children}</div>
-                </div>
+           <div className={isClosing && cls.isClosing}>
+              <Overlay onClick={close} />
+              <div>{children}</div>
+           </div>
         </Portal>
     );
 };
