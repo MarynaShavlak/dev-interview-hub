@@ -3,10 +3,8 @@ import { trimText } from '../../trimText/trimText';
 
 interface UseInputProps {
     autofocus?: boolean;
-    readonly?: boolean;
     digitsOnly?: boolean;
     onChange?: (value: string) => void;
-    value?: string | number;
 }
 
 export function useInput({ autofocus, digitsOnly, onChange }: UseInputProps) {
