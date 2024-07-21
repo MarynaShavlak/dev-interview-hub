@@ -1,4 +1,4 @@
-import React, { memo, ReactNode } from 'react';
+import { memo, ReactNode } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import {
     AnimationProvider,
@@ -12,54 +12,53 @@ import { Portal } from '../Portal/Portal';
 import cls from './Drawer.module.scss';
 
 interface DrawerProps {
-    className?: string;
     children: ReactNode;
     isOpen: boolean;
     onClose?: () => void;
     lazy?: boolean;
+    className?: string;
 }
 
 const height = window.innerHeight - 100;
 
-const DrawerContent = memo(
-    ({ className, children, isOpen, onClose }: DrawerProps) => {
-        const { onCloseHandler, onDragHandler, style } = useDrawerAnimation({
-            isOpen,
-            onClose,
-            height,
-        });
-        const { theme } = useTheme();
-        const { Spring } = useAnimationLibs();
+const DrawerContent = memo((props: DrawerProps) => {
+    const { className, children, isOpen, onClose, lazy } = props;
+    const { onCloseHandler, onDragHandler, style } = useDrawerAnimation({
+        isOpen,
+        onClose,
+        height,
+    });
+    const { theme } = useTheme();
+    const { Spring } = useAnimationLibs();
 
-        if (!isOpen) return null;
+    if (!isOpen) return null;
 
-        const drawerClasses = classNames(cls.Drawer, {}, [
-            className,
-            theme,
-            'app_drawer',
-            toggleFeatures({
-                name: 'isAppRedesigned',
-                on: () => cls.drawerRedesigned,
-                off: () => cls.drawerDeprecated,
-            }),
-        ]);
+    const drawerClasses = classNames(cls.Drawer, {}, [
+        className,
+        theme,
+        'app_drawer',
+        toggleFeatures({
+            name: 'isAppRedesigned',
+            on: () => cls.drawerRedesigned,
+            off: () => cls.drawerDeprecated,
+        }),
+    ]);
 
-        return (
-            <Portal element={document.getElementById('app') ?? document.body}>
-                <div className={drawerClasses}>
-                    <Overlay onClick={() => onCloseHandler()} />
-                    <Spring.a.div
-                        className={cls.sheet}
-                        style={style}
-                        {...onDragHandler()}
-                    >
-                        {children}
-                    </Spring.a.div>
-                </div>
-            </Portal>
-        );
-    },
-);
+    return (
+        <Portal element={document.getElementById('app') ?? document.body}>
+            <div className={drawerClasses}>
+                <Overlay onClick={() => onCloseHandler()} />
+                <Spring.a.div
+                    className={cls.sheet}
+                    style={style}
+                    {...onDragHandler()}
+                >
+                    {children}
+                </Spring.a.div>
+            </div>
+        </Portal>
+    );
+});
 
 const DrawerAsync = (props: DrawerProps) => {
     const { isLoaded } = useAnimationLibs();
