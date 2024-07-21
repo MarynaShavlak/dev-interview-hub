@@ -7,7 +7,7 @@ The `InteractiveStar` component is a versatile star icon used in interactive sta
 interface InteractiveStarProps extends TestProps {
     starNumber: number;
     size: number;
-    currentStarsCount: number;
+    activeStarsCount: number;
     isSelected: boolean;
     onHover: (starNumber: number) => () => void;
     onLeave: () => void;
@@ -21,7 +21,7 @@ The `InteractiveStar` component extends `TestProps` and accepts the following pr
 |-------------------|-------------------------------------|----------------------|----------------------------------------------------|
 | `starNumber`       | `number`                            | Required             | The number representing the star's position (e.g., 1, 2, 3). |
 | `size`             | `number`                            | Required             | The size of the star icon in pixels.               |
-| `currentStarsCount`| `number`                            | Required             | The total number of stars currently selected or hovered. |
+| `activeStarsCount`| `number`                            | Required             | The total number of stars currently selected or hovered. |
 | `isSelected`       | `boolean`                           | Required             | Indicates whether the star is selected.           |
 | `onHover`          | `(starNumber: number) => () => void` | Required             | Callback function to handle hover events, returning a function that handles hover action. |
 | `onLeave`          | `() => void`                         | Required             | Callback function to handle mouse leave events.    |
@@ -57,7 +57,7 @@ const StarRating = () => {
             <InteractiveStar
                 starNumber={1}
                 size={24}
-                currentStarsCount={3}
+                activeStarsCount={3}
                 isSelected={true}
                 onHover={handleHover}
                 onLeave={handleLeave}
@@ -66,7 +66,7 @@ const StarRating = () => {
             <InteractiveStar
                 starNumber={2}
                 size={24}
-                currentStarsCount={3}
+                activeStarsCount={3}
                 isSelected={false}
                 onHover={handleHover}
                 onLeave={handleLeave}

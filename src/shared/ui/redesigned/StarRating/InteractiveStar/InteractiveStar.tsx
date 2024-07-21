@@ -9,7 +9,7 @@ import StarIcon from '@/shared/assets/icons/star.svg';
 interface InteractiveStarProps extends TestProps {
     starNumber: number;
     size: number;
-    currentStarsCount: number;
+    activeStarsCount: number;
     isSelected: boolean;
     onHover: (starNumber: number) => () => void;
     onLeave: () => void;
@@ -19,7 +19,7 @@ interface InteractiveStarProps extends TestProps {
 export const InteractiveStar = (props: InteractiveStarProps) => {
     const {
         starNumber,
-        currentStarsCount,
+        activeStarsCount,
         isSelected,
         onHover,
         onLeave,
@@ -30,7 +30,7 @@ export const InteractiveStar = (props: InteractiveStarProps) => {
     const starClasses = classNames(
         cls.starIcon,
         { [cls.selected]: isSelected },
-        [currentStarsCount >= starNumber ? cls.hovered : cls.normal],
+        [activeStarsCount >= starNumber ? cls.hovered : cls.normal],
     );
     const commonProps = {
         className: starClasses,
@@ -42,7 +42,7 @@ export const InteractiveStar = (props: InteractiveStarProps) => {
         onMouseEnter: onHover(starNumber),
         onClick: onClick(starNumber),
         'data-testid': `StarRating.${starNumber}`,
-        'data-selected': currentStarsCount >= starNumber,
+        'data-selected': activeStarsCount >= starNumber,
     };
 
     return (

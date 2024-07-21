@@ -25,7 +25,7 @@ export const StarRating = memo((props: StarRatingProps) => {
         onSelect,
         disabled,
     } = props;
-    const { currentStarsCount, isSelected, onHover, onLeave, onClick } =
+    const { activeStarsCount, isSelected, onHover, onLeave, onClick } =
         useStarRating({ selectedStars, onSelect });
 
     const mainClass = toggleFeatures({
@@ -41,7 +41,7 @@ export const StarRating = memo((props: StarRatingProps) => {
         : (starNumber: number) => (
               <InteractiveStar
                   starNumber={starNumber}
-                  currentStarsCount={currentStarsCount}
+                  activeStarsCount={activeStarsCount}
                   isSelected={isSelected}
                   onHover={onHover}
                   onLeave={onLeave}
