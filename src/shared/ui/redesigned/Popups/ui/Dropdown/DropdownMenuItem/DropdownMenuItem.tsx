@@ -1,5 +1,5 @@
 import { Menu } from '@headlessui/react';
-import { Fragment, ReactNode } from 'react';
+import { Fragment, memo, ReactNode } from 'react';
 import { AppLink } from '../../../../AppLink';
 import { classNames } from '@/shared/lib/classNames/classNames';
 
@@ -17,8 +17,12 @@ interface DropdownMenuItemProps {
     item: DropdownItem;
 }
 
-export function DropdownMenuItem({ item }: DropdownMenuItemProps) {
-    const content = ({ active }: { active: boolean }) => (
+interface ContentProps {
+    active: boolean;
+}
+
+export const DropdownMenuItem = memo(({ item }: DropdownMenuItemProps) => {
+    const content = ({ active }: ContentProps) => (
         <button
             type="button"
             disabled={item.disabled}
@@ -44,4 +48,4 @@ export function DropdownMenuItem({ item }: DropdownMenuItemProps) {
             {content}
         </Menu.Item>
     );
-}
+});
