@@ -1589,7 +1589,7 @@
           ]
         },
         {
-          "id": "41",
+          "id": "64758",
           "type": "CODE",
           "code": "function createPerson(name) {\n\n  var age = 0;\n\n  function increaseAge() {\n\n    age++;\n\n  }\n\n  return {\n\n    getName: function() {\n\n      return name;\n\n    },\n\n    getAge: function() {\n\n      return age;\n\n    },\n\n    celebrateBirthday: function() {\n\n      increaseAge();\n\n    }\n\n  };\n\n}\n\nvar person = createPerson('John');\n\nconsole.log(person.getName()); // Виводить \"John\"\n\nconsole.log(person.getAge()); // Виводить 0\n\nperson.celebrateBirthday();\n\nconsole.log(person.getAge()); // Виводить 1"
         },

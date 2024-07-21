@@ -29,7 +29,6 @@ export const RedesignedListViewItem = memo((props: ListViewItemProps) => {
         (block) => block.type === ArticleBlockType.TEXT,
     ) as ArticleTextBlock;
     const additionalClasses = getFlexClasses({ vStack: true, gap: '16' });
-    console.log(additionalClasses);
 
     return (
         <div
