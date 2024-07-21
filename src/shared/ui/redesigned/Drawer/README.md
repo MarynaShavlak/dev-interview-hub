@@ -37,6 +37,13 @@ The `Drawer` component accepts the following props:
 
 4.  **Conditional Rendering**: The `lazy` prop ensures that the drawer content is only rendered when needed, optimizing performance and resource usage.
 
+## Library Preloading
+The `Drawer` component utilizes certain animation libraries for smooth transitions. To ensure these libraries are asynchronously loaded before rendering the drawer content, a wrapper component named `DrawerAsync` is used. The `DrawerAsync` component handles the asynchronous loading of the necessary libraries. Here is an outline of how it works:
+
+1. **Library Preloading**: The `DrawerAsync` component checks if the required libraries are loaded. If not, it displays a loading placeholder (e.g., a spinner or skeleton) until the libraries are ready.
+2. **Content Rendering**: Once the libraries are loaded, the actual drawer content is rendered, ensuring smooth animations without any delay.
+This approach guarantees that the animation libraries are fully loaded before the drawer content is displayed, providing a seamless user experience.
+
 
 ## Usage Example
 ```jsx
