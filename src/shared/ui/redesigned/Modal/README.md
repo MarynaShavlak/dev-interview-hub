@@ -4,9 +4,8 @@
 The **`Modal`** component is a versatile and customizable modal dialog implementation for React applications. It provides an interface for displaying content in an overlay that can be opened and closed, with additional features for lazy rendering and theme support.
 
 
-## Interface
-The **`Modal`** component accepts the following props:
 
+## Type Definition 
 ```typescript
 interface ModalProps {
     className?: string;
@@ -15,13 +14,19 @@ interface ModalProps {
     onClose?: () => void;
     lazy?: boolean;
 }
-}
 ```
-- **`className`**: _Optional_. Custom class name for additional styling.
-- **`children`**: _Optional_. The content to be displayed inside the modal.
-- **`isOpen`**: _Optional_. Controls whether the modal is open or closed.
-- **`lazy`**: _Optional_. If true, the modal will not mount in DOM until it is opened.
-- **`onClose`**: _Optional_. Callback function to handle modal close actions.
+
+## Props
+The **`Modal`** component accepts the following props:
+
+| Prop       | Type       | Required / Optional | Description                                          |
+|------------|------------|----------------------|------------------------------------------------------|
+| `className` | `string`   | Optional             | Custom class name for additional styling.           |
+| `children`  | `ReactNode` | Optional             | The content to be displayed inside the modal.       |
+| `isOpen`    | `boolean`  | Optional             | Controls whether the modal is open or closed.       |
+| `lazy`      | `boolean`  | Optional             | If true, the modal will not mount in DOM until it is opened. |
+| `onClose`   | `() => void` | Optional             | Callback function to handle modal close actions.    |
+
 
 
 ## Features

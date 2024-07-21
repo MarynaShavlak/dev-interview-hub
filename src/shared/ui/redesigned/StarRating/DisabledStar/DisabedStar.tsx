@@ -1,10 +1,16 @@
 import StarIcon from '@/shared/assets/icons/star.svg';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
-import { Icon as IconDeprecated } from '../../deprecated/Icon';
-import { Icon } from '../Icon';
-import cls from './StarRating.module.scss';
+import { TestProps } from '@/shared/types/tests';
+import { Icon as IconDeprecated } from '../../../deprecated/Icon';
+import { Icon } from '../../Icon';
+import cls from '../StarRating.module.scss';
 
-export const renderDisabledStar = (starNumber: number, size: number) => {
+interface StarProps extends TestProps {
+    starNumber: number;
+    size: number;
+}
+
+export const DisabledStar = ({ starNumber, size }: StarProps) => {
     const commonProps = {
         className: cls.starDisabledIcon,
         Svg: StarIcon,

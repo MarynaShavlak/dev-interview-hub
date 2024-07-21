@@ -1,6 +1,6 @@
 import { memo } from 'react';
 import { renderStarInteractive } from './renderStarInteractive';
-import { renderDisabledStar } from './renderDisabedStar';
+import { DisabledStar } from './DisabledStar/DisabedStar';
 import { useStarRating } from '@/shared/lib/hooks/useStarRating/useStarRating';
 import { toggleFeatures } from '@/shared/lib/features';
 import { Each } from '@/shared/lib/components/Each/Each';
@@ -35,7 +35,9 @@ export const StarRating = memo((props: StarRatingProps) => {
     });
 
     const renderStars = disabled
-        ? (starNumber: number) => renderDisabledStar(starNumber, size)
+        ? (starNumber: number) => (
+              <DisabledStar starNumber={starNumber} size={size} />
+          )
         : (starNumber: number) =>
               renderStarInteractive({
                   starNumber,
