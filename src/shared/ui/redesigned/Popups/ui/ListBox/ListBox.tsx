@@ -1,7 +1,7 @@
 import { Listbox as HListBox } from '@headlessui/react';
 import { useMemo } from 'react';
 import { Each } from '@/shared/lib/components/Each/Each';
-import { SelectedOption } from './SelectedOption/SelectedOption';
+import { ListBoxTrigger } from './ListBoxTrigger/ListBoxTrigger';
 import { ListBoxItem, Option } from './Option/Option';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { DropdownDirection } from '@/shared/types/ui';
@@ -57,7 +57,7 @@ export function ListBox<T extends string>(props: ListBoxProps<T>) {
                 value={value}
                 onChange={onChange}
             >
-                <SelectedOption
+                <ListBoxTrigger
                     selectedItem={selectedItem}
                     defaultValue={defaultValue}
                     readonly={readonly}
