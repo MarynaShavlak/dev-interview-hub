@@ -32,3 +32,4 @@ root.render(
     </BrowserRouter>,
 );
 export { Theme } from '@/shared/const/theme';
+export { useDrawerAnimation } from '@/shared/lib/hooks/useDrawerAnimation/useDrawerAnimation';
