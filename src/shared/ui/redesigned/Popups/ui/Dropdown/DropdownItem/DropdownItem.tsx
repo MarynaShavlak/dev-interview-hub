@@ -6,22 +6,22 @@ import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from '../Dropdown.module.scss';
 import popupCls from '../../../styles/popup.module.scss';
 
-export interface DropdownItem {
+export interface DropdownItemProps {
     disabled?: boolean;
     content?: ReactNode;
     onClick?: () => void;
     href?: string;
 }
 
-interface DropdownMenuItemProps {
-    item: DropdownItem;
+interface DropdownItemInterface {
+    item: DropdownItemProps;
 }
 
 interface ContentProps {
     active: boolean;
 }
 
-export const DropdownMenuItem = memo(({ item }: DropdownMenuItemProps) => {
+export const DropdownItem = memo(({ item }: DropdownItemInterface) => {
     const content = ({ active }: ContentProps) => (
         <button
             type="button"

@@ -1,10 +1,8 @@
 import { Menu } from '@headlessui/react';
 import { ReactNode } from 'react';
+import { DropdownItem, DropdownItemProps } from './DropdownItem/DropdownItem';
 import { Each } from '@/shared/lib/components/Each/Each';
-import {
-    DropdownItem,
-    DropdownMenuItem,
-} from './DropdownMenuItem/DropdownMenuItem';
+
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { DropdownDirection } from '@/shared/types/ui';
 import cls from './Dropdown.module.scss';
@@ -12,10 +10,10 @@ import { mapDirectionClass } from '../../styles/consts';
 import popupCls from '../../styles/popup.module.scss';
 
 interface DropdownProps {
-    className?: string;
-    items: DropdownItem[];
-    direction?: DropdownDirection;
+    items: DropdownItemProps[];
     trigger: ReactNode;
+    direction?: DropdownDirection;
+    className?: string;
 }
 
 export const Dropdown = (props: DropdownProps) => {
@@ -36,7 +34,7 @@ export const Dropdown = (props: DropdownProps) => {
                 <Each
                     of={items}
                     render={(item, index) => (
-                        <DropdownMenuItem
+                        <DropdownItem
                             key={`dropdown-key-${index}`}
                             item={item}
                         />
