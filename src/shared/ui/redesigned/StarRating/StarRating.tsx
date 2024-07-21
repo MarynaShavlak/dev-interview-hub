@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import { renderStarInteractive } from './renderStarInteractive';
+import { InteractiveStar } from './InteractiveStar/InteractiveStar';
 import { DisabledStar } from './DisabledStar/DisabedStar';
 import { useStarRating } from '@/shared/lib/hooks/useStarRating/useStarRating';
 import { toggleFeatures } from '@/shared/lib/features';
@@ -38,16 +38,17 @@ export const StarRating = memo((props: StarRatingProps) => {
         ? (starNumber: number) => (
               <DisabledStar starNumber={starNumber} size={size} />
           )
-        : (starNumber: number) =>
-              renderStarInteractive({
-                  starNumber,
-                  currentStarsCount,
-                  isSelected,
-                  onHover,
-                  onLeave,
-                  onClick,
-                  size,
-              });
+        : (starNumber: number) => (
+              <InteractiveStar
+                  starNumber={starNumber}
+                  currentStarsCount={currentStarsCount}
+                  isSelected={isSelected}
+                  onHover={onHover}
+                  onLeave={onLeave}
+                  onClick={onClick}
+                  size={size}
+              />
+          );
 
     return (
         <div className={classNames(mainClass, {}, [className])}>

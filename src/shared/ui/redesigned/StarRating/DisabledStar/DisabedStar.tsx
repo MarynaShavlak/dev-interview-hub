@@ -5,12 +5,12 @@ import { Icon as IconDeprecated } from '../../../deprecated/Icon';
 import { Icon } from '../../Icon';
 import cls from '../StarRating.module.scss';
 
-interface StarProps extends TestProps {
+interface DisabledStarProps extends TestProps {
     starNumber: number;
     size: number;
 }
 
-export const DisabledStar = ({ starNumber, size }: StarProps) => {
+export const DisabledStar = ({ starNumber, size }: DisabledStarProps) => {
     const commonProps = {
         className: cls.starDisabledIcon,
         Svg: StarIcon,
