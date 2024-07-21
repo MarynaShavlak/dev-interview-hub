@@ -1,5 +1,5 @@
 # useDrawerAnimation hook
-A custom React hook designed to manage the animation state and behavior of a drawer component. It utilizes animation libraries for smooth transitions and gesture handling to control the drawer's open and close actions.
+A custom React hook designed to manage the animation state and behavior of a drawer component. It utilizes animation libraries (**[Spring](https://www.react-spring.dev/)** and **[Gesture](https://use-gesture.netlify.app/)**) for smooth transitions and gesture handling to control the drawer's open and close actions.
 
 ## Parameters
 - `isOpen`: _Required_. A boolean indicating whether the drawer is currently open.
