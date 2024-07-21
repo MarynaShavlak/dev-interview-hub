@@ -1,6 +1,23 @@
 import { useCallback, useEffect } from 'react';
 import { useAnimationLibs } from '../../components/AnimationProvider';
 
+/**
+ * Custom hook for managing the animation and gesture handling of a drawer component.
+ * @param {Object} props - Configuration object for the drawer animation.
+ * @param {boolean} props.isOpen - A boolean indicating whether the drawer is currently open.
+ * @param {number} props.height - The height of the drawer in pixels.
+ * @param {() => void} [props.onClose] - Optional callback function that is invoked when the drawer is closed.
+ *
+ * @returns {{
+ *    style: React.CSSProperties;
+ *    onCloseHandler: (velocity?: number) => void;
+ *    onDragHandler: (state: GestureState) => void;
+ *  }} An object with the following properties:
+ *  * `style`: CSS style properties to be applied to the drawer, including its position and display settings.
+ *  * `onCloseHandler`: Function to animate closing the drawer, with optional velocity control.
+ *  * `onDragHandler`: Gesture handler function for dragging the drawer, managing its position based on user interaction.
+ */
+
 interface UseDrawerAnimationProps {
     isOpen: boolean;
     height: number;
@@ -23,6 +40,13 @@ export const useDrawerAnimation = (props: UseDrawerAnimationProps) => {
         if (isOpen) openDrawer();
     }, [isOpen, openDrawer]);
 
+    const display = y.to((py) => (py < height ? 'block' : 'none'));
+    const style = {
+        display,
+        bottom: `calc(-100vh + ${height - 100}px)`,
+        y,
+    };
+
     const onCloseHandler = (velocity = 0) => {
         api.start({
             y: height,
@@ -35,7 +59,7 @@ export const useDrawerAnimation = (props: UseDrawerAnimationProps) => {
         });
     };
 
-    const handleDrag = Gesture.useDrag(
+    const onDragHandler = Gesture.useDrag(
         ({
             last,
             velocity: [, vy],
@@ -66,9 +90,8 @@ export const useDrawerAnimation = (props: UseDrawerAnimationProps) => {
     );
 
     return {
-        y,
-        openDrawer,
         onCloseHandler,
-        handleDrag,
+        onDragHandler,
+        style,
     };
 };

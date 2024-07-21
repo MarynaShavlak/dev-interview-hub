@@ -2,9 +2,9 @@
 A custom React hook designed to manage the state and behavior of an input field. It simplifies handling input changes, focus management, and supports input validation based on given props.
 
 ## Parameters
-- `autofocus:`A boolean flag indicating whether the input should automatically focus on mount.
-- `digitsOnly`: A boolean flag to restrict input to digits only. If set to true, non-numeric input will be ignored.
-- `onChange`: A callback function that is invoked whenever the input value changes. Receives the current value as a parameter.
+- `autofocus:`_Optional_. A boolean flag indicating whether the input should automatically focus on mount.
+- `digitsOnly`: _Optional_. A boolean flag to restrict input to digits only. If set to true, non-numeric input will be ignored.
+- `onChange`: _Optional_.  A callback function that is invoked whenever the input value changes. Receives the current value as a parameter.
 
 ## Returns
 An object with the following properties:

@@ -23,7 +23,7 @@ const height = window.innerHeight - 100;
 
 const DrawerContent = memo(
     ({ className, children, isOpen, onClose }: DrawerProps) => {
-        const { y, onCloseHandler, handleDrag } = useDrawerAnimation({
+        const { onCloseHandler, onDragHandler, style } = useDrawerAnimation({
             isOpen,
             onClose,
             height,
@@ -33,7 +33,6 @@ const DrawerContent = memo(
 
         if (!isOpen) return null;
 
-        const display = y.to((py) => (py < height ? 'block' : 'none'));
         const drawerClasses = classNames(cls.Drawer, {}, [
             className,
             theme,
@@ -51,12 +50,8 @@ const DrawerContent = memo(
                     <Overlay onClick={() => onCloseHandler()} />
                     <Spring.a.div
                         className={cls.sheet}
-                        style={{
-                            display,
-                            bottom: `calc(-100vh + ${height - 100}px)`,
-                            y,
-                        }}
-                        {...handleDrag()}
+                        style={style}
+                        {...onDragHandler()}
                     >
                         {children}
                     </Spring.a.div>
