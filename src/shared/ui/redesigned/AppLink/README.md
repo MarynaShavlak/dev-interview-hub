@@ -1,4 +1,4 @@
-# AppLink Component
+# AppLink
 ## Overview
 The `AppLink` component is a versatile and customizable link component designed for React applications. It leverages `react-router-dom` to provide navigation capabilities and supports various visual styles and states, making it a fundamental component for creating interactive and consistent user interfaces.
 

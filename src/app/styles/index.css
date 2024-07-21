@@ -1,0 +1,177 @@
+@charset "UTF-8";
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+li {
+  list-style: none;
+}
+
+input,
+button,
+textarea,
+select {
+  margin: 0;
+  font: inherit;
+}
+
+a {
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4.h5,
+h6 {
+  font-weight: 300;
+}
+
+:root {
+  --font-family-main: consolas, "Times New Roman", serif;
+  --font-family-text-redesigned: "Nunito Sans", sans-serif;
+  --font-family-header-redesigned: "Roboto", sans-serif;
+  --font-size-s: 12px;
+  --font-line-s: 20px;
+  --font-s: var(--font-size-s) / var(--font-line-s) var(--font-family-main);
+  --font-size-m: 16px;
+  --font-line-m: 24px;
+  --font-m: var(--font-size-m) / var(--font-line-m) var(--font-family-main);
+  --font-size-l: 24px;
+  --font-line-l: 32px;
+  --font-l: var(--font-size-l) / var(--font-line-l) var(--font-family-main);
+  --font-size-xl: 32px;
+  --font-line-xl: 40px;
+  --font-xl: var(--font-size-xl) / var(--font-line-xl) var(--font-family-main);
+  --navbar-height: 80px;
+  --sidebar-width: 300px;
+  --sidebar-width-collapsed: 80px;
+  --modal-z-index: 1000;
+  --overlay-z-index: 100;
+  --overlay-color: rgba(0 0 0 / 60%);
+  --red-light: #f00;
+  --red-dark: #ce0505;
+  --font-s-redesigned: var(--font-size-s) / var(--font-line-s) var(--font-family-text-redesigned);
+  --font-m-redesigned: var(--font-size-m) / var(--font-line-m) var(--font-family-text-redesigned);
+  --font-l-redesigned: var(--font-size-l) / var(--font-line-l) var(--font-family-header-redesigned);
+  --font-xl-redesigned: var(--font-size-xl) / var(--font-line-xl) var(--font-family-header-redesigned);
+}
+
+:root {
+  --bg-color: #e8e8ea;
+  --inverted-bg-color: #090949;
+  --primary-color: #0232c2;
+  --secondary-color: #0449e0;
+  --inverted-primary-color: #04ff04;
+  --inverted-secondary-color: #049604;
+  --dark-bg-redesigned: #fff;
+  --bg-redesigned: #eff5f6;
+  --light-bg-redesigned: #e2eef1;
+  --text-redesigned: #141c1f;
+  --hint-redesigned: #adbcc0;
+  --cancel-redesigned: #f77;
+  --save-redesigned: #62de85;
+  --icon-redesigned: #5ed3f3;
+  --accent-redesigned: #00c8ff;
+  --skeleton-color: #fff;
+  --skeleton-shadow: rgba(0 0 0 / 20%);
+  --code-bg: #fff;
+  --card-bg: #d5d5d7;
+  --listbox-bg: #d5d5d7;
+}
+
+.app_dark_theme {
+  --bg-color: #090949;
+  --inverted-bg-color: #e8e8ea;
+  --primary-color: #04ff04;
+  --secondary-color: #049604;
+  --inverted-primary-color: #0232c2;
+  --inverted-secondary-color: #0452ff;
+  --dark-bg-redesigned: #090f11;
+  --bg-redesigned: #0c1214;
+  --light-bg-redesigned: #151c1f;
+  --text-redesigned: #dbdbdb;
+  --hint-redesigned: #555;
+  --cancel-redesigned: #d95757;
+  --save-redesigned: #6cd98b;
+  --icon-redesigned: #74a2b2;
+  --accent-redesigned: #5ed3f3;
+  --skeleton-color: #1515ad;
+  --skeleton-shadow: #2b2be8;
+  --code-bg: #1212a1;
+  --card-bg: #0d0d6b;
+  --listbox-bg: #0d0d6b;
+}
+
+.app_orange_theme {
+  --bg-color: #faf4fb;
+  --inverted-bg-color: #bd5012;
+  --primary-color: #9a1a0e;
+  --secondary-color: #d01f0e;
+  --inverted-primary-color: #deccc2;
+  --inverted-secondary-color: #faf4fb;
+  --dark-bg-redesigned: #fff3d6;
+  --bg-redesigned: #f0c048;
+  --light-bg-redesigned: #f2d791;
+  --text-redesigned: #1b1311;
+  --hint-redesigned: #b8b2a2;
+  --cancel-redesigned: #ff5e5e;
+  --save-redesigned: #52fa81;
+  --icon-redesigned: #4875f0;
+  --accent-redesigned: #1d59ff;
+  --skeleton-color: #fff;
+  --skeleton-shadow: rgba(0 0 0 / 20%);
+  --code-bg: #fff;
+  --card-bg: #d5d5d7;
+  --listbox-bg: #d5d5d7;
+}
+
+.app {
+  font: var(--font-m);
+  color: var(--primary-color);
+  background: var(--bg-color);
+  min-height: 100vh;
+}
+
+.app_redesigned {
+  background: var(--bg-redesigned);
+  min-height: 100vh;
+  font: var(--font-m-redesigned);
+  color: var(--text-redesigned);
+}
+
+.content-page {
+  display: flex;
+}
+
+*::-webkit-scrollbar {
+  width: 12px; /* ширина scrollbar */
+  height: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--light-bg-redesigned); /* колір дорожки */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--icon-redesigned); /* колір плашки */
+  border-radius: 20px; /* закруглення плашки */
+  border: 2px solid var(--accent-redesigned); /* padding навколо плашки */
+}
+
+.app *::-webkit-scrollbar {
+  width: 12px; /* ширина scrollbar */
+  height: 8px;
+}
+
+.app *::-webkit-scrollbar-track {
+  background: var(--card-bg); /* колір дорожки */
+}
+
+.app *::-webkit-scrollbar-thumb {
+  background-color: var(--inverted-primary-color); /* колір плашки */
+  border-radius: 20px; /* закруглення плашки */
+  border: 2px solid var(--primary-color); /* padding навколо плашки */
+}/*# sourceMappingURL=index.css.map */

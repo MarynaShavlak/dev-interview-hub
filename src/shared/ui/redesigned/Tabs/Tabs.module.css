@@ -1,0 +1,9 @@
+.Tabs {
+  display: flex;
+  gap: 8px;
+  cursor: pointer;
+}
+.Tabs .tab {
+  min-width: 80px;
+  padding: 6px 16px;
+}/*# sourceMappingURL=Tabs.module.css.map */

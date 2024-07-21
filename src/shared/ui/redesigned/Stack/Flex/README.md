@@ -1,4 +1,4 @@
-# Stack Component
+# Flex
 ## Overview
 The `Flex` component is a flexible and powerful layout tool for React projects. It allows developers to create stackable elements with customizable alignment, spacing, and direction, making it an essential component for building responsive and well-structured user interfaces.
 component extends `DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>` to allow standard div props, such as `role`, to be passed, providing the ability to use a `div` element with semantic roles like `navigation`.
@@ -55,9 +55,9 @@ import { Flex} from '@/shared/ui/redesigned/Stack/Flex';
 
 export const NavigationStack = () => {
     return (
-        <Stack role="navigation" gap="8">
+        <Flex role="navigation" gap="8">
             {itemsList}
-        </Stack>
+        </Flex>
     );
 };
 ```

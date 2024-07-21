@@ -1,4 +1,4 @@
-# Input Component 
+# Input
 The `Input` component is a versatile and customizable form input element designed to handle various user input scenarios in React applications. It provides support for various input types, sizes, and additional content, making it a valuable component for creating flexible and interactive user interfaces.
 
 ## Type Definitions

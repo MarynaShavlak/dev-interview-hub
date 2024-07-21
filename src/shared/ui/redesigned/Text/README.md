@@ -1,4 +1,4 @@
-# Text Component
+# Text
 ## Overview
 The `Text` component is designed to provide a flexible and consistent way to display text content in a React application. It supports various visual styles, sizes, and alignment options, making it suitable for displaying headings, paragraphs, error messages, and accentuated text. The component allows developers to control the appearance of text through props, ensuring that the text adheres to the application's design system. 
 `Text` component helps maintain semantic HTML structure while offering extensive customization. This component is ideal for use in interfaces that require clear and visually appealing text presentation, such as forms, notifications, and content sections.

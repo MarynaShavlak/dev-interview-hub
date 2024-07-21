@@ -1,0 +1,29 @@
+.MainLayout {
+  display: grid;
+  gap: 16px;
+  grid-template-areas: "left content right";
+  grid-template-columns: min-content 1fr min-content;
+}
+
+.left {
+  grid-area: left;
+}
+
+.content {
+  grid-area: content;
+  max-width: 1200px;
+  justify-self: center;
+  width: 100%;
+}
+
+.right {
+  grid-area: right;
+}
+
+.left,
+.right {
+  position: sticky;
+  top: 32px;
+  height: -moz-fit-content;
+  height: fit-content;
+}/*# sourceMappingURL=StickyContentLayout.module.css.map */

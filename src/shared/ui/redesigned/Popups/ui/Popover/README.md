@@ -1,4 +1,4 @@
-# Popover Component 
+# Popover
 ## Overview
 The `Popover` component is a flexible and highly customizable UI element designed to display content in a floating panel. It integrates with the **[Headless UI](https://headlessui.com/)** library to provide an accessible and interactive way to present additional information or actions triggered by a button or other elements. The `Popover` component is ideal for creating dropdowns, tooltips, and contextual menus, offering versatile placement options and a seamless user experience.
 

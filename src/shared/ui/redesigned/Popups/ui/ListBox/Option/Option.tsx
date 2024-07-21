@@ -5,7 +5,7 @@ import { HStack } from '../../../../Stack';
 import CheckedIcon from '@/shared/assets/icons/done-20-20.svg';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import popupCls from '../../../styles/popup.module.scss';
-import cls from './OptionItem.module.scss';
+import cls from './Option.module.scss';
 
 export interface ListBoxItem<T extends string> {
     value: string;
@@ -16,7 +16,19 @@ interface OptionItemProps<T extends string> {
     item: ListBoxItem<T>;
 }
 
-export function OptionItem<T extends string>({ item }: OptionItemProps<T>) {
+function getOptionItemClassName(
+    active: boolean,
+    disabled?: boolean,
+    selected?: boolean,
+): string {
+    return classNames(cls.item, {
+        [popupCls.active]: active,
+        [popupCls.disabled]: disabled,
+        [popupCls.selected]: selected,
+    });
+}
+
+export function Option<T extends string>({ item }: OptionItemProps<T>) {
     return (
         <HListBox.Option
             key={item.value}
@@ -24,13 +36,13 @@ export function OptionItem<T extends string>({ item }: OptionItemProps<T>) {
             disabled={item.disabled}
             as={Fragment}
         >
-            {({ active, selected }) => (
+            {({ active, selected, disabled }) => (
                 <li
-                    className={classNames(cls.item, {
-                        [popupCls.active]: active,
-                        [popupCls.disabled]: item.disabled,
-                        [popupCls.selected]: selected,
-                    })}
+                    className={getOptionItemClassName(
+                        active,
+                        disabled,
+                        selected,
+                    )}
                 >
                     <HStack gap="8" className={classNames(cls.wrap, {})}>
                         {item.content}
@@ -39,7 +51,7 @@ export function OptionItem<T extends string>({ item }: OptionItemProps<T>) {
                                 Svg={CheckedIcon}
                                 width="16"
                                 height="16"
-                                className={classNames(cls.icon, {})}
+                                className={cls.icon}
                             />
                         )}
                     </HStack>

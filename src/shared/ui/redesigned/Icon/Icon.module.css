@@ -1,0 +1,19 @@
+.Icon {
+  fill: var(--icon-redesigned);
+  color: var(--icon-redesigned);
+  transition: color 300ms ease;
+}
+
+.button {
+  margin: 0;
+  padding: 0;
+  border: none;
+  outline: none;
+  background: none;
+  cursor: pointer;
+  transition: color 300ms ease;
+}
+
+.button:hover .Icon {
+  color: var(--accent-redesigned);
+}/*# sourceMappingURL=Icon.module.css.map */

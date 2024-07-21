@@ -1,8 +1,8 @@
 import { Listbox as HListBox } from '@headlessui/react';
 import { Button } from '../../../../Button';
 import { Icon } from '../../../../Icon';
-import { ListBoxItem } from '../OptionItem/OptionItem';
-import cls from './SelectedItem.module.scss';
+import { ListBoxItem } from '../Option/Option';
+import cls from './SelectedOption.module.scss';
 import ArrowIcon from '@/shared/assets/icons/arrow-bottom.svg';
 
 interface SelectedItemProps<T extends string> {
@@ -11,7 +11,7 @@ interface SelectedItemProps<T extends string> {
     readonly?: boolean;
 }
 
-export function SelectedItem<T extends string>(props: SelectedItemProps<T>) {
+export function SelectedOption<T extends string>(props: SelectedItemProps<T>) {
     const { selectedItem, defaultValue, readonly } = props;
 
     return (

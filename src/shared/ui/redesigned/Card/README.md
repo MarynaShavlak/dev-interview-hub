@@ -1,4 +1,4 @@
-# Card Component 
+# Card
 ## Overview
 The `Card` component is a versatile and highly customizable container element for React projects. It allows developers to create visually distinct sections, cards, or panels with various styles, padding, and border options, making it a valuable component for building organized and consistent user interfaces.
 

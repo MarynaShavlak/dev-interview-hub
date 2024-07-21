@@ -1,4 +1,4 @@
-# HStack Component
+# HStack 
 ## Overview
 The `HStack` component is a streamlined version of the `Flex` component for creating horizontal stacks. By leveraging the `Flex` component, it offers a simplified way to align and distribute elements in a horizontal row, making it an essential tool for constructing horizontally oriented layouts in React projects.
 

@@ -1,0 +1,78 @@
+.Card {
+  padding: 15px;
+  border-radius: 12px;
+}
+
+.normal {
+  background: var(--card-bg);
+}
+
+.outlined {
+  border: 1px solid var(--primary-color);
+}
+
+.max {
+  width: 100%;
+}
+
+.hStack {
+  display: flex;
+  flex-direction: row;
+}
+
+.vStack {
+  display: flex;
+  flex-direction: column;
+}
+
+.gap_0 {
+  gap: 0;
+}
+
+.gap_4 {
+  gap: 4px;
+}
+
+.gap_8 {
+  gap: 8px;
+}
+
+.gap_16 {
+  gap: 16px;
+}
+
+.gap_24 {
+  gap: 24px;
+}
+
+.gap_32 {
+  gap: 32px;
+}
+
+.justifyStart {
+  justify-content: flex-start;
+}
+
+.justifyCenter {
+  justify-content: center;
+}
+
+.justifyEnd {
+  justify-content: flex-end;
+}
+
+.justifyBetween {
+  justify-content: space-between;
+}
+
+.alignStart {
+  align-items: flex-start;
+}
+
+.alignCenter {
+  align-items: center;
+}
+
+.alignEnd {
+  align-items: flex-end;
+}/*# sourceMappingURL=Card.module.css.map */

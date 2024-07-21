@@ -1,0 +1,7 @@
+.ArticleViewSelector .notSelected {
+  fill: var(--secondary-color);
+}
+
+.ArticleViewSelectorRedesigned .notSelected {
+  color: var(--light-bg-redesigned);
+}/*# sourceMappingURL=ArticleViewSelector.module.css.map */

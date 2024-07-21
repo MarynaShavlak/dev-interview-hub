@@ -1,4 +1,4 @@
-# VStack Component
+# VStack
 ## Overview
 The `VStack` component is a simplified and specialized version of the `Flex` component for creating vertical stacks. It leverages the `Flex` component to provide an easy and concise way to align and distribute elements in a vertical column, making it a valuable tool for creating vertically oriented layouts in React projects.
 

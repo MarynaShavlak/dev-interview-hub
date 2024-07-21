@@ -1,4 +1,4 @@
-# AppImage Component 
+# AppImage 
 ## Overview
 The `AppImage` component is a custom React component designed to handle image loading and error states gracefully. It extends the standard HTML `<img>` element by providing additional properties for custom fallbacks during loading and error states. This component is wrapped in `React.memo` to optimize performance by preventing unnecessary re-renders.
 

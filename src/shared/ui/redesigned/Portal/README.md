@@ -1,4 +1,4 @@
-# Portal Component
+# Portal
 ## Overview
 The **`Portal`** component in React is a utility that allows you to render children components outside of their parent DOM hierarchy. This is particularly useful for scenarios such as modals, tooltips, and dropdowns, where you might want the rendered elements to appear at a different place in the DOM tree, often at the root level, to avoid CSS and overflow issues.
 

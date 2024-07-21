@@ -1,4 +1,4 @@
-# Avatar Component
+# Avatar
 ## Overview
 The `Avatar` component serves as a versatile and customizable element for displaying user profile images within a React application. It is designed to support various sizes and fallback options, ensuring that user images are displayed consistently and gracefully even when the primary image source fails. Additionally, the `Avatar` component can display a username alongside the image, making it an essential component for user interface elements such as profiles, comments, and chat applications.
 

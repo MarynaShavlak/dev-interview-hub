@@ -1,4 +1,4 @@
-# Button Component 
+# Button
 ## Overview
 The **`Button`** component is a highly customizable and flexible button designed for a wide range of applications in a React project. It allows developers to easily implement various visual styles, sizes, and additional content, making it an essential component for creating interactive and consistent user interfaces.
 

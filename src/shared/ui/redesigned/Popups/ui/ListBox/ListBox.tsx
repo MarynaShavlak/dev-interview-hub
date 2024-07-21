@@ -1,8 +1,8 @@
 import { Listbox as HListBox } from '@headlessui/react';
 import { useMemo } from 'react';
 import { Each } from '@/shared/lib/components/Each/Each';
-import { SelectedItem } from './SelectedItem/SelectedItem';
-import { ListBoxItem, OptionItem } from './OptionItem/OptionItem';
+import { SelectedOption } from './SelectedOption/SelectedOption';
+import { ListBoxItem, Option } from './Option/Option';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { DropdownDirection } from '@/shared/types/ui';
 import { HStack } from '../../../../redesigned/Stack';
@@ -11,14 +11,14 @@ import popupCls from '../../styles/popup.module.scss';
 import cls from './ListBox.module.scss';
 
 interface ListBoxProps<T extends string> {
-    items?: ListBoxItem<T>[];
-    className?: string;
+    items: ListBoxItem<T>[];
+    onChange: (value: T) => void;
     value?: T;
     defaultValue?: string;
-    onChange: (value: T) => void;
     readonly?: boolean;
     direction?: DropdownDirection;
     label?: string;
+    className?: string;
 }
 
 export function ListBox<T extends string>(props: ListBoxProps<T>) {
@@ -33,24 +33,19 @@ export function ListBox<T extends string>(props: ListBoxProps<T>) {
         label,
     } = props;
 
-    const optionsClasses = [mapDirectionClass[direction], popupCls.menu];
+    const optionsClasses = classNames(cls.options, {}, [
+        mapDirectionClass[direction],
+        popupCls.menu,
+    ]);
+
     const listBoxClasses = classNames(cls.ListBox, {}, [
         className,
         popupCls.popup,
     ]);
+
     const selectedItem = useMemo(() => {
         return items?.find((item) => item.value === value);
     }, [items, value]);
-
-    const renderOptions = () => {
-        if (!items) return null;
-        return (
-            <Each
-                of={items}
-                render={(item) => <OptionItem key={item.value} item={item} />}
-            />
-        );
-    };
 
     return (
         <HStack gap="4">
@@ -62,15 +57,18 @@ export function ListBox<T extends string>(props: ListBoxProps<T>) {
                 value={value}
                 onChange={onChange}
             >
-                <SelectedItem
+                <SelectedOption
                     selectedItem={selectedItem}
                     defaultValue={defaultValue}
                     readonly={readonly}
                 />
-                <HListBox.Options
-                    className={classNames(cls.options, {}, optionsClasses)}
-                >
-                    {renderOptions()}
+                <HListBox.Options className={optionsClasses}>
+                    <Each
+                        of={items}
+                        render={(item) => (
+                            <Option key={item.value} item={item} />
+                        )}
+                    />
                 </HListBox.Options>
             </HListBox>
         </HStack>

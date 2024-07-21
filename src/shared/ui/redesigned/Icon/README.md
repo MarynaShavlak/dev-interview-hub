@@ -1,4 +1,4 @@
-# Icon Component 
+# Icon
 ## Overview 
 The **`Icon`** component is a versatile and reusable React component designed to render SVG icons. It supports both clickable and non-clickable variants, providing flexibility for various use cases within your application.
 

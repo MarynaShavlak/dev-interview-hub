@@ -1,0 +1,59 @@
+.title {
+  color: var(--text-redesigned);
+}
+
+.text {
+  color: var(--text-redesigned);
+}
+
+.error .title {
+  color: var(--cancel-redesigned);
+}
+.error .text {
+  color: var(--cancel-redesigned);
+}
+
+.accent .title {
+  color: var(--accent-redesigned);
+}
+.accent .text {
+  color: var(--accent-redesigned);
+}
+
+.left {
+  text-align: left;
+}
+
+.right {
+  text-align: right;
+}
+
+.center {
+  text-align: center;
+}
+
+.size_s .title {
+  font: var(--font-m-redesigned);
+}
+.size_s .text {
+  font: var(--font-s-redesigned);
+}
+
+.size_m .title {
+  font: var(--font-l-redesigned);
+}
+.size_m .text {
+  font: var(--font-m-redesigned);
+}
+
+.size_l .title {
+  font: var(--font-xl-redesigned);
+}
+.size_l .text {
+  font: var(--font-l-redesigned);
+}
+
+.bold .title,
+.bold .text {
+  font-weight: 700;
+}/*# sourceMappingURL=Text.module.css.map */

@@ -1,4 +1,4 @@
-# Code Component
+# Code
 ## Overview
 The **`Code`** component is a React component designed to render a code snippet with an integrated copy-to-clipboard functionality. It features a clickable icon that allows users to copy the code snippet to their clipboard easily. This component provides a simple and effective way to display code with an interactive copy feature.
 

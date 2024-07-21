@@ -1,0 +1,23 @@
+.ArticlesPage {
+  min-height: 100%;
+}
+.ArticlesPage .list {
+  margin-top: 30px;
+}
+.ArticlesPage .controlsWrap {
+  position: relative;
+}
+.ArticlesPage .viewSelector {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.FiltersSkeletonContainer {
+  width: 280px;
+}
+
+.ViewSkeletonContainer {
+  width: 88px;
+  height: 48px;
+}/*# sourceMappingURL=ArticlesPage.module.css.map */

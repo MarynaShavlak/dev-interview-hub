@@ -1,0 +1,15 @@
+.primary {
+  color: var(--text-redesigned);
+  transition: opacity 300ms ease;
+}
+.primary:hover {
+  color: var(--accent-redesigned);
+}
+
+.red {
+  color: var(--cancel-redesigned);
+  transition: opacity 300ms ease;
+}
+.red:hover {
+  opacity: 0.8;
+}/*# sourceMappingURL=AppLink.module.css.map */

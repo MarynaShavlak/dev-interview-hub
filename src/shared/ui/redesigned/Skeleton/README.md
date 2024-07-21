@@ -1,4 +1,4 @@
-# Skeleton Component
+# Skeleton
 ## Overview
 The `Skeleton` component is a versatile and customizable placeholder component designed to enhance the user experience during data loading states in a React project. It provides developers with an easy way to display skeleton screens, giving a visual cue that content is being loaded and improving the perceived performance of the application.
 

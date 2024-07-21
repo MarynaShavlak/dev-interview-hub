@@ -205,7 +205,7 @@
         "isAppRedesigned": true
       },
       "jsonSettings": {
-        "theme": "app_orange_theme",
+        "theme": "app_light_theme",
         "isFirstVisit": true,
         "settingsPageHasBeenOpen": false,
         "isArticlesPageWasOpened": true
@@ -260,8 +260,8 @@
       "first": "Марина",
       "lastname": "Шавлак",
       "age": 99888,
-      "currency": "EUR",
-      "country": "Ireland",
+      "currency": "USD",
+      "country": "Ukraine",
       "city": "Kharkiv",
       "username": "admin",
       "avatar": "https://drive.google.com/thumbnail?id=1RD0jSAm8kdTLKa-Vr0daeE8T9-QcfPCa&sz=w1000"
@@ -1527,7 +1527,7 @@
           "paragraphs": []
         },
         {
-          "id": "412",
+          "id": "494552",
           "type": "CODE",
           "code": "function outerFunction(name) {\n\n  function innerFunction() {\n\n    console.log('Привіт, ' + name + '!');\n\n  }\n\n  return innerFunction;\n\n}\n\nvar greetJohn = outerFunction('John');\n\ngreetJohn(); // Виводить \"Привіт, John!\"\n\nvar greetAnna = outerFunction('Anna');\n\ngreetAnna(); // Виводить \"Привіт, Anna!\""
         },
@@ -1697,7 +1697,7 @@
           "paragraphs": []
         },
         {
-          "id": "412",
+          "id": "36586707",
           "type": "CODE",
           "code": "function fetchData() {\n  var xhttp = new XMLHttpRequest();\n  xhttp.onreadystatechange = function() {\n    if (this.readyState == 4 && this.status == 200) {\n      var data = JSON.parse(this.responseText);\n    }\n  };\n  xhttp.open(\"GET\", \"data.json\", true);\n  xhttp.send();\n}"
         },
@@ -1782,7 +1782,7 @@
           ]
         },
         {
-          "id": "412",
+          "id": "4645856",
           "type": "CODE",
           "code": "useEffect(() => {  \n    fetchUser(userId);\n  }, [userId]);"
         },
@@ -1795,7 +1795,7 @@
           ]
         },
         {
-          "id": "412",
+          "id": "4777712",
           "type": "CODE",
           "code": "useEffect(() => {\n  return () => {\n    clearTimeout(timeoutId);\n  };\n}, []);"
         },
@@ -1810,7 +1810,7 @@
           ]
         },
         {
-          "id": "412",
+          "id": "5334756959",
           "type": "CODE",
           "code": "function useApiData(endpoint) {\n  // State to store the fetched data\n  const [data, setData] = useState(null);\n  const [loading, setLoading] = useState(true);\n  const [error, setError] = useState(null);\n  useEffect(() => {\n    const fetchData = async () => {\n      try {\n        const response = await fetch(apiEndpoint);\n        if (!response.ok) {\n          throw new Error(`Error: ${response.status}`);\n        }\n        const result = await response.json();\n        setData(result);\n      } catch (error) {\n        setError(error.message);\n      } finally {\n        setLoading(false);\n      }\n    };\n    fetchData();\n  }, [apiEndpoint]);\n  // Return the state and loading/error information for external use\n  return { data, loading, error };\n}"
         },
@@ -1943,7 +1943,7 @@
           ]
         },
         {
-          "id": "412",
+          "id": "64536760",
           "type": "CODE",
           "code": "{\n  \"id\": \"1\",\n  \"title\": \"JSON це що?\",\n  \"paragraphs\": [\n    {\n      \"heading\": \"JSON (JavaScript Object Notation)\",\n      \"content\": \"JSON – це текстовий формат, призначений для зберігання структурованих даних. Він був створений американським програмістом Дугласом Крокфордом на базі JavaScript, але при цьому не прив'язаний до нього і є незалежним. JSON легко поєднується з будь-яким сучасним середовищем програмування, зокрема, код для введення та обробки даних у цьому форматі присутній у мовах PHP, Python, Java та Ruby.\"\n    },\n  ]\n}"
         },

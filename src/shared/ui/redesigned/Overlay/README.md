@@ -1,4 +1,4 @@
-# Overlay Component 
+# Overlay
 ##  Overview
 The **`Overlay`** component is a simple, reusable React component designed to provide an overlay effect on the user interface. It can be used to create modal backdrops or any other semi-transparent overlay that requires user interaction handling.
 

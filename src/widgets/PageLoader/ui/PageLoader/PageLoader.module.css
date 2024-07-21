@@ -1,0 +1,4 @@
+.PageLoader {
+  min-height: calc(100vh - var(--navbar-height));
+  flex-grow: 1;
+}/*# sourceMappingURL=PageLoader.module.css.map */
