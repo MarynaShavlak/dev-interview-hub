@@ -5,7 +5,7 @@ The **`Code`** component is a React component designed to render a code snippet 
 ## Interface
 The types used in the **`Code`** component are defined as follows:
 
-- **`CodeProps`**: An interface that defines the properties accepted by the**`Code`** component.
+- **`CodeProps`**: An interface that defines the properties accepted by the **`Code`** component.
 ```typescript
 interface CodeProps {
     className?: string;
