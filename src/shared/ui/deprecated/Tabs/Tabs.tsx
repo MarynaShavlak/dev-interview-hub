@@ -1,4 +1,6 @@
 import { memo, ReactNode, useCallback } from 'react';
+import { FlexDirection } from '@/shared/types/flexTypes';
+import { Flex } from '../../redesigned/Stack/Flex/Flex';
 import { Each } from '@/shared/lib/components/Each/Each';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { Card, CardTheme } from '../Card/Card';
@@ -14,6 +16,7 @@ interface TabsProps {
     tabs: TabItem[];
     value: string;
     onTabClick: (tab: TabItem) => void;
+    direction?: FlexDirection;
 }
 /**
  * Deprecated, use new component from directory redesigned
@@ -21,7 +24,7 @@ interface TabsProps {
  */
 
 export const Tabs = memo((props: TabsProps) => {
-    const { className, tabs, onTabClick, value } = props;
+    const { className, tabs, onTabClick, value, direction = 'row' } = props;
 
     const clickHandle = useCallback(
         (tab: TabItem) => () => {
@@ -31,7 +34,12 @@ export const Tabs = memo((props: TabsProps) => {
     );
 
     return (
-        <div className={classNames(cls.Tabs, {}, [className])}>
+        <Flex
+            direction={direction}
+            gap="8"
+            align="start"
+            className={classNames(cls.Tabs, {}, [className])}
+        >
             <Each
                 of={tabs}
                 render={(tab) => {
@@ -51,6 +59,6 @@ export const Tabs = memo((props: TabsProps) => {
                     );
                 }}
             />
-        </div>
+        </Flex>
     );
 });

@@ -1,4 +1,6 @@
-# Tabs
+# Tabs (Deprecated)
+
+Note: This component is deprecated. Please use the new component from the redesigned directory.
 
 ## Overview
 The `Tabs` component is a fundamental UI element designed to enhance the user experience by providing an intuitive way to navigate between multiple content sections within a single page. It enables developers to present content in a clean, organized, and interactive manner, allowing users to switch between different views or data sets seamlessly. This component is ideal for scenarios where space is limited, and content needs to be divided into discrete, easily accessible sections.
@@ -32,8 +34,7 @@ The `Tabs` component accepts the following props:
 | `className`  | `string`                                    |               Optional                | Additional custom class names to style the tabs.                            |
 
 ## Implementation Details
-The `Tabs` component renders `Card` components with appropriate variants based on the selected tab. When a tab is active, it uses the `lignt` variant, and for inactive tabs, it uses the `CardTheme.OUTLINE` variant.
-
+The `Tabs` component renders `Card` components with appropriate themes based on the selected tab. When a tab is active, it uses the `CardTheme.NORMAL` theme, and for inactive tabs, it uses the `CardTheme.OUTLINED` theme.
 
 
 ## Usage Examples
