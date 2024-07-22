@@ -13,12 +13,16 @@ import { trimText } from '../../trimText/trimText';
  *    onChangeHandler: (e: ChangeEvent<HTMLInputElement>) => void;
  *    onBlurHandler: (e: FocusEvent<HTMLInputElement>) => void;
  *    onFocus: () => void;
+ *    caretPosition: number;
+ *    onSelect: (e: any) => void;
  *  }} An object with the following properties:
  *  * `ref`: A React ref object that should be attached to the input element. Used to programmatically control the input's focus.
  *  * `isFocused`: Boolean indicating whether the input is currently focused. Useful for applying styles or handling focus-based logic.
  *  * `onChangeHandler`: Function to handle input changes. Validates the input based on `digitsOnly` and triggers the `onChange` callback.
  *  * `onBlurHandler`: Function to handle when the input loses focus. It updates the `isFocused` state and triggers the `onChange` callback with trimmed text.
  *  * `onFocus`: Function to handle when the input gains focus. Updates the `isFocused` state.
+ *  * `onSelect`: Function to handle when the user selects part of the input text. Updates the `caretPosition` state.
+ *  * `caretPosition`: Number representing the current caret position in the input field.
  */
 
 interface UseInputProps {
@@ -30,6 +34,7 @@ interface UseInputProps {
 export function useInput({ autofocus, digitsOnly, onChange }: UseInputProps) {
     const ref = useRef<HTMLInputElement>(null);
     const [isFocused, setIsFocused] = useState(false);
+    const [caretPosition, setCaretPosition] = useState(0);
 
     useEffect(() => {
         if (autofocus) {
@@ -43,6 +48,7 @@ export function useInput({ autofocus, digitsOnly, onChange }: UseInputProps) {
             return;
         }
         onChange?.(e.target.value);
+        setCaretPosition(e.target.value.length);
     };
 
     const onBlurHandler = (e: FocusEvent<HTMLInputElement>) => {
@@ -53,6 +59,9 @@ export function useInput({ autofocus, digitsOnly, onChange }: UseInputProps) {
     const onFocus = () => {
         setIsFocused(true);
     };
+    const onSelect = (e: any) => {
+        setCaretPosition(e?.target?.selectionStart || 0);
+    };
 
     return {
         ref,
@@ -60,5 +69,7 @@ export function useInput({ autofocus, digitsOnly, onChange }: UseInputProps) {
         onChangeHandler,
         onBlurHandler,
         onFocus,
+        onSelect,
+        caretPosition,
     };
 }

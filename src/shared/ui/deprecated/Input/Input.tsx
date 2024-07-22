@@ -1,11 +1,5 @@
-import React, {
-    InputHTMLAttributes,
-    memo,
-    useEffect,
-    useRef,
-    useState,
-} from 'react';
-import { trimText } from '@/shared/lib/trimText/trimText';
+import React, { InputHTMLAttributes, memo } from 'react';
+import { useInput } from '@/shared/lib/hooks/useInput/useInput';
 import { classNames, Mods } from '@/shared/lib/classNames/classNames';
 import cls from './Input.module.scss';
 
@@ -40,39 +34,18 @@ export const Input = memo((props: InputProps) => {
         digitsOnly = false,
         ...otherProps
     } = props;
-    const ref = useRef<HTMLInputElement>(null);
-    const [isFocused, setIsFocused] = useState(false);
-    const [caretPosition, setCaretPosition] = useState(0);
+
+    const {
+        ref,
+        isFocused,
+        onChangeHandler,
+        onBlurHandler,
+        onFocus,
+        onSelect,
+        caretPosition,
+    } = useInput({ autofocus, digitsOnly, onChange });
 
     const isCaretVisible = isFocused && !readonly;
-
-    useEffect(() => {
-        if (autofocus) {
-            setIsFocused(true);
-            ref.current?.focus();
-        }
-    }, [autofocus]);
-
-    const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-        if (digitsOnly && !/^\d*$/.test(e.target.value)) {
-            return;
-        }
-        onChange?.(e.target.value);
-        setCaretPosition(e.target.value.length);
-    };
-
-    const onBlurHandler = (e: React.FocusEvent<HTMLInputElement>) => {
-        setIsFocused(false);
-        onChange?.(trimText(e.target.value));
-    };
-
-    const onFocus = () => {
-        setIsFocused(true);
-    };
-
-    const onSelect = (e: any) => {
-        setCaretPosition(e?.target?.selectionStart || 0);
-    };
 
     const mods: Mods = {
         [cls.readonly]: readonly,
