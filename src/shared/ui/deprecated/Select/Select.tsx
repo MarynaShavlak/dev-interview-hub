@@ -1,4 +1,5 @@
 import { ChangeEvent, useMemo } from 'react';
+import { Each } from '@/shared/lib/components/Each/Each';
 import { classNames, Mods } from '@/shared/lib/classNames/classNames';
 import cls from './Select.module.scss';
 
@@ -11,7 +12,7 @@ export interface SelectOption<T extends string> {
 interface SelectProps<T extends string> {
     className?: string;
     label?: string;
-    options?: SelectOption<T>[];
+    options: SelectOption<T>[];
     value?: T;
     onChange?: (value: T) => void;
     readonly?: boolean;
@@ -30,16 +31,23 @@ export const Select = <T extends string>(props: SelectProps<T>) => {
     };
 
     const optionsList = useMemo(
-        () =>
-            options?.map((opt) => (
-                <option
-                    className={cls.option}
-                    value={opt.value}
-                    key={opt.value}
-                >
-                    {opt.content}
-                </option>
-            )),
+        () => (
+            <Each
+                of={options}
+                render={(opt) => {
+                    return (
+                        <option
+                            className={cls.option}
+                            value={opt.value}
+                            key={opt.value}
+                        >
+                            {opt.content}
+                        </option>
+                    );
+                }}
+            />
+        ),
+
         [options],
     );
 
