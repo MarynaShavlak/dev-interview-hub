@@ -1,6 +1,6 @@
 import { Listbox as HListBox } from '@headlessui/react';
-import { ListBoxItem } from '../Option/Option';
 import { Button } from '../../../../Button';
+import { ListBoxItem } from '../Option/Option';
 import cls from './ListBoxTrigger.module.scss';
 
 interface ListBoxTriggerProps<T extends string> {

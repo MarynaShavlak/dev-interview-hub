@@ -35,7 +35,7 @@ export function ListBox<T extends string>(props: ListBoxProps<T>) {
 
     const optionsClasses = classNames(cls.options, {}, [
         mapDirectionClass[direction],
-        popupCls.menu,
+        popupCls.menuRedesigned,
     ]);
 
     const listBoxClasses = classNames(cls.ListBox, {}, [

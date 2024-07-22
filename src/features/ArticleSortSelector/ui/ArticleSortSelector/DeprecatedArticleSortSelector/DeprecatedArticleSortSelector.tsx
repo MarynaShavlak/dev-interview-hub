@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { memo } from 'react';
+import { memo, useMemo } from 'react';
 import {
     useOrderOptions,
     useSortFieldOptions,
@@ -14,8 +14,15 @@ export const DeprecatedArticleSortSelector = memo(
     (props: ArticleSortSelectorProps) => {
         const { className, onChangeOrder, onChangeSort, order, sort } = props;
         const { t } = useTranslation('articles');
-        const orderOptions = useOrderOptions();
-        const sortFieldOptions = useSortFieldOptions();
+
+        const rawOrderOptions = useOrderOptions();
+        const orderOptions = useMemo(() => rawOrderOptions, [rawOrderOptions]);
+
+        const rawSortFieldOptions = useSortFieldOptions();
+        const sortFieldOptions = useMemo(
+            () => rawSortFieldOptions,
+            [rawSortFieldOptions],
+        );
 
         return (
             <div
