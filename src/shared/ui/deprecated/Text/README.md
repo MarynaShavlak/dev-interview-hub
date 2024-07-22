@@ -1,6 +1,6 @@
 # Text (Deprecated)
 
-This component is deprecated. Use redesigned component.
+Note: This component is deprecated. Please use the new component from the redesigned directory.
 
 ## Overview
 The `Text` component is designed to provide a flexible and consistent way to display text content in a React application. 
