@@ -27,7 +27,7 @@ The `Skeleton` component accepts the following props:
 
 ## Usage Examples
 ### Example 1: Basic Skeleton takes the full width of container 
-```jsx
+```typescript jsx
 import { Skeleton } from '@/shared/ui/redesigned/Skeleton';
 
 export const BasicSkeletonExample = () => (
@@ -36,7 +36,7 @@ export const BasicSkeletonExample = () => (
 ```
 
 ### Example 2: Skeleton with Custom Border Radius
-```jsx
+```typescript jsx
 import { Skeleton } from '@/shared/ui/redesigned/Skeleton';
 
 export const CustomBorderRadiusSkeletonExample = () => {

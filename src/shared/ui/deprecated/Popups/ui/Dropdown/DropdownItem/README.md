@@ -1,4 +1,7 @@
-# DropdownItem
+# DropdownItem (Deprecated)
+
+Note: This component is deprecated. Please use the new component from the redesigned directory.
+
 ## Overview
 The `DropdownItem` component is a flexible and interactive item designed to be used within dropdown menus in a React project. It allows developers to easily implement menu items that can be either clickable buttons or navigational links, making it an essential component for creating dynamic and user-friendly dropdown interfaces.
 

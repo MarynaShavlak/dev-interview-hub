@@ -39,7 +39,7 @@ The `Tabs` component renders `Card` components with appropriate themes based on 
 
 ## Usage Examples
 
-```jsx
+```typescript jsx
 import {useState } from 'react';
 
 import { Tabs } from '@/shared/ui/redesigned/Tabs';

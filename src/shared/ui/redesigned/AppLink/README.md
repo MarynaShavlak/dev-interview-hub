@@ -29,7 +29,7 @@ The `AppLink`component extends LinkProps from `react-router-dom` and accepts the
 
 ## Usage Examples
 ### Example 1 : Basic AppLink with active class
-```jsx
+```typescript jsx
 import { AppLink } from '@/shared/ui/redesigned/AppLink';
 
 export const BasicAppLinkExample = () => {
@@ -42,7 +42,7 @@ export const BasicAppLinkExample = () => {
 ```
 
 ### Example 2: AppLink with Headless UI Menu
-```jsx
+```typescript jsx
 import { Menu } from '@headlessui/react';
 import { AppLink } from '@/shared/ui/redesigned/AppLink';
 

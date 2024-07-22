@@ -35,7 +35,7 @@ The `Flex` component extends `DivProps` and accepts the following props:
 ## Usage Examples
 
 ### Example 1: Basic Usage
-```jsx
+```typescript jsx
 import { Flex} from '@/shared/ui/redesigned/Stack/Flex';
 
 export const CustomStackExample = () => {
@@ -50,7 +50,7 @@ export const CustomStackExample = () => {
 };
 ```
 ### Example 2: Semantic Roles Usage
-```jsx
+```typescript jsx
 import { Flex} from '@/shared/ui/redesigned/Stack/Flex';
 
 export const NavigationStack = () => {

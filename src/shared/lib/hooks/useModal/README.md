@@ -33,7 +33,7 @@ An object with the following properties:
 
 
 ## Usage Example
-```jsx
+```typescript jsx
 import React, { ReactNode, useState } from 'react';
 import { useModal } from '@/shared/lib/hooks/useModal/useModal';
 import { Portal } from '../Portal/Portal';

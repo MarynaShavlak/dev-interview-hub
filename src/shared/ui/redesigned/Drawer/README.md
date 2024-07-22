@@ -46,7 +46,7 @@ This approach guarantees that the animation libraries are fully loaded before th
 
 
 ## Usage Example
-```jsx
+```typescript jsx
 import  { useState } from 'react';
 import { Drawer } from '@/shared/ui/redesigned/Drawer';
 

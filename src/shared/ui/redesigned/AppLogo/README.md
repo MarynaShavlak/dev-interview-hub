@@ -21,7 +21,7 @@ The `AppLogo` component  accepts the following props:
 
 ## Usage Examples
 
-```jsx
+```typescript jsx
 import { AppLogo } from '@/shared/ui/redesigned/AppLogo';
 
 export const CustomAppLogoExample = () => {

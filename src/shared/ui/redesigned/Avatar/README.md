@@ -35,7 +35,7 @@ The `Avatar` component accepts the following props:
 ## Usage Examples
 
 ### Example 1: Basic Avatar Component
-```jsx
+```typescript jsx
 import { Avatar } from '@/shared/ui/redesigned/Avatar';
 
 export const BasicAvatarExample = () => {
@@ -46,7 +46,7 @@ export const BasicAvatarExample = () => {
 ```
 
 ### Example 2: Avatar with UserName
-```jsx
+```typescript jsx
 import { Avatar } from '@/shared/ui/redesigned/Avatar';
 
 export const AvatarWithUserNameExample = () => {

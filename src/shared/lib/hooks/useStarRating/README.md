@@ -28,7 +28,7 @@ An object with the following properties:
     - **`useCallback`**: Ensures that the `onHover`, `onLeave`, and `onClick` functions are memoized to avoid unnecessary re-renders.
 
 ## Usage Example
-```jsx
+```typescript jsx
 import React, { useState } from 'react';
 import { useStarRating } from '@/shared/lib/hooks/useStarRating/useStarRating';
 

@@ -1,4 +1,7 @@
-# Dropdown
+# Dropdown (Deprecated)
+
+Note: This component is deprecated. Please use the new component from the redesigned directory.
+
 ## Overview
 The `Dropdown` component provides a flexible and interactive dropdown menu solution for React projects. It allows developers to create dropdowns with customizable triggers and menu items, leveraging **[Headless UI](https://headlessui.com/)** for accessible and robust menu functionality.
 

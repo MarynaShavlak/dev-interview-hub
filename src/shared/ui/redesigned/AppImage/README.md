@@ -18,7 +18,7 @@ The component also inherits all standard HTML image attributes from `ImgHTMLAttr
 ## Usage
 ### Basic Example
 
-```jsx
+```typescript jsx
 import React from 'react';
 import { AppImage } from './AppImage';
 

@@ -17,7 +17,7 @@ interface PortalProps {
 The **`Portal`** component takes in **`children`** and an optional **`element`** prop. It uses the **`createPortal`** function from ReactDOM to render the **`children`** into the specified **`element`**. By default, if no **`element`** is provided, it renders the **`children`** into the **`document.body`**.
 
 ## Usage Example
-```jsx
+```typescript jsx
 <Portal element={document.getElementById('app') ?? document.body} >
     <div className="modal">
         <h1>This is a modal</h1>

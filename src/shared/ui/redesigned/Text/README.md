@@ -29,7 +29,7 @@ The `Text` component extends `TestProps` and it accepts the following props:
 
 ## Usage Examples
 
-```jsx
+```typescript jsx
 import { Text } from '@/shared/ui/redesigned/Text';
 
 export const AlignedBoldTextExample = () => {

@@ -34,7 +34,7 @@ The `Option` component accepts the following props:
 `getOptionItemClassName`: A utility function that generates the appropriate class names based on the option's state (active, disabled, selected).
 
 ## Usage Example
-```jsx
+```typescript jsx
 import { Listbox as HListBox } from '@headlessui/react';
 import { useState } from 'react';
 import { Option, ListBoxItem } from './Option/Option';

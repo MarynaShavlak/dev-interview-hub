@@ -30,7 +30,7 @@ An object with the following properties:
     - **`useEffect`** when `autofocus` changes. If `autofocus` is `true`, it sets `isFocused` to `true` and focuses the input element using the `ref`.
 
 ## Usage Example 
-```jsx
+```typescript jsx
 import React, { useState } from 'react';
 import { useInput } from '@/shared/lib/hooks/useInput/useInput';
 

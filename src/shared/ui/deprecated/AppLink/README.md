@@ -32,7 +32,7 @@ The `AppLink`component extends LinkProps from `react-router-dom` and accepts the
 
 ## Usage Examples
 ### Example 1 : AppLink with secondary styles
-```jsx
+```typescript jsx
 import { AppLink, AppLinkTheme } from '@/shared/ui/deprecated/AppLink';
 
 export const AppLinkExample = () => {
@@ -45,7 +45,7 @@ export const AppLinkExample = () => {
 ```
 
 ### Example 2: AppLink with Headless UI Menu
-```jsx
+```typescript jsx
 import { Menu } from '@headlessui/react';
 import { AppLink, AppLinkTheme } from '@/shared/ui/deprecatedAppLink';
 

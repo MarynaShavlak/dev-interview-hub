@@ -22,7 +22,7 @@ The `Popover` component accepts the following props:
 
 ## Usage Examples
 ### Example 1: Basic Popover with Trigger
-```jsx
+```typescript jsx
 import { Popover } from '@/shared/ui/redesigned/Popover';
 
 export const BasicPopoverExample = () => {
@@ -36,7 +36,7 @@ export const BasicPopoverExample = () => {
 };
 ```
 ### Example 1: Popover with Custom Direction
-```jsx
+```typescript jsx
 import { Popover } from '@/shared/ui/redesigned/Popover';
 
 export const PopoverWithCustomDirection = () => {

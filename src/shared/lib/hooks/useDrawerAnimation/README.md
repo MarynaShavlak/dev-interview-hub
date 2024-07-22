@@ -28,7 +28,7 @@ An object with the following properties and methods:
     - Uses `useEffect` to trigger opening animation when `isOpen` changes.
 
 ## Usage Example
-```jsx
+```typescript jsx
 import React, { useState } from 'react';
 import { useDrawerAnimation } from '@/shared/lib/hooks/useDrawerAnimation';
 

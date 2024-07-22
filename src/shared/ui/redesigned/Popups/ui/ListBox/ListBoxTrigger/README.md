@@ -22,7 +22,7 @@ The `ListBoxTrigger` component accepts the following props:
 | `readonly`       | `boolean`                     | Optional             | If true, the button is disabled and cannot be interacted with. |
 
 ## Usage Example 
-```jsx
+```typescript jsx
 import { ListBoxTrigger } from './ListBoxTrigger';
 import { ListBoxItem } from '../Option/Option';
 import { useState } from 'react';

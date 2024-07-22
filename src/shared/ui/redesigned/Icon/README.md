@@ -59,7 +59,7 @@ The **`Icon`** component accepts the following props:
 Here are simpler examples of using the **`Icon`** component in different ways without the additional logic of other components:
 
 ### Example 1: Basic Non-Clickable Icon
-```jsx
+```typescript jsx
 import { Icon } from '@/shared/ui/deprecated/Icon';
 import EyeIcon from '@/shared/assets/icons/eye-20-20.svg';
 
@@ -71,7 +71,7 @@ export default BasicNonClickableIcon;
 ```
 
 ### Example 2: Example 2: Basic Clickable Icon
-```jsx
+```typescript jsx
 import { Icon } from '@/shared/ui/redesigned/Icon';
 import ArrowIcon from '@/shared/assets/icons/arrow-bottom.svg';
 
@@ -87,7 +87,7 @@ export default BasicClickableIcon;
 ```
 
 ### Example 3: Icon with Custom Styling
-```jsx
+```typescript jsx
 import { Icon } from '@/shared/ui/redesigned/Icon';
 import CalendarIcon from '@/shared/assets/icons/calendar-20-20.svg';
 
@@ -99,7 +99,7 @@ export default CustomStyledIcon;
 ```
 
 ### Example 4: Icon with Custom Dimensions
-```jsx
+```typescript jsx
 import { Icon } from '@/shared/ui/redesigned/Icon';
 import EyeIcon from '@/shared/assets/icons/eye-20-20.svg';
 
@@ -111,7 +111,7 @@ export default CustomDimensionIcon;
 ```
 
 ### Example 5: Clickable Icon with Additional SVG Props
-```jsx
+```typescript jsx
 import { Icon } from '@/shared/ui/redesigned/Icon';
 import ArrowIcon from '@/shared/assets/icons/arrow-bottom.svg';
 

@@ -2,7 +2,6 @@ import { Menu } from '@headlessui/react';
 import { Fragment, memo, ReactNode } from 'react';
 import { AppLink } from '../../../../AppLink';
 import { classNames } from '@/shared/lib/classNames/classNames';
-
 import cls from '../Dropdown.module.scss';
 import popupCls from '../../../styles/popup.module.scss';
 
@@ -17,12 +16,8 @@ interface DropdownItemInterface {
     item: DropdownOption;
 }
 
-interface ContentProps {
-    active: boolean;
-}
-
 export const DropdownItem = memo(({ item }: DropdownItemInterface) => {
-    const content = ({ active }: ContentProps) => (
+    const content = ({ active }: { active: boolean }) => (
         <button
             type="button"
             disabled={item.disabled}

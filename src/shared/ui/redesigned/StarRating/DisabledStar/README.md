@@ -27,7 +27,7 @@ The `DisabledStar` component extends `TestProps` and accepts the following props
 
 
 ## Usage Example 
-```jsx
+```typescript jsx
 import { DisabledStar } from '@/shared/ui/StarRating/DisabledStar';
 
 const StarRating = () => (

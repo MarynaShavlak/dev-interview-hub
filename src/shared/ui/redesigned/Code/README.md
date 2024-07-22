@@ -29,7 +29,7 @@ The **`Code`** component accepts the following props:
 Here are some examples of using the **`Code`** component in different scenarios:
 
 ### Example 1: Basic Code Display
-```jsx
+```typescript jsx
 import { Code } from '@/shared/ui/deprecated/Code';
 
 const BasicCodeDisplay = () => {
@@ -40,7 +40,7 @@ export default BasicCodeDisplay;
 ```
 
 ### Example 2: Code Display with Long Code
-```jsx
+```typescript jsx
 import { Code } from '@/shared/ui/deprecated/Code';
 
 const LongCodeDisplay = () => {

@@ -48,7 +48,7 @@ Using **`forwardRef`** allows the button to forward refs to its underlying HTML 
 ## Usage Examples
 
 ### 1. Basic Button with Click Handler
-```jsx
+```typescript jsx
 import { Button } from '@/shared/ui/redesigned/Button';
 
 export const BasicButtonExample = () => {
@@ -65,7 +65,7 @@ export const BasicButtonExample = () => {
 ```
 
 ### 2. Button with Addons
-```jsx
+```typescript jsx
 import { Button } from '@/shared/ui/redesigned/Button';
 import { Icon } from '@/shared/ui/redesigned/Icon';
 import ArrowIcon from '@/shared/assets/icons/left-arrow.svg';
@@ -83,7 +83,7 @@ export const ButtonWithAddonsExample = () => {
 ```
 
 ### 3. Button with other props( disabled, max, square, size, variant)
-```jsx
+```typescript jsx
 import { Button } from '@/shared/ui/redesigned/Button';
 import { Icon } from '@/shared/ui/redesigned/Icon';
 import ArrowIcon from '@/shared/assets/icons/left-arrow.svg';
@@ -98,7 +98,7 @@ export const ButtonWithOtherProps = () => {
 ```
 
 ### 4. Button with Headless UI Listbox
-```jsx
+```typescript jsx
 import { Listbox as HListBox } from '@headlessui/react';
 import { Button } from '@/shared/ui/redesigned/Button';
 import { Icon } from '@/shared/ui/redesigned/Icon';

@@ -46,7 +46,7 @@ The `Input` component uses `forwardRef` to enable ref forwarding. This allows th
 ## Usage Examples
 
 ### Example 1: Basic Input with autofocus
-```jsx
+```typescript jsx
 import { Input } from '@/shared/ui/redesigned/Input';
 
 export const BasicInputExample = () => {
@@ -56,7 +56,7 @@ export const BasicInputExample = () => {
 };
 ```
 ### Example 2: Input with Label and Addon
-```jsx
+```typescript jsx
 import { Input } from '@/shared/ui/redesigned/Input';
 import { Icon } from '@/shared/ui/redesigned/Icon';
 import SearchIcon from '@/shared/assets/icons/search.svg';

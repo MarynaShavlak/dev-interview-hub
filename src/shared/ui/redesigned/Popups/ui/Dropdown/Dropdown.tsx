@@ -1,6 +1,6 @@
 import { Menu } from '@headlessui/react';
 import { ReactNode } from 'react';
-import { DropdownItem, DropdownItemProps } from './DropdownItem/DropdownItem';
+import { DropdownItem, DropdownOption } from './DropdownItem/DropdownItem';
 import { Each } from '@/shared/lib/components/Each/Each';
 
 import { classNames } from '@/shared/lib/classNames/classNames';
@@ -10,7 +10,7 @@ import { mapDirectionClass } from '../../styles/consts';
 import popupCls from '../../styles/popup.module.scss';
 
 interface DropdownProps {
-    items: DropdownItemProps[];
+    items: DropdownOption[];
     trigger: ReactNode;
     direction?: DropdownDirection;
     className?: string;
@@ -19,7 +19,7 @@ interface DropdownProps {
 export const Dropdown = (props: DropdownProps) => {
     const { className, trigger, items, direction = 'bottom right' } = props;
 
-    const menuClasses = [mapDirectionClass[direction], popupCls.menu];
+    const menuClasses = [mapDirectionClass[direction], popupCls.menuRedesigned];
 
     return (
         <Menu

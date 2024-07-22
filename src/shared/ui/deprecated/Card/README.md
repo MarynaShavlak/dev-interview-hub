@@ -25,7 +25,7 @@ The `Card` component extends `HTMLAttributes<HTMLDivElement>` and accepts the fo
 | `otherProps` | `HTMLAttributes<HTMLDivElement>` |               Optional                | Any additional div HTML attributes.                                |
 
 ## Usage Examples 
-```jsx
+```typescript jsx
 import { Card, CardTheme } from '@/shared/ui/deprecated/Card';
 
 export const CustomCardExample = () => {

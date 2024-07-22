@@ -25,7 +25,7 @@ Here's the props table for the `Each` component:
 ## Usage
 The `Each` component is used to iterate over an array and render each element based on the provided `render` function. Here’s an example of how to use it:
 
-```jsx
+```typescript jsx
 import React from 'react';
 import { Each } from './Each';
 

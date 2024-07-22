@@ -25,7 +25,7 @@ The `VStack` component extends `Omit<FlexProps, 'direction'>` and accepts the fo
 | `otherProps` | `DivProps`   |             Optional             | Any additional div HTML attributes.                                 |
 
 ## Usage Examples
-```jsx
+```typescript jsx
 import { VStack } from '@/shared/ui/redesigned/VStack';
 
 export const CustomVStackExample = () => {

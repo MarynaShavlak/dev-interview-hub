@@ -30,7 +30,7 @@ The `ListBox` component accepts the following props:
 
 
 ## Usage Example
-```jsx
+```typescript jsx
 import { Listbox } from '@/shared/ui/Listbox/Listbox';
 import { ListBoxItem } from './OptionItem/OptionItem';
 
