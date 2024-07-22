@@ -1,38 +1,31 @@
 import { Listbox as HListBox } from '@headlessui/react';
-import { Fragment, ReactNode, useMemo } from 'react';
+import { useMemo } from 'react';
+import { ListBoxItem, Option } from './Option/Option';
 import { Each } from '@/shared/lib/components/Each/Each';
-import CheckedIcon from '@/shared/assets/icons/done-20-20.svg';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { DropdownDirection } from '@/shared/types/ui';
-import { Button } from '../../../Button/Button';
-import { Icon } from '../../../Icon/Icon';
 import { HStack } from '../../../../redesigned/Stack';
 import { mapDirectionClass } from '../../styles/consts';
 import popupCls from '../../styles/popup.module.scss';
 import cls from './ListBox.module.scss';
+import { ListBoxTrigger } from './ListBoxTrigger/ListBoxTrigger';
 
-export interface ListBoxItem {
-    value: string;
-    content: ReactNode;
-    disabled?: boolean;
-}
-
-interface ListBoxProps {
-    items?: ListBoxItem[];
-    className?: string;
-    value?: string;
+interface ListBoxProps<T extends string> {
+    items: ListBoxItem<T>[];
+    onChange: (value: T) => void;
+    value?: T;
     defaultValue?: string;
-    onChange: (value: string) => void;
     readonly?: boolean;
     direction?: DropdownDirection;
     label?: string;
+    className?: string;
 }
 
 /**
  * Deprecated, use new component from directory redesigned
  * @deprecated
  */
-export function ListBox(props: ListBoxProps) {
+export function ListBox<T extends string>(props: ListBoxProps<T>) {
     const {
         className,
         items,
@@ -44,7 +37,13 @@ export function ListBox(props: ListBoxProps) {
         label,
     } = props;
 
-    const optionsClasses = [mapDirectionClass[direction]];
+    const optionsClasses = classNames(cls.options, {}, [
+        mapDirectionClass[direction],
+    ]);
+    const listBoxClasses = classNames(cls.ListBox, {}, [
+        className,
+        popupCls.popup,
+    ]);
 
     const selectedItem = useMemo(() => {
         return items?.find((item) => item.value === value);
@@ -56,54 +55,24 @@ export function ListBox(props: ListBoxProps) {
             <HListBox
                 disabled={readonly}
                 as="div"
-                className={classNames(cls.ListBox, {}, [
-                    className,
-                    popupCls.popup,
-                ])}
+                className={listBoxClasses}
                 value={value}
                 onChange={onChange}
             >
-                <HListBox.Button
-                    className={cls.trigger}
-                    as={Button}
-                    disabled={readonly}
-                >
-                    {selectedItem?.content ?? defaultValue}
-                </HListBox.Button>
-                {items && (
-                    <HListBox.Options
-                        className={classNames(cls.options, {}, optionsClasses)}
-                    >
-                        <Each
-                            of={items}
-                            render={(item) => (
-                                <HListBox.Option
-                                    key={item.value}
-                                    value={item.value}
-                                    disabled={item.disabled}
-                                    as={Fragment}
-                                >
-                                    {({ active, selected }) => (
-                                        <li
-                                            className={classNames(cls.item, {
-                                                [popupCls.active]: active,
-                                                [popupCls.disabled]:
-                                                    item.disabled,
-                                            })}
-                                        >
-                                            <HStack gap="8">
-                                                {item.content}
-                                                {selected && (
-                                                    <Icon Svg={CheckedIcon} />
-                                                )}
-                                            </HStack>
-                                        </li>
-                                    )}
-                                </HListBox.Option>
-                            )}
-                        />
-                    </HListBox.Options>
-                )}
+                <ListBoxTrigger
+                    selectedItem={selectedItem}
+                    defaultValue={defaultValue}
+                    readonly={readonly}
+                />
+
+                <HListBox.Options className={optionsClasses}>
+                    <Each
+                        of={items}
+                        render={(item) => (
+                            <Option key={item.value} item={item} />
+                        )}
+                    />
+                </HListBox.Options>
             </HListBox>
         </HStack>
     );

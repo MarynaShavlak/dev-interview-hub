@@ -1,0 +1,16 @@
+.item {
+  padding: 10px 20px;
+}
+
+.selected {
+  background: var(--light-bg-redesigned);
+}
+
+.wrap {
+  width: -moz-max-content;
+  width: max-content;
+}
+
+.icon {
+  fill: var(--text-redesigned);
+}/*# sourceMappingURL=OptionItem.module.css.map */

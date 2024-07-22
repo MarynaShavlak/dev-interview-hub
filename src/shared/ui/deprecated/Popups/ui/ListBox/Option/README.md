@@ -1,4 +1,6 @@
-# Option
+# Option (Deprecated)
+
+Note: This component is deprecated. Please use the new component from the redesigned directory.
 
 ## Overview
 The `Option` component is a customizable item element used within a listbox interface. It integrates with the **[Headless UI](https://headlessui.com/)** library, specifically with the `Listbox` component, to provide interactive and accessible dropdown options. The `Option` component supports dynamic styling based on its state (active, selected, disabled), making it a versatile choice for enhancing user interaction in selection interfaces.
