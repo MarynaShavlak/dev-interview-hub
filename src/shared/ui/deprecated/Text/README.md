@@ -47,7 +47,7 @@ The `Text` component extends `TestProps` and it accepts the following props:
 ## Usage Examples
 
 ```jsx
-import { Text } from '@/shared/ui/redesigned/Text';
+import { Text, TextAlign, TextTheme, TextSize } from '@/shared/ui/deprecated/Text';
 
 export const TextExample = () => {
     return (
