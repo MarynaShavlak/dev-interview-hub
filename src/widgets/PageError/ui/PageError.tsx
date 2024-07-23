@@ -7,13 +7,13 @@ import { ToggleFeaturesComponent } from '@/shared/lib/features';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { Button as ButtonDeprecated } from '@/shared/ui/deprecated/Button';
 import { Button } from '@/shared/ui/redesigned/Button';
-import cls from './ErrorPage.module.scss';
+import cls from './PageError.module.scss';
 
-interface ErrorPageProps {
+interface PageErrorProps {
     className?: string;
 }
 
-export const ErrorPage = memo(({ className }: ErrorPageProps) => {
+export const PageError = memo(({ className }: PageErrorProps) => {
     const { t } = useTranslation();
 
     const reloadPage = () => {
@@ -24,7 +24,7 @@ export const ErrorPage = memo(({ className }: ErrorPageProps) => {
     const btnText = t('Оновити сторінку');
     return (
         <VStack
-            className={classNames(cls.ErrorPage, {}, [className])}
+            className={classNames(cls.PageError, {}, [className])}
             align="center"
             justify="center"
             gap="24"
