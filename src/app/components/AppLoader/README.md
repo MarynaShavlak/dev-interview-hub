@@ -7,7 +7,7 @@ The component conditionally renders either an `AppLoaderLayout` or a `PageLoader
 
 
 ## Props
-The AppLoader does not have any props, as the component's functionality is driven by internal feature toggles and theme management.
+The `AppLoader` does not have any props, as the component's functionality is driven by internal feature toggles and theme management.
 
 ## Usage Example
 ```typescript jsx
