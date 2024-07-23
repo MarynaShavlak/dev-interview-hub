@@ -6,6 +6,7 @@ import { Text } from '@/shared/ui/redesigned/Text';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { Page } from '@/widgets/Page';
 import cls from './NotFoundPage.module.scss';
+import { getFlexClasses } from '@/shared/lib/getFlexClasses/getFlexClasses';
 
 interface NotFoundPageProps {
     className?: string;
@@ -14,9 +15,13 @@ interface NotFoundPageProps {
 export const NotFoundPage = memo(({ className }: NotFoundPageProps) => {
     const { t } = useTranslation();
     const text = t('Сторінку не знайдено');
+    const additionalClasses = getFlexClasses({ hStack: true });
     return (
         <Page
-            className={classNames(cls.NotFoundPage, {}, [className])}
+            className={classNames(cls.NotFoundPage, {}, [
+                className,
+                ...additionalClasses,
+            ])}
             data-testid="NotFoundPage"
         >
             <ToggleFeaturesComponent
