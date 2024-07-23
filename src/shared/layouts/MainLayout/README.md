@@ -1,7 +1,7 @@
 # MainLayout
 
 ## Overview 
-The `MainLayou` component is a layout container designed to arrange its children into a three-column grid with a fixed sidebar and rightbar, and a central content area. It also includes an optional toolbar, which is positioned at the top of the rightbar. This layout is ideal for applications or pages where a structured layout with a fixed sidebar, content area, and additional header and toolbar elements is needed.
+The `MainLayout` component is a layout container designed to arrange its children into a three-column grid with a fixed sidebar and rightbar, and a central content area. It also includes an optional toolbar, which is positioned at the top of the rightbar. This layout is ideal for applications or pages where a structured layout with a fixed sidebar, content area, and additional header and toolbar elements is needed.
 
 ##  Type Definition
 ```typescript
