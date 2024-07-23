@@ -6,7 +6,7 @@ import { Article, ArticleTextBlock } from '../../../../../model/types/article';
 import { Categories } from '../../Categories/Categories';
 import { Views } from '../../Views/Views';
 import { ArticleTextBlockComponent } from '../../../../ArticleTextBlockComponent/ArticleTextBlockComponent';
-import { getRouteArticleDetails } from '@/shared/const/router';
+import { getRouteArticleDetails } from '@/shared/const/router/router';
 import { AppLink } from '@/shared/ui/deprecated/AppLink';
 import { Avatar } from '@/shared/ui/deprecated/Avatar';
 import { Button, ButtonTheme } from '@/shared/ui/deprecated/Button';

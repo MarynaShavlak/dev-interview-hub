@@ -10,7 +10,7 @@ import {
     getRouteAdmin,
     getRouteProfile,
     getRouteSettings,
-} from '@/shared/const/router';
+} from '@/shared/const/router/router';
 import {
     isUserAdmin,
     isUserManager,

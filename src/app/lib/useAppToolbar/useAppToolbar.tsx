@@ -1,5 +1,5 @@
 import { ReactElement } from 'react';
-import { AppRoutes } from '@/shared/const/router';
+import { AppRoutes } from '@/shared/const/router/router';
 import { ScrollToolbar } from '@/widgets/ScrollToolbar';
 import { useRouteChange } from '@/shared/lib/router/useRouteChange';
 /**

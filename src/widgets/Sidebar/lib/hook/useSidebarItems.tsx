@@ -12,7 +12,7 @@ import {
     getRouteArticles,
     getRouteMain,
     getRouteProfile,
-} from '@/shared/const/router';
+} from '@/shared/const/router/router';
 import { toggleFeatures } from '@/shared/lib/features';
 import { SidebarItemType } from '../../model/types/sidebar';
 

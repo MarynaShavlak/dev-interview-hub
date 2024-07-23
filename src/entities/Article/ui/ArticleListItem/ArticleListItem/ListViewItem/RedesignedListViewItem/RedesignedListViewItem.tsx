@@ -6,7 +6,7 @@ import { classNames } from '@/shared/lib/classNames/classNames';
 import { ArticleBlockType } from '../../../../../model/consts/articleConsts';
 import { Article, ArticleTextBlock } from '../../../../../model/types/article';
 import { Views } from '../../Views/Views';
-import { getRouteArticleDetails } from '@/shared/const/router';
+import { getRouteArticleDetails } from '@/shared/const/router/router';
 import { AppImage } from '@/shared/ui/redesigned/AppImage';
 import { AppLink } from '@/shared/ui/redesigned/AppLink';
 import { Avatar } from '@/shared/ui/redesigned/Avatar';

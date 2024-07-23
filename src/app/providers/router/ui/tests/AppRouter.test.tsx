@@ -5,7 +5,7 @@ import {
     getRouteAbout,
     getRouteAdmin,
     getRouteProfile,
-} from '@/shared/const/router';
+} from '@/shared/const/router/router';
 import { UserRole } from '@/entities/User';
 
 describe('app/router/AppRouter', () => {

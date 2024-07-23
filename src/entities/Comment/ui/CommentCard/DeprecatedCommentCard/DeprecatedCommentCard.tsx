@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import { getRouteProfile } from '@/shared/const/router';
+import { getRouteProfile } from '@/shared/const/router/router';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { Avatar } from '@/shared/ui/deprecated/Avatar';
 import { VStack } from '@/shared/ui/redesigned/Stack';

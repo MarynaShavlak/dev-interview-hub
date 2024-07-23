@@ -1,6 +1,6 @@
 import { matchPath, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { AppRouteByPathPattern, AppRoutes } from '@/shared/const/router';
+import { AppRouteByPathPattern, AppRoutes } from '@/shared/const/router/router';
 
 /**
  * Custom hook for determining the current application route based on the URL path

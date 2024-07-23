@@ -10,7 +10,7 @@ import { HStack } from '@/shared/ui/redesigned/Stack';
 import { NotificationButton } from '@/features/notificationButton';
 import { AvatarDropdown } from '@/features/avatarDropdown';
 import cls from '../Navbar.module.scss';
-import { getRouteArticleCreate } from '@/shared/const/router';
+import { getRouteArticleCreate } from '@/shared/const/router/router';
 
 interface NavbarProps {
     className?: string;

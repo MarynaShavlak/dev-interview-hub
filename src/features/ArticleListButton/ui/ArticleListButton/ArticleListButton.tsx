@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { Icon } from '@/shared/ui/redesigned/Icon';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
-import { getRouteArticles } from '@/shared/const/router';
+import { getRouteArticles } from '@/shared/const/router/router';
 import { Button } from '@/shared/ui/redesigned/Button';
 import {
     Button as ButtonDeprecated,
