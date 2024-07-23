@@ -1,5 +1,5 @@
 import React, { Suspense, useEffect } from 'react';
-import { useAppToolbar } from './lib/useAppToolbar';
+import { useAppToolbar } from './lib/useAppToolbar/useAppToolbar';
 import { AppLoaderLayout } from '@/shared/layouts/AppLoaderLayout';
 import { MainLayout } from '@/shared/layouts/MainLayout';
 import { AppRouter } from './providers/router';

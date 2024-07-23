@@ -1,14 +1,13 @@
 # PageLoader
 
 ## Overview 
-The `Page` widget is a specialized component designed to display a loading spinner, indicating to users that a page or a section of the application is currently loading. This component is essential for providing visual feedback during asynchronous data fetching or heavy processing tasks, enhancing the overall user experience by reducing perceived wait times and improving interface responsiveness.
+The `PageLoader` widget is a specialized component designed to display a loading spinner, indicating to users that a page or a section of the application is currently loading. This component is essential for providing visual feedback during asynchronous data fetching or heavy processing tasks, enhancing the overall user experience by reducing perceived wait times and improving interface responsiveness.
 
 ##  Type Definition
 ```typescript
 interface PageLoaderProps {
     className?: string;
 }
-
 ```
 
 ## Props

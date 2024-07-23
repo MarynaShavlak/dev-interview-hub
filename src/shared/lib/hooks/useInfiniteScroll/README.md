@@ -1,4 +1,4 @@
-# useInfiniteScroll Custom Hook
+# useInfiniteScroll Hook
 A custom React hook for implementing infinite scroll behavior using the IntersectionObserver API.
 
 ## Overview
