@@ -12,7 +12,7 @@ It relies on the `useLocation` hook from `react-router-dom` to obtain the curren
 
 ## Internal Behavior
 1. **useLocation**:
-    - The hook uses `useLocation` from **'react-router-dom'** to access the current location object, which includes information about the current URL.
+    - The hook uses `useLocation` from `react-router-dom` to access the current location object, which includes information about the current URL.
    
 2. **State Management**:
     - **`appRoute`**: The state is initialized with a default value of `AppRoutes.MAIN`.

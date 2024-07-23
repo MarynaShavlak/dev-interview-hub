@@ -19,17 +19,17 @@ export enum AppRoutes {
     NOT_FOUND = 'not_found',
 }
 ```
-- **'MAIN'**: Route for the main page.
-- **'SETTINGS'**: Route for the settings page.
-- **'ABOUT'**: Route for the about page.
-- **'PROFILE'**: Route for the profile page, which requires a user ID.
-- **'ARTICLES'**: Route for the articles list page.
-- **'ARTICLE_DETAILS'**: Route for the details of a specific article, which requires an article ID.
-- **'ARTICLE_CREATE'**: Route for creating a new article.
-- **'ARTICLE_EDIT'**: Route for editing a specific article, which requires an article ID.
-- **'ADMIN_PANEL'**: Route for the admin panel.
-- **'FORBIDDEN'**: Route for pages with restricted access.
-- **'NOT_FOUND'**: Route for pages that are not found.
+- `MAIN`: Route for the main page.
+- `SETTINGS`: Route for the settings page.
+- `ABOUT`: Route for the about page.
+- `PROFILE`: Route for the profile page, which requires a user ID.
+- `ARTICLES`: Route for the articles list page.
+- `ARTICLE_DETAILS`: Route for the details of a specific article, which requires an article ID.
+- `ARTICLE_CREATE`: Route for creating a new article.
+- `ARTICLE_EDIT`: Route for editing a specific article, which requires an article ID.
+- `ADMIN_PANEL`: Route for the admin panel.
+- `FORBIDDEN`: Route for pages with restricted access.
+- `NOT_FOUND`: Route for pages that are not found.
 
 
 ### Route Helper Functions
@@ -47,16 +47,16 @@ export const getRouteArticleEdit = (id: string) => `/articles/${id}/edit`;
 export const getRouteAdmin = () => '/admin';
 export const getRouteForbidden = () => '/forbidden';
 ```
-- **'getRouteMain()'**: Returns the path for the main page.
-- **'getRouteSettings()'**: Returns the path for the settings page.
-- **'getRouteAbout()'**: Returns the path for the about page.
-- **'getRouteProfile(id: string)'**: Returns the path for the profile page with a user ID.
-- **'getRouteArticles()'**: Returns the path for the articles list page.
-- **'getRouteArticleDetails(id: string)'**: Returns the path for the article details page with an article ID.
-- **'getRouteArticleCreate()'**: Returns the path for creating a new article.
-- **'getRouteArticleEdit(id: string)'**: Returns the path for editing an article with an article ID.
-- **'getRouteAdmin()'**: Returns the path for the admin panel.
-- **'getRouteForbidden()'**: Returns the path for the forbidden access page.
+- `getRouteMain()`: Returns the path for the main page.
+- `getRouteSettings()`: Returns the path for the settings page.
+- `getRouteAbout()`: Returns the path for the about page.
+- `getRouteProfile(id: string)`: Returns the path for the profile page with a user ID.
+- `getRouteArticles()`: Returns the path for the articles list page.
+- `getRouteArticleDetails(id: string)`: Returns the path for the article details page with an article ID.
+- `getRouteArticleCreate()`: Returns the path for creating a new article.
+- `getRouteArticleEdit(id: string)`: Returns the path for editing an article with an article ID.
+- `getRouteAdmin()`: Returns the path for the admin panel.
+- `getRouteForbidden()`: Returns the path for the forbidden access page.
 
 ## Route Pattern Mapping
 The `AppRouteByPathPattern` object maps route paths to their corresponding `AppRoutes` enum values. 

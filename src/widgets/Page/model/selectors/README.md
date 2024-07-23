@@ -1,28 +1,28 @@
 # Documentation for 'getUIScroll' and 'getUIScrollByPath'
 ## Overview
-These selectors are used to access and retrieve scroll position information from the Redux store. They are designed to work with the scroll state managed by the **'scrollSlice'** in the application.
+These selectors are used to access and retrieve scroll position information from the Redux store. They are designed to work with the scroll state managed by the `scrollSlice` in the application.
 
 ## Import Statements
 ```typescript
 import { createSelector } from '@reduxjs/toolkit';
 import { StateSchema } from '@/app/providers/StoreProvider';
 ```
-- **'createSelector'**: A function from Redux Toolkit used to create memoized selectors.
-- **'StateSchema'**: A TypeScript type representing the shape of the Redux store's state.
+- `createSelector`: A function from Redux Toolkit used to create memoized selectors.
+- `StateSchema`: A TypeScript type representing the shape of the Redux store's state.
 
 ## Selectors
 
-**'getUIScroll'**
+`getUIScroll`
 ```typescript
 export const getUIScroll = (state: StateSchema) => state.scroll.scroll;
 ```
-- **Purpose**: This selector retrieves the **'scroll'** object from the Redux store state.
+- **Purpose**: This selector retrieves the `scroll` object from the Redux store state.
 - **Parameters**:
-  - **'state'**: The entire Redux store state, adhering to the **'StateSchema'** type.
-- **Returns**: The **'scroll'** object, which contains scroll positions keyed by path
+  - `state`: The entire Redux store state, adhering to the `StateSchema` type.
+- **Returns**: The `scroll` object, which contains scroll positions keyed by path
 
 
-**'getUIScrollByPath'**
+`getUIScrollByPath`
 ```typescript
 export const getUIScrollByPath = createSelector(
     getUIScroll,
@@ -30,11 +30,11 @@ export const getUIScrollByPath = createSelector(
     (scroll, path) => scroll[path] || 0,
 );
 ```
-- **Purpose**: This selector retrieves the scroll position for a specific path from the **'scroll'** object in the Redux store.
+- **Purpose**: This selector retrieves the scroll position for a specific path from the `scroll` object in the Redux store.
 - **Parameters**:
-  - **First Argument**: **'getUIScroll'** selector, which provides the **'scroll'** object.
-  - **Second Argument**: A function that extracts the **'path'** parameter from the arguments.
-  - **Third Argument**: A function that takes the **'scroll'** object and **'path'** string, and returns the scroll position for the given path. If the path does not exist in the **'scroll'** object, it defaults to **'0'**.
+  - **First Argument**: `getUIScroll` selector, which provides the `scroll` object.
+  - **Second Argument**: A function that extracts the `path` parameter from the arguments.
+  - **Third Argument**: A function that takes the `scroll` object and `path` string, and returns the scroll position for the given path. If the path does not exist in the `scroll` object, it defaults to `0`.
 - **Usage**: This selector is used when you need to access the scroll position for a specific route or path in the application. It helps to keep track of the scroll position across different pages or views.
 
 
@@ -54,9 +54,9 @@ const Component = () => {
     );
 };
 ```
-In this example, **'getUIScrollByPath'** is used to retrieve the scroll position for the current path, which is then applied to a component's style or logic.
+In this example, `getUIScrollByPath` is used to retrieve the scroll position for the current path, which is then applied to a component's style or logic.
 
 
 ## Conclusion 
-- **'getUIScroll'**: Retrieves the entire **'scroll'** object from the Redux state.
-- **'getUIScrollByPath'**: Retrieves the scroll position for a specific path, defaulting to **'0'** if the path does not exist.
+- `getUIScroll`: Retrieves the entire `scroll` object from the Redux state.
+- `getUIScrollByPath`: Retrieves the scroll position for a specific path, defaulting to `0` if the path does not exist.

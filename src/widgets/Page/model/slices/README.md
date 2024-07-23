@@ -1,7 +1,7 @@
 # Documentation for 'scrollSlice'
 
 ## Overview
-The **'scrollSlice'** is a part of the Redux state management designed to handle the UI scroll positions for different paths in an application. It leverages Redux Toolkit and a custom **'buildSlice'** function to create a slice with an initial state and reducers.
+The `scrollSlice` is a part of the Redux state management designed to handle the UI scroll positions for different paths in an application. It leverages Redux Toolkit and a custom `buildSlice` function to create a slice with an initial state and reducers.
 
 ## Import Statements
 ```typescript
@@ -9,9 +9,9 @@ import { PayloadAction } from '@reduxjs/toolkit';
 import { buildSlice } from '@/shared/lib/store';
 import { UIScrollSchema } from '../types/ScrollSchema';
 ```
-- **'PayloadAction'**: A type from Redux Toolkit used to define the shape of action payloads.
-- **'buildSlice'**: A custom utility function for creating Redux slices.
-- **'UIScrollSchema'**: A TypeScript type that defines the schema for the scroll state.
+- `PayloadAction`: A type from Redux Toolkit used to define the shape of action payloads.
+- `buildSlice`: A custom utility function for creating Redux slices.
+- `UIScrollSchema`: A TypeScript type that defines the schema for the scroll state.
 
 ## Initial State
 ```typescript
@@ -20,7 +20,7 @@ const initialState: UIScrollSchema = {
 };
 ```
 
-The initial state of the slice is defined using the **'UIScrollSchema'** type. It contains a single property **'scroll'**, which is an empty object. This object will hold the scroll positions keyed by path.
+The initial state of the slice is defined using the `UIScrollSchema` type. It contains a single property `scroll`, which is an empty object. This object will hold the scroll positions keyed by path.
 
 ## Slice Definition
 ```typescript

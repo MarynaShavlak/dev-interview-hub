@@ -22,8 +22,8 @@ interface AnimationContextPayload {
 ```
 
 The `AnimationContextPayload` interface defines the shape of the context value provided by the `AnimationProvider` component. It includes the following fields:
-- `Gesture`: An optional field of type `GestureType` representing the **'@use-gesture/react'** library.
-- `Spring`: An optional field of type `SpringType` representing the **'@react-spring/web'** library.
+- `Gesture`: An optional field of type `GestureType` representing the `@use-gesture/react` library.
+- `Spring`: An optional field of type `SpringType` representing the `@react-spring/web` library.
 - `isLoaded`: An optional boolean field indicating whether the libraries have been successfully loaded.
 
 
@@ -45,7 +45,7 @@ Here's the props table for the `AnimationProvider` component:
 
 ## Detailed Implementation
 ### Asynchronous Module Loading
-The `getAsyncAnimationModules` function uses `Promise.all` to load the **'@react-spring/web'/** and **'@use-gesture/react'** libraries in parallel.
+The `getAsyncAnimationModules` function uses `Promise.all` to load the `@react-spring/web'/** and `@use-gesture/react` libraries in parallel.
 ```typescript
 const getAsyncAnimationModules = async () => {
     return Promise.all([

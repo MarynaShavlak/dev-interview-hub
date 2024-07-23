@@ -64,7 +64,7 @@ Each route configuration contains the following properties:
 - `path`: The URL path associated with the route.
 - `element`: The React component to be rendered for the route.
 - `authOnly` _(optional)_: A boolean indicating if authentication is required to access the route.
-- `roles` _(optional)_: An array of user roles that are authorized to access the route. Only applicable if **_'authOnly'_** is **_true_**.
+- `roles` _(optional)_: An array of user roles that are authorized to access the route. Only applicable if `authOnly` is **_true_**.
 
 ## Routes Description
 | Page                  | Path                           | Component               | Auth Only | Roles                                |

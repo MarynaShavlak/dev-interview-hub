@@ -1,12 +1,12 @@
 # Testing 'AppRouter' Component
-This document provides an overview and details of the tests written for the **'AppRouter'** component using **_'@testing-library/react'_**. The tests ensure that the **'AppRouter'* behaves correctly under different scenarios, including rendering pages, handling unknown routes, managing authentication, and role-based access control.
+This document provides an overview and details of the tests written for the `AppRouter` component using `@testing-library/react`. The tests ensure that the `AppRouter'* behaves correctly under different scenarios, including rendering pages, handling unknown routes, managing authentication, and role-based access control.
 
 ## Test Dependencies
-- **_'@testing-library/react'_**: A library for testing React components.
-- **'componentRender'**: A custom utility function for rendering components with necessary context providers and initial state.
-- **'AppRouter'**: The component under test.
-- **'getRouteAbout'**, getRouteAdmin, getRouteProfile: Helper functions to generate route paths.
-- **'UserRole'**: Enum defining user roles.
+- `@testing-library/react`: A library for testing React components.
+- `componentRender`: A custom utility function for rendering components with necessary context providers and initial state.
+- `AppRouter`: The component under test.
+- `getRouteAbout`, getRouteAdmin, getRouteProfile: Helper functions to generate route paths.
+- `UserRole`: Enum defining user roles.
 
 ## Test Suite Overview
 The test suite contains six test cases that verify the following:
@@ -30,4 +30,4 @@ The test suite contains six test cases that verify the following:
 | Access Is Allowed (the Required Role Is Present)   | Verify that a user with the required role can access a restricted route.                                 | Navigate to the **Admin** page route with a user who has the necessary role and check if the **Admi Panel** page element is present.         | The **Admin Panel** page should be in the document. |
 
 ## Conclusion
-The test suite for **'AppRouter'** comprehensively checks the routing logic, ensuring that pages render correctly, unknown routes are handled, and access control works as expected for both authenticated and unauthorized users. These tests help maintain the integrity and reliability of the application's routing system.
+The test suite for `AppRouter` comprehensively checks the routing logic, ensuring that pages render correctly, unknown routes are handled, and access control works as expected for both authenticated and unauthorized users. These tests help maintain the integrity and reliability of the application's routing system.

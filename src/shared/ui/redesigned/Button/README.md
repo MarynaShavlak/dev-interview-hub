@@ -25,9 +25,9 @@ The **`Button`** component extends **`ButtonHTMLAttributes<HTMLButtonElement>`**
 | `otherProps` | `ButtonHTMLAttributes<HTMLButtonElement>`   |               Optional                | Any additional button HTML attributes.                                      |
 
 ## Features
-- **Customizable Variants**: Choose from multiple visual styles (**'clear'**, **'outline'**, **filled'**, **'save'**, **'cancel'**), allowing the button to fit different contexts and design needs.
+- **Customizable Variants**: Choose from multiple visual styles (`clear`, `outline`, **filled`, `save`, `cancel`), allowing the button to fit different contexts and design needs.
 
-- **Flexible Sizes**: Available in sizes **'s'**, **'m'**, **'l'**, and **'xl'**, making the button adaptable to various use cases from small icons to large call-to-action buttons.
+- **Flexible Sizes**: Available in sizes `s`, `m`, `l`, and `xl`, making the button adaptable to various use cases from small icons to large call-to-action buttons.
 
 - **Square Shape Option**: Enable the **`square`**`prop to create a square-shaped button, ideal for compact layouts or icon buttons.
 

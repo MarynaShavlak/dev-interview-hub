@@ -33,7 +33,7 @@ The DropdownItem component accepts the required props `item` of type `DropdownOp
 
 4. **Conditional Classes**: The component uses the `classNames` helper function to conditionally apply CSS classes, including an active state class for interactive feedback.
 
-5. **Headless UI Integration**: This component leverages **Headless UI**'s **`Menu.Item`** to manage dropdown item behavior and interactions, providing a robust and accessible foundation for dropdown menus.
+5. **Headless UI Integration**: This component leverages **Headless UI`s **`Menu.Item`** to manage dropdown item behavior and interactions, providing a robust and accessible foundation for dropdown menus.
 
 ## Usage Examples
 ### Example 1: Basic Dropdown Menu Item

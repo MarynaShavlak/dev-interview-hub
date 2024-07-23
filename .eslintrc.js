@@ -90,7 +90,7 @@ module.exports = {
                 alias: '@',
                 testFilesPatterns: [
                     '**/*.test.*',
-                    '**/*.stories.*',
+                    '**/*.story.*',
                     '**/StoreDecorator.tsx',
                 ],
             },

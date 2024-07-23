@@ -1,11 +1,11 @@
 # Documentation for '_buildSlicer_' Function
 
 ## Overview
-The **_'buildSlice'_** function enhances the functionality of creating Redux slices by providing an encapsulated hook (**_'useActions'_**) that binds dispatch actions, thus reducing the need to repeatedly use **_'useDispatch'_** within components.
+The `buildSlice` function enhances the functionality of creating Redux slices by providing an encapsulated hook (`useActions`) that binds dispatch actions, thus reducing the need to repeatedly use `useDispatch` within components.
 
 
 ## Purpose
-The purpose of **_'buildSlice'_**  is to streamline the creation of Redux slices while integrating a custom hook (**_'useActions'_**) that simplifies the dispatch of actions across components.
+The purpose of `buildSlice`  is to streamline the creation of Redux slices while integrating a custom hook (`useActions`) that simplifies the dispatch of actions across components.
 
 ## Function Definition
 **Imports**
@@ -46,7 +46,7 @@ export function buildSlice<
 
 ## Usage
 
-To use **_'buildSlice'_**, you first define a Redux slice by calling **_'buildSlice'_** with appropriate **_'CreateSliceOptions'_**. This function returns an object that includes the slice's reducer, actions, and a custom **_'useActions'_** hook.
+To use `buildSlice`, you first define a Redux slice by calling `buildSlice` with appropriate `CreateSliceOptions`. This function returns an object that includes the slice's reducer, actions, and a custom `useActions` hook.
 
 Here's an example of how you might use it:
 
@@ -83,7 +83,7 @@ export const {
 ```
 **Using in a Component**
 
-```typescript
+```typescript jsx
 const CounterComponent = () => {
     const { count } = useSelector((state: StateSchema) => state.counter);
     const { incremenet, decrement, reset, add } = useCounterActions();
@@ -102,11 +102,11 @@ const CounterComponent = () => {
 
 ## Advantages
 - **Encapsulation**: Bundles slice creation and action binding in one function.
-- **Simplicity**: Reduces boilerplate by avoiding repetitive **_'useDispatch'_** calls in components.
+- **Simplicity**: Reduces boilerplate by avoiding repetitive `useDispatch` calls in components.
 - **Type Safety**: Maintains TypeScript type safety with correctly typed action creators and dispatch methods.
 ## Conclusion
-The **_'buildSlice'_** function serves as a powerful utility function that enhances the Redux toolkit by facilitating the creation of Redux slices with minimal boilerplate code.
+The `buildSlice` function serves as a powerful utility function that enhances the Redux toolkit by facilitating the creation of Redux slices with minimal boilerplate code.
 
-It leverages TypeScript generics to ensure type safety throughout the slice creation process. The inclusion of the **_'useActions'_** hook simplifies the integration of Redux state management(the process of dispatching actions) with React components, promoting cleaner, more maintainable code in complex applications.
+It leverages TypeScript generics to ensure type safety throughout the slice creation process. The inclusion of the `useActions` hook simplifies the integration of Redux state management(the process of dispatching actions) with React components, promoting cleaner, more maintainable code in complex applications.
 
-By encapsulating Redux slice creation and action binding, **_'buildSlice'_** contributes to a robust and scalable architecture for managing application states effectively.
+By encapsulating Redux slice creation and action binding, `buildSlice` contributes to a robust and scalable architecture for managing application states effectively.

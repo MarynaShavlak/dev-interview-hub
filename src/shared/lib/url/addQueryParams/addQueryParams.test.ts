@@ -1,6 +1,6 @@
 import { getQueryParams } from './addQueryParams';
 
-describe('shared/url/addQueryParams', () => {
+describe('shared/lib/url/addQueryParams', () => {
     test('test with one param', () => {
         const params = getQueryParams({
             test: 'value',
