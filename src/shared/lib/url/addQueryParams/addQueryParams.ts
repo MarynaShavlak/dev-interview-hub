@@ -1,4 +1,4 @@
-export function getQueryParams(params: OptionalRecord<string, string>) {
+export function getQueryParams(params: OptionalRecord<string, string>): string {
     const searchParams = new URLSearchParams(window.location.search);
     Object.entries(params).forEach(([name, value]) => {
         if (value !== undefined) {
@@ -9,8 +9,8 @@ export function getQueryParams(params: OptionalRecord<string, string>) {
 }
 
 /**
- * Функція додавання параметрів рядку запиту в URL
- * @param params
+ * Adds or updates query parameters in the browser's URL.
+ * @param params - An object containing key-value pairs representing query parameters and their values.
  */
 export function addQueryParams(params: OptionalRecord<string, string>) {
     window.history.pushState(null, '', getQueryParams(params));
