@@ -1,66 +1,52 @@
-# useInput hook
-A custom React hook designed to manage the state and behavior of an input field. It simplifies handling input changes, focus management, caret position,  and supports input validation based on given props.
+# useRouteChange  hook
+The `useRouteChange` hook is designed to monitor the current URL path and determine the corresponding application route. 
+This hook is particularly useful in applications where certain components or functionality need to be conditionally rendered based on the current rou
 
 ## Parameters
-- `autofocus:`_Optional_. A boolean flag indicating whether the input should automatically focus on mount.
-- `digitsOnly`: _Optional_. A boolean flag to restrict input to digits only. If set to true, non-numeric input will be ignored.
-- `onChange`: _Optional_.  A callback function that is invoked whenever the input value changes. Receives the current value as a parameter.
+This hook does not accept any parameters directly. 
+It relies on the `useLocation` hook from `react-router-dom` to obtain the current URL path and the `AppRouteByPathPattern` constant to map the path to an application route.
 
 ## Returns
-An object with the following properties:
-- `ref`: A React ref object that should be attached to the input element. Used to programmatically control the input's focus.
-- `isFocused`: A boolean indicating whether the input is currently focused. Useful for applying styles or handling focus-based logic.
-- `onChangeHandler`: A function to handle input changes. Validates the input based on `digitsOnly` and triggers the `onChange` callback.
-- `onBlurHandler`: A function to handle when the input loses focus. It updates the isFocused state and triggers the onChange callback with trimmed text.
-- `onFocus`: A function to handle when the input gains focus. Updates the `isFocused` state.
-  `onSelect`: A function to handle when the user selects part of the input text. Updates the `caretPosition` state.
-  `caretPosition`: Number representing the current caret position in the input field.
+`appRoute`: The current application route, derived from the URL path. The type of this value is `AppRoutes`, which is an enum representing the possible routes in the application.
 
 
 ## Internal Behavior
-1. **State Management**:
-    - **`isFocused`**: Indicates if the input field is currently focused. Initially set to `false` and changes to `true` when the input is focused.
+1. **useLocation**:
+    - The hook uses `useLocation` from **'react-router-dom'** to access the current location object, which includes information about the current URL.
+   
+2. **State Management**:
+    - **`appRoute`**: The state is initialized with a default value of `AppRoutes.MAIN`.
 
-2. **Refs**:
-    - **`ref`**: Holds a reference to the input element using the `useRef` hook. Used to programmatically control the input's focus.
-
-3. Callbacks:
-    - **`onChangeHandler`**: Handles input changes. If `digitsOnly` is `true`, it ignores non-numeric input. Calls the `onChange` callback with the input value.
-    - **`onBlurHandler`**: Handles the input losing focus. Updates `isFocused` and triggers the `onChange` callback with trimmed text.
-    - **`onFocus`**: Updates the `isFocused` state when the input gains focus.
-    - **`onSelect`**: Updates the `caretPosition` state based on the user's selection in the input field.
-4. Effects:
-    - **`useEffect`** when `autofocus` changes. If `autofocus` is `true`, it sets `isFocused` to `true` and focuses the input element using the `ref`.
+3. Effects:
+    - **`useEffect`** runs whenever the `location.pathname` changes. 
+      - It iterates over the `AppRouteByPathPattern` entries to find a matching route pattern using `matchPath`. 
+      - When a match is found, it updates the `appRoute` state with the corresponding route.
 
 ## Usage Example 
-```typescript jsx
-import React, { useState } from 'react';
-import { useInput } from '@/shared/lib/hooks/useInput/useInput';
 
-const TextInput = () => {
-    const [value, setValue] = useState('');
-    const { ref, isFocused, onChangeHandler, onBlurHandler, onFocus } = useInput({
-        autofocus: true,
-        digitsOnly: false,
-        onChange: setValue,
-    });
+In this example, `MyComponent` uses the `useRouteChange` hook to determine the current route and conditionally render components based on the value of `currentRoute`. 
+This allows for dynamic and responsive UI updates based on the active route.
+```typescript jsx
+import React from 'react';
+import { useRouteChange } from '@/shared/lob/router/useRouteChange';
+import { AppRoutes } from '@/shared/const/router';
+
+const MyComponent = () => {
+    const currentRoute = useRouteChange();
 
     return (
-        <input
-            ref={ref}
-            value={value}
-            onChange={onChangeHandler}
-            onBlur={onBlurHandler}
-            onFocus={onFocus}
-            type="text"
-            placeholder="Enter text"
-        />
+        <div>
+            {currentRoute === AppRoutes.MAIN && <MainComponent />}
+            {currentRoute === AppRoutes.ANOTHER_ROUTE && <AnotherComponent />}
+            {/* Add more conditional renders based on routes */}
+        </div>
     );
 };
 
-export default TextInput;
+export default MyComponent;
+
 ```
 ## Conclusion
-The `useInput` hook manages the state and behavior of an input field, including focus control, value handling, and optional input validation.
-It simplifies managing input interactions by providing handlers for change, blur, and focus events, and it supports autofocus and digit-only constraints.
-Additionally, it tracks the caret position, allowing you to display or manipulate the caret as needed for more advanced input scenarios.
+The `useRouteChange` hook streamlines the process of monitoring and responding to changes in the application's route. 
+By providing the current route based on the URL path, it enables conditional rendering and dynamic updates of UI components based on route changes. 
+This hook is especially beneficial in applications with multiple routes where components need to adapt or change according to the active route, enhancing the overall user experience and maintaining a clean and organized codebase.
