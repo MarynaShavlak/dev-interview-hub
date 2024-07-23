@@ -79,3 +79,4 @@ export const AppRouteByPathPattern: Record<string, AppRoutes> = {
 };
 ```
 This mapping is useful for translating URL paths into their semantic route identifiers, which can be used for routing logic and navigation throughout the application.
+ 
