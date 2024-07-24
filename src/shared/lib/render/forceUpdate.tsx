@@ -1,6 +1,15 @@
 import { createContext, ReactNode, useContext, useMemo, useState } from 'react';
 
-const ForceUpdateContext = createContext({
+interface ForceUpdateContextProps {
+    value: boolean;
+    forceUpdate: () => void;
+}
+
+interface ForceUpdateProviderProps {
+    children: ReactNode;
+}
+
+const ForceUpdateContext = createContext<ForceUpdateContextProps>({
     value: true,
     forceUpdate: () => {},
 });
@@ -11,7 +20,7 @@ export const useForceUpdate = () => {
     return forceUpdate;
 };
 
-export function ForceUpdateProvider({ children }: { children: ReactNode }) {
+export function ForceUpdateProvider({ children }: ForceUpdateProviderProps) {
     const [value, setValue] = useState(true);
 
     const forceUpdate = () => {
