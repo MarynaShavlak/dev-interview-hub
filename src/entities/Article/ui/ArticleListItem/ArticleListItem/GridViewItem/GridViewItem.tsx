@@ -1,6 +1,6 @@
 import { HTMLAttributeAnchorTarget, memo } from 'react';
 import { RedesignedGridViewItem } from './RedesignedGridViewItem/RedesignedGridViewItem';
-import { Article } from '../../../..';
+import { Article } from '../../../../model/types/article';
 import { DeprecatedGridViewItem } from './DeprecatedGridViewItem/DeprecatedGridViewItem';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
 

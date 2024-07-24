@@ -14,23 +14,28 @@ import cls from '../../ArticleListItem.module.scss';
 import { Skeleton } from '@/shared/ui/deprecated/Skeleton';
 import defaultImage from '@/shared/assets/images/default-img.png';
 import { AppLink } from '@/shared/ui/deprecated/AppLink';
+import { useHover } from '@/shared/lib/hooks/useHover/useHover';
 
 export const DeprecatedGridViewItem = memo((props: GridViewItemProps) => {
     const { className, article, target } = props;
     const { t } = useTranslation('articles');
-    const additionalClasses = getFlexClasses({ vStack: true, gap: '8' });
+    const [isHover, bindHover] = useHover();
+    const additionalCardClasses = getFlexClasses({ vStack: true, gap: '8' });
+    const itemClasses = classNames(
+        cls.ArticleListItem,
+        { [cls.hover]: isHover },
+        [className || '', cls.GRID],
+    );
 
     return (
         <AppLink
+            {...bindHover}
             data-testid="ArticleListItem"
             target={target}
             to={getRouteArticleDetails(article.id)}
-            className={classNames(cls.ArticleListItem, {}, [
-                className,
-                cls.GRID,
-            ])}
+            className={itemClasses}
         >
-            <Card className={classNames(cls.card, {}, additionalClasses)}>
+            <Card className={classNames(cls.card, {}, additionalCardClasses)}>
                 <div className={cls.imageWrapper}>
                     <AppImage
                         fallback={<Skeleton width="200px" height="200px" />}

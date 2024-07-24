@@ -1,7 +1,7 @@
 .ArticleListItem {
     &.GRID {
         width: 230px;
-        transition: 0.2s;
+        transition: 0.3s;
         cursor: pointer;
 
         .card {
@@ -14,9 +14,10 @@
             right: 0;
             top: 0;
             opacity: 0;
+            transition: opacity 0.3s;
         }
 
-        &:hover {
+        &.hover {
             opacity: 0.8;
             transform: scale(1.01);
 
