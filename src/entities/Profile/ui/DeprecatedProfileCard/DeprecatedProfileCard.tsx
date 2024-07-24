@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { ProfileCardProps } from '../ProfileCard/ProfileCard';
-import { classNames, Mods } from '@/shared/lib/classNames/classNames';
+import { classNames, Mods } from '@/shared/lib/classes/classNames/classNames';
 import { HStack, VStack } from '@/shared/ui/redesigned/Stack';
 
 import { CurrencySelect } from '@/entities/Currency';

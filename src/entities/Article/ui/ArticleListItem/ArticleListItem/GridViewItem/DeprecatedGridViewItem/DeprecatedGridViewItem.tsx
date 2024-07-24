@@ -1,13 +1,13 @@
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { getFlexClasses } from '@/shared/lib/getFlexClasses/getFlexClasses';
+import { getFlexClasses } from '@/shared/lib/classes/getFlexClasses/getFlexClasses';
 import { GridViewItemProps } from '../GridViewItem';
 import { Views } from '../../Views/Views';
 import { Categories } from '../../Categories/Categories';
 import { HStack } from '@/shared/ui/redesigned/Stack';
 import { AppImage } from '@/shared/ui/redesigned/AppImage';
 import { getRouteArticleDetails } from '@/shared/const/router/router';
-import { classNames } from '@/shared/lib/classNames/classNames';
+import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { Text } from '@/shared/ui/deprecated/Text';
 import { Card } from '@/shared/ui/deprecated/Card';
 import cls from '../../ArticleListItem.module.scss';

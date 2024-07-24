@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { classNames } from '@/shared/lib/classNames/classNames';
-import { getFlexClasses } from '@/shared/lib/getFlexClasses/getFlexClasses';
+import { classNames } from '@/shared/lib/classes/classNames/classNames';
+import { getFlexClasses } from '@/shared/lib/classes/getFlexClasses/getFlexClasses';
 import { Card } from '@/shared/ui/redesigned/Card';
 import { HStack, VStack } from '@/shared/ui/redesigned/Stack';
 import { Avatar } from '@/shared/ui/redesigned/Avatar';

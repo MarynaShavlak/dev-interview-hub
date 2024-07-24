@@ -3,7 +3,7 @@ import { memo, useCallback } from 'react';
 import { useSelector } from 'react-redux';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { classNames } from '@/shared/lib/classNames/classNames';
+import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { Text as TextDeprecated, TextSize } from '@/shared/ui/deprecated/Text';
 import { Text } from '@/shared/ui/redesigned/Text';
 import { AddCommentForm } from '@/features/addCommentForm';

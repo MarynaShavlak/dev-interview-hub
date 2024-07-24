@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { memo } from 'react';
 import { VStack } from '@/shared/ui/redesigned/Stack';
 import { useLoginForm } from '../../../lib/hooks/useLoginForm';
-import { classNames } from '@/shared/lib/classNames/classNames';
+import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { Button } from '@/shared/ui/redesigned/Button';
 import { Input } from '@/shared/ui/redesigned/Input';
 import { Text } from '@/shared/ui/redesigned/Text';

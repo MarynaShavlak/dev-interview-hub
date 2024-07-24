@@ -3,7 +3,7 @@ import { LangSwitcher } from '@/features/LangSwitcher';
 import { ThemeSwitcher } from '@/features/ThemeSwitcher';
 import { VStack } from '@/shared/ui/redesigned/Stack';
 import { AppLogo } from '@/shared/ui/redesigned/AppLogo';
-import { classNames } from '@/shared/lib/classNames/classNames';
+import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import cls from './RedesignedSidebar.module.scss';
 import { Icon } from '@/shared/ui/redesigned/Icon';
 import ArrowIcon from '@/shared/assets/icons/arrow-bottom.svg';

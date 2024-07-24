@@ -1,4 +1,4 @@
-import { classNames } from '@/shared/lib/classNames/classNames';
+import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
 import { TestProps } from '@/shared/types/tests';
 import { Icon } from '../../Icon';

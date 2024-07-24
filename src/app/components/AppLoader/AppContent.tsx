@@ -1,6 +1,6 @@
 import React, { Suspense } from 'react';
 import { MainLayout } from '@/shared/layouts/MainLayout';
-import { classNames } from '@/shared/lib/classNames/classNames';
+import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { Navbar } from '@/widgets/Navbar';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
 import { useTheme } from '@/shared/lib/hooks/useTheme/useTheme';

@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import { classNames } from '@/shared/lib/classNames/classNames';
+import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { toggleFeatures } from '@/shared/lib/features';
 import { HStack, VStack } from '@/shared/ui/redesigned/Stack';
 import { ArticleListItemSkeleton } from '../../ArticleListItem/ArticleListItemSkeleton/ArticleListItemSkeleton';

@@ -3,10 +3,10 @@ import React, { memo } from 'react';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
 import { Text as TextDeprecated } from '@/shared/ui/deprecated/Text';
 import { Text } from '@/shared/ui/redesigned/Text';
-import { classNames } from '@/shared/lib/classNames/classNames';
+import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { Page } from '@/widgets/Page';
 import cls from './NotFoundPage.module.scss';
-import { getFlexClasses } from '@/shared/lib/getFlexClasses/getFlexClasses';
+import { getFlexClasses } from '@/shared/lib/classes/getFlexClasses/getFlexClasses';
 
 interface NotFoundPageProps {
     className?: string;

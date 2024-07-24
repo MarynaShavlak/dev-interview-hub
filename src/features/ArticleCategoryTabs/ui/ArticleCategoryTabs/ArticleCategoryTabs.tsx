@@ -1,6 +1,6 @@
 import { memo, useCallback, useMemo } from 'react';
 import { useCategoryTabs } from '../../lib/hooks/useCategoryTabs';
-import { classNames } from '@/shared/lib/classNames/classNames';
+import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
 import { ArticleCategory } from '@/entities/Article';
 import { Tabs } from '@/shared/ui/redesigned/Tabs';

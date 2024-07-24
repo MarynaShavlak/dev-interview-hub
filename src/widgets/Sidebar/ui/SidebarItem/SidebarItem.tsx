@@ -8,7 +8,7 @@ import {
 } from '@/shared/ui/deprecated/AppLink';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
 import { useUserAuthData } from '@/entities/User';
-import { classNames } from '@/shared/lib/classNames/classNames';
+import { classNames } from '@/shared/lib/classes/classNames/classNames';
 
 import { SidebarItemType } from '../../model/types/sidebar';
 import cls from './SidebarItem.module.scss';

@@ -9,7 +9,7 @@ import { ArticleDetailsComments } from '../../ArticleDetailsComments/ArticleDeta
 import { DetailsContainer } from '../../DetailsContainer/DetailsContainer';
 import { VStack } from '@/shared/ui/redesigned/Stack';
 import cls from '../ArticleDetailsPage.module.scss';
-import { classNames } from '@/shared/lib/classNames/classNames';
+import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { Text } from '@/shared/ui/redesigned/Text';
 import { Page } from '@/widgets/Page';
 import { ArticleDetailsPageProps } from '../ArticleDetailsPage';

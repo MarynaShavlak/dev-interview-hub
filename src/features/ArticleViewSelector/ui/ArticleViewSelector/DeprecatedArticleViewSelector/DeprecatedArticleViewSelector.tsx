@@ -2,7 +2,7 @@ import { memo } from 'react';
 import { ArticleViewSelectorProps } from '../ArticleViewSelector';
 import { viewTypes } from '../../../model/consts/viewsTypes';
 import { ArticleView } from '@/entities/Article';
-import { classNames } from '@/shared/lib/classNames/classNames';
+import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { Each } from '@/shared/lib/components/Each/Each';
 import {
     Button as ButtonDeprecated,

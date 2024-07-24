@@ -2,7 +2,7 @@ import { Listbox as HListBox } from '@headlessui/react';
 import { useMemo } from 'react';
 import { ListBoxItem, Option } from './Option/Option';
 import { Each } from '@/shared/lib/components/Each/Each';
-import { classNames } from '@/shared/lib/classNames/classNames';
+import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { DropdownDirection } from '@/shared/types/ui';
 import { HStack } from '../../../../redesigned/Stack';
 import { mapDirectionClass } from '../../styles/consts';

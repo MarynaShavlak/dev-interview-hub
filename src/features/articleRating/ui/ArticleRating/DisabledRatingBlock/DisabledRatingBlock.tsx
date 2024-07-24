@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { classNames } from '@/shared/lib/classNames/classNames';
-import { getFlexClasses } from '@/shared/lib/getFlexClasses/getFlexClasses';
+import { classNames } from '@/shared/lib/classes/classNames/classNames';
+import { getFlexClasses } from '@/shared/lib/classes/getFlexClasses/getFlexClasses';
 import { Text } from '@/shared/ui/redesigned/Text';
 import { Text as TextDeprecated } from '@/shared/ui/deprecated/Text';
 import { StarRating } from '@/shared/ui/redesigned/StarRating';

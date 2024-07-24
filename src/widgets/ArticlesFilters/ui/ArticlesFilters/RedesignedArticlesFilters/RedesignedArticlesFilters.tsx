@@ -3,7 +3,7 @@ import { ArticleCategoryTabs } from '@/features/ArticleCategoryTabs';
 import { ArticleSortSelector } from '@/features/ArticleSortSelector';
 import { ArticlesFiltersProps } from '../ArticlesFilters';
 import { Icon } from '@/shared/ui/redesigned/Icon';
-import { classNames } from '@/shared/lib/classNames/classNames';
+import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import cls from '../ArticlesFilters.module.scss';
 import { Card } from '@/shared/ui/redesigned/Card';
 import { VStack } from '@/shared/ui/redesigned/Stack';

@@ -3,7 +3,7 @@ import React, { memo } from 'react';
 import { useAuthModal } from '../../lib/hooks/useAuthModal';
 import { LoginModal } from '@/features/AuthByUsername';
 import { Button, ButtonTheme } from '@/shared/ui/deprecated/Button';
-import { classNames } from '@/shared/lib/classNames/classNames';
+import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { Text, TextTheme } from '@/shared/ui/deprecated/Text';
 import { AppLink, AppLinkTheme } from '@/shared/ui/deprecated/AppLink';
 import { HStack } from '@/shared/ui/redesigned/Stack';

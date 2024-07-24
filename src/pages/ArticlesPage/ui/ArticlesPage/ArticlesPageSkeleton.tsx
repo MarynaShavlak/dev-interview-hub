@@ -1,6 +1,6 @@
 import { memo } from 'react';
-import { classNames } from '@/shared/lib/classNames/classNames';
-import { getFlexClasses } from '@/shared/lib/getFlexClasses/getFlexClasses';
+import { classNames } from '@/shared/lib/classes/classNames/classNames';
+import { getFlexClasses } from '@/shared/lib/classes/getFlexClasses/getFlexClasses';
 import { Card } from '@/shared/ui/redesigned/Card';
 import { VStack } from '@/shared/ui/redesigned/Stack';
 import { StickyContentLayout } from '@/shared/layouts/StickyContentLayout';

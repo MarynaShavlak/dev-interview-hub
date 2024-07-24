@@ -4,7 +4,7 @@ import { DisabledStar } from './DisabledStar/DisabedStar';
 import { useStarRating } from '@/shared/lib/hooks/useStarRating/useStarRating';
 import { toggleFeatures } from '@/shared/lib/features';
 import { Each } from '@/shared/lib/components/Each/Each';
-import { classNames } from '@/shared/lib/classNames/classNames';
+import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import cls from './StarRating.module.scss';
 
 interface StarRatingProps {

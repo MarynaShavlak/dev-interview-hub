@@ -1,6 +1,6 @@
 import { memo } from 'react';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
-import { classNames } from '@/shared/lib/classNames/classNames';
+import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { Text as TextDeprecated, TextAlign } from '@/shared/ui/deprecated/Text';
 import { Text } from '@/shared/ui/redesigned/Text';
 import cls from './ArticleImageBlockComponent.module.scss';

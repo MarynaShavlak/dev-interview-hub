@@ -4,7 +4,7 @@ import { ArticleDetailsSkeleton } from './ArticleDetailsSkeleton/ArticleDetailsS
 import { RedesignedArticleDetails } from './RedesignedArticleDetails/RedesignedArticleDetails';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
 import { DeprecatedArticleDetails } from './DeprecatedArticleDetails/DeprecatedArticleDetails';
-import { classNames } from '@/shared/lib/classNames/classNames';
+import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import {
     DynamicModuleLoader,
     ReducersList,

@@ -5,7 +5,7 @@ import {
     mapJustifyToClass,
     mapGapToClass,
 } from '@/shared/const/flexClasses';
-import { classNames, Mods } from '@/shared/lib/classNames/classNames';
+import { classNames, Mods } from '@/shared/lib/classes/classNames/classNames';
 import {
     FlexAlign,
     FlexDirection,

@@ -8,7 +8,7 @@ import { ListBox } from '@/shared/ui/redesigned/Popups';
 import { VStack } from '@/shared/ui/redesigned/Stack';
 import { Text } from '@/shared/ui/redesigned/Text';
 import { ArticleSortSelectorProps } from '../ArticleSortSelector';
-import { classNames } from '@/shared/lib/classNames/classNames';
+import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import cls from '../ArticleSortSelector.module.scss';
 
 export const RedesignedArticleSortSelector = memo(

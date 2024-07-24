@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
 import { Each } from '@/shared/lib/components/Each/Each';
-import { classNames } from '@/shared/lib/classNames/classNames';
+import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { Text as TextDeprecated } from '@/shared/ui/deprecated/Text';
 import { Text } from '@/shared/ui/redesigned/Text';
 import cls from './ArticleTextBlockComponent.module.scss';

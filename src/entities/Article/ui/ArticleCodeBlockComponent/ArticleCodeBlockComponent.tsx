@@ -1,6 +1,6 @@
 import { memo } from 'react';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
-import { classNames } from '@/shared/lib/classNames/classNames';
+import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { Code } from '@/shared/ui/redesigned/Code';
 import { Code as CodeDeprecated } from '@/shared/ui/deprecated/Code';
 import cls from './ArticleCodeBlockComponent.module.scss';

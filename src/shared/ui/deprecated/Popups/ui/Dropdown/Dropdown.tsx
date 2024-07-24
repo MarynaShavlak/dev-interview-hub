@@ -1,7 +1,7 @@
 import { Menu } from '@headlessui/react';
 import { ReactNode } from 'react';
 import { Each } from '@/shared/lib/components/Each/Each';
-import { classNames } from '@/shared/lib/classNames/classNames';
+import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { DropdownDirection } from '@/shared/types/ui';
 import cls from './Dropdown.module.scss';
 import { mapDirectionClass } from '../../styles/consts';

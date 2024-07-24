@@ -1,6 +1,6 @@
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { getFlexClasses } from '@/shared/lib/getFlexClasses/getFlexClasses';
+import { getFlexClasses } from '@/shared/lib/classes/getFlexClasses/getFlexClasses';
 import { ArticleBlockType } from '../../../../../model/consts/articleConsts';
 import { Article, ArticleTextBlock } from '../../../../../model/types/article';
 import { Categories } from '../../Categories/Categories';
@@ -17,7 +17,7 @@ import { HStack, VStack } from '@/shared/ui/redesigned/Stack';
 import defaultImage from '@/shared/assets/images/default-img-list.png';
 
 import { Card } from '@/shared/ui/deprecated/Card';
-import { classNames } from '@/shared/lib/classNames/classNames';
+import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import cls from '../../ArticleListItem.module.scss';
 
 interface ListViewItemProps {

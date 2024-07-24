@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import { classNames } from '@/shared/lib/classNames/classNames';
+import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { Card as CardDeprecated, CardTheme } from '@/shared/ui/deprecated/Card';
 import { Text as TextDeprecated } from '@/shared/ui/deprecated/Text';
 import { Text } from '@/shared/ui/redesigned/Text';

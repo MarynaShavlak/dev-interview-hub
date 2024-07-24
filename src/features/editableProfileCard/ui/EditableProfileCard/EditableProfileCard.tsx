@@ -4,7 +4,7 @@ import { useProfile } from '../../lib/hooks/useProfile';
 import { EditableProfileCardError } from '../EditableProfileCardError/EditableProfileCardError';
 import { toggleFeatures } from '@/shared/lib/features';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { classNames } from '@/shared/lib/classNames/classNames';
+import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect/useInitialEffect';
 import {
     DynamicModuleLoader,

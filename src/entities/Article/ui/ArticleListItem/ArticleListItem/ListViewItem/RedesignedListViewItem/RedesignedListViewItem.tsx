@@ -1,8 +1,8 @@
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { getFlexClasses } from '@/shared/lib/getFlexClasses/getFlexClasses';
+import { getFlexClasses } from '@/shared/lib/classes/getFlexClasses/getFlexClasses';
 import defaultImage from '@/shared/assets/images/default-img-list.png';
-import { classNames } from '@/shared/lib/classNames/classNames';
+import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { ArticleBlockType } from '../../../../../model/consts/articleConsts';
 import { Article, ArticleTextBlock } from '../../../../../model/types/article';
 import { Views } from '../../Views/Views';

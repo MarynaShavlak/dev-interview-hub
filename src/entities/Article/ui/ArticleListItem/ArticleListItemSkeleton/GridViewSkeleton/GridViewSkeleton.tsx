@@ -1,10 +1,10 @@
 import { memo } from 'react';
-import { getFlexClasses } from '@/shared/lib/getFlexClasses/getFlexClasses';
+import { getFlexClasses } from '@/shared/lib/classes/getFlexClasses/getFlexClasses';
 import { HStack, VStack } from '@/shared/ui/redesigned/Stack';
 import { Card } from '@/shared/ui/redesigned/Card';
 import { Skeleton } from '@/shared/ui/redesigned/Skeleton';
 import { toggleFeatures, ToggleFeaturesComponent } from '@/shared/lib/features';
-import { classNames } from '@/shared/lib/classNames/classNames';
+import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { Skeleton as SkeletonDeprecated } from '@/shared/ui/deprecated/Skeleton';
 import { Card as CardDeprecated } from '@/shared/ui/deprecated/Card';
 import cls from '../../ArticleListItem/ArticleListItem.module.scss';

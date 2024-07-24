@@ -2,7 +2,7 @@ import { memo } from 'react';
 import { useSelector } from 'react-redux';
 import { ArticleListButton } from '@/features/ArticleListButton';
 import { ArticleEditButton } from '@/features/ArticleEditButton';
-import { classNames } from '@/shared/lib/classNames/classNames';
+import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { HStack } from '@/shared/ui/redesigned/Stack';
 import { getCanEditArticle } from '../../model/selectors/article';
 

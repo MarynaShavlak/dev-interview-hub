@@ -3,7 +3,7 @@ import { Fragment, ReactNode } from 'react';
 import { Icon } from '../../../../Icon';
 import { HStack } from '../../../../Stack';
 import CheckedIcon from '@/shared/assets/icons/done-20-20.svg';
-import { classNames } from '@/shared/lib/classNames/classNames';
+import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import popupCls from '../../../styles/popup.module.scss';
 import cls from './Option.module.scss';
 

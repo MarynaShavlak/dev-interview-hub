@@ -6,7 +6,7 @@ import {
 } from '../../../lib/hooks/useOptions';
 import { ArticleSortSelectorProps } from '../ArticleSortSelector';
 import { ArticleSortField } from '@/entities/Article';
-import { classNames } from '@/shared/lib/classNames/classNames';
+import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { Select } from '@/shared/ui/deprecated/Select';
 import cls from '../ArticleSortSelector.module.scss';
 

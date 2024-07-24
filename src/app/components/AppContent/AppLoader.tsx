@@ -1,5 +1,5 @@
 import { AppLoaderLayout } from '@/shared/layouts/AppLoaderLayout';
-import { classNames } from '@/shared/lib/classNames/classNames';
+import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
 import { PageLoader } from '@/widgets/PageLoader';
 import { useTheme } from '@/shared/lib/hooks/useTheme/useTheme';

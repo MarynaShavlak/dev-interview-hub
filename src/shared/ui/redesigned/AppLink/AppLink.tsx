@@ -1,6 +1,6 @@
 import { NavLink, LinkProps } from 'react-router-dom';
 import { ForwardedRef, forwardRef, memo, ReactNode } from 'react';
-import { classNames } from '@/shared/lib/classNames/classNames';
+import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import cls from './AppLink.module.scss';
 
 export type AppLinkVariant = 'primary' | 'red';

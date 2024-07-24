@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 import React, { memo } from 'react';
 import { Button } from '@/shared/ui/redesigned/Button';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
-import { classNames } from '@/shared/lib/classNames/classNames';
+import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import {
     Button as ButtonDeprecated,
     ButtonTheme,

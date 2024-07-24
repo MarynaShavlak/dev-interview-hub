@@ -8,7 +8,7 @@ import { ArticleDetailsComments } from '../../ArticleDetailsComments/ArticleDeta
 import { ArticleDetailsPageProps } from '../ArticleDetailsPage';
 import cls from '../ArticleDetailsPage.module.scss';
 import { ArticleDetailsPageHeader } from '../../ArticleDetailsPageHeader/ArticleDetailsPageHeader';
-import { classNames } from '@/shared/lib/classNames/classNames';
+import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import {
     Text as TextDeprecated,
     TextSize,

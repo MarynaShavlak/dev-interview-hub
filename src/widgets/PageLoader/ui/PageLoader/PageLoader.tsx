@@ -1,4 +1,4 @@
-import { classNames } from '@/shared/lib/classNames/classNames';
+import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { Loader } from '@/shared/ui/deprecated/Loader';
 import { VStack } from '@/shared/ui/redesigned/Stack';
 import cls from './PageLoader.module.scss';

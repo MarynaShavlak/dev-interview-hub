@@ -1,6 +1,6 @@
 import { memo } from 'react';
 import { TestProps } from '@/shared/types/tests';
-import { classNames } from '@/shared/lib/classNames/classNames';
+import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import cls from './Text.module.scss';
 
 export type TextVariant = 'primary' | 'error' | 'accent';

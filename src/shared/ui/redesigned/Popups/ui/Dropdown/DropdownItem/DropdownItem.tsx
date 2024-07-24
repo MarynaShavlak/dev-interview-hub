@@ -1,7 +1,7 @@
 import { Menu } from '@headlessui/react';
 import { Fragment, memo, ReactNode } from 'react';
 import { AppLink } from '../../../../AppLink';
-import { classNames } from '@/shared/lib/classNames/classNames';
+import { classNames } from '@/shared/lib/classes/classNames/classNames';
 
 import cls from '../Dropdown.module.scss';
 import popupCls from '../../../styles/popup.module.scss';

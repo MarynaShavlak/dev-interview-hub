@@ -1,5 +1,5 @@
 import { ArticleInfiniteList } from '../../ArticleInfiniteList/ArticleInfiniteList';
-import { classNames } from '@/shared/lib/classNames/classNames';
+import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { StickyContentLayout } from '@/shared/layouts/StickyContentLayout';
 import { Page } from '@/widgets/Page';
 import cls from '../ArticlesPage.module.scss';

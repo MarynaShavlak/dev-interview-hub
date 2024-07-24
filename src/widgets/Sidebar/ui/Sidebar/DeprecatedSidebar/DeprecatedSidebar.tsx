@@ -1,5 +1,5 @@
 import { memo, ReactNode } from 'react';
-import { classNames } from '@/shared/lib/classNames/classNames';
+import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { ThemeSwitcher } from '@/features/ThemeSwitcher';
 import { LangSwitcher } from '@/features/LangSwitcher';
 import { Button, ButtonSize, ButtonTheme } from '@/shared/ui/deprecated/Button';

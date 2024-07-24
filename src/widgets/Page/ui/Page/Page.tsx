@@ -1,7 +1,7 @@
 import { MutableRefObject, ReactNode, UIEvent, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { classNames } from '@/shared/lib/classNames/classNames';
+import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { useScrollActions } from '../../model/slices/scrollSlice';
 import { getUIScrollByPath } from '../../model/selectors/getUIScroll';
 import { toggleFeatures } from '@/shared/lib/features';

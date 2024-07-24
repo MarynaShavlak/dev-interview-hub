@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { memo, ReactElement } from 'react';
-import { classNames } from '@/shared/lib/classNames/classNames';
+import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { Card as CardDeprecated } from '@/shared/ui/deprecated/Card';
 import { VStack } from '@/shared/ui/redesigned/Stack';
 import { Text as TextDeprecated } from '@/shared/ui/deprecated/Text';

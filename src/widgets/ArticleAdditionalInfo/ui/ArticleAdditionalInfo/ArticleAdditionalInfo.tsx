@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ArticleEditButton } from '@/features/ArticleEditButton';
-import { classNames } from '@/shared/lib/classNames/classNames';
+import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { User } from '@/entities/User';
 import { HStack, VStack } from '@/shared/ui/redesigned/Stack';
 import { Avatar } from '@/shared/ui/redesigned/Avatar';

@@ -1,7 +1,7 @@
 import React from 'react';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
 import { NotificationList } from '@/entities/Notification';
-import { classNames } from '@/shared/lib/classNames/classNames';
+import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { Popover as PopoverDeprecated } from '@/shared/ui/deprecated/Popups';
 import cls from './BrowserNotificationPopover.module.scss';
 import { Popover } from '@/shared/ui/redesigned/Popups';

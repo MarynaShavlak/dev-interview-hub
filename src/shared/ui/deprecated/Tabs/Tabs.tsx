@@ -2,7 +2,7 @@ import { memo, ReactNode, useCallback } from 'react';
 import { FlexDirection } from '@/shared/types/flexTypes';
 import { Flex } from '../../redesigned/Stack/Flex/Flex';
 import { Each } from '@/shared/lib/components/Each/Each';
-import { classNames } from '@/shared/lib/classNames/classNames';
+import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { Card, CardTheme } from '../Card/Card';
 import cls from './Tabs.module.scss';
 

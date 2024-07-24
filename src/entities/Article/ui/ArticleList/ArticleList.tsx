@@ -4,7 +4,7 @@ import { Each } from '@/shared/lib/components/Each/Each';
 
 import cls from './ArticleList.module.scss';
 import { ArticleListItem } from '../ArticleListItem/ArticleListItem/ArticleListItem';
-import { classNames } from '@/shared/lib/classNames/classNames';
+import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { HStack, VStack } from '@/shared/ui/redesigned/Stack';
 import { toggleFeatures } from '@/shared/lib/features';
 import { Article } from '../../model/types/article';
