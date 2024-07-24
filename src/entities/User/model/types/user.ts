@@ -1,5 +1,5 @@
 import { JsonSettings } from './jsonSettings';
-import { FeatureFlags } from '@/shared/types/featureFlags';
+import { FeatureFlags } from '@/shared/types/featureFlags/featureFlags';
 import { UserRole } from '../consts/consts';
 
 export interface User {
