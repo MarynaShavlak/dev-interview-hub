@@ -1,7 +1,7 @@
 # UiDesignSwitcher
 
 ## Overview
-The **`UiDesignSwitcher`** ccomponent provides a user interface for switching between a redesigned and a legacy version of an application interface. 
+The **`UiDesignSwitcher`** component provides a user interface for switching between a redesigned and a legacy version of an application interface. 
 It dynamically adjusts the UI based on user preferences and feature flags, enhancing the flexibility and user experience of applications that support multiple design versions.
 
 ## Type Definition 
