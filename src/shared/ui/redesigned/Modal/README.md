@@ -3,8 +3,6 @@
 ## Overview
 The **`Modal`** component is a versatile and customizable modal dialog implementation for React applications. It provides an interface for displaying content in an overlay that can be opened and closed, with additional features for lazy rendering and theme support.
 
-
-
 ## Type Definition 
 ```typescript
 interface ModalProps {
