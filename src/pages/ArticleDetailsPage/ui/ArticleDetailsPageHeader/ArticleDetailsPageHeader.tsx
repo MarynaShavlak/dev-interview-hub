@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import { useSelector } from 'react-redux';
 import { ArticleListNavigationButton } from '@/features/ArticleListButton';
-import { ArticleEditButton } from '@/features/ArticleEditButton';
+import { ArticleEditNavigationButton } from '@/features/ArticleEditNavigationButton';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { HStack } from '@/shared/ui/redesigned/Stack';
 import { getCanEditArticle } from '../../model/selectors/article';
@@ -22,7 +22,7 @@ export const ArticleDetailsPageHeader = memo(
                 className={classNames('', {}, [className])}
             >
                 <ArticleListNavigationButton />
-                {canEdit && <ArticleEditButton />}
+                {canEdit && <ArticleEditNavigationButton />}
             </HStack>
         );
     },

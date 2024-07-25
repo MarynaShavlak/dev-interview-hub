@@ -10,7 +10,7 @@ import {
     ButtonTheme,
 } from '@/shared/ui/deprecated/Button';
 
-export const ArticleEditButton = memo(() => {
+export const ArticleEditNavigationButton = memo(() => {
     const { t } = useTranslation('article-details');
     const article = useArticleDetailsData();
 

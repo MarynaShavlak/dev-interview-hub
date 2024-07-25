@@ -9,7 +9,7 @@ This component integrates tightly with the application's routing and localizatio
 The **`ArticleListNavigationButton`** component does not accept any props.
 
 ## Features
-1.**Navigation to Articles*: Directly navigates users to the articles list page using the `getRouteArticles()` function. This ensures users can easily access all articles from any part of the application.
+1.**Navigation to Articles**: Directly navigates users to the articles list page using the `getRouteArticles()` function. This ensures users can easily access all articles from any part of the application.
 
 2.**Conditional Rendering**: Renders UI elements based on whether the redesigned interface (`isAppRedesigned` feature flag) is enabled.
 
@@ -24,7 +24,6 @@ const App = () => (
         {/* The ArticleListNavigationButton component allows users to navigate to the list of articles */}
     </div>
 );
-
 ```
 ## Conclusion
 The **`ArticleListNavigationButton`** component serves as a crucial navigational element for applications featuring articles. 

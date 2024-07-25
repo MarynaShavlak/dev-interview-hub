@@ -1,6 +1,6 @@
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ArticleEditButton } from '@/features/ArticleEditButton';
+import { ArticleEditNavigationButton } from '@/features/ArticleEditNavigationButton';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { User } from '@/entities/User';
 import { HStack, VStack } from '@/shared/ui/redesigned/Stack';
@@ -29,7 +29,7 @@ export const ArticleAdditionalInfo = memo(
                     />
                     <Text text={createdAt} />
                 </HStack>
-                <ArticleEditButton />
+                <ArticleEditNavigationButton />
                 <Text text={t('{{count}} переглядів', { count: views })} />
             </VStack>
         );
