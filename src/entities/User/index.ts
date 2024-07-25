@@ -12,7 +12,7 @@ export {
     useUserRoles,
     isUserAdmin,
     isUserManager,
-} from './model/selectors/roleSelectors';
+} from './model/selectors/roles/roleSelectors';
 export {
     userReducer,
     userActions,

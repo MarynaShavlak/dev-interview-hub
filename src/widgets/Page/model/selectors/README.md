@@ -39,7 +39,7 @@ export const getUIScrollByPath = createSelector(
 
 
 ## Example Usage
-```typescript
+```typescript jsx
 import { useSelector } from 'react-redux';
 import { getUIScrollByPath } from '@/model/selectors/getUIScroll';
 
