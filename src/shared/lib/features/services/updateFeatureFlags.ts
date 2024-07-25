@@ -35,6 +35,8 @@ export const updateFeatureFlag = createAsyncThunk<
         window.location.reload();
         return undefined;
     } catch (e) {
-        return rejectWithValue('');
+        return rejectWithValue(
+            'An error occurred while updating feature flags.',
+        );
     }
 });
