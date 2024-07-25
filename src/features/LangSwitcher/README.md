@@ -31,7 +31,7 @@ The **`LangSwitcher`** component accepts the following props:
 
 ## Usage Example
 ```typescript jsx
-import { LangSwitcher } from '@/shared/ui/redesigned/LangSwitcher';
+import { LangSwitcher } from '@/features/LangSwitcher';
 
 const App = () => (
     <div>

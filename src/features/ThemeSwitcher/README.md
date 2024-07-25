@@ -1,7 +1,7 @@
 # ThemeSwitcher
 
 ## Overview
-The **`UThemeSwitcher`** component allows users to toggle between multiple themes in an application, providing a flexible and customizable user interface. It supports themes including **LIGHT**, **DARK**, and **ORANGE** themes, a, and adapts its display based on the current theme selection. 
+The **`ThemeSwitcher`** component allows users to toggle between multiple themes in an application, providing a flexible and customizable user interface. It supports themes including **LIGHT**, **DARK**, and **ORANGE** themes, a, and adapts its display based on the current theme selection. 
 By utilizing feature flags, the component can also handle different versions of the interface to enhance user experience.
 
 ## Type Definition 
@@ -32,7 +32,7 @@ The **`ThemeSwitcher`** component accepts the following props:
 
 ## Usage Example
 ```typescript jsx
-import { ThemeSwitcher } from '@/shared/ui/ThemeSwitcher';
+import { ThemeSwitcher } from '@/features/ThemeSwitcher';
 
 const App = () => (
     <div>

@@ -10,9 +10,9 @@ import {
     ButtonTheme,
 } from '@/shared/ui/deprecated/Button';
 import ArrowIcon from '@/shared/assets/icons/left-arrow.svg';
-import cls from './ArticleListButton.module.scss';
+import cls from './ArticleListNavigationButton.module.scss';
 
-export const ArticleListButton = memo(() => {
+export const ArticleListNavigationButton = memo(() => {
     const { t } = useTranslation('article-details');
     const navigate = useNavigate();
 

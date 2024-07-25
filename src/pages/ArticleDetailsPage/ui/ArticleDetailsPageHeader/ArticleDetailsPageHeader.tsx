@@ -1,6 +1,6 @@
 import { memo } from 'react';
 import { useSelector } from 'react-redux';
-import { ArticleListButton } from '@/features/ArticleListButton';
+import { ArticleListNavigationButton } from '@/features/ArticleListButton';
 import { ArticleEditButton } from '@/features/ArticleEditButton';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { HStack } from '@/shared/ui/redesigned/Stack';
@@ -21,7 +21,7 @@ export const ArticleDetailsPageHeader = memo(
                 justify="between"
                 className={classNames('', {}, [className])}
             >
-                <ArticleListButton />
+                <ArticleListNavigationButton />
                 {canEdit && <ArticleEditButton />}
             </HStack>
         );

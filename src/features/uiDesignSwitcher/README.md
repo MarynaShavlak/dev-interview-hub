@@ -34,7 +34,7 @@ The **`UiDesignSwitcher`** component accepts the following props:
 
 ## Usage Example
 ```typescript jsx
-import { UiDesignSwitcher } from '@/shared/ui/redesigned/UiDesignSwitcher';
+import { UiDesignSwitcher } from '@/features/UiDesignSwitcher';
 
 const App = () => (
     <div>

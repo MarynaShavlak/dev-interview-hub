@@ -16,7 +16,7 @@ export const LangSwitcher = memo(({ className, short }: LangSwitcherProps) => {
     const { t, i18n } = useTranslation();
 
     const toggleLang = async () => {
-        i18n.changeLanguage(i18n.language === 'uk' ? 'en' : 'uk');
+        await i18n.changeLanguage(i18n.language === 'uk' ? 'en' : 'uk');
     };
 
     return (
@@ -31,7 +31,7 @@ export const LangSwitcher = memo(({ className, short }: LangSwitcherProps) => {
                 <ButtonDeprecated
                     className={className}
                     theme={ButtonTheme.CLEAR}
-                    onClick={toggle}
+                    onClick={toggleLang}
                 >
                     {t(short ? 'Мова абревіатура' : 'Мова')}
                 </ButtonDeprecated>
