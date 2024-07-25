@@ -26,14 +26,13 @@ The **`UiDesignSwitcher`** component accepts the following props:
 
 3.**Feature Flag Integration**: The component uses `getFeatureFlag` to determine the current design state and `updateFeatureFlag` to save user preferences. This integration ensures that design changes are consistent with the application's feature flag system and persist across sessions.
 
-4.**Conditional Rendering**: DThe component renders different UI elements based on whether the redesigned interface is enabled or not.
+4.**Conditional Rendering**: The component renders different UI elements based on whether the redesigned interface is enabled or not.
 
 5.**User Authentication**: It leverages `useUserAuthData` to apply design preferences specific to the authenticated user, ensuring that each user's choice is respected and maintained.
 
 6.**State Management**: The component manages its loading state using `useState` and forces updates with `useForceUpdate` to ensure that UI changes are promptly reflected without relying on traditional state management techniques.
 
 ## Usage Example
-Here's an example of using the Modal component with lazy loading:
 ```typescript jsx
 import { UiDesignSwitcher } from '@/shared/ui/redesigned/UiDesignSwitcher';
 
@@ -43,7 +42,6 @@ const App = () => (
         {/* The UiDesignSwitcher component allows users to switch between design versions */}
     </div>
 );
-
 ```
 ## Conclusion
 The **`UiDesignSwitcher`** component is a powerful tool for managing UI design variations based on feature flags and user preferences. Its support for dynamic design switching, user-specific settings, and seamless integration with the feature flag system make it an essential component for modern, adaptable user interfaces. By incorporating loading states and conditional rendering, it ensures a responsive and user-friendly experience while handling design transitions effectively.
