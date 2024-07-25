@@ -9,7 +9,7 @@ The **`ArticleEditNavigationButton`** component does not accept any props.
 ## Features
 1.**Navigation to Article Edit Page**: Directly navigates users to the edit page of the current article using the `getRouteArticleEdit(article.id)` function, allowing for seamless editing of article content.
 
-2.**Conditional Rendering**: Renders UI elements based on whether the redesigned interface (`isAppRedesigned` feature flag) is enabled.
+2.**Design Adaptation**: Renders UI elements based on whether the redesigned interface (`isAppRedesigned` feature flag) is enabled.
 
 
 ## Usage Example

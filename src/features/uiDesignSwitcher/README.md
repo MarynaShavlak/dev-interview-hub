@@ -26,7 +26,7 @@ The **`UiDesignSwitcher`** component accepts the following props:
 
 3.**Feature Flag Integration**: The component uses `getFeatureFlag` to determine the current design state and `updateFeatureFlag` to save user preferences. This integration ensures that design changes are consistent with the application's feature flag system and persist across sessions.
 
-4.**Conditional Rendering**: The component renders different UI elements based on whether the redesigned interface is enabled or not.
+4.**Design Adaptation**: The component renders different UI elements based on whether the redesigned interface is enabled or not.
 
 5.**User Authentication**: It leverages `useUserAuthData` to apply design preferences specific to the authenticated user, ensuring that each user's choice is respected and maintained.
 

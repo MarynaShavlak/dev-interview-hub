@@ -13,7 +13,7 @@ interface TriggerProps {
     onClick: () => void;
 }
 
-export const Trigger = memo(({ onClick }: TriggerProps) => {
+export const NotificationButtonTrigger = memo(({ onClick }: TriggerProps) => {
     return (
         <ToggleFeaturesComponent
             feature="isAppRedesigned"

@@ -1,4 +1,4 @@
-import React from 'react';
+import { ReactNode } from 'react';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
 import { NotificationList } from '@/entities/Notification';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
@@ -8,7 +8,7 @@ import { Popover } from '@/shared/ui/redesigned/Popups';
 
 interface BrowserNotificationPopoverProps {
     className?: string;
-    trigger: React.ReactNode;
+    trigger: ReactNode;
 }
 export const BrowserNotificationPopover = ({
     className,

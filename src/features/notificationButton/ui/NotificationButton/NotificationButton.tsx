@@ -1,7 +1,7 @@
 import React, { memo, useCallback, useState } from 'react';
 import { BrowserView, MobileView } from 'react-device-detect';
 import { BrowserNotificationPopover } from './BrowserNotificationPopover/BrowserNotificationPopover';
-import { Trigger } from './Trigger/Trigger';
+import { NotificationButtonTrigger } from './NotificationButtonTrigger/NotificationButtonTrigger';
 import { NotificationList } from '@/entities/Notification';
 import { Drawer } from '@/shared/ui/redesigned/Drawer';
 
@@ -27,11 +27,13 @@ export const NotificationButton = memo((props: NotificationButtonProps) => {
             <BrowserView>
                 <BrowserNotificationPopover
                     className={className}
-                    trigger={<Trigger onClick={onOpenDrawer} />}
+                    trigger={
+                        <NotificationButtonTrigger onClick={onOpenDrawer} />
+                    }
                 />
             </BrowserView>
             <MobileView>
-                <Trigger onClick={onOpenDrawer} />
+                <NotificationButtonTrigger onClick={onOpenDrawer} />
                 <Drawer isOpen={isOpen} onClose={onCloseDrawer}>
                     <NotificationList />
                 </Drawer>

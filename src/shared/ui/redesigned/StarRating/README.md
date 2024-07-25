@@ -26,7 +26,7 @@ The **`StarRating`** component accepts the following props:
 
 ## Features
 
-1. **Conditional Rendering**: Uses feature toggling to apply different styles based on the `isAppRedesigned` feature flag. This allows the component to adapt its styling according to the application's design system.
+1. **Design Adaptation**: Uses feature toggling to apply different styles based on the `isAppRedesigned` feature flag. This allows the component to adapt its styling according to the application's design system.
 
 2. **Dynamic Rendering**: Conditionally renders interactive stars or disabled stars based on the `disabled` prop. Interactive stars support user interactions, while disabled stars are purely decorative.
 

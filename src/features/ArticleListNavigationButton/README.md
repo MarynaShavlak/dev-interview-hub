@@ -11,7 +11,7 @@ The **`ArticleListNavigationButton`** component does not accept any props.
 ## Features
 1.**Navigation to Articles**: Directly navigates users to the articles list page using the `getRouteArticles()` function. This ensures users can easily access all articles from any part of the application.
 
-2.**Conditional Rendering**: Renders UI elements based on whether the redesigned interface (`isAppRedesigned` feature flag) is enabled.
+2.**Design Adaptation**: Renders UI elements based on whether the redesigned interface (`isAppRedesigned` feature flag) is enabled.
 
 
 ## Usage Example

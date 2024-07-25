@@ -26,7 +26,7 @@ The **`ThemeSwitcher`** component accepts the following props:
     - **ORANGE**: A distinctive orange color scheme for a unique visual experience.
 
 
-2.**Conditional Rendering**: Adjusts the rendered UI elements based on whether the redesigned interface (`isAppRedesigned` feature flag) is enabled.
+2.**Design Adaptation**: Adjusts the rendered UI elements based on whether the redesigned interface (`isAppRedesigned` feature flag) is enabled.
 
 3.**State Management**: Utilizes the `useTheme` hook to handle theme changes and the `useAppDispatch` hook to persist the theme preference through `saveJsonSettings`.
 
