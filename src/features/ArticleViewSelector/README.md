@@ -25,7 +25,7 @@ The **`ArticleViewSelector`** component accepts the following props:
 
 ## Features
 1. **Design Adaptation**: Renders different UI elements based on whether the redesigned interface is enabled or not. This ensures consistency with the application's design system.
-2. **User-Driven View Switching**: **Allows seamless switching between grid and list views for improved user experience.
+2. **User-Driven View Switching**: Allows seamless switching between grid and list views for improved user experience.
 
 
 ## Usage Example

@@ -26,7 +26,7 @@ The **`DeprecatedArticleViewSelector`** component accepts the following props:
 ## Features
 1.**Backward Compatibility**: Leverages deprecated UI components to ensure compatibility with older versions of the application, facilitating gradual UI updates.
 
-2.**User-Driven View Switching**: **Allows seamless switching between grid and list views for improved user experience.
+2.**User-Driven View Switching**: Allows seamless switching between grid and list views for improved user experience.
 
 ## Usage Example
 ```typescript jsx
