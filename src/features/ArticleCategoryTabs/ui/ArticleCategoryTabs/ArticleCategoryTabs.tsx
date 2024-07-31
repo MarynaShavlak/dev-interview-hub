@@ -9,7 +9,7 @@ import { TabItem, Tabs as TabsDeprecated } from '@/shared/ui/deprecated/Tabs';
 interface ArticleCategoryTabsProps {
     className?: string;
     value: ArticleCategory;
-    onChangeCategory: (type: ArticleCategory) => void;
+    onChangeCategory: (category: ArticleCategory) => void;
 }
 
 export const ArticleCategoryTabs = memo((props: ArticleCategoryTabsProps) => {
