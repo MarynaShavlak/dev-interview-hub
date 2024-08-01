@@ -14,7 +14,7 @@ This component does not accept any props as it is a self-contained informational
 
 2. **Redesigned UI Adaptation**: Adjusts the rendered UI elements based on whether the redesigned interface (`isAppRedesigned` feature flag) is enabled. This ensures consistency with the application's overall design.
 
-3. **Informative Message**: Displays a message to inform users that the article rating feature will be available soon. The message is translated using the useTranslation hook for localization support.
+3. **Informative Message**: Displays a message to inform users that the article rating feature will be available soon. The message is translated using the `useTranslation` hook for localization support.
 
 ## Usage Example
 ```typescript jsx
