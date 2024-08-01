@@ -1,4 +1,4 @@
-# ArticleEditNavigationButton
+# ArticleEditNavigationButton Feature
 
 ## Overview
 The **`ArticleEditNavigationButton`** component provides a button for navigating to the edit page of a specific article within the application. It adapts its appearance and functionality based on the application's design system and feature flags, ensuring a consistent user experience across different contexts. This component is deeply integrated with the application's routing and localization systems, facilitating easy navigation to the article edit page.

@@ -1,4 +1,4 @@
-# ArticleCategoryTabs
+# ArticleCategoryTabs Feature 
 
 ## Overview
 The **`ArticleCategoryTabs`** component is a specialized tab component for categorizing articles in a React application. It allows users to switch between different article categories seamlessly, providing an intuitive interface for content filtering. The component supports feature toggling to switch between redesigned and deprecated tab styles.

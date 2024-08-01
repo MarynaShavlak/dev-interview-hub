@@ -1,4 +1,4 @@
-# ArticleSortSelector
+# ArticleSortSelector Feature
 
 ## Overview
 The **`ArticleSortSelector`** component dynamically switches between the  `RedesignedArticleSortSelector` or the `DeprecatedArticleSortSelector` based on the `isAppRedesigned` feature flag.

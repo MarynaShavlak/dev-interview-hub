@@ -1,4 +1,4 @@
-# ArticleViewSelector
+# ArticleViewSelector Feature
 
 ## Overview
 The **`ArticleViewSelector`** component dynamically renders either the `RedesignedArticleViewSelector` or the `DeprecatedArticleViewSelector` based on the `isAppRedesigned` feature flag. 

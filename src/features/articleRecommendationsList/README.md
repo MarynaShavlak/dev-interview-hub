@@ -1,4 +1,4 @@
-# ArticleRecommendationsList
+# ArticleRecommendationsList Feature
 
 ## Overview
 The **`ArticleRecommendationsList`** component fetches and displays a list of recommended articles based on the category of a given article. It enhances content discovery and user engagement by providing relevant article suggestions. The component adapts its display according to the app's design version, ensuring a consistent user experience.

@@ -1,4 +1,4 @@
-# ScrollToTopButton
+# ScrollToTopButton Feature
 
 ## Overview 
 The `ScrollToTopButton` component is a UI element that provides users with a convenient way to quickly scroll back to the top of the page. This feature enhances user experience by allowing easy navigation, especially on pages with extensive content. When clicked, the button smoothly scrolls the window to the top, making it useful in applications where content length might require frequent scrolling.

@@ -1,4 +1,4 @@
-# ArticleListNavigationButton
+# ArticleListNavigationButton Feature
 
 ## Overview
 The **`ArticleListNavigationButton`** component provides a navigational button that allows users to seamlessly access the list of articles within an application. 

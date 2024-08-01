@@ -1,4 +1,4 @@
-# ThemeSwitcher
+# ThemeSwitcher Feature
 
 ## Overview
 The **`ThemeSwitcher`** component allows users to toggle between multiple themes in an application, providing a flexible and customizable user interface. It supports themes including **LIGHT**, **DARK**, and **ORANGE** themes, a, and adapts its display based on the current theme selection. 

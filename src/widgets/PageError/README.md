@@ -1,4 +1,4 @@
-# PageError 
+# PageError Widget
 
 ## Overview
 The **`PageError `** widget is designed to handle unexpected errors within a React application, providing a user-friendly interface to inform users of issues and prompt necessary actions, such as reloading the page.

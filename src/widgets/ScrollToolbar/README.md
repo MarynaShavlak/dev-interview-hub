@@ -1,4 +1,4 @@
-# ScrollToolbar
+# ScrollToolbar Widget
 
 ## Overview 
 The `ScrollToolbar` widget is a versatile UI component that provides a toolbar with a central `ScrollToTopButton`. 

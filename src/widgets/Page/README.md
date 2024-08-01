@@ -1,4 +1,4 @@
-# Page 
+# Page Widget
 ## Overview 
 The `Page` widget is a container component that handles scrolling behavior and provides a mechanism for infinite scrolling. It manages the scroll position, supports feature toggling for styling, and provides a callback when the user scrolls to the end
 

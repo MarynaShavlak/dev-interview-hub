@@ -1,4 +1,4 @@
-# UiDesignSwitcher
+# UiDesignSwitcher Feature
 
 ## Overview
 The **`UiDesignSwitcher`** component provides a user interface for switching between a redesigned and a legacy version of an application interface. 

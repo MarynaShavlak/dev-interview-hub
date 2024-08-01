@@ -1,4 +1,4 @@
-# LangSwitcher
+# LangSwitcher Feature
 
 ## Overview
 The **`LangSwitcher`** component provides a user interface for toggling between different languages in an application. It adapts based on the application's design theme, allowing users to switch languages seamlessly and enhance localization support.
