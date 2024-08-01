@@ -1,6 +1,6 @@
 import { memo } from 'react';
 import { useSelector } from 'react-redux';
-import { ArticleListNavigationButton } from '@/features/ArticleListButton';
+import { ArticleListNavigationButton } from '@/features/ArticleListNavigationButton';
 import { ArticleEditNavigationButton } from '@/features/ArticleEditNavigationButton';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { HStack } from '@/shared/ui/redesigned/Stack';

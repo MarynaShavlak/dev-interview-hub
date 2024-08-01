@@ -13,7 +13,7 @@ import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { Text } from '@/shared/ui/redesigned/Text';
 import { Page } from '@/widgets/Page';
 import { ArticleDetailsPageProps } from '../ArticleDetailsPage';
-import { ArticleListNavigationButton } from '@/features/ArticleListButton';
+import { ArticleListNavigationButton } from '@/features/ArticleListNavigationButton';
 import { StickyContentLayout } from '@/shared/layouts/StickyContentLayout';
 
 export const RedesignedArticleDetailsPage = memo(
