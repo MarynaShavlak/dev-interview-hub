@@ -6,7 +6,7 @@ import { FeedbackModal } from '../FeedbackModal/FeedbackModal';
 export interface FeedbackProps {
     feedbackTitle?: string;
     onClose: () => void;
-    onAccept: () => void;
+    onSubmitFeedback: () => void;
     isOpen: boolean;
     feedback?: string;
     setFeedback: (feedBack: string) => void;

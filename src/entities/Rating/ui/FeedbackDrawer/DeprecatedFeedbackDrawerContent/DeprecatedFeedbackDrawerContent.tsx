@@ -8,7 +8,8 @@ import { Input } from '@/shared/ui/deprecated/Input';
 export const DeprecatedFeedbackDrawerContent = memo(
     (props: Partial<FeedbackProps>) => {
         const { t } = useTranslation();
-        const { feedbackTitle, setFeedback, feedback, onAccept } = props;
+        const { feedbackTitle, setFeedback, feedback, onSubmitFeedback } =
+            props;
 
         return (
             <>
@@ -18,7 +19,7 @@ export const DeprecatedFeedbackDrawerContent = memo(
                     onChange={setFeedback}
                     placeholder={t('Ваш відгук')}
                 />
-                <Button max onClick={onAccept} size={ButtonSize.L}>
+                <Button max onClick={onSubmitFeedback} size={ButtonSize.L}>
                     {t('Відправити')}
                 </Button>
             </>

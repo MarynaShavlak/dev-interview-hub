@@ -9,8 +9,13 @@ import { Input } from '@/shared/ui/redesigned/Input';
 export const RedesignedFeedbackModalContent = memo(
     (props: Partial<FeedbackProps>) => {
         const { t } = useTranslation();
-        const { feedbackTitle, setFeedback, feedback, onAccept, onClose } =
-            props;
+        const {
+            feedbackTitle,
+            setFeedback,
+            feedback,
+            onSubmitFeedback,
+            onClose,
+        } = props;
 
         return (
             <>
@@ -24,7 +29,7 @@ export const RedesignedFeedbackModalContent = memo(
                     <Button onClick={onClose} variant="cancel">
                         {t('Закрити')}
                     </Button>
-                    <Button variant="save" onClick={onAccept}>
+                    <Button variant="save" onClick={onSubmitFeedback}>
                         {t('Відправити')}
                     </Button>
                 </HStack>

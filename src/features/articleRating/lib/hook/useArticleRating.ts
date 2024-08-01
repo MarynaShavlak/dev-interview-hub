@@ -29,14 +29,14 @@ export const useArticleRating = (articleId: string) => {
         [articleId, rateArticleMutation, userData?.id],
     );
 
-    const onAccept = useCallback(
+    const onSubmitFeedback = useCallback(
         (starsCount: number, feedback?: string) => {
             handleRateArticle(starsCount, feedback);
         },
         [handleRateArticle],
     );
 
-    const onCancel = useCallback(
+    const onSubmitRating = useCallback(
         (starsCount: number) => {
             handleRateArticle(starsCount);
         },
@@ -47,7 +47,7 @@ export const useArticleRating = (articleId: string) => {
         rating: data?.[0],
         isLoading,
         error,
-        onAccept,
-        onCancel,
+        onSubmitFeedback,
+        onSubmitRating,
     };
 };

@@ -8,7 +8,8 @@ import { Input } from '@/shared/ui/redesigned/Input';
 export const RedesignedFeedbackDrawerContent = memo(
     (props: Partial<FeedbackProps>) => {
         const { t } = useTranslation();
-        const { feedbackTitle, setFeedback, feedback, onAccept } = props;
+        const { feedbackTitle, setFeedback, feedback, onSubmitFeedback } =
+            props;
 
         return (
             <>
@@ -18,7 +19,7 @@ export const RedesignedFeedbackDrawerContent = memo(
                     onChange={setFeedback}
                     placeholder={t('Ваш відгук')}
                 />
-                <Button max onClick={onAccept} size="l">
+                <Button max onClick={onSubmitFeedback} size="l">
                     {t('Відправити')}
                 </Button>
             </>

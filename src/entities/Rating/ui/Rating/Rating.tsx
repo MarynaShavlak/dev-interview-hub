@@ -9,18 +9,18 @@ interface RatingCardProps {
     title?: string;
     feedbackTitle?: string;
     hasFeedback?: boolean;
-    onCancel?: (starsCount: number) => void;
-    onAccept?: (starsCount: number, feedback?: string) => void;
+    onSubmitRating?: (starsCount: number) => void;
+    onSubmitFeedback?: (starsCount: number, feedback?: string) => void;
     rate?: number;
 }
 
 export const Rating = memo((props: RatingCardProps) => {
     const {
         className,
-        onAccept,
+        onSubmitFeedback,
         feedbackTitle,
         hasFeedback,
-        onCancel,
+        onSubmitRating,
         title,
         rate = 0,
     } = props;
@@ -34,27 +34,27 @@ export const Rating = memo((props: RatingCardProps) => {
             if (hasFeedback) {
                 setIsModalOpen(true);
             } else {
-                onAccept?.(selectedStarsCount);
+                onSubmitFeedback?.(selectedStarsCount);
             }
         },
-        [hasFeedback, onAccept],
+        [hasFeedback, onSubmitFeedback],
     );
 
     const acceptHandle = useCallback(() => {
         setIsModalOpen(false);
-        onAccept?.(starsCount, feedback);
-    }, [feedback, onAccept, starsCount]);
+        onSubmitFeedback?.(starsCount, feedback);
+    }, [feedback, onSubmitFeedback, starsCount]);
 
     const cancelHandle = useCallback(() => {
         setIsModalOpen(false);
-        onCancel?.(starsCount);
-    }, [onCancel, starsCount]);
+        onSubmitRating?.(starsCount);
+    }, [onSubmitRating, starsCount]);
 
     const feedbackContainer = (
         <FeedbackContainer
             isOpen={isModalOpen}
             onClose={cancelHandle}
-            onAccept={acceptHandle}
+            onSubmitFeedback={acceptHandle}
             feedback={feedback}
             setFeedback={setFeedback}
             feedbackTitle={feedbackTitle}

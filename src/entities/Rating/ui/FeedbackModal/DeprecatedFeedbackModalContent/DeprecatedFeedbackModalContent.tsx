@@ -9,8 +9,13 @@ import { Input } from '@/shared/ui/deprecated/Input';
 export const DeprecatedFeedbackModalContent = memo(
     (props: Partial<FeedbackProps>) => {
         const { t } = useTranslation();
-        const { feedbackTitle, setFeedback, feedback, onAccept, onClose } =
-            props;
+        const {
+            feedbackTitle,
+            setFeedback,
+            feedback,
+            onSubmitFeedback,
+            onClose,
+        } = props;
 
         return (
             <>
@@ -24,7 +29,9 @@ export const DeprecatedFeedbackModalContent = memo(
                     <Button onClick={onClose} theme={ButtonTheme.OUTLINE_RED}>
                         {t('Закрити')}
                     </Button>
-                    <Button onClick={onAccept}>{t('Відправити')}</Button>
+                    <Button onClick={onSubmitFeedback}>
+                        {t('Відправити')}{' '}
+                    </Button>
                 </HStack>
             </>
         );

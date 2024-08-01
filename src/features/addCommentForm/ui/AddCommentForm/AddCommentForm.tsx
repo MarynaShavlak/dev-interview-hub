@@ -41,7 +41,7 @@ const AddCommentForm = memo((props: AddCommentFormProps) => {
         onSendComment(text || '');
         onCommentTextChange('');
     }, [onCommentTextChange, onSendComment, text]);
-
+    if (error) return null;
     return (
         <DynamicModuleLoader reducers={reducers}>
             <ToggleFeaturesComponent

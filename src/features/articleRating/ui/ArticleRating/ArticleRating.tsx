@@ -14,7 +14,7 @@ export interface ArticleRatingProps {
 
 const ArticleRating = memo((props: ArticleRatingProps) => {
     const { className, articleId } = props;
-    const { rating, isLoading, error, onAccept, onCancel } =
+    const { rating, isLoading, error, onSubmitFeedback, onSubmitRating } =
         useArticleRating(articleId);
     const { t } = useTranslation();
 
@@ -33,8 +33,8 @@ const ArticleRating = memo((props: ArticleRatingProps) => {
             feature="isArticleRatingEnabled"
             on={
                 <Rating
-                    onCancel={onCancel}
-                    onAccept={onAccept}
+                    onSubmitRating={onSubmitRating}
+                    onSubmitFeedback={onSubmitFeedback}
                     rate={rating?.rate}
                     className={className}
                     title={t('Оцініть статтю')}
