@@ -10,7 +10,7 @@ import {
     useArticleDetailsData,
 } from '@/entities/Article';
 import { VStack } from '@/shared/ui/redesigned/Stack';
-import { useArticleRecommendationsList } from '../../api/aritcleRecommendationsApi';
+import { useArticleRecommendationsList } from '../../api/articleRecommendationsApi';
 
 interface ArticleRecommendationsListProps {
     className?: string;

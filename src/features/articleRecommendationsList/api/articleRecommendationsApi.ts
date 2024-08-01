@@ -1,15 +1,17 @@
 import { Article, ArticleCategory } from '@/entities/Article';
 import { rtkApi } from '@/shared/api/rtkApi';
 
+interface ArticleRecommendationsParams {
+    limit: number;
+    category: ArticleCategory;
+    exceptArticleId: string;
+}
+
 const recommendationsApi = rtkApi.injectEndpoints({
     endpoints: (build) => ({
         getArticleRecommendationsList: build.query<
             Article[],
-            {
-                limit: number;
-                category: ArticleCategory;
-                exceptArticleId: string;
-            }
+            ArticleRecommendationsParams
         >({
             query: ({ limit, category, exceptArticleId }) => ({
                 url: '/articles',
