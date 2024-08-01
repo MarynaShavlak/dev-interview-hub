@@ -85,3 +85,10 @@ const store = configureStore({
 const { setScrollPosition } = useScrollActions();
 setScrollPosition({ path: '/home', position: 100 });
 ```
+
+
+## Conclusion 
+The `scrollSlice` is a robust solution for managing UI scroll positions in a Redux-based application. 
+By encapsulating scroll state and providing a clear mechanism for setting scroll positions by path, it simplifies state management and enhances the user experience.
+Utilizing `buildSlice` function ensures the slice is both scalable and maintainable.
+Integrating `scrollSlice` into your Redux store and leveraging its actions can significantly improve the handling of scroll positions, providing a smoother navigation experience for users.
