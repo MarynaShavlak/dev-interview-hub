@@ -20,15 +20,15 @@ The **`ThemeSwitcher`** component accepts the following props:
 
 
 ## Features
-1.**Dynamic Theme Switching**: Allows users to toggle between the following themes:
+1. **Dynamic Theme Switching**: Allows users to toggle between the following themes:
     - **LIGHT**: A light color scheme for improved readability in well-lit environments.
     - **DARK**: A dark color scheme for reduced eye strain in low-light conditions.
     - **ORANGE**: A distinctive orange color scheme for a unique visual experience.
 
 
-2.**Design Adaptation**: Adjusts the rendered UI elements based on whether the redesigned interface (`isAppRedesigned` feature flag) is enabled.
+2. **Design Adaptation**: Adjusts the rendered UI elements based on whether the redesigned interface (`isAppRedesigned` feature flag) is enabled.
 
-3.**State Management**: Utilizes the `useTheme` hook to handle theme changes and the `useAppDispatch` hook to persist the theme preference through `saveJsonSettings`.
+3. **State Management**: Utilizes the `useTheme` hook to handle theme changes and the `useAppDispatch` hook to persist the theme preference through `saveJsonSettings`.
 
 ## Usage Example
 ```typescript jsx
