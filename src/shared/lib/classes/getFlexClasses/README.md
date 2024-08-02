@@ -10,6 +10,7 @@ It eliminates the need to create additional wrapper components (such as `HStack`
 ## Parameters:
 
 **Note:** All parameters are optional. If not provided, default styles will be used.
+
 | Parameter | Type       | Description                                                        |
 |-----------|------------|--------------------------------------------------------------------|
 | `vStack`  | `boolean`   |  If `true`, applies a vertical stack layout (`cls.vStack`). |

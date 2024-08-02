@@ -2,6 +2,13 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig } from '@/app/providers/StoreProvider';
 import { Profile } from '@/entities/Profile';
 
+/**
+ * Fetches the profile data for a given profile ID.
+ *
+ * @param profileId - The ID of the profile to fetch.
+ * @returns A thunk action that resolves to the profile data.
+ */
+
 export const fetchProfileData = createAsyncThunk<
     Profile,
     string,
@@ -13,11 +20,12 @@ export const fetchProfileData = createAsyncThunk<
         const response = await extra.api.get<Profile>(`/profile/${profileId}`);
 
         if (!response.data) {
-            throw new Error();
+            throw new Error('No data returned from API');
         }
 
         return response.data;
-    } catch (e) {
-        return rejectWithValue('error');
+    } catch (error) {
+        console.error('Failed to fetch profile data:', error);
+        return rejectWithValue('Failed to fetch profile data');
     }
 });

@@ -5,6 +5,12 @@ import { ValidateProfileError } from '../../consts/consts';
 import { getProfileForm } from '../../selectors/getProfileForm/getProfileForm';
 import { validateProfileData } from '../validateProfileData/validateProfileData';
 
+/**
+ * Updates the profile data.
+ *
+ * @returns A thunk action that resolves to the updated profile data.
+ */
+
 export const updateProfileData = createAsyncThunk<
     Profile,
     void,
@@ -27,12 +33,12 @@ export const updateProfileData = createAsyncThunk<
         );
 
         if (!response.data) {
-            throw new Error();
+            throw new Error('No data returned from API');
         }
 
         return response.data;
-    } catch (e) {
-        console.log(e);
+    } catch (error) {
+        console.error('Failed to update profile data:', error);
         return rejectWithValue([ValidateProfileError.SERVER_ERROR]);
     }
 });

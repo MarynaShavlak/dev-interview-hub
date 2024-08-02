@@ -12,6 +12,13 @@ interface UpdateFeatureFlagOptions {
     newFeatures: Partial<FeatureFlags>;
 }
 
+/**
+ * Updates feature flags for a specific user.
+ *
+ * @param options - The options for updating feature flags, including userId and newFeatures.
+ * @returns A thunk action that resolves to void.
+ */
+
 export const updateFeatureFlag = createAsyncThunk<
     void,
     UpdateFeatureFlagOptions,
@@ -34,7 +41,8 @@ export const updateFeatureFlag = createAsyncThunk<
 
         window.location.reload();
         return undefined;
-    } catch (e) {
+    } catch (error) {
+        console.error('Failed to update feature flags:', error);
         return rejectWithValue(
             'An error occurred while updating feature flags.',
         );
