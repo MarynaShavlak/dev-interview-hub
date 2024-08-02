@@ -10,7 +10,7 @@ describe('getProfileData.test', () => {
             age: 29,
             country: Country.Ukraine,
             lastname: 'Shavlak',
-            first: 'Maryna',
+            firstname: 'Maryna',
             city: 'Kharkiv',
             currency: Currency.USD,
         };

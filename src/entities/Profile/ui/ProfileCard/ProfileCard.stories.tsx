@@ -25,7 +25,7 @@ export function con() {
 //         age: 27,
 //         country: Country.Ukraine,
 //         lastname: 'Shavlak',
-//         first: 'Maryna',
+//         firstname: 'Maryna',
 //         city: 'Kharkiv',
 //         currency: Currency.USD,
 //         avatar: 'https://drive.google.com/thumbnail?id=1RD0jSAm8kdTLKa-Vr0daeE8T9-QcfPCa&sz=w1000',

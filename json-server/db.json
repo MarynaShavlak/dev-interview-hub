@@ -257,7 +257,7 @@
   "profile": [
     {
       "id": "1",
-      "first": "Марина",
+      "firstname": "Марина",
       "lastname": "Шавлак",
       "age": 99888,
       "currency": "USD",
@@ -268,7 +268,7 @@
     },
     {
       "id": "2",
-      "first": "Максим",
+      "firstname": "Максим",
       "lastname": "Shavlak",
       "age": 7777,
       "currency": "EUR",

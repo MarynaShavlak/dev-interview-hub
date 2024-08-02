@@ -5,11 +5,11 @@ import { validateProfileData } from './validateProfileData';
 
 const data = {
     username: 'admin',
-    age: 22,
+    age: 29,
     country: Country.Ukraine,
-    lastname: 'ulbi tv',
-    first: 'asd',
-    city: 'asf',
+    lastname: 'Shavlak',
+    firstname: 'Maryna',
+    city: 'Kharkiv',
     currency: Currency.USD,
 };
 
@@ -23,7 +23,7 @@ describe('validateProfileData.test', () => {
     test('without first and last name', async () => {
         const result = validateProfileData({
             ...data,
-            first: '',
+            firstname: '',
             lastname: '',
         });
 

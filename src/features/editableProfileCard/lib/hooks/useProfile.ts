@@ -19,7 +19,7 @@ export const useProfile = () => {
 
     const onChangeFirstname = useCallback(
         (value?: string) => {
-            dispatch(profileActions.updateProfile({ first: value || '' }));
+            dispatch(profileActions.updateProfile({ firstname: value || '' }));
         },
         [dispatch],
     );

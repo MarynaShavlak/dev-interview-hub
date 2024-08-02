@@ -54,7 +54,7 @@ export const DeprecatedProfileCard = (props: ProfileCardProps) => {
                 readonly={readonly}
             />
             <InputDeprecated
-                value={data?.first}
+                value={data?.firstname}
                 placeholder={t("Ваше ім'я")}
                 onChange={onChangeFirstname}
                 readonly={readonly}

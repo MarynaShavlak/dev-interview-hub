@@ -10,7 +10,7 @@ import { EditableProfileCard } from './EditableProfileCard';
 
 const profile: Profile = {
     id: '1',
-    first: 'Max',
+    firstname: 'Max',
     lastname: 'Shavlak',
     age: 40,
     currency: Currency.USD,

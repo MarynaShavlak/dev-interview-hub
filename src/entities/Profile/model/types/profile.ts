@@ -3,7 +3,7 @@ import { Country } from '@/entities/Country';
 
 export interface Profile {
     id?: string;
-    first?: string;
+    firstname?: string;
     lastname?: string;
     age?: number;
     currency?: Currency;

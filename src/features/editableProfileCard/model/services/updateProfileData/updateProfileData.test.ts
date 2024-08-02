@@ -6,11 +6,11 @@ import { updateProfileData } from './updateProfileData';
 
 const data = {
     username: 'admin',
-    age: 22,
+    age: 29,
     country: Country.Ukraine,
-    lastname: 'ulbi tv',
-    first: 'asd',
-    city: 'asf',
+    lastname: 'Shavlak',
+    firstname: 'Maryna',
+    city: 'Kharkiv',
     currency: Currency.USD,
     id: '1',
 };

@@ -44,7 +44,7 @@ export const RedesignedProfileCard = memo((props: ProfileCardProps) => {
             <HStack gap="24" max>
                 <VStack gap="16" max>
                     <Input
-                        value={data?.first}
+                        value={data?.firstname}
                         label={`${t("Ім'я")}:`}
                         onChange={onChangeFirstname}
                         readonly={readonly}

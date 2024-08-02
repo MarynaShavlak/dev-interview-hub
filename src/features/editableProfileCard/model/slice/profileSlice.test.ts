@@ -10,7 +10,7 @@ const data = {
     age: 22,
     country: Country.Ukraine,
     lastname: 'Kovalenko',
-    first: 'asd',
+    firstname: 'asd',
     city: 'asf',
     currency: Currency.USD,
 };

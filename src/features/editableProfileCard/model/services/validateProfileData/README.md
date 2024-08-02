@@ -20,7 +20,7 @@ import { Profile } from '@/entities/Profile';
 import { validateProfileData, ValidateProfileError } from './validateProfileData';
 
 const profile: Profile = {
-    first: 'John',
+    firstname: 'John',
     lastname: 'Doe',
     age: 30,
     username: 'johndoe',
@@ -30,7 +30,7 @@ const errors = validateProfileData(profile);
 // errors: []
 
 const invalidProfile: Profile = {
-    first: '',
+    firstname: '',
     lastname: '',
     age: 'twenty',
     username: '',
