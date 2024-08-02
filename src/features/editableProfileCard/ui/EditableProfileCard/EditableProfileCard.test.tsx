@@ -12,7 +12,7 @@ const profile: Profile = {
     id: '1',
     firstname: 'Max',
     lastname: 'Shavlak',
-    age: 40,
+    age: 27,
     currency: Currency.USD,
     country: Country.Ukraine,
     city: 'Kyiv',
