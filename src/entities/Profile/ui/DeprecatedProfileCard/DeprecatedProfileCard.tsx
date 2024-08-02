@@ -13,8 +13,6 @@ export const DeprecatedProfileCard = (props: ProfileCardProps) => {
     const {
         className,
         data,
-        isLoading,
-        error,
         readonly,
         onChangeFirstname,
         onChangeLastname,
