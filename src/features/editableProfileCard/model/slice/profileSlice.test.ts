@@ -9,9 +9,9 @@ const data = {
     username: 'admin',
     age: 22,
     country: Country.Ukraine,
-    lastname: 'Kovalenko',
-    firstname: 'asd',
-    city: 'asf',
+    lastname: 'Shavlak',
+    firstname: 'Maryna',
+    city: 'Kharkiv',
     currency: Currency.USD,
 };
 

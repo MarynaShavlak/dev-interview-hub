@@ -6,12 +6,12 @@ import { Text } from '@/shared/ui/deprecated/Text';
 import { Button, ButtonTheme } from '@/shared/ui/deprecated/Button';
 
 interface DeprecatedEditableProfileCardHeaderProps {
-    className?: string;
     onEdit: () => void;
     onCancelEdit: () => void;
     onSave: () => void;
     canEdit: boolean;
-    readonly: boolean | undefined;
+    readonly?: boolean;
+    className?: string;
 }
 
 export const DeprecatedEditableProfileCardHeader = memo(

@@ -35,27 +35,20 @@ export const EditableProfileCardHeader = memo(
             dispatch(profileActions.cancelEdit());
         }, [dispatch]);
 
+        const commonProps = {
+            onEdit,
+            onCancelEdit,
+            onSave,
+            canEdit,
+            readonly,
+            className,
+        };
+
         return (
             <ToggleFeaturesComponent
                 feature="isAppRedesigned"
-                on={
-                    <RedesignedEditableProfileCardHeader
-                        onEdit={onEdit}
-                        onCancelEdit={onCancelEdit}
-                        onSave={onSave}
-                        canEdit={canEdit}
-                        readonly={readonly}
-                    />
-                }
-                off={
-                    <DeprecatedEditableProfileCardHeader
-                        onEdit={onEdit}
-                        onCancelEdit={onCancelEdit}
-                        onSave={onSave}
-                        canEdit={canEdit}
-                        readonly={readonly}
-                    />
-                }
+                on={<RedesignedEditableProfileCardHeader {...commonProps} />}
+                off={<DeprecatedEditableProfileCardHeader {...commonProps} />}
             />
         );
     },

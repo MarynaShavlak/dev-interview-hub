@@ -6,12 +6,12 @@ import { Button } from '@/shared/ui/redesigned/Button';
 import cls from '../EditableProfileCardHeader.module.scss';
 
 interface RedesignedEditableProfileCardHeaderProps {
-    className?: string;
     onEdit: () => void;
     onCancelEdit: () => void;
     onSave: () => void;
     canEdit: boolean;
-    readonly: boolean | undefined;
+    readonly?: boolean;
+    className?: string;
 }
 
 export const RedesignedEditableProfileCardHeader = memo(
