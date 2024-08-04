@@ -6,9 +6,11 @@ import { getProfileForm } from '../../selectors/getProfileForm/getProfileForm';
 import { validateProfileData } from '../validateProfileData/validateProfileData';
 
 /**
- * Updates the profile data.
+ * Thunk to update the profile data.
  *
- * @returns A thunk action that resolves to the updated profile data.
+ *   @param {void} - No parameters.
+ *   @param {ThunkAPI} thunkAPI - The thunkAPI object provided by Redux Toolkit, containing dispatch, getState, extra, and more.
+ *   @returns A thunk action that resolves to the updated profile data.
  */
 
 export const updateProfileData = createAsyncThunk<
@@ -17,9 +19,7 @@ export const updateProfileData = createAsyncThunk<
     ThunkConfig<ValidateProfileError[]>
 >('profile/updateProfileData', async (_, thunkApi) => {
     const { extra, rejectWithValue, getState } = thunkApi;
-
     const formData = getProfileForm(getState());
-
     const errors = validateProfileData(formData);
 
     if (errors.length) {

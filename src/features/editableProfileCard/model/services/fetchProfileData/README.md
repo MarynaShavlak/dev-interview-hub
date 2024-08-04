@@ -7,7 +7,9 @@ This thunk leverages the `createAsyncThunk` function from Redux Toolkit to handl
 
 | Parameter  | Type                    | Description                                     |
 |------------|-------------------------|-------------------------------------------------|
-| `profileId`   | `string`                | TThe unique identifier of the profile to be fetched. |
+| `profileId`   | `string`                | The unique identifier of the profile to be fetched. |
+| `thunkAPI`   | `ThunkAPI`                | The thunkAPI object provided by Redux Toolkit, containing dispatch, getState, extra, and more. |
+
 
 ## Returns
 

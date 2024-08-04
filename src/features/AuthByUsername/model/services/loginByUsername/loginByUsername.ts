@@ -7,6 +7,14 @@ interface LoginByUsernameProps {
     password: string;
 }
 
+/**
+ * Thunk to handle user login by username and password.
+ *
+ * @param {LoginByUsernameProps} authData - The authentication data containing username and password.
+ * @param {ThunkAPI} thunkAPI - The thunkAPI object provided by Redux Toolkit, containing dispatch, getState, extra, and more.
+ * @returns {Promise<User>} The authenticated user data or an error message.
+ */
+
 export const loginByUsername = createAsyncThunk<
     User,
     LoginByUsernameProps,
@@ -16,13 +24,15 @@ export const loginByUsername = createAsyncThunk<
     try {
         const response = await extra.api.post<User>('/login', authData);
         if (!response.data) {
-            throw new Error();
+            throw new Error('No data received from login API');
         }
 
         dispatch(userActions.setAuthData(response.data));
         return response.data;
-    } catch (e) {
-        console.log(e);
-        return rejectWithValue('error');
+    } catch (error) {
+        console.error('Login failed:', error);
+        return rejectWithValue(
+            'Login failed. Please check your username and password and try again.',
+        );
     }
 });

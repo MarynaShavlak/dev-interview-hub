@@ -6,6 +6,7 @@ import { Profile } from '@/entities/Profile';
  * Fetches the profile data for a given profile ID.
  *
  * @param profileId - The ID of the profile to fetch.
+ * @param {ThunkAPI} thunkAPI - The thunkAPI object provided by Redux Toolkit, containing dispatch, getState, extra, and more.
  * @returns A thunk action that resolves to the profile data.
  */
 

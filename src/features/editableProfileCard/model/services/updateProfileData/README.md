@@ -2,7 +2,12 @@
 
 The `updateProfileData` thunk is an asynchronous action responsible for updating profile data on the server. It validates the profile data, performs an API call to update the data, and manages potential errors during the process.
 ## Parameters
-This thunk does not require any parameters. The thunk uses the current state to fetch profile data and validate it.****
+This thunk does not require any parameters, except `thunkApi`. The thunk uses the current state to fetch profile data and validate it.
+
+| Parameter  | Type                    | Description                                     |
+|------------|-------------------------|-------------------------------------------------|
+| `thunkAPI`   | `ThunkAPI`                | The thunkAPI object provided by Redux Toolkit, containing dispatch, getState, extra, and more. |
+
 
 ## Returns
 
