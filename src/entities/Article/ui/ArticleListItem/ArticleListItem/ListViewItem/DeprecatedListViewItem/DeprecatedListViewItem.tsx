@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { getFlexClasses } from '@/shared/lib/classes/getFlexClasses/getFlexClasses';
 import { ArticleBlockType } from '../../../../../model/consts/articleConsts';
 import { Article, ArticleTextBlock } from '../../../../../model/types/article';
-import { Categories } from '../../Categories/Categories';
+import { ArticleCategories } from '../../ArticleCategories/ArticleCategories';
 import { Views } from '../../Views/Views';
 import { ArticleTextBlockComponent } from '../../../../ArticleTextBlockComponent/ArticleTextBlockComponent';
 import { getRouteArticleDetails } from '@/shared/const/router/router';
@@ -50,7 +50,7 @@ export const DeprecatedListViewItem = memo((props: ListViewItemProps) => {
                     <Text text={article.createdAt} />
                 </VStack>
                 <Text title={article.title} />
-                <Categories article={article} />
+                <ArticleCategories article={article} />
                 <AppImage
                     fallback={<Skeleton width="100%" height="250px" />}
                     errorFallback={

@@ -2,13 +2,13 @@ import { Article } from '../../../../model/types/article';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
 import { Text as TextDeprecated } from '@/shared/ui/deprecated/Text';
 import { Text } from '@/shared/ui/redesigned/Text';
-import cls from './Categories.module.scss';
+import cls from './ArticleCategories.module.scss';
 
 interface CategoriesProps {
     article: Article;
 }
 
-export const Categories = ({ article }: CategoriesProps) => (
+export const ArticleCategories = ({ article }: CategoriesProps) => (
     <ToggleFeaturesComponent
         feature="isAppRedesigned"
         on={
