@@ -4,7 +4,7 @@ import { DeprecatedEditableProfileCardHeader } from './DeprecatedEditableProfile
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
 import { useUserAuthData } from '@/entities/User';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { profileActions } from '../../model/slice/profileSlice';
+import { useProfileActions } from '../../model/slice/profileSlice';
 import { useProfileReadonly } from '../../model/selectors/getProfileReadonly/getProfileReadonly';
 import { useProfileData } from '../../model/selectors/getProfileData/getProfileData';
 import { updateProfileData } from '../../model/services/updateProfileData/updateProfileData';
@@ -22,18 +22,19 @@ export const EditableProfileCardHeader = memo(
         const canEdit = authData?.id === profileData?.id;
         const readonly = useProfileReadonly();
         const dispatch = useAppDispatch();
+        const { setReadonly, cancelEdit } = useProfileActions();
 
         const onSave = useCallback(() => {
             dispatch(updateProfileData());
         }, [dispatch]);
 
         const onEdit = useCallback(() => {
-            dispatch(profileActions.setReadonly(false));
-        }, [dispatch]);
+            setReadonly(false);
+        }, [setReadonly]);
 
         const onCancelEdit = useCallback(() => {
-            dispatch(profileActions.cancelEdit());
-        }, [dispatch]);
+            cancelEdit();
+        }, [cancelEdit]);
 
         const commonProps = {
             onEdit,

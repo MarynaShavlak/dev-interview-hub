@@ -257,10 +257,10 @@
   "profile": [
     {
       "id": "1",
-      "first": "Марина",
+      "firstname": "Марина",
       "lastname": "Шавлак",
-      "age": 99888,
-      "currency": "USD",
+      "age": 29,
+      "currency": "UAH",
       "country": "Ukraine",
       "city": "Kharkiv",
       "username": "admin",
@@ -268,7 +268,7 @@
     },
     {
       "id": "2",
-      "first": "Максим",
+      "firstname": "Максим",
       "lastname": "Shavlak",
       "age": 7777,
       "currency": "EUR",

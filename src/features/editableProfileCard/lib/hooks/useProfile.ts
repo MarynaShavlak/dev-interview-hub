@@ -6,8 +6,7 @@ import { useProfileForm } from '../../model/selectors/getProfileForm/getProfileF
 import { useProfileIsLoading } from '../../model/selectors/getProfileIsLoading/getProfileIsLoading';
 import { useProfileReadonly } from '../../model/selectors/getProfileReadonly/getProfileReadonly';
 import { useProfileValidateErrors } from '../../model/selectors/getProfileValidateErrors/getProfileValidateErrors';
-import { profileActions } from '../../model/slice/profileSlice';
-import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { useProfileActions } from '../../model/slice/profileSlice';
 
 /**
  * Custom hook for managing profile data and updates.
@@ -44,67 +43,67 @@ import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch
  */
 
 export const useProfile = () => {
-    const dispatch = useAppDispatch();
     const formData = useProfileForm();
     const isLoading = useProfileIsLoading();
     const error = useProfileError();
     const readonly = useProfileReadonly();
     const validateErrors = useProfileValidateErrors();
 
+    const { updateProfile } = useProfileActions();
     const onChangeFirstname = useCallback(
         (value?: string) => {
-            dispatch(profileActions.updateProfile({ firstname: value || '' }));
+            updateProfile({ firstname: value || '' });
         },
-        [dispatch],
+        [updateProfile],
     );
 
     const onChangeLastname = useCallback(
         (value?: string) => {
-            dispatch(profileActions.updateProfile({ lastname: value || '' }));
+            updateProfile({ lastname: value || '' });
         },
-        [dispatch],
+        [updateProfile],
     );
 
     const onChangeCity = useCallback(
         (value?: string) => {
-            dispatch(profileActions.updateProfile({ city: value || '' }));
+            updateProfile({ city: value || '' });
         },
-        [dispatch],
+        [updateProfile],
     );
 
     const onChangeAge = useCallback(
         (value?: string) => {
-            dispatch(profileActions.updateProfile({ age: Number(value || 0) }));
+            updateProfile({ age: Number(value || 0) });
         },
-        [dispatch],
+        [updateProfile],
     );
 
     const onChangeUsername = useCallback(
         (value?: string) => {
-            dispatch(profileActions.updateProfile({ username: value || '' }));
+            updateProfile({ username: value || '' });
         },
-        [dispatch],
+        [updateProfile],
     );
 
     const onChangeAvatar = useCallback(
         (value?: string) => {
-            dispatch(profileActions.updateProfile({ avatar: value || '' }));
+            updateProfile({ avatar: value || '' });
         },
-        [dispatch],
+        [updateProfile],
     );
 
     const onChangeCurrency = useCallback(
         (currency: Currency) => {
-            dispatch(profileActions.updateProfile({ currency }));
+            updateProfile({ currency });
         },
-        [dispatch],
+        [updateProfile],
     );
 
     const onChangeCountry = useCallback(
         (country: Country) => {
-            dispatch(profileActions.updateProfile({ country }));
+            updateProfile({ country });
         },
-        [dispatch],
+        [updateProfile],
     );
 
     return {

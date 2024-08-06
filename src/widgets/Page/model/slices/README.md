@@ -1,7 +1,8 @@
 # Documentation for 'scrollSlice'
 
 ## Overview
-The `scrollSlice` is a part of the Redux state management designed to handle the UI scroll positions for different paths in an application. It leverages Redux Toolkit and a custom `buildSlice` function to create a slice with an initial state and reducers.
+The `scrollSlice` is a part of the Redux state management designed to handle the UI scroll positions for different paths in an application.
+It leverages Redux Toolkit and a custom `buildSlice` function to create a slice with an initial state and reducers.
 
 ## Import Statements
 ```typescript
