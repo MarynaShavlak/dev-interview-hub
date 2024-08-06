@@ -1,6 +1,6 @@
 import { PayloadAction } from '@reduxjs/toolkit';
-import { initAuthData } from '../services/initAuthData';
-import { saveJsonSettings } from '../services/saveJsonSettings';
+import { initAuthData } from '../services/initAuthData/initAuthData';
+import { saveJsonSettings } from '../services/saveJsonSettings/saveJsonSettings';
 import { JsonSettings } from '../types/jsonSettings';
 import { setFeatureFlags } from '@/shared/lib/features';
 import { buildSlice } from '@/shared/lib/store';

@@ -1,5 +1,5 @@
-export { initAuthData } from './model/services/initAuthData';
-export { saveJsonSettings } from './model/services/saveJsonSettings';
+export { initAuthData } from './model/services/initAuthData/initAuthData';
+export { saveJsonSettings } from './model/services/saveJsonSettings/saveJsonSettings';
 export {
     getUserAuthData,
     useUserAuthData,
