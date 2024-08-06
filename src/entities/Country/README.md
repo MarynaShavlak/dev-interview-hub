@@ -28,7 +28,7 @@ The **`CountrySelect`** component accepts the following props:
 
 ## Features
 1. **Dynamic Country Options**: Utilizes the `useCountryOptions`  hook to fetch and manage a list of country options, allowing for dynamic and scalable country selection.
-2. **Feature Toggling:**:
+2. **Feature Toggling**:
     -  Integrates with `ToggleFeaturesComponent` to conditionally render either the redesigned or deprecated dropdown styles based on feature flags.
     -  Uses the `toggleFeatures` function to conditionally render different labels based on the `isAppRedesigned` feature flag. This enables the component to display either a redesigned or a deprecated label depending on the current feature settings.
 
