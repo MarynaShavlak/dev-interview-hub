@@ -30,7 +30,7 @@ The **`RedesignedCommentCard`** component accepts the following props:
 ## Usage Example
 ```typescript jsx
 import { RedesignedCommentCard } from '@/entities/Comment';
-import { Comment } from '@/model/types/comment';
+import { Comment } from '@/entities/Comment';
 
 const sampleComment: Comment = {
     id: '22436',

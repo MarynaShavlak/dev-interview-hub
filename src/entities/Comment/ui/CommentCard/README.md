@@ -34,7 +34,7 @@ The **`CommentCard`** component accepts the following props:
 ## Usage Example
 ```typescript jsx
 import { CommentCard } from '@/entities/Comment';
-import { Comment } from '@/model/types/comment';
+import { Comment } from '@/entities/Comment';
 
 const sampleComment: Comment = {
     id: '22436',

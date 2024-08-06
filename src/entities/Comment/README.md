@@ -36,7 +36,7 @@ The **`CommentList`** component accepts the following props:
 ## Usage Example
 ```typescript jsx
 import { CommentList } from '@/entities/Comment';
-import { Comment } from '@/model/types/comment';
+import { Comment } from '@/entities/Comment';
 
 const sampleComments: Comment[] = [
     {

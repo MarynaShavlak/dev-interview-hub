@@ -13,24 +13,28 @@ interface NotificationItemProps {
     item: Notification;
 }
 
-const NotificationContent = ({ item, className }: NotificationItemProps) => (
-    <ToggleFeaturesComponent
-        feature="isAppRedesigned"
-        on={
-            <Card className={classNames(cls.NotificationItem, {}, [className])}>
-                <Text title={item.title} text={item.description} />
-            </Card>
-        }
-        off={
-            <CardDeprecated
-                theme={CardTheme.OUTLINED}
-                className={classNames(cls.NotificationItem, {}, [className])}
-            >
-                <TextDeprecated title={item.title} text={item.description} />
-            </CardDeprecated>
-        }
-    />
-);
+const NotificationContent = ({ item, className }: NotificationItemProps) => {
+    const { title, description } = item;
+    const cardClass = classNames(cls.NotificationItem, {}, [className]);
+    return (
+        <ToggleFeaturesComponent
+            feature="isAppRedesigned"
+            on={
+                <Card className={cardClass}>
+                    <Text title={title} text={description} />
+                </Card>
+            }
+            off={
+                <CardDeprecated
+                    theme={CardTheme.OUTLINED}
+                    className={cardClass}
+                >
+                    <TextDeprecated title={title} text={description} />
+                </CardDeprecated>
+            }
+        />
+    );
+};
 
 export const NotificationItem = memo((props: NotificationItemProps) => {
     const { className, item } = props;

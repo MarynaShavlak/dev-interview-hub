@@ -29,7 +29,7 @@ The **`DeprecatedCommentCard`** component accepts the following props:
 ## Usage Example
 ```typescript jsx
 import { DeprecatedCommentCard } from '@/entities/Comment';
-import { Comment } from '@/model/types/comment';
+import { Comment } from '@/entities/Comment';
 
 const sampleComment: Comment = {
     id: '22436',
