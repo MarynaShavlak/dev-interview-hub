@@ -18,6 +18,7 @@ interface CommentListProps {
 export const CommentList = memo((props: CommentListProps) => {
     const { className, isLoading, comments } = props;
     const { t } = useTranslation('article-details');
+    const noCommentsMessage = t('Коментарів немає');
     if (isLoading) {
         return (
             <VStack gap="16" max className={classNames('', {}, [className])}>
@@ -44,8 +45,8 @@ export const CommentList = memo((props: CommentListProps) => {
             ) : (
                 <ToggleFeaturesComponent
                     feature="isAppRedesigned"
-                    on={<Text text={t('Коментарів немає')} />}
-                    off={<TextDeprecated text={t('Коментарів немає')} />}
+                    on={<Text text={noCommentsMessage} />}
+                    off={<TextDeprecated text={noCommentsMessage} />}
                 />
             )}
         </VStack>
