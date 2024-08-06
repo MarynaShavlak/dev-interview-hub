@@ -38,7 +38,7 @@ It includes:
 - **name**: The name of the slice, which is **'login'**.
 - **initialState**: The initial state defined earlier.
 - **reducers**: An object containing reducer functions.
-- **extraReducers**: Handles asynchronous actions for loginByUsername service requests.
+- **extraReducers**: Handles asynchronous actions for `loginByUsername` service requests.
 - 
 ## Reducers
 
