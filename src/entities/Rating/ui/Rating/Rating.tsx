@@ -40,12 +40,12 @@ export const Rating = memo((props: RatingCardProps) => {
         [hasFeedback, onSubmitFeedback],
     );
 
-    const acceptHandle = useCallback(() => {
+    const acceptFeedback = useCallback(() => {
         setIsModalOpen(false);
         onSubmitFeedback?.(starsCount, feedback);
     }, [feedback, onSubmitFeedback, starsCount]);
 
-    const cancelHandle = useCallback(() => {
+    const cancelFeedback = useCallback(() => {
         setIsModalOpen(false);
         onSubmitRating?.(starsCount);
     }, [onSubmitRating, starsCount]);
@@ -53,8 +53,8 @@ export const Rating = memo((props: RatingCardProps) => {
     const feedbackContainer = (
         <FeedbackContainer
             isOpen={isModalOpen}
-            onClose={cancelHandle}
-            onSubmitFeedback={acceptHandle}
+            onClose={cancelFeedback}
+            onSubmitFeedback={acceptFeedback}
             feedback={feedback}
             setFeedback={setFeedback}
             feedbackTitle={feedbackTitle}

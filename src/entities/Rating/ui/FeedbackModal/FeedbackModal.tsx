@@ -1,21 +1,80 @@
 import { memo } from 'react';
-import { RedesignedFeedbackModalContent } from './RedesignedFeedbackModalContent/RedesignedFeedbackModalContent';
-import { DeprecatedFeedbackModalContent } from './DeprecatedFeedbackModalContent/DeprecatedFeedbackModalContent';
+import { useTranslation } from 'react-i18next';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
 import { FeedbackProps } from '../FeedbackContainer/FeedbackContainer';
 import { Modal } from '@/shared/ui/redesigned/Modal';
-import { VStack } from '@/shared/ui/redesigned/Stack';
+import { HStack, VStack } from '@/shared/ui/redesigned/Stack';
+import { Text as TextDeprecated } from '@/shared/ui/deprecated/Text';
+import { Input as InputDeprecated } from '@/shared/ui/deprecated/Input';
+import {
+    Button as ButtonDeprecated,
+    ButtonTheme,
+} from '@/shared/ui/deprecated/Button';
+import { Text } from '@/shared/ui/redesigned/Text';
+import { Input } from '@/shared/ui/redesigned/Input';
+import { Button } from '@/shared/ui/redesigned/Button';
 
 export const FeedbackModal = memo((props: FeedbackProps) => {
-    const { isOpen, onClose } = props;
+    const {
+        isOpen,
+        onClose,
+        feedbackTitle,
+        setFeedback,
+        feedback,
+        onSubmitFeedback,
+    } = props;
+    const { t } = useTranslation();
+    const sendButtonText = t('Відправити');
+    const inputPlaceholderText = t('Ваш відгук');
+    const closeButtonText = t('Закрити');
 
     return (
         <Modal isOpen={isOpen} lazy onClose={onClose}>
             <VStack max gap="32">
                 <ToggleFeaturesComponent
                     feature="isAppRedesigned"
-                    on={<RedesignedFeedbackModalContent {...props} />}
-                    off={<DeprecatedFeedbackModalContent {...props} />}
+                    on={
+                        <>
+                            <Text title={feedbackTitle} />
+                            <Input
+                                value={feedback}
+                                onChange={setFeedback}
+                                placeholder={inputPlaceholderText}
+                            />
+                            <HStack max gap="16" justify="end">
+                                <Button onClick={onClose} variant="cancel">
+                                    {closeButtonText}
+                                </Button>
+                                <Button
+                                    variant="save"
+                                    onClick={onSubmitFeedback}
+                                >
+                                    {sendButtonText}
+                                </Button>
+                            </HStack>
+                        </>
+                    }
+                    off={
+                        <>
+                            <TextDeprecated title={feedbackTitle} />
+                            <InputDeprecated
+                                value={feedback}
+                                onChange={setFeedback}
+                                placeholder={inputPlaceholderText}
+                            />
+                            <HStack max gap="16" justify="end">
+                                <ButtonDeprecated
+                                    onClick={onClose}
+                                    theme={ButtonTheme.OUTLINE_RED}
+                                >
+                                    {closeButtonText}
+                                </ButtonDeprecated>
+                                <ButtonDeprecated onClick={onSubmitFeedback}>
+                                    {sendButtonText}
+                                </ButtonDeprecated>
+                            </HStack>
+                        </>
+                    }
                 />
             </VStack>
         </Modal>

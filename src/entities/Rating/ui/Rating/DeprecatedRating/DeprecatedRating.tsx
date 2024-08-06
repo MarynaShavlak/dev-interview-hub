@@ -1,6 +1,5 @@
 import { useTranslation } from 'react-i18next';
 import { memo, ReactElement } from 'react';
-import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { Card as CardDeprecated } from '@/shared/ui/deprecated/Card';
 import { VStack } from '@/shared/ui/redesigned/Stack';
 import { Text as TextDeprecated } from '@/shared/ui/deprecated/Text';
@@ -19,7 +18,7 @@ export const DeprecatedRating = memo((props: DeprecatedRatingProps) => {
     const { t } = useTranslation();
 
     return (
-        <CardDeprecated max className={classNames('', {}, [className])}>
+        <CardDeprecated max className={className}>
             <VStack align="center" gap="8">
                 <TextDeprecated
                     title={starsCount ? t('Дякуємо за оцінку!') : title}
