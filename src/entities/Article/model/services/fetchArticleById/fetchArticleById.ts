@@ -25,7 +25,7 @@ export const fetchArticleById = createAsyncThunk<
 
     try {
         if (!articleId) {
-            throw new Error('Article ID is required.');
+            return rejectWithValue('Article ID is required.');
         }
 
         const response = await extra.api.get<Article>(
