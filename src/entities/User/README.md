@@ -18,24 +18,25 @@ User/
 │   │   └── consts.ts
 │   ├── selectors/
 │   │   ├── getUserAuthData/
-│   │   │   ├── getUserAuthData.ts
+│   │   │   └── getUserAuthData.ts
 │   │   ├── getUserInited/
-│   │   │   ├── getUserInited.ts
+│   │   │   └── getUserInited.ts
 │   │   ├── jsonSettings/
-│   │   │   ├── jsonSettings.ts
+│   │   │   └── jsonSettings.ts
 │   │   └── roles/
-│   │       ├── roleSelectors.ts
+│   │       └── roleSelectors.ts
 │   ├── services/
 │   │   ├── initAuthData/
-│   │   │   ├── initAuthData.ts
+│   │   │   └── initAuthData.ts
 │   │   ├── saveJsonSettings/
-│   │   │   ├── saveJsonSettings.ts
+│   │   │   └── saveJsonSettings.ts
 │   └── slice/
 │       └── userSlice.ts
-├── types/
-│   ├── jsonSettings.ts
-│   └── user.ts
-├── index.ts
+│   ├── types/
+│       ├── jsonSettings.ts
+│       └── user.ts
+└── index.ts
+
 ```
 
 ## Detailed Description
@@ -70,12 +71,12 @@ User/
 
 - **userSlice.ts**: Defines the Redux slice, including actions, reducers  and extra reducers for managing user state.
 
-### 3. `types/`: Contains TypeScript type definitions for the User module.
+#### 2.5. `types/`: Contains TypeScript type definitions for the User module.
 
 - **jsonSettings.ts**: Defines types for JSON settings related to the user.
 - **user.ts**: Defines the User and UserSchema interfaces .
 
-### 4. `index.ts`
+### 3. `index.ts`
 
 Entry point for the User module, exporting the necessary components, functions, and types.
 
