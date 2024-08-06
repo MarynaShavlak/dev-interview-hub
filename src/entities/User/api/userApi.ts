@@ -9,6 +9,12 @@ interface SetJsonSettingsArg {
 
 const userApi = rtkApi.injectEndpoints({
     endpoints: (build) => ({
+        getUserDataById: build.query<User, string>({
+            query: (userId) => ({
+                url: `/users/${userId}`,
+                method: 'GET',
+            }),
+        }),
         setJsonSettings: build.mutation<User, SetJsonSettingsArg>({
             query: ({ userId, jsonSettings }) => ({
                 url: `/users/${userId}`,
@@ -16,12 +22,6 @@ const userApi = rtkApi.injectEndpoints({
                 body: {
                     jsonSettings,
                 },
-            }),
-        }),
-        getUserDataById: build.query<User, string>({
-            query: (userId) => ({
-                url: `/users/${userId}`,
-                method: 'GET',
             }),
         }),
     }),
