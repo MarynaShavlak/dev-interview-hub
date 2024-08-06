@@ -1,5 +1,5 @@
 import { buildSelector } from '@/shared/lib/store';
-import { JsonSettings } from '../types/jsonSettings';
+import { JsonSettings } from '../../types/jsonSettings';
 
 /**
  * Selectors for accessing and managing `jsonSettings` within the Redux store, specifically from the user's `authData`.
