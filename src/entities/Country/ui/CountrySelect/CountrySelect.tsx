@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { memo, useCallback } from 'react';
+import { memo, useCallback, useMemo } from 'react';
 import { useCountryOptions } from '../../lib/hooks/useCountryOptions';
 import { toggleFeatures, ToggleFeaturesComponent } from '@/shared/lib/features';
 import { ListBox as ListBoxDeprecated } from '@/shared/ui/deprecated/Popups';
@@ -16,7 +16,9 @@ interface CountrySelectProps {
 export const CountrySelect = memo(
     ({ className, value, onChange, readonly }: CountrySelectProps) => {
         const { t } = useTranslation();
-        const options = useCountryOptions();
+        const rawCountryOptions = useCountryOptions();
+        const options = useMemo(() => rawCountryOptions, [rawCountryOptions]);
+        const labelText = t('Укажіть країну');
 
         const onChangeHandler = useCallback(
             (value: string) => {
@@ -26,14 +28,14 @@ export const CountrySelect = memo(
         );
         const label = toggleFeatures({
             name: 'isAppRedesigned',
-            off: () => t('Укажіть країну'),
+            off: () => labelText,
             on: () => t('Країна'),
         });
 
         const props = {
             className,
             value,
-            defaultValue: t('Укажіть країну'),
+            defaultValue: labelText,
             label,
             items: options,
             onChange: onChangeHandler,
