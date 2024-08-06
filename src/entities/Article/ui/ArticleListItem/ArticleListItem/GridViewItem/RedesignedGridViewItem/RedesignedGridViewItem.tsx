@@ -4,7 +4,7 @@ import { getFlexClasses } from '@/shared/lib/classes/getFlexClasses/getFlexClass
 import defaultImage from '@/shared/assets/images/default-img.png';
 import { Avatar } from '@/shared/ui/redesigned/Avatar';
 import { GridViewItemProps } from '../GridViewItem';
-import { Views } from '../../Views/Views';
+import { ArticleViews } from '../../ArticleViews/ArticleViews';
 import { HStack, VStack } from '@/shared/ui/redesigned/Stack';
 import { AppImage } from '@/shared/ui/redesigned/AppImage';
 import { getRouteArticleDetails } from '@/shared/const/router/router';
@@ -61,7 +61,7 @@ export const RedesignedGridViewItem = memo((props: GridViewItemProps) => {
                                 text={article.createdAt}
                                 className={cls.date}
                             />
-                            <Views article={article} />
+                            <ArticleViews article={article} />
                         </HStack>
                         <Avatar
                             size={32}

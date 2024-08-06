@@ -5,7 +5,7 @@ import defaultImage from '@/shared/assets/images/default-img-list.png';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { ArticleBlockType } from '../../../../../model/consts/articleConsts';
 import { Article, ArticleTextBlock } from '../../../../../model/types/article';
-import { Views } from '../../Views/Views';
+import { ArticleViews } from '../../ArticleViews/ArticleViews';
 import { getRouteArticleDetails } from '@/shared/const/router/router';
 import { AppImage } from '@/shared/ui/redesigned/AppImage';
 import { AppLink } from '@/shared/ui/redesigned/AppLink';
@@ -84,7 +84,7 @@ export const RedesignedListViewItem = memo((props: ListViewItemProps) => {
                     <AppLink to={getRouteArticleDetails(article.id)}>
                         <Button variant="outline">{t('Читати більше')}</Button>
                     </AppLink>
-                    <Views article={article} />
+                    <ArticleViews article={article} />
                 </HStack>
             </Card>
         </div>

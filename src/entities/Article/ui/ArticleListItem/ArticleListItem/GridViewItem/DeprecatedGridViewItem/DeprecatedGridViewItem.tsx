@@ -2,7 +2,7 @@ import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { getFlexClasses } from '@/shared/lib/classes/getFlexClasses/getFlexClasses';
 import { GridViewItemProps } from '../GridViewItem';
-import { Views } from '../../Views/Views';
+import { ArticleViews } from '../../ArticleViews/ArticleViews';
 import { ArticleCategories } from '../../ArticleCategories/ArticleCategories';
 import { HStack } from '@/shared/ui/redesigned/Stack';
 import { AppImage } from '@/shared/ui/redesigned/AppImage';
@@ -56,7 +56,7 @@ export const DeprecatedGridViewItem = memo((props: GridViewItemProps) => {
                 </div>
                 <HStack justify="between" max>
                     <ArticleCategories article={article} />
-                    <Views article={article} />
+                    <ArticleViews article={article} />
                 </HStack>
                 <Text text={article.title} className={cls.title} />
             </Card>

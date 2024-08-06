@@ -12,7 +12,7 @@ interface ViewsProps {
     article: Article;
 }
 
-export const Views = ({ article }: ViewsProps) => (
+export const ArticleViews = ({ article }: ViewsProps) => (
     <ToggleFeaturesComponent
         feature="isAppRedesigned"
         on={

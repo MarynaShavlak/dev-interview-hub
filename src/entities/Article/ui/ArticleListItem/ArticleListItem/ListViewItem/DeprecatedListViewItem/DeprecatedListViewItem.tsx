@@ -4,7 +4,7 @@ import { getFlexClasses } from '@/shared/lib/classes/getFlexClasses/getFlexClass
 import { ArticleBlockType } from '../../../../../model/consts/articleConsts';
 import { Article, ArticleTextBlock } from '../../../../../model/types/article';
 import { ArticleCategories } from '../../ArticleCategories/ArticleCategories';
-import { Views } from '../../Views/Views';
+import { ArticleViews } from '../../ArticleViews/ArticleViews';
 import { ArticleTextBlockComponent } from '../../../../ArticleTextBlockComponent/ArticleTextBlockComponent';
 import { getRouteArticleDetails } from '@/shared/const/router/router';
 import { AppLink } from '@/shared/ui/deprecated/AppLink';
@@ -75,7 +75,7 @@ export const DeprecatedListViewItem = memo((props: ListViewItemProps) => {
                             {t('Читати більше')}
                         </Button>
                     </AppLink>
-                    <Views article={article} />
+                    <ArticleViews article={article} />
                 </HStack>
             </Card>
         </div>
