@@ -5,6 +5,18 @@ import { getUserAuthData } from '../../selectors/getUserAuthData/getUserAuthData
 import { getJsonSettings } from '../../selectors/jsonSettings/jsonSettings';
 import { setJsonSettingsMutation } from '../../../api/userApi';
 
+/**
+ * Thunk to save and update user JSON settings.
+ *
+ * This thunk merges the provided new JSON settings with the current settings and
+ * saves the updated settings to the server. It handles scenarios where user data
+ * is not available and manages errors that may occur during the process.
+ *
+ * @param {JsonSettings} newJsonSettings - The new JSON settings to be merged with the existing ones.
+ * @param {ThunkAPI} thunkAPI - The thunkAPI object provided by Redux Toolkit, containing dispatch, getState, extra, and more.
+ * @returns {Promise<JsonSettings>} The updated JSON settings or an error message.
+ */
+
 export const saveJsonSettings = createAsyncThunk<
     JsonSettings,
     JsonSettings,
@@ -15,7 +27,7 @@ export const saveJsonSettings = createAsyncThunk<
     const currentSettings = getJsonSettings(getState());
 
     if (!userData) {
-        return rejectWithValue('No data of user');
+        return rejectWithValue('No user data found.');
     }
 
     try {
@@ -29,13 +41,13 @@ export const saveJsonSettings = createAsyncThunk<
             }),
         ).unwrap();
 
-        if (!response.jsonSettings) {
-            return rejectWithValue('No info about json settings');
+        if (!response || !response.jsonSettings) {
+            return rejectWithValue('Failed to retrieve updated JSON settings');
         }
 
         return response.jsonSettings;
-    } catch (e) {
-        console.log(e);
-        return rejectWithValue('Some error occurred');
+    } catch (error) {
+        console.error('Error saving JSON settings:', error);
+        return rejectWithValue('An error occurred while saving JSON settings.');
     }
 });
