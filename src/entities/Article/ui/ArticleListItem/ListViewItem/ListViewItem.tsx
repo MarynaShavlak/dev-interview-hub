@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import { RedesignedListViewItem } from './RedesignedListViewItem/RedesignedListViewItem';
 import { DeprecatedListViewItem } from './DeprecatedListViewItem/DeprecatedListViewItem';
-import { Article } from '../../../../model/types/article';
+import { Article } from '../../../model/types/article';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
 
 interface ListViewItemProps {

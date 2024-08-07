@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import { ListViewSkeleton } from './ListViewSkeleton/ListViewSkeleton';
 import { GridViewSkeleton } from './GridViewSkeleton/GridViewSkeleton';
-import { ArticleView } from '../../../model/consts/articleConsts';
+import { ArticleView } from '../../model/consts/articleConsts';
 
 export interface ArticleListItemSkeletonProps {
     view: ArticleView;

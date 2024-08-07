@@ -2,9 +2,9 @@ import { memo } from 'react';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { toggleFeatures } from '@/shared/lib/features';
 import { HStack, VStack } from '@/shared/ui/redesigned/Stack';
-import { ArticleListItemSkeleton } from '../../ArticleListItem/ArticleListItemSkeleton/ArticleListItemSkeleton';
 import cls from '../ArticleList.module.scss';
 import { ArticleView } from '../../../model/consts/articleConsts';
+import { ArticleListItemSkeleton } from '../../ArticleListItemSkeleton/ArticleListItemSkeleton';
 
 interface ArticleListSkeletonProps {
     view: ArticleView;

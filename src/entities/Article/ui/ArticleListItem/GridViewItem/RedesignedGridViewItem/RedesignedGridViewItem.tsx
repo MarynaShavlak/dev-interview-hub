@@ -4,7 +4,7 @@ import { getFlexClasses } from '@/shared/lib/classes/getFlexClasses/getFlexClass
 import defaultImage from '@/shared/assets/images/default-img.png';
 import { Avatar } from '@/shared/ui/redesigned/Avatar';
 import { GridViewItemProps } from '../GridViewItem';
-import { ArticleViews } from '../../ArticleViews/ArticleViews';
+import { ArticleViews } from '../../../ArticleViews/ArticleViews';
 import { HStack, VStack } from '@/shared/ui/redesigned/Stack';
 import { AppImage } from '@/shared/ui/redesigned/AppImage';
 import { getRouteArticleDetails } from '@/shared/const/router/router';

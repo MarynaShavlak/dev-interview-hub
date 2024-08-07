@@ -6,7 +6,7 @@ import { Icon } from '@/shared/ui/redesigned/Icon';
 import EyeIconDeprecated from '@/shared/assets/icons/eye-20-20.svg';
 import EyeIconRedesigned from '@/shared/assets/icons/eye.svg';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
-import { Article } from '../../../../model/types/article';
+import { Article } from '../../model/types/article';
 
 interface ViewsProps {
     article: Article;

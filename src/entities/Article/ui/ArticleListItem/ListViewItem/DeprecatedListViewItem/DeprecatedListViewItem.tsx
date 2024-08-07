@@ -1,11 +1,11 @@
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { getFlexClasses } from '@/shared/lib/classes/getFlexClasses/getFlexClasses';
-import { ArticleBlockType } from '../../../../../model/consts/articleConsts';
-import { Article, ArticleTextBlock } from '../../../../../model/types/article';
-import { ArticleCategories } from '../../ArticleCategories/ArticleCategories';
-import { ArticleViews } from '../../ArticleViews/ArticleViews';
-import { ArticleTextBlockComponent } from '../../../../ArticleTextBlockComponent/ArticleTextBlockComponent';
+import { ArticleBlockType } from '../../../../model/consts/articleConsts';
+import { Article, ArticleTextBlock } from '../../../../model/types/article';
+import { ArticleCategories } from '../../../ArticleCategories/ArticleCategories';
+import { ArticleViews } from '../../../ArticleViews/ArticleViews';
+import { ArticleTextBlockComponent } from '../../../ArticleTextBlockComponent/ArticleTextBlockComponent';
 import { getRouteArticleDetails } from '@/shared/const/router/router';
 import { AppLink } from '@/shared/ui/deprecated/AppLink';
 import { Avatar } from '@/shared/ui/deprecated/Avatar';

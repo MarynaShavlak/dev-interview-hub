@@ -27,10 +27,11 @@ The **`ArticleViews`** component accepts the following props:
    - **Icon and Text**: Displays the number of views alongside an icon. The icon and text components used for rendering adapt based on the feature flag, ensuring the appropriate styling and behavior.
    - 
 ## Usage Example
+
 ```typescript jsx
 import { ArticleViews } from '@/entities/Article';
-import { Article } from '../../../../model/types/article';
-import { ArticleCategory, ArticleBlockType  } from '../../../../model/consts/articleConsts';
+import { Article } from './article';
+import { ArticleCategory, ArticleBlockType } from './articleConsts';
 
 const sampleArticle: Article = {
    id: '1',
@@ -56,7 +57,7 @@ const sampleArticle: Article = {
 const ExampleComponent = () => {
    return (
            <div>
-              <ArticleViews article={sampleArticle} />
+              <ArticleViews article={sampleArticle}/>
               {/* The ArticleViews component displays the number of views with adaptive UI rendering */}
            </div>
    );

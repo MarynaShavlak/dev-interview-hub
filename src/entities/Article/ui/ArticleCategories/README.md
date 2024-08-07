@@ -26,10 +26,11 @@ The **`ArticleCategories`** component accepts the following props:
    - **Categories**: Renders the categories of the article as a comma-separated list. The text component used for rendering adapts to the feature flag, ensuring the appropriate styling and behavior.
 
 ## Usage Example
+
 ```typescript jsx
 import { ArticleCategories } from '@/entities/Article';
-import { Article } from '../../../../model/types/article';
-import { ArticleCategory, ArticleBlockType  } from '../../../../model/consts/articleConsts';
+import { Article } from './article';
+import { ArticleCategory, ArticleBlockType } from './articleConsts';
 
 const sampleArticle: Article = {
    id: '1',
@@ -55,7 +56,7 @@ const sampleArticle: Article = {
 const ExampleComponent = () => {
    return (
            <div>
-              <ArticleCategories article={sampleArticle} />
+              <ArticleCategories article={sampleArticle}/>
               {/* The ArticleCategories component displays the categories of the article with adaptive UI rendering */}
            </div>
    );
