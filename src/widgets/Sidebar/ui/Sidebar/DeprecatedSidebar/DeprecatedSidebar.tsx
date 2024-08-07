@@ -1,30 +1,31 @@
-import { memo, ReactNode } from 'react';
+import { memo } from 'react';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { ThemeSwitcher } from '@/features/ThemeSwitcher';
 import { LangSwitcher } from '@/features/LangSwitcher';
 import { Button, ButtonSize, ButtonTheme } from '@/shared/ui/deprecated/Button';
 import { VStack } from '@/shared/ui/redesigned/Stack';
 import cls from './DeprecatedSidebar.module.scss';
+import { useSidebarItems } from '../../../lib/hook/useSidebarItems/useSidebarItems';
+import { SidebarItem } from '../../SidebarItem/SidebarItem';
+import { Each } from '@/shared/lib/components/Each/Each';
+import { useSidebarCollapse } from '../../../lib/hook/useSidebarCollapse/useSidebarCollapse';
 
 interface DeprecatedSidebarProps {
     className?: string;
-    collapsed: boolean;
-    onToggle: () => void;
-    itemsList: ReactNode[];
 }
 
 export const DeprecatedSidebar = memo((props: DeprecatedSidebarProps) => {
-    const { className, collapsed, onToggle, itemsList } = props;
+    const { className } = props;
+    const sidebarItemsList = useSidebarItems();
+    const { collapsed, toggleCollapse } = useSidebarCollapse();
+    const classes = classNames(cls.Sidebar, { [cls.collapsed]: collapsed }, [
+        className,
+    ]);
     return (
-        <aside
-            data-testid="sidebar"
-            className={classNames(cls.Sidebar, { [cls.collapsed]: collapsed }, [
-                className,
-            ])}
-        >
+        <aside data-testid="sidebar" className={classes}>
             <Button
                 data-testid="sidebar-toggle"
-                onClick={onToggle}
+                onClick={toggleCollapse}
                 className={cls.collapseBtn}
                 theme={ButtonTheme.BACKGROUND_INVERTED}
                 size={ButtonSize.L}
@@ -33,7 +34,18 @@ export const DeprecatedSidebar = memo((props: DeprecatedSidebarProps) => {
                 {collapsed ? '>' : '<'}
             </Button>
             <VStack role="navigation" gap="8" className={cls.items}>
-                {itemsList}
+                <Each
+                    of={sidebarItemsList}
+                    render={(item) => {
+                        return (
+                            <SidebarItem
+                                item={item}
+                                collapsed={collapsed}
+                                key={item.path}
+                            />
+                        );
+                    }}
+                />
             </VStack>
             <div className={cls.switchers}>
                 <ThemeSwitcher />

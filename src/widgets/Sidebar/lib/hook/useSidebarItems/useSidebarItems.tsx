@@ -14,7 +14,7 @@ import {
     getRouteProfile,
 } from '@/shared/const/router/router';
 import { toggleFeatures } from '@/shared/lib/features';
-import { SidebarItemType } from '../../model/types/sidebar';
+import { SidebarItemType } from '../../../model/types/sidebar';
 
 /**
  * Custom hook for managing sidebar items based on user authentication and feature toggles.
