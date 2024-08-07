@@ -9,6 +9,7 @@ interface ProfilePageProps {
     className?: string;
 }
 ```
+
 ## Props
 The **`ProfilePage`** component accepts the following props:
 
