@@ -1,59 +1,47 @@
-# CountrySelect Entity
+# Entity Country Documentation
 
 ## Overview
-The **`CountrySelect`** component provides a dropdown interface for selecting countries in a React application. 
-It allows users to choose a country from a list of options, which is dynamically populated using the `useCountryOptions` hook. The component supports feature toggling to switch between redesigned and deprecated dropdown styles based on feature flags, ensuring flexibility and adaptability in the UI.
+The `Country` module is responsible for handling all country-related functionalities in the React application. This module is structured according to the Feature-Sliced Design (FSD) architecture, ensuring modularity, scalability, and maintainability. The following documentation provides an in-depth look at each part of the `Country` module.
 
-## Type Definition
-```typescript
-interface CountrySelectProps {
-    className?: string;
-    value?: Country;
-    onChange?: (value: Country) => void;
-    readonly?: boolean;
-}
+## Module Structure
+The `Country` module is organized into several directories, each serving a specific purpose:
+```text
+Country/
+├── lib/
+│   └── hooks/
+│       └── useCountryOptions.ts
+├── model/
+│   └── types/
+│       └── country.ts
+├── ui/
+│   └── CountrySelect/
+│       ├── CountrySelect.tsx
+├── index.ts
+
 ```
 
-## Props
+## Detailed Description
 
-The **`CountrySelect`** component accepts the following props:
+### 1. `lib/`: Contains reusable utility functions and hooks for the Country module.
 
-| Prop       | Type                           | Required / Optional | Description                                          |
-|------------|--------------------------------|----------------------|------------------------------------------------------|
-| `value`    | `Country`                       | Optional             | The currently selected country.                     |
-| `onChange` | `(value: Country) => void`      | Optional             | Callback function to handle country selection changes. |
-| `readonly` | `boolean`                       | Optional             | If `true`, the component is displayed as read-only.   |
-| `className`| `string`                        | Optional             | Custom class name for additional styling.            |
+#### 1.1. `hooks/`
+- **useCountryOptions.ts:**: CA custom hook that provides options for selecting countries. This hook can be used across the application wherever country selection is needed.
 
+### 2. `model/`: Encapsulates the core logic and data structures of the Country module.
 
-## Features
-1. **Dynamic Country Options**: Utilizes the `useCountryOptions`  hook to fetch and manage a list of country options, allowing for dynamic and scalable country selection.
-2. **Feature Toggling**:
-    -  Integrates with `ToggleFeaturesComponent` to conditionally render either the redesigned or deprecated dropdown styles based on feature flags.
-    -  Uses the `toggleFeatures` function to conditionally render different labels based on the `isAppRedesigned` feature flag. This enables the component to display either a redesigned or a deprecated label depending on the current feature settings.
+#### 2.1. `types/`
+- **country.ts**: Contains TypeScript type definitions for the Country module, defining the structure of a country object. This ensures type safety and consistency throughout the application.
 
-## Usage Example
-```typescript jsx
-import { memo, useState } from 'react';
-import { CurrencySelect } from '@/features/CurrencySelect';
-import { Currency } from '@/model/types/currency';
+### 3. `ui/`: Contains the UI components related to the Country module.
 
-const ExampleComponent = () => {
-    const [selectedCountry, setSelectedCountry] = useState<Country>('Ukraine');
+#### 3.1. `CountrySelect/`:  Manages the display and interaction of country selection UI.
+- **`CountrySelect.tsx:`**: The main CountrySelect component, which allows users to select a country from a dropdown menu. This component integrates with the `useCountryOptions` hook to retrieve and display country options.
 
-    const handleCountryChange = (country: Country) => {
-        setSelectedCountry(country);
-    };
+### 4. `index.ts`
 
-    return (
-        <CountrySelect
-            className="customCountrySelect"
-            value={selectedCountry}
-            onChange={handleCountryChange}
-            readonly={true}
-        />
-    );
-};
-```
+Entry point for the Country module, exporting the necessary components and types for use in the application.
+
 ## Conclusion
-The **`CountrySelect`** component offers an efficient and adaptable solution for selecting countries in a React application. By leveraging dynamic options, feature toggling, and localization, it provides a user-friendly interface while ensuring maintainability and flexibility across different application features.
+The Entity `Country` is designed to handle all country-related functionalities in a structured and maintainable manner. By following the FSD architecture, this module ensures easy scalability and integration within the larger application.
+
+For further details on each part of the module, please refer to the respective README.md files within each directory.
