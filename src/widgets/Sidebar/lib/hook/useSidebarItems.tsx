@@ -16,6 +16,21 @@ import {
 import { toggleFeatures } from '@/shared/lib/features';
 import { SidebarItemType } from '../../model/types/sidebar';
 
+/**
+ * Custom hook for managing sidebar items based on user authentication and feature toggles.
+ * This hook generates a list of sidebar items with appropriate icons and paths, including
+ * conditional items for authenticated users.
+ *
+ * @returns {{
+ *    sidebarItemsList: SidebarItemType[];
+ *  }} An array of sidebar item objects with the following properties:
+ *  * `path`: string - The route path for the sidebar item.
+ *  * `Icon`: React.ComponentType - The icon component associated with the sidebar item.
+ *  * `text`: string - The display text for the sidebar item.
+ *  * `authOnly`: boolean - (Optional) Indicates whether the sidebar item should only be visible to authenticated users.
+ *
+ */
+
 export const useSidebarItems = () => {
     const userData = useUserAuthData();
     const sidebarItemsList: SidebarItemType[] = [
