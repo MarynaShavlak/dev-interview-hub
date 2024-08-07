@@ -1,22 +1,20 @@
-import { useTranslation } from 'react-i18next';
 import React, { memo } from 'react';
-import { useAuthModal } from '../../lib/hooks/useAuthModal';
-import { LoginModal } from '@/features/AuthByUsername';
-import { Button, ButtonTheme } from '@/shared/ui/deprecated/Button';
+import { useTranslation } from 'react-i18next';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
+import cls from '../Navbar.module.scss';
+import { ToggleFeaturesComponent } from '@/shared/lib/features';
 import { Text, TextTheme } from '@/shared/ui/deprecated/Text';
 import { AppLink, AppLinkTheme } from '@/shared/ui/deprecated/AppLink';
+import { getRouteArticleCreate } from '@/shared/const/router/router';
 import { HStack } from '@/shared/ui/redesigned/Stack';
 import { NotificationButton } from '@/features/notificationButton';
 import { AvatarDropdown } from '@/features/avatarDropdown';
-import cls from '../Navbar.module.scss';
-import { getRouteArticleCreate } from '@/shared/const/router/router';
 
 interface NavbarProps {
     className?: string;
 }
 
-export const AuthorizedDeprecatedNavbar = memo(({ className }: NavbarProps) => {
+const AuthorizedDeprecatedNavbar = memo(({ className }: NavbarProps) => {
     const { t } = useTranslation();
 
     return (
@@ -41,24 +39,23 @@ export const AuthorizedDeprecatedNavbar = memo(({ className }: NavbarProps) => {
     );
 });
 
-export const NotAuthorizedDeprecatedNavbar = memo(
-    ({ className }: NavbarProps) => {
-        const { t } = useTranslation();
-        const { isAuthModal, onShowModal, onCloseModal } = useAuthModal();
+const AuthorizedRedesignedNavbar = memo(({ className }: NavbarProps) => {
+    return (
+        <header className={classNames(cls.NavbarRedesigned, {}, [className])}>
+            <HStack gap="8" className={cls.actions}>
+                <NotificationButton />
+                <AvatarDropdown />
+            </HStack>
+        </header>
+    );
+});
 
-        return (
-            <header className={classNames(cls.Navbar, {}, [className])}>
-                <Button
-                    theme={ButtonTheme.CLEAR_INVERTED}
-                    className={cls.links}
-                    onClick={onShowModal}
-                >
-                    {t('Вхід')}
-                </Button>
-                {isAuthModal && (
-                    <LoginModal isOpen={isAuthModal} onClose={onCloseModal} />
-                )}
-            </header>
-        );
-    },
-);
+export const AuthorizedNavbar = memo(({ className }: NavbarProps) => {
+    return (
+        <ToggleFeaturesComponent
+            feature="isAppRedesigned"
+            on={<AuthorizedRedesignedNavbar className={className} />}
+            off={<AuthorizedDeprecatedNavbar className={className} />}
+        />
+    );
+});
