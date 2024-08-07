@@ -1,74 +1,61 @@
-# ProfileCard Entity
+# Entity Profile Documentation
 
 ## Overview
-The **`ProfileCard`** component provides a user interface for displaying and editing user profile information. 
-It adapts its rendering based on the `isAppRedesigned` feature flag, switching between the `RedesignedProfileCard` and `DeprecatedProfileCard` components to deliver either the latest design or the legacy version. 
-The component handles different states including loading, error, and data display, ensuring a smooth user experience across various scenarios.
+The `Profile`  module is responsible for handling all profile-related functionalities in the React application. This module is structured according to the Feature-Sliced Design (FSD) architecture, ensuring modularity, scalability, and maintainability. The following documentation provides an in-depth look at each part of the `Profile` module.
 
-## Props
-The **`RedesignedProfileCard`** component accepts the following props:
-
-| Prop                | Type                           | Required / Optional | Description                                                                            |
-|---------------------|--------------------------------|----------------------|----------------------------------------------------------------------------------------|
-| `className`          | `string`                        | Optional             | Custom class name for additional styling.                                              |
-| `data`               | `Profile`               | Optional             | The profile data to be displayed in the card.                                           |
-| `readonly`           | `boolean`                       | Optional              | Flag indicating whether the profile card is in read-only mode or editable.             |
-| `onChangeFirstname`  | `(value: string) => void`       | Optional              | Callback function to handle changes in the first name input.                           |
-| `onChangeLastname`   | `(value: string) => void`       | Optional              | Callback function to handle changes in the last name input.                            |
-| `onChangeAge`        | `(value: string) => void`       | Optional              | Callback function to handle changes in the age input.                                  |
-| `onChangeCity`       | `(value: string) => void`       | Optional              | Callback function to handle changes in the city input.                                 |
-| `onChangeUsername`   | `(value: string) => void`       | Optional              | Callback function to handle changes in the username input.                             |
-| `onChangeAvatar`     | `(value: string) => void`       | Optional              | Callback function to handle changes in the avatar URL input.                            |
-| `onChangeCurrency`   | `(value: Currency) => void`       | Optional              | Callback function to handle changes in the currency selection.                         |
-| `onChangeCountry`    | `(value: Country) => void`       | Optional              | Callback function to handle changes in the country selection.                          |
-
-
-## Features
-1. **Adaptive Design**: Utilizes the `isAppRedesigned` feature flag to render either the redesigned or deprecated profile card, providing consistency with the application's design system.
-2. **State Handling**: Manages different states such as loading and error conditions gracefully, ensuring that users receive appropriate feedback during interactions.
-3. **Editable Profile**: Offers various callbacks for updating profile information, enabling customization based on user actions and preferences.
-
-
-
-## Usage Example
-```typescript jsx
-import { memo } from 'react';
-import { useProfile } from '../../lib/hooks/useProfile';
-import { ProfileCard } from '@/entities/Profile';
-
-export const EditableProfileCardContainer = memo(() => {
-    const {
-        formData,
-        error,
-        isLoading,
-        readonly,
-        onChangeFirstname,
-        onChangeLastname,
-        onChangeUsername,
-        onChangeAvatar,
-        onChangeCountry,
-        onChangeCurrency,
-        onChangeAge,
-        onChangeCity,
-    } = useProfile();
-
-    return (
-        <ProfileCard
-            data={formData}
-            isLoading={isLoading}
-            error={error}
-            readonly={readonly}
-            onChangeFirstname={onChangeFirstname}
-            onChangeLastname={onChangeLastname}
-            onChangeAge={onChangeAge}
-            onChangeCity={onChangeCity}
-            onChangeUsername={onChangeUsername}
-            onChangeAvatar={onChangeAvatar}
-            onChangeCurrency={onChangeCurrency}
-            onChangeCountry={onChangeCountry}
-        />
-    );
-});
+## Module Structure
+The `Profile` module is organized into several directories, each serving a specific purpose:
+```text
+Profile/
+├── model/
+│   └── types/
+│       └── profile.ts
+├── ui/
+│   └── DeprecatedProfileCard/
+│   │   ├── DeprecatedProfileCardError/
+│   │   ├── DeprecatedProfileCardLoader/
+│   │   ├── DeprecatedProfileCard.module.scss
+│   │   ├── DeprecatedProfileCard.tsx
+│   │   └── README.md
+│   └── ProfileCard/
+│   │   ├── ProfileCard.tsx
+│   └── RedesignedProfileCard/
+│   │   ├── RedesignedProfileCardError/
+│   │   ├── RedesignedProfileCardSkeleton/
+│   │   ├── RedesignedProfileCard.module.scss
+│   │   ├── RedesignedProfileCard.tsx
+├── index.ts
 ```
+
+## Detailed Description
+
+### 1. `model/`: Encapsulates the core logic and data structures of the Profile module.
+
+#### 1.1. `types/`
+- **`profile.ts`**: Contains TypeScript type definitions for the Profile module, defining the structure of a profile object. This ensures type safety and consistency throughout the application.
+
+### 2. `ui/`: Contains the UI components related to the Profile module.
+
+#### 2.1. `DeprecatedProfileCard/`: Manages the display and interaction of the deprecated profile card UI.
+- **`DeprecatedProfileCard.module.scss`**: Contains the styles specific to the `DeprecatedProfileCard` component.
+- **`DeprecatedProfileCard.tsx`**: The main `DeprecatedProfileCard` component, responsible for rendering the deprecated profile card.
+- **`DeprecatedProfileCardError`**: Handles the display of errors in the deprecated profile card.
+- **`DeprecatedProfileCardLoader`**: Manages the loading state of the deprecated profile card.
+
+#### 2.2. `ProfileCard/`: Manages the display and interaction of the profile card UI.
+- **`ProfileCard.tsx`**: The main `ProfileCard` component, responsible for rendering the profile card.
+
+#### 2.3. `RedesignedProfileCard/`: Manages the display and interaction of the redesigned profile card UI.
+- **`RedesignedProfileCard.module.scss`**: Contains the styles specific to the `RedesignedProfileCard` component.
+- **`RedesignedProfileCard.tsx`**: The main `RedesignedProfileCard` component, responsible for rendering the redesigned profile card.
+- **`RedesignedProfileCardError`**: Handles the display of errors in the redesigned profile card.
+- **`RedesignedProfileCardSkeleton`**: Manages the loading state of the redesigned profile card.
+
+### 3. `index.ts`
+- **`index.ts`**: Entry point for the Profile module, exporting the necessary components and types for use in the application.
+
+
 ## Conclusion
-The **`ProfileCard`** entity is essential for managing and displaying user profile information in both redesigned and legacy formats. It ensures that users have a consistent and responsive experience, regardless of the application's current feature set. By handling loading states, errors, and providing various callback functions, it allows for a robust and interactive profile management system that adapts to different design requirements and user needs.
+The Entity `Profile` is designed to handle all profile-related functionalities in a structured and maintainable manner. By following the FSD architecture, this module ensures easy scalability and integration within the larger application.
+
+For further details on each part of the module, please refer to the respective README.md files within each directory.

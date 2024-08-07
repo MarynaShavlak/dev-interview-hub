@@ -17,7 +17,6 @@ Country/
 │   └── CountrySelect/
 │       ├── CountrySelect.tsx
 ├── index.ts
-
 ```
 
 ## Detailed Description
