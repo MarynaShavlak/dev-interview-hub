@@ -8,23 +8,12 @@ import { Text as TextDeprecated, TextSize } from '@/shared/ui/deprecated/Text';
 import { Text } from '@/shared/ui/redesigned/Text';
 import cls from '../ArticleList.module.scss';
 
-interface ArticleListErrorProps {
+interface NoArticlesFoundProps {
     className?: string;
     view: ArticleView;
 }
 
-interface ListErrorProps {
-    message: string;
-}
-
-const DeprecatedArticleListError = memo(({ message }: ListErrorProps) => {
-    return <TextDeprecated size={TextSize.L} title={message} />;
-});
-const RedesignedArticleListError = memo(({ message }: ListErrorProps) => {
-    return <Text size="m" title={message} />;
-});
-
-export const ArticleListError = memo((props: ArticleListErrorProps) => {
+export const NoArticlesFound = memo((props: NoArticlesFoundProps) => {
     const { view, className } = props;
     const { t } = useTranslation('articles');
     const message = t('Статті не знайдено');
@@ -37,14 +26,14 @@ export const ArticleListError = memo((props: ArticleListErrorProps) => {
 
     return (
         <HStack
-            wrap="wrap"
             gap="16"
             className={classNames(mainClass, {}, [className, cls[view]])}
+            justify="center"
         >
             <ToggleFeaturesComponent
                 feature="isAppRedesigned"
-                on={<RedesignedArticleListError message={message} />}
-                off={<DeprecatedArticleListError message={message} />}
+                on={<Text size="m" title={message} />}
+                off={<TextDeprecated size={TextSize.L} title={message} />}
             />
         </HStack>
     );

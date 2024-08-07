@@ -11,7 +11,7 @@ export interface ArticleListItemSkeletonProps {
 ```
 
 ## Props
-The **`ArticleListItemSkeleto`** component accepts the following props:
+The **`ArticleListItemSkeleton`** component accepts the following props:
 
 | Prop        | Type       | Required / Optional | Description                                                               |
 |-------------|------------|----------------------|---------------------------------------------------------------------------|

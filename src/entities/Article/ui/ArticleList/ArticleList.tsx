@@ -1,5 +1,5 @@
 import { HTMLAttributeAnchorTarget, memo, useEffect, useState } from 'react';
-import { ArticleListError } from './ArticleListError/ArticleListError';
+import { NoArticlesFound } from './NoArticlesFound/NoArticlesFound';
 import { Each } from '@/shared/lib/components/Each/Each';
 import cls from './ArticleList.module.scss';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
@@ -36,7 +36,7 @@ export const ArticleList = memo((props: ArticleListProps) => {
     }, [isLoading, articles]);
 
     const hasSkeletonBeShown = isLoading;
-    const hasErrorBeShown = !articles.length && !isLoading && hasLoaded;
+    const isNoArticlesFounded = !articles.length && !isLoading && hasLoaded;
 
     const mainClass = toggleFeatures({
         name: 'isAppRedesigned',
@@ -64,8 +64,8 @@ export const ArticleList = memo((props: ArticleListProps) => {
         </>
     );
 
-    if (hasErrorBeShown) {
-        return <ArticleListError view={view} />;
+    if (isNoArticlesFounded) {
+        return <NoArticlesFound view={view} />;
     }
 
     if (view === ArticleView.LIST) {
