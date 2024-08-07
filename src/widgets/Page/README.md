@@ -1,60 +1,88 @@
-# ArticleAdditionalInfo Widget
+# Page Widget
 
-## Overview 
-The `ArticleAdditionalInfo` widget provides detailed metadata about an article, including information about the author, the publication date, and the number of views. Additionally, it includes a navigation button for editing the article, facilitating quick access to article editing functionality. This component is essential for displaying supplementary article information in a user-friendly and structured manner. It utilizes redesigned UI elements to ensure a modern and consistent interface.
+## Overview
+The `Page` widget is a container component that handles scrolling behavior and provides a mechanism for infinite scrolling. It manages the scroll position, supports feature toggling for styling, and provides a callback when the user scrolls to the end
+
 
 ##  Type Definition
 ```typescript
-interface ArticleAdditionalInfoProps {
+interface PageProps extends TestProps {
+    children: ReactNode;
+    onScrollEnd?: () => void;
     className?: string;
-    author: User;
-    createdAt: string;
-    views: number;
 }
 ```
 
 ## Props
-The `ArticleAdditionalInfo` component accepts the following props:
+The `PageProps` interface extends `TestProps` to include the optional `data-testid` property, allowing for easier identification and testing of the component in various testing environments
 
-| Prop         | Type     |          Required / Optional          | Description                                                                 |
-|--------------|----------|:-------------------------------------:|-----------------------------------------------------------------------------|
-| `author`  | `User`   |               Required                | The author of the article, containing user details such as avatar and username.                          |
-| `createdAt`  | `string` |               Required                | The publication date of the article.                          |
-| `views`  | `number` |               Required                | The number of views the article has received.                        |
-| `className`  | `string` |               Optional                | Additional CSS class names to apply to the main container.                       |
+| Prop         | Type                                        |          Required / Optional          | Description                                                                 |
+|--------------|---------------------------------------------|:-------------------------------------:|-----------------------------------------------------------------------------|
+| `children`  | `string`                                    |               Required                | React nodes to be rendered inside the main container.                          |
+| `className`  | `string`                                    |               Optional                | Additional CSS class names to apply to the main container.                       |
+| `onScrollEnd`    | `() => void` | Optional  | Callback function to be invoked when the user scrolls to the end of the container. Note that if the page does not have enough content to require scrolling, the onScrollEnd callback will not be set, as scrolling is not needed for such pages.|
 
 
 ## Functionality
-1. **Author Information Display**: Shows the author's avatar and username, providing a visual and textual representation of the author.
-2. **Publication Date Display**: Displays the date the article was published, ensuring users can see how recent the content is.
-3. **View Count Display**: Shows the number of views the article has received, providing an indicator of its popularity.
-4. **Edit Navigation Button**: Integrates an edit navigation button for quick access to article editing functionality.
+1. **Scroll Management**: The component tracks and sets the scroll position of the container. It initializes the scroll position on component mount using `useInitialEffect` and updates it during scrolling using a throttled `onScroll` handler.
 
-## Usage Example
+2. **Infinite Scrolling**: The `useInfiniteScroll` hook is used to monitor when the user has scrolled to the end of the container. If `onScrollEnd` is provided and applicable (i.e., the page has enough content to require scrolling), it will be called when this event occurs.
+
+3.  **Feature Toggling and CSS Classes**: The component supports feature toggling to apply different styles based on the feature flag `isAppRedesigned`. Conditional class names are applied according to the feature toggle and any additional class names passed via props. This ensures that the component adapts its styling based on the current feature flag and any custom styling requirements.
+
+4.  **Feature Toggling for Infinite Scrolling**: The `useInfiniteScroll` hook's `wrapperRef` parameter is dynamically assigned based on the feature flag `isAppRedesigned`. If the feature is enabled, the `wrapperRef` is set to `undefined`, meaning that the infinite scrolling functionality will not use any specific element for scrolling. Instead, it will rely on the default scrolling behavior of the document. This configuration is used for the redesigned app's layout which  does not require custom scroll management.
+    Conversely, if the feature is disabled, `wrapperRef` is set to the container's reference (`wrapperRef`). This allows the `useInfiniteScroll` hook to monitor and manage scrolling within the specific container element, ensuring that the infinite scrolling behavior is applied appropriately.
+
+**Test ID**: A `data-testid` attribute is provided for testing purposes, defaulting to `Page` if not specified.
+
+
+## Usage Examples
+
+### Example 1: Basic Usage
+This example demonstrates how to use the `Page` component with default settings.
+It includes a `data-testid` for testing and displays a simple message.
 ```typescript jsx
-import { ArticleAdditionalInfo } from '@/widgets/ArticleAdditionalInfo';
-import { User } from '@/entities/User';
+import React, { memo } from 'react';
+import { Page } from '@/widgets/Page';
 
-const author: User = {
-    id: '1',
-    username: 'Maryna Shavlak',
-    avatar: 'path/to/avatar.jpg',
-};
-
-const App = () => {
-    return (
-        <div>
-            <ArticleAdditionalInfo
-                className="custom-article-additional-info"
-                author={author}
-                createdAt="2024-08-07"
-                views={123}
-            />
-            {/* The ArticleAdditionalInfo component displays supplementary information about the article */}
-        </div>
+const MainPage = memo(() => {
+       return (
+        <Page data-testid="MainPage">
+            <p>Main Page</p>
+        </Page>
     );
-};
+});
+
+export default MainPage;
 ```
 
-## Conclusion 
-The `ArticleAdditionalInfo` component is a vital element for enriching article pages with supplementary details. By presenting author information, publication dates, view counts, and providing an edit navigation button, it enhances the overall user experience and provides valuable context to readers. This component ensures that users have easy access to all relevant article metadata and editing capabilities.
+### Example 2: Usage with Custom Class and Scroll Callback
+This example demonstrates how to use the `Page` component with additional props. It adds a custom CSS class and includes a callback function that will be triggered when the user scrolls to the end of the page.
+```typescript jsx
+import React, { memo } from 'react';
+import { Page } from '@/widgets/Page';
+
+const handleScrollEnd = () => {
+    console.log('Scrolled to the end of the page!');
+};
+
+const MainPage = memo(() => {
+       return (
+           <Page
+                data-testid="MainPage"
+                className="custom-page-class"  
+                onScrollEnd={handleScrollEnd}  
+            > 
+                    <p>Main Page</p>
+            </Page>
+    );
+});
+
+export default MainPage;
+```
+
+
+## Conclusion
+The `Page` widget provides a versatile container for managing scroll behavior, supporting infinite scrolling, and adapting styling based on feature toggles.
+By leveraging the `onScrollEnd` callback and conditional class application, it ensures flexibility in handling user interactions and visual presentation.
+Whether used with default settings or customized with additional props, the `Page` widget enhances the user experience by efficiently managing content display and scroll events within web applications.

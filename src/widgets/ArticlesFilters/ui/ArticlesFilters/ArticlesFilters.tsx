@@ -14,11 +14,10 @@ export interface ArticlesFiltersProps {
     onChangeSearch: (value: string) => void;
     onChangeOrder: (newOrder: SortOrder) => void;
     onChangeSort: (newSort: ArticleSortField) => void;
-    onChangeCategory: (type: ArticleCategory) => void;
+    onChangeCategory: (category: ArticleCategory) => void;
 }
 
 export const ArticlesFilters = memo((props: ArticlesFiltersProps) => {
-    console.log('ArticlesFilters');
     return (
         <ToggleFeaturesComponent
             feature="isAppRedesigned"
