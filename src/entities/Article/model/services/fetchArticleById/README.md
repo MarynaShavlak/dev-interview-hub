@@ -21,7 +21,7 @@ The `fetchArticleById` thunk is an asynchronous action designed to fetch an arti
 1. **Parameter Validation**: Checks if the `articleId` is defined. If not, it throws an error stating that the article ID is required.
 2. **API Call**: Makes an asynchronous GET request to the **'/articles/${articleId}'** endpoint using the `extra.api` object, with the parameter `_expand` set to `user`.
 3. **Response Handling**: Checks if the response contains data. If no data is returned, it throws an error indicating that the article was not found.
-4 **Return Data**: If the response is successful and contains data, it returns the article data.
+4. **Return Data**: If the response is successful and contains data, it returns the article data.
 
 ## Error Handling
 

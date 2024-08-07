@@ -4,7 +4,6 @@ import { useParams } from 'react-router-dom';
 import { ArticleDetails } from '@/entities/Article';
 import { ArticleRating } from '@/features/articleRating';
 import { ArticleRecommendationsList } from '@/features/articleRecommendationsList';
-import { ArticleDetailsComments } from '../../ArticleDetailsComments/ArticleDetailsComments';
 import { ArticleDetailsPageProps } from '../ArticleDetailsPage';
 import cls from '../ArticleDetailsPage.module.scss';
 import { ArticleDetailsPageHeader } from '../../ArticleDetailsPageHeader/ArticleDetailsPageHeader';
@@ -16,6 +15,7 @@ import {
 } from '@/shared/ui/deprecated/Text';
 import { VStack } from '@/shared/ui/redesigned/Stack';
 import { Page } from '@/widgets/Page';
+import { ArticleComments } from '@/widgets/ArticleComments';
 
 export const DeprecatedArticleDetailsPage = memo(
     (props: ArticleDetailsPageProps) => {
@@ -47,7 +47,7 @@ export const DeprecatedArticleDetailsPage = memo(
                     <ArticleDetails id={id} />
                     <ArticleRating articleId={id} />
                     <ArticleRecommendationsList />
-                    <ArticleDetailsComments id={id} />
+                    <ArticleComments id={id} />
                 </VStack>
             </Page>
         );

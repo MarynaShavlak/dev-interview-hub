@@ -4,8 +4,6 @@ import { useParams } from 'react-router-dom';
 import { AdditionalInfoContainer } from '../../AdditionalInfoContainer/AdditionalInfoContainer';
 import { ArticleRating } from '@/features/articleRating';
 import { ArticleRecommendationsList } from '@/features/articleRecommendationsList';
-import { ArticleDetailsComments } from '../../ArticleDetailsComments/ArticleDetailsComments';
-
 import { DetailsContainer } from '../../DetailsContainer/DetailsContainer';
 import { VStack } from '@/shared/ui/redesigned/Stack';
 import cls from '../ArticleDetailsPage.module.scss';
@@ -15,6 +13,7 @@ import { Page } from '@/widgets/Page';
 import { ArticleDetailsPageProps } from '../ArticleDetailsPage';
 import { ArticleListNavigationButton } from '@/features/ArticleListNavigationButton';
 import { StickyContentLayout } from '@/shared/layouts/StickyContentLayout';
+import { ArticleComments } from '@/widgets/ArticleComments';
 
 export const RedesignedArticleDetailsPage = memo(
     ({ className }: ArticleDetailsPageProps) => {
@@ -50,7 +49,7 @@ export const RedesignedArticleDetailsPage = memo(
                             <DetailsContainer />
                             <ArticleRating articleId={id} />
                             <ArticleRecommendationsList />
-                            <ArticleDetailsComments id={id} />
+                            <ArticleComments id={id} />
                         </VStack>
                     </Page>
                 }

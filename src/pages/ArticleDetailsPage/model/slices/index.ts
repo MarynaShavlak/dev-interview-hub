@@ -1,5 +1,5 @@
 import { combineReducers } from '@reduxjs/toolkit';
-import { articleDetailsCommentsReducer } from './articleDetailsCommentsSlice';
+import { articleDetailsCommentsReducer } from '../../../../widgets/ArticleComments/model/slices/articleDetailsCommentsSlice';
 import { articleDetailsPageRecommendationsReducer } from './articleDetailsPageRecommendationsSlice';
 import { ArticleDetailsPageSchema } from '../types';
 
