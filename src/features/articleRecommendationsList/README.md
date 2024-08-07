@@ -23,6 +23,8 @@ The **`ArticleRecommendationsList`** component accepts the following props:
 
 2. **Design Adaptation**: Adjusts the rendered UI elements based on whether the redesigned interface (`isAppRedesigned` feature flag) is enabled.
 
+3. **Lazy Loading**: The component is lazy-loaded to optimize performance. By loading the component only when needed, it reduces the initial load time of the application, improving the user experience.
+
 ## Usage Example
 ```typescript jsx
 import { ArticleRecommendationsList } from '@/features/articleRecommendationsList';
@@ -40,3 +42,4 @@ export default ArticlePage;
 The **`ArticleRecommendationsList`** component is a vital tool for displaying relevant article recommendations, enhancing user engagement by offering additional content based on the current article's category. 
 By supporting dynamic recommendations, design adaptation, and localization, it provides a versatile and user-friendly experience. 
 The use of `memo` ensures optimal performance, making it an efficient choice for integrating article recommendations into your application.
+Additionally, by implementing lazy loading, the `ArticleRecommendationsList` component optimizes performance, contributing to a faster and more efficient application. 

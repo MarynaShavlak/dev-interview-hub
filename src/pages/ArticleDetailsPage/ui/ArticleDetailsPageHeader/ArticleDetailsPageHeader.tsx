@@ -4,7 +4,7 @@ import { ArticleListNavigationButton } from '@/features/ArticleListNavigationBut
 import { ArticleEditNavigationButton } from '@/features/ArticleEditNavigationButton';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { HStack } from '@/shared/ui/redesigned/Stack';
-import { getCanEditArticle } from '../../model/selectors/article';
+import { getCanEditArticle } from '../../model/selectors/article/article';
 
 interface ArticleDetailsPageHeaderProps {
     className?: string;

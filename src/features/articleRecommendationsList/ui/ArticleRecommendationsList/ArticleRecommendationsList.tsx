@@ -12,11 +12,11 @@ import {
 import { VStack } from '@/shared/ui/redesigned/Stack';
 import { useArticleRecommendationsList } from '../../api/articleRecommendationsApi';
 
-interface ArticleRecommendationsListProps {
+export interface ArticleRecommendationsListProps {
     className?: string;
 }
 
-export const ArticleRecommendationsList = memo(
+const ArticleRecommendationsList = memo(
     (props: ArticleRecommendationsListProps) => {
         const { className } = props;
         const article = useArticleDetailsData();
@@ -49,3 +49,5 @@ export const ArticleRecommendationsList = memo(
         );
     },
 );
+
+export default ArticleRecommendationsList;
