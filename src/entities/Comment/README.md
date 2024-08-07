@@ -21,7 +21,6 @@ Comment/
 │       ├── RedesignedCommentCard/
 │       │   ├── RedesignedCommentCard.tsx
 │       ├── CommentCard.module.scss
-│       ├── CommentCard.stories.tsx
 │       ├── CommentCard.tsx
 │   └── CommentList/
 │       ├── CommentListSkeleton.tsx
@@ -43,7 +42,6 @@ Comment/
 - **`DeprecatedCommentCard`**: The deprecated version of the CommentCard component.
 - **`RedesignedCommentCard`**: The redesigned version of the CommentCard component.
 - **`CommentCard.module.scss`**: SCSS module containing styles for the CommentCard component.
-- **`CommentCard.stories.tsx`**: Storybook stories for the CommentCard component.
 - **`CommentCard`**: The main CommentCard component.
 
 #### 2.2. `CommentList/`: Manages the display of a list of comments.
