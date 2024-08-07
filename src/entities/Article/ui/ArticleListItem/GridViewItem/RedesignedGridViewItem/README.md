@@ -59,7 +59,7 @@ const sampleArticle: Article = {
 const App = () => (
     <RedesignedGridViewItem
         article={sampleArticle}
-        className="custom-grid-item"
+        className="custom-item"
         target="_blank"
     />
 );

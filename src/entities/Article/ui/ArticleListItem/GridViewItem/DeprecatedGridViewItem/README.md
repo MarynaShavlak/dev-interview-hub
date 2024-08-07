@@ -62,7 +62,7 @@ const sampleArticle: Article = {
 const App = () => (
     <DeprecatedGridViewItem
         article={sampleArticle}
-        className="custom-grid-item"
+        className="custom-item"
         target="_blank"
     />
 );

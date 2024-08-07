@@ -58,7 +58,7 @@ const sampleArticle: Article = {
 const App = () => (
     <GridViewItem
         article={sampleArticle}
-        className="custom-grid-item"
+        className="custom-item"
         target="_blank"
     />
 );
