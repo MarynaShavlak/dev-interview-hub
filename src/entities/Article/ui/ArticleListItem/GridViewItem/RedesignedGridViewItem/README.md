@@ -30,7 +30,7 @@ The **`RedesignedGridViewItem`** component accepts the following props:
 
 ## Usage Example
 ```typescript jsx
-import { GridViewItem } from '@/entities/Article';
+import { RedesignedGridViewItem } from '@/entities/Article';
 import { ArticleCategories } from '@/entities/Article';
 import { Article } from '../../../../model/types/article';
 import { ArticleCategory, ArticleBlockType  } from '../../../../model/consts/articleConsts';
@@ -57,7 +57,7 @@ const sampleArticle: Article = {
 };
 
 const App = () => (
-    <GridViewItem
+    <RedesignedGridViewItem
         article={sampleArticle}
         className="custom-grid-item"
         target="_blank"
@@ -65,4 +65,4 @@ const App = () => (
 );
 ```
 ## Conclusion
-The **`GridViewItem`** component is crucial for providing a flexible and adaptive article grid view. By utilizing feature flags, it allows seamless switching between redesigned and deprecated interfaces, ensuring that users experience consistent and updated designs based on the application’s current state. The component maintains effective presentation of article details while transitioning between different design systems, enhancing user experience and content accessibility.
+The **`RedesignedGridViewItem`** component is essential for displaying articles in a grid layout with modern styling. It offers a comprehensive view of each article, highlighting key details such as the image, title, creation date, and user avatar. This component ensures a visually appealing and engaging browsing experience by utilizing updated UI elements and flexible layouts. It also includes fallbacks for images and a skeleton loader to handle scenarios where the article image is missing or still loading. By incorporating dynamic styling and modern design principles, the `RedesignedGridViewItem` component provides a seamless and interactive user experience, aligning with contemporary UI standards and enhancing content presentation.
