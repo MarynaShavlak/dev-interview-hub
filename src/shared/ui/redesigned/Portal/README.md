@@ -13,7 +13,7 @@ interface PortalProps {
  - **`children`**: _Required_. The content to be rendered through the portal. It is a required prop of type **`ReactNode`**.
  - **`element`**: _Optional_.  The target element in the DOM where the children should be rendered. If not provided, it defaults to **`document.body`**.
 
-## Functionality
+## Features
 The **`Portal`** component takes in **`children`** and an optional **`element`** prop. It uses the **`createPortal`** function from ReactDOM to render the **`children`** into the specified **`element`**. By default, if no **`element`** is provided, it renders the **`children`** into the **`document.body`**.
 
 ## Usage Example

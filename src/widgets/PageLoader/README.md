@@ -18,7 +18,7 @@ The `PageLoader` has the following props:
 | `className`  | `string`                                    |               Optional                | Additional CSS class names to apply to the main container for custom styling.                       |
 
 
-## Functionality
+## Features
 1. **Loading Indicator**: The `PageLoader` component uses the `Loader` component to display a loading spinner. This visual indicator is essential for informing users that a loading process is underway
 2. **Infinite Scrolling**: The `PageLoader` utilizes the `VStack` component from the  Stack UI to center the loading spinner both horizontally and vertically within its container.
 3.  **Feature Toggling and CSS Classes**: The component supports feature toggling to apply different styles based on the feature flag `isAppRedesigned`. Conditional class names are applied according to the feature toggle and any additional class names passed via props. This ensures that the component adapts its styling based on the current feature flag and any custom styling requirements.

@@ -48,7 +48,7 @@ The **`Icon`** component accepts the following props:
 | otherProps   | React.SVGProps<SVGSVGElement> | Optional          |Any additional SVG properties excluding **`onClick`** |
 
 
-## Functionality 
+## Features 
 1. **`SVG Icon Rendering`**: SVG icon is constructed with the provided props, including width, height, and any additional props. The **`onClick`** attribute is explicitly set to **`undefined`** to ensure it doesn't interfere when the icon is non-clickable.
 
 2. **`Clickable Icon`**: If the **`clickable`** prop is **`true`**, the icon is wrapped in a **`<button>`** element, styled appropriately, and the **`onClick`** handler is attached to the button.

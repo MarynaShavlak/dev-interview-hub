@@ -19,7 +19,7 @@ The `ScrollToolbar` has the following props:
 | `className`  | `string`                                    |               Optional                | Additional CSS class names to apply to the toolbar for styling.|
 
 
-## Functionality
+## Features
 1. **Centered Layout**: The component uses the `VStack` from the Stack UI to center its content both horizontally and vertically. This ensures that the `ScrollToTopButton` is prominently displayed and easily accessible.
 2. **ScrollToTopButton Integration**: The toolbar integrates the `ScrollToTopButton` component, providing users with a quick and smooth way to return to the top of the page.
 

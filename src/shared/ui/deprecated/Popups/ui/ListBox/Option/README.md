@@ -33,7 +33,7 @@ The `Option` component accepts the following props:
 |       |                    |                      | - `disabled` (boolean, optional): If true, the option will be disabled and not selectable. |
 
 
-## Functionality
+## Features
 `getOptionItemClassName`: A utility function that generates the appropriate class names based on the option's state (active, disabled, selected).
 
 ## Usage Example

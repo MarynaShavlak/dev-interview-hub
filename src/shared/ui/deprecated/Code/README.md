@@ -25,7 +25,7 @@ The **`Code`** component accepts the following props:
 | text        | string  | Required         |The code snippet to be displayed and copied|
 | className    | string  | Optional          |Additional custom class names for styling the component |
 
-## Functionality
+## Features
 1. **Code Display**: The **`Code`** component displays the provided code snippet inside a `<pre>` tag, which maintains the formatting of the code. The code snippet is wrapped in a `<code>` tag for proper styling.
 
 2. **Copy Functionality**: A copy button, represented by the `CopyIcon` icon, is displayed alongside the code snippet. When clicked, it triggers the `onCopy` function, which copies the code snippet to the clipboard using the `navigator.clipboard.writeText API`.

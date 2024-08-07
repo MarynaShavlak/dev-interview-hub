@@ -25,7 +25,7 @@ The `ArticleAdditionalInfo` component accepts the following props:
 | `className`  | `string` |               Optional                | Additional CSS class names to apply to the main container.                       |
 
 
-## Functionality
+## Features
 1. **Author Information Display**: Shows the author's avatar and username, providing a visual and textual representation of the author.
 2. **Publication Date Display**: Displays the date the article was published, ensuring users can see how recent the content is.
 3. **View Count Display**: Shows the number of views the article has received, providing an indicator of its popularity.

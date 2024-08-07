@@ -35,7 +35,7 @@ The **`DeprecatedArticlesFilters`** component accepts the following props:
 | `onChangeSort`    | `(newSort: ArticleSortField) => void`              | Required              | Callback function for handling sort changes.                |
 
 
-## Functionality
+## Features
 1. **Sorting Options**: Allows users to select sorting criteria and order for the article list.
 2. **Search Input**: Provides a text input for searching articles.
 3. **Category Tabs**: Displays category tabs for filtering articles based on selected categories.

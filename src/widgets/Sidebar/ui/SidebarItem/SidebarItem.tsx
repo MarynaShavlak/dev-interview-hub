@@ -53,7 +53,6 @@ const RedesignedSidebarItem = ({ item, collapsed }: SidebarItemProps) => {
 };
 
 export const SidebarItem = memo(({ item, collapsed }: SidebarItemProps) => {
-    const { t } = useTranslation();
     const isAuth = useUserAuthData();
 
     if (item.authOnly && !isAuth) {

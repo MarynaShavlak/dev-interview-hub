@@ -23,7 +23,7 @@ The `PageProps` interface extends `TestProps` to include the optional `data-test
 | `onScrollEnd`    | `() => void` | Optional  | Callback function to be invoked when the user scrolls to the end of the container. Note that if the page does not have enough content to require scrolling, the onScrollEnd callback will not be set, as scrolling is not needed for such pages.|
 
 
-## Functionality
+## Features
 1. **Scroll Management**: The component tracks and sets the scroll position of the container. It initializes the scroll position on component mount using `useInitialEffect` and updates it during scrolling using a throttled `onScroll` handler.
 
 2. **Infinite Scrolling**: The `useInfiniteScroll` hook is used to monitor when the user has scrolled to the end of the container. If `onScrollEnd` is provided and applicable (i.e., the page has enough content to require scrolling), it will be called when this event occurs.

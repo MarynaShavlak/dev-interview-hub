@@ -35,7 +35,7 @@ The **`ArticlesFilters`** component accepts the following props:
 | `onChangeSort`    | `(newSort: ArticleSortField) => void`              | Required              | Callback function for handling sort changes.                |
 
 
-## Functionality
+## Features
 1. **Feature Flag Driven**: The component adapts between the `RedesignedArticlesFilters` and `DeprecatedArticlesFilters` interfaces based on the `isAppRedesigned` feature flag. This allows the application to provide either a modern or legacy filtering experience, depending on the feature configuration.
 2. **Consistent Filtering Experience**: Ensures that filtering functionalities such as sorting, searching, and category selection remain consistent, regardless of whether the user interacts with modern or legacy components.
 

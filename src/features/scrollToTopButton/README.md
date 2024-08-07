@@ -19,7 +19,7 @@ The `ScrollToTopButton` has the following props:
 | `className`  | `string`                                    |               Optional                | Additional CSS class names to apply to the button for styling.|
 
 
-## Functionality
+## Features
 1. **Smooth Scrolling**: The component uses the `window.scrollTo` method with the `behavior` option set to `smooth`, ensuring a smooth scrolling effect when the button is clicked.
 2. **Icon Display**: The button utilizes an `Icon` component to display a circular upward arrow, making its purpose immediately clear to users.
 
