@@ -1,4 +1,4 @@
-export { ArticleDetailsPageSkeleton } from './ui/ArticleDetailsPage/ArticleDetailsPageSkeleton';
+export { ArticleDetailsPageSkeleton } from './ui/ArticleDetailsPageSkeleton/ArticleDetailsPageSkeleton';
 export { ArticleDetailsPageAsync as ArticleDetailsPage } from './ui/ArticleDetailsPage/ArticleDetailsPage.async';
 
 export type { ArticleDetailsCommentsSchema } from '../../widgets/ArticleComments/model/types/ArticleDetailsCommentsSchema';
