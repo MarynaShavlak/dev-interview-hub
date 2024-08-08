@@ -13,7 +13,7 @@ The **`DetailsContainer`** component accepts the following props:
 ## Features
 1. **Dynamic Article Loading**: Utilizes the `useParams` hook to dynamically extract the article ID from the URL, ensuring the correct article details are loaded and displayed.
 2. **Styled Layout**: Uses the `Card` component to present the `ArticleDetails` with padding and a rounded border, providing a visually appealing and consistent layout.
-3. **Responsive Design**: The `Card` component is set to `fullHeight` and has `max` width, ensuring that it adapts to various screen sizes and maintains a responsive design.
+3. **Responsive Design**: The `Card` component is set to `fullHeight` and has `max` width, ensuring that it adapts to various screen sizes.
 
 ## Usage Example
 ```typescript jsx

@@ -6,7 +6,7 @@ import { ArticleRating } from '@/features/articleRating';
 import { ArticleRecommendationsList } from '@/features/articleRecommendationsList';
 import { ArticleDetailsPageProps } from '../ArticleDetailsPage';
 import cls from '../ArticleDetailsPage.module.scss';
-import { ArticleDetailsPageHeader } from '../../ArticleDetailsPageHeader/ArticleDetailsPageHeader';
+import { ArticleDetailsPageHeader } from './ArticleDetailsPageHeader/ArticleDetailsPageHeader';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import {
     Text as TextDeprecated,

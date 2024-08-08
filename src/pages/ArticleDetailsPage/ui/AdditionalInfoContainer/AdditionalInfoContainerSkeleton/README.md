@@ -10,7 +10,6 @@ The **`AdditionalInfoContainerSkeleton`** component does not accept any props.
 ## Features
 1. **Consistent Layout**: Displays a skeleton layout that mirrors the structure of the actual content, including a card with an avatar, title, and buttons, to maintain visual consistency during loading states.
 2. **Skeleton Elements**: Utilizes `Skeleton` components with varying sizes and shapes to represent different content types (e.g., circular avatars, rectangular titles) effectively conveying the intended layout.
-3. **Responsive Design**: Ensures the skeleton's appearance adapts to different screen sizes and container widths, providing a responsive user experience.
 
 
 ## Usage Example

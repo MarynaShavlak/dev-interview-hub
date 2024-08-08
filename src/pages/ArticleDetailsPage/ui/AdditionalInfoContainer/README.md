@@ -10,7 +10,6 @@ The `AdditionalInfoContainer` component does not accept any props.
 1. **Conditional Rendering**: Displays a loading skeleton while the article data is being fetched and shows the actual content once the data is available.
 2. **Loading State**: Uses the `AdditionalInfoContainerSkeleton` component to provide a visual placeholder during data loading, maintaining user engagement and visual consistency.
 3. **Content Display**: Once the data is loaded, it renders the `ArticleAdditionalInfo` component, which shows the author's details, publication date, and view count within a styled `Card` container.
-4. **Responsive Design**: The component is designed to fit various screen sizes and container widths, ensuring a consistent user experience across different devices.
 
 ## Usage Example
 ```typescript jsx

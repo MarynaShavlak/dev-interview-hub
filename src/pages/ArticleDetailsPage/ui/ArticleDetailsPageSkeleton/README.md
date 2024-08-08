@@ -9,7 +9,6 @@ The **`ArticleDetailsPageSkeleton`** component does not accept any props.
 ## Features
 1. **Structured Layout**: Utilizes the `StickyContentLayout` to organize the skeleton into a left sidebar, a right additional info section, and a full-height content area, mirroring the actual page layout.
 2. **Skeleton Elements**: Incorporates `Skeleton` components with varying sizes and shapes, such as circular and rectangular elements, to represent different content types and maintain visual coherence during loading.
-3. **Responsive Design**: Ensures that the skeleton adapts to different screen sizes and container widths, providing a consistent and responsive user experience.
 
 ## Usage Example
 ```typescript jsx

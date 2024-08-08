@@ -1,7 +1,8 @@
 # NotificationButton Feature
 
 ## Overview
-The **`NotificationButton`** component provides an interface for displaying notifications to users in both desktop and mobile views. It integrates a notification trigger button that opens a notification drawer or a popover, depending on the device type. This component ensures that users can access their notifications seamlessly across different screen sizes, enhancing user engagement and experience.
+The **`NotificationButton`** component provides an interface for displaying notifications to users in both desktop and mobile views. 
+It integrates a notification trigger button that opens a notification drawer or a popover, depending on the device type. 
 
 ## Type Definition 
 ```typescript
