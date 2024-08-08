@@ -5,7 +5,7 @@ import { Card } from '@/shared/ui/redesigned/Card';
 import { VStack } from '@/shared/ui/redesigned/Stack';
 import { StickyContentLayout } from '@/shared/layouts/StickyContentLayout';
 import { Skeleton } from '@/shared/ui/redesigned/Skeleton';
-import cls from './ArticlesPage.module.scss';
+import cls from '../ArticlesPage/ArticlesPage.module.scss';
 
 const additionalClasses = getFlexClasses({
     hStack: true,
