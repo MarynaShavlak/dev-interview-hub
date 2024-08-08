@@ -189,6 +189,24 @@
       "userId": "1",
       "text": "it is the first comment",
       "id": "Mtq4aFZ"
+    },
+    {
+      "articleId": "1",
+      "userId": "2",
+      "text": "new comment from User",
+      "id": "mUMk9XI"
+    },
+    {
+      "articleId": "1",
+      "userId": "2",
+      "text": "sagdfj",
+      "id": "sdht3BN"
+    },
+    {
+      "articleId": "1",
+      "userId": "2",
+      "text": "fgfdsh",
+      "id": "GCA51W1"
     }
   ],
   "users": [

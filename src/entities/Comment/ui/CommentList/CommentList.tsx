@@ -2,7 +2,6 @@ import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
 import { Each } from '@/shared/lib/components/Each/Each';
-import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { VStack } from '@/shared/ui/redesigned/Stack';
 import { Text as TextDeprecated } from '@/shared/ui/deprecated/Text';
 import { Text } from '@/shared/ui/redesigned/Text';
@@ -13,24 +12,40 @@ interface CommentListProps {
     className?: string;
     comments?: Comment[];
     isLoading?: boolean;
+    error?: string;
 }
 
 export const CommentList = memo((props: CommentListProps) => {
-    const { className, isLoading, comments } = props;
+    const { className, isLoading, comments, error } = props;
     const { t } = useTranslation('article-details');
     const noCommentsMessage = t('Коментарів немає');
+    const errorMessage = t(
+        'Не вдалося завантажити коментарі. Спробуйте ще раз пізніше.',
+    );
+
     if (isLoading) {
         return (
-            <VStack gap="16" max className={classNames('', {}, [className])}>
+            <VStack gap="16" max className={className}>
                 <CommentCard isLoading />
                 <CommentCard isLoading />
                 <CommentCard isLoading />
             </VStack>
         );
     }
+    if (error) {
+        return (
+            <VStack gap="16" max className={className} align="center">
+                <ToggleFeaturesComponent
+                    feature="isAppRedesigned"
+                    on={<Text text={errorMessage} />}
+                    off={<TextDeprecated text={errorMessage} />}
+                />
+            </VStack>
+        );
+    }
 
     return (
-        <VStack gap="16" max className={classNames('', {}, [className])}>
+        <VStack gap="16" max className={className}>
             {comments?.length ? (
                 <Each
                     of={comments}

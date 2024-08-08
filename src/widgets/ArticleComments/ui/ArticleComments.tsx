@@ -12,7 +12,10 @@ import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect/useInitial
 import { VStack } from '@/shared/ui/redesigned/Stack';
 import { fetchCommentsByArticleId } from '../model/services/fetchCommentsByArticleId/fetchCommentsByArticleId';
 import { getArticleComments } from '../model/slices/articleDetailsCommentsSlice';
-import { useArticleCommentsIsLoading } from '../model/selectors/comments';
+import {
+    useArticleCommentsError,
+    useArticleCommentsIsLoading,
+} from '../model/selectors/comments';
 import { addCommentForArticle } from '../model/services/addCommentForArticle/addCommentForArticle';
 
 interface ArticleCommentsProps {
@@ -25,7 +28,9 @@ export const ArticleComments = memo((props: ArticleCommentsProps) => {
     const { t } = useTranslation('article-details');
     const comments = useSelector(getArticleComments.selectAll);
     const commentsIsLoading = useArticleCommentsIsLoading();
+    const error = useArticleCommentsError();
     const dispatch = useAppDispatch();
+    const sectionTitleText = t('Коментарі');
 
     const onSendComment = useCallback(
         (text: string) => {
@@ -42,13 +47,20 @@ export const ArticleComments = memo((props: ArticleCommentsProps) => {
         <VStack gap="16" max className={classNames('', {}, [className])}>
             <ToggleFeaturesComponent
                 feature="isAppRedesigned"
-                on={<Text size="l" title={t('Коментарі')} />}
+                on={<Text size="l" title={sectionTitleText} />}
                 off={
-                    <TextDeprecated size={TextSize.L} title={t('Коментарі')} />
+                    <TextDeprecated
+                        size={TextSize.L}
+                        title={sectionTitleText}
+                    />
                 }
             />
             <AddCommentForm onSendComment={onSendComment} />
-            <CommentList isLoading={commentsIsLoading} comments={comments} />
+            <CommentList
+                isLoading={commentsIsLoading}
+                comments={comments}
+                error={error}
+            />
         </VStack>
     );
 });

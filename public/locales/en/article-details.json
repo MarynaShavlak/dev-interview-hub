@@ -15,5 +15,10 @@
     "{{count}} переглядів_one": "{{count}} view",
     "{{count}} переглядів_other": "{{count}} views",
     "Стаття не доступна": "Article is not available",
-    "Всі статті": "All articles"
+    "Всі статті": "All articles",
+  "Не вдалося завантажити коментарі": {
+    " Спробуйте ще раз пізніше": {
+      "": "Failed to load comments. Try again later."
+    }
+  }
 }
