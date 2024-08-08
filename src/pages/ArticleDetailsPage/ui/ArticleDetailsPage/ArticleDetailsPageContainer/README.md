@@ -1,15 +1,20 @@
 # ArticleDetailsPageContainer
 
 ## Overview
-The **`ArticleDetailsPageContainer`** component is a container component that orchestrates the rendering of various elements on the article details page. It leverages data-fetching hooks to conditionally render the article's details, ratings, recommendations, and comments, ensuring that the page content is only displayed when the necessary data is available. This component is crucial in maintaining a cohesive and responsive user interface, adapting to the presence or absence of data and errors.
+The **`ArticleDetailsPageContainer`** component is responsible for rendering the article details page, including the article's details, ratings, recommendations, and comments. It utilizes hooks to fetch and manage article data, ensuring that components are displayed based on the availability of this data and the presence of errors. This component is crucial for maintaining a dynamic and responsive user interface by adapting to different states of data loading and error handling.
 
 ## Props
 The `ArticleDetailsPageContainer` component does not accept any props.
 
 ## Features
+
 1. **Conditional Rendering**: The component only displays the article rating, recommendations, and comments if the article data is successfully fetched and no errors are encountered. This ensures that users are only shown relevant content, enhancing the overall user experience.
-2. **Data-Driven UI**: Utilizes `useArticleDetailsData` and `useArticleDetailsError` hooks to determine the state of the content. If data is present and there are no errors, it renders additional components like `ArticleRating`, `ArticleRecommendationsList`, and `ArticleComments`.
-3. **Modular Layout**: The use of the `VStack` layout component with customizable gaps allows for a clean, vertically stacked arrangement of the page elements, ensuring a visually appealing and well-organized interface.
+
+2. **Dynamic Layout**: Uses the `ToggleFeaturesComponent` to switch between a redesigned layout with a `Card` component and a traditional layout with an `ArticleDetailsPageHeader`, based on the `isAppRedesigned` feature flag. This provides a flexible and modern interface that adapts to design changes.
+
+3. **Data-Driven UI**: Utilizes `useArticleDetailsData` and `useArticleDetailsError` hooks to determine the state of the content. If data is present and there are no errors, it renders additional components like `ArticleRating`, `ArticleRecommendationsList`, and `ArticleComments`.
+
+4. **Modular Layout**: The use of the `VStack` layout component with customizable gaps allows for a clean, vertically stacked arrangement of the page elements, ensuring a visually appealing and well-organized interface.
 
 ## Usage Example
 ```typescript jsx
@@ -26,5 +31,4 @@ const App = () => {
 ```
 
 ## Conclusion
-The `ArticleDetailsPageContainer` component plays a vital role in the article details page by dynamically rendering key components based on the article's data availability. Its ability to handle different states—such as loading, error, and success—ensures a seamless user experience, providing users with relevant content while maintaining a clean and organized layout. 
-This component is a fundamental part of the page's architecture, contributing to a responsive and user-friendly design.
+The `ArticleDetailsPageContainer` component is a key element of the article details page, dynamically managing the display of article information based on data availability and feature flags. Its design ensures a seamless user experience with a responsive and clean layout, adapting to various states such as loading, error, and success. This component is essential for providing a cohesive and user-friendly interface for article viewing.
