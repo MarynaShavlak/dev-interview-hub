@@ -15,6 +15,22 @@ interface FetchArticlesListProps {
     replace?: boolean;
 }
 
+/**
+ * Thunk to fetch a list of articles based on current page settings and filters.
+ *
+ * This thunk performs an API call to retrieve articles with parameters based on the current
+ * settings in the Redux store. It handles scenarios where the API response is invalid or
+ * if an error occurs during the API call. If the API call fails or returns an error, it
+ * handles the error appropriately.
+ *
+ * @param {FetchArticlesListProps} props - Optional properties to customize the request.
+ *        - `replace` (boolean) - If true, it replaces the existing articles list.
+ * @param {ThunkAPI} thunkAPI - The thunkAPI object provided by Redux Toolkit, containing
+ *        dispatch, getState, extra, and more.
+ * @returns {Promise<Article[]>} A promise that resolves to an array of articles or
+ *        rejects with an error message.
+ */
+
 export const fetchArticlesList = createAsyncThunk<
     Article[],
     FetchArticlesListProps,
@@ -49,11 +65,12 @@ export const fetchArticlesList = createAsyncThunk<
         });
 
         if (!response.data) {
-            throw new Error();
+            return rejectWithValue('No articles found.');
         }
 
         return response.data;
-    } catch (e) {
-        return rejectWithValue('error');
+    } catch (error) {
+        console.error('Error fetching articles list:', error);
+        return rejectWithValue('Failed to fetch articles.');
     }
 });
