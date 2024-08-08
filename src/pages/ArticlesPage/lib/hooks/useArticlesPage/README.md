@@ -33,47 +33,26 @@ An object with the following properties:
 
 ### Usage Example
 
-```typescript
-import { useArticlesPage } from '@/features/articles/useArticlesPage';
-import { RedesignedArticlesPage } from './RedesignedArticlesPage/RedesignedArticlesPage';
-import { DeprecatedArticlesPage } from './DeprecatedArticlesPage/DeprecatedArticlesPage';
-import { ToggleFeaturesComponent } from '@/shared/lib/features';
-import { DynamicModuleLoader, ReducersList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
-import { articlesPageReducer } from '../../model/slices/articlesPageSlice';
-
-const reducers: ReducersList = {
-    articlesPage: articlesPageReducer,
+```typescript jsx
+export const ArticlesPage = ({ className }: ArticlesPageProps) => {
+   const { onLoadNextPart } = useArticlesPage();
+   return (
+           <StickyContentLayout
+                   left={<ViewSelectorContainer />}
+                   right={<FiltersContainer />}
+                   content={
+                      <Page
+                              data-testid="ArticlesPage"
+                              onScrollEnd={onLoadNextPart}
+                              className={className}
+                      >
+                         <ArticleInfiniteList />
+                         <ArticlePageGreeting />
+                      </Page>
+                   }
+           />
+   );
 };
-
-const ArticlesPage = ({ className }: { className?: string }) => {
-    const { onLoadNextPart } = useArticlesPage();
-
-    const content = (
-        <ToggleFeaturesComponent
-            feature="isAppRedesigned"
-            on={
-                <RedesignedArticlesPage
-                    onScrollEnd={onLoadNextPart}
-                    className={className}
-                />
-            }
-            off={
-                <DeprecatedArticlesPage
-                    onScrollEnd={onLoadNextPart}
-                    className={className}
-                />
-            }
-        />
-    );
-
-    return (
-        <DynamicModuleLoader reducers={reducers} removeAfterUnmount={false}>
-            {content}
-        </DynamicModuleLoader>
-    );
-};
-
-export default ArticlesPage;
 ```
 
 ## Conclusion 
