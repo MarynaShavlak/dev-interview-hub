@@ -3,7 +3,6 @@ import { memo, useCallback } from 'react';
 import { useSelector } from 'react-redux';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { Text as TextDeprecated, TextSize } from '@/shared/ui/deprecated/Text';
 import { Text } from '@/shared/ui/redesigned/Text';
 import { AddCommentForm } from '@/features/addCommentForm';
@@ -18,12 +17,12 @@ import {
 } from '../model/selectors/comments';
 import { addCommentForArticle } from '../model/services/addCommentForArticle/addCommentForArticle';
 
-interface ArticleCommentsProps {
+export interface ArticleCommentsProps {
     className?: string;
     id?: string;
 }
 
-export const ArticleComments = memo((props: ArticleCommentsProps) => {
+const ArticleComments = memo((props: ArticleCommentsProps) => {
     const { className, id } = props;
     const { t } = useTranslation('article-details');
     const comments = useSelector(getArticleComments.selectAll);
@@ -44,7 +43,7 @@ export const ArticleComments = memo((props: ArticleCommentsProps) => {
     });
 
     return (
-        <VStack gap="16" max className={classNames('', {}, [className])}>
+        <VStack gap="16" max className={className}>
             <ToggleFeaturesComponent
                 feature="isAppRedesigned"
                 on={<Text size="l" title={sectionTitleText} />}
@@ -64,3 +63,5 @@ export const ArticleComments = memo((props: ArticleCommentsProps) => {
         </VStack>
     );
 });
+
+export default ArticleComments;

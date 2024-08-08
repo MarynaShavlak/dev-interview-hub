@@ -1,10 +1,10 @@
-import { lazy, Suspense } from 'react';
-import { Skeleton as SkeletonDeprecated } from '@/shared/ui/deprecated/Skeleton';
-import { ArticleRatingProps } from './ArticleRating';
+import React, { lazy, Suspense } from 'react';
 import { Skeleton } from '@/shared/ui/redesigned/Skeleton';
+import { ArticleCommentsProps } from './ArticleComments';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
+import { Skeleton as SkeletonDeprecated } from '@/shared/ui/deprecated/Skeleton';
 
-const ArticleRatingLazy = lazy(() => import('./ArticleRating'));
+const ArticleCommentsLazy = lazy(() => import('./ArticleComments'));
 
 const fallback = (
     <ToggleFeaturesComponent
@@ -13,10 +13,11 @@ const fallback = (
         off={<SkeletonDeprecated width="100%" height={140} />}
     />
 );
-export const ArticleRatingAsync = (props: ArticleRatingProps) => {
+
+export const ArticleCommentsAsync = (props: ArticleCommentsProps) => {
     return (
         <Suspense fallback={fallback}>
-            <ArticleRatingLazy {...props} />
+            <ArticleCommentsLazy {...props} />
         </Suspense>
     );
 };
