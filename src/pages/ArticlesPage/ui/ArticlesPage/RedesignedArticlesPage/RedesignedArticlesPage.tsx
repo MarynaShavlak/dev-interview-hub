@@ -1,21 +1,14 @@
 import { ArticleInfiniteList } from '../../ArticleInfiniteList/ArticleInfiniteList';
-import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { StickyContentLayout } from '@/shared/layouts/StickyContentLayout';
 import { Page } from '@/widgets/Page';
-import cls from '../ArticlesPage.module.scss';
 import { ViewSelectorContainer } from '../../ViewSelectorContainer/ViewSelectorContainer';
 import { FiltersContainer } from '../../FiltersContainer/FiltersContainer';
 import { ArticlePageGreeting } from '@/features/articlePageGreeting';
+import { useArticlesPage } from '../../../lib/hooks/useArticlesPage/useArticlesPage';
+import { ArticlesPageProps } from '../ArticlesPage';
 
-interface ContentProps {
-    onScrollEnd: () => void;
-    className?: string;
-}
-
-export const RedesignedArticlesPage = ({
-    onScrollEnd,
-    className,
-}: ContentProps) => {
+export const RedesignedArticlesPage = ({ className }: ArticlesPageProps) => {
+    const { onLoadNextPart } = useArticlesPage();
     return (
         <StickyContentLayout
             left={<ViewSelectorContainer />}
@@ -23,12 +16,10 @@ export const RedesignedArticlesPage = ({
             content={
                 <Page
                     data-testid="ArticlesPage"
-                    onScrollEnd={onScrollEnd}
-                    className={classNames(cls.ArticlesPageRedesigned, {}, [
-                        className,
-                    ])}
+                    onScrollEnd={onLoadNextPart}
+                    className={className}
                 >
-                    <ArticleInfiniteList className={cls.list} />
+                    <ArticleInfiniteList />
                     <ArticlePageGreeting />
                 </Page>
             }

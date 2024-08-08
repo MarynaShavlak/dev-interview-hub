@@ -5,16 +5,16 @@ import {
     useArticlesPageSort,
     useArticlesPageCategory,
     useArticlesPageView,
-} from '../../model/selectors/articlesPageSelectors';
+} from '../../../model/selectors/articlesPageSelectors';
 import {
     ArticleSortField,
     ArticleCategory,
     ArticleView,
 } from '@/entities/Article';
-import { useArticlesPageActions } from '../../model/slices/articlesPageSlice';
+import { useArticlesPageActions } from '../../../model/slices/articlesPageSlice';
 import { SortOrder } from '@/shared/types/sortOrder';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { fetchArticlesList } from '../../model/services/fetchArticlesList/fetchArticlesList';
+import { fetchArticlesList } from '../../../model/services/fetchArticlesList/fetchArticlesList';
 import { useDebounce } from '@/shared/lib/hooks/useDebounce/useDebounce';
 
 /**

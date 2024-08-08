@@ -5,20 +5,15 @@ import { ArticleInfiniteList } from '../../ArticleInfiniteList/ArticleInfiniteLi
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { Page } from '@/widgets/Page';
 import cls from '../ArticlesPage.module.scss';
+import { useArticlesPage } from '../../../lib/hooks/useArticlesPage/useArticlesPage';
+import { ArticlesPageProps } from '../ArticlesPage';
 
-interface ContentProps {
-    onScrollEnd: () => void;
-    className?: string;
-}
-
-export const DeprecatedArticlesPage = ({
-    onScrollEnd,
-    className,
-}: ContentProps) => {
+export const DeprecatedArticlesPage = ({ className }: ArticlesPageProps) => {
+    const { onLoadNextPart } = useArticlesPage();
     return (
         <Page
             data-testid="ArticlesPage"
-            onScrollEnd={onScrollEnd}
+            onScrollEnd={onLoadNextPart}
             className={classNames(cls.ArticlesPage, {}, [className])}
         >
             <div className={cls.controlsWrap}>
