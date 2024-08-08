@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import { HStack, VStack } from '@/shared/ui/redesigned/Stack';
 import { Card } from '@/shared/ui/redesigned/Card';
-import cls from './AdditionalInfoContainer.module.scss';
+import cls from '../AdditionalInfoContainer.module.scss';
 import { Skeleton } from '@/shared/ui/redesigned/Skeleton';
 
 export const AdditionalInfoContainerSkeleton = memo(() => {

@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import { AdditionalInfoContainerSkeleton } from './AdditionalInfoContainerSkeleton';
+import { AdditionalInfoContainerSkeleton } from './AdditionalInfoContainerSkeleton/AdditionalInfoContainerSkeleton';
 import {
     useArticleDetailsIsLoading,
     useArticleDetailsData,

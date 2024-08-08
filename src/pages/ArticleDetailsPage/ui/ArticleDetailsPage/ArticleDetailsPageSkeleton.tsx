@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import { AdditionalInfoContainerSkeleton } from '../AdditionalInfoContainer/AdditionalInfoContainerSkeleton';
+import { AdditionalInfoContainerSkeleton } from '../AdditionalInfoContainer/AdditionalInfoContainerSkeleton/AdditionalInfoContainerSkeleton';
 import { StickyContentLayout } from '@/shared/layouts/StickyContentLayout';
 import { Skeleton } from '@/shared/ui/redesigned/Skeleton';
 
