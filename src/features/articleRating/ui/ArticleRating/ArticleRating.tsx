@@ -9,13 +9,14 @@ import { Rating } from '@/entities/Rating';
 
 export interface ArticleRatingProps {
     className?: string;
-    articleId: string;
+    articleId?: string;
 }
 
 const ArticleRating = memo((props: ArticleRatingProps) => {
     const { className, articleId } = props;
+    console.log('articleId in Rating Component', articleId);
     const { rating, isLoading, error, onSubmitFeedback, onSubmitRating } =
-        useArticleRating(articleId);
+        useArticleRating(articleId || '');
     const { t } = useTranslation();
 
     const Skeleton = toggleFeatures({

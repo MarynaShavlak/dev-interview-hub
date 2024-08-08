@@ -21,6 +21,7 @@ import {
 import { fetchArticleById } from '../../model/services/fetchArticleById/fetchArticleById';
 import cls from './ArticleDetails.module.scss';
 import { articleDetailsReducer } from '../../model/slice/articleDetailsSlice';
+import { ArticleDetailsError } from './ArticleDetailsError/ArticleDetailsError';
 
 interface ArticleDetailsProps {
     className?: string;
@@ -73,7 +74,7 @@ export const ArticleDetails = memo((props: ArticleDetailsProps) => {
     const content = isLoading ? (
         <ArticleDetailsSkeleton />
     ) : error ? (
-        renderErrorText()
+        <ArticleDetailsError />
     ) : (
         renderContent()
     );

@@ -20,5 +20,8 @@
     " Спробуйте ще раз пізніше": {
       "": "Failed to load comments. Try again later."
     }
+  },
+  "Можливо, статтю, яку ви шукаєте, видалено або вона не існує": {
+    " Будь ласка, перевірте правильність URL-адреси або поверніться на головну сторінку ": "The article you are looking for may have been removed or does not exist. Please check the URL or return to the homepage."
   }
 }
