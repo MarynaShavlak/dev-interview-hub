@@ -17,7 +17,7 @@ The component enables the dynamic addition of reducers to the Redux store, ensur
 | `children`          | `ReactNode`       | Required                      | The child components that will be rendered within the context of the dynamically loaded reducers.                                                             |
 
 ### Types
-- **ReducersList**: A type defining an object where keys are state slice names (`StateSchemaKey`) and values are reducers. The reducers are associated with their respective state slices.
+- **ReducersList**: A type defining an object where keys are state slice names (`StateSchemaKey`) and values are reducers.  The reducers are associated with their respective state slices.  `NonNullable<StateSchema[name]>` ensures that the type of state handled by the reducer is not `null` or `undefined`. It extracts the non-nullable type from the StateSchema interface corresponding to each key and ensures that the reducer does not handle `undefined` states, which might occur with optional state slices.
 - **StateSchemaKey**: Represents keys of the `StateSchema`, used to identify different slices of state.
 - **ReduxStoreWithManager**: Extends the standard `EnhancedStore` to include a `reducerManager` for dynamic reducer management.
 

@@ -17,13 +17,13 @@ const initialReducers: ReducersList = {
     loginForm: loginReducer,
 };
 
-const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
+const LoginForm = memo((props: LoginFormProps) => {
     return (
         <DynamicModuleLoader reducers={initialReducers} removeAfterUnmount>
             <ToggleFeaturesComponent
                 feature="isAppRedesigned"
-                on={<RedesignedLoginForm onSuccess={onSuccess} />}
-                off={<DeprecatedLoginForm onSuccess={onSuccess} />}
+                on={<RedesignedLoginForm {...props} />}
+                off={<DeprecatedLoginForm {...props} />}
             />
         </DynamicModuleLoader>
     );
