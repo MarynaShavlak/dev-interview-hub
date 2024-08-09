@@ -31,18 +31,18 @@ import App from './app/App';
 const container = document.getElementById('root');
 
 if (!container) {
-    throw new Error(
-        'The root container was not found. FAILED to mount the react application',
-    );
+  throw new Error(
+          'The root container was not found. FAILED to mount the react application',
+  );
 }
 
 const root = createRoot(container);
 
 root.render(
-    <StoreProvider initialState={{ user: { isLoggedIn: true } }}>
-        <App />
-    </StoreProvider>,
-);
+        <StoreProvider>
+          <App />
+        </StoreProvider>
+);     
 ```
 ## Conclusion 
 The `StoreProvider` component is crucial for setting up and maintaining the Redux store in a React application. It provides a flexible and scalable solution for managing global state, allowing for dynamic configuration and ensuring that all components within the application can interact with the centralized state effectively.
