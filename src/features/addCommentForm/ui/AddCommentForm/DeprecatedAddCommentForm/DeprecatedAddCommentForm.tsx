@@ -6,35 +6,38 @@ import { Button, ButtonTheme } from '@/shared/ui/deprecated/Button';
 
 import { HStack } from '@/shared/ui/redesigned/Stack';
 import cls from '../AddCommentForm.module.scss';
+import { useAddCommentForm } from '../../../lib/hook/useAddCommentForm';
+import { AddCommentFormProps } from '../AddCommentForm';
 
-interface DeprecatedAddCommentFormProps {
-    className?: string;
-    text: string;
-    onCommentTextChange: (text: string) => void;
-    onSendHandler: () => void;
-}
+export const DeprecatedAddCommentForm = memo((props: AddCommentFormProps) => {
+    const { className, onSendComment } = props;
+    const { t } = useTranslation('article-details');
+    const { text, error, onCommentTextChange, onSendHandler } =
+        useAddCommentForm(onSendComment);
 
-export const DeprecatedAddCommentForm = memo(
-    (props: DeprecatedAddCommentFormProps) => {
-        const { text, className, onCommentTextChange, onSendHandler } = props;
-        const { t } = useTranslation('article-details');
+    if (error) return null;
 
-        return (
-            <HStack
-                justify="between"
-                max
-                className={classNames(cls.AddCommentForm, {}, [className])}
+    return (
+        <HStack
+            justify="between"
+            max
+            data-testid="AddCommentForm"
+            className={classNames(cls.AddCommentForm, {}, [className])}
+        >
+            <Input
+                className={cls.input}
+                placeholder={t('Введіть текст коментаря')}
+                value={text}
+                onChange={onCommentTextChange}
+                data-testid="AddCommentForm.Input"
+            />
+            <Button
+                theme={ButtonTheme.OUTLINE}
+                onClick={onSendHandler}
+                data-testid="AddCommentForm.Button"
             >
-                <Input
-                    className={cls.input}
-                    placeholder={t('Введіть текст коментаря')}
-                    value={text}
-                    onChange={onCommentTextChange}
-                />
-                <Button theme={ButtonTheme.OUTLINE} onClick={onSendHandler}>
-                    {t('Відправити')}
-                </Button>
-            </HStack>
-        );
-    },
-);
+                {t('Відправити')}
+            </Button>
+        </HStack>
+    );
+});

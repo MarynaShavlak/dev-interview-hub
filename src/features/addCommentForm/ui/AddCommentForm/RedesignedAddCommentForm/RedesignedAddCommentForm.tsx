@@ -7,45 +7,42 @@ import { Button } from '@/shared/ui/redesigned/Button';
 
 import { HStack } from '@/shared/ui/redesigned/Stack';
 import cls from '../AddCommentForm.module.scss';
+import { AddCommentFormProps } from '../AddCommentForm';
+import { useAddCommentForm } from '../../../lib/hook/useAddCommentForm';
 
-interface RedesignedAddCommentFormProps {
-    className?: string;
-    text: string;
-    onCommentTextChange: (text: string) => void;
-    onSendHandler: () => void;
-}
+export const RedesignedAddCommentForm = memo((props: AddCommentFormProps) => {
+    const { className, onSendComment } = props;
+    const { t } = useTranslation('article-details');
+    const { text, error, onCommentTextChange, onSendHandler } =
+        useAddCommentForm(onSendComment);
 
-export const RedesignedAddCommentForm = memo(
-    (props: RedesignedAddCommentFormProps) => {
-        const { text, className, onCommentTextChange, onSendHandler } = props;
-        const { t } = useTranslation('article-details');
+    if (error) return null;
 
-        return (
-            <Card padding="24" max border="partial">
-                <HStack
-                    data-testid="AddCommentForm"
-                    justify="between"
-                    max
-                    gap="16"
-                    className={classNames(cls.AddCommentFormRedesigned, {}, [
-                        className,
-                    ])}
+    return (
+        <Card padding="24" max border="partial">
+            <HStack
+                data-testid="AddCommentForm"
+                justify="between"
+                max
+                gap="16"
+                className={classNames(cls.AddCommentFormRedesigned, {}, [
+                    className,
+                ])}
+            >
+                <Input
+                    className={cls.input}
+                    placeholder={t('Введіть текст коментаря')}
+                    value={text}
+                    data-testid="AddCommentForm.Input"
+                    onChange={onCommentTextChange}
+                />
+                <Button
+                    data-testid="AddCommentForm.Button"
+                    onClick={onSendHandler}
                 >
-                    <Input
-                        className={cls.input}
-                        placeholder={t('Введіть текст коментаря')}
-                        value={text}
-                        data-testid="AddCommentForm.Input"
-                        onChange={onCommentTextChange}
-                    />
-                    <Button
-                        data-testid="AddCommentForm.Button"
-                        onClick={onSendHandler}
-                    >
-                        {t('Відправити')}
-                    </Button>
-                </HStack>
-            </Card>
-        );
-    },
-);
+                    {t('Відправити')}
+                </Button>
+            </HStack>
+        </Card>
+    );
+});
