@@ -8,6 +8,7 @@ import {
     TextTheme,
 } from '@/shared/ui/deprecated/Text';
 import { Text } from '@/shared/ui/redesigned/Text';
+import cls from '../ArticleDetails.module.scss';
 
 export const ArticleDetailsError = memo(() => {
     const { t } = useTranslation('article-details');
@@ -18,7 +19,7 @@ export const ArticleDetailsError = memo(() => {
     );
 
     return (
-        <VStack gap="16" max>
+        <VStack gap="16" max className={cls.ArticleDetails}>
             <ToggleFeaturesComponent
                 feature="isAppRedesigned"
                 on={
