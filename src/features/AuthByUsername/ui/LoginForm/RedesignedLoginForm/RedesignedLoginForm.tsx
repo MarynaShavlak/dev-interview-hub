@@ -7,14 +7,10 @@ import { Button } from '@/shared/ui/redesigned/Button';
 import { Input } from '@/shared/ui/redesigned/Input';
 import { Text } from '@/shared/ui/redesigned/Text';
 import cls from '../LoginForm.module.scss';
-
-interface RedesignedLoginFormProps {
-    className?: string;
-    onSuccess: () => void;
-}
+import { LoginFormProps } from '../LoginForm';
 
 export const RedesignedLoginForm = memo(
-    ({ className, onSuccess }: RedesignedLoginFormProps) => {
+    ({ className, onSuccess }: LoginFormProps) => {
         const { t } = useTranslation();
         const {
             username,
@@ -41,14 +37,12 @@ export const RedesignedLoginForm = memo(
                 <Input
                     autofocus
                     type="text"
-                    className={cls.input}
                     placeholder={t("Введіть ім'я користувача")}
                     onChange={onChangeUsername}
                     value={username}
                 />
                 <Input
                     type="text"
-                    className={cls.input}
                     placeholder={t('Введіть пароль')}
                     onChange={onChangePassword}
                     value={password}

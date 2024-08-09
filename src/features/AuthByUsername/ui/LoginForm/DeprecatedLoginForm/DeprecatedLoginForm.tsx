@@ -6,14 +6,11 @@ import { Button, ButtonTheme } from '@/shared/ui/deprecated/Button';
 import { Input } from '@/shared/ui/deprecated/Input';
 import { Text, TextTheme } from '@/shared/ui/deprecated/Text';
 import cls from '../LoginForm.module.scss';
-
-interface DeprecatedLoginFormProps {
-    className?: string;
-    onSuccess: () => void;
-}
+import { VStack } from '@/shared/ui/redesigned/Stack';
+import { LoginFormProps } from '../LoginForm';
 
 export const DeprecatedLoginForm = memo(
-    ({ className, onSuccess }: DeprecatedLoginFormProps) => {
+    ({ className, onSuccess }: LoginFormProps) => {
         const { t } = useTranslation();
         const {
             username,
@@ -26,7 +23,10 @@ export const DeprecatedLoginForm = memo(
         } = useLoginForm(onSuccess);
 
         return (
-            <div className={classNames(cls.LoginForm, {}, [className])}>
+            <VStack
+                gap="16"
+                className={classNames(cls.LoginForm, {}, [className])}
+            >
                 <Text title={t('Форма авторизації')} />
                 {error && (
                     <Text
@@ -37,14 +37,12 @@ export const DeprecatedLoginForm = memo(
                 <Input
                     autofocus
                     type="text"
-                    className={cls.input}
                     placeholder={t("Введіть ім'я користувача")}
                     onChange={onChangeUsername}
                     value={username}
                 />
                 <Input
                     type="text"
-                    className={cls.input}
                     placeholder={t('Введіть пароль')}
                     onChange={onChangePassword}
                     value={password}
@@ -57,7 +55,7 @@ export const DeprecatedLoginForm = memo(
                 >
                     {t('Вхід')}
                 </Button>
-            </div>
+            </VStack>
         );
     },
 );

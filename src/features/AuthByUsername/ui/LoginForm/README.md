@@ -31,29 +31,23 @@ The **`LoginForm`** component accepts the following props:
 
 ## Usage Example
 ```typescript jsx
-import React, { memo } from 'react';
-import { useAuthModal } from '../../lib/hooks/useAuthModal';
-import { LoginModal } from '@/features/AuthByUsername';
-import { Button } from '@/shared/ui/redesigned/Button';
+import { memo } from 'react';
+import { Modal } from '@/shared/ui/redesigned/Modal';
+import { LoginFormAsync as LoginForm } from '../LoginForm/LoginForm.async';
 
-export const NotAuthorizedNavbar = memo(() => {
-    const { isAuthModal, onShowModal, onCloseModal } = useAuthModal();
- 
-     return (
-        <header>
-            <Button
-                variant="clear"
-                onClick={onShowModal}
-            >
-                Вхід
-            </Button>
+interface LoginModalProps {
+    className?: string;
+    isOpen: boolean;
+    onClose: () => void;
+}
 
-            {isAuthModal && (
-                <LoginModal isOpen={isAuthModal} onClose={onCloseModal} />
-            )}
-        </header>
-    );
-});
+export const LoginModal = memo(
+    ({ className, isOpen, onClose }: LoginModalProps) => (
+        <Modal className={className} isOpen={isOpen} onClose={onClose} lazy>
+            <LoginForm onSuccess={onClose} />
+        </Modal>
+    ),
+);
 ```
 
 ### Conclusion
