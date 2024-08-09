@@ -5,10 +5,6 @@ import {
 } from '../../model/selectors/addCommentFormSelectors';
 import { useAddCommentFormActions } from '../../model/slices/addCommentFormSlice';
 
-export interface useAddCommentFormProps {
-    onSendComment: (text: string) => void;
-}
-
 /**
  * Custom hook for managing the add comment form state and actions.
  * @param {Function} onSendComment - A callback function to handle the submission of a comment.
