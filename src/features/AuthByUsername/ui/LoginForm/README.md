@@ -1,4 +1,4 @@
-# LoginForm Component
+# LoginForm 
 
 ## Overview
 The **`LoginForm`** component is designed to provide a flexible login interface that adapts based on the application's design configuration. Utilizing the `isAppRedesigned` feature flag, it renders either the `RedesignedLoginForm` or the `DeprecatedLoginForm`, ensuring alignment with the current design standards. The component employs lazy loading and dynamic reducer management to optimize performance and reduce the initial bundle size. By leveraging `DynamicModuleLoader`, it ensures that the `loginReducer` is only loaded when necessary, which is particularly beneficial for scenarios where the login form is not needed (e.g., for already authenticated users). This approach helps keep the main bundle smaller and improves overall application efficiency.
@@ -31,28 +31,29 @@ The **`LoginForm`** component accepts the following props:
 
 ## Usage Example
 ```typescript jsx
-import { memo } from 'react';
-import { Modal } from '@/shared/ui/redesigned/Modal';
-import { LoginFormAsync as LoginForm } from '../LoginForm/LoginForm.async';
+import React, { memo } from 'react';
+import { useAuthModal } from '../../lib/hooks/useAuthModal';
+import { LoginModal } from '@/features/AuthByUsername';
+import { Button } from '@/shared/ui/redesigned/Button';
 
-interface LoginModalProps {
-    className?: string;
-    isOpen: boolean;
-    onClose: () => void;
-}
+export const NotAuthorizedNavbar = memo(() => {
+    const { isAuthModal, onShowModal, onCloseModal } = useAuthModal();
+ 
+     return (
+        <header>
+            <Button
+                variant="clear"
+                onClick={onShowModal}
+            >
+                Вхід
+            </Button>
 
-export const LoginModal = memo(
-    ({ className, isOpen, onClose }: LoginModalProps) => (
-        <Modal
-            className={className}
-            isOpen={isOpen}
-            onClose={onClose}
-            lazy
-        >
-            <LoginForm onSuccess={onClose} />
-        </Modal>
-    ),
-);
+            {isAuthModal && (
+                <LoginModal isOpen={isAuthModal} onClose={onCloseModal} />
+            )}
+        </header>
+    );
+});
 ```
 
 ### Conclusion
