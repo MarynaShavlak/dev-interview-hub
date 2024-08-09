@@ -64,7 +64,6 @@ export const useAnimationLibs = () => {
 };
 ```
 
-
 ## Usage Example
 The `AnimationProvider` component is used to wrap parts of your application that require access to the animation libraries. Here’s an example of how to use it:
 

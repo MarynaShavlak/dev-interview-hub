@@ -4,13 +4,13 @@ import { scrollReducer } from '@/widgets/Page';
 import { userReducer } from '@/entities/User';
 import { $api } from '@/shared/api/api';
 import { rtkApi } from '@/shared/api/rtkApi';
-import { StateSchema, ThunkExtraArg } from '../StateSchema';
-import { createReducerManager } from '../reducerManager';
+import { StateSchema, ThunkExtraArg } from './StateSchema/StateSchema';
+import { createReducerManager } from './reducerManager/reducerManager';
 
-export function createReduxStore(
+export const createReduxStore = (
     initialState?: StateSchema,
     asyncReducers?: ReducersMapObject<StateSchema>,
-) {
+) => {
     const rootReducers: ReducersMapObject<StateSchema> = {
         ...asyncReducers,
         user: userReducer,
@@ -40,6 +40,6 @@ export function createReduxStore(
     store.reducerManager = reducerManager;
 
     return store;
-}
+};
 
 export type AppDispatch = ReturnType<typeof createReduxStore>['dispatch'];
