@@ -35,9 +35,10 @@ const ArticleRecommendationsList = memo(
             category: articleCategory,
             exceptArticleId: article?.id || '0',
         });
-        if (!isLoading) {
+
+        if (isLoading) {
             return (
-                <>
+                <VStack max gap="8">
                     <ToggleFeaturesComponent
                         feature="isAppRedesigned"
                         on={<Skeleton width="100%" height={40} border="34px" />}
@@ -53,18 +54,12 @@ const ArticleRecommendationsList = memo(
                         view={ArticleView.GRID}
                         skeletonCount={3}
                     />
-                </>
+                </VStack>
             );
         }
 
-        if (isLoading || error || !articles) {
-            return (
-                <ToggleFeaturesComponent
-                    feature="isAppRedesigned"
-                    on={<Skeleton width="100%" height={40} />}
-                    off={<SkeletonDeprecated width="100%" height={40} />}
-                />
-            );
+        if (error || !articles) {
+            return null;
         }
         const title = t('Рекомендуємо');
         return (

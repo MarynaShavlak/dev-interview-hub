@@ -1,7 +1,7 @@
 # ArticleRecommendationsList Feature
 
 ## Overview
-The **`ArticleRecommendationsList`** component fetches and displays a list of recommended articles based on the category of a given article. It enhances content discovery and user engagement by providing relevant article suggestions. The component adapts its display according to the app's design version, ensuring a consistent user experience.
+The **`ArticleRecommendationsList`** component fetches and displays a list of recommended articles based on the category of the current article. This component enhances content discovery and user engagement by providing relevant article suggestions. It dynamically adapts its display according to the app's design version, ensuring a consistent and tailored user experience.
 
 ## Type Definition 
 ```typescript
@@ -25,6 +25,9 @@ The **`ArticleRecommendationsList`** component accepts the following props:
 
 3. **Lazy Loading**: The component is lazy-loaded to optimize performance. By loading the component only when needed, it reduces the initial load time of the application, improving the user experience.
 
+4. **Skeleton Loading**: Implements a skeleton screen to enhance the user experience during loading states, providing visual feedback and maintaining the page's layout until the content is fully loaded.
+
+
 ## Usage Example
 ```typescript jsx
 import { ArticleRecommendationsList } from '@/features/articleRecommendationsList';
@@ -39,7 +42,4 @@ const ArticlePage = () => (
 export default ArticlePage;
 ```
 ## Conclusion
-The **`ArticleRecommendationsList`** component is a vital tool for displaying relevant article recommendations, enhancing user engagement by offering additional content based on the current article's category. 
-By supporting dynamic recommendations, design adaptation, and localization, it provides a versatile and user-friendly experience. 
-The use of `memo` ensures optimal performance, making it an efficient choice for integrating article recommendations into your application.
-Additionally, by implementing lazy loading, the `ArticleRecommendationsList` component optimizes performance, contributing to a faster and more efficient application. 
+The **`ArticleRecommendationsList`** omponent is a valuable feature for displaying relevant article recommendations, thereby enhancing user engagement by offering additional content based on the current article's category. By supporting dynamic recommendations, design adaptation, skeleton loading, and localization, it ensures a versatile and user-friendly experience. The use of `memo` optimizes performance, making it an efficient choice for integrating article recommendations into your application. This component not only improves content discoverability but also contributes to a smoother and more responsive user experience.
