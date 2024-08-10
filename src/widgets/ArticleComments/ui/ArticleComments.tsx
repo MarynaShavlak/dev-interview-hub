@@ -10,7 +10,7 @@ import { CommentList } from '@/entities/Comment';
 import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect/useInitialEffect';
 import { VStack } from '@/shared/ui/redesigned/Stack';
 import { fetchCommentsByArticleId } from '../model/services/fetchCommentsByArticleId/fetchCommentsByArticleId';
-import { getArticleComments } from '../model/slices/articleDetailsCommentsSlice';
+import { getArticleComments } from '../model/slices/articleCommentsSlice';
 import {
     useArticleCommentsError,
     useArticleCommentsIsLoading,
