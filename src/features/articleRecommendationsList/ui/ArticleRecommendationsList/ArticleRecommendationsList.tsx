@@ -1,16 +1,19 @@
 import { useTranslation } from 'react-i18next';
 import { memo } from 'react';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
-import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { Text as TextDeprecated, TextSize } from '@/shared/ui/deprecated/Text';
 import { Text } from '@/shared/ui/redesigned/Text';
 import {
     ArticleCategory,
     ArticleList,
+    ArticleListSkeleton,
+    ArticleView,
     useArticleDetailsData,
 } from '@/entities/Article';
 import { VStack } from '@/shared/ui/redesigned/Stack';
 import { useArticleRecommendationsList } from '../../api/articleRecommendationsApi';
+import { Skeleton } from '@/shared/ui/redesigned/Skeleton';
+import { Skeleton as SkeletonDeprecated } from '@/shared/ui/deprecated/Skeleton';
 
 export interface ArticleRecommendationsListProps {
     className?: string;
@@ -32,13 +35,40 @@ const ArticleRecommendationsList = memo(
             category: articleCategory,
             exceptArticleId: article?.id || '0',
         });
+        if (!isLoading) {
+            return (
+                <>
+                    <ToggleFeaturesComponent
+                        feature="isAppRedesigned"
+                        on={<Skeleton width="100%" height={40} border="34px" />}
+                        off={
+                            <SkeletonDeprecated
+                                width="100%"
+                                height={40}
+                                border="34px"
+                            />
+                        }
+                    />
+                    <ArticleListSkeleton
+                        view={ArticleView.GRID}
+                        skeletonCount={3}
+                    />
+                </>
+            );
+        }
 
         if (isLoading || error || !articles) {
-            return null;
+            return (
+                <ToggleFeaturesComponent
+                    feature="isAppRedesigned"
+                    on={<Skeleton width="100%" height={40} />}
+                    off={<SkeletonDeprecated width="100%" height={40} />}
+                />
+            );
         }
         const title = t('Рекомендуємо');
         return (
-            <VStack gap="8" className={classNames('', {}, [className])}>
+            <VStack gap="8" className={className}>
                 <ToggleFeaturesComponent
                     feature="isAppRedesigned"
                     on={<Text size="l" title={title} />}

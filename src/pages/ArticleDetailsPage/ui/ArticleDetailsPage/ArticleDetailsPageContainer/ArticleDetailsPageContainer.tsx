@@ -20,6 +20,7 @@ export const ArticleDetailsPageContainer = memo(() => {
 
     return (
         <VStack gap="16" max>
+            <ArticleRecommendationsList />
             <ToggleFeaturesComponent
                 feature="isAppRedesigned"
                 on={

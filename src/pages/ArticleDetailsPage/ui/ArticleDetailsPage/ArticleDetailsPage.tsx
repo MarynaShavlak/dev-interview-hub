@@ -6,7 +6,7 @@ import {
     DynamicModuleLoader,
     ReducersList,
 } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
-import { articleDetailsPageReducer } from '../../model/slices';
+import { articleDetailsPageReducer } from '../../model/slices/articleDetailsPageReducer';
 
 export interface ArticleDetailsPageProps {
     className?: string;

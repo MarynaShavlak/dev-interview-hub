@@ -1,10 +1,10 @@
 import { combineReducers } from '@reduxjs/toolkit';
-import { articleDetailsPageRecommendationsReducer } from './articleDetailsPageRecommendationsSlice';
-import { ArticleDetailsPageSchema } from '../types';
+import { ArticleDetailsPageSchema } from '../types/articleDetailsPageSchema';
 import { articleCommentsReducer } from '@/widgets/ArticleComments';
+import { articleRecommendationsReducer } from '@/features/articleRecommendationsList';
 
 export const articleDetailsPageReducer =
     combineReducers<ArticleDetailsPageSchema>({
-        recommendations: articleDetailsPageRecommendationsReducer,
+        recommendations: articleRecommendationsReducer,
         comments: articleCommentsReducer,
     });

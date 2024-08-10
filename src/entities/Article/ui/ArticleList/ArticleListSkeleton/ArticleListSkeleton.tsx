@@ -8,17 +8,18 @@ import { ArticleListItemSkeleton } from '../../ArticleListItemSkeleton/ArticleLi
 
 interface ArticleListSkeletonProps {
     view: ArticleView;
+    skeletonCount?: number;
 }
 
-const getSkeletons = (view: ArticleView) =>
-    new Array(view === ArticleView.GRID ? 9 : 3)
+const getSkeletons = (view: ArticleView, count: number) =>
+    new Array(count)
         .fill(0)
         .map((item, index) => (
             <ArticleListItemSkeleton key={index} view={view} />
         ));
 
 export const ArticleListSkeleton = memo(
-    ({ view }: ArticleListSkeletonProps) => {
+    ({ view, skeletonCount }: ArticleListSkeletonProps) => {
         const mainClass = toggleFeatures({
             name: 'isAppRedesigned',
             on: () => cls.ArticleListRedesigned,
@@ -26,17 +27,19 @@ export const ArticleListSkeleton = memo(
         });
 
         const classes = classNames(mainClass, {}, [cls[view]]);
+        const defaultSkeletonCount = view === ArticleView.GRID ? 9 : 3;
+        const count = skeletonCount ?? defaultSkeletonCount;
 
         if (view === ArticleView.LIST) {
             return (
                 <VStack gap="16" className={classes} max>
-                    {getSkeletons(view)}
+                    {getSkeletons(view, count)}
                 </VStack>
             );
         }
         return (
             <HStack wrap="wrap" gap="16" className={classes}>
-                {getSkeletons(view)}
+                {getSkeletons(view, count)}
             </HStack>
         );
     },
