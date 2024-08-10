@@ -63,7 +63,7 @@ describe('fetchArticleRecommendations.test', () => {
 
     test('error - no recommendations found', async () => {
         const thunk = new TestAsyncThunk(fetchArticleRecommendations);
-        thunk.api.get.mockReturnValue(Promise.resolve({ data: [] }));
+        thunk.api.get.mockReturnValue(Promise.resolve({ data: null }));
 
         const result = await thunk.callThunk();
 
