@@ -23,5 +23,17 @@
   },
   "Можливо, статтю, яку ви шукаєте, видалено або вона не існує": {
     " Будь ласка, перевірте правильність URL-адреси або поверніться на головну сторінку ": "The article you are looking for may have been removed or does not exist. Please check the URL or return to the homepage."
+  },
+  "Помилка завантаження рекомендацій": "Error loading recommendations",
+  "На жаль, не вдалося завантажити рекомендації": {
+    " Спробуйте пізніше": {
+      "": "Unfortunately, we were unable to load the recommendations. Please try again later."
+    }
+  },
+  "Немає доступних рекомендацій": "No recommendations available",
+  "Наразі немає доступних рекомендацій": {
+    " Будь ласка, перевірте пізніше": {
+      "": "There are currently no recommendations available. Please check back later."
+    }
   }
 }

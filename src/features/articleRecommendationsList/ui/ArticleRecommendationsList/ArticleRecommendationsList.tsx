@@ -1,7 +1,11 @@
 import { useTranslation } from 'react-i18next';
 import { memo } from 'react';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
-import { Text as TextDeprecated, TextSize } from '@/shared/ui/deprecated/Text';
+import {
+    Text as TextDeprecated,
+    TextSize,
+    TextTheme,
+} from '@/shared/ui/deprecated/Text';
 import { Text } from '@/shared/ui/redesigned/Text';
 import {
     ArticleCategory,
@@ -22,10 +26,20 @@ export interface ArticleRecommendationsListProps {
 const ArticleRecommendationsList = memo(
     (props: ArticleRecommendationsListProps) => {
         const { className } = props;
-        const article = useArticleDetailsData();
-        const articleCategory = article?.category[0] || ArticleCategory.ALL;
-
         const { t } = useTranslation('article-details');
+        const article = useArticleDetailsData();
+        const title = t('Рекомендуємо');
+        const articleCategory = article?.category[0] || ArticleCategory.ALL;
+        const errorTitle = t('Помилка завантаження рекомендацій');
+
+        const errorText = t(
+            'На жаль, не вдалося завантажити рекомендації. Спробуйте пізніше.',
+        );
+        const noRecommendsTitle = t('Немає доступних рекомендацій');
+        const noRecommendsText = t(
+            'Наразі немає доступних рекомендацій. Будь ласка, перевірте пізніше.',
+        );
+
         const {
             isLoading,
             data: articles,
@@ -57,11 +71,54 @@ const ArticleRecommendationsList = memo(
                 </VStack>
             );
         }
-
-        if (error || !articles) {
-            return null;
+        if (error) {
+            return (
+                <ToggleFeaturesComponent
+                    feature="isAppRedesigned"
+                    on={
+                        <Text
+                            size="l"
+                            title={errorTitle}
+                            text={errorText}
+                            variant="error"
+                        />
+                    }
+                    off={
+                        <TextDeprecated
+                            size={TextSize.L}
+                            title={errorTitle}
+                            text={errorText}
+                            theme={TextTheme.ERROR}
+                        />
+                    }
+                />
+            );
         }
-        const title = t('Рекомендуємо');
+
+        if (!articles) {
+            return (
+                <ToggleFeaturesComponent
+                    feature="isAppRedesigned"
+                    on={
+                        <Text
+                            size="l"
+                            title={noRecommendsTitle}
+                            text={noRecommendsText}
+                            variant="error"
+                        />
+                    }
+                    off={
+                        <TextDeprecated
+                            size={TextSize.L}
+                            title={noRecommendsTitle}
+                            text={noRecommendsText}
+                            theme={TextTheme.ERROR}
+                        />
+                    }
+                />
+            );
+        }
+
         return (
             <VStack gap="8" className={className}>
                 <ToggleFeaturesComponent
