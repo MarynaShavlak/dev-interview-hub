@@ -8,28 +8,15 @@ export interface GridViewItemProps {
     className?: string;
     article: Article;
     target?: HTMLAttributeAnchorTarget;
+    index: number;
 }
 
 export const GridViewItem = memo((props: GridViewItemProps) => {
-    const { className, article, target } = props;
-
     return (
         <ToggleFeaturesComponent
             feature="isAppRedesigned"
-            on={
-                <RedesignedGridViewItem
-                    className={className}
-                    article={article}
-                    target={target}
-                />
-            }
-            off={
-                <DeprecatedGridViewItem
-                    className={className}
-                    article={article}
-                    target={target}
-                />
-            }
+            on={<RedesignedGridViewItem {...props} />}
+            off={<DeprecatedGridViewItem {...props} />}
         />
     );
 });

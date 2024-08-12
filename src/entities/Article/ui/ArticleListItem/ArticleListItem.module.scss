@@ -48,6 +48,7 @@
 
     &.LIST {
         width: 100%;
+        margin-bottom: 16px;
 
         .img {
             width: 100%;
@@ -68,6 +69,14 @@
             width: 240px;
             height: 350px;
             overflow: hidden;
+
+            @media (max-width: 1024px) {
+                width:50%;
+            }
+            @media (max-width: 300px) {
+                width:100%;
+            }
+
         }
 
         .img {
@@ -103,6 +112,7 @@
 
     &.LIST {
         width: 100%;
+        margin-bottom: 16px;
 
         .img {
             width: 100%;

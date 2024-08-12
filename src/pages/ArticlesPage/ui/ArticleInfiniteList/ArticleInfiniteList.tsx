@@ -18,10 +18,11 @@ import {
 
 interface ArticleInfiniteListProps {
     className?: string;
+    onScrollEnd?: () => void;
 }
 
 export const ArticleInfiniteList = memo((props: ArticleInfiniteListProps) => {
-    const { className } = props;
+    const { className, onScrollEnd } = props;
     const articles = useSelector(getArticles.selectAll);
 
     const isLoading = useArticlesPageIsLoading();
@@ -53,6 +54,7 @@ export const ArticleInfiniteList = memo((props: ArticleInfiniteListProps) => {
             view={view}
             articles={articles}
             className={className}
+            onScrollEnd={onScrollEnd}
         />
     );
 });

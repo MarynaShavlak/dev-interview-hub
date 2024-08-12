@@ -14,11 +14,19 @@ import { Card } from '@/shared/ui/redesigned/Card';
 import { AppLink } from '@/shared/ui/redesigned/AppLink';
 import cls from '../../ArticleListItem.module.scss';
 import { Skeleton } from '@/shared/ui/redesigned/Skeleton';
+import { ARTICLE_LIST_ITEM_LOCALSTORAGE_IDX } from '@/shared/const/localstorage';
 
 export const RedesignedGridViewItem = memo((props: GridViewItemProps) => {
-    const { className, article, target } = props;
+    const { className, article, target, index } = props;
     const { t } = useTranslation('articles');
     const additionalClasses = getFlexClasses({ vStack: true, gap: '8' });
+
+    const handleSaveArticlesPageScrollPosition = () => {
+        sessionStorage.setItem(
+            ARTICLE_LIST_ITEM_LOCALSTORAGE_IDX,
+            JSON.stringify(index),
+        );
+    };
     return (
         <AppLink
             data-testid="ArticleListItem"
@@ -28,6 +36,7 @@ export const RedesignedGridViewItem = memo((props: GridViewItemProps) => {
                 className,
                 cls.GRID,
             ])}
+            onClick={handleSaveArticlesPageScrollPosition}
         >
             <Card
                 border="round"

@@ -134,6 +134,7 @@
         "react-i18next": "^11.18.3",
         "react-redux": "^7.2.6",
         "react-router-dom": "^6.2.1",
+        "react-virtuoso": "^4.9.0",
         "storybook-addon-mock": "^2.4.1",
         "storybook-addon-themes": "^6.1.0"
     },

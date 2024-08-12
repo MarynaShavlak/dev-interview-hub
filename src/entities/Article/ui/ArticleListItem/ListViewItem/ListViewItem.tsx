@@ -4,29 +4,18 @@ import { DeprecatedListViewItem } from './DeprecatedListViewItem/DeprecatedListV
 import { Article } from '../../../model/types/article';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
 
-interface ListViewItemProps {
+export interface ListViewItemProps {
     className?: string;
     article: Article;
+    index: number;
 }
 
 export const ListViewItem = memo((props: ListViewItemProps) => {
-    const { className, article } = props;
-
     return (
         <ToggleFeaturesComponent
             feature="isAppRedesigned"
-            on={
-                <RedesignedListViewItem
-                    article={article}
-                    className={className}
-                />
-            }
-            off={
-                <DeprecatedListViewItem
-                    article={article}
-                    className={className}
-                />
-            }
+            on={<RedesignedListViewItem {...props} />}
+            off={<DeprecatedListViewItem {...props} />}
         />
     );
 });

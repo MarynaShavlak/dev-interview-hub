@@ -4,7 +4,7 @@ import { getFlexClasses } from '@/shared/lib/classes/getFlexClasses/getFlexClass
 import defaultImage from '@/shared/assets/images/default-img-list.png';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { ArticleBlockType } from '../../../../model/consts/articleConsts';
-import { Article, ArticleTextBlock } from '../../../../model/types/article';
+import { ArticleTextBlock } from '../../../../model/types/article';
 import { ArticleViews } from '../../../ArticleViews/ArticleViews';
 import { getRouteArticleDetails } from '@/shared/const/router/router';
 import { AppImage } from '@/shared/ui/redesigned/AppImage';
@@ -16,19 +16,23 @@ import { HStack, VStack } from '@/shared/ui/redesigned/Stack';
 import { Text } from '@/shared/ui/redesigned/Text';
 import { Card } from '@/shared/ui/redesigned/Card';
 import cls from '../../ArticleListItem.module.scss';
-
-interface ListViewItemProps {
-    className?: string;
-    article: Article;
-}
+import { ARTICLE_LIST_ITEM_LOCALSTORAGE_IDX } from '@/shared/const/localstorage';
+import { ListViewItemProps } from '../ListViewItem';
 
 export const RedesignedListViewItem = memo((props: ListViewItemProps) => {
-    const { className, article } = props;
+    const { className, article, index } = props;
     const { t } = useTranslation('articles');
     const textBlock = article.blocks.find(
         (block) => block.type === ArticleBlockType.TEXT,
     ) as ArticleTextBlock;
     const additionalClasses = getFlexClasses({ vStack: true, gap: '16' });
+
+    const handleSaveArticlesPageScrollPosition = () => {
+        sessionStorage.setItem(
+            ARTICLE_LIST_ITEM_LOCALSTORAGE_IDX,
+            JSON.stringify(index),
+        );
+    };
 
     return (
         <div
@@ -82,7 +86,12 @@ export const RedesignedListViewItem = memo((props: ListViewItemProps) => {
                 )}
                 <HStack justify="between" max>
                     <AppLink to={getRouteArticleDetails(article.id)}>
-                        <Button variant="outline">{t('Читати більше')}</Button>
+                        <Button
+                            variant="outline"
+                            onClick={handleSaveArticlesPageScrollPosition}
+                        >
+                            {t('Читати більше')}
+                        </Button>
                     </AppLink>
                     <ArticleViews article={article} />
                 </HStack>

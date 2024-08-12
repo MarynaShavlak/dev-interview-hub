@@ -2,7 +2,7 @@ import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { getFlexClasses } from '@/shared/lib/classes/getFlexClasses/getFlexClasses';
 import { ArticleBlockType } from '../../../../model/consts/articleConsts';
-import { Article, ArticleTextBlock } from '../../../../model/types/article';
+import { ArticleTextBlock } from '../../../../model/types/article';
 import { ArticleCategories } from '../../../ArticleCategories/ArticleCategories';
 import { ArticleViews } from '../../../ArticleViews/ArticleViews';
 import { ArticleTextBlockComponent } from '../../../ArticleTextBlockComponent/ArticleTextBlockComponent';
@@ -19,20 +19,24 @@ import defaultImage from '@/shared/assets/images/default-img-list.png';
 import { Card } from '@/shared/ui/deprecated/Card';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import cls from '../../ArticleListItem.module.scss';
-
-interface ListViewItemProps {
-    className?: string;
-    article: Article;
-}
+import { ARTICLE_LIST_ITEM_LOCALSTORAGE_IDX } from '@/shared/const/localstorage';
+import { ListViewItemProps } from '../ListViewItem';
 
 export const DeprecatedListViewItem = memo((props: ListViewItemProps) => {
-    const { className, article } = props;
+    const { className, article, index } = props;
     const { t } = useTranslation('articles');
     const textBlock = article.blocks.find(
         (block) => block.type === ArticleBlockType.TEXT,
     ) as ArticleTextBlock;
 
     const additionalClasses = getFlexClasses({ vStack: true, gap: '8' });
+
+    const handleSaveArticlesPageScrollPosition = () => {
+        sessionStorage.setItem(
+            ARTICLE_LIST_ITEM_LOCALSTORAGE_IDX,
+            JSON.stringify(index),
+        );
+    };
 
     return (
         <div
@@ -71,7 +75,10 @@ export const DeprecatedListViewItem = memo((props: ListViewItemProps) => {
                 )}
                 <HStack justify="between" max>
                     <AppLink to={getRouteArticleDetails(article.id)}>
-                        <Button theme={ButtonTheme.OUTLINE}>
+                        <Button
+                            theme={ButtonTheme.OUTLINE}
+                            onClick={handleSaveArticlesPageScrollPosition}
+                        >
                             {t('Читати більше')}
                         </Button>
                     </AppLink>
