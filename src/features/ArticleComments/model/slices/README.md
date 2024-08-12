@@ -5,12 +5,13 @@ The `articleCommentsSlice` manages the state of comments associated with an arti
 The `createEntityAdapter` simplifies the process of handling collections of entities by automatically generating a set of basic CRUD operations (Create, Read, Update, Delete) and selectors, both for individual entities and for all entities at once.
 
 ## Import Statements
+
 ```typescript
 import { createEntityAdapter, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Comment } from '@/entities/Comment';
 import { StateSchema } from '@/app/providers/StoreProvider';
-import { fetchCommentsByArticleId } from '../services/fetchCommentsByArticleId/fetchCommentsByArticleId';
-import { ArticleCommentsSchema } from '../types/ArticleCommentsSchema';
+import { fetchCommentsByArticleId } from './fetchCommentsByArticleId';
+import { ArticleCommentsSchema } from './ArticleCommentsSchema';
 ```
 
 - `createEntityAdapter`: Redux Toolkit utility for managing normalized data structures.

@@ -3,10 +3,10 @@ import { buildSelector } from '@/shared/lib/store';
 
 export const [useArticleCommentsIsLoading, getArticleCommentsIsLoading] =
     buildSelector((state: StateSchema) => {
-        return state.articleDetailsPage?.comments?.isLoading;
+        return state.articleComments?.isLoading;
     });
 export const [useArticleCommentsError, getArticleCommentsError] = buildSelector(
     (state: StateSchema) => {
-        return state.articleDetailsPage?.comments?.error;
+        return state.articleComments?.error;
     },
 );

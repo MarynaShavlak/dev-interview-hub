@@ -9,12 +9,13 @@ import { CombinedState } from 'redux';
 import { UIScrollSchema } from '@/widgets/Page';
 import { ArticleDetailsSchema } from '@/entities/Article';
 import { UserSchema } from '@/entities/User';
-import { AddCommentFormSchema } from '@/features/addCommentForm';
+
 import { LoginSchema } from '@/features/AuthByUsername';
 import { ProfileSchema } from '@/features/editableProfileCard';
-import { ArticleDetailsPageSchema } from '@/pages/ArticleDetailsPage';
 import { ArticlesPageSchema } from '@/pages/ArticlesPage';
 import { rtkApi } from '@/shared/api/rtkApi';
+import { AddCommentFormSchema } from '@/entities/Comment';
+import { ArticleCommentsSchema } from '@/features/ArticleComments';
 
 export interface StateSchema {
     user: UserSchema;
@@ -27,7 +28,8 @@ export interface StateSchema {
     articleDetails?: ArticleDetailsSchema;
     addCommentForm?: AddCommentFormSchema;
     articlesPage?: ArticlesPageSchema;
-    articleDetailsPage?: ArticleDetailsPageSchema;
+    // articleDetailsPage?: ArticleDetailsPageSchema;
+    articleComments?: ArticleCommentsSchema;
 }
 
 export type StateSchemaKey = keyof StateSchema;

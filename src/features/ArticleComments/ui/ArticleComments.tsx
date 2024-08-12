@@ -5,17 +5,23 @@ import { ToggleFeaturesComponent } from '@/shared/lib/features';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { Text as TextDeprecated, TextSize } from '@/shared/ui/deprecated/Text';
 import { Text } from '@/shared/ui/redesigned/Text';
-import { AddCommentForm } from '@/features/addCommentForm';
-import { CommentList } from '@/entities/Comment';
+import { AddCommentForm, CommentList } from '@/entities/Comment';
 import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect/useInitialEffect';
 import { VStack } from '@/shared/ui/redesigned/Stack';
 import { fetchCommentsByArticleId } from '../model/services/fetchCommentsByArticleId/fetchCommentsByArticleId';
-import { getArticleComments } from '../model/slices/articleCommentsSlice';
+import {
+    articleCommentsReducer,
+    getArticleComments,
+} from '../model/slices/articleCommentsSlice';
 import {
     useArticleCommentsError,
     useArticleCommentsIsLoading,
 } from '../model/selectors/comments';
 import { addCommentForArticle } from '../model/services/addCommentForArticle/addCommentForArticle';
+import {
+    DynamicModuleLoader,
+    ReducersList,
+} from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 
 export interface ArticleCommentsProps {
     className?: string;
@@ -41,26 +47,31 @@ const ArticleComments = memo((props: ArticleCommentsProps) => {
     useInitialEffect(() => {
         dispatch(fetchCommentsByArticleId(id));
     });
+    const reducers: ReducersList = {
+        articleComments: articleCommentsReducer,
+    };
 
     return (
-        <VStack gap="16" max className={className}>
-            <ToggleFeaturesComponent
-                feature="isAppRedesigned"
-                on={<Text size="l" title={sectionTitleText} />}
-                off={
-                    <TextDeprecated
-                        size={TextSize.L}
-                        title={sectionTitleText}
-                    />
-                }
-            />
-            <AddCommentForm onSendComment={onSendComment} />
-            <CommentList
-                isLoading={commentsIsLoading}
-                comments={comments}
-                error={error}
-            />
-        </VStack>
+        <DynamicModuleLoader reducers={reducers}>
+            <VStack gap="16" max className={className}>
+                <ToggleFeaturesComponent
+                    feature="isAppRedesigned"
+                    on={<Text size="l" title={sectionTitleText} />}
+                    off={
+                        <TextDeprecated
+                            size={TextSize.L}
+                            title={sectionTitleText}
+                        />
+                    }
+                />
+                <AddCommentForm onSendComment={onSendComment} />
+                <CommentList
+                    isLoading={commentsIsLoading}
+                    comments={comments}
+                    error={error}
+                />
+            </VStack>
+        </DynamicModuleLoader>
     );
 });
 
