@@ -7,7 +7,7 @@ import { toggleFeatures, ToggleFeaturesComponent } from '@/shared/lib/features';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { Skeleton as SkeletonDeprecated } from '@/shared/ui/deprecated/Skeleton';
 import { Card as CardDeprecated } from '@/shared/ui/deprecated/Card';
-import cls from '../../ArticleListItem/ArticleListItem.module.scss';
+import cls from '../../ArticleCard/ArticleCard.module.scss';
 
 const additionalClasses = getFlexClasses({ vStack: true, gap: '8' });
 

@@ -13,7 +13,7 @@ import { Article } from '../../model/types/article';
 import { ArticleView } from '../../model/consts/articleConsts';
 import { ArticleListSkeleton } from './ArticleListSkeleton/ArticleListSkeleton';
 import { ARTICLE_LIST_ITEM_LOCALSTORAGE_IDX } from '@/shared/const/localstorage';
-import { ArticleListItem } from '../ArticleListItem/ArticleListItem';
+import { ArticleCard } from '../ArticleCard/ArticleCard';
 import { NoArticlesFound } from './NoArticlesFound/NoArticlesFound';
 
 export interface ArticleListProps {
@@ -34,7 +34,7 @@ export const ArticleList = memo((props: ArticleListProps) => {
         target,
         onScrollEnd,
     } = props;
-    const [selectedArticleId, setSelectedArticleId] = useState(1);
+    const [scrollStopArticleIndex, setScrollStopArticleIndex] = useState(1);
     const virtuosoGridRef = useRef<VirtuosoGridHandle>(null);
     const [hasLoaded, setHasLoaded] = useState(false);
 
@@ -47,7 +47,7 @@ export const ArticleList = memo((props: ArticleListProps) => {
     useEffect(() => {
         const paged =
             sessionStorage.getItem(ARTICLE_LIST_ITEM_LOCALSTORAGE_IDX) || 1;
-        setSelectedArticleId(+paged);
+        setScrollStopArticleIndex(+paged);
     }, []);
 
     useEffect(() => {
@@ -55,12 +55,14 @@ export const ArticleList = memo((props: ArticleListProps) => {
         if (view === ArticleView.GRID) {
             timeoutId = setTimeout(() => {
                 if (virtuosoGridRef.current) {
-                    virtuosoGridRef.current.scrollToIndex(selectedArticleId);
+                    virtuosoGridRef.current.scrollToIndex(
+                        scrollStopArticleIndex,
+                    );
                 }
             }, 100);
         }
         return () => clearTimeout(timeoutId);
-    }, [selectedArticleId, view]);
+    }, [scrollStopArticleIndex, view]);
 
     //
 
@@ -71,15 +73,12 @@ export const ArticleList = memo((props: ArticleListProps) => {
         on: () => cls.ArticleListRedesigned,
         off: () => cls.ArticleList,
     });
-    const classes = classNames(mainClass, {}, [
-        className,
-        cls[view],
-        cls.itemsWrapper,
-    ]);
+
+    const classes = classNames(mainClass, {}, [className, cls[view]]);
 
     const renderArticle = (index: number, article: Article) => {
         return (
-            <ArticleListItem
+            <ArticleCard
                 article={article}
                 view={view}
                 target={target}
@@ -107,7 +106,7 @@ export const ArticleList = memo((props: ArticleListProps) => {
                 endReached={onScrollEnd}
                 itemContent={renderArticle}
                 useWindowScroll
-                initialTopMostItemIndex={selectedArticleId}
+                initialTopMostItemIndex={scrollStopArticleIndex}
                 components={{ Footer }}
             />
         );
@@ -126,7 +125,7 @@ export const ArticleList = memo((props: ArticleListProps) => {
             data={articles}
             totalCount={articles.length}
             itemContent={renderArticle}
-            listClassName={classes}
+            listClassName={cls.itemsWrapper}
             scrollSeekConfiguration={{
                 enter: (velocity) => Math.abs(velocity) > 200,
                 exit: (velocity) => Math.abs(velocity) < 30,

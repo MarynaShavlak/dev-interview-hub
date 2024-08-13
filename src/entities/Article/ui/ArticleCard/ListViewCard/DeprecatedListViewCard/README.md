@@ -1,18 +1,18 @@
-# RedesignedListViewItem
+# DeprecatedListViewCard
 
 ## Overview
-The **`RedesignedListViewItem`** component is designed to display articles in a list layout with an updated and modern interface. It is utilized when the feature flag  `isAppRedesigned` is set to true, showcasing a refreshed visual style and improved user experience. The component renders article details such as the title, image, creation date, and user avatar, ensuring a consistent and engaging layout across the application.
+The **`DeprecatedListViewCard`** component is designed to render articles in a list layout using deprecated styling and components. This component is essential for applications that have not yet transitioned to newer UI components, ensuring users can still access article details through a consistent, although outdated, interface. This component is scheduled for replacement by a redesigned version when the feature flag `isAppRedesigned` is active.
 
-## Type Definition
+## Type Definition 
 ```typescript
-export interface ListViewItemProps{
+interface ListViewCardProps {
     className?: string;
     article: Article;
 }
 ```
 
 ## Props
-The **`RedesignedListViewItem`** component accepts the following props:
+The **`DeprecatedListViewCard`** component accepts the following props:
 
 | Prop       | Type       | Required / Optional | Description                                                               |
 |------------|------------|----------------------|---------------------------------------------------------------------------|
@@ -21,9 +21,9 @@ The **`RedesignedListViewItem`** component accepts the following props:
 
 
 ## Features
-1. **Modern UI**:  Leverages updated UI components to provide a contemporary and visually appealing layout for articles.
+1. **Backward Compatibility**:  Provides a way to display articles using outdated UI components while maintaining consistent styling with the legacy design system.
 
-2. . **User Information Display**: Displays the article author's avatar and username, ensuring that user information is prominently shown.
+2. **User Information Display**: Displays the article author's avatar and username, ensuring that user information is prominently shown.
 
 3. **Article Details**: Presents the article's title, creation date, categories, and a brief text block, giving users a comprehensive overview of the article content.
 
@@ -33,10 +33,9 @@ The **`RedesignedListViewItem`** component accepts the following props:
 
 6. **View Count**: Displays the number of views the article has received, adding a layer of social proof.
 
-
 ## Usage Example
 ```typescript jsx
-import { RedesignedListViewItem} from '@/entities/Article';
+import { DeprecatedListViewCard } from '@/entities/Article';
 import { ArticleCategories } from '@/entities/Article';
 import { Article } from '../../../../model/types/article';
 import { ArticleCategory, ArticleBlockType  } from '../../../../model/consts/articleConsts';
@@ -63,7 +62,7 @@ const sampleArticle: Article = {
 };
 
 const App = () => (
-    <RedesignedListViewItem
+    <DeprecatedListViewCard
         article={sampleArticle}
         className="custom-item"
         target="_blank"
@@ -71,4 +70,4 @@ const App = () => (
 );
 ```
 ## Conclusion
-The **`RedesignedListViewItem`**  component is essential for displaying articles in a list layout with modern styling. It offers a comprehensive view of each article, highlighting key details such as the image, title, creation date, and user avatar. This component ensures a visually appealing and engaging browsing experience by utilizing updated UI elements and flexible layouts. It also includes fallbacks for images and a skeleton loader to handle scenarios where the article image is missing or still loading. By incorporating dynamic styling and modern design principles, the `RedesignedListViewItem` component provides a seamless and interactive user experience, aligning with contemporary UI standards and enhancing content presentation.
+The **`DeprecatedListViewCard`** component is crucial for displaying articles in a list layout using outdated styling. It offers a comprehensive view of each article, including the author's information, title, creation date, categories, a brief text snippet, and view count. The component ensures a consistent and engaging browsing experience by handling image fallbacks with a default image and skeleton loader. Overall, this component is vital for maintaining access to article content during the transition to newer UI components.

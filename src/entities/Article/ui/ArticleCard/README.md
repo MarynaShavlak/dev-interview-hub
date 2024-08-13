@@ -1,12 +1,12 @@
-# ArticleListItem
+# ArticleCard
 
 ## Overview
-The **`ArticleListItem`** component dynamically switches between the `ListViewItem` and `GridViewItem` components based on the specified `view` prop. 
+The **`ArticleCard`** component dynamically switches between the `ListViewItem` and `GridViewItem` components based on the specified `view` prop. 
 This approach ensures that articles are displayed in either a list or grid layout, providing flexibility in presentation and allowing users to interact with the content in their preferred format. By accommodating different view types, the component maintains a consistent user experience across various sections of the application.
 
 ## Type Definition 
 ```typescript
-export interface ArticleListItemProps {
+export interface ArticleCardProps {
     className?: string;
     view: ArticleView;
     article: Article;
@@ -15,7 +15,7 @@ export interface ArticleListItemProps {
 ```
 
 ## Props
-The **`ArticleListItem`** component accepts the following props:
+The **`ArticleCard`** component accepts the following props:
 
 | Prop        | Type       | Required / Optional | Description                                                               |
 |-------------|------------|----------------------|---------------------------------------------------------------------------|
@@ -31,7 +31,7 @@ The **`ArticleListItem`** component accepts the following props:
 
 ## Usage Example
 ```typescript jsx
-import { ArticleListItem } from '@/entities/Article';
+import { ArticleCard } from '@/entities/Article';
 import { ArticleCategories } from '@/entities/Article';
 import { Article } from '../../../../model/types/article';
 import { ArticleCategory, ArticleBlockType  } from '../../../../model/consts/articleConsts';
@@ -59,12 +59,12 @@ const sampleArticle: Article = {
 
 const App = () => (
     <>
-        <ArticleListItem
+        <ArticleCard
             article={sampleArticle}
             className="custom-article-list-item"
             view={ArticleView.LIST}
         />
-        <ArticleListItem
+        <ArticleCard
             article={sampleArticle}
             className="custom-article-grid-item"
             view={ArticleView.GRID}
@@ -74,8 +74,8 @@ const App = () => (
 );
 ```
 ## Conclusion
-The **`ArticleListItem`** component is essential for rendering articles in both list and grid layouts, offering a flexible and adaptive interface that caters to various presentation needs. 
+The **`ArticleCard`** component is essential for rendering articles in both list and grid layouts, offering a flexible and adaptive interface that caters to various presentation needs. 
 By leveraging the view prop, the component seamlessly transitions between the `ListViewItem` and `GridViewItem` components, ensuring users receive a consistent and visually appealing experience irrespective of the chosen layout. 
 The component effectively presents article details such as title, image, creation date, and user avatar, maintaining a high level of detail and engagement. 
 This adaptability enhances user experience and supports the application's evolution, allowing for smooth transitions between different view types without disrupting the user interface. 
-The `ArticleListItem` component thus plays a pivotal role in ensuring that articles are displayed effectively and interactively, supporting both current and future design paradigms.
+The `ArticleCard` component thus plays a pivotal role in ensuring that articles are displayed effectively and interactively, supporting both current and future design paradigms.

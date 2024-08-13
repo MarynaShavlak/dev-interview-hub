@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { getFlexClasses } from '@/shared/lib/classes/getFlexClasses/getFlexClasses';
 import defaultImage from '@/shared/assets/images/default-img.png';
 import { Avatar } from '@/shared/ui/redesigned/Avatar';
-import { GridViewItemProps } from '../GridViewItem';
+import { GridViewCardProps } from '../GridViewCard';
 import { ArticleViews } from '../../../ArticleViews/ArticleViews';
 import { HStack, VStack } from '@/shared/ui/redesigned/Stack';
 import { AppImage } from '@/shared/ui/redesigned/AppImage';
@@ -12,11 +12,11 @@ import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { Text } from '@/shared/ui/redesigned/Text';
 import { Card } from '@/shared/ui/redesigned/Card';
 import { AppLink } from '@/shared/ui/redesigned/AppLink';
-import cls from '../../ArticleListItem.module.scss';
+import cls from '../../ArticleCard.module.scss';
 import { Skeleton } from '@/shared/ui/redesigned/Skeleton';
 import { ARTICLE_LIST_ITEM_LOCALSTORAGE_IDX } from '@/shared/const/localstorage';
 
-export const RedesignedGridViewItem = memo((props: GridViewItemProps) => {
+export const RedesignedGridViewCard = memo((props: GridViewCardProps) => {
     const { className, article, target, index } = props;
     const { t } = useTranslation('articles');
     const additionalClasses = getFlexClasses({ vStack: true, gap: '8' });

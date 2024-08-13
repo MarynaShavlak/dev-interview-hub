@@ -1,22 +1,22 @@
 import { HTMLAttributeAnchorTarget, memo } from 'react';
-import { RedesignedGridViewItem } from './RedesignedGridViewItem/RedesignedGridViewItem';
+import { RedesignedGridViewCard } from './RedesignedGridViewCard/RedesignedGridViewCard';
 import { Article } from '../../../model/types/article';
-import { DeprecatedGridViewItem } from './DeprecatedGridViewItem/DeprecatedGridViewItem';
+import { DeprecatedGridViewCard } from './DeprecatedGridViewCard/DeprecatedGridViewCard';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
 
-export interface GridViewItemProps {
+export interface GridViewCardProps {
     className?: string;
     article: Article;
     target?: HTMLAttributeAnchorTarget;
     index: number;
 }
 
-export const GridViewItem = memo((props: GridViewItemProps) => {
+export const GridViewCard = memo((props: GridViewCardProps) => {
     return (
         <ToggleFeaturesComponent
             feature="isAppRedesigned"
-            on={<RedesignedGridViewItem {...props} />}
-            off={<DeprecatedGridViewItem {...props} />}
+            on={<RedesignedGridViewCard {...props} />}
+            off={<DeprecatedGridViewCard {...props} />}
         />
     );
 });

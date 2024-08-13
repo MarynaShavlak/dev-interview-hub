@@ -6,7 +6,7 @@ import { Skeleton as SkeletonDeprecated } from '@/shared/ui/deprecated/Skeleton'
 import { Skeleton as SkeletonRedesigned } from '@/shared/ui/redesigned/Skeleton';
 import { Card as CardDeprecated } from '@/shared/ui/deprecated/Card';
 import { Card as CardRedesigned } from '@/shared/ui/redesigned/Card';
-import cls from '../../ArticleListItem/ArticleListItem.module.scss';
+import cls from '../../ArticleCard/ArticleCard.module.scss';
 import { HStack, VStack } from '@/shared/ui/redesigned/Stack';
 
 export const ListViewSkeleton = memo(() => {

@@ -1,13 +1,13 @@
-# DeprecatedGridViewItem
+# DeprecatedGridViewCard
 
 ## Overview
-The **`DeprecatedGridViewItem`** component is used to render articles in a grid layout with deprecated styling and components. 
+The **`DeprecatedGridViewCard`** component is used to render articles in a grid layout with deprecated styling and components. 
 It is intended for applications that have not yet transitioned to newer UI components, ensuring that users still have access to article details through a consistent, albeit outdated, interface. 
 This component will eventually be replaced by a redesigned version when the feature flag `isAppRedesigned` is active.
 
 ## Type Definition 
 ```typescript
-export interface GridViewItemProps {
+export interface GridViewCardProps {
     className?: string;
     article: Article;
     target?: HTMLAttributeAnchorTarget;
@@ -15,7 +15,7 @@ export interface GridViewItemProps {
 ```
 
 ## Props
-The **`DeprecatedGridViewItem`** component accepts the following props:
+The **`DeprecatedGridViewCard`** component accepts the following props:
 
 | Prop       | Type       | Required / Optional | Description                                                               |
 |------------|------------|----------------------|---------------------------------------------------------------------------|
@@ -33,7 +33,7 @@ The **`DeprecatedGridViewItem`** component accepts the following props:
 
 ## Usage Example
 ```typescript jsx
-import { DeprecatedGridViewItem } from '@/entities/Article';
+import { DeprecatedGridViewCard } from '@/entities/Article';
 import { ArticleCategories } from '@/entities/Article';
 import { Article } from '../../../../model/types/article';
 import { ArticleCategory, ArticleBlockType  } from '../../../../model/consts/articleConsts';
@@ -60,7 +60,7 @@ const sampleArticle: Article = {
 };
 
 const App = () => (
-    <DeprecatedGridViewItem
+    <DeprecatedGridViewCard
         article={sampleArticle}
         className="custom-item"
         target="_blank"
@@ -68,4 +68,4 @@ const App = () => (
 );
 ```
 ## Conclusion
-The **`DeprecatedGridViewItem`** component is crucial for displaying articles in a grid layout using outdated styling. It provides an overview of each article with key details like image, title, creation date, categories, and view count, ensuring a consistent browsing experience. The component handles image fallbacks with a default image and skeleton loader, maintaining visual coherence even when data is missing or loading. It also features interactive hover effects to enhance user engagement. Overall, this component ensures users can access and interact with article content effectively while the application transitions to newer UI components.
+The **`DeprecatedGridViewCard`** component is crucial for displaying articles in a grid layout using outdated styling. It provides an overview of each article with key details like image, title, creation date, categories, and view count, ensuring a consistent browsing experience. The component handles image fallbacks with a default image and skeleton loader, maintaining visual coherence even when data is missing or loading. It also features interactive hover effects to enhance user engagement. Overall, this component ensures users can access and interact with article content effectively while the application transitions to newer UI components.

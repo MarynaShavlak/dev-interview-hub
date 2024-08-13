@@ -7,7 +7,7 @@ export interface ArticleListItemSkeletonProps {
     view: ArticleView;
 }
 
-export const ArticleListItemSkeleton = memo(
+export const ArticleCardSkeleton = memo(
     (props: ArticleListItemSkeletonProps) => {
         const { view } = props;
 

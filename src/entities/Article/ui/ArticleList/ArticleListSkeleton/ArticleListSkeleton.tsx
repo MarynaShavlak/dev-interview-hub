@@ -4,7 +4,7 @@ import { toggleFeatures } from '@/shared/lib/features';
 import { HStack, VStack } from '@/shared/ui/redesigned/Stack';
 import cls from '../ArticleList.module.scss';
 import { ArticleView } from '../../../model/consts/articleConsts';
-import { ArticleListItemSkeleton } from '../../ArticleListItemSkeleton/ArticleListItemSkeleton';
+import { ArticleCardSkeleton } from '../../ArticleCardSkeleton/ArticleCardSkeleton';
 
 interface ArticleListSkeletonProps {
     view: ArticleView;
@@ -14,9 +14,7 @@ interface ArticleListSkeletonProps {
 const getSkeletons = (view: ArticleView, count: number) =>
     new Array(count)
         .fill(0)
-        .map((item, index) => (
-            <ArticleListItemSkeleton key={index} view={view} />
-        ));
+        .map((item, index) => <ArticleCardSkeleton key={index} view={view} />);
 
 export const ArticleListSkeleton = memo(
     ({ view, skeletonCount }: ArticleListSkeletonProps) => {

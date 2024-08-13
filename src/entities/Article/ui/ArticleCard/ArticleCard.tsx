@@ -1,10 +1,10 @@
 import { HTMLAttributeAnchorTarget, memo } from 'react';
-import { GridViewItem } from './GridViewItem/GridViewItem';
-import { ListViewItem } from './ListViewItem/ListViewItem';
+import { GridViewCard } from './GridViewCard/GridViewCard';
+import { ListViewCard } from './ListViewCard/ListViewCard';
 import { ArticleView } from '../../model/consts/articleConsts';
 import { Article } from '../../model/types/article';
 
-export interface ArticleListItemProps {
+export interface ArticleCardProps {
     className?: string;
     view: ArticleView;
     article: Article;
@@ -12,12 +12,12 @@ export interface ArticleListItemProps {
     index: number;
 }
 
-export const ArticleListItem = memo((props: ArticleListItemProps) => {
+export const ArticleCard = memo((props: ArticleCardProps) => {
     const { className, article, target, view, index } = props;
 
     if (view === ArticleView.LIST) {
         return (
-            <ListViewItem
+            <ListViewCard
                 className={className}
                 article={article}
                 index={index}
@@ -26,7 +26,7 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
     }
 
     return (
-        <GridViewItem
+        <GridViewCard
             className={className}
             article={article}
             target={target}

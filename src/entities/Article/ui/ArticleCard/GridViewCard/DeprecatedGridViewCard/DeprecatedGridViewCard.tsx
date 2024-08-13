@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { getFlexClasses } from '@/shared/lib/classes/getFlexClasses/getFlexClasses';
-import { GridViewItemProps } from '../GridViewItem';
+import { GridViewCardProps } from '../GridViewCard';
 import { ArticleViews } from '../../../ArticleViews/ArticleViews';
 import { ArticleCategories } from '../../../ArticleCategories/ArticleCategories';
 import { HStack } from '@/shared/ui/redesigned/Stack';
@@ -10,13 +10,13 @@ import { getRouteArticleDetails } from '@/shared/const/router/router';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { Text } from '@/shared/ui/deprecated/Text';
 import { Card } from '@/shared/ui/deprecated/Card';
-import cls from '../../ArticleListItem.module.scss';
+import cls from '../../ArticleCard.module.scss';
 import { Skeleton } from '@/shared/ui/deprecated/Skeleton';
 import defaultImage from '@/shared/assets/images/default-img.png';
 import { AppLink } from '@/shared/ui/deprecated/AppLink';
 import { useHover } from '@/shared/lib/hooks/useHover/useHover';
 
-export const DeprecatedGridViewItem = memo((props: GridViewItemProps) => {
+export const DeprecatedGridViewCard = memo((props: GridViewCardProps) => {
     const { className, article, target } = props;
     const { t } = useTranslation('articles');
     const [isHover, bindHover] = useHover();
