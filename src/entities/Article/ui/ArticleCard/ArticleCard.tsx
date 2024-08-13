@@ -4,12 +4,15 @@ import { ListViewCard } from './ListViewCard/ListViewCard';
 import { ArticleView } from '../../model/consts/articleConsts';
 import { Article } from '../../model/types/article';
 
-export interface ArticleCardProps {
+export interface BaseCardProps {
     className?: string;
-    view: ArticleView;
     article: Article;
-    target?: HTMLAttributeAnchorTarget;
     index: number;
+    target?: HTMLAttributeAnchorTarget;
+}
+
+interface ArticleCardProps extends BaseCardProps {
+    view: ArticleView;
 }
 
 export const ArticleCard = memo((props: ArticleCardProps) => {

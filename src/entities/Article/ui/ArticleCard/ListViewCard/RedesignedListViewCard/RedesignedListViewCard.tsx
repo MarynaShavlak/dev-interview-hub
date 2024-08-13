@@ -17,9 +17,9 @@ import { Text } from '@/shared/ui/redesigned/Text';
 import { Card } from '@/shared/ui/redesigned/Card';
 import cls from '../../ArticleCard.module.scss';
 import { ARTICLE_LIST_ITEM_LOCALSTORAGE_IDX } from '@/shared/const/localstorage';
-import { ListViewCardProps } from '../ListViewCard';
+import { BaseCardProps } from '../../ArticleCard';
 
-export const RedesignedListViewCard = memo((props: ListViewCardProps) => {
+export const RedesignedListViewCard = memo((props: BaseCardProps) => {
     const { className, article, index } = props;
     const { t } = useTranslation('articles');
     const textBlock = article.blocks.find(
@@ -28,7 +28,7 @@ export const RedesignedListViewCard = memo((props: ListViewCardProps) => {
     const additionalClasses = getFlexClasses({ vStack: true, gap: '16' });
 
     const handleSaveArticlesPageScrollPosition = () => {
-        sessionStorage.setItem(
+        localStorage.setItem(
             ARTICLE_LIST_ITEM_LOCALSTORAGE_IDX,
             JSON.stringify(index),
         );

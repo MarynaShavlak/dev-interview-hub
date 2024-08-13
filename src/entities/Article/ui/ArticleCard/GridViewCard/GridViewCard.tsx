@@ -1,17 +1,10 @@
-import { HTMLAttributeAnchorTarget, memo } from 'react';
+import { memo } from 'react';
 import { RedesignedGridViewCard } from './RedesignedGridViewCard/RedesignedGridViewCard';
-import { Article } from '../../../model/types/article';
 import { DeprecatedGridViewCard } from './DeprecatedGridViewCard/DeprecatedGridViewCard';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
+import { BaseCardProps } from '../ArticleCard';
 
-export interface GridViewCardProps {
-    className?: string;
-    article: Article;
-    target?: HTMLAttributeAnchorTarget;
-    index: number;
-}
-
-export const GridViewCard = memo((props: GridViewCardProps) => {
+export const GridViewCard = memo((props: BaseCardProps) => {
     return (
         <ToggleFeaturesComponent
             feature="isAppRedesigned"

@@ -21,19 +21,12 @@ export interface ArticleListProps {
     articles: Article[];
     isLoading?: boolean;
     target?: HTMLAttributeAnchorTarget;
-    view?: ArticleView;
+    view: ArticleView;
     onScrollEnd?: () => void;
 }
 
 export const ArticleList = memo((props: ArticleListProps) => {
-    const {
-        className,
-        articles,
-        view = ArticleView.GRID,
-        isLoading,
-        target,
-        onScrollEnd,
-    } = props;
+    const { className, articles, view, isLoading, target, onScrollEnd } = props;
     const [scrollStopArticleIndex, setScrollStopArticleIndex] = useState(1);
     const virtuosoGridRef = useRef<VirtuosoGridHandle>(null);
     const [hasLoaded, setHasLoaded] = useState(false);
@@ -46,7 +39,7 @@ export const ArticleList = memo((props: ArticleListProps) => {
 
     useEffect(() => {
         const paged =
-            sessionStorage.getItem(ARTICLE_LIST_ITEM_LOCALSTORAGE_IDX) || 1;
+            localStorage.getItem(ARTICLE_LIST_ITEM_LOCALSTORAGE_IDX) || 1;
         setScrollStopArticleIndex(+paged);
     }, []);
 

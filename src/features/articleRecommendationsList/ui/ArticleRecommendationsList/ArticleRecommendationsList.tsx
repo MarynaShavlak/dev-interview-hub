@@ -126,7 +126,11 @@ const ArticleRecommendationsList = memo(
                     on={<Text size="l" title={title} />}
                     off={<TextDeprecated size={TextSize.L} title={title} />}
                 />
-                <ArticleList articles={articles} target="_blank" />
+                <ArticleList
+                    articles={articles}
+                    target="_blank"
+                    view={ArticleView.GRID}
+                />
             </VStack>
         );
     },

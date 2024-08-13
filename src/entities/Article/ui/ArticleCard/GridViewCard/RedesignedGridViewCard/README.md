@@ -6,9 +6,10 @@ It is utilized when the feature flag `isAppRedesigned` is set to true, showcasin
 
 ## Type Definition 
 ```typescript
-export interface GridViewCardProps {
+export interface BaseCardProps {
     className?: string;
     article: Article;
+    index: number;
     target?: HTMLAttributeAnchorTarget;
 }
 ```

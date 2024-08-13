@@ -1,7 +1,7 @@
-import { memo } from 'react';
+import { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
-import { ArticleList } from '@/entities/Article';
+import { ArticleList, ArticleView } from '@/entities/Article';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
 import {
     Text as TextDeprecated,
@@ -15,22 +15,27 @@ import {
     useArticlesPageIsLoading,
     useArticlesPageView,
 } from '../../model/selectors/articlesPageSelectors';
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { fetchNextArticlesPage } from '../../model/services/fetchNextArticlesPage/fetchNextArticlesPage';
 
 interface ArticleInfiniteListProps {
     className?: string;
-    onScrollEnd?: () => void;
 }
 
 export const ArticleInfiniteList = memo((props: ArticleInfiniteListProps) => {
-    const { className, onScrollEnd } = props;
+    const { className } = props;
+    const dispatch = useAppDispatch();
     const articles = useSelector(getArticles.selectAll);
-
     const isLoading = useArticlesPageIsLoading();
-    const view = useArticlesPageView();
+    const view = useArticlesPageView() || ArticleView.GRID;
     const error = useArticlesPageError();
 
     const { t } = useTranslation('articles');
     const errorMessage = t('Помилка запиту статей');
+
+    const onLoadNextPart = useCallback(() => {
+        dispatch(fetchNextArticlesPage());
+    }, [dispatch]);
 
     if (error) {
         return (
@@ -54,7 +59,7 @@ export const ArticleInfiniteList = memo((props: ArticleInfiniteListProps) => {
             view={view}
             articles={articles}
             className={className}
-            onScrollEnd={onScrollEnd}
+            onScrollEnd={onLoadNextPart}
         />
     );
 });

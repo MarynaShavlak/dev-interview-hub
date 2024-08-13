@@ -1,4 +1,5 @@
 import { memo } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { RedesignedArticlesPage } from './RedesignedArticlesPage/RedesignedArticlesPage';
 import { DeprecatedArticlesPage } from './DeprecatedArticlesPage/DeprecatedArticlesPage';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
@@ -7,6 +8,9 @@ import {
     ReducersList,
 } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { articlesPageReducer } from '../../model/slices/articlesPageSlice';
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect/useInitialEffect';
+import { initArticlesPage } from '../../model/services/initArticlesPage/initArticlesPage';
 
 export interface ArticlesPageProps {
     className?: string;
@@ -17,6 +21,12 @@ const reducers: ReducersList = {
 };
 
 const ArticlesPage = ({ className }: ArticlesPageProps) => {
+    const dispatch = useAppDispatch();
+    const [searchParams] = useSearchParams();
+
+    useInitialEffect(() => {
+        dispatch(initArticlesPage(searchParams));
+    });
     return (
         <DynamicModuleLoader reducers={reducers} removeAfterUnmount={false}>
             <ToggleFeaturesComponent

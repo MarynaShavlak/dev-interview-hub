@@ -20,9 +20,9 @@ import { Card } from '@/shared/ui/deprecated/Card';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import cls from '../../ArticleCard.module.scss';
 import { ARTICLE_LIST_ITEM_LOCALSTORAGE_IDX } from '@/shared/const/localstorage';
-import { ListViewCardProps } from '../ListViewCard';
+import { BaseCardProps } from '../../ArticleCard';
 
-export const DeprecatedListViewCard = memo((props: ListViewCardProps) => {
+export const DeprecatedListViewCard = memo((props: BaseCardProps) => {
     const { className, article, index } = props;
     const { t } = useTranslation('articles');
     const textBlock = article.blocks.find(
@@ -32,7 +32,7 @@ export const DeprecatedListViewCard = memo((props: ListViewCardProps) => {
     const additionalClasses = getFlexClasses({ vStack: true, gap: '8' });
 
     const handleSaveArticlesPageScrollPosition = () => {
-        sessionStorage.setItem(
+        localStorage.setItem(
             ARTICLE_LIST_ITEM_LOCALSTORAGE_IDX,
             JSON.stringify(index),
         );

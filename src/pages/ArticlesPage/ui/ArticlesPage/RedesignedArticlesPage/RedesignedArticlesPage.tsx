@@ -1,29 +1,20 @@
 import { StickyContentLayout } from '@/shared/layouts/StickyContentLayout';
 import { ViewSelectorContainer } from '../../ViewSelectorContainer/ViewSelectorContainer';
-import { FiltersContainer } from '../../FiltersContainer/FiltersContainer';
-import { ArticlePageGreeting } from '@/features/articlePageGreeting';
 import { ArticlesPageProps } from '../ArticlesPage';
-import { useArticlesPage } from '../../../lib/hooks/useArticlesPage/useArticlesPage';
+import { FiltersContainer } from '../../FiltersContainer/FiltersContainer';
 import { ArticleInfiniteList } from '../../ArticleInfiniteList/ArticleInfiniteList';
+import { ArticlePageGreeting } from '@/features/articlePageGreeting';
 
 export const RedesignedArticlesPage = ({ className }: ArticlesPageProps) => {
-    const { onLoadNextPart } = useArticlesPage();
-
     return (
         <StickyContentLayout
             left={<ViewSelectorContainer />}
             right={<FiltersContainer />}
             content={
-                // <Page
-                //     data-testid="ArticlesPage"
-                //     onScrollEnd={onLoadNextPart}
-                //     className={className}
-                // >
-                <>
-                    <ArticleInfiniteList onScrollEnd={onLoadNextPart} />
+                <main className={className} data-testid="ArticlesPage">
+                    <ArticleInfiniteList />
                     <ArticlePageGreeting />
-                </>
-                // </Page>
+                </main>
             }
         />
     );

@@ -1,16 +1,10 @@
 import { memo } from 'react';
 import { RedesignedListViewCard } from './RedesignedListViewCard/RedesignedListViewCard';
 import { DeprecatedListViewCard } from './DeprecatedListViewCard/DeprecatedListViewCard';
-import { Article } from '../../../model/types/article';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
+import { BaseCardProps } from '../ArticleCard';
 
-export interface ListViewCardProps {
-    className?: string;
-    article: Article;
-    index: number;
-}
-
-export const ListViewCard = memo((props: ListViewCardProps) => {
+export const ListViewCard = memo((props: BaseCardProps) => {
     return (
         <ToggleFeaturesComponent
             feature="isAppRedesigned"
