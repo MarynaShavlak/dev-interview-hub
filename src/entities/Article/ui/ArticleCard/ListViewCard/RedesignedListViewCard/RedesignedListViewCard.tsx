@@ -16,8 +16,9 @@ import { HStack, VStack } from '@/shared/ui/redesigned/Stack';
 import { Text } from '@/shared/ui/redesigned/Text';
 import { Card } from '@/shared/ui/redesigned/Card';
 import cls from '../../ArticleCard.module.scss';
-import { ARTICLE_LIST_ITEM_LOCALSTORAGE_IDX } from '@/shared/const/localstorage';
 import { BaseCardProps } from '../../ArticleCard';
+import { useScrollToolbarActions } from '@/widgets/ScrollToolbar';
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 
 export const RedesignedListViewCard = memo((props: BaseCardProps) => {
     const { className, article, index } = props;
@@ -26,12 +27,11 @@ export const RedesignedListViewCard = memo((props: BaseCardProps) => {
         (block) => block.type === ArticleBlockType.TEXT,
     ) as ArticleTextBlock;
     const additionalClasses = getFlexClasses({ vStack: true, gap: '16' });
+    const { setScrollStopArticleIndex } = useScrollToolbarActions();
+    const dispatch = useAppDispatch();
 
     const handleSaveArticlesPageScrollPosition = () => {
-        localStorage.setItem(
-            ARTICLE_LIST_ITEM_LOCALSTORAGE_IDX,
-            JSON.stringify(index),
-        );
+        dispatch(setScrollStopArticleIndex(index));
     };
 
     return (

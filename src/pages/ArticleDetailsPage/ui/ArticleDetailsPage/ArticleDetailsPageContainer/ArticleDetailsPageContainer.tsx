@@ -6,12 +6,12 @@ import {
     useArticleDetailsData,
     useArticleDetailsError,
 } from '@/entities/Article';
-import { ArticleRecommendationsList } from '@/features/articleRecommendationsList';
 import { ArticleComments } from '@/features/ArticleComments';
 import { ArticleRating } from '@/features/articleRating';
 import { Card } from '@/shared/ui/redesigned/Card';
 import { ArticleDetailsPageHeader } from '../DeprecatedArticleDetailsPage/ArticleDetailsPageHeader/ArticleDetailsPageHeader';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
+import { ArticleRecommendationsList } from '@/features/articleRecommendationsList';
 
 export const ArticleDetailsPageContainer = memo(() => {
     const { id } = useParams<{ id: string }>();

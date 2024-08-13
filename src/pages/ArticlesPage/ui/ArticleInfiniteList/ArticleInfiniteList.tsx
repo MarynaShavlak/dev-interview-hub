@@ -1,8 +1,8 @@
 import { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
-import { ArticleList, ArticleView } from '@/entities/Article';
-import { ToggleFeaturesComponent } from '@/shared/lib/features';
+import { Virtuoso, VirtuosoGrid } from 'react-virtuoso';
+import { toggleFeatures, ToggleFeaturesComponent } from '@/shared/lib/features';
 import {
     Text as TextDeprecated,
     TextAlign,
@@ -17,6 +17,20 @@ import {
 } from '../../model/selectors/articlesPageSelectors';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { fetchNextArticlesPage } from '../../model/services/fetchNextArticlesPage/fetchNextArticlesPage';
+import { classNames } from '@/shared/lib/classes/classNames/classNames';
+import {
+    Article,
+    ArticleListSkeleton,
+    ArticleView,
+    NoArticlesFound,
+    ArticleCard,
+} from '@/entities/Article';
+
+import cls from '../../../../entities/Article/ui/ArticleList/ArticleList.module.scss';
+import { useVirtuosoGrid } from '../../lib/hooks/useVirtuosoGrid/useVirtuosoGrid';
+import { useNoArticlesFound } from '../../lib/hooks/useNoArticlesFound/useNoArticlesFound';
+
+import { getScrollStopArticleIndex } from '@/widgets/ScrollToolbar';
 
 interface ArticleInfiniteListProps {
     className?: string;
@@ -29,13 +43,47 @@ export const ArticleInfiniteList = memo((props: ArticleInfiniteListProps) => {
     const isLoading = useArticlesPageIsLoading();
     const view = useArticlesPageView() || ArticleView.GRID;
     const error = useArticlesPageError();
-
     const { t } = useTranslation('articles');
     const errorMessage = t('Помилка запиту статей');
+
+    const isNoArticlesFounded = useNoArticlesFound(isLoading, articles);
+
+    const scrollStopArticleIndex = useSelector(getScrollStopArticleIndex);
+    const { virtuosoGridRef, virtuosoListRef } = useVirtuosoGrid(
+        view,
+        scrollStopArticleIndex,
+    );
+    console.log(`scrollStopArticleIndex`, scrollStopArticleIndex);
 
     const onLoadNextPart = useCallback(() => {
         dispatch(fetchNextArticlesPage());
     }, [dispatch]);
+
+    const mainClass = toggleFeatures({
+        name: 'isAppRedesigned',
+        on: () => cls.ArticleListRedesigned,
+        off: () => cls.ArticleList,
+    });
+
+    const classes = classNames(mainClass, {}, [className, cls[view]]);
+
+    const renderArticle = (index: number, article: Article) => {
+        return (
+            <ArticleCard
+                article={article}
+                view={view}
+                key={article.id}
+                index={index}
+            />
+        );
+    };
+
+    const Footer = memo(() => {
+        if (isLoading) {
+            return <ArticleListSkeleton view={view} />;
+        }
+        return null;
+    });
 
     if (error) {
         return (
@@ -53,13 +101,43 @@ export const ArticleInfiniteList = memo((props: ArticleInfiniteListProps) => {
         );
     }
 
+    if (isNoArticlesFounded) {
+        return <NoArticlesFound view={view} />;
+    }
+
+    if (view === ArticleView.LIST) {
+        return (
+            <Virtuoso
+                ref={virtuosoListRef}
+                style={{ height: '100vh' }}
+                data={articles}
+                endReached={onLoadNextPart}
+                itemContent={renderArticle}
+                useWindowScroll
+                initialTopMostItemIndex={scrollStopArticleIndex}
+                components={{ Footer }}
+            />
+        );
+    }
+
     return (
-        <ArticleList
-            isLoading={isLoading}
-            view={view}
-            articles={articles}
-            className={className}
-            onScrollEnd={onLoadNextPart}
+        <VirtuosoGrid
+            ref={virtuosoGridRef}
+            components={{
+                ScrollSeekPlaceholder: () => (
+                    <ArticleListSkeleton view={view} />
+                ),
+            }}
+            useWindowScroll
+            endReached={onLoadNextPart}
+            data={articles}
+            totalCount={articles.length}
+            itemContent={renderArticle}
+            listClassName={cls.itemsWrapper}
+            scrollSeekConfiguration={{
+                enter: (velocity) => Math.abs(velocity) > 200,
+                exit: (velocity) => Math.abs(velocity) < 30,
+            }}
         />
     );
 });

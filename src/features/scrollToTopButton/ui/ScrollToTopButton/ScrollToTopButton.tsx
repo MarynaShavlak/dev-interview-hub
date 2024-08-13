@@ -5,20 +5,17 @@ import CircleIcon from '@/shared/assets/icons/circle-up.svg';
 
 interface ScrollToTopButtonProps {
     className?: string;
+    scrollToTop: () => void;
 }
 
 export const ScrollToTopButton = memo((props: ScrollToTopButtonProps) => {
-    const { className } = props;
-
-    const onCLick = () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    };
+    const { className, scrollToTop } = props;
 
     return (
         <Icon
             Svg={CircleIcon}
             clickable
-            onClick={onCLick}
+            onClick={scrollToTop}
             width={32}
             height={32}
             className={classNames('', {}, [className])}

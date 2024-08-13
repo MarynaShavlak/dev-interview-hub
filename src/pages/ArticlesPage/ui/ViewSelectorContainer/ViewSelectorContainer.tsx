@@ -10,7 +10,6 @@ export const ViewSelectorContainer = memo(
     (props: ViewSelectorContainerProps) => {
         const { className } = props;
         const { view, onChangeView } = useArticleFilters();
-        console.log('in ViewSelectorContainer', view);
 
         return (
             <ArticleViewSelector

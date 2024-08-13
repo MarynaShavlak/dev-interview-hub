@@ -47,7 +47,6 @@ import { useDebounce } from '@/shared/lib/hooks/useDebounce/useDebounce';
 
 export function useArticleFilters() {
     const view = useArticlesPageView();
-    console.log('view in useArticleFilters', view);
     const sort = useArticlesPageSort();
     const order = useArticlesPageOrder();
     const search = useArticlesPageSearch();

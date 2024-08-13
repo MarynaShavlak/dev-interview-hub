@@ -16,10 +16,12 @@ import { ArticlesPageSchema } from '@/pages/ArticlesPage';
 import { rtkApi } from '@/shared/api/rtkApi';
 import { AddCommentFormSchema } from '@/entities/Comment';
 import { ArticleCommentsSchema } from '@/features/ArticleComments';
+import { ScrollToolbarSchema } from '@/widgets/ScrollToolbar';
 
 export interface StateSchema {
     user: UserSchema;
     scroll: UIScrollSchema;
+    scrollToolbar: ScrollToolbarSchema;
     [rtkApi.reducerPath]: ReturnType<typeof rtkApi.reducer>;
 
     // Async reducers

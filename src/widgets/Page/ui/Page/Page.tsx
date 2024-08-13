@@ -39,7 +39,7 @@ export const Page = (props: PageProps) => {
         }),
         callback: onScrollEnd,
     });
-
+    console.log('scrollPosition', scrollPosition);
     useInitialEffect(() => {
         wrapperRef.current.scrollTop = scrollPosition;
     });
