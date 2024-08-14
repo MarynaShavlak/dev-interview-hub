@@ -1,4 +1,4 @@
-import { memo, useCallback, useEffect, useRef } from 'react';
+import React, { memo, useCallback, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { Virtuoso, VirtuosoGrid, VirtuosoHandle } from 'react-virtuoso';
@@ -82,6 +82,19 @@ export const InfiniteArticlesListView = memo(
             [dispatch, setScrollStopArticleIndex],
         );
 
+        const handleWindowScroll = useCallback(() => {
+            console.log('Window is scrolling...');
+            // dispatch(setScrollStopArticleIndex(0));
+        }, [dispatch, setScrollStopArticleIndex]);
+
+        useEffect(() => {
+            window.addEventListener('scroll', handleWindowScroll);
+
+            return () => {
+                window.removeEventListener('scroll', handleWindowScroll);
+            };
+        }, [handleWindowScroll]);
+
         const renderArticle = useCallback(
             (index: number, article: Article) => (
                 <ArticleCard
@@ -96,18 +109,35 @@ export const InfiniteArticlesListView = memo(
             ),
             [view, handleSaveArticlesPageScrollPosition],
         );
-        useEffect(() => {
-            if (virtuosoRef.current && scrollStopArticleIndex !== null) {
-                virtuosoRef.current.scrollToIndex({
-                    index: scrollStopArticleIndex,
-                    align: 'start',
-                    behavior: 'smooth',
-                });
-            }
-        }, [scrollStopArticleIndex]);
+        // useLayoutEffect(() => {
+        //     if (virtuosoRef.current) {
+        //         virtuosoRef.current.scrollToIndex({
+        //             index: scrollStopArticleIndex,
+        //             align: 'start',
+        //             behavior: 'smooth',
+        //         });
+        //         console.log('useLATOUTffect work');
+        //     }
+        // }, [scrollStopArticleIndex]);
+
+        // useEffect(() => {
+        //     console.log('...virtuosoRef.current', virtuosoRef.current);
+        //     if (virtuosoRef.current && scrollStopArticleIndex > 0) {
+        //         virtuosoRef.current.scrollToIndex({
+        //             index: scrollStopArticleIndex,
+        //             align: 'start',
+        //             behavior: 'smooth',
+        //         });
+        //         console.log('useffect work');
+        //     }
+        // }, [scrollStopArticleIndex]);
+        const Footer = memo(() => (
+            <ArticleInfiniteListSkeleton isLoading={isLoading} view={view} />
+        ));
 
         return (
             <Virtuoso
+                key={`virtuoso-list-${scrollStopArticleIndex}`}
                 ref={virtuosoRef}
                 style={{ height: '100vh' }}
                 data={articles}
@@ -116,12 +146,7 @@ export const InfiniteArticlesListView = memo(
                 useWindowScroll
                 initialTopMostItemIndex={scrollStopArticleIndex}
                 components={{
-                    Footer: () => (
-                        <ArticleInfiniteListSkeleton
-                            isLoading={isLoading}
-                            view={view}
-                        />
-                    ),
+                    Footer,
                 }}
             />
         );
@@ -161,14 +186,15 @@ export const InfiniteArticlesGridView = memo(
             ),
             [view, handleSaveArticlesPageScrollPosition],
         );
+        const ScrollSeekPlaceholder = memo(() => (
+            <ArticleInfiniteListSkeleton view={view} />
+        ));
 
         return (
             <VirtuosoGrid
                 ref={virtuosoGridRef}
                 components={{
-                    ScrollSeekPlaceholder: () => (
-                        <ArticleInfiniteListSkeleton view={view} />
-                    ),
+                    ScrollSeekPlaceholder,
                 }}
                 useWindowScroll
                 endReached={onLoadNextPart}

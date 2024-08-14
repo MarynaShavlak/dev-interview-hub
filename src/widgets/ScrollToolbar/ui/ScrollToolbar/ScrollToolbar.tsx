@@ -14,7 +14,6 @@ interface ScrollToolbarProps {
 
 export const ScrollToolbar = memo((props: ScrollToolbarProps) => {
     const { className, page } = props;
-    console.log('page', page);
     const dispatch = useAppDispatch();
     const { resetScrollStopArticleIndex } = useScrollToolbarActions();
 
