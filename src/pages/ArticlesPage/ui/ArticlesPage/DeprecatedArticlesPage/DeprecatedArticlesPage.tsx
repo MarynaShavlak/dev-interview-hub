@@ -11,7 +11,8 @@ export const DeprecatedArticlesPage = ({ className }: ArticlesPageProps) => {
                 <FiltersContainer />
                 <ViewSelectorContainer className={cls.viewSelector} />
             </div>
-            <ArticleInfiniteList className={cls.list} />
+            {/* <ArticleInfiniteList className={cls.list} /> */}
+            <ArticleInfiniteList />
         </div>
     );
 };

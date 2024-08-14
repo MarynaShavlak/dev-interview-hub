@@ -13,7 +13,6 @@ import cls from '../ArticleViewSelector.module.scss';
 export const RedesignedArticleViewSelector = memo(
     (props: ArticleViewSelectorProps) => {
         const { className, view, onViewClick } = props;
-
         const onClick = (newView: ArticleView) => () => {
             onViewClick?.(newView);
         };

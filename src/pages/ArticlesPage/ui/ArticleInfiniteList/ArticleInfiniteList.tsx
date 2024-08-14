@@ -1,8 +1,8 @@
-import { memo, useCallback } from 'react';
+import { memo, useCallback, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
-import { Virtuoso, VirtuosoGrid } from 'react-virtuoso';
-import { toggleFeatures, ToggleFeaturesComponent } from '@/shared/lib/features';
+import { Virtuoso, VirtuosoGrid, VirtuosoHandle } from 'react-virtuoso';
+import { ToggleFeaturesComponent } from '@/shared/lib/features';
 import {
     Text as TextDeprecated,
     TextAlign,
@@ -17,7 +17,6 @@ import {
 } from '../../model/selectors/articlesPageSelectors';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { fetchNextArticlesPage } from '../../model/services/fetchNextArticlesPage/fetchNextArticlesPage';
-import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import {
     Article,
     ArticleListSkeleton,
@@ -30,60 +29,172 @@ import cls from '../../../../entities/Article/ui/ArticleList/ArticleList.module.
 import { useVirtuosoGrid } from '../../lib/hooks/useVirtuosoGrid/useVirtuosoGrid';
 import { useNoArticlesFound } from '../../lib/hooks/useNoArticlesFound/useNoArticlesFound';
 
-import { getScrollStopArticleIndex } from '@/widgets/ScrollToolbar';
+import {
+    getScrollStopArticleIndex,
+    useScrollToolbarActions,
+} from '@/widgets/ScrollToolbar';
 
-interface ArticleInfiniteListProps {
-    className?: string;
+interface ArticleInfiniteListSkeletonProps {
+    isLoading?: boolean;
+    view: ArticleView;
 }
 
-export const ArticleInfiniteList = memo((props: ArticleInfiniteListProps) => {
-    const { className } = props;
-    const dispatch = useAppDispatch();
+interface InfiniteArticleProps {
+    view: ArticleView;
+}
+
+const ArticleInfiniteListSkeleton = memo(
+    ({ isLoading, view }: ArticleInfiniteListSkeletonProps) => {
+        if (view === ArticleView.LIST) {
+            if (isLoading) {
+                return <ArticleListSkeleton view={ArticleView.LIST} />;
+            }
+            return null;
+        }
+
+        if (view === ArticleView.GRID) {
+            return <ArticleListSkeleton view={ArticleView.GRID} />;
+        }
+
+        return null;
+    },
+);
+
+export const InfiniteArticlesListView = memo(
+    ({ view }: InfiniteArticleProps) => {
+        console.log('List....InfiniteArticlesListView');
+        const dispatch = useAppDispatch();
+        const articles = useSelector(getArticles.selectAll);
+        const isLoading = useArticlesPageIsLoading();
+        const { setScrollStopArticleIndex } = useScrollToolbarActions();
+
+        const scrollStopArticleIndex = useSelector(getScrollStopArticleIndex);
+        const virtuosoRef = useRef<VirtuosoHandle>(null);
+
+        console.log(`scrollStopArticleIndex`, scrollStopArticleIndex);
+
+        const onLoadNextPart = useCallback(() => {
+            dispatch(fetchNextArticlesPage());
+        }, [dispatch]);
+
+        const handleSaveArticlesPageScrollPosition = useCallback(
+            (index: number) => dispatch(setScrollStopArticleIndex(index)),
+            [dispatch, setScrollStopArticleIndex],
+        );
+
+        const renderArticle = useCallback(
+            (index: number, article: Article) => (
+                <ArticleCard
+                    article={article}
+                    view={view}
+                    key={article.id}
+                    index={index}
+                    handleClick={() =>
+                        handleSaveArticlesPageScrollPosition(index)
+                    }
+                />
+            ),
+            [view, handleSaveArticlesPageScrollPosition],
+        );
+        useEffect(() => {
+            if (virtuosoRef.current && scrollStopArticleIndex !== null) {
+                virtuosoRef.current.scrollToIndex({
+                    index: scrollStopArticleIndex,
+                    align: 'start',
+                    behavior: 'smooth',
+                });
+            }
+        }, [scrollStopArticleIndex]);
+
+        return (
+            <Virtuoso
+                ref={virtuosoRef}
+                style={{ height: '100vh' }}
+                data={articles}
+                endReached={onLoadNextPart}
+                itemContent={renderArticle}
+                useWindowScroll
+                initialTopMostItemIndex={scrollStopArticleIndex}
+                components={{
+                    Footer: () => (
+                        <ArticleInfiniteListSkeleton
+                            isLoading={isLoading}
+                            view={view}
+                        />
+                    ),
+                }}
+            />
+        );
+    },
+);
+
+export const InfiniteArticlesGridView = memo(
+    ({ view }: InfiniteArticleProps) => {
+        console.log('Grid ....InfiniteArticlesView');
+        const dispatch = useAppDispatch();
+        const articles = useSelector(getArticles.selectAll);
+        const { setScrollStopArticleIndex } = useScrollToolbarActions();
+        const scrollStopArticleIndex = useSelector(getScrollStopArticleIndex);
+        const virtuosoGridRef = useVirtuosoGrid(scrollStopArticleIndex);
+        console.log(`scrollStopArticleIndex`, scrollStopArticleIndex);
+
+        const onLoadNextPart = useCallback(() => {
+            dispatch(fetchNextArticlesPage());
+        }, [dispatch]);
+
+        const handleSaveArticlesPageScrollPosition = useCallback(
+            (index: number) => dispatch(setScrollStopArticleIndex(index)),
+            [dispatch, setScrollStopArticleIndex],
+        );
+
+        const renderArticle = useCallback(
+            (index: number, article: Article) => (
+                <ArticleCard
+                    article={article}
+                    view={view}
+                    key={article.id}
+                    index={index}
+                    handleClick={() =>
+                        handleSaveArticlesPageScrollPosition(index)
+                    }
+                />
+            ),
+            [view, handleSaveArticlesPageScrollPosition],
+        );
+
+        return (
+            <VirtuosoGrid
+                ref={virtuosoGridRef}
+                components={{
+                    ScrollSeekPlaceholder: () => (
+                        <ArticleInfiniteListSkeleton view={view} />
+                    ),
+                }}
+                useWindowScroll
+                endReached={onLoadNextPart}
+                data={articles}
+                totalCount={articles.length}
+                itemContent={renderArticle}
+                listClassName={cls.itemsWrapper}
+                scrollSeekConfiguration={{
+                    enter: (velocity) => Math.abs(velocity) > 200,
+                    exit: (velocity) => Math.abs(velocity) < 30,
+                }}
+            />
+        );
+    },
+);
+
+export const ArticleInfiniteList = memo(() => {
+    console.log('....render ArticleInfiniteList');
     const articles = useSelector(getArticles.selectAll);
     const isLoading = useArticlesPageIsLoading();
-    const view = useArticlesPageView() || ArticleView.GRID;
+    const view = useArticlesPageView();
     const error = useArticlesPageError();
     const { t } = useTranslation('articles');
     const errorMessage = t('Помилка запиту статей');
 
     const isNoArticlesFounded = useNoArticlesFound(isLoading, articles);
-
-    const scrollStopArticleIndex = useSelector(getScrollStopArticleIndex);
-    const { virtuosoGridRef, virtuosoListRef } = useVirtuosoGrid(
-        view,
-        scrollStopArticleIndex,
-    );
-    console.log(`scrollStopArticleIndex`, scrollStopArticleIndex);
-
-    const onLoadNextPart = useCallback(() => {
-        dispatch(fetchNextArticlesPage());
-    }, [dispatch]);
-
-    const mainClass = toggleFeatures({
-        name: 'isAppRedesigned',
-        on: () => cls.ArticleListRedesigned,
-        off: () => cls.ArticleList,
-    });
-
-    const classes = classNames(mainClass, {}, [className, cls[view]]);
-
-    const renderArticle = (index: number, article: Article) => {
-        return (
-            <ArticleCard
-                article={article}
-                view={view}
-                key={article.id}
-                index={index}
-            />
-        );
-    };
-
-    const Footer = memo(() => {
-        if (isLoading) {
-            return <ArticleListSkeleton view={view} />;
-        }
-        return null;
-    });
 
     if (error) {
         return (
@@ -106,38 +217,8 @@ export const ArticleInfiniteList = memo((props: ArticleInfiniteListProps) => {
     }
 
     if (view === ArticleView.LIST) {
-        return (
-            <Virtuoso
-                ref={virtuosoListRef}
-                style={{ height: '100vh' }}
-                data={articles}
-                endReached={onLoadNextPart}
-                itemContent={renderArticle}
-                useWindowScroll
-                initialTopMostItemIndex={scrollStopArticleIndex}
-                components={{ Footer }}
-            />
-        );
+        return <InfiniteArticlesListView view={view} />;
     }
 
-    return (
-        <VirtuosoGrid
-            ref={virtuosoGridRef}
-            components={{
-                ScrollSeekPlaceholder: () => (
-                    <ArticleListSkeleton view={view} />
-                ),
-            }}
-            useWindowScroll
-            endReached={onLoadNextPart}
-            data={articles}
-            totalCount={articles.length}
-            itemContent={renderArticle}
-            listClassName={cls.itemsWrapper}
-            scrollSeekConfiguration={{
-                enter: (velocity) => Math.abs(velocity) > 200,
-                exit: (velocity) => Math.abs(velocity) < 30,
-            }}
-        />
-    );
+    return <InfiniteArticlesGridView view={view} />;
 });

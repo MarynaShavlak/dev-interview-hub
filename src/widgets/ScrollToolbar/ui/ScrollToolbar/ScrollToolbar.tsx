@@ -21,6 +21,7 @@ export const ScrollToolbar = memo((props: ScrollToolbarProps) => {
     const handleClick = useCallback(() => {
         if (page === AppRoutes.ARTICLES) {
             dispatch(resetScrollStopArticleIndex());
+            window.scrollTo({ top: 0, behavior: 'smooth' });
             console.log('reset');
         } else {
             window.scrollTo({ top: 0, behavior: 'smooth' });

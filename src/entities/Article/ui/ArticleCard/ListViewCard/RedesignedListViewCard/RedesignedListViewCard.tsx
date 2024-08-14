@@ -17,22 +17,14 @@ import { Text } from '@/shared/ui/redesigned/Text';
 import { Card } from '@/shared/ui/redesigned/Card';
 import cls from '../../ArticleCard.module.scss';
 import { BaseCardProps } from '../../ArticleCard';
-import { useScrollToolbarActions } from '@/widgets/ScrollToolbar';
-import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 
 export const RedesignedListViewCard = memo((props: BaseCardProps) => {
-    const { className, article, index } = props;
+    const { className, article, index, handleClick } = props;
     const { t } = useTranslation('articles');
     const textBlock = article.blocks.find(
         (block) => block.type === ArticleBlockType.TEXT,
     ) as ArticleTextBlock;
     const additionalClasses = getFlexClasses({ vStack: true, gap: '16' });
-    const { setScrollStopArticleIndex } = useScrollToolbarActions();
-    const dispatch = useAppDispatch();
-
-    const handleSaveArticlesPageScrollPosition = () => {
-        dispatch(setScrollStopArticleIndex(index));
-    };
 
     return (
         <div
@@ -86,10 +78,7 @@ export const RedesignedListViewCard = memo((props: BaseCardProps) => {
                 )}
                 <HStack justify="between" max>
                     <AppLink to={getRouteArticleDetails(article.id)}>
-                        <Button
-                            variant="outline"
-                            onClick={handleSaveArticlesPageScrollPosition}
-                        >
+                        <Button variant="outline" onClick={handleClick}>
                             {t('Читати більше')}
                         </Button>
                     </AppLink>

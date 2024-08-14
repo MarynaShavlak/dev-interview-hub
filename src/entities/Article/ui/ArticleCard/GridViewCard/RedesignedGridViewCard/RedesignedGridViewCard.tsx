@@ -14,20 +14,11 @@ import { AppLink } from '@/shared/ui/redesigned/AppLink';
 import cls from '../../ArticleCard.module.scss';
 import { Skeleton } from '@/shared/ui/redesigned/Skeleton';
 import { BaseCardProps } from '../../ArticleCard';
-import { useScrollToolbarActions } from '@/widgets/ScrollToolbar';
-import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 
 export const RedesignedGridViewCard = memo((props: BaseCardProps) => {
-    const { className, article, target, index } = props;
+    const { className, article, target, index, handleClick } = props;
     const { t } = useTranslation('articles');
     const additionalClasses = getFlexClasses({ vStack: true, gap: '8' });
-
-    const { setScrollStopArticleIndex } = useScrollToolbarActions();
-    const dispatch = useAppDispatch();
-
-    const handleSaveArticlesPageScrollPosition = () => {
-        dispatch(setScrollStopArticleIndex(index));
-    };
 
     return (
         <AppLink
@@ -38,7 +29,7 @@ export const RedesignedGridViewCard = memo((props: BaseCardProps) => {
                 className,
                 cls.GRID,
             ])}
-            onClick={handleSaveArticlesPageScrollPosition}
+            onClick={handleClick}
         >
             <Card
                 border="round"

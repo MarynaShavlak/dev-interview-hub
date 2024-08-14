@@ -1,6 +1,6 @@
 import { memo } from 'react';
-import { ArticleViewSelector } from '@/features/ArticleViewSelector';
 import { useArticleFilters } from '../../lib/hooks/useArticleFilters/useArticleFilters';
+import { ArticleViewSelector } from '@/features/ArticleViewSelector';
 
 interface ViewSelectorContainerProps {
     className?: string;
@@ -9,6 +9,7 @@ interface ViewSelectorContainerProps {
 export const ViewSelectorContainer = memo(
     (props: ViewSelectorContainerProps) => {
         const { className } = props;
+
         const { view, onChangeView } = useArticleFilters();
 
         return (
