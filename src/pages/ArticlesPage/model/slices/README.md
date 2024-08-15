@@ -45,6 +45,7 @@ const initialState = articlesAdapter.getInitialState<ArticlesPageSchema>({
     search: '',
     order: 'asc',
     category: ArticleCategory.ALL,
+    scrollStopArticleIndex: 0,
 });
 ```
 The initial state of the slice is set up with `articlesAdapter.getInitialState<ArticlesPageSchema>()`, which initializes the state for managing article entities. It includes:
@@ -62,6 +63,7 @@ The initial state of the slice is set up with `articlesAdapter.getInitialState<A
 - `search`: Search query for filtering articles.
 - `order`: Sorting order (ascending or descending).
 - `category`: Current category for filtering articles.
+- `scrollStopArticleIndex`: The index of the last article loaded in the viewport, used to manage the lazy loading of articles by tracking the user's scroll position. This ensures that users can continue loading articles from where they left off without losing their scroll position.
 
 
 ## Entity Adapter Configuration
@@ -89,15 +91,17 @@ The `getArticles` selector is created using the adapter's `getSelectors` method.
 
 ## Reducers
 
-| Reducer         | Action Payload Type           | State Change                                                                                  | Purpose                                                                                              |
-|-----------------|-------------------------------|-----------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------|
-| `setView`       | `PayloadAction<ArticleView>`  | Updates the `view` property with the new view type and saves this view to `localStorage`.    | Allows users to switch between different view types (e.g., grid or list) and persists the selection.|
-| `setPage`       | `PayloadAction<number>`       | Updates the `page` property to reflect the new page number.                                   | Manages pagination by setting the current page number.                                               |
-| `setOrder`      | `PayloadAction<SortOrder>`    | Updates the `order` property with the new sorting order (ascending/descending).               | Controls the order in which articles are sorted.                                                     |
-| `setSort`       | `PayloadAction<ArticleSortField>` | Updates the `sort` property with the new field used for sorting articles.                     | Specifies the criteria by which articles are sorted (e.g., creation date).                           |
-| `setCategory`   | `PayloadAction<ArticleCategory>` | Updates the `category` property to filter articles by a new category.                         | Filters articles based on the selected category.                                                     |
-| `setSearch`     | `PayloadAction<string>`       | Updates the `search` property with the new search query.                                      | Updates the search filter to find articles matching the query.                                        |
-| `initState`     | `void`                        | Initializes `view` from `localStorage`, sets `limit` based on the view type, and sets `_inited` to `true`. | Sets up the initial state for the page based on previously saved settings and default values.         |
+| Reducer       | Action Payload Type           | State Change                                                                                               | Purpose                                                                                              |
+|---------------|-------------------------------|------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------|
+| `setView`     | `PayloadAction<ArticleView>`  | Updates the `view` property with the new view type and saves this view to `localStorage`.                  | Allows users to switch between different view types (e.g., grid or list) and persists the selection.|
+| `setPage`     | `PayloadAction<number>`       | Updates the `page` property to reflect the new page number.                                                | Manages pagination by setting the current page number.                                               |
+| `setOrder`    | `PayloadAction<SortOrder>`    | Updates the `order` property with the new sorting order (ascending/descending).                            | Controls the order in which articles are sorted.                                                     |
+| `setSort`     | `PayloadAction<ArticleSortField>` | Updates the `sort` property with the new field used for sorting articles.                                  | Specifies the criteria by which articles are sorted (e.g., creation date).                           |
+| `setCategory` | `PayloadAction<ArticleCategory>` | Updates the `category` property to filter articles by a new category.                                      | Filters articles based on the selected category.                                                     |
+| `setSearch`   | `PayloadAction<string>`       | Updates the `search` property with the new search query.                                                   | Updates the search filter to find articles matching the query.                                        |
+| `setLimit`    | `PayloadAction<number>`       | Updates the `limit` property with the new number of articles to display per page.                                                         | Allows for changing the number of articles displayed per page.                                      |
+| `setScrollStopArticleIndex`    | `PayloadAction<number>`       | Updates the `scrollStopArticleIndex` to keep track of the user's current position in the article list.                                                        | Used for implementing lazy loading of articles. This allows users to continue browsing from where they left off.                                      |
+| `initState`   | `void`                        | Initializes `view` from `localStorage`, sets `limit` based on the view type, and sets `_inited` to `true`. | Sets up the initial state for the page based on previously saved settings and default values.         |
 
 ## Extra Reducers
 
@@ -152,4 +156,7 @@ export const fetchNextArticlesPage = createAsyncThunk<
 });
 ```
 ## Conclusion
-The `articlesPageSlice` provides a comprehensive solution for managing the state of articles on a page in a Redux-based application. By using `createEntityAdapter`, it ensures efficient handling of article data with built-in CRUD operations. The slice supports various features such as view preferences, pagination, sorting, and search, and integrates with asynchronous actions for fetching articles. State changes and preferences are persisted to localStorage, enhancing the user experience by retaining settings across sessions. This slice offers a scalable and maintainable approach to managing complex article-related state.
+The `articlesPageSlice` provides a comprehensive solution for managing the state of articles on a page in a Redux-based application. 
+By using `createEntityAdapter`, it ensures efficient handling of article data with built-in CRUD operations. 
+The slice supports various features such as view preferences, pagination, sorting, and search, and integrates with asynchronous actions for fetching articles. State changes and preferences are persisted to localStorage, enhancing the user experience by retaining settings across sessions.
+Additionally, the `scrollStopArticleIndex` property is included to manage the position of the last article viewed by the user, allowing for seamless continuation from where they left off in the event of a page reload or when navigating away and returning to the articles page. This feature enhances user experience by preventing the need to manually find the last-read article. Overall, this slice offers a scalable and maintainable approach to managing complex article-related state while ensuring a user-friendly interface.

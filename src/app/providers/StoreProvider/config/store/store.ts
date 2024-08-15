@@ -6,7 +6,6 @@ import { $api } from '@/shared/api/api';
 import { rtkApi } from '@/shared/api/rtkApi';
 import { StateSchema, ThunkExtraArg } from './StateSchema/StateSchema';
 import { createReducerManager } from './reducerManager/reducerManager';
-import { scrollToolbarReducer } from '@/widgets/ScrollToolbar';
 
 export const createReduxStore = (
     initialState?: StateSchema,
@@ -16,7 +15,6 @@ export const createReduxStore = (
         ...asyncReducers,
         user: userReducer,
         scroll: scrollReducer,
-        scrollToolbar: scrollToolbarReducer,
         [rtkApi.reducerPath]: rtkApi.reducer,
     };
 

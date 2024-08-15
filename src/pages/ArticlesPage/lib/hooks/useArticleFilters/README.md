@@ -1,5 +1,6 @@
 ## useArticleFilters Hook
-The `useArticleFilters` hook is a custom React hook designed to manage and interact with the article filtering state within an application. It consolidates various filter-related selectors and actions to provide a unified API for handling article sorting, ordering, searching, and category selection. By leveraging this hook, components can easily access and update filter criteria, ensuring a responsive and consistent user experience when interacting with article lists.
+The `useArticleFilters` hook is a custom React hook designed to manage and interact with the article filtering state within an application. 
+It consolidates various filter-related selectors and actions to provide a unified API for handling article sorting, ordering, searching, and category selection. By leveraging this hook, components can easily access and update filter criteria, ensuring a responsive and consistent user experience when interacting with article lists.
 
 ## Parameters
 This hook does not take any parameters.
@@ -7,18 +8,18 @@ This hook does not take any parameters.
 ## Returns
 An object with the following properties:
 
-| Property             | Type                  | Description                                                                                   |
-|----------------------|-----------------------|-----------------------------------------------------------------------------------------------|
-| `view`               | `ArticleView`         | The current view setting for displaying articles.                                            |
-| `sort`               | `ArticleSortField`    | The current sort field used for ordering articles.                                           |
-| `order`              | `SortOrder`           | The current sort order (ascending or descending).                                            |
-| `search`             | `string`              | The current search query used for filtering articles.                                        |
-| `category`           | `ArticleCategory`     | The currently selected article category for filtering.                                       |
-| `onChangeView`       | `(view: ArticleView) => void` | Function to update the article view setting.                                                 |
-| `onChangeSort`       | `(newSort: ArticleSortField) => void` | Function to update the article sort field.                                                   |
-| `onChangeOrder`      | `(newOrder: SortOrder) => void` | Function to update the article sort order.                                                   |
-| `onChangeSearch`     | `(search: string) => void` | Function to update the search query.                                                         |
-| `onChangeCategory`   | `(value: ArticleCategory) => void` | Function to update the selected article category.                                             |
+| Property             | Type                  | Description                                           |
+|----------------------|-----------------------|-------------------------------------------------------|
+| `view`               | `ArticleView`         | The current view setting for displaying articles.     |
+| `sort`               | `ArticleSortField`    | The current sort field used for ordering articles.    |
+| `order`              | `SortOrder`           | The current sort order (ascending or descending).     |
+| `search`             | `string`              | The current search query used for filtering articles. |
+| `category`           | `ArticleCategory`     | The currently selected article category for filtering. |
+| `onChangeView`       | `(view: ArticleView) => void` | Function to update the article view setting, adjust the limit based on the view, reset the page, and fetch data.                                                      |
+| `onChangeSort`       | `(newSort: ArticleSortField) => void` | Function to update the article sort field.            |
+| `onChangeOrder`      | `(newOrder: SortOrder) => void` | Function to update the article sort order.            |
+| `onChangeSearch`     | `(search: string) => void` | Function to update the search query.                  |
+| `onChangeCategory`   | `(value: ArticleCategory) => void` | Function to update the selected article category.     |
 
 ## Internal Behavior
 
@@ -37,11 +38,11 @@ An object with the following properties:
    - **`useDebounce`**: Applies a debounce to the fetchData function to optimize performance by delaying execution until the user stops typing.
 
 4. **Callbacks**:
-   - **`onChangeView`**: Updates the article view setting.
-   - **`onChangeSort`**: Updates the sort field and triggers a data fetch.
-   - **`onChangeOrder`**: Updates the sort order and triggers a data fetch.
-   - **`onChangeSearch`**: Updates the search query and triggers a debounced data fetch.
-   - **`onChangeCategory`**: Updates the selected category and triggers a data fetch.
+   - **`onChangeView`**: Updates the article view setting, sets the limit based on the view, resets the page to 1, and triggers a data fetch.
+   - **`onChangeSort`**: Updates the sort field, resets the page to 1, and triggers a data fetch.
+   - **`onChangeOrder`**: Updates the sort order, resets the page to 1, and triggers a data fetch.
+   - **`onChangeSearch`**: Updates the search query, resets the page to 1, and triggers a debounced data fetch.
+   - **`onChangeCategory`**: Updates the search query, resets the page to 1, and triggers a debounced data fetch.
 
 ## Usage Example
 ```typescript jsx

@@ -51,3 +51,8 @@ export const [useArticlesPageSearch, getArticlesPageSearch] = buildSelector(
 export const [useArticlesPageCategory, getArticlesPageCategory] = buildSelector(
     (state: StateSchema) => state.articlesPage?.category || ArticleCategory.ALL,
 );
+
+export const [useScrollStopArticleIndex, getScrollStopArticleIndex] =
+    buildSelector(
+        (state: StateSchema) => state.articlesPage?.scrollStopArticleIndex || 0,
+    );

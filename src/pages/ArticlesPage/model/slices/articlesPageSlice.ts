@@ -36,6 +36,7 @@ const articlesPageSlice = buildSlice({
         search: '',
         order: 'asc',
         category: ArticleCategory.ALL,
+        scrollStopArticleIndex: 0,
     }),
     reducers: {
         setView: (state, action: PayloadAction<ArticleView>) => {
@@ -59,6 +60,12 @@ const articlesPageSlice = buildSlice({
         },
         setSearch: (state, action: PayloadAction<string>) => {
             state.search = action.payload;
+        },
+        setLimit: (state, action: PayloadAction<number>) => {
+            state.limit = action.payload;
+        },
+        setScrollStopArticleIndex: (state, action: PayloadAction<number>) => {
+            state.scrollStopArticleIndex = action.payload;
         },
         initState: (state) => {
             const view = localStorage.getItem(

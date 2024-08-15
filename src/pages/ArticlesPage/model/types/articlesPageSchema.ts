@@ -10,7 +10,7 @@ import { SortOrder } from '@/shared/types/sortOrder';
 /**
  * Interface representing the schema for managing the articles page state.
  * This interface extends `EntityState` from Redux Toolkit to manage a collection of articles,
- * and includes additional properties for pagination, filtering, and sorting.
+ * and includes additional properties for pagination, filtering, sorting and scroll position.
  *
  * @extends {EntityState<Article>}
  * @template T - The type of the entities.
@@ -34,6 +34,10 @@ import { SortOrder } from '@/shared/types/sortOrder';
  * @property {string} search - The search query used to filter articles.
  * @property {ArticleCategory} category - The category used to filter articles.
  *
+ * Scroll Position:
+ * @property {number} scrollStopArticleIndex - Stores the index of the last article viewed by the user,
+ * allowing the application to resume from the same position when revisiting the page.
+ *
  * Initialization:
  * @property {boolean} _inited - Indicates whether the schema has been initialized. This value is optional.
  */
@@ -52,6 +56,9 @@ export interface ArticlesPageSchema extends EntityState<Article> {
     sort: ArticleSortField;
     search: string;
     category: ArticleCategory;
+
+    // scroll
+    scrollStopArticleIndex: number;
 
     _inited: boolean;
 }

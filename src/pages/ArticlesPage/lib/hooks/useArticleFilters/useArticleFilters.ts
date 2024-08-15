@@ -32,18 +32,19 @@ import { useDebounce } from '@/shared/lib/hooks/useDebounce/useDebounce';
  *    onChangeSearch: (search: string) => void;
  *    onChangeCategory: (value: ArticleCategory) => void;
  *  }} An object with the following properties:
- *  * `view`: The current view setting for displaying articles.
- *  * `sort`: The current sort field used for ordering articles.
- *  * `order`: The current sort order (ascending or descending).
- *  * `search`: The current search query used for filtering articles.
- *  * `category`: The currently selected article category for filtering.
- *  * `onChangeView`: Function to update the article view setting.
- *  * `onChangeSort`: Function to update the article sort field and trigger a data fetch.
- *  * `onChangeOrder`: Function to update the article sort order and trigger a data fetch.
- *  * `onChangeSearch`: Function to update the search query and trigger a debounced data fetch.
- *  * `onChangeCategory`: Function to update the selected category and trigger a data fetch.
- *
- */
+ *  *  * view: The current view setting for displaying articles.
+ *  *  * sort: The current sort field used for ordering articles.
+ *  *  * order: The current sort order (ascending or descending).
+ *  *  * search: The current search query used for filtering articles.
+ *  *  * category: The currently selected article category for filtering.
+ *  *  * onChangeView: Function to update the article view setting, sets the limit based on the view,
+ *  *    resets the page to 1, and triggers a data fetch.
+ *  *  * onChangeSort: Function to update the article sort field, resets the page to 1, and triggers a data fetch.
+ *  *  * onChangeOrder: Function to update the article sort order, resets the page to 1, and triggers a data fetch.
+ *  *  * onChangeSearch: Function to update the search query, resets the page to 1, and triggers a debounced data fetch.
+ *  *  * onChangeCategory: Function to update the selected category, resets the page to 1, and triggers a data fetch.
+ *  *
+ *  */
 
 export function useArticleFilters() {
     const view = useArticlesPageView();
@@ -51,8 +52,15 @@ export function useArticleFilters() {
     const order = useArticlesPageOrder();
     const search = useArticlesPageSearch();
     const category = useArticlesPageCategory();
-    const { setPage, setOrder, setSort, setCategory, setView, setSearch } =
-        useArticlesPageActions();
+    const {
+        setPage,
+        setOrder,
+        setSort,
+        setCategory,
+        setView,
+        setSearch,
+        setLimit,
+    } = useArticlesPageActions();
 
     const dispatch = useAppDispatch();
 
@@ -62,29 +70,34 @@ export function useArticleFilters() {
 
     const debouncedFetchData = useDebounce(fetchData, 500);
 
+    const resetPageAndFetchData = useCallback(() => {
+        setPage(1);
+        fetchData();
+    }, [fetchData, setPage]);
+
     const onChangeView = useCallback(
         (view: ArticleView) => {
             setView(view);
+            setLimit(view === ArticleView.GRID ? 9 : 4);
+            resetPageAndFetchData();
         },
-        [setView],
+        [resetPageAndFetchData, setLimit, setView],
     );
 
     const onChangeSort = useCallback(
         (newSort: ArticleSortField) => {
             setSort(newSort);
-            setPage(1);
-            fetchData();
+            resetPageAndFetchData();
         },
-        [setSort, setPage, fetchData],
+        [setSort, resetPageAndFetchData],
     );
 
     const onChangeOrder = useCallback(
         (newOrder: SortOrder) => {
             setOrder(newOrder);
-            setPage(1);
-            fetchData();
+            resetPageAndFetchData();
         },
-        [setOrder, setPage, fetchData],
+        [setOrder, resetPageAndFetchData],
     );
 
     const onChangeSearch = useCallback(
@@ -99,10 +112,9 @@ export function useArticleFilters() {
     const onChangeCategory = useCallback(
         (value: ArticleCategory) => {
             setCategory(value);
-            setPage(1);
-            fetchData();
+            resetPageAndFetchData();
         },
-        [setPage, setCategory, fetchData],
+        [setCategory, resetPageAndFetchData],
     );
 
     return {
