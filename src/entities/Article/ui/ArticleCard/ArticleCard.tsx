@@ -7,7 +7,6 @@ import { Article } from '../../model/types/article';
 export interface BaseCardProps {
     className?: string;
     article: Article;
-    index: number;
     target?: HTMLAttributeAnchorTarget;
     handleClick?: () => void;
 }
@@ -17,14 +16,13 @@ interface ArticleCardProps extends BaseCardProps {
 }
 
 export const ArticleCard = memo((props: ArticleCardProps) => {
-    const { className, article, target, view, index, handleClick } = props;
+    const { className, article, target, view, handleClick } = props;
 
     if (view === ArticleView.LIST) {
         return (
             <ListViewCard
                 className={className}
                 article={article}
-                index={index}
                 handleClick={handleClick}
             />
         );
@@ -35,7 +33,6 @@ export const ArticleCard = memo((props: ArticleCardProps) => {
             className={className}
             article={article}
             target={target}
-            index={index}
             handleClick={handleClick}
         />
     );

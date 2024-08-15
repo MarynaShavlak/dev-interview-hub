@@ -16,7 +16,7 @@ import { Skeleton } from '@/shared/ui/redesigned/Skeleton';
 import { BaseCardProps } from '../../ArticleCard';
 
 export const RedesignedGridViewCard = memo((props: BaseCardProps) => {
-    const { className, article, target, index, handleClick } = props;
+    const { className, article, target, handleClick } = props;
     const { t } = useTranslation('articles');
     const additionalClasses = getFlexClasses({ vStack: true, gap: '8' });
 

@@ -19,7 +19,7 @@ import { AppLink } from '@/shared/ui/redesigned/AppLink';
 import { getRouteArticleDetails } from '@/shared/const/router/router';
 
 export const RedesignedListViewCard = memo((props: BaseCardProps) => {
-    const { className, article, index, handleClick } = props;
+    const { className, article, handleClick } = props;
     const { t } = useTranslation('articles');
     const textBlock = article.blocks.find(
         (block) => block.type === ArticleBlockType.TEXT,

@@ -19,24 +19,16 @@ import defaultImage from '@/shared/assets/images/default-img-list.png';
 import { Card } from '@/shared/ui/deprecated/Card';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import cls from '../../ArticleCard.module.scss';
-import { ARTICLE_LIST_ITEM_LOCALSTORAGE_IDX } from '@/shared/const/localstorage';
 import { BaseCardProps } from '../../ArticleCard';
 
 export const DeprecatedListViewCard = memo((props: BaseCardProps) => {
-    const { className, article, index } = props;
+    const { className, article } = props;
     const { t } = useTranslation('articles');
     const textBlock = article.blocks.find(
         (block) => block.type === ArticleBlockType.TEXT,
     ) as ArticleTextBlock;
 
     const additionalClasses = getFlexClasses({ vStack: true, gap: '8' });
-
-    const handleSaveArticlesPageScrollPosition = () => {
-        localStorage.setItem(
-            ARTICLE_LIST_ITEM_LOCALSTORAGE_IDX,
-            JSON.stringify(index),
-        );
-    };
 
     return (
         <div
@@ -75,10 +67,7 @@ export const DeprecatedListViewCard = memo((props: BaseCardProps) => {
                 )}
                 <HStack justify="between" max>
                     <AppLink to={getRouteArticleDetails(article.id)}>
-                        <Button
-                            theme={ButtonTheme.OUTLINE}
-                            onClick={handleSaveArticlesPageScrollPosition}
-                        >
+                        <Button theme={ButtonTheme.OUTLINE}>
                             {t('Читати більше')}
                         </Button>
                     </AppLink>

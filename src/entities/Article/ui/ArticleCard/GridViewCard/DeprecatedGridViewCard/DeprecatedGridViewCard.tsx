@@ -15,10 +15,9 @@ import defaultImage from '@/shared/assets/images/default-img.png';
 import { AppLink } from '@/shared/ui/deprecated/AppLink';
 import { useHover } from '@/shared/lib/hooks/useHover/useHover';
 import { BaseCardProps } from '../../ArticleCard';
-import { ARTICLE_LIST_ITEM_LOCALSTORAGE_IDX } from '@/shared/const/localstorage';
 
 export const DeprecatedGridViewCard = memo((props: BaseCardProps) => {
-    const { className, article, target, index } = props;
+    const { className, article, target } = props;
     const { t } = useTranslation('articles');
     const [isHover, bindHover] = useHover();
     const additionalCardClasses = getFlexClasses({ vStack: true, gap: '8' });
@@ -28,13 +27,6 @@ export const DeprecatedGridViewCard = memo((props: BaseCardProps) => {
         [className || '', cls.GRID],
     );
 
-    const handleSaveArticlesPageScrollPosition = () => {
-        localStorage.setItem(
-            ARTICLE_LIST_ITEM_LOCALSTORAGE_IDX,
-            JSON.stringify(index),
-        );
-    };
-
     return (
         <AppLink
             {...bindHover}
@@ -42,7 +34,6 @@ export const DeprecatedGridViewCard = memo((props: BaseCardProps) => {
             target={target}
             to={getRouteArticleDetails(article.id)}
             className={itemClasses}
-            onClick={handleSaveArticlesPageScrollPosition}
         >
             <Card className={classNames(cls.card, {}, additionalCardClasses)}>
                 <div className={cls.imageWrapper}>
