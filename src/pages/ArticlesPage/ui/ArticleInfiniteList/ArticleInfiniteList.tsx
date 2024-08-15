@@ -21,7 +21,6 @@ import {
     useScrollStopArticleIndex,
 } from '../../model/selectors/articlesPageSelectors';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { fetchNextArticlesPage } from '../../model/services/fetchNextArticlesPage/fetchNextArticlesPage';
 import {
     Article,
     ArticleListSkeleton,
@@ -42,6 +41,11 @@ interface ArticleInfiniteListSkeletonProps {
 
 interface InfiniteArticleProps {
     view: ArticleView;
+    onInfiniteScroll: () => void;
+}
+
+interface ArticleInfiniteListProps {
+    onInfiniteScroll: () => void;
 }
 
 const ArticleInfiniteListSkeleton = memo(
@@ -62,7 +66,7 @@ const ArticleInfiniteListSkeleton = memo(
 );
 
 export const InfiniteArticlesListView = memo(
-    ({ view }: InfiniteArticleProps) => {
+    ({ view, onInfiniteScroll }: InfiniteArticleProps) => {
         const dispatch = useAppDispatch();
         const articles = useSelector(getArticles.selectAll);
         const isLoading = useArticlesPageIsLoading();
@@ -70,10 +74,6 @@ export const InfiniteArticlesListView = memo(
         const scrollStopArticleIndex = useScrollStopArticleIndex();
 
         const virtuosoRef = useRef<VirtuosoHandle>(null);
-
-        const onLoadNextPart = useCallback(() => {
-            dispatch(fetchNextArticlesPage());
-        }, [dispatch]);
 
         const handleSaveArticlesPageScrollPosition = useCallback(
             (index: number) => {
@@ -124,7 +124,7 @@ export const InfiniteArticlesListView = memo(
                 ref={virtuosoRef}
                 style={{ height: '100vh' }}
                 data={articles}
-                endReached={onLoadNextPart}
+                endReached={onInfiniteScroll}
                 itemContent={renderArticle}
                 useWindowScroll
                 initialTopMostItemIndex={scrollStopArticleIndex}
@@ -138,16 +138,12 @@ export const InfiniteArticlesListView = memo(
 );
 
 export const InfiniteArticlesGridView = memo(
-    ({ view }: InfiniteArticleProps) => {
+    ({ view, onInfiniteScroll }: InfiniteArticleProps) => {
         const dispatch = useAppDispatch();
         const articles = useSelector(getArticles.selectAll);
         const { setScrollStopArticleIndex } = useArticlesPageActions();
         const scrollStopArticleIndex = useScrollStopArticleIndex();
         const virtuosoGridRef = useVirtuosoGrid(scrollStopArticleIndex);
-
-        const onLoadNextPart = useCallback(() => {
-            dispatch(fetchNextArticlesPage());
-        }, [dispatch]);
 
         const handleSaveArticlesPageScrollPosition = useCallback(
             (index: number) => dispatch(setScrollStopArticleIndex(index)),
@@ -194,7 +190,7 @@ export const InfiniteArticlesGridView = memo(
                     Header,
                 }}
                 useWindowScroll
-                endReached={onLoadNextPart}
+                endReached={onInfiniteScroll}
                 data={articles}
                 totalCount={articles.length}
                 itemContent={renderArticle}
@@ -208,39 +204,57 @@ export const InfiniteArticlesGridView = memo(
     },
 );
 
-export const ArticleInfiniteList = memo(() => {
-    const articles = useSelector(getArticles.selectAll);
-    const isLoading = useArticlesPageIsLoading();
-    const view = useArticlesPageView();
-    const error = useArticlesPageError();
-    const { t } = useTranslation('articles');
-    const errorMessage = t('Помилка запиту статей');
+export const ArticleInfiniteList = memo(
+    ({ onInfiniteScroll }: ArticleInfiniteListProps) => {
+        const articles = useSelector(getArticles.selectAll);
+        const isLoading = useArticlesPageIsLoading();
+        const view = useArticlesPageView();
+        const error = useArticlesPageError();
+        const { t } = useTranslation('articles');
+        const errorMessage = t('Помилка запиту статей');
 
-    const isNoArticlesFounded = useNoArticlesFound(isLoading, articles);
+        const isNoArticlesFounded = useNoArticlesFound(isLoading, articles);
 
-    if (error) {
+        if (error) {
+            return (
+                <ToggleFeaturesComponent
+                    feature="isAppRedesigned"
+                    on={
+                        <Text
+                            text={errorMessage}
+                            align="center"
+                            variant="error"
+                        />
+                    }
+                    off={
+                        <TextDeprecated
+                            text={errorMessage}
+                            align={TextAlign.CENTER}
+                            theme={TextTheme.ERROR}
+                        />
+                    }
+                />
+            );
+        }
+
+        if (isNoArticlesFounded) {
+            return <NoArticlesFound view={view} />;
+        }
+
+        if (view === ArticleView.LIST) {
+            return (
+                <InfiniteArticlesListView
+                    view={view}
+                    onInfiniteScroll={onInfiniteScroll}
+                />
+            );
+        }
+
         return (
-            <ToggleFeaturesComponent
-                feature="isAppRedesigned"
-                on={<Text text={errorMessage} align="center" variant="error" />}
-                off={
-                    <TextDeprecated
-                        text={errorMessage}
-                        align={TextAlign.CENTER}
-                        theme={TextTheme.ERROR}
-                    />
-                }
+            <InfiniteArticlesGridView
+                view={view}
+                onInfiniteScroll={onInfiniteScroll}
             />
         );
-    }
-
-    if (isNoArticlesFounded) {
-        return <NoArticlesFound view={view} />;
-    }
-
-    if (view === ArticleView.LIST) {
-        return <InfiniteArticlesListView view={view} />;
-    }
-
-    return <InfiniteArticlesGridView view={view} />;
-});
+    },
+);

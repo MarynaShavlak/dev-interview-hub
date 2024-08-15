@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Article } from '../../../../../entities/Article/model/types/article';
+import { Article } from '@/entities/Article';
 
 export const useNoArticlesFound = (
     isLoading?: boolean,

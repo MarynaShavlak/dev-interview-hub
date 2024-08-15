@@ -3,8 +3,10 @@ import { ArticleInfiniteList } from '../../ArticleInfiniteList/ArticleInfiniteLi
 import cls from '../ArticlesPage.module.scss';
 import { FiltersContainer } from '../../FiltersContainer/FiltersContainer';
 import { ViewSelectorContainer } from '../../ViewSelectorContainer/ViewSelectorContainer';
+import { useArticleListFetcher } from '../../../lib/hooks/useArticlesPage/useArticleListFetcher';
 
 export const DeprecatedArticlesPage = ({ className }: ArticlesPageProps) => {
+    const { onLoadNextPart } = useArticleListFetcher();
     return (
         <div className={cls.page}>
             <div className={cls.controlsWrap}>
@@ -12,7 +14,7 @@ export const DeprecatedArticlesPage = ({ className }: ArticlesPageProps) => {
                 <ViewSelectorContainer className={cls.viewSelector} />
             </div>
             {/* <ArticleInfiniteList className={cls.list} /> */}
-            <ArticleInfiniteList />
+            <ArticleInfiniteList onInfiniteScroll={onLoadNextPart} />
         </div>
     );
 };

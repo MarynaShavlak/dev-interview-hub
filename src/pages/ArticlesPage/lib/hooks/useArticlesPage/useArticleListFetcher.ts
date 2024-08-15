@@ -17,7 +17,7 @@ import { fetchNextArticlesPage } from '../../../model/services/fetchNextArticles
  *
  */
 
-export const useArticlesPage = () => {
+export const useArticleListFetcher = () => {
     const dispatch = useAppDispatch();
     const [searchParams] = useSearchParams();
 
@@ -32,6 +32,5 @@ export const useArticlesPage = () => {
 
     return {
         onLoadNextPart,
-        searchParams,
     };
 };
