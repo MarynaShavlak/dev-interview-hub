@@ -4,6 +4,7 @@ import { ScrollToolbarSchema } from '../types/ScrollSchema';
 
 const initialState: ScrollToolbarSchema = {
     scrollStopArticleIndex: 0,
+    lastVisibleArticleIndex: 0,
 };
 
 export const scrollToolbarSlice = buildSlice({
@@ -12,6 +13,9 @@ export const scrollToolbarSlice = buildSlice({
     reducers: {
         setScrollStopArticleIndex(state, action: PayloadAction<number>) {
             state.scrollStopArticleIndex = action.payload;
+        },
+        setLastVisibleArticleIndex(state, action: PayloadAction<number>) {
+            state.lastVisibleArticleIndex = action.payload;
         },
         resetScrollStopArticleIndex(state) {
             state.scrollStopArticleIndex = 0;

@@ -1,4 +1,5 @@
-import React, { memo, useCallback, useEffect, useRef } from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { memo, useCallback, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { Virtuoso, VirtuosoGrid, VirtuosoHandle } from 'react-virtuoso';
@@ -33,6 +34,7 @@ import {
     getScrollStopArticleIndex,
     useScrollToolbarActions,
 } from '@/widgets/ScrollToolbar';
+import { ScrollToTopButton } from '@/features/scrollToTopButton';
 
 interface ArticleInfiniteListSkeletonProps {
     isLoading?: boolean;
@@ -62,38 +64,34 @@ const ArticleInfiniteListSkeleton = memo(
 
 export const InfiniteArticlesListView = memo(
     ({ view }: InfiniteArticleProps) => {
-        console.log('List....InfiniteArticlesListView');
         const dispatch = useAppDispatch();
         const articles = useSelector(getArticles.selectAll);
+
         const isLoading = useArticlesPageIsLoading();
         const { setScrollStopArticleIndex } = useScrollToolbarActions();
 
         const scrollStopArticleIndex = useSelector(getScrollStopArticleIndex);
-        const virtuosoRef = useRef<VirtuosoHandle>(null);
 
-        console.log(`scrollStopArticleIndex`, scrollStopArticleIndex);
+        const virtuosoRef = useRef<VirtuosoHandle>(null);
 
         const onLoadNextPart = useCallback(() => {
             dispatch(fetchNextArticlesPage());
         }, [dispatch]);
 
         const handleSaveArticlesPageScrollPosition = useCallback(
-            (index: number) => dispatch(setScrollStopArticleIndex(index)),
+            (index: number) => {
+                dispatch(setScrollStopArticleIndex(index));
+            },
             [dispatch, setScrollStopArticleIndex],
         );
 
-        const handleWindowScroll = useCallback(() => {
-            console.log('Window is scrolling...');
-            // dispatch(setScrollStopArticleIndex(0));
-        }, [dispatch, setScrollStopArticleIndex]);
-
-        useEffect(() => {
-            window.addEventListener('scroll', handleWindowScroll);
-
-            return () => {
-                window.removeEventListener('scroll', handleWindowScroll);
-            };
-        }, [handleWindowScroll]);
+        const handleClick = useCallback(() => {
+            virtuosoRef.current?.scrollToIndex({
+                index: 0,
+                align: 'start',
+                behavior: 'smooth',
+            });
+        }, []);
 
         const renderArticle = useCallback(
             (index: number, article: Article) => (
@@ -109,35 +107,23 @@ export const InfiniteArticlesListView = memo(
             ),
             [view, handleSaveArticlesPageScrollPosition],
         );
-        // useLayoutEffect(() => {
-        //     if (virtuosoRef.current) {
-        //         virtuosoRef.current.scrollToIndex({
-        //             index: scrollStopArticleIndex,
-        //             align: 'start',
-        //             behavior: 'smooth',
-        //         });
-        //         console.log('useLATOUTffect work');
-        //     }
-        // }, [scrollStopArticleIndex]);
 
-        // useEffect(() => {
-        //     console.log('...virtuosoRef.current', virtuosoRef.current);
-        //     if (virtuosoRef.current && scrollStopArticleIndex > 0) {
-        //         virtuosoRef.current.scrollToIndex({
-        //             index: scrollStopArticleIndex,
-        //             align: 'start',
-        //             behavior: 'smooth',
-        //         });
-        //         console.log('useffect work');
-        //     }
-        // }, [scrollStopArticleIndex]);
         const Footer = memo(() => (
             <ArticleInfiniteListSkeleton isLoading={isLoading} view={view} />
         ));
 
+        const Header = memo(() => (
+            <div className={cls.scrollButton}>
+                <ScrollToTopButton scrollToTop={handleClick} />
+            </div>
+        ));
+
+        if (!articles.length) {
+            return <ArticleListSkeleton view={view} />;
+        }
+
         return (
             <Virtuoso
-                key={`virtuoso-list-${scrollStopArticleIndex}`}
                 ref={virtuosoRef}
                 style={{ height: '100vh' }}
                 data={articles}
@@ -147,6 +133,7 @@ export const InfiniteArticlesListView = memo(
                 initialTopMostItemIndex={scrollStopArticleIndex}
                 components={{
                     Footer,
+                    Header,
                 }}
             />
         );
@@ -161,6 +148,7 @@ export const InfiniteArticlesGridView = memo(
         const { setScrollStopArticleIndex } = useScrollToolbarActions();
         const scrollStopArticleIndex = useSelector(getScrollStopArticleIndex);
         const virtuosoGridRef = useVirtuosoGrid(scrollStopArticleIndex);
+
         console.log(`scrollStopArticleIndex`, scrollStopArticleIndex);
 
         const onLoadNextPart = useCallback(() => {
@@ -171,6 +159,14 @@ export const InfiniteArticlesGridView = memo(
             (index: number) => dispatch(setScrollStopArticleIndex(index)),
             [dispatch, setScrollStopArticleIndex],
         );
+
+        const handleClick = useCallback(() => {
+            virtuosoGridRef.current?.scrollToIndex({
+                index: 0,
+                align: 'start',
+                behavior: 'smooth',
+            });
+        }, []);
 
         const renderArticle = useCallback(
             (index: number, article: Article) => (
@@ -190,11 +186,18 @@ export const InfiniteArticlesGridView = memo(
             <ArticleInfiniteListSkeleton view={view} />
         ));
 
+        const Header = memo(() => (
+            <div className={cls.scrollButton}>
+                <ScrollToTopButton scrollToTop={handleClick} />
+            </div>
+        ));
+
         return (
             <VirtuosoGrid
                 ref={virtuosoGridRef}
                 components={{
                     ScrollSeekPlaceholder,
+                    Header,
                 }}
                 useWindowScroll
                 endReached={onLoadNextPart}
@@ -212,7 +215,6 @@ export const InfiniteArticlesGridView = memo(
 );
 
 export const ArticleInfiniteList = memo(() => {
-    console.log('....render ArticleInfiniteList');
     const articles = useSelector(getArticles.selectAll);
     const isLoading = useArticlesPageIsLoading();
     const view = useArticlesPageView();

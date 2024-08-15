@@ -4,4 +4,7 @@ export {
     useScrollToolbarActions,
 } from './model/slices/scrollSlice';
 export type { ScrollToolbarSchema } from './model/types/ScrollSchema';
-export { getScrollStopArticleIndex } from './model/selectors/getScrollStopArticleIndex';
+export {
+    getScrollStopArticleIndex,
+    getLastVisibleArticleIndex,
+} from './model/selectors/getScrollStopArticleIndex';

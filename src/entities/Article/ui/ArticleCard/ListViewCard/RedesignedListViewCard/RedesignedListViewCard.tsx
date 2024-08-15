@@ -6,9 +6,7 @@ import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { ArticleBlockType } from '../../../../model/consts/articleConsts';
 import { ArticleTextBlock } from '../../../../model/types/article';
 import { ArticleViews } from '../../../ArticleViews/ArticleViews';
-import { getRouteArticleDetails } from '@/shared/const/router/router';
 import { AppImage } from '@/shared/ui/redesigned/AppImage';
-import { AppLink } from '@/shared/ui/redesigned/AppLink';
 import { Avatar } from '@/shared/ui/redesigned/Avatar';
 import { Button } from '@/shared/ui/redesigned/Button';
 import { Skeleton } from '@/shared/ui/redesigned/Skeleton';
@@ -17,6 +15,8 @@ import { Text } from '@/shared/ui/redesigned/Text';
 import { Card } from '@/shared/ui/redesigned/Card';
 import cls from '../../ArticleCard.module.scss';
 import { BaseCardProps } from '../../ArticleCard';
+import { AppLink } from '@/shared/ui/redesigned/AppLink';
+import { getRouteArticleDetails } from '@/shared/const/router/router';
 
 export const RedesignedListViewCard = memo((props: BaseCardProps) => {
     const { className, article, index, handleClick } = props;
