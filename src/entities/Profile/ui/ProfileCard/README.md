@@ -24,7 +24,7 @@ The **`RedesignedProfileCard`** component accepts the following props:
 
 
 ## Features
-1. **Adaptive Design**: Utilizes the `isAppRedesigned` feature flag to render either the redesigned or deprecated profile card, providing consistency with the application's design system.
+1. **Feature Toggling**: Utilizes the `isAppRedesigned` feature flag to render either the redesigned or deprecated profile card, providing consistency with the application's design system.
 2. **State Handling**: Manages different states such as loading and error conditions gracefully, ensuring that users receive appropriate feedback during interactions.
 3. **Editable Profile**: Offers various callbacks for updating profile information, enabling customization based on user actions and preferences.
 

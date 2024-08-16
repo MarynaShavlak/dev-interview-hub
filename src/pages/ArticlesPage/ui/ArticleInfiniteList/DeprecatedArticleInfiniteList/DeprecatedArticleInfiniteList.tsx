@@ -15,7 +15,7 @@ import {
     ArticleView,
     NoArticlesFound,
 } from '@/entities/Article';
-import cls from '../../ArticlesPage/ArticlesPage.module.scss';
+import cls from '../ArticleInfiniteList.module.scss';
 import { FiltersContainer } from '../../FiltersContainer/FiltersContainer';
 import { ViewSelectorContainer } from '../../ViewSelectorContainer/ViewSelectorContainer';
 import { ArticleInfiniteListError } from '../ArticleInfiniteListError/ArticleInfiniteListError';

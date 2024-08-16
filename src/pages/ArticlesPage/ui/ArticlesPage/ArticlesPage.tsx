@@ -7,7 +7,7 @@ export interface ArticlesPageProps {
     className?: string;
 }
 
-const ArticlesPage = (props: ArticlesPageProps) => {
+const ArticlesPage = ({ className }: ArticlesPageProps) => {
     return (
         <ToggleFeaturesComponent
             feature="isAppRedesigned"

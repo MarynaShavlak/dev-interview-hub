@@ -15,7 +15,7 @@ import {
     ArticleView,
     NoArticlesFound,
 } from '@/entities/Article';
-import cls from '../../ArticlesPage/ArticlesPage.module.scss';
+import cls from '../ArticleInfiniteList.module.scss';
 import { ScrollToTopButton } from '@/features/scrollToTopButton';
 import { ArticleInfiniteListError } from '../ArticleInfiniteListError/ArticleInfiniteListError';
 import { ArticleInfiniteListProps } from '../ArticleInfiniteList';
