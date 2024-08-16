@@ -20,7 +20,7 @@ The **`DeprecatedArticlesPage`** component accepts the following props:
 
 ## Features
 
-1. **Article List Display**: Utilizes the `ArticleInfiniteList` component to present articles in a scrollable list format, supporting lazy loading for efficient data fetching.
+1. **Article List Display**: Utilizes the `RedesignedArticleInfiniteList` component to present articles in a scrollable list format, supporting lazy loading for efficient data fetching.
 
 2.  **Layout Consistency**: Incorporates the `Page` component to maintain a consistent page layout, ensuring uniformity across various sections of the application.
 

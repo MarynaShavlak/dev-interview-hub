@@ -46,7 +46,7 @@ export const ArticlesPage = ({ className }: ArticlesPageProps) => {
                               onScrollEnd={onLoadNextPart}
                               className={className}
                       >
-                         <ArticleInfiniteList />
+                         <RedesignedArticleInfiniteList />
                          <ArticlePageGreeting />
                       </Page>
                    }

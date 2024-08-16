@@ -1,5 +1,4 @@
 import { memo, RefObject, useCallback, useRef } from 'react';
-import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import {
     Virtuoso,
@@ -7,12 +6,7 @@ import {
     VirtuosoGridHandle,
     VirtuosoHandle,
 } from 'react-virtuoso';
-import {
-    Text as TextDeprecated,
-    TextAlign,
-    TextTheme,
-} from '@/shared/ui/deprecated/Text';
-import { Text } from '@/shared/ui/redesigned/Text';
+
 import {
     getArticles,
     useArticlesPageActions,
@@ -39,20 +33,20 @@ import { ScrollToTopButton } from '@/features/scrollToTopButton';
 import { FiltersContainer } from '../FiltersContainer/FiltersContainer';
 import { ViewSelectorContainer } from '../ViewSelectorContainer/ViewSelectorContainer';
 import { Page } from '@/widgets/Page';
+import { ArticleInfiniteListError } from './ArticleInfiniteListError/ArticleInfiniteListError';
+import { ToggleFeaturesComponent } from '@/shared/lib/features';
 
 interface ArticleInfiniteListProps {
     onInfiniteScroll: () => void;
 }
 
-export const ArticleInfiniteList = memo(
+export const RedesignedArticleInfiniteList = memo(
     ({ onInfiniteScroll }: ArticleInfiniteListProps) => {
         const dispatch = useAppDispatch();
         const articles = useSelector(getArticles.selectAll);
         const isLoading = useArticlesPageIsLoading();
         const view = useArticlesPageView();
         const error = useArticlesPageError();
-        const { t } = useTranslation('articles');
-        const errorMessage = t('Помилка запиту статей');
         const isNoArticlesFounded = useNoArticlesFound(isLoading, articles);
 
         const { setScrollStopArticleIndex } = useArticlesPageActions();
@@ -124,7 +118,7 @@ export const ArticleInfiniteList = memo(
         });
 
         if (error) {
-            return <Text text={errorMessage} align="center" variant="error" />;
+            return <ArticleInfiniteListError />;
         }
 
         if (isNoArticlesFounded) {
@@ -179,8 +173,6 @@ export const DeprecatedArticleInfiniteList = memo(
         const isLoading = useArticlesPageIsLoading();
         const view = useArticlesPageView();
         const error = useArticlesPageError();
-        const { t } = useTranslation('articles');
-        const errorMessage = t('Помилка запиту статей');
         const isNoArticlesFounded = useNoArticlesFound(isLoading, articles);
 
         const { setScrollStopArticleIndex } = useArticlesPageActions();
@@ -228,13 +220,7 @@ export const DeprecatedArticleInfiniteList = memo(
         });
 
         if (error) {
-            return (
-                <TextDeprecated
-                    text={errorMessage}
-                    align={TextAlign.CENTER}
-                    theme={TextTheme.ERROR}
-                />
-            );
+            return <ArticleInfiniteListError />;
         }
 
         if (isNoArticlesFounded) {
@@ -304,6 +290,26 @@ export const DeprecatedArticleInfiniteList = memo(
                     />
                 )}
             </div>
+        );
+    },
+);
+
+export const ArticleInfiniteList = memo(
+    ({ onInfiniteScroll }: ArticleInfiniteListProps) => {
+        return (
+            <ToggleFeaturesComponent
+                feature="isAppRedesigned"
+                on={
+                    <RedesignedArticleInfiniteList
+                        onInfiniteScroll={onInfiniteScroll}
+                    />
+                }
+                off={
+                    <DeprecatedArticleInfiniteList
+                        onInfiniteScroll={onInfiniteScroll}
+                    />
+                }
+            />
         );
     },
 );

@@ -2,7 +2,7 @@ import { StickyContentLayout } from '@/shared/layouts/StickyContentLayout';
 import { ViewSelectorContainer } from '../../ViewSelectorContainer/ViewSelectorContainer';
 import { ArticlesPageProps } from '../ArticlesPage';
 import { FiltersContainer } from '../../FiltersContainer/FiltersContainer';
-import { ArticleInfiniteList } from '../../ArticleInfiniteList/ArticleInfiniteList';
+
 import { ArticlePageGreeting } from '@/features/articlePageGreeting';
 import {
     DynamicModuleLoader,
@@ -11,12 +11,13 @@ import {
 import { articlesPageReducer } from '../../../model/slices/articlesPageSlice';
 import { useArticleListFetcher } from '../../../lib/hooks/useArticlesPage/useArticleListFetcher';
 import cls from '../ArticlesPage.module.scss';
+import { ArticleInfiniteList } from '../../ArticleInfiniteList/RedesignedArticleInfiniteList';
 
 const reducers: ReducersList = {
     articlesPage: articlesPageReducer,
 };
 
-export const RedesignedArticlesPage = ({ className }: ArticlesPageProps) => {
+export const RedesignedArticlesPage = (props: ArticlesPageProps) => {
     const { onLoadNextPart } = useArticleListFetcher();
 
     return (

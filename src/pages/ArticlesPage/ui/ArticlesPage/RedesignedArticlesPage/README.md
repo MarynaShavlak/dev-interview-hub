@@ -22,7 +22,7 @@ The **`RedesignedArticlesPage`** component accepts the following props:
 
 1. **Modern Layout**: Utilizes the `StickyContentLayout` component to provide a sophisticated layout with sticky sidebars for the `ViewSelectorContainer` and `FiltersContainer`, enhancing user accessibility and interaction.
 
-2. **Article List Display**: Employs the `ArticleInfiniteList` component to present articles in a dynamic, scrollable list format with lazy loading, improving data fetching efficiency.
+2. **Article List Display**: Employs the `RedesignedArticleInfiniteList` component to present articles in a dynamic, scrollable list format with lazy loading, improving data fetching efficiency.
 
 3. **Enhanced Page Layout**: Uses the `Page` component to ensure a consistent and modern page layout, aligning with the new design standards.
 

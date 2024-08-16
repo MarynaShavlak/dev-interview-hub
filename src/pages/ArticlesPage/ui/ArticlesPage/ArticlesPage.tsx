@@ -7,12 +7,12 @@ export interface ArticlesPageProps {
     className?: string;
 }
 
-const ArticlesPage = ({ className }: ArticlesPageProps) => {
+const ArticlesPage = (props: ArticlesPageProps) => {
     return (
         <ToggleFeaturesComponent
             feature="isAppRedesigned"
-            on={<RedesignedArticlesPage className={className} />}
-            off={<DeprecatedArticlesPage className={className} />}
+            on={<RedesignedArticlesPage />}
+            off={<DeprecatedArticlesPage />}
         />
     );
 };
