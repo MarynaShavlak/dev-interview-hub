@@ -120,7 +120,6 @@ export const DeprecatedArticleInfiniteList = memo(
                 ) : (
                     <VirtuosoGrid
                         {...commonProps}
-                        totalCount={articles.length}
                         ref={gridRef}
                         components={{
                             ScrollSeekPlaceholder,
