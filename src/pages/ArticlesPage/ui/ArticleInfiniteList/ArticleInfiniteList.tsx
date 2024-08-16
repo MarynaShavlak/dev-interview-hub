@@ -7,7 +7,6 @@ import {
     VirtuosoGridHandle,
     VirtuosoHandle,
 } from 'react-virtuoso';
-import { ToggleFeaturesComponent } from '@/shared/lib/features';
 import {
     Text as TextDeprecated,
     TextAlign,
@@ -33,10 +32,12 @@ import {
     ArticleCard,
 } from '@/entities/Article';
 
-import cls from '../../../../entities/Article/ui/ArticleList/ArticleList.module.scss';
+import cls from '../ArticlesPage/ArticlesPage.module.scss';
 import { useVirtuosoGrid } from '../../lib/hooks/useVirtuosoGrid/useVirtuosoGrid';
 import { useNoArticlesFound } from '../../lib/hooks/useNoArticlesFound/useNoArticlesFound';
 import { ScrollToTopButton } from '@/features/scrollToTopButton';
+import { FiltersContainer } from '../FiltersContainer/FiltersContainer';
+import { ViewSelectorContainer } from '../ViewSelectorContainer/ViewSelectorContainer';
 
 interface ArticleInfiniteListProps {
     onInfiniteScroll: () => void;
@@ -122,25 +123,7 @@ export const ArticleInfiniteList = memo(
         });
 
         if (error) {
-            return (
-                <ToggleFeaturesComponent
-                    feature="isAppRedesigned"
-                    on={
-                        <Text
-                            text={errorMessage}
-                            align="center"
-                            variant="error"
-                        />
-                    }
-                    off={
-                        <TextDeprecated
-                            text={errorMessage}
-                            align={TextAlign.CENTER}
-                            theme={TextTheme.ERROR}
-                        />
-                    }
-                />
-            );
+            return <Text text={errorMessage} align="center" variant="error" />;
         }
 
         if (isNoArticlesFounded) {
@@ -184,6 +167,124 @@ export const ArticleInfiniteList = memo(
                     exit: (velocity) => Math.abs(velocity) < 30,
                 }}
             />
+        );
+    },
+);
+
+export const DeprecatedArticleInfiniteList = memo(
+    ({ onInfiniteScroll }: ArticleInfiniteListProps) => {
+        const dispatch = useAppDispatch();
+        const articles = useSelector(getArticles.selectAll);
+        const isLoading = useArticlesPageIsLoading();
+        const view = useArticlesPageView();
+        const error = useArticlesPageError();
+        const { t } = useTranslation('articles');
+        const errorMessage = t('Помилка запиту статей');
+        const isNoArticlesFounded = useNoArticlesFound(isLoading, articles);
+
+        const { setScrollStopArticleIndex } = useArticlesPageActions();
+        const scrollStopArticleIndex = useScrollStopArticleIndex();
+        console.log('scrollStopArticleIndex', scrollStopArticleIndex);
+        const virtuosoListDeprecatedRef = useRef<VirtuosoHandle>(null);
+        const virtuosoGridDeprecatedRef = useVirtuosoGrid(
+            scrollStopArticleIndex,
+        );
+
+        const handleSaveArticlesPageScrollPosition = useCallback(
+            (index: number) => () => {
+                dispatch(setScrollStopArticleIndex(index));
+            },
+            [dispatch, setScrollStopArticleIndex],
+        );
+
+        const renderArticle = useCallback(
+            (index: number, article: Article) => (
+                <ArticleCard
+                    article={article}
+                    view={view}
+                    key={article.id}
+                    handleClick={handleSaveArticlesPageScrollPosition(index)}
+                />
+            ),
+            [view, handleSaveArticlesPageScrollPosition],
+        );
+
+        const Footer = memo(() => {
+            if (isLoading) {
+                return <ArticleListSkeleton view={ArticleView.LIST} />;
+            }
+            return null;
+        });
+
+        const ScrollSeekPlaceholder = memo(() => (
+            <ArticleListSkeleton view={ArticleView.GRID} />
+        ));
+
+        const Header = memo(() => {
+            return (
+                <div className={cls.controlsWrap}>
+                    <FiltersContainer />
+                    <ViewSelectorContainer className={cls.viewSelector} />
+                </div>
+            );
+        });
+
+        if (error) {
+            return (
+                <TextDeprecated
+                    text={errorMessage}
+                    align={TextAlign.CENTER}
+                    theme={TextTheme.ERROR}
+                />
+            );
+        }
+
+        if (isNoArticlesFounded) {
+            return <NoArticlesFound view={view} />;
+        }
+
+        const commonProps = {
+            data: articles,
+            endReached: onInfiniteScroll,
+            itemContent: renderArticle,
+        };
+
+        return (
+            <div className={cls.ArticlesPageDeprecated}>
+                {view === ArticleView.LIST ? (
+                    <Virtuoso
+                        {...commonProps}
+                        ref={virtuosoListDeprecatedRef}
+                        style={{
+                            height: 'calc(100vh - 80px)',
+                        }}
+                        initialTopMostItemIndex={scrollStopArticleIndex}
+                        components={{
+                            Footer,
+                            Header,
+                        }}
+                    />
+                ) : (
+                    <VirtuosoGrid
+                        {...commonProps}
+                        totalCount={articles.length}
+                        ref={virtuosoGridDeprecatedRef}
+                        components={{
+                            ScrollSeekPlaceholder,
+                            Header,
+                        }}
+                        style={{
+                            height: '100%',
+                        }}
+                        itemContent={renderArticle}
+                        listClassName={cls.itemsWrapper}
+                        scrollSeekConfiguration={{
+                            enter: (velocity) => Math.abs(velocity) > 200,
+                            exit: (velocity) => Math.abs(velocity) < 30,
+                        }}
+                    />
+                )}
+            </div>
         );
     },
 );

@@ -22,7 +22,7 @@ import cls from '../../ArticleCard.module.scss';
 import { BaseCardProps } from '../../ArticleCard';
 
 export const DeprecatedListViewCard = memo((props: BaseCardProps) => {
-    const { className, article } = props;
+    const { className, article, handleClick } = props;
     const { t } = useTranslation('articles');
     const textBlock = article.blocks.find(
         (block) => block.type === ArticleBlockType.TEXT,
@@ -67,7 +67,10 @@ export const DeprecatedListViewCard = memo((props: BaseCardProps) => {
                 )}
                 <HStack justify="between" max>
                     <AppLink to={getRouteArticleDetails(article.id)}>
-                        <Button theme={ButtonTheme.OUTLINE}>
+                        <Button
+                            theme={ButtonTheme.OUTLINE}
+                            onClick={handleClick}
+                        >
                             {t('Читати більше')}
                         </Button>
                     </AppLink>

@@ -1,19 +1,26 @@
-.ArticlesPage {
-    min-height: 100%;
-    .list {
-        margin-top: 30px;
-    }
+.ArticlesPageDeprecated {
+    width: 100%;
+
     .controlsWrap {
         position: relative;
+        margin-bottom: 30px;
+        padding-left: 40px;
+        padding-top: 20px;
+        width: calc(100% - 40px);
     }
     .viewSelector {
         position:absolute;
-        top:0;
+        top:20px;
         right: 0;
     }
+    .itemsWrapper {
+        padding-left: 40px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 30px;
+        height: calc(100vh - 290px)
+    }
 }
-
-
 
 
 .FiltersSkeletonContainer {
@@ -23,4 +30,22 @@
     width:88px;
     height: 48px;
 }
+
+.ArticlesPageRedesigned {
+    .scrollButton {
+        width:32px;
+        height:32px;
+        position: fixed;
+        top:  calc(50% + 23px);
+        right: 34px;
+        z-index: 400;
+    }
+
+    .itemsWrapper {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 30px;
+    }
+}
+
 

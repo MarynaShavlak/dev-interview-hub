@@ -10,18 +10,13 @@ import {
 } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { articlesPageReducer } from '../../../model/slices/articlesPageSlice';
 import { useArticleListFetcher } from '../../../lib/hooks/useArticlesPage/useArticleListFetcher';
+import cls from '../ArticlesPage.module.scss';
 
 const reducers: ReducersList = {
     articlesPage: articlesPageReducer,
 };
 
 export const RedesignedArticlesPage = ({ className }: ArticlesPageProps) => {
-    // const dispatch = useAppDispatch();
-    // const [searchParams] = useSearchParams();
-    //
-    // useInitialEffect(() => {
-    //     dispatch(initArticlesPage(searchParams));
-    // });
     const { onLoadNextPart } = useArticleListFetcher();
 
     return (
@@ -30,7 +25,10 @@ export const RedesignedArticlesPage = ({ className }: ArticlesPageProps) => {
                 left={<ViewSelectorContainer />}
                 right={<FiltersContainer />}
                 content={
-                    <main className={className} data-testid="ArticlesPage">
+                    <main
+                        className={cls.ArticlesPageRedesigned}
+                        data-testid="ArticlesPage"
+                    >
                         <ArticleInfiniteList
                             onInfiniteScroll={onLoadNextPart}
                         />

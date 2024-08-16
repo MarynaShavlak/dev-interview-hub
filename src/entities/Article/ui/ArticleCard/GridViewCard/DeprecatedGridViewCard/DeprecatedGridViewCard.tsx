@@ -17,7 +17,7 @@ import { useHover } from '@/shared/lib/hooks/useHover/useHover';
 import { BaseCardProps } from '../../ArticleCard';
 
 export const DeprecatedGridViewCard = memo((props: BaseCardProps) => {
-    const { className, article, target } = props;
+    const { className, article, target, handleClick } = props;
     const { t } = useTranslation('articles');
     const [isHover, bindHover] = useHover();
     const additionalCardClasses = getFlexClasses({ vStack: true, gap: '8' });
@@ -34,6 +34,7 @@ export const DeprecatedGridViewCard = memo((props: BaseCardProps) => {
             target={target}
             to={getRouteArticleDetails(article.id)}
             className={itemClasses}
+            onClick={handleClick}
         >
             <Card className={classNames(cls.card, {}, additionalCardClasses)}>
                 <div className={cls.imageWrapper}>

@@ -1,21 +1,36 @@
 import { ArticlesPageProps } from '../ArticlesPage';
-import { ArticleInfiniteList } from '../../ArticleInfiniteList/ArticleInfiniteList';
-import cls from '../ArticlesPage.module.scss';
-import { FiltersContainer } from '../../FiltersContainer/FiltersContainer';
-import { ViewSelectorContainer } from '../../ViewSelectorContainer/ViewSelectorContainer';
 import { useArticleListFetcher } from '../../../lib/hooks/useArticlesPage/useArticleListFetcher';
+import {
+    DynamicModuleLoader,
+    ReducersList,
+} from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
+import { articlesPageReducer } from '../../../model/slices/articlesPageSlice';
+import { DeprecatedArticleInfiniteList } from '../../ArticleInfiniteList/ArticleInfiniteList';
+import { ArticlePageGreeting } from '@/features/articlePageGreeting';
+// import cls from '../ArticlesPage.module.scss';
 
+const reducers: ReducersList = {
+    articlesPage: articlesPageReducer,
+};
 export const DeprecatedArticlesPage = ({ className }: ArticlesPageProps) => {
     const { onLoadNextPart } = useArticleListFetcher();
     return (
-        <div className={cls.page}>
-            <div className={cls.controlsWrap}>
-                <FiltersContainer />
-                <ViewSelectorContainer className={cls.viewSelector} />
-            </div>
-            {/* <ArticleInfiniteList className={cls.list} /> */}
-            <ArticleInfiniteList onInfiniteScroll={onLoadNextPart} />
-        </div>
+        <DynamicModuleLoader reducers={reducers} removeAfterUnmount={false}>
+            <DeprecatedArticleInfiniteList onInfiniteScroll={onLoadNextPart} />
+            <ArticlePageGreeting />
+
+            {/*        onInfiniteScroll={onLoadNextPart} */}
+            {/*    />
+            {/* <div className={cls.page}> */}
+            {/*    <div className={cls.controlsWrap}> */}
+            {/*        <FiltersContainer /> */}
+            {/*        <ViewSelectorContainer className={cls.viewSelector} /> */}
+            {/*    </div> */}
+            {/*    <DeprecatedArticleInfiniteList */}
+            {/*        onInfiniteScroll={onLoadNextPart} */}
+            {/*    /> */}
+            {/* </div> */}
+        </DynamicModuleLoader>
     );
 };
 

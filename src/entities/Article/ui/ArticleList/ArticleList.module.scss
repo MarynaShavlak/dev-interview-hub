@@ -6,23 +6,4 @@
     }
 }
 
-.itemsWrapper {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 30px;
-}
 
-//.wrap {
-//    position: relative;
-//}
-
-
-.scrollButton {
-    width:32px;
-    height:32px;
-    position: fixed;
-    top:  calc(50% + 23px);
-    right: 34px;
-    z-index: 400;
-    //background-color: red;
-}

@@ -47,7 +47,8 @@
     }
 
     &.LIST {
-        width: 100%;
+        width: calc(100% - 40px);
+        padding-left: 40px;
         margin-bottom: 16px;
 
         .img {
