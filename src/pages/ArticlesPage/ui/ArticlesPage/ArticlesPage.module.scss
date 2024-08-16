@@ -29,7 +29,9 @@
         width: calc(100% - 40px);
 
         .viewSelector {
-            top:0px;
+            position:absolute;
+            top:0;
+            right: 0;
         }
     }
 }

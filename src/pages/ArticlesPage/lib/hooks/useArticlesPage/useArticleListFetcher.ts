@@ -21,7 +21,6 @@ export const useArticleListFetcher = () => {
     const dispatch = useAppDispatch();
     const [searchParams] = useSearchParams();
 
-    // Initialize articles page on component mount
     useInitialEffect(() => {
         dispatch(initArticlesPage(searchParams));
     });

@@ -11,7 +11,7 @@ import {
 import { articlesPageReducer } from '../../../model/slices/articlesPageSlice';
 import { useArticleListFetcher } from '../../../lib/hooks/useArticlesPage/useArticleListFetcher';
 import cls from '../ArticlesPage.module.scss';
-import { ArticleInfiniteList } from '../../ArticleInfiniteList/RedesignedArticleInfiniteList';
+import { ArticleInfiniteList } from '../../ArticleInfiniteList/ArticleInfiniteList';
 
 const reducers: ReducersList = {
     articlesPage: articlesPageReducer,

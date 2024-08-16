@@ -5,7 +5,7 @@ import {
     ReducersList,
 } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { articlesPageReducer } from '../../../model/slices/articlesPageSlice';
-import { ArticleInfiniteList } from '../../ArticleInfiniteList/RedesignedArticleInfiniteList';
+import { ArticleInfiniteList } from '../../ArticleInfiniteList/ArticleInfiniteList';
 import { ArticlePageGreeting } from '@/features/articlePageGreeting';
 
 const reducers: ReducersList = {
