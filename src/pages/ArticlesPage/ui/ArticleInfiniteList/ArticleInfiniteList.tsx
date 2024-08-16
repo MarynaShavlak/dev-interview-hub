@@ -38,9 +38,7 @@ import { useNoArticlesFound } from '../../lib/hooks/useNoArticlesFound/useNoArti
 import { ScrollToTopButton } from '@/features/scrollToTopButton';
 import { FiltersContainer } from '../FiltersContainer/FiltersContainer';
 import { ViewSelectorContainer } from '../ViewSelectorContainer/ViewSelectorContainer';
-import { Skeleton } from '@/shared/ui/deprecated/Skeleton';
-import { Card } from '@/shared/ui/deprecated/Card';
-import { HStack } from '@/shared/ui/redesigned/Stack';
+import { Page } from '@/widgets/Page';
 
 interface ArticleInfiniteListProps {
     onInfiniteScroll: () => void;
@@ -187,11 +185,8 @@ export const DeprecatedArticleInfiniteList = memo(
 
         const { setScrollStopArticleIndex } = useArticlesPageActions();
         const scrollStopArticleIndex = useScrollStopArticleIndex();
-        console.log('scrollStopArticleIndex', scrollStopArticleIndex);
         const virtuosoListRef = useRef<VirtuosoHandle>(null);
         const virtuosoGridRef = useVirtuosoGrid(scrollStopArticleIndex);
-
-        console.log('ref', virtuosoGridRef);
 
         const handleSaveArticlesPageScrollPosition = useCallback(
             (index: number) => () => {
@@ -231,23 +226,6 @@ export const DeprecatedArticleInfiniteList = memo(
                 </div>
             );
         });
-        if (virtuosoGridRef.current && !isLoading) {
-            return (
-                <div className={cls.skeletonContainer}>
-                    <Card>
-                        <HStack max justify="between">
-                            <Skeleton width="434px" height="31px" />
-                            <Skeleton width="48px" height="31px" />
-                        </HStack>
-
-                        <Skeleton width="100%" height="54px" />
-                        <Skeleton width="80%" height="56px" />
-                    </Card>
-
-                    <ArticleListSkeleton view={ArticleView.GRID} />
-                </div>
-            );
-        }
 
         if (error) {
             return (
@@ -268,10 +246,15 @@ export const DeprecatedArticleInfiniteList = memo(
             endReached: onInfiniteScroll,
             itemContent: renderArticle,
         };
+        const isGridViewLayoutFirstRendering =
+            ArticleView.GRID && virtuosoGridRef.current && isLoading;
+        const isGridViewLayoutSwitching = !virtuosoGridRef.current && isLoading;
+        const shouldShowGrdSkeleton =
+            isGridViewLayoutFirstRendering || isGridViewLayoutSwitching;
 
-        return (
-            <div className={cls.ArticlesPageDeprecated}>
-                {view === ArticleView.LIST ? (
+        if (view === ArticleView.LIST) {
+            return (
+                <div className={cls.ArticlesPageDeprecated}>
                     <Virtuoso
                         {...commonProps}
                         ref={virtuosoListRef}
@@ -284,6 +267,22 @@ export const DeprecatedArticleInfiniteList = memo(
                             Header,
                         }}
                     />
+                </div>
+            );
+        }
+
+        return (
+            <div className={cls.ArticlesPageDeprecated}>
+                {shouldShowGrdSkeleton ? (
+                    <Page className={cls.GridPageSkeleton}>
+                        <div className={cls.controlsSkeletonWrap}>
+                            <FiltersContainer />
+                            <ViewSelectorContainer
+                                className={cls.viewSelector}
+                            />
+                        </div>
+                        <ArticleListSkeleton view={ArticleView.GRID} />
+                    </Page>
                 ) : (
                     <VirtuosoGrid
                         {...commonProps}

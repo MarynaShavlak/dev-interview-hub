@@ -21,13 +21,25 @@
         height: calc(100vh - 290px)
     }
 
+//    .GridPageSkeleton {
+//    padding-left: 40px;
+//}
+    .controlsSkeletonWrap {
+        position: relative;
+        margin-bottom: 30px;
+        width: calc(100% - 40px);
+        .viewSelector {
+            top:0px;
+        }
+    }
+
 }
 
 .skeletonContainer {
     width: 100%;
-    padding-left: 40px;
-    padding-right: 40px;
-    padding-top: 20px;
+    //padding-left: 40px;
+    //padding-right: 40px;
+    //padding-top: 20px;
 }
 
 
@@ -57,4 +69,17 @@
     }
 }
 
+
+
+
+
+
+.PageSkeleton {
+    padding-left: 40px;
+    padding-top: 20px;
+    padding-right: 40px;
+    height: calc(100vh - var(--navbar-height));
+    overflow-y: auto;
+    flex-shrink: 100;
+}
 

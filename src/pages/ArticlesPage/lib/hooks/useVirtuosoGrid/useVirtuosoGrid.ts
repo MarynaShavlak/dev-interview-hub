@@ -17,7 +17,7 @@ export const useVirtuosoGrid = (scrollStopArticleIndex: number) => {
                     'VirtuosoGridHandle ref is not available. Ensure the VirtuosoGrid component is mounted before attempting to scroll.',
                 );
             }
-        }, 100);
+        }, 0);
 
         return () => clearTimeout(timeoutId);
     }, [scrollStopArticleIndex]);
