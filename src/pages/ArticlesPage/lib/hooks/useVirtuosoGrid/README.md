@@ -8,12 +8,12 @@ The `useVirtuosoGrid` hook is a custom React hook designed to manage the scroll 
 
 ## Returns
 
-- **`virtuosoGridRef`** (`React.RefObject<VirtuosoGridHandle>`): A reference to the Virtuoso grid handle. This reference can be used to interact with the grid component, such as controlling its scroll behavior.
+- **`gridRef`** (`React.RefObject<VirtuosoGridHandle>`): A reference to the Virtuoso grid handle. This reference can be used to interact with the grid component, such as controlling its scroll behavior.
 
 ## Internal Behavior
 
 1. **Reference**:
-    - **`virtuosoGridRef`**: A `React.RefObject` for accessing the Virtuoso grid handle. This reference allows you to control the grid's scroll behavior.
+    - **`gridRef`**: A `React.RefObject` for accessing the Virtuoso grid handle. This reference allows you to control the grid's scroll behavior.
 
 2. **Effect**:
     - **`useEffect`**: Sets up a side effect that triggers a scroll to the specified index when `scrollStopArticleIndex` changes. The scrolling is performed smoothly using `scrollToIndex` with a slight delay to ensure the grid is fully rendered.
@@ -27,10 +27,10 @@ The `useVirtuosoGrid` hook is a custom React hook designed to manage the scroll 
 import { useVirtuosoGrid } from '@/features/scroll/useVirtuosoGrid';
 
 const ArticleGridView = ({ scrollStopArticleIndex }: { scrollStopArticleIndex: number }) => {
-    const virtuosoGridRef = useVirtuosoGrid(scrollStopArticleIndex);
+    const gridRef = useVirtuosoGrid(scrollStopArticleIndex);
 
     return (
-        <div ref={virtuosoGridRef} style={{ height: '500px', overflowY: 'auto' }}>
+        <div ref={gridRef} style={{ height: '500px', overflowY: 'auto' }}>
             {/* Render the Virtuoso grid component */}
         </div>
     );

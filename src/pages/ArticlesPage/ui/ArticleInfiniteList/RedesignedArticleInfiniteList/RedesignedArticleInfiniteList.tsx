@@ -20,6 +20,8 @@ import { ScrollToTopButton } from '@/features/scrollToTopButton';
 import { ArticleInfiniteListError } from '../ArticleInfiniteListError/ArticleInfiniteListError';
 import { ArticleInfiniteListProps } from '../ArticleInfiniteList';
 import { useArticlesScroll } from '../../../lib/hooks/useArticlesScroll/useArticlesScroll';
+import { Page } from '@/widgets/Page';
+import { useGridSkeletonVisibility } from '../../../lib/hooks/useGridSkeletonVisibility/useGridSkeletonVisibility';
 
 export const RedesignedArticleInfiniteList = memo(
     ({ onInfiniteScroll }: ArticleInfiniteListProps) => {
@@ -30,13 +32,15 @@ export const RedesignedArticleInfiniteList = memo(
         const isNoArticlesFounded = useNoArticlesFound(isLoading, articles);
 
         const {
-            virtuosoListRef,
-            virtuosoGridRef,
+            listRef,
+            gridRef,
             handleSaveArticlesPageScrollPosition,
             scrollStopArticleIndex,
             scrollVirtuosoGridToTop,
             scrollVirtuosoListToTop,
         } = useArticlesScroll();
+
+        const shouldShowGridSkeleton = useGridSkeletonVisibility();
 
         const renderArticle = useCallback(
             (index: number, article: Article) => (
@@ -93,7 +97,7 @@ export const RedesignedArticleInfiniteList = memo(
             return (
                 <Virtuoso
                     {...commonProps}
-                    ref={virtuosoListRef}
+                    ref={listRef}
                     style={{ height: '100vh' }}
                     initialTopMostItemIndex={scrollStopArticleIndex}
                     components={{
@@ -105,20 +109,28 @@ export const RedesignedArticleInfiniteList = memo(
         }
 
         return (
-            <VirtuosoGrid
-                {...commonProps}
-                ref={virtuosoGridRef}
-                components={{
-                    ScrollSeekPlaceholder,
-                    Header,
-                }}
-                itemContent={renderArticle}
-                listClassName={cls.itemsWrapper}
-                scrollSeekConfiguration={{
-                    enter: (velocity) => Math.abs(velocity) > 200,
-                    exit: (velocity) => Math.abs(velocity) < 30,
-                }}
-            />
+            // eslint-disable-next-line react/jsx-no-useless-fragment
+            <>
+                {shouldShowGridSkeleton ? (
+                    <Page>
+                        <ArticleListSkeleton view={ArticleView.GRID} />
+                    </Page>
+                ) : (
+                    <VirtuosoGrid
+                        {...commonProps}
+                        ref={gridRef}
+                        components={{
+                            ScrollSeekPlaceholder,
+                            Header,
+                        }}
+                        listClassName={cls.itemsWrapper}
+                        scrollSeekConfiguration={{
+                            enter: (velocity) => Math.abs(velocity) > 200,
+                            exit: (velocity) => Math.abs(velocity) < 30,
+                        }}
+                    />
+                )}
+            </>
         );
     },
 );

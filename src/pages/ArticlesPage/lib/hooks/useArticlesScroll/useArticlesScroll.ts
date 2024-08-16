@@ -8,15 +8,15 @@ import { useScrollStopArticleIndex } from '../../../model/selectors/articlesPage
  * Custom hook for managing scroll position and behavior in an articles list or grid view.
  *
  * @returns {{
- *    virtuosoListRef: React.RefObject<VirtuosoHandle>;
- *    virtuosoGridRef: React.RefObject<VirtuosoGridHandle>;
+ *    listRef: React.RefObject<VirtuosoHandle>;
+ *    gridRef: React.RefObject<VirtuosoGridHandle>;
  *    handleSaveArticlesPageScrollPosition: (index: number) => () => void;
  *    scrollStopArticleIndex: number;
  *    scrollVirtuosoGridToTop: () => void;
  *    scrollVirtuosoListToTop: () => void;
  *  }} An object with the following properties:
- *  *  * virtuosoListRef: A reference to the Virtuoso list handle for controlling list scroll behavior.
- *  *  * virtuosoGridRef: A reference to the Virtuoso grid handle for controlling grid scroll behavior.
+ *  *  * listRef: A reference to the Virtuoso list handle for controlling list scroll behavior.
+ *  *  * gridRef: A reference to the Virtuoso grid handle for controlling grid scroll behavior.
  *  *  * handleSaveArticlesPageScrollPosition: Function to save the current article index as the scroll stop position.
  *  *  * scrollStopArticleIndex: The article index where the scroll stopped.
  *  *  * scrollVirtuosoGridToTop: Function to smoothly scroll the virtuoso grid to the top.
@@ -25,9 +25,9 @@ import { useScrollStopArticleIndex } from '../../../model/selectors/articlesPage
  *  */
 
 export const useArticlesScroll = () => {
-    const virtuosoListRef = useRef<VirtuosoHandle>(null);
+    const listRef = useRef<VirtuosoHandle>(null);
     const scrollStopArticleIndex = useScrollStopArticleIndex();
-    const virtuosoGridRef = useVirtuosoGrid(scrollStopArticleIndex);
+    const gridRef = useVirtuosoGrid(scrollStopArticleIndex);
 
     const { setScrollStopArticleIndex } = useArticlesPageActions();
 
@@ -40,27 +40,27 @@ export const useArticlesScroll = () => {
 
     // Scroll to the top of the virtuoso grid
     const scrollVirtuosoGridToTop = useCallback(() => {
-        if (virtuosoGridRef.current) {
-            virtuosoGridRef.current.scrollToIndex({
+        if (gridRef.current) {
+            gridRef.current.scrollToIndex({
                 index: 0,
                 behavior: 'smooth',
             });
         }
-    }, [virtuosoGridRef]);
+    }, [gridRef]);
 
     // Scroll to the top of the virtuoso list
     const scrollVirtuosoListToTop = useCallback(() => {
-        if (virtuosoListRef.current) {
-            virtuosoListRef.current.scrollToIndex({
+        if (listRef.current) {
+            listRef.current.scrollToIndex({
                 index: 0,
                 behavior: 'smooth',
             });
         }
-    }, [virtuosoListRef]);
+    }, [listRef]);
 
     return {
-        virtuosoListRef,
-        virtuosoGridRef,
+        listRef,
+        gridRef,
         handleSaveArticlesPageScrollPosition,
         scrollStopArticleIndex,
         scrollVirtuosoGridToTop,

@@ -22,6 +22,7 @@ import { ArticleInfiniteListError } from '../ArticleInfiniteListError/ArticleInf
 import { Page } from '@/widgets/Page';
 import { ArticleInfiniteListProps } from '../ArticleInfiniteList';
 import { useArticlesScroll } from '../../../lib/hooks/useArticlesScroll/useArticlesScroll';
+import { useGridSkeletonVisibility } from '../../../lib/hooks/useGridSkeletonVisibility/useGridSkeletonVisibility';
 
 export const DeprecatedArticleInfiniteList = memo(
     ({ onInfiniteScroll }: ArticleInfiniteListProps) => {
@@ -31,11 +32,13 @@ export const DeprecatedArticleInfiniteList = memo(
         const error = useArticlesPageError();
         const isNoArticlesFounded = useNoArticlesFound(isLoading, articles);
         const {
-            virtuosoListRef,
-            virtuosoGridRef,
+            listRef,
+            gridRef,
             handleSaveArticlesPageScrollPosition,
             scrollStopArticleIndex,
         } = useArticlesScroll();
+
+        const shouldShowGridSkeleton = useGridSkeletonVisibility();
 
         const renderArticle = useCallback(
             (index: number, article: Article) => (
@@ -82,18 +85,13 @@ export const DeprecatedArticleInfiniteList = memo(
             endReached: onInfiniteScroll,
             itemContent: renderArticle,
         };
-        const isGridViewLayoutFirstRendering =
-            ArticleView.GRID && virtuosoGridRef.current && isLoading;
-        const isGridViewLayoutSwitching = !virtuosoGridRef.current && isLoading;
-        const shouldShowGrdSkeleton =
-            isGridViewLayoutFirstRendering || isGridViewLayoutSwitching;
 
         if (view === ArticleView.LIST) {
             return (
                 <div className={cls.ArticlesPageDeprecated}>
                     <Virtuoso
                         {...commonProps}
-                        ref={virtuosoListRef}
+                        ref={listRef}
                         style={{
                             height: 'calc(100vh - 80px)',
                         }}
@@ -109,8 +107,8 @@ export const DeprecatedArticleInfiniteList = memo(
 
         return (
             <div className={cls.ArticlesPageDeprecated}>
-                {shouldShowGrdSkeleton ? (
-                    <Page className={cls.GridPageSkeleton}>
+                {shouldShowGridSkeleton ? (
+                    <Page>
                         <div className={cls.controlsSkeletonWrap}>
                             <FiltersContainer />
                             <ViewSelectorContainer
@@ -123,7 +121,7 @@ export const DeprecatedArticleInfiniteList = memo(
                     <VirtuosoGrid
                         {...commonProps}
                         totalCount={articles.length}
-                        ref={virtuosoGridRef}
+                        ref={gridRef}
                         components={{
                             ScrollSeekPlaceholder,
                             Header,

@@ -15,12 +15,12 @@ import { VirtuosoGridHandle } from 'react-virtuoso';
  */
 
 export const useVirtuosoGrid = (scrollStopArticleIndex: number) => {
-    const virtuosoGridRef = useRef<VirtuosoGridHandle>(null);
+    const gridRef = useRef<VirtuosoGridHandle>(null);
 
     useEffect(() => {
         const timeoutId = setTimeout(() => {
-            if (virtuosoGridRef.current) {
-                virtuosoGridRef.current.scrollToIndex({
+            if (gridRef.current) {
+                gridRef.current.scrollToIndex({
                     index: scrollStopArticleIndex,
                     align: 'start',
                     behavior: 'smooth',
@@ -31,5 +31,5 @@ export const useVirtuosoGrid = (scrollStopArticleIndex: number) => {
         return () => clearTimeout(timeoutId);
     }, [scrollStopArticleIndex]);
 
-    return virtuosoGridRef;
+    return gridRef;
 };

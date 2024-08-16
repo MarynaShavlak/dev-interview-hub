@@ -12,8 +12,8 @@ An object with the following properties:
 
 | Property                                    | Type                                  | Description                                                                                       |
 |---------------------------------------------|---------------------------------------|---------------------------------------------------------------------------------------------------|
-| `virtuosoListRef`                          | `React.RefObject<VirtuosoHandle>`     | A reference to the Virtuoso list handle for controlling list scroll behavior.                     |
-| `virtuosoGridRef`                          | `React.RefObject<VirtuosoGridHandle>` | A reference to the Virtuoso grid handle for controlling grid scroll behavior.                     |
+| `listRef`                          | `React.RefObject<VirtuosoHandle>`     | A reference to the Virtuoso list handle for controlling list scroll behavior.                     |
+| `gridRef`                          | `React.RefObject<VirtuosoGridHandle>` | A reference to the Virtuoso grid handle for controlling grid scroll behavior.                     |
 | `handleSaveArticlesPageScrollPosition`      | `(index: number) => () => void`       | Function to save the current article index as the scroll stop position.                           |
 | `scrollStopArticleIndex`                    | `number`                              | The article index where the scroll stopped.                                                       |
 | `scrollVirtuosoGridToTop`                   | `() => void`                          | Function to smoothly scroll the Virtuoso grid to the top.                                          |
@@ -22,8 +22,8 @@ An object with the following properties:
 ## Internal Behavior
 
 1. **References**:
-    - **`virtuosoListRef`**: A reference to the Virtuoso list handle for managing the scroll behavior of a list view.
-    - **`virtuosoGridRef`**: A reference to the Virtuoso grid handle for managing the scroll behavior of a grid view.
+    - **`listRef`**: A reference to the Virtuoso list handle for managing the scroll behavior of a list view.
+    - **`gridRef`**: A reference to the Virtuoso grid handle for managing the scroll behavior of a grid view.
 
 2. **State Management**:
     - **`useScrollStopArticleIndex`**: Retrieves the index of the article where scrolling was last stopped.
@@ -43,8 +43,8 @@ import { useArticlesScroll } from '@/features/scroll/useArticlesScroll';
 
 const ArticleView = () => {
     const {
-        virtuosoListRef,
-        virtuosoGridRef,
+        listRef,
+        gridRef,
         handleSaveArticlesPageScrollPosition,
         scrollStopArticleIndex,
         scrollVirtuosoGridToTop,
@@ -56,10 +56,10 @@ const ArticleView = () => {
         <div>
             <button onClick={scrollVirtuosoListToTop}>Scroll List to Top</button>
             <button onClick={scrollVirtuosoGridToTop}>Scroll Grid to Top</button>
-            <div ref={virtuosoListRef} style={{ height: '500px', overflowY: 'auto' }}>
+            <div ref={listRef} style={{ height: '500px', overflowY: 'auto' }}>
                 {/* Render the Virtuoso list component */}
             </div>
-            <div ref={virtuosoGridRef} style={{ height: '500px', overflowY: 'auto' }}>
+            <div ref={gridRef} style={{ height: '500px', overflowY: 'auto' }}>
                 {/* Render the Virtuoso grid component */}
             </div>
         </div>
