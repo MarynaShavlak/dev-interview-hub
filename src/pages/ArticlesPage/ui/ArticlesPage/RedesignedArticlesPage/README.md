@@ -20,16 +20,13 @@ The **`RedesignedArticlesPage`** component accepts the following props:
 
 ## Features
 
-1. **Modern Layout**: Utilizes the `StickyContentLayout` component to provide a sophisticated layout with sticky sidebars for the `ViewSelectorContainer` and `FiltersContainer`, enhancing user accessibility and interaction.
-
-2. **Article List Display**: Employs the `RedesignedArticleInfiniteList` component to present articles in a dynamic, scrollable list format with lazy loading, improving data fetching efficiency.
-
-3. **Enhanced Page Layout**: Uses the `Page` component to ensure a consistent and modern page layout, aligning with the new design standards.
-
-4. **User Interface Controls**: Incorporates `FiltersContainer` and `ViewSelectorContainer` components for users to easily filter and select different viewing options for articles, offering greater flexibility and control.
-
-5. **Performance Optimization**: Optimized for performance with efficient scrolling and data fetching mechanisms, providing a smooth and responsive user experience.
+1. **Modern Layout**: Utilizes the `StickyContentLayout` component to create a sophisticated layout, featuring sticky sidebars for the `ViewSelectorContainer` and `FiltersContainer`. This design enhances accessibility and ensures that essential controls remain visible as users scroll through the content.
+2. **Dynamic Article List Display**: Utilizes the `ArticleInfiniteList` component to render a dynamically loaded, scrollable list of articles. This feature is crucial for efficiently managing large volumes of content, providing users with a seamless browsing experience through lazy loading and optimized scrolling.
+3. **User Interface Controls**: Integrates the `FiltersContainer` and `ViewSelectorContainer` components, enabling users to filter and choose different viewing options for the articles. This enhances user control and personalization, allowing for a tailored content viewing experience.
+4. **Article Page Greeting**: Includes the `ArticlePageGreeting` feature, which provides a welcoming message or introductory content to users when they first access the page, enhancing user engagement.
+5. **Dynamic Reducer Management**: Utilizes `DynamicModuleLoader` to manage the `articlesPageReducer` dynamically. This ensures that the reducer is only loaded when the articles page  is needed, thereby optimizing state management and reducing the overall bundle size.
 
 
 ## Conclusion
-The `RedesignedArticlesPage` represents a significant advancement in the application’s user interface, delivering a modern and enhanced experience for viewing articles. It features updated design elements and improved functionality to better serve users and provide a more engaging interaction. This component marks the transition from the `DeprecatedArticlesPage` to a more refined and user-centric interface, reflecting the application's commitment to continuous improvement and user satisfaction.
+
+The `RedesignedArticlesPage` is a significant upgrade to the application's article viewing interface, offering a refined and user-centric experience. It incorporates modern design principles, advanced UI components, and performance optimizations to deliver a seamless and engaging experience. This component represents the future of the application's user interface, ensuring that users have access to a cutting-edge platform for consuming content.
