@@ -20,15 +20,11 @@ The **`DeprecatedArticlesPage`** component accepts the following props:
 
 ## Features
 
-1. **Article List Display**: Utilizes the `RedesignedArticleInfiniteList` component to present articles in a scrollable list format, supporting lazy loading for efficient data fetching.
-
-2.  **Layout Consistency**: Incorporates the `Page` component to maintain a consistent page layout, ensuring uniformity across various sections of the application.
-
-3.  **User Interface Controls**: Includes `FiltersContainer` and `ViewSelectorContainer` components for users to filter and select different viewing options for articles.
-
-4.  **Performance Optimization**: Optimized for performance with efficient handling of scrolling and data fetching, ensuring smooth user interactions.
-
-5. **Legacy Design Support**: Maintains legacy styling and components to provide a familiar interface for users until the transition to the redesigned page.
+1. **Legacy Design Support**: Retains the legacy styling and components to provide a familiar interface for users who are accustomed to the older design. This ensures a smooth transition experience until the application is fully migrated to the redesigned interface.
+2. **Dynamic Article List Display**: Utilizes the `ArticleInfiniteList` component to render a dynamically loaded, scrollable list of articles. This feature is crucial for efficiently managing large volumes of content, providing users with a seamless browsing experience through lazy loading and optimized scrolling.
+3. **Efficient Data Fetching**: Implements the `useArticleListFetcher` hook to manage the fetching and loading of additional articles as the user scrolls. This hook efficiently handles the retrieval of new data, ensuring a smooth user experience by preloading content before the user reaches the end of the list.
+4. **Article Page Greeting**: Includes the `ArticlePageGreeting` feature, which provides a welcoming message or introductory content to users when they first access the page, enhancing user engagement.
+5. **Dynamic Reducer Management**: Utilizes `DynamicModuleLoader` to manage the `articlesPageReducer` dynamically. This ensures that the reducer is only loaded when the articles page  is needed, thereby optimizing state management and reducing the overall bundle size.
 
 
 ## Conclusion
