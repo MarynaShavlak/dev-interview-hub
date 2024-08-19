@@ -3,16 +3,13 @@ export { saveJsonSettings } from './model/services/saveJsonSettings/saveJsonSett
 export {
     getUserAuthData,
     useUserAuthData,
-} from './model/selectors/getUserAuthData/getUserAuthData';
-export {
     getUserInited,
     useUserInited,
-} from './model/selectors/getUserInited/getUserInited';
-export {
     useUserRoles,
     isUserAdmin,
     isUserManager,
-} from './model/selectors/roles/roleSelectors';
+    useJsonSettings,
+} from './model/selectors';
 export {
     userReducer,
     userActions,
@@ -20,4 +17,3 @@ export {
 } from './model/slice/userSlice';
 export type { UserSchema, User } from './model/types/user';
 export { UserRole } from './model/consts/consts';
-export { useJsonSettings } from './model/selectors/jsonSettings/jsonSettings';

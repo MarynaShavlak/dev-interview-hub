@@ -23,8 +23,9 @@ User/
 │   │   │   └── getUserInited.ts
 │   │   ├── jsonSettings/
 │   │   │   └── jsonSettings.ts
-│   │   └── roles/
-│   │       └── roleSelectors.ts
+│   │   ├── roles/
+│   │   │    └── roleSelectors.ts
+│   │   └── index.ts
 │   ├── services/
 │   │   ├── initAuthData/
 │   │   │   └── initAuthData.ts
@@ -59,7 +60,8 @@ User/
     - **jsonSettings.ts**: Selector to retrieve user-specific JSON settings.
 - **roles/**
     - **roleSelectors.ts**: Selector related to user roles.
-
+- **index.ts**
+    - Entry point for the selectors, exporting the necessary selectors.
 #### 2.3. `services/`: Services provide functionalities to initialize and save user-related data.
 
 - **initAuthData/**
@@ -79,6 +81,25 @@ User/
 ### 3. `index.ts`
 
 Entry point for the User module, exporting the necessary components, functions, and types.
+
+
+## Public API 
+
+- **Types**: 
+  - `UserSchema` -  An interface that defines the structure of the user schema.
+  - `User` - An interface that defines the structure of a user object. 
+- **Constants**:
+  - `UserRole` -  Enum representing user roles.
+- **Selectors**:
+  - `getUserAuthData`, `useUserAuthData`: Retrieve authenticated user data.
+  - `getUserInited`, `useUserInited`: Check if user data is initialized.
+  - `useUserRoles`: Get user roles.
+  - `isUserAdmin`, `isUserManager`: Check if the user has admin or manager roles.
+  - `useJsonSettings`: Retrieve user JSON settings.
+- **Actions**:
+  - `userReducer`: Reducer for user state management.
+  - `userActions`, `useUserActions`: User-related actions for dispatching.
+
 
 ## Conclusion
 The Entity `User` module is designed to handle all user-related functionalities in a structured and maintainable manner. 
