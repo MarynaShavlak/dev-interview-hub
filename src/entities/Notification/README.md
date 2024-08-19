@@ -49,6 +49,11 @@ Notification/
 - **`NotificationList.module.scss`**: Contains the styles specific to the `NotificationList` component.
 - **`NotificationList.tsx`**: The main `NotificationList` component, responsible for rendering a list of notifications.
 
+## Public API
+
+- **Components**:
+    - `NotificationList` - A component for displaying a list of notifications.
+
 ## Conclusion
 The Entity `Notification` is designed to handle all notification-related functionalities in a structured and maintainable manner. By following the FSD architecture, this module ensures easy scalability and integration within the larger application.
 

@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { initAuthData, useUserInited } from '@/entities/User';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { AppLoader } from './components/AppContent/AppLoader';
-import { AppContent } from './components/AppLoader/AppContent';
+import { AppLoader } from './components/AppLoader/AppLoader';
+import { AppContent } from './components/AppContent/AppContent';
 
 function App() {
     const inited = useUserInited();

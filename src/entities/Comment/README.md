@@ -52,6 +52,16 @@ Comment/
 
 Entry point for the Comment module, exporting the necessary component and type.
 
+## Public API
+
+- **Types**:
+    - `Comment` - An interface defining the structure of a comment object.
+    - `AddCommentFormSchema` - An interface defining the schema for the add comment form.
+
+- **Components**:
+    - `CommentList` - A component for displaying a list of comments.
+    - `AddCommentForm` - An asynchronous component for adding a new comment.
+
 ## Conclusion
 The Entity `Comment` is designed to handle all comment-related functionalities in a structured and maintainable manner. By following the FSD architecture, this module ensures easy scalability and integration within the larger application.
 

@@ -55,3 +55,5 @@ Entry point for the Rating module, exporting the necessary components, functions
 
 ## Conclusion
 The `Rating` module is designed to handle all rating-related functionalities in a structured and maintainable manner. Following the FSD architecture, this module ensures easy scalability and integration within the larger application.
+
+For further details on each part of the module, please refer to the respective README.md files within each directory.

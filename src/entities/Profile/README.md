@@ -55,6 +55,16 @@ Profile/
 - **`index.ts`**: Entry point for the Profile module, exporting the necessary components and types for use in the application.
 
 
+## Public API
+
+- **Types**:
+    - `Profile` - An interface defining the structure of a user profile object.
+
+- **Components**:
+    - `ProfileCard` - A component for displaying and editing user profile information.
+    - `RedesignedProfileCardSkeleton` - A skeleton loading screen for the redesigned profile card.
+
+
 ## Conclusion
 The Entity `Profile` is designed to handle all profile-related functionalities in a structured and maintainable manner. By following the FSD architecture, this module ensures easy scalability and integration within the larger application.
 

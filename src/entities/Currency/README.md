@@ -41,6 +41,15 @@ Currency/
 
 Entry point for the Currency  module, exporting the necessary components and types for use in the application.
 
+## Public API
+
+- **Types**:
+    - `Currency` - Enum representing different currencies.
+
+- **Components**:
+    - `CurrencySelect` - A component for selecting a currency from the available options.
+
+
 ## Conclusion
 The Entity `Currency` is designed to handle all currency-related functionalities in a structured and maintainable manner. By following the FSD architecture, this module ensures easy scalability and integration within the larger application.
 

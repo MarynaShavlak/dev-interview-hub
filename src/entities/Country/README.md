@@ -40,6 +40,15 @@ Country/
 
 Entry point for the Country module, exporting the necessary components and types for use in the application.
 
+## Public API
+
+- **Types**:
+    - `Country` - Enum representing different currencies.
+
+- **Components**:
+    - `CountrySelect` - A component for selecting a currency from the available options.
+
+
 ## Conclusion
 The Entity `Country` is designed to handle all country-related functionalities in a structured and maintainable manner. By following the FSD architecture, this module ensures easy scalability and integration within the larger application.
 

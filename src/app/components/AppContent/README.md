@@ -6,7 +6,7 @@ It utilizes a `ToggleFeaturesComponent` to conditionally render different layout
 This ensures that the user interface remains flexible and consistent with the current application's feature set.
 
 ## Props
-The `AppContent` does not have any props, , as the component's functionality is driven by internal feature toggles and theme management.
+The `AppContent` does not have any props, as the component's functionality is driven by internal feature toggles and theme management.
 
 ## Usage Example
 ```typescript jsx
