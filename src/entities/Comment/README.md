@@ -26,6 +26,7 @@ Comment/
 │       ├── CommentListSkeleton.tsx
 │       ├── CommentList.tsx
 ├── index.ts
+├── testing.ts
 ```
 
 ## Detailed Description
@@ -52,6 +53,10 @@ Comment/
 
 Entry point for the Comment module, exporting the necessary component and type.
 
+### 4. `testing.ts`
+
+Entry point for testing-related functionalities within the Comment module. It is used primarily for development purposes, such as testing data, reducers, and integrating with tools like Storybook. This file is not included in the production code but is essential for ensuring the module's functionality during development.
+
 ## Public API
 
 - **Types**:
@@ -61,6 +66,11 @@ Entry point for the Comment module, exporting the necessary component and type.
 - **Components**:
     - `CommentList` - A component for displaying a list of comments.
     - `AddCommentForm` - An asynchronous component for adding a new comment.
+
+
+## Public Testing API
+- **Testing Exports**:
+    - `addCommentFormReducer` - Reducer for add comment form state management for use in testing scenarios and development tools.
 
 ## Conclusion
 The Entity `Comment` is designed to handle all comment-related functionalities in a structured and maintainable manner. By following the FSD architecture, this module ensures easy scalability and integration within the larger application.
