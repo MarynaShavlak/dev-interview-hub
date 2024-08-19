@@ -30,7 +30,7 @@ The **`ArticleCategories`** component accepts the following props:
 ```typescript jsx
 import { ArticleCategories } from '@/entities/Article';
 import { Article } from './article';
-import { ArticleCategory, ArticleBlockType } from './articleConsts';
+import { ArticleCategory, ArticleSection } from './articleConsts';
 
 const sampleArticle: Article = {
    id: '1',
@@ -47,7 +47,7 @@ const sampleArticle: Article = {
    blocks: [
       {
          id: '2344',
-         type: ArticleBlockType.TEXT,
+         type: ArticleSection.TEXT,
          paragraphs: ['This is a text block.'],
       },
    ],

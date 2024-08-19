@@ -30,7 +30,7 @@ The **`ListViewCard`** component accepts the following props:
 import { ListViewCard } from '@/entities/Article';
 import { ArticleCategories } from '@/entities/Article';
 import { Article } from '../../../../model/types/article';
-import { ArticleCategory, ArticleBlockType  } from '../../../../model/consts/articleConsts';
+import { ArticleCategory, ArticleSection  } from '../../../../model/consts/articleConsts';
 
 const sampleArticle: Article = {
     id: '1',
@@ -47,7 +47,7 @@ const sampleArticle: Article = {
     blocks: [
         {
             id: '2344',
-            type: ArticleBlockType.TEXT,
+            type: ArticleSection.TEXT,
             paragraphs: ['This is a text block.'],
         },
     ],

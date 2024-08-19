@@ -1,37 +1,37 @@
 import type { User } from '@/entities/User';
-import { ArticleBlockType, ArticleCategory } from '../consts/articleConsts';
+import { ArticleSection, ArticleCategory } from '../consts/articleConsts';
 
 /**
  * Base interface for different types of article blocks.
  *
  * @property {string} id - Unique identifier for the article block.
- * @property {ArticleBlockType} type - The type of the article block.
+ * @property {ArticleSection} type - The type of the article block.
  */
 export interface ArticleBlockBase {
     id: string;
-    type: ArticleBlockType;
+    type: ArticleSection;
 }
 
 /**
  * Interface for a code block in an article.
  *
- * @property {ArticleBlockType} type - The type of the article block, set to CODE.
+ * @property {ArticleSection} type - The type of the article block, set to CODE.
  * @property {string} code - The code content of the block.
  */
 export interface ArticleCodeBlock extends ArticleBlockBase {
-    type: ArticleBlockType.CODE;
+    type: ArticleSection.CODE;
     code: string;
 }
 
 /**
  * Interface for an image block in an article.
  *
- * @property {ArticleBlockType} type - The type of the article block, set to IMAGE.
+ * @property {ArticleSection} type - The type of the article block, set to IMAGE.
  * @property {string} src - The source URL of the image.
  * @property {string} title - The title or caption of the image.
  */
 export interface ArticleImageBlock extends ArticleBlockBase {
-    type: ArticleBlockType.IMAGE;
+    type: ArticleSection.IMAGE;
     src: string;
     title: string;
 }
@@ -39,13 +39,13 @@ export interface ArticleImageBlock extends ArticleBlockBase {
 /**
  * Interface for a text block in an article.
  *
- * @property {ArticleBlockType} type - The type of the article block, set to TEXT.
+ * @property {ArticleSection} type - The type of the article block, set to TEXT.
  * @property {string[]} paragraphs - Array of paragraphs in the text block.
  * @property {string} [title] - The title of the text block. Optional.
  */
 
 export interface ArticleTextBlock extends ArticleBlockBase {
-    type: ArticleBlockType.TEXT;
+    type: ArticleSection.TEXT;
     paragraphs: string[];
     title?: string;
 }

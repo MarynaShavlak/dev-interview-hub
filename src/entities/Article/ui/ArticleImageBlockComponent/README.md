@@ -32,11 +32,11 @@ The **`ArticleImageBlockComponent`** component accepts the following props:
 ```typescript jsx
 import { ArticleImageBlockComponent } from '@/entities/Article';
 import { ArticleImageBlock } from '@/entities/Article';
-import { ArticleBlockType } from '../consts/articleConsts';
+import { ArticleSection } from '../consts/articleConsts';
 
 const sampleImageBlock: ArticleImageBlock = {
    id: '1',
-   type: ArticleBlockType.CODE,
+   type: ArticleSection.CODE,
    src: 'path/to/image.jpg',
    title: 'Sample Image Title'
 };

@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { getFlexClasses } from '@/shared/lib/classes/getFlexClasses/getFlexClasses';
-import { ArticleBlockType } from '../../../../model/consts/articleConsts';
+import { ArticleSection } from '../../../../model/consts/articleConsts';
 import { ArticleTextBlock } from '../../../../model/types/article';
 import { ArticleCategories } from '../../../ArticleCategories/ArticleCategories';
 import { ArticleViews } from '../../../ArticleViews/ArticleViews';
@@ -25,7 +25,7 @@ export const DeprecatedListViewCard = memo((props: BaseCardProps) => {
     const { className, article, handleClick } = props;
     const { t } = useTranslation('articles');
     const textBlock = article.blocks.find(
-        (block) => block.type === ArticleBlockType.TEXT,
+        (block) => block.type === ArticleSection.TEXT,
     ) as ArticleTextBlock;
 
     const additionalClasses = getFlexClasses({ vStack: true, gap: '8' });

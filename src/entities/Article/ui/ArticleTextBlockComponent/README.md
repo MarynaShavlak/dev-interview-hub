@@ -34,11 +34,11 @@ The **`ArticleTextBlockComponent`** component accepts the following props:
 ```typescript jsx
 import { ArticleTextBlockComponent } from '@/entities/Article';
 import { ArticleTextBlock } from '@/entities/Article';
-import { ArticleBlockType } from '../consts/articleConsts';
+import { ArticleSection } from '../consts/articleConsts';
 
 const sampleTextBlock: ArticleTextBlock = {
    id: '1',
-   type: ArticleBlockType.TEXT,
+   type: ArticleSection.TEXT,
    title: 'Sample Title',
    paragraphs: [
       'This is the first paragraph.',

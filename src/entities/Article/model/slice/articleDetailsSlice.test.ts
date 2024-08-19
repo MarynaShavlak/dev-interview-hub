@@ -2,7 +2,7 @@ import { fetchArticleById } from '../services/fetchArticleById/fetchArticleById'
 import { ArticleDetailsSchema } from '../types/articleDetailsSchema';
 import { articleDetailsReducer } from './articleDetailsSlice';
 import {
-    ArticleBlockType,
+    ArticleSection,
     ArticleCategory,
 } from '../../model/consts/articleConsts';
 import { Article } from '../../model/types/article';
@@ -22,7 +22,7 @@ const articleData: Article = {
     blocks: [
         {
             id: '2344',
-            type: ArticleBlockType.TEXT,
+            type: ArticleSection.TEXT,
             paragraphs: ['This is a text block.'],
         },
     ],

@@ -2,7 +2,7 @@ import { TestAsyncThunk } from '@/shared/lib/tests/TestAsyncThunk/TestAsyncThunk
 import { fetchArticleById } from './fetchArticleById';
 import { Article } from '../../types/article';
 import {
-    ArticleBlockType,
+    ArticleSection,
     ArticleCategory,
 } from '../../../model/consts/articleConsts';
 
@@ -21,7 +21,7 @@ const articleData: Article = {
     blocks: [
         {
             id: '2344',
-            type: ArticleBlockType.TEXT,
+            type: ArticleSection.TEXT,
             paragraphs: ['This is a text block.'],
         },
     ],

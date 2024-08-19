@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { getFlexClasses } from '@/shared/lib/classes/getFlexClasses/getFlexClasses';
 import defaultImage from '@/shared/assets/images/default-img-list.png';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
-import { ArticleBlockType } from '../../../../model/consts/articleConsts';
+import { ArticleSection } from '../../../../model/consts/articleConsts';
 import { ArticleTextBlock } from '../../../../model/types/article';
 import { ArticleViews } from '../../../ArticleViews/ArticleViews';
 import { AppImage } from '@/shared/ui/redesigned/AppImage';
@@ -22,7 +22,7 @@ export const RedesignedListViewCard = memo((props: BaseCardProps) => {
     const { className, article, handleClick } = props;
     const { t } = useTranslation('articles');
     const textBlock = article.blocks.find(
-        (block) => block.type === ArticleBlockType.TEXT,
+        (block) => block.type === ArticleSection.TEXT,
     ) as ArticleTextBlock;
     const additionalClasses = getFlexClasses({ vStack: true, gap: '16' });
 
