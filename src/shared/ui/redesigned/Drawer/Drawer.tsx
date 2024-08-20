@@ -10,8 +10,9 @@ import { useTheme } from '@/shared/lib/hooks/useTheme/useTheme';
 import { Overlay } from '../Overlay/Overlay';
 import { Portal } from '../Portal/Portal';
 import cls from './Drawer.module.scss';
+import { TestProps } from '@/shared/types/tests';
 
-interface DrawerProps {
+interface DrawerProps extends TestProps {
     children: ReactNode;
     isOpen: boolean;
     onClose?: () => void;
@@ -22,7 +23,14 @@ interface DrawerProps {
 const height = window.innerHeight - 100;
 
 const DrawerContent = memo((props: DrawerProps) => {
-    const { className, children, isOpen, onClose, lazy } = props;
+    const {
+        className,
+        children,
+        isOpen,
+        onClose,
+        lazy,
+        'data-testid': dataTestId,
+    } = props;
     const { onCloseHandler, onDragHandler, style } = useDrawerAnimation({
         isOpen,
         onClose,
@@ -46,8 +54,11 @@ const DrawerContent = memo((props: DrawerProps) => {
 
     return (
         <Portal element={document.getElementById('app') ?? document.body}>
-            <div className={drawerClasses}>
-                <Overlay onClick={() => onCloseHandler()} />
+            <div className={drawerClasses} data-testid={dataTestId}>
+                <Overlay
+                    onClick={() => onCloseHandler()}
+                    data-testid="drawer-overlay"
+                />
                 <Spring.a.div
                     className={cls.sheet}
                     style={style}
