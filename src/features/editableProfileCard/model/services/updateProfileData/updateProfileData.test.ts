@@ -1,41 +1,31 @@
 import { TestAsyncThunk } from '@/shared/lib/tests/TestAsyncThunk/TestAsyncThunk';
-import { Country } from '@/entities/Country';
-import { Currency } from '@/entities/Currency';
 import { ValidateProfileError } from '../../consts/consts';
 import { updateProfileData } from './updateProfileData';
-
-const data = {
-    username: 'admin',
-    age: 29,
-    country: Country.Ukraine,
-    lastname: 'Shavlak',
-    firstname: 'Maryna',
-    city: 'Kharkiv',
-    currency: Currency.USD,
-    id: '1',
-};
+import { testProfileData } from '@/entities/Profile/testing';
 
 describe('updateProfileData.test', () => {
     test('success', async () => {
         const thunk = new TestAsyncThunk(updateProfileData, {
             profile: {
-                form: data,
+                form: testProfileData,
             },
         });
 
-        thunk.api.put.mockReturnValue(Promise.resolve({ data }));
+        thunk.api.put.mockReturnValue(
+            Promise.resolve({ data: testProfileData }),
+        );
 
         const result = await thunk.callThunk();
 
         expect(thunk.api.put).toHaveBeenCalled();
         expect(result.meta.requestStatus).toBe('fulfilled');
-        expect(result.payload).toEqual(data);
+        expect(result.payload).toEqual(testProfileData);
     });
 
     test('error', async () => {
         const thunk = new TestAsyncThunk(updateProfileData, {
             profile: {
-                form: data,
+                form: testProfileData,
             },
         });
         thunk.api.put.mockReturnValue(Promise.resolve({ status: 403 }));
@@ -49,7 +39,7 @@ describe('updateProfileData.test', () => {
     test('validate error', async () => {
         const thunk = new TestAsyncThunk(updateProfileData, {
             profile: {
-                form: { ...data, lastname: '' },
+                form: { ...testProfileData, lastname: '' },
             },
         });
         const result = await thunk.callThunk();

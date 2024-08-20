@@ -1,28 +1,19 @@
 import { TestAsyncThunk } from '@/shared/lib/tests/TestAsyncThunk/TestAsyncThunk';
-import { Country } from '@/entities/Country';
-import { Currency } from '@/entities/Currency';
 import { fetchProfileData } from './fetchProfileData';
-
-const data = {
-    username: 'admin',
-    age: 29,
-    country: Country.Ukraine,
-    lastname: 'Shavlak',
-    firstname: 'Maryna',
-    city: 'Kharkiv',
-    currency: Currency.USD,
-};
+import { testProfileData } from '@/entities/Profile/testing';
 
 describe('fetchProfileData.test', () => {
     test('success', async () => {
         const thunk = new TestAsyncThunk(fetchProfileData);
-        thunk.api.get.mockReturnValue(Promise.resolve({ data }));
+        thunk.api.get.mockReturnValue(
+            Promise.resolve({ data: testProfileData }),
+        );
 
         const result = await thunk.callThunk('1');
 
         expect(thunk.api.get).toHaveBeenCalled();
         expect(result.meta.requestStatus).toBe('fulfilled');
-        expect(result.payload).toEqual(data);
+        expect(result.payload).toEqual(testProfileData);
     });
 
     test('error login', async () => {

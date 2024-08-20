@@ -1,19 +1,8 @@
-import { Country } from '@/entities/Country';
-import { Currency } from '@/entities/Currency';
 import { ValidateProfileError } from '../consts/consts';
 import { updateProfileData } from '../services/updateProfileData/updateProfileData';
 import { ProfileSchema } from '../types/editableProfileCardSchema';
 import { profileActions, profileReducer } from './profileSlice';
-
-const data = {
-    username: 'admin',
-    age: 22,
-    country: Country.Ukraine,
-    lastname: 'Shavlak',
-    firstname: 'Maryna',
-    city: 'Kharkiv',
-    currency: Currency.USD,
-};
+import { testProfileData } from '@/entities/Profile/testing';
 
 describe('profileSlice.test', () => {
     test('test set readonly', () => {
@@ -28,7 +17,7 @@ describe('profileSlice.test', () => {
 
     test('test cancel edit', () => {
         const state: DeepPartial<ProfileSchema> = {
-            data,
+            data: testProfileData,
             form: { username: '' },
         };
 
@@ -37,8 +26,8 @@ describe('profileSlice.test', () => {
         ).toEqual({
             readonly: true,
             validateErrors: undefined,
-            data,
-            form: data,
+            data: testProfileData,
+            form: testProfileData,
         });
     });
 
@@ -79,15 +68,15 @@ describe('profileSlice.test', () => {
         expect(
             profileReducer(
                 state as ProfileSchema,
-                updateProfileData.fulfilled(data, ''),
+                updateProfileData.fulfilled(testProfileData, ''),
             ),
         ).toEqual({
             isLoading: false,
             validateErrors: undefined,
             readonly: true,
             validateError: undefined,
-            form: data,
-            data,
+            form: testProfileData,
+            data: testProfileData,
         });
     });
 });
