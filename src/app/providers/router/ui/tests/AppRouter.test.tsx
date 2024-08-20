@@ -8,8 +8,8 @@ import {
 } from '@/shared/const/router/router';
 import { UserRole } from '@/entities/User';
 
-describe('app/router/AppRouter', () => {
-    test('Page should be rendered', async () => {
+describe('AppRouter Component', () => {
+    test('should render the About page correctly', async () => {
         componentRender(<AppRouter />, {
             route: getRouteAbout(),
         });
@@ -18,7 +18,7 @@ describe('app/router/AppRouter', () => {
         expect(page).toBeInTheDocument();
     });
 
-    test('Page not found', async () => {
+    test('should render the Not Found page for an invalid route', async () => {
         componentRender(<AppRouter />, {
             route: '/asfasfasfasf',
         });
@@ -27,7 +27,7 @@ describe('app/router/AppRouter', () => {
         expect(page).toBeInTheDocument();
     });
 
-    test('Redirect of an unauthorized user to the main page', async () => {
+    test('should redirect an unauthorized user to the Main page', async () => {
         componentRender(<AppRouter />, {
             route: getRouteProfile('1'),
         });
@@ -36,7 +36,7 @@ describe('app/router/AppRouter', () => {
         expect(page).toBeInTheDocument();
     });
 
-    test('Access to a closed page for an authorized user', async () => {
+    test('should allow access to Profile page for an authorized user', async () => {
         componentRender(<AppRouter />, {
             route: getRouteProfile('1'),
             initialState: {
@@ -48,7 +48,7 @@ describe('app/router/AppRouter', () => {
         expect(page).toBeInTheDocument();
     });
 
-    test('Access denied (the required role is absent)', async () => {
+    test('should deny access to the Admin page when the user lacks the required role)', async () => {
         componentRender(<AppRouter />, {
             route: getRouteAdmin(),
             initialState: {
@@ -60,7 +60,7 @@ describe('app/router/AppRouter', () => {
         expect(page).toBeInTheDocument();
     });
 
-    test('Access is allowed (the required role is present', async () => {
+    test('should allow access to the Admin page when the user has the required role', async () => {
         componentRender(<AppRouter />, {
             route: getRouteAdmin(),
             initialState: {
