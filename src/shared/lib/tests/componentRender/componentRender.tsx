@@ -12,10 +12,24 @@ export interface componentRenderOptions {
     asyncReducers?: DeepPartial<ReducersMapObject<StateSchema>>;
 }
 
-export function componentRender(
+/**
+ * The `componentRender` function renders a React component within a pre-configured testing environment.
+ * It wraps the component with necessary providers for routing, state management, and internationalization,
+ * simplifying the setup for tests that require these features.
+ *
+ * @param component - The React element or component to be rendered and tested.
+ * @param options - Configuration object for customizing the test environment.
+ *                   - `route` (optional): Initial route for the `MemoryRouter`. Defaults to `'/'`.
+ *                   - `initialState` (optional): Initial state for the Redux store.
+ *                   - `asyncReducers` (optional): Async reducers to be used with the Redux store.
+ *
+ * @returns The rendered component wrapped with `MemoryRouter`, `StoreProvider`, and `I18nextProvider`.
+ */
+
+export const componentRender = (
     component: ReactNode,
     options: componentRenderOptions = {},
-) {
+) => {
     const { route = '/', initialState, asyncReducers } = options;
 
     return render(
@@ -30,4 +44,4 @@ export function componentRender(
             </StoreProvider>
         </MemoryRouter>,
     );
-}
+};

@@ -22,8 +22,14 @@ The project includes comprehensive unit tests to ensure that individual function
 5. **Test for function [trimText](../src/shared/lib/trimText/trimText.test.ts)**:
     - The `trimText` function is tested to ensure it correctly removes leading and trailing whitespace from a given string. The tests cover various scenarios, including strings with leading, trailing, or both types of whitespace, empty strings, and handling of `undefined` or `null` inputs to verify that the function returns an empty string in those cases.
 
+## Component tests with React Testing Library
 
+The project includes component tests using React Testing Library to verify that React components render correctly and behave as expected.
 
+1. **Test for component [Button](../src/shared/ui/deprecated/Button/Button.test.tsx)**:
+   - Tests verify that the `Button` component renders with the correct text and HTML tag, and applies the `clear` class when using the `ButtonTheme.CLEAR` theme.
+2. **Test for component [Sidebar](../src/widgets/Sidebar/ui/Sidebar/Sidebar.test.tsx)**:
+   - Tests verify that the `Sidebar` component renders correctly and responds to toggle interactions by collapsing when the toggle button is clicked.
 
 
 
