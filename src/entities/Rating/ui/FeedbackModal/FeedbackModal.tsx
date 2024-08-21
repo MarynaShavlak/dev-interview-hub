@@ -22,6 +22,7 @@ export const FeedbackModal = memo((props: FeedbackProps) => {
         setFeedback,
         feedback,
         onSubmitFeedback,
+        'data-testid': dataTestId,
     } = props;
     const { t } = useTranslation();
     const sendButtonText = t('Відправити');
@@ -29,7 +30,7 @@ export const FeedbackModal = memo((props: FeedbackProps) => {
     const closeButtonText = t('Закрити');
 
     return (
-        <Modal isOpen={isOpen} lazy onClose={onClose}>
+        <Modal isOpen={isOpen} lazy onClose={onClose} data-testid={dataTestId}>
             <VStack max gap="32">
                 <ToggleFeaturesComponent
                     feature="isAppRedesigned"
@@ -42,7 +43,11 @@ export const FeedbackModal = memo((props: FeedbackProps) => {
                                 placeholder={inputPlaceholderText}
                             />
                             <HStack max gap="16" justify="end">
-                                <Button onClick={onClose} variant="cancel">
+                                <Button
+                                    onClick={onClose}
+                                    variant="cancel"
+                                    data-testid="cancel-feedback-btn"
+                                >
                                     {closeButtonText}
                                 </Button>
                                 <Button

@@ -6,8 +6,9 @@ import { useModal } from '@/shared/lib/hooks/useModal/useModal';
 import { Overlay } from '../Overlay/Overlay';
 import { Portal } from '../Portal/Portal';
 import cls from './Modal.module.scss';
+import { TestProps } from '@/shared/types/tests';
 
-interface ModalProps {
+interface ModalProps extends TestProps {
     className?: string;
     children?: ReactNode;
     isOpen?: boolean;
@@ -18,7 +19,14 @@ interface ModalProps {
 const ANIMATION_DELAY = 300;
 
 export const Modal = (props: ModalProps) => {
-    const { className, children, isOpen, onClose, lazy } = props;
+    const {
+        className,
+        children,
+        isOpen,
+        onClose,
+        lazy,
+        'data-testid': dataTestId,
+    } = props;
     const { isClosing, isMounted, close } = useModal({
         animationDelay: ANIMATION_DELAY,
         onClose,
@@ -47,7 +55,10 @@ export const Modal = (props: ModalProps) => {
     ];
     return (
         <Portal element={document.getElementById('app') ?? document.body}>
-            <div className={classNames(cls.Modal, mods, [...classes])}>
+            <div
+                className={classNames(cls.Modal, mods, [...classes])}
+                data-testid={dataTestId}
+            >
                 <Overlay onClick={close} />
                 <div className={cls.content}>{children}</div>
             </div>

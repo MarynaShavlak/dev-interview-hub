@@ -9,7 +9,7 @@ import React from 'react';
  */
 
 const jestEmptyComponent = function () {
-    return <div />;
+    return <div data-testid="test-icon" />;
 };
 
 export default jestEmptyComponent;

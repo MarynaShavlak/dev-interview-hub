@@ -17,7 +17,7 @@ export const DisabledStar = ({ starNumber, size }: DisabledStarProps) => {
         key: starNumber,
         width: size,
         height: size,
-        'data-testid': `StarRating.${starNumber}`,
+        // 'data-testid': `StarRating-${starNumber}`,
     };
 
     return (

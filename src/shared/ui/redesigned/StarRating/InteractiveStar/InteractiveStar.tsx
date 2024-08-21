@@ -41,7 +41,7 @@ export const InteractiveStar = (props: InteractiveStarProps) => {
         onMouseLeave: onLeave,
         onMouseEnter: onHover(starNumber),
         onClick: onClick(starNumber),
-        'data-testid': `StarRating.${starNumber}`,
+        'data-testid': `StarRating-${starNumber}`,
         'data-selected': activeStarsCount >= starNumber,
     };
 
