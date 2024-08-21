@@ -32,7 +32,21 @@ describe('NotificationButton Component', () => {
         });
     });
 
-    test('should close the drawer when close button is clicked', async () => {
+    test('should open the popover on button click (BrowserView)', async () => {
+        componentRender(<NotificationButton />);
+        const triggerButton = screen.getByTestId(
+            'notifications-trigger-btn-desktop',
+        );
+
+        fireEvent.click(triggerButton);
+        await waitFor(() => {
+            expect(
+                screen.getByTestId('notifications-popover'),
+            ).toBeInTheDocument();
+        });
+    });
+
+    test('should close the drawer when overlay is clicked', async () => {
         componentRender(<NotificationButton />);
         const triggerButton = screen.getByTestId(
             'notifications-trigger-btn-mobile',

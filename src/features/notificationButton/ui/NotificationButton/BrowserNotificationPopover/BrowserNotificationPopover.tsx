@@ -5,14 +5,16 @@ import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { Popover as PopoverDeprecated } from '@/shared/ui/deprecated/Popups';
 import cls from './BrowserNotificationPopover.module.scss';
 import { Popover } from '@/shared/ui/redesigned/Popups';
+import { TestProps } from '@/shared/types/tests';
 
-interface BrowserNotificationPopoverProps {
+interface BrowserNotificationPopoverProps extends TestProps {
     className?: string;
     trigger: ReactNode;
 }
 export const BrowserNotificationPopover = ({
     className,
     trigger,
+    'data-testid': dataTestId,
 }: BrowserNotificationPopoverProps) => (
     <ToggleFeaturesComponent
         feature="isAppRedesigned"
@@ -30,6 +32,7 @@ export const BrowserNotificationPopover = ({
                 className={classNames(cls.NotificationButton, {}, [className])}
                 direction="bottom left"
                 trigger={trigger}
+                data-testid={dataTestId}
             >
                 <NotificationList className={cls.notifications} />
             </PopoverDeprecated>

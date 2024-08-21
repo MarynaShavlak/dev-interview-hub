@@ -16,6 +16,7 @@ interface DrawerProps {
 }
 ```
 ## Props
+The `Drawer` interface extends `TestProps` to include the optional `data-testid` property, allowing for easier identification and testing of the component in various testing environments
 The `Drawer` component accepts the following props:
 
 | Prop       | Type                | Required / Optional | Description                                                                 |

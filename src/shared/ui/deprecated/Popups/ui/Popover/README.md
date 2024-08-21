@@ -11,6 +11,7 @@ The types used in the `Popover` component are defined as follows:
 export type DropdownDirection = 'top left' | 'top right' | 'bottom left' | 'bottom right' | 'left' | 'right';
 ```
 ## Props
+The `Popover` interface extends `TestProps` to include the optional `data-testid` property, allowing for easier identification and testing of the component in various testing environments
 The `Popover` component accepts the following props:
 
 | Prop      | Type                                        |          Required / Optional          | Description                                                     |

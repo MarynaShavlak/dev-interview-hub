@@ -5,8 +5,9 @@ import { DropdownDirection } from '@/shared/types/ui';
 import { mapDirectionClass } from '../../styles/consts';
 import cls from './Popover.module.scss';
 import popupCls from '../../styles/popup.module.scss';
+import { TestProps } from '@/shared/types/tests';
 
-interface PopoverProps {
+interface PopoverProps extends TestProps {
     className?: string;
     direction?: DropdownDirection;
     trigger: ReactNode;
@@ -17,13 +18,20 @@ interface PopoverProps {
  * @deprecated
  */
 export function Popover(props: PopoverProps) {
-    const { className, trigger, direction = 'bottom right', children } = props;
+    const {
+        className,
+        trigger,
+        direction = 'bottom right',
+        children,
+        'data-testid': dataTestId,
+    } = props;
 
     const menuClasses = [mapDirectionClass[direction]];
 
     return (
         <HPopover
             className={classNames(cls.Popover, {}, [className, popupCls.popup])}
+            data-testid={dataTestId}
         >
             <HPopover.Button className={popupCls.trigger} as="div">
                 {trigger}

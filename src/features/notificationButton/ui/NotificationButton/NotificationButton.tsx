@@ -27,8 +27,12 @@ export const NotificationButton = memo((props: NotificationButtonProps) => {
             <BrowserView>
                 <BrowserNotificationPopover
                     className={className}
+                    data-testid="notifications-popover"
                     trigger={
-                        <NotificationButtonTrigger onClick={onOpenDrawer} />
+                        <NotificationButtonTrigger
+                            onClick={onOpenDrawer}
+                            data-testid="notifications-trigger-btn-desktop"
+                        />
                     }
                 />
             </BrowserView>

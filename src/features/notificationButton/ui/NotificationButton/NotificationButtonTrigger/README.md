@@ -11,6 +11,7 @@ interface TriggerProps {
 ```
 
 ## Props
+The `NotificationButtonTrigger` interface extends `TestProps` to include the optional `data-testid` property, allowing for easier identification and testing of the component in various testing environments
 The **`NotificationButtonTrigger`** component accepts the following props:
 
 | Prop       | Type           | Required / Optional | Description                                          |
