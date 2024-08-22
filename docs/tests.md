@@ -103,3 +103,17 @@ The project also includes tests for selectors to ensure that they correctly extr
    - **Initial state test**: Confirms that the `addCommentFormReducer` returns the correct initial state when no action is provided.
    - **Test for setting comment text**: Verifies that the `setText` action correctly updates the `text` field in the state when provided with new text.
    - **Test for handling empty comment text**: Ensures that the `setText` action correctly handles cases where the text is set to an empty string, updating the state accordingly.
+
+4. **Test for [scrollSlice](../src/widgets/Page/model/slices/scrollSlice.test.ts) reducers**:
+   - **Initial state test**: Ensures that the `scrollReducer` returns the initial state when no action is provided.
+   - **Test for setting scroll position**: Verifies that the `setScrollPosition` action correctly updates the scroll position for a given path.
+   - **Test for updating scroll position for multiple paths**: Confirms that the reducer correctly handles adding a new scroll position while retaining existing ones.
+   - **Test for updating existing scroll position**: Ensures that the reducer updates the scroll position for an existing path correctly.
+   - **Test for handling empty path**: Verifies that the reducer correctly handles setting the scroll position with an empty path.
+   - **Test for handling negative scroll position**: Ensures that the reducer correctly processes negative scroll positions.
+
+5. **Test for [articleDetailsSlice](../src/entities/Article/model/slice/articleDetailsSlice.test.ts) reducers**:
+   - **Initial state test**: Ensures that the `articleDetailsReducer` returns the initial state when no action is provided.
+   - **Test for `fetchArticleById.pending`**: Verifies that the reducer correctly sets `isLoading` to `true` and clears any previous error when the fetch action is pending.
+   - **Test for `fetchArticleById.fulfilled`**: Confirms that the reducer updates the `data` with the fetched article and sets `isLoading` to `false` when the fetch action is successful.
+   - **Test for `fetchArticleById.rejected`**: Ensures that the reducer sets the `error` and sets `isLoading` to `false` when the fetch action fails.

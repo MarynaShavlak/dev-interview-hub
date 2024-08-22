@@ -66,21 +66,19 @@ describe('loginSlice tests', () => {
 
     test('should handle loginByUsername.rejected', () => {
         const state: DeepPartial<LoginSchema> = { isLoading: true };
-        const error = 'Invalid credentials';
-
         expect(
             loginReducer(
                 state as LoginSchema,
                 loginByUsername.rejected(
-                    {} as any,
+                    new Error('Login failed'),
                     '',
                     { username: '', password: '' },
-                    error,
+                    'Login failed',
                 ),
             ),
         ).toEqual({
             isLoading: false,
-            error,
+            error: 'Login failed',
         });
     });
 });

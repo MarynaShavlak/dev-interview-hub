@@ -1,35 +1,22 @@
 import { fetchArticleById } from '../services/fetchArticleById/fetchArticleById';
 import { ArticleDetailsSchema } from '../types/articleDetailsSchema';
 import { articleDetailsReducer } from './articleDetailsSlice';
-import {
-    ArticleSection,
-    ArticleCategory,
-} from '../../model/consts/articleConsts';
-import { Article } from '../../model/types/article';
+import { testArticleData } from '../../testing';
 
-const articleData: Article = {
-    id: '1',
-    user: {
-        id: '123',
-        username: 'Maryna Shavlak',
-    },
-    title: 'Test Article',
-    subtitle: 'This is a test subtitle.',
-    img: 'test-image-url',
-    views: 100,
-    createdAt: '2023-01-01T00:00:00.000Z',
-    category: [ArticleCategory.IT, ArticleCategory.ECONOMICS],
-    blocks: [
-        {
-            id: '2344',
-            type: ArticleSection.TEXT,
-            paragraphs: ['This is a text block.'],
-        },
-    ],
-};
+describe('articleDetailsSlice tests', () => {
+    const initialState: ArticleDetailsSchema = {
+        isLoading: false,
+        error: undefined,
+        data: undefined,
+    };
 
-describe('articleDetailsSlice', () => {
-    test('test fetchArticleById pending', () => {
+    test('should return the initial state', () => {
+        expect(articleDetailsReducer(undefined, { type: '' })).toEqual(
+            initialState,
+        );
+    });
+
+    test('should handle fetchArticleById.pending', () => {
         const state: DeepPartial<ArticleDetailsSchema> = {
             isLoading: false,
             error: 'Some error',
@@ -46,21 +33,21 @@ describe('articleDetailsSlice', () => {
         });
     });
 
-    test('test fetchArticleById fulfilled', () => {
+    test('should handle fetchArticleById.fulfilled', () => {
         const state: DeepPartial<ArticleDetailsSchema> = { isLoading: true };
 
         expect(
             articleDetailsReducer(
                 state as ArticleDetailsSchema,
-                fetchArticleById.fulfilled(articleData, 'requestId', ''),
+                fetchArticleById.fulfilled(testArticleData, 'requestId', ''),
             ),
         ).toEqual({
             isLoading: false,
-            data: articleData,
+            data: testArticleData,
         });
     });
 
-    test('test fetchArticleById rejected', () => {
+    test('should handle fetchArticleById.rejected', () => {
         const state: DeepPartial<ArticleDetailsSchema> = { isLoading: true };
 
         expect(
