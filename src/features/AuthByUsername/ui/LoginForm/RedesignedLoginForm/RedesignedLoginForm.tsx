@@ -26,6 +26,7 @@ export const RedesignedLoginForm = memo(
             <VStack
                 gap="16"
                 className={classNames(cls.LoginForm, {}, [className])}
+                data-testid="login-form"
             >
                 <Text title={t('Форма авторизації')} />
                 {error && (
@@ -40,17 +41,20 @@ export const RedesignedLoginForm = memo(
                     placeholder={t("Введіть ім'я користувача")}
                     onChange={onChangeUsername}
                     value={username}
+                    data-testid="login-username-input"
                 />
                 <Input
                     type="text"
                     placeholder={t('Введіть пароль')}
                     onChange={onChangePassword}
                     value={password}
+                    data-testid="login-password-input"
                 />
                 <Button
                     className={cls.loginBtn}
                     onClick={onLoginClick}
                     disabled={isLoading}
+                    data-testid="login-submit-btn"
                 >
                     {t('Вхід')}
                 </Button>

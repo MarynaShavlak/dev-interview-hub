@@ -30,6 +30,7 @@ export interface FlexProps extends DivProps {
     className?: string;
     max?: boolean;
     fullHeight?: boolean;
+    'data-testid'?: string;
 }
 
 export const Flex = (props: FlexProps) => {
@@ -43,6 +44,7 @@ export const Flex = (props: FlexProps) => {
         wrap = 'nowrap',
         max,
         fullHeight,
+        'data-testid': dateTestId,
     } = props;
 
     const additionalClasses = [
@@ -60,7 +62,10 @@ export const Flex = (props: FlexProps) => {
     };
 
     return (
-        <div className={classNames(cls.Flex, mods, additionalClasses)}>
+        <div
+            className={classNames(cls.Flex, mods, additionalClasses)}
+            data-testid={dateTestId}
+        >
             {children}
         </div>
     );

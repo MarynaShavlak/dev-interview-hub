@@ -30,6 +30,7 @@ The `Flex` component extends `DivProps` and accepts the following props:
 | `className`  | `string`                                    |             Optional             | Additional custom class names to style the stack.                   |
 | `max`        | `boolean`                                   |             Optional             | If `true`, the stack will expand to take the full available width.  |
 | `fullHeight` | `boolean`                                   |             Optional             | If `true`, the stack will expand to take the full available height. |
+| `data-testid` | `string`    |               Optional                | Custom test ID for testing purposes.                              |
 | `otherProps` | `DivProps`   |             Optional             | Any additional div HTML attributes.                                 |
 
 ## Usage Examples
