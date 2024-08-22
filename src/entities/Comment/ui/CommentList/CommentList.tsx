@@ -25,7 +25,12 @@ export const CommentList = memo((props: CommentListProps) => {
 
     if (isLoading) {
         return (
-            <VStack gap="16" max className={className}>
+            <VStack
+                gap="16"
+                max
+                className={className}
+                data-testid="article-comments-loading"
+            >
                 <CommentCard isLoading />
                 <CommentCard isLoading />
                 <CommentCard isLoading />

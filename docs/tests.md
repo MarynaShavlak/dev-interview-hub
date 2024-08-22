@@ -42,3 +42,19 @@ The project includes component tests using React Testing Library to verify that 
    - Tests ensure that the `LoginForm` component renders correctly, updates the username and password fields on user input, and handles various login scenarios, such as displaying error messages for incorrect credentials, empty fields, or failed login attempts. Tests also verify that the login button is disabled while loading, the `onSuccess` callback is called upon successful login, and the form can clear error messages and retry after a failed login attempt.
 8. **Test for component [AddCommentForm](../src/entities/Comment/ui/AddCommentForm/AddCommentForm.test.tsx)**:
    - Tests ensure that the `AddCommentForm` component renders correctly, updates the comment text field on user input, and handles comment submission. Tests verify that the `onSendComment` callback is called with the correct comment, the comment text field is cleared after submission, and the send button is enabled or disabled based on the input's state.
+
+## Selector tests
+
+The project also includes tests for selectors to ensure that they correctly extract and transform data from the state.
+
+1. **Test for selector [articleDetails selectors](../src/entities/Article/model/selectors/articleDetails.test.ts)**:
+   - **Test for `getArticleDetailsData`**: Verifies that the selector correctly returns article details data from the state, including handling cases where the state is empty.
+   - **Test for `getArticleDetailsError`**: Ensures that the selector returns the error state for article details, including handling empty state scenarios.
+   - **Test for `getArticleDetailsIsLoading`**: Confirms that the selector returns the loading state for article details, and handles cases where the state is empty or not specified.
+
+2. **Test for selector [user selectors](../src/entities/User/model/selectors/userSelectors.test.ts)**:
+   - **Test for `getUserAuthData`**: Verifies that the selector returns the authentication data for the user, including handling cases with an empty state.
+   - **Test for `getUserInited`**: Ensures that the selector correctly returns the `_inited` value indicating whether the user has been initialized, and handles empty state scenarios.
+   - **Test for `getJsonSettings`**: Confirms that the selector returns the user's JSON settings from authentication data, and correctly returns default settings when the authData is empty or when the state is empty.
+   - **Test for `isUserAdmin`**: Checks that the selector correctly identifies if the user has an admin role based on their roles in the state.
+   - **Test for `isUserManager`**: Verifies that the selector accurately identifies if the user has a manager role based on their roles in the state, and returns false for non-admin and non-manager roles. It also ensures that it handles cases with empty state.

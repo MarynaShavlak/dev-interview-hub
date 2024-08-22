@@ -53,7 +53,12 @@ const ArticleComments = memo((props: ArticleCommentsProps) => {
 
     return (
         <DynamicModuleLoader reducers={reducers}>
-            <VStack gap="16" max className={className}>
+            <VStack
+                gap="16"
+                max
+                className={className}
+                data-testid="article-comments"
+            >
                 <ToggleFeaturesComponent
                     feature="isAppRedesigned"
                     on={<Text size="l" title={sectionTitleText} />}
