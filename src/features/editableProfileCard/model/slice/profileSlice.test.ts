@@ -4,8 +4,18 @@ import { ProfileSchema } from '../types/editableProfileCardSchema';
 import { profileActions, profileReducer } from './profileSlice';
 import { testProfileData } from '@/entities/Profile/testing';
 
-describe('profileSlice.test', () => {
-    test('test set readonly', () => {
+describe('profileSlice tests', () => {
+    const initialState: ProfileSchema = {
+        data: undefined,
+        isLoading: false,
+        error: undefined,
+        readonly: true,
+    };
+    test('should return the initial state', () => {
+        expect(profileReducer(undefined, { type: '' })).toEqual(initialState);
+    });
+
+    test('should handle setReadonly action', () => {
         const state: DeepPartial<ProfileSchema> = { readonly: false };
         expect(
             profileReducer(
@@ -15,7 +25,7 @@ describe('profileSlice.test', () => {
         ).toEqual({ readonly: true });
     });
 
-    test('test cancel edit', () => {
+    test('should handle cancelEdit action', () => {
         const state: DeepPartial<ProfileSchema> = {
             data: testProfileData,
             form: { username: '' },
@@ -31,7 +41,7 @@ describe('profileSlice.test', () => {
         });
     });
 
-    test('test update profile', () => {
+    test('should handle updateProfile action', () => {
         const state: DeepPartial<ProfileSchema> = { form: { username: '123' } };
 
         expect(
@@ -46,7 +56,7 @@ describe('profileSlice.test', () => {
         });
     });
 
-    test('test update profile service pending', () => {
+    test('should handle updateProfileData.pending', () => {
         const state: DeepPartial<ProfileSchema> = {
             isLoading: false,
             validateErrors: [ValidateProfileError.SERVER_ERROR],
@@ -60,7 +70,7 @@ describe('profileSlice.test', () => {
         });
     });
 
-    test('test update profile service fullfiled', () => {
+    test('should handle updateProfileData.fulfilled', () => {
         const state: DeepPartial<ProfileSchema> = {
             isLoading: true,
         };
@@ -74,7 +84,6 @@ describe('profileSlice.test', () => {
             isLoading: false,
             validateErrors: undefined,
             readonly: true,
-            validateError: undefined,
             form: testProfileData,
             data: testProfileData,
         });

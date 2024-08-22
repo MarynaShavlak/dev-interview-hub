@@ -1,24 +1,86 @@
 import { loginActions, loginReducer } from './loginSlice';
 import { LoginSchema } from '../types/loginSchema';
+import { loginByUsername } from '../services/loginByUsername/loginByUsername';
+import { testUserData } from '@/entities/User/testing';
 
-describe('loginSlice.test', () => {
-    test('test set username', () => {
-        const state: DeepPartial<LoginSchema> = { username: '123' };
-        expect(
-            loginReducer(
-                state as LoginSchema,
-                loginActions.setUsername('123123'),
-            ),
-        ).toEqual({ username: '123123' });
+describe('loginSlice tests', () => {
+    const initialState: LoginSchema = {
+        isLoading: false,
+        username: '',
+        password: '',
+        error: undefined,
+    };
+
+    test('should return the initial state', () => {
+        expect(loginReducer(undefined, { type: '' })).toEqual(initialState);
     });
 
-    test('test set password', () => {
-        const state: DeepPartial<LoginSchema> = { password: '123' };
+    test('should handle setUsername action', () => {
+        const state: DeepPartial<LoginSchema> = { username: 'oldUsername' };
         expect(
             loginReducer(
                 state as LoginSchema,
-                loginActions.setPassword('123123'),
+                loginActions.setUsername('newUsername'),
             ),
-        ).toEqual({ password: '123123' });
+        ).toEqual({ username: 'newUsername' });
+    });
+
+    test('should handle setPassword action', () => {
+        const state: DeepPartial<LoginSchema> = { password: 'oldPassword' };
+        expect(
+            loginReducer(
+                state as LoginSchema,
+                loginActions.setPassword('newPassword'),
+            ),
+        ).toEqual({ password: 'newPassword' });
+    });
+    test('should handle loginByUsername.pending', () => {
+        const state: DeepPartial<LoginSchema> = {
+            isLoading: false,
+            error: 'Some error',
+        };
+
+        expect(
+            loginReducer(state as LoginSchema, loginByUsername.pending),
+        ).toEqual({
+            isLoading: true,
+            error: undefined,
+        });
+    });
+
+    test('should handle loginByUsername.fulfilled', () => {
+        const state: DeepPartial<LoginSchema> = { isLoading: true };
+
+        expect(
+            loginReducer(
+                state as LoginSchema,
+                loginByUsername.fulfilled(testUserData, '', {
+                    username: '',
+                    password: '',
+                }),
+            ),
+        ).toEqual({
+            isLoading: false,
+        });
+    });
+
+    test('should handle loginByUsername.rejected', () => {
+        const state: DeepPartial<LoginSchema> = { isLoading: true };
+        const error = 'Invalid credentials';
+
+        expect(
+            loginReducer(
+                state as LoginSchema,
+                loginByUsername.rejected(
+                    {} as any,
+                    '',
+                    { username: '', password: '' },
+                    error,
+                ),
+            ),
+        ).toEqual({
+            isLoading: false,
+            error,
+        });
     });
 });
