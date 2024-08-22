@@ -25,6 +25,7 @@ Profile/
 │   │   ├── RedesignedProfileCard.module.scss
 │   │   ├── RedesignedProfileCard.tsx
 ├── index.ts
+├── testing.ts
 ```
 
 ## Detailed Description
@@ -54,6 +55,8 @@ Profile/
 ### 3. `index.ts`
 - **`index.ts`**: Entry point for the Profile module, exporting the necessary components and types for use in the application.
 
+### 4. `testing.ts`
+Entry point for testing-related functionalities within the Profile module. It is used primarily for development purposes, such as testing data, reducers, and integrating with tools like Storybook. This file is not included in the production code but is essential for ensuring the module's functionality during development.
 
 ## Public API
 
@@ -64,6 +67,9 @@ Profile/
     - `ProfileCard` - A component for displaying and editing user profile information.
     - `RedesignedProfileCardSkeleton` - A skeleton loading screen for the redesigned profile card.
 
+## Public Testing API
+- **Testing Exports**:
+  - `testProfileData` -  is a mock object representing profile data, designed for use in testing scenarios and development tools.
 
 ## Conclusion
 The Entity `Profile` is designed to handle all profile-related functionalities in a structured and maintainable manner. By following the FSD architecture, this module ensures easy scalability and integration within the larger application.

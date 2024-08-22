@@ -76,3 +76,6 @@ The project also includes tests for selectors to ensure that they correctly extr
 5. **Test for selector [scroll selectors](../src/widgets/Page/model/selectors/getUIScroll.test.ts)**:
    - **Test for `getUIScroll`**: Verifies that the selector correctly returns the entire scroll state from the state, including handling cases where the scroll state is missing or undefined.
    - **Test for `getUIScrollByPath`**: Confirms that the selector returns the scroll value for a given path, including handling cases with unknown paths or missing scroll values.
+
+6. **Test for selector `getCanEditArticle`**:
+   - **Test for [getCanEditArticle](../src/pages/ArticleDetailsPage/model/selectors/getCanEditArticle/getCanEditArticle.test.ts)**: Verifies that the selector returns `true` when the article's author matches the authenticated user, and `false` otherwise. It also handles cases where either article data or user data is missing, returning `false` in those scenarios.

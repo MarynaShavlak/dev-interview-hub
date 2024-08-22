@@ -197,6 +197,7 @@ Entry point for testing-related functionalities within the Article module. It is
 ## Public Testing API
 - **Testing Exports**:
   - `articleDetailsReducer` - Reducer for article details state management for use in testing scenarios and development tools.
+  - `testArticleData` -  is a mock object representing article data, designed for use in testing scenarios and development tools.
 
 
 ## Conclusion

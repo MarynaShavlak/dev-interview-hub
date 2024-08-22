@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { ArticleListNavigationButton } from '@/features/ArticleListNavigationButton';
 import { ArticleEditNavigationButton } from '@/features/ArticleEditNavigationButton';
 import { HStack } from '@/shared/ui/redesigned/Stack';
-import { getCanEditArticle } from '../../../../model/selectors/article/article';
+import { getCanEditArticle } from '../../../../model/selectors/getCanEditArticle/getCanEditArticle';
 
 interface ArticleDetailsPageHeaderProps {
     className?: string;

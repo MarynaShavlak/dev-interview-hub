@@ -36,8 +36,8 @@ User/
 │   ├── types/
 │       ├── jsonSettings.ts
 │       └── user.ts
-└── index.ts
-
+├── index.ts
+├── testing.ts
 ```
 
 ## Detailed Description
@@ -99,6 +99,10 @@ Entry point for the User module, exporting the necessary components, functions, 
 - **Actions**:
   - `userReducer`: Reducer for user state management.
   - `userActions`, `useUserActions`: User-related actions for dispatching.
+
+## Public Testing API
+- **Testing Exports**:
+  - `testUserData` -  is a mock object representing user data, designed for use in testing scenarios and development tools.
 
 
 ## Conclusion
