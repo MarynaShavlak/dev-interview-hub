@@ -9,4 +9,4 @@ export {
     isUserManager,
 } from './roles/roleSelectors';
 
-export { useJsonSettings } from './jsonSettings/jsonSettings';
+export { useJsonSettings } from './getJsonSettings/getJsonSettings';
