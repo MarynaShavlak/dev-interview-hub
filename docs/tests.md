@@ -117,3 +117,11 @@ The project also includes tests for selectors to ensure that they correctly extr
    - **Test for `fetchArticleById.pending`**: Verifies that the reducer correctly sets `isLoading` to `true` and clears any previous error when the fetch action is pending.
    - **Test for `fetchArticleById.fulfilled`**: Confirms that the reducer updates the `data` with the fetched article and sets `isLoading` to `false` when the fetch action is successful.
    - **Test for `fetchArticleById.rejected`**: Ensures that the reducer sets the `error` and sets `isLoading` to `false` when the fetch action fails.
+
+6. **Test for [articleCommentsSlice](../src/features/ArticleComments/model/slices/articleCommentsSlice.test.ts) reducers**:
+   - **Initial state test**: Ensures that the `articleCommentsReducer` returns the initial state when no action is provided.
+   - **Test for `fetchCommentsByArticleId.pending`**: Verifies that the reducer sets `isLoading` to `true` and clears any previous error when the fetch action is pending.
+   - **Test for `fetchCommentsByArticleId.fulfilled`**: Confirms that the reducer updates the `ids` and `entities` with the fetched comments and sets `isLoading` to `false` when the fetch action is successful.
+   - **Test for `fetchCommentsByArticleId.rejected`**: Ensures that the reducer sets the `error` and sets `isLoading` to `false` when the fetch action fails.
+   - **Test for `fetchCommentsByArticleId.fulfilled` with empty array**: Verifies that the reducer handles an empty comments array correctly, resulting in empty `ids` and `entities`.
+   - **Test for `fetchCommentsByArticleId.fulfilled` with duplicate comments**: Ensures that the reducer handles duplicate comments by keeping only unique entries in `ids` and `entities`.
