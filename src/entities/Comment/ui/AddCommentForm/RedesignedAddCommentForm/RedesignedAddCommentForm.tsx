@@ -16,7 +16,9 @@ export const RedesignedAddCommentForm = memo((props: AddCommentFormProps) => {
     const { text, error, onCommentTextChange, onSendHandler } =
         useAddCommentForm(onSendComment);
 
-    if (error) return null;
+    if (error) {
+        return null;
+    }
 
     return (
         <Card padding="24" max border="partial">
@@ -39,6 +41,7 @@ export const RedesignedAddCommentForm = memo((props: AddCommentFormProps) => {
                 <Button
                     data-testid="AddCommentForm.Button"
                     onClick={onSendHandler}
+                    disabled={!text}
                 >
                     {t('Відправити')}
                 </Button>
