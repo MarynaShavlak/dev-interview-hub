@@ -83,7 +83,7 @@ The project also includes tests for selectors to ensure that they correctly extr
 
 ## Tests for slices
 
-1. **Test for `profileSlice` reducers**:
+1. **Test for [profileSlice](../src/features/editableProfileCard/model/slice/profileSlice.test.ts) reducers**:
    - **Initial state test**: Confirms that the `profileReducer` returns the correct initial state when no action is provided.
    - **Test for setting readonly mode**: Verifies that the `setReadonly` action correctly updates the `readonly` state.
    - **Test for canceling edit mode**: Ensures that `cancelEdit` resets the form data to the original profile data and sets `readonly` to `true`.
@@ -91,10 +91,15 @@ The project also includes tests for selectors to ensure that they correctly extr
    - **Test for handling pending state during profile update**: Checks that when the `updateProfileData` service is pending, `isLoading` is set to `true` and validation errors are cleared.
    - **Test for handling fulfilled state during profile update**: Ensures that when `updateProfileData` is fulfilled, the profile data is updated, `readonly` is set to `true`, and validation errors are cleared.
 
-2. **Test for `loginSlice` reducers**:
+2. **Test for [loginSlice](../src/features/AuthByUsername/model/slice/loginSlice.test.ts) reducers**:
    - **Initial state test**: Confirms that the `loginReducer` returns the correct initial state when no action is provided.
    - **Test for setting username**: Verifies that the `setUsername` action correctly updates the `username` in the state.
    - **Test for setting password**: Ensures that the `setPassword` action updates the `password` in the state as expected.
    - **Test for handling pending login action**: Checks that when `loginByUsername` is pending, the `isLoading` state is set to `true` and any previous error is cleared.
    - **Test for handling fulfilled login action**: Confirms that when `loginByUsername` is fulfilled, the `isLoading` state is set to `false`.
    - **Test for handling rejected login action**: Ensures that when `loginByUsername` is rejected, the `isLoading` state is set to `false` and the error message is correctly set in the state.
+
+3. **Test for [addCommentFormSlice](../src/entities/Comment/model/slices/addCommentFormSlice.test.ts) reducers**:
+   - **Initial state test**: Confirms that the `addCommentFormReducer` returns the correct initial state when no action is provided.
+   - **Test for setting comment text**: Verifies that the `setText` action correctly updates the `text` field in the state when provided with new text.
+   - **Test for handling empty comment text**: Ensures that the `setText` action correctly handles cases where the text is set to an empty string, updating the state accordingly.
