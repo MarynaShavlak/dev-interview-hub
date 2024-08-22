@@ -2037,90 +2037,15 @@
   "article-ratings": [
     {
       "userId": "1",
-      "articleId": "18",
-      "rate": 3,
-      "id": "QACIxje"
-    },
-    {
-      "userId": "1",
       "articleId": "7",
       "rate": 3,
-      "id": "Sur9UQf"
-    },
-    {
-      "userId": "1",
-      "articleId": "8",
-      "rate": 3,
-      "feedback": "gggg",
-      "id": "UM3NEzH"
-    },
-    {
-      "userId": "1",
-      "articleId": "4",
-      "rate": 4,
-      "feedback": "ffffff",
-      "id": "dKZTinO"
-    },
-    {
-      "userId": "1",
-      "articleId": "14",
-      "rate": 4,
-      "feedback": "FRRR",
-      "id": "l64Zn1B"
+      "id": 1
     },
     {
       "userId": "1",
       "articleId": "12",
       "rate": 3,
-      "feedback": "55555",
-      "id": "XIfT9oF"
-    },
-    {
-      "userId": "1",
-      "articleId": "17",
-      "rate": 1,
-      "feedback": "мпчаоспл",
-      "id": "GuvNaeT"
-    },
-    {
-      "userId": "1",
-      "articleId": "207777",
-      "rate": 3,
-      "id": "YmEyKMN"
-    },
-    {
-      "userId": "1",
-      "articleId": "19",
-      "rate": 3,
-      "id": "zAuGfdJ"
-    },
-    {
-      "userId": "1",
-      "articleId": "5",
-      "rate": 3,
-      "id": "-m4kknv"
-    },
-    {
-      "userId": "1",
-      "articleId": "3",
-      "rate": 3,
-      "id": "ICS4JGU"
-    }
-  ],
-  "profile-ratings": [
-    {
-      "id": "1",
-      "rate": 4,
-      "feedback": "Хорошая статья",
-      "userId": "1",
-      "profileId": "1"
-    },
-    {
-      "id": "2",
-      "rate": 4,
-      "feedback": "Хорошая статья",
-      "userId": "1",
-      "profileId": "2"
+      "id": 2
     }
   ]
 }

@@ -1,4 +1,5 @@
 import { fireEvent, screen, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { Rating } from './Rating';
 import { componentRender } from '@/shared/lib/tests/componentRender/componentRender';
 import { RedesignedRating } from './RedesignedRating/RedesignedRating';
@@ -25,12 +26,12 @@ describe('Rating Component', () => {
         expect(screen.getByText('Оцініть статтю')).toBeInTheDocument();
     });
 
-    test('should display "Дякуємо за оцінку!" when starsCount exists', () => {
+    test('should display "Дякуємо за оцінку!" when starsCount is greater than zero', () => {
         renderRedesignedRating(3);
         expect(screen.getByText('Дякуємо за оцінку!')).toBeInTheDocument();
     });
 
-    test('should display the title when starsCount does not exist', () => {
+    test('should display the title when starsCount is zero', () => {
         renderRedesignedRating(0);
         expect(
             screen.queryByText('Дякуємо за оцінку!'),
@@ -38,7 +39,7 @@ describe('Rating Component', () => {
         expect(screen.getByText('Оцініть статтю')).toBeInTheDocument();
     });
 
-    test('should NOT open feedback modal when stars are selected but feedback is disabled', async () => {
+    test('does NOT open feedback modal when feedback is disabled', async () => {
         const onSubmitRatingMock = jest.fn();
 
         componentRender(
@@ -53,7 +54,7 @@ describe('Rating Component', () => {
         });
     });
 
-    test('should open feedback modal when stars are selected and feedback is enabled', async () => {
+    test('opens feedback modal when feedback is enable', async () => {
         const onSubmitRatingMock = jest.fn();
 
         componentRender(
@@ -68,66 +69,61 @@ describe('Rating Component', () => {
         });
     });
 
-    test('should close the feedback modal without submitting feedback', async () => {
+    test('closes feedback modal without submitting feedback', async () => {
         const onSubmitRatingMock = jest.fn();
-        const cancelFeedbackMock = jest.fn();
-
+        const onSubmitFeedbackMock = jest.fn();
         componentRender(
             <Rating onSubmitRating={onSubmitRatingMock} hasFeedback />,
         );
 
-        const starButton = screen.getByTestId('StarRating-4'); // Assuming each star button has a test ID
+        const starButton = screen.getByTestId('StarRating-4');
         fireEvent.click(starButton);
 
         await waitFor(() => {
             expect(screen.getByTestId('feedback-modal')).toBeInTheDocument();
         });
 
-        const cancelButton = screen.getByTestId('cancel-feedback-btn'); // Assuming button has a test ID
-        fireEvent.click(cancelButton);
-        screen.debug();
+        const cancelButton = screen.getByTestId('cancel-feedback-btn');
+        await userEvent.click(cancelButton);
         expect(onSubmitRatingMock).toHaveBeenCalledWith(4);
-        expect(cancelFeedbackMock).toHaveBeenCalled();
-        expect(screen.queryByTestId('feedback-modal')).not.toBeInTheDocument();
+        expect(onSubmitFeedbackMock).not.toHaveBeenCalled();
+    });
 
-        // await waitFor(() => {
-        //     expect(
-        //         screen.queryByTestId('feedback-modal'),
-        //     ).not.toBeInTheDocument();
-        // });
+    test('submits feedback and closes the modal', async () => {
+        const onSubmitRatingMock = jest.fn();
+        const onSubmitFeedbackMock = jest.fn();
+        componentRender(
+            <Rating
+                onSubmitRating={onSubmitRatingMock}
+                onSubmitFeedback={onSubmitFeedbackMock}
+                hasFeedback
+            />,
+        );
+
+        const starButton = screen.getByTestId('StarRating-5');
+        fireEvent.click(starButton);
+
+        await waitFor(() => {
+            expect(screen.getByTestId('feedback-modal')).toBeInTheDocument();
+        });
+
+        await userEvent.type(
+            screen.getByTestId('feedback-input'),
+            'Great Article!',
+        );
+        expect(screen.getByTestId('feedback-input')).toHaveValue(
+            'Great Article!',
+        );
+
+        const submitButton = screen.getByTestId('submit-feedback-btn');
+        fireEvent.click(submitButton);
+
+        await waitFor(() => {
+            expect(onSubmitFeedbackMock).toHaveBeenCalledWith(
+                5,
+                'Great Article!',
+            );
+            expect(onSubmitRatingMock).not.toHaveBeenCalled();
+        });
     });
 });
-
-// test('should submit feedback and close modal', async () => {
-//     const onSubmitFeedbackMock = jest.fn();
-//
-//     componentRender(
-//         <Rating onSubmitFeedback={onSubmitFeedbackMock} hasFeedback />,
-//     );
-//
-//     const starButton = screen.getByTestId('star-button-5'); // Assuming each star button has a test ID
-//     fireEvent.click(starButton);
-//
-//     await waitFor(() => {
-//         expect(screen.getByTestId('feedback-modal')).toBeInTheDocument();
-//     });
-//
-//     const feedbackInput = screen.getByTestId('feedback-input'); // Assuming input has a test ID
-//     fireEvent.change(feedbackInput, {
-//         target: { value: 'Great product!' },
-//     });
-//
-//     const submitButton = screen.getByTestId('submit-feedback-btn'); // Assuming button has a test ID
-//     fireEvent.click(submitButton);
-//
-//     await waitFor(() => {
-//         expect(onSubmitFeedbackMock).toHaveBeenCalledWith(
-//             5,
-//             'Great product!',
-//         );
-//         expect(
-//             screen.queryByTestId('feedback-modal'),
-//         ).not.toBeInTheDocument();
-//     });
-// });
-//

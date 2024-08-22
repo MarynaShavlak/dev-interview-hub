@@ -16,6 +16,7 @@ setFeedback: (feedBack: string) => void;
 ```
 
 ## Props
+The `FeedbackModal` interface extends `TestProps` to include the optional `data-testid` property, allowing for easier identification and testing of the component in various testing environments
 The **`FeedbackModal`** component accepts the following props:
 
 | Prop               | Type                               | Required / Optional | Description                                           |

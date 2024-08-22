@@ -41,6 +41,7 @@ export const FeedbackModal = memo((props: FeedbackProps) => {
                                 value={feedback}
                                 onChange={setFeedback}
                                 placeholder={inputPlaceholderText}
+                                data-testid="feedback-input"
                             />
                             <HStack max gap="16" justify="end">
                                 <Button
@@ -53,6 +54,7 @@ export const FeedbackModal = memo((props: FeedbackProps) => {
                                 <Button
                                     variant="save"
                                     onClick={onSubmitFeedback}
+                                    data-testid="submit-feedback-btn"
                                 >
                                     {sendButtonText}
                                 </Button>

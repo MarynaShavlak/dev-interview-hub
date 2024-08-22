@@ -33,7 +33,9 @@ describe('loginByUsername.test', () => {
         expect(thunk.dispatch).toHaveBeenCalledTimes(2);
         expect(thunk.api.post).toHaveBeenCalled();
         expect(result.meta.requestStatus).toBe('rejected');
-        expect(result.payload).toBe('error');
+        expect(result.payload).toBe(
+            'Login failed. Please check your username and password and try again.',
+        );
     });
 });
 
