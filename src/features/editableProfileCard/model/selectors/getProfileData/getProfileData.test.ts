@@ -2,8 +2,8 @@ import { StateSchema } from '@/app/providers/StoreProvider';
 import { getProfileData } from './getProfileData';
 import { testProfileData } from '@/entities/Profile/testing';
 
-describe('getProfileData.test', () => {
-    test('should return error', () => {
+describe('getProfileData', () => {
+    test('should return profile data', () => {
         const state: DeepPartial<StateSchema> = {
             profile: {
                 data: testProfileData,

@@ -1,8 +1,8 @@
 import { StateSchema } from '@/app/providers/StoreProvider';
 import { getProfileIsLoading } from './getProfileIsLoading';
 
-describe('getProfileIsLoading.test', () => {
-    test('should work with filled state', () => {
+describe('getProfileIsLoading', () => {
+    test('should return loading status ', () => {
         const state: DeepPartial<StateSchema> = {
             profile: {
                 isLoading: true,

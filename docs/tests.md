@@ -47,20 +47,28 @@ The project includes component tests using React Testing Library to verify that 
 
 The project also includes tests for selectors to ensure that they correctly extract and transform data from the state.
 
-1. **Test for selector [articleDetails selectors](../src/entities/Article/model/selectors/articleDetails.test.ts)**:
+1. **Test for  [articleDetails selectors](../src/entities/Article/model/selectors/articleDetails.test.ts)**:
    - **Test for `getArticleDetailsData`**: Verifies that the selector correctly returns article details data from the state, including handling cases where the state is empty.
    - **Test for `getArticleDetailsError`**: Ensures that the selector returns the error state for article details, including handling empty state scenarios.
    - **Test for `getArticleDetailsIsLoading`**: Confirms that the selector returns the loading state for article details, and handles cases where the state is empty or not specified.
 
-2. **Test for selector `user selectors`**:
+2. **Test for `user selectors`**:
    - **Test for [getUserAuthData](../src/entities/User/model/selectors/getUserAuthData/getUserAuthData.test.ts)**: Verifies that the selector returns the authentication data for the user, including handling cases with an empty state.
    - **Test for [getUserInited](../src/entities/User/model/selectors/getUserInited/getUserInited.test.ts)**: Ensures that the selector correctly returns the `_inited` value indicating whether the user has been initialized, and handles empty state scenarios.
    - **Test for [getJsonSettings](../src/entities/User/model/selectors/getJsonSettings/getJsonSettings.test.ts)**: Confirms that the selector returns the user's JSON settings from authentication data, and correctly returns default settings when the authData is empty or when the state is empty.
    - **Test for [isUserAdmin](../src/entities/User/model/selectors/roles/userSelectors.test.ts)**: Checks that the selector correctly identifies if the user has an admin role based on their roles in the state.
    - **Test for [isUserManager](../src/entities/User/model/selectors/roles/userSelectors.test.ts)**: Verifies that the selector accurately identifies if the user has a manager role based on their roles in the state, and returns false for non-admin and non-manager roles. It also ensures that it handles cases with empty state.
 
-3. **Test for selector `login form selectors`**:
+3. **Test for `login form selectors`**:
    - **Test for [getLoginUsername](../src/features/AuthByUsername/model/selectors/getLoginUsername/getLoginUsername.test.ts)**: Verifies that the selector correctly returns the username from the login form state, and handles cases with an empty state.
    - **Test for [getLoginPassword](../src/features/AuthByUsername/model/selectors/getLoginPassword/getLoginPassword.ts)**: Ensures that the selector returns the password from the login form state, including scenarios with an empty state.
    - **Test for [getLoginIsLoading](../src/features/AuthByUsername/model/selectors/getLoginIsLoading/getLoginIsLoading.test.ts)**: Confirms that the selector correctly returns the loading state for the login form, and handles cases with an empty state.
    - **Test for [getLoginError](../src/features/AuthByUsername/model/selectors/getLoginError/getLoginError.test.ts)**: Verifies that the selector correctly returns the error message from the login form state, and manages cases where the state is empty.
+
+4. **Test for selector `profile selectors`**:
+   - **Test for [getProfileData](../src/features/editableProfileCard/model/selectors/getProfileData/getProfileData.test.ts)**: Verifies that the selector correctly returns the profile data from the state, including handling cases with an empty state.
+   - **Test for [getProfileError](../src/features/editableProfileCard/model/selectors/getProfileError/getProfileError.test.ts)**: Ensures that the selector returns the profile error from the state, and handles scenarios where the state is empty.
+   - **Test for [getProfileForm](../src/features/editableProfileCard/model/selectors/getProfileForm/getProfileForm.test.ts)**: Confirms that the selector returns the profile form data, including handling cases where the state is empty.
+   - **Test for [getProfileIsLoading](../src/features/editableProfileCard/model/selectors/getProfileIsLoading/getProfileIsLoading.test.ts)**: Verifies that the selector correctly returns the loading status of the profile, and handles empty state scenarios.
+   - **Test for [getProfileReadonly](../src/features/editableProfileCard/model/selectors/getProfileReadonly/getProfileReadonly.test.ts)**: Ensures that the selector correctly returns the readonly status of the profile, and handles scenarios where the state is empty.
+   - **Test for [getProfileValidateErrors](../src/features/editableProfileCard/model/selectors/getProfileValidateErrors/getProfileValidateErrors.test.ts)**: Confirms that the selector returns profile validation errors, including handling cases where the state is empty.
