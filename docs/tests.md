@@ -140,3 +140,19 @@ The project also includes tests for selectors to ensure that they correctly extr
    - **Test for `initAuthData.fulfilled`**: Ensures that the reducer sets the `authData` and `_inited` flag to `true` upon successful initialization.
    - **Test for `initAuthData.rejected`**: Verifies that the `_inited` flag is set to `true` even if the initialization fails.
    - **Test for concurrent actions**: Confirms that the reducer handles multiple `saveJsonSettings` actions correctly by applying the most recent settings.
+
+8. **Test for [articlesPageSlice](../src/pages/ArticlesPage/model/slices/articlesPageSlice.test.ts) reducers**:
+   - **Initial state test**: Ensures that the `articlesPageReducer` returns the initial state when no action is provided.
+   - **Test for `setView` action**: Verifies that the `setView` action correctly updates the `view` property in the state.
+   - **Test for `setPage` action**: Confirms that the `setPage` action updates the `page` property in the state as expected.
+   - **Test for `setOrder` action**: Ensures that the `setOrder` action updates the `order` property in the state with the correct sort order.
+   - **Test for `setSort` action**: Validates that the `setSort` action correctly updates the `sort` field in the state.
+   - **Test for `setCategory` action**: Confirms that the `setCategory` action updates the `category` field in the state with the chosen category.
+   - **Test for `setSearch` action**: Verifies that the `setSearch` action updates the `search` property in the state with the new search term.
+   - **Test for `setLimit` action**: Ensures that the `setLimit` action correctly updates the `limit` property in the state.
+   - **Test for `setScrollStopArticleIndex` action**: Confirms that the `setScrollStopArticleIndex` action updates the `scrollStopArticleIndex` in the state.
+   - **Test for `initState` action**: Verifies that the `initState` action initializes the state with the correct `view`, `limit`, and `_inited` properties.
+   - **Test for `fetchArticlesList.pending`**: Ensures that when `fetchArticlesList` is pending, the `isLoading` property is set to `true`, and any previous `error` is cleared.
+   - **Test for `fetchArticlesList.fulfilled` with `replace` option**: Confirms that the `fetchArticlesList.fulfilled` action replaces the current articles in the state when the `replace` option is used.
+   - **Test for `fetchArticlesList.fulfilled` with `addMany` option**: Verifies that the `fetchArticlesList.fulfilled` action appends new articles to the existing ones in the state when the `addMany` option is used.
+   - **Test for `fetchArticlesList.rejected`**: Ensures that when `fetchArticlesList` is rejected, the `error` property is updated with the error message, and `isLoading` is set to `false`.
