@@ -19,7 +19,7 @@ The `initArticlesPage` thunk is an asynchronous action designed to initialize th
 
 1. **State Check**: Checks if the articles page has already been initialized using `getArticlesPageInited`. If the page is not initialized, it proceeds with the initialization process.
 2. **Parameter Processing**: Iterates over predefined URL search parameter actions (`searchParamActions`) and extracts corresponding values from `searchParams`. Updates the Redux store with these values using the appropriate actions.
-3. **State Initialization**: Dispatches `articlesPageActions.initState()` to initialize the articles page state.
+3. **State Initialization**:  Retrieves the view setting from `localStorage` and dispatches `articlesPageActions.initState(view)` to configure the initial state, adjusting settings like the article display limit based on the view type.
 4. **Fetch Articles**: Calls `fetchArticlesList` to retrieve the articles list based on the initialized settings.
 
 ## Error Handling

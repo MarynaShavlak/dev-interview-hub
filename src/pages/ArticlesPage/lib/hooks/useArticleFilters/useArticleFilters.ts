@@ -16,6 +16,7 @@ import { SortOrder } from '@/shared/types/sortOrder';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { fetchArticlesList } from '../../../model/services/fetchArticlesList/fetchArticlesList';
 import { useDebounce } from '@/shared/lib/hooks/useDebounce/useDebounce';
+import { ARTICLES_VIEW_LOCALSTORAGE_KEY } from '@/shared/const/localstorage';
 
 /**
  * Custom hook for managing article filters and triggering data fetches.
@@ -46,7 +47,7 @@ import { useDebounce } from '@/shared/lib/hooks/useDebounce/useDebounce';
  *  *
  *  */
 
-export function useArticleFilters() {
+export const useArticleFilters = () => {
     const view = useArticlesPageView();
     const sort = useArticlesPageSort();
     const order = useArticlesPageOrder();
@@ -78,6 +79,7 @@ export function useArticleFilters() {
     const onChangeView = useCallback(
         (view: ArticleView) => {
             setView(view);
+            localStorage.setItem(ARTICLES_VIEW_LOCALSTORAGE_KEY, view);
             setLimit(view === ArticleView.GRID ? 9 : 4);
             resetPageAndFetchData();
         },
@@ -129,4 +131,4 @@ export function useArticleFilters() {
         onChangeSearch,
         onChangeCategory,
     };
-}
+};

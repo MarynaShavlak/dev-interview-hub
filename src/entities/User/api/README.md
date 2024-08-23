@@ -93,32 +93,29 @@ export const saveJsonSettings = createAsyncThunk<
 ### Example 2: Initiate use
 ```typescript
 export const initAuthData = createAsyncThunk<User, void, ThunkConfig<string>>(
-    'user/initAuthData',
-    async (newJsonSettings, thunkApi) => {
-        const { rejectWithValue, dispatch } = thunkApi;
+        'user/initAuthData',
+        async (newJsonSettings, thunkApi) => {
+           const { rejectWithValue, dispatch } = thunkApi;
 
-        const userId = localStorage.getItem(USER_LOCALSTORAGE_KEY);
+           const userId = localStorage.getItem(USER_LOCALSTORAGE_KEY);
 
-        if (!userId) {
-            return rejectWithValue('No user ID found in local storage.');
-        }
+           if (!userId) {
+              return rejectWithValue('No user ID found in local storage.');
+           }
 
-        try {
-            const response = await dispatch(
-                getUserDataByIdQuery(userId),
-            ).unwrap();
+           try {
+              const response = await dispatch(
+                      getUserDataByIdQuery(userId),
+              ).unwrap();
 
-            localStorage.setItem(
-                LOCAL_STORAGE_LAST_DESIGN_KEY,
-                response.features?.isAppRedesigned ? 'new' : 'old',
-            );
+              initializeUserFeatures(response);
 
-            return response;
-        } catch (error) {
-            console.error('Error during auth initialization:', error);
-            return rejectWithValue('Failed to initialize auth data.');
-        }
-    },
+              return response;
+           } catch (error) {
+              console.error('Error during auth initialization:', error);
+              return rejectWithValue('Failed to initialize auth data.');
+           }
+        },
 );
 ```
 

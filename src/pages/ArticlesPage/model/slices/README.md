@@ -24,7 +24,6 @@ import { fetchArticlesList } from '../../model/services/fetchArticlesList/fetchA
 - `PayloadAction`: Type from Redux Toolkit defining action payload shapes.
 - `StateSchema`: Type representing the overall shape of the Redux store state.
 - `Article`, `ArticleSortField`, `ArticleView`, `ArticleCategory`: Types related to articles, including sorting fields, view types, and categories.
-- `ARTICLES_VIEW_LOCALSTORAGE_KEY`: Constant for the key used in localStorage to persist view preferences.
 - `SortOrder`: Type representing sorting order (ascending/descending).
 - `ArticlesPageSchema`: TypeScript type defining the schema for articles page state.
 - `fetchArticlesList`: Asynchronous thunk action for fetching a list of articles.
@@ -91,17 +90,17 @@ The `getArticles` selector is created using the adapter's `getSelectors` method.
 
 ## Reducers
 
-| Reducer       | Action Payload Type           | State Change                                                                                               | Purpose                                                                                              |
-|---------------|-------------------------------|------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------|
-| `setView`     | `PayloadAction<ArticleView>`  | Updates the `view` property with the new view type and saves this view to `localStorage`.                  | Allows users to switch between different view types (e.g., grid or list) and persists the selection.|
-| `setPage`     | `PayloadAction<number>`       | Updates the `page` property to reflect the new page number.                                                | Manages pagination by setting the current page number.                                               |
-| `setOrder`    | `PayloadAction<SortOrder>`    | Updates the `order` property with the new sorting order (ascending/descending).                            | Controls the order in which articles are sorted.                                                     |
-| `setSort`     | `PayloadAction<ArticleSortField>` | Updates the `sort` property with the new field used for sorting articles.                                  | Specifies the criteria by which articles are sorted (e.g., creation date).                           |
-| `setCategory` | `PayloadAction<ArticleCategory>` | Updates the `category` property to filter articles by a new category.                                      | Filters articles based on the selected category.                                                     |
-| `setSearch`   | `PayloadAction<string>`       | Updates the `search` property with the new search query.                                                   | Updates the search filter to find articles matching the query.                                        |
-| `setLimit`    | `PayloadAction<number>`       | Updates the `limit` property with the new number of articles to display per page.                                                         | Allows for changing the number of articles displayed per page.                                      |
-| `setScrollStopArticleIndex`    | `PayloadAction<number>`       | Updates the `scrollStopArticleIndex` to keep track of the user's current position in the article list.                                                        | Used for implementing lazy loading of articles. This allows users to continue browsing from where they left off.                                      |
-| `initState`   | `void`                        | Initializes `view` from `localStorage`, sets `limit` based on the view type, and sets `_inited` to `true`. | Sets up the initial state for the page based on previously saved settings and default values.         |
+| Reducer       | Action Payload Type           | State Change                                                                                              | Purpose                                                                                              |
+|---------------|-------------------------------|-----------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------|
+| `setView`     | `PayloadAction<ArticleView>`  | Updates the `view` property with the new view type.                                                       | Allows users to switch between different view types (e.g., grid or list) and persists the selection.|
+| `setPage`     | `PayloadAction<number>`       | Updates the `page` property to reflect the new page number.                                               | Manages pagination by setting the current page number.                                               |
+| `setOrder`    | `PayloadAction<SortOrder>`    | Updates the `order` property with the new sorting order (ascending/descending).                           | Controls the order in which articles are sorted.                                                     |
+| `setSort`     | `PayloadAction<ArticleSortField>` | Updates the `sort` property with the new field used for sorting articles.                                 | Specifies the criteria by which articles are sorted (e.g., creation date).                           |
+| `setCategory` | `PayloadAction<ArticleCategory>` | Updates the `category` property to filter articles by a new category.                                     | Filters articles based on the selected category.                                                     |
+| `setSearch`   | `PayloadAction<string>`       | Updates the `search` property with the new search query.                                                  | Updates the search filter to find articles matching the query.                                        |
+| `setLimit`    | `PayloadAction<number>`       | Updates the `limit` property with the new number of articles to display per page.                         | Allows for changing the number of articles displayed per page.                                      |
+| `setScrollStopArticleIndex`    | `PayloadAction<number>`       | Updates the `scrollStopArticleIndex` to keep track of the user's current position in the article list.    | Used for implementing lazy loading of articles. This allows users to continue browsing from where they left off.                                      |
+| `initState`   | `PayloadAction<ArticleView>`                        | Initializes the state based on the view type, adjusting the `limit` accordingly, and sets `_inited` to `true`. | Sets up the initial state for the page by configuring the view type and adjusting the article limit based on the view type, and marks the state as initialized.        |
 
 ## Extra Reducers
 

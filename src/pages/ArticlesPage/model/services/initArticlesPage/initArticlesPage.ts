@@ -1,10 +1,15 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig } from '@/app/providers/StoreProvider';
-import { ArticleSortField, ArticleCategory } from '@/entities/Article';
+import {
+    ArticleSortField,
+    ArticleCategory,
+    ArticleView,
+} from '@/entities/Article';
 import { SortOrder } from '@/shared/types/sortOrder';
 import { getArticlesPageInited } from '../../selectors/articlesPageSelectors';
 import { articlesPageActions } from '../../slices/articlesPageSlice';
 import { fetchArticlesList } from '../fetchArticlesList/fetchArticlesList';
+import { ARTICLES_VIEW_LOCALSTORAGE_KEY } from '@/shared/const/localstorage';
 
 /**
  * Object mapping search parameter keys to corresponding Redux actions.
@@ -60,7 +65,10 @@ export const initArticlesPage = createAsyncThunk<
                 dispatch(searchParamActions[param](value));
             }
         });
-        dispatch(articlesPageActions.initState());
+        const view = localStorage.getItem(
+            ARTICLES_VIEW_LOCALSTORAGE_KEY,
+        ) as ArticleView;
+        dispatch(articlesPageActions.initState(view));
         dispatch(fetchArticlesList({}));
     }
 });

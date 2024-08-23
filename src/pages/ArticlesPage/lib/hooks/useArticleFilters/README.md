@@ -1,6 +1,5 @@
 ## useArticleFilters Hook
-The `useArticleFilters` hook is a custom React hook designed to manage and interact with the article filtering state within an application. 
-It consolidates various filter-related selectors and actions to provide a unified API for handling article sorting, ordering, searching, and category selection. By leveraging this hook, components can easily access and update filter criteria, ensuring a responsive and consistent user experience when interacting with article lists.
+The `useArticleFilters` hook is a custom React hook designed to manage and interact with article filtering state within an application. It consolidates various filter-related selectors and actions into a unified API, allowing components to easily access and update filters for sorting, ordering, searching, and categorizing articles. This hook ensures a responsive and consistent user experience by providing mechanisms to update filters and trigger data fetches accordingly.
 
 ## Parameters
 This hook does not take any parameters.
@@ -15,7 +14,7 @@ An object with the following properties:
 | `order`              | `SortOrder`           | The current sort order (ascending or descending).     |
 | `search`             | `string`              | The current search query used for filtering articles. |
 | `category`           | `ArticleCategory`     | The currently selected article category for filtering. |
-| `onChangeView`       | `(view: ArticleView) => void` | Function to update the article view setting, adjust the limit based on the view, reset the page, and fetch data.                                                      |
+| `onChangeView`       | `(view: ArticleView) => void` | Function to update the article view setting, adjust the limit based on the view,store the view in local storage, reset the page, and fetch data.                                                      |
 | `onChangeSort`       | `(newSort: ArticleSortField) => void` | Function to update the article sort field.            |
 | `onChangeOrder`      | `(newOrder: SortOrder) => void` | Function to update the article sort order.            |
 | `onChangeSearch`     | `(search: string) => void` | Function to update the search query.                  |
@@ -38,7 +37,7 @@ An object with the following properties:
    - **`useDebounce`**: Applies a debounce to the fetchData function to optimize performance by delaying execution until the user stops typing.
 
 4. **Callbacks**:
-   - **`onChangeView`**: Updates the article view setting, sets the limit based on the view, resets the page to 1, and triggers a data fetch.
+   - **`onChangeView`**: Updates the article view setting, sets the limit based on the view,stores the view in local storage, resets the page to 1, and triggers a data fetch.
    - **`onChangeSort`**: Updates the sort field, resets the page to 1, and triggers a data fetch.
    - **`onChangeOrder`**: Updates the sort order, resets the page to 1, and triggers a data fetch.
    - **`onChangeSearch`**: Updates the search query, resets the page to 1, and triggers a debounced data fetch.
