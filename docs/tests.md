@@ -90,6 +90,8 @@ The project also includes tests for selectors to ensure that they correctly extr
    - **Test for updating profile data**: Confirms that the `updateProfile` action correctly updates the form data with new values.
    - **Test for handling pending state during profile update**: Checks that when the `updateProfileData` service is pending, `isLoading` is set to `true` and validation errors are cleared.
    - **Test for handling fulfilled state during profile update**: Ensures that when `updateProfileData` is fulfilled, the profile data is updated, `readonly` is set to `true`, and validation errors are cleared.
+   - **Test for empty profile data**: Verifies that when `updateProfileData` is fulfilled with empty profile data, the state correctly reflects this with `isLoading` set to `false`, and `data` and `form` set to the empty profile data.
+   - **Test for toggling readonly state**: Ensures that the `readonly` state can be toggled between `true` and `false` correctly.
 
 2. **Test for [loginSlice](../src/features/AuthByUsername/model/slice/loginSlice.test.ts) reducers**:
    - **Initial state test**: Confirms that the `loginReducer` returns the correct initial state when no action is provided.
@@ -98,11 +100,14 @@ The project also includes tests for selectors to ensure that they correctly extr
    - **Test for handling pending login action**: Checks that when `loginByUsername` is pending, the `isLoading` state is set to `true` and any previous error is cleared.
    - **Test for handling fulfilled login action**: Confirms that when `loginByUsername` is fulfilled, the `isLoading` state is set to `false`.
    - **Test for handling rejected login action**: Ensures that when `loginByUsername` is rejected, the `isLoading` state is set to `false` and the error message is correctly set in the state.
+   - **Test for handling multiple actions in sequence**: Verifies that sequential actions, including setting the username and password and handling login states, update the state correctly through pending, fulfilled, and error scenarios.
 
 3. **Test for [addCommentFormSlice](../src/entities/Comment/model/slices/addCommentFormSlice.test.ts) reducers**:
    - **Initial state test**: Confirms that the `addCommentFormReducer` returns the correct initial state when no action is provided.
    - **Test for setting comment text**: Verifies that the `setText` action correctly updates the `text` field in the state when provided with new text.
    - **Test for handling empty comment text**: Ensures that the `setText` action correctly handles cases where the text is set to an empty string, updating the state accordingly.
+   - **Test for handling multiple setText actions**: Checks that sequential `setText` actions update the state correctly, with the final state reflecting the last action's text.
+   - **Test for handling actions in sequence**: Validates that the reducer correctly updates the state through a series of actions, maintaining the most recent value.
 
 4. **Test for [scrollSlice](../src/widgets/Page/model/slices/scrollSlice.test.ts) reducers**:
    - **Initial state test**: Ensures that the `scrollReducer` returns the initial state when no action is provided.
@@ -115,8 +120,9 @@ The project also includes tests for selectors to ensure that they correctly extr
 5. **Test for [articleDetailsSlice](../src/entities/Article/model/slice/articleDetailsSlice.test.ts) reducers**:
    - **Initial state test**: Ensures that the `articleDetailsReducer` returns the initial state when no action is provided.
    - **Test for `fetchArticleById.pending`**: Verifies that the reducer correctly sets `isLoading` to `true` and clears any previous error when the fetch action is pending.
-   - **Test for `fetchArticleById.fulfilled`**: Confirms that the reducer updates the `data` with the fetched article and sets `isLoading` to `false` when the fetch action is successful.
-   - **Test for `fetchArticleById.rejected`**: Ensures that the reducer sets the `error` and sets `isLoading` to `false` when the fetch action fails.
+   - **Test for `fetchArticleById.fulfilled` with data**: Confirms that the reducer updates the `data` with the fetched article and sets `isLoading` to `false` when the fetch action is successful.
+   - **Test for `fetchArticleById.fulfilled` with no data**: Ensures that the reducer correctly sets `data` to `null` and `isLoading` to `false` when the fetch action succeeds but returns no data.
+   - **Test for `fetchArticleById.rejected` with specific error message**: Validates that the reducer sets the `error` and `isLoading` to `false` when the fetch action fails, with the error message properly reflected in the state.
 
 6. **Test for [articleCommentsSlice](../src/features/ArticleComments/model/slices/articleCommentsSlice.test.ts) reducers**:
    - **Initial state test**: Ensures that the `articleCommentsReducer` returns the initial state when no action is provided.
@@ -125,3 +131,12 @@ The project also includes tests for selectors to ensure that they correctly extr
    - **Test for `fetchCommentsByArticleId.rejected`**: Ensures that the reducer sets the `error` and sets `isLoading` to `false` when the fetch action fails.
    - **Test for `fetchCommentsByArticleId.fulfilled` with empty array**: Verifies that the reducer handles an empty comments array correctly, resulting in empty `ids` and `entities`.
    - **Test for `fetchCommentsByArticleId.fulfilled` with duplicate comments**: Ensures that the reducer handles duplicate comments by keeping only unique entries in `ids` and `entities`.
+
+7. **Test for [userSlice](../src/entities/User/model/slice/userSlice.test.ts) reducers**:
+   - **Initial state test**: Ensures that the `userReducer` returns the initial state when no action is provided.
+   - **Test for `setAuthData` action**: Verifies that the reducer correctly sets the `authData` in the state.
+   - **Test for `logout` action**: Confirms that the reducer clears the `authData` when the `logout` action is dispatched.
+   - **Test for `saveJsonSettings.fulfilled`**: Checks that the reducer updates the `jsonSettings` in `authData` when `saveJsonSettings` completes successfully.
+   - **Test for `initAuthData.fulfilled`**: Ensures that the reducer sets the `authData` and `_inited` flag to `true` upon successful initialization.
+   - **Test for `initAuthData.rejected`**: Verifies that the `_inited` flag is set to `true` even if the initialization fails.
+   - **Test for concurrent actions**: Confirms that the reducer handles multiple `saveJsonSettings` actions correctly by applying the most recent settings.

@@ -70,7 +70,9 @@ Entry point for testing-related functionalities within the Comment module. It is
 
 ## Public Testing API
 - **Testing Exports**:
-    - `addCommentFormReducer` - Reducer for add comment form state management for use in testing scenarios and development tools.
+    - `addCommentFormReducer` - Reducer for add comment form state management for use in testing scenarios and development tools.  - `testUserData` -  is a mock object representing user data, designed for use in testing scenarios and development tools.
+    - `testCommentsData` -  is a mock array of objects representing comments data, designed for use in testing scenarios and development tools.
+
 
 ## Conclusion
 The Entity `Comment` is designed to handle all comment-related functionalities in a structured and maintainable manner. By following the FSD architecture, this module ensures easy scalability and integration within the larger application.

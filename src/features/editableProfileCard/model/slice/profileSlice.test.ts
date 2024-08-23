@@ -3,6 +3,7 @@ import { updateProfileData } from '../services/updateProfileData/updateProfileDa
 import { ProfileSchema } from '../types/editableProfileCardSchema';
 import { profileActions, profileReducer } from './profileSlice';
 import { testProfileData } from '@/entities/Profile/testing';
+import { Profile } from '@/entities/Profile';
 
 describe('profileSlice tests', () => {
     const initialState: ProfileSchema = {
@@ -39,6 +40,22 @@ describe('profileSlice tests', () => {
             data: testProfileData,
             form: testProfileData,
         });
+    });
+
+    test('should correctly toggle readonly state', () => {
+        const stateAfterSetReadonly = profileReducer(
+            initialState,
+            profileActions.setReadonly(false),
+        );
+
+        expect(stateAfterSetReadonly.readonly).toBe(false);
+
+        const stateAfterSetReadonlyBack = profileReducer(
+            stateAfterSetReadonly,
+            profileActions.setReadonly(true),
+        );
+
+        expect(stateAfterSetReadonlyBack.readonly).toBe(true);
     });
 
     test('should handle updateProfile action', () => {
@@ -87,5 +104,23 @@ describe('profileSlice tests', () => {
             form: testProfileData,
             data: testProfileData,
         });
+    });
+
+    test('should handle empty profile data in updateProfileData.fulfilled', () => {
+        const state: DeepPartial<ProfileSchema> = {
+            isLoading: true,
+        };
+
+        const emptyProfileData: Profile = {} as Profile;
+
+        const newState = profileReducer(
+            state as ProfileSchema,
+            updateProfileData.fulfilled(emptyProfileData, ''),
+        );
+
+        expect(newState.isLoading).toBe(false);
+        expect(newState.data).toEqual(emptyProfileData);
+        expect(newState.form).toEqual(emptyProfileData);
+        expect(newState.readonly).toBe(true);
     });
 });

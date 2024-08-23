@@ -33,7 +33,7 @@ describe('articleDetailsSlice tests', () => {
         });
     });
 
-    test('should handle fetchArticleById.fulfilled', () => {
+    test('should handle fetchArticleById.fulfilled with data', () => {
         const state: DeepPartial<ArticleDetailsSchema> = { isLoading: true };
 
         expect(
@@ -44,10 +44,25 @@ describe('articleDetailsSlice tests', () => {
         ).toEqual({
             isLoading: false,
             data: testArticleData,
+            error: undefined,
         });
     });
 
-    test('should handle fetchArticleById.rejected', () => {
+    test('should handle fetchArticleById.fulfilled with no data', () => {
+        const state: DeepPartial<ArticleDetailsSchema> = { isLoading: true };
+
+        expect(
+            articleDetailsReducer(
+                state as ArticleDetailsSchema,
+                fetchArticleById.fulfilled(null as any, 'requestId', ''),
+            ),
+        ).toEqual({
+            isLoading: false,
+            data: null,
+        });
+    });
+
+    test('should handle fetchArticleById.rejected with specific error message', () => {
         const state: DeepPartial<ArticleDetailsSchema> = { isLoading: true };
 
         expect(
@@ -63,6 +78,7 @@ describe('articleDetailsSlice tests', () => {
         ).toEqual({
             isLoading: false,
             error: 'Fetch failed',
+            data: undefined,
         });
     });
 });

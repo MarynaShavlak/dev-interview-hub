@@ -41,4 +41,31 @@ describe('addCommentFormSlice.test', () => {
             ),
         ).toEqual(expectedState);
     });
+
+    test('should correctly handle multiple setText actions', () => {
+        const state = { text: '' };
+
+        const firstUpdate = addCommentFormReducer(
+            state,
+            addCommentFormActions.setText('First update'),
+        );
+
+        const secondUpdate = addCommentFormReducer(
+            firstUpdate,
+            addCommentFormActions.setText('Second update'),
+        );
+
+        expect(secondUpdate).toEqual({ text: 'Second update' });
+    });
+
+    test('should handle actions in sequence correctly', () => {
+        const state = { text: 'Initial text' };
+
+        const updatedState = addCommentFormReducer(
+            state,
+            addCommentFormActions.setText('Updated text'),
+        );
+
+        expect(updatedState).toEqual({ text: 'Updated text' });
+    });
 });

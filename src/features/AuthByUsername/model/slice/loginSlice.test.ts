@@ -34,6 +34,7 @@ describe('loginSlice tests', () => {
             ),
         ).toEqual({ password: 'newPassword' });
     });
+
     test('should handle loginByUsername.pending', () => {
         const state: DeepPartial<LoginSchema> = {
             isLoading: false,
@@ -79,6 +80,36 @@ describe('loginSlice tests', () => {
         ).toEqual({
             isLoading: false,
             error: 'Login failed',
+        });
+    });
+
+    test('should handle multiple actions in sequence', () => {
+        let state: LoginSchema = initialState;
+
+        state = loginReducer(state, loginActions.setUsername('user1'));
+        state = loginReducer(state, loginActions.setPassword('pass1'));
+        state = loginReducer(state, loginByUsername.pending);
+
+        expect(state).toEqual({
+            username: 'user1',
+            password: 'pass1',
+            isLoading: true,
+            error: undefined,
+        });
+
+        state = loginReducer(
+            state,
+            loginByUsername.fulfilled(testUserData, '', {
+                username: 'user1',
+                password: 'pass1',
+            }),
+        );
+
+        expect(state).toEqual({
+            username: 'user1',
+            password: 'pass1',
+            isLoading: false,
+            error: undefined,
         });
     });
 });
