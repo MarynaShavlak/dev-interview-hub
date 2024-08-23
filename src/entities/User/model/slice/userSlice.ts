@@ -2,12 +2,7 @@ import { PayloadAction } from '@reduxjs/toolkit';
 import { initAuthData } from '../services/initAuthData/initAuthData';
 import { saveJsonSettings } from '../services/saveJsonSettings/saveJsonSettings';
 import { JsonSettings } from '../types/jsonSettings';
-import { setFeatureFlags } from '@/shared/lib/features';
 import { buildSlice } from '@/shared/lib/store';
-import {
-    LOCAL_STORAGE_LAST_DESIGN_KEY,
-    USER_LOCALSTORAGE_KEY,
-} from '@/shared/const/localstorage';
 import { UserSchema, User } from '../types/user';
 
 const initialState: UserSchema = {
@@ -20,16 +15,9 @@ export const userSlice = buildSlice({
     reducers: {
         setAuthData: (state, { payload }: PayloadAction<User>) => {
             state.authData = payload;
-            setFeatureFlags(payload.features);
-            localStorage.setItem(USER_LOCALSTORAGE_KEY, payload.id);
-            localStorage.setItem(
-                LOCAL_STORAGE_LAST_DESIGN_KEY,
-                payload.features?.isAppRedesigned ? 'new' : 'old',
-            );
         },
         logout: (state) => {
             state.authData = undefined;
-            localStorage.removeItem(USER_LOCALSTORAGE_KEY);
         },
     },
     extraReducers: (builder) => {
@@ -45,7 +33,6 @@ export const userSlice = buildSlice({
             initAuthData.fulfilled,
             (state, { payload }: PayloadAction<User>) => {
                 state.authData = payload;
-                setFeatureFlags(payload.features);
                 state._inited = true;
             },
         );

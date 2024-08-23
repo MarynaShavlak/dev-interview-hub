@@ -16,6 +16,7 @@ import {
     isUserManager,
     useUserActions,
     useUserAuthData,
+    clearUserDataFromStorage,
 } from '@/entities/User';
 
 interface AvatarDropdownProps {
@@ -31,6 +32,7 @@ export const AvatarDropdown = memo(({ className }: AvatarDropdownProps) => {
 
     const onLogout = useCallback(() => {
         logout();
+        clearUserDataFromStorage();
     }, [logout]);
 
     const isAdminPanelAvailable = isAdmin || isManager;

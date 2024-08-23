@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { User, userActions } from '@/entities/User';
 import { ThunkConfig } from '@/app/providers/StoreProvider';
+import { handleUserAuthentication } from '../../../../../entities/User/lib/userUtils/userUtils';
 
 interface LoginByUsernameProps {
     username: string;
@@ -27,8 +28,13 @@ export const loginByUsername = createAsyncThunk<
             throw new Error('No data received from login API');
         }
 
-        dispatch(userActions.setAuthData(response.data));
-        return response.data;
+        const user = response.data;
+
+        dispatch(userActions.setAuthData(user));
+
+        handleUserAuthentication(user);
+
+        return user;
     } catch (error) {
         console.error('Login failed:', error);
         return rejectWithValue(

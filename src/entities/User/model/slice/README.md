@@ -10,12 +10,7 @@ import { PayloadAction } from '@reduxjs/toolkit';
 import { initAuthData } from '../services/initAuthData/initAuthData';
 import { saveJsonSettings } from '../services/saveJsonSettings/saveJsonSettings';
 import { JsonSettings } from '../types/jsonSettings';
-import { setFeatureFlags } from '@/shared/lib/features';
 import { buildSlice } from '@/shared/lib/store';
-import {
-    LOCAL_STORAGE_LAST_DESIGN_KEY,
-    USER_LOCALSTORAGE_KEY,
-} from '@/shared/const/localstorage';
 import { UserSchema, User } from '../types/user';
 ```
 
@@ -25,9 +20,6 @@ import { UserSchema, User } from '../types/user';
 - `saveJsonSettings`: Service function for saving user-specific JSON settings.
 - `UserSchema` and  `User`: Service function for asynchronous login authentication.
 - `JsonSettings`: TypeScript type defining the structure for user JSON settings.
-- `setFeatureFlags`: Utility function for setting feature flags based on user data.
-- `LOCAL_STORAGE_LAST_DESIGN_KEY` and `USER_LOCALSTORAGE_KEY`: Constants for local storage keys.
-
 
 ## Initial State
 ```typescript
@@ -51,8 +43,8 @@ It includes:
 
 | **Reducer Name** | **Description**                                   | **Payload**  | **State Changes**                                             | **Purpose**                                          |
 |------------------|---------------------------------------------------|--------------|--------------------------------------------------------------|------------------------------------------------------|
-| `setAuthData`    | Sets the authentication data and updates local storage | `User`    | Updates `state.authData` with the payload value. Sets feature flags and updates local storage. | Updates user authentication state and manages local storage settings. |
-| `logout`         | Clears authentication data and removes local storage entries | None   | Resets `state.authData` to `undefined` and removes local storage items. | Clears user authentication data and local storage on logout. |
+| `setAuthData`    | Sets the authentication data | `User`    | Updates `state.authData` with the payload value. | Updates user authentication state . |
+| `logout`         | Clears authentication data  | None   | Resets `state.authData` to `undefined`. | Clears user authentication data. |
 
 ## Extra Reducers
 
