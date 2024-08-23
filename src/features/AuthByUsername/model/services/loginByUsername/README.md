@@ -21,8 +21,9 @@ This thunk leverages the `createAsyncThunk` function from Redux Toolkit to manag
 1. **API Call**: Makes an asynchronous POST request to the **'/login'** endpoint using the **'extra.api'** object, passing in the authData (username and password).
 2. **Response Handling**: Checks if the response contains data. If no data is returned, it throws an error with the message **'No data received from login API'**.
 3. **Update State**: If the response is successful and contains data, it dispatches the `userActions.setAuthData` action to update the user authentication data in the state.
-4. **Return Data**: Returns the authenticated user data from the response.
-5. 
+4. **Authentication Handling**: The `handleUserAuthentication` function is called to manage additional user authentication logic for initializing user features and storing user ID in local storage.
+5. **Return Data**: Returns the authenticated user data from the response.
+
 ## Error Handling
 
 The thunk catches and handles errors during the login process. 

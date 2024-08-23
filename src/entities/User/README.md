@@ -29,6 +29,8 @@ User/
 │   ├── services/
 │   │   ├── initAuthData/
 │   │   │   └── initAuthData.ts
+│   │   ├── logoutUser/
+│   │   │   └── logoutUser.ts
 │   │   ├── saveJsonSettings/
 │   │   │   └── saveJsonSettings.ts
 │   └── slice/
@@ -36,6 +38,9 @@ User/
 │   ├── types/
 │       ├── jsonSettings.ts
 │       └── user.ts
+├── lib/
+│   ├── userUtils/
+│   │   └── userUtils.ts
 ├── index.ts
 ├── testing.ts
 ```
@@ -62,12 +67,14 @@ User/
     - **roleSelectors.ts**: Selector related to user roles.
 - **index.ts**
     - Entry point for the selectors, exporting the necessary selectors.
-#### 2.3. `services/`: Services provide functionalities to initialize and save user-related data.
+#### 2.3. `services/`: Contains service functionalities related to user data management:
 
 - **initAuthData/**
     - **initAuthData.ts**: Service to initialize user authentication data.
 - **saveJsonSettings/**
     - **saveJsonSettings.ts**: Service to save user-specific JSON settings.
+- **logout/**
+  - **logout.ts**: Service to handle additional server-side logout processes if required.
 
 #### 2.4. `slice/`: Contains the Redux slice for managing user state.
 
@@ -78,9 +85,16 @@ User/
 - **jsonSettings.ts**: Defines types for JSON settings related to the user.
 - **user.ts**: Defines the User and UserSchema interfaces .
 
-### 3. `index.ts`
+### 3. `lib/`: Contains reusable utility functions  for the User  module.
+- **userUtils/**
+  - **userUtils.ts**: Utility functions for initializing user features and updating localstorage with user info.
+  - 
+### 4. `index.ts`
 
 Entry point for the User module, exporting the necessary components, functions, and types.
+
+### 5. `testing.ts`
+Entry point for testing-related functionalities within the Profile module. It is used primarily for development purposes, such as testing data, reducers, and integrating with tools like Storybook. This file is not included in the production code but is essential for ensuring the module's functionality during development.
 
 
 ## Public API 
@@ -99,6 +113,8 @@ Entry point for the User module, exporting the necessary components, functions, 
 - **Actions**:
   - `userReducer`: Reducer for user state management.
   - `userActions`, `useUserActions`: User-related actions for dispatching.
+- **Services**:
+  - `logoutUser`: Thunk to log out the user.
 
 ## Public Testing API
 - **Testing Exports**:

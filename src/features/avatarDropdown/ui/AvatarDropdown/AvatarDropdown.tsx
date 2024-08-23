@@ -14,26 +14,25 @@ import {
 import {
     isUserAdmin,
     isUserManager,
-    useUserActions,
     useUserAuthData,
-    clearUserDataFromStorage,
+    logoutUser,
 } from '@/entities/User';
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 
 interface AvatarDropdownProps {
     className?: string;
 }
 
 export const AvatarDropdown = memo(({ className }: AvatarDropdownProps) => {
+    const dispatch = useAppDispatch();
     const { t } = useTranslation();
     const isAdmin = useSelector(isUserAdmin);
     const isManager = useSelector(isUserManager);
     const authData = useUserAuthData();
-    const { logout } = useUserActions();
 
     const onLogout = useCallback(() => {
-        logout();
-        clearUserDataFromStorage();
-    }, [logout]);
+        dispatch(logoutUser());
+    }, [dispatch]);
 
     const isAdminPanelAvailable = isAdmin || isManager;
 

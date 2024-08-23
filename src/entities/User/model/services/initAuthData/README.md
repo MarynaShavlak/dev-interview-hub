@@ -1,7 +1,7 @@
 #  `initAuthData` Thunk Documentation
 
 The `initAuthData` thunk is an asynchronous action designed to initialize authentication data based on the user ID stored in local storage.
-This thunk leverages the `createAsyncThunk` function from Redux Toolkit to manage the asynchronous logic and state management required for fetching user data and setting design preferences.
+This thunk leverages the `createAsyncThunk` function from Redux Toolkit to manage the asynchronous logic and state management required for fetching user data from the API and setting up user-specific features.
 
 ## Parameters
 
@@ -21,7 +21,7 @@ This thunk leverages the `createAsyncThunk` function from Redux Toolkit to manag
 1. **Retrieve User ID**: Attempts to retrieve the user ID from local storage using the key `USER_LOCALSTORAGE_KEY`.
 2. **Validation**: Checks if the user ID is found in local storage. If not, it returns a rejected promise with the message **'No user ID found in local storage.'**.
 3. **API Call**: Dispatches the `getUserDataByIdQuery` action with the retrieved user ID to fetch the user data from the API.
-4. **Update Local Storage**: Updates the local storage with the appropriate design preference based on the response, using the key `LOCAL_STORAGE_LAST_DESIGN_KEY`.
+4. **Initialize User Features**: Once the user data is successfully retrieved, the `initializeUserFeatures` function is called to set up any user-specific features or preferences.
 5. **Return Data**: Returns the user data from the API response.
 6. 
 ## Error Handling
@@ -60,4 +60,5 @@ export const AuthInitializer = () => {
 ```
 
 ## Conclusion 
-The `initAuthData` thunk provides a robust mechanism for initializing authentication data based on the user ID stored in local storage. It manages the asynchronous API call, processes the response, and updates the application state with the user data and design preference. This thunk is essential for components that require user initialization, ensuring a smooth and secure initialization process with proper error handling and state management.
+The `initAuthData`  thunk plays a crucial role in initializing user authentication data based on the user ID stored in local storage. By managing the API call to fetch user data and setting up user-specific features, this thunk ensures a smooth and secure initialization process. It is vital for components that require user data upon initialization, providing a reliable mechanism for handling user authentication with proper error handling and state management.
+
