@@ -1,30 +1,13 @@
 import { TestAsyncThunk } from '@/shared/lib/tests/TestAsyncThunk/TestAsyncThunk';
 import { fetchCommentsByArticleId } from './fetchCommentsByArticleId';
-import { Comment } from '@/entities/Comment';
+import { testCommentsData } from '../../../../../entities/Comment/testing';
 
-const commentsData: Comment[] = [
-    {
-        id: '1',
-        user: {
-            id: '123',
-            username: 'Maryna Shavlak',
-        },
-        text: 'This is a comment.',
-    },
-    {
-        id: '2',
-        user: {
-            id: '456',
-            username: 'Max Shavlak',
-        },
-        text: 'This is another comment.',
-    },
-];
-
-describe('fetchCommentsByArticleId.test', () => {
-    test('success', async () => {
+describe('async thunk fetchCommentsByArticleId test', () => {
+    test('success - returns comments', async () => {
         const thunk = new TestAsyncThunk(fetchCommentsByArticleId);
-        thunk.api.get.mockReturnValue(Promise.resolve({ data: commentsData }));
+        thunk.api.get.mockReturnValue(
+            Promise.resolve({ data: testCommentsData }),
+        );
 
         const result = await thunk.callThunk('1');
 
@@ -35,7 +18,7 @@ describe('fetchCommentsByArticleId.test', () => {
             },
         });
         expect(result.meta.requestStatus).toBe('fulfilled');
-        expect(result.payload).toEqual(commentsData);
+        expect(result.payload).toEqual(testCommentsData);
     });
 
     test('error - no comments found', async () => {

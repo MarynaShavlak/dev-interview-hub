@@ -200,7 +200,13 @@ The project also includes tests for selectors to ensure that they correctly extr
    - **Profile with valid fields but missing profile object**: Tests that if no profile object is provided (i.e., `undefined`), the function returns the `NO_DATA` validation error.
 
 5. **Test for [fetchArticleById](../src/entities/Article/model/services/fetchArticleById/fetchArticleById.test.ts) thunk**:
-- **Successfully fetches an article**: Verifies that when the API call is successful and returns valid article data, the `fetchArticleById` thunk correctly resolves with the article data and the request status is `fulfilled`.
-- **Error when article is not found**: Ensures that if the API returns a response with no data (indicating the article was not found), the thunk handles this by rejecting with an appropriate error message, and the request status is `rejected`.
-- **Error when API call fails**: Tests that if the API call fails (e.g., network error), the thunk rejects with an error message indicating the failure, and the request status is `rejected`.
-- **Error when article ID is missing**: Confirms that if the provided article ID is `undefined`, the thunk rejects with an error message indicating that the article ID is required, and the request status is `rejected`.
+   - **Successfully fetches an article**: Verifies that when the API call is successful and returns valid article data, the `fetchArticleById` thunk correctly resolves with the article data and the request status is `fulfilled`.
+   - **Error when article is not found**: Ensures that if the API returns a response with no data (indicating the article was not found), the thunk handles this by rejecting with an appropriate error message, and the request status is `rejected`.
+   - **Error when API call fails**: Tests that if the API call fails (e.g., network error), the thunk rejects with an error message indicating the failure, and the request status is `rejected`.
+   - **Error when article ID is missing**: Confirms that if the provided article ID is `undefined`, the thunk rejects with an error message indicating that the article ID is required, and the request status is `rejected`.
+
+6. **Test for [fetchCommentsByArticleId](../src/features/ArticleComments/model/services/fetchCommentsByArticleId/fetchCommentsByArticleId.ts) thunk**:
+   - **Success - Returns comments**: Verifies that when the API call is successful and returns comments data, the `fetchCommentsByArticleId` thunk correctly resolves with the comments data and the request status is `fulfilled`.
+   - **Error - No comments found**: Ensures that if the API returns a response with no data (indicating no comments were found), the thunk handles this by rejecting with an appropriate error message, and the request status is `rejected`.
+   - **Error - API failure**: Tests that if the API call fails (e.g., network error), the thunk rejects with an error message indicating the failure to fetch comments, and the request status is `rejected`.
+   - **Error - Missing article ID**: Confirms that if the provided article ID is `undefined`, the thunk rejects with an error message indicating that the article ID is required, and the request status is `rejected`.
