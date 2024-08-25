@@ -80,7 +80,6 @@ The project also includes tests for selectors to ensure that they correctly extr
 6. **Test for selector `getCanEditArticle`**:
    - **Test for [getCanEditArticle](../src/pages/ArticleDetailsPage/model/selectors/getCanEditArticle/getCanEditArticle.test.ts)**: Verifies that the selector returns `true` when the article's author matches the authenticated user, and `false` otherwise. It also handles cases where either article data or user data is missing, returning `false` in those scenarios.
 
-
 ## Tests for slices
 
 1. **Test for [profileSlice](../src/features/editableProfileCard/model/slice/profileSlice.test.ts) reducers**:
@@ -169,3 +168,22 @@ The project also includes tests for selectors to ensure that they correctly extr
    - **Error login with unexpected server response**: Ensures that the thunk handles an unexpected server response correctly by rejecting the request with the appropriate error message.
    - **Server error during login (500)**: Confirms that the thunk handles a server error (HTTP 500) by rejecting with the correct error message and making the appropriate number of dispatches.
    - **Multiple simultaneous login requests**: Tests that multiple simultaneous login requests are handled correctly, with each request resulting in a `fulfilled` status and returning the correct user data.
+
+2. **Test for [fetchProfileData](../src/features/editableProfileCard/model/services/fetchProfileData/fetchProfileData.test.ts) async thunk**:
+   - **Success fetching profile data**: Ensures that when a valid profile ID is provided, the thunk correctly makes an API call to fetch the profile data, dispatches the result, and resolves with the fetched data. The status of the result is `fulfilled`.
+   - **Error fetching profile data with 403 status**: Verifies that if the API returns a 403 status, the thunk rejects with the appropriate error message and ensures that the API call was made with the correct endpoint.
+   - **Error fetching profile data with network error**: Confirms that a network error during the fetch request is properly handled by rejecting with the correct error message and verifying the API call.
+   - **Error fetching profile data with missing data**: Tests that if the API response contains no data, the thunk rejects with the appropriate error message and ensures the API call was made correctly.
+   - **Multiple simultaneous profile data fetch requests**: Validates that multiple simultaneous fetch requests are handled correctly, with each request resulting in a `fulfilled` status and returning the correct profile data. The test also checks that the API call was made the expected number of times.
+
+3. **Test for [updateProfileData](../src/features/editableProfileCard/model/services/updateProfileData/updateProfileData.test.ts) async thunk**:
+   - **Success updating profile data**: Ensures that when valid profile data is provided, the thunk successfully makes an API call to update the profile, dispatches the result, and resolves with the updated profile data. The status of the result is `fulfilled`.
+   - **Error updating profile data with 403 status**: Verifies that if the API returns a 403 status, the thunk rejects with the appropriate error message, and confirms that the API call was made with the correct endpoint.
+   - **Validate error with incorrect user data**: Tests that if the profile data contains invalid fields (e.g., empty lastname), the thunk rejects with the `INCORRECT_USER_DATA` validation error.
+   - **Error with multiple validation issues**: Validates that if the profile data has multiple validation issues (e.g., empty firstname, username, and undefined age), the thunk rejects with all relevant validation errors.
+   - **Error updating profile data with network error**: Ensures that a network error during the update request is handled correctly by rejecting with the appropriate error message, and verifies that the API call was made with the correct endpoint.
+   - **Error updating profile data with missing data in response**: Confirms that if the API response contains no data, the thunk rejects with the `SERVER_ERROR` validation error and checks that the API call was made correctly.
+   - **Multiple simultaneous profile update requests**: Validates that multiple simultaneous update requests are handled correctly, with each request resulting in a `fulfilled` status and returning the correct profile data. The test also ensures that the API call was made the expected number of times.
+   - **Error with incomplete profile data but valid according to validation rules**: Tests that if the profile data is incomplete (e.g., missing city) but still valid according to validation rules, the thunk resolves with the incomplete data.
+   - **Error when profile id is missing**: Verifies that if the profile data lacks an ID, the thunk rejects with the `INCORRECT_USER_DATA` validation error and does not make an API call.
+   - **Error updating profile data with 401 status**: Ensures that if the API returns a 401 status, the thunk rejects with the `SERVER_ERROR` validation error and verifies the correct handling of the API call.

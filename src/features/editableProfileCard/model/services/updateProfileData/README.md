@@ -18,7 +18,7 @@ This thunk does not require any parameters, except `thunkApi`. The thunk uses th
 
 ## Internal Behavior
 1. **Form Data Retrieval**: Retrieves the current profile form data from the state using `getProfileForm` selector.
-2. **Data Validation**: Validates the form data using `validateProfileData` function. If there are validation errors, the thunk rejects with these errors.
+2. **Data Validation**: Validates the form data using `validateProfileData` function. If there are validation errors or id is missing, the thunk rejects with these errors.
 3. **API Call**: Makes an asynchronous PUT request to update the profile data on the server.
 4. **Response Handling**: CChecks if the response contains data. If no data is returned, it throws an error.
 
