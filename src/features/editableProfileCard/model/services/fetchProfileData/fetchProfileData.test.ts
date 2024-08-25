@@ -3,10 +3,6 @@ import { fetchProfileData } from './fetchProfileData';
 import { testProfileData } from '@/entities/Profile/testing';
 
 describe('async thunk fetchProfileData test', () => {
-    beforeEach(() => {
-        jest.clearAllMocks();
-    });
-
     test('success fetching profile data', async () => {
         const thunk = new TestAsyncThunk(fetchProfileData);
         thunk.api.get.mockReturnValue(

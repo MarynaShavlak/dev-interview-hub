@@ -1,36 +1,14 @@
 import { TestAsyncThunk } from '@/shared/lib/tests/TestAsyncThunk/TestAsyncThunk';
 import { fetchArticleById } from './fetchArticleById';
-import { Article } from '../../types/article';
-import {
-    ArticleSection,
-    ArticleCategory,
-} from '../../../model/consts/articleConsts';
 
-const articleData: Article = {
-    id: '1',
-    user: {
-        id: '123',
-        username: 'Maryna Shavlak',
-    },
-    title: 'Test Article',
-    subtitle: 'This is a test subtitle.',
-    img: 'test-image-url',
-    views: 100,
-    createdAt: '2023-01-01T00:00:00.000Z',
-    category: [ArticleCategory.IT, ArticleCategory.ECONOMICS],
-    blocks: [
-        {
-            id: '2344',
-            type: ArticleSection.TEXT,
-            paragraphs: ['This is a text block.'],
-        },
-    ],
-};
+import { testArticleData } from '../../../testing';
 
-describe('fetchArticleById.test', () => {
-    test('success', async () => {
+describe('async thunk fetchArticleById test', () => {
+    test('successfully fetches an article', async () => {
         const thunk = new TestAsyncThunk(fetchArticleById);
-        thunk.api.get.mockReturnValue(Promise.resolve({ data: articleData }));
+        thunk.api.get.mockReturnValue(
+            Promise.resolve({ data: testArticleData }),
+        );
 
         const result = await thunk.callThunk('1');
 
@@ -40,10 +18,10 @@ describe('fetchArticleById.test', () => {
             },
         });
         expect(result.meta.requestStatus).toBe('fulfilled');
-        expect(result.payload).toEqual(articleData);
+        expect(result.payload).toEqual(testArticleData);
     });
 
-    test('error - article not found', async () => {
+    test('error when article is not found', async () => {
         const thunk = new TestAsyncThunk(fetchArticleById);
         thunk.api.get.mockReturnValue(Promise.resolve({ data: null }));
 
@@ -53,7 +31,7 @@ describe('fetchArticleById.test', () => {
         expect(result.payload).toBe('Article not found.');
     });
 
-    test('error - API failure', async () => {
+    test('error when API call fails', async () => {
         const thunk = new TestAsyncThunk(fetchArticleById);
         thunk.api.get.mockReturnValue(
             Promise.reject(new Error('Failed to fetch article.')),
@@ -65,7 +43,7 @@ describe('fetchArticleById.test', () => {
         expect(result.payload).toBe('Failed to fetch article.');
     });
 
-    test('error - missing article ID', async () => {
+    test('error when article ID is missing', async () => {
         const thunk = new TestAsyncThunk(fetchArticleById);
 
         const result = await thunk.callThunk(undefined);

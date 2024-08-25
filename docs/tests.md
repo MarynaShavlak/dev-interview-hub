@@ -198,3 +198,9 @@ The project also includes tests for selectors to ensure that they correctly extr
    - **Profile with only correct username**: Verifies that when only the `username` is valid but other fields (e.g., `firstname`, `lastname`, `age`) are incorrect, the function returns the corresponding validation errors.
    - **Profile with valid data but empty profile object**: Ensures that if the profile object contains valid fields but is otherwise empty, the function returns errors for all the missing fields.
    - **Profile with valid fields but missing profile object**: Tests that if no profile object is provided (i.e., `undefined`), the function returns the `NO_DATA` validation error.
+
+5. **Test for [fetchArticleById](../src/entities/Article/model/services/fetchArticleById/fetchArticleById.test.ts) thunk**:
+- **Successfully fetches an article**: Verifies that when the API call is successful and returns valid article data, the `fetchArticleById` thunk correctly resolves with the article data and the request status is `fulfilled`.
+- **Error when article is not found**: Ensures that if the API returns a response with no data (indicating the article was not found), the thunk handles this by rejecting with an appropriate error message, and the request status is `rejected`.
+- **Error when API call fails**: Tests that if the API call fails (e.g., network error), the thunk rejects with an error message indicating the failure, and the request status is `rejected`.
+- **Error when article ID is missing**: Confirms that if the provided article ID is `undefined`, the thunk rejects with an error message indicating that the article ID is required, and the request status is `rejected`.
