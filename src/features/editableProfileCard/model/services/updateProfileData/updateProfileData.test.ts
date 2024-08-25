@@ -4,9 +4,6 @@ import { updateProfileData } from './updateProfileData';
 import { testProfileData } from '@/entities/Profile/testing';
 
 describe('async thunk updateProfileData test', () => {
-    beforeEach(() => {
-        jest.clearAllMocks();
-    });
     test('success updating profile data', async () => {
         const thunk = new TestAsyncThunk(updateProfileData, {
             profile: {

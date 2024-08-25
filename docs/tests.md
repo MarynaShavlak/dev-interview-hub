@@ -157,7 +157,7 @@ The project also includes tests for selectors to ensure that they correctly extr
    - **Test for `fetchArticlesList.rejected`**: Ensures that when `fetchArticlesList` is rejected, the `error` property is updated with the error message, and `isLoading` is set to `false`.
 
 
-##  Tests for Async Thunks 
+##  Tests for Services
 1. **Test for [loginByUsername](../src/features/AuthByUsername/model/services/loginByUsername/loginByUsername.test.ts) async thunk**:
    - **Success login test**: Ensures that when valid user credentials are provided, the thunk correctly dispatches the `userActions.setAuthData` action, makes the API call, and resolves with the authenticated user data. The status of the result is `fulfilled`.
    - **Error login with empty username**: Verifies that the thunk rejects with the appropriate error message when the username is empty. It also checks that the correct number of dispatches is made.
@@ -187,3 +187,14 @@ The project also includes tests for selectors to ensure that they correctly extr
    - **Error with incomplete profile data but valid according to validation rules**: Tests that if the profile data is incomplete (e.g., missing city) but still valid according to validation rules, the thunk resolves with the incomplete data.
    - **Error when profile id is missing**: Verifies that if the profile data lacks an ID, the thunk rejects with the `INCORRECT_USER_DATA` validation error and does not make an API call.
    - **Error updating profile data with 401 status**: Ensures that if the API returns a 401 status, the thunk rejects with the `SERVER_ERROR` validation error and verifies the correct handling of the API call.
+
+4. **Test for [validateProfileData](../src/features/editableProfileCard/model/services/validateProfileData/validateProfileData.test.ts) function**:
+   - **Valid profile data**: Ensures that when valid profile data is provided, the function returns an empty array indicating no validation errors.
+   - **Missing firstname and lastname**: Verifies that if both `firstname` and `lastname` are empty, the function returns the `INCORRECT_USER_DATA` validation error.
+   - **Missing username**: Tests that if the `username` field is empty, the function returns the `INCORRECT_USERNAME` validation error.
+   - **Missing age**: Validates that if the `age` field is undefined, the function returns the `INCORRECT_AGE` validation error.
+   - **Age is not an integer**: Confirms that if the `age` field is a non-integer value (e.g., 25.5), the function returns the `INCORRECT_AGE` validation error.
+   - **Incorrect all**: Checks that if all profile fields are incorrect or missing, the function returns a comprehensive list of validation errors, including `INCORRECT_USER_DATA`, `INCORRECT_USERNAME`, and `INCORRECT_AGE`.
+   - **Profile with only correct username**: Verifies that when only the `username` is valid but other fields (e.g., `firstname`, `lastname`, `age`) are incorrect, the function returns the corresponding validation errors.
+   - **Profile with valid data but empty profile object**: Ensures that if the profile object contains valid fields but is otherwise empty, the function returns errors for all the missing fields.
+   - **Profile with valid fields but missing profile object**: Tests that if no profile object is provided (i.e., `undefined`), the function returns the `NO_DATA` validation error.
