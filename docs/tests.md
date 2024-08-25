@@ -156,3 +156,16 @@ The project also includes tests for selectors to ensure that they correctly extr
    - **Test for `fetchArticlesList.fulfilled` with `replace` option**: Confirms that the `fetchArticlesList.fulfilled` action replaces the current articles in the state when the `replace` option is used.
    - **Test for `fetchArticlesList.fulfilled` with `addMany` option**: Verifies that the `fetchArticlesList.fulfilled` action appends new articles to the existing ones in the state when the `addMany` option is used.
    - **Test for `fetchArticlesList.rejected`**: Ensures that when `fetchArticlesList` is rejected, the `error` property is updated with the error message, and `isLoading` is set to `false`.
+
+
+##  Tests for Async Thunks 
+1. **Test for [loginByUsername](../src/features/AuthByUsername/model/services/loginByUsername/loginByUsername.test.ts) async thunk**:
+   - **Success login test**: Ensures that when valid user credentials are provided, the thunk correctly dispatches the `userActions.setAuthData` action, makes the API call, and resolves with the authenticated user data. The status of the result is `fulfilled`.
+   - **Error login with empty username**: Verifies that the thunk rejects with the appropriate error message when the username is empty. It also checks that the correct number of dispatches is made.
+   - **Error login with missing password**: Confirms that the thunk rejects with the expected error message when the password is missing, and verifies the number of dispatches.
+   - **Error login with wrong credentials**: Ensures that the thunk handles incorrect credentials by rejecting the request with the appropriate error message. The test checks the API call and the rejection status.
+   - **Error login with missing data in response**: Tests the scenario where the API response is missing data, ensuring the thunk correctly rejects with an appropriate error message.
+   - **Network error during login**: Verifies that a network error during the login attempt is properly handled, with the thunk rejecting and returning the correct error message.
+   - **Error login with unexpected server response**: Ensures that the thunk handles an unexpected server response correctly by rejecting the request with the appropriate error message.
+   - **Server error during login (500)**: Confirms that the thunk handles a server error (HTTP 500) by rejecting with the correct error message and making the appropriate number of dispatches.
+   - **Multiple simultaneous login requests**: Tests that multiple simultaneous login requests are handled correctly, with each request resulting in a `fulfilled` status and returning the correct user data.

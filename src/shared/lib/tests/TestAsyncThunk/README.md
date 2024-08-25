@@ -1,8 +1,8 @@
 # Documentation for `TestAsyncThunk` Class
 
 ## Overview
-The `TestAsyncThunk` class is a utility designed to facilitate testing of Redux async thunks in a TypeScript environment. 
-It provides an abstraction that simplifies mocking dependencies and executing thunk actions, allowing for more focused and maintainable tests.
+The `TestAsyncThunk` cclass facilitates the testing of Redux async thunks in TypeScript, offering a structured approach to mock dependencies and execute thunk actions in controlled test environments. It includes deep mocking of external dependencies like Axios to ensure comprehensive testing.
+
 
 ## Imports and Dependencies
 ```typescript
@@ -11,7 +11,7 @@ import axios, { AxiosStatic } from 'axios';
 import { StateSchema } from '@/app/providers/StoreProvider';
 ```
 - `AsyncThunkAction`: A type from Redux Toolkit representing an asynchronous thunk action.
-- `axios`, `AxiosStatic`: The Axios HTTP client and its static type. Axios is mocked for testing purposes.
+- `axios`, `AxiosStatic`: The Axios HTTP client and its static type. The `jest.mock('axios')` function is used to mock Axios and its deep inner fields, ensuring that all aspects of Axios behavior can be controlled and tested.
 - `StateSchema`: Type representing the application's state structure, used for mocking the state during tests.
 
 
