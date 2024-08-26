@@ -23,6 +23,7 @@ export default {
     ],
     rootDir: '../../',
     setupFilesAfterEnv: ['<rootDir>config/jest/setupTests.ts'],
+
     moduleNameMapper: {
         '\\.s?css$': 'identity-obj-proxy',
         '\\.svg|png': path.resolve(__dirname, 'jestEmptyComponent.tsx'),
