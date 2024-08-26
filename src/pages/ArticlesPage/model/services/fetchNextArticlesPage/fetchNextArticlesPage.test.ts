@@ -1,11 +1,12 @@
 import { TestAsyncThunk } from '@/shared/lib/tests/TestAsyncThunk/TestAsyncThunk';
 import { fetchNextArticlesPage } from './fetchNextArticlesPage';
 import { fetchArticlesList } from '../fetchArticlesList/fetchArticlesList';
+import { articlesPageActions } from '../../slices/articlesPageSlice';
 
 jest.mock('../fetchArticlesList/fetchArticlesList');
 
-describe('fetchNextArticlesPage.test', () => {
-    test('success', async () => {
+describe('async thunk fetchNextArticlesPage test', () => {
+    test('successfully fetches the next page', async () => {
         const thunk = new TestAsyncThunk(fetchNextArticlesPage, {
             articlesPage: {
                 page: 2,
@@ -20,9 +21,13 @@ describe('fetchNextArticlesPage.test', () => {
         await thunk.callThunk();
 
         expect(thunk.dispatch).toBeCalledTimes(4);
+        expect(thunk.dispatch).toHaveBeenCalledWith(
+            articlesPageActions.setPage(3),
+        );
         expect(fetchArticlesList).toHaveBeenCalled();
     });
-    test('fetchArticleList not called', async () => {
+
+    test('does not fetch when hasMore is false', async () => {
         const thunk = new TestAsyncThunk(fetchNextArticlesPage, {
             articlesPage: {
                 page: 2,
@@ -38,8 +43,12 @@ describe('fetchNextArticlesPage.test', () => {
 
         expect(thunk.dispatch).toBeCalledTimes(2);
         expect(fetchArticlesList).not.toHaveBeenCalled();
+        expect(thunk.dispatch).not.toHaveBeenCalledWith(
+            articlesPageActions.setPage(expect.any(Number)),
+        );
     });
-    test('does not load new data when isLoading is true', async () => {
+
+    test('does not fetch when isLoading is true', async () => {
         const thunk = new TestAsyncThunk(fetchNextArticlesPage, {
             articlesPage: {
                 page: 2,
@@ -48,6 +57,48 @@ describe('fetchNextArticlesPage.test', () => {
                 limit: 5,
                 isLoading: true,
                 hasMore: true,
+            },
+        });
+
+        await thunk.callThunk();
+
+        expect(thunk.dispatch).toBeCalledTimes(2);
+        expect(fetchArticlesList).not.toHaveBeenCalled();
+        expect(thunk.dispatch).not.toHaveBeenCalledWith(
+            articlesPageActions.setPage(expect.any(Number)),
+        );
+    });
+
+    test('increments page number correctly', async () => {
+        const initialPage = 3;
+        const thunk = new TestAsyncThunk(fetchNextArticlesPage, {
+            articlesPage: {
+                page: initialPage,
+                ids: [],
+                entities: {},
+                limit: 5,
+                isLoading: false,
+                hasMore: true,
+            },
+        });
+
+        await thunk.callThunk();
+
+        expect(thunk.dispatch).toHaveBeenCalledWith(
+            articlesPageActions.setPage(initialPage + 1),
+        );
+        expect(fetchArticlesList).toHaveBeenCalled();
+    });
+
+    test('handles edge case where hasMore is undefined', async () => {
+        const thunk = new TestAsyncThunk(fetchNextArticlesPage, {
+            articlesPage: {
+                page: 2,
+                ids: [],
+                entities: {},
+                limit: 5,
+                isLoading: false,
+                hasMore: undefined,
             },
         });
 
