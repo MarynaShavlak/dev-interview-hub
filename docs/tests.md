@@ -235,3 +235,13 @@ The project also includes tests for selectors to ensure that they correctly extr
    - **Does not fetch when `isLoading` is true**: This test validates that the thunk does not attempt to fetch the next page of articles if the current state is already loading (`isLoading` is true). It checks that the `fetchArticlesList` is not called and that the page number is not incremented.
    - **Increments page number correctly**: This test verifies that the thunk correctly increments the page number when more pages are available and not currently loading. It ensures that the page number is updated and the articles list is fetched.
    - **Handles edge case where `hasMore` is undefined**: This test addresses a potential edge case where the `hasMore` value is `undefined`. The test ensures that under these conditions, the thunk does not proceed with fetching additional pages and does not increment the page number.
+
+11. **Tests for [getUserDataById](../src/entities/User/api/userApi.test.ts) API call**:
+   - **Request is correct**: This test verifies that the API call made by the `getUserDataByIdQuery` query is correctly structured. It checks that the request method is `GET`, the URL is properly constructed with the user ID, and that the `Authorization` header is not set in this request.
+   - **Successful response**: This test checks that when the API successfully returns user data, the response is handled correctly. It ensures that the action status is `fulfilled`, the operation is marked as successful, and the returned data matches the expected user data.
+   - **Unsuccessful response**: This test simulates a failed API request and verifies that the error is correctly handled. It ensures that the action status is `rejected`, the operation is marked as an error, and the appropriate error message is captured.
+
+12. **Tests for [setJsonSettings](../src/entities/User/api/userApi.test.ts) API call**:
+   - **Request is correct**: This test ensures that the API call made by the `setJsonSettingsMutation` mutation is correctly structured. It checks that the request method is `PATCH`, the URL includes the correct user ID, and the JSON body contains the correct settings data.
+   - **Successful response**: This test verifies that the API correctly updates the user's JSON settings and returns the updated user data. It checks that the mutation is successful and that the returned data matches the expected structure, including the updated JSON settings.
+   - **Unsuccessful response**: This test simulates a failed API request and checks that the error is properly handled. It ensures that the mutation status is `rejected`, the error message is correctly captured, and the appropriate error status is returned.

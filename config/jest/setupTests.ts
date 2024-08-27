@@ -1,5 +1,3 @@
-// setupTest.ts
-
 /**
  * Imports configuration and polyfills for the testing environment.
  */
@@ -25,4 +23,12 @@
 import '@testing-library/jest-dom';
 import 'regenerator-runtime/runtime';
 
+/**
+ * jest-fetch-mock
+ * Mocks the Fetch API in Jest tests.
+ * Allows you to simulate various fetch scenarios, such as success, failure, and network errors.
+ * Usage:
+ *   fetch.mockResponseOnce(JSON.stringify({ data: '12345' }));
+ *   fetch.mockReject(new Error('failed to fetch'));
+ */
 require('jest-fetch-mock').enableMocks();
