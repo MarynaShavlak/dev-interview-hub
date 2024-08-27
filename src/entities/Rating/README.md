@@ -19,7 +19,8 @@ Rating/
 │       ├── DeprecatedRating/
 │       ├── RedesignedRating/
 │       ├── Rating.tsx
-└── index.ts
+├── index.ts
+├── testing.ts
 ```
 ## Detailed Description
 
@@ -44,6 +45,11 @@ Rating/
 ### 3. `index.ts`
 Entry point for the Rating module, exporting the necessary components, functions, and types.
 
+### 4. `testing.ts`
+
+Entry point for testing-related functionalities within the Rating module. It is used primarily for development purposes, such as testing data, reducers, and integrating with tools like Storybook. This file is not included in the production code but is essential for ensuring the module's functionality during development.
+
+
 ## Public API
 
 - **Types**:
@@ -51,6 +57,11 @@ Entry point for the Rating module, exporting the necessary components, functions
 
 - **Components**:
     - `Rating`: The main rating component used to render ratings.
+
+## Public Testing API
+- **Testing Exports**:
+  - `testRatingsData` -  is a mock array of objects representing ratings data, designed for use in testing scenarios and development tools.
+
 
 
 ## Conclusion

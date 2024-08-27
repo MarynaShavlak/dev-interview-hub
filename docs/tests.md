@@ -237,11 +237,25 @@ The project also includes tests for selectors to ensure that they correctly extr
    - **Handles edge case where `hasMore` is undefined**: This test addresses a potential edge case where the `hasMore` value is `undefined`. The test ensures that under these conditions, the thunk does not proceed with fetching additional pages and does not increment the page number.
 
 11. **Tests for [getUserDataById](../src/entities/User/api/userApi.test.ts) API call**:
-   - **Request is correct**: This test verifies that the API call made by the `getUserDataByIdQuery` query is correctly structured. It checks that the request method is `GET`, the URL is properly constructed with the user ID, and that the `Authorization` header is not set in this request.
-   - **Successful response**: This test checks that when the API successfully returns user data, the response is handled correctly. It ensures that the action status is `fulfilled`, the operation is marked as successful, and the returned data matches the expected user data.
-   - **Unsuccessful response**: This test simulates a failed API request and verifies that the error is correctly handled. It ensures that the action status is `rejected`, the operation is marked as an error, and the appropriate error message is captured.
+   - **should make correct request**: This test verifies that the API call made by the `getUserDataByIdQuery` query is correctly structured. It checks that the request method is `GET`, the URL is properly constructed with the user ID, and that the `Authorization` header is not set in this request.
+   - **should handle successful response**: This test checks that when the API successfully returns user data, the response is handled correctly. It ensures that the action status is `fulfilled`, the operation is marked as successful, and the returned data matches the expected user data.
+   - **should handle unsuccessful response**: This test simulates a failed API request and verifies that the error is correctly handled. It ensures that the action status is `rejected`, the operation is marked as an error, and the appropriate error message is captured.
 
 12. **Tests for [setJsonSettings](../src/entities/User/api/userApi.test.ts) API call**:
-   - **Request is correct**: This test ensures that the API call made by the `setJsonSettingsMutation` mutation is correctly structured. It checks that the request method is `PATCH`, the URL includes the correct user ID, and the JSON body contains the correct settings data.
-   - **Successful response**: This test verifies that the API correctly updates the user's JSON settings and returns the updated user data. It checks that the mutation is successful and that the returned data matches the expected structure, including the updated JSON settings.
-   - **Unsuccessful response**: This test simulates a failed API request and checks that the error is properly handled. It ensures that the mutation status is `rejected`, the error message is correctly captured, and the appropriate error status is returned.
+   - **should make correct request**: This test ensures that the API call made by the `setJsonSettingsMutation` mutation is correctly structured. It checks that the request method is `PATCH`, the URL includes the correct user ID, and the JSON body contains the correct settings data.
+   - **should handle successful response**: This test verifies that the API correctly updates the user's JSON settings and returns the updated user data. It checks that the mutation is successful and that the returned data matches the expected structure, including the updated JSON settings.
+   - **should handle unsuccessful response**: This test simulates a failed API request and checks that the error is properly handled. It ensures that the mutation status is `rejected`, the error message is correctly captured, and the appropriate error status is returned.
+
+13. **Tests for [getArticleRating](../src/features/articleRating/api/articleRatingApi.test.tsx) API call**:
+   - **Request is correct**: This test verifies that the API call made by `getArticleRating` is structured correctly. It checks that the request method is `GET`, the URL is correctly formed with the provided `userId` and `articleId` as query parameters, and that the `Authorization` header is not set in this request.
+   - **Successful response**: This test checks that when the API successfully returns the article ratings, the response is handled correctly. It ensures that the action status is `fulfilled`, the operation is marked as successful, and the returned data matches the expected rating data.
+   - **Unsuccessful response**: This test simulates a failed API request and verifies that the error is correctly handled. It ensures that the action status is `rejected`, the operation is marked as an error, and the appropriate error message is captured.
+
+14. **Tests for [useGetArticleRating](../src/features/articleRating/api/articleRatingApi.test.tsx) hook**:
+   - **Successful response**: This test checks the `useGetArticleRating` hook's behavior when the API successfully returns article ratings. It verifies that the initial state shows loading, and upon receiving data, the state updates correctly with the ratings and the loading status is set to false.
+   - **Internal server error**: This test simulates an API failure within the `useGetArticleRating` hook. It ensures that the hook properly handles the error, setting the error state to true and disabling the loading indicator.
+
+15. **Tests for [useRateArticle](../src/features/articleRating/api/articleRatingApi.test.tsx) hook**:
+   - **Successful response**: This test checks the `useRateArticle` hook when a rating is successfully submitted to the API. It verifies that the initial state is not loading, transitions to a loading state during the request, and finally updates to a success state upon completion.
+   - **Internal server error**: This test simulates an API failure when submitting a rating using the `useRateArticle` hook. It ensures that the hook handles the error by setting the error state and disabling the loading indicator after the failed request.
+

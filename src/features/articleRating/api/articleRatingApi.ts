@@ -13,7 +13,7 @@ interface RateArticleArg {
     feedback?: string;
 }
 
-const articleRatingApi = rtkApi.injectEndpoints({
+export const articleRatingApi = rtkApi.injectEndpoints({
     endpoints: (build) => ({
         getArticleRating: build.query<RatingType[], GetArticleRatingArg>({
             query: ({ articleId, userId }) => ({
