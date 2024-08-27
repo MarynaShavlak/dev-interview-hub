@@ -7,7 +7,7 @@ export const testArticleData: Article = {
     id: '1',
     user: {
         id: '123',
-        username: 'Maryna Shavlak',
+        username: 'testUsername',
     },
     title: 'Test Article First',
     subtitle: 'This is a test subtitle.',
@@ -29,7 +29,7 @@ export const testArticlesListData: Article[] = [
         id: '1',
         user: {
             id: '123',
-            username: 'Maryna Shavlak',
+            username: 'testUsername',
         },
         title: 'Test Article First',
         subtitle: 'This is a test subtitle.',
