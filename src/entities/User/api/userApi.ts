@@ -7,7 +7,7 @@ interface SetJsonSettingsArg {
     jsonSettings: JsonSettings;
 }
 
-const userApi = rtkApi.injectEndpoints({
+export const userApi = rtkApi.injectEndpoints({
     endpoints: (build) => ({
         getUserDataById: build.query<User, string>({
             query: (userId) => ({

@@ -8,10 +8,11 @@ import path from 'path';
 export default {
     globals: {
         __IS_DEV__: true,
-        __API__: '',
+        __API__: 'http://localhost:8000',
         __PROJECT__: 'jest',
     },
     clearMocks: true,
+    automock: false,
     testEnvironment: 'jsdom',
     coveragePathIgnorePatterns: ['\\\\node_modules\\\\'],
     moduleFileExtensions: ['js', 'jsx', 'ts', 'tsx', 'json', 'node'],
@@ -23,7 +24,7 @@ export default {
     ],
     rootDir: '../../',
     setupFilesAfterEnv: ['<rootDir>config/jest/setupTests.ts'],
-
+    // setupFiles: ['<rootDir>config/jest/setupTests.ts'],
     moduleNameMapper: {
         '\\.s?css$': 'identity-obj-proxy',
         '\\.svg|png': path.resolve(__dirname, 'jestEmptyComponent.tsx'),
