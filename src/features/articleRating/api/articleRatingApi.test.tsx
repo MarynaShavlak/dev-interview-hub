@@ -7,7 +7,7 @@ import {
     useGetArticleRating,
     useRateArticle,
 } from './articleRatingApi';
-import { setupApiStore } from '@/shared/lib/tests/setupApiStore/setupApiStore';
+import { setupApiStore } from '@/shared/lib/tests/rtkQueryTests/setupApiStore/setupApiStore';
 import { testRatingsData } from '@/entities/Rating/testing';
 import { RatingType } from '@/entities/Rating';
 
@@ -62,7 +62,7 @@ describe('getArticleRating', () => {
 
     test('should handle unsuccessful response', async () => {
         const storeRef = setupApiStore(articleRatingApi);
-        fetchMock.mockReject(new Error('should handle internal server error'));
+        fetchMock.mockReject(new Error('Internal server error'));
 
         // @ts-ignore
         const action = await storeRef.store.dispatch(
@@ -79,7 +79,7 @@ describe('getArticleRating', () => {
         } = action;
         expect(status).toBe('rejected');
         expect(isError).toBe(true);
-        expect(error).toBe('Error: should handle internal server error');
+        expect(error).toBe('Error: Internal server error');
     });
 });
 
@@ -109,7 +109,7 @@ describe('useGetArticleRating', () => {
     });
 
     test('should handle internal server error', async () => {
-        fetchMock.mockReject(new Error('should handle internal server error'));
+        fetchMock.mockReject(new Error('Error: Internal server error'));
 
         const { result, waitForNextUpdate } = renderHook(
             () => useGetArticleRating(rateArgs),
@@ -165,7 +165,7 @@ describe('useRateArticle', () => {
     });
 
     test('should handle internal server error', async () => {
-        fetchMock.mockReject(new Error('should handle internal server error'));
+        fetchMock.mockReject(new Error('Error: Internal server error'));
         const { result, waitForNextUpdate } = renderHook(
             () => useRateArticle(undefined),
             {

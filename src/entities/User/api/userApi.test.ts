@@ -1,5 +1,5 @@
 import fetchMock from 'jest-fetch-mock';
-import { setupApiStore } from '../../../shared/lib/tests/setupApiStore/setupApiStore';
+import { setupApiStore } from '../../../shared/lib/tests/rtkQueryTests/setupApiStore/setupApiStore';
 import {
     getUserDataByIdQuery,
     setJsonSettingsMutation,
@@ -41,7 +41,7 @@ describe('getUserDataById', () => {
 
     test('should handle unsuccessful response', async () => {
         const storeRef = setupApiStore(userApi);
-        fetchMock.mockReject(new Error('should handle internal server error'));
+        fetchMock.mockReject(new Error('Internal server error'));
 
         // @ts-ignore
         const action = await storeRef.store.dispatch(
@@ -54,7 +54,7 @@ describe('getUserDataById', () => {
         } = action;
         expect(status).toBe('rejected');
         expect(isError).toBe(true);
-        expect(error).toBe('Error: should handle internal server error');
+        expect(error).toBe('Error: Internal server error');
     });
 });
 
@@ -106,7 +106,7 @@ describe('setJsonSettings', () => {
     });
     test('should handle unsuccessful response', async () => {
         const storeRef = setupApiStore(userApi);
-        fetchMock.mockReject(new Error('should handle internal server error'));
+        fetchMock.mockReject(new Error('Internal server error'));
 
         // @ts-ignore
         const response = await storeRef.store.dispatch(
@@ -119,7 +119,7 @@ describe('setJsonSettings', () => {
         const {
             error: { error, status },
         } = response;
-        expect(error).toBe('Error: should handle internal server error');
+        expect(error).toBe('Error: Internal server error');
         expect(status).toBe('FETCH_ERROR');
     });
 });

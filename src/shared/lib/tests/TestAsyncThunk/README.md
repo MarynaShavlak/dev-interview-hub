@@ -1,7 +1,7 @@
 # Documentation for `TestAsyncThunk` Class
 
 ## Overview
-The `TestAsyncThunk` cclass facilitates the testing of Redux async thunks in TypeScript, offering a structured approach to mock dependencies and execute thunk actions in controlled test environments. It includes deep mocking of external dependencies like Axios to ensure comprehensive testing.
+The `TestAsyncThunk` class facilitates the testing of Redux async thunks in TypeScript, offering a structured approach to mock dependencies and execute thunk actions in controlled test environments. It includes deep mocking of external dependencies like Axios to ensure comprehensive testing.
 
 
 ## Imports and Dependencies

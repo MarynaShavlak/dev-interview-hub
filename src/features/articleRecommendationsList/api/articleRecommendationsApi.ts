@@ -7,7 +7,7 @@ interface ArticleRecommendationsParams {
     exceptArticleId: string;
 }
 
-const recommendationsApi = rtkApi.injectEndpoints({
+export const recommendationsApi = rtkApi.injectEndpoints({
     endpoints: (build) => ({
         getArticleRecommendationsList: build.query<
             Article[],
