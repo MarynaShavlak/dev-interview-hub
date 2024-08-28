@@ -10,7 +10,9 @@ import {
     StateFromReducersMapObject,
 } from '@reduxjs/toolkit';
 
-// Define the interface for the API slice
+/**
+ * Represents an API slice within the Redux store.
+ */
 interface ApiSlice<
     State,
     ReducerPath extends string = string,
@@ -28,42 +30,50 @@ interface ApiSlice<
     };
 }
 
+/**
+ * Represents the structure of the object returned by `setupApiStore`.
+ */
 interface StoreInterface {
     api: any;
     store: EnhancedStore;
 }
 
+/**
+ * Extracts the state type from an `ApiSlice`.
+ */
 type ApiState<A extends ApiSlice<any>> = {
     api: ReturnType<A['reducer']>;
 };
 
-// type ExtraReducersState<R extends Record<string, Reducer<any, any>>> = {
-//     [K in keyof R]: ReturnType<R[K]>;
-// };
-type ExtraReducersState<R extends ReducersMapObject> =
-    StateFromReducersMapObject<R>;
-
+/**
+ * Represents the combined state managed by the API slice and additional reducers.
+ */
 type RootState<
     A extends ApiSlice<any>,
     R extends ReducersMapObject,
 > = ApiState<A> & StateFromReducersMapObject<R>;
 
+/**
+ * Extracts the middleware type from an `EnhancedStore`.
+ */
 type StoreMiddleware<S> =
     S extends EnhancedStore<any, any, infer M> ? M : never;
 
+/**
+ * Represents the enhanced Redux store with API slice and additional reducers.
+ */
 type StoreType<
     A extends ApiSlice<any>,
     R extends ReducersMapObject,
 > = EnhancedStore<
     RootState<A, R>,
-    ActionFromReducersMapObject<R> | AnyAction, // Allow for extra reducer actions and general actions
+    ActionFromReducersMapObject<R> | AnyAction,
     StoreMiddleware<EnhancedStore>
 >;
 
-// Function to create the root reducer by combining API reducer with extra reducers
 function createRootReducer<
     A extends ApiSlice<any>,
-    R extends Record<string, Reducer<any, any>>,
+    R extends ReducersMapObject,
 >(api: A, extraReducers?: R): Reducer {
     return combineReducers({
         [api.reducerPath]: api.reducer,
@@ -73,7 +83,7 @@ function createRootReducer<
 
 function configureAppStore<
     A extends ApiSlice<any>,
-    R extends Record<string, Reducer<any, any>>,
+    R extends ReducersMapObject,
 >(api: A, extraReducers?: R): EnhancedStore {
     return configureStore({
         reducer: createRootReducer(api, extraReducers),
@@ -87,7 +97,7 @@ function configureAppStore<
 
 export function setupApiStore<
     A extends ApiSlice<any>,
-    R extends Record<string, Reducer<any, any>> = Record<never, never>,
+    R extends ReducersMapObject = Record<never, never>,
 >(api: A, extraReducers?: R): StoreInterface {
     const initialStore = configureAppStore(api, extraReducers) as StoreType<
         A,
