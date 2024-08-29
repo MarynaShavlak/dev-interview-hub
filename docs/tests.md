@@ -11,7 +11,7 @@ Command: `npm run test:unit`
 Focus: Testing React components' behavior and rendering.
 
 3. **Screenshot Testing with Loki**
-Command: `n`pm run test:ui`
+Command: `npm run test:ui`
 Focus: Visual regression testing to ensure UI consistency.
 
 4. **End-to-End (E2E) Testing with Cypress**
