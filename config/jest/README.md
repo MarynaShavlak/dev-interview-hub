@@ -85,6 +85,19 @@ This documentation provides an overview of the Jest configuration file `jest.con
       - `openReport`: Automatically opens the report in the browser after the tests run.
       - `inlineSource`: Embeds source code directly into the report for better readability.
 
+### 13. `automock`
+- **Purpose**: Controls whether to automatically mock all modules by default.
+- **Type**: `boolean`
+- **Default Value**: `false`
+- **Effect**: Disables automatic mocking, allowing tests to work with real implementations unless explicitly mocked. This is useful for ensuring that the tests run against the actual code rather than mock implementations unless specified otherwise.
+
+### 14. `transformIgnorePatterns`
+- **Purpose**: Defines patterns for directories that should not be transformed by Jest.
+- **Type**: `string[]`
+- **Configuration**:
+   `['/node_modules/(?!(axios)/)']`: Prevents transformation of files inside node_modules, except for those belonging to axios. This is necessary when certain dependencies, like axios, need to be transpiled by Jest, while others are left as is.
+
+
 ## Usage
 
 This Jest configuration is designed for a project using TypeScript with a focus on frontend testing in a simulated browser environment (using jsdom). It provides a comprehensive setup that ensures test isolation, cross-platform compatibility, and detailed reporting. To customize this setup, refer to the [Jest documentation](https://jestjs.io/docs/configuration) for a detailed explanation of each configuration option.

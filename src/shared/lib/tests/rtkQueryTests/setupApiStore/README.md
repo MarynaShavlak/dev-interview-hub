@@ -74,7 +74,7 @@ describe('getUserDataById', () => {
         const storeRef = setupApiStore(userApi);
         fetchMock.mockResponse(JSON.stringify(testUserData));
         // @ts-ignore
-        const action = await storeRef.store.dispatch(getUserDataByIdQuery('123'));
+        const action = await storeRef.store.dispatch<any>(getUserDataByIdQuery('123'));
         const { status, data, isSuccess } = action;
         expect(status).toBe('fulfilled');
         expect(isSuccess).toBe(true);

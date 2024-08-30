@@ -13,18 +13,18 @@ export default {
     },
     clearMocks: true,
     automock: false,
-    testEnvironment: 'jsdom',
     coveragePathIgnorePatterns: ['\\\\node_modules\\\\'],
     moduleFileExtensions: ['js', 'jsx', 'ts', 'tsx', 'json', 'node'],
     moduleDirectories: ['node_modules'],
+    transformIgnorePatterns: ['/node_modules/(?!(axios)/)'],
     modulePaths: ['<rootDir>src'],
     testMatch: [
         // difference between  Mac OS and Windows!!
         '<rootDir>src/**/*(*.)@(spec|test).[tj]s?(x)',
     ],
+
     rootDir: '../../',
     setupFilesAfterEnv: ['<rootDir>config/jest/setupTests.ts'],
-    // setupFiles: ['<rootDir>config/jest/setupTests.ts'],
     moduleNameMapper: {
         '\\.s?css$': 'identity-obj-proxy',
         '\\.svg|png': path.resolve(__dirname, 'jestEmptyComponent.tsx'),

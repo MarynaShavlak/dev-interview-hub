@@ -1,6 +1,6 @@
 import fetchMock from 'jest-fetch-mock';
 import { Provider } from 'react-redux';
-import { renderHook } from '@testing-library/react-hooks';
+import { renderHook, waitFor } from '@testing-library/react';
 import { ReactNode } from 'react';
 import { ArticleCategory, Article } from '@/entities/Article';
 import { setupApiStore } from '@/shared/lib/tests/rtkQueryTests/setupApiStore/setupApiStore';
@@ -35,7 +35,7 @@ describe('useArticleRecommendationsList', () => {
     test('should fetch and return article recommendations successfully', async () => {
         fetchMock.mockResponse(JSON.stringify(mockArticles));
 
-        const { result, waitForNextUpdate } = renderHook(
+        const { result } = renderHook(
             () => useArticleRecommendationsList(params),
             { wrapper },
         );
@@ -44,18 +44,17 @@ describe('useArticleRecommendationsList', () => {
         expect(result.current.isLoading).toBe(true);
         expect(result.current.data).toBeUndefined();
 
-        await waitForNextUpdate();
-
-        // After data is loaded
-        expect(result.current.isLoading).toBe(false);
-        expect(result.current.isSuccess).toBe(true);
-        expect(result.current.data).toEqual(mockArticles);
+        await waitFor(() => {
+            expect(result.current.isLoading).toBe(false);
+            expect(result.current.isSuccess).toBe(true);
+            expect(result.current.data).toEqual(mockArticles);
+        });
     });
 
     test('should handle error when fetching article recommendations', async () => {
         fetchMock.mockReject(new Error('Network Error'));
 
-        const { result, waitForNextUpdate } = renderHook(
+        const { result } = renderHook(
             () => useArticleRecommendationsList(params),
             { wrapper },
         );
@@ -63,12 +62,13 @@ describe('useArticleRecommendationsList', () => {
         expect(result.current.isLoading).toBe(true);
         expect(result.current.data).toBeUndefined();
 
-        await waitForNextUpdate();
-        const { isLoading, isError, status } = result.current;
-        expect(isLoading).toBe(false);
-        expect(isError).toBe(true);
-        expect(status).toBe('rejected');
+        await waitFor(() => {
+            const { isLoading, isError, status } = result.current;
+            expect(isLoading).toBe(false);
+            expect(isError).toBe(true);
+            expect(status).toBe('rejected');
 
-        expect(fetchMock).toHaveBeenCalledTimes(1);
+            expect(fetchMock).toHaveBeenCalledTimes(1);
+        });
     });
 });

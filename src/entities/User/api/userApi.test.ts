@@ -17,7 +17,7 @@ describe('getUserDataById', () => {
         const storeRef = setupApiStore(userApi);
         fetchMock.mockResponse(JSON.stringify({}));
         // @ts-ignore
-        await storeRef.store.dispatch(getUserDataByIdQuery('123'));
+        await storeRef.store.dispatch<any>(getUserDataByIdQuery('123'));
 
         expect(fetchMock).toBeCalledTimes(1);
         const { method, headers, url } = fetchMock.mock.calls[0][0] as Request;
@@ -30,7 +30,7 @@ describe('getUserDataById', () => {
         const storeRef = setupApiStore(userApi);
         fetchMock.mockResponse(JSON.stringify(testUserData));
         // @ts-ignore
-        const action = await storeRef.store.dispatch(
+        const action = await storeRef.store.dispatch<any>(
             getUserDataByIdQuery('123'),
         );
         const { status, data, isSuccess } = action;
@@ -44,7 +44,7 @@ describe('getUserDataById', () => {
         fetchMock.mockReject(new Error('Internal server error'));
 
         // @ts-ignore
-        const action = await storeRef.store.dispatch(
+        const action = await storeRef.store.dispatch<any>(
             getUserDataByIdQuery('123'),
         );
         const {
@@ -64,7 +64,7 @@ describe('setJsonSettings', () => {
         fetchMock.mockResponse(JSON.stringify({}));
 
         // @ts-ignore
-        await storeRef.store.dispatch(
+        await storeRef.store.dispatch<any>(
             setJsonSettingsMutation({
                 userId: '123',
                 jsonSettings: { theme: Theme.DARK, isFirstVisit: false },
@@ -92,7 +92,7 @@ describe('setJsonSettings', () => {
             }),
         );
         // @ts-ignore
-        const response = await storeRef.store.dispatch(
+        const response = await storeRef.store.dispatch<any>(
             setJsonSettingsMutation({
                 userId: '123',
                 jsonSettings: { theme: Theme.DARK, isFirstVisit: false },
@@ -109,7 +109,7 @@ describe('setJsonSettings', () => {
         fetchMock.mockReject(new Error('Internal server error'));
 
         // @ts-ignore
-        const response = await storeRef.store.dispatch(
+        const response = await storeRef.store.dispatch<any>(
             setJsonSettingsMutation({
                 userId: '123',
                 jsonSettings: { theme: Theme.DARK, isFirstVisit: false },
