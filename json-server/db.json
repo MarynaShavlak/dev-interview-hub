@@ -247,6 +247,30 @@
       "userId": "2",
       "text": "sfdh",
       "id": "0Zp8u-F"
+    },
+    {
+      "articleId": "9",
+      "userId": "1",
+      "text": "cszgxd",
+      "id": "3htwNox"
+    },
+    {
+      "articleId": "7",
+      "userId": "1",
+      "text": "fdhfjfk",
+      "id": "6oUBt4-"
+    },
+    {
+      "articleId": "8",
+      "userId": "1",
+      "text": "dgdrrhfk",
+      "id": "QXlF5y8"
+    },
+    {
+      "articleId": "7",
+      "userId": "1",
+      "text": "gfhfj",
+      "id": "hWQ1GBD"
     }
   ],
   "users": [
@@ -304,12 +328,20 @@
     },
     {
       "id": "4",
-      "username": "user2",
+      "username": "testuser",
       "password": "123",
       "roles": [
-        "USER"
+        "ADMIN"
       ],
-      "avatar": "hhhh"
+      "features": {
+        "isArticleRatingEnabled": true,
+        "isCounterEnabled": true,
+        "isAppRedesigned": true
+      },
+      "avatar": "https://st3.depositphotos.com/1071184/13782/v/450/depositphotos_137825710-stock-illustration-business-person-analyzing-financial-statistics.jpg",
+      "jsonSettings": {
+        "isArticlesPageWasOpened": true
+      }
     }
   ],
   "profile": [
@@ -334,6 +366,17 @@
       "city": "",
       "username": "user111",
       "avatar": "https://drive.google.com/thumbnail?id=1J1xUPYYkJeOsBTpDuf36vsV7UfxlM2uG&sz=w1000"
+    },
+    {
+      "id": "4",
+      "firstname": "new firstname",
+      "lastname": "new lastname",
+      "age": 465,
+      "currency": "EUR",
+      "country": "Ukraine",
+      "city": "Kharkiv",
+      "username": "testuser",
+      "avatar": "https://st3.depositphotos.com/1071184/13782/v/450/depositphotos_137825710-stock-illustration-business-person-analyzing-financial-statistics.jpg"
     }
   ],
   "articles": [

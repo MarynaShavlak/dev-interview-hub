@@ -18,7 +18,11 @@ import { BaseCardProps } from '../../ArticleCard';
 export const RedesignedGridViewCard = memo((props: BaseCardProps) => {
     const { className, article, target, handleClick } = props;
     const { t } = useTranslation('articles');
-    const additionalClasses = getFlexClasses({ vStack: true, gap: '8' });
+    const additionalClasses = getFlexClasses({
+        vStack: true,
+        gap: '8',
+        align: 'center',
+    });
 
     return (
         <AppLink

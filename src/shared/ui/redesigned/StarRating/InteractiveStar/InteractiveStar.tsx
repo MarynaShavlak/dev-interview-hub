@@ -35,7 +35,7 @@ export const InteractiveStar = (props: InteractiveStarProps) => {
     const commonProps = {
         className: starClasses,
         Svg: StarIcon,
-        key: starNumber,
+        // key: starNumber,
         width: size,
         height: size,
         onMouseLeave: onLeave,

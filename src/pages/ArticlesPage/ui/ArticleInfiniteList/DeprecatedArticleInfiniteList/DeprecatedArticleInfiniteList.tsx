@@ -106,7 +106,10 @@ export const DeprecatedArticleInfiniteList = memo(
         }
 
         return (
-            <div className={cls.ArticlesPageDeprecated}>
+            <div
+                className={cls.ArticlesPageDeprecated}
+                data-testid="ArticlesPage"
+            >
                 {shouldShowGridSkeleton ? (
                     <Page>
                         <div className={cls.controlsSkeletonWrap}>

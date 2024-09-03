@@ -47,6 +47,7 @@ export const StarRating = memo((props: StarRatingProps) => {
                   onLeave={onLeave}
                   onClick={onClick}
                   size={size}
+                  key={starNumber}
               />
           );
 

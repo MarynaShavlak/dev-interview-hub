@@ -12,6 +12,7 @@ export default {
         __PROJECT__: 'jest',
     },
     clearMocks: true,
+    testEnvironment: 'jsdom',
     automock: false,
     coveragePathIgnorePatterns: ['\\\\node_modules\\\\'],
     moduleFileExtensions: ['js', 'jsx', 'ts', 'tsx', 'json', 'node'],

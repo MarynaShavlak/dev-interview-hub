@@ -40,5 +40,5 @@ const MyComponent = () => {
 ## Conclusion
 The `useAppDispatch` hook is a valuable tool for managing typed Redux dispatch calls in TypeScript applications. 
 By leveraging the `AppDispatch` type derived from the Redux store configuration, it ensures that all dispatched actions are correctly typed and aligned with the store’s setup. 
-This approach eliminates common issues such as incorrect action types and manual type definitions, leading to cleaner, more maintainable code. 
+This approach eliminates login issues such as incorrect action types and manual type definitions, leading to cleaner, more maintainable code. 
 By integrating `useAppDispatch` into your project, you can achieve consistent type safety, reduce the risk of runtime errors, and streamline your state management with Redux.

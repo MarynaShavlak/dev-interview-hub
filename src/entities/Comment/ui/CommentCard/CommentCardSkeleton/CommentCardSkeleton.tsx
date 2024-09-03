@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import { toggleFeatures } from '@/shared/lib/features';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
-import { VStack } from '@/shared/ui/redesigned/Stack';
+import { HStack, VStack } from '@/shared/ui/redesigned/Stack';
 import { Skeleton as SkeletonDeprecated } from '@/shared/ui/deprecated/Skeleton';
 import { Skeleton as SkeletonRedesigned } from '@/shared/ui/redesigned/Skeleton';
 import cls from '../CommentCard.module.scss';
@@ -28,15 +28,10 @@ export const CommentCardSkeleton = memo((props: CommentCardSkeletonProps) => {
                 cls.loading,
             ])}
         >
-            <div className={cls.header}>
-                <Skeleton
-                    width={30}
-                    height={30}
-                    border="50%"
-                    className={cls.avatar}
-                />
+            <HStack gap="8" className={cls.header} align="center">
+                <Skeleton width={30} height={30} border="50%" />
                 <Skeleton height={16} width={100} />
-            </div>
+            </HStack>
             <Skeleton className={cls.text} width="100%" height={50} />
         </VStack>
     );

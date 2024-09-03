@@ -7,6 +7,7 @@ import { Text } from '@/shared/ui/deprecated/Text';
 import { AppLink } from '@/shared/ui/deprecated/AppLink';
 import cls from '../CommentCard.module.scss';
 import { Comment } from '../../../model/types/comment';
+import { getFlexClasses } from '@/shared/lib/classes/getFlexClasses/getFlexClasses';
 
 interface DeprecatedCommentCardProps {
     className?: string;
@@ -16,6 +17,7 @@ interface DeprecatedCommentCardProps {
 export const DeprecatedCommentCard = memo(
     (props: DeprecatedCommentCardProps) => {
         const { className, comment } = props;
+        const additionalClasses = getFlexClasses({ hStack: true, gap: '8' });
 
         return (
             <VStack
@@ -25,7 +27,7 @@ export const DeprecatedCommentCard = memo(
             >
                 <AppLink
                     to={`${getRouteProfile(comment.user.id)}`}
-                    className={cls.header}
+                    className={classNames(cls.header, {}, additionalClasses)}
                 >
                     {comment.user.avatar ? (
                         <Avatar

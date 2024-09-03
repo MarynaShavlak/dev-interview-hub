@@ -63,12 +63,14 @@ export const RedesignedProfileCard = memo((props: ProfileCardProps) => {
                         onChange={onChangeAge}
                         readonly={readonly}
                         digitsOnly
+                        data-testid="ProfileCard.age"
                     />
                     <Input
                         value={data?.city}
                         label={`${t('Місто')}:`}
                         onChange={onChangeCity}
                         readonly={readonly}
+                        data-testid="ProfileCard.city"
                     />
                 </VStack>
                 <VStack gap="16" max>
@@ -77,12 +79,14 @@ export const RedesignedProfileCard = memo((props: ProfileCardProps) => {
                         label={`${t("Ім'я користувача")}:`}
                         onChange={onChangeUsername}
                         readonly={readonly}
+                        data-testid="ProfileCard.username"
                     />
                     <Input
                         value={data?.avatar}
                         label={`${t('Посилання на аватар')}:`}
                         onChange={onChangeAvatar}
                         readonly={readonly}
+                        data-testid="ProfileCard.avatar"
                     />
                     <CurrencySelect
                         value={data?.currency}

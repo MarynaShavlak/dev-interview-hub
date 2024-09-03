@@ -198,6 +198,7 @@ Entry point for testing-related functionalities within the Article module. It is
 - **Testing Exports**:
   - `articleDetailsReducer` - Reducer for article details state management for use in testing scenarios and development tools.
   - `testArticleData` -  is a mock object representing article data, designed for use in testing scenarios and development tools.
+  - `testArticlesListData` -  is a mock array of objects representing articles data, designed for use in testing scenarios and development tools.
 
 
 ## Conclusion

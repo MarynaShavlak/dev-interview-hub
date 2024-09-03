@@ -8,7 +8,7 @@ The `global.d.ts` file in this React project provides global type declarations t
     - The `classNames` constant is of type `IClassNames` and is exported for use in your components.
 
 2. **Image Formats (`*.png`, `*.jpg`, `*.jpeg`)**:
-    - Declares modules for common image formats (PNG, JPG, JPEG), allowing you to import these file types directly into your TypeScript files.
+    - Declares modules for login image formats (PNG, JPG, JPEG), allowing you to import these file types directly into your TypeScript files.
 
 3. **SVG Files (`*.svg`)**:
     - Declares a module for SVG files, treating them as React components.

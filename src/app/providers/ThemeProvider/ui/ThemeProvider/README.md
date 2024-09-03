@@ -29,26 +29,17 @@ It ensures a seamless user experience by applying theme changes globally and sto
      The `ThemeProvider `component determines the initial theme through the following mechanisms:
      - `fallbackTheme`:
        - The `fallbackTheme` is derived from the theme value stored in local storage. 
-         When the component mounts, it attempts to retrieve the stored theme using `localStorage.getItem(LOCAL_STORAGE_THEME_KEY)`. 
-         If a theme is found, it is used as the fallback theme. This allows the component to persist the user's last chosen theme across sessions.
-     - `defaultTheme`:
-       - The `defaultTheme` is retrieved using the `useJsonSettings` hook, which fetches the user's preferred theme from a JSON settings source. 
-         This represents the theme that the user has specifically set or saved in their settings. 
-         If a `defaultTheme` is provided and the theme has not been initialized (`!isThemeInited`), the component sets the theme to this value and marks the theme as initialized.
-     - Role in Initializing the Theme:
-       - Upon mounting, the `ThemeProvider` first checks if a `defaultTheme` is available. 
-         If so, it sets the theme to this value and updates the `isThemeInited` state to true.
-         This ensures that any user-specific or application-specific theme settings are applied immediately.
-       - If no `defaultTheme` is provided or the theme is not initialized, the component falls back to using the `fallbackTheme` from local storage. 
-         If neither is available, the theme defaults to `Theme.LIGHT`. 
-         This ensures that there is always a theme applied, even if no previous settings are found.
-  
-  By using both `fallbackTheme` and `defaultTheme`, the `ThemeProvider` ensures that the theme is both user-specific and persistent across sessions, providing a consistent and personalized theming experience.
+         When the component mounts, it attempts to retrieve the stored theme using `localStorage.getItem(LOCAL_STORAGE_THEME_KEY)`.
+         If a theme is found, it is used as the fallback theme.
+     - `Initial Theme`:
+       - If an `initialTheme` is provided and the theme has not been initialized (`!isThemeInited`), the component sets the theme to this value and updates the `isThemeInited` state to `true`.
+     - `Default to Light Theme`:
+       - If no `initialTheme` is provided or the theme is not initialized, the component uses the `fallbackTheme` from local storage or defaults to `Theme.LIGHT` if none is available. This ensures a consistent theme is always applied.
 
-2. Apply Theme:
-     - Updates the `document.body` class and `localStorage` with the current theme whenever `theme` changes.
+     This approach allows the ThemeProvider to manage both user-specific and default themes, providing a consistent theming experience.
 
-
+  2. **Apply Theme**:
+  - Updates the `document.body` class and `localStorage` with the current theme whenever the theme state changes, ensuring that theme changes are reflected globally and persisted across sessions.
 
 ## **Context**:
 The `ThemeProvider` uses `ThemeContext` to provide the current theme and a function to update it. 
@@ -81,4 +72,4 @@ root.render(
 ```
 
 ## Conclusion 
-The `ThemeProvider` component ensures a consistent theme across the application, utilizing both initial props and local storage. It dynamically updates the theme based on user interactions and application settings, providing an easy way to manage theming in a React app.
+The `ThemeProvider` component ensures a consistent and personalized theming experience across the application. By managing theme initialization and updates both from user preferences and local storage, it facilitates a smooth and user-friendly theming experience.

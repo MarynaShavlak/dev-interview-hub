@@ -71,7 +71,7 @@ const articlesAdapter = createEntityAdapter<Article>({
     selectId: (article) => article.id,
 });
 ```
-The `articlesAdapter` is configured to manage articles, with a custom `selectId` function to identify each article by its `id` property. This adapter provides built-in CRUD operations for managing article entities, simplifying state management by handling common tasks such as adding, updating, and removing entities, and retrieving them by ID or as a collection.
+The `articlesAdapter` is configured to manage articles, with a custom `selectId` function to identify each article by its `id` property. This adapter provides built-in CRUD operations for managing article entities, simplifying state management by handling login tasks such as adding, updating, and removing entities, and retrieving them by ID or as a collection.
 
 ## Selectors
 ```typescript
