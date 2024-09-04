@@ -34,6 +34,7 @@ export const RedesignedArticlesFilters = (props: ArticlesFiltersProps) => {
                     value={search}
                     placeholder={t('Пошук')}
                     addonLeft={<Icon Svg={SearchIcon} />}
+                    data-testid="ArticlesPage.SearchInput"
                 />
                 <ArticleCategoryTabs
                     value={category}
