@@ -20,7 +20,11 @@ export const ArticleAdditionalInfo = memo(
         const { t } = useTranslation('article-details');
 
         return (
-            <VStack gap="32" className={classNames('', {}, [className])}>
+            <VStack
+                gap="32"
+                className={classNames('', {}, [className])}
+                data-testid="ArticleDetails.CreatedAt"
+            >
                 <HStack gap="8">
                     <Avatar
                         size={32}
@@ -30,7 +34,10 @@ export const ArticleAdditionalInfo = memo(
                     <Text text={createdAt} />
                 </HStack>
                 <ArticleEditNavigationButton />
-                <Text text={t('{{count}} переглядів', { count: views })} />
+                <Text
+                    text={t('{{count}} переглядів', { count: views })}
+                    data-testid="ArticleDetails.Views"
+                />
             </VStack>
         );
     },

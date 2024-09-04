@@ -104,6 +104,7 @@ export const RedesignedArticleInfiniteList = memo(
                         Footer,
                         Header,
                     }}
+                    data-testid="ArticleList"
                 />
             );
         }
@@ -128,6 +129,7 @@ export const RedesignedArticleInfiniteList = memo(
                             enter: (velocity) => Math.abs(velocity) > 200,
                             exit: (velocity) => Math.abs(velocity) < 30,
                         }}
+                        data-testid="ArticleList"
                     />
                 )}
             </>

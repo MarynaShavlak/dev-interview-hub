@@ -18,7 +18,13 @@ export const RedesignedRating = memo((props: RedesignedRatingProps) => {
     const { t } = useTranslation();
 
     return (
-        <Card max border="round" padding="24" className={className}>
+        <Card
+            max
+            border="round"
+            padding="24"
+            className={className}
+            data-testid="RatingCard"
+        >
             <VStack align="center" gap="8">
                 <Text title={starsCount ? t('Дякуємо за оцінку!') : title} />
                 <StarRating

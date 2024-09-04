@@ -10,6 +10,7 @@ interface AppImageProps extends ImgHTMLAttributes<HTMLImageElement> {
     className?: string;
     fallback?: ReactElement;
     errorFallback?: ReactElement;
+    'data-testid'?: string;
 }
 
 export const AppImage = memo((props: AppImageProps) => {

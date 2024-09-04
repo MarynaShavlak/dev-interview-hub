@@ -115,6 +115,8 @@ Entry point for testing-related functionalities within the Profile module. It is
   - `userActions`, `useUserActions`: User-related actions for dispatching.
 - **Services**:
   - `logoutUser`: Thunk to log out the user.
+- **Utilities**:
+  - `handleUserAuthentication`: Function for handling Handles user authentication by initializing user features and storing user ID in local storage.
 
 ## Public Testing API
 - **Testing Exports**:

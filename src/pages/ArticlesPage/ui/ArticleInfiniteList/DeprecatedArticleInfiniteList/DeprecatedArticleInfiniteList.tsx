@@ -88,7 +88,10 @@ export const DeprecatedArticleInfiniteList = memo(
 
         if (view === ArticleView.LIST) {
             return (
-                <div className={cls.ArticlesPageDeprecated}>
+                <div
+                    className={cls.ArticlesPageDeprecated}
+                    data-testid="ArticleList"
+                >
                     <Virtuoso
                         {...commonProps}
                         ref={listRef}
@@ -137,6 +140,7 @@ export const DeprecatedArticleInfiniteList = memo(
                             enter: (velocity) => Math.abs(velocity) > 200,
                             exit: (velocity) => Math.abs(velocity) < 30,
                         }}
+                        data-testid="ArticleList"
                     />
                 )}
             </div>

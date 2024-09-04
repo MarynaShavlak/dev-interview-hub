@@ -18,3 +18,4 @@ export {
 export type { UserSchema, User } from './model/types/user';
 export { UserRole } from './model/consts/consts';
 export { logoutUser } from './model/services/logoutUser/logoutUser';
+export { handleUserAuthentication } from './lib/userUtils/userUtils';

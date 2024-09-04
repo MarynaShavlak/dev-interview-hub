@@ -30,8 +30,18 @@ export const RedesignedArticleDetails = memo((s) => {
         return <ArticleDetailsError />;
     }
     return (
-        <VStack gap="16" max className={cls.ArticleDetails}>
-            <Text title={article?.title} size="l" bold />
+        <VStack
+            gap="16"
+            max
+            className={cls.ArticleDetails}
+            data-testid="ArticleDetails.Info"
+        >
+            <Text
+                title={article?.title}
+                size="l"
+                bold
+                data-testid="ArticleDetails.Title"
+            />
             <Text title={article?.subtitle} />
             <AppImage
                 fallback={<Skeleton width="100%" height={420} border="16px" />}
@@ -44,6 +54,7 @@ export const RedesignedArticleDetails = memo((s) => {
                 }
                 src={article?.img}
                 className={cls.img}
+                data-testid="ArticleDetails.ArticleImage"
             />
             {article?.blocks.map(renderArticleBlock)}
         </VStack>

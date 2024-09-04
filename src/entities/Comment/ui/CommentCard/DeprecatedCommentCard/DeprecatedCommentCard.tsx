@@ -24,6 +24,7 @@ export const DeprecatedCommentCard = memo(
                 max
                 gap="8"
                 className={classNames(cls.CommentCard, {}, [className])}
+                data-testid="CommentCard.Content"
             >
                 <AppLink
                     to={`${getRouteProfile(comment.user.id)}`}

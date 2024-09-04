@@ -9,9 +9,9 @@ describe('User visits the profile page', () => {
         });
     });
 
-    // afterEach(() => {
-    //     cy.resetProfile(profileId);
-    // });
+    afterEach(() => {
+        cy.resetProfile(profileId);
+    });
 
     it('And the profile loads successfully', () => {
         cy.getByTestId('ProfileCard.firstname').should('have.value', 'test');

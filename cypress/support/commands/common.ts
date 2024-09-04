@@ -16,9 +16,10 @@ export const login = (
             },
         })
         .then(({ body }) => {
+            console.log('body', body)
             window.localStorage.setItem(
                 USER_LOCALSTORAGE_KEY,
-                JSON.stringify(body),
+                body.id,
             );
             return body;
         });

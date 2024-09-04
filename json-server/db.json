@@ -284,7 +284,7 @@
       "features": {
         "isArticleRatingEnabled": true,
         "isCounterEnabled": true,
-        "isAppRedesigned": true
+        "isAppRedesigned": false
       },
       "jsonSettings": {
         "theme": "app_light_theme",
@@ -304,7 +304,7 @@
       "features": {
         "isArticleRatingEnabled": false,
         "isCounterEnabled": false,
-        "isAppRedesigned": true
+        "isAppRedesigned": false
       },
       "avatar": "https://drive.google.com/thumbnail?id=1J1xUPYYkJeOsBTpDuf36vsV7UfxlM2uG&sz=w1000",
       "jsonSettings": {
@@ -338,9 +338,10 @@
         "isCounterEnabled": true,
         "isAppRedesigned": true
       },
-      "avatar": "https://st3.depositphotos.com/1071184/13782/v/450/depositphotos_137825710-stock-illustration-business-person-analyzing-financial-statistics.jpg",
+      "avatar": "https://s1.1zoom.ru/big3/992/367659-alexfas01.jpg",
       "jsonSettings": {
-        "isArticlesPageWasOpened": true
+        "isArticlesPageWasOpened": true,
+        "theme": "app_orange_theme"
       }
     }
   ],
@@ -369,8 +370,8 @@
     },
     {
       "id": "4",
-      "firstname": "new firstname",
-      "lastname": "new lastname",
+      "firstname": "test",
+      "lastname": "user",
       "age": 465,
       "currency": "EUR",
       "country": "Ukraine",
@@ -2109,6 +2110,19 @@
           ]
         }
       ]
+    },
+    {
+      "title": "TESTING ARTICLE",
+      "subtitle": "React hooks",
+      "img": "https://miro.medium.com/v2/resize:fit:1400/0*5KGuaB1kovyV4EbV.png",
+      "views": 1022,
+      "createdAt": "26.02.2024",
+      "userId": "1",
+      "category": [
+        "IT"
+      ],
+      "blocks": [],
+      "id": "lyoDA23"
     }
   ],
   "article-ratings": [

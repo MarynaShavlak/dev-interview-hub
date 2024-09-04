@@ -1,7 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { User, userActions } from '@/entities/User';
+import { User, userActions, handleUserAuthentication } from '@/entities/User';
 import { ThunkConfig } from '@/app/providers/StoreProvider';
-import { handleUserAuthentication } from '../../../../../entities/User/lib/userUtils/userUtils';
 
 interface LoginByUsernameProps {
     username: string;
@@ -30,7 +29,7 @@ export const loginByUsername = createAsyncThunk<
 
         const user = response.data;
 
-        dispatch(userActions.setAuthData(user));
+        await dispatch(userActions.setAuthData(user));
 
         handleUserAuthentication(user);
 

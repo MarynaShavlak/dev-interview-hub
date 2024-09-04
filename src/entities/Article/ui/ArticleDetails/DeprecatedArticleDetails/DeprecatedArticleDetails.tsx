@@ -28,23 +28,40 @@ export const DeprecatedArticleDetails = memo(() => {
         return <ArticleDetailsError />;
     }
     return (
-        <VStack gap="16" max className={cls.ArticleDetails}>
+        <VStack
+            gap="16"
+            max
+            className={cls.ArticleDetails}
+            data-testid="ArticleDetails.Info"
+        >
             <HStack justify="center" max>
-                <Avatar size={200} src={article?.img} className={cls.avatar} />
+                <Avatar
+                    size={200}
+                    src={article?.img}
+                    className={cls.avatar}
+                    data-testid="ArticleDetails.ArticleImage"
+                />
             </HStack>
             <VStack gap="4" max>
                 <Text
                     title={article?.title}
                     text={article?.subtitle}
                     size={TextSize.L}
+                    data-testid="ArticleDetails.Title"
                 />
                 <HStack gap="8">
                     <Icon Svg={EyeIcon} />
-                    <Text text={String(article?.views)} />
+                    <Text
+                        text={String(article?.views)}
+                        data-testid="ArticleDetails.Views"
+                    />
                 </HStack>
                 <HStack gap="8">
                     <Icon Svg={CalendarIcon} />
-                    <Text text={article?.createdAt} />
+                    <Text
+                        text={article?.createdAt}
+                        data-testid="ArticleDetails.CreatedAt"
+                    />
                 </HStack>
             </VStack>
             {article?.blocks.map(renderArticleBlock)}
