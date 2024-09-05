@@ -19,10 +19,23 @@ describe('User visits the articles list page', () => {
         cy.getByTestId('ArticleListItem').should('have.length.greaterThan', 1);
     });
 
-    it('and search articles', () => {
+    it('and searches articles', () => {
         cy.getByTestId('ArticleList').should('exist');
         cy.searchArticles('TESTING ARTICLE');
         cy.getByTestId('ArticleList').should('exist');
         cy.getByTestId('ArticleListItem').should('have.length', 1);
+        cy.getByTestId('ArticleListItem.Title.Header').contains(
+            'TESTING ARTICLE',
+        );
+    });
+
+    it('and filters articles by category ', () => {
+        cy.getByTestId('ArticleList').should('exist');
+        cy.filterArticlesByCategory('SOCIOLOGY').then((articles) => {
+            expect(articles.length).to.be.greaterThan(0);
+            articles.forEach((article) => {
+                expect(article.category).contains('SOCIOLOGY');
+            });
+        });
     });
 });

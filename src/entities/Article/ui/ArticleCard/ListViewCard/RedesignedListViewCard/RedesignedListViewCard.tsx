@@ -49,7 +49,11 @@ export const RedesignedListViewCard = memo((props: BaseCardProps) => {
                         <Text text={article.createdAt} size="s" />
                     </HStack>
                 </VStack>
-                <Text title={article.title} bold />
+                <Text
+                    title={article.title}
+                    bold
+                    data-testid="ArticleListItem.Title"
+                />
                 <Text title={article.subtitle} size="s" />
                 <AppImage
                     fallback={

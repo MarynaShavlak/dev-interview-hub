@@ -45,7 +45,10 @@ export const DeprecatedListViewCard = memo((props: BaseCardProps) => {
                     </HStack>
                     <Text text={article.createdAt} />
                 </VStack>
-                <Text title={article.title} />
+                <Text
+                    title={article.title}
+                    data-testid="ArticleListItem.Title"
+                />
                 <ArticleCategories article={article} />
                 <AppImage
                     fallback={<Skeleton width="100%" height="250px" />}

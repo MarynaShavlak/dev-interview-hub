@@ -60,6 +60,7 @@ export const RedesignedGridViewCard = memo((props: BaseCardProps) => {
                         title={article.title}
                         className={cls.title}
                         size="s"
+                        data-testid="ArticleListItem.Title"
                     />
                     <VStack gap="4" className={cls.footer} max justify="end">
                         <HStack justify="between" max>

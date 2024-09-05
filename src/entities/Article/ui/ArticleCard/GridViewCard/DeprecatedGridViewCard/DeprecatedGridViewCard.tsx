@@ -59,7 +59,11 @@ export const DeprecatedGridViewCard = memo((props: BaseCardProps) => {
                     <ArticleCategories article={article} />
                     <ArticleViews article={article} />
                 </HStack>
-                <Text text={article.title} className={cls.title} />
+                <Text
+                    text={article.title}
+                    className={cls.title}
+                    data-testid="ArticleListItem.Title"
+                />
             </Card>
         </AppLink>
     );
