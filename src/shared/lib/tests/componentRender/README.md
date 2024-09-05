@@ -1,27 +1,26 @@
-### `componentRender` Function
+### Documentation for Testing Utilities: `TestProvider` component and `componentRender` function
 
 ## Overview
 
-The `componentRender` function is a utility designed to streamline the testing process for React components by providing a pre-configured environment with routing, state management, and internationalization. This function wraps the component under test with essential providers and renders it in a way that closely resembles how it will be used in a real application.
+The `TestProvider` component and `componentRender` function are utilities designed to simplify testing React components by providing a comprehensive and pre-configured testing environment. These utilities wrap the component under test with essential providers for routing, state management, theming, and internationalization. This helps developers accurately simulate real-world application behavior in tests.
 
 ## Role and Purpose
 
-The `componentRender` function simplifies the setup for testing React components that rely on multiple providers. By integrating `MemoryRouter` for routing, `StoreProvider` for Redux state management, and `I18nextProvider` for internationalization, it ensures that the component under test operates in an environment that mirrors the application's setup. This approach helps to catch potential issues related to routing, state management, and localization early in the development cycle.
-
+The `componentRender` function and `T`estProvider` component eliminate the need to manually set up multiple providers when testing components that rely on routing, Redux state, themes, or translations. By automatically configuring the necessary environment, they streamline testing for components that interact with these features, ensuring reliable and consistent test results.
 ## Problem Addressed
 
-When testing React components, especially those that interact with routing, Redux state, or internationalization, setting up the environment for each test can be cumbersome and error-prone. Common issues include:
+Testing React components that depend on various contexts (like routing, Redux, and internationalization) often requires tedious setup. Common issues include:
 1. **Routing Setup:** Ensuring that components render correctly based on different routes.
 2. **State Management:** Providing a Redux store with initial state and asynchronous reducers.
 3. **Internationalization:** Configuring translations to test localization features.
+4. **Theming**: Ensuring components render correctly in different themes (e.g., light and dark).
 
 ## Solution
 
 The `componentRender` function addresses these problems by:
-1. **Simplified Rendering:** Automatically wraps the component with `MemoryRouter`, `StoreProvider`, and `I18nextProvider`, reducing boilerplate code.
-2. **Flexible Configuration:** Accepts options for initial state, asynchronous reducers, and routes, allowing for customized test scenarios.
-3. **Consistent Environment:** Provides a consistent and controlled environment for testing components with all necessary providers in place.
-
+1. **Automatic Provider Wrapping**: Automatically wrapping components with MemoryRouter, StoreProvider, I18nextProvider, and ThemeProvider to reduce boilerplate.
+2. **Flexible Configuration**: Supporting configuration options for initial state, asynchronous reducers, route, and theme, allowing tailored test scenarios.
+3. **Realistic Environment**: Simulating a real-world application environment to help catch issues early in the development process, such as routing problems, state inconsistencies, or theming errors.
 ## Implementation Details
 
 ### Props
@@ -33,23 +32,23 @@ The `componentRender` function addresses these problems by:
 
 ### `componentRenderOptions`
 
-| Option         | Type                                    | Default     | Description                                                                                         |
-|----------------|-----------------------------------------|-------------|-----------------------------------------------------------------------------------------------------|
-| `route`        | `string`                                | `'/'`       | The initial route for the `MemoryRouter`.                                                          |
-| `initialState` | `DeepPartial<StateSchema>`              | `undefined` | Initial state for the Redux store.                                                                  |
-| `asyncReducers`| `DeepPartial<ReducersMapObject<StateSchema>>` | `undefined` | Asynchronous reducers to be applied to the Redux store.                                             |
+| Option         | Type                                    | Default     | Description                                                                                        |
+|----------------|-----------------------------------------|-------------|----------------------------------------------------------------------------------------------------|
+| `route`        | `string`                                | `'/'`       | The initial route for the `MemoryRouter`.                                                         |
+| `initialState` | `DeepPartial<StateSchema>`              | `undefined` | Initial state for the Redux store.                                                                 |
+| `asyncReducers`| `DeepPartial<ReducersMapObject<StateSchema>>` | `undefined` | Asynchronous reducers to be applied to the Redux store.                                            |
+| `theme`| `Theme` | `Theme.LIGHT` | Specifies the theme (light or dark) for testing components with theme-based styling.|
 
 ### Internal Work
 
-1. **`MemoryRouter`**: Provides routing capabilities for the component under test, simulating different URL paths.
-2. **`StoreProvider`**: Supplies Redux store with initial state and optional asynchronous reducers.
-3. **`I18nextProvider`**: Integrates internationalization, ensuring that the component receives the necessary translation context.
+1. **MemoryRouter**: Simulates browser routing, allowing tests to run in different route contexts.
+2. **StoreProvider**: Injects Redux state management, including initial state and dynamically loaded reducers.
+3. **I18nextProvider**: Handles translations by wrapping the component with internationalization context, enabling tests for multilingual components.
+4. **ThemeProvider**: Applies theming (light or dark), allowing components to be tested for theme-specific behavior and styles.
 
 ## Usage Example
 
-### Test Case Setup
-
-Here's an example of how to use `componentRender` to test a `Sidebar` component:
+### Example 1: Test Case Setup in RTL tests
 
 ```typescript jsx
 import { fireEvent, screen } from '@testing-library/react';
@@ -71,5 +70,40 @@ describe('Sidebar Component', () => {
     });
 });
 ```
+
+### Example 2: Testing EditableProfileCard with Mocked Data in Cypress test case
+
+```typescript jsx
+import { EditableProfileCard } from '@/features/editableProfileCard';
+import { TestProvider } from '@/shared/lib/tests/componentRender/componentRender';
+
+const USER_ID = '1';
+
+describe('EditableProfileCard.cy.tsx', () => {
+    it('should render EditableProfileCard with mocked profile data', () => {
+        cy.intercept('GET', '**/profile/*', { fixture: 'profile.json' });
+        cy.mount(
+            <TestProvider
+                options={{
+                    initialState: {
+                        user: {
+                            authData: {
+                                id: USER_ID, 
+                            },
+                        },
+                                            },
+                    theme: 'dark', 
+                }}
+            >
+                <EditableProfileCard id={USER_ID} />
+            </TestProvider>
+        );
+
+        // Assertions to validate component behavior after mount
+        cy.get('[data-testid="profile-card"]').should('exist'); 
+        cy.get('[data-testid="profile-name"]').should('contain.text', 'Test user');  
+    });
+});
+```
 ## Conclusion
-The `componentRender` function is an essential tool for testing React components that require a complex environment. By providing a streamlined way to render components with routing, state management, and internationalization, it helps ensure that tests are accurate and consistent. This utility reduces setup complexity and allows developers to focus on writing effective tests for their components.
+The `componentRender` function and `TestProvider` component are essential tools for testing React components that rely on complex contexts like routing, Redux state management, theming, and internationalization. By providing a ready-to-use, customizable environment, these utilities reduce setup complexity and ensure tests are accurate and maintainable. This allows developers to focus on writing meaningful tests while minimizing the risk of misconfigurations.
