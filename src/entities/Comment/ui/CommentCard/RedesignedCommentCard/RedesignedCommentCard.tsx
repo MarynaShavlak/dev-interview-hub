@@ -21,7 +21,6 @@ export const RedesignedCommentCard = memo(
         return (
             <Card padding="24" max>
                 <VStack
-                    data-testid="CommentCard.Content"
                     gap="8"
                     max
                     className={classNames(cls.CommentCardRedesigned, {}, [

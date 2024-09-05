@@ -18,11 +18,26 @@ export const filterArticlesByCategory = (category: string) => {
         });
 };
 
+export const sortArticlesByViews = (order: string) => {
+    const queryString = `_expand=user&_limit=9&_page=1&_sort=views&_order=${order}`;
+    const url = `http://localhost:8000/articles?${queryString}`;
+    return cy
+        .request({
+            method: 'GET',
+            url,
+            headers: { Authorization: 'asasf' },
+        })
+        .then((response) => {
+            return response.body;
+        });
+};
+
 declare global {
     namespace Cypress {
         interface Chainable {
             searchArticles(searchValue: string): Chainable<Article[]>;
             filterArticlesByCategory(category: string): Chainable<Article[]>;
+            sortArticlesByViews(order: string): Chainable<Article[]>;
         }
     }
 }

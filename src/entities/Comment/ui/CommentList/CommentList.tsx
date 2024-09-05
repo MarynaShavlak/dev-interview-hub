@@ -50,7 +50,12 @@ export const CommentList = memo((props: CommentListProps) => {
     }
 
     return (
-        <VStack gap="16" max className={className}>
+        <VStack
+            gap="16"
+            max
+            className={className}
+            data-testid="CommentCard.Content"
+        >
             {comments?.length ? (
                 <Each
                     of={comments}

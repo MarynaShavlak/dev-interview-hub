@@ -33,14 +33,18 @@ describe('User visits the article page', () => {
     });
 
     it('And leaves a comment', () => {
-        cy.getByTestId('ArticleDetails.Info');
+        cy.intercept('GET', '**/articles/*', {
+            fixture: 'article-details.json',
+        });
         cy.getByTestId('AddCommentForm').scrollIntoView();
         cy.addComment('text of the comment');
         cy.getByTestId('CommentCard.Content').should('have.length', 1);
     });
 
     it('And rates the article', () => {
-        cy.getByTestId('ArticleDetails.Info');
+        cy.intercept('GET', '**/articles/*', {
+            fixture: 'article-details.json',
+        });
         cy.getByTestId('RatingCard').scrollIntoView();
         cy.setRate(4, 'feedback');
         cy.get('[data-selected=true]').should('have.length', 4);

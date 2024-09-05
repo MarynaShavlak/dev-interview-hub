@@ -26,21 +26,20 @@ export const RedesignedProfileCard = memo((props: ProfileCardProps) => {
     } = props;
     const { t } = useTranslation('profile');
     const additionalClasses = getFlexClasses({ vStack: true, gap: '32' });
+    console.log('data?.avatar', Boolean(data?.avatar));
     return (
         <Card
             padding="24"
             max
             className={classNames(className ?? '', {}, additionalClasses)}
         >
-            {data?.avatar && (
-                <HStack justify="center" max>
-                    <Avatar
-                        size={128}
-                        src={data?.avatar}
-                        alt={t('Аватар користувача')}
-                    />
-                </HStack>
-            )}
+            <HStack justify="center" max>
+                <Avatar
+                    size={128}
+                    src={data?.avatar}
+                    alt={t('Аватар користувача')}
+                />
+            </HStack>
             <HStack gap="24" max>
                 <VStack gap="16" max>
                     <Input
