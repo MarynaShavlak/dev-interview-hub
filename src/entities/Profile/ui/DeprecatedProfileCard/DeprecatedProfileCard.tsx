@@ -50,6 +50,7 @@ export const DeprecatedProfileCard = (props: ProfileCardProps) => {
                 placeholder={t("Ім'я користувача")}
                 onChange={onChangeUsername}
                 readonly={readonly}
+                data-testid="ProfileCard.username"
             />
             <InputDeprecated
                 value={data?.firstname}
@@ -71,12 +72,14 @@ export const DeprecatedProfileCard = (props: ProfileCardProps) => {
                 onChange={onChangeAge}
                 readonly={readonly}
                 digitsOnly
+                data-testid="ProfileCard.age"
             />
             <InputDeprecated
                 value={data?.city}
                 placeholder={t('Ваше місто')}
                 onChange={onChangeCity}
                 readonly={readonly}
+                data-testid="ProfileCard.city"
             />
             <InputDeprecated
                 value={data?.avatar}
@@ -84,6 +87,7 @@ export const DeprecatedProfileCard = (props: ProfileCardProps) => {
                 className={cls.inputAvatar}
                 onChange={onChangeAvatar}
                 readonly={readonly}
+                data-testid="ProfileCard.avatar"
             />
             <CurrencySelect
                 value={data?.currency}

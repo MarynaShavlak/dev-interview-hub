@@ -2,14 +2,14 @@
 
 The project includes component tests using React Testing Library to verify that React components render correctly and behave as expected.
 
-## 1. [Sidebar](../../src/widgets/Sidebar/ui/Sidebar/Sidebar.test.tsx) Component
+## 1. [Sidebar](../../../src/widgets/Sidebar/ui/Sidebar/Sidebar.test.tsx) Component
 
 | Aspect                          |  Purpose                                                                                                        | 
 |---------------------------------|---------------------------------------------------------------|
 | **Rendering**                   | Verifies that the `Sidebar` component renders correctly.                                                         |           
 | **Toggle Interaction**          | Ensures that the `Sidebar` component responds to toggle interactions by collapsing when the toggle button is clicked. |                              
 
-## 2. [AppRouter](../../src/app/providers/router/ui/tests/AppRouter.test.tsx) Component
+## 2. [AppRouter](../../../src/app/providers/router/ui/tests/AppRouter.test.tsx) Component
 
 | Aspect                          |  Purpose | 
 |---------------------------------|---------------------------------------------------------------|
@@ -19,7 +19,7 @@ The project includes component tests using React Testing Library to verify that 
 | **Authorized Access**           | Allows access to the "Profile" page for authorized users.                                                       |                             
 | **Role-Based Access**           | Manages access to the "Admin" page based on user roles.                                                         |                              
 
-## 3. [EditableProfileCard](../../src/features/editableProfileCard/ui/EditableProfileCard/EditableProfileCard.test.tsx) Component
+## 3. [EditableProfileCard](../../../src/features/editableProfileCard/ui/EditableProfileCard/EditableProfileCard.test.tsx) Component
 
 | Aspect                          |  Purpose | 
 |---------------------------------|---------------------------------------------------------------|
@@ -28,7 +28,7 @@ The project includes component tests using React Testing Library to verify that 
 | **Form Validation Error**       | Displays an error when form validation fails.                                                                   |                                 
 | **Save Form**                   | Sends a PUT request when the form is successfully saved.                                                         |                                 
 
-## 4. [NotificationButton](../../src/features/notificationButton/ui/NotificationButton/NotificationButton.test.tsx) Component
+## 4. [NotificationButton](../../../src/features/notificationButton/ui/NotificationButton/NotificationButton.test.tsx) Component
 
 | Aspect                          | Purpose                                                                                                        | 
 |---------------------------------|----------------------------------------------------------------------------------------------------------------|
@@ -37,7 +37,7 @@ The project includes component tests using React Testing Library to verify that 
 | **Drawer Closing**              |  Handles closing the drawer when the overlay is clicked.                                                         |                                   
 | **Multiple Toggles**            |  Correctly toggles the drawer state multiple times.                                                             |                                 
 
-## 5. [Rating](../../src/entities/Rating/ui/Rating/Rating.test.tsx) Component
+## 5. [Rating](../../../src/entities/Rating/ui/Rating/Rating.test.tsx) Component
 
 | Aspect                          |  Purpose                                                                                                      | 
 |---------------------------------|--------------------------------------------------------------------------------------------------------------|
@@ -45,7 +45,7 @@ The project includes component tests using React Testing Library to verify that 
 | **Thank-You Message**           | Correctly displays a thank-you message when a rating is provided.                                            |                                   
 | **Feedback Modal**              | Appropriately shows or hides the feedback modal based on the component's configuration.Verifies that the modal can be closed without submitting feedback or correctly submits feedback.                       | 
 
-## 6. [LoginForm](../../src/features/AuthByUsername/ui/LoginForm/LoginForm.test.tsx) Component
+## 6. [LoginForm](../../../src/features/AuthByUsername/ui/LoginForm/LoginForm.test.tsx) Component
 
 | Aspect                          | Purpose                                                                                                        | 
 |---------------------------------|-----------------------------------------------------------------------------------------------------------------|
@@ -56,7 +56,7 @@ The project includes component tests using React Testing Library to verify that 
 | **Success Callback**            | Calls the `onSuccess` callback upon successful login.                                                            |                                   
 | **Error Handling**              | Clears error messages and allows retry after a failed login attempt.                                            |                                   
 
-## 7. [AddCommentForm](../../src/entities/Comment/ui/AddCommentForm/AddCommentForm.test.tsx) Component
+## 7. [AddCommentForm](../../../src/entities/Comment/ui/AddCommentForm/AddCommentForm.test.tsx) Component
 
 | Aspect                          | Purpose          |
 |---------------------------------|-----------------------------------------------------------------------------------------------------------------|

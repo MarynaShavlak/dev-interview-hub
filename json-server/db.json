@@ -170,14 +170,14 @@
   "profile": [
     {
       "id": "1",
-      "firstname": "Марина",
-      "lastname": "Шавлак",
-      "age": 29,
-      "currency": "UAH",
+      "firstname": "test",
+      "lastname": "user",
+      "age": 465,
+      "currency": "EUR",
       "country": "Ukraine",
       "city": "Kharkiv",
-      "username": "admin",
-      "avatar": "https://drive.google.com/thumbnail?id=1RD0jSAm8kdTLKa-Vr0daeE8T9-QcfPCa&sz=w1000"
+      "username": "testuser",
+      "avatar": "https://st3.depositphotos.com/1071184/13782/v/450/depositphotos_137825710-stock-illustration-business-person-analyzing-financial-statistics.jpg"
     },
     {
       "id": "2",
