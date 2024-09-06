@@ -6,7 +6,7 @@ export const searchArticles = (searchValue: string) => {
 
 export const filterArticlesByCategory = (category: string) => {
     const queryString = `_expand=user&_limit=9&_page=1&_sort=createdAt&_order=asc&category=${category}`;
-    const url = `http://localhost:8000/articles?${queryString}`;
+    const url = `${Cypress.env('apiUrl')}/articles?${queryString}`;
     return cy
         .request({
             method: 'GET',
@@ -20,7 +20,7 @@ export const filterArticlesByCategory = (category: string) => {
 
 export const sortArticlesByViews = (order: string) => {
     const queryString = `_expand=user&_limit=9&_page=1&_sort=views&_order=${order}`;
-    const url = `http://localhost:8000/articles?${queryString}`;
+    const url = `${Cypress.env('apiUrl')}/articles?${queryString}`;
     return cy
         .request({
             method: 'GET',

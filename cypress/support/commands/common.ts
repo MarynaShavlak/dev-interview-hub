@@ -9,22 +9,18 @@ export const login = (
     return cy
         .request({
             method: 'POST',
-            url: 'http://localhost:8000/login',
+            url: `${Cypress.env('apiUrl')}/login`,
             body: {
                 username,
                 password,
             },
         })
         .then(({ body }) => {
-            console.log('body', body)
-            window.localStorage.setItem(
-                USER_LOCALSTORAGE_KEY,
-                body.id,
-            );
+            console.log('body', body);
+            window.localStorage.setItem(USER_LOCALSTORAGE_KEY, body.id);
             return body;
         });
 };
-
 
 export const getByTestId = (testId: string) => {
     return cy.get(selectByTestId(testId));
