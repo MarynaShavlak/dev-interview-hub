@@ -6,68 +6,69 @@ import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDe
 import { Button, ButtonSize, ButtonTheme } from './Button';
 
 export default {
-    title: 'shared/Button',
+    title: 'shared/deprecated/Button',
     component: Button,
     argTypes: {
         backgroundColor: { control: 'color' },
+        size: {
+            control: { type: 'select', options: Object.values(ButtonSize) },
+        },
+        theme: {
+            control: { type: 'select', options: Object.values(ButtonTheme) },
+        },
+        disabled: { control: 'boolean' },
+        square: { control: 'boolean' },
+        max: { control: 'boolean' },
+    },
+    args: {
+        children: 'Button Text',
     },
 } as ComponentMeta<typeof Button>;
 
 const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
 
 export const Primary = Template.bind({});
-Primary.args = {
-    children: 'Text',
-};
 
 export const Clear = Template.bind({});
 Clear.args = {
-    children: 'Text',
     theme: ButtonTheme.CLEAR,
 };
 
 export const ClearInverted = Template.bind({});
 ClearInverted.args = {
-    children: 'Text',
     theme: ButtonTheme.CLEAR_INVERTED,
 };
 
 export const Outline = Template.bind({});
 Outline.args = {
-    children: 'Text',
     theme: ButtonTheme.OUTLINE,
 };
 
 export const OutlineSizeL = Template.bind({});
 OutlineSizeL.args = {
-    children: 'Text',
     theme: ButtonTheme.OUTLINE,
     size: ButtonSize.L,
 };
 
 export const OutlineSizeXl = Template.bind({});
 OutlineSizeXl.args = {
-    children: 'Text',
     theme: ButtonTheme.OUTLINE,
     size: ButtonSize.XL,
 };
 
 export const OutlineDark = Template.bind({});
 OutlineDark.args = {
-    children: 'Text',
     theme: ButtonTheme.OUTLINE,
 };
 OutlineDark.decorators = [ThemeDecorator(Theme.DARK)];
 
 export const BackgroundTheme = Template.bind({});
 BackgroundTheme.args = {
-    children: 'Text',
     theme: ButtonTheme.BACKGROUND,
 };
 
 export const BackgroundInverted = Template.bind({});
 BackgroundInverted.args = {
-    children: 'Text',
     theme: ButtonTheme.BACKGROUND_INVERTED,
 };
 
@@ -97,6 +98,28 @@ SquareSizeXl.args = {
 export const Disabled = Template.bind({});
 Disabled.args = {
     children: '>',
+    theme: ButtonTheme.OUTLINE,
+    disabled: true,
+};
+
+export const MaxWidth = Template.bind({});
+MaxWidth.args = {
+    children: 'Max Width Button',
+    max: true,
+    theme: ButtonTheme.OUTLINE,
+};
+
+export const MaxWidthDisabled = Template.bind({});
+MaxWidthDisabled.args = {
+    children: 'Max Width Disabled',
+    theme: ButtonTheme.OUTLINE,
+    max: true,
+    disabled: true,
+};
+
+export const LoadingState = Template.bind({});
+LoadingState.args = {
+    children: 'Loading...',
     theme: ButtonTheme.OUTLINE,
     disabled: true,
 };

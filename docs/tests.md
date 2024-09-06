@@ -15,6 +15,7 @@ The project uses four types of tests:
 - [Utility Function Tests(tests/unitTests/README.utilities.md)
 
 ## **Component Tests with React Testing Library**
+- **Purpose**: Component tests with React Testing Library focus on validating the behavior and rendering of React components. These tests ensure that components function correctly within the context of the application, capturing user interactions and verifying visual output.
 - **Command**: `npm run test:unit`
 - **Focus**: Testing React components' behavior and rendering.
 
