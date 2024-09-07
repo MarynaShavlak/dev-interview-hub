@@ -1,7 +1,7 @@
 import { memo, useCallback } from 'react';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import cls from './ScrollToolbar.module.scss';
-import { VStack } from '@/shared/ui/redesigned/Stack';
+import { VStack } from '@/shared/ui/common/Stack';
 import { ScrollToTopButton } from '@/features/scrollToTopButton';
 
 interface ScrollToolbarProps {

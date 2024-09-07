@@ -3,7 +3,7 @@ import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { ThemeSwitcher } from '@/features/ThemeSwitcher';
 import { LangSwitcher } from '@/features/LangSwitcher';
 import { Button, ButtonSize, ButtonTheme } from '@/shared/ui/deprecated/Button';
-import { VStack } from '@/shared/ui/redesigned/Stack';
+import { VStack } from '@/shared/ui/common/Stack';
 import cls from './DeprecatedSidebar.module.scss';
 import { useSidebarItems } from '../../../lib/hook/useSidebarItems/useSidebarItems';
 import { SidebarItem } from '../../SidebarItem/SidebarItem';

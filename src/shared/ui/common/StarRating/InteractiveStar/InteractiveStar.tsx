@@ -1,7 +1,7 @@
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
 import { TestProps } from '@/shared/types/tests';
-import { Icon } from '../../Icon';
+import { Icon } from '../../../redesigned/Icon';
 import { Icon as IconDeprecated } from '../../../deprecated/Icon';
 import cls from '../StarRating.module.scss';
 import StarIcon from '@/shared/assets/icons/star.svg';

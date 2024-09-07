@@ -5,7 +5,7 @@ import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { Input } from '@/shared/ui/redesigned/Input';
 import { Button } from '@/shared/ui/redesigned/Button';
 
-import { HStack } from '@/shared/ui/redesigned/Stack';
+import { HStack } from '@/shared/ui/common/Stack';
 import cls from '../AddCommentForm.module.scss';
 import { AddCommentFormProps } from '../AddCommentForm';
 import { useAddCommentForm } from '../../../lib/hook/useAddCommentForm';

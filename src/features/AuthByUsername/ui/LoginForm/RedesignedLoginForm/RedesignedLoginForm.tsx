@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { memo } from 'react';
-import { VStack } from '@/shared/ui/redesigned/Stack';
+import { VStack } from '@/shared/ui/common/Stack';
 import { useLoginForm } from '../../../lib/hooks/useLoginForm';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { Button } from '@/shared/ui/redesigned/Button';

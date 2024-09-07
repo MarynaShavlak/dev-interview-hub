@@ -1,6 +1,6 @@
 import { Listbox as HListBox } from '@headlessui/react';
 import { Fragment, ReactNode } from 'react';
-import { HStack } from '../../../../../redesigned/Stack';
+import { HStack } from '../../../../../common/Stack';
 import { Icon } from '../../../../Icon';
 import CheckedIcon from '@/shared/assets/icons/done-20-20.svg';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';

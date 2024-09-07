@@ -5,7 +5,7 @@ import {
     useSortFieldOptions,
 } from '../../../lib/hooks/useOptions';
 import { ListBox } from '@/shared/ui/redesigned/Popups';
-import { VStack } from '@/shared/ui/redesigned/Stack';
+import { VStack } from '@/shared/ui/common/Stack';
 import { Text } from '@/shared/ui/redesigned/Text';
 import { ArticleSortSelectorProps } from '../ArticleSortSelector';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';

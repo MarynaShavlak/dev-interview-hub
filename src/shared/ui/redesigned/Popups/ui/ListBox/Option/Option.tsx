@@ -1,7 +1,7 @@
 import { Listbox as HListBox } from '@headlessui/react';
 import { Fragment, ReactNode } from 'react';
 import { Icon } from '../../../../Icon';
-import { HStack } from '../../../../Stack';
+import { HStack } from '../../../../../common/Stack';
 import CheckedIcon from '@/shared/assets/icons/done-20-20.svg';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import popupCls from '../../../styles/popup.module.scss';

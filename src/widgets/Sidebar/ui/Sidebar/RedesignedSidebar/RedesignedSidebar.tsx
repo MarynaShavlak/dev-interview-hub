@@ -1,8 +1,8 @@
 import { memo } from 'react';
 import { LangSwitcher } from '@/features/LangSwitcher';
 import { ThemeSwitcher } from '@/features/ThemeSwitcher';
-import { VStack } from '@/shared/ui/redesigned/Stack';
-import { AppLogo } from '@/shared/ui/redesigned/AppLogo';
+import { VStack } from '@/shared/ui/common/Stack';
+import { AppLogo } from '@/shared/ui/common/AppLogo';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import cls from './RedesignedSidebar.module.scss';
 import { Icon } from '@/shared/ui/redesigned/Icon';

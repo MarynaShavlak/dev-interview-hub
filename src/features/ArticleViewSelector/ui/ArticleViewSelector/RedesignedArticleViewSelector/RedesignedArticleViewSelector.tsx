@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import { Card } from '@/shared/ui/redesigned/Card';
 import { Icon } from '@/shared/ui/redesigned/Icon';
-import { HStack } from '@/shared/ui/redesigned/Stack';
+import { HStack } from '@/shared/ui/common/Stack';
 import { ArticleViewSelectorProps } from '../ArticleViewSelector';
 import { viewTypes } from '../../../model/consts/viewsTypes';
 import { ArticleView } from '@/entities/Article';

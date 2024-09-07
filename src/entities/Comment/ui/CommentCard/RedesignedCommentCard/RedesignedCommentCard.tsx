@@ -2,7 +2,7 @@ import { memo } from 'react';
 import { getRouteProfile } from '@/shared/const/router/router';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { Avatar } from '@/shared/ui/redesigned/Avatar';
-import { HStack, VStack } from '@/shared/ui/redesigned/Stack';
+import { HStack, VStack } from '@/shared/ui/common/Stack';
 import { Text } from '@/shared/ui/redesigned/Text';
 import { AppLink } from '@/shared/ui/redesigned/AppLink';
 import cls from '../CommentCard.module.scss';

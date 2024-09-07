@@ -93,6 +93,12 @@
       "userId": "4",
       "text": "text of the comment",
       "id": "fQQ9ywg"
+    },
+    {
+      "articleId": "7",
+      "userId": "5",
+      "text": "gggg",
+      "id": "6PzQMJ2"
     }
   ],
   "users": [
@@ -181,7 +187,7 @@
       },
       "jsonSettings": {
         "isArticlesPageWasOpened": true,
-        "theme": "app_orange_theme"
+        "theme": "app_dark_theme"
       }
     }
   ],

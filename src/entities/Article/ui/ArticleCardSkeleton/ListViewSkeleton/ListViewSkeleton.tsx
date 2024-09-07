@@ -7,7 +7,7 @@ import { Skeleton as SkeletonRedesigned } from '@/shared/ui/redesigned/Skeleton'
 import { Card as CardDeprecated } from '@/shared/ui/deprecated/Card';
 import { Card as CardRedesigned } from '@/shared/ui/redesigned/Card';
 import cls from '../../ArticleCard/ArticleCard.module.scss';
-import { HStack, VStack } from '@/shared/ui/redesigned/Stack';
+import { HStack, VStack } from '@/shared/ui/common/Stack';
 
 export const ListViewSkeleton = memo(() => {
     const mainClass = toggleFeatures({

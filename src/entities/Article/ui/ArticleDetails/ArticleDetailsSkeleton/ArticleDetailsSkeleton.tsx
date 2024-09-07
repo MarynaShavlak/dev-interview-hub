@@ -4,7 +4,7 @@ import { Skeleton as SkeletonDeprecated } from '@/shared/ui/deprecated/Skeleton'
 import { Skeleton } from '@/shared/ui/redesigned/Skeleton';
 
 import cls from '../ArticleDetails.module.scss';
-import { VStack } from '@/shared/ui/redesigned/Stack';
+import { VStack } from '@/shared/ui/common/Stack';
 
 const DeprecatedArticleDetailsSkeleton = memo(() => {
     return (

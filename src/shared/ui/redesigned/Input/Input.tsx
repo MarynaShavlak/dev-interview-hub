@@ -1,6 +1,6 @@
 import React, { InputHTMLAttributes, memo, ReactNode } from 'react';
 import { useInput } from '@/shared/lib/hooks/useInput/useInput';
-import { HStack } from '../Stack';
+import { HStack } from '../../common/Stack';
 import { classNames, Mods } from '@/shared/lib/classes/classNames/classNames';
 import { Text } from '../Text';
 import cls from './Input.module.scss';

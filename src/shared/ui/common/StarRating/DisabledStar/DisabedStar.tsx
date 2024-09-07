@@ -2,7 +2,7 @@ import StarIcon from '@/shared/assets/icons/star.svg';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
 import { TestProps } from '@/shared/types/tests';
 import { Icon as IconDeprecated } from '../../../deprecated/Icon';
-import { Icon } from '../../Icon';
+import { Icon } from '../../../redesigned/Icon';
 import cls from '../StarRating.module.scss';
 
 interface DisabledStarProps extends TestProps {

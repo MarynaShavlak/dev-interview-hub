@@ -2,7 +2,7 @@ import { memo } from 'react';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { getFlexClasses } from '@/shared/lib/classes/getFlexClasses/getFlexClasses';
 import { Card } from '@/shared/ui/redesigned/Card';
-import { VStack } from '@/shared/ui/redesigned/Stack';
+import { VStack } from '@/shared/ui/common/Stack';
 import { StickyContentLayout } from '@/shared/layouts/StickyContentLayout';
 import { Skeleton } from '@/shared/ui/redesigned/Skeleton';
 import cls from '../ArticlesPage/ArticlesPage.module.scss';

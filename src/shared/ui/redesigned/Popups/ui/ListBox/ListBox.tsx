@@ -5,7 +5,7 @@ import { ListBoxTrigger } from './ListBoxTrigger/ListBoxTrigger';
 import { ListBoxItem, Option } from './Option/Option';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { DropdownDirection } from '@/shared/types/ui';
-import { HStack } from '../../../../redesigned/Stack';
+import { HStack } from '../../../../common/Stack';
 import { mapDirectionClass } from '../../styles/consts';
 import popupCls from '../../styles/popup.module.scss';
 import cls from './ListBox.module.scss';

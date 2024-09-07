@@ -2,7 +2,7 @@ import { memo } from 'react';
 import { useSelector } from 'react-redux';
 import { ArticleListNavigationButton } from '@/features/ArticleListNavigationButton';
 import { ArticleEditNavigationButton } from '@/features/ArticleEditNavigationButton';
-import { HStack } from '@/shared/ui/redesigned/Stack';
+import { HStack } from '@/shared/ui/common/Stack';
 import { getCanEditArticle } from '../../../../model/selectors/getCanEditArticle/getCanEditArticle';
 
 interface ArticleDetailsPageHeaderProps {

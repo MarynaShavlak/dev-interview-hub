@@ -1,9 +1,9 @@
 import { useTranslation } from 'react-i18next';
 import { memo, ReactElement } from 'react';
 import { Card } from '@/shared/ui/redesigned/Card';
-import { VStack } from '@/shared/ui/redesigned/Stack';
+import { VStack } from '@/shared/ui/common/Stack';
 import { Text } from '@/shared/ui/redesigned/Text';
-import { StarRating } from '@/shared/ui/redesigned/StarRating';
+import { StarRating } from '@/shared/ui/common/StarRating';
 
 interface RedesignedRatingProps {
     feedbackContainer: ReactElement;

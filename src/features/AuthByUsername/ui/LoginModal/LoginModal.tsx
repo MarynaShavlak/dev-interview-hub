@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import { Modal } from '@/shared/ui/redesigned/Modal';
+import { Modal } from '@/shared/ui/common/Modal';
 import { LoginFormAsync as LoginForm } from '../LoginForm/LoginForm.async';
 
 interface LoginModalProps {

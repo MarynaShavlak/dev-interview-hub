@@ -1,4 +1,4 @@
-import { HStack } from '@/shared/ui/redesigned/Stack';
+import { HStack } from '@/shared/ui/common/Stack';
 import { Text as TextDeprecated } from '@/shared/ui/deprecated/Text';
 import { Icon as IconDeprecated } from '@/shared/ui/deprecated/Icon';
 import { Text } from '@/shared/ui/redesigned/Text';

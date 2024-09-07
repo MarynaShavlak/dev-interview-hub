@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { HStack } from '@/shared/ui/redesigned/Stack';
+import { HStack } from '@/shared/ui/common/Stack';
 import { Text } from '@/shared/ui/redesigned/Text';
 
 export const RedesignedProfileCardError = () => {

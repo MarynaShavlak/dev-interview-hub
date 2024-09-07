@@ -6,7 +6,7 @@ import { Article } from '../../model/types/article';
 import { ArticleView } from '../../model/consts/articleConsts';
 import { ArticleListSkeleton } from './ArticleListSkeleton/ArticleListSkeleton';
 import { Each } from '@/shared/lib/components/Each/Each';
-import { HStack, VStack } from '@/shared/ui/redesigned/Stack';
+import { HStack, VStack } from '@/shared/ui/common/Stack';
 import { ArticleCard } from '../../ui/ArticleCard/ArticleCard';
 
 export interface ArticleListProps {

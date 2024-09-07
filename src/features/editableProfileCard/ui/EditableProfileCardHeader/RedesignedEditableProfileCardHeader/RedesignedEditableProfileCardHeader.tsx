@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { memo } from 'react';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
-import { HStack } from '@/shared/ui/redesigned/Stack';
+import { HStack } from '@/shared/ui/common/Stack';
 import { Button } from '@/shared/ui/redesigned/Button';
 import cls from '../EditableProfileCardHeader.module.scss';
 

@@ -6,7 +6,7 @@ import { Button, ButtonTheme } from '@/shared/ui/deprecated/Button';
 import { Input } from '@/shared/ui/deprecated/Input';
 import { Text, TextTheme } from '@/shared/ui/deprecated/Text';
 import cls from '../LoginForm.module.scss';
-import { VStack } from '@/shared/ui/redesigned/Stack';
+import { VStack } from '@/shared/ui/common/Stack';
 import { LoginFormProps } from '../LoginForm';
 
 export const DeprecatedLoginForm = memo(

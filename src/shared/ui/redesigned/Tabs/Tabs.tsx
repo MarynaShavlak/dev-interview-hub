@@ -4,7 +4,7 @@ import { Each } from '@/shared/lib/components/Each/Each';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { Card } from '../Card/Card';
 import cls from './Tabs.module.scss';
-import { Flex } from '../Stack/Flex/Flex';
+import { Flex } from '../../common/Stack/Flex/Flex';
 
 export interface TabItem {
     value: string;

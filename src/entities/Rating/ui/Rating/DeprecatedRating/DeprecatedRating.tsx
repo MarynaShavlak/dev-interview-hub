@@ -1,9 +1,9 @@
 import { useTranslation } from 'react-i18next';
 import { memo, ReactElement } from 'react';
 import { Card as CardDeprecated } from '@/shared/ui/deprecated/Card';
-import { VStack } from '@/shared/ui/redesigned/Stack';
+import { VStack } from '@/shared/ui/common/Stack';
 import { Text as TextDeprecated } from '@/shared/ui/deprecated/Text';
-import { StarRating } from '@/shared/ui/redesigned/StarRating';
+import { StarRating } from '@/shared/ui/common/StarRating';
 
 interface DeprecatedRatingProps {
     feedbackContainer: ReactElement;

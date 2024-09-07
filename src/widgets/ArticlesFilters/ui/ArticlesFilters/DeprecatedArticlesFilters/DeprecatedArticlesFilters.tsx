@@ -1,6 +1,6 @@
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { VStack } from '@/shared/ui/redesigned/Stack';
+import { VStack } from '@/shared/ui/common/Stack';
 import { Input } from '@/shared/ui/deprecated/Input';
 import { ArticlesFiltersProps } from '../ArticlesFilters';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';

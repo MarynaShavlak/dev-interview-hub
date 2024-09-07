@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { ArticleEditNavigationButton } from '@/features/ArticleEditNavigationButton';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { User } from '@/entities/User';
-import { HStack, VStack } from '@/shared/ui/redesigned/Stack';
+import { HStack, VStack } from '@/shared/ui/common/Stack';
 import { Avatar } from '@/shared/ui/redesigned/Avatar';
 import { Text } from '@/shared/ui/redesigned/Text';
 

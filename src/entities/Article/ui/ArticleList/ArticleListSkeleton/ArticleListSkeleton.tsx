@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { toggleFeatures } from '@/shared/lib/features';
-import { HStack, VStack } from '@/shared/ui/redesigned/Stack';
+import { HStack, VStack } from '@/shared/ui/common/Stack';
 import cls from '../ArticleList.module.scss';
 import { ArticleView } from '../../../model/consts/articleConsts';
 import { ArticleCardSkeleton } from '../../ArticleCardSkeleton/ArticleCardSkeleton';

@@ -1,9 +1,9 @@
 import { CSSProperties, memo, useMemo } from 'react';
-import { HStack } from '../Stack';
+import { HStack } from '../../common/Stack';
 import { Text } from '../Text';
 import { classNames, Mods } from '@/shared/lib/classes/classNames/classNames';
 import cls from './Avatar.module.scss';
-import { AppImage } from '../../redesigned/AppImage';
+import { AppImage } from '../../common/AppImage';
 import UserIcon from '../../../assets/icons/user-filled.svg';
 import { Skeleton } from '../Skeleton';
 import { Icon } from '../Icon';

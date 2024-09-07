@@ -14,7 +14,7 @@ import {
     ArticleView,
     useArticleDetailsData,
 } from '@/entities/Article';
-import { VStack } from '@/shared/ui/redesigned/Stack';
+import { VStack } from '@/shared/ui/common/Stack';
 import { useArticleRecommendationsList } from '../../api/articleRecommendationsApi';
 import { Skeleton } from '@/shared/ui/redesigned/Skeleton';
 import { Skeleton as SkeletonDeprecated } from '@/shared/ui/deprecated/Skeleton';

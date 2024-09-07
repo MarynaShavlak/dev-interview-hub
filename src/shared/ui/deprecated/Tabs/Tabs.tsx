@@ -1,6 +1,6 @@
 import { memo, ReactNode, useCallback } from 'react';
 import { FlexDirection } from '@/shared/types/flexTypes';
-import { Flex } from '../../redesigned/Stack/Flex/Flex';
+import { Flex } from '../../common/Stack/Flex/Flex';
 import { Each } from '@/shared/lib/components/Each/Each';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { Card, CardTheme } from '../Card/Card';

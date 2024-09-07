@@ -4,7 +4,7 @@ import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { getFlexClasses } from '@/shared/lib/classes/getFlexClasses/getFlexClasses';
 import { Text } from '@/shared/ui/redesigned/Text';
 import { Text as TextDeprecated } from '@/shared/ui/deprecated/Text';
-import { StarRating } from '@/shared/ui/redesigned/StarRating';
+import { StarRating } from '@/shared/ui/common/StarRating';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
 import { Card } from '@/shared/ui/redesigned/Card';
 import { Card as CardDeprecated } from '@/shared/ui/deprecated/Card';

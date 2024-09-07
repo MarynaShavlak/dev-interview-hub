@@ -3,7 +3,7 @@ import { BrowserView, MobileView } from 'react-device-detect';
 import { BrowserNotificationPopover } from './BrowserNotificationPopover/BrowserNotificationPopover';
 import { NotificationButtonTrigger } from './NotificationButtonTrigger/NotificationButtonTrigger';
 import { NotificationList } from '@/entities/Notification';
-import { Drawer } from '@/shared/ui/redesigned/Drawer';
+import { Drawer } from '@/shared/ui/common/Drawer';
 
 interface NotificationButtonProps {
     className?: string;

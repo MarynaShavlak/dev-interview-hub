@@ -4,8 +4,8 @@ import { getFlexClasses } from '@/shared/lib/classes/getFlexClasses/getFlexClass
 import defaultImage from '@/shared/assets/images/default-img.png';
 import { Avatar } from '@/shared/ui/redesigned/Avatar';
 import { ArticleViews } from '../../../ArticleViews/ArticleViews';
-import { HStack, VStack } from '@/shared/ui/redesigned/Stack';
-import { AppImage } from '@/shared/ui/redesigned/AppImage';
+import { HStack, VStack } from '@/shared/ui/common/Stack';
+import { AppImage } from '@/shared/ui/common/AppImage';
 import { getRouteArticleDetails } from '@/shared/const/router/router';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { Text } from '@/shared/ui/redesigned/Text';

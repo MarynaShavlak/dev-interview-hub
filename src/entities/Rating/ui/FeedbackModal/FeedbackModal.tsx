@@ -2,8 +2,8 @@ import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
 import { FeedbackProps } from '../FeedbackContainer/FeedbackContainer';
-import { Modal } from '@/shared/ui/redesigned/Modal';
-import { HStack, VStack } from '@/shared/ui/redesigned/Stack';
+import { Modal } from '@/shared/ui/common/Modal';
+import { HStack, VStack } from '@/shared/ui/common/Stack';
 import { Text as TextDeprecated } from '@/shared/ui/deprecated/Text';
 import { Input as InputDeprecated } from '@/shared/ui/deprecated/Input';
 import {
