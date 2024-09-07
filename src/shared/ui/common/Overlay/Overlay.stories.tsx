@@ -3,7 +3,7 @@ import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { Overlay } from './Overlay';
 
 export default {
-    title: 'shared/Overlay',
+    title: 'shared/common/Overlay',
     component: Overlay,
     argTypes: {
         onClick: { action: 'clicked' },
