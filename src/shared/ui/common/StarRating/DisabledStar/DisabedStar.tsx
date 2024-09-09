@@ -14,17 +14,15 @@ export const DisabledStar = ({ starNumber, size }: DisabledStarProps) => {
     const commonProps = {
         className: cls.starDisabledIcon,
         Svg: StarIcon,
-        key: starNumber,
         width: size,
         height: size,
-        // 'data-testid': `StarRating-${starNumber}`,
     };
 
     return (
         <ToggleFeaturesComponent
             feature="isAppRedesigned"
-            on={<Icon clickable={false} {...commonProps} />}
-            off={<IconDeprecated {...commonProps} />}
+            on={<Icon clickable={false} {...commonProps} width={size} />}
+            off={<IconDeprecated {...commonProps} width={size} />}
         />
     );
 };
