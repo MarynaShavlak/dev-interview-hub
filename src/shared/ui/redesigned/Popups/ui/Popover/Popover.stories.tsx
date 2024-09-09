@@ -3,9 +3,10 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { Button } from '../../../Button/Button';
 import { Popover } from './Popover';
 import { DropdownDirection } from '@/shared/types/ui';
+import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator/NewDesignDecorator';
 
 export default {
-    title: 'shared/deprecated/Popups/Popover',
+    title: 'shared/redesigned/Popups/Popover',
     component: Popover,
     argTypes: {
         direction: {
@@ -34,6 +35,7 @@ export default {
                 <Story />
             </div>
         ),
+        NewDesignDecorator,
     ],
 } as ComponentMeta<typeof Popover>;
 

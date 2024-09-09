@@ -5,7 +5,7 @@ import { ListBox } from './ListBox';
 import { DropdownDirection } from '@/shared/types/ui';
 
 export default {
-    title: 'shared/deprecated/ListBox',
+    title: 'shared/deprecated/Popups/ListBox',
     component: ListBox,
     argTypes: {
         backgroundColor: { control: 'color' },

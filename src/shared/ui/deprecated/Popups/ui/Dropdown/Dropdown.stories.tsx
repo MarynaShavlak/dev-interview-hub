@@ -6,7 +6,7 @@ import { Dropdown } from './Dropdown';
 import { DropdownDirection } from '@/shared/types/ui';
 
 export default {
-    title: 'shared/deprecated/Dropdown',
+    title: 'shared/deprecated/Popups/Dropdown',
     component: Dropdown,
     argTypes: {
         backgroundColor: { control: 'color' },
