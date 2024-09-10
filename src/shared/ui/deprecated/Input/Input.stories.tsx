@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { Input } from './Input';
 
@@ -17,7 +17,18 @@ export default {
     },
 } as ComponentMeta<typeof Input>;
 
-const Template: ComponentStory<typeof Input> = (args) => <Input {...args} />;
+const Template: ComponentStory<typeof Input> = (args) => {
+    const { value: argsValue } = args;
+    const [value, setValue] = useState(argsValue || '');
+
+    return (
+        <Input
+            {...args}
+            value={value}
+            onChange={setValue} // Ensure onChange updates the local state
+        />
+    );
+};
 
 export const Primary = Template.bind({});
 Primary.args = {
@@ -34,4 +45,8 @@ export const ReadOnly = Template.bind({});
 ReadOnly.args = {
     value: 'Cannot change this',
     readonly: true,
+};
+export const DigitsOnly = Template.bind({});
+DigitsOnly.args = {
+    digitsOnly: true,
 };
