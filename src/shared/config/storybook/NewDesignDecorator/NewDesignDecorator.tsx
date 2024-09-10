@@ -5,7 +5,17 @@ import { getAllFeatureFlags } from '@/shared/lib/features/lib/setGetFeatures/set
 export const NewDesignDecorator = (StoryComponent: Story) => {
     setFeatureFlags({ ...getAllFeatureFlags(), isAppRedesigned: true });
     return (
-        <div className="app_redesigned">
+        <div
+            className="app_redesigned"
+            style={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                width: '100%',
+                height: '100%',
+                padding: '20px',
+            }}
+        >
             <StoryComponent />
         </div>
     );

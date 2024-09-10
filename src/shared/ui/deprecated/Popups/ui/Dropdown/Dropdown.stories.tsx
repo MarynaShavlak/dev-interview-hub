@@ -4,6 +4,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { Button } from '../../../Button/Button';
 import { Dropdown } from './Dropdown';
 import { DropdownDirection } from '@/shared/types/ui';
+import { AlignDecorator } from '@/shared/config/storybook/AlignDecorator/AlignDecorator';
 
 export default {
     title: 'shared/deprecated/Popups/Dropdown',
@@ -22,20 +23,7 @@ export default {
             },
         },
     },
-    decorators: [
-        (Story) => (
-            <div
-                style={{
-                    transform: 'translate(100px, 0)',
-                    top: '50%',
-                    left: '0',
-                    position: 'absolute',
-                }}
-            >
-                <Story />
-            </div>
-        ),
-    ],
+    decorators: [AlignDecorator],
 } as ComponentMeta<typeof Dropdown>;
 
 const Template: ComponentStory<typeof Dropdown> = (args) => (
