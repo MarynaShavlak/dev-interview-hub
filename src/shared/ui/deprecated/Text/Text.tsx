@@ -2,6 +2,7 @@ import { memo } from 'react';
 import { TestProps } from '@/shared/types/tests';
 import { classNames, Mods } from '@/shared/lib/classes/classNames/classNames';
 import cls from './Text.module.scss';
+import { VStack } from '../../common/Stack';
 
 export enum TextTheme {
     PRIMARY = 'primary',
@@ -60,9 +61,10 @@ export const Text = memo((props: TextProps) => {
         [cls[align]]: true,
         [cls[size]]: true,
     };
+    const additionalClasses = [className].filter(Boolean);
 
     return (
-        <div className={classNames(cls.Text, mods, [className])}>
+        <VStack className={classNames('', mods, additionalClasses)} gap="8">
             {title && (
                 <HeaderTag
                     className={cls.title}
@@ -76,6 +78,6 @@ export const Text = memo((props: TextProps) => {
                     {text}
                 </p>
             )}
-        </div>
+        </VStack>
     );
 });

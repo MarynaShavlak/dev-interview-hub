@@ -21,7 +21,6 @@ export const RedesignedGridViewCard = memo((props: BaseCardProps) => {
     const additionalClasses = getFlexClasses({
         vStack: true,
         gap: '8',
-        align: 'center',
     });
 
     return (

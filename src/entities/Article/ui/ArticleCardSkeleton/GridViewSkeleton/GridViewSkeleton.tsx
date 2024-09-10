@@ -28,7 +28,7 @@ const RedesignedGridViewSkeleton = () => {
             border="round"
             padding="0"
         >
-            <Skeleton width={240} height={140} />
+            <Skeleton width="100%" height={140} />
             <Skeleton width="100%" height={70} />
             <VStack className={cls.info} gap="32">
                 <HStack justify="between" max>
@@ -37,7 +37,7 @@ const RedesignedGridViewSkeleton = () => {
                 </HStack>
                 <HStack gap="4" max className={cls.user}>
                     <Skeleton border="50%" height={32} width={32} />
-                    <Skeleton width={80} height={16} />
+                    <Skeleton width="40%" height={16} />
                 </HStack>
             </VStack>
         </Card>

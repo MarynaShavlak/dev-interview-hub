@@ -40,7 +40,7 @@ export const ListViewSkeleton = memo(() => {
         <div className={classNames(mainClass, {}, [cls.LIST])}>
             <Card
                 padding="16"
-                className={classNames('', {}, additionalClasses)}
+                className={classNames(cls.SkeletonCard, {}, additionalClasses)}
             >
                 <VStack gap="8">
                     <HStack gap="16">

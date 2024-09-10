@@ -25,7 +25,7 @@ export const ArticleDetailsError = memo(() => {
                 on={
                     <>
                         <Text title={titleMessage} variant="error" size="l" />
-                        <Text text={textMessage} size="m" />
+                        <Text text={textMessage} size="m" variant="error" />
                     </>
                 }
                 off={
@@ -35,7 +35,11 @@ export const ArticleDetailsError = memo(() => {
                             theme={TextTheme.ERROR}
                             size={TextSize.L}
                         />
-                        <TextDeprecated text={textMessage} size={TextSize.M} />
+                        <TextDeprecated
+                            text={textMessage}
+                            size={TextSize.M}
+                            theme={TextTheme.ERROR}
+                        />
                     </>
                 }
             />
