@@ -30,6 +30,8 @@ export const RedesignedArticleViewSelector = memo(
                         render={(viewType) => {
                             return (
                                 <Icon
+                                    width={32}
+                                    height={32}
                                     clickable
                                     key={viewType.view}
                                     onClick={onClick(viewType.view)}

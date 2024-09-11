@@ -12,10 +12,12 @@ interface IconProps extends SVGProps<SVGSVGElement> {
  * @deprecated
  */
 export const Icon = memo((props: IconProps) => {
-    const { className, Svg, inverted, ...otherProps } = props;
+    const { className, Svg, inverted, width, height, ...otherProps } = props;
 
     return (
         <Svg
+            width={width}
+            height={height}
             className={classNames(inverted ? cls.inverted : cls.Icon, {}, [
                 className,
             ])}

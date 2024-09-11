@@ -34,8 +34,8 @@ export const DeprecatedArticleViewSelector = memo(
                                 onClick={onClick(viewType.view)}
                             >
                                 <IconDeprecated
-                                    width={24}
-                                    height={24}
+                                    width={32}
+                                    height={32}
                                     Svg={viewType.icon}
                                     className={classNames('', {
                                         [cls.notSelected]:
