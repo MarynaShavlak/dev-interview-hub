@@ -95,7 +95,7 @@ const ArticleRecommendationsList = memo(
             );
         }
 
-        if (!articles) {
+        if (!articles || !articles.length) {
             return (
                 <ToggleFeaturesComponent
                     feature="isAppRedesigned"
