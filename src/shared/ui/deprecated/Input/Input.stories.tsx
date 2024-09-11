@@ -21,13 +21,7 @@ const Template: ComponentStory<typeof Input> = (args) => {
     const { value: argsValue } = args;
     const [value, setValue] = useState(argsValue || '');
 
-    return (
-        <Input
-            {...args}
-            value={value}
-            onChange={setValue} // Ensure onChange updates the local state
-        />
-    );
+    return <Input {...args} value={value} onChange={setValue} />;
 };
 
 export const Primary = Template.bind({});

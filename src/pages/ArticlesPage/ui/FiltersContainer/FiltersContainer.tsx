@@ -18,6 +18,9 @@ export const FiltersContainer = memo((props: FiltersContainerProps) => {
         onChangeOrder,
         order,
     } = useArticleFilters();
+    console.log('sort:', sort);
+
+    console.log('order:', order);
 
     return (
         <ArticlesFilters
