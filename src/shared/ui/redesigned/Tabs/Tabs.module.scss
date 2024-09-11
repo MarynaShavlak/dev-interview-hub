@@ -6,5 +6,10 @@
     .tab {
         min-width: 80px;
         padding: 6px 16px;
+        transition: border 300ms ease-in;
+
+        &:hover {
+            background: var(--light-bg-redesigned);
+        }
     }
 }
