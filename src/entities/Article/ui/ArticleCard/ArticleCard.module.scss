@@ -3,9 +3,9 @@
         width: 230px;
         transition: 0.3s;
         cursor: pointer;
+        display: flex;
 
         .card {
-            display: inline-flex;
             height: 300px;
         }
 

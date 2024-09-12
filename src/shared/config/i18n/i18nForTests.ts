@@ -17,9 +17,22 @@ i18n.use(initReactI18next).init({
     debug: false,
 
     interpolation: {
-        escapeValue: false, // not needed for react!!
+        escapeValue: false,
     },
-    resources: { uk: { translations: {} } },
+    resources: {
+        en: {
+            translation: {
+                Мова: 'English',
+                'Мова абревіатура': 'EN',
+            },
+        },
+        uk: {
+            translation: {
+                Мова: 'Українська',
+                'Мова абревіатура': 'УКР',
+            },
+        },
+    },
 });
 
 export default i18n;

@@ -55,7 +55,7 @@ export const DeprecatedGridViewCard = memo((props: BaseCardProps) => {
                     />
                     <Text text={article.createdAt} className={cls.date} />
                 </div>
-                <HStack justify="between" max>
+                <HStack justify="between">
                     <ArticleCategories article={article} />
                     <ArticleViews article={article} />
                 </HStack>

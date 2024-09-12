@@ -24,7 +24,7 @@ Notification/
 │   │   ├── NotificationList.tsx
 │   │   └── README.md
 ├── index.ts
-└── README.md
+├── testing.ts
 ```
 
 ## Detailed Description
@@ -53,6 +53,11 @@ Notification/
 
 - **Components**:
     - `NotificationList` - A component for displaying a list of notifications.
+
+## Public Testing API
+- **Testing Exports**:
+  - `dataSuccessRequest` -  is a mock data set used to simulate a successful response from the notifications API  in testing scenarios and development tools.
+
 
 ## Conclusion
 The Entity `Notification` is designed to handle all notification-related functionalities in a structured and maintainable manner. By following the FSD architecture, this module ensures easy scalability and integration within the larger application.

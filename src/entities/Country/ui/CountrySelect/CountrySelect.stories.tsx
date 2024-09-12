@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { CountrySelect } from './CountrySelect';
 import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator/NewDesignDecorator';
-import { AlignDecorator } from '@/shared/config/storybook/AlignDecorator/AlignDecorator';
+import { AlignCenterDecorator } from '@/shared/config/storybook/AlignDecorator/AlignCenterDecorator';
 import { Country } from '../../model/types/country';
 
 export default {
@@ -30,22 +30,22 @@ const Template: ComponentStory<typeof CountrySelect> = (args) => {
 
 export const Normal = Template.bind({});
 Normal.args = {};
-Normal.decorators = [AlignDecorator];
+Normal.decorators = [AlignCenterDecorator];
 
 export const NormalRedesigned = Template.bind({});
 NormalRedesigned.args = {};
-NormalRedesigned.decorators = [AlignDecorator, NewDesignDecorator];
+NormalRedesigned.decorators = [AlignCenterDecorator, NewDesignDecorator];
 
 export const Readonly = Template.bind({});
 Readonly.args = {
     value: Country.Poland,
     readonly: true,
 };
-Readonly.decorators = [AlignDecorator];
+Readonly.decorators = [AlignCenterDecorator];
 
 export const ReadonlyRedesigned = Template.bind({});
 ReadonlyRedesigned.args = {
     value: Country.Poland,
     readonly: true,
 };
-ReadonlyRedesigned.decorators = [AlignDecorator, NewDesignDecorator];
+ReadonlyRedesigned.decorators = [AlignCenterDecorator, NewDesignDecorator];

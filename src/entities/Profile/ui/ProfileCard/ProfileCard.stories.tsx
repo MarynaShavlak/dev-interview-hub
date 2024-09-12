@@ -28,16 +28,24 @@ const loadingArgs = {
     isLoading: true,
 };
 
-export const Normal = Template.bind({});
-Normal.args = primaryArgs;
+export const Readonly = Template.bind({});
+Readonly.args = { ...primaryArgs, readonly: true };
+
+export const Editable = Template.bind({});
+Editable.args = { ...primaryArgs, readonly: false };
+
 export const withError = Template.bind({});
 withError.args = errorArgs;
 export const Loading = Template.bind({});
 Loading.args = loadingArgs;
 
-export const NormalRedesigned = Template.bind({});
-NormalRedesigned.args = primaryArgs;
-NormalRedesigned.decorators = [NewDesignDecorator];
+export const ReadonlyRedesigned = Template.bind({});
+ReadonlyRedesigned.args = { ...primaryArgs, readonly: true };
+ReadonlyRedesigned.decorators = [NewDesignDecorator];
+
+export const EditableRedesigned = Template.bind({});
+EditableRedesigned.args = { ...primaryArgs, readonly: false };
+EditableRedesigned.decorators = [NewDesignDecorator];
 
 export const withErrorRedesigned = Template.bind({});
 withErrorRedesigned.args = errorArgs;

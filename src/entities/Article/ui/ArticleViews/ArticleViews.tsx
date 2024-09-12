@@ -24,7 +24,11 @@ export const ArticleViews = ({ article }: ViewsProps) => (
         off={
             <HStack gap="8">
                 <TextDeprecated text={String(article.views)} />
-                <IconDeprecated Svg={EyeIconDeprecated} />
+                <IconDeprecated
+                    Svg={EyeIconDeprecated}
+                    width={20}
+                    height={20}
+                />
             </HStack>
         }
     />

@@ -18,6 +18,7 @@ import {
     logoutUser,
 } from '@/entities/User';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
+import cls from './AvatarDropdown.module.scss';
 
 interface AvatarDropdownProps {
     className?: string;
@@ -74,6 +75,7 @@ export const AvatarDropdown = memo(({ className }: AvatarDropdownProps) => {
             }
             off={
                 <DropdownDeprecated
+                    className={cls.AvatarDropdown}
                     direction="bottom left"
                     items={items}
                     trigger={

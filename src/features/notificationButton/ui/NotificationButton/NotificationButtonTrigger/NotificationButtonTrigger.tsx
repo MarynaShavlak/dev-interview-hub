@@ -29,6 +29,8 @@ export const NotificationButtonTrigger = memo(
                         <IconDeprecated
                             Svg={NotificationIconDeprecated}
                             inverted
+                            width={20}
+                            height={20}
                         />
                     </ButtonDeprecated>
                 }

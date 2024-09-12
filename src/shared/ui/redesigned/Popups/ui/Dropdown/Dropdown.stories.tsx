@@ -5,7 +5,7 @@ import { Button } from '../../../Button/Button';
 import { Dropdown } from './Dropdown';
 import { DropdownDirection } from '@/shared/types/ui';
 import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator/NewDesignDecorator';
-import { AlignDecorator } from '@/shared/config/storybook/AlignDecorator/AlignDecorator';
+import { AlignCenterDecorator } from '@/shared/config/storybook/AlignDecorator/AlignCenterDecorator';
 
 export default {
     title: 'shared/redesigned/Popups/Dropdown',
@@ -24,7 +24,7 @@ export default {
             },
         },
     },
-    decorators: [AlignDecorator, NewDesignDecorator],
+    decorators: [AlignCenterDecorator, NewDesignDecorator],
 } as ComponentMeta<typeof Dropdown>;
 
 const Template: ComponentStory<typeof Dropdown> = (args) => (

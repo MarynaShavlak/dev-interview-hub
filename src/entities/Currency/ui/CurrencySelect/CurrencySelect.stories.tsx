@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { CurrencySelect } from './CurrencySelect';
 import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator/NewDesignDecorator';
-import { AlignDecorator } from '@/shared/config/storybook/AlignDecorator/AlignDecorator';
+import { AlignCenterDecorator } from '@/shared/config/storybook/AlignDecorator/AlignCenterDecorator';
 import { Currency } from '../../model/types/currency';
 
 export default {
@@ -30,22 +30,22 @@ const Template: ComponentStory<typeof CurrencySelect> = (args) => {
 
 export const Normal = Template.bind({});
 Normal.args = {};
-Normal.decorators = [AlignDecorator];
+Normal.decorators = [AlignCenterDecorator];
 
 export const NormalRedesigned = Template.bind({});
 NormalRedesigned.args = {};
-NormalRedesigned.decorators = [AlignDecorator, NewDesignDecorator];
+NormalRedesigned.decorators = [AlignCenterDecorator, NewDesignDecorator];
 
 export const Readonly = Template.bind({});
 Readonly.args = {
     value: Currency.USD,
     readonly: true,
 };
-Readonly.decorators = [AlignDecorator];
+Readonly.decorators = [AlignCenterDecorator];
 
 export const ReadonlyRedesigned = Template.bind({});
 ReadonlyRedesigned.args = {
     value: Currency.USD,
     readonly: true,
 };
-ReadonlyRedesigned.decorators = [AlignDecorator, NewDesignDecorator];
+ReadonlyRedesigned.decorators = [AlignCenterDecorator, NewDesignDecorator];
