@@ -25,11 +25,24 @@ i18n.use(initReactI18next).init({
                 Мова: 'English',
                 'Мова абревіатура': 'EN',
             },
+            articleDetails: {
+                '{{count}} перегляд': '{{count}} view',
+                '{{count}} переглядів': '{{count}} views',
+                '{{count}} переглядів_zero': '{{count}} views',
+                '{{count}} переглядів_one': '{{count}} view',
+                '{{count}} переглядів_other': '{{count}} views',
+            },
         },
         uk: {
             translation: {
                 Мова: 'Українська',
                 'Мова абревіатура': 'УКР',
+            },
+            articleDetails: {
+                '{{count}} переглядів_zero': '{{count}} переглядів',
+                '{{count}} переглядів_one': '{{count}} перегляд',
+                '{{count}} переглядів_few': '{{count}} перегляди',
+                '{{count}} переглядів_many': '{{count}} переглядів',
             },
         },
     },

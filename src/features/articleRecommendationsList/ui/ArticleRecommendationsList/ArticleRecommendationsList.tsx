@@ -26,7 +26,7 @@ export interface ArticleRecommendationsListProps {
 const ArticleRecommendationsList = memo(
     (props: ArticleRecommendationsListProps) => {
         const { className } = props;
-        const { t } = useTranslation('article-details');
+        const { t } = useTranslation('articleDetails');
         const article = useArticleDetailsData();
         const title = t('Рекомендуємо');
         const articleCategory = article?.category[0] || ArticleCategory.ALL;

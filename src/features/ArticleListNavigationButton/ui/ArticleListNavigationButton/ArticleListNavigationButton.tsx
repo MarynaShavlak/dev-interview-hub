@@ -13,7 +13,7 @@ import ArrowIcon from '@/shared/assets/icons/left-arrow.svg';
 import cls from './ArticleListNavigationButton.module.scss';
 
 export const ArticleListNavigationButton = memo(() => {
-    const { t } = useTranslation('article-details');
+    const { t } = useTranslation('articleDetails');
     const navigate = useNavigate();
 
     const onNavigateToList = useCallback(() => {

@@ -11,7 +11,7 @@ import {
 } from '@/shared/ui/deprecated/Button';
 
 export const ArticleEditNavigationButton = memo(() => {
-    const { t } = useTranslation('article-details');
+    const { t } = useTranslation('articleDetails');
     const article = useArticleDetailsData();
 
     const navigate = useNavigate();

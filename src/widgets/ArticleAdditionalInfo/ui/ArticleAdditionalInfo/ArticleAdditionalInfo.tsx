@@ -17,7 +17,7 @@ interface ArticleAdditionalInfoProps {
 export const ArticleAdditionalInfo = memo(
     (props: ArticleAdditionalInfoProps) => {
         const { className, author, createdAt, views } = props;
-        const { t } = useTranslation('article-details');
+        const { t } = useTranslation('articleDetails');
 
         return (
             <VStack

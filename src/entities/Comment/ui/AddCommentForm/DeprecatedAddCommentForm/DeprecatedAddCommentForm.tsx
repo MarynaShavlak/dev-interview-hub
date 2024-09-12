@@ -11,7 +11,7 @@ import { AddCommentFormProps } from '../AddCommentForm';
 
 export const DeprecatedAddCommentForm = memo((props: AddCommentFormProps) => {
     const { className, onSendComment } = props;
-    const { t } = useTranslation('article-details');
+    const { t } = useTranslation('articleDetails');
     const { text, error, onCommentTextChange, onSendHandler } =
         useAddCommentForm(onSendComment);
 

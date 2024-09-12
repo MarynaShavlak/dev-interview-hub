@@ -11,7 +11,7 @@ import { Text } from '@/shared/ui/redesigned/Text';
 import cls from '../ArticleDetails.module.scss';
 
 export const ArticleDetailsError = memo(() => {
-    const { t } = useTranslation('article-details');
+    const { t } = useTranslation('articleDetails');
     const titleMessage = t('Стаття не доступна');
     const textMessage = t(
         // eslint-disable-next-line max-len

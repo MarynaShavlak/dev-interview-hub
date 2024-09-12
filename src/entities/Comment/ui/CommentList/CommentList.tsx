@@ -17,7 +17,7 @@ interface CommentListProps {
 
 export const CommentList = memo((props: CommentListProps) => {
     const { className, isLoading, comments, error } = props;
-    const { t } = useTranslation('article-details');
+    const { t } = useTranslation('articleDetails');
     const noCommentsMessage = t('Коментарів немає');
     const errorMessage = t(
         'Не вдалося завантажити коментарі. Спробуйте ще раз пізніше.',
