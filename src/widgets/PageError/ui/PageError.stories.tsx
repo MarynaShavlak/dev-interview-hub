@@ -1,28 +1,24 @@
-export function con() {
-    console.log('stories');
-}
-// import React from 'react';
-// import { ComponentStory, ComponentMeta } from '@storybook/react';
-// import { Theme } from '@/shared/const/theme';
-//
-// import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
-// import { ErrorPage } from './ErrorPage';
-//
-// export default {
-//     title: 'widgets/ErrorPage',
-//     component: ErrorPage,
-//     argTypes: {
-//         backgroundColor: { control: 'color' },
-//     },
-// } as ComponentMeta<typeof ErrorPage>;
-//
-// const Template: ComponentStory<typeof ErrorPage> = (args) => (
-//     <ErrorPage {...args} />
-// );
-//
-// export const Light = Template.bind({});
-// Light.args = {};
-//
-// export const Dark = Template.bind({});
-// Dark.args = {};
-// Dark.decorators = [ThemeDecorator(Theme.DARK)];
+import React from 'react';
+import { ComponentStory, ComponentMeta } from '@storybook/react';
+
+import { PageError } from './PageError';
+import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator/NewDesignDecorator';
+
+export default {
+    title: 'widgets/PageError',
+    component: PageError,
+    argTypes: {
+        backgroundColor: { control: 'color' },
+    },
+} as ComponentMeta<typeof PageError>;
+
+const Template: ComponentStory<typeof PageError> = (args) => (
+    <PageError {...args} />
+);
+
+export const Normal = Template.bind({});
+Normal.args = {};
+
+export const NormalRedesigned = Template.bind({});
+NormalRedesigned.args = {};
+NormalRedesigned.decorators = [NewDesignDecorator];
