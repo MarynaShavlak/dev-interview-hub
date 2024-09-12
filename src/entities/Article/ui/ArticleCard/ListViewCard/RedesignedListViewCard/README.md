@@ -35,36 +35,18 @@ The **`RedesignedListViewCard`** component accepts the following props:
 
 
 ## Usage Example
+
 ```typescript jsx
-import { RedesignedListViewCard} from '@/entities/Article';
+import { RedesignedListViewCard } from '@/entities/Article';
 import { ArticleCategories } from '@/entities/Article';
 import { Article } from '../../../../model/types/article';
-import { ArticleCategory, ArticleSection  } from '../../../../model/consts/articleConsts';
+import { ArticleCategory, ArticleSection } from '../../../../model/consts/articleConsts';
+import { testArticleData } from './testing';
 
-const sampleArticle: Article = {
-    id: '1',
-    user: {
-        id: '123',
-        username: 'Maryna Shavlak',
-    },
-    title: 'Test Article',
-    subtitle: 'This is a test subtitle.',
-    img: 'test-image-url',
-    views: 100,
-    createdAt: '2023-01-01T00:00:00.000Z',
-    category: [ArticleCategory.IT, ArticleCategory.ECONOMICS],
-    blocks: [
-        {
-            id: '2344',
-            type: ArticleSection.TEXT,
-            paragraphs: ['This is a text block.'],
-        },
-    ],
-};
 
 const App = () => (
     <RedesignedListViewCard
-        article={sampleArticle}
+        article={testArticleData}
         className="custom-item"
         target="_blank"
     />

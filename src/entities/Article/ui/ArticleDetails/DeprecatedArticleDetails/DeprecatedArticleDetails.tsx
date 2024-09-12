@@ -50,14 +50,14 @@ export const DeprecatedArticleDetails = memo(() => {
                     data-testid="ArticleDetails.Title"
                 />
                 <HStack gap="8">
-                    <Icon Svg={EyeIcon} />
+                    <Icon Svg={EyeIcon} width={20} height={20} />
                     <Text
                         text={String(article?.views)}
                         data-testid="ArticleDetails.Views"
                     />
                 </HStack>
                 <HStack gap="8">
-                    <Icon Svg={CalendarIcon} />
+                    <Icon Svg={CalendarIcon} width={20} height={20} />
                     <Text
                         text={article?.createdAt}
                         data-testid="ArticleDetails.CreatedAt"

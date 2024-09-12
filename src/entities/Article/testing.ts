@@ -13,7 +13,7 @@ export const testArticleData: Article = {
     subtitle: 'This is a test subtitle.',
     img: 'https://www.century21albania.com/vendor/core/images/default-image.jpg',
     views: 100,
-    createdAt: '2023-01-01',
+    createdAt: '21.02.2019',
     category: [ArticleCategory.IT, ArticleCategory.ECONOMICS],
     blocks: [
         {
@@ -82,7 +82,7 @@ export const testArticlesListData: Article[] = [
         subtitle: 'This is a test subtitle.',
         img: 'test-image-url',
         views: 100,
-        createdAt: '2023-01-01T00:00:00.000Z',
+        createdAt: '07.08.2019',
         category: [ArticleCategory.IT, ArticleCategory.ECONOMICS],
         blocks: [
             {
@@ -102,7 +102,7 @@ export const testArticlesListData: Article[] = [
         subtitle: 'This is a test subtitle.',
         img: 'test-image-url',
         views: 100,
-        createdAt: '2023-01-01T00:00:00.000Z',
+        createdAt: '11.12.2023',
         category: [ArticleCategory.IT, ArticleCategory.ECONOMICS],
         blocks: [
             {

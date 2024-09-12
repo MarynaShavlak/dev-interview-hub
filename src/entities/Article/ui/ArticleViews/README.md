@@ -32,32 +32,12 @@ The **`ArticleViews`** component accepts the following props:
 import { ArticleViews } from '@/entities/Article';
 import { Article } from './article';
 import { ArticleCategory, ArticleSection } from './articleConsts';
-
-const sampleArticle: Article = {
-   id: '1',
-   user: {
-      id: '123',
-      username: 'Maryna Shavlak',
-   },
-   title: 'Test Article',
-   subtitle: 'This is a test subtitle.',
-   img: 'test-image-url',
-   views: 100,
-   createdAt: '2023-01-01T00:00:00.000Z',
-   category: [ArticleCategory.IT, ArticleCategory.ECONOMICS],
-   blocks: [
-      {
-         id: '2344',
-         type: ArticleSection.TEXT,
-         paragraphs: ['This is a text block.'],
-      },
-   ],
-};
+import { testArticleData } from './testing';
 
 const ExampleComponent = () => {
    return (
            <div>
-              <ArticleViews article={sampleArticle}/>
+              <ArticleViews article={testArticleData}/>
               {/* The ArticleViews component displays the number of views with adaptive UI rendering */}
            </div>
    );

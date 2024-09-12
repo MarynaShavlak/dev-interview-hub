@@ -31,32 +31,13 @@ The **`ArticleCategories`** component accepts the following props:
 import { ArticleCategories } from '@/entities/Article';
 import { Article } from './article';
 import { ArticleCategory, ArticleSection } from './articleConsts';
+import { testArticleData } from './testing';
 
-const sampleArticle: Article = {
-   id: '1',
-   user: {
-      id: '123',
-      username: 'Maryna Shavlak',
-   },
-   title: 'Test Article',
-   subtitle: 'This is a test subtitle.',
-   img: 'test-image-url',
-   views: 100,
-   createdAt: '2023-01-01T00:00:00.000Z',
-   category: [ArticleCategory.IT, ArticleCategory.ECONOMICS],
-   blocks: [
-      {
-         id: '2344',
-         type: ArticleSection.TEXT,
-         paragraphs: ['This is a text block.'],
-      },
-   ],
-};
 
 const ExampleComponent = () => {
    return (
            <div>
-              <ArticleCategories article={sampleArticle}/>
+              <ArticleCategories article={testArticleData}/>
               {/* The ArticleCategories component displays the categories of the article with adaptive UI rendering */}
            </div>
    );
