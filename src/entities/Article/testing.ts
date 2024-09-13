@@ -1,5 +1,6 @@
 import { Article } from './model/types/article';
 import { ArticleCategory, ArticleSection } from './model/consts/articleConsts';
+import avatar from '@/shared/assets/tests/avatar-dropdown.png';
 
 export { articleDetailsReducer } from './model/slice/articleDetailsSlice';
 
@@ -8,6 +9,7 @@ export const testArticleData: Article = {
     user: {
         id: '123',
         username: 'testUsername',
+        avatar,
     },
     title: 'Test Article Title',
     subtitle: 'This is a test subtitle.',
@@ -77,10 +79,11 @@ export const testArticlesListData: Article[] = [
         user: {
             id: '123',
             username: 'testUsername',
+            avatar,
         },
         title: 'Test Article First',
         subtitle: 'This is a test subtitle.',
-        img: 'test-image-url',
+        img: 'https://www.century21albania.com/vendor/core/images/default-image.jpg',
         views: 100,
         createdAt: '07.08.2019',
         category: [ArticleCategory.IT, ArticleCategory.ECONOMICS],
@@ -95,12 +98,181 @@ export const testArticlesListData: Article[] = [
     {
         id: '2',
         user: {
-            id: '444',
-            username: 'Max Shavlak',
+            id: '123',
+            username: 'testUsername',
+            avatar,
         },
         title: 'Test Article 2',
         subtitle: 'This is a test subtitle.',
-        img: 'test-image-url',
+        img: 'https://www.century21albania.com/vendor/core/images/default-image.jpg',
+        views: 100,
+        createdAt: '11.12.2023',
+        category: [ArticleCategory.IT, ArticleCategory.ECONOMICS],
+        blocks: [
+            {
+                id: '6789',
+                type: ArticleSection.TEXT,
+                paragraphs: ['This is a text block.'],
+            },
+        ],
+    },
+    {
+        id: '3',
+        user: {
+            id: '123',
+            username: 'testUsername',
+            avatar,
+        },
+        title: 'Test Article First',
+        subtitle: 'This is a test subtitle.',
+        img: 'https://www.century21albania.com/vendor/core/images/default-image.jpg',
+        views: 100,
+        createdAt: '07.08.2019',
+        category: [ArticleCategory.IT, ArticleCategory.ECONOMICS],
+        blocks: [
+            {
+                id: '2344',
+                type: ArticleSection.TEXT,
+                paragraphs: ['This is a text block.'],
+            },
+        ],
+    },
+    {
+        id: '4',
+        user: {
+            id: '123',
+            username: 'testUsername',
+            avatar,
+        },
+        title: 'Test Article 2',
+        subtitle: 'This is a test subtitle.',
+        img: 'https://www.century21albania.com/vendor/core/images/default-image.jpg',
+        views: 100,
+        createdAt: '11.12.2023',
+        category: [ArticleCategory.IT, ArticleCategory.ECONOMICS],
+        blocks: [
+            {
+                id: '6789',
+                type: ArticleSection.TEXT,
+                paragraphs: ['This is a text block.'],
+            },
+        ],
+    },
+    {
+        id: '5',
+        user: {
+            id: '123',
+            username: 'testUsername',
+            avatar,
+        },
+        title: 'Test Article First',
+        subtitle: 'This is a test subtitle.',
+        img: 'https://www.century21albania.com/vendor/core/images/default-image.jpg',
+        views: 100,
+        createdAt: '07.08.2019',
+        category: [ArticleCategory.IT, ArticleCategory.ECONOMICS],
+        blocks: [
+            {
+                id: '2344',
+                type: ArticleSection.TEXT,
+                paragraphs: ['This is a text block.'],
+            },
+        ],
+    },
+    {
+        id: '6',
+        user: {
+            id: '123',
+            username: 'testUsername',
+            avatar,
+        },
+        title: 'Test Article 2',
+        subtitle: 'This is a test subtitle.',
+        img: 'https://www.century21albania.com/vendor/core/images/default-image.jpg',
+        views: 100,
+        createdAt: '11.12.2023',
+        category: [ArticleCategory.IT, ArticleCategory.ECONOMICS],
+        blocks: [
+            {
+                id: '6789',
+                type: ArticleSection.TEXT,
+                paragraphs: ['This is a text block.'],
+            },
+        ],
+    },
+    {
+        id: '7',
+        user: {
+            id: '123',
+            username: 'testUsername',
+            avatar,
+        },
+        title: 'Test Article First',
+        subtitle: 'This is a test subtitle.',
+        img: 'https://www.century21albania.com/vendor/core/images/default-image.jpg',
+        views: 100,
+        createdAt: '07.08.2019',
+        category: [ArticleCategory.IT, ArticleCategory.ECONOMICS],
+        blocks: [
+            {
+                id: '2344',
+                type: ArticleSection.TEXT,
+                paragraphs: ['This is a text block.'],
+            },
+        ],
+    },
+    {
+        id: '8',
+        user: {
+            id: '123',
+            username: 'testUsername',
+            avatar,
+        },
+        title: 'Test Article 2',
+        subtitle: 'This is a test subtitle.',
+        img: 'https://www.century21albania.com/vendor/core/images/default-image.jpg',
+        views: 100,
+        createdAt: '11.12.2023',
+        category: [ArticleCategory.IT, ArticleCategory.ECONOMICS],
+        blocks: [
+            {
+                id: '6789',
+                type: ArticleSection.TEXT,
+                paragraphs: ['This is a text block.'],
+            },
+        ],
+    },
+    {
+        id: '9',
+        user: {
+            id: '123',
+            username: 'testUsername',
+            avatar,
+        },
+        title: 'Test Article 2',
+        subtitle: 'This is a test subtitle.',
+        img: 'https://www.century21albania.com/vendor/core/images/default-image.jpg',
+        views: 100,
+        createdAt: '11.12.2023',
+        category: [ArticleCategory.IT, ArticleCategory.ECONOMICS],
+        blocks: [
+            {
+                id: '6789',
+                type: ArticleSection.TEXT,
+                paragraphs: ['This is a text block.'],
+            },
+        ],
+    },
+    {
+        id: '10',
+        user: {
+            id: '123',
+            username: 'testUsername',
+            avatar,
+        },
+        title: 'Test Article 2',
+        subtitle: 'This is a test subtitle.',
+        img: 'https://www.century21albania.com/vendor/core/images/default-image.jpg',
         views: 100,
         createdAt: '11.12.2023',
         category: [ArticleCategory.IT, ArticleCategory.ECONOMICS],
