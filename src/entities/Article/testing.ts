@@ -285,3 +285,12 @@ export const testArticlesListData: Article[] = [
         ],
     },
 ];
+
+export const articlesNormalizedData = {
+    ids: testArticlesListData.map((article) => article.id),
+    entities: testArticlesListData.reduce((acc, article) => {
+        // @ts-ignore
+        acc[article.id] = article;
+        return acc;
+    }, {}),
+};

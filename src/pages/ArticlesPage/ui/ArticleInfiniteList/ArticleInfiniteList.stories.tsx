@@ -4,8 +4,8 @@ import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDe
 
 import { ArticleView } from '@/entities/Article';
 import { ArticleInfiniteList } from './ArticleInfiniteList';
-import { testArticlesListData } from '@/entities/Article/testing';
 import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator/NewDesignDecorator';
+import { articlesNormalizedData } from '@/entities/Article/testing';
 
 export default {
     title: 'pages/ArticlesPage/ArticleInfiniteList',
@@ -18,15 +18,6 @@ export default {
 const Template: ComponentStory<typeof ArticleInfiniteList> = (args) => (
     <ArticleInfiniteList {...args} />
 );
-
-const articlesData = {
-    ids: testArticlesListData.map((article) => article.id),
-    entities: testArticlesListData.reduce((acc, article) => {
-        // @ts-ignore
-        acc[article.id] = article;
-        return acc;
-    }, {}),
-};
 
 const loadingState = {
     isLoading: true,
@@ -46,7 +37,7 @@ NormalGrid.args = {};
 NormalGrid.decorators = [
     StoreDecorator({
         articlesPage: {
-            ...articlesData,
+            ...articlesNormalizedData,
             view: ArticleView.GRID,
             isLoading: false,
         },
@@ -58,7 +49,7 @@ NormalList.args = {};
 NormalList.decorators = [
     StoreDecorator({
         articlesPage: {
-            ...articlesData,
+            ...articlesNormalizedData,
             view: ArticleView.LIST,
             isLoading: false,
         },
@@ -104,7 +95,7 @@ NormalGridRedesigned.args = {};
 NormalGridRedesigned.decorators = [
     StoreDecorator({
         articlesPage: {
-            ...articlesData,
+            ...articlesNormalizedData,
             view: ArticleView.GRID,
             isLoading: false,
         },
@@ -117,7 +108,7 @@ NormalListRedesigned.args = {};
 NormalListRedesigned.decorators = [
     StoreDecorator({
         articlesPage: {
-            ...articlesData,
+            ...articlesNormalizedData,
             view: ArticleView.LIST,
             isLoading: false,
         },
