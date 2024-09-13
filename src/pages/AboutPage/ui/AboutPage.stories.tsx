@@ -1,27 +1,23 @@
-// import React from 'react';
-// import { ComponentMeta, ComponentStory } from '@storybook/react';
-// import { Theme } from '@/shared/const/theme';
-// import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
-// import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
-// import AboutPage from './AboutPage';
-//
-// export default {
-//     title: 'pages/AboutPage',
-//     component: AboutPage,
-//     argTypes: {
-//         backgroundColor: { control: 'color' },
-//     },
-//     decorators: [StoreDecorator({})],
-// } as ComponentMeta<typeof AboutPage>;
-//
-// const Template: ComponentStory<typeof AboutPage> = () => <AboutPage />;
-//
-// export const Normal = Template.bind({});
-// Normal.args = {};
-//
-// export const Dark = Template.bind({});
-// Dark.args = {};
-// Dark.decorators = [ThemeDecorator(Theme.DARK)];
-export function con() {
-    console.log('stories');
-}
+import React from 'react';
+import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
+import AboutPage from './AboutPage';
+import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator/NewDesignDecorator';
+
+export default {
+    title: 'pages/AboutPage',
+    component: AboutPage,
+    argTypes: {
+        backgroundColor: { control: 'color' },
+    },
+    decorators: [StoreDecorator({})],
+} as ComponentMeta<typeof AboutPage>;
+
+const Template: ComponentStory<typeof AboutPage> = () => <AboutPage />;
+
+export const Normal = Template.bind({});
+Normal.args = {};
+
+export const NormalRedesigned = Template.bind({});
+NormalRedesigned.args = {};
+NormalRedesigned.decorators = [NewDesignDecorator];
