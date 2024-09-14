@@ -165,18 +165,20 @@ npm run start:dev или npm run start:dev:vite - запуск сервера + 
 
 The project utilizes two primary build configurations:
 
-1. `Webpack` - located at [./config/build](./config/build)
+1. [Webpack](./docs/config/README.webpack.md) 
+   - **Purpose**: Webpack is a versatile build tool designed to adapt to various environments and project needs.
+   - **Configuration**: Find the configuration details in [webpack.config.ts](./webpack.config.ts)
+   - **Usage**: To run the project with Webpack, use the command:: `npm run start`.
+   - **Documentation**: For more information, refer to the [Webpack configuration guide](./docs/config/README.webpack.md) .
 2. [Vite](./docs/config/README.vite.md)
    - **Purpose**: Vite serves as an alternative build tool, offering faster development and build processes.
-   - Configuration is located in [vite.config.ts](./vite.config.ts)
-   - To run the project using Vite, use the script: `npm run start:dev:vite`. 
-   
+   - **Configuration**: Find the configuration details in [vite.config.ts](./vite.config.ts)
+   - **Usage**: To start the project using Vite, use the command: `npm run start:vite`. 
+   - **Documentation**: For more information, refer to the [Vite configuration guide](./docs/config/README.vite.md).
 
+Both build tools are tailored to support the core features of the application efficiently.
 
-
-Both build tools are tailored to support the core features of the application.
-
-All configuration files are organized within the `/config` directory:
+All configuration files are systematically organized within the `/config` directory:
 
 ### [Babel configuration](./config/babel/README.md) 
 The Babel configuration utilizes a custom plugin to remove specified JSX properties from the code. This plugin is designed to:
