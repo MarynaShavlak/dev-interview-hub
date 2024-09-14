@@ -34,7 +34,7 @@ Normal.decorators = [AlignCenterDecorator];
 
 export const NormalRedesigned = Template.bind({});
 NormalRedesigned.args = {};
-NormalRedesigned.decorators = [AlignCenterDecorator, NewDesignDecorator];
+NormalRedesigned.decorators = [AlignDecorator('center'), NewDesignDecorator];
 
 export const Readonly = Template.bind({});
 Readonly.args = {
@@ -48,4 +48,4 @@ ReadonlyRedesigned.args = {
     value: Currency.USD,
     readonly: true,
 };
-ReadonlyRedesigned.decorators = [AlignCenterDecorator, NewDesignDecorator];
+ReadonlyRedesigned.decorators = [AlignDecorator('center'), NewDesignDecorator];

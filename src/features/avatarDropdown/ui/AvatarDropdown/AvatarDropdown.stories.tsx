@@ -5,8 +5,8 @@ import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDe
 import avatar from '@/shared/assets/tests/avatar-dropdown.png';
 
 import { AvatarDropdown } from './AvatarDropdown';
-import { AlignRightDecorator } from '@/shared/config/storybook/AlignDecorator/AlignCenterDecorator';
 import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator/NewDesignDecorator';
+import AlignDecorator from '@/shared/config/storybook/AlignDecorator/AlignCenterDecorator';
 
 export default {
     title: 'features/AvatarDropdown',
@@ -36,7 +36,7 @@ const createStory = (roles: UserRole[] = [], isRedesigned = false) => {
                 },
             },
         }),
-        AlignRightDecorator,
+        AlignDecorator('right'),
     ];
 
     if (isRedesigned) {

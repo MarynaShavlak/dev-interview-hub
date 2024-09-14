@@ -2,9 +2,9 @@ import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { NotificationButton } from './NotificationButton';
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
-import { AlignRightDecorator } from '@/shared/config/storybook/AlignDecorator/AlignCenterDecorator';
 import { dataSuccessRequest } from '@/entities/Notification/testing';
 import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator/NewDesignDecorator';
+import AlignDecorator from '@/shared/config/storybook/AlignDecorator/AlignCenterDecorator';
 
 // Default export for Storybook
 export default {
@@ -25,11 +25,11 @@ Normal.args = {};
 Normal.parameters = {
     mockData: dataSuccessRequest,
 };
-Normal.decorators = [AlignRightDecorator];
+Normal.decorators = [AlignDecorator('right')];
 
 export const NormalRedesigned = Template.bind({});
 NormalRedesigned.args = {};
 NormalRedesigned.parameters = {
     mockData: dataSuccessRequest,
 };
-NormalRedesigned.decorators = [AlignRightDecorator, NewDesignDecorator];
+NormalRedesigned.decorators = [AlignDecorator('right'), NewDesignDecorator];

@@ -21,7 +21,6 @@ The project uses four types of tests:
 
 - [Component Tests](tests/unitTests/README.components.md)
 
-
 ##  **Screenshot Testing with Loki**
 - **Command**: `npm run test:ui`
 - **Focus**: Visual regression testing to ensure UI consistency.

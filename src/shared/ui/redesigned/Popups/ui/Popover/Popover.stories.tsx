@@ -4,7 +4,6 @@ import { Button } from '../../../Button/Button';
 import { Popover } from './Popover';
 import { DropdownDirection } from '@/shared/types/ui';
 import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator/NewDesignDecorator';
-import { AlignCenterDecorator } from '@/shared/config/storybook/AlignDecorator/AlignCenterDecorator';
 
 export default {
     title: 'shared/redesigned/Popups/Popover',
@@ -23,7 +22,7 @@ export default {
         },
         backgroundColor: { control: 'color' },
     },
-    decorators: [AlignCenterDecorator, NewDesignDecorator],
+    decorators: [AlignDecorator('center'), NewDesignDecorator],
 } as ComponentMeta<typeof Popover>;
 
 const Template: ComponentStory<typeof Popover> = (args) => (

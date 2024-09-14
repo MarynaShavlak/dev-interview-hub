@@ -4,7 +4,6 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 import { Navbar } from './Navbar';
 import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator/NewDesignDecorator';
-import { AlignRightDecorator } from '@/shared/config/storybook/AlignDecorator/AlignCenterDecorator';
 
 export default {
     title: 'widgets/Navbar',
