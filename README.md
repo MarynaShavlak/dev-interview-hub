@@ -86,67 +86,131 @@ npm run start:dev или npm run start:dev:vite - запуск сервера + 
 ----
 ## Storybook
 
-У проєкті для кожного компонента описуються сторі-кейси.
-Запити на сервер мокаються за допомогою storybook-addon-mock.
+[//]: # (У проєкті для кожного компонента описуються сторі-кейси.)
 
-Файл зі сторі-кейсами створює поруч з компонентом з розширенням .stories.tsx
+[//]: # (Запити на сервер мокаються за допомогою storybook-addon-mock.)
 
-Запустити сторібук можна командою:
-- `npm run storybook`
+[//]: # ()
+[//]: # (Файл зі сторі-кейсами створює поруч з компонентом з розширенням .stories.tsx)
 
-Докладніше про [Storybook](/docs/storybook.md)
+[//]: # ()
+[//]: # (Запустити сторібук можна командою:)
 
-Приклад:
+[//]: # (- `npm run storybook`)
 
-```typescript jsx
-import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+[//]: # ()
+[//]: # (Докладніше про [Storybook]&#40;/docs/storybook.md&#41;)
 
-import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
-import { Button, ButtonSize, ButtonTheme } from './Button';
-import { Theme } from '@/shared/const/theme';
+[//]: # ()
+[//]: # (Приклад:)
 
-export default {
-    title: 'shared/Button',
-    component: Button,
-    argTypes: {
-        backgroundColor: { control: 'color' },
-    },
-} as ComponentMeta<typeof Button>;
+[//]: # ()
+[//]: # (```typescript jsx)
 
-const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
+[//]: # (import React from 'react';)
 
-export const Primary = Template.bind({});
-Primary.args = {
-    children: 'Text',
-};
+[//]: # (import { ComponentStory, ComponentMeta } from '@storybook/react';)
 
-export const Clear = Template.bind({});
-Clear.args = {
-    children: 'Text',
-    theme: ButtonTheme.CLEAR,
-};
-```
+[//]: # ()
+[//]: # (import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';)
+
+[//]: # (import { Button, ButtonSize, ButtonTheme } from './Button';)
+
+[//]: # (import { Theme } from '@/shared/const/theme';)
+
+[//]: # ()
+[//]: # (export default {)
+
+[//]: # (    title: 'shared/Button',)
+
+[//]: # (    component: Button,)
+
+[//]: # (    argTypes: {)
+
+[//]: # (        backgroundColor: { control: 'color' },)
+
+[//]: # (    },)
+
+[//]: # (} as ComponentMeta<typeof Button>;)
+
+[//]: # ()
+[//]: # (const Template: ComponentStory<typeof Button> = &#40;args&#41; => <Button {...args} />;)
+
+[//]: # ()
+[//]: # (export const Primary = Template.bind&#40;{}&#41;;)
+
+[//]: # (Primary.args = {)
+
+[//]: # (    children: 'Text',)
+
+[//]: # (};)
+
+[//]: # ()
+[//]: # (export const Clear = Template.bind&#40;{}&#41;;)
+
+[//]: # (Clear.args = {)
+
+[//]: # (    children: 'Text',)
+
+[//]: # (    theme: ButtonTheme.CLEAR,)
+
+[//]: # (};)
+
+[//]: # (```)
 
 
 ----
 
-## Конфігурація проєкту
+## Project Configuration
 
-Для розробки проєкт містить 2 конфіги:
-1. Webpack - ./config/build
-2. vite - vite.config.ts
+The project utilizes two primary build configurations:
 
-Обидва збирачі адаптовані під основні фічі застосунку.
+1. `Webpack` - located at [./config/build](./config/build)
+2. `Vite` - located at [vite.config.ts](./vite.config.ts)
 
-Вся конфігурація зберігається в /config
-- /config/babel - babel
-- /config/build - конфігурація webpack
-- /config/jest - конфігурація тестового середовища
-- /config/storybook - конфігурація сторібука
+Both build tools are tailored to support the core features of the application.
 
-У папці scripts знаходяться різні скрипти для рефакторингу\спрощення написання коду\генерації звітів тощо.
+All configuration files are organized within the `/config` directory:
 
+### [Babel configuration](./config/babel/README.md) 
+The Babel configuration utilizes a custom plugin to remove specified JSX properties from the code. This plugin is designed to:
+
+- **Remove JSX Properties**: Exclude certain properties (e.g., data-testid) from JSX elements during the transformation process.
+- **Enhance Code Quality**: Ensure the final output code is clean and secure by removing unwanted properties from production builds.
+
+### [Webpack Configuration](./config/build/README.webpack.md)
+
+Webpack configuration is structured to handle various aspects of the build process, with specific setups for development and production environments. It is organized into several key components:
+
+1. **[Loaders](./config/build/buildLoaders/README.loaders.md)**:
+   - **[CSS Loader](./config/build/loaders/buildCssLoader/README.cssloader.md)**: Configures handling of SCSS and SASS files, using `style-loader` for development and `MiniCssExtractPlugin.loader` for production to optimize CSS extraction and caching.
+   - **[Babel Loader](./config/build/loaders/buildBabelLoader/README.babelloader.md)**: Processes JavaScript and TypeScript files with Babel, applying transformations based on the environment and handling TypeScript (TSX) files with appropriate plugins.
+
+2. **[Plugins](./config/build/buildPlugins/README.plugins.md)**:
+   - **HtmlWebpackPlugin**: Generates an HTML file that includes all the webpack bundles.
+   - **MiniCssExtractPlugin**: Extracts CSS into separate files for production builds.
+   - **ReactRefreshWebpackPlugin**: Enables React Fast Refresh for a better development experience.
+   - **CircularDependencyPlugin**: Detects and reports circular dependencies in the project.
+   - **ForkTsCheckerWebpackPlugin**: Provides TypeScript type checking and linting.
+   - **BundleAnalyzerPlugin**: Analyzes the size of the Webpack output for optimization insights.
+   - **CopyPlugin**: Copies static assets, such as locales, to the build directory.
+
+3. **[Resolvers](./config/build/buildResolvers/README.resolvers.md)**:
+   - Configures module resolution to simplify imports by setting up path aliases and specifying file extensions.
+
+4. **[Dev Server](./config/build/buildDevServer/README.devserver.md)**:
+   - Sets up Webpack Dev Server with features like automatic browser opening, hot module replacement, and history API fallback for development.
+
+This configuration ensures efficient builds with support for modern JavaScript and TypeScript, optimized asset handling, and enhanced development experience through various Webpack plugins and settings.
+
+
+### [Testing environment configuration for Jest](./config/jest/README.md)
+
+### [Storybook configuration](./config/storybook/README.storybook.md)
+
+
+
+Additionally, the scripts folder contains various scripts for refactoring, simplifying code development, generating reports, and other tasks.
 ----
 
 ## CI pipeline та pre commit хуки

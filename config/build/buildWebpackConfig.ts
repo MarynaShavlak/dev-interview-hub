@@ -1,11 +1,11 @@
 import webpack from 'webpack';
 import { BuildOptions } from './types/config';
-import { buildPlugins } from './buildPlugins';
-import { buildLoaders } from './buildLoaders';
-import { buildResolvers } from './buildResolvers';
-import { buildDevServer } from './buildDevServer';
+import { buildPlugins } from './buildPlugins/buildPlugins';
+import { buildLoaders } from './buildLoaders/buildLoaders';
+import { buildResolvers } from './buildResolvers/buildResolvers';
+import { buildDevServer } from './buildDevServer/buildDevServer';
 
-export function buildWebpackConfig(options: BuildOptions): webpack.Configuration {
+export const buildWebpackConfig = (options: BuildOptions): webpack.Configuration => {
     const { paths, mode, isDev } = options;
 
     return {

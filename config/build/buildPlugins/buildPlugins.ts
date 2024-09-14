@@ -6,11 +6,11 @@ import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
 import CopyPlugin from 'copy-webpack-plugin';
 import CircularDependencyPlugin from 'circular-dependency-plugin';
-import { BuildOptions } from './types/config';
+import { BuildOptions } from '../types/config';
 
-export function buildPlugins({
+export const buildPlugins = ({
     paths, isDev, apiUrl, project,
-}: BuildOptions): webpack.WebpackPluginInstance[] {
+}: BuildOptions): webpack.WebpackPluginInstance[] =>{
     const isProd = !isDev;
     const plugins = [
         new HtmlWebpackPlugin({
