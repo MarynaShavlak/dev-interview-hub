@@ -166,7 +166,13 @@ npm run start:dev или npm run start:dev:vite - запуск сервера + 
 The project utilizes two primary build configurations:
 
 1. `Webpack` - located at [./config/build](./config/build)
-2. `Vite` - located at [vite.config.ts](./vite.config.ts)
+2. [Vite](./docs/config/README.vite.md)
+   - **Purpose**: Vite serves as an alternative build tool, offering faster development and build processes.
+   - Configuration is located in [vite.config.ts](./vite.config.ts)
+   - To run the project using Vite, use the script: `npm run start:dev:vite`. 
+   
+
+
 
 Both build tools are tailored to support the core features of the application.
 
