@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { CountrySelect } from './CountrySelect';
 import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator/NewDesignDecorator';
-import { AlignCenterDecorator } from '@/shared/config/storybook/AlignDecorator/AlignCenterDecorator';
 import { Country } from '../../model/types/country';
+import { AlignDecorator } from '@/shared/config/storybook/AlignDecorator/AlignDecorator';
 
 export default {
     title: 'entities/Country/CountrySelect',
@@ -30,7 +30,7 @@ const Template: ComponentStory<typeof CountrySelect> = (args) => {
 
 export const Normal = Template.bind({});
 Normal.args = {};
-Normal.decorators = [AlignCenterDecorator];
+Normal.decorators = [AlignDecorator('center')];
 
 export const NormalRedesigned = Template.bind({});
 NormalRedesigned.args = {};
@@ -41,7 +41,7 @@ Readonly.args = {
     value: Country.Poland,
     readonly: true,
 };
-Readonly.decorators = [AlignCenterDecorator];
+Readonly.decorators = [AlignDecorator('center')];
 
 export const ReadonlyRedesigned = Template.bind({});
 ReadonlyRedesigned.args = {

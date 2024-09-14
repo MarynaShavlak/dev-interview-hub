@@ -4,7 +4,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { Button } from '../../../Button/Button';
 import { Dropdown } from './Dropdown';
 import { DropdownDirection } from '@/shared/types/ui';
-import AlignDecorator from '@/shared/config/storybook/AlignDecorator/AlignCenterDecorator';
+import { AlignDecorator } from '@/shared/config/storybook/AlignDecorator/AlignDecorator';
 
 export default {
     title: 'shared/deprecated/Popups/Dropdown',

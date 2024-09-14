@@ -3,7 +3,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { Button } from '../../../Button/Button';
 import { Popover } from './Popover';
 import { DropdownDirection } from '@/shared/types/ui';
-import { AlignCenterDecorator } from '@/shared/config/storybook/AlignDecorator/AlignCenterDecorator';
+import { AlignDecorator } from '@/shared/config/storybook/AlignDecorator/AlignDecorator';
 
 export default {
     title: 'shared/deprecated/Popups/Popover',
@@ -22,7 +22,7 @@ export default {
         },
         backgroundColor: { control: 'color' },
     },
-    decorators: [AlignCenterDecorator],
+    decorators: [AlignDecorator('center')],
 } as ComponentMeta<typeof Popover>;
 
 const Template: ComponentStory<typeof Popover> = (args) => (

@@ -5,7 +5,7 @@ import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDe
 import ArticlesPage from './ArticlesPage';
 import { ArticleView } from '@/entities/Article';
 import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator/NewDesignDecorator';
-import { WrapperWithPaddingsDecorator } from '@/shared/config/storybook/WrapperWithPaddingsDecorator/WrapperWithPaddingsDecorator';
+import { CustomStylesDecorator } from '@/shared/config/storybook/CustomStylesDecorator/CustomStylesDecorator';
 import { articlesNormalizedData } from '@/entities/Article/testing';
 
 export default {
@@ -54,7 +54,7 @@ export const FirstArticlesPageVisitRedesigned = Template.bind({});
 FirstArticlesPageVisitRedesigned.args = {};
 FirstArticlesPageVisitRedesigned.decorators = [
     StoreDecorator(firstVisitData),
-    WrapperWithPaddingsDecorator,
+    CustomStylesDecorator({ paddingRight: '80px' }),
     NewDesignDecorator,
 ];
 
@@ -62,6 +62,6 @@ export const NotFirstArticlesPageVisitRedesigned = Template.bind({});
 NotFirstArticlesPageVisitRedesigned.args = {};
 NotFirstArticlesPageVisitRedesigned.decorators = [
     StoreDecorator(notFirstVisitData),
-    WrapperWithPaddingsDecorator,
+    CustomStylesDecorator({ paddingRight: '80px' }),
     NewDesignDecorator,
 ];

@@ -4,7 +4,7 @@ import { NotificationButton } from './NotificationButton';
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 import { dataSuccessRequest } from '@/entities/Notification/testing';
 import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator/NewDesignDecorator';
-import AlignDecorator from '@/shared/config/storybook/AlignDecorator/AlignCenterDecorator';
+import { AlignDecorator } from '@/shared/config/storybook/AlignDecorator/AlignDecorator';
 
 // Default export for Storybook
 export default {

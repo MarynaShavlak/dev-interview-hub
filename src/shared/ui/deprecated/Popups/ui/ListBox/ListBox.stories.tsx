@@ -3,7 +3,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import { ListBox } from './ListBox';
 import { DropdownDirection } from '@/shared/types/ui';
-import { AlignCenterDecorator } from '@/shared/config/storybook/AlignDecorator/AlignCenterDecorator';
+import { AlignDecorator } from '@/shared/config/storybook/AlignDecorator/AlignDecorator';
 
 export default {
     title: 'shared/deprecated/Popups/ListBox',
@@ -22,7 +22,7 @@ export default {
             },
         },
     },
-    decorators: [AlignCenterDecorator],
+    decorators: [AlignDecorator('center')],
 } as ComponentMeta<typeof ListBox>;
 
 const Template: ComponentStory<typeof ListBox> = (args) => (

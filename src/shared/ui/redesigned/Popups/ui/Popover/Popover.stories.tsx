@@ -4,6 +4,7 @@ import { Button } from '../../../Button/Button';
 import { Popover } from './Popover';
 import { DropdownDirection } from '@/shared/types/ui';
 import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator/NewDesignDecorator';
+import { AlignDecorator } from '@/shared/config/storybook/AlignDecorator/AlignDecorator';
 
 export default {
     title: 'shared/redesigned/Popups/Popover',

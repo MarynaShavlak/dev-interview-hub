@@ -1,28 +1,67 @@
 # Storybook Documentation
 
-In this project, we provide story cases for each component using Storybook. These stories help in isolating and visually testing individual components.
+Storybook is used to create a comprehensive showcase of components, facilitating their isolation and visual testing. Each component is documented with dedicated story files, which allow for interactive exploration and testing across different states and scenarios.
 
-Server requests are mocked using the `storybook-addon-mock` plugin, enabling us to simulate various API responses for our components within Storybook.
+The `storybook-addon-mock` plugin is employed to mock server requests, simulating various API responses directly within Storybook. This approach ensures that components can be tested in a realistic environment without relying on live services.
 
+## Storybook Version
+We are using Storybook version `6.5.13`. Ensure compatibility with this version when setting up or modifying Storybook.
+
+
+## [Configuration details](../config/storybook/README.storybook.md)
 ## Creating Story Files
 
-For each component, a corresponding story file is created in the same directory with a `.stories.tsx` extension. This file contains the story cases for that specific component.
+Each component should have a corresponding story file located in the same directory, with a `.stories.tsx` extension. These files contain the story cases for their respective components.
 
 ## Running Storybook
 
-To launch Storybook, use the following command:
+To start Storybook, run the following command:
 - `npm run storybook`
 
-This will start a local server where you can interactively view and test your component stories.
+This command launches a local server where you can interactively view and test your component stories.
 
 
-Decorators:
-- [RouterDecorator](../src/shared/config/storybook/RouterDecorator/RouterDecorator.tsx) - A function that takes a Storybook component (`StoryComponent`) and wraps it in `BrowserRouter`, allowing for proper handling of routes during testing.
-- [StoreDecorator](../src/shared/config/storybook/StoreDecorator/StoreDecorator.tsx) - А  function  that wraps components in a Redux store with customizable state and reducers. This allows Storybook to simulate different Redux states and handle dynamic reducers for testing.
-- [SuspenseDecorator](../src/shared/config/storybook/SuspenseDecorator/SuspenseDecorator.tsx) - A function that wraps components in React's Suspense, allowing Storybook to handle lazy-loaded components and asynchronous operations during rendering.
-- [ThemeDecorator](../src/shared/config/storybook/ThemeDecorator/ThemeDecorator.tsx) - A function that wraps components in a ThemeProvider, allowing Storybook to apply different themes (e.g., light or dark) during component testing.
-- [StyleDecorator](../src/shared/config/storybook/StyleDecorator/StyleDecorator.ts) - A function that applies global styles by importing the project's main stylesheet, allowing Storybook to render components with the correct global styles.
-- [FeaturesFlagsDecorator](../src/shared/config/storybook/FeaturesFlagsDecorator/FeaturesFlagsDecorator.tsx) - A function that configures feature flags for Storybook components, allowing Storybook to simulate different feature states during component rendering.
-- [ArticleRatingEnabledDecorator](../src/shared/config/storybook/ArticleRatingEnabledDecorator/ArticleRatingEnabledDecorator.tsx) - A Storybook decorator that enables the article rating feature by setting the appropriate feature flag before rendering the component.
-- [NewDesignDecorator](../src/shared/config/storybook/NewDesignDecorator/NewDesignDecorator.tsx) - A Storybook decorator that enables the new design feature by setting the appropriate feature flag and applying a specific styling to simulate the redesigned app layout.
-- [withI18nDecorator](../src/shared/config/storybook/withI18nDecorator/withI18nDecorator.tsx) - A Storybook decorator that provides internationalization support by wrapping components with the I18nextProvider configured with a test i18n instance.
+## Decorators
+Storybook decorators enhance components with additional functionality or context. Here are the decorators used in this project:
+- [RouterDecorator](../src/shared/config/storybook/RouterDecorator/RouterDecorator.tsx) - Wraps components in a `BrowserRouter` to handle routing during tests.
+- [StoreDecorator](../src/shared/config/storybook/StoreDecorator/StoreDecorator.tsx) - Wraps components in a Redux store with customizable state and reducers, simulating different Redux states.
+- [SuspenseDecorator](../src/shared/config/storybook/SuspenseDecorator/SuspenseDecorator.tsx) - Wraps components in React's Suspense to manage lazy-loaded components and asynchronous operations.
+- [ThemeDecorator](../src/shared/config/storybook/ThemeDecorator/ThemeDecorator.tsx) - Wraps components in a ThemeProvider to apply different themes (e.g., light or dark) during testing.
+- [StyleDecorator](../src/shared/config/storybook/StyleDecorator/StyleDecorator.ts) - Imports the main stylesheet to apply global styles, ensuring components render with the correct styling.
+- [FeaturesFlagsDecorator](../src/shared/config/storybook/FeaturesFlagsDecorator/FeaturesFlagsDecorator.tsx) - Configures feature flags for components, simulating different feature states.
+- [ArticleRatingEnabledDecorator](../src/shared/config/storybook/ArticleRatingEnabledDecorator/ArticleRatingEnabledDecorator.tsx) - Enables the article rating feature by setting the appropriate flag.
+- [NewDesignDecorator](../src/shared/config/storybook/NewDesignDecorator/NewDesignDecorator.tsx) - Activates the new design feature and applies specific styling to simulate the redesigned app layout.
+- [withI18nDecorator](../src/shared/config/storybook/withI18nDecorator/withI18nDecorator.tsx) - Provides internationalization support by wrapping components with the I18nextProvider configured with a test i18n instance.
+- [AlignDecorator](../src/shared/config/storybook/AlignDecorator/AlignDecorator.tsx) - Adjusts component alignment (e.g., center or right) based on the specified value.
+- [CustomStylesDecorator](../src/shared/config/storybook/CustomStylesDecorator/CustomStylesDecorator.tsx) - Applies custom inline styles to components for flexible styling during testing.
+
+
+## Example 
+```typescript jsx
+import React from 'react';
+import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StarRating } from './StarRating';
+import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator/NewDesignDecorator';
+
+export default {
+    title: 'shared/common/StarRating/StarRating',
+    component: StarRating,
+    argTypes: {
+        backgroundColor: { control: 'color' },
+    },
+} as ComponentMeta<typeof StarRating>;
+
+const Template: ComponentStory<typeof StarRating> = (args) => (
+    <StarRating {...args} />
+);
+
+export const Normal = Template.bind({});
+Normal.args = {};
+
+export const WithTwoSelectedStars = Template.bind({});
+WithTwoSelectedStars.args = { selectedStars: 2 };
+```
+
+
+## Conclusion 
+Storybook is a powerful tool for developing and testing components in isolation, offering a robust environment for visual and functional verification. In this project, a comprehensive component showcase has been established using Storybook, enabling effective isolation and visual testing of each component. Custom decorators have been integrated, and various addons have been utilized to tailor the Storybook environment to meet specific needs and enhance the development workflow.

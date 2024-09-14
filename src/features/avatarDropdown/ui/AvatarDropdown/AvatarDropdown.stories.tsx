@@ -6,7 +6,7 @@ import avatar from '@/shared/assets/tests/avatar-dropdown.png';
 
 import { AvatarDropdown } from './AvatarDropdown';
 import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator/NewDesignDecorator';
-import AlignDecorator from '@/shared/config/storybook/AlignDecorator/AlignCenterDecorator';
+import { AlignDecorator } from '@/shared/config/storybook/AlignDecorator/AlignDecorator';
 
 export default {
     title: 'features/AvatarDropdown',
