@@ -229,7 +229,12 @@ Additionally, the scripts folder contains various scripts for refactoring, simpl
 
 3. [remove feature toggles](./scripts/remove-feature/README.removeFeature.md):
    - **Purpose**: This script automates the removal of feature toggles in a TypeScript project. It replaces or removes `toggleFeatures` function calls and `ToggleFeaturesComponent` elements based on the specified feature state (`on` or `off`), allowing developers to automatically clean up deprecated or unnecessary features in the codebase.
-   - **Command**: npx ts-node ./scripts/remove-feature.ts <featureName> <featureState>
+   - **Command**: `npx ts-node ./scripts/remove-feature.ts <featureName> <featureState>`
+   - 
+4. [generate Loki report](./scripts/generate-loki-report/README.visualLokiReport.md):
+   - **Purpose**: This script generates a `report.json` file for visual regression testing with Loki. The report provides a clear and convenient way to compare changes in components visually, summarizing new, deleted, passed, failed, expected, and actual items, and showing the exact changes between current and reference images. It helps developers quickly understand the visual differences and maintain the quality of UI components.
+   - **Command**: `npm run test:ui:json`
+
 ----
 
 ## CI pipeline та pre commit хуки
