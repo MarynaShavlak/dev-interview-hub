@@ -2,10 +2,6 @@ import { Node, Project, SyntaxKind } from 'ts-morph';
 import { removedFeatureName, featureState } from './args';
 import { replaceComponent } from './replaceComponent';
 import { replaceToggleFunction } from './replaceToggleFunction';
-// npx ts-node .\scripts\remote-features.ts (feature name)  (feature state)
-
-// const removedFeatureName = process.argv[2]; // example isArticleEnabled
-// const featureState = process.argv[3]; // example off\on
 
 const toggleFunctionName = 'toggleFeatures';
 const toggleComponentName = 'ToggleFeaturesComponent';
@@ -29,7 +25,7 @@ project.addSourceFilesAtPaths('src/**/*.tsx');
 
 const files = project.getSourceFiles();
 
-function isToggleFunction(node: Node) {
+const isToggleFunction = (node: Node) => {
     let isToggleFeatures = false;
 
     // eslint-disable-next-line consistent-return
@@ -44,13 +40,13 @@ function isToggleFunction(node: Node) {
     });
 
     return isToggleFeatures;
-}
+};
 
-function isToggleComponent(node: Node) {
+const isToggleComponent = (node: Node) => {
     const identifier = node.getFirstDescendantByKind(SyntaxKind.Identifier);
 
     return identifier?.getText() === toggleComponentName;
-}
+};
 
 files.forEach((sourceFile) => {
     // eslint-disable-next-line consistent-return

@@ -220,12 +220,16 @@ This configuration ensures efficient builds with support for modern JavaScript a
 ## Additional scripts
 Additionally, the scripts folder contains various scripts for refactoring, simplifying code development, generating reports, and other tasks.
 
-- [update absolute imports with alias](./scripts/refactoring/updateImports/README.updateimports.md): 
+1. [update absolute imports with alias](./scripts/refactoring/updateImports/README.updateimports.md): 
   - **Purpose**: This script automates the process of modifying absolute import paths in a TypeScript project. It identifies import statements that reference specific "layers" (`app`, `shared`, `entities`, etc.) and prepends them with a custom prefix (`@/`). This ensures a consistent and organized import structure across the project, helping to standardize the way absolute imports are handled. The script efficiently processes all `.ts` and `.tsx` files in the `src/` directory and saves the updated files to disk.
   - **Command**: `npm run update-absolute-import`
-- [create public API for shared ui](./scripts/refactoring/createPublicApiForSharedUi/README.sharedPublicApi.md):
+2. [create public API for shared ui](./scripts/refactoring/createPublicApiForSharedUi/README.sharedPublicApi.md):
    - **Purpose**: This script generates index.ts files for all UI component directories in a TypeScript project and updates import paths to use a consistent format. It ensures each component directory in `src/shared/ui/` has an `index.ts` file that re-exports its contents and standardizes import paths to simplify and unify component references.
-  - **Command**: `npm run create-publicApi-for-shared-ui`
+   - **Command**: `npm run create-publicApi-for-shared-ui`
+
+3. [remove feature toggles](./scripts/remove-feature/README.removeFeature.md):
+   - **Purpose**: This script automates the removal of feature toggles in a TypeScript project. It replaces or removes `toggleFeatures` function calls and `ToggleFeaturesComponent` elements based on the specified feature state (`on` or `off`), allowing developers to automatically clean up deprecated or unnecessary features in the codebase.
+   - **Command**: npx ts-node ./scripts/remove-feature.ts <featureName> <featureState>
 ----
 
 ## CI pipeline та pre commit хуки
