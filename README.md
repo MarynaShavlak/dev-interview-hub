@@ -217,8 +217,15 @@ This configuration ensures efficient builds with support for modern JavaScript a
 ### [Storybook configuration](./config/storybook/README.storybook.md)
 
 
-
+## Additional scripts
 Additionally, the scripts folder contains various scripts for refactoring, simplifying code development, generating reports, and other tasks.
+
+- [update absolute imports with alias](./scripts/refactoring/updateImports/README.updateimports.md): 
+  - **Purpose**: This script automates the process of modifying absolute import paths in a TypeScript project. It identifies import statements that reference specific "layers" (`app`, `shared`, `entities`, etc.) and prepends them with a custom prefix (`@/`). This ensures a consistent and organized import structure across the project, helping to standardize the way absolute imports are handled. The script efficiently processes all `.ts` and `.tsx` files in the `src/` directory and saves the updated files to disk.
+  - **Command**: `npm run update-absolute-import`
+- [create public API for shared ui](./scripts/refactoring/createPublicApiForSharedUi/README.sharedPublicApi.md):
+   - **Purpose**: This script generates index.ts files for all UI component directories in a TypeScript project and updates import paths to use a consistent format. It ensures each component directory in `src/shared/ui/` has an `index.ts` file that re-exports its contents and standardizes import paths to simplify and unify component references.
+  - **Command**: `npm run create-publicApi-for-shared-ui`
 ----
 
 ## CI pipeline та pre commit хуки

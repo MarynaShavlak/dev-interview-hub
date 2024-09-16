@@ -62,27 +62,26 @@
             overflow-y: hidden;
         }
     }
+
     .SkeletonCard {
         width: 100%;
     }
-
 }
 
 .ArticleListItemRedesigned {
     &.GRID {
         @media (max-width: 1024px) {
-            width:50%;
+            width: 50%;
         }
+
         @media (max-width: 300px) {
-            width:100%;
+            width: 100%;
         }
+
         .card {
             width: 240px;
             height: 350px;
             overflow: hidden;
-
-
-
         }
 
         .img {

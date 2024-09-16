@@ -1,11 +1,12 @@
 .Tabs {
     cursor: pointer;
 }
-.tab{
-    transition: background-color 300ms ease-in, border-color 300ms ease-in, ;
+
+.tab {
+    transition: background-color 300ms ease-in, border-color 300ms ease-in,;
+
     &:hover {
         background-color: var(--card-bg);
         border-color: var(--card-bg);
     }
-
 }

@@ -1,7 +1,6 @@
 .addonLeft,
 .addonRight {
     display: flex;
-
 }
 
 .addonRight {
@@ -11,7 +10,6 @@
 .addonLeft {
     margin-right: 4px;
 }
-
 
 .addonRight svg,
 .addonLeft svg {
@@ -35,8 +33,6 @@
         }
     }
 }
-
-
 
 .clear {
     padding: 0;
@@ -85,6 +81,7 @@
 .square {
     padding: 0;
 }
+
 .square.s {
     width: var(--font-line-s);
     height: var(--font-line-s);

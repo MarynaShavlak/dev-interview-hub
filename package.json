@@ -29,7 +29,9 @@
     "prepare": "husky install",
     "generate:slice": "node ./scripts/createSlice/index.js",
     "postinstall": "node ./scripts/clear-cache/clear-cache.js",
-    "remove-feature": "ts-node ./scripts/remove-feature/remove-feature.ts"
+    "remove-feature": "ts-node ./scripts/remove-feature/remove-feature.ts",
+    "update-absolute-import": "ts-node ./scripts/refactoring/updateImports/updateImports.ts",
+    "create-publicApi-for-shared-ui": "ts-node ./scripts/refactoring/createPublicApiForSharedUi/createPublicApiForSharedUi.ts"
   },
   "lint-staged": {
     "**/*.{ts,tsx}": [
