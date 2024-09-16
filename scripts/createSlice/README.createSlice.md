@@ -50,9 +50,6 @@ src/features/AuthByUsername/
 │   │   └── AuthByUsername.module.scss
 └── index.ts
 ```
-
-
-
 ## Conclusion
 This script facilitates the initialization of new slices within a TypeScript project by automating the creation of directories and files. 
 It ensures that all necessary components are set up consistently and efficiently, saving time and reducing the potential for manual errors.
