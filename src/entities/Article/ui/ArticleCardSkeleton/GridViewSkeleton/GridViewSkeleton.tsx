@@ -50,7 +50,6 @@ export const GridViewSkeleton = memo(() => {
         on: () => cls.ArticleListItemRedesigned,
         off: () => cls.ArticleListItem,
     });
-
     return (
         <div className={classNames(mainClass, {}, [cls.GRID])}>
             <ToggleFeaturesComponent

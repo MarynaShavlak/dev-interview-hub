@@ -93,6 +93,7 @@
     "eslint-plugin-react": "^7.29.2",
     "eslint-plugin-react-hooks": "^4.3.0",
     "eslint-plugin-storybook": "^0.6.7",
+    "eslint-plugin-toggle-features-rule-plugin": "^0.0.5",
     "eslint-plugin-unused-imports": "^2.0.0",
     "file-loader": "^6.2.0",
     "fork-ts-checker-webpack-plugin": "^7.2.13",

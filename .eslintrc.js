@@ -24,6 +24,7 @@ module.exports = {
         'i18next',
         'react-hooks',
         'ms-production-project-plugin',
+        'toggle-features-rule-plugin',
         'unused-imports',
     ],
     rules: {
@@ -90,11 +91,15 @@ module.exports = {
                 alias: '@',
                 testFilesPatterns: [
                     '**/*.test.*',
+                    '**/*.testing.ts',
                     '**/*.story.*',
+                    '**/*.stories.tsx',
                     '**/StoreDecorator.tsx',
                 ],
             },
         ],
+        'toggle-features-rule-plugin/one-line-arrow-function': ['error'],
+        'toggle-features-rule-plugin/component-jsx-props': ['error'],
         'react/jsx-max-props-per-line': ['error', { maximum: 5 }],
     },
     globals: {
