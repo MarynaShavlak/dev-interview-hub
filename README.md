@@ -42,14 +42,16 @@ npm run start:dev или npm run start:dev:vite - запуск сервера + 
 
 ----
 
-## Робота з перекладами
+## Working with Translations
 
-У проєкті використовується бібліотека i18next для роботи з перекладами.
-Файли з перекладами зберігаються в public/locales.
+The project uses the **i18next** library for managing translations. Translation files are stored in the `public/locales` directory.
 
-Для комфортної роботи рекомендовано встановити плагін для webstorm/vscode
+For an efficient workflow, it is recommended to install the i18next plugin for WebStorm or VSCode, which provides helpful features like autocompletion for translation keys and detecting missing translations.
 
-Документація i18nex - [https://react.i18next.com/](https://react.i18next.com/)
+You can find more detailed documentation for i18next here: [i18next Documentation](https://react.i18next.com/).
+
+For the configuration related to translations, refer to the [configuration file](./src/shared/config/i18n/i18n.ts).
+
 
 ----
 
@@ -65,23 +67,27 @@ npm run start:dev или npm run start:dev:vite - запуск сервера + 
 
 ----
 
-## Лінтинг
+## Linting
 
-У проєкті використовується eslint для перевірки typescript коду і stylelint для перевірки файлів зі стилями.
+The project uses ESLint for checking TypeScript code and Stylelint for style files.
 
-Також для строгого контролю основних архітектурних принципів
-використовується власний eslint plugin *ms-production-project-plugin*,
-який містить 3 правила
-1) path-checker - забороняє використовувати абсолютні імпорти в рамках одного модуля
-2) layer-imports - перевіряє коректність використання шарів з точки зору FSD
-   (наприклад widgets не можна використовувати в features і entities)
-3) public-api-imports - дозволяє імпорт з інших модулів тільки з public api. Має auto fix
+Additionally, to strictly enforce core architectural principles, a custom ESLint plugin, <a href="https://www.npmjs.com/package/eslint-plugin-ms-production-project-plugin" target="_blank">ms-production-project-plugin</a>, is used. This plugin includes three key rules:
+1. **path-checker**: Prohibits the use of absolute imports within the same module._**Includes auto-fix functionality**_.
+2. **layer-imports**: Ensures proper layer usage according to the FSD architecture (e.g., widgets cannot be used in features or entities).
+3. **public-api-imports**: Allows imports from other modules only through their public API. _**Includes auto-fix functionality**_.
 
-##### Запуск лінтерів
-- `npm run lint:ts` - Перевірка ts файлів лінтером
-- `npm run lint:ts:fix` - Виправлення ts файлів лінтером
-- `npm run lint:scss` - Перевірка scss файлів style лінтером
-- `npm run lint:scss:fix` - Виправлення scss файлів style лінтером
+Furthermore, the project includes another custom plugin, <a href="https://www.npmjs.com/package/eslint-plugin-toggle-features-rule-plugin" target="_blank">eslint-plugin-toggle-features-rule-plugin</a>, which supports feature flag management with the following two rules:
+1. **one-line-arrow-function**: Enforces one-line arrow functions for `on` and `off` options in the `toggleFeatures` helper to maintain clean and concise code.
+2. **component-jsx-props**: Ensures that only JSX elements are passed directly to the `on` and `off` props of the `ToggleFeaturesComponent`, preventing the use of variables and making feature flag removal easier.
+
+Both plugins help maintain the project's code quality and consistency, while also supporting the automated removal of feature flags.
+
+##### Running Linters
+- `npm run lint:ts` - Lint TypeScript files
+- `npm run lint:ts:fix` - Fix TypeScript linting issues
+- `npm run lint:scss` - Lint SCSS files with Stylelint
+- `npm run lint:scss:fix` - Fix SCSS linting issues
+
 
 ----
 ## Storybook
@@ -273,12 +279,13 @@ This plugin enforces specific rules that simplify feature flag management and en
 ### [toggleFeatures](./src/shared/lib/features/lib/toggleFeatures/README.md)  Helper
 The `toggleFeatures` helper is used to control the logic based on the feature flag status. It accepts an object with the following options::
 ```javascript
-{
+const options = {
   name: 'feature-flag-name',  // Name of the feature flag
-  on: () => {}, { /* logic to execute when the feature is enabled */ }
-  off: () => {}, { /* logic to execute when the feature is disabled */ }
+  on: () => {}, // logic to execute when the feature is enabled 
+  off: () => {}, // logic to execute when the feature is disabled 
 }
 ```
+
 ### [ToggleFeaturesComponent](./src/shared/lib/features/components/ToggleFeaturesComponent/README.md)
 The `ToggleFeaturesComponent` is a React component designed to toggle between two different UI elements based on the state of a feature flag. It takes the following props:
 
