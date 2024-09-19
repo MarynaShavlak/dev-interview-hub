@@ -6,7 +6,7 @@ import { useProfileForm } from '../../model/selectors/getProfileForm/getProfileF
 import { useProfileIsLoading } from '../../model/selectors/getProfileIsLoading/getProfileIsLoading';
 import { useProfileReadonly } from '../../model/selectors/getProfileReadonly/getProfileReadonly';
 import { useProfileValidateErrors } from '../../model/selectors/getProfileValidateErrors/getProfileValidateErrors';
-import { useProfileActions } from '../../model/slice/profileSlice';
+import { useProfileActions } from '../../model/slices/profileSlice';
 
 /**
  * Custom hook for managing profile data and updates.

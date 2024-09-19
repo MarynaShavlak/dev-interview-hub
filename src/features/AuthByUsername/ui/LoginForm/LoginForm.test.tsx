@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event';
 import { componentRender } from '@/shared/lib/tests/componentRender/componentRender';
 import LoginForm from './LoginForm';
 import { setFeatureFlags } from '@/shared/lib/features';
-import { loginReducer } from '../../model/slice/loginSlice';
+import { loginReducer } from '../../model/slices/loginSlice';
 import { $api } from '@/shared/api/api';
 
 const options = {

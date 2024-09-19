@@ -32,22 +32,22 @@ Notification/
 ### 1. `api/`: Contains API-related functions and definitions for the Notification module.
 
 #### 1.1. `notificationApi.ts`
-- **`notificationApi.ts`**: Manages API calls related to notifications. 
+- [**notificationApi.ts**](./api/README.md): Manages API calls related to notifications. 
 
 ### 2. `model/`: Encapsulates the core logic and data structures of the Notification module.
 
 #### 2.1. `types/`
-- **`notification.ts`**: Contains TypeScript type definitions for the Notification module, defining the structure of a notification object. This ensures type safety and consistency throughout the application.
+- [**notification.ts**](./model/types/notification.ts): Contains TypeScript type definitions for the Notification module, defining the structure of a notification object. This ensures type safety and consistency throughout the application.
 
 ### 3. `ui/`: Contains the UI components related to the Notification module.
 
 #### 3.1. `NotificationItem/`: Manages the display and interaction of individual notification items.
 - **`NotificationItem.module.scss`**: Contains the styles specific to the `NotificationItem` component.
-- **`NotificationItem.tsx`**: The main `NotificationItem` component, responsible for rendering individual notifications.
+- [**NotificationItem.tsx**](./ui/NotificationItem/README.md): The main `NotificationItem` component, responsible for rendering individual notifications.
 
 #### 3.2. `NotificationList/`: Manages the display and interaction of the notification list.
 - **`NotificationList.module.scss`**: Contains the styles specific to the `NotificationList` component.
-- **`NotificationList.tsx`**: The main `NotificationList` component, responsible for rendering a list of notifications.
+- [**NotificationList.tsx**](./ui/NotificationList/README.md): The main `NotificationList` component, responsible for rendering a list of notifications.
 
 ## Public API
 

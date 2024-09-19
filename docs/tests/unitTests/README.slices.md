@@ -1,6 +1,6 @@
 # Tests for Slices
 
-## 1. [profileSlice](../../../src/features/editableProfileCard/model/slice/profileSlice.test.ts) Reducers
+## 1. [profileSlice](../../../src/features/editableProfileCard/model/slices/profileSlice.test.ts) Reducers
 
 ### Initial State Tests
 - **Initial State**: Confirms that the `profileReducer` returns the correct initial state when no action is provided.
@@ -20,7 +20,7 @@
 
 ---
 
-## 2. [loginSlice](../../../src/features/AuthByUsername/model/slice/loginSlice.test.ts) Reducers
+## 2. [loginSlice](../../../src/features/AuthByUsername/model/slices/loginSlice.test.ts) Reducers
 
 ### Initial State Tests
 - **Initial State**: Confirms that the `loginReducer` returns the correct initial state when no action is provided.
@@ -70,7 +70,7 @@
 
 ---
 
-## 5. [articleDetailsSlice](../../../src/entities/Article/model/slice/articleDetailsSlice.test.ts) Reducers
+## 5. [articleDetailsSlice](../../../src/entities/Article/model/slices/articleDetailsSlice.test.ts) Reducers
 
 ### Initial State Tests
 - **Initial State**: Ensures that the `articleDetailsReducer` returns the initial state when no action is provided.
@@ -99,7 +99,7 @@
 
 ---
 
-## 7. [userSlice](../../../src/entities/User/model/slice/userSlice.test.ts) Reducers
+## 7. [userSlice](../../../src/entities/User/model/slices/userSlice.test.ts) Reducers
 
 ### Initial State Tests
 - **Initial State**: Ensures that the `userReducer` returns the initial state when no action is provided.

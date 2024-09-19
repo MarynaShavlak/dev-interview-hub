@@ -10,23 +10,34 @@ The `Comment` module is organized into several directories, each serving a speci
 ```text
 Comment/
 ├── model/
-│   └── types/
-│       └── comment.ts
+│   ├── types/
+│   │   ├── comment.ts
+│   │   └── addCommentForm.ts
+│   ├── selectors/
+│   │   └── addCommentFormSelectors.ts
 ├── ui/
-│   └── CommentCard/
-│       ├── CommentCardSkeleton/
-│       │   ├── CommentCardSkeleton.tsx
-│       ├── DeprecatedCommentCard/
-│       │   ├── DeprecatedCommentCard.tsx
-│       ├── RedesignedCommentCard/
-│       │   ├── RedesignedCommentCard.tsx
-│       ├── CommentCard.module.scss
-│       ├── CommentCard.tsx
-│   └── CommentList/
-│       ├── CommentListSkeleton.tsx
-│       ├── CommentList.tsx
+│   ├── CommentCard/
+│   │   ├── CommentCardSkeleton/
+│   │   │   └── CommentCardSkeleton.tsx
+│   │   ├── DeprecatedCommentCard/
+│   │   │   └── DeprecatedCommentCard.tsx
+│   │   ├── RedesignedCommentCard/
+│   │   │   └── RedesignedCommentCard.tsx
+│   │   ├── CommentCard.module.scss
+│   │   └── CommentCard.tsx
+│   ├── CommentList/
+│   │   └── CommentList.tsx
+│   ├── AddCommentForm/
+│   │   ├── AddCommentForm.tsx
+│   │   ├── DeprecatedAddCommentForm/
+│   │   │   └── DeprecatedAddCommentForm.tsx
+│   │   └── RedesignedAddCommentForm/
+│   │       └── RedesignedAddCommentForm.tsx
+├── lib/
+│   ├── hook/
+│   │   └── useAddCommentForm.ts
 ├── index.ts
-├── testing.ts
+└── testing.ts
 ```
 
 ## Detailed Description
@@ -34,26 +45,54 @@ Comment/
 ### 1. `model/`: Encapsulates the core logic and data structures of the Comment
 
 #### 1.1. `types/`
-- **comment.ts**: Contains TypeScript type definitions for the Comment module, defining the structure of a comment.
+- [**comment.ts**](./model/types/comment.ts): Contains TypeScript type definitions for the Comment module, defining the structure of a comment.
+- [**addCommentForm.ts**](./model/types/comment.ts): Contains interface representing the state of the add comment form.
+
+#### 1.2.`selectors/`
+  - [**addCommentFormSelectors.ts**](./model/selectors/README.md): Contains selector functions to reto access and retrieve the text and error state of the add comment form from the Redux store.
+
+#### 1.3. `slices/`
+  - [**addCommentFormSlice.ts**](./model/slices/README.md): Manages to the state of a comment form in Redux, including actions and reducers.
+
 
 ### 2. `ui/`: Contains the UI components related to the Comment module.
 
-#### 2.1. `CommentCard/`: Manages the display of individual comments
-- **`CommentCardSkeleton`**: A skeleton component used for loading states of the CommentCard
-- **`DeprecatedCommentCard`**: The deprecated version of the CommentCard component.
-- **`RedesignedCommentCard`**: The redesigned version of the CommentCard component.
-- **`CommentCard.module.scss`**: SCSS module containing styles for the CommentCard component.
-- **`CommentCard`**: The main CommentCard component.
+#### 2.1. `CommentCard/`: Manages the display of individual comments.
+- [**CommentCard.tsx**](./ui/CommentCard/README.md): The main `CommentCard` component.
+
+- **`DeprecatedCommentCard/`**
+  - [**DeprecatedCommentCard.tsx**](./ui/CommentCard/DeprecatedCommentCard/README.md): The deprecated version of the `CommentCard` component.
+
+- **`RedesignedCommentCard/`**
+  - [**RedesignedCommentCard.tsx**](./ui/CommentCard/RedesignedCommentCard/README.md): The redesigned version of the `CommentCard` component.
+
+- **`CommentCardSkeleton/`**
+  - [**CommentCardSkeleton.tsx**](./ui/CommentCard/CommentCardSkeleton/README.md): A skeleton component used for loading states of the `CommentCard`.
+
+- **CommentCard.module.scss**: SCSS module containing styles for the `CommentCard` component.
 
 #### 2.2. `CommentList/`: Manages the display of a list of comments.
-- **`CommentListSkeleton`**: A skeleton component used for loading states of the CommentList.
-- **`CommentList`**: The main CommentList component.
+- [**CommentList.tsx**](./ui/CommentList/README.md): The main `CommentList` component.
 
-### 3. `index.ts`
+#### 2.3. `AddCommentForm/`: Manages the display of form for adding new comments.
+- [**AddCommentForm.tsx**](./ui/AddCommentForm/README.md): The main `AddCommentForm` component.
+- **`DeprecatedCommentCard/`**
+  - [**DeprecatedAddCommentForm.tsx**](./ui/AddCommentForm/DeprecatedAddCommentForm/README.md): The deprecated version of the `AddCommentForm` component.
+
+- **`RedesignedCommentCard/`**
+  - [**RedesignedAddCommentForm.tsx**](./ui/AddCommentForm/RedesignedAddCommentForm/README.md): The redesigned version of the `AddCommentForm` component.
+
+
+### 3. `lib/`: Contains reusable hooks for the Comment  module.
+- **`hook/`**
+  - [**useAddCommentForm.ts**](./lib/hook/README.md): Hook for managing the add comment form state and actions.
+
+
+### 4. `index.ts`
 
 Entry point for the Comment module, exporting the necessary component and type.
 
-### 4. `testing.ts`
+### 5. `testing.ts`
 
 Entry point for testing-related functionalities within the Comment module. It is used primarily for development purposes, such as testing data, reducers, and integrating with tools like Storybook. This file is not included in the production code but is essential for ensuring the module's functionality during development.
 

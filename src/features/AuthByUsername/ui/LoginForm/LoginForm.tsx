@@ -6,7 +6,7 @@ import {
     DynamicModuleLoader,
     ReducersList,
 } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
-import { loginReducer } from '../../model/slice/loginSlice';
+import { loginReducer } from '../../model/slices/loginSlice';
 
 export interface LoginFormProps {
     className?: string;

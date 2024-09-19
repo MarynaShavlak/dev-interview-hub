@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { clearUserDataFromStorage } from '../../../lib/userUtils/userUtils';
-import { userActions } from '../../../model/slice/userSlice';
+import { userActions } from '../../slices/userSlice';
 import { ThunkConfig } from '@/app/providers/StoreProvider';
 
 /**

@@ -21,8 +21,8 @@ User/
 │   │   │   └── getUserAuthData.ts
 │   │   ├── getUserInited/
 │   │   │   └── getUserInited.ts
-│   │   ├── jsonSettings/
-│   │   │   └── jsonSettings.ts
+│   │   ├── getJsonSettings/
+│   │   │   └── getJsonSettings.ts
 │   │   ├── roles/
 │   │   │    └── roleSelectors.ts
 │   │   └── index.ts
@@ -33,7 +33,7 @@ User/
 │   │   │   └── logoutUser.ts
 │   │   ├── saveJsonSettings/
 │   │   │   └── saveJsonSettings.ts
-│   └── slice/
+│   └── slices/
 │       └── userSlice.ts
 │   ├── types/
 │       ├── jsonSettings.ts
@@ -48,47 +48,47 @@ User/
 ## Detailed Description
 
 ### 1. `api/`: Contains the API interface for the User module.
-- **userApi.ts**: This file defines the API calls related to user operations such as setJsonSettings, getUserDataById.
+- [**userApi.ts**](./api/README.md): This file defines the API calls related to user operations such as setJsonSettings, getUserDataById.
 
 ### 2. `model/`: Encapsulates the core logic and data structures of the User module.
 
 #### 2.1. `consts/`
-- **consts.ts**: Contains constant values used across the User module, such as UserRoles.
+- [**consts.ts**](./model/consts/consts.ts): Contains constant values used across the User module, such as UserRoles.
 
 #### 2.2.`selectors/`: Includes selector functions used to extract specific pieces of state from the Redux store.
 
 - **getUserAuthData/**
-    - **getUserAuthData.ts**: Selector to get user authentication data from the state.
+    - [**getUserAuthData.ts**](./model/selectors/getUserAuthData/README.md): Selector to get user authentication data from the state.
 - **getUserInited/**
-    - **getUserInited.ts**: Selector to check if the user initialization process is complete.
-- **jsonSettings/**
-    - **jsonSettings.ts**: Selector to retrieve user-specific JSON settings.
+    - [**getUserInited.ts**](./model/selectors/getUserInited/README.md): Selector to check if the user initialization process is complete.
+- **getJsonSettings/**
+    - [**getJsonSettings.ts**](./model/selectors/getJsonSettings/getJsonSettings.ts): Selector to retrieve user-specific JSON settings.
 - **roles/**
-    - **roleSelectors.ts**: Selector related to user roles.
+    - [**roleSelectors.ts**](./model/selectors/roles/README.md): Selector related to user roles.
 - **index.ts**
     - Entry point for the selectors, exporting the necessary selectors.
 #### 2.3. `services/`: Contains service functionalities related to user data management:
 
 - **initAuthData/**
-    - **initAuthData.ts**: Service to initialize user authentication data.
+    - [**initAuthData.ts**](./model/services/initAuthData/README.md): Service to initialize user authentication data.
 - **saveJsonSettings/**
-    - **saveJsonSettings.ts**: Service to save user-specific JSON settings.
+    - [**saveJsonSettings.ts**](./model/services/saveJsonSettings/README.md): Service to save user-specific JSON settings.
 - **logout/**
-  - **logout.ts**: Service to handle additional server-side logout processes if required.
+  - [**logout.ts**](./model/services/logoutUser/README.md): Service to handle additional server-side logout processes if required.
 
-#### 2.4. `slice/`: Contains the Redux slice for managing user state.
+#### 2.4. `slices/`: Contains the Redux slice for managing user state.
 
-- **userSlice.ts**: Defines the Redux slice, including actions, reducers  and extra reducers for managing user state.
+- [**userSlice.ts**](./model/slices/README.md): Defines the Redux slice, including actions, reducers  and extra reducers for managing user state.
 
 #### 2.5. `types/`: Contains TypeScript type definitions for the User module.
 
-- **jsonSettings.ts**: Defines types for JSON settings related to the user.
-- **user.ts**: Defines the User and UserSchema interfaces .
+- [**jsonSettings.ts**](./model/types/jsonSettings.ts): Defines types for JSON settings related to the user.
+- [**user.ts**](./model/types/user.ts): Defines the User and UserSchema interfaces .
 
 ### 3. `lib/`: Contains reusable utility functions  for the User  module.
 - **userUtils/**
-  - **userUtils.ts**: Utility functions for initializing user features and updating localstorage with user info.
-  - 
+  - [**userUtils.ts**](./lib/userUtils/userUtils.ts): Utility functions for initializing user features and updating localstorage with user info.
+  
 ### 4. `index.ts`
 
 Entry point for the User module, exporting the necessary components, functions, and types.

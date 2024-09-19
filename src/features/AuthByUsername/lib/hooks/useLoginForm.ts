@@ -5,7 +5,7 @@ import { useLoginError } from '../../model/selectors/getLoginError/getLoginError
 import { useLoginIsLoading } from '../../model/selectors/getLoginIsLoading/getLoginIsLoading';
 import { useLoginPassword } from '../../model/selectors/getLoginPassword/getLoginPassword';
 import { useLoginUsername } from '../../model/selectors/getLoginUsername/getLoginUsername';
-import { useLoginActions } from '../../model/slice/loginSlice';
+import { useLoginActions } from '../../model/slices/loginSlice';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 
 /**

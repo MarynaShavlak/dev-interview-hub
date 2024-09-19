@@ -12,7 +12,7 @@ import {
 } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { VStack } from '@/shared/ui/common/Stack';
 import { fetchProfileData } from '../../model/services/fetchProfileData/fetchProfileData';
-import { profileReducer } from '../../model/slice/profileSlice';
+import { profileReducer } from '../../model/slices/profileSlice';
 import { EditableProfileCardHeader } from '../EditableProfileCardHeader/EditableProfileCardHeader';
 import cls from './EditableProfileCard.module.scss';
 

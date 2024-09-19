@@ -82,13 +82,14 @@ export const {
 
 
 ## Usage Example
+
 ```typescript jsx
 import { useProfileActions, profileReducer } from '@/path/to/profileSlice';
 import { configureStore } from '@reduxjs/toolkit';
 
 const store = configureStore({
     reducer: {
-      profile: profileReducer,
+        profile: profileReducer,
     },
 });
 
@@ -96,27 +97,27 @@ const store = configureStore({
 
 import { useCallback } from 'react';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { useProfileActions } from '../../model/slice/profileSlice';
+import { useProfileActions } from './/profileSlice';
 import { useProfileReadonly } from '../../model/selectors/getProfileReadonly/getProfileReadonly';
 import { updateProfileData } from '../../model/services/updateProfileData/updateProfileData';
 
 export const EditableProfileCardHeader = () => {
-  const readonly = useProfileReadonly();
-  const dispatch = useAppDispatch();
+    const readonly = useProfileReadonly();
+    const dispatch = useAppDispatch();
 
-  const onSave = useCallback(() => dispatch(updateProfileData()), [dispatch]);
-  const onEdit = useCallback(() => setReadonly(false), [setReadonly]);
-  const onCancelEdit = useCallback(() => cancelEdit(), [cancelEdit]);
+    const onSave = useCallback(() => dispatch(updateProfileData()), [dispatch]);
+    const onEdit = useCallback(() => setReadonly(false), [setReadonly]);
+    const onCancelEdit = useCallback(() => cancelEdit(), [cancelEdit]);
 
-  return (
-          <div>
-          {readonly ? ( <button onClick={onEdit}> Edit Profile </button>) 
-                    : ( <div >
-                            <button onClick={onCancelEdit}> Cancel </button>
-                            <button  onClick={onSave}> Save </button>
-                        </div>)
-          }
-          </div>
+    return (
+        <div>
+            {readonly ? (<button onClick={onEdit}> Edit Profile </button>)
+                : (<div>
+                    <button onClick={onCancelEdit}> Cancel</button>
+                    <button onClick={onSave}> Save</button>
+                </div>)
+            }
+        </div>
     );
 };
 ```

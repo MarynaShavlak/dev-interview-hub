@@ -313,19 +313,20 @@ To automatically remove a feature flag, use the [remove-feature.ts](./scripts/re
 > [!IMPORTANT]
 > The success of automatic feature flag removal is directly tied to the proper use of the custom ESLint plugin. By adhering to the rules defined in the plugin, you ensure that the feature toggle logic is structured in a way that allows for clean, automated feature removal.
 
+## Shared
 
-## Сутності (entities)
+## Entities
 
-- [Article](/src/entities/Article)
-- [Comment](/src/entities/Comment)
-- [Country](/src/entities/Country)
-- [Currency](/src/entities/Currency)
-- [Notification](/src/entities/Notification)
-- [Profile](/src/entities/Profile)
-- [Rating](/src/entities/Rating)
-- [User](/src/entities/User)
+- [Article](./src/entities/Article/README.md)
+- [Comment](./src/entities/Comment/README.md)
+- [Country](./src/entities/Country/README.md)
+- [Currency](./src/entities/Currency/README.md)
+- [Notification](./src/entities/Notification/README.md)
+- [Profile](./src/entities/Profile/README.md)
+- [Rating](./src/entities/Rating/README.md)
+- [User](./src/entities/User/README.md)
 
-## Фічі (features)
+## Features
 
 - [addCommentForm](/src/features/addCommentForm)
 - [articleRating](/src/features/articleRating)
@@ -337,3 +338,9 @@ To automatically remove a feature flag, use the [remove-feature.ts](./scripts/re
 - [notificationButton](/src/features/notificationButton)
 - [ThemeSwitcher](/src/features/ThemeSwitcher)
 - [ScrollRestoration](/src/features/UI)
+
+
+## Widgets 
+
+
+## Pages

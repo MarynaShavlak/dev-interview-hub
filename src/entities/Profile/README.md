@@ -33,24 +33,24 @@ Profile/
 ### 1. `model/`: Encapsulates the core logic and data structures of the Profile module.
 
 #### 1.1. `types/`
-- **`profile.ts`**: Contains TypeScript type definitions for the Profile module, defining the structure of a profile object. This ensures type safety and consistency throughout the application.
+- [**profile.ts**](./model/types/profile.ts): Contains TypeScript type definitions for the Profile module, defining the structure of a profile object. This ensures type safety and consistency throughout the application.
 
 ### 2. `ui/`: Contains the UI components related to the Profile module.
 
-#### 2.1. `DeprecatedProfileCard/`: Manages the display and interaction of the deprecated profile card UI.
-- **`DeprecatedProfileCard.module.scss`**: Contains the styles specific to the `DeprecatedProfileCard` component.
-- **`DeprecatedProfileCard.tsx`**: The main `DeprecatedProfileCard` component, responsible for rendering the deprecated profile card.
-- **`DeprecatedProfileCardError`**: Handles the display of errors in the deprecated profile card.
-- **`DeprecatedProfileCardLoader`**: Manages the loading state of the deprecated profile card.
+#### 2.1. `ProfileCard/`: Manages the display and interaction of the profile card UI.
+- [**ProfileCard.tsx**](./ui/ProfileCard/README.md): The main `ProfileCard` component, responsible for rendering the profile card.
 
-#### 2.2. `ProfileCard/`: Manages the display and interaction of the profile card UI.
-- **`ProfileCard.tsx`**: The main `ProfileCard` component, responsible for rendering the profile card.
+#### 2.2. `DeprecatedProfileCard/`: Manages the display and interaction of the deprecated profile card UI.
+- **`DeprecatedProfileCard.module.scss`**: Contains the styles specific to the `DeprecatedProfileCard` component.
+- [**DeprecatedProfileCard.tsx**](./ui/DeprecatedProfileCard/README.md): The main `DeprecatedProfileCard` component, responsible for rendering the deprecated profile card.
+- [**DeprecatedProfileCardError**](./ui/DeprecatedProfileCard/DeprecatedProfileCardError/README.md): Handles the display of errors in the deprecated profile card.
+- [**DeprecatedProfileCardLoader**](./ui/DeprecatedProfileCard/DeprecatedProfileCardLoader/README.md): Manages the loading state of the deprecated profile card.
 
 #### 2.3. `RedesignedProfileCard/`: Manages the display and interaction of the redesigned profile card UI.
 - **`RedesignedProfileCard.module.scss`**: Contains the styles specific to the `RedesignedProfileCard` component.
-- **`RedesignedProfileCard.tsx`**: The main `RedesignedProfileCard` component, responsible for rendering the redesigned profile card.
-- **`RedesignedProfileCardError`**: Handles the display of errors in the redesigned profile card.
-- **`RedesignedProfileCardSkeleton`**: Manages the loading state of the redesigned profile card.
+- [**RedesignedProfileCard.tsx**](./ui/RedesignedProfileCard/README.md): The main `RedesignedProfileCard` component, responsible for rendering the redesigned profile card.
+- [**RedesignedProfileCardError**](./ui/RedesignedProfileCard/RedesignedProfileCardError/README.md): Handles the display of errors in the redesigned profile card.
+- [**RedesignedProfileCardSkeleton**](./ui/RedesignedProfileCard/RedesignedProfileCardSkeleton/README.md): Manages the loading state of the redesigned profile card.
 
 ### 3. `index.ts`
 - **`index.ts`**: Entry point for the Profile module, exporting the necessary components and types for use in the application.

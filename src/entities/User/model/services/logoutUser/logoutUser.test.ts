@@ -1,5 +1,5 @@
 import { logoutUser } from './logoutUser';
-import { userActions } from '../../../model/slice/userSlice';
+import { userActions } from '../../slices/userSlice';
 import { TestAsyncThunk } from '@/shared/lib/tests/TestAsyncThunk/TestAsyncThunk';
 import { USER_LOCALSTORAGE_KEY } from '@/shared/const/localstorage';
 

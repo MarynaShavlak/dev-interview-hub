@@ -39,7 +39,7 @@ src/features/AuthByUsername/
 ├── model/
 │   ├── selectors/
 │   ├── services/
-│   ├── slice/
+│   ├── slices/
 │   │   └── AuthByUsernameSlice.ts
 │   └── types/
 │       └── AuthByUsernameSchema.ts

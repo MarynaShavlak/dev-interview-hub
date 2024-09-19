@@ -4,7 +4,7 @@ import { DeprecatedEditableProfileCardHeader } from './DeprecatedEditableProfile
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
 import { useUserAuthData } from '@/entities/User';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { useProfileActions } from '../../model/slice/profileSlice';
+import { useProfileActions } from '../../model/slices/profileSlice';
 import { useProfileReadonly } from '../../model/selectors/getProfileReadonly/getProfileReadonly';
 import { useProfileData } from '../../model/selectors/getProfileData/getProfileData';
 import { updateProfileData } from '../../model/services/updateProfileData/updateProfileData';
