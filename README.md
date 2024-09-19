@@ -327,17 +327,25 @@ To automatically remove a feature flag, use the [remove-feature.ts](./scripts/re
 - [User](./src/entities/User/README.md)
 
 ## Features
+- [ArticleCategoryTabs](src/features/ArticleCategoryTabs/ui/ArticleCategoryTabs/README.md)
+- [ArticleComments](./src/features/ArticleComments/README.md)
+- [ArticleEditNavigationButton](./src/features/ArticleEditNavigationButton/README.md)
+- [ArticleListNavigationButton](./src/features/ArticleListNavigationButton/README.md)
+- [articlePageGreeting](./src/features/articlePageGreeting/README.md)
+- [articleRating](./src/features/articleRating/README.md)
+- [articleRecommendationsList](./src/features/articleRecommendationsList/README.md)
+- [ArticleSortSelector](./src/features/ArticleSortSelector/README.md)
+- [ArticleViewSelector](./src/features/ArticleViewSelector/README.md)
+- [AuthByUsername](./src/features/AuthByUsername/README.md)
+- [avatarDropdown](./src/features/avatarDropdown/README.md)
+- [editableProfileCard](./src/features/editableProfileCard/README.md)
+- [LangSwitcher](./src/features/LangSwitcher/README.md)
+- [notificationButton](./src/features/notificationButton/README.md)
+- [scrollToTopButton](./src/features/scrollToTopButton/README.md)
+- [ThemeSwitcher](./src/features/ThemeSwitcher/README.md)
+- [uiDesignSwitcher](./src/features/uiDesignSwitcher/README.md)
 
-- [addCommentForm](/src/features/addCommentForm)
-- [articleRating](/src/features/articleRating)
-- [articleRecommendationsList](/src/features/articleRecommendationsList)
-- [AuthByUsername](/src/features/AuthByUsername)
-- [avatarDropdown](/src/features/avatarDropdown)
-- [editableProfileCard](/src/features/editableProfileCard)
-- [LangSwitcher](/src/features/LangSwitcher)
-- [notificationButton](/src/features/notificationButton)
-- [ThemeSwitcher](/src/features/ThemeSwitcher)
-- [ScrollRestoration](/src/features/UI)
+
 
 
 ## Widgets 
