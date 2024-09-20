@@ -343,7 +343,7 @@ To automatically remove a feature flag, use the [remove-feature.ts](./scripts/re
 - [notificationButton](src/features/NotificationButton/ui/NotificationButton/README.md)
 - [scrollToTopButton](src/features/ScrollToTopButton/ui/ScrollToTopButton/README.md)
 - [ThemeSwitcher](src/features/ThemeSwitcher/ui/ThemeSwitcher/README.md)
-- [uiDesignSwitcher](src/features/UIDesignSwitcher/README.md)
+- [uiDesignSwitcher](src/features/UIDesignSwitcher/ui/UiDesignSwitcher/README.md)
 
 
 

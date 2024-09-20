@@ -1,47 +1,31 @@
-# UiDesignSwitcher Feature
+# Feature UIDesignSwitcher Documentation
 
 ## Overview
-The **`UiDesignSwitcher`** component provides a user interface for switching between a redesigned and a legacy version of an application interface. 
-It dynamically adjusts the UI based on user preferences and feature flags, enhancing the flexibility and user experience of applications that support multiple design versions.
 
-## Type Definition 
-```typescript
-interface UiDesignSwitcherProps {
-    className?: string;
-}
+The `UIDesignSwitcher` module allows users to toggle between a legacy and redesigned version of an application's interface, offering flexibility in UI design based on feature flags and user preferences. It dynamically adjusts the interface based on design settings, enabling seamless transitions between different versions while enhancing the user experience. This module is especially useful for applications undergoing gradual UI updates or offering customizable user experiences.
+
+## Module Structure
+
+The `UIDesignSwitcher`  module is organized into UI components and an entry point for the module.
+```text
+UIDesignSwitcher/
+├── ui/
+│   └── UiDesignSwitcher/
+│       └── UiDesignSwitcher.tsx
+└── index.ts
 ```
 
-## Props
-The **`UiDesignSwitcher`** component accepts the following props:
+## Detailed Description
 
-| Prop       | Type       | Required / Optional | Description                                          |
-|------------|------------|----------------------|------------------------------------------------------|
-| `className` | `string`   | Optional             | Custom class name for additional styling.           |
+### 1. `ui/`: UI components
+- **`UiDesignSwitcher/`**:
+    - [**UiDesignSwitcher.tsx**](./ui/UiDesignSwitcher/README.md): Main component that handles the dynamic switching between the legacy and redesigned versions of the application interface.
 
+### 2. `index.ts`
+- Entry point for the `UIDesignSwitcher` module, exporting the  component for easy use throughout the application.
 
-## Features
-1.**Dynamic Design Switching**: Users can toggle between the redesigned and legacy interfaces based on feature flags. This allows for gradual rollouts or user-specific customization of the UI.
-
-2.**Loading State**: While switching between designs, the component displays a loading state using `Skeleton` components to indicate that a transition is in progress. This ensures a smooth user experience by providing visual feedback during asynchronous operations.
-
-3.**Feature Flag Integration**: The component uses `getFeatureFlag` to determine the current design state and `updateFeatureFlag` to save user preferences. This integration ensures that design changes are consistent with the application's feature flag system and persist across sessions.
-
-4.**Design Adaptation**: The component renders different UI elements based on whether the redesigned interface is enabled or not.
-
-5.**User Authentication**: It leverages `useUserAuthData` to apply design preferences specific to the authenticated user, ensuring that each user's choice is respected and maintained.
-
-6.**State Management**: The component manages its loading state using `useState` and forces updates with `useForceUpdate` to ensure that UI changes are promptly reflected without relying on traditional state management techniques.
-
-## Usage Example
-```typescript jsx
-import { UiDesignSwitcher } from '@/features/UiDesignSwitcher';
-
-const App = () => (
-    <div>
-        <UiDesignSwitcher className="my-custom-class" />
-        {/* The UiDesignSwitcher component allows users to switch between design versions */}
-    </div>
-);
-```
+## Public API
+- **Components**:
+    - `UiDesignSwitcher`: A component that allows users to toggle between legacy and redesigned interfaces, adapting to feature flags and user preferences.
 ## Conclusion
-The **`UiDesignSwitcher`** component is a powerful tool for managing UI design variations based on feature flags and user preferences. Its support for dynamic design switching, user-specific settings, and seamless integration with the feature flag system make it an essential component for modern, adaptable user interfaces. By incorporating loading states and conditional rendering, it ensures a responsive and user-friendly experience while handling design transitions effectively.
+The `UIDesignSwitcher` module is a robust and flexible tool for managing transitions between different UI designs in an application. By allowing users to toggle between legacy and redesigned interfaces, it enables gradual design rollouts while respecting user preferences. Its integration with feature flags and user-specific settings, combined with a smooth loading experience, makes it an essential component for any application that supports multiple UI versions. With its dynamic design adaptation and efficient state management, it ensures a seamless and user-friendly experience.
