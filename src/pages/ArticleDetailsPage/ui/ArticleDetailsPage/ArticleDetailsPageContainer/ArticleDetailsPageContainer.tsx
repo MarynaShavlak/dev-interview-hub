@@ -7,7 +7,7 @@ import {
     useArticleDetailsError,
 } from '@/entities/Article';
 import { ArticleComments } from '@/features/ArticleComments';
-import { ArticleRating } from '@/features/articleRating';
+import { ArticleRating } from '@/features/ARating';
 import { Card } from '@/shared/ui/redesigned/Card';
 import { ArticleDetailsPageHeader } from '../DeprecatedArticleDetailsPage/ArticleDetailsPageHeader/ArticleDetailsPageHeader';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';

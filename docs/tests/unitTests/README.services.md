@@ -59,14 +59,14 @@
 
 ## 5. Article Rating Service
 
-### [getArticleRating](../../../src/features/articleRating/api/articleRatingApi.test.tsx)
+### [getArticleRating](../../../src/features/ARating/api/articleRatingApi.test.tsx)
 - **Request Validation**: Ensures correct API request structure and handling of successful and unsuccessful responses.
 
-###  [useRateArticle](../../../src/features/articleRating/api/articleRatingApi.test.tsx) Hook
+###  [useRateArticle](../../../src/features/ARating/api/articleRatingApi.test.tsx) Hook
 - **Success**: Tests correct loading state transitions and data handling.
 - **Error Handling**: Covers API failure scenarios.
 
-###  [useRateArticle](../../../src/features/articleRating/api/articleRatingApi.test.tsx) Hook
+###  [useRateArticle](../../../src/features/ARating/api/articleRatingApi.test.tsx) Hook
 - **Success**: Verifies correct state transitions and data handling during rating submission.
 - **Error Handling**: Simulates API failure and checks error handling.
 
