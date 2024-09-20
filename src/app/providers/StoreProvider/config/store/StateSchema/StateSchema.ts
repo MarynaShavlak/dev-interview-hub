@@ -11,7 +11,7 @@ import { ArticleDetailsSchema } from '@/entities/Article';
 import { UserSchema } from '@/entities/User';
 
 import { LoginSchema } from '@/features/AuthByUsername';
-import { ProfileSchema } from '@/features/EProfileCard';
+import { ProfileSchema } from '@/features/EditableProfileCard';
 import { ArticlesPageSchema } from '@/pages/ArticlesPage';
 import { rtkApi } from '@/shared/api/rtkApi';
 import { AddCommentFormSchema } from '@/entities/Comment';

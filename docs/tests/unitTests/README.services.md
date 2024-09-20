@@ -9,15 +9,15 @@
 
 ## 2. EditableProfileCard Service
 
-### [fetchProfileData](../../../src/features/EProfileCard/model/services/fetchProfileData/fetchProfileData.test.ts)
+### [fetchProfileData](../../../src/features/EditableProfileCard/model/services/fetchProfileData/fetchProfileData.test.ts)
 - **Success**: Ensures profile data is fetched successfully with a valid ID.
 - **Error Handling**: Includes tests for 403 status, network errors, missing response data, and simultaneous requests.
 
-### [updateProfileData](../../../src/features/EProfileCard/model/services/updateProfileData/updateProfileData.test.ts)
+### [updateProfileData](../../../src/features/EditableProfileCard/model/services/updateProfileData/updateProfileData.test.ts)
 - **Success**: Verifies profile data updates correctly.
 - **Error Handling**: Covers 403 status, incorrect user data, multiple validation issues, network errors, missing response data, incomplete but valid data, missing profile ID, and 401 status.
 
-### [validateProfileData](../../../src/features/EProfileCard/model/services/validateProfileData/validateProfileData.test.ts)
+### [validateProfileData](../../../src/features/EditableProfileCard/model/services/validateProfileData/validateProfileData.test.ts)
 - **Validation Checks**: Tests various scenarios, including missing fields (firstname, lastname, username, age), non-integer age, incorrect fields, and empty/missing profile object.
 
 ## 3. Article Service

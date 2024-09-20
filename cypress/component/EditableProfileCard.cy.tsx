@@ -1,4 +1,4 @@
-import { EditableProfileCard } from '../../src/features/EProfileCard';
+import { EditableProfileCard } from '../../src/features/EditableProfileCard';
 import { TestProvider } from '../../src/shared/lib/tests/componentRender/componentRender';
 
 const USER_ID = '1';

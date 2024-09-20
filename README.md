@@ -338,7 +338,7 @@ To automatically remove a feature flag, use the [remove-feature.ts](./scripts/re
 - [ArticleViewSelector](src/features/ArticleViewSelector/ui/ArticleViewSelector/README.md)
 - [AuthByUsername](./src/features/AuthByUsername/README.md)
 - [avatarDropdown](./src/features/avatarDropdown/README.md)
-- [editableProfileCard](src/features/EProfileCard/README.md)
+- [editableProfileCard](src/features/EditableProfileCard/README.md)
 - [LangSwitcher](./src/features/LangSwitcher/README.md)
 - [notificationButton](./src/features/notificationButton/README.md)
 - [scrollToTopButton](./src/features/scrollToTopButton/README.md)

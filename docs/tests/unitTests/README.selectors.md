@@ -33,12 +33,12 @@ The project includes comprehensive tests for selectors, ensuring they accurately
 
  | Selector  | Purpose                                                                                   | Edge Cases Handled                         |
 |----------------|-------------------------------------------------------------------------------------------|--------------------------------------------|
- | [getProfileData](../../../src/features/EProfileCard/model/selectors/getProfileData/getProfileData.test.ts) | Verifies that the selector correctly returns the profile data from the state.             | Handles cases with an empty state.         |
- | [getProfileError](../../../src/features/EProfileCard/model/selectors/getProfileError/getProfileError.test.ts) | Ensures that the selector returns the profile error from the state.                       | Handles scenarios where the state is empty.|
- | [getProfileForm](../../../src/features/EProfileCard/model/selectors/getProfileForm/getProfileForm.test.ts) | Confirms that the selector returns the profile form data.                                 | Handles cases where the state is empty.    |
-  | [getProfileIsLoading](../../../src/features/EProfileCard/model/selectors/getProfileIsLoading/getProfileIsLoading.test.ts) | Verifies that the selector correctly returns the loading status of the profile.           | Handles empty state scenarios.             |
- | [getProfileReadonly](../../../src/features/EProfileCard/model/selectors/getProfileReadonly/getProfileReadonly.test.ts) | Ensures that the selector correctly returns the readonly status of the profile.           | Handles scenarios where the state is empty.|
- | [getProfileValidateErrors](../../../src/features/EProfileCard/model/selectors/getProfileValidateErrors/getProfileValidateErrors.test.ts) | Confirms that the selector returns profile validation errors.                             | Handles cases where the state is empty.    |
+ | [getProfileData](../../../src/features/EditableProfileCard/model/selectors/getProfileData/getProfileData.test.ts) | Verifies that the selector correctly returns the profile data from the state.             | Handles cases with an empty state.         |
+ | [getProfileError](../../../src/features/EditableProfileCard/model/selectors/getProfileError/getProfileError.test.ts) | Ensures that the selector returns the profile error from the state.                       | Handles scenarios where the state is empty.|
+ | [getProfileForm](../../../src/features/EditableProfileCard/model/selectors/getProfileForm/getProfileForm.test.ts) | Confirms that the selector returns the profile form data.                                 | Handles cases where the state is empty.    |
+  | [getProfileIsLoading](../../../src/features/EditableProfileCard/model/selectors/getProfileIsLoading/getProfileIsLoading.test.ts) | Verifies that the selector correctly returns the loading status of the profile.           | Handles empty state scenarios.             |
+ | [getProfileReadonly](../../../src/features/EditableProfileCard/model/selectors/getProfileReadonly/getProfileReadonly.test.ts) | Ensures that the selector correctly returns the readonly status of the profile.           | Handles scenarios where the state is empty.|
+ | [getProfileValidateErrors](../../../src/features/EditableProfileCard/model/selectors/getProfileValidateErrors/getProfileValidateErrors.test.ts) | Confirms that the selector returns profile validation errors.                             | Handles cases where the state is empty.    |
 
 ## 5. Scroll Selectors
 

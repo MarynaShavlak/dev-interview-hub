@@ -1,6 +1,6 @@
 # Tests for Slices
 
-## 1. [profileSlice](../../../src/features/EProfileCard/model/slices/profileSlice.test.ts) Reducers
+## 1. [profileSlice](../../../src/features/EditableProfileCard/model/slices/profileSlice.test.ts) Reducers
 
 ### Initial State Tests
 - **Initial State**: Confirms that the `profileReducer` returns the correct initial state when no action is provided.
