@@ -9,11 +9,12 @@ The `NotificationButton`  module is organized into UI components and an entry po
 ```text
 NotificationButton/
 ├── ui/
-│   ├── NotificationButton.tsx
-│   ├── BrowserNotificationPopover/
-│   │   └── BrowserNotificationPopover.tsx
-│   └── NotificationButtonTrigger/
-│       └── NotificationButtonTrigger.tsx
+│   └── NotificationButton/
+│       ├── NotificationButton.tsx
+│       ├── BrowserNotificationPopover/
+│       │   └── BrowserNotificationPopover.tsx
+│       └── NotificationButtonTrigger/
+│           └── NotificationButtonTrigger.tsx
 └── index.ts
 ```
 

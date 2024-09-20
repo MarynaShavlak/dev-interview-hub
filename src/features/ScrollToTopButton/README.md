@@ -1,52 +1,31 @@
-# ScrollToTopButton Feature
+# Feature ScrollToTopButton Documentation
 
-## Overview 
-The `ScrollToTopButton` component is a UI element that provides users with a convenient way to quickly scroll back to the top of the page. This feature enhances user experience by allowing easy navigation, especially on pages with extensive content. When clicked, the button smoothly scrolls the window to the top, making it useful in applications where content length might require frequent scrolling.
+## Overview
 
+The `ScrollToTopButton` module provides a user-friendly interface that allows users to quickly return to the top of the page with a single click. This feature is particularly useful in applications with long or content-heavy pages, enhancing navigation and overall user experience. The button triggers a smooth scrolling action, ensuring that users can easily navigate back to the top of the page without needing to manually scroll.
 
-##  Type Definition
-```typescript
-interface ScrollToTopButtonProps {
-    className?: string;
-}
+## Module Structure
+
+The `ScrollToTopButton`  module is organized into UI components and an entry point for the module.
+```text
+ScrollToTopButton/
+├── ui/
+│   └── ScrollToTopButton/
+│       └── ScrollToTopButton.tsx
+└── index.ts
 ```
 
-## Props
-The `ScrollToTopButton` has the following props:
+## Detailed Description
 
-| Prop         | Type                                        |          Required / Optional          | Description                                                                |
-|--------------|---------------------------------------------|:-------------------------------------:|----------------------------------------------------------------------------|
-| `className`  | `string`                                    |               Optional                | Additional CSS class names to apply to the button for styling.|
+### 1. `ui/`: UI components
+- **`ScrollToTopButton/`**:
+    - [**ScrollToTopButton.tsx**](./ui/ScrollToTopButton/README.md): Main component that appears after the user scrolls down the page. When clicked, it realizes to smoothly scroll the page back to the top.
 
+### 2. `index.ts`
+- Entry point for the `ScrollToTopButton` module, exporting the  component for easy use throughout the application.
 
-## Features
-1. **Smooth Scrolling**: The component uses the `window.scrollTo` method with the `behavior` option set to `smooth`, ensuring a smooth scrolling effect when the button is clicked.
-2. **Icon Display**: The button utilizes an `Icon` component to display a circular upward arrow, making its purpose immediately clear to users.
-
-
-## Usage Example
-
-This example demonstrates how to use the `Page` component with default settings. 
-It includes a `data-testid` for testing and displays a simple message.
-```typescript jsx
-import React from 'react';
-import { ScrollToTopButton } from '@/components/ScrollToTopButton';
-
-const ExamplePage = () => {
-    return (
-        <div>
-            <div style={{ height: '1500px' }}>
-                <p>Scroll down to see the button</p>
-            </div>
-            <ScrollToTopButton />
-        </div>
-    );
-};
-
-export default ExamplePage;
-```
-
-
-
-## Conclusion 
-The `ScrollToTopButton` component enhances user navigation by providing a quick and smooth way to return to the top of the page. By integrating this button, applications with extensive content can offer a better user experience, ensuring that users can easily navigate back to the top without excessive scrolling. The component's flexibility in styling allows it to be seamlessly integrated into various design schemes.
+## Public API
+- **Components**:
+    - `ScrollToTopButton`: A button that appears when the user scrolls down the page, allowing them to return to the top with a smooth scrolling effect.
+## Conclusion
+The `ScrollToTopButton` module is designed to improve navigation in applications with lengthy content by offering users a quick and smooth way to return to the top of the page. With its smooth scrolling behavior and clear iconography, the module enhances the user experience, ensuring that users can easily navigate through long pages without excessive manual scrolling. Its flexibility in styling makes it easy to integrate into various design schemes, making it a valuable addition to content-rich applications.
