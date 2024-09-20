@@ -81,7 +81,7 @@ Article/
 
 ## Detailed Description
 
-### 1. `model/`: Core logic and data structures for the Article module.
+### 1. `model/`: Core logic and data structures
 
 - **`consts/`**
   - [**articleConsts.ts**](./model/consts/articleConsts.ts): Defines constants for article states and configurations.
@@ -100,7 +100,7 @@ Article/
   - [**article.ts**](./model/types/article.ts): TypeScript types for article objects.
   - [**articleDetailsSchema.ts**](./model/types/articleDetailsSchema.ts): Schema for article details.
 
-### 2. `ui/`: UI components related to the Article module.
+### 2. `ui/`: UI components 
 
 - **`ArticleCard/`**
   - [**ArticleCard.tsx**](./ui/ArticleCard/README.md): Main component for displaying an article in card format.

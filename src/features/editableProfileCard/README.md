@@ -82,12 +82,12 @@ editableProfileCard/
         - [**updateProfileData.ts**](./model/services/updateProfileData/README.md): Handles the API request to update user profile information.
     - **`validateProfileData/`**
         - [**validateProfileData.ts**](./model/services/validateProfileData/README.md): Validates the user input for profile updates.
-       
 - **`slices/`**
     - [**profileSlice.ts**](model/slices/README.md):Manages the Redux state for the profile, including actions and reducers for updating and fetching profile data.
-
 - **`types/`**
     - [**leditableProfileCardSchema.ts**](./model/types/editableProfileCardSchema.ts): Defines the schema for the profile data
+- **`consts/`**
+    - [**consts.ts**](./model/consts/README.md): Defines const for profile card states and configurations.
 
 ### 2. `ui/`: UI components 
 
@@ -110,7 +110,7 @@ editableProfileCard/
 - **`hook/`**
     - [**useProfile.ts**](./lib/hooks/README.md):  Custom hook for managing the profile form state and interactions.
 ### 4. `index.ts`
-- Entry point for the Article module, exporting components, functions, and types.
+- Entry point for the `editableProfileCard` module, exporting components, functions, and types.
 
 ### 5. `testing.ts`
 

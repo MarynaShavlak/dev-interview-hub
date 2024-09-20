@@ -26,12 +26,12 @@ Currency/
 #### 1.1. `hooks/`
 - [**useCurrencyOptions.ts**](./lib/hooks/useCurrencyOptions.ts): CA custom hook that provides options for selecting countries. This hook can be used across the application wherever currency selection is needed.
 
-### 2. `model/`: Encapsulates the core logic and data structures of the Currency  module.
+### 2. `model/`: Core logic and data structures
 
 #### 2.1. `types/`
 - [**currency.ts**](./model/types/currency.ts): Contains TypeScript type definitions for the Currency  module, defining the structure of a currency object. This ensures type safety and consistency throughout the application.
 
-### 3. `ui/`: Contains the UI components related to the Currency  module.
+### 3. `ui/`: UI components
 
 #### 3.1. `CurrencySelect/`:  Manages the display and interaction of currency selection UI.
 - [**CurrencySelect.tsx**](./ui/CurrencySelect/README.md): The main CurrencySelect component, which allows users to select a currency from a dropdown menu. This component integrates with the `useCurrencyOptions` hook to retrieve and display currency options.

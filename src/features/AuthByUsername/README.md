@@ -43,7 +43,7 @@ AuthByUsername/
 ```
 ## Detailed Description
 
-### 1. `model/`: Core logic and data structures for the AuthByUsername feature.
+### 1. `model/`: Core logic and data structures
 
 - **`selectors/`**
   - **`getLoginError/`**
@@ -65,7 +65,7 @@ AuthByUsername/
 - **`types/`**
   - [**loginSchema.ts**](./model/types/loginSchema.ts): Schema for login form.
 
-### 2. `ui/`: UI components related to the AuthByUsername module.
+### 2. `ui/`: UI components
 
 - **`LoginForm/`**
   - [**LoginForm.tsx**](./ui/LoginForm/README.md): Main login form component that handles user input and submission for authentication.
@@ -84,11 +84,11 @@ AuthByUsername/
 
 
 ### 4. `index.ts`
-- Entry point for the Article module, exporting components, functions, and types.
+- Entry point for the AuthByUsername module, exporting components, functions, and types.
 
 ### 5. `testing.ts`
 
-Entry point for testing-related functionalities within the Article module. It is used primarily for development purposes, such as testing data, reducers, and integrating with tools like Storybook. This file is not included in the production code but is essential for ensuring the module's functionality during development.
+Entry point for testing-related functionalities within the AuthByUsername module. It is used primarily for development purposes, such as testing data, reducers, and integrating with tools like Storybook. This file is not included in the production code but is essential for ensuring the module's functionality during development.
 
 
 ## Public API

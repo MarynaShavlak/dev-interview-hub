@@ -30,12 +30,12 @@ Profile/
 
 ## Detailed Description
 
-### 1. `model/`: Encapsulates the core logic and data structures of the Profile module.
+### 1. `model/`: Core logic and data structures
 
 #### 1.1. `types/`
 - [**profile.ts**](./model/types/profile.ts): Contains TypeScript type definitions for the Profile module, defining the structure of a profile object. This ensures type safety and consistency throughout the application.
 
-### 2. `ui/`: Contains the UI components related to the Profile module.
+### 2. `ui/`: UI components
 
 #### 2.1. `ProfileCard/`: Manages the display and interaction of the profile card UI.
 - [**ProfileCard.tsx**](./ui/ProfileCard/README.md): The main `ProfileCard` component, responsible for rendering the profile card.

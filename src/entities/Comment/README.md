@@ -42,7 +42,7 @@ Comment/
 
 ## Detailed Description
 
-### 1. `model/`: Encapsulates the core logic and data structures of the Comment
+### 1. `model/`: Core logic and data structures
 
 #### 1.1. `types/`
 - [**comment.ts**](./model/types/comment.ts): Contains TypeScript type definitions for the Comment module, defining the structure of a comment.
@@ -55,7 +55,7 @@ Comment/
   - [**addCommentFormSlice.ts**](./model/slices/README.md): Manages to the state of a comment form in Redux, including actions and reducers.
 
 
-### 2. `ui/`: Contains the UI components related to the Comment module.
+### 2. `ui/`: UI components
 
 #### 2.1. `CommentCard/`: Manages the display of individual comments.
 - [**CommentCard.tsx**](./ui/CommentCard/README.md): The main `CommentCard` component.

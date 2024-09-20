@@ -50,7 +50,7 @@ User/
 ### 1. `api/`: Contains the API interface for the User module.
 - [**userApi.ts**](./api/README.md): This file defines the API calls related to user operations such as setJsonSettings, getUserDataById.
 
-### 2. `model/`: Encapsulates the core logic and data structures of the User module.
+### 2. `model/`: Core logic and data structures
 
 #### 2.1. `consts/`
 - [**consts.ts**](./model/consts/consts.ts): Contains constant values used across the User module, such as UserRoles.

@@ -1,54 +1,50 @@
-# ArticleViewSelector Feature
+# Feature ArticleViewSelector  Documentation
 
 ## Overview
-The **`ArticleViewSelector`** component dynamically renders either the `RedesignedArticleViewSelector` or the `DeprecatedArticleViewSelector` based on the `isAppRedesigned` feature flag. 
-This ensures that users experience either the new and improved interface or the legacy version, depending on the application's configuration. It includes buttons that allow users to choose between viewing articles as a grid of elements or as a list, enhancing the user's control over content presentation.
 
-## Type Definition 
-```typescript
-interface ArticleViewSelectorProps {
-    className?: string;
-    view: ArticleView;
-    onViewClick?: (view: ArticleView) => void;
-}
+The `ArticleViewSelector` module provides a flexible and intuitive interface for users to select different viewing options for articles, enhancing the reading experience. It supports various layouts and configurations, allowing users to customize how they interact with content. This module integrates smoothly with the application's state management, ensuring that user preferences are preserved and easily accessible.
+
+## Module Structure
+
+The `ArticleViewSelector` module is organized into several subdirectories, each playing a unique role in managing article view configurations.
+
+```text
+ArticleViewSelector/
+├── model/
+│   ├── consts/
+│   │   └── viewsTypes.ts
+│       └── profileSlice.ts
+├── ui/
+│   ├── ArticleViewSelector/
+│   │   ├── ArticleViewSelector.tsx
+│   │   ├── ArticleViewSelector.module.scss
+│   │   ├── DeprecatedArticleViewSelector/
+│   │   │   └── DeprecatedArticleViewSelector.tsx
+│   │   └── RedesignedArticleViewSelector/
+│   │       └── RedesignedArticleViewSelector.tsx
+└── index.ts
 ```
+## Detailed Description
 
-## Props
-The **`ArticleViewSelector`** component accepts the following props:
+### 1. `model/`: Core logic and data structures
+- **`consts/`**
+    - [**viewsTypes.ts**](./model/consts/viewsTypes.ts): Defines const for view configurations for articles.
+### 2. `ui/`: UI components
 
-| Prop       | Type       | Required / Optional | Description                                          |
-|------------|------------|----------------------|------------------------------------------------------|
-| `view` | `ArticleView`   | Required             | The current view of the article to be displayed.          |
-| `onViewClick` | `(view: ArticleView) => void`   | Optional             | Callback function to handle view changes.           |
-| `className` | `string`   | Optional             | Custom class name for additional styling.           |
+- **`ArticleViewSelector/`**
+    - [**ArticleViewSelector.tsx**](./ui/ArticleViewSelector/README.md): The main component that renders the view selector interface, allowing users to switch between different article layouts.
+    - **ArticleViewSelector.module.scss**: Styles for the `ArticleViewSelector` component.
+    - **`DeprecatedArticleViewSelector/`**:
+        - [**DeprecatedArticleViewSelector.tsx**](./ui/ArticleViewSelector/DeprecatedArticleViewSelector/README.md): A legacy version of the article view selector for backward compatibility.
+    - **`RedesignedArticleViewSelectorHeader/`**:
+        -  [**RedesignedArticleViewSelector.tsx**](./ui/ArticleViewSelector/RedesignedArticleViewSelector/README.md): A modernized version of the selector, featuring updated designs and improved functionality.
 
+### 3. `index.ts`
+- Entry point for the `ArticleViewSelector` module, exporting components, functions, and types.
 
-## Features
-1. **Design Adaptation**: Renders different UI elements based on whether the redesigned interface is enabled or not. This ensures consistency with the application's design system.
-2. **User-Driven View Switching**: Allows seamless switching between grid and list views for improved user experience.
+## Public API
+- **Components**:
+    - `ArticleViewSelector`: Component for selecting article views, offering a user-friendly interface for layout customization.
 
-
-## Usage Example
-```typescript jsx
-import { ArticleViewSelector } from '@/features/ArticleViewSelector';
-import { ArticleView } from '@/entities/Article';
-
-const App = () => {
-    const handleViewClick = (view: ArticleView) => {
-        console.log('View changed to:', view);
-    };
-
-    return (
-        <div>
-            <ArticleViewSelector
-                className="my-custom-class"
-                view={ArticleView.GRID}
-                onViewClick={handleViewClick}
-            />
-            {/* The ArticleViewSelector component adapts to the application's feature flag settings */}
-        </div>
-    );
-};
-```
 ## Conclusion
-The **`ArticleViewSelector`** component plays a crucial role in bridging the gap between legacy and modern interfaces. By leveraging feature flags, it ensures that users experience the most appropriate version of the article view selector, facilitating a smooth transition to newer UI paradigms without sacrificing compatibility. Additionally, it provides essential buttons that allow users to choose their preferred view for the articles list, whether as a grid of elements or as a list, thereby enhancing the overall user experience.
+The `ArticleViewSelector` module offers a streamlined and customizable solution for managing article viewing preferences. By providing multiple layout options and ensuring seamless integration with the application's state management, it enhances the user experience significantly. This module's design promotes flexibility and responsiveness, making it a valuable addition to any content-driven application.

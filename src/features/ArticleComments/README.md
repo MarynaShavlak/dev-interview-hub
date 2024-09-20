@@ -30,7 +30,7 @@ ArticleComments/
 
 ## Detailed Description
 
-### 1. `model/`: Core logic and data structures for the ArticleComments module.
+### 1. `model/`: Core logic and data structures
 
 - **`selectors/`**
     - [**comments.ts**](./model/selectors/README.md): Contains selector functions to retrieve the list of comments from the Redux store based on the article ID.
@@ -47,7 +47,7 @@ ArticleComments/
 - **`types/`**
     - [**ArticleCommentsSchema.ts**](./model/types/ArticleCommentsSchema.ts): Schema for article comments.
 
-### 2. `ui/`: UI components related to the ArticleComments module.
+### 2. `ui/`: UI components 
 
 - [**ArticleComments**](./ui/README.md): Main component for rendering the comments section of an article.
 
