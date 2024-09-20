@@ -1,46 +1,32 @@
-# LangSwitcher Feature
+# Feature LangSwitcher Documentation
 
 ## Overview
-The **`LangSwitcher`** component provides a user interface for toggling between different languages in an application. It adapts based on the application's design theme, allowing users to switch languages seamlessly and enhance localization support.
 
-## Type Definition 
-```typescript
-interface LangSwitcherProps {
-    className?: string;
-    short?: boolean;
-}
+The `LangSwitcher` module  provides a user interface for toggling between different languages within an application. It enhances localization support by allowing users to switch languages seamlessly, adapting to the application's design theme to maintain a cohesive user experience.
+## Module Structure
+
+The `LangSwitcher`  module is organized into UI components and an entry point for the module.
+
+```text
+LangSwitcher/
+├── ui/
+│   └── LangSwitcher/
+│       └── LangSwitcher.tsx
+└── index.ts
 ```
 
-## Props
-The **`LangSwitcher`** component accepts the following props:
+## Detailed Description
 
-| Prop       | Type      | Required / Optional | Description                                          |
-|------------|-----------|----------------------|------------------------------------------------------|
-| `className` | `string`  | Optional             | Custom class name for additional styling.           |
-| `short	` | `boolean` | Optional             | If `true`, displays a shortened language label.          |
+### 1. `ui/`: UI components
+- **`LangSwitcher/`**:
+    - [**LangSwitcher.tsx**](./ui/LangSwitcher/README.md): Main component that renders the language toggle interface, allowing users to switch between available languages (e.g., English and Ukrainian).
 
+### 2. `index.ts`
+- Entry point for the `LangSwitchers` module, exporting the  component for easy use throughout the application.
 
-## Features
-1.**Language Toggling**:Allows users to switch between English (`'en'`) and Ukrainian (`'uk'`) languages, supporting dynamic localization.
+## Public API
+- **Components**:
+    - `LangSwitcher`: AA component that allows users to toggle between languages, supporting dynamic localization through integration with translation libraries.
 
-2.**Translation Integration**: Utilizes `react-i18next` to manage language changes and translations, ensuring real-time updates based on user preferences.
-
-3.**Design Adaptation**: Renders different UI elements based on whether the redesigned interface is enabled or not. This ensures consistency with the application's design system.
-
-4.**Shortened Labels:**: The `short` prop provides a flexible option for displaying a condensed language label, useful for optimizing UI space.
-
-## Usage Example
-```typescript jsx
-import { LangSwitcher } from '@/features/LangSwitcher';
-
-const App = () => (
-    <div>
-        <LangSwitcher className="my-custom-class" short={false} />
-        {/* The LangSwitcher component allows users to toggle between languages */}
-    </div>
-);
-```
 ## Conclusion
-The **`LangSwitcher`** component is an essential tool for enabling language localization within an application.
-Its support for dynamic language switching, integration with translation libraries, and adaptability to different design systems make it a versatile component. 
-By offering both shortened and standard labels, it provides flexibility in UI design and ensures a seamless user experience in multi-language applications.
+The `LangSwitcher` module provides an essential UI element for for enabling language localization within an application. Its support for dynamic language switching, integration with translation libraries, and adaptability to various design systems make it a versatile component. By offering both shortened and standard labels, it ensures flexibility in UI design and enhances the user experience in multi-language applications.

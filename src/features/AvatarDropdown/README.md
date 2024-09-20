@@ -12,7 +12,7 @@ The `AvatarDropdown` module is organized into two primary components: the UI for
 AvatarDropdown/
 ├── ui/
 │   └── AvatarDropdown/
-│       ├── ArticleSortSelector.module.scss
+│       ├── AvatarDropdown.module.scss
 │       └── AvatarDropdown.tsx
 └── index.ts
 ```
