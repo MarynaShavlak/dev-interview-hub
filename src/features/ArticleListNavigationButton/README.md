@@ -12,6 +12,7 @@ The `ArticleListNavigationButton` module is organized into two primary component
 ArticleListNavigationButton/
 ├── ui/
 │   └── ArticleListNavigationButton/
+│       ├── ArticleSortSelector.module.scss
 │       └── ArticleListNavigationButton.tsx
 └── index.ts
 ```
@@ -21,7 +22,7 @@ ArticleListNavigationButton/
 ### 1. `ui/`: UI components
 - **`ArticleListNavigationButton/`**:
     - [**ArticleListNavigationButton.tsx**](./ui/ArticleListNavigationButton/README.md): Main component that renders a button, allowing users to navigate to the articles list page.
-
+    - **ArticleListNavigationButton.module.scss**: Styles for the `ArticleListNavigationButton` component.
 ### 2. `index.ts`
 - Entry point for the `ArticleListNavigationButtons` module, exporting the button component for easy use throughout the application.
 

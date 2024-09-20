@@ -1,4 +1,4 @@
-# AvatarDropdown Feature
+# AvatarDropdown
 
 ## Overview
 The **`AvatarDropdown`** component provides a user interface element that combines an avatar with a dropdown menu for user-related actions. It dynamically adjusts based on the application's feature set, offering context-sensitive options such as profile management and administrative access.
