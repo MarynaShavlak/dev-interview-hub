@@ -1,4 +1,4 @@
-# NotificationButton Feature
+# NotificationButton
 
 ## Overview
 The **`NotificationButton`** component provides an interface for displaying notifications to users in both desktop and mobile views. 

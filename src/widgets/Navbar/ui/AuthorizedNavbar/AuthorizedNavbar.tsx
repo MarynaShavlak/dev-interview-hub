@@ -7,7 +7,7 @@ import { Text, TextTheme } from '@/shared/ui/deprecated/Text';
 import { AppLink, AppLinkTheme } from '@/shared/ui/deprecated/AppLink';
 import { getRouteArticleCreate } from '@/shared/const/router/router';
 import { HStack } from '@/shared/ui/common/Stack';
-import { NotificationButton } from '@/features/NButton';
+import { NotificationButton } from '@/features/NotificationButton';
 import { AvatarDropdown } from '@/features/AvatarDropdown';
 
 interface NavbarProps {

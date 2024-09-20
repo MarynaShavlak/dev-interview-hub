@@ -28,7 +28,7 @@ The project includes component tests using React Testing Library to verify that 
 | **Form Validation Error**       | Displays an error when form validation fails.                                                                   |                                 
 | **Save Form**                   | Sends a PUT request when the form is successfully saved.                                                         |                                 
 
-## 4. [NotificationButton](../../../src/features/NButton/ui/NotificationButton/NotificationButton.test.tsx) Component
+## 4. [NotificationButton](../../../src/features/NotificationButton/ui/NotificationButton/NotificationButton.test.tsx) Component
 
 | Aspect                          | Purpose                                                                                                        | 
 |---------------------------------|----------------------------------------------------------------------------------------------------------------|

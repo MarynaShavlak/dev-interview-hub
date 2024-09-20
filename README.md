@@ -340,10 +340,10 @@ To automatically remove a feature flag, use the [remove-feature.ts](./scripts/re
 - [avatarDropdown](src/features/AvatarDropdown/ui/AvatarDropdown/README.md)
 - [editableProfileCard](src/features/EditableProfileCard/README.md)
 - [LangSwitcher](src/features/LangSwitcher/ui/LangSwitcher/README.md)
-- [notificationButton](src/features/NButton/README.md)
-- [scrollToTopButton](src/features/SToTopButton/README.md)
+- [notificationButton](src/features/NotificationButton/ui/NotificationButton/README.md)
+- [scrollToTopButton](src/features/ScrollToTopButton/README.md)
 - [ThemeSwitcher](./src/features/ThemeSwitcher/README.md)
-- [uiDesignSwitcher](src/features/UDesignSwitcher/README.md)
+- [uiDesignSwitcher](src/features/UIDesignSwitcher/README.md)
 
 
 

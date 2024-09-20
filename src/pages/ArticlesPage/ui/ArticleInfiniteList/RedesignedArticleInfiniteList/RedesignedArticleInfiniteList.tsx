@@ -16,7 +16,7 @@ import {
     NoArticlesFound,
 } from '@/entities/Article';
 import cls from '../ArticleInfiniteList.module.scss';
-import { ScrollToTopButton } from '@/features/SToTopButton';
+import { ScrollToTopButton } from '@/features/ScrollToTopButton';
 import { ArticleInfiniteListError } from '../ArticleInfiniteListError/ArticleInfiniteListError';
 import { ArticleInfiniteListProps } from '../ArticleInfiniteList';
 import { useArticlesScroll } from '../../../lib/hooks/useArticlesScroll/useArticlesScroll';
