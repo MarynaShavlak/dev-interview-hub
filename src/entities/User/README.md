@@ -47,7 +47,7 @@ User/
 
 ## Detailed Description
 
-### 1. `api/`: Contains the API interface for the User module.
+### 1. `api/`: API interface
 - [**userApi.ts**](./api/README.md): This file defines the API calls related to user operations such as setJsonSettings, getUserDataById.
 
 ### 2. `model/`: Core logic and data structures

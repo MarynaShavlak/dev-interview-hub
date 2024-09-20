@@ -19,7 +19,7 @@ ArticleRecommendationsList/
 ```
 ## Detailed Description
 
-### 1. `api/`: Contains the API interface for the ArticleRecommendationsList module.
+### 1. `api/`: API interface
   - [**articleRecommendationsApi.ts**](./api/articleRecommendationsApi.ts): Provides methods to fetch article recommendations from the server based on current opened article.
 ### 2. `ui/`: UI components
 

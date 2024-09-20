@@ -1,4 +1,4 @@
-# ArticleRating Feature
+# ArticleRating 
 
 ## Overview
 The **`ArticleRating`** component allows users to rate and provide feedback on articles. It dynamically adjusts its display based on feature flags to either show the rating functionality or a disabled rating block if the feature is not enabled. The component integrates with the application's redesigned UI and provides a seamless user experience by handling different states such as loading and errors.
@@ -28,12 +28,12 @@ The **`ArticleRating`** component accepts the following props:
 4. **State Management**: Handles loading and error states gracefully, ensuring a smooth user experience.
 
 5. **Lazy Loading**: The component is lazy-loaded to optimize performance. By loading the component only when needed, it reduces the initial load time of the application, improving the user experience.
-
+F
 
 
 ## Usage Example
 ```typescript jsx
-import ArticleRating from '@/features/articleRating';
+import ArticleRating from '@/features/ArticleRating';
 
 const ArticlePage = () => (
     <div>

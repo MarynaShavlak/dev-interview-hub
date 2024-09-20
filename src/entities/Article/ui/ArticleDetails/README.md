@@ -37,7 +37,7 @@ import {
 } from '@/entities/Article';
 import { ArticleRecommendationsList } from '@/features/articleRecommendationsList';
 import { ArticleComments } from '@/widgets/ArticleComments';
-import { ArticleRating } from '@/features/articleRating';
+import { ArticleRating } from '@/features/ArticleRating';
 import { Card } from '@/shared/ui/redesigned/Card';
 import { ArticleDetailsPageHeader } from '../DeprecatedArticleDetailsPage/ArticleDetailsPageHeader/ArticleDetailsPageHeader';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';

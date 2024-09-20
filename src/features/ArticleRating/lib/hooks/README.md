@@ -28,32 +28,33 @@ An object with the following properties:
    - **`onSubmitRating`**: Calls `handleRateArticle` with only the rating.
 
 ## Usage Example
+
 ```typescript jsx
-import { useArticleRating } from '../../lib/hook/useArticleRating';
+import { useArticleRating } from './/useArticleRating';
 
-export const ArticleRating = ({ articleId }) => {
-   const { rating, isLoading, error, onSubmitFeedback, onSubmitRating } = useArticleRating(articleId);
+export const ArticleRating = ({articleId}) => {
+    const {rating, isLoading, error, onSubmitFeedback, onSubmitRating} = useArticleRating(articleId);
 
-   if (isLoading) return <div>Loading...</div>;
-   if (error) return <div>Error loading rating</div>;
+    if (isLoading) return <div>Loading...</div>;
+    if (error) return <div>Error loading rating</div>;
 
-   const handleRating = (starsCount) => {
-      onSubmitRating(starsCount);
-   };
+    const handleRating = (starsCount) => {
+        onSubmitRating(starsCount);
+    };
 
-   const handleFeedback = (starsCount, feedback) => {
-      onSubmitFeedback(starsCount, feedback);
-   };
+    const handleFeedback = (starsCount, feedback) => {
+        onSubmitFeedback(starsCount, feedback);
+    };
 
-   return (
-           <div>
-              <div>Current Rating: {rating?.rate || 'No rating yet'}</div>
-              <div>
-                 <button onClick={() => handleRating(5)}>Rate 5 Stars</button>
-                 <button onClick={() => handleFeedback(4, 'Great article!')}>Rate 4 Stars with Feedback</button>
-              </div>
-           </div>
-   );
+    return (
+        <div>
+            <div>Current Rating: {rating?.rate || 'No rating yet'}</div>
+            <div>
+                <button onClick={() => handleRating(5)}>Rate 5 Stars</button>
+                <button onClick={() => handleFeedback(4, 'Great article!')}>Rate 4 Stars with Feedback</button>
+            </div>
+        </div>
+    );
 };
 ```
 

@@ -10,9 +10,9 @@ The `ArticleSortSelector` module is organized into several subdirectories, each 
 
 ```text
 ArticleSortSelector/
-├── model/
-│   ├── lib/
-│   │   └── useOptions.ts
+├── lib/
+│   └── hooks/
+│       └── useOptions.ts
 ├── ui/
 │   ├── ArticleSortSelector/
 │   │   ├── ArticleSortSelector.tsx
