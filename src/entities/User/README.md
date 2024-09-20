@@ -85,7 +85,7 @@ User/
 - [**jsonSettings.ts**](./model/types/jsonSettings.ts): Defines types for JSON settings related to the user.
 - [**user.ts**](./model/types/user.ts): Defines the User and UserSchema interfaces .
 
-### 3. `lib/`: Contains reusable utility functions  for the User  module.
+### 3. `lib/`: Utility functions and hooks.
 - **userUtils/**
   - [**userUtils.ts**](./lib/userUtils/userUtils.ts): Utility functions for initializing user features and updating localstorage with user info.
   

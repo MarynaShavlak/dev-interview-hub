@@ -83,7 +83,7 @@ Comment/
   - [**RedesignedAddCommentForm.tsx**](./ui/AddCommentForm/RedesignedAddCommentForm/README.md): The redesigned version of the `AddCommentForm` component.
 
 
-### 3. `lib/`: Contains reusable hooks for the Comment  module.
+### 3. `lib/`: Utility functions and hooks.
 - **`hook/`**
   - [**useAddCommentForm.ts**](./lib/hook/README.md): Hook for managing the add comment form state and actions.
 

@@ -1,12 +1,12 @@
-# `recommendationsApi`: API Documentation
+# `articleRecommendationsApi`: API Documentation
 
 ## Overview
 
-The `recommendationsApi` is a set of endpoints created using `rtkApi` for fetching article recommendations. 
+The `articleRecommendationsApi` is a set of endpoints created using `rtkApi` for fetching article recommendations. 
 This API enhances content discovery by providing users with tailored article suggestions based on specified criteria.
 
 ## Description
-The `recommendationsApi` includes the `getArticleRecommendationsList` query, which retrieves a list of recommended articles. 
+The `articleRecommendationsApi` includes the `getArticleRecommendationsList` query, which retrieves a list of recommended articles. 
 This endpoint leverages Redux Toolkit Query for efficient data fetching and state management.
 
 ### Import Details
@@ -62,7 +62,7 @@ import {
     useArticleDetailsData,
 } from '@/entities/Article';
 import { VStack } from '@/shared/ui/redesigned/Stack';
-import { useArticleRecommendationsList } from '../../api/articleRecommendationsApi';
+import { useArticleRecommendationsList } from '../../api/articlearticleRecommendationsApi';
 
 interface ArticleRecommendationsListProps {
     className?: string;
@@ -96,7 +96,7 @@ export const ArticleRecommendationsList = memo(
 ```
 
 ## Conclusion 
-The `recommendationsApi` offers a powerful and efficient solution for fetching article recommendations, significantly enhancing user engagement by providing relevant and tailored content. By utilizing Redux Toolkit Query, the API ensures seamless state management and efficient data fetching, reducing the complexity of managing server state in your application.
+The `articleRecommendationsApi` offers a powerful and efficient solution for fetching article recommendations, significantly enhancing user engagement by providing relevant and tailored content. By utilizing Redux Toolkit Query, the API ensures seamless state management and efficient data fetching, reducing the complexity of managing server state in your application.
 
 The automatically generated `useArticleRecommendationsList` hook further simplifies integration by handling caching, remembering previously fetched data, and intelligently returning it when needed, which optimizes performance and reduces redundant network requests. This approach not only improves the user experience but also makes your application's codebase more maintainable and scalable.
 

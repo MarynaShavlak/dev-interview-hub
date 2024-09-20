@@ -45,7 +45,7 @@
 ### [fetchNextArticlesPage](../../../src/pages/ArticlesPage/model/services/fetchNextArticlesPage/fetchNextArticlesPage.test.ts)
 - **Pagination**: Tests correct behavior for fetching the next page, including conditions when `hasMore` is false, `isLoading` is true, and handling of undefined `hasMore`.
 
-###  [useArticleRecommendationsList](../../../src/features/articleRecommendationsList/api/articleRecommendationsApi.test.tsx) Hook
+###  [useArticleRecommendationsList](../../../src/features/RecommendationsList/api/articleRecommendationsApi.test.tsx) Hook
 - **Success**: Ensures correct fetching and handling of article recommendations.
 - **Error Handling**: Tests error scenarios during data fetching.
 

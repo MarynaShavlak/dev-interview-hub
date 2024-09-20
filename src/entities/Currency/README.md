@@ -21,7 +21,7 @@ Currency/
 
 ## Detailed Description
 
-### 1. `lib/`: Contains reusable utility functions and hooks for the Currency  module.
+### 1. `lib/`: Utility functions and hooks.
 
 #### 1.1. `hooks/`
 - [**useCurrencyOptions.ts**](./lib/hooks/useCurrencyOptions.ts): CA custom hook that provides options for selecting countries. This hook can be used across the application wherever currency selection is needed.

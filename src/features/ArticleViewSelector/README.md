@@ -13,7 +13,6 @@ ArticleViewSelector/
 ├── model/
 │   ├── consts/
 │   │   └── viewsTypes.ts
-│       └── profileSlice.ts
 ├── ui/
 │   ├── ArticleViewSelector/
 │   │   ├── ArticleViewSelector.tsx

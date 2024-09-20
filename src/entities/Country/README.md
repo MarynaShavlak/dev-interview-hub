@@ -21,7 +21,7 @@ Country/
 
 ## Detailed Description
 
-### 1. `lib/`: Contains reusable utility functions and hooks for the Country module.
+### 1. `lib/`: Utility functions and hooks.
 
 #### 1.1. `hooks/`
 - [**useCountryOptions.ts**](./lib/hooks/useCountryOptions.ts): CA custom hook that provides options for selecting countries. This hook can be used across the application wherever country selection is needed.

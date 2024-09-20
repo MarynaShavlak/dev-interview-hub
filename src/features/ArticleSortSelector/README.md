@@ -1,66 +1,49 @@
-# ArticleSortSelector Feature
+# Feature ArticleSortSelector  Documentation
 
 ## Overview
-The **`ArticleSortSelector`** component dynamically switches between the  `RedesignedArticleSortSelector` or the `DeprecatedArticleSortSelector` based on the `isAppRedesigned` feature flag.
-This ensures users interact with either the modern or legacy interface depending on the application's current configuration. 
-The component provides sorting functionality for articles, allowing users to sort articles by different fields and order, thus enhancing the user's control over content organization.
 
-## Type Definition
-```typescript
-interface ArticleSortSelectorProps {
-    className?: string;
-    sort: ArticleSortField;
-    order: SortOrder;
-    onChangeOrder: (newOrder: SortOrder) => void;
-    onChangeSort: (newSort: ArticleSortField) => void;
-}
+The `ArticleSortSelector` module provides a flexible and intuitive interface for users to sort articles based on different criteria, such as date, popularity, or alphabetical order. It ensures that users can easily control how articles are displayed, enhancing the overall user experience by allowing for customized sorting options. This module integrates seamlessly with the application’s state management and supports multiple design variations for legacy and modern interfaces.
+
+## Module Structure
+
+The `ArticleSortSelector` module is organized into several subdirectories, each playing a unique role in managing article sort configurations.
+
+```text
+ArticleSortSelector/
+├── model/
+│   ├── lib/
+│   │   └── useOptions.ts
+├── ui/
+│   ├── ArticleSortSelector/
+│   │   ├── ArticleSortSelector.tsx
+│   │   ├── ArticleSortSelector.module.scss
+│   │   ├── DeprecatedArticleSortSelector/
+│   │   │   └── DeprecatedArticleSortSelector.tsx
+│   │   └── RedesignedArticleSortSelector/
+│   │       └── RedesignedArticleSortSelector.tsx
+└── index.ts
 ```
+## Detailed Description
 
-## Props
-The **`ArticleSortSelector`** component accepts the following props:
+### 1. `lib/`: Utility functions and hooks.
+- **`hooks/`**
+    - [**useOptions.ts**](./lib/hooks/useOptions.ts): Retrieves sorting order options for articles.
+### 2. `ui/`: UI components
 
-| Prop       | Type       | Required / Optional | Description                                                               |
-|------------|------------|----------------------|---------------------------------------------------------------------------|
-| `order` | `SortOrder`   | Required             | The current order of sorting (e.g., ascending or descending)              |
-| `sort` | `ArticleSortField`   | Required             | The current field by which articles are sorted ( views, title, createdAt) |
-| `onChangeOrder` | `(newOrder: SortOrder) => void`   | Required              | Callback function to handle changes in sort order.                                 |
-| `onChangeSort` | `(sort: ArticleSortField) => void`   | Required              | Callback function to handle changes in sort field.                                 |
-| `className` | `string`   | Optional             | Custom class name for additional styling.                                 |
+- **`ArticleSortSelector/`**
+    - [**ArticleSortSelector.tsx**](./ui/ArticleSortSelector/README.md): The main component that renders the sort selector interface, allowing users  to sort articles by different fields and order
+    - **ArticleSortSelector.module.scss**: Styles for the `ArticleSortSelector` component.
+    - **`DeprecatedArticleSortSelector/`**:
+        - [**DeprecatedArticleSortSelector.tsx**](./ui/ArticleSortSelector/DeprecatedArticleSortSelector/README.md): A legacy version of the article sort selector for backward compatibility.
+    - **`RedesignedArticleSortSelectorHeader/`**:
+        -  [**RedesignedArticleSortSelector.tsx**](./ui/ArticleSortSelector/RedesignedArticleSortSelector/README.md): A modernized version of the selector, featuring updated designs and improved functionality.
 
+### 3. `index.ts`
+- Entry point for the `ArticleSortSelector` module, exporting components, functions, and types.
 
-## Features
-1. **Feature Flag Driven**: Adapts between the redesigned and deprecated sorting interfaces based on the `isAppRedesigned` feature flag, ensuring consistent application of the design system.
-2. **Comprehensive Sorting**: Provides users with the ability to sort articles by various fields and in different orders, enhancing content organization and accessibility.
+## Public API
+- **Components**:
+    - `ArticleSortSelector`: Component for selecting article sort options , offering a user-friendly interface for layout customization.
 
-
-## Usage Example
-```typescript jsx
-import { ArticleSortSelector } from '@/features/ArticleSortSelector';
-import { ArticleSortField } from '@/entities/Article';
-import { SortOrder } from '@/shared/types/sortOrder';
-
-const App = () => {
-    const handleOrderChange = (order: SortOrder) => {
-        console.log('Order changed to:', order);
-    };
-
-    const handleSortChange = (sort: ArticleSortField) => {
-        console.log('Sort field changed to:', sort);
-    };
-
-    return (
-        <div>
-            <ArticleSortSelector
-                className="my-custom-class"
-                order="asc"
-                sort={ArticleSortField.DATE}
-                onChangeOrder={handleOrderChange}
-                onChangeSort={handleSortChange}
-            />
-            {/*  The ArticleSortSelector component adapts to the application's feature flag settings */}
-        </div>
-    );
-};
-```
 ## Conclusion
-The **`ArticleSortSelector`** component is essential for providing a flexible and user-friendly article sorting interface. By leveraging feature flags, it seamlessly transitions between legacy and modern sorting interfaces, ensuring a consistent and optimal user experience. Its robust sorting capabilities, along with interactive callbacks, empower users to efficiently organize and access content according to their preferences.
+The `ArticleSortSelector` module offers a comprehensive solution for managing article sorting preferences. By supporting multiple sorting options and providing a clean, modern interface, it enhances the user experience significantly. With its modular design, this feature can be easily adapted to different user interfaces and extended for future needs. The module's flexible architecture ensures seamless integration into any article-based platform, making it a crucial tool for improving content navigation and accessibility.

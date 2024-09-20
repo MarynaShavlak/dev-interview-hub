@@ -19,7 +19,7 @@ ArticleCategoryTabs/
 
 ## Detailed Description
 
-### 1. `lib/`:  Reusable logic and utilities for the `ArticleCategoryTabs` module.
+### 1. `lib/`:  Utility functions and hooks.
 
 #### 1.1. `hooks/`
 - [**useArticleCategoryTabsOptions.ts**](./lib/hooks/useCategoryTabs.ts): A custom hook that provides localized category options for article tabs. This hook abstracts the logic for managing and retrieving the available article categories.
