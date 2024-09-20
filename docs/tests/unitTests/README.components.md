@@ -19,7 +19,7 @@ The project includes component tests using React Testing Library to verify that 
 | **Authorized Access**           | Allows access to the "Profile" page for authorized users.                                                       |                             
 | **Role-Based Access**           | Manages access to the "Admin" page based on user roles.                                                         |                              
 
-## 3. [EditableProfileCard](../../../src/features/editableProfileCard/ui/EditableProfileCard/EditableProfileCard.test.tsx) Component
+## 3. [EditableProfileCard](../../../src/features/EProfileCard/ui/EditableProfileCard/EditableProfileCard.test.tsx) Component
 
 | Aspect                          |  Purpose | 
 |---------------------------------|---------------------------------------------------------------|

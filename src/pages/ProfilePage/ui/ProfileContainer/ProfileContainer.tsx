@@ -1,6 +1,6 @@
 import { memo } from 'react';
 import { useParams } from 'react-router-dom';
-import { EditableProfileCard } from '@/features/editableProfileCard';
+import { EditableProfileCard } from '@/features/EProfileCard';
 import { VStack } from '@/shared/ui/common/Stack';
 
 export const ProfileContainer = memo(() => {

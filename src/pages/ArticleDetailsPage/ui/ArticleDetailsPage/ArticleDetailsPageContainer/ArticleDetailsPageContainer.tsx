@@ -11,7 +11,7 @@ import { ArticleRating } from '@/features/articleRating';
 import { Card } from '@/shared/ui/redesigned/Card';
 import { ArticleDetailsPageHeader } from '../DeprecatedArticleDetailsPage/ArticleDetailsPageHeader/ArticleDetailsPageHeader';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
-import { ArticleRecommendationsList } from '@/features/RecommendationsList';
+import { ArticleRecommendationsList } from '@/features/ArticleRecommendationsList';
 
 export const ArticleDetailsPageContainer = memo(() => {
     const { id } = useParams<{ id: string }>();

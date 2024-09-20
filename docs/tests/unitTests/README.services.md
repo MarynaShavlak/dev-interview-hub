@@ -9,15 +9,15 @@
 
 ## 2. EditableProfileCard Service
 
-### [fetchProfileData](../../../src/features/editableProfileCard/model/services/fetchProfileData/fetchProfileData.test.ts)
+### [fetchProfileData](../../../src/features/EProfileCard/model/services/fetchProfileData/fetchProfileData.test.ts)
 - **Success**: Ensures profile data is fetched successfully with a valid ID.
 - **Error Handling**: Includes tests for 403 status, network errors, missing response data, and simultaneous requests.
 
-### [updateProfileData](../../../src/features/editableProfileCard/model/services/updateProfileData/updateProfileData.test.ts)
+### [updateProfileData](../../../src/features/EProfileCard/model/services/updateProfileData/updateProfileData.test.ts)
 - **Success**: Verifies profile data updates correctly.
 - **Error Handling**: Covers 403 status, incorrect user data, multiple validation issues, network errors, missing response data, incomplete but valid data, missing profile ID, and 401 status.
 
-### [validateProfileData](../../../src/features/editableProfileCard/model/services/validateProfileData/validateProfileData.test.ts)
+### [validateProfileData](../../../src/features/EProfileCard/model/services/validateProfileData/validateProfileData.test.ts)
 - **Validation Checks**: Tests various scenarios, including missing fields (firstname, lastname, username, age), non-integer age, incorrect fields, and empty/missing profile object.
 
 ## 3. Article Service
@@ -45,7 +45,7 @@
 ### [fetchNextArticlesPage](../../../src/pages/ArticlesPage/model/services/fetchNextArticlesPage/fetchNextArticlesPage.test.ts)
 - **Pagination**: Tests correct behavior for fetching the next page, including conditions when `hasMore` is false, `isLoading` is true, and handling of undefined `hasMore`.
 
-###  [useArticleRecommendationsList](../../../src/features/RecommendationsList/api/articleRecommendationsApi.test.tsx) Hook
+###  [useArticleRecommendationsList](../../../src/features/ArticleRecommendationsList/api/articleRecommendationsApi.test.tsx) Hook
 - **Success**: Ensures correct fetching and handling of article recommendations.
 - **Error Handling**: Tests error scenarios during data fetching.
 
