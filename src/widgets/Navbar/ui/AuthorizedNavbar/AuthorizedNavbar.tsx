@@ -8,7 +8,7 @@ import { AppLink, AppLinkTheme } from '@/shared/ui/deprecated/AppLink';
 import { getRouteArticleCreate } from '@/shared/const/router/router';
 import { HStack } from '@/shared/ui/common/Stack';
 import { NotificationButton } from '@/features/notificationButton';
-import { AvatarDropdown } from '@/features/ADropdown';
+import { AvatarDropdown } from '@/features/AvatarDropdown';
 
 interface NavbarProps {
     className?: string;
