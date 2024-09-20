@@ -2,11 +2,10 @@
 
 ## Overview
 
+The `AuthByUsername` module is responsible for handling user authentication via a username and password. It follows the Feature-Sliced Design (FSD) architecture, which organizes the module into distinct layers for business logic, UI components, and state management. The module includes functionality for managing login states, user input validation, and error handling, while providing adaptable UI components for both legacy and redesigned application interfaces. It leverages Redux for state management and supports feature flags to ensure compatibility with different versions of the application UI.
 
 ## Module Structure
-
-The `AuthByUsername` module is organized into several subdirectories, each playing a unique role in handling comments for articles.
-
+The `AuthByUsername` module is organized into several subdirectories, each playing a unique role in managing the authentication process.
 ```text
 AuthByUsername/
 ├── model/
@@ -104,6 +103,5 @@ Entry point for testing-related functionalities within the Article module. It is
 - **Testing Exports**:
     - `loginReducer` - Reducer for login operation for use in testing scenarios and development tools.
 
-
 ## Conclusion
-The `AuthByUsername` module provides a comprehensive solution for managing .... 
+The `AuthByUsername` module provides a comprehensive solution for managing user authentication via username and password. By following the Feature-Sliced Design (FSD) approach, it ensures modularity, scalability, and maintainability. The module includes core logic for handling authentication requests, selectors for accessing login-related state, and UI components for both legacy and redesigned login forms. The use of Redux for state management and custom hooks for form handling further enhances its flexibility and ease of integration. With support for modern UI design patterns and optimized performance, this module offers a robust and adaptable solution for user authentication.
