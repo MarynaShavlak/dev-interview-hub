@@ -1,31 +1,33 @@
-# ArticleListNavigationButton Feature
+# Feature ArticleListNavigationButton Documentation
 
 ## Overview
-The **`ArticleListNavigationButton`** component provides a navigational button that allows users to seamlessly access the list of articles within an application. 
-It dynamically adjusts its appearance and functionality based on the application's design system and feature flags, ensuring a consistent user experience across different contexts. 
-This component integrates tightly with the application's routing and localization systems, facilitating easy navigation to article lists or related content.
 
-## Props
-The **`ArticleListNavigationButton`** component does not accept any props.
+The `ArticleListNavigationButton` module provides a navigational button that directs users to the list of articles within the application. This component adapts its design and functionality based on the current design system and feature flags, ensuring a smooth and consistent user experience. It is closely integrated with the app's routing and localization systems, allowing for seamless navigation to the articles list page.
 
-## Features
-1.**Navigation to Articles**: Directly navigates users to the articles list page using the `getRouteArticles()` function. This ensures users can easily access all articles from any part of the application.
+## Module Structure
 
-2.**Design Adaptation**: Renders UI elements based on whether the redesigned interface (`isAppRedesigned` feature flag) is enabled.
+The `ArticleListNavigationButton` module is organized into two primary components: the UI for the button and the entry point for the module.
 
-
-## Usage Example
-```typescript jsx
-import { ArticleListNavigationButton } from '@/features/ArticleListNavigationButton';
-
-const App = () => (
-    <div>
-        <ArticleListNavigationButton />
-        {/* The ArticleListNavigationButton component allows users to navigate to the list of articles */}
-    </div>
-);
+```text
+ArticleListNavigationButton/
+├── ui/
+│   └── ArticleListNavigationButton/
+│       └── ArticleListNavigationButton.tsx
+└── index.ts
 ```
+
+## Detailed Description
+
+### 1. `ui/`: UI components
+- **`ArticleListNavigationButton/`**:
+    - [**ArticleListNavigationButton.tsx**](./ui/ArticleListNavigationButton/README.md): Main component that renders a button, allowing users to navigate to the articles list page.
+
+### 2. `index.ts`
+- Entry point for the `ArticleListNavigationButtons` module, exporting the button component for easy use throughout the application.
+
+## Public API
+- **Components**:
+    - `ArticleListNavigationButton`: A button that navigates users to the articles list page, adapting its design based on feature flags.
+
 ## Conclusion
-The **`ArticleListNavigationButton`** component serves as a crucial navigational element for applications featuring articles. 
-It seamlessly integrates with the application's design and functionality, allowing users to navigate to the articles list with ease. 
-By adapting to the current design system and leveraging feature flags, it ensures a user-friendly interface that enhances overall usability and navigation efficiency.
+The `ArticleListNavigationButton` module provides an essential navigational element for applications featuring articles. By offering seamless integration with the app's routing system and adapting to the current design system, it ensures a user-friendly and efficient navigation experience. The component's flexibility through feature flags enhances usability, making it a valuable part of the application's overall structure.

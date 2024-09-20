@@ -20,10 +20,10 @@ ArticlePageGreeting/
 
 ### 1. `ui/`: UI components
 - **`ArticlePageGreeting/`**:
-  - [**ArticlePageGreeting**](./ui/ArticlePageGreeting/README.md): Main component for displaying a welcome message to users on their first visit to the articles page
+  - [**ArticlePageGreeting.tsx**](./ui/ArticlePageGreeting/README.md): Main component for displaying a welcome message to users on their first visit to the articles page
 
 ### 2. `index.ts`
-- Entry point for the `ArticlePageGreetings` module, exporting components and types.
+- Entry point for the `ArticlePageGreetings` module, exporting component `ArticlePageGreeting`.
 
 ## Public API
 - **Components**:
