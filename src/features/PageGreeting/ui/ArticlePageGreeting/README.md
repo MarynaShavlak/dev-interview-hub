@@ -1,4 +1,4 @@
-# ArticlePageGreeting Feature
+# ArticlePageGreeting
 
 ## Overview
 The `ArticlePageGreeting` component provides a welcoming message to users the first time they visit the articles page. It displays this message in a modal on desktop devices and in a drawer on mobile devices. On subsequent visits, the message is not shown again, as this functionality is managed through JSON settings.

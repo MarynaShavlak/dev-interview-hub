@@ -24,11 +24,12 @@ ArticleCategoryTabs/
 #### 1.1. `hooks/`
 - [**useArticleCategoryTabsOptions.ts**](./lib/hooks/useCategoryTabs.ts): A custom hook that provides localized category options for article tabs. This hook abstracts the logic for managing and retrieving the available article categories.
 
-### 2. `ui/`: User interface components for the `ArticleCategoryTabs` module.
+### 2. `ui/`: UI components 
 
-#### 2.1. `ArticleCategoryTabs`:  Manages the display and interaction of  `ArticleCategoryTabs` UI.
+#### 2.1. `ArticleCategoryTabs`:  
 - [**ArticleCategoryTabsSelect.tsx:**](./ui/ArticleCategoryTabs/README.md): The main UI component that enables users to switch between different article categories. It manages the display and interaction of category tabs, allowing seamless navigation through the available article categories.
-### 4. `index.ts`
+
+### 3. `index.ts`
 
 Entry point for the `ArticleCategoryTabs` module, exporting the necessary components  for use in the application.
 
@@ -36,7 +37,6 @@ Entry point for the `ArticleCategoryTabs` module, exporting the necessary compon
 
 - **Components**:
     - `ArticleCategoryTabs` - The core component for rendering and managing category tabs, enabling users to switch between various article categories effortlessly.
-
 
 ## Conclusion
 The `ArticleCategoryTabs` module provides a clean and modular solution for handling article category switching functionality. By adhering to the FSD architecture, the module ensures scalability and ease of integration within larger applications. It abstracts both UI and logic layers, promoting maintainability and reusability across the project.

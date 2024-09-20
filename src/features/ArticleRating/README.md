@@ -16,9 +16,10 @@ ArticleRating/
 │   └── hooks/
 │       └── useArticleRating.ts
 ├── ui/
-│   └── DisabledRatingBlock/
-│   │    └── DisabledRatingBlock.tsx
-│   └── ArticleRating.tsx
+│   └── ArticleRating/
+│       └── DisabledRatingBlock/
+│       │   └── DisabledRatingBlock.tsx
+│       └── ArticleRating.tsx
 └── index.ts
 ```
 ## Detailed Description
@@ -31,9 +32,10 @@ ArticleRating/
   - [**useArticleRating.ts**](./lib/hooks/README.md): Provides logic for fetching and submitting ratings.
 
 ### 3. `ui/`: UI components
-  - [**ArticleRating.tsx**](./ui/README.md): Main component for rating articles and submitting feedback.
+- **`ArticleRating/`**
+  - [**ArticleRating.tsx**](ui/ArticleRating/README.md): Main component for rating articles and submitting feedback.
   - **`DisabledRatingBlock/`**
-    - [**DisabledRatingBlock.tsx**](./ui/DisabledRatingBlock/README.md): TDisplays a message when the rating feature is unavailable.
+    - [**DisabledRatingBlock.tsx**](ui/ArticleRating/DisabledRatingBlock/README.md): TDisplays a message when the rating feature is unavailable.
 
 ### 4. `index.ts`
 - Entry point for the `ArticleRating` module, exporting components, functions, and types.

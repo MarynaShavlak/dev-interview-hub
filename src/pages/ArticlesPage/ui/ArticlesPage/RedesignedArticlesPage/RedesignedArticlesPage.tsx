@@ -3,7 +3,7 @@ import { ViewSelectorContainer } from '../../ViewSelectorContainer/ViewSelectorC
 import { ArticlesPageProps } from '../ArticlesPage';
 import { FiltersContainer } from '../../FiltersContainer/FiltersContainer';
 
-import { ArticlePageGreeting } from '@/features/articlePageGreeting';
+import { ArticlePageGreeting } from '@/features/PageGreeting';
 import {
     DynamicModuleLoader,
     ReducersList,

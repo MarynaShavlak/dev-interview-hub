@@ -6,7 +6,7 @@ import {
 } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { articlesPageReducer } from '../../../model/slices/articlesPageSlice';
 import { ArticleInfiniteList } from '../../ArticleInfiniteList/ArticleInfiniteList';
-import { ArticlePageGreeting } from '@/features/articlePageGreeting';
+import { ArticlePageGreeting } from '@/features/PageGreeting';
 
 const reducers: ReducersList = {
     articlesPage: articlesPageReducer,

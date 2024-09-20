@@ -24,12 +24,12 @@ Rating/
 ```
 ## Detailed Description
 
-### 1. `model/`: Contains the core data structures and type definitions related to the Rating module.
+### 1. `model/`: Core logic and data structures
 
 #### 1.1. `types/`: Includes TypeScript type definitions for the Rating module.
 - [**types.ts**](./model/types/types.ts): Defines the `RatingType` interface and other related types used throughout the module.
 
-### 2. `ui/`: Handles the user interface components for the Rating module.
+### 2. `ui/`: UI components
 
 #### 2.1. `FeedbackContainer/`: 
 - [**FeedbackContainer**](./ui/FeedbackContainer/README.md): Encapsulates components or logic for managing feedback containers related to the rating feature.
@@ -40,7 +40,7 @@ Rating/
 #### 2.3. `FeedbackModal/`: 
 - [**FeedbackModal**](./ui/FeedbackModal/README.md): Manages the components and logic required for displaying rating feedback in a modal window.
 
-#### 2.4. `Rating/`: The core directory for the Rating UI components.
+#### 2.4. `Rating/`: 
 - [**Rating.tsx**](./ui/Rating/README.md): The main `Rating` component implementation.
 - [**DeprecatedRating**](./ui/Rating/DeprecatedRating/README.md): Contains the legacy or deprecated rating component implementations.
 - [**RedesignedRating**](./ui/Rating/RedesignedRating/README.md):: Contains the updated or redesigned rating components.
