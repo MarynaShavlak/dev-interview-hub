@@ -81,8 +81,6 @@ Article/
 
 ## Detailed Description
 
-## Detailed Description
-
 ### 1. `model/`: Core logic and data structures for the Article module.
 
 - **`consts/`**

@@ -1,51 +1,78 @@
-# ArticleComments Feature
+# Feature ArticleComments Documentation
 
 ## Overview
-The **`ArticleComments`** component is designed to display and manage user comments for a specific article. It integrates with the application's state management to fetch and render comments, while also providing a form for users to add new comments. The component adapts its UI based on feature flags, ensuring consistency with both the legacy and redesigned versions of the application. It also handles loading states and potential errors, offering a smooth and responsive user experience.
 
-## Type Definition
-```typescript
-export interface ArticleCommentsProps {
-    className?: string;
-    id?: string;
-}
+The `ArticleComments` module handles the comment-related functionalities for articles in the application. This module follows the Feature-Sliced Design (FSD) architecture, promoting a clear separation of concerns and modularity. It integrates with Redux for state management and provides services to fetch and add comments. Below is a detailed breakdown of the module structure.
+
+## Module Structure
+
+The `ArticleComments` module is organized into several subdirectories, each playing a unique role in handling comments for articles.
+
+```text
+ArticleComments/
+├── model/
+│   ├── selectors/
+│   │   └── comments.ts
+│   ├── services/
+│   │   ├── addCommentForArticle/
+│   │   │   └── addCommentForArticle.ts
+│   │   ├── fetchCommentsByArticleId/
+│   │   │   └── fetchCommentsByArticleId.ts
+│   ├── slices/
+│   │   └── articleCommentsSlice.ts
+│   └── types/
+│       └── ArticleCommentsSchema.ts
+├── ui/
+│   └── ArticleComments.tsx
+├── index.ts
+└── testing.ts
 ```
-## Props
-The **`ArticleComments`** component accepts the following props:
 
-| Prop        | Type       | Required / Optional | Description                                          |
-|-------------|------------|---------------------|------------------------------------------------------|
-| `id`        | `string`   | Optional            | Identifier for the article to fetch comments.        |
-| `className` | `string`   | Optional            | Custom class name for additional styling.            |
+## Detailed Description
 
+### 1. `model/`: Core logic and data structures for the ArticleComments module.
 
-## Features
-1. **Comment Fetching and Display**: Automatically fetches and displays comments for the specified article using the `fetchCommentsByArticleId` service. Comments are displayed in a list format, with support for loading and error states.
+- **`selectors/`**
+    - [**comments.ts**](./model/selectors/README.md): Contains selector functions to retrieve the list of comments from the Redux store based on the article ID.
 
-2. **Add Comment Functionality**: Provides a form for users to submit new comments. The submission is handled by the `addCommentForArticle` service, which updates the comment list upon success.
+- **`services/`**
+    - **`addCommentForArticle/`**
+        - [**addCommentForArticle/.ts**](./model/services/addCommentForArticle/README.md): Service function that handles adding a new comment to an article. It dispatches necessary actions to update the state after the comment is successfully added.
+    - **`fetchCommentsByArticleId/`**
+        - [**fetchCommentsByArticleId/.ts**](./model/services/fetchCommentsByArticleId/README.md): Service function that fetches comments based on the article ID from the API. It manages loading and error states while populating the Redux store with the fetched comments.
+      
+- **`slices/`**
+    - [**articleCommentsSlice.ts**](model/slices/README.md): Defines the Redux slice for managing the comments state. It contains reducers for adding comments, fetching comments, and handling error and loading states.
+  
+- **`types/`**
+    - [**ArticleCommentsSchema.ts**](./model/types/ArticleCommentsSchema.ts): Schema for article comments.
 
-3. **Feature Flag Adaptation**: Uses the `ToggleFeaturesComponent` to adjust the UI based on whether the application is using the redesigned interface (`isAppRedesigned` feature flag). This ensures the component remains visually consistent with the rest of the application.
+### 2. `ui/`: UI components related to the ArticleComments module.
 
-4. **Localization Support**: Utilizes the `useTranslation` hook to provide localization for the section title, ensuring the component is adaptable to different languages.
+- [**ArticleComments**](./ui/README.md): Main component for rendering the comments section of an article.
 
-5. **State Management**: Integrates with Redux to manage the loading state, errors, and the list of comments, providing a responsive and reliable user experience.
+### 3. `index.ts`
+- Entry point for the `ArticleComments` module, exporting components and types.
 
-6. **Lazy Loading**: The component is lazy-loaded to optimize performance. By loading the component only when needed, it reduces the initial load time of the application, improving the user experience.
+### 4. `testing.ts`
 
+Entry point for testing-related functionalities within the `ArticleComments` module. 
+It is used primarily for development purposes, such as testing data, reducers, and integrating with tools like Storybook. 
+This file is not included in the production code but is essential for ensuring the module's functionality during development.
 
-## Usage Example
-```typescript jsx
-import ArticleComments from '@/features/ArticleComments';
+## Public API
 
-const ArticlePage = () => (
-    <div>
-        {/* The ArticleComments component allows users to view and add comments on the article */}
-        <ArticleComments id="12345" className="my-custom-class" />
-    </div>
-);
-```
+- **Types**:
+    - `ArticleCommentsSchema`: Schema defining the structure for article comments.
+
+- **Components**:
+    - `ArticleComments`: Component for displaying article comments.
+
+## Public Testing API
+- **Testing Exports**:
+    - `articleDetailsReducer` - Reducer for article comments state management for use in testing scenarios and development tools.
+
 
 ## Conclusion
-The **`ArticleComments`** component is a robust solution for handling user comments within an article. It seamlessly integrates with the application's state management to fetch and display comments, while also allowing users to add their own input through the provided form. By supporting feature flags, the component ensures consistency across different versions of the application's UI. Additionally, the component is designed with localization in mind, making it adaptable to various languages.
-
-The component also incorporates lazy loading to optimize performance. By using React's `lazy` and `Suspense`, the component is loaded only when needed, reducing the initial load time of the application and improving the overall user experience. With its comprehensive handling of loading and error states, functionality for adding new comments, and performance optimization through lazy loading, the `ArticleComments` component delivers a reliable and user-friendly experience, enhancing user engagement through interactive content.
+The `ArticleComments` module provides a comprehensive solution for managing article comments. With clear separation between UI components, services, and Redux state management, the module is highly maintainable and scalable. It also supports integration with feature flags for adapting the UI between legacy and redesigned versions. 
+This modular architecture ensures that the comments section remains robust, performant, and user-friendly.
