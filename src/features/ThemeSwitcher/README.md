@@ -1,47 +1,30 @@
-# ThemeSwitcher Feature
+# Feature ThemeSwitcher Documentation
 
 ## Overview
-The **`ThemeSwitcher`** component allows users to toggle between multiple themes in an application, providing a flexible and customizable user interface. It supports themes including **LIGHT**, **DARK**, and **ORANGE** themes, a, and adapts its display based on the current theme selection. 
-By utilizing feature flags, the component can also handle different versions of the interface to enhance user experience.
 
-## Type Definition 
-```typescript
-interface ThemeSwitcherProps {
-    className?: string;
-}
+The `ThemeSwitcher` module provides users with the ability to toggle between multiple themes within an application. It supports LIGHT, DARK, and ORANGE themes, offering a flexible and customizable user interface. The module dynamically adapts based on the current theme and can leverage feature flags to adjust for different interface versions, enhancing the overall user experience.
+## Module Structure
+
+The `ThemeSwitcher`  module is organized into UI components and an entry point for the module.
+```text
+ThemeSwitcher/
+├── ui/
+│   └── ThemeSwitcher/
+│       └── ThemeSwitcher.tsx
+└── index.ts
 ```
 
-## Props
-The **`ThemeSwitcher`** component accepts the following props:
+## Detailed Description
 
-| Prop       | Type       | Required / Optional | Description                                          |
-|------------|------------|----------------------|------------------------------------------------------|
-| `className` | `string`   | Optional             | Custom class name for additional styling.           |
+### 1. `ui/`: UI components
+- **`ThemeSwitcher/`**:
+    - [**ThemeSwitcher.tsx**](./ui/ThemeSwitcher/README.md): Main component for rendering the theme toggle interface.
 
+### 2. `index.ts`
+- Entry point for the `ThemeSwitcher` module, exporting the  component for easy use throughout the application.
 
-## Features
-1. **Dynamic Theme Switching**: Allows users to toggle between the following themes:
-    - **LIGHT**: A light color scheme for improved readability in well-lit environments.
-    - **DARK**: A dark color scheme for reduced eye strain in low-light conditions.
-    - **ORANGE**: A distinctive orange color scheme for a unique visual experience.
-
-
-2. **Design Adaptation**: Adjusts the rendered UI elements based on whether the redesigned interface (`isAppRedesigned` feature flag) is enabled.
-
-3. **State Management**: Utilizes the `useTheme` hook to handle theme changes and the `useAppDispatch` hook to persist the theme preference through `saveJsonSettings`.
-
-## Usage Example
-```typescript jsx
-import { ThemeSwitcher } from '@/features/ThemeSwitcher';
-
-const App = () => (
-    <div>
-        <ThemeSwitcher className="my-custom-class" />
-        {/* The ThemeSwitcher component allows users to toggle between LIGHT, DARK, and ORANGE themes */}
-    </div>
-);
-```
+## Public API
+- **Components**:
+    - `ThemeSwitcher`: A component that allows users to switch between different themes, with support for dynamic design adjustments based on feature flags.
 ## Conclusion
-The **`ThemeSwitcher`** component is an essential tool for managing and switching themes within an application
-By supporting **LIGHT**, **DARK**, and **ORANGE** themes and integrating with feature flags, it offers a customizable and user-friendly theming experience. 
-Its robust state management and clear visual indicators contribute to a smooth and adaptable interface for users.
+The `ThemeSwitcher` module provides an intuitive and flexible way for users to customize the visual appearance of an application by toggling between LIGHT, DARK, and ORANGE themes. With its ability to adapt based on feature flags and manage state effectively, the module ensures a smooth and personalized user experience. Its versatility makes it a valuable addition to applications that prioritize user customization and interface flexibility.
