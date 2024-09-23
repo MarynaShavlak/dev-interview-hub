@@ -315,6 +315,21 @@ To automatically remove a feature flag, use the [remove-feature.ts](./scripts/re
 
 ## Shared
 
+### Common 
+- [AppImage](./src/shared/ui/common/AppImage/README.md)
+- [AppLogo](./src/shared/ui/common/AppLogo/README.md)
+- [Drawer](./src/shared/ui/common/Drawer/README.md)
+- [Modal](./src/shared/ui/common/Modal/README.md)
+- [Overlay](./src/shared/ui/common/Overlay/README.md)
+- [Portal](./src/shared/ui/common/Portal/README.md)
+- [Stack](./src/shared/ui/common/Stack/index.ts):
+  - [FlexStack](./src/shared/ui/common/Stack/Flex/README.md)
+  - [HStack](./src/shared/ui/common/Stack/HStack/README.md)
+  - [VStack](./src/shared/ui/common/Stack/VStack/README.md)
+- [StarRating](./src/shared/ui/common/StarRating/README.md)
+
+
+
 ## Entities
 
 - [Article](./src/entities/Article/README.md)
@@ -331,24 +346,30 @@ To automatically remove a feature flag, use the [remove-feature.ts](./scripts/re
 - [ArticleComments](src/features/ArticleComments/README.md)
 - [ArticleEditNavigationButton](src/features/ArticleEditNavigationButton/ui/ArticleEditNavigationButton/README.md)
 - [ArticleListNavigationButton](src/features/ArticleListNavigationButton/ui/ArticleListNavigationButton/README.md)
-- [articlePageGreeting](src/features/ArticlePageGreeting/ui/ArticlePageGreeting/README.md)
-- [articleRating](src/features/ArticleRating/ui/ArticleRating/README.md)
-- [articleRecommendationsList](src/features/ArticleRecommendationsList/ui/ArticleRecommendationsList/README.md)
+- [ArticlePageGreeting](src/features/ArticlePageGreeting/ui/ArticlePageGreeting/README.md)
+- [ArticleRating](src/features/ArticleRating/ui/ArticleRating/README.md)
+- [ArticleRecommendationsList](src/features/ArticleRecommendationsList/ui/ArticleRecommendationsList/README.md)
 - [ArticleSortSelector](src/features/ArticleSortSelector/ui/ArticleSortSelector/README.md)
 - [ArticleViewSelector](src/features/ArticleViewSelector/ui/ArticleViewSelector/README.md)
 - [AuthByUsername](./src/features/AuthByUsername/README.md)
-- [avatarDropdown](src/features/AvatarDropdown/ui/AvatarDropdown/README.md)
-- [editableProfileCard](src/features/EditableProfileCard/README.md)
+- [AvatarDropdown](src/features/AvatarDropdown/ui/AvatarDropdown/README.md)
+- [EditableProfileCard](src/features/EditableProfileCard/README.md)
 - [LangSwitcher](src/features/LangSwitcher/ui/LangSwitcher/README.md)
-- [notificationButton](src/features/NotificationButton/ui/NotificationButton/README.md)
-- [scrollToTopButton](src/features/ScrollToTopButton/ui/ScrollToTopButton/README.md)
+- [NotificationButton](src/features/NotificationButton/ui/NotificationButton/README.md)
+- [ScrollToTopButton](src/features/ScrollToTopButton/ui/ScrollToTopButton/README.md)
 - [ThemeSwitcher](src/features/ThemeSwitcher/ui/ThemeSwitcher/README.md)
-- [uiDesignSwitcher](src/features/UIDesignSwitcher/ui/UiDesignSwitcher/README.md)
-
+- [UIDesignSwitcher](src/features/UIDesignSwitcher/ui/UiDesignSwitcher/README.md)
 
 
 
 ## Widgets 
-
+- [ArticleAdditionalInfo](src/widgets/ArticleAdditionalInfo/README.md)
+- [ArticlesFilters](src/widgets/ArticlesFilters/README.md)
+- [Navbar](src/widgets/Navbar/README.md)
+- [Page](src/widgets/Page/README.md)
+- [PageError](src/widgets/PageError/README.md)
+- [PageLoader](src/widgets/PageLoader/README.md)
+- [ScrollToolbar](src/widgets/ScrollToolbar/README.md)
+- [Sidebar](src/widgets/Sidebar/README.md)
 
 ## Pages
