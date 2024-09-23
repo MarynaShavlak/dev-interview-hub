@@ -1,84 +1,40 @@
-# ArticlesFilters
+# Widget ArticlesFilters Documentation
 
 ## Overview
-The `ArticlesFilters` component dynamically switches between the `RedesignedArticlesFilters` and `DeprecatedArticlesFilters` components based on the `isAppRedesigned` feature flag. This approach allows the application to provide either a modern or legacy filtering interface, depending on the current feature configuration. By adapting to the feature flag, the component ensures that users receive a consistent and appropriate filtering experience while transitioning between design systems.
 
-##  Type Definition
-```typescript
-export interface ArticlesFiltersProps {
-    className?: string;
-    sort: ArticleSortField;
-    order: SortOrder;
-    category: ArticleCategory;
-    search: string;
-    onChangeSearch: (value: string) => void;
-    onChangeOrder: (newOrder: SortOrder) => void;
-    onChangeSort: (newSort: ArticleSortField) => void;
-    onChangeCategory: (category: ArticleCategory) => void;
-}
+The `ArticlesFilters` widget provides a dynamic filtering interface for articles, adapting between modern and legacy UI designs based on the `isAppRedesigned` feature flag. 
+By leveraging this flag, the component ensures a flexible and consistent user experience, regardless of whether users interact with the legacy (`DeprecatedArticlesFilters`) or the modern (`RedesignedArticlesFilters`) version of the interface. 
+This approach allows for a seamless transition between design systems while maintaining essential filtering functionalities.
+
+## Module Structure
+The ArticlesFilters module consists of two major components: the legacy `DeprecatedArticlesFilters` and the modern `RedesignedArticlesFilters`, with a central component (`ArticlesFilters`) responsible for dynamically switching between the two based on feature flags.
+```text
+ArticlesFilters/
+├── ui/
+│   ├── DeprecatedArticlesFilters/
+│   │   └── DeprecatedArticlesFilters.tsx
+│   ├── RedesignedArticlesFilters/
+│   │   └── RedesignedArticlesFilters.tsx
+│   ├── ArticlesFilters.tsx
+│   └── ArticlesFilters.module.scss
+└── index.ts
 ```
 
-## Props
+## Detailed Description
 
-The **`ArticlesFilters`** component accepts the following props:
+### 1. `ui/`: UI components
+- **`ArticlesFilters/`**:
+    - [**ArticlesFilters.tsx**](./ui/ArticlesFilters/README.md): The main component that dynamically switches between the `RedesignedArticlesFilters` and `DeprecatedArticlesFilters` based on the `isAppRedesigned` feature flag. It ensures that the appropriate filtering interface is presented to users depending on the feature configuration.
+- **`DeprecatedArticlesFilters/`**:
+  -  [DeprecatedArticlesFilters.tsx:](./ui/ArticlesFilters/DeprecatedArticlesFilters/README.md) A legacy filtering interface that provides users with basic filtering functionalities, such as sorting options, search input, and category tabs. It serves as a transitional component for users still interacting with the legacy version of the application.
+- **`RedesignedArticlesFilters/`**:
+  - [RedesignedArticlesFilters.tsx](./ui/ArticlesFilters/RedesignedArticlesFilters/README.md): A modernized filtering interface offering enhanced user experience and updated UI elements for sorting, searching, and category filtering. This component represents a significant upgrade in both design and functionality compared to the deprecated version.
 
-| Prop              | Type                                  | Required / Optional | Description                                                  |
-|-------------------|---------------------------------------|----------------------|--------------------------------------------------------------|
-| `className`       | `string`                              | Optional             | Custom class name for additional styling.                   |
-| `search`          | `string`                              | Required              | The current search query.                                  |
-| `sort`            | `ArticleSortField`                    | Required              | The current sort criterion.                                |
-| `order`           | `SortOrder`                           | Required              | The current sort order (e.g., ascending or descending).      |
-| `category`        | `ArticleCategory`                     | Required              | The currently selected category.                           |
-| `onChangeOrder`   | `(newOrder: SortOrder) => void`       | Required              | Callback function for handling order changes (ascending/descending). |
-| `onChangeCategory`| `(category: ArticleCategory) => void` | Required              | Callback function for handling category changes.            |
-| `onChangeSearch`  | `(value: string) => void`            | Required              | Callback function for handling search input changes.         |
-| `onChangeSort`    | `(newSort: ArticleSortField) => void`              | Required              | Callback function for handling sort changes.                |
+### 2. `index.ts`
+- Entry point for the `ArticlesFilters` module, exporting the  component for easy use throughout the application.
 
-
-## Features
-1. **Feature Flag Driven**: The component adapts between the `RedesignedArticlesFilters` and `DeprecatedArticlesFilters` interfaces based on the `isAppRedesigned` feature flag. This allows the application to provide either a modern or legacy filtering experience, depending on the feature configuration.
-2. **Consistent Filtering Experience**: Ensures that filtering functionalities such as sorting, searching, and category selection remain consistent, regardless of whether the user interacts with modern or legacy components.
-
-## Usage Example
-```typescript jsx
-import { memo } from 'react';
-import { ArticlesFilters } from '@/widgets/ArticlesFilters';
-import { useArticleFilters } from '../../lib/hooks/useArticleFilters';
-
-interface FiltersContainerProps {
-    className?: string;
-}
-
-export const FiltersContainer = memo((props: FiltersContainerProps) => {
-    const { className } = props;
-    const {
-        onChangeSort,
-        onChangeCategory,
-        sort,
-        category,
-        onChangeSearch,
-        search,
-        onChangeOrder,
-        order,
-    } = useArticleFilters();
-
-    return (
-        <ArticlesFilters
-            category={category}
-            onChangeSearch={onChangeSearch}
-            order={order}
-            onChangeOrder={onChangeOrder}
-            search={search}
-            sort={sort}
-            onChangeSort={onChangeSort}
-            onChangeCategory={onChangeCategory}
-            className={className}
-        />
-    );
-});
-```
-
+## Public API
+- **Components**:
+    - `ArticlesFilters`: A widget that dynamically switches between the modern and legacy filtering interfaces for articles, based on the `isAppRedesigned` feature flag.
 ## Conclusion
-The `ArticlesFilters` component is essential for providing a flexible filtering interface for articles. 
-By utilizing the `isAppRedesigned` feature flag, it dynamically switches between the `RedesignedArticlesFilters` and `DeprecatedArticlesFilters` components, offering users a modern or legacy filtering experience based on the application's configuration. 
-This adaptability ensures that filtering functionalities, including sorting, searching, and category selection, are consistently available, regardless of the design system in use. The component plays a critical role in maintaining a seamless user experience while accommodating both current and future design paradigms.
+The `ArticlesFilters` module plays a crucial role in delivering a flexible and adaptive article filtering experience. By dynamically switching between the `RedesignedArticlesFilters` and `DeprecatedArticlesFilters` components based on the `isAppRedesigned` feature flag, the widget ensures a consistent and intuitive user experience. Whether users are interacting with the modern or legacy filtering interface, they have access to essential functionalities like sorting, searching, and category filtering, maintaining high usability across different design paradigms. This adaptability makes `ArticlesFilters` an essential component for evolving user interfaces while maintaining continuity in the article browsing experience.
