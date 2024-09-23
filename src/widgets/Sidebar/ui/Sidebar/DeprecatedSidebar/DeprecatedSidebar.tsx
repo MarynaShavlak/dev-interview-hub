@@ -5,10 +5,10 @@ import { LangSwitcher } from '@/features/LangSwitcher';
 import { Button, ButtonSize, ButtonTheme } from '@/shared/ui/deprecated/Button';
 import { VStack } from '@/shared/ui/common/Stack';
 import cls from './DeprecatedSidebar.module.scss';
-import { useSidebarItems } from '../../../lib/hook/useSidebarItems/useSidebarItems';
+import { useSidebarItems } from '../../../lib/hooks/useSidebarItems/useSidebarItems';
 import { SidebarItem } from '../../SidebarItem/SidebarItem';
 import { Each } from '@/shared/lib/components/Each/Each';
-import { useSidebarCollapse } from '../../../lib/hook/useSidebarCollapse/useSidebarCollapse';
+import { useSidebarCollapse } from '../../../lib/hooks/useSidebarCollapse/useSidebarCollapse';
 
 interface DeprecatedSidebarProps {
     className?: string;

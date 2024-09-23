@@ -9,8 +9,8 @@ import { Icon } from '@/shared/ui/redesigned/Icon';
 import ArrowIcon from '@/shared/assets/icons/arrow-bottom.svg';
 import { Each } from '@/shared/lib/components/Each/Each';
 import { SidebarItem } from '../../SidebarItem/SidebarItem';
-import { useSidebarItems } from '../../../lib/hook/useSidebarItems/useSidebarItems';
-import { useSidebarCollapse } from '../../../lib/hook/useSidebarCollapse/useSidebarCollapse';
+import { useSidebarItems } from '../../../lib/hooks/useSidebarItems/useSidebarItems';
+import { useSidebarCollapse } from '../../../lib/hooks/useSidebarCollapse/useSidebarCollapse';
 
 interface RedesignedSidebarProps {
     className?: string;

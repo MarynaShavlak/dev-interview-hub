@@ -1,4 +1,4 @@
-# Page Widget
+# Page
 
 ## Overview
 The `Page` widget is a container component that handles scrolling behavior and provides a mechanism for infinite scrolling. It manages the scroll position, supports feature toggling for styling, and provides a callback when the user scrolls to the end
@@ -83,6 +83,6 @@ export default MainPage;
 
 
 ## Conclusion
-The `Page` widget provides a versatile container for managing scroll behavior, supporting infinite scrolling, and adapting styling based on feature toggles.
+The `Page`  provides a versatile container for managing scroll behavior, supporting infinite scrolling, and adapting styling based on feature toggles.
 By leveraging the `onScrollEnd` callback and conditional class application, it ensures flexibility in handling user interactions and visual presentation.
 Whether used with default settings or customized with additional props, the `Page` widget enhances the user experience by efficiently managing content display and scroll events within web applications.
