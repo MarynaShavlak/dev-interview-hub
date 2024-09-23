@@ -110,7 +110,7 @@ Entry point for testing-related functionalities within the Profile module. It is
   - `useUserRoles`: Get user roles.
   - `isUserAdmin`, `isUserManager`: Check if the user has admin or manager roles.
   - `useJsonSettings`: Retrieve user JSON settings.
-- **Actions**:
+- **Actions and reducers**:
   - `userReducer`: Reducer for user state management.
   - `userActions`, `useUserActions`: User-related actions for dispatching.
 - **Services**:

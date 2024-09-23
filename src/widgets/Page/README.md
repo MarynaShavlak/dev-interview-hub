@@ -1,88 +1,59 @@
-# Page
+# Widget Page  Documentation
 
 ## Overview
-The `Page` widget is a container component that handles scrolling behavior and provides a mechanism for infinite scrolling. It manages the scroll position, supports feature toggling for styling, and provides a callback when the user scrolls to the end
 
+The `Page` module provides a comprehensive solution for managing scrolling behavior within web applications, offering support for infinite scrolling and adaptable styling based on feature toggles. This module efficiently tracks scroll positions, enhancing user experience by providing a smooth interaction when navigating through content.
 
-##  Type Definition
-```typescript
-interface PageProps extends TestProps {
-    children: ReactNode;
-    onScrollEnd?: () => void;
-    className?: string;
-}
+## Module Structure
+
+The `Page` module is organized into several subdirectories, each playing a unique role in managing .....
+
+```text
+Page/
+├── model/
+│   ├── types/
+│   │   └── ScrollSchema.ts
+│   ├── selectors/
+│   │   ├── getUIScroll.ts
+│   └── slices/
+│       └── scrollSlice.ts
+├── ui/
+│   ├── Page/
+│   │   ├── Page.tsx
+│   │   └── Page.module.scss
+└── index.ts
 ```
+## Detailed Description
 
-## Props
-The `PageProps` interface extends `TestProps` to include the optional `data-testid` property, allowing for easier identification and testing of the component in various testing environments
+### 1. `model/`: Core logic and data structures
 
-| Prop         | Type                                        |          Required / Optional          | Description                                                                 |
-|--------------|---------------------------------------------|:-------------------------------------:|-----------------------------------------------------------------------------|
-| `children`  | `string`                                    |               Required                | React nodes to be rendered inside the main container.                          |
-| `className`  | `string`                                    |               Optional                | Additional CSS class names to apply to the main container.                       |
-| `onScrollEnd`    | `() => void` | Optional  | Callback function to be invoked when the user scrolls to the end of the container. Note that if the page does not have enough content to require scrolling, the onScrollEnd callback will not be set, as scrolling is not needed for such pages.|
+- **`selectors/`**
+  - [**getUIScroll.ts**](./model/selectors/README.md):  Retrieves scroll position information within the Redux store.
+- **`slices/`**
+    - [**scrollSlice.ts**](model/slices/README.md): Manages the Redux state for UI scroll positions across different application paths.
+- **`types/`**
+    - [**ScrollSchema.ts**](./model/types/README.md): Defines the schema for scroll positions, specifying the interface representing the UI scroll structure.
 
+### 2. `ui/`: UI components
 
-## Features
-1. **Scroll Management**: The component tracks and sets the scroll position of the container. It initializes the scroll position on component mount using `useInitialEffect` and updates it during scrolling using a throttled `onScroll` handler.
+- **`Page/`**
+    - [**Page.tsx**](./ui/Page/README.md): MThe main container component that handles scrolling behavior and provides a mechanism for infinite scrolling.
+    - **Page.module.scss**: Styles for the `Page` component.
+### 4. `index.ts`
+- Entry point for the `Page` module, exporting component, reducer and type.
 
-2. **Infinite Scrolling**: The `useInfiniteScroll` hook is used to monitor when the user has scrolled to the end of the container. If `onScrollEnd` is provided and applicable (i.e., the page has enough content to require scrolling), it will be called when this event occurs.
+## Public API
 
-3.  **Feature Toggling and CSS Classes**: The component supports feature toggling to apply different styles based on the feature flag `isAppRedesigned`. Conditional class names are applied according to the feature toggle and any additional class names passed via props. This ensures that the component adapts its styling based on the current feature flag and any custom styling requirements.
-
-4.  **Feature Toggling for Infinite Scrolling**: The `useInfiniteScroll` hook's `wrapperRef` parameter is dynamically assigned based on the feature flag `isAppRedesigned`. If the feature is enabled, the `wrapperRef` is set to `undefined`, meaning that the infinite scrolling functionality will not use any specific element for scrolling. Instead, it will rely on the default scrolling behavior of the document. This configuration is used for the redesigned app's layout which  does not require custom scroll management.
-    Conversely, if the feature is disabled, `wrapperRef` is set to the container's reference (`wrapperRef`). This allows the `useInfiniteScroll` hook to monitor and manage scrolling within the specific container element, ensuring that the infinite scrolling behavior is applied appropriately.
-
-**Test ID**: A `data-testid` attribute is provided for testing purposes, defaulting to `Page` if not specified.
-
-
-## Usage Examples
-
-### Example 1: Basic Usage
-This example demonstrates how to use the `Page` component with default settings.
-It includes a `data-testid` for testing and displays a simple message.
-```typescript jsx
-import React, { memo } from 'react';
-import { Page } from '@/widgets/Page';
-
-const MainPage = memo(() => {
-       return (
-        <Page data-testid="MainPage">
-            <p>Main Page</p>
-        </Page>
-    );
-});
-
-export default MainPage;
-```
-
-### Example 2: Usage with Custom Class and Scroll Callback
-This example demonstrates how to use the `Page` component with additional props. It adds a custom CSS class and includes a callback function that will be triggered when the user scrolls to the end of the page.
-```typescript jsx
-import React, { memo } from 'react';
-import { Page } from '@/widgets/Page';
-
-const handleScrollEnd = () => {
-    console.log('Scrolled to the end of the page!');
-};
-
-const MainPage = memo(() => {
-       return (
-           <Page
-                data-testid="MainPage"
-                className="custom-page-class"  
-                onScrollEnd={handleScrollEnd}  
-            > 
-                    <p>Main Page</p>
-            </Page>
-    );
-});
-
-export default MainPage;
-```
-
+- **Types**:
+    - `UIScrollSchema`: Interface that contains a single property named scroll, which is of type `ScrollSchema`, storing the scroll positions for various pages.
+- **Components**:
+    - `Page`: Component for managing scroll behavior, supporting infinite scrolling, and adapting styling based on feature toggles.
+- **Reducers**:
+  - `scrollReducer`: Reducer for scroll position management.
 
 ## Conclusion
-The `Page`  provides a versatile container for managing scroll behavior, supporting infinite scrolling, and adapting styling based on feature toggles.
-By leveraging the `onScrollEnd` callback and conditional class application, it ensures flexibility in handling user interactions and visual presentation.
-Whether used with default settings or customized with additional props, the `Page` widget enhances the user experience by efficiently managing content display and scroll events within web applications.
+The `Page` module serves as a vital component for handling scroll behavior and infinite scrolling within web applications. 
+Its architecture allows for efficient management of scroll positions, utilizing features like the `onScrollEnd` callback to enhance user interaction. 
+The component also supports dynamic styling based on the `isAppRedesigned `feature flag, enabling flexible adaptations to meet different design requirements. 
+By integrating hooks such as `useInfiniteScroll`, the `Page` module not only improves content display but also ensures a seamless and engaging experience for users as they navigate through various sections of the application. 
+Its structured design, combining types, selectors, and UI components, makes the `Page` module an essential part of any web application's user interface.
