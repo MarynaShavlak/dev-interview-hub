@@ -1,44 +1,33 @@
-# PageLoader Widget
+# Widget PageLoader Documentation
 
-## Overview 
-The `PageLoader` widget is a specialized component designed to display a loading spinner, indicating to users that a page or a section of the application is currently loading. This component is essential for providing visual feedback during asynchronous data fetching or heavy processing tasks, enhancing the overall user experience by reducing perceived wait times and improving interface responsiveness.
+## Overview
 
-##  Type Definition
-```typescript
-interface PageLoaderProps {
-    className?: string;
-}
+The `PageLoader` module provides a widget for displaying a loading spinner, indicating that a page or section of the application is currently in the process of loading. This widget is essential for enhancing the user experience during asynchronous operations such as data fetching or intensive processing tasks. By offering visual feedback, the `PageLoader` reduces perceived wait times and ensures a more responsive interface.
+
+## Module Structure
+
+The `PageLoader`  module is organized into UI components and an entry point for the module.
+```text
+PageLoader/
+├── ui/
+│   └── PageLoader/
+│       ├── PageLoader.tsx
+│       └── PageLoader.module.scss
+└── index.ts
 ```
 
-## Props
-The `PageLoader` has the following props:
+## Detailed Description
 
-| Prop         | Type                                        |          Required / Optional          | Description                                                                 |
-|--------------|---------------------------------------------|:-------------------------------------:|-----------------------------------------------------------------------------|
-| `className`  | `string`                                    |               Optional                | Additional CSS class names to apply to the main container for custom styling.                       |
+### 1. `ui/`: UI components
+- **`PageLoader/`**:
+    - [**PageLoader.tsx**](./ui/PageLoader/README.md): The primary component responsible for rendering the loading spinner. 
+    - **PageLoader.module.scss**: Styles for the `PageLoader` component.
 
+### 2. `index.ts`
+- Entry point for the `PageLoader` module, exporting the  component for easy use throughout the application.
 
-## Features
-1. **Loading Indicator**: The `PageLoader` component uses the `Loader` component to display a loading spinner. This visual indicator is essential for informing users that a loading process is underway
-2. **Infinite Scrolling**: The `PageLoader` utilizes the `VStack` component from the  Stack UI to center the loading spinner both horizontally and vertically within its container.
-3.  **Feature Toggling and CSS Classes**: The component supports feature toggling to apply different styles based on the feature flag `isAppRedesigned`. Conditional class names are applied according to the feature toggle and any additional class names passed via props. This ensures that the component adapts its styling based on the current feature flag and any custom styling requirements.
-
-## Usage Examples
-
-```typescript jsx
-import React from 'react';
-import { PageLoader } from '@/widgets/PageLoader';
-
-const LoadingPage = () => {
-    return (
-        <div>
-            <PageLoader />
-        </div>
-    );
-};
-
-export default LoadingPage;
-```
-
-## Conclusion 
-The `PageLoader` widget provides a simple yet effective way to indicate loading states within an application. By leveraging the Loader component and the VStack layout, it ensures a user-friendly experience during asynchronous operations.
+## Public API
+- **Components**:
+    - `PageLoader`: A widget that displays a loading spinner to indicate that content is currently loading.
+## Conclusion
+The `PageLoader` module is a key widget for managing loading states within an application. By offering a clear and centralized loading spinner through its integration with the Loader and VStack components, it improves the overall user experience during asynchronous operations. Its ability to toggle styles based on feature flags ensures it remains adaptable to different design requirements, making it a valuable asset in any application requiring efficient handling of loading states.

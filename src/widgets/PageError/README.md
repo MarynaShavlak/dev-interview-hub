@@ -1,32 +1,32 @@
-# PageError Widget
+# Widget PageError Documentation
 
 ## Overview
-The **`PageError `** widget is designed to handle unexpected errors within a React application, providing a user-friendly interface to inform users of issues and prompt necessary actions, such as reloading the page.
 
-## Props 
-The **`PageError`** widget accepts the following props:
+The `PageError` module provides a widget designed to handle unexpected errors within a React application. It offers a user-friendly interface to notify users of issues and provide a recovery option through a page reload. This widget is crucial for maintaining a positive user experience in the face of application errors by offering clear messaging and actionable steps to resolve issues.
+## Module Structure
 
-| Prop         | Type                                        |          Required / Optional          | Description                                                                 |
-|--------------|---------------------------------------------|:-------------------------------------:|-----------------------------------------------------------------------------|
-| `className`  | `string`                                    |               Optional                | Additional custom class names for styling purposes.                         |
-
-## Features
-- **Error Message Display**: Renders an error message to inform users about the encountered issue.
-- **Reload Button**: Includes a button that, when clicked, reloads the current page to attempt recovery from the error.
-- **Feature Toggles**: Supports feature toggling to conditionally apply different styles or behaviors based on feature flags.
-
-
-## Usage Example
-
-```typescript jsx
-import { PageError } from '@/widget/PageError';
-
-const ErrorView = () => {
-    return (
-        <PageError className="custom-error-page" />
-    );
-};
+The `PageError`  module is organized into UI components and an entry point for the module.
+```text
+PageError/
+├── ui/
+│   └── PageError/
+│       ├── PageError.tsx
+│       └── PageError.module.scss
+└── index.ts
 ```
 
+## Detailed Description
+
+### 1. `ui/`: UI components
+- **`PageError/`**:
+    - [**PageError.tsx**](./ui/PageError/README.md): The main component that renders the error message and reload button. It is responsible for displaying error details to users and providing them with an option to reload the page in an attempt to resolve the issue.
+    - **PageError.module.scss**: Styles for the `PageError` component.
+
+### 2. `index.ts`
+- Entry point for the `PageError` module, exporting the  component for easy use throughout the application.
+
+## Public API
+- **Components**:
+    - `PageError`: A widget that displays an error message and provides a reload button for users to recover from unexpected application errors.
 ## Conclusion
-The **`PageError`** widget provides a straightforward solution for handling and recovering from unexpected errors in a React application. By displaying clear error messages and offering a reload option, it enhances user experience by guiding them through error resolution steps effectively. Its modular design and customizable styling options make it a valuable component for ensuring robust error management in various application contexts.
+The `PageError` module is a key component for handling and recovering from unexpected errors in a React application. By providing clear error messaging and a reload option, it enhances user experience and guides users through potential error resolution steps. The widget’s support for feature toggles and customizable styling makes it a flexible and essential tool for robust error management across various application contexts.
