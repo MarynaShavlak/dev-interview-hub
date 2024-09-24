@@ -1,44 +1,48 @@
-## Запуск проєкту
+# Dev-hub Platform
 
-```
-npm install - встановлення залежностей
-npm run start:dev или npm run start:dev:vite - запуск сервера + frontend проєкту в dev режимі
+## Project Launch
+
+```bash
+npm install                # Install project dependencies
+npm run start:dev          # Start the server and frontend in development mode
+# or
+npm run start:dev:vite     # Start the server and frontend using Vite in development mode
+
 ```
 
 ----
 
-## Скрипты
+## Scripts
 
-- `npm run start` - Запуск frontend проєкту на webpack dev server
-- `npm run start:vite` - Запуск frontend проєкту на vite
-- `npm run start:dev` - Запуск frontend проєкту на webpack dev server + backend
-- `npm run start:dev:vite` - Запуск frontend проєкту на vite + backend
-- `npm run start:dev:server` - Запуск backend сервера
-- `npm run build:prod` - Збірка в prod режимі
-- `npm run build:dev` - Збірка в dev режимі (не мінімізований)
-- `npm run lint:ts` - Перевірка ts файлів лінтером
-- `npm run lint:ts:fix` - Виправлення ts файлів лінтером
-- `npm run lint:scss` - Перевірка scss файлів style лінтером
-- `npm run lint:scss:fix` - Виправлення scss файлів style лінтером
-- `npm run test:unit` - Запуск unit тестів з jest
-- `npm run test:ui` - Запуск скріншотних тестів з loki
-- `npm run test:ui:ok` - Підтвердження нових скріншотів
-- `npm run test:ui:ci` - Запуск скріншотних тестів в CI
-- `npm run test:ui:report` - Генерація повного звіту для скріншотних тестів
-- `npm run test:ui:json` - Генерація json звіту для скріншотних тестів
-- `npm run test:ui:html` - Генерація HTML звіту для скріншотних тестів
-- `npm run storybook` - запуск Storybook
-- `npm run storybook:build` - Збірка storybook білда
-- `npm run prepare` - прекоміт хуки
-- `npm run generate:slice` - Скрипт для генерації FSD слайсів
-
+- `npm run start` - Launches the frontend project using the Webpack Dev Server.
+- `npm run start:vite` - Launches the frontend project using Vite.
+- `npm run start:dev` - Starts the frontend project with the Webpack Dev Server along with the backend.
+- `npm run start:dev:vite` - Starts the frontend project with Vite along with the backend.
+- `npm run start:dev:server` - Starts the backend server.
+- `npm run build:prod` - Builds the project in production mode.
+- `npm run build:dev` - Builds the project in development mode (non-minimized).
+- `npm run lint:ts` - Runs the linter on TypeScript files.
+- `npm run lint:ts:fix` - Fixes issues in TypeScript files using the linter.
+- `npm run lint:scss` - Runs the linter on SCSS files.
+- `npm run lint:scss:fix` - Fixes issues in SCSS files using the linter.
+- `npm run test:unit` - Executes unit tests with Jest.
+- `npm run test:ui` - Runs screenshot tests using Loki.
+- `npm run test:ui:ok` - Confirms new screenshots.
+- `npm run test:ui:ci` - Runs screenshot tests in Continuous Integration (CI) mode.
+- `npm run test:ui:report` - Generates a comprehensive report for screenshot tests.
+- `npm run test:ui:json` - Generates a JSON report for screenshot tests.
+- `npm run test:ui:html` - Generates an HTML report for screenshot tests.
+- `npm run storybook` - Launches Storybook.
+- `npm run storybook:build` - Builds the Storybook application.
+- `npm run prepare` - Sets up pre-commit hooks.
+- `npm run generate:slice` - Script for generating FSD slices.
 ----
 
-## Архітектура проєкту
+## Project Architecture
 
-Проєкт написаний відповідно до методології Feature sliced design
+The project is developed following the **Feature-Sliced Design** methodology.
 
-Посилання на документацію - [feature sliced design](https://feature-sliced.design/docs/get-started/tutorial)
+For more information, please refer to the documentation on [Feature-Sliced Design](https://feature-sliced.design/docs/get-started/tutorial)
 
 ----
 
@@ -55,15 +59,18 @@ For the configuration related to translations, refer to the [configuration file]
 
 ----
 
-## Тести
+## Tests
 
-У проєкті використовуються 4 види тестів:
-1) Звичайні unit тести на jest - `npm run test:unit`
-2) Тести на компоненти з React testing library -`npm run test:unit`
-3) Скріншотне тестування з loki `npm run test:ui`
-4) e2e тестування з Cypress `npm run test:e2e`
+The project uses 4 types of tests:
 
-Докладніше про тести - [документація тестування](/docs/tests.md)
+| Test Type                        | Command                   | Description                                            |
+|----------------------------------|---------------------------|--------------------------------------------------------|
+| **Unit Tests (Jest)**            | `npm run test:unit`      | Verifies core functionality and ensures functions operate as intended. |
+| **Component Tests (React Testing Library)** | `npm run test:unit`      | Assesses the behavior and rendering of React components. |
+| **Screenshot Tests (Loki)**      | `npm run test:ui`        | Conducts visual regression testing to maintain UI consistency. |
+| **End-to-End Tests (Cypress)**   | `npm run test:e2e`       | Tests comprehensive user flows and interactions.       |
+
+For more details, refer to the [tests documentation](/docs/tests.md)
 
 ----
 
@@ -90,6 +97,7 @@ Both plugins help maintain the project's code quality and consistency, while als
 
 
 ----
+
 ## Storybook
 
 [//]: # (У проєкті для кожного компонента описуються сторі-кейси.)
@@ -222,7 +230,6 @@ This configuration ensures efficient builds with support for modern JavaScript a
 
 ### [Storybook configuration](./config/storybook/README.storybook.md)
 
-
 ## Additional scripts
 The `scripts` folder houses various utilities designed to streamline development processes, enhance code quality, and maintain project integrity.
 
@@ -236,11 +243,11 @@ The `scripts` folder houses various utilities designed to streamline development
 3. [Remove Feature Toggles:](./scripts/remove-feature/README.removeFeature.md):
    - **Purpose**: Automates removal of feature toggles in TypeScript projects based on specified state (`on` or `off`), ensuring deprecated features are cleanly removed from the codebase.
    - **Command**: `npx ts-node ./scripts/remove-feature.ts <featureName> <featureState>`
-   - 
+   
 4. [Generate Loki Report:](./scripts/generate-loki-report/README.visualLokiReport.md):
    - **Purpose**: Generates a `report.json` for visual regression testing with Loki, facilitating comparison of component changes visually to maintain UI quality.
    - **Command**: `npm run test:ui:json`
-   - 
+   
 5. [Generate FSD Slice:](./scripts/createSlice/README.createSlice.md):
    - **Purpose**: Automates creation of Redux slices in TypeScript projects, including directory structure, model files, UI components, and public API, enhancing consistency and reducing development time.
    - **Command**: `node scripts/createSlice/generate-fsd-slice.js <layer> <sliceName>`
@@ -251,26 +258,27 @@ The `scripts` folder houses various utilities designed to streamline development
 
 ----
 
-## CI pipeline та pre commit хуки
+## CI Pipeline and Pre-commit Hooks
 
-Конфігурація github actions знаходиться в /.github/workflows.
-В CI проганяються всі види тестів, збірка проєкту і сторібука, лінтинг.
+The configuration for **GitHub Actions** is located in [.github/workflows](./.github/workflows/README.md). 
+In the CI process, all types of tests are run, the project and Storybook are built, and linting is performed.
 
-У прекоміт хуках перевіряємо проєкт лінтерами, конфіг в /.husky
+In the pre-commit hooks, we check the project using linters, with the configuration found in [.husky](./.husky).
+
+----
+
+## Working with Data
+
+Data interactions are handled using the **Redux Toolkit**.
+TTo enhance reusability, entities are normalized with the **EntityAdapter** wherever applicable. 
+In this project, it is specifically utilized to normalize the data for [articles](./src/pages/ArticlesPage/model/slices/README.md) and  [comments](./src/features/ArticleComments/model/slices/README.md) within their respective slices. 
+
+Server requests are managed using **RTK query**, with the configuration available at  [rtkApi](./src/shared/api/rtkApi.ts)
+
+For asynchronous integration of reducers — ensuring they are not included in the main bundle — [DynamicModuleLoader](./src/shared/lib/components/DynamicModuleLoader/README.md) is implemented.
 
 ----
 
-### Робота з даними
-
-Взаємодія з даними здійснюється за допомогою redux toolkit.
-По можливості повторно використовувані сутності необхідно нормалізувати за допомогою EntityAdapter
-
-Запити на сервер відправляються за допомогою [RTK query](/src/shared/api/rtkApi.ts)
-
-Для асинхронного підключення редюсерів (щоб не тягнути їх у загальний бандл) використовується
-[DynamicModuleLoader](/src/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader.tsx)
-
-----
 ## Working with Feature Flags
 The use of feature flags is only allowed through the `toggleFeatures` helper or `ToggleFeaturesComponent` component.
 To ensure that feature flags are consistently and correctly implemented, a custom ESLint plugin  <a href="https://www.npmjs.com/package/eslint-plugin-toggle-features-rule-plugin" target="_blank">eslint-plugin-toggle-features-rule-plugin</a> has been developed. 
@@ -313,7 +321,9 @@ To automatically remove a feature flag, use the [remove-feature.ts](./scripts/re
 > [!IMPORTANT]
 > The success of automatic feature flag removal is directly tied to the proper use of the custom ESLint plugin. By adhering to the rules defined in the plugin, you ensure that the feature toggle logic is structured in a way that allows for clean, automated feature removal.
 
-## Shared
+## Layers according FSD
+
+### Shared
 
 | Common for both styles versions                             | Deprecated                                                          | Redesigned                                                          | 
 |-------------------------------------------------------------|---------------------------------------------------------------------|---------------------------------------------------------------------|
@@ -333,7 +343,7 @@ To automatically remove a feature flag, use the [remove-feature.ts](./scripts/re
 |                                                             | [Loader](./src/shared/ui/deprecated/Loader/README.md)               |                  |
 |                                                             | [Select](./src/shared/ui/deprecated/Select/README.md)               |                  |
 
-## Entities
+### Entities
 
 - [Article](./src/entities/Article/README.md)
 - [Comment](./src/entities/Comment/README.md)
@@ -344,7 +354,7 @@ To automatically remove a feature flag, use the [remove-feature.ts](./scripts/re
 - [Rating](./src/entities/Rating/README.md)
 - [User](./src/entities/User/README.md)
 
-## Features
+### Features
 - [ArticleCategoryTabs](src/features/ArticleCategoryTabs/ui/ArticleCategoryTabs/README.md)
 - [ArticleComments](src/features/ArticleComments/README.md)
 - [ArticleEditNavigationButton](src/features/ArticleEditNavigationButton/ui/ArticleEditNavigationButton/README.md)
@@ -363,9 +373,7 @@ To automatically remove a feature flag, use the [remove-feature.ts](./scripts/re
 - [ThemeSwitcher](src/features/ThemeSwitcher/ui/ThemeSwitcher/README.md)
 - [UIDesignSwitcher](src/features/UIDesignSwitcher/ui/UiDesignSwitcher/README.md)
 
-
-
-## Widgets 
+### Widgets 
 - [ArticleAdditionalInfo](src/widgets/ArticleAdditionalInfo/README.md)
 - [ArticlesFilters](src/widgets/ArticlesFilters/README.md)
 - [Navbar](src/widgets/Navbar/README.md)
@@ -375,7 +383,7 @@ To automatically remove a feature flag, use the [remove-feature.ts](./scripts/re
 - [ScrollToolbar](src/widgets/ScrollToolbar/README.md)
 - [Sidebar](src/widgets/Sidebar/README.md)
 
-## Pages
+### Pages
 - [AboutPage](src/pages/AboutPage/README.md)
 - [AdminPanelPage](src/pages/AdminPanelPage/README.md)
 - [ArticleDetailsPage](src/pages/ArticleDetailsPage/ui/ArticleDetailsPage/README.md)
@@ -386,4 +394,4 @@ To automatically remove a feature flag, use the [remove-feature.ts](./scripts/re
 - [NotFoundPage](src/pages/NotFoundPage/ui/README.md)
 - [ProfilePage](src/pages/ProfilePage/ui/ProfilePage/README.md)
 - [SettingsPage](src/pages/SettingsPage/README.md)
-- 
+
