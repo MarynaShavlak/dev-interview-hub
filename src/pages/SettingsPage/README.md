@@ -1,39 +1,43 @@
-# SettingsPage
+# Page SettingsPage Documentation 
 
 ## Overview
-The **`SettingsPage`** module is responsible for displaying the user settings interface. This page module is designed according to the Feature-Sliced Design (FSD) methodology to manage and present settings-related functionalities within a consistent and cohesive layout. Users can customize their preferences, including UI design settings, through a user-friendly interface.
+The **`SettingsPage`**  module is responsible for displaying the user settings interface, providing users with the ability to customize various aspects of their preferences, including UI design options. Built following the Feature-Sliced Design (FSD) methodology, the module ensures that settings-related functionalities are organized in a consistent and modular structure. This allows for easy integration and customization within the broader application, delivering a user-friendly settings management experience.
 
-## Type Definition
-```typescript
-interface SettingsPageProps {
-    className?: string;
-}
+# Module Structure
+
+The `SettingsPage`  module is organized into UI components and an entry point, as shown below:
+```text
+SettingsPage/
+├── ui/
+│   ├── SettingsContainer/
+│   │   └── SettingsContainer.tsx
+│   ├── SettingsPage/
+│   │   └── SettingsPage.tsx
+│   ├── SettingsPageSkeleton/
+│   │   └── SettingsPageSkeleton.tsx
+└── index.ts
 ```
 
-## Props
-The **`SettingsPage`** component accepts the following props:
+## Detailed Description
 
-| Prop       | Type       | Required / Optional | Description                                          |
-|------------|------------|----------------------|------------------------------------------------------|
-| `className` | `string`   | Optional             | Custom class name for additional styling.           |
+### 1. `ui/`: UI components
+- **`SettingsContainer/`**:
+    - [**SettingsContainer.tsx**](./ui/SettingsContainer/README.md): Main container layout for the settings page, organizing the content and handling interactions for managing user settings.
 
-## Features
-1. **User Settings Management**: Provides an interface for users to customize their settings, including UI design preferences.
+- **`SettingsPageSkeleton/`**:
+  - [**SettingsPageSkeleton.tsx**](./ui/SettingsPageSkeleton/SettingsPageSkeleton.tsx): Skeleton loader component that displays a placeholder while the settings page content is loading, ensuring a smooth user experience during data fetches or slow network conditions.
 
-2. **Consistent Layout**: Utilizes the `Page` component to maintain a consistent and structured layout across the application.
-
-3. **Component Memoization**: The `SettingsPage` is memoized using `React.memo` to optimize rendering performance by preventing unnecessary re-renders.
-
-4. **Lazy Loading**: The `SettingsPageAsync` component is lazy-loaded to optimize the initial load time of the application, improving performance and user experience.
+- **`SettingsPage/`**:
+  - [**SettingsPage.tsx**](./ui/SettingsPage/SettingsPage.tsx):  Main component responsible for rendering the settings interface. It loads the `SettingsContainer` and manages the user interactions related to settings customization.
 
 
-## SettingsPageSkeleton
-The `SettingsPageSkeleton` is a memoized component that renders a skeleton placeholder for the `SettingsPage`. 
-This skeleton provides a visual indication to users that content is loading, ensuring a smooth user experience during loading states.
+### 2. `index.ts`
+- Entry point for the `SettingsPage` module, exporting the components for easy use throughout the application.
 
+## Public API
+- **Components**:
+    - `SettingsPage`: The main component responsible for rendering the settings interface and handling user interactions for settings customization.
+    - `SettingsPageSkeleton`:  A skeleton loader that displays while the settings data is being fetched, ensuring a smooth and visually responsive experience during loading states.
 
 ## Conclusion
-The `SettingsPage` module is essential for providing a dedicated interface for user settings management. 
-By leveraging the `SettingsContainer` component, it ensures that users can easily customize their preferences, including UI design options. 
-The use of the `Page` component for a consistent layout, memoization for performance optimization, and lazy loading for improved load times makes the `SettingsPage` module an efficient and user-friendly solution for managing user settings.
-Additionally, the `SettingsPageSkeleton` component enhances the user experience by providing a visual indication during loading states, ensuring a smooth and responsive interface.
+The `SettingsPage` module provides an intuitive and customizable interface for managing user preferences. The `SettingsContainer` organizes settings into a clear, navigable structure, making it easy for users to adjust their options. The `SettingsPageSkeleton` enhances the user experience by providing visual feedback during loading times, ensuring responsiveness. With memoization, feature toggles, and lazy loading, the module delivers a performant, adaptable, and user-friendly environment for handling application settings.

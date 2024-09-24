@@ -376,3 +376,14 @@ To automatically remove a feature flag, use the [remove-feature.ts](./scripts/re
 - [Sidebar](src/widgets/Sidebar/README.md)
 
 ## Pages
+- [AboutPage](src/pages/AboutPage/README.md)
+- [AdminPanelPage](src/pages/AdminPanelPage/README.md)
+- [ArticleDetailsPage](src/pages/ArticleDetailsPage/README.md)
+- [ArticleEditPage](src/pages/ArticleEditPage/README.md)
+- [ArticlesPage](src/pages/ArticlesPage/README.md)
+- [ForbiddenPage](src/pages/ForbiddenPage/README.md)
+- [MainPage](src/pages/MainPage/README.md)
+- [NotFoundPage](src/pages/NotFoundPage/README.md)
+- [ProfilePage](src/pages/ProfilePage/README.md)
+- [SettingsPage](src/pages/SettingsPage/README.md)
+- 
