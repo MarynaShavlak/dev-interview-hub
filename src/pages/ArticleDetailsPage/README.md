@@ -1,36 +1,41 @@
-# ArticleDetailsPage
+# Page ArticleDetailsPage Documentation
 
 ## Overview
-The **`ArticleDetailsPage`** module is responsible for presenting a detailed view of an article within the application. Leveraging the Feature-Sliced Design (FSD) methodology, this page module dynamically adapts its interface based on the application’s design system. It utilizes feature flags to conditionally render either the `RedesignedArticleDetailsPage` or the `DeprecatedArticleDetailsPage`, ensuring that users receive a consistent and coherent experience depending on the active design configuration.
+The **`ArticleDetailsPage`**  module is responsible for displaying a detailed view of an article within the application. Designed using the Feature-Sliced Design (FSD) methodology, this module ensures a dynamic, adaptable user experience by leveraging feature flags to toggle between different design versions. It handles state management efficiently using dynamic reducer loading, optimizing performance and user experience.
 
-## Type Definition
-```typescript
-interface ArticleDetailsPageProps {
-    className?: string;
-}
+## Module Structure
+
+The `ArticleDetailsPage`  module is organized into UI components and an entry point, as shown below:
+```text
+ArticleDetailsPage/
+├── model/                                         # Contains logic related to data and state.
+│   └── selectors/                                 # Sub-directory for selecting specific data from the state.
+│       └── getCanEditArticle.ts                   # Selector to determine if the current user can edit the article.
+├── ui/                                            # UI components related to the article details page.
+│   ├── AdditionalInfoContainer/                   # Component for displaying additional article info.
+│   │   ├── AdditionalInfoContainer.tsx            # Main component for additional information.
+│   │   ├── AdditionalInfoContainer.module.scss    # Styling specific to the AdditionalInfoContainer.
+│   │   └── AdditionalInfoContainerSkeleton/       # Skeleton loading state for the additional info section.
+│   │       └── AdditionalInfoContainerSkeleton.tsx
+│   ├── ArticleDetailsPageSkeleton/                # Skeleton component for the entire article details page.
+│   │   └── ArticleDetailsPageSkeleton.tsx
+│   ├── ArticleDetailsPage/                        # Main component for rendering the article details.
+│   │   ├── ArticleDetailsPage.tsx                 # Core component for the page layout and logic.
+│   │   ├── ArticleDetailsPage.module.scss         # Styling for the article details page.
+│   │   ├── ArticleDetailsPageContainer/           # Container component for wrapping the article details logic.
+│   │   │   └── ArticleDetailsPageContainer.tsx
+│   │   ├── DeprecatedArticleDetailsPage/          # Legacy version of the article details page.
+│   │   │   └── ArticleDetailsPageHeader/          # Header component for the deprecated version.
+│   │   │       └── ArticleDetailsPageHeader.tsx
+│   │   │   └── DeprecatedArticleDetailsPage.tsx   # Main file for the deprecated page.
+│   │   └── RedesignedArticleDetailsPage/          # Updated, redesigned version of the article details page.
+│   │       └── RedesignedArticleDetailsPage.tsx
+├── index.ts                                       # Entry point of the module.
 ```
-## Props
-
-The **`ArticleDetailsPage`** component accepts the following props:
-
-| Prop       | Type       | Required / Optional | Description                             |
-|------------|------------|----------------------|-----------------------------------------|
-| `className` | `string`   | Optional             | Custom class name for additional styling. |
-
-## Features
-
-1. **Dynamic Rendering**: Utilizes the `ToggleFeaturesComponent` to render either `RedesignedArticleDetailsPage` or `DeprecatedArticleDetailsPage` based on the `isAppRedesigned` feature flag, ensuring that the page adapts to the current design system.
-2. **Dynamic Reducer Management**: Integrates `DynamicModuleLoader` to manage the `articleDetailsPageReducer` dynamically, optimizing state management and reducing unnecessary bundle size by loading reducers only when required.
-3. **Component Memoization**: The `ArticleDetailsPage` is memoized using `React.memo` to optimize rendering performance by preventing unnecessary re-renders.
-4. **Lazy Loading**: The `ArticleDetailsPageAsync` component is lazy-loaded to optimize the initial load time of the application, improving performance and user experience.
-
-
-## ArticleDetailsPage
-The `ArticleDetailsPageSkeleton` is a memoized component that renders a skeleton placeholder for the `ArticleDetailsPage`.
-This skeleton provides a visual indication to users that content is loading, ensuring a smooth user experience during loading states.
-
+## Public API
+- **Components**:
+    - [**ArticleDetailsPage.tsx**](./ui/ArticleDetailsPage/README.md): Lazy-loaded version of `ArticleDetailsPage`, improving initial load times by loading the component only when needed.
+    - [**ArticleDetailsPageSkeleton.tsx**](./ui/ArticleDetailsPageSkeleton/README.md):  A skeleton loader that displays while the settings data is being fetched, ensuring a smooth and visually responsive experience during loading states.
 
 ## Conclusion
-
-The **`ArticleDetailsPage`** component is a key page module that delivers a comprehensive and adaptable view of article details. By utilizing feature flags and dynamic reducer management, it ensures that the page remains consistent with the current design standards and optimizes performance. The component's integration of `DynamicModuleLoader` for state management and memoization for performance efficiency makes it a robust and user-friendly solution for presenting article information across various design configurations.
-Additionally, the `ArticleDetailsPageSkeleton` component enhances the user experience by providing a visual indication during loading states, ensuring a smooth and responsive interface.
+The `ArticleDetailsPage` module is a versatile and essential part of the application, offering a detailed view of articles with support for both legacy and redesigned interfaces. By incorporating dynamic reducer management, feature flag-based rendering, and performance optimizations like memoization and lazy loading, it ensures a seamless, efficient, and user-friendly experience. Additionally, the use of skeleton loaders enhances the responsiveness of the interface during loading states, further improving the user experience.
