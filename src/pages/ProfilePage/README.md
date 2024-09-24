@@ -23,7 +23,7 @@ ProfilePage/
     - [**ProfileContainer.tsx**](./ui/ProfileContainer/README.md): Main container managing user profile data, rendering information, and enabling edits when the current user views their own profile.
 
 - **`ProfilePage/`**:
-    - [**ProfilePage.tsx**](./ui/ProfilePage/ProfilePage.tsx): Main component that displays a user's profile, integrating profile viewing and editing functionalities.
+    - [**ProfilePage.tsx**](./ui/ProfilePage/README.md): Main component that displays a user's profile, integrating profile viewing and editing functionalities.
 
 
 ### 2. `index.ts`
@@ -31,7 +31,7 @@ ProfilePage/
 
 ## Public API
 - **Components**:
-    - `ProfilePage`: Lazy-loaded version of `ProfilePage`, improving initial load times by loading the component only when needed.
+    - [**ProfilePage.tsx**](./ui/ProfilePage/README.md): Lazy-loaded version of `ProfilePage`, improving initial load times by loading the component only when needed.
 
 ## Conclusion
 The `ProfilePage` module is essential for providing a seamless user experience for viewing and editing profile information. By leveraging the `ProfileContainer`, it ensures that profile data is dynamically loaded and easily editable. The use of the Page component guarantees a consistent layout throughout the application. Additionally, performance is optimized through component memoization and lazy loading, ensuring fast load times and smooth interaction. This makes the ProfilePage module an efficient and user-friendly solution for managing user profiles.

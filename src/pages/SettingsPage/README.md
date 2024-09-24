@@ -28,7 +28,7 @@ SettingsPage/
   - [**SettingsPageSkeleton.tsx**](./ui/SettingsPageSkeleton/SettingsPageSkeleton.tsx): Skeleton loader component that displays a placeholder while the settings page content is loading, ensuring a smooth user experience during data fetches or slow network conditions.
 
 - **`SettingsPage/`**:
-  - [**SettingsPage.tsx**](./ui/SettingsPage/SettingsPage.tsx):  Main component responsible for rendering the settings interface. It loads the `SettingsContainer` and manages the user interactions related to settings customization.
+  - [**SettingsPage.tsx**](./ui/SettingsPage/README.md):  Main component responsible for rendering the settings interface. It loads the `SettingsContainer` and manages the user interactions related to settings customization.
 
 
 ### 2. `index.ts`
@@ -36,8 +36,8 @@ SettingsPage/
 
 ## Public API
 - **Components**:
-    - `SettingsPage`: The main component responsible for rendering the settings interface and handling user interactions for settings customization.
-    - `SettingsPageSkeleton`:  A skeleton loader that displays while the settings data is being fetched, ensuring a smooth and visually responsive experience during loading states.
+    - [**SettingsPage.tsx**](./ui/SettingsPage/README.md): The main component responsible for rendering the settings interface and handling user interactions for settings customization.
+    - [**SettingsPageSkeleton.tsx**](./ui/SettingsPageSkeleton/SettingsPageSkeleton.tsx):  A skeleton loader that displays while the settings data is being fetched, ensuring a smooth and visually responsive experience during loading states.
 
 ## Conclusion
 The `SettingsPage` module provides an intuitive and customizable interface for managing user preferences. The `SettingsContainer` organizes settings into a clear, navigable structure, making it easy for users to adjust their options. The `SettingsPageSkeleton` enhances the user experience by providing visual feedback during loading times, ensuring responsiveness. With memoization, feature toggles, and lazy loading, the module delivers a performant, adaptable, and user-friendly environment for handling application settings.
