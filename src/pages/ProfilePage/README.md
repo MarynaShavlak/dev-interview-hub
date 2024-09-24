@@ -1,35 +1,37 @@
-# ProfilePage
+# Page ProfilePage Documentation
 
 ## Overview
-The **`ProfilePage`** module is responsible for displaying a user's profile page, where they can view and edit their own profile or view the profile of another user. According to the Feature-Sliced Design (FSD) methodology, this page module is designed to manage and present the profile-related functionalities within a consistent and cohesive layout.
+The **`ProfilePage`**  module is responsible for rendering a user's profile page, where users can view their own profile or that of another user. Built according to the Feature-Sliced Design (FSD) methodology, this module efficiently manages and presents profile-related functionality within a cohesive, consistent layout. It allows for profile viewing, editing (if applicable), and leverages performance optimization techniques like component memoization and lazy loading.
 
-## Type Definition
-```typescript
-interface ProfilePageProps {
-    className?: string;
-}
+# Module Structure
+
+The `ProfilePage`  module is organized into UI components and an entry point, as shown below:
+```text
+ProfilePage/
+├── ui/
+│   ├── ProfileContainer/
+│   │   └── ProfileContainer.tsx
+│   ├── ProfilePage/
+│   │   └── ProfilePage.tsx
+└── index.ts
 ```
 
-## Props
-The **`ProfilePage`** component accepts the following props:
+## Detailed Description
 
-| Prop       | Type       | Required / Optional | Description                                          |
-|------------|------------|----------------------|------------------------------------------------------|
-| `className` | `string`   | Optional             | Custom class name for additional styling.           |
+### 1. `ui/`: UI components
+- **`ProfileContainer/`**:
+    - [**ProfileContainer.tsx**](./ui/ProfileContainer/README.md): Main container managing user profile data, rendering information, and enabling edits when the current user views their own profile.
 
-## Features
-1. **User Profile Display**: Shows the profile information of the current user or another user, depending on the URL parameters.
+- **`ProfilePage/`**:
+    - [**ProfilePage.tsx**](./ui/ProfilePage/ProfilePage.tsx): Main component that displays a user's profile, integrating profile viewing and editing functionalities.
 
-2. **Editable Profile**: Integrates the `ProfileContainer` component, allowing the current user to edit their profile details if they are viewing their own profile.
 
-3. **Consistent Layout**: Utilizes the `Page` component to maintain a consistent and structured layout across the application.
+### 2. `index.ts`
+- Entry point for the `ProfilePage` module, exporting the components for easy use throughout the application.
 
-4. **Component Memoization**: The `ProfilePage` is memoized using `React.memo` to optimize rendering performance by preventing unnecessary re-renders.
-
-5. **Lazy Loading**: The `ProfilePageAsync` component is lazy-loaded to optimize the initial load time of the application, improving performance and user experience.
-
+## Public API
+- **Components**:
+    - `ProfilePage`: Lazy-loaded version of `ProfilePage`, improving initial load times by loading the component only when needed.
 
 ## Conclusion
-The `ProfilePage` module is a crucial part of the application, providing users with a dedicated interface to view and edit profile information. 
-By leveraging the `ProfileContainer` component, it ensures that the profile data is dynamically loaded and editable, offering a seamless user experience. 
-The use of the `Page` component for a consistent layout, memoization for performance optimization, and lazy loading for improved load times makes the `ProfilePage` module an efficient and user-friendly solution for managing user profiles.
+The `ProfilePage` module is essential for providing a seamless user experience for viewing and editing profile information. By leveraging the `ProfileContainer`, it ensures that profile data is dynamically loaded and easily editable. The use of the Page component guarantees a consistent layout throughout the application. Additionally, performance is optimized through component memoization and lazy loading, ensuring fast load times and smooth interaction. This makes the ProfilePage module an efficient and user-friendly solution for managing user profiles.
