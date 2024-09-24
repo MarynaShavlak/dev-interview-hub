@@ -1,17 +1,34 @@
-# ForbiddenPage
+# Page ForbiddenPage Documentation
 
-## ForbiddenPage Component 
 ## Overview
-The `ForbiddenPage` component is rendered when a user attempts to access a page for which they do not have the required permissions. 
-This typically occurs when the user does not have the necessary role to view the page. 
-The component provides a localized error message informing the user that access is restricted.
+The **`ForbiddenPage`**   module ...
 
+## Module Structure
 
-## Features
-1. **Access Denial Message**: Displays a message indicating that the user does not have access to the page.
-2. **Feature Toggling**: Supports toggling between different UI versions using a feature flag.
+The `ForbiddenPage`  module is organized into UI components and an entry point, as shown below:
+```text
+ForbiddenPage/
+├── ui/
+│   ├── ForbiddenPage.tsx
+│   └── ForbiddenPageSkeleton.tsx
+└── index.ts
+```
 
+## Detailed Description
 
-## ForbiddenPageSkeleton Component
-The `ForbiddenPageSkeleton` component is a memoized component that renders a skeleton placeholder for the `ForbiddenPage`. 
-This skeleton provides a visual indication to users that content is loading, ensuring a smooth user experience during loading states.
+### 1. `ui/`: UI components
+- [**ForbiddenPage.tsx**](./ui/README.md): Main component that displays a localized message informing the user that they do not have the required permissions to access the requested page
+- [**ForbiddenPageSkeleton.tsx**](./ui/ForbiddenPageSkeleton.tsx):  A memoized skeleton loader component that provides a visual placeholder while the `ForbiddenPage` content is loading, ensuring a smooth user experience during slow network conditions or delays.
+
+### 2. `index.ts`
+- Entry point for the `ForbiddenPage` module, exporting the components for easy use throughout the application.
+
+## Public API
+- **Components**:
+    - [**ForbiddenPage.tsx**](./ui/README.md): Displays an access denial message with feature toggling for UI variations.
+    - **ForbiddenPageSkeleton**: A skeleton loader providing visual feedback during loading states.
+
+## Conclusion
+The `ForbiddenPage`  module a crucial role in handling restricted access scenarios by providing a clear and localized error message. With its feature toggling capabilities, it adapts to different UI versions, ensuring flexibility in design. 
+The `ForbiddenPageSkeleton` enhances the user experience during loading phases, providing visual feedback and maintaining a responsive interface. 
+This module effectively manages unauthorized access, contributing to a secure and user-friendly application.

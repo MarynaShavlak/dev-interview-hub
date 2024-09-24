@@ -381,7 +381,7 @@ To automatically remove a feature flag, use the [remove-feature.ts](./scripts/re
 - [ArticleDetailsPage](src/pages/ArticleDetailsPage/README.md)
 - [ArticleEditPage](src/pages/ArticleEditPage/README.md)
 - [ArticlesPage](src/pages/ArticlesPage/README.md)
-- [ForbiddenPage](src/pages/ForbiddenPage/README.md)
+- [ForbiddenPage](src/pages/ForbiddenPage/ui/README.md)
 - [MainPage](src/pages/MainPage/README.md)
 - [NotFoundPage](src/pages/NotFoundPage/ui/README.md)
 - [ProfilePage](src/pages/ProfilePage/ui/ProfilePage/README.md)

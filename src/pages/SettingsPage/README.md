@@ -3,7 +3,7 @@
 ## Overview
 The **`SettingsPage`**  module is responsible for displaying the user settings interface, providing users with the ability to customize various aspects of their preferences, including UI design options. Built following the Feature-Sliced Design (FSD) methodology, the module ensures that settings-related functionalities are organized in a consistent and modular structure. This allows for easy integration and customization within the broader application, delivering a user-friendly settings management experience.
 
-# Module Structure
+## Module Structure
 
 The `SettingsPage`  module is organized into UI components and an entry point, as shown below:
 ```text

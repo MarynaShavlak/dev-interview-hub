@@ -31,7 +31,7 @@ The script will:
 - Create UI components, styles, and stories in `src/features/AuthByUsername/ui/`.
 - Set up an `index.ts` file exporting the slice component and schema.
 
-### ## Module Structure
+### Module Structure
 
 The generated module is organized into several directories:
 ```text

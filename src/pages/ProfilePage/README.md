@@ -3,7 +3,7 @@
 ## Overview
 The **`ProfilePage`**  module is responsible for rendering a user's profile page, where users can view their own profile or that of another user. Built according to the Feature-Sliced Design (FSD) methodology, this module efficiently manages and presents profile-related functionality within a cohesive, consistent layout. It allows for profile viewing, editing (if applicable), and leverages performance optimization techniques like component memoization and lazy loading.
 
-# Module Structure
+## Module Structure
 
 The `ProfilePage`  module is organized into UI components and an entry point, as shown below:
 ```text
