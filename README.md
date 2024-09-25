@@ -8,7 +8,6 @@ npm run start:dev          # Start the server and frontend in development mode
 # or
 npm run start:dev:vite     # Start the server and frontend using Vite in development mode
 ```
-
 ----
 
 ## Scripts
@@ -48,36 +47,9 @@ For a deeper understanding, visit the [Feature-Sliced Design documentation](http
 - **Backend**: Node.js server.
 ----
 
-## Working with Translations
-
-This project employs the [i18next](https://react.i18next.com/) library for translations. 
-Translation files are located in the `public/locales` directory.
-For an efficient workflow, it is recommended to install the i18next plugin for WebStorm or VSCode, which provides helpful features like autocompletion for translation keys and detecting missing translations.
-
-For more details refer to the [configuration file](./src/shared/config/i18n/i18n.ts).
-
-----
-
-## Testing
-
-The project supports multiple test types. See the full testing documentation here:
-
-| Test Type                        | Command                   | Description                                            |
-|----------------------------------|---------------------------|--------------------------------------------------------|
-| **Unit Tests (Jest)**            | `npm run test:unit`      | Verifies core functionality and ensures functions operate as intended. |
-| **Component Tests (React Testing Library)** | `npm run test:unit`      | Assesses the behavior and rendering of React components. |
-| **Screenshot Tests (Loki)**      | `npm run test:ui`        | Conducts visual regression testing to maintain UI consistency. |
-| **End-to-End Tests (Cypress)**   | `npm run test:e2e`       | Tests comprehensive user flows and interactions.       |
-
-For more details, refer to the [tests documentation](/docs/tests.md)
-
-----
-
-
-
 ## Project Configuration
 
-The project uses two build tools: **Webpack** and **Vite**. 
+The project uses two build tools: **Webpack** and **Vite**.
 For comprehensive configuration details, refer to the respective guides:
 
 | **Tool**    |**Usage**                            | **Purpose**                                      | **Configuration**                           | 
@@ -90,8 +62,18 @@ All configuration files are systematically organized within the `/config` direct
 - [Webpack configuration](./config/build/README.webpack.md)
 - [Jest configuration](./config/jest/README.md)
 - [Storybook configuration](./config/storybook/README.storybook.md)
-  
+
 For comprehensive configuration details, refer to the [Project Configuration Documentation](./config/README.configs.md).
+
+## Working with Translations
+
+This project employs the [i18next](https://react.i18next.com/) library for translations. 
+Translation files are located in the `public/locales` directory.
+For an efficient workflow, it is recommended to install the i18next plugin for WebStorm or VSCode, which provides helpful features like autocompletion for translation keys and detecting missing translations.
+
+For more details refer to the [configuration file](./src/shared/config/i18n/i18n.ts).
+
+----
 
 ## Additional scripts for development
 The `scripts` folder houses various utilities designed to streamline development processes, enhance code quality, and maintain project integrity.
@@ -104,7 +86,6 @@ The `scripts` folder houses various utilities designed to streamline development
 | [Generate Loki Report](./scripts/generate-loki-report/README.visualLokiReport.md)                             | Generates a `report.json` for visual regression testing with Loki, facilitating comparison of component changes visually to maintain UI quality. | `npm run test:ui:json`                                            |
 | [Generate FSD Slice](./scripts/createSlice/README.createSlice.md)                                             | Automates creation of Redux slices in TypeScript projects, including directory structure, model files, UI components, and public API, enhancing consistency and reducing development time. | `node scripts/createSlice/generate-fsd-slice.js layer sliceName` |
 | [Clear Cache](./scripts/clear-cache/README.clear-cache.md)                                                    | Clears `.cache` directory in `node_modules` to remove outdated or corrupt cache files, ensuring smooth operation of tools like Babel loader. | `node ./scripts/clear-cache/clear-cache.js`                       |
-
 
 ----
 
@@ -146,7 +127,7 @@ To automatically remove a feature flag, use the [remove-feature.ts](./scripts/re
 > [!IMPORTANT]
 > Successful automatic feature flag removal relies on proper use of the custom ESLint plugin. Following its rules ensures the feature toggle logic is structured for clean, automated removal
 
-For more details, refer to the [Working with Feature Flags documentation](/docs/tests.md)
+For more details, refer to the [Working with Feature Flags documentation](./src/shared/lib/features/README.features.md)
 
 ## Linting
 
@@ -162,7 +143,7 @@ Additionally, the project features another plugin for managing feature flags, wh
 - **one-line-arrow-function**: Enforces one-line arrow functions for on and off options in the `toggleFeatures` helper for cleaner code.
 - **component-jsx-props**: Ensures only JSX elements are passed to the on and off props of `ToggleFeaturesComponent`, simplifying feature flag removal.
 
-For a detailed look at the linting setup, see [Linting Documentation](/docs/linting/README.linting.md).
+For a detailed look at the linting setup, see [Linting Documentation](./docs/linting/README.linting.md).
 
 ### Running Linters
 - `npm run lint:ts` - Lint TypeScript files
@@ -172,7 +153,8 @@ For a detailed look at the linting setup, see [Linting Documentation](/docs/lint
 
 ----
 
-## Layers according FSD
+## Layers according to FSD
+For detailed architectural components and structures, refer to the following categories:
 
 ### Shared
 
@@ -246,83 +228,34 @@ For a detailed look at the linting setup, see [Linting Documentation](/docs/lint
 - [ProfilePage](src/pages/ProfilePage/ui/ProfilePage/README.md)
 - [SettingsPage](src/pages/SettingsPage/README.md)
 
+----
 
+## Testing
 
+The project supports multiple test types. See the full testing documentation here:
 
+| Test Type                        | Command                   | Description                                            |
+|----------------------------------|---------------------------|--------------------------------------------------------|
+| **Unit Tests (Jest)**            | `npm run test:unit`      | Verifies core functionality and ensures functions operate as intended. |
+| **Component Tests (React Testing Library)** | `npm run test:unit`      | Assesses the behavior and rendering of React components. |
+| **Screenshot Tests (Loki)**      | `npm run test:ui`        | Conducts visual regression testing to maintain UI consistency. |
+| **End-to-End Tests (Cypress)**   | `npm run test:e2e`       | Tests comprehensive user flows and interactions.       |
+
+For more details, refer to the [tests documentation](./docs/tests.md)
+
+----
 
 ## Storybook
 
-[//]: # (У проєкті для кожного компонента описуються сторі-кейси.)
+- Each component in the project has corresponding story cases defined for it.
+- Server requests are mocked using the `storybook-addon-mock` plugin to simulate API interactions.
+- Story files are created alongside the component files with the `.stories.tsx` extension.
 
-[//]: # (Запити на сервер мокаються за допомогою storybook-addon-mock.)
+You can run Storybook with the following command:
 
-[//]: # ()
-[//]: # (Файл зі сторі-кейсами створює поруч з компонентом з розширенням .stories.tsx)
-
-[//]: # ()
-[//]: # (Запустити сторібук можна командою:)
-
-[//]: # (- `npm run storybook`)
-
-[//]: # ()
-[//]: # (Докладніше про [Storybook]&#40;/docs/storybook.md&#41;)
-
-[//]: # ()
-[//]: # (Приклад:)
-
-[//]: # ()
-[//]: # (```typescript jsx)
-
-[//]: # (import React from 'react';)
-
-[//]: # (import { ComponentStory, ComponentMeta } from '@storybook/react';)
-
-[//]: # ()
-[//]: # (import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';)
-
-[//]: # (import { Button, ButtonSize, ButtonTheme } from './Button';)
-
-[//]: # (import { Theme } from '@/shared/const/theme';)
-
-[//]: # ()
-[//]: # (export default {)
-
-[//]: # (    title: 'shared/Button',)
-
-[//]: # (    component: Button,)
-
-[//]: # (    argTypes: {)
-
-[//]: # (        backgroundColor: { control: 'color' },)
-
-[//]: # (    },)
-
-[//]: # (} as ComponentMeta<typeof Button>;)
-
-[//]: # ()
-[//]: # (const Template: ComponentStory<typeof Button> = &#40;args&#41; => <Button {...args} />;)
-
-[//]: # ()
-[//]: # (export const Primary = Template.bind&#40;{}&#41;;)
-
-[//]: # (Primary.args = {)
-
-[//]: # (    children: 'Text',)
-
-[//]: # (};)
-
-[//]: # ()
-[//]: # (export const Clear = Template.bind&#40;{}&#41;;)
-
-[//]: # (Clear.args = {)
-
-[//]: # (    children: 'Text',)
-
-[//]: # (    theme: ButtonTheme.CLEAR,)
-
-[//]: # (};)
-
-[//]: # (```)
-
+```bash 
+npm run storybook
+```
+For more details, see the  [Storybook documentation](/docs/storybook.md)
 
 ----
