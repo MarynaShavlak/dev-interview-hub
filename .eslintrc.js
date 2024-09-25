@@ -101,6 +101,8 @@ module.exports = {
         'toggle-features-rule-plugin/one-line-arrow-function': ['error'],
         'toggle-features-rule-plugin/component-jsx-props': ['error'],
         'react/jsx-max-props-per-line': ['error', { maximum: 5 }],
+        'no-console': 'off',
+        'no-alert': 'off',
     },
     globals: {
         __IS_DEV__: true,

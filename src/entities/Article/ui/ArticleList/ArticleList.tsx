@@ -37,7 +37,7 @@ export const ArticleList = memo((props: ArticleListProps) => {
         <>
             <Each
                 of={articles}
-                render={(item, index) => {
+                render={(item) => {
                     return (
                         <ArticleCard
                             article={item}

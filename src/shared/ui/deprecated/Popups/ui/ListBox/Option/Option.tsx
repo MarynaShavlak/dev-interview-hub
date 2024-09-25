@@ -8,7 +8,7 @@ import popupCls from '../../../styles/popup.module.scss';
 import cls from './Option.module.scss';
 
 export interface ListBoxItem<T extends string> {
-    value: string;
+    value: T;
     content: ReactNode;
     disabled?: boolean;
 }

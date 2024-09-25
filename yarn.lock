@@ -7839,10 +7839,10 @@
     "requireindex" "^1.1.0"
     "ts-dedent" "^2.2.0"
 
-"eslint-plugin-toggle-features-rule-plugin@^0.0.5":
-  "integrity" "sha512-dXpSUyN91CDtaMvKloAe7mUgElzyS17PnnD3VzBXUvA/k+R1BX5pWMoifUSCw4Ud8CpfA6tYf7thcJw1XvwQxw=="
-  "resolved" "https://registry.npmjs.org/eslint-plugin-toggle-features-rule-plugin/-/eslint-plugin-toggle-features-rule-plugin-0.0.5.tgz"
-  "version" "0.0.5"
+"eslint-plugin-toggle-features-rule-plugin@^0.0.6":
+  "integrity" "sha512-IDFsrn3VLOtFACn2dFC2TTeBebCftTzzn29CrXTFEXb4LDUlqWu/3ktfNJ89F+K4+lLS4JWOEpiJtbgEm6SS9w=="
+  "resolved" "https://registry.npmjs.org/eslint-plugin-toggle-features-rule-plugin/-/eslint-plugin-toggle-features-rule-plugin-0.0.6.tgz"
+  "version" "0.0.6"
   dependencies:
     "requireindex" "^1.2.0"
 

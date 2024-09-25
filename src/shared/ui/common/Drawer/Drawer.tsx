@@ -39,7 +39,7 @@ const DrawerContent = memo((props: DrawerProps) => {
     const { theme } = useTheme();
     const { Spring } = useAnimationLibs();
 
-    if (!isOpen) return null;
+    if (lazy && !isOpen) return null;
 
     const drawerClasses = classNames(cls.Drawer, {}, [
         className,

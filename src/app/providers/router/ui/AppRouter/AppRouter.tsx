@@ -13,7 +13,7 @@ const AppRouter = () => {
         const fallback = (
             <ToggleFeaturesComponent
                 feature="isAppRedesigned"
-                on={skeleton}
+                on={<route.skeleton.type {...route.skeleton.props} />}
                 off={<PageLoader />}
             />
         );

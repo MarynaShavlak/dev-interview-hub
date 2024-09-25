@@ -10,7 +10,7 @@ interface DisabledStarProps extends TestProps {
     size: number;
 }
 
-export const DisabledStar = ({ starNumber, size }: DisabledStarProps) => {
+export const DisabledStar = ({ size }: DisabledStarProps) => {
     const commonProps = {
         className: cls.starDisabledIcon,
         Svg: StarIcon,
