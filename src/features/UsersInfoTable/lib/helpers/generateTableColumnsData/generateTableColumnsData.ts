@@ -11,6 +11,7 @@ export const generateTableColumnsData = (users: UserFullInfo[]) => {
         return {
             Header: capitalizeFirstLetter(splitCamelCase(key)),
             accessor: key as keyof UserFullInfo,
+            image: key === 'avatar',
         };
     });
 

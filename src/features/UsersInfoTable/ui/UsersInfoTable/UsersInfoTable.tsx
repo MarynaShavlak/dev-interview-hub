@@ -8,6 +8,7 @@ import { generateTableColumnsData } from '../../lib/helpers/generateTableColumns
 interface Column<T> {
     Header: string;
     accessor: keyof T;
+    image: Boolean;
 }
 
 interface TableProps<T> {
@@ -47,7 +48,7 @@ const TableBody = <T,>(props: TableBodyProps<T>) => {
                             of={columns}
                             render={(column, colIndex) => (
                                 <td key={colIndex}>
-                                    {column.accessor === 'avatar' ? (
+                                    {column.image ? (
                                         <Avatar
                                             src={row[column.accessor] as string}
                                             size={40}
@@ -80,27 +81,9 @@ export const Table = <T,>(props: TableProps<T>) => {
 export const UsersInfoTable = () => {
     const { users } = useUsersFullData();
     console.log(users);
-    // const columns = [
-    //     { Header: 'ID', accessor: 'id' as keyof UserFullInfo },
-    //     { Header: 'Avatar', accessor: 'avatar' as keyof UserFullInfo },
-    //     { Header: 'Username', accessor: 'username' as keyof UserFullInfo },
-    //     { Header: 'Full Name', accessor: 'fullName' as keyof UserFullInfo },
-    //     { Header: 'Role', accessor: 'roles' as keyof UserFullInfo },
-    //     { Header: 'Age', accessor: 'age' as keyof UserFullInfo },
-    //     { Header: 'Currency', accessor: 'currency' as keyof UserFullInfo },
-    //     { Header: 'Country', accessor: 'country' as keyof UserFullInfo },
-    //     { Header: 'City', accessor: 'city' as keyof UserFullInfo },
-    //     {
-    //         Header: 'Features Enabled',
-    //         accessor: 'features' as keyof UserFullInfo,
-    //     },
-    //     {
-    //         Header: 'Articles Quantity',
-    //         accessor: 'articlesQuantity' as keyof UserFullInfo,
-    //     },
-    // ];
 
     const columns = generateTableColumnsData(users);
+    console.log(columns);
 
     return <Table data={users} columns={columns} />;
 };
