@@ -100,7 +100,7 @@
       ],
       "features": {
         "isArticleRatingEnabled": true,
-        "isAppRedesigned": false
+        "isAppRedesigned": true
       },
       "jsonSettings": {
         "theme": "app_light_theme",

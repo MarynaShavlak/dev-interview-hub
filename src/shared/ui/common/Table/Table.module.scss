@@ -1,12 +1,16 @@
 .tableRedesigned {
   border-collapse: collapse;
+  border-radius: 20px;
+  border-style: hidden;
+  box-shadow: 0 0 0x 1px var(--light-bg-redesigned);
+  overflow: hidden;
 
   thead {
     background-color: var(--light-bg-redesigned);
   }
 
   th, td {
-    border: 1px solid var(--icon-redesigned);
+    border: 1px solid var(--light-bg-redesigned);
     padding: 8px;
     text-align: left;
   }
@@ -24,6 +28,7 @@
     background-color: var(--light-bg-redesigned);
     cursor: pointer;
   }
+
 
 }
 

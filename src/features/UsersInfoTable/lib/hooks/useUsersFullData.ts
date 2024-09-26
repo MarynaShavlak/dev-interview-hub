@@ -8,12 +8,14 @@ import { getCombinedUsersData } from '../helpers/getCombinedUsersData/getCombine
 import { ArticlesByUserData } from '../../model/types/userFullInfo';
 
 export const useUsersFullData = () => {
-    const { data: users } = useUsers(null);
-    const { data: profiles } = useProfiles(null);
-    const { data: articles } = useArticles(null);
+    const { data: users, isLoading: isUsersLoading } = useUsers(null);
+    const { data: profiles, isLoading: isProfilesLoading } = useProfiles(null);
+    const { data: articles, isLoading: isArticlesLoading } = useArticles(null);
+
+    const isLoading = isUsersLoading || isProfilesLoading || isArticlesLoading;
 
     if (!users || !profiles || !articles)
-        return { users: [], profiles: [], articles: [] };
+        return { users: [], profiles: [], articles: [], isLoading };
 
     const partialUsersData = users.map(({ id, roles, features, username }) => {
         return {
@@ -63,5 +65,5 @@ export const useUsersFullData = () => {
         articlesByUserData,
     );
 
-    return { users: combinedData };
+    return { users: combinedData, isLoading };
 };
