@@ -33,18 +33,6 @@
       "userId": "2"
     }
   ],
-  "posts": [
-    {
-      "id": "1",
-      "title": "json-server",
-      "userId": "1"
-    },
-    {
-      "id": "2",
-      "title": "json-server",
-      "userId": "2"
-    }
-  ],
   "comments": [
     {
       "id": "1",
@@ -107,11 +95,11 @@
       "username": "admin",
       "password": "123",
       "roles": [
-        "ADMIN"
+        "ADMIN", "Manager"
       ],
       "features": {
         "isArticleRatingEnabled": true,
-        "isCounterEnabled": true,
+
         "isAppRedesigned": true
       },
       "jsonSettings": {
@@ -131,7 +119,7 @@
       ],
       "features": {
         "isArticleRatingEnabled": false,
-        "isCounterEnabled": false,
+
         "isAppRedesigned": false
       },
       "avatar": "https://drive.google.com/thumbnail?id=1J1xUPYYkJeOsBTpDuf36vsV7UfxlM2uG&sz=w1000",
@@ -149,7 +137,7 @@
       ],
       "features": {
         "isArticleRatingEnabled": false,
-        "isCounterEnabled": true,
+
         "isAppRedesigned": false
       },
       "avatar": "https://st3.depositphotos.com/1071184/13782/v/450/depositphotos_137825710-stock-illustration-business-person-analyzing-financial-statistics.jpg"
@@ -163,7 +151,7 @@
       ],
       "features": {
         "isArticleRatingEnabled": true,
-        "isCounterEnabled": true,
+
         "isAppRedesigned": true
       },
       "avatar": "https://s1.1zoom.ru/big3/992/367659-alexfas01.jpg",
@@ -182,7 +170,7 @@
       ],
       "features": {
         "isArticleRatingEnabled": false,
-        "isCounterEnabled": false,
+
         "isAppRedesigned": false
       },
       "jsonSettings": {
@@ -194,14 +182,14 @@
   "profile": [
     {
       "id": "1",
-      "firstname": "test",
-      "lastname": "user",
-      "age": 465,
+      "firstname": "Maryna",
+      "lastname": "Shavlak",
+      "age": 30,
       "currency": "EUR",
       "country": "Ukraine",
       "city": "Kharkiv",
       "username": "admin",
-      "avatar": "https://st3.depositphotos.com/1071184/13782/v/450/depositphotos_137825710-stock-illustration-business-person-analyzing-financial-statistics.jpg"
+      "avatar": "https://drive.google.com/thumbnail?id=1RD0jSAm8kdTLKa-Vr0daeE8T9-QcfPCa&sz=w1000"
     },
     {
       "id": "2",

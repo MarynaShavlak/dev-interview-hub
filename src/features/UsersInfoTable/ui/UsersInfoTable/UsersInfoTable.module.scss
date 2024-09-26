@@ -10,6 +10,15 @@
     padding: 8px;
     text-align: left;
   }
+  th:last-child{
+    width: 90px;
+  }
+
+  td {
+    width: fit-content;
+
+  }
+
 
   tr:hover {
     background-color: var(--light-bg-redesigned);
