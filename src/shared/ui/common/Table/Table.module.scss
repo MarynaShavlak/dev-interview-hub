@@ -1,0 +1,58 @@
+.tableRedesigned {
+  border-collapse: collapse;
+
+  thead {
+    background-color: var(--light-bg-redesigned);
+  }
+
+  th, td {
+    border: 1px solid var(--icon-redesigned);
+    padding: 8px;
+    text-align: left;
+  }
+  th:last-child{
+    width: 90px;
+  }
+
+  td {
+    width: fit-content;
+
+  }
+
+
+  tr:hover {
+    background-color: var(--light-bg-redesigned);
+    cursor: pointer;
+  }
+
+}
+
+.tableDeprecated {
+  border-collapse: collapse;
+
+  thead {
+    background-color: var(--card-bg);
+  }
+
+  th, td {
+    border: 1px solid var(--primary-color);
+    padding: 8px;
+    text-align: left;
+  }
+  th:last-child{
+    width: 90px;
+  }
+
+  td {
+    width: fit-content;
+
+  }
+
+
+  tr:hover {
+    background-color: var(--card-bg);
+    cursor: pointer;
+  }
+
+}
+
