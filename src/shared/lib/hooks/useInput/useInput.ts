@@ -1,5 +1,5 @@
 import { ChangeEvent, FocusEvent, useEffect, useRef, useState } from 'react';
-import { trimText } from '../../trimText/trimText';
+import { trimText } from '../../text/trimText/trimText';
 
 /**
  * Custom hook for managing input field state, focus, and validation.

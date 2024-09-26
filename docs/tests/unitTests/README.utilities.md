@@ -29,7 +29,7 @@ The project includes comprehensive unit tests to ensure that individual function
 |----------------------------------|-----------------------------------------------------------------------------------------------------------------|---------------------------------------|
 | **Functionality**                | Validates the behavior of the `toggleFeatures` function in managing feature flags within a React application. | Tests include enabled, disabled, undefined, and null flags; edge cases where `on()` and `off()` return the same value. |
 
-## 5. [trimText](../../../src/shared/lib/trimText/trimText.test.ts) Function
+## 5. [trimText](../../../src/shared/lib/text/trimText/trimText.test.ts) Function
 
 | Aspect                           | Purpose                                                                                                         | Notes                                 |
 |----------------------------------|-----------------------------------------------------------------------------------------------------------------|---------------------------------------|

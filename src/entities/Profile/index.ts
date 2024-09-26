@@ -2,3 +2,4 @@ export { RedesignedProfileCardSkeleton } from './ui/RedesignedProfileCard/Redesi
 
 export type { Profile } from './model/types/profile';
 export { ProfileCard } from './ui/ProfileCard/ProfileCard';
+export { useProfiles } from './api/profileApi';
