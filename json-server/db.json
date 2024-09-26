@@ -99,7 +99,6 @@
       ],
       "features": {
         "isArticleRatingEnabled": true,
-        "isCounterEnabled": true,
         "isAppRedesigned": true
       },
       "jsonSettings": {
@@ -119,7 +118,6 @@
       ],
       "features": {
         "isArticleRatingEnabled": false,
-        "isCounterEnabled": false,
         "isAppRedesigned": false
       },
       "avatar": "https://drive.google.com/thumbnail?id=1J1xUPYYkJeOsBTpDuf36vsV7UfxlM2uG&sz=w1000",
@@ -137,7 +135,7 @@
       ],
       "features": {
         "isArticleRatingEnabled": false,
-        "isCounterEnabled": true,
+
         "isAppRedesigned": false
       },
       "avatar": "https://st3.depositphotos.com/1071184/13782/v/450/depositphotos_137825710-stock-illustration-business-person-analyzing-financial-statistics.jpg"
@@ -151,7 +149,7 @@
       ],
       "features": {
         "isArticleRatingEnabled": true,
-        "isCounterEnabled": true,
+
         "isAppRedesigned": true
       },
       "avatar": "https://s1.1zoom.ru/big3/992/367659-alexfas01.jpg",
@@ -170,7 +168,7 @@
       ],
       "features": {
         "isArticleRatingEnabled": true,
-        "isCounterEnabled": true,
+
         "isAppRedesigned": false
       },
       "jsonSettings": {

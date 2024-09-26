@@ -1,5 +1,6 @@
 import cls from './Table.module.scss';
 import { Each } from '@/shared/lib/components/Each/Each';
+import { Avatar } from '../Avatar';
 
 interface Column<T> {
     Header: string;
@@ -43,7 +44,14 @@ const TableBody = <T,>(props: TableBodyProps<T>) => {
                             of={columns}
                             render={(column, colIndex) => (
                                 <td key={colIndex}>
-                                    {String(row[column.accessor])}
+                                    {column.accessor === 'avatar' ? (
+                                        <Avatar
+                                            src={row[column.accessor] as string}
+                                            size={40}
+                                        />
+                                    ) : (
+                                        String(row[column.accessor])
+                                    )}
                                 </td>
                             )}
                         />
