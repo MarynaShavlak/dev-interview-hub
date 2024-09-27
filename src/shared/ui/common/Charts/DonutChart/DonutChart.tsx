@@ -10,82 +10,82 @@ interface DonutChartProps {
     title?: string;
 }
 
-export const DonutChart = (props: DonutChartProps) => {
-    const { data, labels, title } = props;
-    const { theme } = useTheme();
+interface generateChartOptionsProps {
+    labels: string[];
+    title: string | undefined;
+    fontFamily: string;
+    monochromeColor: string;
+    labelColor: string;
+    customTheme: 'dark' | 'light';
+}
 
-    const fontFamily = toggleFeatures({
+const getFontFamily = () =>
+    toggleFeatures({
         name: 'isAppRedesigned',
         on: () => 'Nunito Sans", sans-serif',
         off: () => 'Times New Roman", serif',
     });
 
-    const customTheme =
-        theme === Theme.DARK ? ('dark' as const) : ('light' as const);
-    let monochromeColor;
-    let labelColor;
-
+const getMonochromeColor = (theme: Theme) => {
     switch (theme) {
         case Theme.DARK:
-            monochromeColor = toggleFeatures({
+            return toggleFeatures({
                 name: 'isAppRedesigned',
                 on: () => '#5ed3f3',
                 off: () => '#049604',
             });
-            break;
-
         case Theme.LIGHT:
-            monochromeColor = toggleFeatures({
+            return toggleFeatures({
                 name: 'isAppRedesigned',
                 on: () => '#00c8ff',
                 off: () => '#0232c2',
             });
-            break;
-
         case Theme.ORANGE:
-            monochromeColor = toggleFeatures({
+            return toggleFeatures({
                 name: 'isAppRedesigned',
                 on: () => '#4875f0',
                 off: () => '#bd5012',
             });
-            break;
-
         default:
-            monochromeColor = '#000000'; // Fallback color if none of the cases match
-            break;
+            return '#000000'; // Fallback color
     }
+};
 
+const getLabelColor = (theme: Theme) => {
     switch (theme) {
         case Theme.DARK:
-            labelColor = toggleFeatures({
+            return toggleFeatures({
                 name: 'isAppRedesigned',
                 on: () => '#dbdbdb',
                 off: () => '#e8e8ea',
             });
-            break;
-
         case Theme.LIGHT:
-            labelColor = toggleFeatures({
+            return toggleFeatures({
                 name: 'isAppRedesigned',
                 on: () => '#141c1f',
                 off: () => '#e8e8ea',
             });
-            break;
-
         case Theme.ORANGE:
-            labelColor = toggleFeatures({
+            return toggleFeatures({
                 name: 'isAppRedesigned',
                 on: () => '#1b1311',
                 off: () => '#faf4fb',
             });
-            break;
-
         default:
-            labelColor = '#000000';
-            break;
+            return '#000000'; // Fallback color
     }
+};
 
-    const chartOptions = {
+const generateChartOptions = (props: generateChartOptionsProps) => {
+    const {
+        labels,
+        title,
+        fontFamily,
+        monochromeColor,
+        labelColor,
+        customTheme,
+    } = props;
+    return {
         chart: {
             width: '100%',
             background: 'transparent',
@@ -98,7 +98,6 @@ export const DonutChart = (props: DonutChartProps) => {
                 fontSize: '16px',
                 fontWeight: 'bold',
                 fontFamily,
-                // color: headerColor,
             },
         },
         legend: {
@@ -167,6 +166,27 @@ export const DonutChart = (props: DonutChartProps) => {
             },
         },
     };
+};
+
+export const DonutChart = (props: DonutChartProps) => {
+    const { data, labels, title } = props;
+    const { theme } = useTheme();
+
+    const fontFamily = getFontFamily();
+    const monochromeColor = getMonochromeColor(theme);
+    const labelColor = getLabelColor(theme);
+
+    const customTheme =
+        theme === Theme.DARK ? ('dark' as const) : ('light' as const);
+
+    const chartOptions = generateChartOptions({
+        labels,
+        title,
+        fontFamily,
+        monochromeColor,
+        labelColor,
+        customTheme,
+    });
 
     return (
         <ReactApexChart
