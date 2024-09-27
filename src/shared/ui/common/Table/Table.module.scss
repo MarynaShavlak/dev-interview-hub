@@ -1,9 +1,7 @@
 .tableRedesigned {
   border-collapse: collapse;
   border-radius: 20px;
-  border-style: hidden;
-  box-shadow: 0 0 0x 1px var(--light-bg-redesigned);
-  overflow: hidden;
+  border:  1px solid var(--light-bg-redesigned);
 
   thead {
     background-color: var(--light-bg-redesigned);

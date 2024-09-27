@@ -34,5 +34,15 @@
     "гривня": "UAH",
     "євро": "EUR",
     "долар": "USD",
-    "Ім'я користувача є обов'язковим полем": "Username is required"
+    "Ім'я користувача є обов'язковим полем": "Username is required",
+    "Articles Quantity": "Articles Quantity",
+    "Roles": "Roles",
+    "Username": "Username",
+    "Avatar": "Avatar",
+    "Full Name": "Full Name",
+    "Age": "Age",
+    "Country": "Country",
+    "City": "City",
+    "Currency": "Currency",
+    "Features": "Features"
 }
