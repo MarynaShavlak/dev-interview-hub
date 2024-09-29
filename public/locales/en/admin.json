@@ -11,8 +11,11 @@
   "Features": "Features",
   "Cтатті за категоріями, %": "Articles by categories, %",
   "Перегляди статей за категоріями, %": "Views by Category, %",
+  "Динаміка кількості статей": "Articles per Month",
+  "Кількість статей": "Articles quantity",
   "PUBLIC_ADMINISTRATION": "Public administration",
   "SOCIOLOGY": "Sociology",
   "IT": "IT",
-  "ECONOMICS": "Economics"
+  "ECONOMICS": "Economics",
+  "Місяць": "Month"
 }

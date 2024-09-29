@@ -6938,7 +6938,7 @@
   dependencies:
     "@babel/runtime" "^7.21.0"
 
-"dayjs@^1.10.4":
+"dayjs@^1.10.4", "dayjs@^1.11.13":
   "integrity" "sha512-oaMBel6gjolK862uaPQOVTA7q3TZhuSvuMQAAglQDOWYO9A91IrAOUJEyKVlqJlHE0vq5p5UXxzdPfMH/x6xNg=="
   "resolved" "https://registry.npmjs.org/dayjs/-/dayjs-1.11.13.tgz"
   "version" "1.11.13"
