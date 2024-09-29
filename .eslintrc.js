@@ -64,6 +64,7 @@ module.exports = {
                     'variant',
                     'size',
                     'wrap',
+                    'legendPosition',
                 ],
             },
         ],

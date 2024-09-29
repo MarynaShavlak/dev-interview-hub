@@ -103,7 +103,7 @@
         "isAppRedesigned": true
       },
       "jsonSettings": {
-        "theme": "app_light_theme",
+        "theme": "app_dark_theme",
         "isFirstVisit": true,
         "settingsPageHasBeenOpen": false,
         "isArticlesPageWasOpened": true
@@ -242,7 +242,8 @@
       "createdAt": "21.02.2019",
       "userId": "1",
       "category": [
-        "ECONOMICS"
+        "ECONOMICS",
+        "SOCIOLOGY"
       ],
       "blocks": [
         {
@@ -316,7 +317,8 @@
       "createdAt": "09.04.2020",
       "userId": "1",
       "category": [
-        "PUBLIC_ADMINISTRATION"
+        "PUBLIC_ADMINISTRATION",
+        "ECONOMICS"
       ],
       "blocks": [
         {

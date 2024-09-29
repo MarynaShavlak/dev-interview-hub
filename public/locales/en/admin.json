@@ -9,5 +9,10 @@
   "City": "City",
   "Currency": "Currency",
   "Features": "Features",
-  "Категорії статей, %": "Article Categories, %"
+  "Cтатті за категоріями, %": "Articles by categories, %",
+  "Перегляди статей за категоріями, %": "Views by Category, %",
+  "PUBLIC_ADMINISTRATION": "Public administration",
+  "SOCIOLOGY": "Sociology",
+  "IT": "IT",
+  "ECONOMICS": "Economics"
 }

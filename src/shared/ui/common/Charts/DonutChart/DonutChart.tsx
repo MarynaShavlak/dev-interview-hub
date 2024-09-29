@@ -8,6 +8,7 @@ interface DonutChartProps {
     data: number[];
     labels: string[];
     title?: string;
+    legendPosition?: 'top' | 'right' | 'bottom' | 'left';
 }
 
 interface generateChartOptionsProps {
@@ -17,6 +18,7 @@ interface generateChartOptionsProps {
     monochromeColor: string;
     labelColor: string;
     customTheme: 'dark' | 'light';
+    legendPosition?: 'top' | 'right' | 'bottom' | 'left';
 }
 
 const getFontFamily = () =>
@@ -84,6 +86,7 @@ const generateChartOptions = (props: generateChartOptionsProps) => {
         monochromeColor,
         labelColor,
         customTheme,
+        legendPosition,
     } = props;
     return {
         chart: {
@@ -102,6 +105,14 @@ const generateChartOptions = (props: generateChartOptionsProps) => {
         },
         legend: {
             fontFamily,
+            onItemHover: {
+                highlightDataSeries: true,
+            },
+            onItemClick: {
+                toggleDataSeries: true,
+            },
+            // width: 120,
+            position: legendPosition,
         },
         stroke: {
             show: false,
@@ -169,7 +180,7 @@ const generateChartOptions = (props: generateChartOptionsProps) => {
 };
 
 export const DonutChart = (props: DonutChartProps) => {
-    const { data, labels, title } = props;
+    const { data, labels, title, legendPosition = 'right' } = props;
     const { theme } = useTheme();
 
     const fontFamily = getFontFamily();
@@ -186,6 +197,7 @@ export const DonutChart = (props: DonutChartProps) => {
         monochromeColor,
         labelColor,
         customTheme,
+        legendPosition,
     });
 
     return (

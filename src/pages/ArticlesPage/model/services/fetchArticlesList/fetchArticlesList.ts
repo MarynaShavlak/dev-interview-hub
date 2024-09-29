@@ -51,24 +51,42 @@ export const fetchArticlesList = createAsyncThunk<
             search,
             category,
         });
+        const objectsLimit =
+            category === ArticleCategory.ALL ? limit : undefined;
+        const pageLimit = category === ArticleCategory.ALL ? page : undefined;
+        console.log('objectsLimit', objectsLimit);
+        console.log('page', page);
+        console.log('pageLimit', pageLimit);
         const response = await extra.api.get<Article[]>('/articles', {
             params: {
                 _expand: 'user',
-                _limit: limit,
-                _page: page,
+                _limit: objectsLimit,
+                _page: pageLimit,
                 _sort: sort,
                 _order: order,
                 q: search,
-                category:
-                    category === ArticleCategory.ALL ? undefined : category,
+                // category:
+                //     category === ArticleCategory.ALL ? undefined : category,
             },
         });
 
         if (!response.data) {
             return rejectWithValue('No articles found.');
         }
+        console.log('response.data', response.data);
+        console.log('category', category);
+        const filteredArticles =
+            category === ArticleCategory.ALL
+                ? response.data
+                : response.data.filter(
+                      (article) =>
+                          article.category &&
+                          article.category.includes(category),
+                  );
+        console.log('filteredArticles', filteredArticles);
+        return filteredArticles;
 
-        return response.data;
+        // return response.data;
     } catch (error) {
         console.error('Error fetching articles list:', error);
         return rejectWithValue('Failed to fetch articles.');

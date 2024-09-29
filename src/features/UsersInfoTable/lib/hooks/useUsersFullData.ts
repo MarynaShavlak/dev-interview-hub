@@ -53,7 +53,7 @@ export const useUsersFullData = () => {
         };
     });
 
-    const articlesByUserData: ArticlesByUserData = {}; // Use the new interface
+    const articlesByUserData: ArticlesByUserData = {};
     articles.forEach((article) => {
         const userId: string = article.user.id;
         articlesByUserData[userId] = (articlesByUserData[userId] || 0) + 1;
