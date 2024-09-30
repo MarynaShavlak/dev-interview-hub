@@ -167,10 +167,11 @@ export const ArticleCategoriesChart = () => {
                 data={arr}
                 labels={labelsBarChart}
                 title={t('Динаміка кількості статей')}
-                legendPosition="bottom"
+                legendPosition="top"
                 xAxisTitle={t('Місяць')}
                 yAxisTitle={t('Кількість статей')}
                 height="500"
+                width="700"
             />
         </VStack>
     );

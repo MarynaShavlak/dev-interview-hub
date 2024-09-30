@@ -122,11 +122,7 @@ const generateChartOptions = (props: generateChartOptionsProps) => {
         xaxis: {
             type: 'category' as const,
             labels: {
-                rotate: -45,
-                // formatter(val: string) {
-                //     const q = dayjs(val, 'DD/MM/YYYY');
-                //     return `Q${q.quarter()}/${q.year()}`;
-                // },
+                rotate: -90,
             },
 
             title: {
@@ -138,22 +134,20 @@ const generateChartOptions = (props: generateChartOptionsProps) => {
                 },
             },
             categories: labels,
-            // categories: [
-            //     '10/01/2020',
-            //     '11/02/2019',
-            //     '21/03/2018',
-            //     '09/11/2017',
-            //     '08/05/2023',
-            //     '31/12/2011',
-            // ],
         },
         yaxis: {
+            show: true,
             title: {
                 text: yAxisTitle,
                 style: {
                     fontSize: '12px',
                     fontWeight: 'bold',
                     fontFamily,
+                },
+            },
+            labels: {
+                formatter(val: number) {
+                    return Number(val).toFixed(0);
                 },
             },
         },
@@ -208,16 +202,6 @@ const generateChartOptions = (props: generateChartOptionsProps) => {
             dropShadow: {
                 enabled: false,
             },
-        },
-        group: {
-            style: {
-                fontSize: '10px',
-                fontWeight: 700,
-            },
-            groups: [
-                { title: '2019', cols: 4 },
-                { title: '2020', cols: 4 },
-            ],
         },
     };
 };
