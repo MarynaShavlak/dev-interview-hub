@@ -1,8 +1,14 @@
 import React from 'react';
 import ReactApexChart from 'react-apexcharts';
+import dayjs from 'dayjs';
+import quarterOfYear from 'dayjs/plugin/quarterOfYear';
+import customParseFormat from 'dayjs/plugin/customParseFormat';
 import { useChartStyles } from '@/shared/lib/hooks/useChartStyles/useChartStyles';
 
-interface LineChartProps {
+dayjs.extend(quarterOfYear);
+dayjs.extend(customParseFormat);
+
+interface StackedColumnsChartProps {
     data: { name: string; data: number[] }[];
     labels: string[];
     title?: string;
@@ -22,6 +28,7 @@ interface generateChartOptionsProps {
     chartTheme: 'dark' | 'light';
     legendPosition?: 'top' | 'right' | 'bottom' | 'left';
     width?: string;
+    height?: string;
     xAxisTitle?: string;
     yAxisTitle?: string;
 }
@@ -30,43 +37,35 @@ const generateChartOptions = (props: generateChartOptionsProps) => {
     const {
         labels,
         title,
+        labelColor,
         fontFamily,
         monochromeColor,
         chartTheme,
         legendPosition,
         width,
+        height,
         xAxisTitle,
         yAxisTitle,
     } = props;
     return {
         chart: {
             width,
+            height,
             background: 'transparent',
             zoom: {
                 enabled: false,
             },
-        },
-        stroke: {
-            curve: 'smooth' as const,
-            width: 2,
-        },
-        markers: {
-            size: 6,
-            strokeWidth: 0,
-            hover: {
-                size: 9,
-            },
+            stacked: true,
         },
         grid: {
             show: false,
-            padding: {
-                bottom: 0,
-            },
         },
         xaxis: {
-            tooltip: {
-                enabled: true,
+            type: 'category' as const,
+            labels: {
+                rotate: -90,
             },
+
             title: {
                 text: xAxisTitle,
                 style: {
@@ -78,11 +77,21 @@ const generateChartOptions = (props: generateChartOptionsProps) => {
             categories: labels,
         },
         yaxis: {
+            show: true,
             title: {
                 text: yAxisTitle,
                 style: {
-                    fontSize: '12px',
+                    fontSize: '10px',
                     fontWeight: 'bold',
+                    fontFamily,
+                },
+            },
+            labels: {
+                formatter(val: number) {
+                    return Number(val).toFixed(0);
+                },
+                style: {
+                    fontSize: '12px',
                     fontFamily,
                 },
             },
@@ -98,7 +107,7 @@ const generateChartOptions = (props: generateChartOptionsProps) => {
         },
         legend: {
             horizontalAlign: 'right' as const,
-            offsetY: 20,
+            offsetY: 0,
             fontFamily,
             onItemHover: {
                 highlightDataSeries: true,
@@ -118,7 +127,6 @@ const generateChartOptions = (props: generateChartOptionsProps) => {
             },
         },
         tooltip: {
-            enabled: true,
             style: {
                 fontSize: '12px',
                 fontFamily,
@@ -127,20 +135,33 @@ const generateChartOptions = (props: generateChartOptionsProps) => {
                 highlightDataSeries: false,
             },
         },
+        dataLabels: {
+            enabled: true,
+            textAnchor: 'middle' as const,
+            style: {
+                fontFamily,
+                fontWeight: '600',
+                colors: [labelColor],
+            },
+            dropShadow: {
+                enabled: false,
+            },
+        },
     };
 };
 
-export const LineChart = (props: LineChartProps) => {
+export const StackedColumnsChart = (props: StackedColumnsChartProps) => {
     const {
         data,
         labels,
         title,
         legendPosition = 'right',
         width = '400',
-        height = '320',
+        height = '500',
         xAxisTitle,
         yAxisTitle,
     } = props;
+
     const { fontFamily, labelColor, monochromeColor, chartTheme } =
         useChartStyles();
 
@@ -155,25 +176,30 @@ export const LineChart = (props: LineChartProps) => {
         xAxisTitle,
         yAxisTitle,
     });
+
     const d = [
         {
-            name: 'Music',
-            data: [1, 15, 26, 20, 33, 27],
+            name: 'PRODUCT A',
+            data: [44, 55, 41, 67, 22, 43],
         },
         {
-            name: 'Photos',
-            data: [3, 33, 21, 42, 19, 32],
+            name: 'PRODUCT B',
+            data: [13, 23, 20, 8, 13, 27],
         },
         {
-            name: 'Files',
-            data: [0, 39, 52, 11, 29, 43],
+            name: 'PRODUCT C',
+            data: [11, 17, 15, 15, 21, 14],
+        },
+        {
+            name: 'PRODUCT D',
+            data: [21, 7, 25, 13, 22, 8],
         },
     ];
 
     return (
         <ReactApexChart
             series={data}
-            type="line"
+            type="bar"
             width={width}
             height={height}
             options={chartOptions}

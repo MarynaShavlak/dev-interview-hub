@@ -1,8 +1,7 @@
 import React from 'react';
 import ReactApexChart from 'react-apexcharts';
-import { toggleFeatures } from '@/shared/lib/features';
-import { Theme } from '@/shared/const/theme';
-import { useTheme } from '@/shared/lib/hooks/useTheme/useTheme';
+
+import { useChartStyles } from '@/shared/lib/hooks/useChartStyles/useChartStyles';
 
 interface DonutChartProps {
     data: number[];
@@ -17,66 +16,9 @@ interface generateChartOptionsProps {
     fontFamily: string;
     monochromeColor: string;
     labelColor: string;
-    customTheme: 'dark' | 'light';
+    chartTheme: 'dark' | 'light';
     legendPosition?: 'top' | 'right' | 'bottom' | 'left';
 }
-
-const getFontFamily = () =>
-    toggleFeatures({
-        name: 'isAppRedesigned',
-        on: () => 'Nunito Sans", sans-serif',
-        off: () => 'Times New Roman", serif',
-    });
-
-const getMonochromeColor = (theme: Theme) => {
-    switch (theme) {
-        case Theme.DARK:
-            return toggleFeatures({
-                name: 'isAppRedesigned',
-                on: () => '#5ed3f3',
-                off: () => '#049604',
-            });
-        case Theme.LIGHT:
-            return toggleFeatures({
-                name: 'isAppRedesigned',
-                on: () => '#00c8ff',
-                off: () => '#0232c2',
-            });
-        case Theme.ORANGE:
-            return toggleFeatures({
-                name: 'isAppRedesigned',
-                on: () => '#4875f0',
-                off: () => '#bd5012',
-            });
-        default:
-            return '#000000'; // Fallback color
-    }
-};
-
-const getLabelColor = (theme: Theme) => {
-    switch (theme) {
-        case Theme.DARK:
-            return toggleFeatures({
-                name: 'isAppRedesigned',
-                on: () => '#dbdbdb',
-                off: () => '#e8e8ea',
-            });
-        case Theme.LIGHT:
-            return toggleFeatures({
-                name: 'isAppRedesigned',
-                on: () => '#141c1f',
-                off: () => '#e8e8ea',
-            });
-        case Theme.ORANGE:
-            return toggleFeatures({
-                name: 'isAppRedesigned',
-                on: () => '#1b1311',
-                off: () => '#faf4fb',
-            });
-        default:
-            return '#000000'; // Fallback color
-    }
-};
 
 const generateChartOptions = (props: generateChartOptionsProps) => {
     const {
@@ -85,7 +27,7 @@ const generateChartOptions = (props: generateChartOptionsProps) => {
         fontFamily,
         monochromeColor,
         labelColor,
-        customTheme,
+        chartTheme,
         legendPosition,
     } = props;
     return {
@@ -118,11 +60,11 @@ const generateChartOptions = (props: generateChartOptionsProps) => {
             show: false,
         },
         theme: {
-            mode: customTheme,
+            mode: chartTheme,
             monochrome: {
                 enabled: true,
                 color: monochromeColor,
-                shadeTo: customTheme,
+                shadeTo: chartTheme,
                 shadeIntensity: 0.9,
             },
         },
@@ -181,14 +123,9 @@ const generateChartOptions = (props: generateChartOptionsProps) => {
 
 export const DonutChart = (props: DonutChartProps) => {
     const { data, labels, title, legendPosition = 'right' } = props;
-    const { theme } = useTheme();
 
-    const fontFamily = getFontFamily();
-    const monochromeColor = getMonochromeColor(theme);
-    const labelColor = getLabelColor(theme);
-
-    const customTheme =
-        theme === Theme.DARK ? ('dark' as const) : ('light' as const);
+    const { fontFamily, labelColor, monochromeColor, chartTheme } =
+        useChartStyles();
 
     const chartOptions = generateChartOptions({
         labels,
@@ -196,7 +133,7 @@ export const DonutChart = (props: DonutChartProps) => {
         fontFamily,
         monochromeColor,
         labelColor,
-        customTheme,
+        chartTheme,
         legendPosition,
     });
 

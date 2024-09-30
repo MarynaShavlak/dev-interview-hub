@@ -3,14 +3,13 @@ import ReactApexChart from 'react-apexcharts';
 import dayjs from 'dayjs';
 import quarterOfYear from 'dayjs/plugin/quarterOfYear';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
-import { toggleFeatures } from '@/shared/lib/features';
-import { Theme } from '@/shared/const/theme';
-import { useTheme } from '@/shared/lib/hooks/useTheme/useTheme';
+
+import { useChartStyles } from '@/shared/lib/hooks/useChartStyles/useChartStyles';
 
 dayjs.extend(quarterOfYear);
 dayjs.extend(customParseFormat);
 
-interface LineChartProps {
+interface BarChartProps {
     data: { name: string; data: number[] }[];
     labels: string[];
     title?: string;
@@ -27,70 +26,13 @@ interface generateChartOptionsProps {
     fontFamily: string;
     monochromeColor: string;
     labelColor: string;
-    customTheme: 'dark' | 'light';
+    chartTheme: 'dark' | 'light';
     legendPosition?: 'top' | 'right' | 'bottom' | 'left';
     width?: string;
     height?: string;
     xAxisTitle?: string;
     yAxisTitle?: string;
 }
-
-const getFontFamily = () =>
-    toggleFeatures({
-        name: 'isAppRedesigned',
-        on: () => 'Nunito Sans", sans-serif',
-        off: () => 'Times New Roman", serif',
-    });
-
-const getMonochromeColor = (theme: Theme) => {
-    switch (theme) {
-        case Theme.DARK:
-            return toggleFeatures({
-                name: 'isAppRedesigned',
-                on: () => '#5ed3f3',
-                off: () => '#049604',
-            });
-        case Theme.LIGHT:
-            return toggleFeatures({
-                name: 'isAppRedesigned',
-                on: () => '#00c8ff',
-                off: () => '#0232c2',
-            });
-        case Theme.ORANGE:
-            return toggleFeatures({
-                name: 'isAppRedesigned',
-                on: () => '#4875f0',
-                off: () => '#bd5012',
-            });
-        default:
-            return '#000000'; // Fallback color
-    }
-};
-
-const getLabelColor = (theme: Theme) => {
-    switch (theme) {
-        case Theme.DARK:
-            return toggleFeatures({
-                name: 'isAppRedesigned',
-                on: () => '#dbdbdb',
-                off: () => '#e8e8ea',
-            });
-        case Theme.LIGHT:
-            return toggleFeatures({
-                name: 'isAppRedesigned',
-                on: () => '#141c1f',
-                off: () => '#e8e8ea',
-            });
-        case Theme.ORANGE:
-            return toggleFeatures({
-                name: 'isAppRedesigned',
-                on: () => '#1b1311',
-                off: () => '#faf4fb',
-            });
-        default:
-            return '#000000'; // Fallback color
-    }
-};
 
 const generateChartOptions = (props: generateChartOptionsProps) => {
     const {
@@ -99,7 +41,7 @@ const generateChartOptions = (props: generateChartOptionsProps) => {
         labelColor,
         fontFamily,
         monochromeColor,
-        customTheme,
+        chartTheme,
         legendPosition,
         width,
         height,
@@ -114,7 +56,6 @@ const generateChartOptions = (props: generateChartOptionsProps) => {
             zoom: {
                 enabled: false,
             },
-            stacked: true,
         },
         grid: {
             show: false,
@@ -133,7 +74,19 @@ const generateChartOptions = (props: generateChartOptionsProps) => {
                     fontFamily,
                 },
             },
-            categories: labels,
+            categories: [
+                'South Korea',
+                'Canada',
+                'United Kingdom',
+                'Netherlands',
+                'Italy',
+                'France',
+                'Japan',
+                'United States',
+                'China',
+                'Germany',
+            ],
+            // categories: labels,
         },
         yaxis: {
             show: true,
@@ -146,8 +99,10 @@ const generateChartOptions = (props: generateChartOptionsProps) => {
                 },
             },
             labels: {
-                formatter(val: number) {
-                    return Number(val).toFixed(0);
+                style: {
+                    fontSize: '10px',
+                    fontWeight: 'bold',
+                    fontFamily,
                 },
             },
         },
@@ -173,16 +128,20 @@ const generateChartOptions = (props: generateChartOptionsProps) => {
             position: legendPosition,
         },
         theme: {
-            mode: customTheme,
+            mode: chartTheme,
             monochrome: {
                 enabled: true,
                 color: monochromeColor,
-                shadeTo: customTheme,
+                shadeTo: chartTheme,
                 shadeIntensity: 1,
             },
         },
         tooltip: {
-            enabled: true,
+            x: {
+                formatter(val: number) {
+                    return `${val}`;
+                },
+            },
             style: {
                 fontSize: '12px',
                 fontFamily,
@@ -203,10 +162,15 @@ const generateChartOptions = (props: generateChartOptionsProps) => {
                 enabled: false,
             },
         },
+        plotOptions: {
+            bar: {
+                horizontal: false,
+            },
+        },
     };
 };
 
-export const BarChart = (props: LineChartProps) => {
+export const BarChart = (props: BarChartProps) => {
     const {
         data,
         labels,
@@ -217,14 +181,9 @@ export const BarChart = (props: LineChartProps) => {
         xAxisTitle,
         yAxisTitle,
     } = props;
-    const { theme } = useTheme();
 
-    const fontFamily = getFontFamily();
-    const monochromeColor = getMonochromeColor(theme);
-    const labelColor = getLabelColor(theme);
-
-    const customTheme =
-        theme === Theme.DARK ? ('dark' as const) : ('light' as const);
+    const { fontFamily, labelColor, monochromeColor, chartTheme } =
+        useChartStyles();
 
     const chartOptions = generateChartOptions({
         labels,
@@ -232,7 +191,7 @@ export const BarChart = (props: LineChartProps) => {
         fontFamily,
         monochromeColor,
         labelColor,
-        customTheme,
+        chartTheme,
         legendPosition,
         xAxisTitle,
         yAxisTitle,
@@ -240,26 +199,14 @@ export const BarChart = (props: LineChartProps) => {
 
     const d = [
         {
-            name: 'PRODUCT A',
-            data: [44, 55, 41, 67, 22, 43],
-        },
-        {
-            name: 'PRODUCT B',
-            data: [13, 23, 20, 8, 13, 27],
-        },
-        {
-            name: 'PRODUCT C',
-            data: [11, 17, 15, 15, 21, 14],
-        },
-        {
-            name: 'PRODUCT D',
-            data: [21, 7, 25, 13, 22, 8],
+            name: xAxisTitle,
+            data: [400, 430, 448, 470, 540, 580, 690, 1100, 1200, 1380],
         },
     ];
 
     return (
         <ReactApexChart
-            series={data}
+            series={d}
             type="bar"
             width={width}
             height={height}

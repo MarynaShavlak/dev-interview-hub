@@ -462,64 +462,7 @@ export const BarChart = (props: LineChartProps) => {
             },
         },
     };
-    const d = [
-        {
-            name: 'PRODUCT A',
-            data: [44, 55, 41, 67, 22, 43],
-        },
-        {
-            name: 'PRODUCT B',
-            data: [13, 23, 20, 8, 13, 27],
-        },
-        {
-            name: 'PRODUCT C',
-            data: [11, 17, 15, 15, 21, 14],
-        },
-        {
-            name: 'PRODUCT D',
-            data: [21, 7, 25, 13, 22, 8],
-        },
-    ];
-
-    const d = [
-        {
-            name: 'sales',
-            data: [
-                {
-                    x: '2019/01/01',
-                    y: 400,
-                },
-                {
-                    x: '2019/04/01',
-                    y: 430,
-                },
-                {
-                    x: '2019/07/01',
-                    y: 448,
-                },
-                {
-                    x: '2019/10/01',
-                    y: 470,
-                },
-                {
-                    x: '2020/01/01',
-                    y: 540,
-                },
-                {
-                    x: '2020/04/01',
-                    y: 580,
-                },
-                {
-                    x: '2020/07/01',
-                    y: 690,
-                },
-                {
-                    x: '2020/10/01',
-                    y: 690,
-                },
-            ],
-        },
-    ];
+    const d;
 
     return (
         <ReactApexChart
@@ -632,3 +575,42 @@ const result = {
         'new category': 1,
     },
 };
+
+// _________________________________________________________
+// const articlesCreationDates: ArticlesCategoryArrayData = {};
+
+// articles?.forEach((article) => {
+//     article.category.forEach((category) => {
+//         if (!articlesCreationDates[category]) {
+//             articlesCreationDates[category] = [];
+//         }
+//         articlesCreationDates[category].push(article.createdAt);
+//     });
+// });
+
+// console.log(articlesCreationDates);
+
+// let allStrings: string[] = [];
+//
+// // Loop through each property in the object
+// Object.values(articlesCreationDates).forEach((dateArray) => {
+//     allStrings = allStrings.concat(dateArray);
+// });
+
+// Step 2: Remove duplicates by converting to a Set, then back to an array
+// const uniqueStrings = [...new Set(allStrings)];
+
+// console.log(uniqueStrings);
+
+// const result = Object.keys(articlesCreationDates).map((category) => {
+//     // For each category, map the uniqueDates to a count (0 or 1)
+//     const data = uniqueStrings.map((date) =>
+//         articlesCreationDates[category].includes(date) ? 1 : 0,
+//     );
+//
+//     return { name: category, data };
+// });
+//
+// console.log('result', result);
+
+/// //////////////////////////////////
