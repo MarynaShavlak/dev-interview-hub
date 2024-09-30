@@ -34,21 +34,24 @@ export const useArticleQuarterlyData = () => {
         return Array.from({ length: 4 }, (_, index) => `${t('Q')}${index + 1}`);
     }, [t]);
 
-    const extractYearsAndCategories = useCallback((articles: Article[]) => {
-        const years = new Set<string>();
-        const categories = new Set<string>();
+    const extractYearsAndCategories = useCallback(
+        (articles: Article[]) => {
+            const years = new Set<string>();
+            const categories = new Set<string>();
 
-        articles.forEach((article) => {
-            const year = article.createdAt.split('.')[2]; // Extract year
-            years.add(year);
-            article.category.forEach((cat: string) => categories.add(cat));
-        });
+            articles.forEach((article) => {
+                const year = article.createdAt.split('.')[2]; // Extract year
+                years.add(year);
+                article.category.forEach((cat: string) => categories.add(cat));
+            });
 
-        return {
-            years: Array.from(years).sort(),
-            categories: Array.from(categories),
-        };
-    }, []);
+            return {
+                years: Array.from(years).sort(),
+                categories: Array.from(categories).map((cat) => t(`${cat}`)),
+            };
+        },
+        [t],
+    );
 
     const initializeQuarterlyData = useCallback(
         (years: string[], categories: string[]): QuarterlyData => {
@@ -94,6 +97,8 @@ export const useArticleQuarterlyData = () => {
         () => extractYearsAndCategories(articles || []),
         [articles, extractYearsAndCategories],
     );
+
+    console.log('categories', categories);
     const quarterlyData = useMemo(() => {
         return initializeQuarterlyData(years, categories);
     }, [years, categories, initializeQuarterlyData]);
