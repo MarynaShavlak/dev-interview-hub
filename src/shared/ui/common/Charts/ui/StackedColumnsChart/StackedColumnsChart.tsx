@@ -38,7 +38,7 @@ export const StackedColumnsChart = (props: StackedColumnsChartProps) => {
         width,
     });
 
-    const additionalOptions = {
+    const additionalOptions: ApexCharts.ApexOptions = {
         chart: {
             stacked: true,
         },
@@ -53,9 +53,7 @@ export const StackedColumnsChart = (props: StackedColumnsChartProps) => {
                 formatter: (val: number) => Number(val).toFixed(0),
             },
         },
-        grid: {
-            show: false,
-        },
+
         legend: {
             horizontalAlign: 'right' as const,
             offsetY: 0,

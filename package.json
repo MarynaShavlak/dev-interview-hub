@@ -136,7 +136,7 @@
     "@reduxjs/toolkit": "^1.9.0",
     "@types/lodash": "^4.17.5",
     "@use-gesture/react": "^10.2.19",
-    "apexcharts": "^3.44.0",
+    "apexcharts": "^3.54.0",
     "axios": "^1.7.5",
     "concurrently": "^8.2.2",
     "i18next": "^21.9.0",

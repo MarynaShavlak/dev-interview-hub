@@ -28,6 +28,9 @@ export const useBaseChartOptions = (props: BaseChartOptions) => {
         stroke: {
             show: false,
         },
+        grid: {
+            show: false,
+        },
         title: {
             text: title,
             align: 'left' as const,
@@ -58,7 +61,6 @@ export const useBaseChartOptions = (props: BaseChartOptions) => {
         },
         dataLabels: {
             enabled: true,
-            textAnchor: 'middle' as const,
             style: {
                 fontFamily,
                 fontWeight: '600',

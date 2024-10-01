@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactApexChart from 'react-apexcharts';
-
-import { useChartStyles } from '../../lib/hooks/useChartStyles/useChartStyles';
+import { useBaseChartOptions } from '../../lib/hooks/useBaseChartOptions/useBaseChartOptions';
+import { mergeOptions } from '../../lib/utilities/mergeOptions/mergeOptions';
 
 interface TreemapChartProps {
     data: { x: string; y: number }[];
@@ -87,18 +87,17 @@ const generateChartOptions = (props: generateChartOptionsProps) => {
 export const TreemapChart = (props: TreemapChartProps) => {
     const { data, title, width = '400', height = '500' } = props;
 
-    const { fontFamily, labelColor, monochromeColor, chartTheme } =
-        useChartStyles();
-
-    const chartOptions = generateChartOptions({
+    const baseChartOptions = useBaseChartOptions({
         title,
-        fontFamily,
-        monochromeColor,
-        labelColor,
-        chartTheme,
         width,
-        height,
     });
+
+    const additionalOptions: ApexCharts.ApexOptions = {};
+
+    const chartOptions: ApexCharts.ApexOptions = mergeOptions(
+        baseChartOptions,
+        additionalOptions,
+    );
 
     const seriesData = [{ data }];
 

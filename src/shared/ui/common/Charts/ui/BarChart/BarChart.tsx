@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactApexChart from 'react-apexcharts';
+import ApexCharts from 'apexcharts';
 
 import { useBaseChartOptions } from '../../lib/hooks/useBaseChartOptions/useBaseChartOptions';
 import { mergeOptions } from '../../lib/utilities/mergeOptions/mergeOptions';
@@ -33,10 +34,7 @@ export const BarChart = (props: BarChartProps) => {
         width,
     });
 
-    const additionalOptions = {
-        grid: {
-            show: false,
-        },
+    const additionalOptions: ApexCharts.ApexOptions = {
         xaxis: {
             labels: { rotate: -90 },
             title: { text: xAxisTitle },

@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactApexChart from 'react-apexcharts';
+import ApexCharts from 'apexcharts';
 
 import { useBaseChartOptions } from '../../lib/hooks/useBaseChartOptions/useBaseChartOptions';
 import { mergeOptions } from '../../lib/utilities/mergeOptions/mergeOptions';
@@ -29,7 +30,7 @@ export const DonutChart = (props: DonutChartProps) => {
         width,
     });
 
-    const additionalOptions = {
+    const additionalOptions: ApexCharts.ApexOptions = {
         states: {
             normal: {
                 filter: {
