@@ -82,15 +82,16 @@ export const useArticleQuarterlyData = () => {
                 const key = `${quarter}/${year}`;
 
                 article.category.forEach((category: string) => {
-                    if (quarterlyData[key] && category in quarterlyData[key]) {
-                        quarterlyData[key][category] += 1;
+                    if (quarterlyData[key]) {
+                        const localeCategory = t(`${category}`);
+                        quarterlyData[key][localeCategory] += 1;
                     }
                 });
             });
 
             return quarterlyData;
         },
-        [getQuarter],
+        [getQuarter, t],
     );
 
     const { years, categories } = useMemo(
@@ -98,11 +99,9 @@ export const useArticleQuarterlyData = () => {
         [articles, extractYearsAndCategories],
     );
 
-    console.log('categories', categories);
     const quarterlyData = useMemo(() => {
         return initializeQuarterlyData(years, categories);
     }, [years, categories, initializeQuarterlyData]);
-
     const populatedQuarterlyData = useMemo(() => {
         return populateQuarterlyData(articles, quarterlyData);
     }, [articles, quarterlyData, populateQuarterlyData]);
