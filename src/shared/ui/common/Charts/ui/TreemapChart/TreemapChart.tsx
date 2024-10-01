@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactApexChart from 'react-apexcharts';
 
-import { useChartStyles } from '@/shared/lib/hooks/useChartStyles/useChartStyles';
+import { useChartStyles } from '../../lib/hooks/useChartStyles/useChartStyles';
 
 interface TreemapChartProps {
     data: { x: string; y: number }[];

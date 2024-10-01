@@ -1,14 +1,14 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { HStack, VStack } from '@/shared/ui/common/Stack';
-import { DonutChart } from '@/shared/ui/common/Charts/DonutChart/DonutChart';
+import { DonutChart } from '@/shared/ui/common/Charts/ui/DonutChart/DonutChart';
 import { useArticles } from '@/entities/Article';
-import { StackedColumnsChart } from '@/shared/ui/common/Charts/StackedColumnsChart';
 import { useArticleCategoryData } from '../../lib/hook/useArticleCategoryData/useArticleCategoryData';
 import { useArticleQuarterlyData } from '../../lib/hook/useArticleQuarterlyData/useArticleQuarterlyData';
-import { BarChart } from '@/shared/ui/common/Charts/BarChart';
+import { BarChart } from '@/shared/ui/common/Charts/ui/BarChart';
 import { useArticleCommentsChartData } from '../../lib/hook/useArticleCommentsChartData/useArticleCommentsChartData';
-import { TreemapChart } from '@/shared/ui/common/Charts/TreemapChart';
+import { TreemapChart } from '@/shared/ui/common/Charts/ui/TreemapChart';
+import { StackedColumnsChart } from '@/shared/ui/common/Charts/ui/StackedColumnsChart';
 
 export interface ArticlesCategoryNumberData {
     [category: string]: number;
@@ -32,7 +32,6 @@ export const ArticleCategoriesChart = () => {
         articleCommentsData,
         commentsByUsersData,
     } = useArticleCommentsChartData();
-    console.log('d:', commentsByUsersData);
 
     return (
         <VStack gap="24">

@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
-import { toggleFeatures } from '../../features';
+import { toggleFeatures } from '../../../../../../lib/features';
 import { Theme } from '@/shared/const/theme';
-import { useTheme } from '../useTheme/useTheme';
+import { useTheme } from '../../../../../../lib/hooks/useTheme/useTheme';
 
 export const useChartStyles = () => {
     const { theme } = useTheme();

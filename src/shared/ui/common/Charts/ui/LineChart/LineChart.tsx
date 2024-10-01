@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactApexChart from 'react-apexcharts';
-import { useChartStyles } from '@/shared/lib/hooks/useChartStyles/useChartStyles';
+import { useChartStyles } from '../../lib/hooks/useChartStyles/useChartStyles';
 
 interface LineChartProps {
     data: { name: string; data: number[] }[];
@@ -135,7 +135,7 @@ export const LineChart = (props: LineChartProps) => {
         data,
         labels,
         title,
-        legendPosition = 'right',
+        legendPosition,
         width = '400',
         height = '320',
         xAxisTitle,
