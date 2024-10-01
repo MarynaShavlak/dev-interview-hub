@@ -1,4 +1,4 @@
-import { useChartStyles } from '../../hooks/useChartStyles/useChartStyles';
+import { useChartStyles } from '../useChartStyles/useChartStyles';
 
 interface BaseChartOptions {
     title?: string;
@@ -17,6 +17,9 @@ export const useBaseChartOptions = (props: BaseChartOptions) => {
             zoom: {
                 enabled: false,
             },
+        },
+        stroke: {
+            show: false,
         },
         title: {
             text: title,
@@ -69,7 +72,7 @@ export const useBaseChartOptions = (props: BaseChartOptions) => {
         },
         xaxis: {
             type: 'category' as const,
-           title: {
+            title: {
                 style: {
                     fontSize: '12px',
                     fontWeight: 'bold',
@@ -87,15 +90,11 @@ export const useBaseChartOptions = (props: BaseChartOptions) => {
                 },
             },
             labels: {
-                formatter(val: number) {
-                    return Number(val).toFixed(0);
-                },
                 style: {
                     fontSize: '12px',
                     fontFamily,
                 },
             },
         },
-
     };
 };

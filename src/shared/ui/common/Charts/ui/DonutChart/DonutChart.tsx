@@ -1,85 +1,35 @@
 import React from 'react';
 import ReactApexChart from 'react-apexcharts';
 
-import { useChartStyles } from '../../lib/hooks/useChartStyles/useChartStyles';
+import { useBaseChartOptions } from '../../lib/hooks/useBaseChartOptions/useBaseChartOptions';
+import { mergeOptions } from '../../lib/utilities/mergeOptions/mergeOptions';
 
 interface DonutChartProps {
     data: number[];
     labels: string[];
     title?: string;
     legendPosition?: 'top' | 'right' | 'bottom' | 'left';
+    width?: string | number;
+    height?: string | number;
 }
 
-interface generateChartOptionsProps {
-    labels: string[];
-    title: string | undefined;
-    fontFamily: string;
-    monochromeColor: string;
-    labelColor: string;
-    chartTheme: 'dark' | 'light';
-    legendPosition?: 'top' | 'right' | 'bottom' | 'left';
-}
-
-const generateChartOptions = (props: generateChartOptionsProps) => {
+export const DonutChart = (props: DonutChartProps) => {
     const {
+        data,
         labels,
         title,
-        fontFamily,
-        monochromeColor,
-        labelColor,
-        chartTheme,
-        legendPosition,
+        legendPosition = 'right',
+        width = '400',
+        height = '400',
     } = props;
-    return {
-        chart: {
-            width: '100%',
-            background: 'transparent',
-        },
-        labels,
-        title: {
-            text: title,
-            align: 'left' as const,
-            style: {
-                fontSize: '16px',
-                fontWeight: 'bold',
-                fontFamily,
-            },
-        },
-        legend: {
-            fontFamily,
-            onItemHover: {
-                highlightDataSeries: true,
-            },
-            onItemClick: {
-                toggleDataSeries: true,
-            },
-            // width: 120,
-            position: legendPosition,
-        },
-        stroke: {
-            show: false,
-        },
-        theme: {
-            mode: chartTheme,
-            monochrome: {
-                enabled: true,
-                color: monochromeColor,
-                shadeTo: chartTheme,
-                shadeIntensity: 0.9,
-            },
-        },
-        dataLabels: {
-            enabled: true,
-            textAnchor: 'middle' as const,
-            style: {
-                fontFamily,
-                fontWeight: '600',
-                colors: [labelColor],
-            },
-            dropShadow: {
-                enabled: false,
-            },
-        },
+
+    const baseChartOptions = useBaseChartOptions({
+        title,
+        legendPosition,
+        width,
+    });
+
+    const additionalOptions = {
         states: {
             normal: {
                 filter: {
@@ -108,41 +58,17 @@ const generateChartOptions = (props: generateChartOptionsProps) => {
                 },
             },
         },
-        tooltip: {
-            enabled: true,
-            style: {
-                fontSize: '12px',
-                fontFamily,
-            },
-            onDatasetHover: {
-                highlightDataSeries: false,
-            },
-        },
-    };
-};
-
-export const DonutChart = (props: DonutChartProps) => {
-    const { data, labels, title, legendPosition = 'right' } = props;
-
-    const { fontFamily, labelColor, monochromeColor, chartTheme } =
-        useChartStyles();
-
-    const chartOptions = generateChartOptions({
         labels,
-        title,
-        fontFamily,
-        monochromeColor,
-        labelColor,
-        chartTheme,
-        legendPosition,
-    });
+    };
+
+    const chartOptions = mergeOptions(baseChartOptions, additionalOptions);
 
     return (
         <ReactApexChart
             series={data}
             type="donut"
-            width={400}
-            height="400"
+            width={width}
+            height={height}
             options={chartOptions}
         />
     );
