@@ -8,6 +8,7 @@ import { useArticleCategoryData } from '../../lib/hook/useArticleCategoryData/us
 import { useArticleQuarterlyData } from '../../lib/hook/useArticleQuarterlyData/useArticleQuarterlyData';
 import { BarChart } from '@/shared/ui/common/Charts/BarChart';
 import { useArticleCommentsChartData } from '../../lib/hook/useArticleCommentsChartData/useArticleCommentsChartData';
+import { TreemapChart } from '@/shared/ui/common/Charts/TreemapChart';
 
 export interface ArticlesCategoryNumberData {
     [category: string]: number;
@@ -29,9 +30,9 @@ export const ArticleCategoriesChart = () => {
         isLoading: isCommentsLoading,
         articleCommentsLabels,
         articleCommentsData,
-        userCommentsLabels,
-        userCommentsData,
+        commentsByUsersData,
     } = useArticleCommentsChartData();
+    console.log('d:', commentsByUsersData);
 
     return (
         <VStack gap="24">
@@ -69,6 +70,14 @@ export const ArticleCategoriesChart = () => {
                 height="500"
                 width="700"
             />
+            <TreemapChart
+                data={commentsByUsersData}
+                title={t(
+                    'Розподіл активності користувачів за кількістю коментарів',
+                )}
+                height="500"
+                width="700"
+            />
         </VStack>
     );
 };
@@ -100,3 +109,11 @@ const commentsCount = {
     '1': 5,
     '2': 4,
 };
+
+const arr = [
+    { id: '1', count: 19 },
+    { id: '5', count: 18 },
+    { id: '4', count: 15 },
+    { id: '2', count: 14 },
+    { id: '3', count: 14 },
+];

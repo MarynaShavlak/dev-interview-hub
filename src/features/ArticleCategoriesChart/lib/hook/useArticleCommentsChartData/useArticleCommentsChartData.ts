@@ -4,13 +4,15 @@ import { ArticleComment } from '../../../model/types/articleComment';
 import { Data } from '../../../model/types/charts';
 
 const countComments = (comments: ArticleComment[]) => {
+    console.log('comments:', comments);
     const articleCommentCount: Data = {};
     const userCommentCount: Data = {};
 
-    comments.forEach(({ articleId, userId }) => {
+    comments.forEach(({ articleId, user }) => {
         articleCommentCount[articleId] =
             (articleCommentCount[articleId] || 0) + 1;
-        userCommentCount[userId] = (userCommentCount[userId] || 0) + 1;
+        userCommentCount[user.username] =
+            (userCommentCount[user.username] || 0) + 1;
     });
 
     const transformData = (countObject: Data) =>
@@ -20,7 +22,9 @@ const countComments = (comments: ArticleComment[]) => {
 
     return {
         commentsByArticlesData: transformData(articleCommentCount),
-        commentsByUsersData: transformData(userCommentCount),
+        commentsByUsersData: transformData(userCommentCount).map(
+            ({ id, count }) => ({ x: id, y: count }),
+        ),
     };
 };
 
@@ -36,14 +40,11 @@ export const useArticleCommentsChartData = () => {
     const articleCommentsData = commentsByArticlesData.map(
         (item) => item.count,
     );
-    const userCommentsLabels = commentsByUsersData.map((item) => item.id);
-    const userCommentsData = commentsByUsersData.map((item) => item.count);
 
     return {
         isLoading,
         articleCommentsLabels,
         articleCommentsData,
-        userCommentsLabels,
-        userCommentsData,
+        commentsByUsersData,
     };
 };

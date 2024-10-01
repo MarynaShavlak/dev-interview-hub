@@ -47,7 +47,7 @@
         "isAppRedesigned": true
       },
       "jsonSettings": {
-        "theme": "app_light_theme",
+        "theme": "app_dark_theme",
         "isFirstVisit": true,
         "settingsPageHasBeenOpen": false,
         "isArticlesPageWasOpened": true
@@ -1965,13 +1965,13 @@
       "id": "y1z2a3b",
       "text": "Loved the insights.",
       "articleId": "7",
-      "userId": "2"
+      "userId": "1"
     },
     {
       "id": "c4d5e6f",
       "text": "Couldn’t agree more!",
       "articleId": "9",
-      "userId": "3"
+      "userId": "1"
     },
     {
       "id": "g7h8i9j",
@@ -1995,7 +1995,7 @@
       "id": "s7t8u9v",
       "text": "This was insightful.",
       "articleId": "12",
-      "userId": "2"
+      "userId": "1"
     },
     {
       "id": "w1x2y3z",
@@ -2007,7 +2007,7 @@
       "id": "a4b5c6d",
       "text": "This needs more sources.",
       "articleId": "14",
-      "userId": "4"
+      "userId": "3"
     },
     {
       "id": "e7f8g9h",
@@ -2031,7 +2031,7 @@
       "id": "q7r8s9t",
       "text": "I agree with the author.",
       "articleId": "9",
-      "userId": "5"
+      "userId": "1"
     },
     {
       "id": "u1v2w3x",
@@ -2091,7 +2091,7 @@
       "id": "e1f2g3h",
       "text": "This is a good point.",
       "articleId": "12",
-      "userId": "3"
+      "userId": "4"
     },
     {
       "id": "i4j5k6l",
@@ -2121,7 +2121,7 @@
       "id": "y7z8a9b",
       "text": "I have a different view.",
       "articleId": "17",
-      "userId": "3"
+      "userId": "4"
     },
     {
       "id": "c1d2e3f",
@@ -2151,7 +2151,7 @@
       "id": "s4t5u6v",
       "text": "This was poorly written.",
       "articleId": "18",
-      "userId": "3"
+      "userId": "4"
     },
     {
       "id": "w7x8y9z",
@@ -2181,7 +2181,7 @@
       "id": "n1o2p3q",
       "text": "This was eye-opening.",
       "articleId": "3",
-      "userId": "3"
+      "userId": "4"
     },
     {
       "id": "r4s5t6u",
@@ -2211,7 +2211,7 @@
       "id": "h7i8j9k",
       "text": "Great point here.",
       "articleId": "8",
-      "userId": "3"
+      "userId": "4"
     },
     {
       "id": "l1m2n3o",
