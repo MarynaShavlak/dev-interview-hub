@@ -27,8 +27,10 @@ export const ArticleCategoriesChart = () => {
 
     const {
         isLoading: isCommentsLoading,
-        commentsLabels,
-        commentsData,
+        articleCommentsLabels,
+        articleCommentsData,
+        userCommentsLabels,
+        userCommentsData,
     } = useArticleCommentsChartData();
 
     return (
@@ -58,8 +60,8 @@ export const ArticleCategoriesChart = () => {
                 width="700"
             />
             <BarChart
-                data={commentsData}
-                labels={commentsLabels}
+                data={articleCommentsData}
+                labels={articleCommentsLabels}
                 title={t('Рейтинг статей за кількістю коментарів')}
                 legendPosition="top"
                 xAxisTitle={t('ID статті')}

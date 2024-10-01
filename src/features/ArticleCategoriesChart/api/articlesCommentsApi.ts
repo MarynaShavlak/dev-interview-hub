@@ -1,8 +1,5 @@
 import { rtkApi } from '@/shared/api/rtkApi';
-
-interface ArticleComment extends Comment {
-    articleId: string;
-}
+import { ArticleComment } from '../model/types/articleComment';
 
 export const articlesCommentsApi = rtkApi.injectEndpoints({
     endpoints: (build) => ({
@@ -10,7 +7,7 @@ export const articlesCommentsApi = rtkApi.injectEndpoints({
             query: () => ({
                 url: '/comments',
                 params: {
-                    _expand: ['user', 'articleId'],
+                    _expand: ['user'],
                 },
             }),
         }),

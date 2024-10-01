@@ -1,13 +1,10 @@
 import { useTranslation } from 'react-i18next';
 import { useCallback, useMemo } from 'react';
 import { Article, useArticles } from '@/entities/Article';
-
-interface CategoryData {
-    [category: string]: number;
-}
+import { Data } from '../../../model/types/charts';
 
 interface QuarterlyData {
-    [quarter: string]: CategoryData;
+    [quarter: string]: Data;
 }
 
 interface ChartData {
@@ -63,7 +60,7 @@ export const useArticleQuarterlyData = () => {
                     quarterlyData[key] = categories.reduce((acc, category) => {
                         acc[category] = 0; // Initialize category count to 0
                         return acc;
-                    }, {} as CategoryData);
+                    }, {} as Data);
                 });
             });
 

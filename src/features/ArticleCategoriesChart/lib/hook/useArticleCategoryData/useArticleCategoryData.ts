@@ -1,18 +1,15 @@
 import { useTranslation } from 'react-i18next';
 import { useMemo } from 'react';
 import { useArticles } from '@/entities/Article';
-
-export interface CategoryData {
-    [category: string]: number;
-}
+import { Data } from '../../../model/types/charts';
 
 export const useArticleCategoryData = () => {
     const { t } = useTranslation('admin');
     const { data: articles, isLoading } = useArticles(null);
 
     const { articleCount, viewCount } = useMemo(() => {
-        const articleCount: CategoryData = {};
-        const viewCount: CategoryData = {};
+        const articleCount: Data = {};
+        const viewCount: Data = {};
 
         articles?.forEach((article) => {
             article.category.forEach((cat) => {
