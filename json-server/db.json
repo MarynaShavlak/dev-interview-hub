@@ -47,7 +47,7 @@
         "isAppRedesigned": true
       },
       "jsonSettings": {
-        "theme": "app_orange_theme",
+        "theme": "app_light_theme",
         "isFirstVisit": true,
         "settingsPageHasBeenOpen": false,
         "isArticlesPageWasOpened": true
@@ -1925,85 +1925,485 @@
     }
   ],
   "comments": [
-    { "id": "a1b2c3d", "text": "This article is great!", "articleId": "1", "userId": "1" },
-    { "id": "e4f5g6h", "text": "I totally agree with this.", "articleId": "2", "userId": "1" },
-    { "id": "i7j8k9l", "text": "Interesting read!", "articleId": "3", "userId": "1" },
-    { "id": "m1n2o3p", "text": "I have a different opinion.", "articleId": "4", "userId": "1" },
-    { "id": "q4r5s6t", "text": "Thanks for sharing!", "articleId": "5", "userId": "1" },
-    { "id": "u7v8w9x", "text": "Well written article!", "articleId": "6", "userId": "1" },
-    { "id": "y1z2a3b", "text": "Loved the insights.", "articleId": "7", "userId": "2" },
-    { "id": "c4d5e6f", "text": "Couldn’t agree more!", "articleId": "9", "userId": "3" },
-    { "id": "g7h8i9j", "text": "Not sure about this.", "articleId": "9", "userId": "4" },
-    { "id": "k1l2m3n", "text": "Fantastic explanation!", "articleId": "9", "userId": "5" },
-    { "id": "o4p5q6r", "text": "More details, please.", "articleId": "11", "userId": "1" },
-    { "id": "s7t8u9v", "text": "This was insightful.", "articleId": "12", "userId": "2" },
-    { "id": "w1x2y3z", "text": "I learned something new.", "articleId": "13", "userId": "3" },
-    { "id": "a4b5c6d", "text": "This needs more sources.", "articleId": "14", "userId": "4" },
-    { "id": "e7f8g9h", "text": "Brilliant write-up!", "articleId": "11", "userId": "5" },
-    { "id": "i1j2k3l", "text": "Very thought-provoking.", "articleId": "16", "userId": "1" },
-    { "id": "m4n5o6p", "text": "I have some concerns.", "articleId": "9", "userId": "2" },
-    { "id": "q7r8s9t", "text": "I agree with the author.", "articleId": "9", "userId": "5" },
-    { "id": "u1v2w3x", "text": "Needs better editing.", "articleId": "19", "userId": "5" },
-    { "id": "y4z5a6b", "text": "I liked the examples.", "articleId": "20", "userId": "5" },
-    { "id": "c7d8e9f", "text": "I found this helpful.", "articleId": "6", "userId": "1" },
-    { "id": "g1h2i3j", "text": "Good perspective.", "articleId": "2", "userId": "2" },
-    { "id": "k4l5m6n", "text": "Disagree with some points.", "articleId": "3", "userId": "3" },
-    { "id": "o7p8q9r", "text": "Very informative!", "articleId": "4", "userId": "4" },
-    { "id": "s1t2u3v", "text": "This was confusing.", "articleId": "5", "userId": "5" },
-    { "id": "w4x5y6z", "text": "Can you clarify this?", "articleId": "6", "userId": "1" },
-    { "id": "a7b8c9d", "text": "I support this view.", "articleId": "7", "userId": "2" },
-    { "id": "e1f2g3h", "text": "This is a good point.", "articleId": "12", "userId": "3" },
-    { "id": "i4j5k6l", "text": "Please expand on this.", "articleId": "9", "userId": "4" },
-    { "id": "m7n8o9p", "text": "Fascinating article!", "articleId": "2", "userId": "5" },
-    { "id": "q1r2s3t", "text": "Could use more detail.", "articleId": "11", "userId": "1" },
-    { "id": "u4v5w6x", "text": "Very well explained.", "articleId": "12", "userId": "5" },
-    { "id": "y7z8a9b", "text": "I have a different view.", "articleId": "17", "userId": "3" },
-    { "id": "c1d2e3f", "text": "This is very useful.", "articleId": "10", "userId": "4" },
-    { "id": "g4h5i6j", "text": "I liked this approach.", "articleId": "15", "userId": "5" },
-    { "id": "k7l8m9n", "text": "Very engaging content.", "articleId": "16", "userId": "1" },
-    { "id": "o1p2q3r", "text": "I agree completely.", "articleId": "17", "userId": "2" },
-    { "id": "s4t5u6v", "text": "This was poorly written.", "articleId": "18", "userId": "3" },
-    { "id": "w7x8y9z", "text": "Good research!", "articleId": "19", "userId": "4" },
-    { "id": "a1b2c3e", "text": "I am not convinced.", "articleId": "20", "userId": "5" },
-    { "id": "f4g5h6i", "text": "Loved the structure.", "articleId": "1", "userId": "4" },
-    { "id": "j7k8l9m", "text": "I see your point.", "articleId": "20", "userId": "2" },
-    { "id": "n1o2p3q", "text": "This was eye-opening.", "articleId": "3", "userId": "3" },
-    { "id": "r4s5t6u", "text": "I expected more detail.", "articleId": "4", "userId": "4" },
-    { "id": "v7w8x9y", "text": "Well thought out.", "articleId": "5", "userId": "5" },
-    { "id": "z1a2b3c", "text": "This is quite helpful.", "articleId": "6", "userId": "1" },
-    { "id": "d4e5f6g", "text": "Can you give examples?", "articleId": "7", "userId": "2" },
-    { "id": "h7i8j9k", "text": "Great point here.", "articleId": "8", "userId": "3" },
-    { "id": "l1m2n3o", "text": "Very concise!", "articleId": "9", "userId": "4" },
-    { "id": "p4q5r6s", "text": "Engaging from start to end.", "articleId": "9", "userId": "5" },
-    { "id": "t7u8v9w", "text": "This was disappointing.", "articleId": "11", "userId": "1" },
-    { "id": "x1y2z3a", "text": "Clear and insightful.", "articleId": "12", "userId": "2" },
-    { "id": "b4c5d6e", "text": "Nice perspective shared.", "articleId": "17", "userId": "3" },
-    { "id": "f7g8h9i", "text": "This deserves more attention.", "articleId": "14", "userId": "4" },
-    { "id": "j1k2l3m", "text": "Excellent analysis!", "articleId": "15", "userId": "5" },
-    { "id": "n4o5p6q", "text": "Well written, thanks!", "articleId": "16", "userId": "1" },
-    { "id": "r7s8t9u", "text": "I’m not sure I agree.", "articleId": "17", "userId": "2" },
-    { "id": "v1w2x3y", "text": "This was a bit unclear.", "articleId": "18", "userId": "3" },
-    { "id": "z4a5b6c", "text": "Good references.", "articleId": "19", "userId": "4" },
-    { "id": "d7e8f9g", "text": "I’d love a follow-up.", "articleId": "20", "userId": "5" },
-    { "id": "h1i2j3k", "text": "I can relate to this.", "articleId": "2", "userId": "1" },
-    { "id": "l4m5n6o", "text": "Clear arguments made.", "articleId": "2", "userId": "2" },
-    { "id": "p7q8r9s", "text": "Good counterpoints.", "articleId": "4", "userId": "3" },
-    { "id": "t1u2v3w", "text": "Would like more data.", "articleId": "4", "userId": "4" },
-    { "id": "x4y5z6a", "text": "Good mix of views.", "articleId": "5", "userId": "5" },
-    { "id": "b7c8d9e", "text": "This was too brief.", "articleId": "6", "userId": "1" },
-    { "id": "f1g2h3i", "text": "I enjoyed reading this.", "articleId": "7", "userId": "2" },
-    { "id": "j4k5l6m", "text": "Not enough depth here.", "articleId": "8", "userId": "3" },
-    { "id": "n7o8p9q", "text": "Solid writing!", "articleId": "9", "userId": "4" },
-    { "id": "r1s2t3u", "text": "This changed my view.", "articleId": "10", "userId": "5" },
-    { "id": "v4w5x6y", "text": "Needs more context.", "articleId": "17", "userId": "1" },
-    { "id": "z7a8b9c", "text": "Thoroughly researched!", "articleId": "12", "userId": "2" },
-    { "id": "d1e2f3g", "text": "I didn’t expect this.", "articleId": "19", "userId": "3" },
-    { "id": "h4i5j6k", "text": "Very engaging content.", "articleId": "14", "userId": "4" },
-    { "id": "l7m8n9o", "text": "A fresh perspective.", "articleId": "11", "userId": "5" },
-    { "id": "p1q2r3s", "text": "Needs more explanation.", "articleId": "11", "userId": "1" },
-    { "id": "t4u5v6w", "text": "Very well summarized.", "articleId": "11", "userId": "2" },
-    { "id": "x7y8z9a", "text": "I have some doubts.", "articleId": "10", "userId": "3" },
-    { "id": "b1c2d3e", "text": "I’ll need to read again.", "articleId": "19", "userId": "4" },
-    { "id": "f4g5h6i", "text": "Strong arguments here.", "articleId": "20", "userId": "5" }
+    {
+      "id": "a1b2c3d",
+      "text": "This article is great!",
+      "articleId": "1",
+      "userId": "1"
+    },
+    {
+      "id": "e4f5g6h",
+      "text": "I totally agree with this.",
+      "articleId": "2",
+      "userId": "1"
+    },
+    {
+      "id": "i7j8k9l",
+      "text": "Interesting read!",
+      "articleId": "3",
+      "userId": "1"
+    },
+    {
+      "id": "m1n2o3p",
+      "text": "I have a different opinion.",
+      "articleId": "4",
+      "userId": "1"
+    },
+    {
+      "id": "q4r5s6t",
+      "text": "Thanks for sharing!",
+      "articleId": "5",
+      "userId": "1"
+    },
+    {
+      "id": "u7v8w9x",
+      "text": "Well written article!",
+      "articleId": "6",
+      "userId": "1"
+    },
+    {
+      "id": "y1z2a3b",
+      "text": "Loved the insights.",
+      "articleId": "7",
+      "userId": "2"
+    },
+    {
+      "id": "c4d5e6f",
+      "text": "Couldn’t agree more!",
+      "articleId": "9",
+      "userId": "3"
+    },
+    {
+      "id": "g7h8i9j",
+      "text": "Not sure about this.",
+      "articleId": "9",
+      "userId": "4"
+    },
+    {
+      "id": "k1l2m3n",
+      "text": "Fantastic explanation!",
+      "articleId": "9",
+      "userId": "5"
+    },
+    {
+      "id": "o4p5q6r",
+      "text": "More details, please.",
+      "articleId": "11",
+      "userId": "1"
+    },
+    {
+      "id": "s7t8u9v",
+      "text": "This was insightful.",
+      "articleId": "12",
+      "userId": "2"
+    },
+    {
+      "id": "w1x2y3z",
+      "text": "I learned something new.",
+      "articleId": "13",
+      "userId": "3"
+    },
+    {
+      "id": "a4b5c6d",
+      "text": "This needs more sources.",
+      "articleId": "14",
+      "userId": "4"
+    },
+    {
+      "id": "e7f8g9h",
+      "text": "Brilliant write-up!",
+      "articleId": "11",
+      "userId": "5"
+    },
+    {
+      "id": "i1j2k3l",
+      "text": "Very thought-provoking.",
+      "articleId": "16",
+      "userId": "1"
+    },
+    {
+      "id": "m4n5o6p",
+      "text": "I have some concerns.",
+      "articleId": "9",
+      "userId": "2"
+    },
+    {
+      "id": "q7r8s9t",
+      "text": "I agree with the author.",
+      "articleId": "9",
+      "userId": "5"
+    },
+    {
+      "id": "u1v2w3x",
+      "text": "Needs better editing.",
+      "articleId": "19",
+      "userId": "5"
+    },
+    {
+      "id": "y4z5a6b",
+      "text": "I liked the examples.",
+      "articleId": "20",
+      "userId": "5"
+    },
+    {
+      "id": "c7d8e9f",
+      "text": "I found this helpful.",
+      "articleId": "6",
+      "userId": "1"
+    },
+    {
+      "id": "g1h2i3j",
+      "text": "Good perspective.",
+      "articleId": "2",
+      "userId": "2"
+    },
+    {
+      "id": "k4l5m6n",
+      "text": "Disagree with some points.",
+      "articleId": "3",
+      "userId": "3"
+    },
+    {
+      "id": "o7p8q9r",
+      "text": "Very informative!",
+      "articleId": "4",
+      "userId": "4"
+    },
+    {
+      "id": "s1t2u3v",
+      "text": "This was confusing.",
+      "articleId": "5",
+      "userId": "5"
+    },
+    {
+      "id": "w4x5y6z",
+      "text": "Can you clarify this?",
+      "articleId": "6",
+      "userId": "1"
+    },
+    {
+      "id": "a7b8c9d",
+      "text": "I support this view.",
+      "articleId": "7",
+      "userId": "2"
+    },
+    {
+      "id": "e1f2g3h",
+      "text": "This is a good point.",
+      "articleId": "12",
+      "userId": "3"
+    },
+    {
+      "id": "i4j5k6l",
+      "text": "Please expand on this.",
+      "articleId": "9",
+      "userId": "4"
+    },
+    {
+      "id": "m7n8o9p",
+      "text": "Fascinating article!",
+      "articleId": "2",
+      "userId": "5"
+    },
+    {
+      "id": "q1r2s3t",
+      "text": "Could use more detail.",
+      "articleId": "11",
+      "userId": "1"
+    },
+    {
+      "id": "u4v5w6x",
+      "text": "Very well explained.",
+      "articleId": "12",
+      "userId": "5"
+    },
+    {
+      "id": "y7z8a9b",
+      "text": "I have a different view.",
+      "articleId": "17",
+      "userId": "3"
+    },
+    {
+      "id": "c1d2e3f",
+      "text": "This is very useful.",
+      "articleId": "10",
+      "userId": "4"
+    },
+    {
+      "id": "g4h5i6j",
+      "text": "I liked this approach.",
+      "articleId": "15",
+      "userId": "5"
+    },
+    {
+      "id": "k7l8m9n",
+      "text": "Very engaging content.",
+      "articleId": "16",
+      "userId": "1"
+    },
+    {
+      "id": "o1p2q3r",
+      "text": "I agree completely.",
+      "articleId": "17",
+      "userId": "2"
+    },
+    {
+      "id": "s4t5u6v",
+      "text": "This was poorly written.",
+      "articleId": "18",
+      "userId": "3"
+    },
+    {
+      "id": "w7x8y9z",
+      "text": "Good research!",
+      "articleId": "19",
+      "userId": "4"
+    },
+    {
+      "id": "a1b2c3e",
+      "text": "I am not convinced.",
+      "articleId": "20",
+      "userId": "5"
+    },
+    {
+      "id": "f4g5h6i",
+      "text": "Loved the structure.",
+      "articleId": "1",
+      "userId": "4"
+    },
+    {
+      "id": "j7k8l9m",
+      "text": "I see your point.",
+      "articleId": "20",
+      "userId": "2"
+    },
+    {
+      "id": "n1o2p3q",
+      "text": "This was eye-opening.",
+      "articleId": "3",
+      "userId": "3"
+    },
+    {
+      "id": "r4s5t6u",
+      "text": "I expected more detail.",
+      "articleId": "4",
+      "userId": "4"
+    },
+    {
+      "id": "v7w8x9y",
+      "text": "Well thought out.",
+      "articleId": "5",
+      "userId": "5"
+    },
+    {
+      "id": "z1a2b3c",
+      "text": "This is quite helpful.",
+      "articleId": "6",
+      "userId": "1"
+    },
+    {
+      "id": "d4e5f6g",
+      "text": "Can you give examples?",
+      "articleId": "7",
+      "userId": "2"
+    },
+    {
+      "id": "h7i8j9k",
+      "text": "Great point here.",
+      "articleId": "8",
+      "userId": "3"
+    },
+    {
+      "id": "l1m2n3o",
+      "text": "Very concise!",
+      "articleId": "9",
+      "userId": "4"
+    },
+    {
+      "id": "p4q5r6s",
+      "text": "Engaging from start to end.",
+      "articleId": "9",
+      "userId": "5"
+    },
+    {
+      "id": "t7u8v9w",
+      "text": "This was disappointing.",
+      "articleId": "11",
+      "userId": "1"
+    },
+    {
+      "id": "x1y2z3a",
+      "text": "Clear and insightful.",
+      "articleId": "12",
+      "userId": "2"
+    },
+    {
+      "id": "b4c5d6e",
+      "text": "Nice perspective shared.",
+      "articleId": "17",
+      "userId": "3"
+    },
+    {
+      "id": "f7g8h9i",
+      "text": "This deserves more attention.",
+      "articleId": "14",
+      "userId": "4"
+    },
+    {
+      "id": "j1k2l3m",
+      "text": "Excellent analysis!",
+      "articleId": "15",
+      "userId": "5"
+    },
+    {
+      "id": "n4o5p6q",
+      "text": "Well written, thanks!",
+      "articleId": "16",
+      "userId": "1"
+    },
+    {
+      "id": "r7s8t9u",
+      "text": "I’m not sure I agree.",
+      "articleId": "17",
+      "userId": "2"
+    },
+    {
+      "id": "v1w2x3y",
+      "text": "This was a bit unclear.",
+      "articleId": "18",
+      "userId": "3"
+    },
+    {
+      "id": "z4a5b6c",
+      "text": "Good references.",
+      "articleId": "19",
+      "userId": "4"
+    },
+    {
+      "id": "d7e8f9g",
+      "text": "I’d love a follow-up.",
+      "articleId": "20",
+      "userId": "5"
+    },
+    {
+      "id": "h1i2j3k",
+      "text": "I can relate to this.",
+      "articleId": "2",
+      "userId": "1"
+    },
+    {
+      "id": "l4m5n6o",
+      "text": "Clear arguments made.",
+      "articleId": "2",
+      "userId": "2"
+    },
+    {
+      "id": "p7q8r9s",
+      "text": "Good counterpoints.",
+      "articleId": "4",
+      "userId": "3"
+    },
+    {
+      "id": "t1u2v3w",
+      "text": "Would like more data.",
+      "articleId": "4",
+      "userId": "4"
+    },
+    {
+      "id": "x4y5z6a",
+      "text": "Good mix of views.",
+      "articleId": "5",
+      "userId": "5"
+    },
+    {
+      "id": "b7c8d9e",
+      "text": "This was too brief.",
+      "articleId": "6",
+      "userId": "1"
+    },
+    {
+      "id": "f1g2h3i",
+      "text": "I enjoyed reading this.",
+      "articleId": "7",
+      "userId": "2"
+    },
+    {
+      "id": "j4k5l6m",
+      "text": "Not enough depth here.",
+      "articleId": "8",
+      "userId": "3"
+    },
+    {
+      "id": "n7o8p9q",
+      "text": "Solid writing!",
+      "articleId": "9",
+      "userId": "4"
+    },
+    {
+      "id": "r1s2t3u",
+      "text": "This changed my view.",
+      "articleId": "10",
+      "userId": "5"
+    },
+    {
+      "id": "v4w5x6y",
+      "text": "Needs more context.",
+      "articleId": "17",
+      "userId": "1"
+    },
+    {
+      "id": "z7a8b9c",
+      "text": "Thoroughly researched!",
+      "articleId": "12",
+      "userId": "2"
+    },
+    {
+      "id": "d1e2f3g",
+      "text": "I didn’t expect this.",
+      "articleId": "19",
+      "userId": "3"
+    },
+    {
+      "id": "h4i5j6k",
+      "text": "Very engaging content.",
+      "articleId": "14",
+      "userId": "4"
+    },
+    {
+      "id": "l7m8n9o",
+      "text": "A fresh perspective.",
+      "articleId": "11",
+      "userId": "5"
+    },
+    {
+      "id": "p1q2r3s",
+      "text": "Needs more explanation.",
+      "articleId": "11",
+      "userId": "1"
+    },
+    {
+      "id": "t4u5v6w",
+      "text": "Very well summarized.",
+      "articleId": "11",
+      "userId": "2"
+    },
+    {
+      "id": "x7y8z9a",
+      "text": "I have some doubts.",
+      "articleId": "10",
+      "userId": "3"
+    },
+    {
+      "id": "b1c2d3e",
+      "text": "I’ll need to read again.",
+      "articleId": "19",
+      "userId": "4"
+    },
+    {
+      "id": "f4g5h6i",
+      "text": "Strong arguments here.",
+      "articleId": "20",
+      "userId": "5"
+    }
   ]
 }

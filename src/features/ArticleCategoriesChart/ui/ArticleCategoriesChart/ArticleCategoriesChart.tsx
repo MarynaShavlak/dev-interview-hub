@@ -7,7 +7,7 @@ import { StackedColumnsChart } from '@/shared/ui/common/Charts/StackedColumnsCha
 import { useArticleCategoryData } from '../../lib/hook/useArticleCategoryData/useArticleCategoryData';
 import { useArticleQuarterlyData } from '../../lib/hook/useArticleQuarterlyData/useArticleQuarterlyData';
 import { BarChart } from '@/shared/ui/common/Charts/BarChart';
-import { useArticlesComments } from '../../api/articlesCommentsApi';
+import { useArticleCommentsChartData } from '../../lib/hook/useArticleCommentsChartData/useArticleCommentsChartData';
 
 export interface ArticlesCategoryNumberData {
     [category: string]: number;
@@ -16,36 +16,6 @@ export interface ArticlesCategoryNumberData {
 export const ArticleCategoriesChart = () => {
     const { t } = useTranslation('admin');
     const { data: articles, isLoading: isArticlesLoading } = useArticles(null);
-    const { data: comments, isLoading: isArticlesCommentsLoading } =
-        useArticlesComments(null);
-    console.log(comments);
-
-    const arr: { articleId: string; comments: number }[] = [];
-
-    const articleCommentCount: ArticlesCategoryNumberData = {};
-    comments?.forEach((comment) => {
-        const { articleId } = comment;
-        if (articleCommentCount[articleId]) {
-            articleCommentCount[articleId] += 1;
-        } else {
-            articleCommentCount[articleId] = 1;
-        }
-    });
-
-    console.log(articleCommentCount);
-
-    const resultArray = Object.entries(articleCommentCount)
-        .map(([articleId, comments]) => {
-            return { articleId, comments };
-        })
-        .sort((a, b) => b.comments - a.comments);
-
-    console.log(resultArray);
-    const commentsLabels = resultArray.map((item) => item.articleId);
-    console.log(commentsLabels);
-
-    const commentsData = resultArray.map((item) => item.comments);
-    console.log(commentsData);
 
     const {
         labels: categoryLabels,
@@ -54,6 +24,12 @@ export const ArticleCategoriesChart = () => {
     } = useArticleCategoryData();
 
     const { periodLabels, chartData } = useArticleQuarterlyData();
+
+    const {
+        isLoading: isCommentsLoading,
+        commentsLabels,
+        commentsData,
+    } = useArticleCommentsChartData();
 
     return (
         <VStack gap="24">
