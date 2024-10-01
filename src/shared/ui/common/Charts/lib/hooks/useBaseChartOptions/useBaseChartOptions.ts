@@ -4,15 +4,22 @@ interface BaseChartOptions {
     title?: string;
     legendPosition?: 'top' | 'right' | 'bottom' | 'left';
     width?: string | number;
+    height?: string | number;
 }
 
 export const useBaseChartOptions = (props: BaseChartOptions) => {
     const { fontFamily, labelColor, monochromeColor, chartTheme } =
         useChartStyles();
-    const { title, legendPosition = 'right', width = '100%' } = props;
+    const {
+        title,
+        legendPosition = 'right',
+        width = '100%',
+        height = 'auto',
+    } = props;
     return {
         chart: {
             width,
+            height,
             background: 'transparent',
             zoom: {
                 enabled: false,
@@ -91,7 +98,8 @@ export const useBaseChartOptions = (props: BaseChartOptions) => {
             },
             labels: {
                 style: {
-                    fontSize: '12px',
+                    fontSize: '10px',
+                    fontWeight: 'bold',
                     fontFamily,
                 },
             },
