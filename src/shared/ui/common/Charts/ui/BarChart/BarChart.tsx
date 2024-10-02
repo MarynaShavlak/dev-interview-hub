@@ -4,16 +4,10 @@ import ApexCharts from 'apexcharts';
 
 import { useBaseChartOptions } from '../../lib/hooks/useBaseChartOptions/useBaseChartOptions';
 import { mergeOptions } from '../../lib/utilities/mergeOptions/mergeOptions';
+import { BaseChartProps } from '../types';
 
-interface BarChartProps {
+interface BarChartProps extends BaseChartProps {
     data: number[];
-    labels: string[];
-    title?: string;
-    legendPosition?: 'top' | 'right' | 'bottom' | 'left';
-    width?: string;
-    height?: string;
-    xAxisTitle?: string;
-    yAxisTitle?: string;
 }
 
 export const BarChart = (props: BarChartProps) => {

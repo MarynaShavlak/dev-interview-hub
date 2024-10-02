@@ -1,134 +1,13 @@
 import React from 'react';
 import ReactApexChart from 'react-apexcharts';
-import { useChartStyles } from '../../lib/hooks/useChartStyles/useChartStyles';
+import ApexCharts from 'apexcharts';
+import { useBaseChartOptions } from '../../lib/hooks/useBaseChartOptions/useBaseChartOptions';
+import { mergeOptions } from '../../lib/utilities/mergeOptions/mergeOptions';
+import { BaseChartProps } from '../types';
 
-interface LineChartProps {
+interface LineChartProps extends BaseChartProps {
     data: { name: string; data: number[] }[];
-    labels: string[];
-    title?: string;
-    legendPosition?: 'top' | 'right' | 'bottom' | 'left';
-    width?: string;
-    height?: string;
-    xAxisTitle?: string;
-    yAxisTitle?: string;
 }
-
-interface generateChartOptionsProps {
-    labels: string[];
-    title: string | undefined;
-    fontFamily: string;
-    monochromeColor: string;
-    labelColor: string;
-    chartTheme: 'dark' | 'light';
-    legendPosition?: 'top' | 'right' | 'bottom' | 'left';
-    width?: string;
-    xAxisTitle?: string;
-    yAxisTitle?: string;
-}
-
-const generateChartOptions = (props: generateChartOptionsProps) => {
-    const {
-        labels,
-        title,
-        fontFamily,
-        monochromeColor,
-        chartTheme,
-        legendPosition,
-        width,
-        xAxisTitle,
-        yAxisTitle,
-    } = props;
-    return {
-        chart: {
-            width,
-            background: 'transparent',
-            zoom: {
-                enabled: false,
-            },
-        },
-        stroke: {
-            curve: 'smooth' as const,
-            width: 2,
-        },
-        markers: {
-            size: 6,
-            strokeWidth: 0,
-            hover: {
-                size: 9,
-            },
-        },
-        grid: {
-            show: false,
-            padding: {
-                bottom: 0,
-            },
-        },
-        xaxis: {
-            tooltip: {
-                enabled: true,
-            },
-            title: {
-                text: xAxisTitle,
-                style: {
-                    fontSize: '12px',
-                    fontWeight: 'bold',
-                    fontFamily,
-                },
-            },
-            categories: labels,
-        },
-        yaxis: {
-            title: {
-                text: yAxisTitle,
-                style: {
-                    fontSize: '12px',
-                    fontWeight: 'bold',
-                    fontFamily,
-                },
-            },
-        },
-        title: {
-            text: title,
-            align: 'left' as const,
-            style: {
-                fontSize: '16px',
-                fontWeight: 'bold',
-                fontFamily,
-            },
-        },
-        legend: {
-            horizontalAlign: 'right' as const,
-            offsetY: 20,
-            fontFamily,
-            onItemHover: {
-                highlightDataSeries: true,
-            },
-            onItemClick: {
-                toggleDataSeries: true,
-            },
-            position: legendPosition,
-        },
-        theme: {
-            mode: chartTheme,
-            monochrome: {
-                enabled: true,
-                color: monochromeColor,
-                shadeTo: chartTheme,
-                shadeIntensity: 1,
-            },
-        },
-        tooltip: {
-            enabled: true,
-            style: {
-                fontSize: '12px',
-                fontFamily,
-            },
-            onDatasetHover: {
-                highlightDataSeries: false,
-            },
-        },
-    };
-};
 
 export const LineChart = (props: LineChartProps) => {
     const {
@@ -141,20 +20,41 @@ export const LineChart = (props: LineChartProps) => {
         xAxisTitle,
         yAxisTitle,
     } = props;
-    const { fontFamily, labelColor, monochromeColor, chartTheme } =
-        useChartStyles();
 
-    const chartOptions = generateChartOptions({
-        labels,
+    const baseChartOptions = useBaseChartOptions({
         title,
-        fontFamily,
-        monochromeColor,
-        labelColor,
-        chartTheme,
         legendPosition,
-        xAxisTitle,
-        yAxisTitle,
+        width,
     });
+
+    const additionalOptions: ApexCharts.ApexOptions = {
+        stroke: {
+            show: true,
+            curve: 'smooth' as const,
+            width: 2,
+        },
+        markers: {
+            size: 6,
+            strokeWidth: 0,
+            hover: {
+                size: 9,
+            },
+        },
+        xaxis: {
+            title: {
+                text: xAxisTitle,
+            },
+            categories: labels,
+        },
+        yaxis: {
+            title: {
+                text: yAxisTitle,
+            },
+        },
+        dataLabels: { enabled: false },
+    };
+
+    const chartOptions = mergeOptions(baseChartOptions, additionalOptions);
     const d = [
         {
             name: 'Music',
@@ -172,7 +72,7 @@ export const LineChart = (props: LineChartProps) => {
 
     return (
         <ReactApexChart
-            series={data}
+            series={d}
             type="line"
             width={width}
             height={height}

@@ -4,14 +4,10 @@ import ApexCharts from 'apexcharts';
 
 import { useBaseChartOptions } from '../../lib/hooks/useBaseChartOptions/useBaseChartOptions';
 import { mergeOptions } from '../../lib/utilities/mergeOptions/mergeOptions';
+import { BaseChartProps } from '../types';
 
-interface DonutChartProps {
+interface DonutChartProps extends BaseChartProps {
     data: number[];
-    labels: string[];
-    title?: string;
-    legendPosition?: 'top' | 'right' | 'bottom' | 'left';
-    width?: string | number;
-    height?: string | number;
 }
 
 export const DonutChart = (props: DonutChartProps) => {

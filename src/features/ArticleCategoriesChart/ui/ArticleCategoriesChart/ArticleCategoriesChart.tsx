@@ -9,6 +9,7 @@ import { BarChart } from '@/shared/ui/common/Charts/ui/BarChart';
 import { useArticleCommentsChartData } from '../../lib/hook/useArticleCommentsChartData/useArticleCommentsChartData';
 import { TreemapChart } from '@/shared/ui/common/Charts/ui/TreemapChart';
 import { StackedColumnsChart } from '@/shared/ui/common/Charts/ui/StackedColumnsChart';
+import { LineChart } from '@/shared/ui/common/Charts/ui/LineChart';
 
 export interface ArticlesCategoryNumberData {
     [category: string]: number;
@@ -25,6 +26,7 @@ export const ArticleCategoriesChart = () => {
     } = useArticleCategoryData();
 
     const { periodLabels, chartData } = useArticleQuarterlyData();
+    console.log('chartData', chartData);
 
     const {
         isLoading: isCommentsLoading,
@@ -56,6 +58,16 @@ export const ArticleCategoriesChart = () => {
                 legendPosition="top"
                 xAxisTitle={t('Місяць')}
                 yAxisTitle={t('Кількість статей')}
+                height="500"
+                width="700"
+            />
+            <LineChart
+                data={chartData}
+                labels={periodLabels}
+                title={t('Рейтинг статей за кількістю коментарів')}
+                legendPosition="top"
+                xAxisTitle={t('ID статті')}
+                yAxisTitle={t('Кількість коментарів')}
                 height="500"
                 width="700"
             />

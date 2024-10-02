@@ -4,7 +4,6 @@ import { ArticleComment } from '../../../model/types/articleComment';
 import { Data } from '../../../model/types/charts';
 
 const countComments = (comments: ArticleComment[]) => {
-    console.log('comments:', comments);
     const articleCommentCount: Data = {};
     const userCommentCount: Data = {};
 

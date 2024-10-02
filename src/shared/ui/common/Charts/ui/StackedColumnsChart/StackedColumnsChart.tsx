@@ -1,23 +1,11 @@
 import React from 'react';
 import ReactApexChart from 'react-apexcharts';
-import dayjs from 'dayjs';
-import quarterOfYear from 'dayjs/plugin/quarterOfYear';
-import customParseFormat from 'dayjs/plugin/customParseFormat';
 import { useBaseChartOptions } from '../../lib/hooks/useBaseChartOptions/useBaseChartOptions';
 import { mergeOptions } from '../../lib/utilities/mergeOptions/mergeOptions';
+import { BaseChartProps } from '../types';
 
-dayjs.extend(quarterOfYear);
-dayjs.extend(customParseFormat);
-
-interface StackedColumnsChartProps {
+interface StackedColumnsChartProps extends BaseChartProps {
     data: { name: string; data: number[] }[];
-    labels: string[];
-    title?: string;
-    legendPosition?: 'top' | 'right' | 'bottom' | 'left';
-    width?: string | number;
-    height?: string | number;
-    xAxisTitle?: string;
-    yAxisTitle?: string;
 }
 
 export const StackedColumnsChart = (props: StackedColumnsChartProps) => {
