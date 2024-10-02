@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { useMemo } from 'react';
 import { useArticles } from '@/entities/Article';
-import { Data } from '../../../model/types/charts';
+import { Data } from '../../../../ArticleCommentsCharts/model/types/charts';
 
 export const useArticleCategoryData = () => {
     const { t } = useTranslation('admin');

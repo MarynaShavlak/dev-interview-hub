@@ -1,11 +1,11 @@
 import React from 'react';
 import { useArticles } from '@/entities/Article';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
-import { DeprecatedArticleCategoriesChart } from './DeprecatedArticleCategoriesChart/DeprecatedArticleCategoriesChart';
-import { RedesignedArticleCategoriesChart } from './RedesignedArticleCategoriesChart/RedesignedArticleCategoriesChart';
+import { DeprecatedArticleCategoriesCharts } from './DeprecatedArticleCategoriesCharts/DeprecatedArticleCategoriesCharts';
+import { RedesignedArticleCategoriesCharts } from './RedesignedArticleCategoriesCharts/RedesignedArticleCategoriesCharts';
 import { ArticleCategoriesChartSkeleton } from '../ArticleCategoriesChartSkeleton/ArticleCategoriesChartSkeleton';
 
-export const ArticleCategoriesChart = () => {
+export const ArticleCategoriesCharts = () => {
     const { isLoading: isArticlesLoading, error } = useArticles(null);
 
     if (error) return null;
@@ -17,8 +17,8 @@ export const ArticleCategoriesChart = () => {
     return (
         <ToggleFeaturesComponent
             feature="isAppRedesigned"
-            on={<RedesignedArticleCategoriesChart />}
-            off={<DeprecatedArticleCategoriesChart />}
+            on={<RedesignedArticleCategoriesCharts />}
+            off={<DeprecatedArticleCategoriesCharts />}
         />
     );
 };

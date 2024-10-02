@@ -2,13 +2,11 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { HStack } from '@/shared/ui/common/Stack';
 import { DonutChart } from '@/shared/ui/common/Charts/ui/DonutChart/DonutChart';
-import { useArticles } from '@/entities/Article';
 import { useArticleCategoryData } from '../../../lib/hooks/useArticleCategoryData/useArticleCategoryData';
-import { Card } from '@/shared/ui/redesigned/Card';
+import { Card as CardDeprecated } from '@/shared/ui/deprecated/Card';
 
-export const RedesignedArticleCategoriesChart = () => {
+export const DeprecatedArticleCategoriesCharts = () => {
     const { t } = useTranslation('admin');
-    const { isLoading: isArticlesLoading, error } = useArticles(null);
 
     const {
         labels: categoryLabels,
@@ -18,23 +16,23 @@ export const RedesignedArticleCategoriesChart = () => {
 
     return (
         <HStack gap="24" max>
-            <Card>
+            <CardDeprecated>
                 <DonutChart
                     data={articlesQuantityByCategoriesData}
                     labels={categoryLabels}
                     title={t('Cтатті за категоріями, %')}
                     legendPosition="bottom"
                 />
-            </Card>
+            </CardDeprecated>
 
-            <Card>
+            <CardDeprecated>
                 <DonutChart
                     data={articleViewsByCategoriesData}
                     labels={categoryLabels}
                     title={t('Перегляди статей за категоріями, %')}
                     legendPosition="bottom"
                 />
-            </Card>
+            </CardDeprecated>
         </HStack>
     );
 };

@@ -1,1 +1,1 @@
-export { ArticleCategoriesChart } from './ui/ArticleCategoriesChart/ArticleCategoriesChart';
+export { ArticleCategoriesCharts } from './ui/ArticleCategoriesCharts/ArticleCategoriesChart';
