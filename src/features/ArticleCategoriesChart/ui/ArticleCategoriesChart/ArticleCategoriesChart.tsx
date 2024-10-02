@@ -11,10 +11,6 @@ import { TreemapChart } from '@/shared/ui/common/Charts/ui/TreemapChart';
 import { StackedColumnsChart } from '@/shared/ui/common/Charts/ui/StackedColumnsChart';
 import { LineChart } from '@/shared/ui/common/Charts/ui/LineChart';
 
-export interface ArticlesCategoryNumberData {
-    [category: string]: number;
-}
-
 export const ArticleCategoriesChart = () => {
     const { t } = useTranslation('admin');
     const { data: articles, isLoading: isArticlesLoading } = useArticles(null);
@@ -25,8 +21,10 @@ export const ArticleCategoriesChart = () => {
         viewData: articleViewsByCategoriesData,
     } = useArticleCategoryData();
 
-    const { periodLabels, chartData } = useArticleQuarterlyData();
-    console.log('chartData', chartData);
+    const { periodLabels, chartData } = useArticleQuarterlyData({});
+    const { chartData: accumulatedChartData } = useArticleQuarterlyData({
+        isAccumulated: true,
+    });
 
     const {
         isLoading: isCommentsLoading,
@@ -62,7 +60,7 @@ export const ArticleCategoriesChart = () => {
                 width="700"
             />
             <LineChart
-                data={chartData}
+                data={accumulatedChartData}
                 labels={periodLabels}
                 title={t('Рейтинг статей за кількістю коментарів')}
                 legendPosition="top"

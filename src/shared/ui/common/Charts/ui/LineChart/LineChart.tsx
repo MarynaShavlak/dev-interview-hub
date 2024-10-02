@@ -7,6 +7,7 @@ import { BaseChartProps } from '../types';
 
 interface LineChartProps extends BaseChartProps {
     data: { name: string; data: number[] }[];
+    markers?: Boolean;
 }
 
 export const LineChart = (props: LineChartProps) => {
@@ -19,6 +20,7 @@ export const LineChart = (props: LineChartProps) => {
         height = '320',
         xAxisTitle,
         yAxisTitle,
+        markers,
     } = props;
 
     const baseChartOptions = useBaseChartOptions({
@@ -33,14 +35,9 @@ export const LineChart = (props: LineChartProps) => {
             curve: 'smooth' as const,
             width: 2,
         },
-        markers: {
-            size: 6,
-            strokeWidth: 0,
-            hover: {
-                size: 9,
-            },
-        },
+
         xaxis: {
+            labels: { rotate: -90 },
             title: {
                 text: xAxisTitle,
             },
@@ -52,6 +49,15 @@ export const LineChart = (props: LineChartProps) => {
             },
         },
         dataLabels: { enabled: false },
+        ...(markers && {
+            markers: {
+                size: 6,
+                strokeWidth: 0,
+                hover: {
+                    size: 9,
+                },
+            },
+        }),
     };
 
     const chartOptions = mergeOptions(baseChartOptions, additionalOptions);
@@ -72,7 +78,7 @@ export const LineChart = (props: LineChartProps) => {
 
     return (
         <ReactApexChart
-            series={d}
+            series={data}
             type="line"
             width={width}
             height={height}

@@ -12,7 +12,14 @@ interface ChartData {
     data: number[];
 }
 
-export const useArticleQuarterlyData = () => {
+interface UseArticleQuarterlyDataProps {
+    isAccumulated?: boolean;
+}
+
+export const useArticleQuarterlyData = (
+    props: UseArticleQuarterlyDataProps,
+) => {
+    const { isAccumulated = false } = props;
     const { t } = useTranslation('admin');
     const { data: articles, isLoading } = useArticles(null);
 
@@ -69,8 +76,14 @@ export const useArticleQuarterlyData = () => {
         [getQuartersList],
     );
 
-    const populateQuarterlyData = useCallback(
-        (articles: Article[] | undefined, quarterlyData: QuarterlyData) => {
+    const processQuarterlyData = useCallback(
+        (
+            articles: Article[] | undefined,
+            initialData: QuarterlyData,
+            accumulate: boolean,
+        ) => {
+            const processedData: QuarterlyData = { ...initialData };
+
             articles?.forEach((article) => {
                 const [day, month, year] = article.createdAt
                     .split('.')
@@ -79,14 +92,26 @@ export const useArticleQuarterlyData = () => {
                 const key = `${quarter}/${year}`;
 
                 article.category.forEach((category: string) => {
-                    if (quarterlyData[key]) {
+                    if (processedData[key]) {
                         const localeCategory = t(`${category}`);
-                        quarterlyData[key][localeCategory] += 1;
+                        processedData[key][localeCategory] += 1;
                     }
                 });
             });
 
-            return quarterlyData;
+            if (accumulate) {
+                Object.keys(processedData).forEach((key, index, keys) => {
+                    if (index > 0) {
+                        const previousKey = keys[index - 1];
+                        Object.keys(processedData[key]).forEach((category) => {
+                            processedData[key][category] +=
+                                processedData[previousKey][category];
+                        });
+                    }
+                });
+            }
+
+            return processedData;
         },
         [getQuarter, t],
     );
@@ -99,20 +124,22 @@ export const useArticleQuarterlyData = () => {
     const quarterlyData = useMemo(() => {
         return initializeQuarterlyData(years, categories);
     }, [years, categories, initializeQuarterlyData]);
-    const populatedQuarterlyData = useMemo(() => {
-        return populateQuarterlyData(articles, quarterlyData);
-    }, [articles, quarterlyData, populateQuarterlyData]);
 
-    const periodLabels = Object.keys(populatedQuarterlyData);
+    const processedQuarterlyData = useMemo(() => {
+        const initialData = { ...quarterlyData };
+        return processQuarterlyData(articles, initialData, isAccumulated);
+    }, [articles, quarterlyData, processQuarterlyData, isAccumulated]);
+
+    const periodLabels = Object.keys(processedQuarterlyData);
 
     const chartData: ChartData[] = useMemo(() => {
         return categories.map((category) => {
-            const data = Object.values(populatedQuarterlyData).map(
+            const data = Object.values(processedQuarterlyData).map(
                 (quarter) => quarter[category],
             );
             return { name: category, data };
         });
-    }, [categories, populatedQuarterlyData]);
+    }, [categories, processedQuarterlyData]);
 
     return {
         periodLabels,
