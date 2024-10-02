@@ -3,14 +3,14 @@ import { useTranslation } from 'react-i18next';
 import { HStack } from '@/shared/ui/common/Stack';
 import { DonutChart } from '@/shared/ui/common/Charts/ui/DonutChart/DonutChart';
 import { useArticles } from '@/entities/Article';
-import { useArticleCategoryData } from '../../lib/hook/useArticleCategoryData/useArticleCategoryData';
+import { useArticleCategoryData } from '../../lib/hooks/useArticleCategoryData/useArticleCategoryData';
 import { Skeleton } from '@/shared/ui/redesigned/Skeleton';
 import { Skeleton as SkeletonDeprecated } from '@/shared/ui/deprecated/Skeleton';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
 
 export const ArticleCategoriesChart = () => {
     const { t } = useTranslation('admin');
-    const { isLoading: isArticlesLoading } = useArticles(null);
+    const { isLoading: isArticlesLoading, error } = useArticles(null);
 
     const {
         labels: categoryLabels,
@@ -18,9 +18,11 @@ export const ArticleCategoriesChart = () => {
         viewData: articleViewsByCategoriesData,
     } = useArticleCategoryData();
 
+    if (error) return null;
+
     if (isArticlesLoading) {
         return (
-            <HStack gap="24" justify="center" max>
+            <HStack gap="24" max>
                 <ToggleFeaturesComponent
                     feature="isAppRedesigned"
                     on={<Skeleton width={400} height={400} />}
@@ -36,7 +38,7 @@ export const ArticleCategoriesChart = () => {
     }
 
     return (
-        <HStack gap="24" justify="center" max>
+        <HStack gap="24" max>
             <DonutChart
                 data={articlesQuantityByCategoriesData}
                 labels={categoryLabels}

@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { useCallback, useMemo } from 'react';
 import { Article, useArticles } from '@/entities/Article';
-import { Data } from '../../../model/types/charts';
+import { Data } from '../../../../ArticleCategoriesChart/model/types/charts';
 
 interface QuarterlyData {
     [quarter: string]: Data;

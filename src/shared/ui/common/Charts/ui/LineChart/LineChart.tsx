@@ -48,6 +48,13 @@ export const LineChart = (props: LineChartProps) => {
                 text: yAxisTitle,
             },
         },
+        legend: {
+            horizontalAlign: 'right' as const,
+            offsetY: 0,
+            markers: {
+                shape: 'circle' as const,
+            },
+        },
         dataLabels: { enabled: false },
         ...(markers && {
             markers: {

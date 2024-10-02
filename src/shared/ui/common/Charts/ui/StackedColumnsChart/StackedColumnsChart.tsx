@@ -45,6 +45,9 @@ export const StackedColumnsChart = (props: StackedColumnsChartProps) => {
         legend: {
             horizontalAlign: 'right' as const,
             offsetY: 0,
+            markers: {
+                shape: 'circle' as const,
+            },
         },
     };
 

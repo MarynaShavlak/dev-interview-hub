@@ -35,7 +35,7 @@ export const useBaseChartOptions = (props: BaseChartOptions) => {
             text: title,
             align: 'left' as const,
             style: {
-                fontSize: '16px',
+                fontSize: '14px',
                 fontWeight: 'bold',
                 fontFamily,
             },
