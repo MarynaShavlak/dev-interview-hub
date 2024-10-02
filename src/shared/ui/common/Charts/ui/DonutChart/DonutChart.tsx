@@ -16,8 +16,8 @@ export const DonutChart = (props: DonutChartProps) => {
         labels,
         title,
         legendPosition = 'right',
-        width = '400',
-        height = '400',
+        width = '300',
+        height = '300',
     } = props;
 
     const baseChartOptions = useBaseChartOptions({
