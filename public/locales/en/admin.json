@@ -22,5 +22,8 @@
   "Кількість коментарів": "Comments quantity",
   "ID статті": "Article ID",
   "Q": "Q",
-  "Розподіл активності користувачів за кількістю коментарів": "User Comment Activity Distribution"
+  "Розподіл активності користувачів за кількістю коментарів": "User Comment Activity Distribution",
+  "Динаміка зростання кількості статей за категоріями": "Growth Dynamics of Article Count by Categories",
+  "Квартал": "Quarter",
+  "Розподіл кількості опублікованих статей за категоріями по кварталах": "Distribution of Published Articles by Categories per Quarter"
 }

@@ -61,20 +61,6 @@ export const LineChart = (props: LineChartProps) => {
     };
 
     const chartOptions = mergeOptions(baseChartOptions, additionalOptions);
-    const d = [
-        {
-            name: 'Music',
-            data: [1, 15, 26, 20, 33, 27],
-        },
-        {
-            name: 'Photos',
-            data: [3, 33, 21, 42, 19, 32],
-        },
-        {
-            name: 'Files',
-            data: [0, 39, 52, 11, 29, 43],
-        },
-    ];
 
     return (
         <ReactApexChart
