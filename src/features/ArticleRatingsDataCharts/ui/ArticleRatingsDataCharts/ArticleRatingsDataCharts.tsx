@@ -8,18 +8,31 @@ export const ArticleRatingsDataCharts = () => {
     const { t } = useTranslation('admin');
     const { articleRatingsByUsersData } = useArticleRatingsChartsData();
 
+    const xAxisTitle = t('Відсоток оцінених користувачем статей,%');
+    const yAxisTitle = t('Середній рейтинг статей наданий користувачем');
+    const xTooltip = t('Відсоток оцінених статей');
+    const yTooltip = t('Середній рейтинг статей');
+    const sizeTooltip = t('Кількість наданих відгуків');
+    const tooltipData = {
+        x: xTooltip,
+        y: yTooltip,
+        z: sizeTooltip,
+    };
+
     return (
         <Card>
             <BubbleChart
                 data={articleRatingsByUsersData}
                 width="800"
-                title={t(
-                    'Середній рейтинг статей наданий користувачем  & Відсоток оцінених користувачем статей',
-                )}
+                title={`${xAxisTitle} & ${yAxisTitle}`}
                 legendPosition="bottom"
-                xAxisTitle={t('ID статті')}
-                yAxisTitle={t('Кількість коментарів')}
-                height="300"
+                xAxisTitle={xAxisTitle}
+                yAxisTitle={yAxisTitle}
+                height="400"
+                minXaxisValue={0}
+                maxXaxisValue={100}
+                maxYaxisValue={5}
+                tooltipData={tooltipData}
             />
         </Card>
     );

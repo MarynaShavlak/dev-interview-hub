@@ -5,35 +5,64 @@ import { mergeOptions } from '../../lib/utilities/mergeOptions/mergeOptions';
 import { BaseChartProps } from '../types';
 
 interface BubbleChartProps extends BaseChartProps {
-    data: any[];
+    data: ApexAxisChartSeries;
+    minXaxisValue?: number;
+    maxXaxisValue?: number;
+    maxYaxisValue?: number;
+    tooltipData: { x: string; y: string; z: string };
 }
 
 export const BubbleChart = (props: BubbleChartProps) => {
-    const { data, title, width = '400', height = '500' } = props;
+    const {
+        data,
+        title,
+        width = '400',
+        height = '500',
+        minXaxisValue = 0,
+        maxXaxisValue,
+        maxYaxisValue = 0,
+        xAxisTitle,
+        yAxisTitle,
+        legendPosition,
+        tooltipData,
+    } = props;
 
     const baseChartOptions = useBaseChartOptions({
         title,
         width,
+        legendPosition,
     });
 
     const additionalOptions: ApexCharts.ApexOptions = {
         xaxis: {
-            min: 0,
-            max: 100,
+            labels: { rotate: -90 },
+            title: { text: xAxisTitle },
+            min: minXaxisValue,
+            max: maxXaxisValue,
             tickAmount: 10,
         },
         yaxis: {
-            max: 5,
+            title: { text: yAxisTitle },
+            max: maxYaxisValue,
         },
 
-        legend: {
-            position: 'bottom' as const,
-        },
         plotOptions: {
             bubble: {
                 zScaling: true,
                 minBubbleRadius: 20,
-                // maxBubbleRadius: 100,
+            },
+        },
+        tooltip: {
+            custom({ seriesIndex, dataPointIndex, w }) {
+                const data =
+                    w.globals.initialSeries[seriesIndex].data[dataPointIndex];
+                console.log('data', data);
+                const { x, y, z } = tooltipData;
+                return `<div style="padding:5px;">
+         <b>${w.globals.seriesNames[seriesIndex]}</b> <br/>
+          <b>${y}:</b> ${data[1]}<br/>
+          <b>${x}:</b> ${data[0]}%<br/>
+          <b>${z}:</b> ${data[2]}</div>`;
             },
         },
     };

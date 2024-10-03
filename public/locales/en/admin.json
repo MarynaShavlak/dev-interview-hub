@@ -27,5 +27,9 @@
   "Динаміка зростання кількості статей за категоріями": "Growth Dynamics of Article Count by Categories",
   "Квартал": "Quarter",
   "Розподіл кількості опублікованих статей за категоріями по кварталах": "Distribution of Published Articles by Categories per Quarter",
-  "Середній рейтинг статей наданий користувачем  & Відсоток оцінених користувачем статей": "Average Article Rating Given by User & Percentage of Articles Rated by User"
+  "Відсоток оцінених користувачем статей,%": "Percentage of Articles Rated by User,%",
+  "Середній рейтинг статей наданий користувачем": "Average Article Rating Given by User",
+  "Відсоток оцінених статей": "Percentage of Rated Articles",
+  "Середній рейтинг статей": "Average Article Rating",
+  "Кількість наданих відгуків": "Quantity of Given Feedback"
 }
