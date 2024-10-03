@@ -1,12 +1,12 @@
 import { useTranslation } from 'react-i18next';
 import React from 'react';
 import { BubbleChart } from '@/shared/ui/common/Charts/ui/BubbleChart';
-import { Card } from '@/shared/ui/redesigned/Card';
-import { useArticleRatingsChartsData } from '../../lib/hooks/useArticleRatingsChartsData';
+import { Card } from '@/shared/ui/deprecated/Card';
+import { useArticleRatingsCharts } from '../../../lib/hooks/useArticleRatingsCharts';
 
-export const ArticleRatingsDataCharts = () => {
+export const DeprecatedArticleRatingsCharts = () => {
     const { t } = useTranslation('admin');
-    const { articleRatingsByUsersData } = useArticleRatingsChartsData();
+    const { articleRatingsByUsersData } = useArticleRatingsCharts();
 
     const xAxisTitle = t('Відсоток оцінених користувачем статей,%');
     const yAxisTitle = t('Середній рейтинг статей наданий користувачем');

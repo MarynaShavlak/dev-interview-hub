@@ -4,8 +4,8 @@ import { UsersInfoTable } from '@/features/UsersInfoTable';
 import { VStack } from '@/shared/ui/common/Stack';
 import { ArticleQuarterlyDataCharts } from '@/features/ArticleQuarterlyDataCharts';
 import { ArticleCommentsCharts } from '@/features/ArticleCommentsCharts';
-import { ArticleCategoriesCharts } from '@/features/ArticleCategoriesChart';
-import { ArticleRatingsDataCharts } from '@/features/ArticleRatingsDataCharts';
+import { ArticleCategoriesCharts } from '@/features/ArticleCategoriesCharts';
+import { ArticleRatingsCharts } from '@/features/ArticleRatingsCharts';
 
 const AdminPanelPage = () => {
     return (
@@ -14,7 +14,7 @@ const AdminPanelPage = () => {
                 <ArticleCategoriesCharts />
                 <ArticleQuarterlyDataCharts />
                 <ArticleCommentsCharts />
-                <ArticleRatingsDataCharts />
+                <ArticleRatingsCharts />
                 <UsersInfoTable />
             </VStack>
         </Page>

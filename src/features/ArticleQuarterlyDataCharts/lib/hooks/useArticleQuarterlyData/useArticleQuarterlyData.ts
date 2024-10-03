@@ -1,10 +1,13 @@
 import { useTranslation } from 'react-i18next';
 import { useCallback, useMemo } from 'react';
 import { Article, useArticles } from '@/entities/Article';
-import { Data } from '../../../../ArticleCommentsCharts/model/types/charts';
 
 interface QuarterlyData {
-    [quarter: string]: Data;
+    [key: string]: number;
+}
+
+interface QuarterlyCount {
+    [key: string]: QuarterlyData;
 }
 
 interface ChartData {
@@ -58,8 +61,8 @@ export const useArticleQuarterlyData = (
     );
 
     const initializeQuarterlyData = useCallback(
-        (years: string[], categories: string[]): QuarterlyData => {
-            const quarterlyData: QuarterlyData = {};
+        (years: string[], categories: string[]): QuarterlyCount => {
+            const quarterlyData: QuarterlyCount = {};
 
             years.forEach((year) => {
                 getQuartersList().forEach((quarter) => {
@@ -67,7 +70,7 @@ export const useArticleQuarterlyData = (
                     quarterlyData[key] = categories.reduce((acc, category) => {
                         acc[category] = 0; // Initialize category count to 0
                         return acc;
-                    }, {} as Data);
+                    }, {} as QuarterlyData);
                 });
             });
 
@@ -79,10 +82,10 @@ export const useArticleQuarterlyData = (
     const processQuarterlyData = useCallback(
         (
             articles: Article[] | undefined,
-            initialData: QuarterlyData,
+            initialData: QuarterlyCount,
             accumulate: boolean,
         ) => {
-            const processedData: QuarterlyData = { ...initialData };
+            const processedData: QuarterlyCount = { ...initialData };
 
             articles?.forEach((article) => {
                 const [day, month, year] = article.createdAt

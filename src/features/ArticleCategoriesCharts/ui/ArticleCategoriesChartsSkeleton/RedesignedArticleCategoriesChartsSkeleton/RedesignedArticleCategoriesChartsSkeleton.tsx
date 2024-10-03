@@ -3,7 +3,7 @@ import { HStack } from '@/shared/ui/common/Stack';
 import { Skeleton } from '@/shared/ui/redesigned/Skeleton';
 import { Card } from '@/shared/ui/redesigned/Card';
 
-export const RedesignedArticleCategoriesChartSkeleton = () => {
+export const RedesignedArticleCategoriesChartsSkeleton = () => {
     return (
         <HStack gap="24" max>
             <Card>

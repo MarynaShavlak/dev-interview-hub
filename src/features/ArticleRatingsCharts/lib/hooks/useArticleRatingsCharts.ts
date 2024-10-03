@@ -4,20 +4,23 @@ import { useArticlesRatings } from '../../api/articlesRatingsApi';
 import { ArticleRating } from '../../model/types/articleRating';
 import { useArticles } from '@/entities/Article';
 
-interface DataObj {
-    [key: string]: {
-        totalRating: number;
-        articlesWithRating: number;
-        articlesWithFeedback: number;
-    };
+interface UserRatingData {
+    totalRating: number;
+    articlesWithRating: number;
+    articlesWithFeedback: number;
 }
 
-export interface Data {
-    [key: string]: number;
+interface RatingsCount {
+    [key: string]: UserRatingData;
 }
 
-const countRatings = (ratings: ArticleRating[]) => {
-    const articleRatingsCount: DataObj = {};
+interface ArticleRatingsData {
+    articleRatingsCount: RatingsCount;
+}
+
+const countRatings = (ratings: ArticleRating[]): ArticleRatingsData => {
+    const articleRatingsCount: RatingsCount = {};
+
     ratings.forEach(({ userId, rate, feedback }) => {
         if (!articleRatingsCount[userId]) {
             articleRatingsCount[userId] = {
@@ -33,50 +36,47 @@ const countRatings = (ratings: ArticleRating[]) => {
         }
     });
 
-    return {
-        articleRatingsCount,
-    };
+    return { articleRatingsCount };
 };
 
-export const useArticleRatingsChartsData = () => {
+export const useArticleRatingsCharts = () => {
     const { t } = useTranslation('admin');
-    const { data: ratings = [], isLoading } = useArticlesRatings(null);
+    const { data: ratings = [] } = useArticlesRatings(null);
     const { data: articles } = useArticles(null);
-    const totalArticles = articles?.length || 1;
+    const totalArticles = articles?.length;
 
     const { articleRatingsCount } = useMemo(
         () => countRatings(ratings),
         [ratings],
     );
+    console.log('articleRatingsCount', articleRatingsCount);
+    const articleRatingsByUsersData = useMemo(() => {
+        return Object.entries(articleRatingsCount).map(([userId, userData]) => {
+            const { totalRating, articlesWithRating, articlesWithFeedback } =
+                userData;
 
-    const articleRatingsByUsersData = Object.keys(articleRatingsCount).map(
-        (userId) => {
-            const userData = articleRatingsCount[userId];
+            const averageRating = articlesWithRating
+                ? (totalRating / articlesWithRating).toFixed(1)
+                : '0.0';
 
-            const ratedArticles = userData.articlesWithRating;
-            console.log('ratedArticles', ratedArticles);
-            const averageRating = (
-                userData.totalRating / userData.articlesWithRating
-            ).toFixed(1);
-            const percentageRated = (ratedArticles / totalArticles) * 100;
-            const writtenFeedbacksQuantity = userData.articlesWithFeedback;
-            // console.log('percentageRated', percentageRated);
+            const percentageRated = totalArticles
+                ? (articlesWithRating / totalArticles) * 100
+                : 0;
+
             return {
                 name: `${t(`userId`)}:  ${userId} `,
                 data: [
                     [
                         percentageRated,
                         parseFloat(averageRating),
-
-                        writtenFeedbacksQuantity,
+                        articlesWithFeedback,
                     ],
                 ],
             };
-        },
-    );
+        });
+    }, [articleRatingsCount, totalArticles, t]);
 
-    console.log('articleRatingsByUsersData', articleRatingsByUsersData);
-
+    console.log(articleRatingsByUsersData);
     return {
         articleRatingsByUsersData,
     };

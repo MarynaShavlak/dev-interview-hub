@@ -3,7 +3,7 @@ import { useArticles } from '@/entities/Article';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
 import { DeprecatedArticleCategoriesCharts } from './DeprecatedArticleCategoriesCharts/DeprecatedArticleCategoriesCharts';
 import { RedesignedArticleCategoriesCharts } from './RedesignedArticleCategoriesCharts/RedesignedArticleCategoriesCharts';
-import { ArticleCategoriesChartSkeleton } from '../ArticleCategoriesChartSkeleton/ArticleCategoriesChartSkeleton';
+import { ArticleCategoriesChartsSkeleton } from '../ArticleCategoriesChartsSkeleton/ArticleCategoriesChartsSkeleton';
 
 export const ArticleCategoriesCharts = () => {
     const { isLoading: isArticlesLoading, error } = useArticles(null);
@@ -11,7 +11,7 @@ export const ArticleCategoriesCharts = () => {
     if (error) return null;
 
     if (isArticlesLoading) {
-        return <ArticleCategoriesChartSkeleton />;
+        return <ArticleCategoriesChartsSkeleton />;
     }
 
     return (

@@ -53,16 +53,22 @@ export const BubbleChart = (props: BubbleChartProps) => {
             },
         },
         tooltip: {
-            custom({ seriesIndex, dataPointIndex, w }) {
+            custom: ({ seriesIndex, dataPointIndex, w }) => {
                 const data =
-                    w.globals.initialSeries[seriesIndex].data[dataPointIndex];
-                console.log('data', data);
+                    w.globals.initialSeries[seriesIndex]?.data[dataPointIndex];
                 const { x, y, z } = tooltipData;
-                return `<div style="padding:5px;">
-         <b>${w.globals.seriesNames[seriesIndex]}</b> <br/>
-          <b>${y}:</b> ${data[1]}<br/>
-          <b>${x}:</b> ${data[0]}%<br/>
-          <b>${z}:</b> ${data[2]}</div>`;
+
+                if (data) {
+                    return `
+                        <div style="padding:5px;">
+                            <b>${w.globals.seriesNames[seriesIndex]}</b><br/>
+                            <b>${y}:</b> ${data[1]}<br/>
+                            <b>${x}:</b> ${data[0]}%<br/>
+                            <b>${z}:</b> ${data[2]}
+                        </div>`;
+                }
+
+                return '';
             },
         },
     };
@@ -71,31 +77,6 @@ export const BubbleChart = (props: BubbleChartProps) => {
         baseChartOptions,
         additionalOptions,
     );
-    console.log('chartOptions', chartOptions);
-
-    const seriesData = [{ data }];
-    const d = [
-        {
-            name: 'user1',
-            data: [[7, 3.3, 19]],
-        },
-        {
-            name: 'user2',
-            data: [[2, 3.2, 21]],
-        },
-        {
-            name: 'user3',
-            data: [[4, 3.1, 17]],
-        },
-        {
-            name: 'user4',
-            data: [[4, 5, 14]],
-        },
-        {
-            name: 'user5',
-            data: [[3, 4.5, 6]],
-        },
-    ];
 
     return (
         <ReactApexChart

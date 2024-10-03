@@ -1,11 +1,14 @@
 import { useMemo } from 'react';
 import { useArticlesComments } from '../../../api/articlesCommentsApi';
 import { ArticleComment } from '../../../model/types/articleComment';
-import { Data } from '../../../model/types/charts';
+
+interface CommentsData {
+    [key: string]: number;
+}
 
 const countComments = (comments: ArticleComment[]) => {
-    const articleCommentCount: Data = {};
-    const userCommentCount: Data = {};
+    const articleCommentCount: CommentsData = {};
+    const userCommentCount: CommentsData = {};
 
     comments.forEach(({ articleId, user }) => {
         articleCommentCount[articleId] =
@@ -14,7 +17,7 @@ const countComments = (comments: ArticleComment[]) => {
             (userCommentCount[user.username] || 0) + 1;
     });
 
-    const transformData = (countObject: Data) =>
+    const transformData = (countObject: CommentsData) =>
         Object.entries(countObject)
             .map(([id, count]) => ({ id, count }))
             .sort((a, b) => b.count - a.count);
