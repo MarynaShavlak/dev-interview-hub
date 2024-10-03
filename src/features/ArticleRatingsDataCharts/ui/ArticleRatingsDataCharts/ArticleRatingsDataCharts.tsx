@@ -5,12 +5,22 @@ import { Card } from '@/shared/ui/redesigned/Card';
 import { useArticleRatingsChartsData } from '../../lib/hooks/useArticleRatingsChartsData';
 
 export const ArticleRatingsDataCharts = () => {
-    const { t } = useTranslation();
+    const { t } = useTranslation('admin');
     const { articleRatingsByUsersData } = useArticleRatingsChartsData();
-    // console.log(' articleRatingsByUsersData ', articleRatingsByUsersData);
+
     return (
         <Card>
-            <BubbleChart data={articleRatingsByUsersData} width="800" />
+            <BubbleChart
+                data={articleRatingsByUsersData}
+                width="800"
+                title={t(
+                    'Середній рейтинг статей наданий користувачем  & Відсоток оцінених користувачем статей',
+                )}
+                legendPosition="bottom"
+                xAxisTitle={t('ID статті')}
+                yAxisTitle={t('Кількість коментарів')}
+                height="300"
+            />
         </Card>
     );
 };

@@ -47,7 +47,7 @@
         "isAppRedesigned": true
       },
       "jsonSettings": {
-        "theme": "app_light_theme",
+        "theme": "app_orange_theme",
         "isFirstVisit": true,
         "settingsPageHasBeenOpen": false,
         "isArticlesPageWasOpened": true
@@ -2007,13 +2007,13 @@
     {
       "userId": "1",
       "articleId": "16",
-      "rate": 1,
+      "rate": 5,
       "id": 16
     },
     {
       "userId": "1",
       "articleId": "17",
-      "rate": 3,
+      "rate": 5,
       "id": 17
     },
     {
@@ -2041,18 +2041,6 @@
       "rate": 5,
       "feedback": "Amazing article!",
       "id": 21
-    },
-    {
-      "userId": "2",
-      "articleId": "3",
-      "rate": 1,
-      "id": 22
-    },
-    {
-      "userId": "2",
-      "articleId": "4",
-      "rate": 2,
-      "id": 23
     },
     {
       "userId": "2",
@@ -2110,30 +2098,6 @@
       "rate": 4,
       "feedback": "Very informative",
       "id": 32
-    },
-    {
-      "userId": "2",
-      "articleId": "14",
-      "rate": 5,
-      "id": 33
-    },
-    {
-      "userId": "2",
-      "articleId": "15",
-      "rate": 2,
-      "id": 34
-    },
-    {
-      "userId": "2",
-      "articleId": "16",
-      "rate": 1,
-      "id": 35
-    },
-    {
-      "userId": "2",
-      "articleId": "17",
-      "rate": 4,
-      "id": 36
     },
     {
       "userId": "2",
@@ -2329,31 +2293,6 @@
       "id": 67
     },
     {
-      "userId": "4",
-      "articleId": "11",
-      "rate": 1,
-      "id": 68
-    },
-    {
-      "userId": "4",
-      "articleId": "12",
-      "rate": 4,
-      "id": 69
-    },
-    {
-      "userId": "4",
-      "articleId": "13",
-      "rate": 5,
-      "feedback": "Loved the analysis!",
-      "id": 70
-    },
-    {
-      "userId": "4",
-      "articleId": "14",
-      "rate": 3,
-      "id": 71
-    },
-    {
       "userId": "5",
       "articleId": "1",
       "rate": 5,
@@ -2496,12 +2435,6 @@
       "userId": "2"
     },
     {
-      "id": "q7r8s9t",
-      "text": "I agree with the author.",
-      "articleId": "9",
-      "userId": "1"
-    },
-    {
       "id": "u1v2w3x",
       "text": "Needs better editing.",
       "articleId": "19",
@@ -2638,12 +2571,6 @@
       "text": "Loved the structure.",
       "articleId": "1",
       "userId": "4"
-    },
-    {
-      "id": "j7k8l9m",
-      "text": "I see your point.",
-      "articleId": "20",
-      "userId": "2"
     },
     {
       "id": "n1o2p3q",

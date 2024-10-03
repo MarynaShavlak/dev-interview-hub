@@ -1,4 +1,5 @@
 import { useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useArticlesRatings } from '../../api/articlesRatingsApi';
 import { ArticleRating } from '../../model/types/articleRating';
 import { useArticles } from '@/entities/Article';
@@ -38,52 +39,36 @@ const countRatings = (ratings: ArticleRating[]) => {
 };
 
 export const useArticleRatingsChartsData = () => {
+    const { t } = useTranslation('admin');
     const { data: ratings = [], isLoading } = useArticlesRatings(null);
     const { data: articles } = useArticles(null);
+    const totalArticles = articles?.length || 1;
 
     const { articleRatingsCount } = useMemo(
         () => countRatings(ratings),
         [ratings],
     );
 
-    // const articleRatingsByUsersData = Object.entries(articleRatingsCount).map(
-    //     ([userId, data]) => {
-    //         const averageRating = (
-    //             data.totalRating / data.articlesWithRating
-    //         ).toFixed(1);
-    //         return [userId, parseFloat(averageRating), data.articlesWithRating];
-    //     },
-    // );
-
-    // ______________________________________________________________________
-    const { articlesByUsersCount } = useMemo(() => {
-        const articlesByUsersCount: Data = {};
-
-        articles?.forEach((article) => {
-            const userId: string = article.user.id;
-            articlesByUsersCount[userId] =
-                (articlesByUsersCount[userId] || 0) + 1;
-        });
-
-        return { articlesByUsersCount };
-    }, [articles]);
-
-    // console.log('articlesByUsersCount', articlesByUsersCount);
     const articleRatingsByUsersData = Object.keys(articleRatingsCount).map(
         (userId) => {
-            const userRatingData = articleRatingsCount[userId];
-            const articlesCount = articlesByUsersCount[userId];
-            const averageRating = (
-                userRatingData.totalRating / userRatingData.articlesWithRating
-            ).toFixed(1);
+            const userData = articleRatingsCount[userId];
 
+            const ratedArticles = userData.articlesWithRating;
+            console.log('ratedArticles', ratedArticles);
+            const averageRating = (
+                userData.totalRating / userData.articlesWithRating
+            ).toFixed(1);
+            const percentageRated = (ratedArticles / totalArticles) * 100;
+            const writtenFeedbacksQuantity = userData.articlesWithFeedback;
+            // console.log('percentageRated', percentageRated);
             return {
-                name: `userId: ${userId}`,
+                name: `${t(`userId`)}:  ${userId} `,
                 data: [
                     [
-                        articlesCount,
+                        percentageRated,
                         parseFloat(averageRating),
-                        userRatingData.articlesWithRating,
+
+                        writtenFeedbacksQuantity,
                     ],
                 ],
             };

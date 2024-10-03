@@ -16,12 +16,33 @@ export const BubbleChart = (props: BubbleChartProps) => {
         width,
     });
 
-    const additionalOptions: ApexCharts.ApexOptions = {};
+    const additionalOptions: ApexCharts.ApexOptions = {
+        xaxis: {
+            min: 0,
+            max: 100,
+            tickAmount: 10,
+        },
+        yaxis: {
+            max: 5,
+        },
+
+        legend: {
+            position: 'bottom' as const,
+        },
+        plotOptions: {
+            bubble: {
+                zScaling: true,
+                minBubbleRadius: 20,
+                // maxBubbleRadius: 100,
+            },
+        },
+    };
 
     const chartOptions: ApexCharts.ApexOptions = mergeOptions(
         baseChartOptions,
         additionalOptions,
     );
+    console.log('chartOptions', chartOptions);
 
     const seriesData = [{ data }];
     const d = [
