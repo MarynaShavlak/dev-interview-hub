@@ -31,10 +31,10 @@ describe('User visits the articles list page', () => {
 
     it('and filters articles by category ', () => {
         cy.intercept('GET', '**/articles?*', { fixture: 'articles.json' });
-        cy.filterArticlesByCategory('SOCIOLOGY').then((articles) => {
+        cy.filterArticlesByCategory('CSS').then((articles) => {
             expect(articles.length).to.be.greaterThan(0);
             articles.forEach((article) => {
-                expect(article.category).contains('SOCIOLOGY');
+                expect(article.category).contains('CSS');
             });
         });
     });

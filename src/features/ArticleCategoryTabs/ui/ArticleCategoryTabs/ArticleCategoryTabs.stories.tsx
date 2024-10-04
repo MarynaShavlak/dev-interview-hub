@@ -24,6 +24,6 @@ Normal.args = {
 
 export const NormalRedesigned = Template.bind({});
 NormalRedesigned.args = {
-    value: ArticleCategory.ECONOMICS,
+    value: ArticleCategory.HTML,
 };
 NormalRedesigned.decorators = [NewDesignDecorator];

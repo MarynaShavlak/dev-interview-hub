@@ -23,7 +23,7 @@ export const OneCategoryLong = Template.bind({});
 OneCategoryLong.args = {
     article: {
         ...testArticleData,
-        category: [ArticleCategory.PUBLIC_ADMINISTRATION],
+        category: [ArticleCategory.REACT],
     },
 };
 export const OneCategoryShort = Template.bind({});

@@ -24,16 +24,16 @@ export const useCategoryTabs = () => {
             content: t('IT'),
         },
         {
-            value: ArticleCategory.ECONOMICS,
-            content: t('Економіка'),
+            value: ArticleCategory.HTML,
+            content: t('HTML'),
         },
         {
-            value: ArticleCategory.SOCIOLOGY,
-            content: t('Соціологія'),
+            value: ArticleCategory.CSS,
+            content: t('CSS'),
         },
         {
-            value: ArticleCategory.PUBLIC_ADMINISTRATION,
-            content: t('Публічне адміністрування'),
+            value: ArticleCategory.REACT,
+            content: t('REACT'),
         },
     ] as TabItem[];
 };

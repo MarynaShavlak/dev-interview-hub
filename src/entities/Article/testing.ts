@@ -16,7 +16,7 @@ export const testArticleData: Article = {
     img: 'https://www.century21albania.com/vendor/core/images/default-image.jpg',
     views: 100,
     createdAt: '21.02.2019',
-    category: [ArticleCategory.IT, ArticleCategory.ECONOMICS],
+    category: [ArticleCategory.IT, ArticleCategory.HTML],
     blocks: [
         {
             id: '2344',
@@ -86,7 +86,7 @@ export const testArticlesListData: Article[] = [
         img: 'https://www.century21albania.com/vendor/core/images/default-image.jpg',
         views: 100,
         createdAt: '07.08.2019',
-        category: [ArticleCategory.IT, ArticleCategory.ECONOMICS],
+        category: [ArticleCategory.IT, ArticleCategory.HTML],
         blocks: [
             {
                 id: '2344',
@@ -107,7 +107,7 @@ export const testArticlesListData: Article[] = [
         img: 'https://www.century21albania.com/vendor/core/images/default-image.jpg',
         views: 100,
         createdAt: '11.12.2023',
-        category: [ArticleCategory.IT, ArticleCategory.ECONOMICS],
+        category: [ArticleCategory.IT, ArticleCategory.HTML],
         blocks: [
             {
                 id: '6789',
@@ -128,7 +128,7 @@ export const testArticlesListData: Article[] = [
         img: 'https://www.century21albania.com/vendor/core/images/default-image.jpg',
         views: 100,
         createdAt: '07.08.2019',
-        category: [ArticleCategory.IT, ArticleCategory.ECONOMICS],
+        category: [ArticleCategory.IT, ArticleCategory.HTML],
         blocks: [
             {
                 id: '2344',
@@ -149,7 +149,7 @@ export const testArticlesListData: Article[] = [
         img: 'https://www.century21albania.com/vendor/core/images/default-image.jpg',
         views: 100,
         createdAt: '11.12.2023',
-        category: [ArticleCategory.IT, ArticleCategory.ECONOMICS],
+        category: [ArticleCategory.IT, ArticleCategory.HTML],
         blocks: [
             {
                 id: '6789',
@@ -170,7 +170,7 @@ export const testArticlesListData: Article[] = [
         img: 'https://www.century21albania.com/vendor/core/images/default-image.jpg',
         views: 100,
         createdAt: '07.08.2019',
-        category: [ArticleCategory.IT, ArticleCategory.ECONOMICS],
+        category: [ArticleCategory.IT, ArticleCategory.HTML],
         blocks: [
             {
                 id: '2344',
@@ -191,7 +191,7 @@ export const testArticlesListData: Article[] = [
         img: 'https://www.century21albania.com/vendor/core/images/default-image.jpg',
         views: 100,
         createdAt: '11.12.2023',
-        category: [ArticleCategory.IT, ArticleCategory.ECONOMICS],
+        category: [ArticleCategory.IT, ArticleCategory.HTML],
         blocks: [
             {
                 id: '6789',
@@ -212,7 +212,7 @@ export const testArticlesListData: Article[] = [
         img: 'https://www.century21albania.com/vendor/core/images/default-image.jpg',
         views: 100,
         createdAt: '07.08.2019',
-        category: [ArticleCategory.IT, ArticleCategory.ECONOMICS],
+        category: [ArticleCategory.IT, ArticleCategory.HTML],
         blocks: [
             {
                 id: '2344',
@@ -233,7 +233,7 @@ export const testArticlesListData: Article[] = [
         img: 'https://www.century21albania.com/vendor/core/images/default-image.jpg',
         views: 100,
         createdAt: '11.12.2023',
-        category: [ArticleCategory.IT, ArticleCategory.ECONOMICS],
+        category: [ArticleCategory.IT, ArticleCategory.HTML],
         blocks: [
             {
                 id: '6789',
@@ -254,7 +254,7 @@ export const testArticlesListData: Article[] = [
         img: 'https://www.century21albania.com/vendor/core/images/default-image.jpg',
         views: 100,
         createdAt: '11.12.2023',
-        category: [ArticleCategory.IT, ArticleCategory.ECONOMICS],
+        category: [ArticleCategory.IT, ArticleCategory.HTML],
         blocks: [
             {
                 id: '6789',
@@ -275,7 +275,7 @@ export const testArticlesListData: Article[] = [
         img: 'https://www.century21albania.com/vendor/core/images/default-image.jpg',
         views: 100,
         createdAt: '11.12.2023',
-        category: [ArticleCategory.IT, ArticleCategory.ECONOMICS],
+        category: [ArticleCategory.IT, ArticleCategory.HTML],
         blocks: [
             {
                 id: '6789',

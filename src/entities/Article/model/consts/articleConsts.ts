@@ -13,9 +13,9 @@ export enum ArticleSection {
 export enum ArticleCategory {
     ALL = 'ALL',
     IT = 'IT',
-    SOCIOLOGY = 'SOCIOLOGY',
-    ECONOMICS = 'ECONOMICS',
-    PUBLIC_ADMINISTRATION = 'PUBLIC_ADMINISTRATION',
+    CSS = 'CSS',
+    HTML = 'HTML',
+    REACT = 'REACT',
 }
 
 export enum ArticleView {
