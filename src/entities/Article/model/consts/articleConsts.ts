@@ -16,6 +16,7 @@ export enum ArticleCategory {
     CSS = 'CSS',
     HTML = 'HTML',
     REACT = 'REACT',
+    JAVASCRIPT = 'JAVASCRIPT',
 }
 
 export enum ArticleView {

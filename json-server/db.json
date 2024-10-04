@@ -2443,7 +2443,7 @@
         }
       ]
     },
-      {
+    {
         "id": "43",
         "title": "Для чого потрібно вказувати DOCTYPE?",
         "subtitle": "Джерело: https://www.w3schools.com/tags/tag_doctype.asp",
@@ -2477,7 +2477,7 @@
           }
         ]
       },
-      {
+    {
         "id": "44",
         "title": "Що буде, якщо не вказати DOCTYPE на початку документа?",
         "subtitle": "Джерело: https://developer.mozilla.org/en-US/docs/Web/HTML/Quirks_Mode",
@@ -2505,7 +2505,7 @@
           }
         ]
       },
-      {
+    {
         "id": "45",
         "title": "Для чого потрібні мета-теги?",
         "subtitle": "Джерело: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta",
@@ -2539,7 +2539,7 @@
           }
         ]
       },
-      {
+    {
         "id": "46",
         "title": "Чим відрізняється блоковий елемент від рядкового?",
         "subtitle": "Джерело: https://developer.mozilla.org/en-US/docs/Web/HTML/Block_and_Inline_elements",
@@ -2573,7 +2573,7 @@
           }
         ]
       },
-      {
+    {
         "id": "47",
         "title": "Чому деякі символи можуть відображатися у вигляді квадратів?",
         "subtitle": "Джерело: https://www.w3schools.com/html/html_symbols.asp",
@@ -2601,7 +2601,7 @@
           }
         ]
       },
-      {
+    {
         "id": "48",
         "title": "Які типи заголовків є в HTML?",
         "subtitle": "Джерело: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/heading_group",
@@ -2627,7 +2627,7 @@
           }
         ]
       },
-      {
+    {
         "id": "49",
         "title": "Що таке семантична верстка?",
         "subtitle": "Джерело: https://developer.mozilla.org/en-US/docs/Glossary/Semantics",
@@ -2653,7 +2653,7 @@
           }
         ]
       },
-      {
+    {
         "id": "50",
         "title": "Що таке потік HTML-документа?",
         "subtitle": "Джерело: https://www.w3schools.com/html/html_flow.asp",
@@ -2681,7 +2681,7 @@
           }
         ]
       },
-      {
+    {
         "id": "51",
         "title": "Як підключити JavaScript до сторінки?",
         "subtitle": "Джерело: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Introduction",
@@ -2715,7 +2715,7 @@
           }
         ]
       },
-      {
+    {
         "id": "52",
         "title": "Яка різниця між <script>, <script async> та <script defer>?",
         "subtitle": "Джерело: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script",
@@ -2757,7 +2757,7 @@
           }
         ]
       },
-      {
+    {
         "id": "53",
         "title": "Як додати CSS на сторінку?",
         "subtitle": "Джерело: https://www.w3schools.com/css/css_howto.asp",
@@ -2791,7 +2791,7 @@
           }
         ]
       },
-      {
+    {
         "id": "54",
         "title": "Яка різниця між reset.css та normalize.css?",
         "subtitle": "Джерело: https://css-tricks.com/css-reset-vs-normalize-css/",
@@ -2827,7 +2827,7 @@
           }
         ]
       },
-      {
+    {
         "id": "55",
         "title": "Що таке critical CSS?",
         "subtitle": "Джерело: https://web.dev/critical-css/",
@@ -2861,7 +2861,7 @@
           }
         ]
       },
-      {
+    {
         "id": "56",
         "title": "Що таке специфічність селекторів CSS?",
         "subtitle": "Джерело: https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity",
@@ -2895,7 +2895,7 @@
           }
         ]
       },
-      {
+    {
         "id": "57",
         "title": "Яка різниця між псевдокласом і псевдоелементом в CSS?",
         "subtitle": "Джерело: https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes_and_pseudo-elements",
@@ -2929,7 +2929,7 @@
           }
         ]
       },
-      {
+    {
         "id": "58",
         "title": "Що таке блокова модель CSS?",
         "subtitle": "Джерело: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_box_model",
@@ -2963,7 +2963,7 @@
           }
         ]
       },
-      {
+    {
         "id": "59",
         "title": "Що робить властивість box-sizing?",
         "subtitle": "Джерело: https://developer.mozilla.org/en-US/docs/Web/CSS/box-sizing",
@@ -2997,7 +2997,7 @@
           }
         ]
       },
-      {
+    {
         "id": "60",
         "title": "Які види позиціонування елементів на сторінці ви знаєте?",
         "subtitle": "Джерело: https://developer.mozilla.org/en-US/docs/Web/CSS/position",
@@ -3025,7 +3025,7 @@
           }
         ]
       },
-      {
+    {
         "id": "61",
         "title": "Що робить властивість z-index?",
         "subtitle": "Джерело: https://developer.mozilla.org/en-US/docs/Web/CSS/z-index",
@@ -3059,7 +3059,7 @@
           }
         ]
       },
-      {
+    {
         "id": "62",
         "title": "Яка різниця між px, em, rem?",
         "subtitle": "Джерело: https://developer.mozilla.org/en-US/docs/Web/CSS/length",
@@ -3087,6 +3087,1857 @@
           }
         ]
       },
+    {
+        "id": "63",
+        "title": "Яка різниця між гумовою, адаптивною та респонсивною версткою?",
+        "subtitle": "Джерело: https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Responsive_design",
+        "img": "https://example.com/responsive_design.jpg",
+        "views": 250,
+        "createdAt": "21.11.2024",
+        "userId": "1",
+        "category": ["CSS"],
+        "blocks": [
+          {
+            "id": "1",
+            "type": "TEXT",
+            "title": "Гумова верстка",
+            "paragraphs": [
+              "Гумова верстка використовує відсоткові одиниці для ширини, що дозволяє елементам адаптуватися до ширини екрану.",
+              "Цей підхід забезпечує, що елементи зберігають свої пропорції незалежно від розміру вікна."
+            ]
+          },
+          {
+            "id": "2",
+            "type": "TEXT",
+            "title": "Адаптивна верстка",
+            "paragraphs": [
+              "Адаптивна верстка використовує фіксовані розміри для кількох визначених екранів.",
+              "Цей підхід передбачає створення окремих стилів для кожного пристрою, таких як мобільний, планшет та десктоп."
+            ]
+          },
+          {
+            "id": "3",
+            "type": "TEXT",
+            "title": "Респонсивна верстка",
+            "paragraphs": [
+              "Респонсивна верстка поєднує в собі гумову та адаптивну верстку.",
+              "Вона використовує медіа-запити для зміни стилів в залежності від характеристик пристрою, таких як ширина екрану."
+            ]
+          }
+        ]
+      },
+    {
+        "id": "64",
+        "title": "Яка різниця між visibility:hidden та display:none?",
+        "subtitle": "Джерело: https://developer.mozilla.org/en-US/docs/Web/CSS/visibility",
+        "img": "https://example.com/visibility_display.jpg",
+        "views": 320,
+        "createdAt": "21.11.2024",
+        "userId": "2",
+        "category": ["CSS"],
+        "blocks": [
+          {
+            "id": "1",
+            "type": "TEXT",
+            "title": "visibility:hidden",
+            "paragraphs": [
+              "Коли ви використовуєте visibility: hidden, елемент залишається в документі, але не відображається на екрані.",
+              "Цей елемент займає простір на сторінці."
+            ]
+          },
+          {
+            "id": "2",
+            "type": "TEXT",
+            "title": "display:none",
+            "paragraphs": [
+              "Коли ви використовуєте display: none, елемент повністю видаляється з документа.",
+              "Він не займає жодного місця на сторінці, і все, що йому слідує, може зайняти його місце."
+            ]
+          },
+          {
+            "id": "3",
+            "type": "CODE",
+            "code": "element.style.visibility = 'hidden';\n// Елемент залишається в потоці документа, але не видимий.\n\nelement.style.display = 'none';\n// Елемент повністю видаляється з потоку документа.",
+            "description": "Приклади використання visibility та display."
+          }
+        ]
+      },
+    {
+        "id": "65",
+        "title": "Для чого потрібне правило @supports?",
+        "subtitle": "Джерело: https://developer.mozilla.org/en-US/docs/Web/CSS/@supports",
+        "img": "https://example.com/supports_rule.jpg",
+        "views": 210,
+        "createdAt": "21.11.2024",
+        "userId": "3",
+        "category": ["CSS"],
+        "blocks": [
+          {
+            "id": "1",
+            "type": "TEXT",
+            "title": "Правило @supports",
+            "paragraphs": [
+              "Правило @supports дозволяє вам перевірити, чи підтримує браузер певну властивість CSS.",
+              "Це допомагає створювати адаптивні стилі в залежності від можливостей браузера."
+            ]
+          },
+          {
+            "id": "2",
+            "type": "CODE",
+            "code": "@supports (display: grid) {\n  .container {\n    display: grid;\n  }\n}",
+            "description": "Приклад використання правила @supports для визначення, чи підтримується grid layout."
+          }
+        ]
+      },
+    {
+        "id": "66",
+        "title": "Яка різниця між Progressive Enhancement та Graceful Degradation?",
+        "subtitle": "Джерело: https://www.smashingmagazine.com/2011/11/progressive-enhancement-and-graceful-degradation/",
+        "img": "https://example.com/enhancement_degradation.jpg",
+        "views": 180,
+        "createdAt": "21.11.2024",
+        "userId": "4",
+        "category": ["HTML", "CSS"],
+        "blocks": [
+          {
+            "id": "1",
+            "type": "TEXT",
+            "title": "Progressive Enhancement",
+            "paragraphs": [
+              "Progressive Enhancement передбачає створення базового контенту, який працює в усіх браузерах, і додавання покращень для сучасних браузерів.",
+              "Цей підхід дозволяє користувачам з старими або обмеженими браузерами отримувати основний контент."
+            ]
+          },
+          {
+            "id": "2",
+            "type": "TEXT",
+            "title": "Graceful Degradation",
+            "paragraphs": [
+              "Graceful Degradation, навпаки, починає з повного функціоналу для нових браузерів, але поступово зменшує функціонал для старих браузерів.",
+              "Цей підхід може призводити до того, що користувачі старих браузерів можуть не отримати контент у повному обсязі."
+            ]
+          }
+        ]
+      },
+    {
+        "id": "67",
+        "title": "Що таке repaint та reflow?",
+        "subtitle": "Джерело: https://developer.mozilla.org/en-US/docs/Web/Performance/Repaints_and_reflows",
+        "img": "https://example.com/repaint_reflow.jpg",
+        "views": 240,
+        "createdAt": "21.11.2024",
+        "userId": "5",
+        "category": ["HTML", "CSS"],
+        "blocks": [
+          {
+            "id": "1",
+            "type": "TEXT",
+            "title": "Repaint",
+            "paragraphs": [
+              "Repaint — це процес, при якому браузер переробляє видимі зміни в елементах, наприклад, зміну кольору або фону.",
+              "Цей процес не впливає на структуру документа, тому не потрібно перераховувати позиції елементів."
+            ]
+          },
+          {
+            "id": "2",
+            "type": "TEXT",
+            "title": "Reflow",
+            "paragraphs": [
+              "Reflow відбувається, коли змінюється структура документа, наприклад, зміна ширини або висоти елементів.",
+              "Цей процес є більш витратним, оскільки браузер повинен перерахувати позиції та розміри всіх елементів."
+            ]
+          },
+          {
+            "id": "3",
+            "type": "CODE",
+            "code": "element.style.width = '100px';\n// Це може викликати reflow\n\nelement.style.color = 'red';\n// Це викликає repaint, але не reflow.",
+            "description": "Приклади, які ілюструють різницю між repaint і reflow."
+          }
+        ]
+      },
+    {
+        "id": "68",
+        "title": "Яка різниця між cookie, sessionStorage та localStorage?",
+        "subtitle": "Джерело: https://developer.mozilla.org/en-US/docs/Web/API/Storage",
+        "img": "https://example.com/storage_types.jpg",
+        "views": 300,
+        "createdAt": "21.11.2024",
+        "userId": "6",
+        "category": ["JavaScript"],
+        "blocks": [
+          {
+            "id": "1",
+            "type": "TEXT",
+            "title": "Cookies",
+            "paragraphs": [
+              "Cookies - це невеликі шматочки даних, які веб-сайт може зберігати в браузері користувача.",
+              "Вони можуть бути використані для зберігання інформації про сеанс, налаштування та інші дані."
+            ]
+          },
+          {
+            "id": "2",
+            "type": "TEXT",
+            "title": "sessionStorage",
+            "paragraphs": [
+              "sessionStorage зберігає дані тільки на час сесії. Це означає, що дані зберігаються, поки відкрите вікно браузера.",
+              "Якщо вікно закриється, всі дані sessionStorage зникають."
+            ]
+          },
+          {
+            "id": "3",
+            "type": "TEXT",
+            "title": "localStorage",
+            "paragraphs": [
+              "localStorage, на відміну від sessionStorage, зберігає дані без терміну дії.",
+              "Ці дані залишаються доступними навіть після закриття браузера."
+            ]
+          },
+          {
+            "id": "4",
+            "type": "CODE",
+            "code": "// Зберігання cookie\ndocument.cookie = \"username=JohnDoe; expires=Fri, 31 Dec 2024 23:59:59 GMT;\";\n\n// sessionStorage\nsessionStorage.setItem('key', 'value');\n\n// localStorage\nlocalStorage.setItem('key', 'value');",
+            "description": "Приклади використання cookie, sessionStorage і localStorage."
+          }
+        ]
+      },
+    {
+        "id": "69",
+        "title": "Яка різниця між відносним та абсолютним шляхом?",
+        "subtitle": "Джерело: https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/URLs",
+        "img": "https://example.com/relative_absolute_paths.jpg",
+        "views": 280,
+        "createdAt": "21.11.2024",
+        "userId": "7",
+        "category": ["HTML"],
+        "blocks": [
+          {
+            "id": "1",
+            "type": "TEXT",
+            "title": "Відносний шлях",
+            "paragraphs": [
+              "Відносний шлях вказує на місце розташування ресурсу відносно поточної сторінки.",
+              "Приклад: \"images/photo.jpg\" вказує на зображення в папці images, що розташована поряд із поточною сторінкою."
+            ]
+          },
+          {
+            "id": "2",
+            "type": "TEXT",
+            "title": "Абсолютний шлях",
+            "paragraphs": [
+              "Абсолютний шлях вказує на повну URL-адресу ресурсу.",
+              "Приклад: \"https://example.com/images/photo.jpg\" вказує на конкретне зображення в мережі."
+            ]
+          }
+        ]
+      },
+    {
+        "id": "70",
+        "title": "Яка різниця між тегом та елементом?",
+        "subtitle": "Джерело: https://developer.mozilla.org/en-US/docs/Web/HTML/Element",
+        "img": "https://example.com/tag_vs_element.jpg",
+        "views": 220,
+        "createdAt": "21.11.2024",
+        "userId": "8",
+        "category": ["HTML"],
+        "blocks": [
+          {
+            "id": "1",
+            "type": "TEXT",
+            "title": "Тег",
+            "paragraphs": [
+              "Тег - це синтаксичний маркер у HTML, який визначає початок і кінець елемента.",
+              "Приклад: <p> - це тег, який вказує на параграф."
+            ]
+          },
+          {
+            "id": "2",
+            "type": "TEXT",
+            "title": "Елемент",
+            "paragraphs": [
+              "Елемент включає тег, його атрибути і вміст.",
+              "Приклад: <p class='text'>Hello World</p> - це елемент, який включає тег, клас і текстовий вміст."
+            ]
+          }
+        ]
+      },
+    {
+        "id": "71",
+        "title": "Коли використовувати <button>, а коли <a>?",
+        "subtitle": "Джерело: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button",
+        "img": "https://example.com/button_vs_a.jpg",
+        "views": 310,
+        "createdAt": "21.11.2024",
+        "userId": "9",
+        "category": ["HTML"],
+        "blocks": [
+          {
+            "id": "1",
+            "type": "TEXT",
+            "title": "<button>",
+            "paragraphs": [
+              "Тег <button> використовується для створення кнопок, які виконують дії, наприклад, надсилання форми або запуск скриптів.",
+              "Приклад: <button type='submit'>Відправити</button>."
+            ]
+          },
+          {
+            "id": "2",
+            "type": "TEXT",
+            "title": "<a>",
+            "paragraphs": [
+              "Тег <a> використовується для створення гіперпосилань, які ведуть на інші сторінки або адреси.",
+              "Приклад: <a href='https://example.com'>Перейти на сайт</a>."
+            ]
+          }
+        ]
+      },
+    {
+        "id": "72",
+        "title": "Для чого потрібний атрибут type у кнопки?",
+        "subtitle": "Джерело: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button",
+        "img": "https://example.com/button_type.jpg",
+        "views": 270,
+        "createdAt": "21.11.2024",
+        "userId": "10",
+        "category": ["HTML"],
+        "blocks": [
+          {
+            "id": "1",
+            "type": "TEXT",
+            "title": "Атрибут type",
+            "paragraphs": [
+              "Атрибут type вказує тип кнопки, що впливає на її поведінку в контексті форм.",
+              "Основні типи: 'submit', 'reset' і 'button'."
+            ]
+          },
+          {
+            "id": "2",
+            "type": "CODE",
+            "code": "<button type='submit'>Відправити</button>\n<button type='reset'>Скинути</button>\n<button type='button'>Просто кнопка</button>",
+            "description": "Приклади різних типів кнопок."
+          }
+        ]
+      },
+    {
+        "id": "73",
+        "title": "Для чого потрібний тег <base>?",
+        "subtitle": "Джерело: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base",
+        "img": "https://example.com/base_tag.jpg",
+        "views": 220,
+        "createdAt": "21.11.2024",
+        "userId": "11",
+        "category": ["HTML"],
+        "blocks": [
+          {
+            "id": "1",
+            "type": "TEXT",
+            "title": "Тег <base>",
+            "paragraphs": [
+              "Тег <base> задає базовий URL для всіх відносних посилань у документі.",
+              "Це важливо для забезпечення правильних шляхів до ресурсів."
+            ]
+          },
+          {
+            "id": "2",
+            "type": "CODE",
+            "code": "<base href='https://example.com/' />",
+            "description": "Приклад використання тегу <base>."
+          }
+        ]
+      },
+    {
+        "id": "74",
+        "title": "Яка різниця між checkbox та radio?",
+        "subtitle": "Джерело: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox",
+        "img": "https://example.com/checkbox_vs_radio.jpg",
+        "views": 300,
+        "createdAt": "21.11.2024",
+        "userId": "12",
+        "category": ["HTML"],
+        "blocks": [
+          {
+            "id": "1",
+            "type": "TEXT",
+            "title": "Checkbox",
+            "paragraphs": [
+              "Checkbox - це елемент, який дозволяє вибрати один або декілька варіантів.",
+              "Користувач може ставити або знімати галочки з кількох чекбоксів."
+            ]
+          },
+          {
+            "id": "2",
+            "type": "TEXT",
+            "title": "Radio",
+            "paragraphs": [
+              "Radio - це елемент, який дозволяє вибрати лише один варіант з кількох.",
+              "Всі radio-кнопки з одного набору мають однакове ім'я."
+            ]
+          }
+        ]
+      },
+    {
+        "id": "75",
+        "title": "Що таке наслідування стилів в CSS?",
+        "subtitle": "Джерело: https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Cascade_and_inheritance",
+        "img": "https://example.com/inheritance_css.jpg",
+        "views": 350,
+        "createdAt": "22.11.2024",
+        "userId": "1",
+        "category": ["CSS"],
+        "blocks": [
+          {
+            "id": "1",
+            "type": "TEXT",
+            "title": "Визначення",
+            "paragraphs": [
+              "Наслідування стилів в CSS - це процес, завдяки якому дочірні елементи успадковують стилі від батьківських елементів.",
+              "Це дозволяє зберігати консистентність стилю у всій структурі документа."
+            ]
+          },
+          {
+            "id": "2",
+            "type": "TEXT",
+            "title": "Приклади наслідування",
+            "paragraphs": [
+              "Наприклад, якщо ви визначили колір тексту для елемента <body>, усі текстові елементи в цьому тілі автоматично успадкують цей колір, якщо їм не задано іншого."
+            ]
+          }
+        ]
+      },
+    {
+        "id": "76",
+        "title": "Що таке каскадність в CSS?",
+        "subtitle": "Джерело: https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Cascade",
+        "img": "https://example.com/cascade_css.jpg",
+        "views": 400,
+        "createdAt": "22.11.2024",
+        "userId": "2",
+        "category": ["CSS"],
+        "blocks": [
+          {
+            "id": "1",
+            "type": "TEXT",
+            "title": "Визначення",
+            "paragraphs": [
+              "Каскадність в CSS описує, як браузер обробляє конфлікти між стилями, які можуть бути застосовані до одного й того ж елемента.",
+              "Це означає, що якщо кілька правил застосовуються до одного елемента, браузер вирішує, яке правило має пріоритет."
+            ]
+          },
+          {
+            "id": "2",
+            "type": "TEXT",
+            "title": "Пріоритет",
+            "paragraphs": [
+              "CSS використовує специфічність для визначення, яке правило застосувати. Правила з більшою специфічністю отримують пріоритет над правилами з меншою."
+            ]
+          }
+        ]
+      },
+    {
+        "id": "77",
+        "title": "Яка різниця між контентними та декоративними зображеннями?",
+        "subtitle": "Джерело: https://www.w3.org/WAI/tutorials/images/",
+        "img": "https://example.com/content_vs_decorative_images.jpg",
+        "views": 270,
+        "createdAt": "22.11.2024",
+        "userId": "3",
+        "category": ["HTML"],
+        "blocks": [
+          {
+            "id": "1",
+            "type": "TEXT",
+            "title": "Контентні зображення",
+            "paragraphs": [
+              "Контентні зображення передають важливу інформацію та мають значення для контенту веб-сторінки.",
+              "Вони зазвичай повинні мати атрибут alt для опису."
+            ]
+          },
+          {
+            "id": "2",
+            "type": "TEXT",
+            "title": "Декоративні зображення",
+            "paragraphs": [
+              "Декоративні зображення використовуються лише для естетичного оформлення та не несуть ніякої інформації.",
+              "Для таких зображень атрибут alt повинен бути порожнім."
+            ]
+          }
+        ]
+      },
+    {
+        "id": "78",
+        "title": "Чому у <img> та <input> немає псевдоелементів ::before, ::after?",
+        "subtitle": "Джерело: https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-elements",
+        "img": "https://example.com/no_pseudo_elements.jpg",
+        "views": 320,
+        "createdAt": "22.11.2024",
+        "userId": "4",
+        "category": ["CSS"],
+        "blocks": [
+          {
+            "id": "1",
+            "type": "TEXT",
+            "title": "Причина",
+            "paragraphs": [
+              "Псевдоелементи ::before та ::after можуть бути використані лише з елементами, які мають вміст, таким як <div> або <span>.",
+              "Елементи <img> і <input> є самозакриваючими, тобто вони не можуть містити вміст, тому не можуть мати псевдоелементи."
+            ]
+          }
+        ]
+      },
+    {
+        "id": "79",
+        "title": "Для чого потрібна функція calc в CSS?",
+        "subtitle": "Джерело: https://developer.mozilla.org/en-US/docs/Web/CSS/calc",
+        "img": "https://example.com/calc_function.jpg",
+        "views": 290,
+        "createdAt": "22.11.2024",
+        "userId": "5",
+        "category": ["CSS"],
+        "blocks": [
+          {
+            "id": "1",
+            "type": "TEXT",
+            "title": "Опис",
+            "paragraphs": [
+              "Функція calc() дозволяє виконувати математичні обчислення при визначенні значень CSS.",
+              "Це корисно для адаптивного дизайну, коли потрібно комбінувати різні одиниці виміру."
+            ]
+          },
+          {
+            "id": "2",
+            "type": "CODE",
+            "code": "width: calc(100% - 50px);",
+            "description": "Приклад використання calc для визначення ширини елемента."
+          }
+        ]
+      },
+    {
+        "id": "80",
+        "title": "Що таке flex-контейнер та flex-елемент?",
+        "subtitle": "Джерело: https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Flexbox",
+        "img": "https://example.com/flex_container_element.jpg",
+        "views": 360,
+        "createdAt": "22.11.2024",
+        "userId": "6",
+        "category": ["CSS"],
+        "blocks": [
+          {
+            "id": "1",
+            "type": "TEXT",
+            "title": "Flex-контейнер",
+            "paragraphs": [
+              "Flex-контейнер - це батьківський елемент, який застосовує flexbox до своїх дочірніх елементів.",
+              "Для визначення flex-контейнера потрібно встановити display: flex;."
+            ]
+          },
+          {
+            "id": "2",
+            "type": "TEXT",
+            "title": "Flex-елемент",
+            "paragraphs": [
+              "Flex-елементи - це дочірні елементи flex-контейнера, які розташовуються у лінії або стовпці в залежності від налаштувань flexbox."
+            ]
+          }
+        ]
+      },
+    {
+        "id": "81",
+        "title": "Що таке flex-вісь?",
+        "subtitle": "Джерело: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Basic_Concepts_of_Flexbox",
+        "img": "https://example.com/flex_axis.jpg",
+        "views": 310,
+        "createdAt": "22.11.2024",
+        "userId": "7",
+        "category": ["CSS"],
+        "blocks": [
+          {
+            "id": "1",
+            "type": "TEXT",
+            "title": "Flex-вісь",
+            "paragraphs": [
+              "Flex-вісь - це основна вісь, уздовж якої розташовані flex-елементи.",
+              "Існує дві осі: основна вісь і перпендикулярна вісь."
+            ]
+          },
+          {
+            "id": "2",
+            "type": "TEXT",
+            "title": "Основна та перпендикулярна осі",
+            "paragraphs": [
+              "Основна вісь - це вісь, на якій розташовані flex-елементи. Перпендикулярна вісь - це вісь, що перетинає основну."
+            ]
+          }
+        ]
+      },
+    {
+        "id": "82",
+        "title": "Які відмінності у mobile first та desktop first підходів?",
+        "subtitle": "Джерело: https://www.smashingmagazine.com/2018/01/mobile-first-responsive-design/",
+        "img": "https://example.com/mobile_first_vs_desktop_first.jpg",
+        "views": 450,
+        "createdAt": "22.11.2024",
+        "userId": "8",
+        "category": ["CSS"],
+        "blocks": [
+          {
+            "id": "1",
+            "type": "TEXT",
+            "title": "Mobile First",
+            "paragraphs": [
+              "Mobile first - це підхід, при якому спочатку розробляється дизайн для мобільних пристроїв.",
+              "Потім на основі цього дизайну створюються версії для більших екранів."
+            ]
+          },
+          {
+            "id": "2",
+            "type": "TEXT",
+            "title": "Desktop First",
+            "paragraphs": [
+              "Desktop first - це підхід, при якому спочатку розробляється дизайн для десктопних комп'ютерів.",
+              "Потім його адаптують для мобільних пристроїв."
+            ]
+          }
+        ]
+      },
+    {
+        "id": "83",
+        "title": "Які переваги svg перед png або jpeg?",
+        "subtitle": "Джерело: https://www.smashingmagazine.com/2017/06/benefits-of-svg/",
+        "img": "https://example.com/svg_vs_png_jpeg.jpg",
+        "views": 320,
+        "createdAt": "22.11.2024",
+        "userId": "9",
+        "category": ["HTML"],
+        "blocks": [
+          {
+            "id": "1",
+            "type": "TEXT",
+            "title": "Векторна графіка",
+            "paragraphs": [
+              "SVG - це векторний формат зображення, що дозволяє масштабувати без втрати якості.",
+              "Це робить його ідеальним для логотипів і графіки."
+            ]
+          },
+          {
+            "id": "2",
+            "type": "TEXT",
+            "title": "Малі розміри файлів",
+            "paragraphs": [
+              "SVG-файли зазвичай мають менші розміри в порівнянні з растровими форматами, такими як PNG та JPEG."
+            ]
+          }
+        ]
+      },
+    {
+        "id": "84",
+        "title": "Яка різниця між rgb, rgba та hex?",
+        "subtitle": "Джерело: https://www.w3schools.com/css/css_colors.asp",
+        "img": "https://example.com/rgb_rgba_hex.jpg",
+        "views": 400,
+        "createdAt": "22.11.2024",
+        "userId": "10",
+        "category": ["CSS"],
+        "blocks": [
+          {
+            "id": "1",
+            "type": "TEXT",
+            "title": "RGB",
+            "paragraphs": [
+              "RGB - це система кольорів, яка використовує червоний, зелений і синій канали.",
+              "Кольори визначаються шляхом комбінування цих трьох кольорів."
+            ]
+          },
+          {
+            "id": "2",
+            "type": "TEXT",
+            "title": "RGBA",
+            "paragraphs": [
+              "RGBA - це розширена версія RGB, яка включає альфа-канал для визначення прозорості.",
+              "Це дозволяє створювати напівпрозорі кольори."
+            ]
+          },
+          {
+            "id": "3",
+            "type": "TEXT",
+            "title": "Hex",
+            "paragraphs": [
+              "Hex - це шістнадцяткова система для визначення кольорів.",
+              "Вона складається з шести символів, які представляють значення RGB."
+            ]
+          }
+        ]
+      },
+    {
+        "id": "85",
+        "title": "Чим відрізняється лінійний та радіальний градієнти?",
+        "subtitle": "Джерело: https://www.w3schools.com/css/css3_gradients.asp",
+        "img": "https://example.com/linear_radial_gradients.jpg",
+        "views": 350,
+        "createdAt": "22.11.2024",
+        "userId": "11",
+        "category": ["CSS"],
+        "blocks": [
+          {
+            "id": "1",
+            "type": "TEXT",
+            "title": "Лінійний градієнт",
+            "paragraphs": [
+              "Лінійний градієнт - це градієнт, який змінюється від одного кольору до іншого вздовж прямої лінії.",
+              "Він визначається за допомогою напрямку або кута."
+            ]
+          },
+          {
+            "id": "2",
+            "type": "TEXT",
+            "title": "Радіальний градієнт",
+            "paragraphs": [
+              "Радіальний градієнт - це градієнт, який змінюється від центру до країв у формі кола.",
+              "Це створює ефект, ніби колір виходить з центру."
+            ]
+          }
+        ]
+      },
+    {
+        "id": "86",
+        "title": "Що таке правило обмеження домену (same origin policy)?",
+        "subtitle": "Джерело: https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy",
+        "img": "https://example.com/same_origin_policy.jpg",
+        "views": 260,
+        "createdAt": "22.11.2024",
+        "userId": "12",
+        "category": ["HTML"],
+        "blocks": [
+          {
+            "id": "1",
+            "type": "TEXT",
+            "title": "Визначення",
+            "paragraphs": [
+              "Правило обмеження домену - це політика безпеки, яка обмежує доступ до ресурсів з інших доменів.",
+              "Це необхідно для захисту даних користувачів та запобігання атакам."
+            ]
+          },
+          {
+            "id": "2",
+            "type": "TEXT",
+            "title": "Приклади",
+            "paragraphs": [
+              "Наприклад, якщо ваш веб-сайт завантажує ресурси з іншого домену, браузер може заблокувати їх через цю політику."
+            ]
+          }
+        ]
+      },
+    {
+        "id": "87",
+        "title": "Що таке атрибути в HTML?",
+        "subtitle": "Джерело: https://developer.mozilla.org/en-US/docs/Learn/HTML/Introduction_to_HTML/HTML_attributes",
+        "img": "https://example.com/html_attributes.jpg",
+        "views": 290,
+        "createdAt": "22.11.2024",
+        "userId": "13",
+        "category": ["HTML"],
+        "blocks": [
+          {
+            "id": "1",
+            "type": "TEXT",
+            "title": "Опис",
+            "paragraphs": [
+              "Атрибути в HTML - це додаткові характеристики, які можна додати до тегів для надання їм більшої інформації.",
+              "Атрибути завжди прописуються в відкриваючому тегу."
+            ]
+          },
+          {
+            "id": "2",
+            "type": "TEXT",
+            "title": "Приклади атрибутів",
+            "paragraphs": [
+              "Наприклад, атрибут src в тегу <img> вказує шлях до зображення."
+            ]
+          }
+        ]
+      },
+    {
+        "id": "88",
+        "title": "Які основні зміни HTML5, CSS3?",
+        "subtitle": "Джерело: https://www.w3schools.com/whatis/whatis_html5.asp",
+        "img": "https://example.com/html5_css3_changes.jpg",
+        "views": 370,
+        "createdAt": "22.11.2024",
+        "userId": "14",
+        "category": ["HTML", "CSS"],
+        "blocks": [
+          {
+            "id": "1",
+            "type": "TEXT",
+            "title": "HTML5",
+            "paragraphs": [
+              "HTML5 вводить нові семантичні елементи, такі як <header>, <footer>, <article> та <section>.",
+              "Ці елементи покращують структурованість документів."
+            ]
+          },
+          {
+            "id": "2",
+            "type": "TEXT",
+            "title": "CSS3",
+            "paragraphs": [
+              "CSS3 вводить нові можливості, такі як градієнти, тіні, трансформації та анімації.",
+              "Ці можливості дозволяють створювати більш привабливі та інтерактивні веб-сторінки."
+            ]
+          }
+        ]
+      },
+
+      {
+        "id": "89",
+        "title": "Яка частина вебу найбільш головна? Без чого фронтенд розробка не буде існувати?",
+        "subtitle": "Джерело: https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/What_is_the_web",
+        "img": "https://example.com/frontend_essentials.jpg",
+        "views": 450,
+        "createdAt": "22.11.2024",
+        "userId": "3",
+        "category": ["HTML", "CSS", "JavaScript"],
+        "blocks": [
+          {
+            "id": "1",
+            "type": "TEXT",
+            "title": "Основи вебу",
+            "paragraphs": [
+              "Веб складається з трьох основних технологій: HTML, CSS та JavaScript. HTML визначає структуру веб-сторінок, CSS відповідає за їхній стиль, а JavaScript надає інтерактивність. Без цих трьох елементів фронтенд розробка просто не існуватиме.",
+              "HTML (HyperText Markup Language) використовується для створення каркасу веб-сторінки. Важливо знати, як правильно використовувати теги, щоб створити доступну та семантичну розмітку."
+            ]
+          },
+          {
+            "id": "2",
+            "type": "IMAGE",
+            "title": "Структура веб-технологій",
+            "img": "https://example.com/web_technologies_structure.jpg"
+          },
+          {
+            "id": "3",
+            "type": "TEXT",
+            "title": "CSS та JavaScript",
+            "paragraphs": [
+              "CSS (Cascading Style Sheets) дозволяє визначити, як виглядають HTML-елементи. За його допомогою можна задати кольори, шрифти, відступи та багато іншого.",
+              "JavaScript - це мова програмування, яка дозволяє реалізувати динамічні елементи на веб-сторінках, такі як слайдери, модальні вікна та інші інтерактивні компоненти."
+            ]
+          }
+        ]
+      },
+      {
+        "id": "90",
+        "title": "Як браузер інтерпретує HTML, CSS та JavaScript?",
+        "subtitle": "Джерело: https://developer.mozilla.org/en-US/docs/Learn/JavaScript/First_steps/How_browsers_work",
+        "img": "https://example.com/browser_interpretation.jpg",
+        "views": 500,
+        "createdAt": "22.11.2024",
+        "userId": "4",
+        "category": ["JavaScript"],
+        "blocks": [
+          {
+            "id": "1",
+            "type": "TEXT",
+            "title": "Процес інтерпретації",
+            "paragraphs": [
+              "Коли ви відкриваєте веб-сторінку, браузер виконує кілька ключових етапів для її відображення. Перш за все, він отримує HTML-код з сервера. HTML документ обробляється, і браузер створює DOM (Document Object Model), що представляє структуру документа.",
+              "CSS обробляється для створення CSSOM (CSS Object Model), що містить інформацію про стилі. Після цього браузер об'єднує DOM і CSSOM у render tree, що використовується для відображення контенту."
+            ]
+          },
+          {
+            "id": "2",
+            "type": "TEXT",
+            "title": "Виконання JavaScript",
+            "paragraphs": [
+              "JavaScript виконується в контексті браузера. Він може маніпулювати DOM, що дозволяє змінювати структуру веб-сторінки в реальному часі. Браузер має JavaScript-двигун, який відповідає за виконання скриптів.",
+              "Браузер також обробляє асинхронні запити, що дозволяє завантажувати нові дані без перезавантаження сторінки, наприклад, при використанні AJAX."
+            ]
+          },
+          {
+            "id": "3",
+            "type": "CODE",
+            "title": "Приклад простого JavaScript коду",
+            "code": "document.addEventListener('DOMContentLoaded', function() {\n  const greeting = document.createElement('h1');\n  greeting.textContent = 'Вітаємо на нашій сторінці!';\n  document.body.appendChild(greeting);\n});"
+          }
+        ]
+      },
+      {
+        "id": "91",
+        "title": "Які властивості CSS не варто використовувати? Які спровокують рекалькуляцію і зупиняють DOM?",
+        "subtitle": "Джерело: https://css-tricks.com/repaint-reflow-how-browser-works/",
+        "img": "https://example.com/css_reflow.jpg",
+        "views": 320,
+        "createdAt": "22.11.2024",
+        "userId": "5",
+        "category": ["CSS"],
+        "blocks": [
+          {
+            "id": "1",
+            "type": "TEXT",
+            "title": "Рекалькуляція та перерисовка",
+            "paragraphs": [
+              "Рекалькуляція - це процес, під час якого браузер перевіряє, чи потрібно оновити розмітку сторінки через зміни в DOM або CSS. Властивості, такі як `width`, `height`, `margin`, `padding`, можуть викликати рекалькуляцію, що значно уповільнює рендеринг сторінки."
+            ]
+          },
+          {
+            "id": "2",
+            "type": "TEXT",
+            "title": "Властивості, що спричиняють рекалькуляцію",
+            "paragraphs": [
+              "Не рекомендується часто використовувати такі властивості, як:",
+              "- `position`: зміна позиціювання елемента.",
+              "- `display`: зміна типу відображення елемента.",
+              "- `overflow`: зміна способу відображення переповненого контенту.",
+              "Ці зміни можуть призвести до того, що браузеру доведеться повторно обчислювати та перерисовувати весь документ."
+            ]
+          }
+        ]
+      },
+      {
+        "id": "92",
+        "title": "Як парсяться селектори CSS?",
+        "subtitle": "Джерело: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors",
+        "img": "https://example.com/css_selectors_parsing.jpg",
+        "views": 270,
+        "createdAt": "22.11.2024",
+        "userId": "6",
+        "category": ["CSS"],
+        "blocks": [
+          {
+            "id": "1",
+            "type": "TEXT",
+            "title": "Парсинг селекторів",
+            "paragraphs": [
+              "Парсинг селекторів у CSS - це процес, при якому браузер визначає, які елементи на веб-сторінці відповідають певному селектору. Селектори парсяться зліва направо, і браузер перевіряє, чи елементи відповідають критеріям селектора.",
+              "Важливо розуміти специфіку селекторів, оскільки це впливає на продуктивність."
+            ]
+          },
+          {
+            "id": "2",
+            "type": "CODE",
+            "title": "Приклад селекторів CSS",
+            "code": "/* Селектор класу */\n.button {\n  background-color: blue;\n}\n\n/* Селектор ID */\n#header {\n  font-size: 20px;\n}\n\n/* Селектор атрибута */\na[href='https://example.com'] {\n  color: red;\n}"
+          },
+          {
+            "id": "3",
+            "type": "TEXT",
+            "title": "Важливість ефективності селекторів",
+            "paragraphs": [
+              "Завжди намагайтеся використовувати прості селектори, оскільки їх легше парсити і вони підвищують продуктивність рендерингу."
+            ]
+          }
+        ]
+      },
+      {
+        "id": "93",
+        "title": "Специфічність селекторів",
+        "subtitle": "Джерело: https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity",
+        "img": "https://example.com/css_specificity.jpg",
+        "views": 350,
+        "createdAt": "22.11.2024",
+        "userId": "7",
+        "category": ["CSS"],
+        "blocks": [
+          {
+            "id": "1",
+            "type": "TEXT",
+            "title": "Визначення специфічності",
+            "paragraphs": [
+              "Специфічність - це механізм, за допомогою якого браузер визначає, який стиль застосувати до елемента, якщо декілька селекторів відповідають йому.",
+              "Кожен селектор має специфічність, що вимірюється у вигляді чисел. Вищий показник специфічності означає, що стиль буде переважати."
+            ]
+          },
+          {
+            "id": "2",
+            "type": "CODE",
+            "title": "Приклад специфічності селекторів",
+            "code": "/* Специфічність = 0-1-0 */\n#header {\n  color: blue;\n}\n\n/* Специфічність = 1-0-0 */\n.header .title {\n  color: red;\n}\n\n/* Специфічність = 0-0-1 */\na {\n  text-decoration: none;\n}"
+          },
+          {
+            "id": "3",
+            "type": "TEXT",
+            "title": "Визначення специфічності",
+            "paragraphs": [
+              "Специфічність визначається у вигляді чотирьох чисел: (inline, id, class, element). Чим вищий показник, тим більша специфічність."
+            ]
+          }
+        ]
+      },
+      {
+        "id": "94",
+        "title": "На рівні із чим буде специфічність у псевдоелемента і псевдокласа?",
+        "subtitle": "Джерело: https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes_and_pseudo-elements",
+        "img": "https://example.com/pseudo_elements_classes.jpg",
+        "views": 310,
+        "createdAt": "22.11.2024",
+        "userId": "8",
+        "category": ["CSS"],
+        "blocks": [
+          {
+            "id": "1",
+            "type": "TEXT",
+            "title": "Псевдокласи та псевдоелементи",
+            "paragraphs": [
+              "Псевдокласи (наприклад, :hover) та псевдоелементи (наприклад, ::before) також мають специфічність, яка базується на селекторах, до яких вони додаються.",
+              "Специфічність псевдокласів та псевдоелементів можна розглядати як збільшення специфічності базового селектора."
+            ]
+          },
+          {
+            "id": "2",
+            "type": "CODE",
+            "title": "Приклад специфічності псевдокласів",
+            "code": ".button:hover {\n  background-color: green;\n}\n\n#header::before {\n  content: 'Welcome';\n}"
+          },
+          {
+            "id": "3",
+            "type": "TEXT",
+            "title": "Специфічність у псевдокласах",
+            "paragraphs": [
+              "Наприклад, якщо у вас є селектор .button з специфічністю 0-1-0, то .button:hover матиме специфічність 0-1-1."
+            ]
+          }
+        ]
+      },
+      {
+        "id": "95",
+        "title": "Які переваги використання препроцесорів? Чого не вистачає у чистому CSS?",
+        "subtitle": "Джерело: https://sass-lang.com/guide",
+        "img": "https://example.com/css_preprocessors.jpg",
+        "views": 400,
+        "createdAt": "22.11.2024",
+        "userId": "9",
+        "category": ["CSS"],
+        "blocks": [
+          {
+            "id": "1",
+            "type": "TEXT",
+            "title": "Що таке препроцесори?",
+            "paragraphs": [
+              "Препроцесори CSS, такі як SASS або LESS, додають до CSS розширені можливості, такі як змінні, вкладеність, міксини і функції.",
+              "Ці можливості роблять код більш організованим та зручним для підтримки."
+            ]
+          },
+          {
+            "id": "2",
+            "type": "TEXT",
+            "title": "Переваги препроцесорів",
+            "paragraphs": [
+              "Переваги використання препроцесорів включають:",
+              "- **Змінні**: дозволяють зберігати значення і повторно їх використовувати.",
+              "- **Вкладеність**: дозволяє структурувати CSS так, як HTML.",
+              "- **Міксини**: дозволяють створювати повторювані блоки коду."
+            ]
+          },
+          {
+            "id": "3",
+            "type": "CODE",
+            "title": "Приклад SASS коду",
+            "code": "$primary-color: #333;\n\n.button {\n  background-color: $primary-color;\n  &:hover {\n    background-color: lighten($primary-color, 10%);\n  }\n}"
+          }
+        ]
+      },
+      {
+        "id": "96",
+        "title": "Що таке DOM і Shadow DOM? В чому їх різниця?",
+        "subtitle": "Джерело: https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM",
+        "img": "https://example.com/dom_shadow_dom.jpg",
+        "views": 360,
+        "createdAt": "22.11.2024",
+        "userId": "10",
+        "category": ["JavaScript"],
+        "blocks": [
+          {
+            "id": "1",
+            "type": "TEXT",
+            "title": "DOM",
+            "paragraphs": [
+              "DOM (Document Object Model) - це об'єктна модель, що представляє структуру HTML-документа у вигляді дерева. Це дозволяє програмам і скриптам динамічно змінювати вміст, структуру та стиль веб-сторінки.",
+              "DOM є глобальною об'єктною моделлю, доступною з JavaScript, що дозволяє взаємодіяти з HTML-елементами."
+            ]
+          },
+          {
+            "id": "2",
+            "type": "TEXT",
+            "title": "Shadow DOM",
+            "paragraphs": [
+              "Shadow DOM - це частина веб-компонентів, яка дозволяє створювати ізольовані від основного DOM частини веб-сторінки.",
+              "Це дозволяє створювати компоненти, які мають власні стилі і структуру, що не впливають на зовнішні елементи."
+            ]
+          },
+          {
+            "id": "3",
+            "type": "CODE",
+            "title": "Приклад Shadow DOM",
+            "code": "const shadowHost = document.createElement('div');\nconst shadowRoot = shadowHost.attachShadow({ mode: 'open' });\nshadowRoot.innerHTML = `<style>h1 { color: blue; }</style><h1>Hello Shadow DOM!</h1>`;\ndocument.body.appendChild(shadowHost);"
+          }
+        ]
+      },
+      {
+        "id": "97",
+        "title": "Що таке preventDefault() і stopPropagation()?",
+        "subtitle": "Джерело: https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault",
+        "img": "https://example.com/prevent_default_stop_propagation.jpg",
+        "views": 410,
+        "createdAt": "22.11.2024",
+        "userId": "11",
+        "category": ["JavaScript"],
+        "blocks": [
+          {
+            "id": "1",
+            "type": "TEXT",
+            "title": "preventDefault()",
+            "paragraphs": [
+              "Метод `preventDefault()` використовується для скасування стандартної поведінки події. Наприклад, при натисканні на посилання `preventDefault()` може запобігти переходу на нову сторінку."
+            ]
+          },
+          {
+            "id": "2",
+            "type": "TEXT",
+            "title": "stopPropagation()",
+            "paragraphs": [
+              "Метод `stopPropagation()` запобігає події від подальшого поширення по дереву DOM. Це означає, що подія не буде оброблена батьківськими елементами."
+            ]
+          },
+          {
+            "id": "3",
+            "type": "CODE",
+            "title": "Приклад використання",
+            "code": "const button = document.querySelector('button');\nbutton.addEventListener('click', function(event) {\n  event.preventDefault(); // Скасовує стандартну поведінку\n  event.stopPropagation(); // Зупиняє поширення події\n  alert('Button clicked!');\n});"
+          }
+        ]
+      },
+      {
+        "id": "98",
+        "title": "Що таке capturing bubbling?",
+        "subtitle": "Джерело: https://developer.mozilla.org/en-US/docs/Web/API/Event/capturing_bubbling_phases",
+        "img": "https://example.com/capturing_bubbling.jpg",
+        "views": 370,
+        "createdAt": "22.11.2024",
+        "userId": "12",
+        "category": ["JavaScript"],
+        "blocks": [
+          {
+            "id": "1",
+            "type": "TEXT",
+            "title": "Каптурування та бульбашкування",
+            "paragraphs": [
+              "Події в DOM проходять два етапи: каптурування і бульбашкування. Каптурування - це етап, коли подія йде від батьківських елементів до дочірніх.",
+              "Бульбашкування - це етап, коли подія йде від дочірніх елементів до батьківських."
+            ]
+          },
+          {
+            "id": "2",
+            "type": "CODE",
+            "title": "Приклад обробників подій",
+            "code": "const parent = document.querySelector('.parent');\nconst child = document.querySelector('.child');\n\nparent.addEventListener('click', function() {\n  alert('Parent clicked!');\n}, true); // Каптурування\n\nchild.addEventListener('click', function() {\n  alert('Child clicked!');\n}); // Бульбашкування"
+          },
+          {
+            "id": "3",
+            "type": "TEXT",
+            "title": "Важливість каптурування та бульбашкування",
+            "paragraphs": [
+              "Розуміння цих етапів є важливим для створення ефективних обробників подій і маніпуляцій з DOM."
+            ]
+          }
+        ]
+      },
+      {
+        "id": "99",
+        "title": "Що таке hoisting?",
+        "subtitle": "Джерело: https://developer.mozilla.org/en-US/docs/Glossary/Hoisting",
+        "img": "https://example.com/hoisting.jpg",
+        "views": 390,
+        "createdAt": "22.11.2024",
+        "userId": "13",
+        "category": ["JavaScript"],
+        "blocks": [
+          {
+            "id": "1",
+            "type": "TEXT",
+            "title": "Визначення hoisting",
+            "paragraphs": [
+              "Hoisting - це механізм в JavaScript, при якому змінні та функції оголошуються перед їхнім використанням. Це означає, що ви можете використовувати змінні до їхнього оголошення в коді."
+            ]
+          },
+          {
+            "id": "2",
+            "type": "CODE",
+            "title": "Приклад hoisting",
+            "code": "console.log(x); // undefined\nvar x = 5;\nconsole.log(x); // 5"
+          },
+          {
+            "id": "3",
+            "type": "TEXT",
+            "title": "Hoisting з функціями",
+            "paragraphs": [
+              "Функції також підлягають hoisting, що означає, що їх можна викликати до їхнього оголошення."
+            ]
+          }
+        ]
+      },
+      {
+        "id": "100",
+        "title": "Де в React спрацьовує цей hoisting?",
+        "subtitle": "Джерело: https://reactjs.org/docs/hooks-state.html",
+        "img": "https://example.com/react_hoisting.jpg",
+        "views": 430,
+        "createdAt": "22.11.2024",
+        "userId": "14",
+        "category": ["React"],
+        "blocks": [
+          {
+            "id": "1",
+            "type": "TEXT",
+            "title": "Hoisting у React",
+            "paragraphs": [
+              "В React hoisting може спостерігатися в компонентах функцій та класах. Коли ви використовуєте `useState`, ви можете викликати його перед поверненням JSX.",
+              "Це дозволяє створити локальний стан, який доступний у всій функції."
+            ]
+          },
+          {
+            "id": "2",
+            "type": "CODE",
+            "title": "Приклад використання useState",
+            "code": "import React, { useState } from 'react';\n\nconst MyComponent = () => {\n  const [count, setCount] = useState(0);\n\n  return (\n    <div>\n      <p>You clicked {count} times</p>\n      <button onClick={() => setCount(count + 1)}>Click me</button>\n    </div>\n  );\n};"
+          }
+        ]
+      },
+      {
+        "id": "101",
+        "title": "В якому кейсі потрібен var?",
+        "subtitle": "Джерело: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/var",
+        "img": "https://example.com/var_use_case.jpg",
+        "views": 280,
+        "createdAt": "22.11.2024",
+        "userId": "15",
+        "category": ["JavaScript"],
+        "blocks": [
+          {
+            "id": "1",
+            "type": "TEXT",
+            "title": "Визначення var",
+            "paragraphs": [
+              "`var` - це ключове слово для оголошення змінних у JavaScript. З ним змінна має функціональну область видимості, що означає, що вона доступна в межах функції, в якій була оголошена."
+            ]
+          },
+          {
+            "id": "2",
+            "type": "TEXT",
+            "title": "Коли використовувати var?",
+            "paragraphs": [
+              "Використання `var` може бути доречним у випадках, коли ви хочете, щоб змінна була доступною в усій функції, навіть якщо вона оголошена в умовному блоці."
+            ]
+          },
+          {
+            "id": "3",
+            "type": "CODE",
+            "title": "Приклад використання var",
+            "code": "function example() {\n  if (true) {\n    var x = 5;\n  }\n  console.log(x); // 5\n}"
+          }
+        ]
+      },
+      {
+        "id": "102",
+        "title": "Які переваги проміси мають над колбеками?",
+        "subtitle": "Джерело: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises",
+        "img": "https://example.com/promises_vs_callbacks.jpg",
+        "views": 450,
+        "createdAt": "22.11.2024",
+        "userId": "16",
+        "category": ["JavaScript"],
+        "blocks": [
+          {
+            "id": "1",
+            "type": "TEXT",
+            "title": "Проблема колбеків",
+            "paragraphs": [
+              "Колбеки часто призводять до проблеми, відомої як 'callback hell', коли глибокі вкладення колбеків роблять код важким для читання та підтримки."
+            ]
+          },
+          {
+            "id": "2",
+            "type": "TEXT",
+            "title": "Переваги промісів",
+            "paragraphs": [
+              "Проміси пропонують лінійний підхід до обробки асинхронного коду, що робить його легшим для читання та розуміння.",
+              "Вони також дозволяють легко обробляти помилки за допомогою `.catch()`."
+            ]
+          },
+          {
+            "id": "3",
+            "type": "CODE",
+            "title": "Приклад промісу",
+            "code": "const myPromise = new Promise((resolve, reject) => {\n  const success = true;\n  if (success) {\n    resolve('Operation was successful!');\n  } else {\n    reject('Operation failed!');\n  }\n});\n\nmyPromise\n  .then(result => console.log(result))\n  .catch(error => console.error(error));"
+          }
+        ]
+      },
+      {
+        "id": "103",
+        "title": "Яка різниця event loop на фронтенді і на бекенді?",
+        "subtitle": "Джерело: https://developer.mozilla.org/en-US/docs/Web/JavaScript/EventLoop",
+        "img": "https://example.com/event_loop.jpg",
+        "views": 500,
+        "createdAt": "22.11.2024",
+        "userId": "17",
+        "category": ["JavaScript"],
+        "blocks": [
+          {
+            "id": "1",
+            "type": "TEXT",
+            "title": "Event Loop у JavaScript",
+            "paragraphs": [
+              "Event Loop - це механізм, який дозволяє JavaScript обробляти асинхронні події. Хоча він працює однаково на фронтенді і бекенді, середовища виконання можуть мати різні особливості.",
+              "На фронтенді Event Loop виконує код, обробляє події і викликає колбеки, тоді як на бекенді, таких як Node.js, він виконує код асинхронно, з використанням неблокуючих операцій вводу-виводу."
+            ]
+          },
+          {
+            "id": "2",
+            "type": "TEXT",
+            "title": "Відмінності у виконанні",
+            "paragraphs": [
+              "Фронтенд зазвичай обробляє користувацькі події, в той час як бекенд обробляє запити та відповіді серверу. Це призводить до різних патернів взаємодії."
+            ]
+          },
+          {
+            "id": "3",
+            "type": "CODE",
+            "title": "Приклад використання Event Loop",
+            "code": "console.log('Start');\nsetTimeout(() => {\n  console.log('Timeout!');\n}, 0);\nconsole.log('End');"
+          }
+        ]
+      },
+      {
+        "id": "104",
+        "title": "Що таке JSX?",
+        "subtitle": "Джерело: https://reactjs.org/docs/introducing-jsx.html",
+        "img": "https://example.com/jsx.jpg",
+        "views": 480,
+        "createdAt": "22.11.2024",
+        "userId": "18",
+        "category": ["React"],
+        "blocks": [
+          {
+            "id": "1",
+            "type": "TEXT",
+            "title": "Визначення JSX",
+            "paragraphs": [
+              "JSX (JavaScript XML) - це синтаксис, який дозволяє писати HTML-подібний код у JavaScript. Він використовується в React для опису вигляду інтерфейсу користувача."
+            ]
+          },
+          {
+            "id": "2",
+            "type": "TEXT",
+            "title": "Чому використовується JSX?",
+            "paragraphs": [
+              "JSX робить код більш читабельним і простим у написанні, дозволяючи поєднувати HTML-подібний код з JavaScript. Це робить створення компонентів у React більш зручним."
+            ]
+          },
+          {
+            "id": "3",
+            "type": "CODE",
+            "title": "Приклад JSX",
+            "code": "const element = <h1>Hello, world!</h1>;\nReactDOM.render(element, document.getElementById('root'));"
+          }
+        ]
+      },
+      {
+        "id": "105",
+        "title": "Яка роль ключів у React?",
+        "subtitle": "Джерело: https://reactjs.org/docs/lists-and-keys.html",
+        "img": "https://example.com/react_keys.jpg",
+        "views": 490,
+        "createdAt": "22.11.2024",
+        "userId": "19",
+        "category": ["React"],
+        "blocks": [
+          {
+            "id": "1",
+            "type": "TEXT",
+            "title": "Ключі у React",
+            "paragraphs": [
+              "Ключі - це спеціальні атрибути, які використовуються для ідентифікації елементів у списках React. Вони допомагають React відстежувати, які елементи змінюються, додаються або видаляються."
+            ]
+          },
+          {
+            "id": "2",
+            "type": "TEXT",
+            "title": "Чому важливі ключі?",
+            "paragraphs": [
+              "Використання ключів покращує продуктивність і допомагає уникнути проблем з оновленням інтерфейсу, оскільки React може ефективніше рендерити списки."
+            ]
+          },
+          {
+            "id": "3",
+            "type": "CODE",
+            "title": "Приклад використання ключів",
+            "code": "const items = ['Apple', 'Banana', 'Cherry'];\nconst listItems = items.map((item, index) => <li key={index}>{item}</li>);\nreturn <ul>{listItems}</ul>;"
+          }
+        ]
+      },
+      {
+        "id": "106",
+        "title": "Які типи даних присутні в JavaScript?",
+        "subtitle": "JavaScript має кілька основних типів даних, включаючи примітивні та об'єктні.",
+        "img": "https://example.com/data_types.jpg",
+        "views": 550,
+        "createdAt": "22.11.2024",
+        "userId": "4",
+        "category": ["JavaScript"],
+        "blocks": [
+          {
+            "id": "1",
+            "type": "TEXT",
+            "title": "Примітивні типи даних",
+            "paragraphs": [
+              "JavaScript має шість примітивних типів даних:",
+              "- **String**: представляє собою послідовність символів.",
+              "- **Number**: представляє числові значення (цілі та дробові).",
+              "- **Boolean**: має два значення: true та false.",
+              "- **Undefined**: тип, який має тільки одне значення - undefined.",
+              "- **Null**: тип, який також має одне значення - null.",
+              "- **Symbol**: унікальний та невизначений тип, що використовується для ідентифікації об'єктів."
+            ]
+          },
+          {
+            "id": "2",
+            "type": "TEXT",
+            "title": "Об'єктні типи даних",
+            "paragraphs": [
+              "Об'єкти є складнішими структурами, які можуть містити ключі та значення, що робить їх надзвичайно потужними для організації даних."
+            ]
+          }
+        ]
+      },
+      {
+        "id": "107",
+        "title": "Що таке NaN?",
+        "subtitle": "NaN (Not-a-Number) є спеціальним значенням у JavaScript.",
+        "img": "https://example.com/nan.jpg",
+        "views": 420,
+        "createdAt": "22.11.2024",
+        "userId": "5",
+        "category": ["JavaScript"],
+        "blocks": [
+          {
+            "id": "1",
+            "type": "TEXT",
+            "title": "Визначення NaN",
+            "paragraphs": [
+              "NaN - це значення, яке вказує на те, що вираз не може бути представленим як число.",
+              "Це часто відбувається в результаті неуспішних операцій над числами, наприклад, ділення нуля на нуль."
+            ]
+          },
+          {
+            "id": "2",
+            "type": "TEXT",
+            "title": "Перевірка NaN",
+            "paragraphs": [
+              "Для перевірки, чи є значення NaN, використовуйте метод `isNaN()`. Важливо зазначити, що NaN не дорівнює самому собі, тому 'NaN === NaN' поверне false."
+            ]
+          },
+          {
+            "id": "3",
+            "type": "CODE",
+            "title": "Приклад NaN",
+            "code": "console.log(NaN === NaN); // false\nconsole.log(isNaN(NaN)); // true"
+          }
+        ]
+      },
+      {
+        "id": "108",
+        "title": "Яка різниця між null та undefined?",
+        "subtitle": "Null та undefined - це два різних типи в JavaScript.",
+        "img": "https://example.com/null_undefined.jpg",
+        "views": 380,
+        "createdAt": "22.11.2024",
+        "userId": "6",
+        "category": ["JavaScript"],
+        "blocks": [
+          {
+            "id": "1",
+            "type": "TEXT",
+            "title": "Визначення null",
+            "paragraphs": [
+              "Null є спеціальним значенням, яке представляє відсутність значення. Це вказує на те, що змінна існує, але не має значення."
+            ]
+          },
+          {
+            "id": "2",
+            "type": "TEXT",
+            "title": "Визначення undefined",
+            "paragraphs": [
+              "Undefined - це тип, який вказує на те, що змінна не була ініціалізована. Якщо змінна оголошена, але не має значення, її значення буде undefined."
+            ]
+          },
+          {
+            "id": "3",
+            "type": "TEXT",
+            "title": "Основні відмінності",
+            "paragraphs": [
+              "- **null**: явне вказівка на відсутність значення.",
+              "- **undefined**: значення, яке автоматично присвоюється змінним, які не були ініціалізовані."
+            ]
+          }
+        ]
+      },
+      {
+        "id": "109",
+        "title": "Чим відрізняється строга і нестрога рівність (=== та ==)?",
+        "subtitle": "JavaScript підтримує два типи порівняння: строгий та нестрогий.",
+        "img": "https://example.com/equality_operators.jpg",
+        "views": 460,
+        "createdAt": "22.11.2024",
+        "userId": "7",
+        "category": ["JavaScript"],
+        "blocks": [
+          {
+            "id": "1",
+            "type": "TEXT",
+            "title": "Нестора рівність (==)",
+            "paragraphs": [
+              "Нестора рівність не враховує тип даних. Це означає, що JavaScript може привести типи до одного виду перед порівнянням.",
+              "Наприклад, '5' == 5 поверне true."
+            ]
+          },
+          {
+            "id": "2",
+            "type": "TEXT",
+            "title": "Строга рівність (===)",
+            "paragraphs": [
+              "Строга рівність враховує тип даних. Це означає, що якщо типи не співпадають, результат буде false.",
+              "Наприклад, '5' === 5 поверне false."
+            ]
+          }
+        ]
+      },
+      {
+        "id": "110",
+        "title": "Чому результатом порівняння двох схожих об'єктів є false?",
+        "subtitle": "Об'єкти у JavaScript мають посилальну природу.",
+        "img": "https://example.com/object_comparison.jpg",
+        "views": 500,
+        "createdAt": "22.11.2024",
+        "userId": "8",
+        "category": ["JavaScript"],
+        "blocks": [
+          {
+            "id": "1",
+            "type": "TEXT",
+            "title": "Порівняння об'єктів",
+            "paragraphs": [
+              "Коли ви порівнюєте об'єкти, JavaScript порівнює не їхні значення, а посилання на об'єкти в пам'яті.",
+              "Це означає, що навіть якщо два об'єкти мають однакові значення, вони все ще вважаються різними."
+            ]
+          },
+          {
+            "id": "2",
+            "type": "CODE",
+            "title": "Приклад порівняння об'єктів",
+            "code": "const obj1 = { name: 'Alice' };\nconst obj2 = { name: 'Alice' };\nconsole.log(obj1 === obj2); // false"
+          }
+        ]
+      },
+      {
+        "id": "111",
+        "title": "Як перевірити 2 об'єкти на ідентичність?",
+        "subtitle": "Перевірка ідентичності об'єктів у JavaScript.",
+        "img": "https://example.com/check_identity.jpg",
+        "views": 410,
+        "createdAt": "22.11.2024",
+        "userId": "9",
+        "category": ["JavaScript"],
+        "blocks": [
+          {
+            "id": "1",
+            "type": "TEXT",
+            "title": "Перевірка на ідентичність",
+            "paragraphs": [
+              "Щоб перевірити, чи два об'єкти ідентичні, ви можете використовувати методи, такі як `JSON.stringify()` для порівняння їх значень.",
+              "Цей метод перетворює об'єкти в рядки, що дозволяє проводити їх порівняння."
+            ]
+          },
+          {
+            "id": "2",
+            "type": "CODE",
+            "title": "Приклад перевірки ідентичності",
+            "code": "const obj1 = { name: 'Alice' };\nconst obj2 = { name: 'Alice' };\nconst isEqual = JSON.stringify(obj1) === JSON.stringify(obj2);\nconsole.log(isEqual); // true"
+          }
+        ]
+      },
+      {
+        "id": "112",
+        "title": "Як зробити копію об'єкта?",
+        "subtitle": "Методи копіювання об'єктів у JavaScript.",
+        "img": "https://example.com/copy_object.jpg",
+        "views": 480,
+        "createdAt": "22.11.2024",
+        "userId": "10",
+        "category": ["JavaScript"],
+        "blocks": [
+          {
+            "id": "1",
+            "type": "TEXT",
+            "title": "Копіювання об'єктів",
+            "paragraphs": [
+              "В JavaScript існує кілька способів копіювання об'єкта:",
+              "- Використання оператора розширення: `const newObj = {...originalObj};`",
+              "- Використання `Object.assign()`: `const newObj = Object.assign({}, originalObj);`"
+            ]
+          },
+          {
+            "id": "2",
+            "type": "CODE",
+            "title": "Приклад копіювання об'єкта",
+            "code": "const original = { a: 1, b: 2 };\nconst copy = { ...original };\nconsole.log(copy); // { a: 1, b: 2 }"
+          }
+        ]
+      },
+      {
+        "id": "113",
+        "title": "Чим відрізняються змінні var, let та const?",
+        "subtitle": "Різниця між змінними в JavaScript.",
+        "img": "https://example.com/var_let_const.jpg",
+        "views": 440,
+        "createdAt": "22.11.2024",
+        "userId": "11",
+        "category": ["JavaScript"],
+        "blocks": [
+          {
+            "id": "1",
+            "type": "TEXT",
+            "title": "Змінна var",
+            "paragraphs": [
+              "Змінні, оголошені за допомогою `var`, мають функціональну область видимості. Це означає, що вони доступні в межах функції, в якій були оголошені."
+            ]
+          },
+          {
+            "id": "2",
+            "type": "TEXT",
+            "title": "Змінна let",
+            "paragraphs": [
+              "Змінні, оголошені за допомогою `let`, мають блочну область видимості. Це означає, що вони доступні тільки в межах блоку коду, в якому були оголошені."
+            ]
+          },
+          {
+            "id": "3",
+            "type": "TEXT",
+            "title": "Змінна const",
+            "paragraphs": [
+              "Змінні, оголошені за допомогою `const`, також мають блочну область видимості, але їх значення не можна змінювати після оголошення."
+            ]
+          }
+        ]
+      },
+      {
+        "id": "114",
+        "title": "Як дізнатися чи є об'єкт масивом?",
+        "subtitle": "Перевірка, чи є об'єкт масивом у JavaScript.",
+        "img": "https://example.com/is_array.jpg",
+        "views": 430,
+        "createdAt": "22.11.2024",
+        "userId": "12",
+        "category": ["JavaScript"],
+        "blocks": [
+          {
+            "id": "1",
+            "type": "TEXT",
+            "title": "Перевірка масиву",
+            "paragraphs": [
+              "Для перевірки, чи є об'єкт масивом, використовуйте метод `Array.isArray()`. Це безпечний і надійний спосіб перевірки."
+            ]
+          },
+          {
+            "id": "2",
+            "type": "CODE",
+            "title": "Приклад перевірки масиву",
+            "code": "const arr = [1, 2, 3];\nconsole.log(Array.isArray(arr)); // true"
+          }
+        ]
+      },
+      {
+        "id": "115",
+        "title": "Які перебираючі методи масивів ви знаєте?",
+        "subtitle": "Методи для перебору масивів у JavaScript.",
+        "img": "https://example.com/array_methods.jpg",
+        "views": 490,
+        "createdAt": "22.11.2024",
+        "userId": "13",
+        "category": ["JavaScript"],
+        "blocks": [
+          {
+            "id": "1",
+            "type": "TEXT",
+            "title": "Основні методи",
+            "paragraphs": [
+              "У JavaScript існує кілька методів для перебору масивів:",
+              "- `forEach()`: виконує функцію для кожного елемента масиву.",
+              "- `map()`: створює новий масив з результатами виклику функції для кожного елемента.",
+              "- `filter()`: створює новий масив з елементами, які проходять тест, заданий функцією.",
+              "- `reduce()`: виконує функцію на кожному елементі масиву для зведення його до єдиного значення."
+            ]
+          }
+        ]
+      },
+      {
+        "id": "116",
+        "title": "Як об'єднати масиви?",
+        "subtitle": "Методи об'єднання масивів у JavaScript.",
+        "img": "https://example.com/array_concat.jpg",
+        "views": 460,
+        "createdAt": "22.11.2024",
+        "userId": "14",
+        "category": ["JavaScript"],
+        "blocks": [
+          {
+            "id": "1",
+            "type": "TEXT",
+            "title": "Методи об'єднання",
+            "paragraphs": [
+              "В JavaScript ви можете об'єднувати масиви за допомогою різних методів:",
+              "- Використання методу `concat()`: `const newArray = array1.concat(array2);`",
+              "- Використання оператора розширення: `const newArray = [...array1, ...array2];`"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "117",
+        "title": "Як дізнатися чи знаходиться елемент у масиві?",
+        "subtitle": "Методи перевірки наявності елементів у масивах.",
+        "img": "https://example.com/array_includes.jpg",
+        "views": 400,
+        "createdAt": "22.11.2024",
+        "userId": "15",
+        "category": ["JavaScript"],
+        "blocks": [
+          {
+            "id": "1",
+            "type": "TEXT",
+            "title": "Перевірка наявності елемента",
+            "paragraphs": [
+              "Для перевірки, чи містить масив певний елемент, ви можете використовувати метод `includes()`. Цей метод повертає true або false."
+            ]
+          },
+          {
+            "id": "2",
+            "type": "CODE",
+            "title": "Приклад перевірки наявності елемента",
+            "code": "const fruits = ['apple', 'banana', 'orange'];\nconsole.log(fruits.includes('banana')); // true"
+          }
+        ]
+      },
+      {
+        "id": "118",
+        "title": "Що таке підняття (hoisting)?",
+        "subtitle": "Підняття є важливим аспектом в JavaScript.",
+        "img": "https://example.com/hoisting.jpg",
+        "views": 470,
+        "createdAt": "22.11.2024",
+        "userId": "16",
+        "category": ["JavaScript"],
+        "blocks": [
+          {
+            "id": "1",
+            "type": "TEXT",
+            "title": "Визначення підняття",
+            "paragraphs": [
+              "Підняття (hoisting) - це механізм, за допомогою якого оголошення змінних та функцій піднімаються на початок своєї області видимості під час виконання коду."
+            ]
+          },
+          {
+            "id": "2",
+            "type": "CODE",
+            "title": "Приклад підняття",
+            "code": "console.log(a); // undefined\nvar a = 5;"
+          }
+        ]
+      },
+      {
+        "id": "119",
+        "title": "Яким буде значення змінної var, якщо звернутися до неї до її оголошення?",
+        "subtitle": "Значення змінної var до оголошення.",
+        "img": "https://example.com/var_value.jpg",
+        "views": 450,
+        "createdAt": "22.11.2024",
+        "userId": "17",
+        "category": ["JavaScript"],
+        "blocks": [
+          {
+            "id": "1",
+            "type": "TEXT",
+            "title": "Значення до оголошення",
+            "paragraphs": [
+              "Якщо ви звертаєтеся до змінної, оголошеної за допомогою `var`, до її оголошення, ви отримаєте значення undefined.",
+              "Це відбувається через механізм підняття."
+            ]
+          },
+          {
+            "id": "2",
+            "type": "CODE",
+            "title": "Приклад",
+            "code": "console.log(a); // undefined\nvar a = 5;"
+          }
+        ]
+      },
+      {
+        "id": "120",
+        "title": "Що буде, якщо звернутися до змінної let/const до її оголошення?",
+        "subtitle": "Значення змінних let та const до оголошення.",
+        "img": "https://example.com/let_const_value.jpg",
+        "views": 420,
+        "createdAt": "22.11.2024",
+        "userId": "18",
+        "category": ["JavaScript"],
+        "blocks": [
+          {
+            "id": "1",
+            "type": "TEXT",
+            "title": "Значення до оголошення",
+            "paragraphs": [
+              "При зверненні до змінної, оголошеної за допомогою `let` або `const`, до її оголошення, ви отримаєте помилку ReferenceError.",
+              "Це відбувається, оскільки ці змінні не підлягають підняттю."
+            ]
+          },
+          {
+            "id": "2",
+            "type": "CODE",
+            "title": "Приклад",
+            "code": "console.log(b); // ReferenceError: Cannot access 'b' before initialization\nlet b = 5;"
+          }
+        ]
+      },
+      {
+        "id": "121",
+        "title": "Що таке область видимості (Scope)?",
+        "subtitle": "Область видимості визначає, де змінні доступні.",
+        "img": "https://example.com/scope.jpg",
+        "views": 430,
+        "createdAt": "22.11.2024",
+        "userId": "19",
+        "category": ["JavaScript"],
+        "blocks": [
+          {
+            "id": "1",
+            "type": "TEXT",
+            "title": "Визначення області видимості",
+            "paragraphs": [
+              "Область видимості (Scope) визначає, де змінні доступні для використання в коді.",
+              "JavaScript має глобальну область видимості та блочну область видимості, яка контролюється фігурними дужками."
+            ]
+          },
+          {
+            "id": "2",
+            "type": "TEXT",
+            "title": "Типи області видимості",
+            "paragraphs": [
+              "- **Глобальна**: змінні доступні з будь-якої частини коду.",
+              "- **Функціональна**: змінні доступні тільки в межах функції.",
+              "- **Блочна**: змінні доступні лише в межах блоку коду (змінні, оголошені за допомогою let і const)."
+            ]
+          }
+        ]
+      },
+
+
+
+
+
 
 
 
