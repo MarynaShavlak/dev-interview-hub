@@ -6,7 +6,8 @@ import { useArticleRatingsCharts } from '../../../lib/hooks/useArticleRatingsCha
 
 export const DeprecatedArticleRatingsCharts = () => {
     const { t } = useTranslation('admin');
-    const { articleRatingsByUsersData } = useArticleRatingsCharts();
+    const { articleRatingsByUsersData, maxXaxisValue } =
+        useArticleRatingsCharts();
 
     const xAxisTitle = t('Відсоток оцінених користувачем статей,%');
     const yAxisTitle = t('Середній рейтинг статей наданий користувачем');
@@ -30,7 +31,7 @@ export const DeprecatedArticleRatingsCharts = () => {
                 yAxisTitle={yAxisTitle}
                 height="400"
                 minXaxisValue={0}
-                maxXaxisValue={100}
+                maxXaxisValue={maxXaxisValue}
                 maxYaxisValue={5}
                 tooltipData={tooltipData}
             />

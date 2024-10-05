@@ -8,7 +8,6 @@ export const RedesignedArticleRatingsCharts = () => {
     const { t } = useTranslation('admin');
     const { articleRatingsByUsersData, maxXaxisValue } =
         useArticleRatingsCharts();
-    console.log('articleRatingsByUsersData', articleRatingsByUsersData);
 
     const xAxisTitle = t('Відсоток оцінених користувачем статей,%');
     const yAxisTitle = t('Середній рейтинг статей наданий користувачем');

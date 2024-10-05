@@ -91,8 +91,6 @@ export const useArticleRatingsCharts = () => {
 
         return { articleRatingsByUsersData: ratingsData, maxXaxisValue };
     }, [articleRatingsCount, totalArticles, t]);
-    console.log('articleRatingsByUsersData', articleRatingsByUsersData);
-    console.log('maxXaxisValue', maxXaxisValue);
 
     return {
         articleRatingsByUsersData,

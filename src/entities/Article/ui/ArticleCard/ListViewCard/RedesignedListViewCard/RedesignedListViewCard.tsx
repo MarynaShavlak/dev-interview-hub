@@ -54,7 +54,7 @@ export const RedesignedListViewCard = memo((props: BaseCardProps) => {
                     bold
                     data-testid="ArticleListItem.Title"
                 />
-                <Text title={article.subtitle} size="s" />
+                <Text title={article.subtitle.text} size="s" />
                 <AppImage
                     fallback={
                         <Skeleton

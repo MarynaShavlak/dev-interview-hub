@@ -15,6 +15,7 @@ import {
 } from '../../../model/selectors/articleDetails';
 import { ArticleDetailsError } from '../ArticleDetailsError/ArticleDetailsError';
 import { ArticleDetailsSkeleton } from '../ArticleDetailsSkeleton/ArticleDetailsSkeleton';
+import { AppLink } from '@/shared/ui/redesigned/AppLink';
 
 export const RedesignedArticleDetails = memo((s) => {
     const { t } = useTranslation('articles');
@@ -29,6 +30,10 @@ export const RedesignedArticleDetails = memo((s) => {
     if (error) {
         return <ArticleDetailsError />;
     }
+
+    const subtitleText = article?.subtitle.text;
+    const subtitleLink = article?.subtitle.link;
+
     return (
         <VStack
             gap="16"
@@ -42,7 +47,15 @@ export const RedesignedArticleDetails = memo((s) => {
                 bold
                 data-testid="ArticleDetails.Title"
             />
-            <Text title={article?.subtitle} />
+            {!subtitleLink && <Text title={subtitleText} />}
+            {subtitleLink && (
+                <VStack gap="4">
+                    <Text text={subtitleText} />
+                    <AppLink to={subtitleLink} target="_blank">
+                        {subtitleLink}
+                    </AppLink>
+                </VStack>
+            )}
             <AppImage
                 fallback={<Skeleton width="100%" height={420} border="16px" />}
                 errorFallback={

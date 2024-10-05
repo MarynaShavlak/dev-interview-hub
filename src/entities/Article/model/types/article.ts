@@ -59,6 +59,11 @@ export type ArticleBlock =
     | ArticleImageBlock
     | ArticleTextBlock;
 
+interface ArticleSubtitle {
+    text: string;
+    link?: string;
+}
+
 /**
  * Interface representing an article.
  *
@@ -77,7 +82,7 @@ export interface Article {
     id: string;
     user: User;
     title: string;
-    subtitle: string;
+    subtitle: ArticleSubtitle;
     img: string;
     views: number;
     createdAt: string;

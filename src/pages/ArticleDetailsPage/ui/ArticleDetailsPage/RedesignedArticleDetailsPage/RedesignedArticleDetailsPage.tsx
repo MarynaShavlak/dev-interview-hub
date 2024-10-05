@@ -1,5 +1,4 @@
 import { memo } from 'react';
-import { AdditionalInfoContainer } from '../../AdditionalInfoContainer/AdditionalInfoContainer';
 import cls from '../ArticleDetailsPage.module.scss';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { Page } from '@/widgets/Page';
@@ -8,6 +7,7 @@ import { ArticleListNavigationButton } from '@/features/ArticleListNavigationBut
 import { StickyContentLayout } from '@/shared/layouts/StickyContentLayout';
 
 import { ArticleDetailsPageContainer } from '../ArticleDetailsPageContainer/ArticleDetailsPageContainer';
+import { AdditionalInfoContainer } from '../../AdditionalInfoContainer/AdditionalInfoContainer';
 
 export const RedesignedArticleDetailsPage = memo(
     ({ className }: ArticleDetailsPageProps) => {

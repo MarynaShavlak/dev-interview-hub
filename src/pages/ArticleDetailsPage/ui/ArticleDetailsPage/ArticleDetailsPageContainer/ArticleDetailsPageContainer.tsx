@@ -12,11 +12,15 @@ import { Card } from '@/shared/ui/redesigned/Card';
 import { ArticleDetailsPageHeader } from '../DeprecatedArticleDetailsPage/ArticleDetailsPageHeader/ArticleDetailsPageHeader';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
 import { ArticleRecommendationsList } from '@/features/ArticleRecommendationsList';
+import { useUserAuthData } from '@/entities/User';
 
 export const ArticleDetailsPageContainer = memo(() => {
     const { id } = useParams<{ id: string }>();
     const error = useArticleDetailsError();
     const article = useArticleDetailsData();
+    const currentUserdata = useUserAuthData();
+    const articleAuthorId = article?.user.id;
+    const authedUserId = currentUserdata?.id;
 
     return (
         <VStack gap="16" max>
@@ -36,7 +40,10 @@ export const ArticleDetailsPageContainer = memo(() => {
             />
             {article && !error && (
                 <>
-                    <ArticleRating articleId={id} />
+                    {articleAuthorId !== authedUserId && (
+                        <ArticleRating articleId={id} />
+                    )}
+
                     <ArticleRecommendationsList />
                     <ArticleComments id={id} />
                 </>

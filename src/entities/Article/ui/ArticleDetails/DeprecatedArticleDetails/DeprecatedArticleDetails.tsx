@@ -15,11 +15,14 @@ import {
     useArticleDetailsError,
     useArticleDetailsIsLoading,
 } from '../../../model/selectors/articleDetails';
+import { AppLink } from '@/shared/ui/deprecated/AppLink';
 
 export const DeprecatedArticleDetails = memo(() => {
     const article = useArticleDetailsData();
     const isLoading = useArticleDetailsIsLoading();
     const error = useArticleDetailsError();
+    const subtitleText = article?.subtitle.text;
+    const subtitleLink = article?.subtitle.link;
 
     if (isLoading) {
         return <ArticleDetailsSkeleton />;
@@ -43,12 +46,28 @@ export const DeprecatedArticleDetails = memo(() => {
                 />
             </HStack>
             <VStack gap="4" max>
-                <Text
-                    title={article?.title}
-                    text={article?.subtitle}
-                    size={TextSize.L}
-                    data-testid="ArticleDetails.Title"
-                />
+                {!subtitleLink && (
+                    <Text
+                        title={article?.title}
+                        text={subtitleText}
+                        size={TextSize.L}
+                        data-testid="ArticleDetails.Title"
+                    />
+                )}
+                {subtitleLink && (
+                    <VStack gap="4">
+                        <Text
+                            title={article?.title}
+                            size={TextSize.L}
+                            data-testid="ArticleDetails.Title"
+                        />
+                        <Text text={subtitleText} />
+                        <AppLink to={subtitleLink} target="_blank">
+                            {subtitleLink}
+                        </AppLink>
+                    </VStack>
+                )}
+
                 <HStack gap="8">
                     <Icon Svg={EyeIcon} width={20} height={20} />
                     <Text
