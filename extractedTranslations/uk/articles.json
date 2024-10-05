@@ -18,5 +18,8 @@
     "REACT": "REACT",
     "CSS": "CSS",
     "Дефолтне зображення картинки статті": "Дефолтне зображення картинки статті",
-  "JAVASCRIPT": "JAVASCRIPT"
+  "JAVASCRIPT": "JAVASCRIPT",
+  "TypeScript": "TypeScript",
+    "JavaScript": "JavaScript",
+    "React": "React"
 }

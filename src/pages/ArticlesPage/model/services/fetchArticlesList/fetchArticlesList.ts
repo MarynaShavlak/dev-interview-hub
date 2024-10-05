@@ -65,28 +65,28 @@ export const fetchArticlesList = createAsyncThunk<
                 _sort: sort,
                 _order: order,
                 q: search,
-                // category:
-                //     category === ArticleCategory.ALL ? undefined : category,
+                category:
+                    category === ArticleCategory.ALL ? undefined : category,
             },
         });
 
         if (!response.data) {
             return rejectWithValue('No articles found.');
         }
-        console.log('response.data', response.data);
-        console.log('category', category);
-        const filteredArticles =
-            category === ArticleCategory.ALL
-                ? response.data
-                : response.data.filter(
-                      (article) =>
-                          article.category &&
-                          article.category.includes(category),
-                  );
-        console.log('filteredArticles', filteredArticles);
-        return filteredArticles;
+        // console.log('response.data', response.data);
+        // console.log('category', category);
+        // const filteredArticles =
+        //     category === ArticleCategory.ALL
+        //         ? response.data
+        //         : response.data.filter(
+        //               (article) =>
+        //                   article.category &&
+        //                   article.category.includes(category),
+        //           );
+        // console.log('filteredArticles', filteredArticles);
+        // return filteredArticles;
 
-        // return response.data;
+        return response.data;
     } catch (error) {
         console.error('Error fetching articles list:', error);
         return rejectWithValue('Failed to fetch articles.');

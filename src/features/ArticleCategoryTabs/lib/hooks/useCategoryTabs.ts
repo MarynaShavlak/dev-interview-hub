@@ -33,11 +33,15 @@ export const useCategoryTabs = () => {
         },
         {
             value: ArticleCategory.REACT,
-            content: t('REACT'),
+            content: t('React'),
         },
         {
             value: ArticleCategory.JAVASCRIPT,
-            content: t('JAVASCRIPT'),
+            content: t('JavaScript'),
+        },
+        {
+            value: ArticleCategory.TYPESCRIPT,
+            content: t('TypeScript'),
         },
     ] as TabItem[];
 };

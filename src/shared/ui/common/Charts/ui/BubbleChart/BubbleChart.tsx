@@ -41,6 +41,9 @@ export const BubbleChart = (props: BubbleChartProps) => {
             max: maxXaxisValue,
             tickAmount: 10,
         },
+        legend: {
+            show: false,
+        },
         yaxis: {
             title: { text: yAxisTitle },
             max: maxYaxisValue,
@@ -49,8 +52,10 @@ export const BubbleChart = (props: BubbleChartProps) => {
         plotOptions: {
             bubble: {
                 zScaling: true,
-                minBubbleRadius: 20,
             },
+        },
+        dataLabels: {
+            enabled: false,
         },
         tooltip: {
             custom: ({ seriesIndex, dataPointIndex, w }) => {

@@ -49,35 +49,53 @@ export const useArticleRatingsCharts = () => {
         () => countRatings(ratings),
         [ratings],
     );
-    console.log('articleRatingsCount', articleRatingsCount);
-    const articleRatingsByUsersData = useMemo(() => {
-        return Object.entries(articleRatingsCount).map(([userId, userData]) => {
-            const { totalRating, articlesWithRating, articlesWithFeedback } =
-                userData;
 
-            const averageRating = articlesWithRating
-                ? (totalRating / articlesWithRating).toFixed(1)
-                : '0.0';
+    const { articleRatingsByUsersData, maxXaxisValue } = useMemo(() => {
+        const percentageRatedValues: number[] = [];
+        const ratingsData = Object.entries(articleRatingsCount).map(
+            ([userId, userData]) => {
+                const {
+                    totalRating,
+                    articlesWithRating,
+                    articlesWithFeedback,
+                } = userData;
 
-            const percentageRated = totalArticles
-                ? (articlesWithRating / totalArticles) * 100
-                : 0;
+                const averageRating = articlesWithRating
+                    ? (totalRating / articlesWithRating).toFixed(1)
+                    : '0.0';
 
-            return {
-                name: `${t(`userId`)}:  ${userId} `,
-                data: [
-                    [
-                        percentageRated,
-                        parseFloat(averageRating),
-                        articlesWithFeedback,
+                const percentageRated = totalArticles
+                    ? (articlesWithRating / totalArticles) * 100
+                    : 0;
+
+                const formattedPercentageRated = parseFloat(
+                    percentageRated.toFixed(1),
+                );
+
+                percentageRatedValues.push(formattedPercentageRated);
+
+                return {
+                    name: `${t(`userId`)}:  ${userId} `,
+                    data: [
+                        [
+                            formattedPercentageRated,
+                            parseFloat(averageRating),
+                            articlesWithFeedback,
+                        ],
                     ],
-                ],
-            };
-        });
-    }, [articleRatingsCount, totalArticles, t]);
+                };
+            },
+        );
 
-    console.log(articleRatingsByUsersData);
+        const maxXaxisValue = Math.max(...percentageRatedValues);
+
+        return { articleRatingsByUsersData: ratingsData, maxXaxisValue };
+    }, [articleRatingsCount, totalArticles, t]);
+    console.log('articleRatingsByUsersData', articleRatingsByUsersData);
+    console.log('maxXaxisValue', maxXaxisValue);
+
     return {
         articleRatingsByUsersData,
+        maxXaxisValue: maxXaxisValue + 2,
     };
 };

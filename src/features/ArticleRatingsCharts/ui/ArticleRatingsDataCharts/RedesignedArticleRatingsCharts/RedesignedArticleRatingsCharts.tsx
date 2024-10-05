@@ -6,7 +6,9 @@ import { useArticleRatingsCharts } from '../../../lib/hooks/useArticleRatingsCha
 
 export const RedesignedArticleRatingsCharts = () => {
     const { t } = useTranslation('admin');
-    const { articleRatingsByUsersData } = useArticleRatingsCharts();
+    const { articleRatingsByUsersData, maxXaxisValue } =
+        useArticleRatingsCharts();
+    console.log('articleRatingsByUsersData', articleRatingsByUsersData);
 
     const xAxisTitle = t('Відсоток оцінених користувачем статей,%');
     const yAxisTitle = t('Середній рейтинг статей наданий користувачем');
@@ -30,8 +32,8 @@ export const RedesignedArticleRatingsCharts = () => {
                 yAxisTitle={yAxisTitle}
                 height="400"
                 minXaxisValue={0}
-                maxXaxisValue={100}
-                maxYaxisValue={5}
+                maxXaxisValue={maxXaxisValue}
+                maxYaxisValue={6}
                 tooltipData={tooltipData}
             />
         </Card>

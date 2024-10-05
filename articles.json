@@ -1,602 +1,4 @@
 {
-  "notifications": [
-    {
-      "id": "1",
-      "title": "Notification 1",
-      "description": "An event occurred",
-      "userId": "1"
-    },
-    {
-      "id": "2",
-      "title": "Notification 2",
-      "description": "An event occurred",
-      "userId": "1",
-      "href": "http://localhost:3000/admin"
-    },
-    {
-      "id": "3",
-      "title": "Notification 3",
-      "description": "An event occurred",
-      "userId": "1",
-      "href": "http://localhost:3000/admin"
-    },
-    {
-      "id": "4",
-      "title": "Notification 4",
-      "description": "An event occurred",
-      "userId": "1"
-    },
-    {
-      "id": "5",
-      "title": "Notification 1",
-      "description": "An event occurred",
-      "userId": "2"
-    }
-  ],
-  "users": [
-    {
-      "id": "1",
-      "username": "admin",
-      "password": "123",
-      "roles": [
-        "ADMIN",
-        "Manager"
-      ],
-      "features": {
-        "isArticleRatingEnabled": true,
-        "isAppRedesigned": true
-      },
-      "jsonSettings": {
-        "theme": "app_light_theme",
-        "isFirstVisit": true,
-        "settingsPageHasBeenOpen": false,
-        "isArticlesPageWasOpened": true
-      },
-      "avatar": "https://drive.google.com/thumbnail?id=1RD0jSAm8kdTLKa-Vr0daeE8T9-QcfPCa&sz=w1000"
-    },
-    {
-      "id": "2",
-      "username": "user",
-      "password": "123",
-      "roles": [
-        "USER"
-      ],
-      "features": {
-        "isArticleRatingEnabled": false,
-        "isAppRedesigned": false
-      },
-      "jsonSettings": {
-        "isArticlesPageWasOpened": true,
-        "theme": "app_light_theme"
-      },
-      "avatar": "https://drive.google.com/thumbnail?id=1J1xUPYYkJeOsBTpDuf36vsV7UfxlM2uG&sz=w1000"
-    },
-    {
-      "id": "3",
-      "username": "manager",
-      "password": "123",
-      "roles": [
-        "MANAGER"
-      ],
-      "features": {
-        "isArticleRatingEnabled": false,
-        "isAppRedesigned": false
-      },
-      "avatar": "https://st3.depositphotos.com/1071184/13782/v/450/depositphotos_137825710-stock-illustration-business-person-analyzing-financial-statistics.jpg"
-    },
-    {
-      "id": "4",
-      "username": "testuser",
-      "password": "123",
-      "roles": [
-        "ADMIN"
-      ],
-      "features": {
-        "isArticleRatingEnabled": true,
-        "isAppRedesigned": true
-      },
-      "jsonSettings": {
-        "isArticlesPageWasOpened": true,
-        "theme": "app_orange_theme"
-      },
-      "avatar": "https://s1.1zoom.ru/big3/992/367659-alexfas01.jpg"
-    },
-    {
-      "id": "5",
-      "username": "testuser2",
-      "password": "123",
-      "roles": [
-        "ADMIN"
-      ],
-      "features": {
-        "isArticleRatingEnabled": false,
-        "isAppRedesigned": false
-      },
-      "jsonSettings": {
-        "isArticlesPageWasOpened": true,
-        "theme": "app_orange_theme"
-      },
-      "avatar": "FRGDHJ"
-    },
-    {
-      "id": "6",
-      "username": "markUser",
-      "password": "abc123",
-      "roles": [
-        "USER"
-      ],
-      "features": {
-        "isArticleRatingEnabled": false,
-        "isAppRedesigned": false
-      },
-      "jsonSettings": {
-        "isArticlesPageWasOpened": false,
-        "theme": "app_light_theme"
-      },
-      "avatar": "https://example.com/avatar6.png"
-    },
-    {
-      "id": "7",
-      "username": "katyaAdmin",
-      "password": "admin456",
-      "roles": [
-        "ADMIN",
-        "USER"
-      ],
-      "features": {
-        "isArticleRatingEnabled": true,
-        "isAppRedesigned": true
-      },
-      "jsonSettings": {
-        "isArticlesPageWasOpened": true,
-        "theme": "app_dark_theme"
-      },
-      "avatar": "https://example.com/avatar7.jpg"
-    },
-    {
-      "id": "8",
-      "username": "johnManager",
-      "password": "manager123",
-      "roles": [
-        "MANAGER"
-      ],
-      "features": {
-        "isArticleRatingEnabled": false,
-        "isAppRedesigned": false
-      },
-      "jsonSettings": {
-        "isArticlesPageWasOpened": true,
-        "theme": "app_light_theme"
-      },
-      "avatar": "https://example.com/avatar8.jpg"
-    },
-    {
-      "id": "9",
-      "username": "annaUser",
-      "password": "user789",
-      "roles": [
-        "USER"
-      ],
-      "features": {
-        "isArticleRatingEnabled": false,
-        "isAppRedesigned": false
-      },
-      "jsonSettings": {
-        "isArticlesPageWasOpened": true,
-        "theme": "app_orange_theme"
-      },
-      "avatar": "https://example.com/avatar9.jpg"
-    },
-    {
-      "id": "10",
-      "username": "lucyAdmin",
-      "password": "admin789",
-      "roles": [
-        "ADMIN"
-      ],
-      "features": {
-        "isArticleRatingEnabled": true,
-        "isAppRedesigned": true
-      },
-      "jsonSettings": {
-        "isArticlesPageWasOpened": true,
-        "theme": "app_light_theme"
-      },
-      "avatar": "https://example.com/avatar10.jpg"
-    },
-    {
-      "id": "11",
-      "username": "alexManager",
-      "password": "manage456",
-      "roles": [
-        "MANAGER"
-      ],
-      "features": {
-        "isArticleRatingEnabled": false,
-        "isAppRedesigned": false
-      },
-      "jsonSettings": {
-        "isArticlesPageWasOpened": false,
-        "theme": "app_dark_theme"
-      },
-      "avatar": "https://example.com/avatar11.jpg"
-    },
-    {
-      "id": "12",
-      "username": "leoUser",
-      "password": "user123",
-      "roles": [
-        "USER"
-      ],
-      "features": {
-        "isArticleRatingEnabled": true,
-        "isAppRedesigned": false
-      },
-      "jsonSettings": {
-        "isArticlesPageWasOpened": true,
-        "theme": "app_orange_theme"
-      },
-      "avatar": "https://example.com/avatar12.jpg"
-    },
-    {
-      "id": "13",
-      "username": "janeAdmin",
-      "password": "admin000",
-      "roles": [
-        "ADMIN"
-      ],
-      "features": {
-        "isArticleRatingEnabled": true,
-        "isAppRedesigned": true
-      },
-      "jsonSettings": {
-        "isArticlesPageWasOpened": true,
-        "theme": "app_dark_theme"
-      },
-      "avatar": "https://example.com/avatar13.jpg"
-    },
-    {
-      "id": "14",
-      "username": "peterManager",
-      "password": "manage999",
-      "roles": [
-        "MANAGER"
-      ],
-      "features": {
-        "isArticleRatingEnabled": false,
-        "isAppRedesigned": false
-      },
-      "jsonSettings": {
-        "isArticlesPageWasOpened": true,
-        "theme": "app_light_theme"
-      },
-      "avatar": "https://example.com/avatar14.jpg"
-    },
-    {
-      "id": "15",
-      "username": "mariaUser",
-      "password": "user555",
-      "roles": [
-        "USER"
-      ],
-      "features": {
-        "isArticleRatingEnabled": true,
-        "isAppRedesigned": false
-      },
-      "jsonSettings": {
-        "isArticlesPageWasOpened": true,
-        "theme": "app_orange_theme"
-      },
-      "avatar": "https://example.com/avatar15.jpg"
-    },
-    {
-      "id": "16",
-      "username": "maxAdmin",
-      "password": "admin888",
-      "roles": [
-        "ADMIN"
-      ],
-      "features": {
-        "isArticleRatingEnabled": true,
-        "isAppRedesigned": true
-      },
-      "jsonSettings": {
-        "isArticlesPageWasOpened": true,
-        "theme": "app_dark_theme"
-      },
-      "avatar": "https://example.com/avatar16.jpg"
-    },
-    {
-      "id": "17",
-      "username": "nickManager",
-      "password": "manage123",
-      "roles": [
-        "MANAGER"
-      ],
-      "features": {
-        "isArticleRatingEnabled": false,
-        "isAppRedesigned": false
-      },
-      "jsonSettings": {
-        "isArticlesPageWasOpened": true,
-        "theme": "app_light_theme"
-      },
-      "avatar": "https://example.com/avatar17.jpg"
-    },
-    {
-      "id": "18",
-      "username": "claraUser",
-      "password": "user444",
-      "roles": [
-        "USER"
-      ],
-      "features": {
-        "isArticleRatingEnabled": true,
-        "isAppRedesigned": false
-      },
-      "jsonSettings": {
-        "isArticlesPageWasOpened": true,
-        "theme": "app_orange_theme"
-      },
-      "avatar": "https://example.com/avatar18.jpg"
-    },
-    {
-      "id": "19",
-      "username": "tomAdmin",
-      "password": "admin123",
-      "roles": [
-        "ADMIN"
-      ],
-      "features": {
-        "isArticleRatingEnabled": true,
-        "isAppRedesigned": true
-      },
-      "jsonSettings": {
-        "isArticlesPageWasOpened": true,
-        "theme": "app_dark_theme"
-      },
-      "avatar": "https://example.com/avatar19.jpg"
-    },
-    {
-      "id": "20",
-      "username": "sarahManager",
-      "password": "manage555",
-      "roles": [
-        "MANAGER"
-      ],
-      "features": {
-        "isArticleRatingEnabled": false,
-        "isAppRedesigned": false
-      },
-      "jsonSettings": {
-        "isArticlesPageWasOpened": true,
-        "theme": "app_light_theme"
-      },
-      "avatar": "https://example.com/avatar20.jpg"
-    }
-  ],
-  "profile": [
-    {
-      "id": "1",
-      "firstname": "Maryna",
-      "lastname": "Shavlak",
-      "age": 30,
-      "currency": "EUR",
-      "country": "Ukraine",
-      "city": "Kharkiv",
-      "username": "admin",
-      "avatar": "https://drive.google.com/thumbnail?id=1RD0jSAm8kdTLKa-Vr0daeE8T9-QcfPCa&sz=w1000"
-    },
-    {
-      "id": "2",
-      "firstname": "Tetiana",
-      "lastname": "Shavlak",
-      "age": 54,
-      "currency": "UAH",
-      "country": "Ukraine",
-      "city": "Kyiv",
-      "username": "user",
-      "avatar": "https://drive.google.com/thumbnail?id=1J1xUPYYkJeOsBTpDuf36vsV7UfxlM2uG&sz=w1000"
-    },
-    {
-      "id": "3",
-      "firstname": "Maxim",
-      "lastname": "Shavlak",
-      "age": 27,
-      "currency": "EUR",
-      "country": "Ukraine",
-      "city": "Kyiv",
-      "username": "manager",
-      "avatar": "https://st3.depositphotos.com/1071184/13782/v/450/depositphotos_137825710-stock-illustration-business-person-analyzing-financial-statistics.jpg"
-    },
-    {
-      "id": "4",
-      "firstname": "Test",
-      "lastname": "User",
-      "age": 45,
-      "currency": "EUR",
-      "country": "Ukraine",
-      "city": "Kharkiv",
-      "username": "testuser",
-      "avatar": "https://s1.1zoom.ru/big3/992/367659-alexfas01.jpg"
-    },
-    {
-      "id": "5",
-      "firstname": "Test2",
-      "lastname": "User2",
-      "age": 25,
-      "currency": "EUR",
-      "country": "Ukraine",
-      "city": "Kharkiv",
-      "username": "testuser2",
-      "avatar": "FRGDHJ"
-    },
-    {
-      "id": "6",
-      "firstname": "Mark",
-      "lastname": "Smith",
-      "age": 28,
-      "currency": "USD",
-      "country": "Poland",
-      "city": "Warsaw",
-      "username": "markUser",
-      "avatar": "https://example.com/avatar6.png"
-    },
-    {
-      "id": "7",
-      "firstname": "Katya",
-      "lastname": "Ivanova",
-      "age": 35,
-      "currency": "UAH",
-      "country": "Ukraine",
-      "city": "Lviv",
-      "username": "katyaAdmin",
-      "avatar": "https://example.com/avatar7.jpg"
-    },
-    {
-      "id": "8",
-      "firstname": "John",
-      "lastname": "Doe",
-      "age": 40,
-      "currency": "USD",
-      "country": "Ireland",
-      "city": "Dublin",
-      "username": "johnManager",
-      "avatar": "https://example.com/avatar8.jpg"
-    },
-    {
-      "id": "9",
-      "firstname": "Anna",
-      "lastname": "Koval",
-      "age": 22,
-      "currency": "EUR",
-      "country": "Germany",
-      "city": "Berlin",
-      "username": "annaUser",
-      "avatar": "https://example.com/avatar9.jpg"
-    },
-    {
-      "id": "10",
-      "firstname": "Lucy",
-      "lastname": "Brown",
-      "age": 30,
-      "currency": "EUR",
-      "country": "Poland",
-      "city": "Krakow",
-      "username": "lucyAdmin",
-      "avatar": "https://example.com/avatar10.jpg"
-    },
-    {
-      "id": "11",
-      "firstname": "Alex",
-      "lastname": "Johnson",
-      "age": 37,
-      "currency": "USD",
-      "country": "Croatia",
-      "city": "Zagreb",
-      "username": "alexManager",
-      "avatar": "https://example.com/avatar11.jpg"
-    },
-    {
-      "id": "12",
-      "firstname": "Leo",
-      "lastname": "Mikhailov",
-      "age": 29,
-      "currency": "UAH",
-      "country": "Ukraine",
-      "city": "Odessa",
-      "username": "leoUser",
-      "avatar": "https://example.com/avatar12.jpg"
-    },
-    {
-      "id": "13",
-      "firstname": "Jane",
-      "lastname": "Williams",
-      "age": 33,
-      "currency": "USD",
-      "country": "Ireland",
-      "city": "Cork",
-      "username": "janeAdmin",
-      "avatar": "https://example.com/avatar13.jpg"
-    },
-    {
-      "id": "14",
-      "firstname": "Peter",
-      "lastname": "Muller",
-      "age": 42,
-      "currency": "EUR",
-      "country": "Germany",
-      "city": "Hamburg",
-      "username": "peterManager",
-      "avatar": "https://example.com/avatar14.jpg"
-    },
-    {
-      "id": "15",
-      "firstname": "Maria",
-      "lastname": "Petrova",
-      "age": 27,
-      "currency": "UAH",
-      "country": "Ukraine",
-      "city": "Kyiv",
-      "username": "mariaUser",
-      "avatar": "https://example.com/avatar15.jpg"
-    },
-    {
-      "id": "16",
-      "firstname": "Max",
-      "lastname": "Gordon",
-      "age": 38,
-      "currency": "EUR",
-      "country": "Poland",
-      "city": "Poznan",
-      "username": "maxAdmin",
-      "avatar": "https://example.com/avatar16.jpg"
-    },
-    {
-      "id": "17",
-      "firstname": "Nick",
-      "lastname": "Garcia",
-      "age": 41,
-      "currency": "USD",
-      "country": "Croatia",
-      "city": "Split",
-      "username": "nickManager",
-      "avatar": "https://example.com/avatar17.jpg"
-    },
-    {
-      "id": "18",
-      "firstname": "Clara",
-      "lastname": "Santos",
-      "age": 32,
-      "currency": "EUR",
-      "country": "Germany",
-      "city": "Munich",
-      "username": "claraUser",
-      "avatar": "https://example.com/avatar18.jpg"
-    },
-    {
-      "id": "19",
-      "firstname": "Tom",
-      "lastname": "Anderson",
-      "age": 36,
-      "currency": "USD",
-      "country": "Ireland",
-      "city": "Galway",
-      "username": "tomAdmin",
-      "avatar": "https://example.com/avatar19.jpg"
-    },
-    {
-      "id": "20",
-      "firstname": "Sarah",
-      "lastname": "Cooper",
-      "age": 39,
-      "currency": "EUR",
-      "country": "Croatia",
-      "city": "Rijeka",
-      "username": "sarahManager",
-      "avatar": "https://example.com/avatar20.jpg"
-    }
-  ],
   "articles": [
     {
       "id": "1",
@@ -604,10 +6,10 @@
       "subtitle": "Джерело: https://reactjs.org/docs/faq-internals.html",
       "img": "https://example.com/virtual-dom.jpg",
       "views": 1560,
-      "createdAt": "10.04.2023",
+      "createdAt": "10.09.2023",
       "userId": "1",
       "category": [
-        "React"
+        "REACT"
       ],
       "blocks": [
         {
@@ -663,7 +65,7 @@
       "createdAt": "15.08.2023",
       "userId": "1",
       "category": [
-        "React"
+        "REACT"
       ],
       "blocks": [
         {
@@ -716,7 +118,7 @@
       "createdAt": "22.06.2023",
       "userId": "2",
       "category": [
-        "React"
+        "REACT"
       ],
       "blocks": [
         {
@@ -770,7 +172,7 @@
       "createdAt": "10.05.2023",
       "userId": "2",
       "category": [
-        "React"
+        "REACT"
       ],
       "blocks": [
         {
@@ -816,7 +218,7 @@
       "createdAt": "30.09.2023",
       "userId": "3",
       "category": [
-        "React"
+        "REACT"
       ],
       "blocks": [
         {
@@ -867,10 +269,10 @@
       "subtitle": "Джерело: https://reactjs.org/docs/state-and-lifecycle.html",
       "img": "https://example.com/update-state.jpg",
       "views": 680,
-      "createdAt": "12.05.2023",
+      "createdAt": "12.10.2023",
       "userId": "3",
       "category": [
-        "React"
+        "REACT"
       ],
       "blocks": [
         {
@@ -924,7 +326,7 @@
       "createdAt": "21.09.2023",
       "userId": "4",
       "category": [
-        "React"
+        "REACT"
       ],
       "blocks": [
         {
@@ -974,10 +376,10 @@
       "subtitle": "Джерело: https://reactjs.org/docs/state-and-lifecycle.html",
       "img": "https://example.com/component-update.jpg",
       "views": 580,
-      "createdAt": "01.06.2023",
+      "createdAt": "01.10.2023",
       "userId": "5",
       "category": [
-        "React"
+        "REACT"
       ],
       "blocks": [
         {
@@ -1018,10 +420,10 @@
       "subtitle": "Джерело: https://reactjs.org/docs/optimizing-performance.html",
       "img": "https://example.com/prevent-re-renders.jpg",
       "views": 430,
-      "createdAt": "03.04.2023",
+      "createdAt": "03.10.2023",
       "userId": "5",
       "category": [
-        "React"
+        "REACT"
       ],
       "blocks": [
         {
@@ -1063,10 +465,10 @@
       "subtitle": "Джерело: https://reactjs.org/docs/refs-and-the-dom.html",
       "img": "https://example.com/react-refs.jpg",
       "views": 510,
-      "createdAt": "07.05.2023",
+      "createdAt": "07.10.2023",
       "userId": "6",
       "category": [
-        "React"
+        "REACT"
       ],
       "blocks": [
         {
@@ -1107,10 +509,10 @@
       "subtitle": "Джерело: https://reactjs.org/docs/higher-order-components.html",
       "img": "https://example.com/hocs-react.jpg",
       "views": 600,
-      "createdAt": "09.06.2023",
+      "createdAt": "09.10.2023",
       "userId": "6",
       "category": [
-        "React"
+        "REACT"
       ],
       "blocks": [
         {
@@ -1151,10 +553,10 @@
       "subtitle": "Джерело: https://reactjs.org/docs/purecomponent.html",
       "img": "https://example.com/purecomponent.jpg",
       "views": 350,
-      "createdAt": "11.05.2023",
+      "createdAt": "01.10.2023",
       "userId": "7",
       "category": [
-        "React"
+        "REACT"
       ],
       "blocks": [
         {
@@ -1195,10 +597,10 @@
       "subtitle": "Джерело: https://reactjs.org/docs/lists-and-keys.html",
       "img": "https://example.com/react-keys.jpg",
       "views": 420,
-      "createdAt": "03.06.2023",
+      "createdAt": "03.10.2023",
       "userId": "7",
       "category": [
-        "React"
+        "REACT"
       ],
       "blocks": [
         {
@@ -1239,10 +641,10 @@
       "subtitle": "Джерело: https://reactjs.org/docs/fragments.html",
       "img": "https://example.com/fragment.jpg",
       "views": 390,
-      "createdAt": "05.04.2023",
+      "createdAt": "05.10.2023",
       "userId": "8",
       "category": [
-        "React"
+        "REACT"
       ],
       "blocks": [
         {
@@ -1283,10 +685,10 @@
       "subtitle": "Джерело: https://reactjs.org/docs/portals.html",
       "img": "https://example.com/portals.jpg",
       "views": 300,
-      "createdAt": "07.05.2023",
+      "createdAt": "07.10.2023",
       "userId": "8",
       "category": [
-        "React"
+        "REACT"
       ],
       "blocks": [
         {
@@ -1327,10 +729,10 @@
       "subtitle": "Джерело: https://reactjs.org/docs/context.html",
       "img": "https://example.com/context.jpg",
       "views": 480,
-      "createdAt": "10.04.2023",
+      "createdAt": "10.10.2023",
       "userId": "9",
       "category": [
-        "React"
+        "REACT"
       ],
       "blocks": [
         {
@@ -1371,10 +773,10 @@
       "subtitle": "Джерело: https://reactjs.org/docs/render-props.html",
       "img": "https://example.com/render-props.jpg",
       "views": 440,
-      "createdAt": "12.06.2023",
+      "createdAt": "12.10.2023",
       "userId": "9",
       "category": [
-        "React"
+        "REACT"
       ],
       "blocks": [
         {
@@ -1418,7 +820,7 @@
       "createdAt": "15.10.2023",
       "userId": "10",
       "category": [
-        "React"
+        "REACT"
       ],
       "blocks": [
         {
@@ -1462,7 +864,7 @@
       "createdAt": "17.10.2023",
       "userId": "10",
       "category": [
-        "React"
+        "REACT"
       ],
       "blocks": [
         {
@@ -1505,7 +907,7 @@
       "createdAt": "20.10.2023",
       "userId": "11",
       "category": [
-        "React"
+        "REACT"
       ],
       "blocks": [
         {
@@ -1551,7 +953,7 @@
       "createdAt": "23.10.2023",
       "userId": "11",
       "category": [
-        "React"
+        "REACT"
       ],
       "blocks": [
         {
@@ -1594,7 +996,7 @@
       "createdAt": "01.11.2023",
       "userId": "11",
       "category": [
-        "React"
+        "REACT"
       ],
       "blocks": [
         {
@@ -1639,7 +1041,7 @@
       "createdAt": "03.11.2023",
       "userId": "11",
       "category": [
-        "React"
+        "REACT"
       ],
       "blocks": [
         {
@@ -1683,7 +1085,7 @@
       "createdAt": "05.11.2023",
       "userId": "12",
       "category": [
-        "React"
+        "REACT"
       ],
       "blocks": [
         {
@@ -1728,7 +1130,7 @@
       "createdAt": "07.11.2023",
       "userId": "12",
       "category": [
-        "React"
+        "REACT"
       ],
       "blocks": [
         {
@@ -1773,7 +1175,7 @@
       "createdAt": "10.11.2023",
       "userId": "13",
       "category": [
-        "React"
+        "REACT"
       ],
       "blocks": [
         {
@@ -1816,7 +1218,7 @@
       "createdAt": "12.11.2023",
       "userId": "13",
       "category": [
-        "React"
+        "REACT"
       ],
       "blocks": [
         {
@@ -1859,7 +1261,7 @@
       "createdAt": "15.11.2023",
       "userId": "14",
       "category": [
-        "React"
+        "REACT"
       ],
       "blocks": [
         {
@@ -1906,7 +1308,7 @@
       "createdAt": "17.11.2023",
       "userId": "14",
       "category": [
-        "React"
+        "REACT"
       ],
       "blocks": [
         {
@@ -1949,7 +1351,7 @@
       "createdAt": "20.11.2023",
       "userId": "15",
       "category": [
-        "React"
+        "REACT"
       ],
       "blocks": [
         {
@@ -1993,7 +1395,7 @@
       "createdAt": "22.11.2023",
       "userId": "15",
       "category": [
-        "React"
+        "REACT"
       ],
       "blocks": [
         {
@@ -2036,7 +1438,7 @@
       "createdAt": "25.11.2023",
       "userId": "16",
       "category": [
-        "React"
+        "REACT"
       ],
       "blocks": [
         {
@@ -2079,7 +1481,7 @@
       "createdAt": "28.11.2023",
       "userId": "16",
       "category": [
-        "React"
+        "REACT"
       ],
       "blocks": [
         {
@@ -2123,7 +1525,7 @@
       "createdAt": "02.12.2023",
       "userId": "17",
       "category": [
-        "React"
+        "REACT"
       ],
       "blocks": [
         {
@@ -2166,7 +1568,7 @@
       "createdAt": "05.12.2023",
       "userId": "17",
       "category": [
-        "React"
+        "REACT"
       ],
       "blocks": [
         {
@@ -2213,7 +1615,7 @@
       "createdAt": "10.12.2023",
       "userId": "18",
       "category": [
-        "React"
+        "REACT"
       ],
       "blocks": [
         {
@@ -2256,7 +1658,7 @@
       "createdAt": "12.12.2023",
       "userId": "18",
       "category": [
-        "React"
+        "REACT"
       ],
       "blocks": [
         {
@@ -2299,7 +1701,7 @@
       "createdAt": "15.12.2023",
       "userId": "19",
       "category": [
-        "React"
+        "REACT"
       ],
       "blocks": [
         {
@@ -2342,7 +1744,7 @@
       "createdAt": "20.12.2023",
       "userId": "19",
       "category": [
-        "React"
+        "REACT"
       ],
       "blocks": [
         {
@@ -2385,7 +1787,7 @@
       "createdAt": "01.01.2024",
       "userId": "20",
       "category": [
-        "React"
+        "REACT"
       ],
       "blocks": [
         {
@@ -2425,10 +1827,10 @@
       "subtitle": "Джерело: https://redux-toolkit.js.org/",
       "img": "https://example.com/redux-toolkit.jpg",
       "views": 650,
-      "createdAt": "05.04.2024",
+      "createdAt": "05.01.2024",
       "userId": "20",
       "category": [
-        "React"
+        "REACT"
       ],
       "blocks": [
         {
@@ -2471,7 +1873,7 @@
       "createdAt": "10.10.2024",
       "userId": "12",
       "category": [
-        "React"
+        "REACT"
       ],
       "blocks": [
         {
@@ -2531,7 +1933,7 @@
       "subtitle": "Джерело: https://www.w3schools.com/tags/tag_doctype.asp",
       "img": "https://example.com/doctype.jpg",
       "views": 250,
-      "createdAt": "05.05.2024",
+      "createdAt": "01.11.2024",
       "userId": "1",
       "category": [
         "HTML"
@@ -2567,7 +1969,7 @@
       "subtitle": "Джерело: https://developer.mozilla.org/en-US/docs/Web/HTML/Quirks_Mode",
       "img": "https://example.com/quirks_mode.jpg",
       "views": 300,
-      "createdAt": "23.07.2024",
+      "createdAt": "02.11.2024",
       "userId": "2",
       "category": [
         "HTML"
@@ -2597,7 +1999,7 @@
       "subtitle": "Джерело: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta",
       "img": "https://example.com/meta_tags.jpg",
       "views": 280,
-      "createdAt": "11.08.2024",
+      "createdAt": "03.11.2024",
       "userId": "3",
       "category": [
         "HTML"
@@ -2633,7 +2035,7 @@
       "subtitle": "Джерело: https://developer.mozilla.org/en-US/docs/Web/HTML/Block_and_Inline_elements",
       "img": "https://example.com/block_inline.jpg",
       "views": 310,
-      "createdAt": "04.11.2022",
+      "createdAt": "04.11.2024",
       "userId": "4",
       "category": [
         "HTML"
@@ -2669,7 +2071,7 @@
       "subtitle": "Джерело: https://www.w3schools.com/html/html_symbols.asp",
       "img": "https://example.com/symbols.jpg",
       "views": 270,
-      "createdAt": "05.09.2021",
+      "createdAt": "05.11.2024",
       "userId": "5",
       "category": [
         "HTML"
@@ -2699,7 +2101,7 @@
       "subtitle": "Джерело: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/heading_group",
       "img": "https://example.com/headers.jpg",
       "views": 250,
-      "createdAt": "06.02.2022",
+      "createdAt": "06.11.2024",
       "userId": "6",
       "category": [
         "HTML"
@@ -2727,7 +2129,7 @@
       "subtitle": "Джерело: https://developer.mozilla.org/en-US/docs/Glossary/Semantics",
       "img": "https://example.com/semantic_markup.jpg",
       "views": 290,
-      "createdAt": "07.03.2024",
+      "createdAt": "07.11.2024",
       "userId": "7",
       "category": [
         "HTML"
@@ -2755,7 +2157,7 @@
       "subtitle": "Джерело: https://www.w3schools.com/html/html_flow.asp",
       "img": "https://example.com/html_flow.jpg",
       "views": 260,
-      "createdAt": "08.10.2024",
+      "createdAt": "08.11.2024",
       "userId": "8",
       "category": [
         "HTML"
@@ -2785,7 +2187,7 @@
       "subtitle": "Джерело: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Introduction",
       "img": "https://example.com/connect_js.jpg",
       "views": 310,
-      "createdAt": "09.09.2024",
+      "createdAt": "09.11.2024",
       "userId": "9",
       "category": [
         "HTML"
@@ -2821,7 +2223,7 @@
       "subtitle": "Джерело: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script",
       "img": "https://example.com/script_attributes.jpg",
       "views": 320,
-      "createdAt": "10.11.2022",
+      "createdAt": "10.11.2024",
       "userId": "10",
       "category": [
         "HTML"
@@ -2865,7 +2267,7 @@
       "subtitle": "Джерело: https://www.w3schools.com/css/css_howto.asp",
       "img": "https://example.com/add_css.jpg",
       "views": 280,
-      "createdAt": "11.11.2021",
+      "createdAt": "11.11.2024",
       "userId": "11",
       "category": [
         "CSS"
@@ -2901,7 +2303,7 @@
       "subtitle": "Джерело: https://css-tricks.com/css-reset-vs-normalize-css/",
       "img": "https://example.com/reset_normalize.jpg",
       "views": 290,
-      "createdAt": "12.02.2020",
+      "createdAt": "12.11.2024",
       "userId": "12",
       "category": [
         "CSS"
@@ -2939,7 +2341,7 @@
       "subtitle": "Джерело: https://web.dev/critical-css/",
       "img": "https://example.com/critical_css.jpg",
       "views": 300,
-      "createdAt": "13.12.2024",
+      "createdAt": "13.11.2024",
       "userId": "13",
       "category": [
         "CSS"
@@ -3628,7 +3030,7 @@
       "subtitle": "Джерело: https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Cascade_and_inheritance",
       "img": "https://example.com/inheritance_css.jpg",
       "views": 350,
-      "createdAt": "01.01.2020",
+      "createdAt": "22.11.2024",
       "userId": "1",
       "category": [
         "CSS"
@@ -3659,7 +3061,7 @@
       "subtitle": "Джерело: https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Cascade",
       "img": "https://example.com/cascade_css.jpg",
       "views": 400,
-      "createdAt": "05.03.2020",
+      "createdAt": "22.11.2024",
       "userId": "2",
       "category": [
         "CSS"
@@ -3690,7 +3092,7 @@
       "subtitle": "Джерело: https://www.w3.org/WAI/tutorials/images/",
       "img": "https://example.com/content_vs_decorative_images.jpg",
       "views": 270,
-      "createdAt": "30.03.2020",
+      "createdAt": "22.11.2024",
       "userId": "3",
       "category": [
         "HTML"
@@ -3722,7 +3124,7 @@
       "subtitle": "Джерело: https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-elements",
       "img": "https://example.com/no_pseudo_elements.jpg",
       "views": 320,
-      "createdAt": "23.05.2020",
+      "createdAt": "22.11.2024",
       "userId": "4",
       "category": [
         "CSS"
@@ -3745,7 +3147,7 @@
       "subtitle": "Джерело: https://developer.mozilla.org/en-US/docs/Web/CSS/calc",
       "img": "https://example.com/calc_function.jpg",
       "views": 290,
-      "createdAt": "11.06.2020",
+      "createdAt": "22.11.2024",
       "userId": "5",
       "category": [
         "CSS"
@@ -3774,7 +3176,7 @@
       "subtitle": "Джерело: https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Flexbox",
       "img": "https://example.com/flex_container_element.jpg",
       "views": 360,
-      "createdAt": "12.08.2020",
+      "createdAt": "22.11.2024",
       "userId": "6",
       "category": [
         "CSS"
@@ -3805,7 +3207,7 @@
       "subtitle": "Джерело: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Basic_Concepts_of_Flexbox",
       "img": "https://example.com/flex_axis.jpg",
       "views": 310,
-      "createdAt": "15.07.2020",
+      "createdAt": "22.11.2024",
       "userId": "7",
       "category": [
         "CSS"
@@ -3836,7 +3238,7 @@
       "subtitle": "Джерело: https://www.smashingmagazine.com/2018/01/mobile-first-responsive-design/",
       "img": "https://example.com/mobile_first_vs_desktop_first.jpg",
       "views": 450,
-      "createdAt": "01.09.2020",
+      "createdAt": "22.11.2024",
       "userId": "8",
       "category": [
         "CSS"
@@ -3868,7 +3270,7 @@
       "subtitle": "Джерело: https://www.smashingmagazine.com/2017/06/benefits-of-svg/",
       "img": "https://example.com/svg_vs_png_jpeg.jpg",
       "views": 320,
-      "createdAt": "30.09.2020",
+      "createdAt": "22.11.2024",
       "userId": "9",
       "category": [
         "HTML"
@@ -3899,7 +3301,7 @@
       "subtitle": "Джерело: https://www.w3schools.com/css/css_colors.asp",
       "img": "https://example.com/rgb_rgba_hex.jpg",
       "views": 400,
-      "createdAt": "20.10.2020",
+      "createdAt": "22.11.2024",
       "userId": "10",
       "category": [
         "CSS"
@@ -3940,7 +3342,7 @@
       "subtitle": "Джерело: https://www.w3schools.com/css/css3_gradients.asp",
       "img": "https://example.com/linear_radial_gradients.jpg",
       "views": 350,
-      "createdAt": "15.11.2020",
+      "createdAt": "22.11.2024",
       "userId": "11",
       "category": [
         "CSS"
@@ -3972,7 +3374,7 @@
       "subtitle": "Джерело: https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy",
       "img": "https://example.com/same_origin_policy.jpg",
       "views": 260,
-      "createdAt": "28.03.2021",
+      "createdAt": "22.11.2024",
       "userId": "12",
       "category": [
         "HTML"
@@ -4003,7 +3405,7 @@
       "subtitle": "Джерело: https://developer.mozilla.org/en-US/docs/Learn/HTML/Introduction_to_HTML/HTML_attributes",
       "img": "https://example.com/html_attributes.jpg",
       "views": 290,
-      "createdAt": "16.03.2021",
+      "createdAt": "22.11.2024",
       "userId": "13",
       "category": [
         "HTML"
@@ -4034,7 +3436,7 @@
       "subtitle": "Джерело: https://www.w3schools.com/whatis/whatis_html5.asp",
       "img": "https://example.com/html5_css3_changes.jpg",
       "views": 370,
-      "createdAt": "29.03.2021",
+      "createdAt": "22.11.2024",
       "userId": "14",
       "category": [
         "HTML",
@@ -4067,7 +3469,7 @@
       "subtitle": "Джерело: https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/What_is_the_web",
       "img": "https://example.com/frontend_essentials.jpg",
       "views": 450,
-      "createdAt": "30.05.2021",
+      "createdAt": "22.11.2024",
       "userId": "3",
       "category": [
         "HTML",
@@ -4107,7 +3509,7 @@
       "subtitle": "Джерело: https://developer.mozilla.org/en-US/docs/Learn/JavaScript/First_steps/How_browsers_work",
       "img": "https://example.com/browser_interpretation.jpg",
       "views": 500,
-      "createdAt": "19.04.2021",
+      "createdAt": "22.11.2024",
       "userId": "4",
       "category": [
         "JavaScript"
@@ -4145,7 +3547,7 @@
       "subtitle": "Джерело: https://css-tricks.com/repaint-reflow-how-browser-works/",
       "img": "https://example.com/css_reflow.jpg",
       "views": 320,
-      "createdAt": "10.08.2021",
+      "createdAt": "22.11.2024",
       "userId": "5",
       "category": [
         "CSS"
@@ -4179,7 +3581,7 @@
       "subtitle": "Джерело: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors",
       "img": "https://example.com/css_selectors_parsing.jpg",
       "views": 270,
-      "createdAt": "20.09.2021",
+      "createdAt": "22.11.2024",
       "userId": "6",
       "category": [
         "CSS"
@@ -4216,7 +3618,7 @@
       "subtitle": "Джерело: https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity",
       "img": "https://example.com/css_specificity.jpg",
       "views": 350,
-      "createdAt": "29.09.2021",
+      "createdAt": "22.11.2024",
       "userId": "7",
       "category": [
         "CSS"
@@ -4253,7 +3655,7 @@
       "subtitle": "Джерело: https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes_and_pseudo-elements",
       "img": "https://example.com/pseudo_elements_classes.jpg",
       "views": 310,
-      "createdAt": "04.11.2021",
+      "createdAt": "22.11.2024",
       "userId": "8",
       "category": [
         "CSS"
@@ -4290,7 +3692,7 @@
       "subtitle": "Джерело: https://sass-lang.com/guide",
       "img": "https://example.com/css_preprocessors.jpg",
       "views": 400,
-      "createdAt": "10.11.2021",
+      "createdAt": "22.11.2024",
       "userId": "9",
       "category": [
         "CSS"
@@ -4330,7 +3732,7 @@
       "subtitle": "Джерело: https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM",
       "img": "https://example.com/dom_shadow_dom.jpg",
       "views": 360,
-      "createdAt": "01.01.2022",
+      "createdAt": "22.11.2024",
       "userId": "10",
       "category": [
         "JavaScript"
@@ -4368,7 +3770,7 @@
       "subtitle": "Джерело: https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault",
       "img": "https://example.com/prevent_default_stop_propagation.jpg",
       "views": 410,
-      "createdAt": "25.03.2022",
+      "createdAt": "22.11.2024",
       "userId": "11",
       "category": [
         "JavaScript"
@@ -4404,7 +3806,7 @@
       "subtitle": "Джерело: https://developer.mozilla.org/en-US/docs/Web/API/Event/capturing_bubbling_phases",
       "img": "https://example.com/capturing_bubbling.jpg",
       "views": 370,
-      "createdAt": "08.03.2022",
+      "createdAt": "22.11.2024",
       "userId": "12",
       "category": [
         "JavaScript"
@@ -4441,7 +3843,7 @@
       "subtitle": "Джерело: https://developer.mozilla.org/en-US/docs/Glossary/Hoisting",
       "img": "https://example.com/hoisting.jpg",
       "views": 390,
-      "createdAt": "28.03.2022",
+      "createdAt": "22.11.2024",
       "userId": "13",
       "category": [
         "JavaScript"
@@ -4477,7 +3879,7 @@
       "subtitle": "Джерело: https://reactjs.org/docs/hooks-state.html",
       "img": "https://example.com/react_hoisting.jpg",
       "views": 430,
-      "createdAt": "01.04.2022",
+      "createdAt": "22.11.2024",
       "userId": "14",
       "category": [
         "React"
@@ -4506,7 +3908,7 @@
       "subtitle": "Джерело: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/var",
       "img": "https://example.com/var_use_case.jpg",
       "views": 280,
-      "createdAt": "25.04.2022",
+      "createdAt": "22.11.2024",
       "userId": "15",
       "category": [
         "JavaScript"
@@ -4542,7 +3944,7 @@
       "subtitle": "Джерело: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises",
       "img": "https://example.com/promises_vs_callbacks.jpg",
       "views": 450,
-      "createdAt": "20.09.2022",
+      "createdAt": "22.11.2024",
       "userId": "16",
       "category": [
         "JavaScript"
@@ -4579,7 +3981,7 @@
       "subtitle": "Джерело: https://developer.mozilla.org/en-US/docs/Web/JavaScript/EventLoop",
       "img": "https://example.com/event_loop.jpg",
       "views": 500,
-      "createdAt": "04.09.2022",
+      "createdAt": "22.11.2024",
       "userId": "17",
       "category": [
         "JavaScript"
@@ -4616,7 +4018,7 @@
       "subtitle": "Джерело: https://reactjs.org/docs/introducing-jsx.html",
       "img": "https://example.com/jsx.jpg",
       "views": 480,
-      "createdAt": "29.09.2022",
+      "createdAt": "22.11.2024",
       "userId": "18",
       "category": [
         "React"
@@ -4652,7 +4054,7 @@
       "subtitle": "Джерело: https://reactjs.org/docs/lists-and-keys.html",
       "img": "https://example.com/react_keys.jpg",
       "views": 490,
-      "createdAt": "11.10.2022",
+      "createdAt": "22.11.2024",
       "userId": "19",
       "category": [
         "React"
@@ -4687,7 +4089,7 @@
       "title": "Які типи даних існують у JavaScript?",
       "subtitle": "Огляд основних типів даних у JavaScript.",
       "views": 520,
-      "createdAt": "15.11.2022",
+      "createdAt": "22.11.2024",
       "userId": "10",
       "category": [
         "JavaScript"
@@ -4727,7 +4129,7 @@
       "subtitle": "NaN (Not-a-Number) є спеціальним значенням у JavaScript.",
       "img": "https://example.com/nan.jpg",
       "views": 420,
-      "createdAt": "30.12.2022",
+      "createdAt": "22.11.2024",
       "userId": "5",
       "category": [
         "JavaScript"
@@ -4764,7 +4166,7 @@
       "subtitle": "Null та undefined - це два різних типи в JavaScript.",
       "img": "https://example.com/null_undefined.jpg",
       "views": 380,
-      "createdAt": "05.12.2022",
+      "createdAt": "22.11.2024",
       "userId": "6",
       "category": [
         "JavaScript"
@@ -4803,7 +4205,7 @@
       "subtitle": "JavaScript підтримує два типи порівняння: строгий та нестрогий.",
       "img": "https://example.com/equality_operators.jpg",
       "views": 460,
-      "createdAt": "12.01.2023",
+      "createdAt": "22.11.2024",
       "userId": "7",
       "category": [
         "JavaScript"
@@ -4835,7 +4237,7 @@
       "subtitle": "Об'єкти у JavaScript мають посилальну природу.",
       "img": "https://example.com/object_comparison.jpg",
       "views": 500,
-      "createdAt": "19.02.2023",
+      "createdAt": "22.11.2024",
       "userId": "8",
       "category": [
         "JavaScript"
@@ -4864,7 +4266,7 @@
       "subtitle": "Перевірка ідентичності об'єктів у JavaScript.",
       "img": "https://example.com/check_identity.jpg",
       "views": 410,
-      "createdAt": "05.01.2023",
+      "createdAt": "22.11.2024",
       "userId": "9",
       "category": [
         "JavaScript"
@@ -4893,7 +4295,7 @@
       "subtitle": "Методи копіювання об'єктів у JavaScript.",
       "img": "https://example.com/copy_object.jpg",
       "views": 480,
-      "createdAt": "25.03.2023",
+      "createdAt": "22.11.2024",
       "userId": "10",
       "category": [
         "JavaScript"
@@ -4923,7 +4325,7 @@
       "subtitle": "Різниця між змінними в JavaScript.",
       "img": "https://example.com/var_let_const.jpg",
       "views": 440,
-      "createdAt": "15.02.2023",
+      "createdAt": "22.11.2024",
       "userId": "11",
       "category": [
         "JavaScript"
@@ -4961,7 +4363,7 @@
       "subtitle": "Перевірка, чи є об'єкт масивом у JavaScript.",
       "img": "https://example.com/is_array.jpg",
       "views": 430,
-      "createdAt": "22.04.2023",
+      "createdAt": "22.11.2024",
       "userId": "12",
       "category": [
         "JavaScript"
@@ -4989,7 +4391,7 @@
       "subtitle": "Методи для перебору масивів у JavaScript.",
       "img": "https://example.com/array_methods.jpg",
       "views": 490,
-      "createdAt": "05.05.2023",
+      "createdAt": "22.11.2024",
       "userId": "13",
       "category": [
         "JavaScript"
@@ -5015,7 +4417,7 @@
       "subtitle": "Методи об'єднання масивів у JavaScript.",
       "img": "https://example.com/array_concat.jpg",
       "views": 460,
-      "createdAt": "14.06.2023",
+      "createdAt": "22.11.2024",
       "userId": "2",
       "category": [
         "JavaScript"
@@ -5039,7 +4441,7 @@
       "subtitle": "Методи перевірки наявності елементів у масивах.",
       "img": "https://example.com/array_includes.jpg",
       "views": 400,
-      "createdAt": "18.06.2023",
+      "createdAt": "22.11.2024",
       "userId": "15",
       "category": [
         "JavaScript"
@@ -5067,7 +4469,7 @@
       "subtitle": "Підняття є важливим аспектом в JavaScript.",
       "img": "https://example.com/hoisting.jpg",
       "views": 470,
-      "createdAt": "20.04.2023",
+      "createdAt": "22.11.2024",
       "userId": "16",
       "category": [
         "JavaScript"
@@ -5095,7 +4497,7 @@
       "subtitle": "Значення змінної var до оголошення.",
       "img": "https://example.com/var_value.jpg",
       "views": 450,
-      "createdAt": "01.07.2023",
+      "createdAt": "22.11.2024",
       "userId": "17",
       "category": [
         "JavaScript"
@@ -5124,7 +4526,7 @@
       "subtitle": "Значення змінних let та const до оголошення.",
       "img": "https://example.com/let_const_value.jpg",
       "views": 420,
-      "createdAt": "15.08.2023",
+      "createdAt": "22.11.2024",
       "userId": "18",
       "category": [
         "JavaScript"
@@ -5153,7 +4555,7 @@
       "subtitle": "Область видимості визначає, де змінні доступні.",
       "img": "https://example.com/scope.jpg",
       "views": 430,
-      "createdAt": "12.09.2023",
+      "createdAt": "22.11.2024",
       "userId": "19",
       "category": [
         "JavaScript"
@@ -5185,7 +4587,7 @@
       "title": "Чим Function Declaration відрізняється від Function Expression?",
       "subtitle": "Досліджуємо основні відмінності між декларацією та виразом функцій у JavaScript.",
       "views": 520,
-      "createdAt": "20.11.2023",
+      "createdAt": "22.11.2024",
       "userId": "5",
       "category": [
         "JavaScript"
@@ -5244,7 +4646,7 @@
       "title": "Чим стрілочна функція відрізняється від звичайної?",
       "subtitle": "Аналіз стрілочних функцій у порівнянні з традиційними функціями в JavaScript.",
       "views": 490,
-      "createdAt": "15.04.2023",
+      "createdAt": "22.11.2024",
       "userId": "6",
       "category": [
         "JavaScript"
@@ -5294,7 +4696,7 @@
       "title": "Чи існує аналог arguments для стрілочної функції?",
       "subtitle": "Розглянемо, як працюють аргументи в стрілочних функціях.",
       "views": 450,
-      "createdAt": "25.12.2023",
+      "createdAt": "22.11.2024",
       "userId": "7",
       "category": [
         "JavaScript"
@@ -5343,7 +4745,7 @@
       "title": "Що таке лексичне оточення (Lexical Environment)?",
       "subtitle": "Досліджуємо концепцію лексичного оточення у JavaScript.",
       "views": 480,
-      "createdAt": "12.05.2023",
+      "createdAt": "22.11.2024",
       "userId": "8",
       "category": [
         "JavaScript"
@@ -5381,7 +4783,7 @@
       "title": "Що таке замикання (Closures)?",
       "subtitle": "Розуміння замикань у JavaScript.",
       "views": 500,
-      "createdAt": "19.02.2024",
+      "createdAt": "22.11.2024",
       "userId": "9",
       "category": [
         "JavaScript"
@@ -5416,7 +4818,7 @@
       "title": "Для чого використовують замикання?",
       "subtitle": "Досліджуємо роль замикань у JavaScript.",
       "views": 530,
-      "createdAt": "28.03.2024",
+      "createdAt": "22.11.2024",
       "userId": "12",
       "category": [
         "JavaScript"
@@ -5461,7 +4863,7 @@
       "title": "Що таке IIFE?",
       "subtitle": "Розглядаємо самовиконувані функції в JavaScript.",
       "views": 440,
-      "createdAt": "22.02.2024",
+      "createdAt": "22.11.2024",
       "userId": "13",
       "category": [
         "JavaScript"
@@ -5505,7 +4907,7 @@
       "title": "Що таке this?",
       "subtitle": "Розкриваємо концепцію контексту виконання в JavaScript.",
       "views": 560,
-      "createdAt": "20.01.2024",
+      "createdAt": "22.11.2024",
       "userId": "2",
       "category": [
         "JavaScript"
@@ -5542,7 +4944,7 @@
       "title": "Як можна підмінити контекст виклику функції?",
       "subtitle": "Методи для зміни контексту `this` в JavaScript.",
       "views": 490,
-      "createdAt": "13.05.2024",
+      "createdAt": "22.11.2024",
       "userId": "15",
       "category": [
         "JavaScript"
@@ -5580,7 +4982,7 @@
       "title": "Чи можна змінити контекст функції, яку повернув метод bind?",
       "subtitle": "Аналіз використання bind у JavaScript.",
       "views": 470,
-      "createdAt": "09.06.2024",
+      "createdAt": "22.11.2024",
       "userId": "16",
       "category": [
         "JavaScript"
@@ -5615,7 +5017,7 @@
       "title": "Чи можна підмінити контекст виклику стрілочної функції?",
       "subtitle": "Особливості стрілочних функцій у JavaScript.",
       "views": 480,
-      "createdAt": "30.05.2024",
+      "createdAt": "22.11.2024",
       "userId": "17",
       "category": [
         "JavaScript"
@@ -5658,7 +5060,7 @@
       "title": "Що таке прототип об'єкта?",
       "subtitle": "Розкриваємо концепцію прототипів у JavaScript.",
       "views": 620,
-      "createdAt": "10.06.2024",
+      "createdAt": "22.11.2024",
       "userId": "11",
       "category": [
         "JavaScript"
@@ -5701,7 +5103,7 @@
       "title": "Як працює прототипне наслідування в JavaScript?",
       "subtitle": "Заглиблюємось у механізм наслідування в JavaScript.",
       "views": 580,
-      "createdAt": "18.07.2024",
+      "createdAt": "22.11.2024",
       "userId": "12",
       "category": [
         "JavaScript"
@@ -5744,7 +5146,7 @@
       "title": "Як створити об'єкт, у якому не буде прототипу?",
       "subtitle": "Методи створення об'єкта без прототипу в JavaScript.",
       "views": 410,
-      "createdAt": "10.09.2024",
+      "createdAt": "22.11.2024",
       "userId": "13",
       "category": [
         "JavaScript"
@@ -5787,7 +5189,7 @@
       "title": "Як перевірити, чи є властивість об'єкта особистою властивістю або це властивість прототипу?",
       "subtitle": "Методи для перевірки властивостей в JavaScript.",
       "views": 450,
-      "createdAt": "25.07.2024",
+      "createdAt": "22.11.2024",
       "userId": "2",
       "category": [
         "JavaScript"
@@ -5831,7 +5233,7 @@
       "title": "Як заборонити змінювати об'єкт?",
       "subtitle": "Методи захисту об'єктів у JavaScript.",
       "views": 480,
-      "createdAt": "30.09.2024",
+      "createdAt": "22.11.2024",
       "userId": "15",
       "category": [
         "JavaScript"
@@ -5874,7 +5276,7 @@
       "title": "Що таке дескриптори властивостей об'єкта?",
       "subtitle": "Розуміння дескрипторів властивостей у JavaScript.",
       "views": 500,
-      "createdAt": "12.09.2024",
+      "createdAt": "22.11.2024",
       "userId": "16",
       "category": [
         "JavaScript"
@@ -5918,7 +5320,7 @@
       "title": "Чим відрізняється функція конструктор та клас?",
       "subtitle": "Розгляд основних відмінностей між функціями-конструкторами та класами в JavaScript.",
       "views": 540,
-      "createdAt": "10.07.2024",
+      "createdAt": "22.11.2024",
       "userId": "18",
       "category": [
         "JavaScript"
@@ -5968,7 +5370,7 @@
       "title": "Що потрібно зробити, щоб метод класу потрапив до його екземпляра?",
       "subtitle": "Обговорення способів забезпечення доступу до методів класу через екземпляри.",
       "views": 460,
-      "createdAt": "14.08.2024",
+      "createdAt": "22.11.2024",
       "userId": "19",
       "category": [
         "JavaScript"
@@ -6017,7 +5419,7 @@
       "title": "Чи є в JavaScript множинне наслідування?",
       "subtitle": "Розгляд механізмів наслідування в JavaScript.",
       "views": 520,
-      "createdAt": "29.09.2024",
+      "createdAt": "22.11.2024",
       "userId": "20",
       "category": [
         "JavaScript"
@@ -6074,7 +5476,7 @@
       "title": "Що таке Promise?",
       "subtitle": "Основи Promises в JavaScript",
       "views": 1020,
-      "createdAt": "01.10.2024",
+      "createdAt": "22.11.2024",
       "userId": "2",
       "category": [
         "JavaScript"
@@ -6111,7 +5513,7 @@
       "title": "Які переваги проміси мають над колбеками?",
       "subtitle": "Переваги використання Promises",
       "views": 850,
-      "createdAt": "11.10.2024",
+      "createdAt": "22.11.2024",
       "userId": "2",
       "category": [
         "JavaScript"
@@ -6148,7 +5550,7 @@
       "title": "Що таке callback hell?",
       "subtitle": "Проблеми колбеків у JavaScript",
       "views": 600,
-      "createdAt": "30.11.2024",
+      "createdAt": "22.11.2024",
       "userId": "2",
       "category": [
         "JavaScript"
@@ -6184,7 +5586,7 @@
       "title": "Для чого потрібен метод Promise.all?",
       "subtitle": "Обробка декількох Promise одночасно",
       "views": 720,
-      "createdAt": "05.12.2024",
+      "createdAt": "22.11.2024",
       "userId": "2",
       "category": [
         "JavaScript"
@@ -6220,7 +5622,7 @@
       "title": "Для чого потрібен метод Promise.race?",
       "subtitle": "Обробка перших завершених Promise",
       "views": 680,
-      "createdAt": "15.10.2024",
+      "createdAt": "22.11.2024",
       "userId": "2",
       "category": [
         "JavaScript"
@@ -6256,7 +5658,7 @@
       "title": "Для чого потрібна async/await функція?",
       "subtitle": "Робота з асинхронним кодом у JavaScript",
       "views": 900,
-      "createdAt": "20.12.2024",
+      "createdAt": "22.11.2024",
       "userId": "8",
       "category": [
         "JavaScript"
@@ -6293,7 +5695,7 @@
       "title": "Як обробляти помилки в async/await функції?",
       "subtitle": "Стратегії обробки помилок",
       "views": 720,
-      "createdAt": "31.12.2024",
+      "createdAt": "22.11.2024",
       "userId": "9",
       "category": [
         "JavaScript"
@@ -6329,7 +5731,7 @@
       "title": "Що таке event loop?",
       "subtitle": "Основи циклу подій у JavaScript",
       "views": 850,
-      "createdAt": "25.10.2024",
+      "createdAt": "22.11.2024",
       "userId": "10",
       "category": [
         "JavaScript"
@@ -6367,7 +5769,7 @@
       "title": "Що таке use strict?",
       "subtitle": "Режим суворого дотримання правил у JavaScript",
       "views": 600,
-      "createdAt": "12.12.2024",
+      "createdAt": "22.11.2024",
       "userId": "1",
       "category": [
         "JavaScript"
@@ -6404,7 +5806,7 @@
       "title": "Що таке ООП у Javascript?",
       "subtitle": "Об'єктно-орієнтоване програмування в JavaScript",
       "views": 720,
-      "createdAt": "23.11.2024",
+      "createdAt": "22.11.2024",
       "userId": "12",
       "category": [
         "JavaScript"
@@ -6442,7 +5844,7 @@
       "title": "Що таке DOM?",
       "subtitle": "Модель об'єкта документа в JavaScript",
       "views": 800,
-      "createdAt": "20.11.2024",
+      "createdAt": "22.11.2024",
       "userId": "13",
       "category": [
         "JavaScript"
@@ -6478,7 +5880,7 @@
       "title": "Що таке рекурсія?",
       "subtitle": "Основи рекурсивного програмування в JavaScript",
       "views": 750,
-      "createdAt": "12.10.2024",
+      "createdAt": "22.11.2024",
       "userId": "2",
       "category": [
         "JavaScript"
@@ -7147,7 +6549,7 @@
       "createdAt": "25.07.2022",
       "userId": "4",
       "category": [
-        "React"
+        "REACT"
       ],
       "blocks": [
         {
@@ -7258,7 +6660,8 @@
       "createdAt": "15.02.2020",
       "userId": "9",
       "category": [
-        "TypeScript"
+        "TypeScript",
+        "JavaScript"
       ],
       "blocks": [
         {
@@ -7579,7 +6982,8 @@
       "createdAt": "12.03.2022",
       "userId": "3",
       "category": [
-        "IT"
+        "Програмування",
+        "Код"
       ],
       "blocks": [
         {
@@ -7637,2594 +7041,6 @@
           ]
         }
       ]
-    }
-  ],
-  "article-ratings": [
-    {
-      "userId": "1",
-      "articleId": "40",
-      "rate": 5,
-      "feedback": "Excellent article, very informative",
-      "id": "101"
-    },
-    {
-      "userId": "2",
-      "articleId": "40",
-      "rate": 4,
-      "feedback": "Good explanation but could include more examples",
-      "id": "102"
-    },
-    {
-      "userId": "3",
-      "articleId": "40",
-      "rate": 4,
-      "feedback": "Clear and concise, well-written",
-      "id": "103"
-    },
-    {
-      "userId": "4",
-      "articleId": "40",
-      "rate": 3,
-      "feedback": "Decent read",
-      "id": "104"
-    },
-    {
-      "userId": "5",
-      "articleId": "40",
-      "rate": 5,
-      "feedback": "I found it extremely helpful",
-      "id": "105"
-    },
-    {
-      "userId": "6",
-      "articleId": "40",
-      "rate": 3,
-      "id": "106"
-    },
-    {
-      "userId": "7",
-      "articleId": "40",
-      "rate": 4,
-      "feedback": "Informative, could dive deeper into the topic",
-      "id": "107"
-    },
-    {
-      "userId": "8",
-      "articleId": "40",
-      "rate": 5,
-      "feedback": "Perfect overview",
-      "id": "108"
-    },
-    {
-      "userId": "9",
-      "articleId": "40",
-      "rate": 4,
-      "id": "109"
-    },
-    {
-      "userId": "10",
-      "articleId": "40",
-      "rate": 4,
-      "id": "110"
-    },
-    {
-      "userId": "11",
-      "articleId": "40",
-      "rate": 3,
-      "id": "111"
-    },
-    {
-      "userId": "12",
-      "articleId": "40",
-      "rate": 4,
-      "id": "112"
-    },
-    {
-      "userId": "13",
-      "articleId": "40",
-      "rate": 5,
-      "feedback": "Very useful insights",
-      "id": "113"
-    },
-    {
-      "userId": "14",
-      "articleId": "40",
-      "rate": 3,
-      "id": "114"
-    },
-    {
-      "userId": "15",
-      "articleId": "40",
-      "rate": 4,
-      "id": "115"
-    },
-    {
-      "userId": "16",
-      "articleId": "40",
-      "rate": 4,
-      "id": "116"
-    },
-    {
-      "userId": "17",
-      "articleId": "40",
-      "rate": 5,
-      "feedback": "Well explained with good examples",
-      "id": "117"
-    },
-    {
-      "userId": "18",
-      "articleId": "40",
-      "rate": 4,
-      "id": "118"
-    },
-    {
-      "userId": "19",
-      "articleId": "40",
-      "rate": 3,
-      "id": "119"
-    },
-    {
-      "userId": "1",
-      "articleId": "41",
-      "rate": 5,
-      "feedback": "Another great article!",
-      "id": "120"
-    },
-    {
-      "userId": "2",
-      "articleId": "41",
-      "rate": 4,
-      "id": "121"
-    },
-    {
-      "userId": "3",
-      "articleId": "41",
-      "rate": 4,
-      "id": "122"
-    },
-    {
-      "userId": "4",
-      "articleId": "41",
-      "rate": 3,
-      "id": "123"
-    },
-    {
-      "userId": "5",
-      "articleId": "41",
-      "rate": 5,
-      "id": "124"
-    },
-    {
-      "userId": "6",
-      "articleId": "41",
-      "rate": 4,
-      "id": "125"
-    },
-    {
-      "userId": "7",
-      "articleId": "41",
-      "rate": 5,
-      "id": "126"
-    },
-    {
-      "userId": "8",
-      "articleId": "41",
-      "rate": 3,
-      "id": "127"
-    },
-    {
-      "userId": "9",
-      "articleId": "41",
-      "rate": 4,
-      "id": "128"
-    },
-    {
-      "userId": "10",
-      "articleId": "41",
-      "rate": 4,
-      "id": "129"
-    },
-    {
-      "userId": "11",
-      "articleId": "41",
-      "rate": 5,
-      "id": "130"
-    },
-    {
-      "userId": "12",
-      "articleId": "41",
-      "rate": 3,
-      "id": "131"
-    },
-    {
-      "userId": "13",
-      "articleId": "41",
-      "rate": 4,
-      "id": "132"
-    },
-    {
-      "userId": "14",
-      "articleId": "41",
-      "rate": 4,
-      "id": "133"
-    },
-    {
-      "userId": "15",
-      "articleId": "41",
-      "rate": 5,
-      "id": "134"
-    },
-    {
-      "userId": "16",
-      "articleId": "41",
-      "rate": 3,
-      "id": "135"
-    },
-    {
-      "userId": "17",
-      "articleId": "41",
-      "rate": 4,
-      "id": "136"
-    },
-    {
-      "userId": "18",
-      "articleId": "41",
-      "rate": 4,
-      "id": "137"
-    },
-    {
-      "userId": "19",
-      "articleId": "41",
-      "rate": 3,
-      "id": "138"
-    },
-    {
-      "userId": "1",
-      "articleId": "62",
-      "rate": 5,
-      "id": "139"
-    },
-    {
-      "userId": "2",
-      "articleId": "62",
-      "rate": 4,
-      "id": "140"
-    },
-    {
-      "userId": "3",
-      "articleId": "62",
-      "rate": 5,
-      "feedback": "Loved the depth of this article",
-      "id": "141"
-    },
-    {
-      "userId": "4",
-      "articleId": "62",
-      "rate": 4,
-      "id": "142"
-    },
-    {
-      "userId": "5",
-      "articleId": "62",
-      "rate": 3,
-      "id": "143"
-    },
-    {
-      "userId": "6",
-      "articleId": "62",
-      "rate": 4,
-      "id": "144"
-    },
-    {
-      "userId": "7",
-      "articleId": "62",
-      "rate": 3,
-      "id": "145"
-    },
-    {
-      "userId": "8",
-      "articleId": "62",
-      "rate": 4,
-      "id": "146"
-    },
-    {
-      "userId": "9",
-      "articleId": "62",
-      "rate": 5,
-      "id": "147"
-    },
-    {
-      "userId": "10",
-      "articleId": "62",
-      "rate": 4,
-      "id": "148"
-    },
-    {
-      "userId": "11",
-      "articleId": "62",
-      "rate": 3,
-      "id": "149"
-    },
-    {
-      "userId": "12",
-      "articleId": "62",
-      "rate": 4,
-      "id": "150"
-    },
-    {
-      "userId": "13",
-      "articleId": "62",
-      "rate": 5,
-      "feedback": "In-depth and insightful",
-      "id": "151"
-    },
-    {
-      "userId": "14",
-      "articleId": "62",
-      "rate": 3,
-      "id": "152"
-    },
-    {
-      "userId": "15",
-      "articleId": "62",
-      "rate": 4,
-      "id": "153"
-    },
-    {
-      "userId": "16",
-      "articleId": "62",
-      "rate": 5,
-      "id": "154"
-    },
-    {
-      "userId": "17",
-      "articleId": "62",
-      "rate": 4,
-      "id": "155"
-    },
-    {
-      "userId": "18",
-      "articleId": "62",
-      "rate": 4,
-      "id": "156"
-    },
-    {
-      "userId": "19",
-      "articleId": "62",
-      "rate": 3,
-      "id": "157"
-    },
-    {
-      "userId": "1",
-      "articleId": "141",
-      "rate": 5,
-      "id": "158"
-    },
-    {
-      "userId": "2",
-      "articleId": "141",
-      "rate": 4,
-      "id": "159"
-    },
-    {
-      "userId": "3",
-      "articleId": "141",
-      "rate": 5,
-      "id": "160"
-    },
-    {
-      "userId": "4",
-      "articleId": "141",
-      "rate": 3,
-      "id": "161"
-    },
-    {
-      "userId": "5",
-      "articleId": "141",
-      "rate": 4,
-      "id": "162"
-    },
-    {
-      "userId": "6",
-      "articleId": "141",
-      "rate": 4,
-      "id": "163"
-    },
-    {
-      "userId": "7",
-      "articleId": "141",
-      "rate": 3,
-      "id": "164"
-    },
-    {
-      "userId": "8",
-      "articleId": "141",
-      "rate": 4,
-      "id": "165"
-    },
-    {
-      "userId": "9",
-      "articleId": "141",
-      "rate": 5,
-      "id": "166"
-    },
-    {
-      "userId": "10",
-      "articleId": "141",
-      "rate": 4,
-      "id": "167"
-    },
-    {
-      "userId": "11",
-      "articleId": "141",
-      "rate": 4,
-      "id": "168"
-    },
-    {
-      "userId": "12",
-      "articleId": "141",
-      "rate": 4,
-      "id": "169"
-    },
-    {
-      "userId": "13",
-      "articleId": "141",
-      "rate": 5,
-      "id": "170"
-    },
-    {
-      "userId": "14",
-      "articleId": "141",
-      "rate": 3,
-      "id": "171"
-    },
-    {
-      "userId": "15",
-      "articleId": "141",
-      "rate": 4,
-      "id": "172"
-    },
-    {
-      "userId": "16",
-      "articleId": "141",
-      "rate": 3,
-      "id": "173"
-    },
-    {
-      "userId": "17",
-      "articleId": "141",
-      "rate": 5,
-      "id": "174"
-    },
-    {
-      "userId": "18",
-      "articleId": "141",
-      "rate": 4,
-      "id": "175"
-    },
-    {
-      "userId": "19",
-      "articleId": "141",
-      "rate": 3,
-      "id": "176"
-    },
-    {
-      "userId": "1",
-      "articleId": "172",
-      "rate": 5,
-      "feedback": "Outstanding piece!",
-      "id": "177"
-    },
-    {
-      "userId": "2",
-      "articleId": "172",
-      "rate": 4,
-      "id": "178"
-    },
-    {
-      "userId": "3",
-      "articleId": "172",
-      "rate": 4,
-      "id": "179"
-    },
-    {
-      "userId": "4",
-      "articleId": "172",
-      "rate": 3,
-      "id": "180"
-    },
-    {
-      "userId": "5",
-      "articleId": "172",
-      "rate": 4,
-      "id": "181"
-    },
-    {
-      "userId": "6",
-      "articleId": "172",
-      "rate": 5,
-      "id": "182"
-    },
-    {
-      "userId": "7",
-      "articleId": "172",
-      "rate": 4,
-      "id": "183"
-    },
-    {
-      "userId": "8",
-      "articleId": "172",
-      "rate": 3,
-      "id": "184"
-    },
-    {
-      "userId": "9",
-      "articleId": "172",
-      "rate": 4,
-      "id": "185"
-    },
-    {
-      "userId": "10",
-      "articleId": "172",
-      "rate": 5,
-      "id": "186"
-    },
-    {
-      "userId": "11",
-      "articleId": "172",
-      "rate": 4,
-      "id": "187"
-    },
-    {
-      "userId": "12",
-      "articleId": "172",
-      "rate": 3,
-      "id": "188"
-    },
-    {
-      "userId": "13",
-      "articleId": "172",
-      "rate": 5,
-      "feedback": "Really good content!",
-      "id": "189"
-    },
-    {
-      "userId": "14",
-      "articleId": "172",
-      "rate": 4,
-      "id": "190"
-    },
-    {
-      "userId": "15",
-      "articleId": "172",
-      "rate": 3,
-      "id": "191"
-    },
-    {
-      "userId": "16",
-      "articleId": "172",
-      "rate": 4,
-      "id": "192"
-    },
-    {
-      "userId": "17",
-      "articleId": "172",
-      "rate": 5,
-      "id": "193"
-    },
-    {
-      "userId": "18",
-      "articleId": "172",
-      "rate": 4,
-      "id": "194"
-    },
-    {
-      "userId": "19",
-      "articleId": "172",
-      "rate": 3,
-      "id": "195"
-    },
-    {
-      "userId": "2",
-      "articleId": "38",
-      "rate": 5,
-      "feedback": "Very informative and well-structured",
-      "id": "201"
-    },
-    {
-      "userId": "3",
-      "articleId": "38",
-      "rate": 4,
-      "id": "202"
-    },
-    {
-      "userId": "4",
-      "articleId": "38",
-      "rate": 3,
-      "id": "203"
-    },
-    {
-      "userId": "5",
-      "articleId": "38",
-      "rate": 4,
-      "feedback": "Good overview, could use more examples",
-      "id": "204"
-    },
-    {
-      "userId": "6",
-      "articleId": "38",
-      "rate": 5,
-      "id": "205"
-    },
-    {
-      "userId": "7",
-      "articleId": "38",
-      "rate": 4,
-      "id": "206"
-    },
-    {
-      "userId": "8",
-      "articleId": "38",
-      "rate": 4,
-      "id": "207"
-    },
-    {
-      "userId": "9",
-      "articleId": "38",
-      "rate": 5,
-      "id": "208"
-    },
-    {
-      "userId": "10",
-      "articleId": "38",
-      "rate": 3,
-      "id": "209"
-    },
-    {
-      "userId": "2",
-      "articleId": "39",
-      "rate": 4,
-      "id": "210"
-    },
-    {
-      "userId": "3",
-      "articleId": "39",
-      "rate": 5,
-      "id": "211"
-    },
-    {
-      "userId": "4",
-      "articleId": "39",
-      "rate": 4,
-      "id": "212"
-    },
-    {
-      "userId": "5",
-      "articleId": "39",
-      "rate": 3,
-      "id": "213"
-    },
-    {
-      "userId": "6",
-      "articleId": "39",
-      "rate": 4,
-      "feedback": "Well explained, clear examples",
-      "id": "214"
-    },
-    {
-      "userId": "7",
-      "articleId": "39",
-      "rate": 5,
-      "id": "215"
-    },
-    {
-      "userId": "8",
-      "articleId": "39",
-      "rate": 3,
-      "id": "216"
-    },
-    {
-      "userId": "9",
-      "articleId": "39",
-      "rate": 5,
-      "id": "217"
-    },
-    {
-      "userId": "10",
-      "articleId": "39",
-      "rate": 4,
-      "feedback": "Great insights, could cover more edge cases",
-      "id": "218"
-    },
-    {
-      "userId": "2",
-      "articleId": "61",
-      "rate": 4,
-      "id": "219"
-    },
-    {
-      "userId": "3",
-      "articleId": "61",
-      "rate": 5,
-      "feedback": "One of the best articles on this topic!",
-      "id": "220"
-    },
-    {
-      "userId": "4",
-      "articleId": "61",
-      "rate": 4,
-      "id": "221"
-    },
-    {
-      "userId": "5",
-      "articleId": "61",
-      "rate": 3,
-      "id": "222"
-    },
-    {
-      "userId": "6",
-      "articleId": "61",
-      "rate": 5,
-      "id": "223"
-    },
-    {
-      "userId": "7",
-      "articleId": "61",
-      "rate": 4,
-      "id": "224"
-    },
-    {
-      "userId": "8",
-      "articleId": "61",
-      "rate": 4,
-      "feedback": "Solid article, well done",
-      "id": "225"
-    },
-    {
-      "userId": "9",
-      "articleId": "61",
-      "rate": 3,
-      "id": "226"
-    },
-    {
-      "userId": "10",
-      "articleId": "61",
-      "rate": 4,
-      "id": "227"
-    },
-    {
-      "userId": "2",
-      "articleId": "105",
-      "rate": 5,
-      "feedback": "Excellent depth of coverage",
-      "id": "228"
-    },
-    {
-      "userId": "3",
-      "articleId": "105",
-      "rate": 4,
-      "id": "229"
-    },
-    {
-      "userId": "4",
-      "articleId": "105",
-      "rate": 4,
-      "id": "230"
-    },
-    {
-      "userId": "5",
-      "articleId": "105",
-      "rate": 3,
-      "id": "231"
-    },
-    {
-      "userId": "6",
-      "articleId": "105",
-      "rate": 4,
-      "id": "232"
-    },
-    {
-      "userId": "7",
-      "articleId": "105",
-      "rate": 5,
-      "id": "233"
-    },
-    {
-      "userId": "8",
-      "articleId": "105",
-      "rate": 4,
-      "id": "234"
-    },
-    {
-      "userId": "9",
-      "articleId": "105",
-      "rate": 4,
-      "id": "235"
-    },
-    {
-      "userId": "10",
-      "articleId": "105",
-      "rate": 3,
-      "id": "236"
-    },
-    {
-      "userId": "11",
-      "articleId": "37",
-      "rate": 5,
-      "feedback": "Excellent explanation and very detailed. Helped me a lot!",
-      "id": "237"
-    },
-    {
-      "userId": "12",
-      "articleId": "37",
-      "rate": 4,
-      "feedback": "Great article, clear and concise. Could include more examples.",
-      "id": "238"
-    },
-    {
-      "userId": "13",
-      "articleId": "37",
-      "rate": 5,
-      "feedback": "Well-written and informative, definitely a must-read!",
-      "id": "239"
-    },
-    {
-      "userId": "14",
-      "articleId": "37",
-      "rate": 4,
-      "feedback": "Very useful content, but a bit advanced for beginners.",
-      "id": "240"
-    },
-    {
-      "userId": "15",
-      "articleId": "37",
-      "rate": 5,
-      "feedback": "Superb article, provided great insights and helped improve my code.",
-      "id": "241"
-    },
-    {
-      "userId": "16",
-      "articleId": "60",
-      "rate": 5,
-      "feedback": "Brilliant! The concepts are well explained with solid examples.",
-      "id": "242"
-    },
-    {
-      "userId": "17",
-      "articleId": "60",
-      "rate": 4,
-      "feedback": "Very clear and insightful. Would love to see more practical applications.",
-      "id": "243"
-    },
-    {
-      "userId": "11",
-      "articleId": "60",
-      "rate": 5,
-      "feedback": "Loved the structure of the article. Easy to follow and informative.",
-      "id": "244"
-    },
-    {
-      "userId": "12",
-      "articleId": "60",
-      "rate": 4,
-      "feedback": "Good article, helped clarify some tough concepts. Could use more depth in some areas.",
-      "id": "245"
-    },
-    {
-      "userId": "13",
-      "articleId": "104",
-      "rate": 5,
-      "feedback": "Fantastic explanation! One of the best articles on this topic I’ve read.",
-      "id": "246"
-    },
-    {
-      "userId": "14",
-      "articleId": "104",
-      "rate": 4,
-      "feedback": "Good read, very helpful for understanding advanced concepts.",
-      "id": "247"
-    },
-    {
-      "userId": "15",
-      "articleId": "104",
-      "rate": 5,
-      "feedback": "Extremely useful and well-explained. Highly recommended!",
-      "id": "248"
-    },
-    {
-      "userId": "16",
-      "articleId": "104",
-      "rate": 5,
-      "feedback": "Clear, concise, and to the point. Great job!",
-      "id": "249"
-    },
-    {
-      "userId": "17",
-      "articleId": "120",
-      "rate": 5,
-      "feedback": "Top-notch article with great examples. Really helped me understand the topic.",
-      "id": "250"
-    },
-    {
-      "userId": "11",
-      "articleId": "120",
-      "rate": 4,
-      "feedback": "Well-written and easy to grasp. Would love more real-world applications.",
-      "id": "251"
-    },
-    {
-      "userId": "12",
-      "articleId": "120",
-      "rate": 5,
-      "feedback": "Really insightful and clear explanations. Great for learners!",
-      "id": "252"
-    },
-    {
-      "userId": "13",
-      "articleId": "139",
-      "rate": 5,
-      "feedback": "A solid article with well-presented information. Loved it!",
-      "id": "253"
-    },
-    {
-      "userId": "14",
-      "articleId": "139",
-      "rate": 5,
-      "feedback": "Great article! The explanations are very thorough and useful.",
-      "id": "254"
-    },
-    {
-      "userId": "15",
-      "articleId": "139",
-      "rate": 4,
-      "feedback": "Very well-written and easy to follow. A bit more detail would be nice.",
-      "id": "255"
-    },
-    {
-      "userId": "16",
-      "articleId": "139",
-      "rate": 5,
-      "feedback": "An amazing resource for this topic. Clear and comprehensive.",
-      "id": "256"
-    },
-    {
-      "userId": "18",
-      "articleId": "34",
-      "rate": 1,
-      "feedback": "The article lacks clarity and proper examples. Hard to follow.",
-      "id": "257"
-    },
-    {
-      "userId": "19",
-      "articleId": "34",
-      "rate": 2,
-      "feedback": "Not well-structured. The explanations are too vague.",
-      "id": "258"
-    },
-    {
-      "userId": "20",
-      "articleId": "34",
-      "rate": 1,
-      "feedback": "Poorly written and difficult to understand. Needs a lot of improvement.",
-      "id": "259"
-    },
-    {
-      "userId": "18",
-      "articleId": "35",
-      "rate": 2,
-      "feedback": "The content is shallow and doesn't cover the topic in-depth.",
-      "id": "260"
-    },
-    {
-      "userId": "19",
-      "articleId": "35",
-      "rate": 1,
-      "feedback": "Disappointing. The article barely scratches the surface.",
-      "id": "261"
-    },
-    {
-      "userId": "20",
-      "articleId": "35",
-      "rate": 1,
-      "feedback": "Incomplete and poorly researched. Lacks useful information.",
-      "id": "262"
-    },
-    {
-      "userId": "18",
-      "articleId": "59",
-      "rate": 2,
-      "feedback": "The article is overly simplified. Needs more depth and examples.",
-      "id": "263"
-    },
-    {
-      "userId": "19",
-      "articleId": "59",
-      "rate": 1,
-      "feedback": "Not informative enough. The points are too general.",
-      "id": "264"
-    },
-    {
-      "userId": "20",
-      "articleId": "59",
-      "rate": 2,
-      "feedback": "The article leaves a lot of questions unanswered. Needs improvement.",
-      "id": "265"
-    },
-    {
-      "userId": "1",
-      "articleId": "118",
-      "rate": 4,
-      "feedback": "Well-written, but could use more examples to clarify key points.",
-      "id": "266"
-    },
-    {
-      "userId": "2",
-      "articleId": "118",
-      "rate": 3,
-      "feedback": "Good article overall, but lacks depth in some areas.",
-      "id": "267"
-    },
-    {
-      "userId": "3",
-      "articleId": "118",
-      "rate": 4,
-      "feedback": "Solid content, but a bit more detail would make it great.",
-      "id": "268"
-    },
-    {
-      "userId": "1",
-      "articleId": "131",
-      "rate": 3,
-      "feedback": "Decent article, but it doesn't cover all aspects of the topic.",
-      "id": "269"
-    },
-    {
-      "userId": "2",
-      "articleId": "131",
-      "rate": 4,
-      "feedback": "Good structure and flow, but more examples would be helpful.",
-      "id": "270"
-    },
-    {
-      "userId": "3",
-      "articleId": "131",
-      "rate": 3,
-      "id": "271"
-    },
-    {
-      "userId": "3",
-      "articleId": "30",
-      "rate": 5,
-      "feedback": "Excellent explanation with detailed examples, very helpful.",
-      "id": "272"
-    },
-    {
-      "userId": "4",
-      "articleId": "30",
-      "rate": 3,
-      "feedback": "The article is okay, but could benefit from more real-world examples.",
-      "id": "273"
-    },
-    {
-      "userId": "5",
-      "articleId": "30",
-      "rate": 4,
-      "feedback": "Good content, but some sections need more clarity.",
-      "id": "274"
-    },
-    {
-      "userId": "6",
-      "articleId": "30",
-      "rate": 2,
-      "feedback": "The article was too brief and lacked in-depth explanations.",
-      "id": "275"
-    },
-    {
-      "userId": "7",
-      "articleId": "30",
-      "rate": 5,
-      "feedback": "Really insightful, covers the topic thoroughly.",
-      "id": "276"
-    },
-    {
-      "userId": "3",
-      "articleId": "31",
-      "rate": 4,
-      "feedback": "Great article, but a few sections could use more elaboration.",
-      "id": "277"
-    },
-    {
-      "userId": "4",
-      "articleId": "31",
-      "rate": 5,
-      "feedback": "Very well-written and easy to understand, excellent job!",
-      "id": "278"
-    },
-    {
-      "userId": "5",
-      "articleId": "31",
-      "rate": 3,
-      "feedback": "Not bad, but I feel it missed some key points.",
-      "id": "279"
-    },
-    {
-      "userId": "6",
-      "articleId": "31",
-      "rate": 2,
-      "feedback": "Too basic, didn't provide enough depth on the subject.",
-      "id": "280"
-    },
-    {
-      "userId": "7",
-      "articleId": "31",
-      "rate": 4,
-      "feedback": "Solid article, useful for getting a quick overview.",
-      "id": "281"
-    },
-    {
-      "userId": "5",
-      "articleId": "56",
-      "rate": 4,
-      "feedback": "Great insights, but some sections could use more examples.",
-      "id": "282"
-    },
-    {
-      "userId": "6",
-      "articleId": "56",
-      "rate": 4,
-      "feedback": "Well-written article, enjoyed the clarity of explanation.",
-      "id": "283"
-    },
-    {
-      "userId": "5",
-      "articleId": "88",
-      "rate": 4,
-      "feedback": "Informative, but could be more detailed in certain areas.",
-      "id": "284"
-    },
-    {
-      "userId": "6",
-      "articleId": "88",
-      "rate": 4,
-      "feedback": "Solid content, found it useful for understanding the topic.",
-      "id": "285"
-    },
-    {
-      "userId": "5",
-      "articleId": "100",
-      "rate": 4,
-      "feedback": "Nice overview, but I expected more depth.",
-      "id": "286"
-    },
-    {
-      "userId": "6",
-      "articleId": "100",
-      "rate": 4,
-      "feedback": "Good article, but it could benefit from additional examples.",
-      "id": "287"
-    },
-    {
-      "userId": "1",
-      "articleId": "16",
-      "rate": 4,
-      "feedback": "Very insightful article, learned a lot!",
-      "id": "288"
-    },
-    {
-      "userId": "2",
-      "articleId": "16",
-      "rate": 3,
-      "feedback": "Good information, but it could be clearer.",
-      "id": "289"
-    },
-    {
-      "userId": "3",
-      "articleId": "16",
-      "rate": 5,
-      "feedback": "Excellent resource, highly recommend!",
-      "id": "290"
-    },
-    {
-      "userId": "17",
-      "articleId": "17",
-      "rate": 2,
-      "feedback": "Not very engaging, needs improvement.",
-      "id": "291"
-    },
-    {
-      "userId": "18",
-      "articleId": "17",
-      "rate": 3,
-      "feedback": "Decent read, but it felt rushed.",
-      "id": "292"
-    },
-    {
-      "userId": "19",
-      "articleId": "17",
-      "rate": 4,
-      "feedback": "Informative, but could use more examples.",
-      "id": "293"
-    },
-    {
-      "userId": "1",
-      "articleId": "18",
-      "rate": 5,
-      "feedback": "Incredibly helpful, thank you!",
-      "id": "294"
-    },
-    {
-      "userId": "2",
-      "articleId": "18",
-      "rate": 4,
-      "feedback": "Well structured and easy to follow.",
-      "id": "295"
-    },
-    {
-      "userId": "3",
-      "articleId": "19",
-      "rate": 1,
-      "feedback": "I found it lacking depth.",
-      "id": "296"
-    },
-    {
-      "userId": "17",
-      "articleId": "19",
-      "rate": 5,
-      "feedback": "Fantastic insights, very informative!",
-      "id": "297"
-    },
-    {
-      "userId": "18",
-      "articleId": "20",
-      "rate": 4,
-      "feedback": "Solid article, would love to see more!",
-      "id": "298"
-    },
-    {
-      "userId": "19",
-      "articleId": "20",
-      "rate": 3,
-      "feedback": "Good start, but could use more examples.",
-      "id": "299"
-    },
-    {
-      "userId": "1",
-      "articleId": "21",
-      "rate": 2,
-      "feedback": "Not very clear, needed more detail.",
-      "id": "300"
-    },
-    {
-      "userId": "2",
-      "articleId": "21",
-      "rate": 5,
-      "feedback": "Loved it! Very informative and clear.",
-      "id": "301"
-    },
-    {
-      "userId": "3",
-      "articleId": "24",
-      "rate": 4,
-      "feedback": "Great overview, thank you!",
-      "id": "302"
-    },
-    {
-      "userId": "17",
-      "articleId": "24",
-      "rate": 3,
-      "feedback": "Helpful, but could use more examples.",
-      "id": "303"
-    },
-    {
-      "userId": "18",
-      "articleId": "25",
-      "rate": 2,
-      "feedback": "Did not meet my expectations.",
-      "id": "304"
-    },
-    {
-      "userId": "19",
-      "articleId": "25",
-      "rate": 4,
-      "feedback": "Very useful, learned something new.",
-      "id": "305"
-    },
-    {
-      "userId": "1",
-      "articleId": "26",
-      "rate": 5,
-      "feedback": "Fantastic article, very well written!",
-      "id": "306"
-    },
-    {
-      "userId": "2",
-      "articleId": "26",
-      "rate": 3,
-      "feedback": "It was okay, but not what I expected.",
-      "id": "307"
-    },
-    {
-      "userId": "3",
-      "articleId": "27",
-      "rate": 4,
-      "feedback": "Well done, enjoyed reading it!",
-      "id": "308"
-    },
-    {
-      "userId": "17",
-      "articleId": "27",
-      "rate": 2,
-      "feedback": "Could use significant improvement.",
-      "id": "309"
-    },
-    {
-      "userId": "18",
-      "articleId": "27",
-      "rate": 5,
-      "feedback": "Highly informative, great job!",
-      "id": "310"
-    },
-    {
-      "userId": "19",
-      "articleId": "27",
-      "rate": 3,
-      "feedback": "Nice article, but I wanted more detail.",
-      "id": "311"
-    },
-    {
-      "userId": "12",
-      "articleId": "6",
-      "rate": 4,
-      "feedback": "Well written and easy to understand.",
-      "id": "312"
-    },
-    {
-      "userId": "13",
-      "articleId": "6",
-      "rate": 3,
-      "feedback": "Decent article but lacking depth.",
-      "id": "313"
-    },
-    {
-      "userId": "14",
-      "articleId": "6",
-      "rate": 5,
-      "feedback": "Fantastic insights, very helpful!",
-      "id": "314"
-    },
-    {
-      "userId": "15",
-      "articleId": "46",
-      "rate": 4,
-      "feedback": "Great overview of the topic.",
-      "id": "315"
-    },
-    {
-      "userId": "16",
-      "articleId": "46",
-      "rate": 3,
-      "feedback": "It was informative, but could be clearer.",
-      "id": "316"
-    },
-    {
-      "userId": "17",
-      "articleId": "46",
-      "rate": 5,
-      "feedback": "Loved this article! Very engaging.",
-      "id": "317"
-    },
-    {
-      "userId": "12",
-      "articleId": "9",
-      "rate": 4,
-      "feedback": "Useful information, well structured.",
-      "id": "318"
-    },
-    {
-      "userId": "13",
-      "articleId": "9",
-      "rate": 3,
-      "feedback": "Average article, nothing new.",
-      "id": "319"
-    },
-    {
-      "userId": "14",
-      "articleId": "11",
-      "rate": 5,
-      "feedback": "Very comprehensive and well-researched.",
-      "id": "320"
-    },
-    {
-      "userId": "15",
-      "articleId": "11",
-      "rate": 4,
-      "feedback": "Good article, I learned something new!",
-      "id": "321"
-    },
-    {
-      "userId": "16",
-      "articleId": "13",
-      "rate": 3,
-      "feedback": "It could use more examples to illustrate points.",
-      "id": "322"
-    },
-    {
-      "userId": "17",
-      "articleId": "13",
-      "rate": 4,
-      "feedback": "Helpful and well organized!",
-      "id": "323"
-    },
-    {
-      "userId": "12",
-      "articleId": "15",
-      "rate": 5,
-      "feedback": "Excellent read, very insightful!",
-      "id": "324"
-    },
-    {
-      "userId": "13",
-      "articleId": "15",
-      "rate": 3,
-      "feedback": "Informative, but felt a bit rushed.",
-      "id": "325"
-    },
-    {
-      "userId": "14",
-      "articleId": "15",
-      "rate": 4,
-      "feedback": "Great article! Would recommend to others.",
-      "id": "326"
-    },
-    {
-      "userId": "7",
-      "articleId": "1",
-      "rate": 5,
-      "feedback": "Outstanding article! Very informative and well-structured.",
-      "id": "401"
-    },
-    {
-      "userId": "8",
-      "articleId": "1",
-      "rate": 4,
-      "feedback": "Great insights, but could use more examples.",
-      "id": "402"
-    },
-    {
-      "userId": "9",
-      "articleId": "2",
-      "rate": 5,
-      "feedback": "Exceptional writing! I learned a lot.",
-      "id": "403"
-    },
-    {
-      "userId": "10",
-      "articleId": "2",
-      "rate": 4,
-      "feedback": "Very helpful, a must-read for beginners.",
-      "id": "404"
-    },
-    {
-      "userId": "11",
-      "articleId": "43",
-      "rate": 5,
-      "feedback": "A brilliant piece! Covers everything in detail.",
-      "id": "405"
-    },
-    {
-      "userId": "12",
-      "articleId": "43",
-      "rate": 4,
-      "feedback": "Informative and well-researched. I appreciate the effort.",
-      "id": "406"
-    },
-    {
-      "userId": "13",
-      "articleId": "3",
-      "rate": 5,
-      "feedback": "Absolutely fantastic! I found it very engaging.",
-      "id": "407"
-    },
-    {
-      "userId": "14",
-      "articleId": "3",
-      "rate": 4,
-      "feedback": "Solid article! Clear explanations throughout.",
-      "id": "408"
-    },
-    {
-      "userId": "7",
-      "articleId": "4",
-      "rate": 5,
-      "feedback": "One of the best articles I've read this month!",
-      "id": "409"
-    },
-    {
-      "userId": "8",
-      "articleId": "4",
-      "rate": 4,
-      "feedback": "Great content! Could benefit from more visuals.",
-      "id": "410"
-    },
-    {
-      "userId": "9",
-      "articleId": "44",
-      "rate": 5,
-      "feedback": "Excellent resource! Very thorough and insightful.",
-      "id": "411"
-    },
-    {
-      "userId": "10",
-      "articleId": "44",
-      "rate": 4,
-      "feedback": "Very well done! It really helped clarify things.",
-      "id": "412"
-    },
-    {
-      "userId": "3",
-      "articleId": "76",
-      "rate": 4,
-      "feedback": "Very informative article! Helped me understand the topic better.",
-      "id": "413"
-    },
-    {
-      "userId": "5",
-      "articleId": "143",
-      "rate": 3,
-      "feedback": "Decent read, but I expected more detailed examples.",
-      "id": "414"
-    },
-    {
-      "userId": "7",
-      "articleId": "144",
-      "rate": 5,
-      "feedback": "Exceptional insights! I learned a lot from this article.",
-      "id": "415"
-    },
-    {
-      "userId": "9",
-      "articleId": "145",
-      "rate": 4,
-      "feedback": "Well-written and clear. Great resource for beginners!",
-      "id": "416"
-    },
-    {
-      "userId": "11",
-      "articleId": "146",
-      "rate": 5,
-      "feedback": "Outstanding content! I appreciate the thoroughness.",
-      "id": "417"
-    },
-    {
-      "userId": "13",
-      "articleId": "147",
-      "rate": 4,
-      "feedback": "Good information, though some sections felt rushed.",
-      "id": "418"
-    },
-    {
-      "userId": "15",
-      "articleId": "116",
-      "rate": 3,
-      "feedback": "Average article. Some points were unclear.",
-      "id": "419"
-    },
-    {
-      "userId": "17",
-      "articleId": "129",
-      "rate": 5,
-      "feedback": "Fantastic read! Very engaging and well-structured.",
-      "id": "420"
-    },
-    {
-      "userId": "18",
-      "articleId": "78",
-      "rate": 1,
-      "feedback": "The content was lacking depth and clarity.",
-      "id": "601"
-    },
-    {
-      "userId": "18",
-      "articleId": "90",
-      "rate": 2,
-      "feedback": "Not very useful, I expected more detailed information.",
-      "id": "602"
-    },
-    {
-      "userId": "18",
-      "articleId": "158",
-      "rate": 1,
-      "feedback": "This article was confusing and poorly organized.",
-      "id": "603"
-    },
-    {
-      "userId": "18",
-      "articleId": "159",
-      "rate": 2,
-      "feedback": "Had potential, but it didn't deliver on the main points.",
-      "id": "604"
-    },
-    {
-      "userId": "18",
-      "articleId": "161",
-      "rate": 1,
-      "feedback": "Very disappointing. The examples were irrelevant.",
-      "id": "605"
-    },
-    {
-      "userId": "18",
-      "articleId": "162",
-      "rate": 2,
-      "feedback": "Could use significant improvements. Lacked engagement.",
-      "id": "606"
-    },
-    {
-      "userId": "4",
-      "articleId": "83",
-      "rate": 5,
-      "feedback": "An excellent article! It provided great insights and was very well-written.",
-      "id": 701
-    },
-    {
-      "userId": "4",
-      "articleId": "95",
-      "rate": 4,
-      "feedback": "Good content, very informative and easy to understand.",
-      "id": 702
-    },
-    {
-      "userId": "4",
-      "articleId": "111",
-      "rate": 5,
-      "feedback": "Outstanding explanation of the topic. I learned a lot!",
-      "id": 703
-    },
-    {
-      "userId": "4",
-      "articleId": "126",
-      "rate": 4,
-      "feedback": "Well-structured and engaging. Would definitely recommend it.",
-      "id": 704
-    },
-    {
-      "userId": "4",
-      "articleId": "84",
-      "rate": 5,
-      "feedback": "This article exceeded my expectations! Very helpful.",
-      "id": 705
-    },
-    {
-      "userId": "4",
-      "articleId": "96",
-      "rate": 5,
-      "feedback": "I found the information provided very useful and applicable.",
-      "id": 706
-    },
-    {
-      "userId": "4",
-      "articleId": "106",
-      "rate": 4,
-      "feedback": "A solid piece of writing. I appreciated the depth of analysis.",
-      "id": 707
-    },
-    {
-      "userId": "4",
-      "articleId": "112",
-      "rate": 5,
-      "feedback": "Fantastic article! It was engaging and very informative.",
-      "id": 708
-    },
-    {
-      "userId": "4",
-      "articleId": "53",
-      "rate": 4,
-      "feedback": "Great insights! I will be using this information moving forward.",
-      "id": 709
-    },
-    {
-      "userId": "4",
-      "articleId": "73",
-      "rate": 5,
-      "feedback": "Excellent content! Very well organized and clear.",
-      "id": 710
-    },
-    {
-      "userId": "4",
-      "articleId": "85",
-      "rate": 4,
-      "feedback": "Informative and well-researched. I learned a lot!",
-      "id": 711
-    },
-    {
-      "userId": "4",
-      "articleId": "97",
-      "rate": 5,
-      "feedback": "This was one of the best articles I've read on this subject.",
-      "id": 712
-    },
-    {
-      "userId": "4",
-      "articleId": "74",
-      "rate": 5,
-      "feedback": "Outstanding! The clarity of writing is impressive.",
-      "id": 713
-    },
-    {
-      "userId": "4",
-      "articleId": "86",
-      "rate": 4,
-      "feedback": "Good article with valuable insights. Keep up the great work!",
-      "id": 714
-    },
-    {
-      "userId": "4",
-      "articleId": "98",
-      "rate": 5,
-      "feedback": "A must-read! It provided practical tips that I can apply.",
-      "id": 715
-    },
-    {
-      "userId": "4",
-      "articleId": "114",
-      "rate": 4,
-      "feedback": "Very informative. I appreciate the thorough research.",
-      "id": 716
-    },
-    {
-      "userId": "8",
-      "articleId": "149",
-      "rate": 5,
-      "feedback": "Absolutely loved this article! It was insightful and well-written.",
-      "id": 801
-    },
-    {
-      "userId": "8",
-      "articleId": "164",
-      "rate": 4,
-      "feedback": "Great information presented clearly. I found it very helpful.",
-      "id": 802
-    },
-    {
-      "userId": "8",
-      "articleId": "150",
-      "rate": 5,
-      "feedback": "Fantastic read! Engaging from start to finish.",
-      "id": 803
-    },
-    {
-      "userId": "8",
-      "articleId": "165",
-      "rate": 4,
-      "feedback": "Well structured and informative. I learned a lot from it!",
-      "id": 804
-    },
-    {
-      "userId": "8",
-      "articleId": "113",
-      "rate": 5,
-      "feedback": "Excellent insights! This is exactly what I needed.",
-      "id": 805
-    },
-    {
-      "userId": "8",
-      "articleId": "133",
-      "rate": 4,
-      "feedback": "Good content and very easy to follow. Highly recommend.",
-      "id": 806
-    },
-    {
-      "userId": "8",
-      "articleId": "127",
-      "rate": 5,
-      "feedback": "Very informative! I appreciate the depth of analysis.",
-      "id": 807
-    },
-    {
-      "userId": "8",
-      "articleId": "134",
-      "rate": 4,
-      "feedback": "Solid article! It provides practical insights and tips.",
-      "id": 808
-    },
-    {
-      "userId": "8",
-      "articleId": "152",
-      "rate": 5,
-      "feedback": "Outstanding! This article has become one of my favorites.",
-      "id": 809
-    },
-    {
-      "userId": "8",
-      "articleId": "167",
-      "rate": 4,
-      "feedback": "Very well written! It covers the topic thoroughly.",
-      "id": 810
-    },
-    {
-      "userId": "8",
-      "articleId": "153",
-      "rate": 5,
-      "feedback": "Loved it! The insights were very enlightening.",
-      "id": 811
-    },
-    {
-      "userId": "8",
-      "articleId": "168",
-      "rate": 4,
-      "feedback": "Great content! I found it really useful for my research.",
-      "id": 812
-    },
-    {
-      "userId": "9",
-      "articleId": "32",
-      "rate": 1,
-      "feedback": "I found this article to be poorly written and lacking depth.",
-      "id": 901
-    },
-    {
-      "userId": "9",
-      "articleId": "33",
-      "rate": 2,
-      "feedback": "Not very helpful. The information provided was vague and unclear.",
-      "id": 902
-    },
-    {
-      "userId": "9",
-      "articleId": "58",
-      "rate": 1,
-      "feedback": "Disappointed with this article. It didn't meet my expectations.",
-      "id": 903
-    },
-    {
-      "userId": "9",
-      "articleId": "102",
-      "rate": 2,
-      "feedback": "The content felt rushed and lacked proper structure.",
-      "id": 904
-    },
-    {
-      "userId": "9",
-      "articleId": "36",
-      "rate": 1,
-      "feedback": "Very uninformative. I expected more from this topic.",
-      "id": 905
-    },
-    {
-      "userId": "11",
-      "articleId": "63",
-      "rate": 5,
-      "feedback": "Absolutely fantastic article! It provided great insights and was very well written.",
-      "id": 1101
-    },
-    {
-      "userId": "11",
-      "articleId": "151",
-      "rate": 5,
-      "feedback": "A must-read! The content is very relevant and easy to understand.",
-      "id": 1102
-    },
-    {
-      "userId": "11",
-      "articleId": "166",
-      "rate": 5,
-      "feedback": "This article exceeded my expectations! Great job on the details.",
-      "id": 1103
-    },
-    {
-      "userId": "11",
-      "articleId": "64",
-      "rate": 5,
-      "feedback": "Very informative and engaging. I learned a lot!",
-      "id": 1104
-    },
-    {
-      "userId": "11",
-      "articleId": "76",
-      "rate": 5,
-      "feedback": "Incredible read! The author did a great job breaking down complex topics.",
-      "id": 1105
-    },
-    {
-      "userId": "11",
-      "articleId": "143",
-      "rate": 5,
-      "feedback": "One of the best articles I've read on this subject. Highly recommended!",
-      "id": 1106
-    },
-    {
-      "userId": "11",
-      "articleId": "144",
-      "rate": 5,
-      "feedback": "Outstanding! Very well-researched and presented. Thank you!",
-      "id": 1107
-    },
-    {
-      "userId": "11",
-      "articleId": "145",
-      "rate": 5,
-      "feedback": "Fantastic insights! I really appreciate the depth of information provided.",
-      "id": 1108
-    },
-    {
-      "userId": "11",
-      "articleId": "146",
-      "rate": 5,
-      "feedback": "Exceptional quality! This article is a valuable resource.",
-      "id": 1109
-    },
-    {
-      "userId": "11",
-      "articleId": "147",
-      "rate": 5,
-      "feedback": "Loved it! The clarity and detail are impressive.",
-      "id": 1110
-    },
-    {
-      "userId": "11",
-      "articleId": "65",
-      "rate": 5,
-      "feedback": "Brilliantly written! This article provides all the necessary information.",
-      "id": 1111
-    },
-    {
-      "userId": "11",
-      "articleId": "77",
-      "rate": 5,
-      "feedback": "Absolutely loved this! Engaging and very informative.",
-      "id": 1112
-    },
-    {
-      "userId": "11",
-      "articleId": "89",
-      "rate": 5,
-      "feedback": "Incredible content! Thank you for sharing such valuable information.",
-      "id": 1113
-    },
-    {
-      "userId": "11",
-      "articleId": "156",
-      "rate": 5,
-      "feedback": "Highly insightful! This article really opened my eyes to new concepts.",
-      "id": 1114
-    },
-    {
-      "userId": "11",
-      "articleId": "157",
-      "rate": 5,
-      "feedback": "Superb article! I enjoyed every bit of it.",
-      "id": 1115
-    },
-    {
-      "userId": "11",
-      "articleId": "160",
-      "rate": 5,
-      "feedback": "Fantastic work! A truly enlightening read.",
-      "id": 1116
-    },
-    {
-      "userId": "11",
-      "articleId": "163",
-      "rate": 5,
-      "feedback": "Excellent! The author did a great job explaining everything.",
-      "id": 1117
-    },
-    {
-      "userId": "1",
-      "articleId": "45",
-      "rate": 1,
-      "feedback": "Very disappointing. The content was poorly organized and not informative.",
-      "id": 2001
-    },
-    {
-      "userId": "1",
-      "articleId": "66",
-      "rate": 1,
-      "feedback": "I expected more depth. This article felt superficial and unhelpful.",
-      "id": 2002
-    },
-    {
-      "userId": "1",
-      "articleId": "47",
-      "rate": 1,
-      "feedback": "This was a waste of time. The points made were irrelevant and confusing.",
-      "id": 2003
-    },
-    {
-      "userId": "1",
-      "articleId": "48",
-      "rate": 1,
-      "feedback": "Extremely unhelpful. The explanations were lacking and didn't clarify anything.",
-      "id": 2004
-    },
-    {
-      "userId": "1",
-      "articleId": "49",
-      "rate": 1,
-      "feedback": "The article was too vague. I couldn't find any useful information.",
-      "id": 2005
-    },
-    {
-      "userId": "1",
-      "articleId": "50",
-      "rate": 1,
-      "feedback": "Not worth reading. The writing was unclear and disorganized.",
-      "id": 2006
-    },
-    {
-      "userId": "1",
-      "articleId": "51",
-      "rate": 1,
-      "feedback": "Very poor quality. The author seems to lack expertise on the subject.",
-      "id": 2007
-    },
-    {
-      "userId": "1",
-      "articleId": "52",
-      "rate": 1,
-      "feedback": "I was really disappointed with this article. It didn't cover the topic properly.",
-      "id": 2008
-    },
-    {
-      "userId": "1",
-      "articleId": "22",
-      "rate": 1,
-      "feedback": "This article was frustrating to read. It offered no valuable insights.",
-      "id": 2009
-    },
-    {
-      "userId": "7",
-      "articleId": "68",
-      "rate": 2,
-      "feedback": "The content was not very engaging and lacked depth.",
-      "id": 3001
-    },
-    {
-      "userId": "7",
-      "articleId": "80",
-      "rate": 2,
-      "feedback": "I found the article to be somewhat useful, but overall it missed key points.",
-      "id": 3002
-    },
-    {
-      "userId": "7",
-      "articleId": "92",
-      "rate": 2,
-      "feedback": "The explanations were unclear and didn't provide enough detail.",
-      "id": 3003
-    },
-    {
-      "userId": "7",
-      "articleId": "108",
-      "rate": 2,
-      "feedback": "It was a decent attempt, but it fell short of my expectations.",
-      "id": 3004
-    },
-    {
-      "userId": "7",
-      "articleId": "123",
-      "rate": 2,
-      "feedback": "I appreciate the effort, but the execution was lacking.",
-      "id": 3005
-    },
-    {
-      "userId": "20",
-      "articleId": "121",
-      "rate": 2,
-      "feedback": "The article was poorly structured and hard to follow.",
-      "id": 4001
-    },
-    {
-      "userId": "20",
-      "articleId": "140",
-      "rate": 2,
-      "feedback": "I expected more depth and insight; it felt very superficial.",
-      "id": 4002
-    },
-    {
-      "userId": "20",
-      "articleId": "174",
-      "rate": 2,
-      "feedback": "The content didn't meet my expectations and lacked clarity.",
-      "id": 4003
-    },
-    {
-      "userId": "10",
-      "articleId": "103",
-      "rate": 4,
-      "feedback": "Great insights and well-researched content. I found it very informative!",
-      "id": 5001
-    },
-    {
-      "userId": "10",
-      "articleId": "119",
-      "rate": 4,
-      "feedback": "Good read! The examples provided were helpful and relevant.",
-      "id": 5002
-    },
-    {
-      "userId": "10",
-      "articleId": "132",
-      "rate": 4,
-      "feedback": "Overall, a solid article. I appreciate the clear explanations.",
-      "id": 5003
-    },
-    {
-      "userId": "10",
-      "articleId": "173",
-      "rate": 4,
-      "feedback": "Well-written and engaging. It kept my attention throughout!",
-      "id": 5004
-    }
-  ],
-
-  "comments": [
-    {
-      "id": "a1b2c3d",
-      "text": "This article is great!",
-      "articleId": "1",
-      "userId": "1"
-    },
-    {
-      "id": "e4f5g6h",
-      "text": "I totally agree with this.",
-      "articleId": "2",
-      "userId": "1"
-    },
-    {
-      "id": "i7j8k9l",
-      "text": "Interesting read!",
-      "articleId": "3",
-      "userId": "1"
-    },
-    {
-      "id": "m1n2o3p",
-      "text": "I have a different opinion.",
-      "articleId": "4",
-      "userId": "1"
-    },
-    {
-      "id": "q4r5s6t",
-      "text": "Thanks for sharing!",
-      "articleId": "5",
-      "userId": "1"
-    },
-    {
-      "id": "u7v8w9x",
-      "text": "Well written article!",
-      "articleId": "6",
-      "userId": "1"
-    },
-    {
-      "id": "y1z2a3b",
-      "text": "Loved the insights.",
-      "articleId": "7",
-      "userId": "1"
-    },
-    {
-      "id": "c4d5e6f",
-      "text": "Couldn’t agree more!",
-      "articleId": "9",
-      "userId": "1"
-    },
-    {
-      "id": "g7h8i9j",
-      "text": "Not sure about this.",
-      "articleId": "9",
-      "userId": "4"
-    },
-    {
-      "id": "k1l2m3n",
-      "text": "Fantastic explanation!",
-      "articleId": "9",
-      "userId": "5"
-    },
-    {
-      "id": "o4p5q6r",
-      "text": "More details, please.",
-      "articleId": "11",
-      "userId": "1"
-    },
-    {
-      "id": "s7t8u9v",
-      "text": "This was insightful.",
-      "articleId": "12",
-      "userId": "1"
-    },
-    {
-      "id": "w1x2y3z",
-      "text": "I learned something new.",
-      "articleId": "13",
-      "userId": "3"
-    },
-    {
-      "id": "a4b5c6d",
-      "text": "This needs more sources.",
-      "articleId": "14",
-      "userId": "3"
-    },
-    {
-      "id": "e7f8g9h",
-      "text": "Brilliant write-up!",
-      "articleId": "11",
-      "userId": "5"
-    },
-    {
-      "id": "i1j2k3l",
-      "text": "Very thought-provoking.",
-      "articleId": "16",
-      "userId": "1"
-    },
-    {
-      "id": "m4n5o6p",
-      "text": "I have some concerns.",
-      "articleId": "9",
-      "userId": "2"
-    },
-    {
-      "id": "u1v2w3x",
-      "text": "Needs better editing.",
-      "articleId": "19",
-      "userId": "5"
-    },
-    {
-      "id": "y4z5a6b",
-      "text": "I liked the examples.",
-      "articleId": "20",
-      "userId": "5"
-    },
-    {
-      "id": "c7d8e9f",
-      "text": "I found this helpful.",
-      "articleId": "6",
-      "userId": "1"
-    },
-    {
-      "id": "g1h2i3j",
-      "text": "Good perspective.",
-      "articleId": "2",
-      "userId": "2"
-    },
-    {
-      "id": "k4l5m6n",
-      "text": "Disagree with some points.",
-      "articleId": "3",
-      "userId": "3"
-    },
-    {
-      "id": "o7p8q9r",
-      "text": "Very informative!",
-      "articleId": "4",
-      "userId": "4"
-    },
-    {
-      "id": "s1t2u3v",
-      "text": "This was confusing.",
-      "articleId": "5",
-      "userId": "5"
-    },
-    {
-      "id": "w4x5y6z",
-      "text": "Can you clarify this?",
-      "articleId": "6",
-      "userId": "1"
-    },
-    {
-      "id": "a7b8c9d",
-      "text": "I support this view.",
-      "articleId": "7",
-      "userId": "2"
-    },
-    {
-      "id": "e1f2g3h",
-      "text": "This is a good point.",
-      "articleId": "12",
-      "userId": "4"
-    },
-    {
-      "id": "i4j5k6l",
-      "text": "Please expand on this.",
-      "articleId": "9",
-      "userId": "4"
-    },
-    {
-      "id": "m7n8o9p",
-      "text": "Fascinating article!",
-      "articleId": "2",
-      "userId": "5"
-    },
-    {
-      "id": "q1r2s3t",
-      "text": "Could use more detail.",
-      "articleId": "11",
-      "userId": "1"
-    },
-    {
-      "id": "u4v5w6x",
-      "text": "Very well explained.",
-      "articleId": "12",
-      "userId": "5"
-    },
-    {
-      "id": "y7z8a9b",
-      "text": "I have a different view.",
-      "articleId": "17",
-      "userId": "4"
-    },
-    {
-      "id": "c1d2e3f",
-      "text": "This is very useful.",
-      "articleId": "10",
-      "userId": "4"
-    },
-    {
-      "id": "g4h5i6j",
-      "text": "I liked this approach.",
-      "articleId": "15",
-      "userId": "5"
-    },
-    {
-      "id": "k7l8m9n",
-      "text": "Very engaging content.",
-      "articleId": "16",
-      "userId": "1"
-    },
-    {
-      "id": "o1p2q3r",
-      "text": "I agree completely.",
-      "articleId": "17",
-      "userId": "2"
-    },
-    {
-      "id": "s4t5u6v",
-      "text": "This was poorly written.",
-      "articleId": "18",
-      "userId": "4"
-    },
-    {
-      "id": "w7x8y9z",
-      "text": "Good research!",
-      "articleId": "19",
-      "userId": "4"
-    },
-    {
-      "id": "a1b2c3e",
-      "text": "I am not convinced.",
-      "articleId": "20",
-      "userId": "5"
-    },
-    {
-      "id": "f4g5h6i",
-      "text": "Loved the structure.",
-      "articleId": "1",
-      "userId": "4"
-    },
-    {
-      "id": "n1o2p3q",
-      "text": "This was eye-opening.",
-      "articleId": "3",
-      "userId": "4"
-    },
-    {
-      "id": "r4s5t6u",
-      "text": "I expected more detail.",
-      "articleId": "4",
-      "userId": "4"
-    },
-    {
-      "id": "v7w8x9y",
-      "text": "Well thought out.",
-      "articleId": "5",
-      "userId": "5"
-    },
-    {
-      "id": "z1a2b3c",
-      "text": "This is quite helpful.",
-      "articleId": "6",
-      "userId": "1"
-    },
-    {
-      "id": "d4e5f6g",
-      "text": "Can you give examples?",
-      "articleId": "7",
-      "userId": "2"
-    },
-    {
-      "id": "h7i8j9k",
-      "text": "Great point here.",
-      "articleId": "8",
-      "userId": "4"
-    },
-    {
-      "id": "l1m2n3o",
-      "text": "Very concise!",
-      "articleId": "9",
-      "userId": "4"
-    },
-    {
-      "id": "p4q5r6s",
-      "text": "Engaging from start to end.",
-      "articleId": "9",
-      "userId": "5"
-    },
-    {
-      "id": "t7u8v9w",
-      "text": "This was disappointing.",
-      "articleId": "11",
-      "userId": "1"
-    },
-    {
-      "id": "x1y2z3a",
-      "text": "Clear and insightful.",
-      "articleId": "12",
-      "userId": "2"
-    },
-    {
-      "id": "b4c5d6e",
-      "text": "Nice perspective shared.",
-      "articleId": "17",
-      "userId": "3"
-    },
-    {
-      "id": "f7g8h9i",
-      "text": "This deserves more attention.",
-      "articleId": "14",
-      "userId": "4"
-    },
-    {
-      "id": "j1k2l3m",
-      "text": "Excellent analysis!",
-      "articleId": "15",
-      "userId": "5"
-    },
-    {
-      "id": "n4o5p6q",
-      "text": "Well written, thanks!",
-      "articleId": "16",
-      "userId": "1"
-    },
-    {
-      "id": "r7s8t9u",
-      "text": "I’m not sure I agree.",
-      "articleId": "17",
-      "userId": "2"
-    },
-    {
-      "id": "v1w2x3y",
-      "text": "This was a bit unclear.",
-      "articleId": "18",
-      "userId": "3"
-    },
-    {
-      "id": "z4a5b6c",
-      "text": "Good references.",
-      "articleId": "19",
-      "userId": "4"
-    },
-    {
-      "id": "d7e8f9g",
-      "text": "I’d love a follow-up.",
-      "articleId": "20",
-      "userId": "5"
-    },
-    {
-      "id": "h1i2j3k",
-      "text": "I can relate to this.",
-      "articleId": "2",
-      "userId": "1"
-    },
-    {
-      "id": "l4m5n6o",
-      "text": "Clear arguments made.",
-      "articleId": "2",
-      "userId": "2"
-    },
-    {
-      "id": "p7q8r9s",
-      "text": "Good counterpoints.",
-      "articleId": "4",
-      "userId": "3"
-    },
-    {
-      "id": "t1u2v3w",
-      "text": "Would like more data.",
-      "articleId": "4",
-      "userId": "4"
-    },
-    {
-      "id": "x4y5z6a",
-      "text": "Good mix of views.",
-      "articleId": "5",
-      "userId": "5"
-    },
-    {
-      "id": "b7c8d9e",
-      "text": "This was too brief.",
-      "articleId": "6",
-      "userId": "1"
-    },
-    {
-      "id": "f1g2h3i",
-      "text": "I enjoyed reading this.",
-      "articleId": "7",
-      "userId": "2"
-    },
-    {
-      "id": "j4k5l6m",
-      "text": "Not enough depth here.",
-      "articleId": "8",
-      "userId": "3"
-    },
-    {
-      "id": "n7o8p9q",
-      "text": "Solid writing!",
-      "articleId": "9",
-      "userId": "4"
-    },
-    {
-      "id": "r1s2t3u",
-      "text": "This changed my view.",
-      "articleId": "10",
-      "userId": "5"
-    },
-    {
-      "id": "v4w5x6y",
-      "text": "Needs more context.",
-      "articleId": "17",
-      "userId": "1"
-    },
-    {
-      "id": "z7a8b9c",
-      "text": "Thoroughly researched!",
-      "articleId": "12",
-      "userId": "2"
-    },
-    {
-      "id": "d1e2f3g",
-      "text": "I didn’t expect this.",
-      "articleId": "19",
-      "userId": "3"
-    },
-    {
-      "id": "h4i5j6k",
-      "text": "Very engaging content.",
-      "articleId": "14",
-      "userId": "4"
-    },
-    {
-      "id": "l7m8n9o",
-      "text": "A fresh perspective.",
-      "articleId": "11",
-      "userId": "5"
-    },
-    {
-      "id": "p1q2r3s",
-      "text": "Needs more explanation.",
-      "articleId": "11",
-      "userId": "1"
-    },
-    {
-      "id": "t4u5v6w",
-      "text": "Very well summarized.",
-      "articleId": "11",
-      "userId": "2"
-    },
-    {
-      "id": "x7y8z9a",
-      "text": "I have some doubts.",
-      "articleId": "10",
-      "userId": "3"
-    },
-    {
-      "id": "b1c2d3e",
-      "text": "I’ll need to read again.",
-      "articleId": "19",
-      "userId": "4"
-    },
-    {
-      "id": "f4g5h6i",
-      "text": "Strong arguments here.",
-      "articleId": "20",
-      "userId": "5"
     }
   ]
 }
