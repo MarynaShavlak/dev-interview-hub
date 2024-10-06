@@ -18,8 +18,7 @@ interface ArticlesByUserData {
 }
 
 interface ArticleStats {
-    totalRating: number;
-    count: number;
+    [key: string]: number;
 }
 
 export const StatisticsCharts = () => {
@@ -31,33 +30,73 @@ export const StatisticsCharts = () => {
     const { data: ratings = [], isLoading: isRatingsLoading } =
         useArticlesRatings(null);
 
-    const articlesByUserData: ArticlesByUserData = {};
+    const totalUsers = users?.length || 0;
+
+    // ______________INACTIVE IN ARTICLES WRITING USERS_____________
+    const uniqueUsersInArticles: Set<string> = new Set();
+    // ______________________________________
+
     articles?.forEach((article) => {
-        const userId: string = article.user.id;
-        articlesByUserData[userId] = (articlesByUserData[userId] || 0) + 1;
+        uniqueUsersInArticles.add(article.user.id);
     });
 
-    const articleStats: { [articleId: string]: ArticleStats } = {};
+    const uniqueUserInArticlesCount = uniqueUsersInArticles.size;
+    const inactiveInArticlesUsersPercentage = Number(
+        (100 - (uniqueUserInArticlesCount / totalUsers) * 100).toFixed(2),
+    );
+    console.log(
+        'Number of unique users in articles:',
+        uniqueUserInArticlesCount,
+    );
+    console.log(
+        'inactiveInArticlesUsersPercentage:',
+        inactiveInArticlesUsersPercentage,
+    );
 
-    ratings.forEach((rating) => {
-        if (!articleStats[rating.articleId]) {
-            articleStats[rating.articleId] = { totalRating: 0, count: 0 };
-        }
-        articleStats[rating.articleId].totalRating += rating.rate;
-        articleStats[rating.articleId].count += 1;
-    });
+    // ______________iNACTIVE IN RATING USERS_____________
 
+    const uniqueUsersInRatings: Set<string> = new Set();
+
+    // ________________AVARAGE___RATING_______________________
+
+    const articleRatingStats: { [articleId: string]: ArticleStats } = {};
     let totalArticleAverages = 0;
     let articleCount = 0;
 
-    Object.keys(articleStats).forEach((articleId) => {
-        const { totalRating, count } = articleStats[articleId];
+    ratings.forEach((rating) => {
+        if (!articleRatingStats[rating.articleId]) {
+            articleRatingStats[rating.articleId] = { totalRating: 0, count: 0 };
+        }
+        articleRatingStats[rating.articleId].totalRating += rating.rate;
+        articleRatingStats[rating.articleId].count += 1;
+
+        // ____________________________
+        uniqueUsersInRatings.add(rating.userId);
+        // _______________________________
+    });
+
+    Object.keys(articleRatingStats).forEach((articleId) => {
+        const { totalRating, count } = articleRatingStats[articleId];
         const articleAverage = totalRating / count;
         totalArticleAverages += articleAverage;
         articleCount += 1;
     });
     const overallAverage = (totalArticleAverages / articleCount).toFixed(2);
     console.log('Overall average rating:', overallAverage);
+
+    // ___________________________________________________
+    const uniqueUserInRatingsCount = uniqueUsersInRatings.size;
+    const inactiveInRatingsUsersPercentage = Number(
+        (100 - (uniqueUserInRatingsCount / totalUsers) * 100).toFixed(2),
+    );
+    console.log('Number of unique users:', uniqueUserInRatingsCount);
+    console.log(
+        'inactiveInRatingsUsersPercentage:',
+        inactiveInRatingsUsersPercentage,
+    );
+    // ___________________________________________________
+
+    // _______________________________________
 
     if (isUsersLoading || isArticlesLoading || isRatingsLoading) return null;
 
@@ -74,7 +113,7 @@ export const StatisticsCharts = () => {
                     <Text bold text={t('Кількість користувачів')} />
                     <Text
                         bold
-                        text={String(users?.length)}
+                        text={String(totalUsers)}
                         size="l"
                         align="right"
                     />
