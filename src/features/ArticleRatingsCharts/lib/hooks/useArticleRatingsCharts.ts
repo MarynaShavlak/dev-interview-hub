@@ -35,6 +35,7 @@ const countRatings = (ratings: ArticleRating[]): ArticleRatingsData => {
             articleRatingsCount[userId].articlesWithFeedback += 1;
         }
     });
+    console.log('articleRatingsCount', articleRatingsCount);
 
     return { articleRatingsCount };
 };
