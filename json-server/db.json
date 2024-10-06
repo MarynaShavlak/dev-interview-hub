@@ -44,7 +44,7 @@
       ],
       "features": {
         "isArticleRatingEnabled": true,
-        "isAppRedesigned": false
+        "isAppRedesigned": true
       },
       "jsonSettings": {
         "theme": "app_orange_theme",
@@ -373,6 +373,125 @@
         "theme": "app_light_theme"
       },
       "avatar": "https://example.com/avatar20.jpg"
+    },
+    {
+      "id": "21",
+      "username": "danielUser",
+      "password": "user12345",
+      "roles": [
+        "USER"
+      ],
+      "features": {
+        "isArticleRatingEnabled": false,
+        "isAppRedesigned": false
+      },
+      "jsonSettings": {
+        "isArticlesPageWasOpened": false,
+        "theme": "app_light_theme"
+      },
+      "avatar": "https://example.com/avatar21.jpg"
+    },
+    {
+      "id": "22",
+      "username": "victorAdmin",
+      "password": "admin321",
+      "roles": [
+        "ADMIN"
+      ],
+      "features": {
+        "isArticleRatingEnabled": true,
+        "isAppRedesigned": true
+      },
+      "jsonSettings": {
+        "isArticlesPageWasOpened": true,
+        "theme": "app_orange_theme"
+      },
+      "avatar": "https://example.com/avatar22.jpg"
+    },
+    {
+      "id": "23",
+      "username": "olgaManager",
+      "password": "manage654",
+      "roles": [
+        "MANAGER"
+      ],
+      "features": {
+        "isArticleRatingEnabled": false,
+        "isAppRedesigned": false
+      },
+      "jsonSettings": {
+        "isArticlesPageWasOpened": true,
+        "theme": "app_light_theme"
+      },
+      "avatar": "https://example.com/avatar23.jpg"
+    },
+    {
+      "id": "24",
+      "username": "emmaUser",
+      "password": "user7890",
+      "roles": [
+        "USER"
+      ],
+      "features": {
+        "isArticleRatingEnabled": true,
+        "isAppRedesigned": false
+      },
+      "jsonSettings": {
+        "isArticlesPageWasOpened": true,
+        "theme": "app_orange_theme"
+      },
+      "avatar": "https://example.com/avatar24.jpg"
+    },
+    {
+      "id": "25",
+      "username": "jasonAdmin",
+      "password": "admin0009",
+      "roles": [
+        "ADMIN"
+      ],
+      "features": {
+        "isArticleRatingEnabled": true,
+        "isAppRedesigned": true
+      },
+      "jsonSettings": {
+        "isArticlesPageWasOpened": true,
+        "theme": "app_dark_theme"
+      },
+      "avatar": "https://example.com/avatar25.jpg"
+    },
+    {
+      "id": "26",
+      "username": "lindaManager",
+      "password": "manage444",
+      "roles": [
+        "MANAGER"
+      ],
+      "features": {
+        "isArticleRatingEnabled": false,
+        "isAppRedesigned": false
+      },
+      "jsonSettings": {
+        "isArticlesPageWasOpened": true,
+        "theme": "app_light_theme"
+      },
+      "avatar": "https://example.com/avatar26.jpg"
+    },
+    {
+      "id": "27",
+      "username": "henryUser",
+      "password": "user9876",
+      "roles": [
+        "USER"
+      ],
+      "features": {
+        "isArticleRatingEnabled": false,
+        "isAppRedesigned": false
+      },
+      "jsonSettings": {
+        "isArticlesPageWasOpened": false,
+        "theme": "app_light_theme"
+      },
+      "avatar": "https://example.com/avatar27.jpg"
     }
   ],
   "profile": [
@@ -595,6 +714,83 @@
       "city": "Rijeka",
       "username": "sarahManager",
       "avatar": "https://example.com/avatar20.jpg"
+    },
+    {
+      "id": "21",
+      "firstname": "Daniel",
+      "lastname": "Adams",
+      "age": 29,
+      "currency": "USD",
+      "country": "USA",
+      "city": "New York",
+      "username": "danielUser",
+      "avatar": "https://example.com/avatar21.jpg"
+    },
+    {
+      "id": "22",
+      "firstname": "Victor",
+      "lastname": "Johnson",
+      "age": 42,
+      "currency": "GBP",
+      "country": "United Kingdom",
+      "city": "London",
+      "username": "victorAdmin",
+      "avatar": "https://example.com/avatar22.jpg"
+    },
+    {
+      "id": "23",
+      "firstname": "Olga",
+      "lastname": "Ivanova",
+      "age": 37,
+      "currency": "EUR",
+      "country": "Germany",
+      "city": "Frankfurt",
+      "username": "olgaManager",
+      "avatar": "https://example.com/avatar23.jpg"
+    },
+    {
+      "id": "24",
+      "firstname": "Emma",
+      "lastname": "Anderson",
+      "age": 26,
+      "currency": "USD",
+      "country": "Canada",
+      "city": "Toronto",
+      "username": "emmaUser",
+      "avatar": "https://example.com/avatar24.jpg"
+    },
+    {
+      "id": "25",
+      "firstname": "Jason",
+      "lastname": "Gordon",
+      "age": 45,
+      "currency": "USD",
+      "country": "USA",
+      "city": "Los Angeles",
+      "username": "jasonAdmin",
+      "avatar": "https://example.com/avatar25.jpg"
+    },
+    {
+      "id": "26",
+      "firstname": "Linda",
+      "lastname": "Muller",
+      "age": 33,
+      "currency": "EUR",
+      "country": "Austria",
+      "city": "Vienna",
+      "username": "lindaManager",
+      "avatar": "https://example.com/avatar26.jpg"
+    },
+    {
+      "id": "27",
+      "firstname": "Henry",
+      "lastname": "Williams",
+      "age": 31,
+      "currency": "USD",
+      "country": "USA",
+      "city": "San Francisco",
+      "username": "henryUser",
+      "avatar": "https://example.com/avatar27.jpg"
     }
   ],
   "articles": [

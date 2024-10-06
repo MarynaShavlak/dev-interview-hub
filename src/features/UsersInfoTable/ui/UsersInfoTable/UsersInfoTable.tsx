@@ -22,12 +22,12 @@ export const UsersInfoTable = () => {
             />
         );
     }
-    const d = [...users, ...users, ...users];
-    const c = generateTableColumnsData(d, t);
+
+    // const columns = generateTableColumnsData(users, t);
 
     return (
         <VStack gap="24">
-            <Table data={d} columns={c} />
+            <Table data={users} columns={columns} />
         </VStack>
     );
 };

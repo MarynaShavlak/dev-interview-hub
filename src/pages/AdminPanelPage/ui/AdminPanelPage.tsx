@@ -1,23 +1,27 @@
 import React from 'react';
 import { Page } from '@/widgets/Page';
+import { StatisticsCharts } from '@/widgets/StatisticsCharts';
+
+import { ToggleFeaturesComponent } from '@/shared/lib/features';
 import { UsersInfoTable } from '@/features/UsersInfoTable';
-import { VStack } from '@/shared/ui/common/Stack';
-import { ArticleQuarterlyDataCharts } from '@/features/ArticleQuarterlyDataCharts';
-import { ArticleCommentsCharts } from '@/features/ArticleCommentsCharts';
-import { ArticleCategoriesCharts } from '@/features/ArticleCategoriesCharts';
-import { ArticleRatingsCharts } from '@/features/ArticleRatingsCharts';
 
 const AdminPanelPage = () => {
     return (
-        <Page data-testid="AdminPanelPage">
-            <VStack gap="24">
-                <ArticleCategoriesCharts />
-                <ArticleQuarterlyDataCharts />
-                <ArticleCommentsCharts />
-                <ArticleRatingsCharts />
-                <UsersInfoTable />
-            </VStack>
-        </Page>
+        <ToggleFeaturesComponent
+            feature="isAppRedesigned"
+            on={
+                <main data-testid="AdminPanelPage">
+                    <StatisticsCharts />
+                    <UsersInfoTable />
+                </main>
+            }
+            off={
+                <Page data-testid="AdminPanelPage">
+                    <StatisticsCharts />
+                    {/* <UsersInfoTable /> */}
+                </Page>
+            }
+        />
     );
 };
 
