@@ -2,18 +2,19 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { HStack } from '@/shared/ui/common/Stack';
 import { DonutChart } from '@/shared/ui/common/Charts/ui/DonutChart/DonutChart';
-import { useArticleCategoryData } from '../../../lib/hooks/useArticleCategoryData/useArticleCategoryData';
 import { Card as CardDeprecated } from '@/shared/ui/deprecated/Card';
+import { ArticleCategoriesChartsProps } from '../ArticleCategoriesCharts';
 
-export const DeprecatedArticleCategoriesCharts = () => {
+export const DeprecatedArticleCategoriesCharts = (
+    props: ArticleCategoriesChartsProps,
+) => {
     const { t } = useTranslation('admin');
 
     const {
         labels: categoryLabels,
         articleData: articlesQuantityByCategoriesData,
         viewData: articleViewsByCategoriesData,
-    } = useArticleCategoryData();
-
+    } = props;
     return (
         <HStack gap="24" max>
             <CardDeprecated>

@@ -42,6 +42,10 @@ export const StatisticsCharts = () => {
     const totalUsers = users?.length || 0;
     const activeUsersData: number[] = [];
     const articlesByRatingDistributionData: number[] = [];
+    const categoryData: Record<
+        string,
+        { articleCount: number; viewCount: number }
+    > = {};
     let totalViews = 0;
 
     const uniqueUsersInArticles: Set<string> = new Set();
@@ -54,6 +58,14 @@ export const StatisticsCharts = () => {
     articles?.forEach((article) => {
         uniqueUsersInArticles.add(article.user.id);
         totalViews += article.views;
+
+        article.category.forEach((cat) => {
+            if (!categoryData[cat]) {
+                categoryData[cat] = { articleCount: 0, viewCount: 0 };
+            }
+            categoryData[cat].articleCount += 1;
+            categoryData[cat].viewCount += article.views;
+        });
     });
 
     comments?.forEach((comment) => {
@@ -165,6 +177,13 @@ export const StatisticsCharts = () => {
         `${t('Оцінка 3-4')}`,
         `${t('Оцінка 5')}`,
     ];
+
+    // _____________________________ArticleCategoriesCharts_______________________
+    const labels = Object.keys(categoryData);
+    const articleData = labels.map((label) => categoryData[label].articleCount);
+    const viewData = labels.map((label) => categoryData[label].viewCount);
+
+    // _____________________________ArticleCategoriesCharts_______________________
 
     if (
         isUsersLoading ||
@@ -313,7 +332,11 @@ export const StatisticsCharts = () => {
                 </Card>
             </HStack>
 
-            <ArticleCategoriesCharts />
+            <ArticleCategoriesCharts
+                labels={labels}
+                viewData={viewData}
+                articleData={articleData}
+            />
             <ArticleQuarterlyDataCharts />
             <ArticleCommentsCharts />
             <ArticleRatingsCharts />

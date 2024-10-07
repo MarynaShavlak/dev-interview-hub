@@ -2,16 +2,23 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { HStack } from '@/shared/ui/common/Stack';
 import { DonutChart } from '@/shared/ui/common/Charts/ui/DonutChart/DonutChart';
-import { useArticleCategoryData } from '../../../lib/hooks/useArticleCategoryData/useArticleCategoryData';
 import { Card } from '@/shared/ui/redesigned/Card';
+import { ArticleCategoriesChartsProps } from '../ArticleCategoriesCharts';
 
-export const RedesignedArticleCategoriesCharts = () => {
+export const RedesignedArticleCategoriesCharts = (
+    props: ArticleCategoriesChartsProps,
+) => {
     const { t } = useTranslation('admin');
+    // const {
+    //     labels: categoryLabels,
+    //     articleData: articlesQuantityByCategoriesData,
+    //     viewData: articleViewsByCategoriesData,
+    // } = useArticleCategoryData();
     const {
         labels: categoryLabels,
         articleData: articlesQuantityByCategoriesData,
         viewData: articleViewsByCategoriesData,
-    } = useArticleCategoryData();
+    } = props;
 
     return (
         <HStack gap="24" max>

@@ -5,7 +5,15 @@ import { DeprecatedArticleCategoriesCharts } from './DeprecatedArticleCategories
 import { RedesignedArticleCategoriesCharts } from './RedesignedArticleCategoriesCharts/RedesignedArticleCategoriesCharts';
 import { ArticleCategoriesChartsSkeleton } from '../ArticleCategoriesChartsSkeleton/ArticleCategoriesChartsSkeleton';
 
-export const ArticleCategoriesCharts = () => {
+export interface ArticleCategoriesChartsProps {
+    labels: string[];
+    articleData: number[];
+    viewData: number[];
+}
+
+export const ArticleCategoriesCharts = (
+    props: ArticleCategoriesChartsProps,
+) => {
     const { isLoading: isArticlesLoading, error } = useArticles(null);
 
     if (error) return null;
@@ -17,8 +25,8 @@ export const ArticleCategoriesCharts = () => {
     return (
         <ToggleFeaturesComponent
             feature="isAppRedesigned"
-            on={<RedesignedArticleCategoriesCharts />}
-            off={<DeprecatedArticleCategoriesCharts />}
+            on={<RedesignedArticleCategoriesCharts {...props} />}
+            off={<DeprecatedArticleCategoriesCharts {...props} />}
         />
     );
 };
