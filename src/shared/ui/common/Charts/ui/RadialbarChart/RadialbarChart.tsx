@@ -9,6 +9,7 @@ import { BaseChartProps } from '../types';
 interface BarChartProps extends BaseChartProps {
     data: number[];
     totalLabel: string;
+    totalValue?: string;
 }
 
 export const RadialbarChart = (props: BarChartProps) => {
@@ -20,6 +21,7 @@ export const RadialbarChart = (props: BarChartProps) => {
         width = '400',
         height = '500',
         totalLabel,
+        totalValue,
     } = props;
 
     const baseChartOptions = useBaseChartOptions({
@@ -48,7 +50,7 @@ export const RadialbarChart = (props: BarChartProps) => {
                                 ) / w.config.series.length
                             ).toFixed(2);
 
-                            return `${res}%`;
+                            return totalValue || `${res}%`;
                         },
                     },
                     value: {

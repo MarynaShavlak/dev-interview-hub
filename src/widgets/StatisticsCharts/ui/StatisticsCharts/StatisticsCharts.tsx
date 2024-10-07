@@ -41,6 +41,7 @@ export const StatisticsCharts = () => {
     const totalArticlesCount = articles?.length || 0;
     const totalUsers = users?.length || 0;
     const activeUsersData: number[] = [];
+    const articlesByRatingDistributionData: number[] = [];
     let totalViews = 0;
 
     const uniqueUsersInArticles: Set<string> = new Set();
@@ -81,7 +82,8 @@ export const StatisticsCharts = () => {
     // ________________AVeRAGE___RATING_______________________
     const articleRatingStats: { [articleId: string]: ArticleStats } = {};
     let totalArticleAverages = 0;
-    let articleCount = 0;
+    let articlesWithRatingCount = 0;
+    const ratingCount = { rate1to2: 0, rate3to4: 0, rate5: 0 };
 
     ratings.forEach((rating) => {
         if (!articleRatingStats[rating.articleId]) {
@@ -100,13 +102,26 @@ export const StatisticsCharts = () => {
         const { totalRating, count } = articleRatingStats[articleId];
         const articleAverage = totalRating / count;
         totalArticleAverages += articleAverage;
-        articleCount += 1;
-    });
-    const averageRating = (totalArticleAverages / articleCount).toFixed(2);
-    const averageViews =
-        articleCount > 0 ? (totalViews / totalArticlesCount).toFixed(0) : 0;
+        articlesWithRatingCount += 1;
 
-    console.log('articleCount', articleCount);
+        if (articleAverage >= 1 && articleAverage <= 2) {
+            ratingCount.rate1to2 += 1;
+        } else if (articleAverage >= 3 && articleAverage < 5) {
+            ratingCount.rate3to4 += 1;
+        } else {
+            ratingCount.rate5 += 1;
+        }
+    });
+
+    const averageRating = (
+        totalArticleAverages / articlesWithRatingCount
+    ).toFixed(2);
+    const averageViews =
+        articlesWithRatingCount > 0
+            ? (totalViews / totalArticlesCount).toFixed(0)
+            : 0;
+
+    console.log('articleRatingStats', articleRatingStats);
     // ___________________________________________________
     const uniqueUserInRatingsCount = uniqueUsersInRatings.size;
     const activeInRatingsUsersPercentage = Number(
@@ -115,12 +130,16 @@ export const StatisticsCharts = () => {
     // ___________________________________________________
     const articlesWithFeedbackCount = articlesWithFeedback.size;
     const articlesWithFeedbackCountPercentage = Number(
-        ((articlesWithFeedbackCount / articleCount) * 100).toFixed(2),
+        ((articlesWithFeedbackCount / articlesWithRatingCount) * 100).toFixed(
+            2,
+        ),
     );
 
     const articlesWithCommentsCount = articlesWithComments.size;
     const articlesWithCommentsCountPercentage = Number(
-        ((articlesWithCommentsCount / articleCount) * 100).toFixed(2),
+        ((articlesWithCommentsCount / articlesWithRatingCount) * 100).toFixed(
+            2,
+        ),
     );
 
     // _______________________________________
@@ -129,11 +148,22 @@ export const StatisticsCharts = () => {
         activeInCommentsUsersPercentage,
         activeInRatingsUsersPercentage,
     );
+    articlesByRatingDistributionData.push(
+        ratingCount.rate1to2,
+        ratingCount.rate3to4,
+        ratingCount.rate5,
+    );
 
     const activeUserLabels = [
         `${t('Автори статей')}`,
         `${t('Коментатори статей')}`,
         `${t('Оцінка статей')}`,
+    ];
+
+    const articlesByRatingDistributionLabels = [
+        `${t('Оцінка 1-2')}`,
+        `${t('Оцінка 3-4')}`,
+        `${t('Оцінка 5')}`,
     ];
 
     if (
@@ -250,7 +280,7 @@ export const StatisticsCharts = () => {
                     />
                 </Card>
             </HStack>
-            <HStack>
+            <HStack gap="16">
                 <Card>
                     <RadialbarChart
                         data={activeUsersData}
@@ -260,6 +290,19 @@ export const StatisticsCharts = () => {
                         height="260"
                         width="260"
                         totalLabel={t('Загальний відсоток')}
+                    />
+                </Card>
+
+                <Card>
+                    <RadialbarChart
+                        data={articlesByRatingDistributionData}
+                        labels={articlesByRatingDistributionLabels}
+                        title={t('Розподіл статей за оцінками')}
+                        legendPosition="top"
+                        height="260"
+                        width="260"
+                        totalLabel={t('Загальна кількість')}
+                        totalValue={`${articlesWithRatingCount}`}
                     />
                 </Card>
             </HStack>

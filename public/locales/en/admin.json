@@ -40,5 +40,10 @@
   "Оцінка статей": "Ratings of Articles",
   "Частка оцінених із фідбеком": "Percentage of Articles Reviewed with Feedback",
   "Середня кількість переглядів статей": "Average Number of Article Views",
-  "Частка статей із коментарями": "Percentage of Articles with Comments"
+  "Частка статей із коментарями": "Percentage of Articles with Comments",
+  "Загальна кількість": "Total Quantity",
+  "Розподіл статей за оцінками": "Article Rating Distribution",
+  "Оцінка 1-2": "Rating 1-2",
+  "Оцінка 3-4": "Rating 3-4",
+  "Оцінка 5": "Rating 5"
 }
