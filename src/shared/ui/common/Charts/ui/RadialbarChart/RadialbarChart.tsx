@@ -34,28 +34,49 @@ export const RadialbarChart = (props: BarChartProps) => {
         labels,
         plotOptions: {
             radialBar: {
+                offsetY: 0,
+                startAngle: 0,
+                endAngle: 270,
+                hollow: {
+                    margin: 5,
+                    size: '30%',
+                    background: 'transparent',
+                    image: undefined,
+                },
                 dataLabels: {
-                    total: {
-                        show: true,
-                        label: totalLabel,
-                        fontSize: '10px',
-                        formatter(w) {
-                            const res = (
-                                w.config.series.reduce(
-                                    (
-                                        accumulator: number,
-                                        currentValue: number,
-                                    ) => accumulator + currentValue,
-                                    0,
-                                ) / w.config.series.length
-                            ).toFixed(2);
-
-                            return totalValue || `${res}%`;
-                        },
-                    },
-                    value: {
-                        fontSize: '16px',
-                        fontWeight: 'bold',
+                    show: false,
+                    // total: {
+                    //     show: true,
+                    //     label: totalLabel,
+                    //     fontSize: '10px',
+                    //     formatter(w) {
+                    //         const res = (
+                    //             w.config.series.reduce(
+                    //                 (
+                    //                     accumulator: number,
+                    //                     currentValue: number,
+                    //                 ) => accumulator + currentValue,
+                    //                 0,
+                    //             ) / w.config.series.length
+                    //         ).toFixed(2);
+                    //
+                    //         return totalValue || `${res}%`;
+                    //     },
+                    // },
+                    // value: {
+                    //     fontSize: '16px',
+                    //     fontWeight: 'bold',
+                    // },
+                },
+                barLabels: {
+                    enabled: true,
+                    useSeriesColors: true,
+                    offsetX: -8,
+                    fontSize: '12px',
+                    formatter(seriesName, opts) {
+                        return `${seriesName}:  ${
+                            opts.w.globals.series[opts.seriesIndex]
+                        }%`;
                     },
                 },
             },

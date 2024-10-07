@@ -190,6 +190,7 @@ export const StatisticsCharts = () => {
                         text={String(totalUsers)}
                         size="l"
                         align="right"
+                        variant="accent"
                     />
                 </Card>
                 <Card
@@ -205,6 +206,7 @@ export const StatisticsCharts = () => {
                         text={String(totalArticlesCount)}
                         size="l"
                         align="right"
+                        variant="accent"
                     />
                 </Card>
                 <Card
@@ -220,6 +222,7 @@ export const StatisticsCharts = () => {
                         text={`${averageRating}%`}
                         size="l"
                         align="right"
+                        variant="accent"
                     />
                 </Card>
                 <Card
@@ -239,6 +242,7 @@ export const StatisticsCharts = () => {
                         text={`${articlesWithFeedbackCountPercentage}%`}
                         size="l"
                         align="right"
+                        variant="accent"
                     />
                 </Card>
                 <Card
@@ -258,6 +262,7 @@ export const StatisticsCharts = () => {
                         text={`${averageViews}`}
                         size="l"
                         align="right"
+                        variant="accent"
                     />
                 </Card>
                 <Card
@@ -277,18 +282,19 @@ export const StatisticsCharts = () => {
                         text={`${articlesWithCommentsCountPercentage}%`}
                         size="l"
                         align="right"
+                        variant="accent"
                     />
                 </Card>
             </HStack>
-            <HStack gap="16">
+            <HStack gap="24">
                 <Card>
                     <RadialbarChart
                         data={activeUsersData}
                         labels={activeUserLabels}
                         title={t('Відсоток активних користувачів, %')}
                         legendPosition="top"
-                        height="260"
-                        width="260"
+                        height="200"
+                        width="380"
                         totalLabel={t('Загальний відсоток')}
                     />
                 </Card>
@@ -299,8 +305,8 @@ export const StatisticsCharts = () => {
                         labels={articlesByRatingDistributionLabels}
                         title={t('Розподіл статей за оцінками')}
                         legendPosition="top"
-                        height="260"
-                        width="260"
+                        height="200"
+                        width="220"
                         totalLabel={t('Загальна кількість')}
                         totalValue={`${articlesWithRatingCount}`}
                     />
