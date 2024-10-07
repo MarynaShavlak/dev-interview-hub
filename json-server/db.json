@@ -47,7 +47,7 @@
         "isAppRedesigned": true
       },
       "jsonSettings": {
-        "theme": "app_orange_theme",
+        "theme": "app_light_theme",
         "isFirstVisit": true,
         "settingsPageHasBeenOpen": false,
         "isArticlesPageWasOpened": true
@@ -8301,35 +8301,30 @@
       "userId": "1",
       "articleId": "40",
       "rate": 5,
-      "feedback": "Excellent article, very informative",
       "id": "101"
     },
     {
       "userId": "2",
       "articleId": "40",
       "rate": 4,
-      "feedback": "Good explanation but could include more examples",
       "id": "102"
     },
     {
       "userId": "3",
       "articleId": "40",
       "rate": 4,
-      "feedback": "Clear and concise, well-written",
       "id": "103"
     },
     {
       "userId": "4",
       "articleId": "40",
       "rate": 3,
-      "feedback": "Decent read",
       "id": "104"
     },
     {
       "userId": "5",
       "articleId": "40",
       "rate": 5,
-      "feedback": "I found it extremely helpful",
       "id": "105"
     },
     {
@@ -8342,14 +8337,12 @@
       "userId": "7",
       "articleId": "40",
       "rate": 4,
-      "feedback": "Informative, could dive deeper into the topic",
       "id": "107"
     },
     {
       "userId": "8",
       "articleId": "40",
       "rate": 5,
-      "feedback": "Perfect overview",
       "id": "108"
     },
     {
@@ -8380,7 +8373,6 @@
       "userId": "13",
       "articleId": "40",
       "rate": 5,
-      "feedback": "Very useful insights",
       "id": "113"
     },
     {
@@ -8405,7 +8397,6 @@
       "userId": "17",
       "articleId": "40",
       "rate": 5,
-      "feedback": "Well explained with good examples",
       "id": "117"
     },
     {
@@ -9947,21 +9938,18 @@
       "userId": "4",
       "articleId": "84",
       "rate": 5,
-      "feedback": "This article exceeded my expectations! Very helpful.",
       "id": 705
     },
     {
       "userId": "4",
       "articleId": "96",
       "rate": 5,
-      "feedback": "I found the information provided very useful and applicable.",
       "id": 706
     },
     {
       "userId": "4",
       "articleId": "106",
       "rate": 4,
-      "feedback": "A solid piece of writing. I appreciated the depth of analysis.",
       "id": 707
     },
     {

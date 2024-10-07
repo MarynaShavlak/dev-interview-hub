@@ -1,3 +1,9 @@
 .dashboardCard {
-  min-width: 200px;
+  min-width: 220px;
+  min-height: 104px;
+  justify-content: space-between;
+}
+
+.dashboardCardLabel {
+  width: 204px;
 }

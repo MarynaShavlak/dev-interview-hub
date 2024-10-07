@@ -32,5 +32,12 @@
   "Відсоток оцінених статей": "Percentage of Rated Articles",
   "Середній рейтинг статей": "Average Article Rating",
   "Кількість наданих відгуків": "Quantity of Given Feedback",
-  "Кількість користувачів": "Current Users"
+  "Кількість користувачів": "Current Users",
+  "Відсоток активних користувачів, %": "Percentage of Active Users, %",
+  "Загальний відсоток": "Total Percentage",
+  "Автори статей": "Articles Authors",
+  "Коментатори статей": "Articles Commentators",
+  "Оцінка статей": "Ratings of Articles",
+  "Частка оцінених із фідбеком": "Percentage of Articles Reviewed with Feedback",
+  "Середня кількість переглядів статей": "Average Number of Article Views"
 }

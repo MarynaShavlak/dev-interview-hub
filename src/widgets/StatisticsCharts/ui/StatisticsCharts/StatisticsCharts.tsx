@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next';
+import React from 'react';
 import { HStack, VStack } from '@/shared/ui/common/Stack';
 import { ArticleCategoriesCharts } from '@/features/ArticleCategoriesCharts';
 import { ArticleQuarterlyDataCharts } from '@/features/ArticleQuarterlyDataCharts';
@@ -12,6 +13,8 @@ import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { useUsers } from '@/entities/User';
 import { useArticles } from '@/entities/Article';
 import { useArticlesRatings } from '../../api/articlesRatingsApi';
+import { useArticlesComments } from '../../api/articlesCommentsApi';
+import { RadialbarChart } from '@/shared/ui/common/Charts/ui/RadialbarChart';
 
 interface ArticlesByUserData {
     [userId: string]: number;
@@ -23,42 +26,57 @@ interface ArticleStats {
 
 export const StatisticsCharts = () => {
     const { t } = useTranslation('admin');
-    const additionalClasses = getFlexClasses({ vStack: true, gap: '8' });
+    const additionalClasses = getFlexClasses({
+        vStack: true,
+        justify: 'between',
+    });
 
     const { data: users, isLoading: isUsersLoading } = useUsers(null);
     const { data: articles, isLoading: isArticlesLoading } = useArticles(null);
     const { data: ratings = [], isLoading: isRatingsLoading } =
         useArticlesRatings(null);
+    const { data: comments = [], isLoading: isCommentsLoading } =
+        useArticlesComments(null);
 
+    const totalArticlesCount = articles?.length || 0;
     const totalUsers = users?.length || 0;
+    const activeUsersData: number[] = [];
+    let totalViews = 0;
 
-    // ______________INACTIVE IN ARTICLES WRITING USERS_____________
     const uniqueUsersInArticles: Set<string> = new Set();
-    // ______________________________________
+    const uniqueUsersInComments: Set<string> = new Set();
+    const uniqueUsersInRatings: Set<string> = new Set();
+    const articlesWithFeedback: Set<string> = new Set();
+    // _______________________________________________________
 
     articles?.forEach((article) => {
         uniqueUsersInArticles.add(article.user.id);
+        totalViews += article.views;
+    });
+
+    comments?.forEach((comment) => {
+        uniqueUsersInComments.add(comment.user.id);
     });
 
     const uniqueUserInArticlesCount = uniqueUsersInArticles.size;
-    const inactiveInArticlesUsersPercentage = Number(
-        (100 - (uniqueUserInArticlesCount / totalUsers) * 100).toFixed(2),
+    const activeInArticlesUsersPercentage = Number(
+        ((uniqueUserInArticlesCount / totalUsers) * 100).toFixed(2),
     );
-    console.log(
-        'Number of unique users in articles:',
-        uniqueUserInArticlesCount,
+    // console.log(
+    //     'Number of unique users in articles:',
+    //     uniqueUserInArticlesCount,
+    // );
+    // console.log(
+    //     'activeInArticlesUsersPercentage:',
+    //     activeInArticlesUsersPercentage,
+    // );
+
+    const uniqueUserInCommentsCount = uniqueUsersInComments.size;
+    const activeInCommentsUsersPercentage = Number(
+        ((uniqueUserInCommentsCount / totalUsers) * 100).toFixed(2),
     );
-    console.log(
-        'inactiveInArticlesUsersPercentage:',
-        inactiveInArticlesUsersPercentage,
-    );
 
-    // ______________iNACTIVE IN RATING USERS_____________
-
-    const uniqueUsersInRatings: Set<string> = new Set();
-
-    // ________________AVARAGE___RATING_______________________
-
+    // ________________AVeRAGE___RATING_______________________
     const articleRatingStats: { [articleId: string]: ArticleStats } = {};
     let totalArticleAverages = 0;
     let articleCount = 0;
@@ -70,9 +88,10 @@ export const StatisticsCharts = () => {
         articleRatingStats[rating.articleId].totalRating += rating.rate;
         articleRatingStats[rating.articleId].count += 1;
 
-        // ____________________________
         uniqueUsersInRatings.add(rating.userId);
-        // _______________________________
+        if (rating.feedback) {
+            articlesWithFeedback.add(rating.articleId);
+        }
     });
 
     Object.keys(articleRatingStats).forEach((articleId) => {
@@ -81,28 +100,46 @@ export const StatisticsCharts = () => {
         totalArticleAverages += articleAverage;
         articleCount += 1;
     });
-    const overallAverage = (totalArticleAverages / articleCount).toFixed(2);
-    console.log('Overall average rating:', overallAverage);
+    const averageRating = (totalArticleAverages / articleCount).toFixed(2);
+    const averageViews =
+        articleCount > 0 ? (totalViews / totalArticlesCount).toFixed(0) : 0;
 
+    console.log('articleCount', articleCount);
     // ___________________________________________________
     const uniqueUserInRatingsCount = uniqueUsersInRatings.size;
-    const inactiveInRatingsUsersPercentage = Number(
-        (100 - (uniqueUserInRatingsCount / totalUsers) * 100).toFixed(2),
-    );
-    console.log('Number of unique users:', uniqueUserInRatingsCount);
-    console.log(
-        'inactiveInRatingsUsersPercentage:',
-        inactiveInRatingsUsersPercentage,
+    const activeInRatingsUsersPercentage = Number(
+        ((uniqueUserInRatingsCount / totalUsers) * 100).toFixed(2),
     );
     // ___________________________________________________
+    const articlesWithFeedbackCount = articlesWithFeedback.size;
+    const articlesWithFeedbackCountPercentage = Number(
+        ((articlesWithFeedbackCount / articleCount) * 100).toFixed(2),
+    );
 
     // _______________________________________
+    activeUsersData.push(
+        activeInArticlesUsersPercentage,
+        activeInCommentsUsersPercentage,
+        activeInRatingsUsersPercentage,
+    );
 
-    if (isUsersLoading || isArticlesLoading || isRatingsLoading) return null;
+    const activeUserLabels = [
+        `${t('Автори статей')}`,
+        `${t('Коментатори статей')}`,
+        `${t('Оцінка статей')}`,
+    ];
+
+    if (
+        isUsersLoading ||
+        isArticlesLoading ||
+        isRatingsLoading ||
+        isCommentsLoading
+    )
+        return null;
 
     return (
         <VStack gap="16">
-            <HStack gap="16">
+            <HStack gap="16" wrap="wrap">
                 <Card
                     className={classNames(
                         cls.dashboardCard,
@@ -128,7 +165,7 @@ export const StatisticsCharts = () => {
                     <Text bold text={t('Кількість статей')} />
                     <Text
                         bold
-                        text={String(articles?.length)}
+                        text={String(totalArticlesCount)}
                         size="l"
                         align="right"
                     />
@@ -143,9 +180,60 @@ export const StatisticsCharts = () => {
                     <Text bold text={t('Середній рейтинг статей')} />
                     <Text
                         bold
-                        text={`${overallAverage}%`}
+                        text={`${averageRating}%`}
                         size="l"
                         align="right"
+                    />
+                </Card>
+                <Card
+                    className={classNames(
+                        cls.dashboardCard,
+                        {},
+                        additionalClasses,
+                    )}
+                >
+                    <Text
+                        bold
+                        text={t('Частка оцінених із фідбеком')}
+                        className={cls.dashboardCardLabel}
+                    />
+                    <Text
+                        bold
+                        text={`${articlesWithFeedbackCountPercentage}%`}
+                        size="l"
+                        align="right"
+                    />
+                </Card>
+                <Card
+                    className={classNames(
+                        cls.dashboardCard,
+                        {},
+                        additionalClasses,
+                    )}
+                >
+                    <Text
+                        bold
+                        text={t('Середня кількість переглядів статей')}
+                        className={cls.dashboardCardLabel}
+                    />
+                    <Text
+                        bold
+                        text={`${averageViews}`}
+                        size="l"
+                        align="right"
+                    />
+                </Card>
+            </HStack>
+            <HStack>
+                <Card>
+                    <RadialbarChart
+                        data={activeUsersData}
+                        labels={activeUserLabels}
+                        title={t('Відсоток активних користувачів, %')}
+                        legendPosition="top"
+                        height="260"
+                        width="260"
+                        totalLabel={t('Загальний відсоток')}
                     />
                 </Card>
             </HStack>
