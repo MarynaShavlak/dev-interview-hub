@@ -47,6 +47,7 @@ export const StatisticsCharts = () => {
     const uniqueUsersInComments: Set<string> = new Set();
     const uniqueUsersInRatings: Set<string> = new Set();
     const articlesWithFeedback: Set<string> = new Set();
+    const articlesWithComments: Set<string> = new Set();
     // _______________________________________________________
 
     articles?.forEach((article) => {
@@ -56,6 +57,7 @@ export const StatisticsCharts = () => {
 
     comments?.forEach((comment) => {
         uniqueUsersInComments.add(comment.user.id);
+        articlesWithComments.add(comment.articleId);
     });
 
     const uniqueUserInArticlesCount = uniqueUsersInArticles.size;
@@ -114,6 +116,11 @@ export const StatisticsCharts = () => {
     const articlesWithFeedbackCount = articlesWithFeedback.size;
     const articlesWithFeedbackCountPercentage = Number(
         ((articlesWithFeedbackCount / articleCount) * 100).toFixed(2),
+    );
+
+    const articlesWithCommentsCount = articlesWithComments.size;
+    const articlesWithCommentsCountPercentage = Number(
+        ((articlesWithCommentsCount / articleCount) * 100).toFixed(2),
     );
 
     // _______________________________________
@@ -219,6 +226,25 @@ export const StatisticsCharts = () => {
                     <Text
                         bold
                         text={`${averageViews}`}
+                        size="l"
+                        align="right"
+                    />
+                </Card>
+                <Card
+                    className={classNames(
+                        cls.dashboardCard,
+                        {},
+                        additionalClasses,
+                    )}
+                >
+                    <Text
+                        bold
+                        text={t('Частка статей із коментарями')}
+                        className={cls.dashboardCardLabel}
+                    />
+                    <Text
+                        bold
+                        text={`${articlesWithCommentsCountPercentage}%`}
                         size="l"
                         align="right"
                     />
