@@ -168,9 +168,28 @@ const processRatings = (ratings: ArticleRating[], data: InitializedData) => {
         totalArticleAverages += rate;
         articlesWithRatingCount += 1;
 
-        if (rate >= 1 && rate <= 2) ratingCount.rate1to2 += 1;
-        else if (rate >= 3 && rate < 5) ratingCount.rate3to4 += 1;
-        else ratingCount.rate5 += 1;
+        // if (rate >= 1 && rate <= 2) {
+        //     ratingCount.rate1to2 += 1;
+        // } else if (rate >= 3 && rate < 5) {
+        //     ratingCount.rate3to4 += 1;
+        // } else {
+        //     ratingCount.rate5 += 1;
+        // }
+    });
+
+    Object.keys(data.articleRatingStats).forEach((articleId) => {
+        const { totalRating, count } = data.articleRatingStats[articleId];
+        const articleAverage = totalRating / count;
+        totalArticleAverages += articleAverage;
+        articlesWithRatingCount += 1;
+
+        if (articleAverage >= 1 && articleAverage <= 2) {
+            ratingCount.rate1to2 += 1;
+        } else if (articleAverage >= 3 && articleAverage < 5) {
+            ratingCount.rate3to4 += 1;
+        } else {
+            ratingCount.rate5 += 1;
+        }
     });
 
     data.articlesByRatingDistributionData = [
@@ -235,6 +254,10 @@ export const StatisticsCharts = () => {
     if (isLoading) return null;
     console.log('data', data);
 
+    const articlesWithRatingQuantity = Object.keys(
+        data.articleRatingStats,
+    ).length;
+
     const articlesWithCommentsCountPercentage = Number(
         ((data.articleCommentCounts.length / data.totalArticles) * 100).toFixed(
             2,
@@ -243,18 +266,28 @@ export const StatisticsCharts = () => {
 
     const articlesWithFeedbackCountPercentage = Number(
         (
-            (data.articlesWithFeedbackList.size /
-                Object.keys(data.articleRatingStats).length) *
+            (data.articlesWithFeedbackList.size / articlesWithRatingQuantity) *
             100
         ).toFixed(2),
     );
+
     const {
         totalArticles,
         totalUsers,
         averageRating,
         averageViews,
         activeUsersData,
+        articlesByRatingDistributionData,
+        categoryData,
     } = data;
+
+    const categoryChartLabels = Object.keys(data.categoryData);
+    const viewsChartData = Object.values(data.categoryData).map(
+        ({ viewCount }) => viewCount,
+    );
+    const articlesCategoriesChartData = Object.values(data.categoryData).map(
+        ({ articleCount }) => articleCount,
+    );
 
     return (
         <VStack gap="16">
@@ -288,7 +321,7 @@ export const StatisticsCharts = () => {
             {/*            height="200" */}
             {/*            width="220" */}
             {/*            totalLabel={t('Загальна кількість')} */}
-            {/*            totalValue={`${articlesWithRatingCount}`} */}
+            {/*            totalValue={`${articlesWithRatingQuantity}`} */}
             {/*        /> */}
             {/*    </Card> */}
             {/* </HStack> */}
