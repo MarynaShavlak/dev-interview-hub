@@ -8,7 +8,7 @@ import { classNames } from '@/shared/lib/classes/classNames/classNames';
 
 interface DashboardCardProps {
     title: string;
-    value: string | number;
+    value: string;
 }
 
 export const DashboardCard = (props: DashboardCardProps) => {
@@ -20,13 +20,7 @@ export const DashboardCard = (props: DashboardCardProps) => {
     return (
         <Card className={classNames(cls.dashboardCard, {}, additionalClasses)}>
             <Text bold text={title} className={cls.dashboardCardLabel} />
-            <Text
-                bold
-                text={String(value)}
-                size="l"
-                align="right"
-                variant="accent"
-            />
+            <Text bold text={value} size="l" align="right" variant="accent" />
         </Card>
     );
 };

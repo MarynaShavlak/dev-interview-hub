@@ -9,7 +9,7 @@ import { Card } from '@/shared/ui/redesigned/Card';
 import { getFlexClasses } from '@/shared/lib/classes/getFlexClasses/getFlexClasses';
 import { RadialbarChart } from '@/shared/ui/common/Charts/ui/RadialbarChart';
 import { useStatisticsData } from '../../lib/hooks/useStatisticsData';
-import { DashboardCard } from '@/features/DashboardCard';
+import { DashboardStats } from '@/features/DashboardStats';
 
 interface ArticlesByUserData {
     [userId: string]: number;
@@ -270,32 +270,14 @@ export const StatisticsCharts = () => {
 
     return (
         <VStack gap="16">
-            <HStack gap="16" wrap="wrap">
-                <DashboardCard
-                    title={t('Кількість користувачів')}
-                    value={totalUsers}
-                />
-                <DashboardCard
-                    title={t('Кількість статей')}
-                    value={totalArticlesCount}
-                />
-                <DashboardCard
-                    title={t('Середній рейтинг статей')}
-                    value={`${averageRating}%`}
-                />
-                <DashboardCard
-                    title={t('Частка оцінених із фідбеком')}
-                    value={`${articlesWithFeedbackCountPercentage}%`}
-                />
-                <DashboardCard
-                    title={t('Середня кількість переглядів статей')}
-                    value={`${averageViews}`}
-                />
-                <DashboardCard
-                    title={t('Частка статей із коментарями')}
-                    value={`${articlesWithCommentsCountPercentage}%`}
-                />
-            </HStack>
+            <DashboardStats
+                commentsPct={articlesWithCommentsCountPercentage}
+                feedbackPct={articlesWithFeedbackCountPercentage}
+                totalArticles={totalArticlesCount}
+                totalUsers={totalUsers}
+                avgRating={Number(averageRating)}
+                avgViews={Number(averageViews)}
+            />
             <HStack gap="24">
                 <Card>
                     <RadialbarChart
