@@ -5,12 +5,12 @@ import { ArticleRatingsChartsSkeleton } from './ArticleRatingsChartsSkeleton';
 import { DeprecatedArticleRatingsCharts } from './DeprecatedArticleRatingsCharts/DeprecatedArticleRatingsCharts';
 import { RedesignedArticleRatingsCharts } from './RedesignedArticleRatingsCharts/RedesignedArticleRatingsCharts';
 
-interface ArticleRatingsChartsProps {
-    articleRatingsByUsersData={ratingsChartData}
-maxXaxisValue={maxXaxisValue}
+export interface ArticleRatingsChartsProps {
+    articleRatingsByUsersData: { name: string; data: number[][] }[];
+    maxXaxisValue: number;
 }
 
-export const ArticleRatingsCharts = () => {
+export const ArticleRatingsCharts = (props: ArticleRatingsChartsProps) => {
     const { isLoading: isArticlesLoading, error } = useArticles(null);
 
     if (error) return null;
@@ -22,8 +22,8 @@ export const ArticleRatingsCharts = () => {
     return (
         <ToggleFeaturesComponent
             feature="isAppRedesigned"
-            on={<RedesignedArticleRatingsCharts />}
-            off={<DeprecatedArticleRatingsCharts />}
+            on={<RedesignedArticleRatingsCharts {...props} />}
+            off={<DeprecatedArticleRatingsCharts {...props} />}
         />
     );
 };
