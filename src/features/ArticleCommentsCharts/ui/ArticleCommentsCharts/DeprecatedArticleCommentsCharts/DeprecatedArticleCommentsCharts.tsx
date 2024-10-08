@@ -3,15 +3,17 @@ import { useTranslation } from 'react-i18next';
 import { Card as CardDeprecated } from '@/shared/ui/deprecated/Card';
 
 import { VStack } from '@/shared/ui/common/Stack';
-import { useArticleCommentsChartData } from '../../../lib/hooks/useArticleCommentsChartData/useArticleCommentsChartData';
 import { BarChart } from '@/shared/ui/common/Charts/ui/BarChart';
 import { TreemapChart } from '@/shared/ui/common/Charts/ui/TreemapChart';
+import { ArticleCommentsChartsProps } from '../ArticleCommentsCharts';
 
-export const DeprecatedArticleCommentsCharts = () => {
+export const DeprecatedArticleCommentsCharts = (
+    props: ArticleCommentsChartsProps,
+) => {
     const { t } = useTranslation('admin');
 
     const { articleCommentsLabels, articleCommentsData, commentsByUsersData } =
-        useArticleCommentsChartData();
+        props;
 
     return (
         <VStack gap="16">

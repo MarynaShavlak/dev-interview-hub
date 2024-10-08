@@ -5,6 +5,11 @@ import { ArticleRatingsChartsSkeleton } from './ArticleRatingsChartsSkeleton';
 import { DeprecatedArticleRatingsCharts } from './DeprecatedArticleRatingsCharts/DeprecatedArticleRatingsCharts';
 import { RedesignedArticleRatingsCharts } from './RedesignedArticleRatingsCharts/RedesignedArticleRatingsCharts';
 
+interface ArticleRatingsChartsProps {
+    articleRatingsByUsersData={ratingsChartData}
+maxXaxisValue={maxXaxisValue}
+}
+
 export const ArticleRatingsCharts = () => {
     const { isLoading: isArticlesLoading, error } = useArticles(null);
 

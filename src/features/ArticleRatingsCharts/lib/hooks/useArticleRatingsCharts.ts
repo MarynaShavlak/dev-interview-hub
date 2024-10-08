@@ -35,7 +35,7 @@ const countRatings = (ratings: ArticleRating[]): ArticleRatingsData => {
             articleRatingsCount[userId].articlesWithFeedback += 1;
         }
     });
-    console.log('articleRatingsCount', articleRatingsCount);
+    // console.log('articleRatingsCount', articleRatingsCount);
 
     return { articleRatingsCount };
 };
@@ -89,6 +89,7 @@ export const useArticleRatingsCharts = () => {
         );
 
         const maxXaxisValue = Math.max(...percentageRatedValues);
+        console.log('in HOOK: ratingsData', ratingsData);
 
         return { articleRatingsByUsersData: ratingsData, maxXaxisValue };
     }, [articleRatingsCount, totalArticles, t]);

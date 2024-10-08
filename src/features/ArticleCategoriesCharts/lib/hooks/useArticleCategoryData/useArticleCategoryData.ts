@@ -35,3 +35,4 @@
 //         viewData,
 //     };
 // };
+export const ss = () => {};

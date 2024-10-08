@@ -2,16 +2,18 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Card } from '@/shared/ui/redesigned/Card';
 
-import { useArticleCommentsChartData } from '../../../lib/hooks/useArticleCommentsChartData/useArticleCommentsChartData';
 import { BarChart } from '@/shared/ui/common/Charts/ui/BarChart';
 import { TreemapChart } from '@/shared/ui/common/Charts/ui/TreemapChart';
 import { HStack } from '@/shared/ui/common/Stack';
+import { ArticleCommentsChartsProps } from '../ArticleCommentsCharts';
 
-export const RedesignedArticleCommentsCharts = () => {
+export const RedesignedArticleCommentsCharts = (
+    props: ArticleCommentsChartsProps,
+) => {
     const { t } = useTranslation('admin');
 
     const { articleCommentsLabels, articleCommentsData, commentsByUsersData } =
-        useArticleCommentsChartData();
+        props;
 
     return (
         <HStack gap="16">

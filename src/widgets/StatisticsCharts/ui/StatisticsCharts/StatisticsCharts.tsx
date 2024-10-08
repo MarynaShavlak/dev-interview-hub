@@ -20,6 +20,12 @@ interface ArticlesByUserData {
     [userId: string]: number;
 }
 
+// interface UserRatingData {
+//     totalRating: number;
+//     articlesWithRating: number;
+//     articlesWithFeedback: number;
+// }
+
 interface ArticleStats {
     [key: string]: number;
 }
@@ -42,21 +48,24 @@ export const StatisticsCharts = () => {
     const totalUsers = users?.length || 0;
     const activeUsersData: number[] = [];
     const articlesByRatingDistributionData: number[] = [];
-    const categoryData: Record<
-        string,
-        { articleCount: number; viewCount: number }
-    > = {};
+    const categoryData: Record<string, ArticleStats> = {};
+    const articleCommentCounts: { articleId: string; commentCount: number }[] =
+        [];
+    const commentCountsByArticle: Record<string, number> = {};
+    const commentCountsByUser: Record<string, number> = {};
+    const ratingFromUsersData: Record<string, ArticleStats> = {};
+
     let totalViews = 0;
 
-    const uniqueUsersInArticles: Set<string> = new Set();
-    const uniqueUsersInComments: Set<string> = new Set();
-    const uniqueUsersInRatings: Set<string> = new Set();
-    const articlesWithFeedback: Set<string> = new Set();
-    const articlesWithComments: Set<string> = new Set();
+    const uniqueUsersInArticlesList: Set<string> = new Set();
+    const uniqueUsersInCommentsList: Set<string> = new Set();
+    const uniqueUsersInRatingsList: Set<string> = new Set();
+    const articlesWithFeedbackList: Set<string> = new Set();
+    const articlesWithCommentsList: Set<string> = new Set();
     // _______________________________________________________
 
     articles?.forEach((article) => {
-        uniqueUsersInArticles.add(article.user.id);
+        uniqueUsersInArticlesList.add(article.user.id);
         totalViews += article.views;
 
         article.category.forEach((cat) => {
@@ -69,24 +78,51 @@ export const StatisticsCharts = () => {
     });
 
     comments?.forEach((comment) => {
-        uniqueUsersInComments.add(comment.user.id);
-        articlesWithComments.add(comment.articleId);
+        const {
+            user: { id, username },
+            articleId,
+        } = comment;
+        uniqueUsersInCommentsList.add(id);
+        articlesWithCommentsList.add(articleId);
+        if (commentCountsByArticle[articleId]) {
+            commentCountsByArticle[articleId] += 1;
+        } else {
+            commentCountsByArticle[articleId] = 1;
+        }
+
+        if (commentCountsByUser[username]) {
+            commentCountsByUser[username] += 1;
+        } else {
+            commentCountsByUser[username] = 1;
+        }
     });
 
-    const uniqueUserInArticlesCount = uniqueUsersInArticles.size;
+    Object.entries(commentCountsByArticle).forEach(
+        ([articleId, commentCount]) => {
+            articleCommentCounts.push({ articleId, commentCount });
+        },
+    );
+
+    articleCommentCounts.sort((a, b) => b.commentCount - a.commentCount);
+    const sortedCommentCounts = articleCommentCounts.map(
+        (item) => item.commentCount,
+    );
+    const sortedArticleIdsByComments = articleCommentCounts.map(
+        (item) => item.articleId,
+    );
+    const commentsByUserData = Object.entries(commentCountsByUser)
+        .map(([username, commentCount]) => ({ x: username, y: commentCount }))
+        .sort((a, b) => b.y - a.y);
+
+    // ________________
+    const uniqueUserInArticlesCount = uniqueUsersInArticlesList.size;
     const activeInArticlesUsersPercentage = Number(
         ((uniqueUserInArticlesCount / totalUsers) * 100).toFixed(2),
     );
-    // console.log(
-    //     'Number of unique users in articles:',
-    //     uniqueUserInArticlesCount,
-    // );
-    // console.log(
-    //     'activeInArticlesUsersPercentage:',
-    //     activeInArticlesUsersPercentage,
-    // );
 
-    const uniqueUserInCommentsCount = uniqueUsersInComments.size;
+    // ________________
+
+    const uniqueUserInCommentsCount = uniqueUsersInCommentsList.size;
     const activeInCommentsUsersPercentage = Number(
         ((uniqueUserInCommentsCount / totalUsers) * 100).toFixed(2),
     );
@@ -98,18 +134,70 @@ export const StatisticsCharts = () => {
     const ratingCount = { rate1to2: 0, rate3to4: 0, rate5: 0 };
 
     ratings.forEach((rating) => {
-        if (!articleRatingStats[rating.articleId]) {
-            articleRatingStats[rating.articleId] = { totalRating: 0, count: 0 };
+        const { articleId, rate, feedback, userId } = rating;
+        if (!articleRatingStats[articleId]) {
+            articleRatingStats[articleId] = { totalRating: 0, count: 0 };
         }
-        articleRatingStats[rating.articleId].totalRating += rating.rate;
-        articleRatingStats[rating.articleId].count += 1;
+        articleRatingStats[articleId].totalRating += rate;
+        articleRatingStats[articleId].count += 1;
 
-        uniqueUsersInRatings.add(rating.userId);
-        if (rating.feedback) {
-            articlesWithFeedback.add(rating.articleId);
+        uniqueUsersInRatingsList.add(userId);
+
+        if (feedback) {
+            articlesWithFeedbackList.add(articleId);
+        }
+
+        if (!ratingFromUsersData[userId]) {
+            ratingFromUsersData[userId] = {
+                totalRating: 0,
+                articlesWithRating: 0,
+                articlesWithFeedback: 0,
+            };
+        }
+        ratingFromUsersData[userId].totalRating += rate;
+        ratingFromUsersData[userId].articlesWithRating += 1;
+        if (feedback) {
+            ratingFromUsersData[userId].articlesWithFeedback += 1;
         }
     });
 
+    const percentageRatedValues: number[] = [];
+    const ratingsChartData = Object.entries(ratingFromUsersData).map(
+        ([userId, userData]) => {
+            const { totalRating, articlesWithRating, articlesWithFeedback } =
+                userData;
+
+            const averageRating = articlesWithRating
+                ? (totalRating / articlesWithRating).toFixed(1)
+                : '0.0';
+
+            const percentageRated = totalArticlesCount
+                ? (articlesWithRating / totalArticlesCount) * 100
+                : 0;
+
+            const formattedPercentageRated = parseFloat(
+                percentageRated.toFixed(1),
+            );
+
+            percentageRatedValues.push(formattedPercentageRated);
+
+            return {
+                name: `${t(`userId`)}:  ${userId} `,
+                data: [
+                    [
+                        formattedPercentageRated,
+                        parseFloat(averageRating),
+                        articlesWithFeedback,
+                    ],
+                ],
+            };
+        },
+    );
+
+    const maxXaxisValue = Math.max(...percentageRatedValues);
+
+    console.log('articleRatingStats', articleRatingStats);
+    console.log(' ratingFromUsersData', ratingFromUsersData);
     Object.keys(articleRatingStats).forEach((articleId) => {
         const { totalRating, count } = articleRatingStats[articleId];
         const articleAverage = totalRating / count;
@@ -133,21 +221,20 @@ export const StatisticsCharts = () => {
             ? (totalViews / totalArticlesCount).toFixed(0)
             : 0;
 
-    console.log('articleRatingStats', articleRatingStats);
     // ___________________________________________________
-    const uniqueUserInRatingsCount = uniqueUsersInRatings.size;
+    const uniqueUserInRatingsCount = uniqueUsersInRatingsList.size;
     const activeInRatingsUsersPercentage = Number(
         ((uniqueUserInRatingsCount / totalUsers) * 100).toFixed(2),
     );
     // ___________________________________________________
-    const articlesWithFeedbackCount = articlesWithFeedback.size;
+    const articlesWithFeedbackCount = articlesWithFeedbackList.size;
     const articlesWithFeedbackCountPercentage = Number(
         ((articlesWithFeedbackCount / articlesWithRatingCount) * 100).toFixed(
             2,
         ),
     );
 
-    const articlesWithCommentsCount = articlesWithComments.size;
+    const articlesWithCommentsCount = articlesWithCommentsList.size;
     const articlesWithCommentsCountPercentage = Number(
         ((articlesWithCommentsCount / articlesWithRatingCount) * 100).toFixed(
             2,
@@ -179,9 +266,13 @@ export const StatisticsCharts = () => {
     ];
 
     // _____________________________ArticleCategoriesCharts_______________________
-    const labels = Object.keys(categoryData);
-    const articleData = labels.map((label) => categoryData[label].articleCount);
-    const viewData = labels.map((label) => categoryData[label].viewCount);
+    const categoryChartLabels = Object.keys(categoryData);
+    const articlesCategoriesChartData = categoryChartLabels.map(
+        (label) => categoryData[label].articleCount,
+    );
+    const viewsChartData = categoryChartLabels.map(
+        (label) => categoryData[label].viewCount,
+    );
 
     // _____________________________ArticleCategoriesCharts_______________________
 
@@ -333,13 +424,20 @@ export const StatisticsCharts = () => {
             </HStack>
 
             <ArticleCategoriesCharts
-                labels={labels}
-                viewData={viewData}
-                articleData={articleData}
+                labels={categoryChartLabels}
+                viewData={viewsChartData}
+                articleData={articlesCategoriesChartData}
             />
             <ArticleQuarterlyDataCharts />
-            <ArticleCommentsCharts />
-            <ArticleRatingsCharts />
+            <ArticleCommentsCharts
+                articleCommentsLabels={sortedArticleIdsByComments}
+                articleCommentsData={sortedCommentCounts}
+                commentsByUsersData={commentsByUserData}
+            />
+            <ArticleRatingsCharts
+                articleRatingsByUsersData={ratingsChartData}
+                maxXaxisValue={maxXaxisValue}
+            />
         </VStack>
     );
 };
