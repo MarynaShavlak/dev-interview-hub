@@ -6,15 +6,10 @@ import { ArticleQuarterlyDataCharts } from '@/features/ArticleQuarterlyDataChart
 import { ArticleCommentsCharts } from '@/features/ArticleCommentsCharts';
 import { ArticleRatingsCharts } from '@/features/ArticleRatingsCharts';
 import { Card } from '@/shared/ui/redesigned/Card';
-import { Text } from '@/shared/ui/redesigned/Text';
-import cls from './StatisticsCharts.module.scss';
 import { getFlexClasses } from '@/shared/lib/classes/getFlexClasses/getFlexClasses';
-import { classNames } from '@/shared/lib/classes/classNames/classNames';
-import { useUsers } from '@/entities/User';
-import { useArticles } from '@/entities/Article';
-import { useArticlesRatings } from '../../api/articlesRatingsApi';
-import { useArticlesComments } from '../../api/articlesCommentsApi';
 import { RadialbarChart } from '@/shared/ui/common/Charts/ui/RadialbarChart';
+import { useStatisticsData } from '../../lib/hooks/useStatisticsData';
+import { DashboardCard } from '@/features/DashboardCard';
 
 interface ArticlesByUserData {
     [userId: string]: number;
@@ -36,13 +31,9 @@ export const StatisticsCharts = () => {
         vStack: true,
         justify: 'between',
     });
-
-    const { data: users, isLoading: isUsersLoading } = useUsers(null);
-    const { data: articles, isLoading: isArticlesLoading } = useArticles(null);
-    const { data: ratings = [], isLoading: isRatingsLoading } =
-        useArticlesRatings(null);
-    const { data: comments = [], isLoading: isCommentsLoading } =
-        useArticlesComments(null);
+    const { users, articles, ratings, comments, isLoading } =
+        useStatisticsData();
+    if (isLoading) return null;
 
     const totalArticlesCount = articles?.length || 0;
     const totalUsers = users?.length || 0;
@@ -104,15 +95,6 @@ export const StatisticsCharts = () => {
     );
 
     articleCommentCounts.sort((a, b) => b.commentCount - a.commentCount);
-    const sortedCommentCounts = articleCommentCounts.map(
-        (item) => item.commentCount,
-    );
-    const sortedArticleIdsByComments = articleCommentCounts.map(
-        (item) => item.articleId,
-    );
-    const commentsByUserData = Object.entries(commentCountsByUser)
-        .map(([username, commentCount]) => ({ x: username, y: commentCount }))
-        .sort((a, b) => b.y - a.y);
 
     // ________________
     const uniqueUserInArticlesCount = uniqueUsersInArticlesList.size;
@@ -162,42 +144,7 @@ export const StatisticsCharts = () => {
     });
 
     const percentageRatedValues: number[] = [];
-    const ratingsChartData = Object.entries(ratingFromUsersData).map(
-        ([userId, userData]) => {
-            const { totalRating, articlesWithRating, articlesWithFeedback } =
-                userData;
 
-            const averageRating = articlesWithRating
-                ? (totalRating / articlesWithRating).toFixed(1)
-                : '0.0';
-
-            const percentageRated = totalArticlesCount
-                ? (articlesWithRating / totalArticlesCount) * 100
-                : 0;
-
-            const formattedPercentageRated = parseFloat(
-                percentageRated.toFixed(1),
-            );
-
-            percentageRatedValues.push(formattedPercentageRated);
-
-            return {
-                name: `${t(`userId`)}:  ${userId} `,
-                data: [
-                    [
-                        formattedPercentageRated,
-                        parseFloat(averageRating),
-                        articlesWithFeedback,
-                    ],
-                ],
-            };
-        },
-    );
-
-    const maxXaxisValue = Math.max(...percentageRatedValues);
-
-    console.log('articleRatingStats', articleRatingStats);
-    console.log(' ratingFromUsersData', ratingFromUsersData);
     Object.keys(articleRatingStats).forEach((articleId) => {
         const { totalRating, count } = articleRatingStats[articleId];
         const articleAverage = totalRating / count;
@@ -274,127 +221,80 @@ export const StatisticsCharts = () => {
         (label) => categoryData[label].viewCount,
     );
 
-    // _____________________________ArticleCategoriesCharts_______________________
+    // _____________________________ArticleCommentsCharts_______________________
 
-    if (
-        isUsersLoading ||
-        isArticlesLoading ||
-        isRatingsLoading ||
-        isCommentsLoading
-    )
-        return null;
+    const sortedCommentCounts = articleCommentCounts.map(
+        (item) => item.commentCount,
+    );
+    const sortedArticleIdsByComments = articleCommentCounts.map(
+        (item) => item.articleId,
+    );
+    const commentsByUserData = Object.entries(commentCountsByUser)
+        .map(([username, commentCount]) => ({ x: username, y: commentCount }))
+        .sort((a, b) => b.y - a.y);
+
+    // _____________________________ArticleRatingsCharts_______________________
+
+    const ratingsChartData = Object.entries(ratingFromUsersData).map(
+        ([userId, userData]) => {
+            const { totalRating, articlesWithRating, articlesWithFeedback } =
+                userData;
+
+            const averageRating = articlesWithRating
+                ? (totalRating / articlesWithRating).toFixed(1)
+                : '0.0';
+
+            const percentageRated = totalArticlesCount
+                ? (articlesWithRating / totalArticlesCount) * 100
+                : 0;
+
+            const formattedPercentageRated = parseFloat(
+                percentageRated.toFixed(1),
+            );
+
+            percentageRatedValues.push(formattedPercentageRated);
+
+            return {
+                name: `${t(`userId`)}:  ${userId} `,
+                data: [
+                    [
+                        formattedPercentageRated,
+                        parseFloat(averageRating),
+                        articlesWithFeedback,
+                    ],
+                ],
+            };
+        },
+    );
+    const maxXaxisValue = Math.max(...percentageRatedValues);
 
     return (
         <VStack gap="16">
             <HStack gap="16" wrap="wrap">
-                <Card
-                    className={classNames(
-                        cls.dashboardCard,
-                        {},
-                        additionalClasses,
-                    )}
-                >
-                    <Text bold text={t('Кількість користувачів')} />
-                    <Text
-                        bold
-                        text={String(totalUsers)}
-                        size="l"
-                        align="right"
-                        variant="accent"
-                    />
-                </Card>
-                <Card
-                    className={classNames(
-                        cls.dashboardCard,
-                        {},
-                        additionalClasses,
-                    )}
-                >
-                    <Text bold text={t('Кількість статей')} />
-                    <Text
-                        bold
-                        text={String(totalArticlesCount)}
-                        size="l"
-                        align="right"
-                        variant="accent"
-                    />
-                </Card>
-                <Card
-                    className={classNames(
-                        cls.dashboardCard,
-                        {},
-                        additionalClasses,
-                    )}
-                >
-                    <Text bold text={t('Середній рейтинг статей')} />
-                    <Text
-                        bold
-                        text={`${averageRating}%`}
-                        size="l"
-                        align="right"
-                        variant="accent"
-                    />
-                </Card>
-                <Card
-                    className={classNames(
-                        cls.dashboardCard,
-                        {},
-                        additionalClasses,
-                    )}
-                >
-                    <Text
-                        bold
-                        text={t('Частка оцінених із фідбеком')}
-                        className={cls.dashboardCardLabel}
-                    />
-                    <Text
-                        bold
-                        text={`${articlesWithFeedbackCountPercentage}%`}
-                        size="l"
-                        align="right"
-                        variant="accent"
-                    />
-                </Card>
-                <Card
-                    className={classNames(
-                        cls.dashboardCard,
-                        {},
-                        additionalClasses,
-                    )}
-                >
-                    <Text
-                        bold
-                        text={t('Середня кількість переглядів статей')}
-                        className={cls.dashboardCardLabel}
-                    />
-                    <Text
-                        bold
-                        text={`${averageViews}`}
-                        size="l"
-                        align="right"
-                        variant="accent"
-                    />
-                </Card>
-                <Card
-                    className={classNames(
-                        cls.dashboardCard,
-                        {},
-                        additionalClasses,
-                    )}
-                >
-                    <Text
-                        bold
-                        text={t('Частка статей із коментарями')}
-                        className={cls.dashboardCardLabel}
-                    />
-                    <Text
-                        bold
-                        text={`${articlesWithCommentsCountPercentage}%`}
-                        size="l"
-                        align="right"
-                        variant="accent"
-                    />
-                </Card>
+                <DashboardCard
+                    title={t('Кількість користувачів')}
+                    value={totalUsers}
+                />
+                <DashboardCard
+                    title={t('Кількість статей')}
+                    value={totalArticlesCount}
+                />
+                <DashboardCard
+                    title={t('Середній рейтинг статей')}
+                    value={`${averageRating}%`}
+                />
+                <DashboardCard
+                    title={t('Частка оцінених із фідбеком')}
+                    value={`${articlesWithFeedbackCountPercentage}%`}
+                />
+                <DashboardCard
+                    title={t('Середня кількість переглядів статей')}
+                    value={`${averageViews}`}
+                />
+                <DashboardCard
+                    title={t('Частка статей із коментарями')}
+                    value={`${articlesWithCommentsCountPercentage}%`}
+                />
             </HStack>
             <HStack gap="24">
                 <Card>
