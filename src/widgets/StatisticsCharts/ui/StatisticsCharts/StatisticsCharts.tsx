@@ -22,6 +22,8 @@ import {
     ArticleRatingsCharts,
     ArticleRatingsChartsProps,
 } from '@/features/ArticleRatingsCharts';
+import { calculatePercentage } from '@/shared/lib/mathCalculations/calculatePercentage';
+import { calculateAverage } from '@/shared/lib/mathCalculations/calculateAverage';
 
 interface ArticlesByUserData {
     [userId: string]: number;
@@ -47,18 +49,35 @@ interface ArticleStats {
     [key: string]: number;
 }
 
-interface ProcessedRatings {
-    averageRating: string;
-    ratingCount: {
-        rate1to2: number;
-        rate3to4: number;
-        rate5: number;
-    };
-}
+// interface ProcessedRatings {
+//     averageRating: string;
+//     ratingCount: {
+//         rate1to2: number;
+//         rate3to4: number;
+//         rate5: number;
+//     };
+// }
 
 interface ArticleCommentCount {
     articleId: string;
     commentCount: number;
+}
+
+interface ActiveUsersList {
+    inArticles: Set<string>;
+    inComments: Set<string>;
+    inRatings: Set<string>;
+}
+
+interface ActiveArticlesList {
+    withRating: Set<string>;
+    withFeedback: Set<string>;
+    withComments: Set<string>;
+}
+
+interface DashboardPctDataStats {
+    articlesWithCommentsPercentage: number;
+    articlesWithFeedbackPercentage: number;
 }
 
 interface InitializedData {
@@ -75,34 +94,11 @@ interface InitializedData {
     commentCountsByArticle: Record<string, number>;
     commentCountsByUser: Record<string, number>;
     ratingFromUsersData: Record<string, ArticleStats>;
-    uniqueUsersInArticlesList: Set<string>;
-    uniqueUsersInCommentsList: Set<string>;
-    uniqueUsersInRatingsList: Set<string>;
-    articlesWithFeedbackList: Set<string>;
-    articlesWithCommentsList: Set<string>;
+    activeUsersList: ActiveUsersList;
+    activeArticlesList: ActiveArticlesList;
 }
 
-const calculateAverageRating = (
-    totalRating: number,
-    articlesWithRating: number,
-): number => {
-    return parseFloat(
-        articlesWithRating
-            ? (totalRating / articlesWithRating).toFixed(1)
-            : '0.0',
-    );
-};
-
-const calculatePercentageRated = (
-    articlesWithRating: number,
-    totalArticles: number,
-): number => {
-    if (totalArticles === 0) return 0;
-    const percentage = (articlesWithRating / totalArticles) * 100;
-    return parseFloat(percentage.toFixed(1));
-};
-
-const processUserRatingsChartData = (
+const getUserRatingsChartData = (
     ratingFromUsersData: Record<string, ArticleStats>,
     totalArticles: number,
     tooltipName: string,
@@ -111,19 +107,16 @@ const processUserRatingsChartData = (
 
     const ratingsByUsersData = Object.entries(ratingFromUsersData).map(
         ([userId, userData]) => {
-            // Calculate average rating
-            const averageRating = calculateAverageRating(
+            const averageRating = calculateAverage(
                 userData.totalRating,
                 userData.articlesWithRating,
             );
 
-            // Calculate percentage of articles rated
-            const percentageRated = calculatePercentageRated(
+            const percentageRated = calculatePercentage(
                 userData.articlesWithRating,
                 totalArticles,
             );
 
-            // Track maximum percentage for X-axis calculation
             if (percentageRated > maxPercentageRated) {
                 maxPercentageRated = percentageRated;
             }
@@ -149,7 +142,7 @@ const processUserRatingsChartData = (
     };
 };
 
-const processArticleCategoriesChartData = (
+const getArticleCategoriesChartData = (
     categoryData: Record<string, ArticleStats>,
 ): ArticleCategoriesChartsProps => {
     const labels: string[] = [];
@@ -171,7 +164,7 @@ const processArticleCategoriesChartData = (
     };
 };
 
-const processArticleCommentsChartData = (
+const getArticleCommentsChartData = (
     articleCommentCounts: ArticleCommentCount[],
     commentCountsByUser: Record<string, number>,
 ): ArticleCommentsChartsProps => {
@@ -191,6 +184,30 @@ const processArticleCommentsChartData = (
         labels,
         commentsByArticlesData,
         commentsByUsersData,
+    };
+};
+
+const getDashboardPctData = (
+    activeArticlesList: ActiveArticlesList,
+    totalArticles: number,
+): DashboardPctDataStats => {
+    const withRating = activeArticlesList.withRating.size;
+    const withComments = activeArticlesList.withComments.size;
+    const withFeedback = activeArticlesList.withFeedback.size;
+
+    const articlesWithCommentsPercentage = calculatePercentage(
+        withComments,
+        totalArticles,
+    );
+
+    const articlesWithFeedbackPercentage = calculatePercentage(
+        withFeedback,
+        withRating,
+    );
+
+    return {
+        articlesWithCommentsPercentage,
+        articlesWithFeedbackPercentage,
     };
 };
 
@@ -214,17 +231,22 @@ const initializeData = (
         commentCountsByUser: {},
         articleRatingStats: {},
         ratingFromUsersData: {},
-        uniqueUsersInArticlesList: new Set(),
-        uniqueUsersInCommentsList: new Set(),
-        uniqueUsersInRatingsList: new Set(),
-        articlesWithFeedbackList: new Set(),
-        articlesWithCommentsList: new Set(),
+        activeUsersList: {
+            inArticles: new Set(),
+            inComments: new Set(),
+            inRatings: new Set(),
+        },
+        activeArticlesList: {
+            withRating: new Set(),
+            withComments: new Set(),
+            withFeedback: new Set(),
+        },
     };
 };
 
 const processArticles = (articles: Article[], data: InitializedData) => {
     articles.forEach((article) => {
-        data.uniqueUsersInArticlesList.add(article.user.id);
+        data.activeUsersList.inArticles.add(article.user.id);
         data.totalViews += article.views;
 
         article.category.forEach((cat) => {
@@ -236,7 +258,11 @@ const processArticles = (articles: Article[], data: InitializedData) => {
         });
     });
 
-    data.averageViews = Math.round(data.totalViews / data.totalArticles);
+    data.averageViews = calculateAverage(
+        data.totalViews,
+        data.totalArticles,
+        0,
+    );
 };
 
 const processComments = (comments: ArticleComment[], data: InitializedData) => {
@@ -245,9 +271,9 @@ const processComments = (comments: ArticleComment[], data: InitializedData) => {
             user: { id, username },
             articleId,
         } = comment;
-
-        data.uniqueUsersInCommentsList.add(id);
-        data.articlesWithCommentsList.add(articleId);
+        data.activeUsersList.inComments.add(id);
+        data.activeArticlesList.withComments.add(articleId);
+        // data.articlesWithCommentsList.add(articleId);
 
         data.commentCountsByArticle[articleId] =
             (data.commentCountsByArticle[articleId] || 0) + 1;
@@ -289,11 +315,11 @@ const processRatings = (ratings: ArticleRating[], data: InitializedData) => {
         }
         data.articleRatingStats[articleId].totalRating += rate;
         data.articleRatingStats[articleId].count += 1;
-
-        data.uniqueUsersInRatingsList.add(userId);
+        data.activeArticlesList.withRating.add(articleId);
+        data.activeUsersList.inRatings.add(userId);
 
         if (feedback) {
-            data.articlesWithFeedbackList.add(articleId);
+            data.activeArticlesList.withFeedback.add(articleId);
         }
         totalArticleAverages += rate;
         articlesWithRatingCount += 1;
@@ -314,10 +340,11 @@ const processRatings = (ratings: ArticleRating[], data: InitializedData) => {
         }
     });
 
+    const totalArticlesWithRatings = data.activeArticlesList.withRating.size;
     data.articlesByRatingDistributionData = [
-        ratingCount.rate1to2,
-        ratingCount.rate3to4,
-        ratingCount.rate5,
+        calculatePercentage(ratingCount.rate1to2, totalArticlesWithRatings, 1),
+        calculatePercentage(ratingCount.rate3to4, totalArticlesWithRatings, 1),
+        calculatePercentage(ratingCount.rate5, totalArticlesWithRatings, 1),
     ];
 
     data.averageRating = Number(
@@ -326,26 +353,18 @@ const processRatings = (ratings: ArticleRating[], data: InitializedData) => {
 };
 
 const computeActiveUserStats = (data: InitializedData) => {
-    const uniqueUsersInArticles = data.uniqueUsersInArticlesList.size;
-    const activeInArticlesUsersPercentage = Number(
-        ((uniqueUsersInArticles / data.totalUsers) * 100).toFixed(2),
-    );
+    const { totalUsers, activeUsersList } = data;
 
-    const uniqueUsersInComments = data.uniqueUsersInCommentsList.size;
-    const activeInCommentsUsersPercentage = Number(
-        ((uniqueUsersInComments / data.totalUsers) * 100).toFixed(2),
-    );
+    const calculateActivePercentage = (activeSet: Set<string>) =>
+        calculatePercentage(activeSet?.size ?? 0, totalUsers);
 
-    const uniqueUsersInRatings = data.uniqueUsersInRatingsList.size;
-    const activeInRatingsUsersPercentage = Number(
-        ((uniqueUsersInRatings / data.totalUsers) * 100).toFixed(2),
-    );
+    const activeUserPercentages = [
+        calculateActivePercentage(activeUsersList.inArticles),
+        calculateActivePercentage(activeUsersList.inComments),
+        calculateActivePercentage(activeUsersList.inRatings),
+    ];
 
-    data.activeUsersData.push(
-        activeInArticlesUsersPercentage,
-        activeInCommentsUsersPercentage,
-        activeInRatingsUsersPercentage,
-    );
+    data.activeUsersData.push(...activeUserPercentages);
 };
 
 export const StatisticsCharts = () => {
@@ -376,23 +395,6 @@ export const StatisticsCharts = () => {
     if (isLoading) return null;
     console.log('data', data);
 
-    const articlesWithRatingQuantity = Object.keys(
-        data.articleRatingStats,
-    ).length;
-
-    const articlesWithCommentsCountPercentage = Number(
-        ((data.articleCommentCounts.length / data.totalArticles) * 100).toFixed(
-            2,
-        ),
-    );
-
-    const articlesWithFeedbackCountPercentage = Number(
-        (
-            (data.articlesWithFeedbackList.size / articlesWithRatingQuantity) *
-            100
-        ).toFixed(2),
-    );
-
     const {
         totalArticles,
         totalUsers,
@@ -404,44 +406,36 @@ export const StatisticsCharts = () => {
         ratingFromUsersData,
         articleCommentCounts,
         commentCountsByUser,
+        activeArticlesList,
     } = data;
-
-    // const articleCommentsLabels = data.articleCommentCounts.map(
-    //     ({ articleId }) => articleId,
-    // );
-    // const commentsByArticlesData = data.articleCommentCounts.map(
-    //     ({ commentCount }) => commentCount,
-    // );
-    // const commentsByUsersData = Object.entries(data.commentCountsByUser)
-    //     .map(([username, commentCount]) => ({ x: username, y: commentCount }))
-    //     .sort((a, b) => b.y - a.y);
 
     const {
         labels: categoryChartLabels,
         viewsByCategories,
         articlesByCategories,
-    } = processArticleCategoriesChartData(categoryData);
+    } = getArticleCategoriesChartData(categoryData);
 
     const {
         labels: articleCommentsLabels,
         commentsByArticlesData,
         commentsByUsersData,
-    } = processArticleCommentsChartData(
-        articleCommentCounts,
-        commentCountsByUser,
-    );
+    } = getArticleCommentsChartData(articleCommentCounts, commentCountsByUser);
 
-    const { ratingsByUsersData, maxXaxisValue } = processUserRatingsChartData(
+    const { ratingsByUsersData, maxXaxisValue } = getUserRatingsChartData(
         ratingFromUsersData,
         totalArticles,
         t('userId'),
     );
+    const { articlesWithCommentsPercentage, articlesWithFeedbackPercentage } =
+        getDashboardPctData(activeArticlesList, totalArticles);
+
+    const articlesWithRatingQuantity = activeArticlesList.withRating.size;
 
     return (
         <VStack gap="16">
             <DashboardStats
-                commentsPct={articlesWithCommentsCountPercentage}
-                feedbackPct={articlesWithFeedbackCountPercentage}
+                commentsPct={articlesWithCommentsPercentage}
+                feedbackPct={articlesWithFeedbackPercentage}
                 totalArticles={totalArticles}
                 totalUsers={totalUsers}
                 avgRating={Number(averageRating)}

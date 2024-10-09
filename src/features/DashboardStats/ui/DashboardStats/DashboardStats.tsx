@@ -34,7 +34,7 @@ export const DashboardStats = (props: DashboardStatsProps) => {
             />
             <DashboardCard
                 title={t('Середній рейтинг статей')}
-                value={`${avgRating}%`}
+                value={`${avgRating}`}
             />
             <DashboardCard
                 title={t('Частка оцінених із фідбеком')}
