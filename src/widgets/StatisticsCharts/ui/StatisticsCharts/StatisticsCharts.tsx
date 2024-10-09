@@ -86,7 +86,6 @@ interface InitializedData {
     totalViews: number;
     averageRating: number;
     averageViews: number;
-    activeUsersData: number[];
     articlesByRatingDistributionData: number[];
     categoryData: Record<string, ArticleStats>;
     articleRatingStats: Record<string, ArticleStats>;
@@ -211,6 +210,21 @@ const getDashboardPctData = (
     };
 };
 
+const getActiveUsersChartData = (
+    activeUsersList: ActiveUsersList,
+    totalUsers: number,
+): number[] => {
+    const calculateActivePercentage = (activeSet: Set<string>) =>
+        calculatePercentage(activeSet?.size ?? 0, totalUsers);
+
+    const activeUsersData = [
+        calculateActivePercentage(activeUsersList.inArticles),
+        calculateActivePercentage(activeUsersList.inComments),
+        calculateActivePercentage(activeUsersList.inRatings),
+    ];
+    return activeUsersData;
+};
+
 const initializeData = (
     articles: Article[],
     users: User[],
@@ -223,7 +237,6 @@ const initializeData = (
         totalViews: 0,
         averageRating: 0,
         averageViews: 0,
-        activeUsersData: [],
         articlesByRatingDistributionData: [],
         categoryData: {},
         articleCommentCounts: [],
@@ -352,21 +365,6 @@ const processRatings = (ratings: ArticleRating[], data: InitializedData) => {
     );
 };
 
-const computeActiveUserStats = (data: InitializedData) => {
-    const { totalUsers, activeUsersList } = data;
-
-    const calculateActivePercentage = (activeSet: Set<string>) =>
-        calculatePercentage(activeSet?.size ?? 0, totalUsers);
-
-    const activeUserPercentages = [
-        calculateActivePercentage(activeUsersList.inArticles),
-        calculateActivePercentage(activeUsersList.inComments),
-        calculateActivePercentage(activeUsersList.inRatings),
-    ];
-
-    data.activeUsersData.push(...activeUserPercentages);
-};
-
 export const StatisticsCharts = () => {
     const { t } = useTranslation('admin');
 
@@ -379,7 +377,7 @@ export const StatisticsCharts = () => {
     processArticles(articles, data);
     processComments(comments, data);
     processRatings(ratings, data);
-    computeActiveUserStats(data);
+
     const activeUserLabels = [
         `${t('Автори статей')}`,
         `${t('Коментатори статей')}`,
@@ -400,13 +398,14 @@ export const StatisticsCharts = () => {
         totalUsers,
         averageRating,
         averageViews,
-        activeUsersData,
+        // activeUsersData,
         articlesByRatingDistributionData,
         categoryData,
         ratingFromUsersData,
         articleCommentCounts,
         commentCountsByUser,
         activeArticlesList,
+        activeUsersList,
     } = data;
 
     const {
@@ -428,6 +427,11 @@ export const StatisticsCharts = () => {
     );
     const { articlesWithCommentsPercentage, articlesWithFeedbackPercentage } =
         getDashboardPctData(activeArticlesList, totalArticles);
+
+    const activeUsersData = getActiveUsersChartData(
+        activeUsersList,
+        totalUsers,
+    );
 
     const articlesWithRatingQuantity = activeArticlesList.withRating.size;
 
