@@ -47,6 +47,11 @@ export const BubbleChart = (props: BubbleChartProps) => {
         yaxis: {
             title: { text: yAxisTitle },
             max: maxYaxisValue,
+            labels: {
+                formatter: (value) => {
+                    return String(value);
+                },
+            },
         },
 
         plotOptions: {

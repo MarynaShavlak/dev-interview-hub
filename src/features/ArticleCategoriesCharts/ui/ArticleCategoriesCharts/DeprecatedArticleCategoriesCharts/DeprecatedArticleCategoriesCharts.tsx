@@ -12,8 +12,8 @@ export const DeprecatedArticleCategoriesCharts = (
 
     const {
         labels: categoryLabels,
-        articleData: articlesQuantityByCategoriesData,
-        viewData: articleViewsByCategoriesData,
+        articlesByCategories: articlesQuantityByCategoriesData,
+        viewsByCategories: articleViewsByCategoriesData,
     } = props;
     return (
         <HStack gap="24" max>

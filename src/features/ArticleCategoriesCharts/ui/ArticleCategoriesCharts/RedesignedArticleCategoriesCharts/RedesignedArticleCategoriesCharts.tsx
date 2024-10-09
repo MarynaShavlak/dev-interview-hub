@@ -9,15 +9,11 @@ export const RedesignedArticleCategoriesCharts = (
     props: ArticleCategoriesChartsProps,
 ) => {
     const { t } = useTranslation('admin');
-    // const {
-    //     labels: categoryLabels,
-    //     articleData: articlesQuantityByCategoriesData,
-    //     viewData: articleViewsByCategoriesData,
-    // } = useArticleCategoryData();
+
     const {
         labels: categoryLabels,
-        articleData: articlesQuantityByCategoriesData,
-        viewData: articleViewsByCategoriesData,
+        articlesByCategories: articlesQuantityByCategoriesData,
+        viewsByCategories: articleViewsByCategoriesData,
     } = props;
 
     return (

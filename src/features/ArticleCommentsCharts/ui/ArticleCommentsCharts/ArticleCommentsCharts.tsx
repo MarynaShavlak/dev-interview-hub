@@ -6,8 +6,8 @@ import { RedesignedArticleCommentsCharts } from './RedesignedArticleCommentsChar
 import { ArticleCommentsChartsSkeleton } from './ArticleCommentsChartsSkeleton';
 
 export interface ArticleCommentsChartsProps {
-    articleCommentsLabels: string[];
-    articleCommentsData: number[];
+    labels: string[];
+    commentsByArticlesData: number[];
     commentsByUsersData: { x: string; y: number }[];
 }
 

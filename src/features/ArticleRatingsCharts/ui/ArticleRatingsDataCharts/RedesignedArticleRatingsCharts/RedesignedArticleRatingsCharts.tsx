@@ -8,7 +8,7 @@ export const RedesignedArticleRatingsCharts = (
     props: ArticleRatingsChartsProps,
 ) => {
     const { t } = useTranslation('admin');
-    const { articleRatingsByUsersData, maxXaxisValue } = props;
+    const { ratingsByUsersData, maxXaxisValue } = props;
 
     const xAxisTitle = t('Відсоток оцінених користувачем статей,%');
     const yAxisTitle = t('Середній рейтинг статей наданий користувачем');
@@ -24,7 +24,7 @@ export const RedesignedArticleRatingsCharts = (
     return (
         <Card>
             <BubbleChart
-                data={articleRatingsByUsersData}
+                data={ratingsByUsersData}
                 width="800"
                 title={`${xAxisTitle} & ${yAxisTitle}`}
                 legendPosition="bottom"

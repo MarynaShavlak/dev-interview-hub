@@ -12,15 +12,14 @@ export const RedesignedArticleCommentsCharts = (
 ) => {
     const { t } = useTranslation('admin');
 
-    const { articleCommentsLabels, articleCommentsData, commentsByUsersData } =
-        props;
+    const { labels, commentsByArticlesData, commentsByUsersData } = props;
 
     return (
         <HStack gap="16">
             <Card>
                 <BarChart
-                    data={articleCommentsData}
-                    labels={articleCommentsLabels}
+                    data={commentsByArticlesData}
+                    labels={labels}
                     title={t('Рейтинг статей за кількістю коментарів')}
                     legendPosition="top"
                     xAxisTitle={t('ID статті')}

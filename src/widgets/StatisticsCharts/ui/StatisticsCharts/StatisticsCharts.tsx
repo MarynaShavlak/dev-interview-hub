@@ -1,12 +1,27 @@
 import { useTranslation } from 'react-i18next';
 import React from 'react';
-import { VStack } from '@/shared/ui/common/Stack';
+import { HStack, VStack } from '@/shared/ui/common/Stack';
 import { useStatisticsData } from '../../lib/hooks/useStatisticsData';
 
 import { User } from '@/entities/User';
 
 import { RatingType } from '@/entities/Rating';
 import { Article } from '@/entities/Article';
+import {
+    ArticleCategoriesCharts,
+    ArticleCategoriesChartsProps,
+} from '@/features/ArticleCategoriesCharts';
+import {
+    ArticleCommentsCharts,
+    ArticleCommentsChartsProps,
+} from '@/features/ArticleCommentsCharts';
+import { RadialbarChart } from '@/shared/ui/common/Charts/ui/RadialbarChart';
+import { Card } from '@/shared/ui/redesigned/Card';
+import { DashboardStats } from '@/features/DashboardStats';
+import {
+    ArticleRatingsCharts,
+    ArticleRatingsChartsProps,
+} from '@/features/ArticleRatingsCharts';
 
 interface ArticlesByUserData {
     [userId: string]: number;
@@ -41,6 +56,11 @@ interface ProcessedRatings {
     };
 }
 
+interface ArticleCommentCount {
+    articleId: string;
+    commentCount: number;
+}
+
 interface InitializedData {
     totalArticles: number;
     totalUsers: number;
@@ -51,7 +71,7 @@ interface InitializedData {
     articlesByRatingDistributionData: number[];
     categoryData: Record<string, ArticleStats>;
     articleRatingStats: Record<string, ArticleStats>;
-    articleCommentCounts: { articleId: string; commentCount: number }[];
+    articleCommentCounts: ArticleCommentCount[];
     commentCountsByArticle: Record<string, number>;
     commentCountsByUser: Record<string, number>;
     ratingFromUsersData: Record<string, ArticleStats>;
@@ -61,6 +81,118 @@ interface InitializedData {
     articlesWithFeedbackList: Set<string>;
     articlesWithCommentsList: Set<string>;
 }
+
+const calculateAverageRating = (
+    totalRating: number,
+    articlesWithRating: number,
+): number => {
+    return parseFloat(
+        articlesWithRating
+            ? (totalRating / articlesWithRating).toFixed(1)
+            : '0.0',
+    );
+};
+
+const calculatePercentageRated = (
+    articlesWithRating: number,
+    totalArticles: number,
+): number => {
+    if (totalArticles === 0) return 0;
+    const percentage = (articlesWithRating / totalArticles) * 100;
+    return parseFloat(percentage.toFixed(1));
+};
+
+const processUserRatingsChartData = (
+    ratingFromUsersData: Record<string, ArticleStats>,
+    totalArticles: number,
+    tooltipName: string,
+): ArticleRatingsChartsProps => {
+    let maxPercentageRated = 0;
+
+    const ratingsByUsersData = Object.entries(ratingFromUsersData).map(
+        ([userId, userData]) => {
+            // Calculate average rating
+            const averageRating = calculateAverageRating(
+                userData.totalRating,
+                userData.articlesWithRating,
+            );
+
+            // Calculate percentage of articles rated
+            const percentageRated = calculatePercentageRated(
+                userData.articlesWithRating,
+                totalArticles,
+            );
+
+            // Track maximum percentage for X-axis calculation
+            if (percentageRated > maxPercentageRated) {
+                maxPercentageRated = percentageRated;
+            }
+
+            return {
+                name: `${tooltipName}: ${userId}`,
+                data: [
+                    [
+                        percentageRated,
+                        averageRating,
+                        userData.articlesWithFeedback,
+                    ],
+                ],
+            };
+        },
+    );
+
+    const maxXaxisValue = maxPercentageRated + 2;
+
+    return {
+        ratingsByUsersData,
+        maxXaxisValue,
+    };
+};
+
+const processArticleCategoriesChartData = (
+    categoryData: Record<string, ArticleStats>,
+): ArticleCategoriesChartsProps => {
+    const labels: string[] = [];
+    const viewsByCategories: number[] = [];
+    const articlesByCategories: number[] = [];
+
+    Object.entries(categoryData).forEach(
+        ([category, { viewCount, articleCount }]) => {
+            labels.push(category);
+            viewsByCategories.push(viewCount);
+            articlesByCategories.push(articleCount);
+        },
+    );
+
+    return {
+        labels,
+        viewsByCategories,
+        articlesByCategories,
+    };
+};
+
+const processArticleCommentsChartData = (
+    articleCommentCounts: ArticleCommentCount[],
+    commentCountsByUser: Record<string, number>,
+): ArticleCommentsChartsProps => {
+    const labels: string[] = [];
+    const commentsByArticlesData: number[] = [];
+
+    articleCommentCounts.forEach(({ articleId, commentCount }) => {
+        labels.push(articleId);
+        commentsByArticlesData.push(commentCount);
+    });
+
+    const commentsByUsersData = Object.entries(commentCountsByUser)
+        .map(([username, commentCount]) => ({ x: username, y: commentCount }))
+        .sort((a, b) => b.y - a.y);
+
+    return {
+        labels,
+        commentsByArticlesData,
+        commentsByUsersData,
+    };
+};
 
 const initializeData = (
     articles: Article[],
@@ -104,9 +236,7 @@ const processArticles = (articles: Article[], data: InitializedData) => {
         });
     });
 
-    data.averageViews = Number(
-        (data.totalViews / data.totalArticles).toFixed(2),
-    );
+    data.averageViews = Math.round(data.totalViews / data.totalArticles);
 };
 
 const processComments = (comments: ArticleComment[], data: InitializedData) => {
@@ -167,14 +297,6 @@ const processRatings = (ratings: ArticleRating[], data: InitializedData) => {
         }
         totalArticleAverages += rate;
         articlesWithRatingCount += 1;
-
-        // if (rate >= 1 && rate <= 2) {
-        //     ratingCount.rate1to2 += 1;
-        // } else if (rate >= 3 && rate < 5) {
-        //     ratingCount.rate3to4 += 1;
-        // } else {
-        //     ratingCount.rate5 += 1;
-        // }
     });
 
     Object.keys(data.articleRatingStats).forEach((articleId) => {
@@ -279,68 +401,94 @@ export const StatisticsCharts = () => {
         activeUsersData,
         articlesByRatingDistributionData,
         categoryData,
+        ratingFromUsersData,
+        articleCommentCounts,
+        commentCountsByUser,
     } = data;
 
-    const categoryChartLabels = Object.keys(data.categoryData);
-    const viewsChartData = Object.values(data.categoryData).map(
-        ({ viewCount }) => viewCount,
+    // const articleCommentsLabels = data.articleCommentCounts.map(
+    //     ({ articleId }) => articleId,
+    // );
+    // const commentsByArticlesData = data.articleCommentCounts.map(
+    //     ({ commentCount }) => commentCount,
+    // );
+    // const commentsByUsersData = Object.entries(data.commentCountsByUser)
+    //     .map(([username, commentCount]) => ({ x: username, y: commentCount }))
+    //     .sort((a, b) => b.y - a.y);
+
+    const {
+        labels: categoryChartLabels,
+        viewsByCategories,
+        articlesByCategories,
+    } = processArticleCategoriesChartData(categoryData);
+
+    const {
+        labels: articleCommentsLabels,
+        commentsByArticlesData,
+        commentsByUsersData,
+    } = processArticleCommentsChartData(
+        articleCommentCounts,
+        commentCountsByUser,
     );
-    const articlesCategoriesChartData = Object.values(data.categoryData).map(
-        ({ articleCount }) => articleCount,
+
+    const { ratingsByUsersData, maxXaxisValue } = processUserRatingsChartData(
+        ratingFromUsersData,
+        totalArticles,
+        t('userId'),
     );
 
     return (
         <VStack gap="16">
-            {/* <DashboardStats */}
-            {/*    commentsPct={articlesWithCommentsCountPercentage} */}
-            {/*    feedbackPct={articlesWithFeedbackCountPercentage} */}
-            {/*    totalArticles={totalArticles} */}
-            {/*    totalUsers={totalUsers} */}
-            {/*    avgRating={Number(averageRating)} */}
-            {/*    avgViews={Number(averageViews)} */}
-            {/* /> */}
-            {/* <HStack gap="24"> */}
-            {/*    <Card> */}
-            {/*        <RadialbarChart */}
-            {/*            data={activeUsersData} */}
-            {/*            labels={activeUserLabels} */}
-            {/*            title={t('Відсоток активних користувачів, %')} */}
-            {/*            legendPosition="top" */}
-            {/*            height="200" */}
-            {/*            width="380" */}
-            {/*            totalLabel={t('Загальний відсоток')} */}
-            {/*        /> */}
-            {/*    </Card> */}
+            <DashboardStats
+                commentsPct={articlesWithCommentsCountPercentage}
+                feedbackPct={articlesWithFeedbackCountPercentage}
+                totalArticles={totalArticles}
+                totalUsers={totalUsers}
+                avgRating={Number(averageRating)}
+                avgViews={Number(averageViews)}
+            />
+            <HStack gap="24">
+                <Card>
+                    <RadialbarChart
+                        data={activeUsersData}
+                        labels={activeUserLabels}
+                        title={t('Відсоток активних користувачів, %')}
+                        legendPosition="top"
+                        height="200"
+                        width="380"
+                        totalLabel={t('Загальний відсоток')}
+                    />
+                </Card>
 
-            {/*    <Card> */}
-            {/*        <RadialbarChart */}
-            {/*            data={articlesByRatingDistributionData} */}
-            {/*            labels={articlesByRatingDistributionLabels} */}
-            {/*            title={t('Розподіл статей за оцінками')} */}
-            {/*            legendPosition="top" */}
-            {/*            height="200" */}
-            {/*            width="220" */}
-            {/*            totalLabel={t('Загальна кількість')} */}
-            {/*            totalValue={`${articlesWithRatingQuantity}`} */}
-            {/*        /> */}
-            {/*    </Card> */}
-            {/* </HStack> */}
+                <Card>
+                    <RadialbarChart
+                        data={articlesByRatingDistributionData}
+                        labels={articlesByRatingDistributionLabels}
+                        title={t('Розподіл статей за оцінками')}
+                        legendPosition="top"
+                        height="200"
+                        width="220"
+                        totalLabel={t('Загальна кількість')}
+                        totalValue={`${articlesWithRatingQuantity}`}
+                    />
+                </Card>
+            </HStack>
 
-            {/* <ArticleCategoriesCharts */}
-            {/*    labels={categoryChartLabels} */}
-            {/*    viewData={viewsChartData} */}
-            {/*    articleData={articlesCategoriesChartData} */}
-            {/* /> */}
+            <ArticleCategoriesCharts
+                labels={categoryChartLabels}
+                viewsByCategories={viewsByCategories}
+                articlesByCategories={articlesByCategories}
+            />
             {/* <ArticleQuarterlyDataCharts /> */}
-            {/* <ArticleCommentsCharts */}
-            {/*    articleCommentsLabels={sortedArticleIdsByComments} */}
-            {/*    articleCommentsData={sortedCommentCounts} */}
-            {/*    commentsByUsersData={commentsByUserData} */}
-            {/* /> */}
-            {/* <ArticleRatingsCharts */}
-            {/*    articleRatingsByUsersData={ratingsChartData} */}
-            {/*    maxXaxisValue={maxXaxisValue} */}
-            {/* /> */}
+            <ArticleCommentsCharts
+                labels={articleCommentsLabels}
+                commentsByArticlesData={commentsByArticlesData}
+                commentsByUsersData={commentsByUsersData}
+            />
+            <ArticleRatingsCharts
+                ratingsByUsersData={ratingsByUsersData}
+                maxXaxisValue={maxXaxisValue}
+            />
         </VStack>
     );
 };

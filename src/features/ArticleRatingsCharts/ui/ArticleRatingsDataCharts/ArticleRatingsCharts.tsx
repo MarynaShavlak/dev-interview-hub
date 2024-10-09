@@ -6,7 +6,7 @@ import { DeprecatedArticleRatingsCharts } from './DeprecatedArticleRatingsCharts
 import { RedesignedArticleRatingsCharts } from './RedesignedArticleRatingsCharts/RedesignedArticleRatingsCharts';
 
 export interface ArticleRatingsChartsProps {
-    articleRatingsByUsersData: { name: string; data: number[][] }[];
+    ratingsByUsersData: { name: string; data: number[][] }[];
     maxXaxisValue: number;
 }
 

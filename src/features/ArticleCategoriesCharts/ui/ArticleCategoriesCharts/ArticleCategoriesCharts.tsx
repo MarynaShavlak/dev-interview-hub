@@ -7,8 +7,8 @@ import { ArticleCategoriesChartsSkeleton } from '../ArticleCategoriesChartsSkele
 
 export interface ArticleCategoriesChartsProps {
     labels: string[];
-    articleData: number[];
-    viewData: number[];
+    articlesByCategories: number[];
+    viewsByCategories: number[];
 }
 
 export const ArticleCategoriesCharts = (
