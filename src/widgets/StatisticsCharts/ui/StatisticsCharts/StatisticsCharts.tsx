@@ -86,7 +86,6 @@ interface InitializedData {
     totalViews: number;
     averageRating: number;
     averageViews: number;
-    articlesByRatingDistributionData: number[];
     categoryData: Record<string, ArticleStats>;
     articleRatingStats: Record<string, ArticleStats>;
     articleCommentCounts: ArticleCommentCount[];
@@ -95,6 +94,7 @@ interface InitializedData {
     ratingFromUsersData: Record<string, ArticleStats>;
     activeUsersList: ActiveUsersList;
     activeArticlesList: ActiveArticlesList;
+    ratingDistributionMap: Map<number, number>;
 }
 
 const getUserRatingsChartData = (
@@ -225,6 +225,30 @@ const getActiveUsersChartData = (
     return activeUsersData;
 };
 
+const getArticleByRatingsDistributionChartData = (
+    ratingDistributionMap: Map<number, number>,
+    totalArticlesWithRatings: number,
+): number[] => {
+    const articlesByRatingDistributionData = [
+        calculatePercentage(
+            ratingDistributionMap.get(1)! + ratingDistributionMap.get(2)!,
+            totalArticlesWithRatings,
+            1,
+        ),
+        calculatePercentage(
+            ratingDistributionMap.get(3)! + ratingDistributionMap.get(4)!,
+            totalArticlesWithRatings,
+            1,
+        ),
+        calculatePercentage(
+            ratingDistributionMap.get(5)!,
+            totalArticlesWithRatings,
+            1,
+        ),
+    ];
+    return articlesByRatingDistributionData;
+};
+
 const initializeData = (
     articles: Article[],
     users: User[],
@@ -237,7 +261,6 @@ const initializeData = (
         totalViews: 0,
         averageRating: 0,
         averageViews: 0,
-        articlesByRatingDistributionData: [],
         categoryData: {},
         articleCommentCounts: [],
         commentCountsByArticle: {},
@@ -254,6 +277,13 @@ const initializeData = (
             withComments: new Set(),
             withFeedback: new Set(),
         },
+        ratingDistributionMap: new Map<number, number>([
+            [1, 0],
+            [2, 0],
+            [3, 0],
+            [4, 0],
+            [5, 0],
+        ]),
     };
 };
 
@@ -300,13 +330,14 @@ const processComments = (comments: ArticleComment[], data: InitializedData) => {
 };
 
 const processRatings = (ratings: ArticleRating[], data: InitializedData) => {
-    const ratingCount = { rate1to2: 0, rate3to4: 0, rate5: 0 };
     let totalArticleAverages = 0;
     let articlesWithRatingCount = 0;
 
-    ratings.forEach((rating) => {
-        const { articleId, rate, feedback, userId } = rating;
-
+    const updateUserRatingData = (
+        userId: string,
+        rate: number,
+        feedback: string | undefined,
+    ) => {
         if (!data.ratingFromUsersData[userId]) {
             data.ratingFromUsersData[userId] = {
                 totalRating: 0,
@@ -314,54 +345,90 @@ const processRatings = (ratings: ArticleRating[], data: InitializedData) => {
                 articlesWithFeedback: 0,
             };
         }
-
         data.ratingFromUsersData[userId].totalRating += rate;
         data.ratingFromUsersData[userId].articlesWithRating += 1;
 
         if (feedback) {
             data.ratingFromUsersData[userId].articlesWithFeedback += 1;
         }
+        data.activeUsersList.inRatings.add(userId);
+    };
 
-        // Article Rating Stats
+    const updateArticleRatingData = (
+        articleId: string,
+        rate: number,
+        feedback: string | undefined,
+    ) => {
         if (!data.articleRatingStats[articleId]) {
             data.articleRatingStats[articleId] = { totalRating: 0, count: 0 };
         }
         data.articleRatingStats[articleId].totalRating += rate;
         data.articleRatingStats[articleId].count += 1;
         data.activeArticlesList.withRating.add(articleId);
-        data.activeUsersList.inRatings.add(userId);
-
         if (feedback) {
             data.activeArticlesList.withFeedback.add(articleId);
         }
-        totalArticleAverages += rate;
-        articlesWithRatingCount += 1;
+    };
+
+    ratings.forEach((rating) => {
+        const { articleId, rate, feedback, userId } = rating;
+        updateUserRatingData(userId, rate, feedback);
+        updateArticleRatingData(articleId, rate, feedback);
     });
 
-    Object.keys(data.articleRatingStats).forEach((articleId) => {
-        const { totalRating, count } = data.articleRatingStats[articleId];
-        const articleAverage = totalRating / count;
-        totalArticleAverages += articleAverage;
-        articlesWithRatingCount += 1;
+    console.log('totalArticleAverages after forEach', totalArticleAverages);
+    console.log(
+        'articlesWithRatingCount after forEach',
+        articlesWithRatingCount,
+    );
 
-        if (articleAverage >= 1 && articleAverage <= 2) {
-            ratingCount.rate1to2 += 1;
-        } else if (articleAverage >= 3 && articleAverage < 5) {
-            ratingCount.rate3to4 += 1;
-        } else {
-            ratingCount.rate5 += 1;
-        }
-    });
+    Object.entries(data.articleRatingStats).forEach(
+        ([articleId, { totalRating, count }]) => {
+            const articleAverage = totalRating / count;
+            totalArticleAverages += articleAverage;
 
-    const totalArticlesWithRatings = data.activeArticlesList.withRating.size;
-    data.articlesByRatingDistributionData = [
-        calculatePercentage(ratingCount.rate1to2, totalArticlesWithRatings, 1),
-        calculatePercentage(ratingCount.rate3to4, totalArticlesWithRatings, 1),
-        calculatePercentage(ratingCount.rate5, totalArticlesWithRatings, 1),
-    ];
+            articlesWithRatingCount += 1;
+            switch (articleAverage) {
+                case 1:
+                    data.ratingDistributionMap.set(
+                        1,
+                        (data.ratingDistributionMap.get(1) ?? 0) + 1,
+                    );
+                    break;
+                case 2:
+                    data.ratingDistributionMap.set(
+                        2,
+                        (data.ratingDistributionMap.get(3) ?? 0) + 1,
+                    );
+                    break;
+                case 3:
+                    data.ratingDistributionMap.set(
+                        3,
+                        (data.ratingDistributionMap.get(5) ?? 0) + 1,
+                    );
+                    break;
+                case 4:
+                    data.ratingDistributionMap.set(
+                        4,
+                        (data.ratingDistributionMap.get(5) ?? 0) + 1,
+                    );
+                    break;
+                case 5:
+                    data.ratingDistributionMap.set(
+                        5,
+                        (data.ratingDistributionMap.get(5) ?? 0) + 1,
+                    );
+                    break;
+                default:
+                    break;
+            }
+        },
+    );
 
-    data.averageRating = Number(
-        (totalArticleAverages / articlesWithRatingCount).toFixed(2),
+    data.averageRating = calculateAverage(
+        totalArticleAverages,
+        articlesWithRatingCount,
+        2,
     );
 };
 
@@ -398,14 +465,14 @@ export const StatisticsCharts = () => {
         totalUsers,
         averageRating,
         averageViews,
-        // activeUsersData,
-        articlesByRatingDistributionData,
+        // articlesByRatingDistributionData,
         categoryData,
         ratingFromUsersData,
         articleCommentCounts,
         commentCountsByUser,
         activeArticlesList,
         activeUsersList,
+        ratingDistributionMap,
     } = data;
 
     const {
@@ -434,6 +501,12 @@ export const StatisticsCharts = () => {
     );
 
     const articlesWithRatingQuantity = activeArticlesList.withRating.size;
+
+    const articlesByRatingDistributionData =
+        getArticleByRatingsDistributionChartData(
+            ratingDistributionMap,
+            articlesWithRatingQuantity,
+        );
 
     return (
         <VStack gap="16">
