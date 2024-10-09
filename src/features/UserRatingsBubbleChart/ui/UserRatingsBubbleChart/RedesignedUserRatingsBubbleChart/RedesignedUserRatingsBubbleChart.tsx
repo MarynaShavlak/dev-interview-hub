@@ -2,10 +2,10 @@ import { useTranslation } from 'react-i18next';
 import React from 'react';
 import { BubbleChart } from '@/shared/ui/common/Charts/ui/BubbleChart';
 import { Card } from '@/shared/ui/redesigned/Card';
-import { ArticleRatingsChartsProps } from '../ArticleRatingsCharts';
+import { UserRatingsBubbleChartProps } from '../../..';
 
-export const RedesignedArticleRatingsCharts = (
-    props: ArticleRatingsChartsProps,
+export const RedesignedUserRatingsBubbleChart = (
+    props: UserRatingsBubbleChartProps,
 ) => {
     const { t } = useTranslation('admin');
     const { ratingsByUsersData, maxXaxisValue } = props;

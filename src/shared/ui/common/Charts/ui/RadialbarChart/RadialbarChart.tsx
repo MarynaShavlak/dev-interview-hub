@@ -7,7 +7,7 @@ import { mergeOptions } from '../../lib/utilities/mergeOptions/mergeOptions';
 import { BaseChartProps } from '../types';
 
 interface BarChartProps extends BaseChartProps {
-    data: number[];
+    data: [number, number, number];
     totalLabel: string;
     totalValue?: string;
 }

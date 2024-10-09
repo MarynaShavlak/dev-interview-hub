@@ -1,8 +1,8 @@
 // useStatisticsData.ts
 import { useUsers } from '@/entities/User';
 import { useArticles } from '@/entities/Article';
-import { useArticlesRatings } from '../../api/articlesRatingsApi';
-import { useArticlesComments } from '../../api/articlesCommentsApi';
+import { useArticlesRatings } from '../../../api/articlesRatingsApi';
+import { useArticlesComments } from '../../../api/articlesCommentsApi';
 
 export const useStatisticsData = () => {
     const { data: users, isLoading: isUsersLoading } = useUsers(null);
