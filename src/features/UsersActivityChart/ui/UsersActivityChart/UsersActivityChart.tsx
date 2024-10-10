@@ -6,7 +6,7 @@ import { RedesignedUsersActivityChart } from './RedesignedUsersActivityChart/Red
 import { UsersActivityChartSkeleton } from './UsersActivityChartSkeleton';
 
 export interface UsersActivityChartProps {
-    activeUsersData: number[];
+    activeUsersData: [number, number, number];
 }
 
 export const UsersActivityChart = (props: UsersActivityChartProps) => {

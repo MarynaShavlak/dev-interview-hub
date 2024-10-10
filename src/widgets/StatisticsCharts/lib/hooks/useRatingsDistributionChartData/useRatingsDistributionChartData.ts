@@ -1,6 +1,6 @@
 import { calculatePercentage } from '@/shared/lib/mathCalculations/calculatePercentage';
 
-export const useArticleByRatingsDistributionChartData = (
+export const useRatingsDistributionChartData = (
     ratingDistributionMap: Map<number, number>,
     totalArticlesWithRatings: number,
 ): [number, number, number] => {

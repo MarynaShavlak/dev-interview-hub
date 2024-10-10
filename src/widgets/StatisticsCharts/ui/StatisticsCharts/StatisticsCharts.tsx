@@ -19,9 +19,10 @@ import { useArticleCategoriesChartData } from '../../lib/hooks/useArticleCategor
 import { useArticleCommentsChartData } from '../../lib/hooks/useArticleCommentsChartData/useArticleCommentsChartData';
 import { useDashboardPctData } from '../../lib/hooks/useDashboardPctData/useDashboardPctData';
 import { useActiveUsersChartData } from '../../lib/hooks/useActiveUsersChartData/useActiveUsersChartData';
-import { useArticleByRatingsDistributionChartData } from '../../lib/hooks/useArticleByRatingsDistributionChartData/useArticleByRatingsDistributionChartData';
+import { useRatingsDistributionChartData } from '../../lib/hooks/useRatingsDistributionChartData/useRatingsDistributionChartData';
 import { UsersActivityChart } from '@/features/UsersActivityChart';
 import { ArticleRatingDistributionChart } from '@/features/ArticleRatingDistributionChart';
+import { ArticleQuarterlyDataCharts } from '@/features/ArticleQuarterlyDataCharts';
 
 const initializeData = (
     articles?: Article[],
@@ -81,22 +82,31 @@ const processComments = (
     data: InitializedData,
     comments?: ArticleComment[],
 ) => {
-    comments?.forEach((comment) => {
+    if (!comments) return;
+    const { commentCountsByArticle } = data;
+    const { commentCountsByUser } = data;
+    const activeUsersList = data.activeUsersList.inComments;
+    const activeArticlesList = data.activeArticlesList.withComments;
+
+    comments.forEach((comment) => {
         const {
             user: { id, username },
             articleId,
         } = comment;
-        data.activeUsersList.inComments.add(id);
-        data.activeArticlesList.withComments.add(articleId);
+        activeUsersList.add(id);
+        activeArticlesList.add(articleId);
 
-        data.commentCountsByArticle[articleId] =
-            (data.commentCountsByArticle[articleId] || 0) + 1;
-        data.commentCountsByUser[username] =
-            (data.commentCountsByUser[username] || 0) + 1;
+        commentCountsByArticle[articleId] =
+            (commentCountsByArticle[articleId] || 0) + 1;
+        commentCountsByUser[username] =
+            (commentCountsByUser[username] || 0) + 1;
     });
 
-    data.articleCommentCounts = Object.entries(data.commentCountsByArticle)
-        .map(([articleId, commentCount]) => ({ articleId, commentCount }))
+    data.articleCommentCounts = Object.keys(commentCountsByArticle)
+        .map((articleId) => ({
+            articleId,
+            commentCount: commentCountsByArticle[articleId],
+        }))
         .sort((a, b) => b.commentCount - a.commentCount);
 };
 
@@ -230,11 +240,10 @@ export const StatisticsCharts = () => {
 
     const articlesWithRatingQuantity = activeArticlesList.withRating.size;
 
-    const articlesByRatingDistributionData =
-        useArticleByRatingsDistributionChartData(
-            ratingDistributionMap,
-            articlesWithRatingQuantity,
-        );
+    const articlesByRatingDistributionData = useRatingsDistributionChartData(
+        ratingDistributionMap,
+        articlesWithRatingQuantity,
+    );
     if (isLoading) return null;
     return (
         <VStack gap="16">
@@ -259,7 +268,7 @@ export const StatisticsCharts = () => {
                 viewsByCategories={viewsByCategories}
                 articlesByCategories={articlesByCategories}
             />
-            {/* <ArticleQuarterlyDataCharts /> */}
+            <ArticleQuarterlyDataCharts />
             <ArticleCommentsCharts
                 labels={articleCommentsLabels}
                 commentsByArticlesData={commentsByArticlesData}

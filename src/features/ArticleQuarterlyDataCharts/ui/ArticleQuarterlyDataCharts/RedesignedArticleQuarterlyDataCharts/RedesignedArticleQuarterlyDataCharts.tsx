@@ -16,9 +16,9 @@ export const RedesignedArticleQuarterlyDataCharts = () => {
         isAccumulated: true,
     });
 
-    // console.log('periodLabels', periodLabels);
-    // console.log('chartData', chartData);
-    // console.log('accumulatedChartData', accumulatedChartData);
+    console.log('periodLabels', periodLabels);
+    console.log('chartData', chartData);
+    console.log('accumulatedChartData', accumulatedChartData);
 
     return (
         <VStack gap="16">
