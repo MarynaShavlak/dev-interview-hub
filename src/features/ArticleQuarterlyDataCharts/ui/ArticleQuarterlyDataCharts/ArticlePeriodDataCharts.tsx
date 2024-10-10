@@ -8,10 +8,11 @@ import { RedesignedArticleQuarterlyDataCharts } from './RedesignedArticleQuarter
 
 import { ArticleQuarterlyDataChartSkeleton } from './ArticleQuarterlyDataChartSkeleton';
 
+export type CategoryData = Record<string, number>;
 export interface ArticlePeriodDataChartsProps {
     categories: string[];
     labels: string[];
-    data: Record<string, { [key: string]: number }>;
+    data: Record<string, CategoryData>;
 }
 
 export const ArticlePeriodDataCharts = (

@@ -5,6 +5,7 @@ import { useArticlePeriodData } from '../../../lib/hooks/useArticleQuarterlyData
 import { VStack } from '@/shared/ui/common/Stack';
 import { Card } from '@/shared/ui/redesigned/Card';
 import { ArticlePeriodDataChartsProps } from '../ArticlePeriodDataCharts';
+import { LineChart } from '@/shared/ui/common/Charts/ui/LineChart';
 
 export const RedesignedArticleQuarterlyDataCharts = (
     props: ArticlePeriodDataChartsProps,
@@ -12,8 +13,12 @@ export const RedesignedArticleQuarterlyDataCharts = (
     const { t } = useTranslation('admin');
     const { labels, categories, data } = props;
 
-    const { chartData } = useArticlePeriodData({ categories, data });
-
+    const {
+        quarterlyCategoryData,
+        quarterlyLabels,
+        monthlyLabels,
+        monthlyCategoryData,
+    } = useArticlePeriodData(categories, data);
     // const { periodLabels, chartData } = useArticlePeriodData({});
     // const { chartData: accumulatedChartData } = useArticlePeriodData({
     //     isAccumulated: true,
@@ -27,8 +32,8 @@ export const RedesignedArticleQuarterlyDataCharts = (
         <VStack gap="16">
             <Card>
                 <StackedColumnsChart
-                    data={chartData}
-                    labels={labels}
+                    data={quarterlyCategoryData}
+                    labels={quarterlyLabels}
                     title={t(
                         'Розподіл кількості опублікованих статей за категоріями по кварталах',
                     )}
@@ -39,20 +44,20 @@ export const RedesignedArticleQuarterlyDataCharts = (
                     width="800"
                 />
             </Card>
-            {/* <Card> */}
-            {/*    <LineChart */}
-            {/*        data={accumulatedChartData} */}
-            {/*        labels={periodLabels} */}
-            {/*        title={t( */}
-            {/*            'Динаміка зростання кількості статей за категоріями', */}
-            {/*        )} */}
-            {/*        legendPosition="top" */}
-            {/*        xAxisTitle={t('Квартал')} */}
-            {/*        yAxisTitle={t('Кількість статей')} */}
-            {/*        height="300" */}
-            {/*        width="800" */}
-            {/*    /> */}
-            {/* </Card> */}
+            <Card>
+                <LineChart
+                    data={monthlyCategoryData}
+                    labels={monthlyLabels}
+                    title={t(
+                        'Динаміка зростання кількості статей за категоріями',
+                    )}
+                    legendPosition="top"
+                    xAxisTitle={t('Місяць')}
+                    yAxisTitle={t('Кількість статей')}
+                    height="300"
+                    width="800"
+                />
+            </Card>
         </VStack>
     );
 };

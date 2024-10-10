@@ -28,9 +28,7 @@ export const processArticles = (
 
     const initializeMonthlyData = () => {
         const months = generateMonths();
-        console.log('months', months);
         const yearsArray = Array.from(yearsList).sort();
-        console.log('yearsArray', yearsArray);
         yearsArray.forEach((year) => {
             months.forEach((month) => {
                 const key = `${month}/${year}`;
@@ -44,13 +42,9 @@ export const processArticles = (
             });
         });
     };
-    console.log(
-        'IN HANDLERmonthlyDataByCategories',
-        data.monthlyDataByCategories,
-    );
+
     const updateMonthlyData = (article: Article) => {
         const key = getMonthYearKey(article.createdAt);
-        console.log('key', key);
         article.category.forEach((category: string) => {
             if (data.monthlyDataByCategories[key]) {
                 data.monthlyDataByCategories[key][category] += 1;
