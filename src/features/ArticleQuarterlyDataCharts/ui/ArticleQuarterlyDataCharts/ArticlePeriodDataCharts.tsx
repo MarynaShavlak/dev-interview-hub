@@ -8,7 +8,15 @@ import { RedesignedArticleQuarterlyDataCharts } from './RedesignedArticleQuarter
 
 import { ArticleQuarterlyDataChartSkeleton } from './ArticleQuarterlyDataChartSkeleton';
 
-export const ArticleQuarterlyDataCharts = () => {
+export interface ArticlePeriodDataChartsProps {
+    categories: string[];
+    labels: string[];
+    data: Record<string, { [key: string]: number }>;
+}
+
+export const ArticlePeriodDataCharts = (
+    props: ArticlePeriodDataChartsProps,
+) => {
     const { t } = useTranslation('admin');
 
     const { isLoading: isArticlesLoading, error } = useArticles(null);
@@ -22,8 +30,8 @@ export const ArticleQuarterlyDataCharts = () => {
     return (
         <ToggleFeaturesComponent
             feature="isAppRedesigned"
-            on={<RedesignedArticleQuarterlyDataCharts />}
-            off={<DeprecatedArticleQuarterlyDataCharts />}
+            on={<RedesignedArticleQuarterlyDataCharts {...props} />}
+            off={<DeprecatedArticleQuarterlyDataCharts {...props} />}
         />
     );
 };

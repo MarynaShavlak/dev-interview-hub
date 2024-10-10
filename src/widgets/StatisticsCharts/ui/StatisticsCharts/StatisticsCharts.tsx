@@ -14,7 +14,7 @@ import { useActiveUsersChartData } from '../../lib/hooks/useActiveUsersChartData
 import { useRatingsDistributionChartData } from '../../lib/hooks/useRatingsDistributionChartData/useRatingsDistributionChartData';
 import { UsersActivityChart } from '@/features/UsersActivityChart';
 import { ArticleRatingDistributionChart } from '@/features/ArticleRatingDistributionChart';
-import { ArticleQuarterlyDataCharts } from '@/features/ArticleQuarterlyDataCharts';
+import { ArticlePeriodDataCharts } from '@/features/ArticleQuarterlyDataCharts';
 import { processComments } from '../../lib/dataHandlers/processComments/processComments';
 import { processRatings } from '../../lib/dataHandlers/processRatings/processRatings';
 import { initializeData } from '../../lib/dataHandlers/initializeData/initializeData';
@@ -46,6 +46,7 @@ export const StatisticsCharts = () => {
         averageViews,
         ratingDistributionMap,
         monthlyDataByCategories,
+        categories,
     } = data;
 
     const {
@@ -106,7 +107,11 @@ export const StatisticsCharts = () => {
                 viewsByCategories={viewsByCategories}
                 articlesByCategories={articlesByCategories}
             />
-            <ArticleQuarterlyDataCharts />
+            <ArticlePeriodDataCharts
+                labels={monthLabels}
+                categories={categories}
+                data={monthlyDataByCategories}
+            />
             <ArticleCommentsCharts
                 labels={articleCommentsLabels}
                 commentsByArticlesData={commentsByArticlesData}

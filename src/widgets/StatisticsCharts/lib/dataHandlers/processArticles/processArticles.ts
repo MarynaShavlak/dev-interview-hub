@@ -12,6 +12,7 @@ export const processArticles = (
     if (!articles) return;
     let totalViews = 0;
     const yearsList = new Set<string>();
+    const categoriesList = new Set<string>();
 
     const updateCategoryData = (article: Article) => {
         article.category.forEach((cat) => {
@@ -20,17 +21,20 @@ export const processArticles = (
             }
             data.categoryData[cat].articleCount += 1;
             data.categoryData[cat].viewCount += article.views;
+            categoriesList.add(cat);
         });
+        data.categories = Array.from(categoriesList);
     };
 
     const initializeMonthlyData = () => {
         const months = generateMonths();
-        const categoriesArray = Object.keys(data.categoryData);
+        console.log('months', months);
         const yearsArray = Array.from(yearsList).sort();
+        console.log('yearsArray', yearsArray);
         yearsArray.forEach((year) => {
             months.forEach((month) => {
                 const key = `${month}/${year}`;
-                data.monthlyDataByCategories[key] = categoriesArray.reduce(
+                data.monthlyDataByCategories[key] = data.categories.reduce(
                     (acc, category) => {
                         acc[category] = 0;
                         return acc;
@@ -40,10 +44,13 @@ export const processArticles = (
             });
         });
     };
-
+    console.log(
+        'IN HANDLERmonthlyDataByCategories',
+        data.monthlyDataByCategories,
+    );
     const updateMonthlyData = (article: Article) => {
         const key = getMonthYearKey(article.createdAt);
-
+        console.log('key', key);
         article.category.forEach((category: string) => {
             if (data.monthlyDataByCategories[key]) {
                 data.monthlyDataByCategories[key][category] += 1;

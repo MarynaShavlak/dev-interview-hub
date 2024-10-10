@@ -1,3 +1,5 @@
+import { ArticlePeriodDataChartsProps } from '@/features/ArticleQuarterlyDataCharts';
+
 export interface ArticleStats {
     [key: string]: number;
 }
@@ -29,6 +31,7 @@ export interface InitializedData {
     totalUsers: number;
     averageRating: number;
     averageViews: number;
+    categories: string[];
     categoryData: Record<string, ArticleStats>;
     articleCommentCounts: ArticleCommentCount[];
     commentCountsByArticle: Record<string, number>;
@@ -37,5 +40,5 @@ export interface InitializedData {
     activeUsersList: ActiveUsersList;
     activeArticlesList: ActiveArticlesList;
     ratingDistributionMap: Map<number, number>;
-    monthlyDataByCategories: Record<string, ArticleStats>;
+    monthlyDataByCategories: ArticlePeriodDataChartsProps['data'];
 }
