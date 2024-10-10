@@ -37,4 +37,5 @@ export interface InitializedData {
     activeUsersList: ActiveUsersList;
     activeArticlesList: ActiveArticlesList;
     ratingDistributionMap: Map<number, number>;
+    monthlyDataByCategories: Record<string, ArticleStats>;
 }

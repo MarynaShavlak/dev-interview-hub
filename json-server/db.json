@@ -803,7 +803,7 @@
       },
       "img": "https://example.com/virtual-dom.jpg",
       "views": 1560,
-      "createdAt": "10.04.2023",
+      "createdAt": "10.04.2024",
       "userId": "1",
       "category": [
         "React"
@@ -1665,7 +1665,7 @@
       },
       "img": "https://example.com/error-boundary.jpg",
       "views": 600,
-      "createdAt": "15.10.2023",
+      "createdAt": "15.02.2024",
       "userId": "10",
       "category": [
         "React"
@@ -1712,7 +1712,7 @@
       },
       "img": "https://example.com/hooks.jpg",
       "views": 720,
-      "createdAt": "17.10.2023",
+      "createdAt": "17.02.2024",
       "userId": "10",
       "category": [
         "React"
@@ -1758,7 +1758,7 @@
       },
       "img": "https://example.com/hooks-rules.jpg",
       "views": 550,
-      "createdAt": "20.10.2023",
+      "createdAt": "20.02.2024",
       "userId": "11",
       "category": [
         "React"
@@ -1807,7 +1807,7 @@
       },
       "img": "https://example.com/use-effect.jpg",
       "views": 800,
-      "createdAt": "23.10.2023",
+      "createdAt": "23.02.2024",
       "userId": "11",
       "category": [
         "React"
@@ -1853,7 +1853,7 @@
       },
       "img": "https://example.com/effect-comparison.jpg",
       "views": 640,
-      "createdAt": "01.11.2023",
+      "createdAt": "01.03.2024",
       "userId": "11",
       "category": [
         "React"
@@ -1901,7 +1901,7 @@
       },
       "img": "https://example.com/lazy-initialization.jpg",
       "views": 500,
-      "createdAt": "03.11.2023",
+      "createdAt": "03.03.2024",
       "userId": "11",
       "category": [
         "React"
@@ -1948,7 +1948,7 @@
       },
       "img": "https://example.com/ref-comparison.jpg",
       "views": 450,
-      "createdAt": "05.11.2023",
+      "createdAt": "05.03.2024",
       "userId": "12",
       "category": [
         "React"
@@ -1996,7 +1996,7 @@
       },
       "img": "https://example.com/memo-callback.jpg",
       "views": 480,
-      "createdAt": "07.11.2023",
+      "createdAt": "07.03.2024",
       "userId": "12",
       "category": [
         "React"
@@ -2044,7 +2044,7 @@
       },
       "img": "https://example.com/flux-architecture.jpg",
       "views": 520,
-      "createdAt": "10.11.2023",
+      "createdAt": "10.03.2024",
       "userId": "13",
       "category": [
         "React"
@@ -2090,7 +2090,7 @@
       },
       "img": "https://example.com/redux-intro.jpg",
       "views": 600,
-      "createdAt": "12.11.2023",
+      "createdAt": "12.03.2024",
       "userId": "13",
       "category": [
         "React"
@@ -2136,7 +2136,7 @@
       },
       "img": "https://example.com/hooks-context-redux.jpg",
       "views": 670,
-      "createdAt": "15.11.2023",
+      "createdAt": "15.03.2024",
       "userId": "14",
       "category": [
         "React"
@@ -2186,7 +2186,7 @@
       },
       "img": "https://example.com/redux-middleware.jpg",
       "views": 500,
-      "createdAt": "17.11.2023",
+      "createdAt": "17.03.2024",
       "userId": "14",
       "category": [
         "React"
@@ -2232,7 +2232,7 @@
       },
       "img": "https://example.com/side-effects-redux.jpg",
       "views": 450,
-      "createdAt": "20.11.2023",
+      "createdAt": "20.03.2024",
       "userId": "15",
       "category": [
         "React"
@@ -2279,7 +2279,7 @@
       },
       "img": "https://example.com/next-function.jpg",
       "views": 470,
-      "createdAt": "22.11.2023",
+      "createdAt": "22.03.2024",
       "userId": "15",
       "category": [
         "React"
@@ -2325,7 +2325,7 @@
       },
       "img": "https://example.com/redux-selectors.jpg",
       "views": 550,
-      "createdAt": "25.11.2023",
+      "createdAt": "25.03.2024",
       "userId": "16",
       "category": [
         "React"
@@ -2371,7 +2371,7 @@
       },
       "img": "https://example.com/action-action-creator.jpg",
       "views": 600,
-      "createdAt": "28.11.2023",
+      "createdAt": "28.03.2024",
       "userId": "16",
       "category": [
         "React"
@@ -2967,7 +2967,7 @@
       },
       "img": "https://example.com/block_inline.jpg",
       "views": 310,
-      "createdAt": "04.11.2022",
+      "createdAt": "04.03.2024",
       "userId": "4",
       "category": [
         "HTML"
@@ -3006,7 +3006,7 @@
       },
       "img": "https://example.com/symbols.jpg",
       "views": 270,
-      "createdAt": "05.09.2021",
+      "createdAt": "05.09.2023",
       "userId": "5",
       "category": [
         "HTML"
@@ -3039,7 +3039,7 @@
       },
       "img": "https://example.com/headers.jpg",
       "views": 250,
-      "createdAt": "06.02.2022",
+      "createdAt": "06.02.2023",
       "userId": "6",
       "category": [
         "HTML"
@@ -3173,7 +3173,7 @@
       },
       "img": "https://example.com/script_attributes.jpg",
       "views": 320,
-      "createdAt": "10.11.2022",
+      "createdAt": "10.03.2024",
       "userId": "10",
       "category": [
         "HTML"
@@ -3220,7 +3220,7 @@
       },
       "img": "https://example.com/add_css.jpg",
       "views": 280,
-      "createdAt": "11.11.2021",
+      "createdAt": "11.03.2024",
       "userId": "11",
       "category": [
         "CSS"
@@ -3259,7 +3259,7 @@
       },
       "img": "https://example.com/reset_normalize.jpg",
       "views": 290,
-      "createdAt": "12.02.2020",
+      "createdAt": "12.02.2023",
       "userId": "12",
       "category": [
         "CSS"
@@ -4049,7 +4049,7 @@
       },
       "img": "https://www.bia.pp.ua/wp-content/uploads/2019/01/p2.jpg",
       "views": 350,
-      "createdAt": "01.01.2020",
+      "createdAt": "01.01.2023",
       "userId": "1",
       "category": [
         "CSS"
@@ -4083,7 +4083,7 @@
       },
       "img": "https://example.com/cascade_css.jpg",
       "views": 400,
-      "createdAt": "05.03.2020",
+      "createdAt": "05.03.2023",
       "userId": "2",
       "category": [
         "CSS"
@@ -4117,7 +4117,7 @@
       },
       "img": "https://example.com/content_vs_decorative_images.jpg",
       "views": 270,
-      "createdAt": "30.03.2020",
+      "createdAt": "30.03.2023",
       "userId": "3",
       "category": [
         "HTML"
@@ -4152,7 +4152,7 @@
       },
       "img": "https://example.com/no_pseudo_elements.jpg",
       "views": 320,
-      "createdAt": "23.05.2020",
+      "createdAt": "23.05.2023",
       "userId": "4",
       "category": [
         "CSS"
@@ -4178,7 +4178,7 @@
       },
       "img": "https://example.com/calc_function.jpg",
       "views": 290,
-      "createdAt": "11.06.2020",
+      "createdAt": "11.06.2023",
       "userId": "5",
       "category": [
         "CSS"
@@ -4210,7 +4210,7 @@
       },
       "img": "https://example.com/flex_container_element.jpg",
       "views": 360,
-      "createdAt": "12.08.2020",
+      "createdAt": "12.08.2023",
       "userId": "6",
       "category": [
         "CSS"
@@ -4244,7 +4244,7 @@
       },
       "img": "https://example.com/flex_axis.jpg",
       "views": 310,
-      "createdAt": "15.07.2020",
+      "createdAt": "15.07.2023",
       "userId": "7",
       "category": [
         "CSS"
@@ -4278,7 +4278,7 @@
       },
       "img": "https://example.com/mobile_first_vs_desktop_first.jpg",
       "views": 450,
-      "createdAt": "01.09.2020",
+      "createdAt": "01.09.2023",
       "userId": "8",
       "category": [
         "CSS"
@@ -4313,7 +4313,7 @@
       },
       "img": "https://example.com/svg_vs_png_jpeg.jpg",
       "views": 320,
-      "createdAt": "30.09.2020",
+      "createdAt": "30.09.2023",
       "userId": "9",
       "category": [
         "HTML"
@@ -4347,7 +4347,7 @@
       },
       "img": "https://example.com/rgb_rgba_hex.jpg",
       "views": 400,
-      "createdAt": "20.10.2020",
+      "createdAt": "20.02.2024",
       "userId": "10",
       "category": [
         "CSS"
@@ -4391,7 +4391,7 @@
       },
       "img": "https://example.com/linear_radial_gradients.jpg",
       "views": 350,
-      "createdAt": "15.11.2020",
+      "createdAt": "15.03.2024",
       "userId": "11",
       "category": [
         "CSS"
@@ -4426,7 +4426,7 @@
       },
       "img": "https://example.com/same_origin_policy.jpg",
       "views": 260,
-      "createdAt": "28.03.2021",
+      "createdAt": "28.03.2023",
       "userId": "12",
       "category": [
         "HTML"
@@ -4460,7 +4460,7 @@
       },
       "img": "https://example.com/html_attributes.jpg",
       "views": 290,
-      "createdAt": "16.03.2021",
+      "createdAt": "16.03.2023",
       "userId": "13",
       "category": [
         "HTML"
@@ -4494,7 +4494,7 @@
       },
       "img": "https://example.com/html5_css3_changes.jpg",
       "views": 370,
-      "createdAt": "29.03.2021",
+      "createdAt": "29.03.2023",
       "userId": "14",
       "category": [
         "HTML",
@@ -4530,7 +4530,7 @@
       },
       "img": "https://example.com/frontend_essentials.jpg",
       "views": 450,
-      "createdAt": "30.05.2021",
+      "createdAt": "30.05.2023",
       "userId": "3",
       "category": [
         "HTML",
@@ -4573,7 +4573,7 @@
       },
       "img": "https://example.com/browser_interpretation.jpg",
       "views": 500,
-      "createdAt": "19.04.2021",
+      "createdAt": "19.04.2023",
       "userId": "4",
       "category": [
         "JavaScript"
@@ -4614,7 +4614,7 @@
       },
       "img": "https://example.com/css_reflow.jpg",
       "views": 320,
-      "createdAt": "10.08.2021",
+      "createdAt": "10.08.2023",
       "userId": "5",
       "category": [
         "CSS"
@@ -4651,7 +4651,7 @@
       },
       "img": "https://example.com/css_selectors_parsing.jpg",
       "views": 270,
-      "createdAt": "20.09.2021",
+      "createdAt": "20.09.2023",
       "userId": "6",
       "category": [
         "CSS"
@@ -4691,7 +4691,7 @@
       },
       "img": "https://example.com/css_specificity.jpg",
       "views": 350,
-      "createdAt": "29.09.2021",
+      "createdAt": "29.09.2023",
       "userId": "7",
       "category": [
         "CSS"
@@ -4731,7 +4731,7 @@
       },
       "img": "https://example.com/pseudo_elements_classes.jpg",
       "views": 310,
-      "createdAt": "04.11.2021",
+      "createdAt": "04.03.2024",
       "userId": "8",
       "category": [
         "CSS"
@@ -4771,7 +4771,7 @@
       },
       "img": "https://example.com/css_preprocessors.jpg",
       "views": 400,
-      "createdAt": "10.11.2021",
+      "createdAt": "10.03.2024",
       "userId": "9",
       "category": [
         "CSS"
@@ -4814,7 +4814,7 @@
       },
       "img": "https://example.com/dom_shadow_dom.jpg",
       "views": 360,
-      "createdAt": "01.01.2022",
+      "createdAt": "01.01.2023",
       "userId": "10",
       "category": [
         "JavaScript"
@@ -4855,7 +4855,7 @@
       },
       "img": "https://example.com/prevent_default_stop_propagation.jpg",
       "views": 410,
-      "createdAt": "25.03.2022",
+      "createdAt": "25.03.2023",
       "userId": "11",
       "category": [
         "JavaScript"
@@ -4894,7 +4894,7 @@
       },
       "img": "https://example.com/capturing_bubbling.jpg",
       "views": 370,
-      "createdAt": "08.03.2022",
+      "createdAt": "08.03.2023",
       "userId": "12",
       "category": [
         "JavaScript"
@@ -4934,7 +4934,7 @@
       },
       "img": "https://example.com/hoisting.jpg",
       "views": 390,
-      "createdAt": "28.03.2022",
+      "createdAt": "28.03.2023",
       "userId": "13",
       "category": [
         "JavaScript"
@@ -4973,7 +4973,7 @@
       },
       "img": "https://example.com/react_hoisting.jpg",
       "views": 430,
-      "createdAt": "01.04.2022",
+      "createdAt": "01.04.2023",
       "userId": "14",
       "category": [
         "React"
@@ -5005,7 +5005,7 @@
       },
       "img": "https://example.com/var_use_case.jpg",
       "views": 280,
-      "createdAt": "25.04.2022",
+      "createdAt": "25.04.2023",
       "userId": "15",
       "category": [
         "JavaScript"
@@ -5044,7 +5044,7 @@
       },
       "img": "https://example.com/promises_vs_callbacks.jpg",
       "views": 450,
-      "createdAt": "20.09.2022",
+      "createdAt": "20.09.2023",
       "userId": "16",
       "category": [
         "JavaScript"
@@ -5084,7 +5084,7 @@
       },
       "img": "https://example.com/event_loop.jpg",
       "views": 500,
-      "createdAt": "04.09.2022",
+      "createdAt": "04.09.2023",
       "userId": "17",
       "category": [
         "JavaScript"
@@ -5124,7 +5124,7 @@
       },
       "img": "https://example.com/jsx.jpg",
       "views": 480,
-      "createdAt": "29.09.2022",
+      "createdAt": "29.09.2023",
       "userId": "18",
       "category": [
         "React"
@@ -5163,7 +5163,7 @@
       },
       "img": "https://example.com/react_keys.jpg",
       "views": 490,
-      "createdAt": "11.10.2022",
+      "createdAt": "11.02.2024",
       "userId": "19",
       "category": [
         "React"
@@ -5200,7 +5200,7 @@
         "text": "Огляд основних типів даних у JavaScript."
       },
       "views": 520,
-      "createdAt": "15.11.2022",
+      "createdAt": "15.03.2024",
       "userId": "10",
       "category": [
         "JavaScript"
@@ -5242,7 +5242,7 @@
       },
       "img": "https://example.com/nan.jpg",
       "views": 420,
-      "createdAt": "30.12.2022",
+      "createdAt": "30.12.2023",
       "userId": "5",
       "category": [
         "JavaScript"
@@ -5281,7 +5281,7 @@
       },
       "img": "https://example.com/null_undefined.jpg",
       "views": 380,
-      "createdAt": "05.12.2022",
+      "createdAt": "05.12.2023",
       "userId": "6",
       "category": [
         "JavaScript"
@@ -5730,7 +5730,7 @@
         "text": "Досліджуємо основні відмінності між декларацією та виразом функцій у JavaScript."
       },
       "views": 520,
-      "createdAt": "20.11.2023",
+      "createdAt": "20.03.2024",
       "userId": "5",
       "category": [
         "JavaScript"
@@ -7220,7 +7220,7 @@
       },
       "img": "https://img3.teletype.in/files/25/4c/254ca56d-599c-43a4-85d6-3fbf0e23d2ee.jpeg",
       "views": 501,
-      "createdAt": "05.08.2022",
+      "createdAt": "05.08.2023",
       "userId": "3",
       "category": [
         "IT"
@@ -7497,7 +7497,7 @@
       },
       "img": "https://habrastorage.org/getpro/habr/upload_files/0a4/04e/a28/0a404ea2829daa3fe989773c2aa1bd7a.jpg",
       "views": 1001,
-      "createdAt": "26.09.2022",
+      "createdAt": "26.09.2023",
       "userId": "4",
       "category": [
         "IT"
@@ -7588,7 +7588,7 @@
       },
       "img": "https://miro.medium.com/v2/resize:fit:900/1*f1uLCX2jrfA_zvDElGDvcQ.png",
       "views": 783,
-      "createdAt": "08.03.2021",
+      "createdAt": "08.03.2023",
       "userId": "3",
       "category": [
         "IT"
@@ -7707,7 +7707,7 @@
       },
       "img": "https://foxminded.ua/wp-content/uploads/2023/11/chto-takoe-rest-api.webp",
       "views": 341,
-      "createdAt": "08.11.2023",
+      "createdAt": "08.03.2024",
       "userId": "4",
       "category": [
         "IT"
@@ -7774,7 +7774,7 @@
       },
       "img": "https://www.opc-router.de/wp-content/uploads/2020/08/was-ist-json_600x250px-1.jpg",
       "views": 890,
-      "createdAt": "25.07.2022",
+      "createdAt": "25.07.2023",
       "userId": "4",
       "category": [
         "React"
@@ -7846,7 +7846,7 @@
       },
       "img": "https://support.sitegist.com/wp-content/uploads/2022/07/4669572.jpg",
       "views": 334,
-      "createdAt": "29.07.2022",
+      "createdAt": "29.07.2023",
       "userId": "3",
       "category": [
         "IT"
@@ -7890,7 +7890,7 @@
         "text": "Порівняння TypeScript та JavaScript"
       },
       "views": 1020,
-      "createdAt": "15.02.2020",
+      "createdAt": "15.02.2023",
       "userId": "9",
       "category": [
         "TypeScript"
@@ -7920,7 +7920,7 @@
         "text": "Огляд переваг і недоліків TypeScript"
       },
       "views": 980,
-      "createdAt": "10.05.2020",
+      "createdAt": "10.05.2023",
       "userId": "10",
       "category": [
         "TypeScript"
@@ -7953,7 +7953,7 @@
         "text": "Типи даних у TypeScript"
       },
       "views": 860,
-      "createdAt": "18.08.2020",
+      "createdAt": "18.08.2023",
       "userId": "1",
       "category": [
         "TypeScript"
@@ -7983,7 +7983,7 @@
         "text": "Що таке інтерфейси у TypeScript"
       },
       "views": 1040,
-      "createdAt": "11.11.2020",
+      "createdAt": "11.03.2024",
       "userId": "12",
       "category": [
         "TypeScript"
@@ -8013,7 +8013,7 @@
         "text": "Основи Generics у TypeScript"
       },
       "views": 930,
-      "createdAt": "15.01.2021",
+      "createdAt": "15.01.2023",
       "userId": "13",
       "category": [
         "TypeScript"
@@ -8043,7 +8043,7 @@
         "text": "Що таке Enums у TypeScript"
       },
       "views": 890,
-      "createdAt": "10.04.2021",
+      "createdAt": "10.04.2023",
       "userId": "2",
       "category": [
         "TypeScript"
@@ -8073,7 +8073,7 @@
         "text": "TypeScript vs. JavaScript у безпеці типів"
       },
       "views": 1010,
-      "createdAt": "20.06.2021",
+      "createdAt": "20.06.2023",
       "userId": "15",
       "category": [
         "TypeScript",
@@ -8106,7 +8106,7 @@
         "text": "TypeScript для підтримки коду"
       },
       "views": 850,
-      "createdAt": "25.09.2021",
+      "createdAt": "25.09.2023",
       "userId": "16",
       "category": [
         "TypeScript"
@@ -8138,7 +8138,7 @@
         "text": "Використання декораторів у TypeScript"
       },
       "views": 980,
-      "createdAt": "10.12.2021",
+      "createdAt": "10.12.2023",
       "userId": "20",
       "category": [
         "TypeScript"
@@ -8168,7 +8168,7 @@
         "text": "Простори імен та модулі у TypeScript"
       },
       "views": 910,
-      "createdAt": "05.02.2022",
+      "createdAt": "05.02.2023",
       "userId": "18",
       "category": [
         "TypeScript"
@@ -8198,7 +8198,7 @@
         "text": "Поради щодо міграції з JavaScript на TypeScript"
       },
       "views": 840,
-      "createdAt": "01.04.2022",
+      "createdAt": "01.04.2023",
       "userId": "19",
       "category": [
         "TypeScript",
@@ -8233,7 +8233,7 @@
         "text": "Ключові критерії якості коду"
       },
       "views": 1120,
-      "createdAt": "12.03.2022",
+      "createdAt": "12.03.2023",
       "userId": "3",
       "category": [
         "IT"

@@ -2,18 +2,10 @@ import { useTranslation } from 'react-i18next';
 import React from 'react';
 import { HStack, VStack } from '@/shared/ui/common/Stack';
 import { useStatisticsData } from '../../lib/hooks/useStatisticsData/useStatisticsData';
-
-import { User } from '@/entities/User';
-
-import { Article } from '@/entities/Article';
 import { ArticleCategoriesCharts } from '@/features/ArticleCategoriesCharts';
 import { ArticleCommentsCharts } from '@/features/ArticleCommentsCharts';
 import { DashboardStats } from '@/features/DashboardStats';
 import { UserRatingsBubbleChart } from '@/features/UserRatingsBubbleChart';
-import { calculateAverage } from '@/shared/lib/mathCalculations/calculateAverage';
-import { ArticleStats, InitializedData } from '../../model/types/stats';
-import { ArticleComment } from '../../model/types/articleComment';
-import { ArticleRating } from '../../model/types/articleRating';
 import { useUserRatingsChartData } from '../../lib/hooks/useUserRatingsChartData/useUserRatingsChartData';
 import { useArticleCategoriesChartData } from '../../lib/hooks/useArticleCategoriesChartData/useArticleCategoriesChartData';
 import { useArticleCommentsChartData } from '../../lib/hooks/useArticleCommentsChartData/useArticleCommentsChartData';
@@ -23,176 +15,10 @@ import { useRatingsDistributionChartData } from '../../lib/hooks/useRatingsDistr
 import { UsersActivityChart } from '@/features/UsersActivityChart';
 import { ArticleRatingDistributionChart } from '@/features/ArticleRatingDistributionChart';
 import { ArticleQuarterlyDataCharts } from '@/features/ArticleQuarterlyDataCharts';
-
-const initializeData = (
-    articles?: Article[],
-    users?: User[],
-): InitializedData => {
-    const totalArticles = articles?.length || 0;
-    const totalUsers = users?.length || 0;
-    return {
-        totalArticles,
-        totalUsers,
-        averageRating: 0,
-        averageViews: 0,
-        categoryData: {},
-        articleCommentCounts: [],
-        commentCountsByArticle: {},
-        commentCountsByUser: {},
-        ratingCountsByUser: {},
-        activeUsersList: {
-            inArticles: new Set(),
-            inComments: new Set(),
-            inRatings: new Set(),
-        },
-        activeArticlesList: {
-            withRating: new Set(),
-            withComments: new Set(),
-            withFeedback: new Set(),
-        },
-        ratingDistributionMap: new Map<number, number>([
-            [1, 0],
-            [2, 0],
-            [3, 0],
-            [4, 0],
-            [5, 0],
-        ]),
-    };
-};
-
-const processArticles = (data: InitializedData, articles?: Article[]) => {
-    let totalViews = 0;
-    articles?.forEach((article) => {
-        data.activeUsersList.inArticles.add(article.user.id);
-        totalViews += article.views;
-
-        article.category.forEach((cat) => {
-            if (!data.categoryData[cat]) {
-                data.categoryData[cat] = { articleCount: 0, viewCount: 0 };
-            }
-            data.categoryData[cat].articleCount += 1;
-            data.categoryData[cat].viewCount += article.views;
-        });
-    });
-
-    data.averageViews = calculateAverage(totalViews, data.totalArticles, 0);
-};
-
-const processComments = (
-    data: InitializedData,
-    comments?: ArticleComment[],
-) => {
-    if (!comments) return;
-    const { commentCountsByArticle } = data;
-    const { commentCountsByUser } = data;
-    const activeUsersList = data.activeUsersList.inComments;
-    const activeArticlesList = data.activeArticlesList.withComments;
-
-    comments.forEach((comment) => {
-        const {
-            user: { id, username },
-            articleId,
-        } = comment;
-        activeUsersList.add(id);
-        activeArticlesList.add(articleId);
-
-        commentCountsByArticle[articleId] =
-            (commentCountsByArticle[articleId] || 0) + 1;
-        commentCountsByUser[username] =
-            (commentCountsByUser[username] || 0) + 1;
-    });
-
-    data.articleCommentCounts = Object.keys(commentCountsByArticle)
-        .map((articleId) => ({
-            articleId,
-            commentCount: commentCountsByArticle[articleId],
-        }))
-        .sort((a, b) => b.commentCount - a.commentCount);
-};
-
-const processRatings = (data: InitializedData, ratings?: ArticleRating[]) => {
-    if (!ratings || ratings.length === 0) return;
-
-    let totalArticleAverages = 0;
-    let articlesWithRatingCount = 0;
-    const articleRatingStats: Record<string, ArticleStats> = {};
-
-    const updateUserRatingData = (
-        userId: string,
-        rate: number,
-        feedback?: string,
-    ) => {
-        const userStats = data.ratingCountsByUser[userId] || {
-            totalRating: 0,
-            articlesWithRating: 0,
-            articlesWithFeedback: 0,
-        };
-
-        userStats.totalRating += rate;
-        userStats.articlesWithRating += 1;
-
-        if (feedback) {
-            userStats.articlesWithFeedback += 1;
-        }
-
-        data.ratingCountsByUser[userId] = userStats;
-        data.activeUsersList.inRatings.add(userId);
-    };
-
-    const updateArticleRatingData = (
-        articleId: string,
-        rate: number,
-        feedback: string | undefined,
-    ) => {
-        const articleStats = articleRatingStats[articleId] || {
-            totalRating: 0,
-            count: 0,
-        };
-
-        articleStats.totalRating += rate;
-        articleStats.count += 1;
-
-        articleRatingStats[articleId] = articleStats;
-        data.activeArticlesList.withRating.add(articleId);
-
-        if (feedback) {
-            data.activeArticlesList.withFeedback.add(articleId);
-        }
-    };
-
-    const updateRatingDistribution = (average: number) => {
-        const rating = Math.floor(average);
-
-        if (rating >= 1 && rating <= 5) {
-            data.ratingDistributionMap.set(
-                rating,
-                (data.ratingDistributionMap.get(rating) ?? 0) + 1,
-            );
-        }
-    };
-
-    ratings.forEach((rating) => {
-        const { articleId, rate, feedback, userId } = rating;
-        updateUserRatingData(userId, rate, feedback);
-        updateArticleRatingData(articleId, rate, feedback);
-    });
-
-    Object.entries(articleRatingStats).forEach(
-        ([articleId, { totalRating, count }]) => {
-            const articleAverage = totalRating / count;
-            totalArticleAverages += articleAverage;
-
-            articlesWithRatingCount += 1;
-            updateRatingDistribution(articleAverage);
-        },
-    );
-
-    data.averageRating = calculateAverage(
-        totalArticleAverages,
-        articlesWithRatingCount,
-        2,
-    );
-};
+import { processComments } from '../../lib/dataHandlers/processComments/processComments';
+import { processRatings } from '../../lib/dataHandlers/processRatings/processRatings';
+import { initializeData } from '../../lib/dataHandlers/initializeData/initializeData';
+import { processArticles } from '../../lib/dataHandlers/processArticles/processArticles';
 
 export const StatisticsCharts = () => {
     const { t } = useTranslation('admin');
@@ -205,7 +31,7 @@ export const StatisticsCharts = () => {
     processComments(data, comments);
     processRatings(data, ratings);
 
-    console.log('data', data);
+    // console.log('data', data);
 
     const {
         categoryData,
@@ -219,6 +45,7 @@ export const StatisticsCharts = () => {
         averageRating,
         averageViews,
         ratingDistributionMap,
+        monthlyDataByCategories,
     } = data;
 
     const {
@@ -252,6 +79,10 @@ export const StatisticsCharts = () => {
         articlesWithRatingQuantity,
     );
     if (isLoading) return null;
+
+    console.log('monthlyDataByCategories', monthlyDataByCategories);
+    const monthLabels = Object.keys(monthlyDataByCategories);
+    console.log('monthLabels', monthLabels);
     return (
         <VStack gap="16">
             <DashboardStats
