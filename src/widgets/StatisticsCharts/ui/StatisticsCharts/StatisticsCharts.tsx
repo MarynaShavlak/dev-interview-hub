@@ -111,6 +111,8 @@ const processComments = (
 };
 
 const processRatings = (data: InitializedData, ratings?: ArticleRating[]) => {
+    if (!ratings || ratings.length === 0) return;
+
     let totalArticleAverages = 0;
     let articlesWithRatingCount = 0;
     const articleRatingStats: Record<string, ArticleStats> = {};
@@ -118,21 +120,22 @@ const processRatings = (data: InitializedData, ratings?: ArticleRating[]) => {
     const updateUserRatingData = (
         userId: string,
         rate: number,
-        feedback: string | undefined,
+        feedback?: string,
     ) => {
-        if (!data.ratingCountsByUser[userId]) {
-            data.ratingCountsByUser[userId] = {
-                totalRating: 0,
-                articlesWithRating: 0,
-                articlesWithFeedback: 0,
-            };
-        }
-        data.ratingCountsByUser[userId].totalRating += rate;
-        data.ratingCountsByUser[userId].articlesWithRating += 1;
+        const userStats = data.ratingCountsByUser[userId] || {
+            totalRating: 0,
+            articlesWithRating: 0,
+            articlesWithFeedback: 0,
+        };
+
+        userStats.totalRating += rate;
+        userStats.articlesWithRating += 1;
 
         if (feedback) {
-            data.ratingCountsByUser[userId].articlesWithFeedback += 1;
+            userStats.articlesWithFeedback += 1;
         }
+
+        data.ratingCountsByUser[userId] = userStats;
         data.activeUsersList.inRatings.add(userId);
     };
 
@@ -141,13 +144,17 @@ const processRatings = (data: InitializedData, ratings?: ArticleRating[]) => {
         rate: number,
         feedback: string | undefined,
     ) => {
-        if (!articleRatingStats[articleId]) {
-            articleRatingStats[articleId] = { totalRating: 0, count: 0 };
-        }
+        const articleStats = articleRatingStats[articleId] || {
+            totalRating: 0,
+            count: 0,
+        };
 
-        articleRatingStats[articleId].totalRating += rate;
-        articleRatingStats[articleId].count += 1;
+        articleStats.totalRating += rate;
+        articleStats.count += 1;
+
+        articleRatingStats[articleId] = articleStats;
         data.activeArticlesList.withRating.add(articleId);
+
         if (feedback) {
             data.activeArticlesList.withFeedback.add(articleId);
         }
@@ -164,7 +171,7 @@ const processRatings = (data: InitializedData, ratings?: ArticleRating[]) => {
         }
     };
 
-    ratings?.forEach((rating) => {
+    ratings.forEach((rating) => {
         const { articleId, rate, feedback, userId } = rating;
         updateUserRatingData(userId, rate, feedback);
         updateArticleRatingData(articleId, rate, feedback);
