@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { ArticlePeriodDataChartsProps } from '../../..';
+import { formatMonth } from '@/shared/lib/text/formatMonth/formatMonth';
 
 type CategoryData = Record<string, number>;
 
@@ -7,9 +8,9 @@ export const useArticlePeriodData = (
     categories: string[],
     data: ArticlePeriodDataChartsProps['data'],
 ) => {
-    console.log('data in hook:', data);
     const { t } = useTranslation('admin');
 
+    // Initialize mapping from months to quarters
     const monthToQuarterMap: Record<string, string> = {
         '01': `${t('Q')}1`,
         '02': `${t('Q')}1`,
@@ -25,65 +26,59 @@ export const useArticlePeriodData = (
         '12': `${t('Q')}4`,
     };
 
+    const initializeCategoryData = (): CategoryData =>
+        Object.fromEntries(categories.map((category) => [category, 0]));
+
     const categoryDataByQuarters: ArticlePeriodDataChartsProps['data'] = {};
-    let accumCategoryDataByMonths: ArticlePeriodDataChartsProps['data'] = {};
+    const accumCategoryDataByMonths: ArticlePeriodDataChartsProps['data'] = {};
 
-    const initializeCategoryData = (): CategoryData => {
-        return categories.reduce((acc, category) => {
-            acc[category] = 0;
-            return acc;
-        }, {} as CategoryData);
-    };
-
-    Object.entries(data).forEach(([key, value]) => {
+    // Process data in a single pass
+    Object.entries(data).forEach(([key, value], index, entries) => {
         const [monthStr, yearStr] = key.split('/');
-        const month = String(monthStr).padStart(2, '0');
-
+        const month = formatMonth(monthStr);
         const year = Number(yearStr);
         const quarterKey = `${monthToQuarterMap[month]}/${year}`;
+
         if (!categoryDataByQuarters[quarterKey]) {
             categoryDataByQuarters[quarterKey] = initializeCategoryData();
+        }
+
+        if (!accumCategoryDataByMonths[key]) {
+            accumCategoryDataByMonths[key] = initializeCategoryData();
         }
 
         categories.forEach((category) => {
             if (value[category] !== undefined) {
                 categoryDataByQuarters[quarterKey][category] += value[category];
+
+                accumCategoryDataByMonths[key][category] =
+                    value[category] +
+                    (index > 0
+                        ? accumCategoryDataByMonths[entries[index - 1][0]][
+                              category
+                          ]
+                        : 0);
             }
         });
     });
 
-    accumCategoryDataByMonths = JSON.parse(JSON.stringify(data));
-
-    console.log('accumCategoryDataByMonths', accumCategoryDataByMonths);
-
-    Object.keys(accumCategoryDataByMonths).forEach((key, index, keys) => {
-        if (index > 0) {
-            const previousKey = keys[index - 1];
-            Object.keys(accumCategoryDataByMonths[key]).forEach((category) => {
-                accumCategoryDataByMonths[key][category] +=
-                    accumCategoryDataByMonths[previousKey][category];
-            });
-        }
-    });
-
-    console.log('accumCategoryDataByMonths', accumCategoryDataByMonths);
-
-    const quarterlyCategoryData = categories.map((category) => {
-        const data = Object.values(categoryDataByQuarters).map(
+    const quarterlyCategoryData = categories.map((category) => ({
+        name: category,
+        data: Object.values(categoryDataByQuarters).map(
             (quarter) => quarter[category],
-        );
-        return { name: category, data };
-    });
+        ),
+    }));
 
-    const monthlyCategoryData = categories.map((category) => {
-        const data = Object.values(accumCategoryDataByMonths).map(
-            (quarter) => quarter[category],
-        );
-        return { name: category, data };
-    });
+    const monthlyCategoryData = categories.map((category) => ({
+        name: category,
+        data: Object.values(accumCategoryDataByMonths).map(
+            (month) => month[category],
+        ),
+    }));
 
     const quarterlyLabels = Object.keys(categoryDataByQuarters);
     const monthlyLabels = Object.keys(data);
+
     return {
         quarterlyCategoryData,
         quarterlyLabels,
