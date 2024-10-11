@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { StackedColumnsChart } from '@/shared/ui/common/Charts/ui/StackedColumnsChart';
-import { useArticlePeriodData } from '../../../lib/hooks/useArticleQuarterlyData/useArticlePeriodData';
+import { useArticlePeriodData } from '../../../lib/hooks/useArticlePeriodData';
 import { Card as CardDeprecated } from '@/shared/ui/deprecated/Card';
 import { VStack } from '@/shared/ui/common/Stack';
 import { LineChart } from '@/shared/ui/common/Charts/ui/LineChart';

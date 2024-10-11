@@ -3,12 +3,17 @@ import React from 'react';
 import { BubbleChart } from '@/shared/ui/common/Charts/ui/BubbleChart';
 import { Card } from '@/shared/ui/redesigned/Card';
 import { UserRatingsBubbleChartProps } from '../../..';
+import { useUserRatingsChartData } from '../../../lib/hooks/useArticleRatingsCharts';
 
 export const RedesignedUserRatingsBubbleChart = (
     props: UserRatingsBubbleChartProps,
 ) => {
     const { t } = useTranslation('admin');
-    const { ratingsByUsersData, maxXaxisValue } = props;
+    const { data, totalArticles } = props;
+    const { ratingsByUsersData, maxXaxisValue } = useUserRatingsChartData(
+        data,
+        totalArticles,
+    );
 
     const xAxisTitle = t('Відсоток оцінених користувачем статей,%');
     const yAxisTitle = t('Середній рейтинг статей наданий користувачем');

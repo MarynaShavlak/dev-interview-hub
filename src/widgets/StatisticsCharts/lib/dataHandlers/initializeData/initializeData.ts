@@ -16,7 +16,6 @@ export const initializeData = (
         categoryData: {},
         categories: [],
         articleCommentCounts: [],
-        commentCountsByArticle: {},
         commentCountsByUser: {},
         ratingCountsByUser: {},
         monthlyDataByCategories: {},

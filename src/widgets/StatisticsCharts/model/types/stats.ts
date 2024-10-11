@@ -4,14 +4,10 @@ import { ActiveUsersList } from '@/features/UsersActivityChart';
 import { ArticleRatingDistributionChartProps } from '@/features/ArticleRatingDistributionChart';
 import { ArticleCategoriesChartsProps } from '@/features/ArticleCategoriesCharts';
 import { ArticleCommentsChartsProps } from '@/features/ArticleCommentsCharts';
+import { UserRatingsBubbleChartProps } from '@/features/UserRatingsBubbleChart';
 
 export interface ArticleStats {
     [key: string]: number;
-}
-
-export interface ArticleCommentCount {
-    articleId: string;
-    commentCount: number;
 }
 
 export interface StatisticsData {
@@ -23,9 +19,7 @@ export interface StatisticsData {
     categoryData: ArticleCategoriesChartsProps['data'];
     articleCommentCounts: ArticleCommentsChartsProps['articleCommentCounts'];
     commentCountsByUser: ArticleCommentsChartsProps['commentCountsByUser'];
-
-    commentCountsByArticle: Record<string, number>;
-    ratingCountsByUser: Record<string, ArticleStats>;
+    ratingCountsByUser: UserRatingsBubbleChartProps['data'];
     activeUsersList: ActiveUsersList;
     activeArticlesList: ActiveArticlesList;
     ratingDistributionMap: ArticleRatingDistributionChartProps['ratingDistributionMap'];

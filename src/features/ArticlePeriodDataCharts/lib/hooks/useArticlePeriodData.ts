@@ -1,8 +1,8 @@
 import { useTranslation } from 'react-i18next';
 import { useCallback, useMemo } from 'react';
-import { ArticlePeriodDataChartsProps } from '../../..';
+import { ArticlePeriodDataChartsProps } from '../../index';
 import { formatMonth } from '@/shared/lib/text/formatMonth/formatMonth';
-import { CategoryData } from '../../../model/types/types';
+import { CategoryData } from '../../model/types/types';
 
 type DataByPeriod = ArticlePeriodDataChartsProps['data'];
 

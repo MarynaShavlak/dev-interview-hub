@@ -1,9 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import React from 'react';
 import { VStack, HStack } from '@/shared/ui/common/Stack';
-import { useStatisticsData } from '../../lib/hooks/useStatisticsData/useStatisticsData';
 import { DashboardStats } from '@/features/DashboardStats';
-import { useUserRatingsChartData } from '../../lib/hooks/useUserRatingsChartData/useUserRatingsChartData';
 import { ArticlePeriodDataCharts } from '@/features/ArticlePeriodDataCharts';
 import { processComments } from '../../lib/dataHandlers/processComments/processComments';
 import { processRatings } from '../../lib/dataHandlers/processRatings/processRatings';
@@ -13,11 +11,14 @@ import { UsersActivityChart } from '@/features/UsersActivityChart';
 import { ArticleRatingDistributionChart } from '@/features/ArticleRatingDistributionChart';
 import { ArticleCategoriesCharts } from '@/features/ArticleCategoriesCharts';
 import { ArticleCommentsCharts } from '@/features/ArticleCommentsCharts';
+import { UserRatingsBubbleChart } from '@/features/UserRatingsBubbleChart';
+import { useStatisticsData } from '../../lib/hooks/useStatisticsData';
+import { StatisticsChartsError } from './StatisticsChartsError';
 
 export const StatisticsCharts = () => {
     const { t } = useTranslation('admin');
 
-    const { users, articles, ratings, comments, isLoading } =
+    const { users, articles, ratings, comments, isLoading, isError } =
         useStatisticsData();
 
     const data = initializeData(articles, users);
@@ -43,16 +44,10 @@ export const StatisticsCharts = () => {
         categories,
     } = data;
 
-    const { ratingsByUsersData, maxXaxisValue } = useUserRatingsChartData(
-        ratingCountsByUser,
-        totalArticles,
-    );
-
     const articlesWithRatingQuantity = activeArticlesList.withRating.size;
 
-    if (isLoading) return null;
+    if (isError) return <StatisticsChartsError />;
 
-    console.log('monthlyDataByCategories', monthlyDataByCategories);
     return (
         <VStack gap="16">
             <DashboardStats
@@ -82,10 +77,10 @@ export const StatisticsCharts = () => {
                 articleCommentCounts={articleCommentCounts}
                 commentCountsByUser={commentCountsByUser}
             />
-            {/* <UserRatingsBubbleChart */}
-            {/*    ratingsByUsersData={ratingsByUsersData} */}
-            {/*    maxXaxisValue={maxXaxisValue} */}
-            {/* /> */}
+            <UserRatingsBubbleChart
+                data={ratingCountsByUser}
+                totalArticles={totalArticles}
+            />
         </VStack>
     );
 };

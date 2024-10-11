@@ -6,7 +6,4 @@ export interface ArticleCommentCount {
 export interface ArticleCommentsChartsProps {
     articleCommentCounts: ArticleCommentCount[];
     commentCountsByUser: Record<string, number>;
-    // labels: string[];
-    // commentsByArticlesData: number[];
-    // commentsByUsersData: { x: string; y: number }[];
 }
