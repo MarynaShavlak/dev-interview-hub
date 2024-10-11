@@ -38,7 +38,7 @@
   "Автори статей": "Articles Authors",
   "Коментатори статей": "Articles Commentators",
   "Оцінка статей": "Ratings of Articles",
-  "Частка оцінених із фідбеком": "Percentage of Articles Reviewed with Feedback",
+  "Частка оцінених із фідбеком статей": "Percentage of Articles Reviewed with Feedback",
   "Середня кількість переглядів статей": "Average Number of Article Views",
   "Частка статей із коментарями": "Percentage of Articles with Comments",
   "Загальна кількість": "Total Quantity",
@@ -47,5 +47,5 @@
   "Оцінка 3-4": "Rating 3-4",
   "Оцінка 5": "Rating 5",
   "Будь ласка, спробуйте ще раз пізніше": "Please try again later",
-  "Помилка при завантаженні статистичних даних": "Unable to load statistics data"
+  "Помилка при завантаженні статистичних даних": "Unable to load statistics data",
 }

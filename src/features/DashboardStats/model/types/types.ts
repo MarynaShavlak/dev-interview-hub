@@ -1,6 +1,9 @@
+import React from 'react';
+
 export interface DashboardCardProps {
     title: string;
     value: string;
+    Icon?: React.VFC<React.SVGProps<SVGSVGElement>>;
 }
 
 export interface ActiveArticlesList {

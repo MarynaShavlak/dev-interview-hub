@@ -14,12 +14,12 @@ export const StatisticsChartsSkeleton = memo(() => {
     return (
         <VStack gap="16">
             <HStack gap="16" wrap="wrap">
-                <Skeleton border="12px" width={220} height={104} />
-                <Skeleton border="12px" width={220} height={104} />
-                <Skeleton border="12px" width={220} height={104} />
-                <Skeleton border="12px" width={220} height={104} />
-                <Skeleton border="12px" width={220} height={104} />
-                <Skeleton border="12px" width={220} height={104} />
+                <Skeleton border="12px" width={220} height={130} />
+                <Skeleton border="12px" width={220} height={130} />
+                <Skeleton border="12px" width={220} height={130} />
+                <Skeleton border="12px" width={220} height={130} />
+                <Skeleton border="12px" width={220} height={130} />
+                <Skeleton border="12px" width={220} height={130} />
             </HStack>
 
             <HStack gap="16">
