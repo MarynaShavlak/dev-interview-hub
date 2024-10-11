@@ -10,6 +10,7 @@ import { Table } from '@/shared/ui/common/Table';
 
 export const UsersInfoTable = () => {
     const { users, isLoading } = useUsersFullData();
+    console.log('users', users);
     const { t } = useTranslation('admin');
 
     const columns = generateTableColumnsData(users, t);

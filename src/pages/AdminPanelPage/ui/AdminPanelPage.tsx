@@ -3,6 +3,8 @@ import { Page } from '@/widgets/Page';
 import { StatisticsCharts } from '@/widgets/StatisticsCharts';
 
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
+import { UsersInfoTable } from '@/features/UsersInfoTable';
+import { TaskTable } from '@/features/UsersTable';
 
 const AdminPanelPage = () => {
     return (
@@ -10,8 +12,9 @@ const AdminPanelPage = () => {
             feature="isAppRedesigned"
             on={
                 <main data-testid="AdminPanelPage">
-                    <StatisticsCharts />
-                    {/* <UsersInfoTable /> */}
+                    {/* <StatisticsCharts /> */}
+                    <TaskTable />
+                    {/*<UsersInfoTable />*/}
                 </main>
             }
             off={
