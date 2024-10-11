@@ -3,8 +3,5 @@ export interface ArticleStats {
 }
 
 export interface ArticleCategoriesChartsProps {
-    // labels: string[];
-    // articlesByCategories: number[];
-    // viewsByCategories: number[];
     data: Record<string, ArticleStats>;
 }

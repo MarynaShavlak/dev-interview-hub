@@ -5,14 +5,17 @@ import { Card as CardDeprecated } from '@/shared/ui/deprecated/Card';
 import { VStack } from '@/shared/ui/common/Stack';
 import { BarChart } from '@/shared/ui/common/Charts/ui/BarChart';
 import { TreemapChart } from '@/shared/ui/common/Charts/ui/TreemapChart';
-import { ArticleCommentsChartsProps } from '../ArticleCommentsCharts';
+import { ArticleCommentsChartsProps } from '../../../model/types/types';
+import { useArticleCommentsChartData } from '../../../lib/hooks/useArticleCommentsChartData';
 
 export const DeprecatedArticleCommentsCharts = (
     props: ArticleCommentsChartsProps,
 ) => {
     const { t } = useTranslation('admin');
 
-    const { labels, commentsByArticlesData, commentsByUsersData } = props;
+    const { articleCommentCounts, commentCountsByUser } = props;
+    const { labels, commentsByArticlesData, commentsByUsersData } =
+        useArticleCommentsChartData(articleCommentCounts, commentCountsByUser);
 
     return (
         <VStack gap="16">

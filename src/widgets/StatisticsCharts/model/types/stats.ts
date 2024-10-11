@@ -2,6 +2,8 @@ import { ArticlePeriodDataChartsProps } from '@/features/ArticlePeriodDataCharts
 import { ActiveArticlesList } from '@/features/DashboardStats';
 import { ActiveUsersList } from '@/features/UsersActivityChart';
 import { ArticleRatingDistributionChartProps } from '@/features/ArticleRatingDistributionChart';
+import { ArticleCategoriesChartsProps } from '@/features/ArticleCategoriesCharts';
+import { ArticleCommentsChartsProps } from '@/features/ArticleCommentsCharts';
 
 export interface ArticleStats {
     [key: string]: number;
@@ -18,10 +20,11 @@ export interface StatisticsData {
     averageRating: number;
     averageViews: number;
     categories: string[];
-    categoryData: Record<string, ArticleStats>;
-    articleCommentCounts: ArticleCommentCount[];
+    categoryData: ArticleCategoriesChartsProps['data'];
+    articleCommentCounts: ArticleCommentsChartsProps['articleCommentCounts'];
+    commentCountsByUser: ArticleCommentsChartsProps['commentCountsByUser'];
+
     commentCountsByArticle: Record<string, number>;
-    commentCountsByUser: Record<string, number>;
     ratingCountsByUser: Record<string, ArticleStats>;
     activeUsersList: ActiveUsersList;
     activeArticlesList: ActiveArticlesList;

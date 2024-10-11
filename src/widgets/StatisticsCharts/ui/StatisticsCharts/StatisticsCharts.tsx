@@ -4,7 +4,6 @@ import { VStack, HStack } from '@/shared/ui/common/Stack';
 import { useStatisticsData } from '../../lib/hooks/useStatisticsData/useStatisticsData';
 import { DashboardStats } from '@/features/DashboardStats';
 import { useUserRatingsChartData } from '../../lib/hooks/useUserRatingsChartData/useUserRatingsChartData';
-import { useArticleCommentsChartData } from '../../lib/hooks/useArticleCommentsChartData/useArticleCommentsChartData';
 import { ArticlePeriodDataCharts } from '@/features/ArticlePeriodDataCharts';
 import { processComments } from '../../lib/dataHandlers/processComments/processComments';
 import { processRatings } from '../../lib/dataHandlers/processRatings/processRatings';
@@ -13,6 +12,7 @@ import { processArticles } from '../../lib/dataHandlers/processArticles/processA
 import { UsersActivityChart } from '@/features/UsersActivityChart';
 import { ArticleRatingDistributionChart } from '@/features/ArticleRatingDistributionChart';
 import { ArticleCategoriesCharts } from '@/features/ArticleCategoriesCharts';
+import { ArticleCommentsCharts } from '@/features/ArticleCommentsCharts';
 
 export const StatisticsCharts = () => {
     const { t } = useTranslation('admin');
@@ -25,7 +25,7 @@ export const StatisticsCharts = () => {
     processComments(data, comments);
     processRatings(data, ratings);
 
-    // console.log('data', data);
+    console.log('data', data);
 
     const {
         categoryData,
@@ -42,12 +42,6 @@ export const StatisticsCharts = () => {
         monthlyDataByCategories,
         categories,
     } = data;
-
-    const {
-        labels: articleCommentsLabels,
-        commentsByArticlesData,
-        commentsByUsersData,
-    } = useArticleCommentsChartData(articleCommentCounts, commentCountsByUser);
 
     const { ratingsByUsersData, maxXaxisValue } = useUserRatingsChartData(
         ratingCountsByUser,
@@ -84,11 +78,10 @@ export const StatisticsCharts = () => {
                 categories={categories}
                 data={monthlyDataByCategories}
             />
-            {/* <ArticleCommentsCharts */}
-            {/*    labels={articleCommentsLabels} */}
-            {/*    commentsByArticlesData={commentsByArticlesData} */}
-            {/*    commentsByUsersData={commentsByUsersData} */}
-            {/* /> */}
+            <ArticleCommentsCharts
+                articleCommentCounts={articleCommentCounts}
+                commentCountsByUser={commentCountsByUser}
+            />
             {/* <UserRatingsBubbleChart */}
             {/*    ratingsByUsersData={ratingsByUsersData} */}
             {/*    maxXaxisValue={maxXaxisValue} */}

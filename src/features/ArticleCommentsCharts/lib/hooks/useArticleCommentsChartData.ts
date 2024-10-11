@@ -1,10 +1,13 @@
-import { ArticleCommentCount } from '../../../model/types/stats';
-import { ArticleCommentsChartsProps } from '@/features/ArticleCommentsCharts';
+import { ArticleCommentsChartsProps } from '../..';
 
 export const useArticleCommentsChartData = (
-    articleCommentCounts: ArticleCommentCount[],
-    commentCountsByUser: Record<string, number>,
-): ArticleCommentsChartsProps => {
+    articleCommentCounts: ArticleCommentsChartsProps['articleCommentCounts'],
+    commentCountsByUser: ArticleCommentsChartsProps['commentCountsByUser'],
+): {
+    labels: string[];
+    commentsByArticlesData: number[];
+    commentsByUsersData: { x: string; y: number }[];
+} => {
     const labels: string[] = [];
     const commentsByArticlesData: number[] = [];
 

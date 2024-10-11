@@ -5,14 +5,17 @@ import { Card } from '@/shared/ui/redesigned/Card';
 import { BarChart } from '@/shared/ui/common/Charts/ui/BarChart';
 import { TreemapChart } from '@/shared/ui/common/Charts/ui/TreemapChart';
 import { HStack } from '@/shared/ui/common/Stack';
-import { ArticleCommentsChartsProps } from '../ArticleCommentsCharts';
+import { ArticleCommentsChartsProps } from '../../../model/types/types';
+import { useArticleCommentsChartData } from '../../../lib/hooks/useArticleCommentsChartData';
 
 export const RedesignedArticleCommentsCharts = (
     props: ArticleCommentsChartsProps,
 ) => {
     const { t } = useTranslation('admin');
 
-    const { labels, commentsByArticlesData, commentsByUsersData } = props;
+    const { articleCommentCounts, commentCountsByUser } = props;
+    const { labels, commentsByArticlesData, commentsByUsersData } =
+        useArticleCommentsChartData(articleCommentCounts, commentCountsByUser);
 
     return (
         <HStack gap="16">
