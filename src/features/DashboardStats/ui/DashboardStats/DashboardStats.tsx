@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { HStack } from '@/shared/ui/common/Stack';
 import { DashboardCard } from '../DashboardCard/DashboardCard';
 import { DashboardStatsProps } from '../../model/types/types';
 import { useDashboardPctData } from '../../lib/hooks/useDashboardPctData';
 
-export const DashboardStats = (props: DashboardStatsProps) => {
+export const DashboardStats = memo((props: DashboardStatsProps) => {
     const {
         totalUsers,
         totalArticles,
@@ -46,4 +46,4 @@ export const DashboardStats = (props: DashboardStatsProps) => {
             />
         </HStack>
     );
-};
+});

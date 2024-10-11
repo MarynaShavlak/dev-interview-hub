@@ -1,5 +1,5 @@
 // DashboardCard.tsx
-import React from 'react';
+import React, { memo } from 'react';
 import { Card } from '@/shared/ui/redesigned/Card';
 import { Text } from '@/shared/ui/redesigned/Text';
 import { Card as CardDeprecated } from '@/shared/ui/deprecated/Card';
@@ -16,7 +16,7 @@ import { DashboardCardProps } from '../../model/types/types';
 
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
 
-export const DashboardCard = (props: DashboardCardProps) => {
+export const DashboardCard = memo((props: DashboardCardProps) => {
     const { title, value } = props;
     const additionalClasses = getFlexClasses({
         vStack: true,
@@ -59,4 +59,4 @@ export const DashboardCard = (props: DashboardCardProps) => {
             }
         />
     );
-};
+});

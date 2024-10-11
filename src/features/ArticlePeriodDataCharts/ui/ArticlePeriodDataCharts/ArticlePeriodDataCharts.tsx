@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useArticles } from '@/entities/Article';
 
@@ -9,24 +9,24 @@ import { RedesignedArticlePeriodDataCharts } from './RedesignedArticlePeriodData
 import { ArticlePeriodDataChartSkeleton } from './ArticlePeriodDataChartSkeleton';
 import { ArticlePeriodDataChartsProps } from '../../model/types/types';
 
-export const ArticlePeriodDataCharts = (
-    props: ArticlePeriodDataChartsProps,
-) => {
-    const { t } = useTranslation('admin');
+export const ArticlePeriodDataCharts = memo(
+    (props: ArticlePeriodDataChartsProps) => {
+        const { t } = useTranslation('admin');
 
-    const { isLoading: isArticlesLoading, error } = useArticles(null);
+        const { isLoading: isArticlesLoading, error } = useArticles(null);
 
-    if (error) return null;
+        if (error) return null;
 
-    if (isArticlesLoading) {
-        return <ArticlePeriodDataChartSkeleton />;
-    }
+        if (isArticlesLoading) {
+            return <ArticlePeriodDataChartSkeleton />;
+        }
 
-    return (
-        <ToggleFeaturesComponent
-            feature="isAppRedesigned"
-            on={<RedesignedArticlePeriodDataCharts {...props} />}
-            off={<DeprecatedArticlePeriodDataCharts {...props} />}
-        />
-    );
-};
+        return (
+            <ToggleFeaturesComponent
+                feature="isAppRedesigned"
+                on={<RedesignedArticlePeriodDataCharts {...props} />}
+                off={<DeprecatedArticlePeriodDataCharts {...props} />}
+            />
+        );
+    },
+);

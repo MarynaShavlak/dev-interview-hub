@@ -75,6 +75,7 @@ export const StatisticsCharts = () => {
                 categories={categories}
                 data={monthlyDataByCategories}
             />
+
             <ArticleCommentsCharts
                 articleCommentCounts={articleCommentCounts}
                 commentCountsByUser={commentCountsByUser}
