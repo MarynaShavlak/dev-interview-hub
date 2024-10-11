@@ -1,15 +1,10 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { VStack, HStack } from '@/shared/ui/common/Stack';
-import { ArticlePeriodDataCharts } from '@/features/ArticlePeriodDataCharts';
-import { ArticleRatingDistributionChart } from '@/features/ArticleRatingDistributionChart';
-import { ArticleCategoriesCharts } from '@/features/ArticleCategoriesCharts';
-import { ArticleCommentsCharts } from '@/features/ArticleCommentsCharts';
-import { UserRatingsBubbleChart } from '@/features/UserRatingsBubbleChart';
 import { toggleFeatures } from '@/shared/lib/features';
 import { Skeleton as SkeletonRedesigned } from '@/shared/ui/redesigned/Skeleton';
 import { Skeleton as SkeletonDeprecated } from '@/shared/ui/deprecated/Skeleton';
 
-export const StatisticsChartsSkeleton = () => {
+export const StatisticsChartsSkeleton = memo(() => {
     const Skeleton = toggleFeatures({
         name: 'isAppRedesigned',
         on: () => SkeletonRedesigned,
@@ -19,35 +14,30 @@ export const StatisticsChartsSkeleton = () => {
     return (
         <VStack gap="16">
             <HStack gap="16" wrap="wrap">
-                <Skeleton width={220} height={104} />
-                <Skeleton width={220} height={104} />
-                <Skeleton width={220} height={104} />
-                <Skeleton width={220} height={104} />
-                <Skeleton width={220} height={104} />
-                <Skeleton width={220} height={104} />
+                <Skeleton border="12px" width={220} height={104} />
+                <Skeleton border="12px" width={220} height={104} />
+                <Skeleton border="12px" width={220} height={104} />
+                <Skeleton border="12px" width={220} height={104} />
+                <Skeleton border="12px" width={220} height={104} />
+                <Skeleton border="12px" width={220} height={104} />
             </HStack>
 
-            <HStack gap="24">
-                <Skeleton width={396} height={219} />
-                <ArticleRatingDistributionChart
-                    ratingDistributionMap={ratingDistributionMap}
-                    totalArticlesWithRatings={articlesWithRatingQuantity}
-                />
+            <HStack gap="16">
+                <Skeleton border="12px" width={396} height={219} />
+                <Skeleton border="12px" width={236} height={219} />
+            </HStack>
+            <HStack gap="16">
+                <Skeleton border="12px" width={316} height={316} />
+                <Skeleton border="12px" width={316} height={316} />
             </HStack>
 
-            <ArticleCategoriesCharts data={categoryData} />
-            <ArticlePeriodDataCharts
-                categories={categories}
-                data={monthlyDataByCategories}
-            />
-            <ArticleCommentsCharts
-                articleCommentCounts={articleCommentCounts}
-                commentCountsByUser={commentCountsByUser}
-            />
-            <UserRatingsBubbleChart
-                data={ratingCountsByUser}
-                totalArticles={totalArticles}
-            />
+            <Skeleton border="12px" width={816} height={331} />
+            <Skeleton border="12px" width={816} height={331} />
+            <HStack gap="16">
+                <Skeleton border="12px" width={350} height={331} />
+                <Skeleton border="12px" width={450} height={331} />
+            </HStack>
+            <Skeleton border="12px" width={816} height={331} />
         </VStack>
     );
-};
+});

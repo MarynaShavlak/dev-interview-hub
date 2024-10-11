@@ -16,7 +16,7 @@ export const RedesignedArticleCategoriesCharts = (
         useArticleCategoriesChartData(data);
 
     return (
-        <HStack gap="24" max>
+        <HStack gap="16" max>
             <Card>
                 <DonutChart
                     data={articlesByCategories}

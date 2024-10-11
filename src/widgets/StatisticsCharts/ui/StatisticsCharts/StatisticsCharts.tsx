@@ -14,6 +14,7 @@ import { ArticleCommentsCharts } from '@/features/ArticleCommentsCharts';
 import { UserRatingsBubbleChart } from '@/features/UserRatingsBubbleChart';
 import { useStatisticsData } from '../../lib/hooks/useStatisticsData';
 import { StatisticsChartsError } from './StatisticsChartsError';
+import { StatisticsChartsSkeleton } from './StatisticsChartsSkeleton';
 
 export const StatisticsCharts = () => {
     const { t } = useTranslation('admin');
@@ -46,6 +47,7 @@ export const StatisticsCharts = () => {
 
     const articlesWithRatingQuantity = activeArticlesList.withRating.size;
 
+    if (isLoading) return <StatisticsChartsSkeleton />;
     if (isError) return <StatisticsChartsError />;
 
     return (
@@ -57,7 +59,7 @@ export const StatisticsCharts = () => {
                 avgRating={averageRating}
                 avgViews={averageViews}
             />
-            <HStack gap="24">
+            <HStack gap="16">
                 <UsersActivityChart
                     activeUsersList={activeUsersList}
                     totalUsers={totalUsers}

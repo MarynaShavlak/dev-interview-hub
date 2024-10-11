@@ -15,7 +15,7 @@ export const DeprecatedArticleCategoriesCharts = (
     const { labels, viewsByCategories, articlesByCategories } =
         useArticleCategoriesChartData(data);
     return (
-        <HStack gap="24" max>
+        <HStack gap="16" max>
             <CardDeprecated>
                 <DonutChart
                     data={articlesByCategories}
