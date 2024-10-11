@@ -1,14 +1,11 @@
-import { ArticleStats, InitializedData } from '../../../model/types/stats';
+import { ArticleStats, StatisticsData } from '../../../model/types/stats';
 import { Article } from '@/entities/Article';
 import { generateMonths } from '../../utilities/generateMonths';
 import { getMonthYearKey } from '../../utilities/getMonthYearKey';
 import { getYearFromDate } from '../../utilities/getYearFromDate';
 import { calculateAverage } from '@/shared/lib/mathCalculations/calculateAverage';
 
-export const processArticles = (
-    data: InitializedData,
-    articles?: Article[],
-) => {
+export const processArticles = (data: StatisticsData, articles?: Article[]) => {
     if (!articles) return;
     let totalViews = 0;
     const yearsList = new Set<string>();

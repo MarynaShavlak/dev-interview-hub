@@ -1,11 +1,11 @@
 import { Article } from '@/entities/Article';
 import { User } from '@/entities/User';
-import { InitializedData } from '../../../model/types/stats';
+import { StatisticsData } from '../../../model/types/stats';
 
 export const initializeData = (
     articles?: Article[],
     users?: User[],
-): InitializedData => {
+): StatisticsData => {
     const totalArticles = articles?.length || 0;
     const totalUsers = users?.length || 0;
     return {

@@ -3,7 +3,6 @@ import { Page } from '@/widgets/Page';
 import { StatisticsCharts } from '@/widgets/StatisticsCharts';
 
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
-import { UsersInfoTable } from '@/features/UsersInfoTable';
 
 const AdminPanelPage = () => {
     return (
@@ -12,7 +11,7 @@ const AdminPanelPage = () => {
             on={
                 <main data-testid="AdminPanelPage">
                     <StatisticsCharts />
-                    <UsersInfoTable />
+                    {/* <UsersInfoTable /> */}
                 </main>
             }
             off={

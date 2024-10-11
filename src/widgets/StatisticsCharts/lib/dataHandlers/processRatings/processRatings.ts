@@ -1,9 +1,9 @@
-import { ArticleStats, InitializedData } from '../../../model/types/stats';
+import { ArticleStats, StatisticsData } from '../../../model/types/stats';
 import { ArticleRating } from '../../../model/types/articleRating';
 import { calculateAverage } from '@/shared/lib/mathCalculations/calculateAverage';
 
 export const processRatings = (
-    data: InitializedData,
+    data: StatisticsData,
     ratings?: ArticleRating[],
 ) => {
     if (!ratings || ratings.length === 0) return;

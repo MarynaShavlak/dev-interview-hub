@@ -1,8 +1,8 @@
-import { InitializedData } from '../../../model/types/stats';
+import { StatisticsData } from '../../../model/types/stats';
 import { ArticleComment } from '../../../model/types/articleComment';
 
 export const processComments = (
-    data: InitializedData,
+    data: StatisticsData,
     comments?: ArticleComment[],
 ) => {
     if (!comments) return;

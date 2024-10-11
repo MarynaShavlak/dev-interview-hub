@@ -1,4 +1,7 @@
-import { ArticlePeriodDataChartsProps } from '@/features/ArticleQuarterlyDataCharts';
+import { ArticlePeriodDataChartsProps } from '@/features/ArticlePeriodDataCharts';
+import { ActiveArticlesList } from '@/features/DashboardStats';
+import { ActiveUsersList } from '@/features/UsersActivityChart';
+import { ArticleRatingDistributionChartProps } from '@/features/ArticleRatingDistributionChart';
 
 export interface ArticleStats {
     [key: string]: number;
@@ -9,24 +12,7 @@ export interface ArticleCommentCount {
     commentCount: number;
 }
 
-export interface ActiveUsersList {
-    inArticles: Set<string>;
-    inComments: Set<string>;
-    inRatings: Set<string>;
-}
-
-export interface ActiveArticlesList {
-    withRating: Set<string>;
-    withFeedback: Set<string>;
-    withComments: Set<string>;
-}
-
-export interface DashboardPctDataStats {
-    articlesWithCommentsPercentage: number;
-    articlesWithFeedbackPercentage: number;
-}
-
-export interface InitializedData {
+export interface StatisticsData {
     totalArticles: number;
     totalUsers: number;
     averageRating: number;
@@ -39,6 +25,6 @@ export interface InitializedData {
     ratingCountsByUser: Record<string, ArticleStats>;
     activeUsersList: ActiveUsersList;
     activeArticlesList: ActiveArticlesList;
-    ratingDistributionMap: Map<number, number>;
+    ratingDistributionMap: ArticleRatingDistributionChartProps['ratingDistributionMap'];
     monthlyDataByCategories: ArticlePeriodDataChartsProps['data'];
 }

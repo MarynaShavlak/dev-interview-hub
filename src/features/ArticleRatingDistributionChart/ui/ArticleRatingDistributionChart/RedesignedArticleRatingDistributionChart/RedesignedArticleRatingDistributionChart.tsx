@@ -2,13 +2,19 @@ import { useTranslation } from 'react-i18next';
 import React from 'react';
 import { Card } from '@/shared/ui/redesigned/Card';
 import { RadialbarChart } from '@/shared/ui/common/Charts/ui/RadialbarChart';
-import { ArticleRatingDistributionChartProps } from '../ArticleRatingDistributionChart';
+import { ArticleRatingDistributionChartProps } from '../../../model/types/types';
+import { useRatingsDistributionChartData } from '../../../lib/hooks/useRatingsDistributionChartData';
 
 export const RedesignedArticleRatingDistributionChart = (
     props: ArticleRatingDistributionChartProps,
 ) => {
     const { t } = useTranslation('admin');
-    const { data, totalValue } = props;
+    const { ratingDistributionMap, totalArticlesWithRatings } = props;
+
+    const articlesByRatingDistributionData = useRatingsDistributionChartData(
+        ratingDistributionMap,
+        totalArticlesWithRatings,
+    );
 
     const labels = [
         `${t('Оцінка 1-2')}`,
@@ -19,14 +25,14 @@ export const RedesignedArticleRatingDistributionChart = (
     return (
         <Card>
             <RadialbarChart
-                data={data}
+                data={articlesByRatingDistributionData}
                 labels={labels}
                 title={t('Розподіл статей за оцінками')}
                 legendPosition="top"
                 height="200"
                 width="220"
                 totalLabel={t('Загальна кількість')}
-                totalValue={totalValue}
+                totalValue={`${totalArticlesWithRatings}`}
             />
         </Card>
     );

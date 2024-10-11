@@ -2,26 +2,22 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { HStack } from '@/shared/ui/common/Stack';
 import { DashboardCard } from '../DashboardCard/DashboardCard';
-
-interface DashboardStatsProps {
-    totalUsers: number;
-    totalArticles: number;
-    avgRating: number;
-    feedbackPct: number;
-    avgViews: number;
-    commentsPct: number;
-}
+import { DashboardStatsProps } from '../../model/types/types';
+import { useDashboardPctData } from '../../lib/hooks/useDashboardPctData';
 
 export const DashboardStats = (props: DashboardStatsProps) => {
     const {
         totalUsers,
         totalArticles,
         avgRating,
-        feedbackPct,
+        activeArticlesList,
         avgViews,
-        commentsPct,
     } = props;
     const { t } = useTranslation('admin');
+
+    const { articlesWithCommentsPercentage, articlesWithFeedbackPercentage } =
+        useDashboardPctData(activeArticlesList, totalArticles);
+
     return (
         <HStack gap="16" wrap="wrap">
             <DashboardCard
@@ -38,7 +34,7 @@ export const DashboardStats = (props: DashboardStatsProps) => {
             />
             <DashboardCard
                 title={t('Частка оцінених із фідбеком')}
-                value={`${feedbackPct}%`}
+                value={`${articlesWithFeedbackPercentage}%`}
             />
             <DashboardCard
                 title={t('Середня кількість переглядів статей')}
@@ -46,7 +42,7 @@ export const DashboardStats = (props: DashboardStatsProps) => {
             />
             <DashboardCard
                 title={t('Частка статей із коментарями')}
-                value={`${commentsPct}%`}
+                value={`${articlesWithCommentsPercentage}%`}
             />
         </HStack>
     );

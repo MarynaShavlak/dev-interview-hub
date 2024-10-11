@@ -2,13 +2,18 @@ import { useTranslation } from 'react-i18next';
 import React from 'react';
 import { Card } from '@/shared/ui/redesigned/Card';
 import { RadialbarChart } from '@/shared/ui/common/Charts/ui/RadialbarChart';
-import { UsersActivityChartProps } from '../UsersActivityChart';
+import { UsersActivityChartProps } from '../../../model/types/types';
+import { useActiveUsersChartData } from '../../../lib/hooks/useActiveUsersChartData';
 
 export const RedesignedUsersActivityChart = (
     props: UsersActivityChartProps,
 ) => {
     const { t } = useTranslation('admin');
-    const { activeUsersData } = props;
+    const { activeUsersList, totalUsers } = props;
+    const activeUsersData = useActiveUsersChartData(
+        activeUsersList,
+        totalUsers,
+    );
     const activeUserLabels = [
         `${t('Автори статей')}`,
         `${t('Коментатори статей')}`,
