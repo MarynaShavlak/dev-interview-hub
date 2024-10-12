@@ -1,10 +1,10 @@
-const ROLE_ADMIN = { id: 1, name: 'Admin', color: '#f77' };
+const ROLE_ADMIN = { id: '1', name: 'Admin', color: '#f77' };
 const ROLE_USER = {
-    id: 2,
+    id: '2',
     name: 'User',
     color: '#62de85',
 };
-const ROLE_MANAGER = { id: 3, name: 'Manager', color: '#5ed3f3' };
+const ROLE_MANAGER = { id: '3', name: 'Manager', color: '#5ed3f3' };
 export const USER_ROLE_OPTIONS = [ROLE_ADMIN, ROLE_USER, ROLE_MANAGER];
 
 const DATA = [

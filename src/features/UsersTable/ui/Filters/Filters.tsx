@@ -4,6 +4,7 @@ import SearchIcon from '@/shared/assets/icons/search.svg';
 import { Filter } from '../UsersTable/TaskTable';
 import { Icon } from '@/shared/ui/redesigned/Icon';
 import { Input } from '@/shared/ui/redesigned/Input';
+import { FilterPopover } from '../FilterPopover/FilterPopover';
 // import FilterPopover from './FilterPopover';
 
 interface FiltersProps {
@@ -16,7 +17,7 @@ export const Filters = (props: FiltersProps) => {
     const { columnFilters, setColumnFilters, filterCategory } = props;
     const { t } = useTranslation();
 
-    const taskName =
+    const query =
         columnFilters.find((f) => f.id === filterCategory)?.value || '';
 
     const onFilterChange = (value: string) => {
@@ -33,16 +34,23 @@ export const Filters = (props: FiltersProps) => {
         });
     };
 
-    console.log('columnFilters', columnFilters);
-    console.log('filterCategory', filterCategory);
+    // console.log('columnFilters', columnFilters);
+    // console.log('filterCategory', filterCategory);
 
     return (
-        <Input
-            onChange={onFilterChange}
-            value={taskName}
-            placeholder={t('Пошук')}
-            addonLeft={<Icon Svg={SearchIcon} />}
-        />
+        <>
+            <Input
+                onChange={onFilterChange}
+                value={query}
+                placeholder={t('Пошук')}
+                addonLeft={<Icon Svg={SearchIcon} />}
+            />
+            <FilterPopover
+                filterCategory="role"
+                columnFilters={columnFilters}
+                setColumnFilters={setColumnFilters}
+            />
+        </>
     );
 };
 
