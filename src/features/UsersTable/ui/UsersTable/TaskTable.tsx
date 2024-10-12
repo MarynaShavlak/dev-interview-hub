@@ -2,6 +2,7 @@ import {
     createColumnHelper,
     flexRender,
     getCoreRowModel,
+    getFilteredRowModel,
     TableMeta,
     useReactTable,
 } from '@tanstack/react-table';
@@ -13,7 +14,12 @@ import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { EditableCell } from '../EditableCell/EditableCell';
 import { getFlexClasses } from '@/shared/lib/classes/getFlexClasses/getFlexClasses';
 import { OptionCell } from '../OptionCell/OptionCell';
-import { DateCell } from '../DateCell/DateCell';
+import { Filters } from '../Filters/Filters';
+
+export interface Filter {
+    id: string;
+    value: string;
+}
 
 export interface Role {
     id: number;
@@ -48,7 +54,7 @@ const columns = [
     }),
     columnHelper.accessor('due', {
         header: 'Due',
-        cell: DateCell,
+        cell: (props) => <p>{props.getValue()?.toLocaleTimeString()}</p>,
     }),
     columnHelper.accessor('notes', {
         header: 'Notes',
@@ -58,10 +64,15 @@ const columns = [
 
 export const TaskTable = () => {
     const [data, setData] = useState<Task[]>(DATA);
+    const [columnFilters, setColumnFilters] = useState<Filter[]>([]);
     const table = useReactTable({
         data,
         columns,
+        state: {
+            columnFilters,
+        },
         getCoreRowModel: getCoreRowModel(),
+        getFilteredRowModel: getFilteredRowModel(),
         debugTable: true,
         columnResizeMode: 'onChange',
         meta: {
@@ -86,48 +97,56 @@ export const TaskTable = () => {
     console.log('data', data);
 
     return (
-        <Box className={cls.table} width={table.getTotalSize()}>
-            {table.getHeaderGroups().map((headerGroup) => (
-                <Box className={cls.tr} key={headerGroup.id}>
-                    {headerGroup.headers.map((header) => (
-                        <Box
-                            className={cls.th}
-                            key={header.id}
-                            width={header.getSize()}
-                        >
-                            {flexRender(
-                                header.column.columnDef.header,
-                                header.getContext(),
-                            )}
+        <Box>
+            <Filters
+                filterCategory="task"
+                columnFilters={columnFilters}
+                setColumnFilters={setColumnFilters}
+            />
+            <Box className={cls.table} width={table.getTotalSize()}>
+                {table.getHeaderGroups().map((headerGroup) => (
+                    <Box className={cls.tr} key={headerGroup.id}>
+                        {headerGroup.headers.map((header) => (
                             <Box
-                                onMouseDown={header.getResizeHandler()}
-                                onTouchStart={header.getResizeHandler()}
-                                className={classNames(cls.resizer, {
-                                    isResizing: header.column.getIsResizing(),
-                                })}
-                            />
-                        </Box>
-                    ))}
-                </Box>
-            ))}
-            {table.getRowModel().rows.map((row) => (
-                <Box className={cls.tr} key={row.id}>
-                    {row.getVisibleCells().map((cell) => (
-                        <Box
-                            className={classNames(cls.td, {}, [
-                                ...additionalCellClasses,
-                            ])}
-                            key={cell.id}
-                            width={cell.column.getSize()}
-                        >
-                            {flexRender(
-                                cell.column.columnDef.cell,
-                                cell.getContext(),
-                            )}
-                        </Box>
-                    ))}
-                </Box>
-            ))}
+                                className={cls.th}
+                                key={header.id}
+                                width={header.getSize()}
+                            >
+                                {flexRender(
+                                    header.column.columnDef.header,
+                                    header.getContext(),
+                                )}
+                                <Box
+                                    onMouseDown={header.getResizeHandler()}
+                                    onTouchStart={header.getResizeHandler()}
+                                    className={classNames(cls.resizer, {
+                                        isResizing:
+                                            header.column.getIsResizing(),
+                                    })}
+                                />
+                            </Box>
+                        ))}
+                    </Box>
+                ))}
+                {table.getRowModel().rows.map((row) => (
+                    <Box className={cls.tr} key={row.id}>
+                        {row.getVisibleCells().map((cell) => (
+                            <Box
+                                className={classNames(cls.td, {}, [
+                                    ...additionalCellClasses,
+                                ])}
+                                key={cell.id}
+                                width={cell.column.getSize()}
+                            >
+                                {flexRender(
+                                    cell.column.columnDef.cell,
+                                    cell.getContext(),
+                                )}
+                            </Box>
+                        ))}
+                    </Box>
+                ))}
+            </Box>
         </Box>
     );
 };
