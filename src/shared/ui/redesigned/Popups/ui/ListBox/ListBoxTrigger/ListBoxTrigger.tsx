@@ -15,6 +15,8 @@ export function ListBoxTrigger<T extends string>(
     props: ListBoxTriggerProps<T>,
 ) {
     const { selectedItem, defaultValue, readonly } = props;
+    // console.log('selectedItem', selectedItem);
+    // console.log('defaultValue', defaultValue);
     return (
         <HListBox.Button
             className={cls.trigger}

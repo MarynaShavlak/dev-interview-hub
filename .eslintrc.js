@@ -65,6 +65,7 @@ module.exports = {
                     'size',
                     'wrap',
                     'legendPosition',
+                    'color',
                 ],
             },
         ],

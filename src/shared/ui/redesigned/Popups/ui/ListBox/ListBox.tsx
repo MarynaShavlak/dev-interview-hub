@@ -33,6 +33,10 @@ export function ListBox<T extends string>(props: ListBoxProps<T>) {
         label,
     } = props;
 
+    console.log('IN LISTBOX items', items);
+    console.log('IN LISTBOX value', value);
+    console.log('IN LISTBOX defaultValue', defaultValue);
+
     const optionsClasses = classNames(cls.options, {}, [
         mapDirectionClass[direction],
         popupCls.menuRedesigned,
@@ -46,7 +50,7 @@ export function ListBox<T extends string>(props: ListBoxProps<T>) {
     const selectedItem = useMemo(() => {
         return items?.find((item) => item.value === value);
     }, [items, value]);
-
+    console.log('IN LISTBOX selectedItem', selectedItem);
     return (
         <HStack gap="4">
             {label && <span>{`${label}:`}</span>}

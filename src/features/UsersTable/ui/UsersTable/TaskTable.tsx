@@ -7,16 +7,22 @@ import {
 } from '@tanstack/react-table';
 import { useState } from 'react';
 import { Box } from '@/shared/ui/common/Box/Box';
-import DATA from '../data';
+import DATA, { USER_ROLE_OPTIONS } from '../data';
 import cls from './UsersTable.module.scss';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { EditableCell } from '../EditableCell/EditableCell';
 import { getFlexClasses } from '@/shared/lib/classes/getFlexClasses/getFlexClasses';
 import { OptionCell } from '../OptionCell/OptionCell';
 
+export interface Role {
+    id: number;
+    name: string;
+    color: string;
+}
+
 type Task = {
     task: string;
-    status: { id: number; name: string; color: string };
+    role: Role;
     due: Date | null;
     notes: string;
 };
@@ -33,9 +39,11 @@ const columns = [
         cell: EditableCell,
         size: 225,
     }),
-    columnHelper.accessor('status', {
-        header: 'Status',
-        cell: OptionCell,
+    columnHelper.accessor('role', {
+        header: 'Role',
+        cell: (props) => (
+            <OptionCell {...props} options={USER_ROLE_OPTIONS} /> // Pass options here
+        ),
     }),
     columnHelper.accessor('due', {
         header: 'Due',
@@ -71,7 +79,7 @@ export const TaskTable = () => {
     const additionalCellClasses = getFlexClasses({
         vStack: true,
         justify: 'center',
-        align: 'center',
+        // align: 'center',
     });
 
     console.log('data', data);
@@ -135,7 +143,7 @@ export const TaskTable = () => {
 // } from '@tanstack/react-table';
 // import DATA from '../data';
 // import EditableCell from './EditableCell';
-// import StatusCell from './StatusCell';
+// import roleCell from './roleCell';
 // import DateCell from './DateCell';
 // import Filters from './Filters';
 // import SortIcon from './icons/SortIcon';
@@ -150,15 +158,15 @@ export const TaskTable = () => {
 //         filterFn: 'includesString',
 //     },
 //     {
-//         accessorKey: 'status',
-//         header: 'Status',
-//         cell: StatusCell,
+//         accessorKey: 'role',
+//         header: 'role',
+//         cell: roleCell,
 //         enableSorting: false,
 //         enableColumnFilter: true,
-//         filterFn: (row, columnId, filterStatuses) => {
-//             if (filterStatuses.length === 0) return true;
-//             const status = row.getValue(columnId);
-//             return filterStatuses.includes(status?.id);
+//         filterFn: (row, columnId, filterrolees) => {
+//             if (filterrolees.length === 0) return true;
+//             const role = row.getValue(columnId);
+//             return filterrolees.includes(role?.id);
 //         },
 //     },
 //     {

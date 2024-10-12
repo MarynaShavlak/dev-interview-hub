@@ -1,69 +1,154 @@
-import { Menu, MenuButton, MenuItem, MenuList } from '@chakra-ui/react';
 import { CellContext } from '@tanstack/react-table';
 import { useCallback } from 'react';
-import { STATUSES } from '../data';
-import { TableMetaCustom } from '../UsersTable/TaskTable';
+import { Role, TableMetaCustom } from '../UsersTable/TaskTable';
 import { Box } from '@/shared/ui/common/Box';
 import cls from './OptionCell.module.scss';
+import { ListBox } from '@/shared/ui/redesigned/Popups';
 
-export const ColorIcon = ({ color: string, ...props }) => (
+interface ColorIconProps {
+    color: string; // Defining the color prop as a string
+}
+
+export const ColorIcon = ({ color }: ColorIconProps) => (
     <Box
         width="12px"
         height="12px"
         backgroundColor={color}
-        {...props}
         className={cls.colorIcon}
     />
 );
 
-type OptionCellProps<TData> = CellContext<TData, any>;
+interface OptionCellProps<TData> extends CellContext<TData, any> {
+    options: Role[];
+}
+
+interface OptionItemProps {
+    role: Role;
+}
+
+const OptionItem = ({ role }: OptionItemProps) => {
+    return (
+        <>
+            <ColorIcon color={role.color} />
+            {role.name}
+        </>
+    );
+};
 
 export const OptionCell = <TData,>({
     getValue,
     row,
     column,
     table,
+    options,
 }: OptionCellProps<TData>) => {
-    const { name, color } = getValue() || {};
+    const { name } = getValue() || {};
     const meta = table.options.meta as TableMetaCustom<TData>;
-    const currentStatus = name;
+    const currentValue = name;
 
+    const listBoxOptions = options.map((option) => ({
+        value: `${option.name}`,
+        content: <OptionItem role={option} />,
+    }));
+
+    // console.log('listBoxOptions', listBoxOptions);
     const onCellClick = useCallback(
-        (newStatus: any) => {
-            if (meta?.updateData && newStatus.name !== currentStatus) {
-                meta.updateData(row.index, column.id, newStatus);
+        (selectedValue: any) => {
+            const newValue = options.find(
+                (option) => option.name === selectedValue,
+            );
+            if (meta?.updateData && newValue?.name !== currentValue) {
+                meta.updateData(row.index, column.id, newValue);
             }
         },
-        [column.id, currentStatus, meta, row.index],
+        [column.id, currentValue, meta, options, row.index],
     );
 
-    return (
-        <Menu isLazy offset={[0, 0]} flip={false} autoSelect={false}>
-            <MenuButton
-                h="100%"
-                w="100%"
-                // textAlign="left"
-                p={1.5}
-                bg={color || 'transparent'}
-                color="gray.900"
-            >
-                {name}
-            </MenuButton>
-            <MenuList>
-                <MenuItem onClick={() => onCellClick(null)}>
-                    {/* <ColorIcon color="red.400" mr={3} /> */}
-                    None
-                </MenuItem>
-                {STATUSES.map((status) => (
-                    <MenuItem
-                        key={status.id}
-                        onClick={() => onCellClick(status)}
-                    >
-                        {/* <ColorIcon color={status.color} mr={3} /> */}
-                        {status.name}
-                    </MenuItem>
-                ))}
-            </MenuList>
-        </Menu>
-    );
+    const props = {
+        value: name,
+        defaultValue: name,
+        items: listBoxOptions,
+        onChange: onCellClick,
+        direction: 'bottom right' as const,
+    };
+
+    return <ListBox {...props} />;
 };
+
+// <Menu isLazy offset={[0, 0]} flip={false} autoSelect={false}>
+//     <MenuButton
+//         h="100%"
+//         w="100%"
+//         // textAlign="left"
+//         p={1.5}
+//         bg={color || 'transparent'}
+//         color="gray.900"
+//     >
+//         {name}
+//     </MenuButton>
+//     <MenuList>
+//         <MenuItem onClick={() => onCellClick(null)}>
+//             <ColorIcon color="red" />
+//             None
+//         </MenuItem>
+//         {STATUSES.map((status) => (
+//             <MenuItem
+//                 key={status.id}
+//                 onClick={() => onCellClick(status)}
+//             >
+//                 <ColorIcon color={status.color} />
+//                 {status.name}
+//             </MenuItem>
+//         ))}
+//     </MenuList>
+// </Menu>
+
+// export const OptionCell = <TData,>({
+//     getValue,
+//     row,
+//     column,
+//     table,
+// }: OptionCellProps<TData>) => {
+//     const { name, color } = getValue() || {};
+//     const meta = table.options.meta as TableMetaCustom<TData>;
+//     const currentStatus = name;
+//
+//     const onCellClick = useCallback(
+//         (newStatus: any) => {
+//             if (meta?.updateData && newStatus.name !== currentStatus) {
+//                 meta.updateData(row.index, column.id, newStatus);
+//             }
+//         },
+//         [column.id, currentStatus, meta, row.index],
+//     );
+//
+//     return (
+//         <Menu isLazy offset={[0, 0]} flip={false} autoSelect={false}>
+//             <MenuButton
+//                 h="100%"
+//                 w="100%"
+//                 // textAlign="left"
+//                 p={1.5}
+//                 bg={color || 'transparent'}
+//                 color="gray.900"
+//             >
+//                 {name}
+//             </MenuButton>
+//             <MenuList>
+//                 <MenuItem onClick={() => onCellClick(null)}>
+//                     <ColorIcon color="red" />
+//                     None
+//                 </MenuItem>
+//                 {STATUSES.map((status) => (
+//                     <MenuItem
+//                         key={status.id}
+//                         onClick={() => onCellClick(status)}
+//                     >
+//                         <ColorIcon color={status.color} />
+//                         {status.name}
+//                     </MenuItem>
+//                 ))}
+//             </MenuList>
+//         </Menu>
+//     );
+// };
