@@ -13,6 +13,7 @@ import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { EditableCell } from '../EditableCell/EditableCell';
 import { getFlexClasses } from '@/shared/lib/classes/getFlexClasses/getFlexClasses';
 import { OptionCell } from '../OptionCell/OptionCell';
+import { DateCell } from '../DateCell/DateCell';
 
 export interface Role {
     id: number;
@@ -47,7 +48,7 @@ const columns = [
     }),
     columnHelper.accessor('due', {
         header: 'Due',
-        cell: (props) => <p>{props.getValue()?.toLocaleTimeString()}</p>,
+        cell: DateCell,
     }),
     columnHelper.accessor('notes', {
         header: 'Notes',

@@ -66,6 +66,8 @@ module.exports = {
                     'wrap',
                     'legendPosition',
                     'color',
+                    'dateFormat',
+                    'wrapperClassName',
                 ],
             },
         ],

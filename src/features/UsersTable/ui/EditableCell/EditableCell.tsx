@@ -4,7 +4,7 @@ import { Input } from '@/shared/ui/redesigned/Input';
 import cls from './EditableCell.module.scss';
 import { TableMetaCustom } from '../UsersTable/TaskTable';
 
-type EditableCellProps<TData> = CellContext<TData, string>;
+export type EditableCellProps<TData> = CellContext<TData, string>;
 
 export const EditableCell = <TData,>({
     getValue,

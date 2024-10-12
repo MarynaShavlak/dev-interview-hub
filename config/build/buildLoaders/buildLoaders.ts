@@ -31,6 +31,7 @@ export const buildLoaders = (options: BuildOptions): webpack.RuleSetRule[] =>{
 
     const cssLoader = buildCssLoader(isDev);
 
+
     // If we don't use typescript, we need babel-loader
     // const typescriptLoader = {
     //     test: /\.tsx?$/,
@@ -53,6 +54,8 @@ export const buildLoaders = (options: BuildOptions): webpack.RuleSetRule[] =>{
         codeBabelLoader,
         tsxCodeBabelLoader,
         // typescriptLoader,
+
         cssLoader,
+
     ];
 }

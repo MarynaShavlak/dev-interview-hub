@@ -53,7 +53,7 @@ export const OptionCell = <TData,>({
 
     // console.log('listBoxOptions', listBoxOptions);
     const onCellClick = useCallback(
-        (selectedValue: any) => {
+        (selectedValue: string | null) => {
             const newValue = options.find(
                 (option) => option.name === selectedValue,
             );
