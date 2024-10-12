@@ -12,10 +12,15 @@ import {
     VStack,
 } from '@chakra-ui/react';
 import { Dispatch, SetStateAction } from 'react';
+import { useTranslation } from 'react-i18next';
 import FilterIcon from '@/shared/assets/icons/filter.svg';
-import { CommonFilterType, Role } from '../UsersTable/TaskTable';
+import { CommonFilterType } from '../UsersTable/TaskTable';
 import { USER_ROLE_OPTIONS } from '../data';
-import { ColorIcon } from '../OptionCell/OptionCell';
+import { ColorIndicatorOptionItem } from '../ColorIndicatorOptionItem/ColorIndicatorOptionItem';
+import { NotificationList } from '@/entities/Notification';
+import { Popover as Custom } from '@/shared/ui/redesigned/Popups';
+import { Button as ButtonCustom } from '@/shared/ui/redesigned/Button';
+import { Icon as IconCustom } from '@/shared/ui/redesigned/Icon';
 
 export interface Filter {
     id: string;
@@ -33,19 +38,6 @@ interface FilterPopoverProps {
     columnFilters: CommonFilterType;
     setColumnFilters: Dispatch<SetStateAction<CommonFilterType>>;
 }
-
-interface OptionItemProps {
-    role: Role;
-}
-
-const OptionItem = ({ role }: OptionItemProps) => {
-    return (
-        <>
-            <ColorIcon color={role.color} />
-            {role.name}
-        </>
-    );
-};
 
 const FilterItem = (props: FilterItemProps) => {
     const { option, setColumnFilters, isActive } = props;
@@ -79,6 +71,7 @@ const FilterItem = (props: FilterItemProps) => {
                         f.id === 'role'
                             ? {
                                   ...f,
+                                  // eslint-disable-next-line no-nested-ternary
                                   value: Array.isArray(roles)
                                       ? isActive
                                           ? roles.filter((r) => r !== option.id)
@@ -90,54 +83,71 @@ const FilterItem = (props: FilterItemProps) => {
                 })
             }
         >
-            <OptionItem role={option} />
+            <ColorIndicatorOptionItem option={option} />
         </Flex>
     );
 };
 
 export const FilterPopover = (props: FilterPopoverProps) => {
+    const { t } = useTranslation();
     const { columnFilters, setColumnFilters, filterCategory } = props;
     const filteredOptions =
         columnFilters.find((f) => f.id === filterCategory)?.value ||
         ([] as string[]);
+    const trigger = (
+        <ButtonCustom
+            size="m"
+            variant="clear"
+            addonLeft={<IconCustom width="20" height="20" Svg={FilterIcon} />}
+            // onClick={onNavigateToList}
+            // className={cls.ArticleListButton}
+        >
+            {t('Фільтр')}
+        </ButtonCustom>
+    );
 
     return (
-        <Popover isLazy>
-            <PopoverTrigger>
-                <Button
-                    size="sm"
-                    color={filteredOptions.length > 0 ? 'blue.300' : ''}
-                    leftIcon={<Icon as={FilterIcon} fontSize={18} />}
-                >
-                    Filter
-                </Button>
-            </PopoverTrigger>
-            <PopoverContent>
-                <PopoverArrow />
-                <PopoverCloseButton />
-                <PopoverBody>
-                    <Text fontSize="md" fontWeight="bold" mb={4}>
-                        Filter By:
-                    </Text>
-                    <Text fontWeight="bold" color="gray.400" mb={1}>
-                        {filterCategory}
-                    </Text>
-                    <VStack align="flex-start" spacing={1}>
-                        {USER_ROLE_OPTIONS.map((option) => {
-                            return (
-                                <FilterItem
-                                    option={option}
-                                    isActive={filteredOptions.includes(
-                                        option.id,
-                                    )}
-                                    setColumnFilters={setColumnFilters}
-                                    key={option.id}
-                                />
-                            );
-                        })}
-                    </VStack>
-                </PopoverBody>
-            </PopoverContent>
-        </Popover>
+        <>
+            <Custom direction="bottom left" trigger={trigger}>
+                <NotificationList />
+            </Custom>
+            <Popover isLazy>
+                <PopoverTrigger>
+                    <Button
+                        size="sm"
+                        color={filteredOptions.length > 0 ? 'blue.300' : ''}
+                        leftIcon={<Icon as={FilterIcon} fontSize={18} />}
+                    >
+                        Filter
+                    </Button>
+                </PopoverTrigger>
+                <PopoverContent>
+                    <PopoverArrow />
+                    <PopoverCloseButton />
+                    <PopoverBody>
+                        <Text fontSize="md" fontWeight="bold" mb={4}>
+                            Filter By:
+                        </Text>
+                        <Text fontWeight="bold" color="gray.400" mb={1}>
+                            {filterCategory}
+                        </Text>
+                        <VStack align="flex-start" spacing={1}>
+                            {USER_ROLE_OPTIONS.map((option) => {
+                                return (
+                                    <FilterItem
+                                        option={option}
+                                        isActive={filteredOptions.includes(
+                                            option.id,
+                                        )}
+                                        setColumnFilters={setColumnFilters}
+                                        key={option.id}
+                                    />
+                                );
+                            })}
+                        </VStack>
+                    </PopoverBody>
+                </PopoverContent>
+            </Popover>
+        </>
     );
 };

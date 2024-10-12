@@ -16,6 +16,7 @@ import { getFlexClasses } from '@/shared/lib/classes/getFlexClasses/getFlexClass
 import { OptionCell } from '../OptionCell/OptionCell';
 import { InputSearch } from '../InputSearch/InputSearch';
 import { FilterPopover } from '../FilterPopover/FilterPopover';
+import { Role } from '../../model/types/types';
 
 export interface InputSearchType {
     id: string;
@@ -28,12 +29,6 @@ export interface FilterType {
 }
 
 export type CommonFilterType = (InputSearchType | FilterType)[];
-
-export interface Role {
-    id: string;
-    name: string;
-    color: string;
-}
 
 type Task = {
     task: string;
@@ -53,12 +48,20 @@ const columns = [
         header: 'Task',
         cell: EditableCell,
         size: 225,
+        enableColumnFilter: true,
+        filterFn: 'includesString',
     }),
     columnHelper.accessor('role', {
         header: 'Role',
         cell: (props) => (
             <OptionCell {...props} options={USER_ROLE_OPTIONS} /> // Pass options here
         ),
+        enableColumnFilter: true,
+        filterFn: (row, columnId, filterRoles) => {
+            if (filterRoles.length === 0) return true;
+            const role: Role = row.getValue(columnId);
+            return filterRoles.includes(role?.id);
+        },
     }),
     columnHelper.accessor('due', {
         header: 'Due',

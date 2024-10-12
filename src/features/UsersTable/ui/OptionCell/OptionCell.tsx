@@ -1,39 +1,13 @@
 import { CellContext } from '@tanstack/react-table';
 import { useCallback } from 'react';
-import { Role, TableMetaCustom } from '../UsersTable/TaskTable';
-import { Box } from '@/shared/ui/common/Box';
-import cls from './OptionCell.module.scss';
+import { TableMetaCustom } from '../UsersTable/TaskTable';
 import { ListBox } from '@/shared/ui/redesigned/Popups';
-
-interface ColorIconProps {
-    color: string; // Defining the color prop as a string
-}
-
-export const ColorIcon = ({ color }: ColorIconProps) => (
-    <Box
-        width="12px"
-        height="12px"
-        backgroundColor={color}
-        className={cls.colorIcon}
-    />
-);
+import { Role } from '../../model/types/types';
+import { ColorIndicatorOptionItem } from '../ColorIndicatorOptionItem/ColorIndicatorOptionItem';
 
 interface OptionCellProps<TData> extends CellContext<TData, any> {
     options: Role[];
 }
-
-interface OptionItemProps {
-    role: Role;
-}
-
-const OptionItem = ({ role }: OptionItemProps) => {
-    return (
-        <>
-            <ColorIcon color={role.color} />
-            {role.name}
-        </>
-    );
-};
 
 export const OptionCell = <TData,>({
     getValue,
@@ -48,7 +22,7 @@ export const OptionCell = <TData,>({
 
     const listBoxOptions = options.map((option) => ({
         value: `${option.name}`,
-        content: <OptionItem role={option} />,
+        content: <ColorIndicatorOptionItem option={option} />,
     }));
 
     // console.log('listBoxOptions', listBoxOptions);
