@@ -14,9 +14,10 @@ import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { EditableCell } from '../EditableCell/EditableCell';
 import { getFlexClasses } from '@/shared/lib/classes/getFlexClasses/getFlexClasses';
 import { OptionCell } from '../OptionCell/OptionCell';
-import { Filters } from '../Filters/Filters';
+import { InputSearch } from '../Filters/Filters';
+import { FilterPopover } from '../FilterPopover/FilterPopover';
 
-export interface Filter {
+export interface InputSearchType {
     id: string;
     value: string;
 }
@@ -64,7 +65,7 @@ const columns = [
 
 export const TaskTable = () => {
     const [data, setData] = useState<Task[]>(DATA);
-    const [columnFilters, setColumnFilters] = useState<Filter[]>([]);
+    const [columnFilters, setColumnFilters] = useState<InputSearchType[]>([]);
     const table = useReactTable({
         data,
         columns,
@@ -98,8 +99,13 @@ export const TaskTable = () => {
 
     return (
         <Box>
-            <Filters
+            <InputSearch
                 filterCategory="task"
+                columnFilters={columnFilters}
+                setColumnFilters={setColumnFilters}
+            />
+            <FilterPopover
+                filterCategory="role"
                 columnFilters={columnFilters}
                 setColumnFilters={setColumnFilters}
             />

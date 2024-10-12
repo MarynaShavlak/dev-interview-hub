@@ -1,19 +1,18 @@
 import { Dispatch, SetStateAction } from 'react';
 import { useTranslation } from 'react-i18next';
 import SearchIcon from '@/shared/assets/icons/search.svg';
-import { Filter } from '../UsersTable/TaskTable';
+import { InputSearchType } from '../UsersTable/TaskTable';
 import { Icon } from '@/shared/ui/redesigned/Icon';
 import { Input } from '@/shared/ui/redesigned/Input';
-import { FilterPopover } from '../FilterPopover/FilterPopover';
 // import FilterPopover from './FilterPopover';
 
-interface FiltersProps {
+interface InputSearchProps {
     filterCategory: string;
-    columnFilters: Filter[];
-    setColumnFilters: Dispatch<SetStateAction<Filter[]>>;
+    columnFilters: InputSearchType[];
+    setColumnFilters: Dispatch<SetStateAction<InputSearchType[]>>;
 }
 
-export const Filters = (props: FiltersProps) => {
+export const InputSearch = (props: InputSearchProps) => {
     const { columnFilters, setColumnFilters, filterCategory } = props;
     const { t } = useTranslation();
 
@@ -38,19 +37,12 @@ export const Filters = (props: FiltersProps) => {
     // console.log('filterCategory', filterCategory);
 
     return (
-        <>
-            <Input
-                onChange={onFilterChange}
-                value={query}
-                placeholder={t('Пошук')}
-                addonLeft={<Icon Svg={SearchIcon} />}
-            />
-            <FilterPopover
-                filterCategory="role"
-                columnFilters={columnFilters}
-                setColumnFilters={setColumnFilters}
-            />
-        </>
+        <Input
+            onChange={onFilterChange}
+            value={query}
+            placeholder={t('Пошук')}
+            addonLeft={<Icon Svg={SearchIcon} />}
+        />
     );
 };
 

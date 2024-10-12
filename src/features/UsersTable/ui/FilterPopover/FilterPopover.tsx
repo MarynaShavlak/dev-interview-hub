@@ -13,11 +13,17 @@ import {
 } from '@chakra-ui/react';
 import { Dispatch, SetStateAction } from 'react';
 import FilterIcon from '@/shared/assets/icons/filter.svg';
-import { Filter } from '../UsersTable/TaskTable';
+import { Role } from '../UsersTable/TaskTable';
 import { USER_ROLE_OPTIONS } from '../data';
+import { ColorIcon } from '../OptionCell/OptionCell';
+
+export interface Filter {
+    id: string;
+    value: string[];
+}
 
 interface FilterItemProps {
-    option: { id: string; name: string; color: string }; // Define status structure
+    option: { id: string; name: string; color: string };
     setColumnFilters: Dispatch<SetStateAction<Filter[]>>;
     isActive: boolean;
 }
@@ -27,6 +33,19 @@ interface FilterPopoverProps {
     columnFilters: Filter[];
     setColumnFilters: Dispatch<SetStateAction<Filter[]>>;
 }
+
+interface OptionItemProps {
+    role: Role;
+}
+
+const OptionItem = ({ role }: OptionItemProps) => {
+    return (
+        <>
+            <ColorIcon color={role.color} />
+            {role.name}
+        </>
+    );
+};
 
 const FilterItem = (props: FilterItemProps) => {
     const { option, setColumnFilters, isActive } = props;
@@ -41,33 +60,35 @@ const FilterItem = (props: FilterItemProps) => {
             _hover={{
                 bg: 'gray.800',
             }}
-            // onClick={() =>
-            //     setColumnFilters((prev) => {
-            //         const roles = prev.find(
-            //             (filter) => filter.id === 'role',
-            //         )?.value;
-            //         if (!roles) {
-            //             return prev.concat({
-            //                 id: 'role',
-            //                 value: [role.id],
-            //             });
-            //         }
-            //
-            //         return prev.map((f) =>
-            //             f.id === 'role'
-            //                 ? {
-            //                       ...f,
-            //                       value: isActive
-            //                           ? roles.filter((s) => s !== role.id)
-            //                           : roles.concat(role.id),
-            //                   }
-            //                 : f,
-            //         );
-            //     })
-            // }
+            onClick={() =>
+                setColumnFilters((prev) => {
+                    const roles = prev.find(
+                        (filter) => filter.id === 'role',
+                    )?.value;
+
+                    console.log('roles', roles);
+                    return [];
+                    // if (!roles) {
+                    //     return prev.concat({
+                    //         id: 'role',
+                    //         value: [role.id],
+                    //     });
+                    // }
+                    //
+                    // return prev.map((f) =>
+                    //     f.id === 'role'
+                    //         ? {
+                    //               ...f,
+                    //               value: isActive
+                    //                   ? roles.filter((r) => r !== option.id)
+                    //                   : roles.concat(option.id),
+                    //           }
+                    //         : f,
+                    // );
+                })
+            }
         >
-            {/* <ColorIcon color={status.color} mr={3} /> */}
-            {option.name}
+            <OptionItem role={option} />
         </Flex>
     );
 };
