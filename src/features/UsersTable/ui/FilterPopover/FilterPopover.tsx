@@ -13,7 +13,7 @@ import {
 } from '@chakra-ui/react';
 import { Dispatch, SetStateAction } from 'react';
 import FilterIcon from '@/shared/assets/icons/filter.svg';
-import { Role } from '../UsersTable/TaskTable';
+import { CommonFilterType, Role } from '../UsersTable/TaskTable';
 import { USER_ROLE_OPTIONS } from '../data';
 import { ColorIcon } from '../OptionCell/OptionCell';
 
@@ -24,14 +24,14 @@ export interface Filter {
 
 interface FilterItemProps {
     option: { id: string; name: string; color: string };
-    setColumnFilters: Dispatch<SetStateAction<Filter[]>>;
+    setColumnFilters: Dispatch<SetStateAction<CommonFilterType>>;
     isActive: boolean;
 }
 
 interface FilterPopoverProps {
     filterCategory: string;
-    columnFilters: Filter[];
-    setColumnFilters: Dispatch<SetStateAction<Filter[]>>;
+    columnFilters: CommonFilterType;
+    setColumnFilters: Dispatch<SetStateAction<CommonFilterType>>;
 }
 
 interface OptionItemProps {
@@ -62,29 +62,31 @@ const FilterItem = (props: FilterItemProps) => {
             }}
             onClick={() =>
                 setColumnFilters((prev) => {
+                    console.log('prev', prev);
                     const roles = prev.find(
                         (filter) => filter.id === 'role',
                     )?.value;
 
                     console.log('roles', roles);
-                    return [];
-                    // if (!roles) {
-                    //     return prev.concat({
-                    //         id: 'role',
-                    //         value: [role.id],
-                    //     });
-                    // }
-                    //
-                    // return prev.map((f) =>
-                    //     f.id === 'role'
-                    //         ? {
-                    //               ...f,
-                    //               value: isActive
-                    //                   ? roles.filter((r) => r !== option.id)
-                    //                   : roles.concat(option.id),
-                    //           }
-                    //         : f,
-                    // );
+                    if (!roles) {
+                        return prev.concat({
+                            id: 'role',
+                            value: [option.id],
+                        });
+                    }
+
+                    return prev.map((f) =>
+                        f.id === 'role'
+                            ? {
+                                  ...f,
+                                  value: Array.isArray(roles)
+                                      ? isActive
+                                          ? roles.filter((r) => r !== option.id)
+                                          : roles.concat(option.id)
+                                      : [option.id],
+                              }
+                            : f,
+                    );
                 })
             }
         >
@@ -99,7 +101,6 @@ export const FilterPopover = (props: FilterPopoverProps) => {
         columnFilters.find((f) => f.id === filterCategory)?.value ||
         ([] as string[]);
 
-    console.log('filteredOptions', filteredOptions);
     return (
         <Popover isLazy>
             <PopoverTrigger>
@@ -123,8 +124,6 @@ export const FilterPopover = (props: FilterPopoverProps) => {
                     </Text>
                     <VStack align="flex-start" spacing={1}>
                         {USER_ROLE_OPTIONS.map((option) => {
-                            console.log('option', option);
-
                             return (
                                 <FilterItem
                                     option={option}

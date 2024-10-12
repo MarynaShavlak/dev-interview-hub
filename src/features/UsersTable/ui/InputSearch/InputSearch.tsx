@@ -1,23 +1,26 @@
 import { Dispatch, SetStateAction } from 'react';
 import { useTranslation } from 'react-i18next';
 import SearchIcon from '@/shared/assets/icons/search.svg';
-import { InputSearchType } from '../UsersTable/TaskTable';
+import { CommonFilterType } from '../UsersTable/TaskTable';
 import { Icon } from '@/shared/ui/redesigned/Icon';
 import { Input } from '@/shared/ui/redesigned/Input';
 // import FilterPopover from './FilterPopover';
 
 interface InputSearchProps {
     filterCategory: string;
-    columnFilters: InputSearchType[];
-    setColumnFilters: Dispatch<SetStateAction<InputSearchType[]>>;
+    columnFilters: CommonFilterType;
+    setColumnFilters: Dispatch<SetStateAction<CommonFilterType>>;
 }
 
 export const InputSearch = (props: InputSearchProps) => {
     const { columnFilters, setColumnFilters, filterCategory } = props;
+
+    console.log('in InputSearch columnFilters', columnFilters);
     const { t } = useTranslation();
 
+    const filter = columnFilters.find((f) => f.id === filterCategory);
     const query =
-        columnFilters.find((f) => f.id === filterCategory)?.value || '';
+        filter && typeof filter.value === 'string' ? filter.value : '';
 
     const onFilterChange = (value: string) => {
         setColumnFilters((prevFilters) => {

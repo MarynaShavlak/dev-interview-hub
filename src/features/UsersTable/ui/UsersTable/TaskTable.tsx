@@ -14,13 +14,20 @@ import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { EditableCell } from '../EditableCell/EditableCell';
 import { getFlexClasses } from '@/shared/lib/classes/getFlexClasses/getFlexClasses';
 import { OptionCell } from '../OptionCell/OptionCell';
-import { InputSearch } from '../Filters/Filters';
+import { InputSearch } from '../InputSearch/InputSearch';
 import { FilterPopover } from '../FilterPopover/FilterPopover';
 
 export interface InputSearchType {
     id: string;
     value: string;
 }
+
+export interface FilterType {
+    id: string;
+    value: string[];
+}
+
+export type CommonFilterType = (InputSearchType | FilterType)[];
 
 export interface Role {
     id: string;
@@ -65,7 +72,9 @@ const columns = [
 
 export const TaskTable = () => {
     const [data, setData] = useState<Task[]>(DATA);
-    const [columnFilters, setColumnFilters] = useState<InputSearchType[]>([]);
+    const [columnFilters, setColumnFilters] = useState<CommonFilterType>([]);
+    // const [columnFilters, setColumnFilters] = useState([]);
+
     const table = useReactTable({
         data,
         columns,
