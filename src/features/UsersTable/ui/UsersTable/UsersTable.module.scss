@@ -24,12 +24,19 @@
   text-align: center;
 }
 
-.td > input {
-  margin: 10px;
-  padding: 0.2rem;
-  background: transparent;
-  max-width: 100%;
-}
+//.td{
+//  display: flex;
+//  justify-content: center;
+//  align-items: center;
+//}
+
+
+//.td > input {
+//  margin: 10px;
+//  padding: 0.2rem;
+//  background: transparent;
+//  max-width: 100%;
+//}
 
 .date-wrapper {
   display: flex;
@@ -50,6 +57,7 @@
   user-select: none;
   touch-action: none;
   border-radius: 6px;
+  transition: opacity 300ms;
 }
 
 .resizer.isResizing {

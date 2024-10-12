@@ -23,6 +23,7 @@ interface InputProps extends HTMLInputProps {
     addonRight?: ReactNode;
     size?: InputSize;
     digitsOnly?: boolean;
+    border?: boolean;
 }
 
 export const Input = memo((props: InputProps) => {
@@ -39,6 +40,7 @@ export const Input = memo((props: InputProps) => {
         addonLeft,
         addonRight,
         digitsOnly = false,
+        border = true,
         ...otherProps
     } = props;
     const { ref, isFocused, onChangeHandler, onBlurHandler, onFocus } =
@@ -48,6 +50,7 @@ export const Input = memo((props: InputProps) => {
         [cls.focused]: isFocused,
         [cls.withAddonLeft]: Boolean(addonLeft),
         [cls.withAddonRight]: Boolean(addonRight),
+        [cls.noBorder]: !border,
     };
 
     const input = (

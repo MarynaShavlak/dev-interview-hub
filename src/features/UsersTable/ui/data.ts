@@ -1,11 +1,11 @@
-const STATUS_ON_DECK = { id: 1, name: 'On Deck', color: 'blue.300' };
+const STATUS_ON_DECK = { id: 1, name: 'On Deck', color: 'blue' };
 const STATUS_IN_PROGRESS = {
     id: 2,
     name: 'In Progress',
-    color: 'yellow.400',
+    color: 'yellow',
 };
-const STATUS_TESTING = { id: 3, name: 'Testing', color: 'pink.300' };
-const STATUS_DEPLOYED = { id: 4, name: 'Deployed', color: 'green.300' };
+const STATUS_TESTING = { id: 3, name: 'Testing', color: 'pink' };
+const STATUS_DEPLOYED = { id: 4, name: 'Deployed', color: 'green' };
 export const STATUSES = [
     STATUS_ON_DECK,
     STATUS_IN_PROGRESS,
@@ -34,7 +34,8 @@ const DATA = [
     },
     {
         task: 'Cleanup Database',
-        status: null,
+        status: STATUS_DEPLOYED,
+        // status: null,
         due: new Date('2023/02/15'),
         notes: 'Remove old data',
     },
@@ -46,7 +47,8 @@ const DATA = [
     },
     {
         task: 'Add Documentation to API',
-        status: null,
+        status: STATUS_IN_PROGRESS,
+        // status: null,
         due: new Date('2023/09/12'),
         notes: 'Add JS Docs to all endpoints',
     },
@@ -70,7 +72,8 @@ const DATA = [
     },
     {
         task: 'Design User Interface Mockups',
-        status: null,
+        status: STATUS_IN_PROGRESS,
+        // status: null,
         due: new Date('2023/09/30'),
         notes: 'Create UI mockups.',
     },
@@ -82,7 +85,8 @@ const DATA = [
     },
     {
         task: 'Perform Security Audit',
-        status: null,
+        status: STATUS_IN_PROGRESS,
+        // status: null,
         due: new Date('2023/10/22'),
         notes: 'Security audit.',
     },
@@ -100,7 +104,8 @@ const DATA = [
     },
     {
         task: 'Conduct Code Review',
-        status: null,
+        status: STATUS_ON_DECK,
+        // status: null,
         due: new Date('2023/10/05'),
         notes: 'Code review meeting.',
     },
@@ -118,7 +123,8 @@ const DATA = [
     },
     {
         task: 'Create User Feedback Survey',
-        status: null,
+        status: STATUS_DEPLOYED,
+        // status: null,
         due: new Date('2023/09/25'),
         notes: 'User feedback survey.',
     },
@@ -130,7 +136,8 @@ const DATA = [
     },
     {
         task: 'Bug Fixing and QA Testing',
-        status: null,
+        status: STATUS_DEPLOYED,
+        // status: null,
         due: new Date('2023/10/10'),
         notes: 'Fix bugs and QA.',
     },
@@ -142,7 +149,8 @@ const DATA = [
     },
     {
         task: 'Refine User Permission System',
-        status: null,
+        status: STATUS_DEPLOYED,
+        // status: null,
         due: new Date('2023/09/18'),
         notes: 'Enhance permissions.',
     },

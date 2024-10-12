@@ -1,116 +1,127 @@
 import {
-    CellContext,
-    ColumnDef,
     createColumnHelper,
     flexRender,
     getCoreRowModel,
-    useReactTable
+    TableMeta,
+    useReactTable,
 } from '@tanstack/react-table';
 import { useState } from 'react';
-import DATA from "../data";
+import { Box } from '@/shared/ui/common/Box/Box';
+import DATA from '../data';
 import cls from './UsersTable.module.scss';
+import { classNames } from '@/shared/lib/classes/classNames/classNames';
+import { EditableCell } from '../EditableCell/EditableCell';
+import { getFlexClasses } from '@/shared/lib/classes/getFlexClasses/getFlexClasses';
+import { OptionCell } from '../OptionCell/OptionCell';
 
-type Task ={
+type Task = {
     task: string;
-    status: { id: number, name: string, color: string } | null;
-    due: Date  | null;
+    status: { id: number; name: string; color: string };
+    due: Date | null;
     notes: string;
+};
+
+export interface TableMetaCustom<TData> extends TableMeta<TData> {
+    updateData: (rowIndex: number, columnId: string, value: any) => void;
 }
 
-
-const columnHelper = createColumnHelper<Task>()
+const columnHelper = createColumnHelper<Task>();
 
 const columns = [
     columnHelper.accessor('task', {
-        header: "Task",
-        cell: (props) =><p>{props.getValue()}</p>,
+        header: 'Task',
+        cell: EditableCell,
+        size: 225,
     }),
     columnHelper.accessor('status', {
-        header: "Status",
-        // cell: (props) =><p>{props.getValue()}</p>,
+        header: 'Status',
+        cell: OptionCell,
     }),
     columnHelper.accessor('due', {
-        header: "Due",
-        // cell: (props) =><p>{props.getValue()}</p>,
+        header: 'Due',
+        cell: (props) => <p>{props.getValue()?.toLocaleTimeString()}</p>,
     }),
     columnHelper.accessor('notes', {
-        header: "Notes",
-        cell: (props) =><p>{props.getValue()}</p>,
+        header: 'Notes',
+        cell: (props) => <p>{props.getValue()}</p>,
     }),
-
-]
-
-
-// const columns: ColumnDef<Task>[] = [
-//     {
-//         accessorKey: "task",
-//         header: "Task",
-//         size: 225,
-//         cell: (props: CellContext<Task, string>) =><p>{props.getValue()}</p>,
-//         // enableColumnFilter: true,
-//         // filterFn: "includesString",
-//     },
-//     {
-//         accessorKey: "status",
-//         header: "Status",
-//         cell: (props: CellContext<Task, string>) =><p>{props.getValue()}</p>,
-//         // enableSorting: false,
-//         // enableColumnFilter: true,
-//         // filterFn: (row, columnId, filterStatuses) => {
-//         //     if (filterStatuses.length === 0) return true;
-//         //     const status = row.getValue(columnId);
-//         //     return filterStatuses.includes(status?.id);
-//         // },
-//     },
-//     {
-//         accessorKey: "due",
-//         header: "Due",
-//         cell: (props: CellContext<Task, string>) =><p>{props.getValue()}</p>,
-//     },
-//     {
-//         accessorKey: "notes",
-//         header: "Notes",
-//         size: 225,
-//         cell: (props: CellContext<Task, string>) =><p>{props.getValue()}</p>,
-//     },
-// ];
-
-
-
+];
 
 export const TaskTable = () => {
     const [data, setData] = useState<Task[]>(DATA);
-    const table = useReactTable({data, columns, getCoreRowModel: getCoreRowModel(),debugTable:true})
+    const table = useReactTable({
+        data,
+        columns,
+        getCoreRowModel: getCoreRowModel(),
+        debugTable: true,
+        columnResizeMode: 'onChange',
+        meta: {
+            updateData: (rowIndex: number, columnId: string, value: any) => {
+                setData((prevData) =>
+                    prevData.map((row, index) =>
+                        index === rowIndex
+                            ? { ...row, [columnId]: value }
+                            : row,
+                    ),
+                );
+            },
+        },
+    });
+
+    const additionalCellClasses = getFlexClasses({
+        vStack: true,
+        justify: 'center',
+        align: 'center',
+    });
+
+    console.log('data', data);
+
     return (
-        <div className={cls.table}>
+        <Box className={cls.table} width={table.getTotalSize()}>
             {table.getHeaderGroups().map((headerGroup) => (
-                <div className={cls.tr} key={headerGroup.id}>
+                <Box className={cls.tr} key={headerGroup.id}>
                     {headerGroup.headers.map((header) => (
-                        <div className={cls.th} key={header.id}>
-                            {flexRender(header.column.columnDef.header, header.getContext())}
-                        </div>
+                        <Box
+                            className={cls.th}
+                            key={header.id}
+                            width={header.getSize()}
+                        >
+                            {flexRender(
+                                header.column.columnDef.header,
+                                header.getContext(),
+                            )}
+                            <Box
+                                onMouseDown={header.getResizeHandler()}
+                                onTouchStart={header.getResizeHandler()}
+                                className={classNames(cls.resizer, {
+                                    isResizing: header.column.getIsResizing(),
+                                })}
+                            />
+                        </Box>
                     ))}
-                </div>
+                </Box>
             ))}
             {table.getRowModel().rows.map((row) => (
-                <div className={cls.tr} key={row.id}>
+                <Box className={cls.tr} key={row.id}>
                     {row.getVisibleCells().map((cell) => (
-                        <div className={cls.td}  key={cell.id}>
-                            {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                        </div>
+                        <Box
+                            className={classNames(cls.td, {}, [
+                                ...additionalCellClasses,
+                            ])}
+                            key={cell.id}
+                            width={cell.column.getSize()}
+                        >
+                            {flexRender(
+                                cell.column.columnDef.cell,
+                                cell.getContext(),
+                            )}
+                        </Box>
                     ))}
-                </div>
+                </Box>
             ))}
-        </div>
-    )
-}
-
-
-
-
-
-
-
+        </Box>
+    );
+};
 
 // import { useState } from 'react';
 // import { Box, Button, ButtonGroup, Icon, Text } from '@chakra-ui/react';
