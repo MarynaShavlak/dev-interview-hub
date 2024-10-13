@@ -1,26 +1,3 @@
-.filterIcon {
-  opacity:0.5;
-  transition: opacity 300ms;
-}
-
-
-.isFilterActive {
-  opacity:1;
-}
-
-.filterItem {
-  transition: background-color 300ms;
-  padding: 10px 20px;
-  &:hover {
-    background: var(--light-bg-redesigned);
-  }
-}
-
-.active {
-  background: var(--light-bg-redesigned);
-}
-
-
 .filterPopover {
   padding: 0;
 }

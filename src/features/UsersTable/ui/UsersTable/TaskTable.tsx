@@ -14,21 +14,10 @@ import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { EditableCell } from '../EditableCell/EditableCell';
 import { getFlexClasses } from '@/shared/lib/classes/getFlexClasses/getFlexClasses';
 import { OptionCell } from '../OptionCell/OptionCell';
-import { InputSearch } from '../InputSearch/InputSearch';
+import { SearchInput } from '../InputSearch/SearchInput';
 import { FilterPopover } from '../FilterPopover/FilterPopover';
 import { ColorOption } from '../ColorIndicatorOptionItem/ColorIndicatorOptionItem';
-
-export interface InputSearchType {
-    id: string;
-    value: string;
-}
-
-export interface FilterType {
-    id: string;
-    value: string[];
-}
-
-export type CommonFilterType = (InputSearchType | FilterType)[];
+import { CommonFilterType } from '../../model/types/types';
 
 type Task = {
     task: string;
@@ -111,7 +100,7 @@ export const TaskTable = () => {
 
     return (
         <Box>
-            <InputSearch
+            <SearchInput
                 filterCategory="task"
                 columnFilters={columnFilters}
                 setColumnFilters={setColumnFilters}

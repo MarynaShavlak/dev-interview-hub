@@ -27,7 +27,6 @@ export const OptionCell = <TData,>({
         content: <ColorIndicatorOptionItem option={option} />,
     }));
 
-    // console.log('listBoxOptions', listBoxOptions);
     const onCellClick = useCallback(
         (selectedValue: string | null) => {
             const newValue = options.find(
@@ -50,81 +49,3 @@ export const OptionCell = <TData,>({
 
     return <ListBox {...props} />;
 };
-
-// <Menu isLazy offset={[0, 0]} flip={false} autoSelect={false}>
-//     <MenuButton
-//         h="100%"
-//         w="100%"
-//         // textAlign="left"
-//         p={1.5}
-//         bg={color || 'transparent'}
-//         color="gray.900"
-//     >
-//         {name}
-//     </MenuButton>
-//     <MenuList>
-//         <MenuItem onClick={() => onCellClick(null)}>
-//             <ColorIcon color="red" />
-//             None
-//         </MenuItem>
-//         {STATUSES.map((status) => (
-//             <MenuItem
-//                 key={status.id}
-//                 onClick={() => onCellClick(status)}
-//             >
-//                 <ColorIcon color={status.color} />
-//                 {status.name}
-//             </MenuItem>
-//         ))}
-//     </MenuList>
-// </Menu>
-
-// export const OptionCell = <TData,>({
-//     getValue,
-//     row,
-//     column,
-//     table,
-// }: OptionCellProps<TData>) => {
-//     const { name, color } = getValue() || {};
-//     const meta = table.options.meta as TableMetaCustom<TData>;
-//     const currentStatus = name;
-//
-//     const onCellClick = useCallback(
-//         (newStatus: any) => {
-//             if (meta?.updateData && newStatus.name !== currentStatus) {
-//                 meta.updateData(row.index, column.id, newStatus);
-//             }
-//         },
-//         [column.id, currentStatus, meta, row.index],
-//     );
-//
-//     return (
-//         <Menu isLazy offset={[0, 0]} flip={false} autoSelect={false}>
-//             <MenuButton
-//                 h="100%"
-//                 w="100%"
-//                 // textAlign="left"
-//                 p={1.5}
-//                 bg={color || 'transparent'}
-//                 color="gray.900"
-//             >
-//                 {name}
-//             </MenuButton>
-//             <MenuList>
-//                 <MenuItem onClick={() => onCellClick(null)}>
-//                     <ColorIcon color="red" />
-//                     None
-//                 </MenuItem>
-//                 {STATUSES.map((status) => (
-//                     <MenuItem
-//                         key={status.id}
-//                         onClick={() => onCellClick(status)}
-//                     >
-//                         <ColorIcon color={status.color} />
-//                         {status.name}
-//                     </MenuItem>
-//                 ))}
-//             </MenuList>
-//         </Menu>
-//     );
-// };
