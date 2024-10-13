@@ -22,7 +22,7 @@ export const FilterPopover = (props: FilterPopoverProps) => {
         ([] as string[]);
 
     const isFilterActive = filteredOptions.length > 0;
-
+    console.log('filterCategory', filterCategory);
     return (
         <Popover
             direction="bottom left"

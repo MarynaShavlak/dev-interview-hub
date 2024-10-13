@@ -1,0 +1,44 @@
+.tr {
+  display: flex;
+  width: fit-content;
+}
+
+.th {
+  border: 1px solid var(--icon-redesigned);
+}
+
+
+
+.th {
+  position: relative;
+  padding: 4px;
+  font-weight: bold;
+  //font-size: 12px;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+
+.resizer {
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 5px;
+  background-color: #27bbff;
+  cursor: col-resize;
+  user-select: none;
+  touch-action: none;
+  border-radius: 6px;
+  transition: opacity 300ms;
+}
+
+.resizer.isResizing {
+  background-color: #2eff31;
+  opacity: 1;
+}
+
+*:hover > .resizer {
+  opacity: 1;
+}
