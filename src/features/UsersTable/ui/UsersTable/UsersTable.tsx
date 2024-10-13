@@ -5,7 +5,6 @@ import {
     getFilteredRowModel,
     getPaginationRowModel,
     getSortedRowModel,
-    TableMeta,
     useReactTable,
 } from '@tanstack/react-table';
 import { useState } from 'react';
@@ -21,11 +20,8 @@ import { SearchInput } from '../InputSearch/SearchInput';
 import { FilterPopover } from '../FilterPopover/FilterPopover';
 import { ColorOption } from '../ColorIndicatorOptionItem/ColorIndicatorOptionItem';
 import { CommonFilterType } from '../../model/types/types';
-import SortIcon from '@/shared/assets/icons/sort.svg';
-import AscIcon from '@/shared/assets/icons/asc.svg';
-import DescIcon from '@/shared/assets/icons/desc.svg';
-import { Icon } from '@/shared/ui/redesigned/Icon';
 import { TablePagination } from '../TablePagination/TablePagination';
+import { SortingIcon } from '../SortingIcon/SortingIcon';
 
 type Task = {
     task: string;
@@ -33,10 +29,6 @@ type Task = {
     due: Date | null;
     notes: string;
 };
-
-export interface TableMetaCustom<TData> extends TableMeta<TData> {
-    updateData: (rowIndex: number, columnId: string, value: any) => void;
-}
 
 const columnHelper = createColumnHelper<Task>();
 
@@ -50,9 +42,7 @@ const columns = [
     }),
     columnHelper.accessor('role', {
         header: 'Role',
-        cell: (props) => (
-            <OptionCell {...props} options={USER_ROLE_OPTIONS} /> // Pass options here
-        ),
+        cell: (props) => <OptionCell {...props} options={USER_ROLE_OPTIONS} />,
         enableColumnFilter: true,
         enableSorting: false,
         filterFn: (row, columnId, filterRoles) => {
@@ -71,11 +61,10 @@ const columns = [
     }),
 ];
 
-export const TaskTable = () => {
+export const UsersTable = () => {
     const { t } = useTranslation();
     const [data, setData] = useState<Task[]>(DATA);
     const [columnFilters, setColumnFilters] = useState<CommonFilterType>([]);
-    // const [columnFilters, setColumnFilters] = useState([]);
 
     const table = useReactTable<Task>({
         data,
@@ -104,7 +93,6 @@ export const TaskTable = () => {
     const additionalCellClasses = getFlexClasses({
         vStack: true,
         justify: 'center',
-        // align: 'center',
     });
 
     return (
@@ -133,40 +121,8 @@ export const TaskTable = () => {
                                     header.column.columnDef.header,
                                     header.getContext(),
                                 )}
-                                {header.column.getCanSort() && (
-                                    <Icon
-                                        Svg={SortIcon}
-                                        clickable
-                                        width={20}
-                                        height={20}
-                                        onClick={(event: unknown) => {
-                                            header.column.getToggleSortingHandler()?.(
-                                                event,
-                                            );
-                                        }}
-                                    />
-                                )}
-                                {
-                                    {
-                                        asc: (
-                                            <Icon
-                                                Svg={AscIcon}
-                                                width={25}
-                                                height={25}
-                                            />
-                                        ),
-                                        desc: (
-                                            <Icon
-                                                Svg={DescIcon}
-                                                width={25}
-                                                height={25}
-                                            />
-                                        ),
-                                    }[
-                                        (header.column.getIsSorted() as string) ??
-                                            null
-                                    ]
-                                }
+                                <SortingIcon column={header.column} />
+
                                 <Box
                                     onMouseDown={header.getResizeHandler()}
                                     onTouchStart={header.getResizeHandler()}

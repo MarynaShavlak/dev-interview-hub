@@ -3,8 +3,8 @@ import DatePicker from 'react-datepicker';
 // import CalendarIcon from './icons/CalendarIcon';
 import { CellContext } from '@tanstack/react-table';
 import { useCallback } from 'react';
-import { TableMetaCustom } from '../UsersTable/TaskTable';
 import cls from './DateCell.module.scss';
+import { TableMetaCustom } from '../../model/types/types';
 
 export type DateCellProps<TData> = CellContext<TData, Date>;
 

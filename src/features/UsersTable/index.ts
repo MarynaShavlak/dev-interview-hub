@@ -1,2 +1,1 @@
-export { TaskTable } from './ui/UsersTable/TaskTable';
-
+export { UsersTable } from './ui/UsersTable/UsersTable';

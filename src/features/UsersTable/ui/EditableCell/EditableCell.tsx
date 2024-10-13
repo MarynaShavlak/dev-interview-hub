@@ -2,7 +2,7 @@ import { CellContext } from '@tanstack/react-table';
 import { useCallback, useEffect, useState } from 'react';
 import { Input } from '@/shared/ui/redesigned/Input';
 import cls from './EditableCell.module.scss';
-import { TableMetaCustom } from '../UsersTable/TaskTable';
+import { TableMetaCustom } from '../../model/types/types';
 
 export type EditableCellProps<TData> = CellContext<TData, string>;
 

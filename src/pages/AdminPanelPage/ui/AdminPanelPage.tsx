@@ -3,8 +3,7 @@ import { Page } from '@/widgets/Page';
 import { StatisticsCharts } from '@/widgets/StatisticsCharts';
 
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
-import { UsersInfoTable } from '@/features/UsersInfoTable';
-import { TaskTable } from '@/features/UsersTable';
+import { UsersTable } from '@/features/UsersTable';
 
 const AdminPanelPage = () => {
     return (
@@ -13,8 +12,8 @@ const AdminPanelPage = () => {
             on={
                 <main data-testid="AdminPanelPage">
                     {/* <StatisticsCharts /> */}
-                    <TaskTable />
-                    {/*<UsersInfoTable />*/}
+                    <UsersTable />
+                    {/* <UsersInfoTable /> */}
                 </main>
             }
             off={
