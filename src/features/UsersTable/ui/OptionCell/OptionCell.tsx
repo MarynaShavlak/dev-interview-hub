@@ -2,11 +2,13 @@ import { CellContext } from '@tanstack/react-table';
 import { useCallback } from 'react';
 import { TableMetaCustom } from '../UsersTable/TaskTable';
 import { ListBox } from '@/shared/ui/redesigned/Popups';
-import { Role } from '../../model/types/types';
-import { ColorIndicatorOptionItem } from '../ColorIndicatorOptionItem/ColorIndicatorOptionItem';
+import {
+    ColorIndicatorOptionItem,
+    ColorOption,
+} from '../ColorIndicatorOptionItem/ColorIndicatorOptionItem';
 
 interface OptionCellProps<TData> extends CellContext<TData, any> {
-    options: Role[];
+    options: ColorOption[];
 }
 
 export const OptionCell = <TData,>({

@@ -1,9 +1,17 @@
 import { Box } from '@/shared/ui/common/Box';
+import { HStack } from '@/shared/ui/common/Stack/HStack/HStack';
 import cls from '../OptionCell/OptionCell.module.scss';
-import { Role } from '../../model/types/types';
+
+export interface ColorOption {
+    id: string;
+    name: string;
+    color: string;
+}
 
 export interface ColorIndicatorOptionItemProps {
-    option: Role;
+    option: ColorOption;
+    onClick?: (event: React.MouseEvent<HTMLDivElement>) => void;
+    className?: string;
 }
 
 interface ColorIconProps {
@@ -21,11 +29,13 @@ export const ColorIcon = ({ color }: ColorIconProps) => (
 
 export const ColorIndicatorOptionItem = ({
     option,
+    onClick,
+    className,
 }: ColorIndicatorOptionItemProps) => {
     return (
-        <>
+        <HStack gap="8" onClick={onClick} className={className}>
             <ColorIcon color={option.color} />
             {option.name}
-        </>
+        </HStack>
     );
 };

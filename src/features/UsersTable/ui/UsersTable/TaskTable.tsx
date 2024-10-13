@@ -16,7 +16,7 @@ import { getFlexClasses } from '@/shared/lib/classes/getFlexClasses/getFlexClass
 import { OptionCell } from '../OptionCell/OptionCell';
 import { InputSearch } from '../InputSearch/InputSearch';
 import { FilterPopover } from '../FilterPopover/FilterPopover';
-import { Role } from '../../model/types/types';
+import { ColorOption } from '../ColorIndicatorOptionItem/ColorIndicatorOptionItem';
 
 export interface InputSearchType {
     id: string;
@@ -32,7 +32,7 @@ export type CommonFilterType = (InputSearchType | FilterType)[];
 
 type Task = {
     task: string;
-    role: Role;
+    role: ColorOption;
     due: Date | null;
     notes: string;
 };
@@ -59,7 +59,7 @@ const columns = [
         enableColumnFilter: true,
         filterFn: (row, columnId, filterRoles) => {
             if (filterRoles.length === 0) return true;
-            const role: Role = row.getValue(columnId);
+            const role: ColorOption = row.getValue(columnId);
             return filterRoles.includes(role?.id);
         },
     }),
@@ -120,6 +120,7 @@ export const TaskTable = () => {
                 filterCategory="role"
                 columnFilters={columnFilters}
                 setColumnFilters={setColumnFilters}
+                allOptions={USER_ROLE_OPTIONS}
             />
             <Box className={cls.table} width={table.getTotalSize()}>
                 {table.getHeaderGroups().map((headerGroup) => (

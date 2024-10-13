@@ -44,6 +44,7 @@ export const Flex = (props: FlexProps) => {
         wrap = 'nowrap',
         max,
         fullHeight,
+        onClick,
         'data-testid': dateTestId,
     } = props;
 
@@ -65,6 +66,7 @@ export const Flex = (props: FlexProps) => {
         <div
             className={classNames(cls.Flex, mods, additionalClasses)}
             data-testid={dateTestId}
+            onClick={onClick}
         >
             {children}
         </div>
