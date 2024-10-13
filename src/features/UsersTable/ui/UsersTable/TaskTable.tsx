@@ -3,6 +3,7 @@ import {
     flexRender,
     getCoreRowModel,
     getFilteredRowModel,
+    getSortedRowModel,
     TableMeta,
     useReactTable,
 } from '@tanstack/react-table';
@@ -18,6 +19,10 @@ import { SearchInput } from '../InputSearch/SearchInput';
 import { FilterPopover } from '../FilterPopover/FilterPopover';
 import { ColorOption } from '../ColorIndicatorOptionItem/ColorIndicatorOptionItem';
 import { CommonFilterType } from '../../model/types/types';
+import SortIcon from '@/shared/assets/icons/sort.svg';
+import AscIcon from '@/shared/assets/icons/asc.svg';
+import DescIcon from '@/shared/assets/icons/desc.svg';
+import { Icon } from '@/shared/ui/redesigned/Icon';
 
 type Task = {
     task: string;
@@ -46,6 +51,7 @@ const columns = [
             <OptionCell {...props} options={USER_ROLE_OPTIONS} /> // Pass options here
         ),
         enableColumnFilter: true,
+        enableSorting: false,
         filterFn: (row, columnId, filterRoles) => {
             if (filterRoles.length === 0) return true;
             const role: ColorOption = row.getValue(columnId);
@@ -75,6 +81,7 @@ export const TaskTable = () => {
         },
         getCoreRowModel: getCoreRowModel(),
         getFilteredRowModel: getFilteredRowModel(),
+        getSortedRowModel: getSortedRowModel(),
         debugTable: true,
         columnResizeMode: 'onChange',
         meta: {
@@ -95,8 +102,6 @@ export const TaskTable = () => {
         justify: 'center',
         // align: 'center',
     });
-
-    console.log('data', data);
 
     return (
         <Box>
@@ -124,6 +129,40 @@ export const TaskTable = () => {
                                     header.column.columnDef.header,
                                     header.getContext(),
                                 )}
+                                {header.column.getCanSort() && (
+                                    <Icon
+                                        Svg={SortIcon}
+                                        clickable
+                                        width={20}
+                                        height={20}
+                                        onClick={(event: unknown) => {
+                                            header.column.getToggleSortingHandler()?.(
+                                                event,
+                                            );
+                                        }}
+                                    />
+                                )}
+                                {
+                                    {
+                                        asc: (
+                                            <Icon
+                                                Svg={AscIcon}
+                                                width={25}
+                                                height={25}
+                                            />
+                                        ),
+                                        desc: (
+                                            <Icon
+                                                Svg={DescIcon}
+                                                width={25}
+                                                height={25}
+                                            />
+                                        ),
+                                    }[
+                                        (header.column.getIsSorted() as string) ??
+                                            null
+                                    ]
+                                }
                                 <Box
                                     onMouseDown={header.getResizeHandler()}
                                     onTouchStart={header.getResizeHandler()}
