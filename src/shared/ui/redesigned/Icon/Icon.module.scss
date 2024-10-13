@@ -11,9 +11,12 @@
     outline: none;
     background: none;
     cursor: pointer;
-    transition: color 300ms ease;
+    transition: color 300ms ease,  opacity 300ms ease;
 }
 
 .button:hover .Icon {
     color: var(--accent-redesigned);
+}
+.isDisabled {
+    opacity: 0.3;
 }

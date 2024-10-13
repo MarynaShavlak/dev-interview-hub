@@ -3,12 +3,14 @@ import {
     flexRender,
     getCoreRowModel,
     getFilteredRowModel,
+    getPaginationRowModel,
     getSortedRowModel,
     TableMeta,
     useReactTable,
 } from '@tanstack/react-table';
 import { useState } from 'react';
-import { Box } from '@/shared/ui/common/Box/Box';
+import { useTranslation } from 'react-i18next';
+import { Box } from '@/shared/ui/common/Box';
 import DATA, { USER_ROLE_OPTIONS } from '../data';
 import cls from './UsersTable.module.scss';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
@@ -23,6 +25,7 @@ import SortIcon from '@/shared/assets/icons/sort.svg';
 import AscIcon from '@/shared/assets/icons/asc.svg';
 import DescIcon from '@/shared/assets/icons/desc.svg';
 import { Icon } from '@/shared/ui/redesigned/Icon';
+import { TablePagination } from '../TablePagination/TablePagination';
 
 type Task = {
     task: string;
@@ -69,11 +72,12 @@ const columns = [
 ];
 
 export const TaskTable = () => {
+    const { t } = useTranslation();
     const [data, setData] = useState<Task[]>(DATA);
     const [columnFilters, setColumnFilters] = useState<CommonFilterType>([]);
     // const [columnFilters, setColumnFilters] = useState([]);
 
-    const table = useReactTable({
+    const table = useReactTable<Task>({
         data,
         columns,
         state: {
@@ -82,7 +86,7 @@ export const TaskTable = () => {
         getCoreRowModel: getCoreRowModel(),
         getFilteredRowModel: getFilteredRowModel(),
         getSortedRowModel: getSortedRowModel(),
-        debugTable: true,
+        getPaginationRowModel: getPaginationRowModel(),
         columnResizeMode: 'onChange',
         meta: {
             updateData: (rowIndex: number, columnId: string, value: any) => {
@@ -194,6 +198,7 @@ export const TaskTable = () => {
                     </Box>
                 ))}
             </Box>
+            <TablePagination table={table} />
         </Box>
     );
 };

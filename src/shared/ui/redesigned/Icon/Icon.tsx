@@ -16,6 +16,7 @@ interface NonClickableIconProps extends IconBaseProps {
 
 interface ClickableBaseProps extends IconBaseProps {
     clickable: true;
+    disabled?: boolean;
     onClick: (() => void) | ((event: unknown) => void);
 }
 
@@ -28,10 +29,13 @@ export const Icon = memo((props: IconProps) => {
         width = 32,
         height = 32,
         clickable,
+
         'data-testid': dataTestId,
         ...otherProps
     } = props;
 
+    const disabled =
+        clickable && props.disabled !== undefined ? props.disabled : false;
     const icon = (
         <Svg
             className={classNames(cls.Icon, {}, [className])}
@@ -46,10 +50,15 @@ export const Icon = memo((props: IconProps) => {
         return (
             <button
                 type="button"
-                className={cls.button}
+                className={classNames(
+                    cls.button,
+                    { [cls.isDisabled]: disabled },
+                    [],
+                )}
                 onClick={props.onClick}
                 style={{ height, width }}
                 data-testid={dataTestId}
+                disabled={disabled}
             >
                 {icon}
             </button>
