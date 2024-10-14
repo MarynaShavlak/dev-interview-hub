@@ -36,7 +36,7 @@
   "users": [
     {
       "id": "1",
-      "username": "admin",
+      "username": "mainAdmin",
       "password": "123",
       "roles": [
         "ADMIN"
@@ -55,7 +55,7 @@
     },
     {
       "id": "2",
-      "username": "user",
+      "username": "mainUser",
       "password": "123",
       "roles": [
         "USER"
@@ -72,7 +72,7 @@
     },
     {
       "id": "3",
-      "username": "manager",
+      "username": "mainManager",
       "password": "123",
       "roles": [
         "MANAGER"
@@ -501,7 +501,7 @@
       "currency": "EUR",
       "country": "Ukraine",
       "city": "Kharkiv",
-      "username": "admin",
+      "username": "mainAdmin",
       "avatar": "https://drive.google.com/thumbnail?id=1RD0jSAm8kdTLKa-Vr0daeE8T9-QcfPCa&sz=w1000"
     },
     {
@@ -512,7 +512,7 @@
       "currency": "UAH",
       "country": "Ukraine",
       "city": "Kyiv",
-      "username": "user",
+      "username": "mainUser",
       "avatar": "https://drive.google.com/thumbnail?id=1J1xUPYYkJeOsBTpDuf36vsV7UfxlM2uG&sz=w1000"
     },
     {
@@ -523,7 +523,7 @@
       "currency": "EUR",
       "country": "Ukraine",
       "city": "Kyiv",
-      "username": "manager",
+      "username": "mainManager",
       "avatar": "https://st3.depositphotos.com/1071184/13782/v/450/depositphotos_137825710-stock-illustration-business-person-analyzing-financial-statistics.jpg"
     },
     {

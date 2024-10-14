@@ -6,6 +6,7 @@ import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { SortingIcon } from '../SortingIcon/SortingIcon';
 import { TableFilter } from '../TableFilter/TableFilter';
 import {
+    ColorOption,
     ColumnFilterHandlerProps,
     CommonFilterType,
 } from '../../model/types/types';
@@ -13,6 +14,7 @@ import { getFlexClasses } from '@/shared/lib/classes/getFlexClasses/getFlexClass
 import { HStack } from '@/shared/ui/common/Stack';
 import { UsersTableInfo } from '../../model/types/usersTableInfo';
 import { Currency } from '@/entities/Currency';
+import { Country } from '@/entities/Country';
 
 const ROLE_ADMIN = { id: '1', name: 'Admin', color: '#f77' };
 const ROLE_USER = {
@@ -39,17 +41,34 @@ export const TableHeader = <T,>(props: TableHeaderProps<T>) => {
         align: 'center',
     });
 
-    const uniqueCurrencies: Currency[] = [
-        ...new Set(data.map((user) => user.currency as Currency)),
-    ];
-    const getAllOptions = (headerId: string) => {
+    const getAllOptions = (headerId: string): (string | ColorOption)[] => {
         switch (headerId) {
             case 'role':
                 return uniqueRoles;
             // case 'currency':
             //     return uniqueCurrencies;
             case 'username':
-                return [...new Set(data.map((user) => user.username))];
+                return [
+                    ...new Set(data.map((user) => user.username as string)),
+                ];
+            case 'lastname':
+                return [
+                    ...new Set(data.map((user) => user.lastname as string)),
+                ];
+            case 'firstname':
+                return [
+                    ...new Set(data.map((user) => user.lastname as string)),
+                ];
+            case 'city':
+                return [...new Set(data.map((user) => user.city as string))];
+            case 'currency':
+                return [
+                    ...new Set(data.map((user) => user.currency as Currency)),
+                ];
+            case 'country':
+                return [
+                    ...new Set(data.map((user) => user.country as Country)),
+                ];
             default:
                 return []; // Default empty if not recognized
         }

@@ -37,21 +37,33 @@ const columns = [
         cell: EditableCell,
         size: 120,
         enableColumnFilter: true,
-        filterFn: 'includesString',
+        enableSorting: true,
+        filterFn: (row, columnId, filterRoles) => {
+            if (filterRoles.length === 0) return true;
+            return filterRoles.includes(row.getValue(columnId));
+        },
     }),
     columnHelper.accessor('firstname', {
         header: 'First Name',
         cell: EditableCell,
         size: 120,
         enableColumnFilter: true,
-        filterFn: 'includesString',
+        enableSorting: true,
+        filterFn: (row, columnId, filterRoles) => {
+            if (filterRoles.length === 0) return true;
+            return filterRoles.includes(row.getValue(columnId));
+        },
     }),
     columnHelper.accessor('lastname', {
         header: 'Last Name',
         cell: EditableCell,
         size: 120,
         enableColumnFilter: true,
-        filterFn: 'includesString',
+        enableSorting: true,
+        filterFn: (row, columnId, filterRoles) => {
+            if (filterRoles.length === 0) return true;
+            return filterRoles.includes(row.getValue(columnId));
+        },
     }),
 
     columnHelper.accessor('age', {
@@ -68,9 +80,7 @@ const columns = [
         enableSorting: false,
         filterFn: (row, columnId, filterRoles) => {
             if (filterRoles.length === 0) return true;
-            const city: 'string' = row.getValue(columnId);
-            console.log('city', city);
-            return filterRoles.includes(city);
+            return filterRoles.includes(row.getValue(columnId));
         },
     }),
     columnHelper.accessor('country', {
@@ -79,7 +89,10 @@ const columns = [
         size: 100,
         enableColumnFilter: true,
         enableSorting: false,
-        filterFn: 'includesString',
+        filterFn: (row, columnId, filterRoles) => {
+            if (filterRoles.length === 0) return true;
+            return filterRoles.includes(row.getValue(columnId));
+        },
     }),
     columnHelper.accessor('currency', {
         header: 'Currency',
@@ -87,7 +100,10 @@ const columns = [
         size: 100,
         enableColumnFilter: true,
         enableSorting: false,
-        filterFn: 'includesString',
+        filterFn: (row, columnId, filterRoles) => {
+            if (filterRoles.length === 0) return true;
+            return filterRoles.includes(row.getValue(columnId));
+        },
     }),
     columnHelper.accessor('articlesQuantity', {
         header: 'Articles Quantity',
