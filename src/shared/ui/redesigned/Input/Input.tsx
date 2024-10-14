@@ -17,13 +17,14 @@ interface InputProps extends HTMLInputProps {
     label?: string;
     value?: string | number;
     onChange?: (value: string) => void;
+    onBlur?: () => void;
     autofocus?: boolean;
     readonly?: boolean;
     addonLeft?: ReactNode;
     addonRight?: ReactNode;
     size?: InputSize;
     digitsOnly?: boolean;
-    border?: boolean;
+    clear?: boolean;
 }
 
 export const Input = memo((props: InputProps) => {
@@ -33,6 +34,7 @@ export const Input = memo((props: InputProps) => {
         value,
         size = 'm',
         onChange,
+        onBlur,
         type = 'text',
         placeholder,
         autofocus,
@@ -40,17 +42,17 @@ export const Input = memo((props: InputProps) => {
         addonLeft,
         addonRight,
         digitsOnly = false,
-        border = true,
+        clear = false,
         ...otherProps
     } = props;
     const { ref, isFocused, onChangeHandler, onBlurHandler, onFocus } =
-        useInput({ autofocus, digitsOnly, onChange });
+        useInput({ autofocus, digitsOnly, onChange, onBlur });
     const mods: Mods = {
         [cls.readonly]: readonly,
         [cls.focused]: isFocused,
         [cls.withAddonLeft]: Boolean(addonLeft),
         [cls.withAddonRight]: Boolean(addonRight),
-        [cls.noBorder]: !border,
+        [cls.clear]: clear,
     };
 
     const input = (

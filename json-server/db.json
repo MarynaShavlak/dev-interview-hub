@@ -39,8 +39,7 @@
       "username": "admin",
       "password": "123",
       "roles": [
-        "ADMIN",
-        "Manager"
+        "ADMIN"
       ],
       "features": {
         "isArticleRatingEnabled": true,
@@ -140,8 +139,7 @@
       "username": "katyaAdmin",
       "password": "admin456",
       "roles": [
-        "ADMIN",
-        "USER"
+        "ADMIN"
       ],
       "features": {
         "isArticleRatingEnabled": true,

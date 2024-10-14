@@ -29,9 +29,15 @@ interface UseInputProps {
     autofocus?: boolean;
     digitsOnly?: boolean;
     onChange?: (value: string) => void;
+    onBlur?: () => void;
 }
 
-export function useInput({ autofocus, digitsOnly, onChange }: UseInputProps) {
+export function useInput({
+    autofocus,
+    digitsOnly,
+    onChange,
+    onBlur,
+}: UseInputProps) {
     const ref = useRef<HTMLInputElement>(null);
     const [isFocused, setIsFocused] = useState(false);
     const [caretPosition, setCaretPosition] = useState(0);
@@ -52,12 +58,17 @@ export function useInput({ autofocus, digitsOnly, onChange }: UseInputProps) {
     };
 
     const onBlurHandler = (e: FocusEvent<HTMLInputElement>) => {
+        const trimmedValue = trimText(e.target.value);
+        onChange?.(trimmedValue);
         setIsFocused(false);
-        onChange?.(trimText(e.target.value));
+        onBlur?.();
+        console.log('isFocused in Blur', isFocused);
     };
 
     const onFocus = () => {
+        console.log('isFocused BEFORE', isFocused);
         setIsFocused(true);
+        console.log('isFocused AFTER', isFocused);
     };
     const onSelect = (e: any) => {
         setCaretPosition(e?.target?.selectionStart || 0);

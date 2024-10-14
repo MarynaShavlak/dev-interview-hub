@@ -16,8 +16,8 @@ export const SortingIcon = <T,>({ column }: SortingIconProps<T>) => {
                 <Icon
                     Svg={SortIcon}
                     clickable
-                    width={18}
-                    height={18}
+                    width={15}
+                    height={15}
                     onClick={(event) => {
                         column.getToggleSortingHandler()?.(event);
                     }}
@@ -26,8 +26,8 @@ export const SortingIcon = <T,>({ column }: SortingIconProps<T>) => {
             {isSorted && (
                 <Icon
                     Svg={isSorted === 'asc' ? AscIcon : DescIcon}
-                    width={25}
-                    height={25}
+                    width={15}
+                    height={15}
                 />
             )}
         </>

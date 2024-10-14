@@ -14,7 +14,7 @@ interface FilterPopoverProps extends ColumnFilterHandlerProps {
     allOptions: ColorOption[];
 }
 
-export const FilterPopover = (props: FilterPopoverProps) => {
+export const TableFilter = (props: FilterPopoverProps) => {
     const { columnFilters, setColumnFilters, filterCategory, allOptions } =
         props;
     const filteredOptions =
@@ -22,7 +22,7 @@ export const FilterPopover = (props: FilterPopoverProps) => {
         ([] as string[]);
 
     const isFilterActive = filteredOptions.length > 0;
-    console.log('filterCategory', filterCategory);
+    // console.log('filterCategory', filterCategory);
     return (
         <Popover
             direction="bottom left"

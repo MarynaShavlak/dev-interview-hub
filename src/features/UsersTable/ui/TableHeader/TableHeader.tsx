@@ -1,16 +1,17 @@
-import { HeaderGroup, flexRender } from '@tanstack/react-table';
+import { flexRender, HeaderGroup } from '@tanstack/react-table';
 
 import { Box } from '@/shared/ui/common/Box';
 import cls from './TableHeader.module.scss';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { SortingIcon } from '../SortingIcon/SortingIcon';
-import { FilterPopover } from '../FilterPopover/FilterPopover';
+import { TableFilter } from '../FilterPopover/TableFilter';
 import {
     ColumnFilterHandlerProps,
     CommonFilterType,
 } from '../../model/types/types';
 import { ColorOption } from '../ColorIndicatorOptionItem/ColorIndicatorOptionItem';
 import { getFlexClasses } from '@/shared/lib/classes/getFlexClasses/getFlexClasses';
+import { HStack } from '@/shared/ui/common/Stack';
 
 interface TableHeaderProps<T> extends ColumnFilterHandlerProps {
     headerGroup: HeaderGroup<T>;
@@ -22,7 +23,7 @@ export const TableHeader = <T,>(props: TableHeaderProps<T>) => {
     const { headerGroup, setColumnFilters, columnFilters, allOptions } = props;
     const additionalClasses = getFlexClasses({
         hStack: true,
-        gap: '4',
+        gap: '8',
         justify: 'center',
         align: 'center',
     });
@@ -34,17 +35,25 @@ export const TableHeader = <T,>(props: TableHeaderProps<T>) => {
                     key={header.id}
                     width={header.getSize()}
                 >
-                    {flexRender(
-                        header.column.columnDef.header,
-                        header.getContext(),
+                    <HStack gap="4">
+                        {flexRender(
+                            header.column.columnDef.header,
+                            header.getContext(),
+                        )}
+
+                        {header.column.getCanSort() && (
+                            <SortingIcon column={header.column} />
+                        )}
+                    </HStack>
+
+                    {header.column.getCanFilter() && (
+                        <TableFilter
+                            filterCategory={header.id}
+                            columnFilters={columnFilters}
+                            setColumnFilters={setColumnFilters}
+                            allOptions={allOptions}
+                        />
                     )}
-                    <SortingIcon column={header.column} />
-                    <FilterPopover
-                        filterCategory={header.id}
-                        columnFilters={columnFilters}
-                        setColumnFilters={setColumnFilters}
-                        allOptions={allOptions}
-                    />
                     <Box
                         onMouseDown={header.getResizeHandler()}
                         onTouchStart={header.getResizeHandler()}

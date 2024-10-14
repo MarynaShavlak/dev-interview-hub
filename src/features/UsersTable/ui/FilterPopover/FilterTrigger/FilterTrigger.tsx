@@ -17,8 +17,8 @@ export const FilterTrigger = ({ isFilterActive }: FilterTriggerProps) => {
 
     return (
         <Icon
-            width="20"
-            height="20"
+            width="15"
+            height="15"
             Svg={FilterIcon}
             className={classNames(
                 cls.filterIcon,

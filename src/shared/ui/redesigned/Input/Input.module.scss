@@ -36,6 +36,14 @@
     padding-right: 8px;
 }
 
+.clear {
+    border: none;
+    background: none;
+    outline: none;
+    border-radius: 0;
+}
+
+
 .focused {
     border: 2px solid var(--accent-redesigned);
 
@@ -44,6 +52,14 @@
         color: var(--accent-redesigned);
     }
 }
+
+
+.clear.focused  {
+    border: none;
+    background-color: var(--light-bg-redesigned);
+
+}
+
 
 .input {
     border: none;
@@ -60,3 +76,8 @@
 .readonly {
     opacity: 0.7;
 }
+
+
+
+
+

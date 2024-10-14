@@ -3,6 +3,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { Input } from '@/shared/ui/redesigned/Input';
 import cls from './EditableCell.module.scss';
 import { TableMetaCustom } from '../../model/types/types';
+import { trimText } from '@/shared/lib/text/trimText/trimText';
 
 export type EditableCellProps<TData> = CellContext<TData, string>;
 
@@ -18,7 +19,8 @@ export const EditableCell = <TData,>({
 
     const onBlur = useCallback(() => {
         if (meta?.updateData) {
-            meta.updateData(row.index, column.id, value);
+            const trimmedValue = trimText(value);
+            meta.updateData(row.index, column.id, trimmedValue);
         }
     }, [column.id, meta, row.index, value]);
 
@@ -36,6 +38,7 @@ export const EditableCell = <TData,>({
             onChange={onChangeCell}
             className={cls.cellInput}
             onBlur={onBlur}
+            clear
         />
     );
 };
