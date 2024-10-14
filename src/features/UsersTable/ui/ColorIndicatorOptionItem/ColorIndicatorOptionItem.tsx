@@ -1,12 +1,7 @@
 import { Box } from '@/shared/ui/common/Box';
 import { HStack } from '@/shared/ui/common/Stack/HStack/HStack';
 import cls from '../OptionCell/OptionCell.module.scss';
-
-export interface ColorOption {
-    id: string;
-    name: string;
-    color: string;
-}
+import { ColorOption } from '../../model/types/types';
 
 export interface ColorIndicatorOptionItemProps {
     option: ColorOption;

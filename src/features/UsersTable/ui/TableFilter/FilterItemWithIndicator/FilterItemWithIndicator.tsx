@@ -1,20 +1,20 @@
 import { useCallback } from 'react';
 import { VStack } from '@/shared/ui/common/Stack';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
-import cls from './FilterItem.module.scss';
+import cls from './FilterItemWithIndicator.module.scss';
+import { ColorIndicatorOptionItem } from '../../ColorIndicatorOptionItem/ColorIndicatorOptionItem';
 import {
-    ColorIndicatorOptionItem,
     ColorOption,
-} from '../../ColorIndicatorOptionItem/ColorIndicatorOptionItem';
-import { ColumnFilterHandlerProps } from '../../../model/types/types';
+    ColumnFilterHandlerProps,
+} from '../../../model/types/types';
 
 interface FilterItemProps extends ColumnFilterHandlerProps {
     option: ColorOption;
-    isActive: boolean;
+    isActive?: boolean;
     filterCategory: string;
 }
 
-export const FilterItem = (props: FilterItemProps) => {
+export const FilterItemWithIndicator = (props: FilterItemProps) => {
     const { option, setColumnFilters, isActive, filterCategory } = props;
     const { id } = option;
 
@@ -27,7 +27,6 @@ export const FilterItem = (props: FilterItemProps) => {
                     (filter) => filter.id === filterCategory,
                 )?.value;
 
-                // console.log('roles', roles);
                 if (!options) {
                     return [...prev, { id: filterCategory, value: [id] }];
                 }

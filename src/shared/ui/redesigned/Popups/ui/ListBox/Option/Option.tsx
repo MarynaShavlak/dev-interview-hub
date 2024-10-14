@@ -44,7 +44,11 @@ export function Option<T extends string>({ item }: OptionItemProps<T>) {
                         selected,
                     )}
                 >
-                    <HStack gap="8" className={classNames(cls.wrap, {})}>
+                    <HStack
+                        gap="4"
+                        className={classNames(cls.wrap, {})}
+                        justify="between"
+                    >
                         {item.content}
                         {selected && (
                             <Icon

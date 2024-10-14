@@ -1,11 +1,9 @@
 import { CellContext } from '@tanstack/react-table';
 import { useCallback } from 'react';
 import { ListBox } from '@/shared/ui/redesigned/Popups';
-import {
-    ColorIndicatorOptionItem,
-    ColorOption,
-} from '../ColorIndicatorOptionItem/ColorIndicatorOptionItem';
-import { TableMetaCustom } from '../../model/types/types';
+import { ColorIndicatorOptionItem } from '../ColorIndicatorOptionItem/ColorIndicatorOptionItem';
+import { ColorOption, TableMetaCustom } from '../../model/types/types';
+import cls from './OptionCell.module.scss';
 
 interface OptionCellProps<TData> extends CellContext<TData, any> {
     options: ColorOption[];
@@ -19,12 +17,18 @@ export const OptionCell = <TData,>({
     options,
 }: OptionCellProps<TData>) => {
     const { name } = getValue() || {};
+    // console.log('name', name);
     const meta = table.options.meta as TableMetaCustom<TData>;
     const currentValue = name;
 
     const listBoxOptions = options.map((option) => ({
         value: `${option.name}`,
-        content: <ColorIndicatorOptionItem option={option} />,
+        content: (
+            <ColorIndicatorOptionItem
+                className={cls.colorIndicatorOptionItem}
+                option={option}
+            />
+        ),
     }));
 
     const onCellClick = useCallback(

@@ -1,7 +1,7 @@
 import { Popover } from '@/shared/ui/redesigned/Popups';
 import cls from './FilterPopover.module.scss';
-import { ColorOption } from '../ColorIndicatorOptionItem/ColorIndicatorOptionItem';
 import {
+    ColorOption,
     ColumnFilterHandlerProps,
     CommonFilterType,
 } from '../../model/types/types';
@@ -11,7 +11,7 @@ import { FilterTrigger } from './FilterTrigger/FilterTrigger';
 interface FilterPopoverProps extends ColumnFilterHandlerProps {
     filterCategory: string;
     columnFilters: CommonFilterType;
-    allOptions: ColorOption[];
+    allOptions: (ColorOption | string)[];
 }
 
 export const TableFilter = (props: FilterPopoverProps) => {
@@ -22,7 +22,7 @@ export const TableFilter = (props: FilterPopoverProps) => {
         ([] as string[]);
 
     const isFilterActive = filteredOptions.length > 0;
-    // console.log('filterCategory', filterCategory);
+    console.log('allOptions', allOptions);
     return (
         <Popover
             direction="bottom left"
@@ -31,6 +31,7 @@ export const TableFilter = (props: FilterPopoverProps) => {
             className={cls.filterPopover}
         >
             <FilterMenu
+                className={cls.filterMenu}
                 allOptions={allOptions}
                 filteredOptions={filteredOptions}
                 setColumnFilters={setColumnFilters}

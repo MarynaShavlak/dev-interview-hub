@@ -1,7 +1,7 @@
 import { useUsers } from '@/entities/User';
 import { useProfiles } from '@/entities/Profile';
 import { useArticles } from '@/entities/Article';
-import { getRolesData } from '../helpers/getRolesData/getRolesData';
+import { getRoleData } from '../helpers/getRolesData/getRoleData';
 import { getEnabledUserFeatures } from '../helpers/processUserFeatures/processUserFeatures';
 import { getCombinedUsersData } from '../helpers/getCombinedUsersData/getCombinedUsersData';
 import { ArticlesByUserData } from '../../model/types/usersTableInfo';
@@ -20,7 +20,7 @@ export const useUsersTableData = () => {
         return {
             id: id || '',
             username: username || '',
-            role: getRolesData(roles),
+            role: getRoleData(roles),
             features: getEnabledUserFeatures(features),
         };
     });

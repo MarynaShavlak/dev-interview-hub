@@ -2,11 +2,12 @@
   display: flex;
   width: fit-content;
   text-align: center;
-  font: var(--font-s-redesigned);
+
 }
 
  .td {
    border: 1px solid var(--icon-redesigned);
+   font: var(--font-s-redesigned);
    //padding: 8px;
 }
 

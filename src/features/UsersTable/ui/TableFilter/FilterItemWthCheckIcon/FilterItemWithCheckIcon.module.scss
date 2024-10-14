@@ -1,0 +1,11 @@
+.filterItem {
+  transition: background-color 300ms;
+  padding: 10px 20px;
+  &:hover {
+    background: var(--light-bg-redesigned);
+  }
+}
+
+.active {
+  background: var(--light-bg-redesigned);
+}

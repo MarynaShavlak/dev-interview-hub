@@ -1,9 +1,10 @@
 import { Profile } from '@/entities/Profile';
+import { ColorOption } from './types';
 
 export interface UserPartial {
     id: string;
     username: string;
-    role: string;
+    role: ColorOption | null;
     features: string;
 }
 

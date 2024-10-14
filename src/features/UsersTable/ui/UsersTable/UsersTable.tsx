@@ -14,14 +14,13 @@ import cls from './UsersTable.module.scss';
 import { EditableCell } from '../EditableCell/EditableCell';
 import { OptionCell } from '../OptionCell/OptionCell';
 import { SearchInput } from '../InputSearch/SearchInput';
-import { CommonFilterType } from '../../model/types/types';
+import { ColorOption, CommonFilterType } from '../../model/types/types';
 import { TablePagination } from '../TablePagination/TablePagination';
 import { TableRow } from '../TableRow/TableRow';
 import { Each } from '@/shared/lib/components/Each/Each';
 import { TableHeader } from '../TableHeader/TableHeader';
 import { useUsersTableData } from '../../lib/hooks/useUsersTableData';
 import { UsersTableInfo } from '../../model/types/usersTableInfo';
-import { ColorOption } from '../ColorIndicatorOptionItem/ColorIndicatorOptionItem';
 
 const columnHelper = createColumnHelper<UsersTableInfo>();
 
@@ -36,7 +35,7 @@ const columns = [
     columnHelper.accessor('username', {
         header: 'Username',
         cell: EditableCell,
-        size: 140,
+        size: 120,
         enableColumnFilter: true,
         filterFn: 'includesString',
     }),
@@ -58,7 +57,7 @@ const columns = [
     columnHelper.accessor('age', {
         header: 'Age',
         cell: (props) => <p>{props.getValue()}</p>,
-        size: 50,
+        size: 80,
         enableColumnFilter: false,
     }),
     columnHelper.accessor('city', {
@@ -66,13 +65,20 @@ const columns = [
         cell: EditableCell,
         size: 100,
         enableColumnFilter: true,
-        filterFn: 'includesString',
+        enableSorting: false,
+        filterFn: (row, columnId, filterRoles) => {
+            if (filterRoles.length === 0) return true;
+            const city: 'string' = row.getValue(columnId);
+            console.log('city', city);
+            return filterRoles.includes(city);
+        },
     }),
     columnHelper.accessor('country', {
         header: 'Country',
         cell: (props) => <p>{props.getValue()}</p>,
         size: 100,
         enableColumnFilter: true,
+        enableSorting: false,
         filterFn: 'includesString',
     }),
     columnHelper.accessor('currency', {
@@ -80,6 +86,7 @@ const columns = [
         cell: (props) => <p>{props.getValue()}</p>,
         size: 100,
         enableColumnFilter: true,
+        enableSorting: false,
         filterFn: 'includesString',
     }),
     columnHelper.accessor('articlesQuantity', {
@@ -101,6 +108,7 @@ const columns = [
         cell: (props) => <OptionCell {...props} options={USER_ROLE_OPTIONS} />,
         enableColumnFilter: true,
         enableSorting: false,
+        size: 110,
         filterFn: (row, columnId, filterRoles) => {
             if (filterRoles.length === 0) return true;
             const role: ColorOption = row.getValue(columnId);
@@ -178,7 +186,7 @@ export const UsersTable = () => {
                             key={headerGroup.id}
                             headerGroup={headerGroup}
                             setColumnFilters={setColumnFilters}
-                            allOptions={USER_ROLE_OPTIONS}
+                            data={data}
                             columnFilters={columnFilters}
                         />
                     )}
