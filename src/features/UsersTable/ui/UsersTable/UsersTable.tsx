@@ -24,17 +24,16 @@ import { UsersTableInfo } from '../../model/types/usersTableInfo';
 import { Avatar } from '@/shared/ui/redesigned/Avatar';
 import { VStack } from '@/shared/ui/common/Stack';
 import { getUniqueOptions } from '../../lib/helpers/getUniqueOptions/getUniqueOptions';
+import { createStaticTextColumn } from '../../lib/helpers/columnCreators/createStaticColumn/createStaticTextColumn';
+import { createEditableColumn } from '../../lib/helpers/columnCreators/createEditableColumn/createEditableColumn';
 
 const columnHelper = createColumnHelper<UsersTableInfo>();
 
+const createUserTextCol = createStaticTextColumn<UsersTableInfo>();
+const createUserEditableCol = createEditableColumn<UsersTableInfo>();
+
 const columns = [
-    columnHelper.accessor('id', {
-        header: 'Id',
-        size: 30,
-        cell: (props) => <p>{props.getValue()}</p>,
-        enableColumnFilter: false,
-        enableSorting: false,
-    }),
+    columnHelper.accessor('id', createUserTextCol({ id: 'id', size: 40 })),
     columnHelper.accessor('avatar', {
         header: 'Avatar',
         cell: (props) => (
@@ -48,57 +47,27 @@ const columns = [
         enableColumnFilter: false,
         enableSorting: false,
     }),
-    columnHelper.accessor('username', {
-        header: 'Username',
-        cell: EditableCell,
-        size: 100,
-        enableColumnFilter: true,
-        enableSorting: true,
-        filterFn: (row, columnId, filterRoles) => {
-            if (filterRoles.length === 0) return true;
-            return filterRoles.includes(row.getValue(columnId));
-        },
-    }),
-    columnHelper.accessor('firstname', {
-        header: 'First Name',
-        cell: EditableCell,
-        size: 120,
-        enableColumnFilter: true,
-        enableSorting: true,
-        filterFn: (row, columnId, filterRoles) => {
-            if (filterRoles.length === 0) return true;
-            return filterRoles.includes(row.getValue(columnId));
-        },
-    }),
-    columnHelper.accessor('lastname', {
-        header: 'Last Name',
-        cell: EditableCell,
-        size: 120,
-        enableColumnFilter: true,
-        enableSorting: true,
-        filterFn: (row, columnId, filterRoles) => {
-            if (filterRoles.length === 0) return true;
-            return filterRoles.includes(row.getValue(columnId));
-        },
-    }),
+    columnHelper.accessor(
+        'username',
+        createUserEditableCol({ id: 'username', size: 120 }),
+    ),
+    columnHelper.accessor(
+        'firstname',
+        createUserEditableCol({ id: 'firstname', size: 120 }),
+    ),
+    columnHelper.accessor(
+        'lastname',
+        createUserEditableCol({ id: 'lastname', size: 120 }),
+    ),
 
-    columnHelper.accessor('age', {
-        header: 'Age',
-        cell: (props) => <p>{props.getValue()}</p>,
-        size: 80,
-        enableColumnFilter: false,
-    }),
-    columnHelper.accessor('city', {
-        header: 'City',
-        cell: EditableCell,
-        size: 100,
-        enableColumnFilter: true,
-        enableSorting: false,
-        filterFn: (row, columnId, filterRoles) => {
-            if (filterRoles.length === 0) return true;
-            return filterRoles.includes(row.getValue(columnId));
-        },
-    }),
+    columnHelper.accessor(
+        'age',
+        createUserTextCol({ id: 'age', size: 80, sortable: true }),
+    ),
+    columnHelper.accessor(
+        'city',
+        createUserEditableCol({ id: 'city', size: 100, sortable: false }),
+    ),
     columnHelper.accessor('country', {
         header: 'Country',
         cell: (props) => <p>{props.getValue()}</p>,
@@ -121,12 +90,14 @@ const columns = [
             return filterRoles.includes(row.getValue(columnId));
         },
     }),
-    columnHelper.accessor('articlesQuantity', {
-        header: 'Articles Quantity',
-        cell: (props) => <p>{props.getValue()}</p>,
-        size: 80,
-        enableColumnFilter: false,
-    }),
+    columnHelper.accessor(
+        'articlesQuantity',
+        createUserTextCol({
+            id: 'articlesQuantity',
+            size: 80,
+            sortable: true,
+        }),
+    ),
 
     columnHelper.accessor('features', {
         header: 'Features',

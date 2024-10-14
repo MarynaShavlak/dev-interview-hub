@@ -5,17 +5,17 @@ import cls from './EditableCell.module.scss';
 import { TableMetaCustom } from '../../model/types/types';
 import { trimText } from '@/shared/lib/text/trimText/trimText';
 
-export type EditableCellProps<TData> = CellContext<TData, string>;
+export type EditableCellProps<T, IDType> = CellContext<T, IDType>;
 
-export const EditableCell = <TData,>({
+export const EditableCell = <T, IDType>({
     getValue,
     row,
     column,
     table,
-}: EditableCellProps<TData>) => {
+}: EditableCellProps<T, IDType>) => {
     const initialValue = getValue() ?? '';
-    const [value, setValue] = useState<string>(initialValue);
-    const meta = table.options.meta as TableMetaCustom<TData>;
+    const [value, setValue] = useState<string>(String(initialValue));
+    const meta = table.options.meta as TableMetaCustom<T>;
 
     const onBlur = useCallback(() => {
         if (meta?.updateData) {
@@ -29,7 +29,7 @@ export const EditableCell = <TData,>({
     }, []);
 
     useEffect(() => {
-        setValue(initialValue);
+        setValue(String(initialValue));
     }, [initialValue]);
 
     return (
