@@ -22,7 +22,6 @@ export const TableFilter = (props: FilterPopoverProps) => {
         ([] as string[]);
 
     const isFilterActive = filteredOptions.length > 0;
-    console.log('allOptions', allOptions);
     return (
         <Popover
             direction="bottom left"

@@ -153,6 +153,7 @@ export const UsersTable = () => {
     const [data, setData] = useState<UsersTableInfo[]>([]);
 
     const [columnFilters, setColumnFilters] = useState<CommonFilterType>([]);
+    const [globalFilter, setGlobalFilter] = useState<string>('');
 
     useEffect(() => {
         if (!isLoading && users.length !== data.length) {
@@ -178,21 +179,28 @@ export const UsersTable = () => {
         columns,
         state: {
             columnFilters,
+            globalFilter,
         },
+
         getCoreRowModel: getCoreRowModel(),
         getFilteredRowModel: getFilteredRowModel(),
         getSortedRowModel: getSortedRowModel(),
         getPaginationRowModel: getPaginationRowModel(),
+        globalFilterFn: 'includesString',
         columnResizeMode: 'onChange',
         meta: { updateData },
     });
 
     return (
         <Box>
+            {/* <SearchInput */}
+            {/*    filterCategory="username" */}
+            {/*    columnFilters={columnFilters} */}
+            {/*    setColumnFilters={setColumnFilters} */}
+            {/* /> */}
             <SearchInput
-                filterCategory="username"
-                columnFilters={columnFilters}
-                setColumnFilters={setColumnFilters}
+                globalFilter={globalFilter}
+                setGlobalFilter={setGlobalFilter} // Pass the global filter to SearchInput
             />
             <Box className={cls.table} width={table.getTotalSize()}>
                 <Each
