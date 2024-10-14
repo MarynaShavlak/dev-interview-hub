@@ -28,9 +28,21 @@ export const Avatar = memo(
             [size],
         );
 
-        const fallback = <Skeleton width={size} height={size} border="50%" />;
+        const fallback = (
+            <Skeleton
+                width={size}
+                height={size}
+                border="50%"
+                className={className}
+            />
+        );
         const errorFallback = (
-            <Icon width={size} height={size} Svg={UserIcon} />
+            <Icon
+                width={size}
+                height={size}
+                Svg={UserIcon}
+                className={className}
+            />
         );
         const avatar = (
             <AppImage
@@ -39,7 +51,7 @@ export const Avatar = memo(
                 src={src}
                 alt={alt}
                 style={styles}
-                className={classNames(cls.Avatar, mods, [])}
+                className={classNames(cls.Avatar, mods, [className])}
             />
         );
 

@@ -1,4 +1,19 @@
 .table {
   border: 1px solid var(--icon-redesigned);
+
 }
+
+.tableAvatar {
+  align-self: center;
+}
+
+
+.tableWrap {
+  width:856px;
+  min-height: 400px;
+  overflow-x: scroll;
+  overflow-y: hidden;
+
+}
+
 

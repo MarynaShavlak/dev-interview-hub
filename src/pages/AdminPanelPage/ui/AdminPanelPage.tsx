@@ -12,7 +12,9 @@ const AdminPanelPage = () => {
             on={
                 <main data-testid="AdminPanelPage">
                     {/* <StatisticsCharts /> */}
+
                     <UsersTable />
+
                     {/* <UsersInfoTable /> */}
                 </main>
             }

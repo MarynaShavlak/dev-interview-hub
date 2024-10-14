@@ -13,7 +13,7 @@ import { USER_ROLE_OPTIONS } from '../data';
 import cls from './UsersTable.module.scss';
 import { EditableCell } from '../EditableCell/EditableCell';
 import { OptionCell } from '../OptionCell/OptionCell';
-import { SearchInput } from '../InputSearch/SearchInput';
+import { SearchInput } from '../SearchInput/SearchInput';
 import { ColorOption, CommonFilterType } from '../../model/types/types';
 import { TablePagination } from '../TablePagination/TablePagination';
 import { TableRow } from '../TableRow/TableRow';
@@ -21,21 +21,37 @@ import { Each } from '@/shared/lib/components/Each/Each';
 import { TableHeader } from '../TableHeader/TableHeader';
 import { useUsersTableData } from '../../lib/hooks/useUsersTableData';
 import { UsersTableInfo } from '../../model/types/usersTableInfo';
+import { Avatar } from '@/shared/ui/redesigned/Avatar';
+import { VStack } from '@/shared/ui/common/Stack';
+import { getUniqueOptions } from '../../lib/helpers/getUniqueOptions/getUniqueOptions';
 
 const columnHelper = createColumnHelper<UsersTableInfo>();
 
 const columns = [
     columnHelper.accessor('id', {
         header: 'Id',
-        size: 40,
+        size: 30,
         cell: (props) => <p>{props.getValue()}</p>,
+        enableColumnFilter: false,
+        enableSorting: false,
+    }),
+    columnHelper.accessor('avatar', {
+        header: 'Avatar',
+        cell: (props) => (
+            <Avatar
+                src={props.getValue()}
+                size={30}
+                className={cls.tableAvatar}
+            />
+        ),
+        size: 50,
         enableColumnFilter: false,
         enableSorting: false,
     }),
     columnHelper.accessor('username', {
         header: 'Username',
         cell: EditableCell,
-        size: 120,
+        size: 100,
         enableColumnFilter: true,
         enableSorting: true,
         filterFn: (row, columnId, filterRoles) => {
@@ -112,13 +128,14 @@ const columns = [
         enableColumnFilter: false,
     }),
 
-    // columnHelper.accessor('features', {
-    //     header: 'Features',
-    //     cell: EditableCell,
-    //     size: 250,
-    //     enableColumnFilter: true,
-    //     filterFn: 'includesString',
-    // }),
+    columnHelper.accessor('features', {
+        header: 'Features',
+        cell: EditableCell,
+        size: 250,
+        enableColumnFilter: false,
+        enableSorting: false,
+        filterFn: 'includesString',
+    }),
     columnHelper.accessor('role', {
         header: 'Role',
         cell: (props) => <OptionCell {...props} options={USER_ROLE_OPTIONS} />,
@@ -131,23 +148,10 @@ const columns = [
             return filterRoles.includes(role?.id);
         },
     }),
-
-    // columnHelper.accessor('avatar', {
-    //     header: 'Avatar',
-    //     cell: (props) => (
-    //         <img
-    //             src={props.getValue()}
-    //             alt="Avatar"
-    //             style={{ width: 50, height: 50 }}
-    //         />
-    //     ),
-    //     size: 100,
-    //     enableColumnFilter: false,
-    // }),
 ];
 
 export const UsersTable = () => {
-    const { t } = useTranslation();
+    const { t } = useTranslation('admin');
     const { users, isLoading } = useUsersTableData();
     // console.log('users', users);
     const [data, setData] = useState<UsersTableInfo[]>([]);
@@ -174,6 +178,28 @@ export const UsersTable = () => {
         [data],
     );
 
+    const headerOptionsMapping = {
+        role: USER_ROLE_OPTIONS,
+        username: getUniqueOptions(users, 'username').filter(
+            (option): option is string => option !== undefined,
+        ),
+        lastname: getUniqueOptions(users, 'lastname').filter(
+            (option): option is string => option !== undefined,
+        ),
+        firstname: getUniqueOptions(users, 'firstname').filter(
+            (option): option is string => option !== undefined,
+        ),
+        city: getUniqueOptions(users, 'city').filter(
+            (option): option is string => option !== undefined,
+        ),
+        currency: getUniqueOptions(users, 'currency').filter(
+            (option): option is string => option !== undefined,
+        ),
+        country: getUniqueOptions(users, 'country').filter(
+            (option): option is string => option !== undefined,
+        ),
+    };
+
     const table = useReactTable<UsersTableInfo>({
         data,
         columns,
@@ -192,37 +218,37 @@ export const UsersTable = () => {
     });
 
     return (
-        <Box>
-            {/* <SearchInput */}
-            {/*    filterCategory="username" */}
-            {/*    columnFilters={columnFilters} */}
-            {/*    setColumnFilters={setColumnFilters} */}
-            {/* /> */}
+        <VStack gap="16">
             <SearchInput
                 globalFilter={globalFilter}
-                setGlobalFilter={setGlobalFilter} // Pass the global filter to SearchInput
+                setGlobalFilter={setGlobalFilter}
             />
-            <Box className={cls.table} width={table.getTotalSize()}>
-                <Each
-                    of={table.getHeaderGroups()}
-                    render={(headerGroup) => (
-                        <TableHeader
-                            key={headerGroup.id}
-                            headerGroup={headerGroup}
-                            setColumnFilters={setColumnFilters}
-                            data={data}
-                            columnFilters={columnFilters}
-                        />
-                    )}
-                />
 
-                <Each
-                    of={table.getRowModel().rows}
-                    render={(row) => <TableRow key={row.id} row={row} />}
-                />
-            </Box>
-            <TablePagination table={table} />
-        </Box>
+            <VStack gap="16" className={cls.tableWrap}>
+                <Box className={cls.table} width={table.getTotalSize()}>
+                    <Each
+                        of={table.getHeaderGroups()}
+                        render={(headerGroup) => {
+                            return (
+                                <TableHeader
+                                    key={headerGroup.id}
+                                    headerGroup={headerGroup}
+                                    setColumnFilters={setColumnFilters}
+                                    headerOptionsMapping={headerOptionsMapping}
+                                    columnFilters={columnFilters}
+                                />
+                            );
+                        }}
+                    />
+
+                    <Each
+                        of={table.getRowModel().rows}
+                        render={(row) => <TableRow key={row.id} row={row} />}
+                    />
+                </Box>
+                <TablePagination table={table} />
+            </VStack>
+        </VStack>
     );
 };
 

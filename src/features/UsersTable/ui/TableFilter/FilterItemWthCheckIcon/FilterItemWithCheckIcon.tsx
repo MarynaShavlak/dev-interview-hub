@@ -15,13 +15,10 @@ interface FilterItemProps extends ColumnFilterHandlerProps {
 
 export const FilterItemWithCheckIcon = (props: FilterItemProps) => {
     const { option, setColumnFilters, isActive, filterCategory } = props;
-    // const { id } = option;
 
     const onClickHandler = useCallback(
         () =>
             setColumnFilters((prev) => {
-                console.log('prev', prev);
-
                 const options = prev.find(
                     (filter) => filter.id === filterCategory,
                 )?.value;

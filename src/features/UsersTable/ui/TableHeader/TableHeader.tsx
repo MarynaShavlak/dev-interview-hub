@@ -12,9 +12,6 @@ import {
 } from '../../model/types/types';
 import { getFlexClasses } from '@/shared/lib/classes/getFlexClasses/getFlexClasses';
 import { HStack } from '@/shared/ui/common/Stack';
-import { UsersTableInfo } from '../../model/types/usersTableInfo';
-import { Currency } from '@/entities/Currency';
-import { Country } from '@/entities/Country';
 
 const ROLE_ADMIN = { id: '1', name: 'Admin', color: '#f77' };
 const ROLE_USER = {
@@ -28,51 +25,22 @@ export const uniqueRoles = [ROLE_ADMIN, ROLE_USER, ROLE_MANAGER];
 interface TableHeaderProps<T> extends ColumnFilterHandlerProps {
     headerGroup: HeaderGroup<T>;
     columnFilters: CommonFilterType;
-    data: UsersTableInfo[];
-    // allOptions: ColorOption[];
+    headerOptionsMapping: Record<string, (string | ColorOption)[]>;
 }
 
 export const TableHeader = <T,>(props: TableHeaderProps<T>) => {
-    const { headerGroup, setColumnFilters, columnFilters, data } = props;
+    const {
+        headerGroup,
+        setColumnFilters,
+        columnFilters,
+        headerOptionsMapping,
+    } = props;
     const additionalClasses = getFlexClasses({
         hStack: true,
         gap: '8',
         justify: 'center',
         align: 'center',
     });
-
-    const getAllOptions = (headerId: string): (string | ColorOption)[] => {
-        switch (headerId) {
-            case 'role':
-                return uniqueRoles;
-            // case 'currency':
-            //     return uniqueCurrencies;
-            case 'username':
-                return [
-                    ...new Set(data.map((user) => user.username as string)),
-                ];
-            case 'lastname':
-                return [
-                    ...new Set(data.map((user) => user.lastname as string)),
-                ];
-            case 'firstname':
-                return [
-                    ...new Set(data.map((user) => user.lastname as string)),
-                ];
-            case 'city':
-                return [...new Set(data.map((user) => user.city as string))];
-            case 'currency':
-                return [
-                    ...new Set(data.map((user) => user.currency as Currency)),
-                ];
-            case 'country':
-                return [
-                    ...new Set(data.map((user) => user.country as Country)),
-                ];
-            default:
-                return []; // Default empty if not recognized
-        }
-    };
 
     return (
         <Box className={cls.tr} key={headerGroup.id}>
@@ -98,7 +66,7 @@ export const TableHeader = <T,>(props: TableHeaderProps<T>) => {
                             filterCategory={header.id}
                             columnFilters={columnFilters}
                             setColumnFilters={setColumnFilters}
-                            allOptions={getAllOptions(header.id)}
+                            allOptions={headerOptionsMapping[header.id] || []}
                         />
                     )}
                     <Box
