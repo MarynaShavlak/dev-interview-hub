@@ -2,7 +2,7 @@ import {
     ArticlesByUserData,
     UserPartial,
     UsersTableInfo,
-} from '../../../model/types/usersTableInfo';
+} from '../../../../model/types/usersTableInfo';
 import { Profile } from '@/entities/Profile';
 
 export const getCombinedUsersData = (

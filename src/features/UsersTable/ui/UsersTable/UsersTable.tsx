@@ -11,7 +11,6 @@ import { useTranslation } from 'react-i18next';
 import { Box } from '@/shared/ui/common/Box';
 import { USER_ROLE_OPTIONS } from '../data';
 import cls from './UsersTable.module.scss';
-import { EditableCell } from '../EditableCell/EditableCell';
 import { SearchInput } from '../SearchInput/SearchInput';
 import { CommonFilterType } from '../../model/types/types';
 import { TablePagination } from '../TablePagination/TablePagination';
@@ -20,34 +19,30 @@ import { Each } from '@/shared/lib/components/Each/Each';
 import { TableHeader } from '../TableHeader/TableHeader';
 import { useUsersTableData } from '../../lib/hooks/useUsersTableData';
 import { UsersTableInfo } from '../../model/types/usersTableInfo';
-import { Avatar } from '@/shared/ui/redesigned/Avatar';
 import { VStack } from '@/shared/ui/common/Stack';
-import { getUniqueOptions } from '../../lib/helpers/getUniqueOptions/getUniqueOptions';
+import { getUniqueOptions } from '../../lib/helpers/getData/getUniqueOptions/getUniqueOptions';
 import { createStaticTextColumn } from '../../lib/helpers/columnCreators/createStaticColumn/createStaticTextColumn';
 import { createEditableColumn } from '../../lib/helpers/columnCreators/createEditableColumn/createEditableColumn';
 import { createOptionColumn } from '../../lib/helpers/columnCreators/createOptionColumn/createOptionColumn';
+import { createImageColumn } from '../../lib/helpers/columnCreators/createImageColumn/createImageColumn';
 
 const columnHelper = createColumnHelper<UsersTableInfo>();
 
 const createUserTextCol = createStaticTextColumn<UsersTableInfo>();
 const createUserEditableCol = createEditableColumn<UsersTableInfo>();
 const createUserOptionCol = createOptionColumn<UsersTableInfo>();
+const createUserAvatarCol = createImageColumn<UsersTableInfo>();
 
 const columns = [
     columnHelper.accessor('id', createUserTextCol({ id: 'id', size: 40 })),
-    columnHelper.accessor('avatar', {
-        header: 'Avatar',
-        cell: (props) => (
-            <Avatar
-                src={props.getValue()}
-                size={30}
-                className={cls.tableAvatar}
-            />
-        ),
-        size: 50,
-        enableColumnFilter: false,
-        enableSorting: false,
-    }),
+    columnHelper.accessor(
+        'avatar',
+        createUserAvatarCol({
+            id: 'avatar',
+            size: 30,
+            className: cls.tableAvatar,
+        }),
+    ),
     columnHelper.accessor(
         'username',
         createUserEditableCol({ id: 'username', size: 120 }),
@@ -69,17 +64,15 @@ const columns = [
         'city',
         createUserEditableCol({ id: 'city', size: 100, sortable: false }),
     ),
-    columnHelper.accessor('country', {
-        header: 'Country',
-        cell: (props) => <p>{props.getValue()}</p>,
-        size: 100,
-        enableColumnFilter: true,
-        enableSorting: false,
-        filterFn: (row, columnId, filterRoles) => {
-            if (filterRoles.length === 0) return true;
-            return filterRoles.includes(row.getValue(columnId));
-        },
-    }),
+    columnHelper.accessor(
+        'country',
+        createUserOptionCol({
+            id: 'country',
+            size: 110,
+            options: ['Ukraine', 'Poland', 'Germany'],
+            sortable: false,
+        }),
+    ),
     columnHelper.accessor(
         'currency',
         createUserOptionCol({
@@ -89,30 +82,15 @@ const columns = [
             sortable: false,
         }),
     ),
-    // columnHelper.accessor('currency', {
-    //     header: 'Currency',
-    //     cell: (props) => <p>{props.getValue()}</p>,
-    //     size: 100,
-    //     enableColumnFilter: true,
-    //     enableSorting: false,
-    //     filterFn: (row, columnId, filterRoles) => {
-    //         if (filterRoles.length === 0) return true;
-    //         return filterRoles.includes(row.getValue(columnId));
-    //     },
-    // }),
     columnHelper.accessor(
         'articlesQuantity',
         createUserTextCol({ id: 'articlesQuantity', size: 80, sortable: true }),
     ),
 
-    columnHelper.accessor('features', {
-        header: 'Features',
-        cell: EditableCell,
-        size: 250,
-        enableColumnFilter: false,
-        enableSorting: false,
-        filterFn: 'includesString',
-    }),
+    columnHelper.accessor(
+        'features',
+        createUserTextCol({ id: 'features', size: 200 }),
+    ),
     columnHelper.accessor(
         'role',
         createUserOptionCol({

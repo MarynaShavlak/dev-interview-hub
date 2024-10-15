@@ -1,9 +1,9 @@
 import { useUsers } from '@/entities/User';
 import { useProfiles } from '@/entities/Profile';
 import { useArticles } from '@/entities/Article';
-import { getRoleData } from '../helpers/getRolesData/getRoleData';
-import { getEnabledUserFeatures } from '../helpers/processUserFeatures/processUserFeatures';
-import { getCombinedUsersData } from '../helpers/getCombinedUsersData/getCombinedUsersData';
+import { getRoleData } from '../helpers/getData/getRolesData/getRoleData';
+import { getEnabledUserFeatures } from '../helpers/getData/processUserFeatures/processUserFeatures';
+import { getCombinedUsersData } from '../helpers/getData/getCombinedUsersData/getCombinedUsersData';
 import { ArticlesByUserData } from '../../model/types/usersTableInfo';
 
 export const useUsersTableData = () => {

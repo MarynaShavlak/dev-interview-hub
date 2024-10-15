@@ -1,6 +1,7 @@
 import { CellContext } from '@tanstack/react-table';
 import { useCallback } from 'react';
 import { ListBox } from '@/shared/ui/redesigned/Popups';
+import { Text } from '@/shared/ui/redesigned/Text';
 import { ColorIndicatorOptionItem } from '../ColorIndicatorOptionItem/ColorIndicatorOptionItem';
 import { ColorOption, TableMetaCustom } from '../../model/types/types';
 import cls from './OptionCell.module.scss';
@@ -15,12 +16,9 @@ interface OptionCellProps<TData> extends CellContext<TData, any> {
 const createListBoxOption = (option: ColorOption | string) => {
     const value = isColorOption(option) ? option.name : option;
     const content = isColorOption(option) ? (
-        <ColorIndicatorOptionItem
-            className={cls.colorIndicatorOptionItem}
-            option={option}
-        />
+        <ColorIndicatorOptionItem className={cls.optionItem} option={option} />
     ) : (
-        option
+        <Text text={option} size="s" />
     );
     return { value, content };
 };
