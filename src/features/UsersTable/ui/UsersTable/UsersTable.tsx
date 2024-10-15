@@ -12,7 +12,7 @@ import { Box } from '@/shared/ui/common/Box';
 import { USER_ROLE_OPTIONS } from '../data';
 import cls from './UsersTable.module.scss';
 import { SearchInput } from '../SearchInput/SearchInput';
-import { CommonFilterType } from '../../model/types/types';
+import { ColorOption, CommonFilterType } from '../../model/types/types';
 import { TablePagination } from '../TablePagination/TablePagination';
 import { TableRow } from '../TableRow/TableRow';
 import { Each } from '@/shared/lib/components/Each/Each';
@@ -131,27 +131,16 @@ export const UsersTable = () => {
         [data],
     );
 
-    const headerOptionsMapping = {
-        role: USER_ROLE_OPTIONS,
-        username: getUniqueOptions(users, 'username').filter(
-            (option): option is string => option !== undefined,
-        ),
-        lastname: getUniqueOptions(users, 'lastname').filter(
-            (option): option is string => option !== undefined,
-        ),
-        firstname: getUniqueOptions(users, 'firstname').filter(
-            (option): option is string => option !== undefined,
-        ),
-        city: getUniqueOptions(users, 'city').filter(
-            (option): option is string => option !== undefined,
-        ),
-        currency: getUniqueOptions(users, 'currency').filter(
-            (option): option is string => option !== undefined,
-        ),
-        country: getUniqueOptions(users, 'country').filter(
-            (option): option is string => option !== undefined,
-        ),
-    };
+    const headerOptionsMapping: Record<string, (string | ColorOption)[]> =
+        Object.fromEntries(
+            Object.keys(data).map((field) => [
+                field,
+                getUniqueOptions(data, field as keyof UsersTableInfo).filter(
+                    (option): option is string | ColorOption =>
+                        option !== undefined,
+                ),
+            ]),
+        );
 
     const table = useReactTable<UsersTableInfo>({
         data,
