@@ -10,7 +10,7 @@ import { ArticlePeriodDataChartsProps } from '../../..';
 export const DeprecatedArticlePeriodDataCharts = memo(
     (props: ArticlePeriodDataChartsProps) => {
         const { t } = useTranslation('admin');
-        const { categories, data } = props;
+        const { categories, data, className } = props;
 
         const {
             quarterlyCategoryData,
@@ -20,7 +20,7 @@ export const DeprecatedArticlePeriodDataCharts = memo(
         } = useArticlePeriodData(categories, data);
         return (
             <VStack gap="16">
-                <CardDeprecated>
+                <CardDeprecated className={className}>
                     <StackedColumnsChart
                         data={quarterlyCategoryData}
                         labels={quarterlyLabels}

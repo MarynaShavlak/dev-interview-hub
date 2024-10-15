@@ -18,6 +18,7 @@ export interface DashboardStatsProps {
     avgRating: number;
     avgViews: number;
     activeArticlesList: ActiveArticlesList;
+    className?: string;
 }
 
 export interface DashboardPctDataStats {

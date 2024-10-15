@@ -7,4 +7,5 @@ export interface ActiveUsersList {
 export interface UsersActivityChartProps {
     totalUsers: number;
     activeUsersList: ActiveUsersList;
+    className?: string;
 }

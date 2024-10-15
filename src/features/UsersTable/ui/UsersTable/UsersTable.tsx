@@ -12,9 +12,8 @@ import { Box } from '@/shared/ui/common/Box';
 import { USER_ROLE_OPTIONS } from '../data';
 import cls from './UsersTable.module.scss';
 import { EditableCell } from '../EditableCell/EditableCell';
-import { OptionCell } from '../OptionCell/OptionCell';
 import { SearchInput } from '../SearchInput/SearchInput';
-import { ColorOption, CommonFilterType } from '../../model/types/types';
+import { CommonFilterType } from '../../model/types/types';
 import { TablePagination } from '../TablePagination/TablePagination';
 import { TableRow } from '../TableRow/TableRow';
 import { Each } from '@/shared/lib/components/Each/Each';
@@ -26,11 +25,13 @@ import { VStack } from '@/shared/ui/common/Stack';
 import { getUniqueOptions } from '../../lib/helpers/getUniqueOptions/getUniqueOptions';
 import { createStaticTextColumn } from '../../lib/helpers/columnCreators/createStaticColumn/createStaticTextColumn';
 import { createEditableColumn } from '../../lib/helpers/columnCreators/createEditableColumn/createEditableColumn';
+import { createOptionColumn } from '../../lib/helpers/columnCreators/createOptionColumn/createOptionColumn';
 
 const columnHelper = createColumnHelper<UsersTableInfo>();
 
 const createUserTextCol = createStaticTextColumn<UsersTableInfo>();
 const createUserEditableCol = createEditableColumn<UsersTableInfo>();
+const createUserOptionCol = createOptionColumn<UsersTableInfo>();
 
 const columns = [
     columnHelper.accessor('id', createUserTextCol({ id: 'id', size: 40 })),
@@ -79,24 +80,29 @@ const columns = [
             return filterRoles.includes(row.getValue(columnId));
         },
     }),
-    columnHelper.accessor('currency', {
-        header: 'Currency',
-        cell: (props) => <p>{props.getValue()}</p>,
-        size: 100,
-        enableColumnFilter: true,
-        enableSorting: false,
-        filterFn: (row, columnId, filterRoles) => {
-            if (filterRoles.length === 0) return true;
-            return filterRoles.includes(row.getValue(columnId));
-        },
-    }),
+    columnHelper.accessor(
+        'currency',
+        createUserOptionCol({
+            id: 'currency',
+            size: 110,
+            options: ['UAH', 'EUR', 'USD'],
+            sortable: false,
+        }),
+    ),
+    // columnHelper.accessor('currency', {
+    //     header: 'Currency',
+    //     cell: (props) => <p>{props.getValue()}</p>,
+    //     size: 100,
+    //     enableColumnFilter: true,
+    //     enableSorting: false,
+    //     filterFn: (row, columnId, filterRoles) => {
+    //         if (filterRoles.length === 0) return true;
+    //         return filterRoles.includes(row.getValue(columnId));
+    //     },
+    // }),
     columnHelper.accessor(
         'articlesQuantity',
-        createUserTextCol({
-            id: 'articlesQuantity',
-            size: 80,
-            sortable: true,
-        }),
+        createUserTextCol({ id: 'articlesQuantity', size: 80, sortable: true }),
     ),
 
     columnHelper.accessor('features', {
@@ -107,18 +113,16 @@ const columns = [
         enableSorting: false,
         filterFn: 'includesString',
     }),
-    columnHelper.accessor('role', {
-        header: 'Role',
-        cell: (props) => <OptionCell {...props} options={USER_ROLE_OPTIONS} />,
-        enableColumnFilter: true,
-        enableSorting: false,
-        size: 110,
-        filterFn: (row, columnId, filterRoles) => {
-            if (filterRoles.length === 0) return true;
-            const role: ColorOption = row.getValue(columnId);
-            return filterRoles.includes(role?.id);
-        },
-    }),
+    columnHelper.accessor(
+        'role',
+        createUserOptionCol({
+            id: 'role',
+            size: 110,
+            options: USER_ROLE_OPTIONS,
+            sortable: false,
+        }),
+    ),
+    // createOptionColumn('role', USER_ROLE_OPTIONS),
 ];
 
 export const UsersTable = () => {

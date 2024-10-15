@@ -5,4 +5,5 @@ export interface ArticleStats {
 export interface UserRatingsBubbleChartProps {
     data: Record<string, ArticleStats>;
     totalArticles: number;
+    className?: string;
 }

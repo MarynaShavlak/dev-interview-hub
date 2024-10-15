@@ -8,7 +8,7 @@ import { UserRatingsBubbleChartProps } from '../../../model/types/types';
 export const DeprecatedUserRatingsBubbleChart = memo(
     (props: UserRatingsBubbleChartProps) => {
         const { t } = useTranslation('admin');
-        const { data, totalArticles } = props;
+        const { data, totalArticles, className } = props;
         const { ratingsByUsersData, maxXaxisValue } = useUserRatingsChartData(
             data,
             totalArticles,
@@ -26,7 +26,7 @@ export const DeprecatedUserRatingsBubbleChart = memo(
         };
 
         return (
-            <Card>
+            <Card className={className}>
                 <BubbleChart
                     data={ratingsByUsersData}
                     width="800"

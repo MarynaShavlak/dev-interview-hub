@@ -12,7 +12,7 @@ export const DeprecatedArticleCommentsCharts = memo(
     (props: ArticleCommentsChartsProps) => {
         const { t } = useTranslation('admin');
 
-        const { articleCommentCounts, commentCountsByUser } = props;
+        const { articleCommentCounts, commentCountsByUser, className } = props;
         const { labels, commentsByArticlesData, commentsByUsersData } =
             useArticleCommentsChartData(
                 articleCommentCounts,
@@ -20,7 +20,7 @@ export const DeprecatedArticleCommentsCharts = memo(
             );
 
         return (
-            <HStack gap="16">
+            <HStack gap="16" className={className}>
                 <CardDeprecated>
                     <BarChart
                         data={commentsByArticlesData}

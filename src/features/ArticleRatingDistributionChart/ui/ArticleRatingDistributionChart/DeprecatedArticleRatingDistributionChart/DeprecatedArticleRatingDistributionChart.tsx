@@ -8,7 +8,8 @@ import { useRatingsDistributionChartData } from '../../../lib/hooks/useRatingsDi
 export const DeprecatedArticleRatingDistributionChart = memo(
     (props: ArticleRatingDistributionChartProps) => {
         const { t } = useTranslation('admin');
-        const { ratingDistributionMap, totalArticlesWithRatings } = props;
+        const { ratingDistributionMap, totalArticlesWithRatings, className } =
+            props;
 
         const articlesByRatingDistributionData =
             useRatingsDistributionChartData(
@@ -23,7 +24,7 @@ export const DeprecatedArticleRatingDistributionChart = memo(
         ];
 
         return (
-            <Card>
+            <Card className={className}>
                 <RadialbarChart
                     data={articlesByRatingDistributionData}
                     labels={labels}

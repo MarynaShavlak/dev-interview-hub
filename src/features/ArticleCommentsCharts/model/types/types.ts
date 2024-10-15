@@ -6,4 +6,5 @@ export interface ArticleCommentCount {
 export interface ArticleCommentsChartsProps {
     articleCommentCounts: ArticleCommentCount[];
     commentCountsByUser: Record<string, number>;
+    className?: string;
 }

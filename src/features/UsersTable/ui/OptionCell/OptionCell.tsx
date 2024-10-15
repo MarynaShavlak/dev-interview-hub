@@ -4,10 +4,26 @@ import { ListBox } from '@/shared/ui/redesigned/Popups';
 import { ColorIndicatorOptionItem } from '../ColorIndicatorOptionItem/ColorIndicatorOptionItem';
 import { ColorOption, TableMetaCustom } from '../../model/types/types';
 import cls from './OptionCell.module.scss';
+import { extractOptionValueName } from '../../lib/helpers/optionCell/extractOptionValueName/extractOptionValueName';
+import { findNewOptionValue } from '../../lib/helpers/optionCell/findNewOptionValue/findNewOptionValue';
+import { isColorOption } from '../../lib/helpers/optionCell/isColorOption/isColorOption';
 
 interface OptionCellProps<TData> extends CellContext<TData, any> {
-    options: ColorOption[];
+    options: (ColorOption | string)[];
 }
+
+const createListBoxOption = (option: ColorOption | string) => {
+    const value = isColorOption(option) ? option.name : option;
+    const content = isColorOption(option) ? (
+        <ColorIndicatorOptionItem
+            className={cls.colorIndicatorOptionItem}
+            option={option}
+        />
+    ) : (
+        option
+    );
+    return { value, content };
+};
 
 export const OptionCell = <TData,>({
     getValue,
@@ -16,40 +32,33 @@ export const OptionCell = <TData,>({
     table,
     options,
 }: OptionCellProps<TData>) => {
-    const { name } = getValue() || {};
-    // console.log('name', name);
+    const value = getValue();
     const meta = table.options.meta as TableMetaCustom<TData>;
-    const currentValue = name;
-
-    const listBoxOptions = options.map((option) => ({
-        value: `${option.name}`,
-        content: (
-            <ColorIndicatorOptionItem
-                className={cls.colorIndicatorOptionItem}
-                option={option}
-            />
-        ),
-    }));
+    const currentValue = extractOptionValueName(value);
+    const listBoxOptions = options.map(createListBoxOption);
 
     const onCellClick = useCallback(
         (selectedValue: string | null) => {
-            const newValue = options.find(
-                (option) => option.name === selectedValue,
-            );
-            if (meta?.updateData && newValue?.name !== currentValue) {
-                meta.updateData(row.index, column.id, newValue);
+            const newValue = findNewOptionValue(options, selectedValue);
+            if (meta?.updateData) {
+                const newValueName = isColorOption(newValue)
+                    ? newValue.name
+                    : newValue;
+                if (newValueName !== currentValue) {
+                    meta.updateData(row.index, column.id, newValue);
+                }
             }
         },
         [column.id, currentValue, meta, options, row.index],
     );
 
-    const props = {
-        value: name,
-        defaultValue: name,
-        items: listBoxOptions,
-        onChange: onCellClick,
-        direction: 'bottom right' as const,
-    };
-
-    return <ListBox {...props} />;
+    return (
+        <ListBox
+            value={currentValue}
+            defaultValue={currentValue}
+            items={listBoxOptions}
+            onChange={onCellClick}
+            direction="bottom right"
+        />
+    );
 };

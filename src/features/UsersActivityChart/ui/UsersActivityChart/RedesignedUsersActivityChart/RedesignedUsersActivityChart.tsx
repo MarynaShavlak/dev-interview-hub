@@ -8,7 +8,7 @@ import { useActiveUsersChartData } from '../../../lib/hooks/useActiveUsersChartD
 export const RedesignedUsersActivityChart = memo(
     (props: UsersActivityChartProps) => {
         const { t } = useTranslation('admin');
-        const { activeUsersList, totalUsers } = props;
+        const { activeUsersList, totalUsers, className } = props;
         const activeUsersData = useActiveUsersChartData(
             activeUsersList,
             totalUsers,
@@ -20,7 +20,7 @@ export const RedesignedUsersActivityChart = memo(
         ];
 
         return (
-            <Card>
+            <Card className={className}>
                 <RadialbarChart
                     data={activeUsersData}
                     labels={activeUserLabels}

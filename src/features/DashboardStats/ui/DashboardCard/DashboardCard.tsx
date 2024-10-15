@@ -33,16 +33,17 @@ export const DashboardCard = memo((props: DashboardCardProps) => {
                     <Text
                         bold
                         text={title}
+                        size="s"
                         className={cls.dashboardCardLabel}
                     />
 
                     {svg ? (
                         <HStack justify="between">
-                            <Icon Svg={svg} width={50} height={50} />
+                            <Icon Svg={svg} width={30} height={30} />
                             <Text
                                 bold
                                 text={value}
-                                size="l"
+                                size="m"
                                 align="right"
                                 variant="accent"
                             />

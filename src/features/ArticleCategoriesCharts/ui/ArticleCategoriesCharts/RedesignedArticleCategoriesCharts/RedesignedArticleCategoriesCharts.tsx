@@ -10,12 +10,12 @@ export const RedesignedArticleCategoriesCharts = memo(
     (props: ArticleCategoriesChartsProps) => {
         const { t } = useTranslation('admin');
 
-        const { data } = props;
+        const { data, className } = props;
         const { labels, viewsByCategories, articlesByCategories } =
             useArticleCategoriesChartData(data);
 
         return (
-            <HStack gap="16" max>
+            <HStack gap="16" max className={className}>
                 <Card>
                     <DonutChart
                         data={articlesByCategories}
