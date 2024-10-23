@@ -13,7 +13,7 @@ import ViewDeprecated from '@/shared/assets/icons/eye-20-20.svg';
 import View from '@/shared/assets/icons/eye.svg';
 import FeedbackIcon from '@/shared/assets/icons/like.svg';
 import CommentIcon from '@/shared/assets/icons/comment.svg';
-import { VStack } from '@/shared/ui/common/Stack';
+import { HStack } from '@/shared/ui/common/Stack/HStack/HStack';
 
 export const DashboardStats = memo((props: DashboardStatsProps) => {
     const {
@@ -48,7 +48,7 @@ export const DashboardStats = memo((props: DashboardStatsProps) => {
         useDashboardPctData(activeArticlesList, totalArticles);
 
     return (
-        <VStack gap="16" wrap="wrap" className={className}>
+        <HStack gap="16" wrap="wrap" className={className}>
             <DashboardCard
                 title={t('Кількість користувачів')}
                 value={`${totalUsers}`}
@@ -79,6 +79,6 @@ export const DashboardStats = memo((props: DashboardStatsProps) => {
                 value={`${articlesWithCommentsPercentage}%`}
                 Icon={CommentIcon}
             />
-        </VStack>
+        </HStack>
     );
 });

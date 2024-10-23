@@ -1,3 +1,4 @@
+// index.tsx
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import { ForceUpdateProvider } from '@/shared/lib/render/forceUpdate';
@@ -7,6 +8,27 @@ import App from './app/App';
 import '@/app/styles/index.scss';
 import './shared/config/i18n/i18n';
 import { ErrorBoundary } from './app/providers/ErrorBoundary';
+import { useFirebaseContext, Context } from '../json-server/firebase';
+
+const AppWrapper = () => {
+    const contextValue = useFirebaseContext();
+
+    return (
+        <Context.Provider value={contextValue}>
+            <BrowserRouter>
+                <StoreProvider>
+                    <ErrorBoundary>
+                        <ForceUpdateProvider>
+                            <ThemeProvider>
+                                <App />
+                            </ThemeProvider>
+                        </ForceUpdateProvider>
+                    </ErrorBoundary>
+                </StoreProvider>
+            </BrowserRouter>
+        </Context.Provider>
+    );
+};
 
 const container = document.getElementById('root');
 
@@ -18,16 +40,4 @@ if (!container) {
 
 const root = createRoot(container);
 
-root.render(
-    <BrowserRouter>
-        <StoreProvider>
-            <ErrorBoundary>
-                <ForceUpdateProvider>
-                    <ThemeProvider>
-                        <App />
-                    </ThemeProvider>
-                </ForceUpdateProvider>
-            </ErrorBoundary>
-        </StoreProvider>
-    </BrowserRouter>,
-);
+root.render(<AppWrapper />);

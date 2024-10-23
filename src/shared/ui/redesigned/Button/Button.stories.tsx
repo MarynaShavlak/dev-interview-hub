@@ -52,6 +52,12 @@ Cancel.args = {
     variant: 'cancel',
 };
 
+export const Accent = Template.bind({});
+Save.args = {
+    children: 'Accent Button',
+    variant: 'accent',
+};
+
 export const Small = Template.bind({});
 Small.args = {
     children: 'Small Button',

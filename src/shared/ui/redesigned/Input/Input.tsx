@@ -1,9 +1,9 @@
-import React, { InputHTMLAttributes, memo, ReactNode } from 'react';
+import React, { InputHTMLAttributes, memo, ReactNode, useId } from 'react';
 import { useInput } from '@/shared/lib/hooks/useInput/useInput';
-import { HStack } from '../../common/Stack';
 import { classNames, Mods } from '@/shared/lib/classes/classNames/classNames';
 import { Text } from '../Text';
 import cls from './Input.module.scss';
+import { VStack } from '../../common/Stack';
 
 type HTMLInputProps = Omit<
     InputHTMLAttributes<HTMLInputElement>,
@@ -43,8 +43,12 @@ export const Input = memo((props: InputProps) => {
         addonRight,
         digitsOnly = false,
         clear = false,
+
         ...otherProps
     } = props;
+
+    const generatedId = useId();
+
     const { ref, isFocused, onChangeHandler, onBlurHandler, onFocus } =
         useInput({ autofocus, digitsOnly, onChange, onBlur });
     const mods: Mods = {
@@ -62,8 +66,10 @@ export const Input = memo((props: InputProps) => {
                 cls[size],
             ])}
         >
+            {/* {label && <label htmlFor={generatedId}>{label}</label>} */}
             <div className={cls.addonLeft}>{addonLeft}</div>
             <input
+                id={generatedId}
                 ref={ref}
                 type={type}
                 value={value}
@@ -81,10 +87,10 @@ export const Input = memo((props: InputProps) => {
 
     if (label) {
         return (
-            <HStack max gap="8">
+            <VStack max gap="8">
                 <Text text={label} />
                 {input}
-            </HStack>
+            </VStack>
         );
     }
 

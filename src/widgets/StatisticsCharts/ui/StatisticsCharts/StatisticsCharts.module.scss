@@ -1,23 +1,23 @@
-.statsWrap {
-  display: grid;
-  grid-template-columns: repeat(9, 1fr);
-  grid-template-rows: repeat(10, 1fr);
-  grid-column-gap: 16px;
-  grid-row-gap: 16px;
-}
-
-.dashboard { grid-area: 1 / 1 / 7 / 2; }
-.quarterlyChart { grid-area: 1 / 2 / 4 / 6; }
-.usersActivityChart { grid-area: 1 / 6 / 4 / 8; }
-.articleRatDistributionChart{ grid-area: 1 / 8 / 4 / 10; }
-.div5 { grid-area: 4 / 6 / 7 / 10; }
-.div6 { grid-area: 7 / 1 / 11 / 5; }
-.div7 { grid-area: 7 / 5 / 11 / 10; }
-.div8 { grid-area: 4 / 2 / 7 / 6; }
-
-
-
+//.statsWrap {
+//  display: grid;
+//  grid-template-columns: repeat(9, 1fr);
+//  grid-template-rows: repeat(10, 1fr);
+//  grid-column-gap: 16px;
+//  grid-row-gap: 16px;
+//}
 //
+//.dashboard { grid-area: 1 / 1 / 7 / 2; }
+//.quarterlyChart { grid-area: 1 / 2 / 4 / 6; }
+//.usersActivityChart { grid-area: 1 / 6 / 4 / 8; }
+//.articleRatDistributionChart{ grid-area: 1 / 8 / 4 / 10; }
+//.div5 { grid-area: 4 / 6 / 7 / 10; }
+//.div6 { grid-area: 7 / 1 / 11 / 5; }
+//.div7 { grid-area: 7 / 5 / 11 / 10; }
+//.div8 { grid-area: 4 / 2 / 7 / 6; }
+//
+//
+//
+////
 //
 //.quarterlyChart { grid-area: 1 / 2 / 4 / 6; }
 ////.div2 { grid-area: 4 / 2 / 7 / 3; }

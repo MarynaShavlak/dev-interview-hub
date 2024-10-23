@@ -11,7 +11,7 @@ const AdminPanelPage = () => {
             feature="isAppRedesigned"
             on={
                 <main data-testid="AdminPanelPage">
-                    {/* <StatisticsCharts /> */}
+                    <StatisticsCharts />
 
                     <UsersTable />
 

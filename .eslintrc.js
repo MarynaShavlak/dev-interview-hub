@@ -112,6 +112,12 @@ module.exports = {
         __IS_DEV__: true,
         __API__: true,
         __PROJECT__: true,
+        __FIREBASE_API_KEY__: true,
+        __FIREBASE_AUTH_DOMAIN__: true,
+        __FIREBASE_PROJECT_ID__: true,
+        __FIREBASE_STORAGE_BUCKET__: true,
+        __FIREBASE_MESSAGING_SENDER_ID__: true,
+        __FIREBASE_APP_ID__: true,
     },
     overrides: [
         {

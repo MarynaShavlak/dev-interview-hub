@@ -12,7 +12,7 @@
     "Мова абревіатура": "EN",
     "Введіть ім'я користувача": "Enter username",
     "Введіть пароль": "Enter password",
-    "Форма авторизації": "Authorization form",
+    "Форма авторизації": "Login to your account",
     "Ви ввели невірний логін або пароль": "You entered an incorrect username or password",
     "Укажіть валюту": "Choose currency",
     "Валюта": "Currency",
@@ -37,5 +37,11 @@
     "Налаштування": "Settings",
   "Фільтр за категорією:": "Фільтр за категорією:",
   "Сторінка": "Page",
-    "із": "of"
+    "із": "of",
+    "Пароль": "Password",
+    "Email": "Email",
+    "Введіть email": "Enter email",
+    "Увійти": "Login now",
+    "Немає облікового запису?": "Don't have an account?",
+    "Зареєструйтесь": "Sign up"
 }
