@@ -66,7 +66,6 @@ export const Input = memo((props: InputProps) => {
                 cls[size],
             ])}
         >
-            {/* {label && <label htmlFor={generatedId}>{label}</label>} */}
             <div className={cls.addonLeft}>{addonLeft}</div>
             <input
                 id={generatedId}

@@ -57,35 +57,47 @@ export const RedesignedLoginForm = memo(
                     data-testid="login-username-input"
                     label={t('Email')}
                 />
-                <Input
-                    type="text"
-                    placeholder={t('Введіть пароль')}
-                    onChange={onChangePassword}
-                    value={password}
-                    data-testid="login-password-input"
-                    label={t('Пароль')}
-                    addonRight={
-                        <Icon
-                            Svg={EyeIconRedesigned}
-                            clickable
-                            onClick={(e: any) => console.log(e.target)}
-                        />
-                    }
-                />
+                <VStack className={cls.passwordInputWrapper} max>
+                    <Text
+                        text={t('Забули пароль?')}
+                        variant="link"
+                        className={cls.passwordInputLink}
+                    />
+                    <Input
+                        type="text"
+                        placeholder={t('Введіть пароль')}
+                        onChange={onChangePassword}
+                        value={password}
+                        data-testid="login-password-input"
+                        label={t('Пароль')}
+                        addonRight={
+                            <Icon
+                                Svg={EyeIconRedesigned}
+                                clickable
+                                onClick={(e: any) => console.log(e.target)}
+                            />
+                        }
+                    />
+                </VStack>
+
                 <Button
                     max
                     variant="accent"
                     className={cls.loginBtn}
-                    // onClick={onLoginClick}
-                    onClick={login}
+                    onClick={onLoginClick}
+                    // onClick={login}
                     disabled={isLoading}
                     data-testid="login-submit-btn"
                 >
                     {t('Увійти')}
                 </Button>
-                <HStack justify="center">
+                <HStack
+                    justify="center"
+                    className={cls.formRedirectWrapper}
+                    gap="8"
+                >
                     <Text text={t('Немає облікового запису?')} />
-                    <Text text={t('Зареєструйтесь.')} />
+                    <Text text={t('Зареєструйтесь')} variant="link" />
                 </HStack>
             </VStack>
         );

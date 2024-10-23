@@ -26,6 +26,23 @@
     }
 }
 
+.link {
+    cursor: pointer;
+
+    .title {
+        color: var(--accent-redesigned);
+    }
+
+    .text {
+        color: var(--accent-redesigned);
+    }
+    &:hover {
+        text-decoration: underline;
+        text-decoration-color: var(--accent-redesigned);
+    }
+}
+
+
 .left {
     text-align: left;
 }
