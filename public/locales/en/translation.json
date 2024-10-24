@@ -41,8 +41,13 @@
     "Пароль": "Password",
     "Email": "Email",
     "Введіть email": "Enter email",
-    "Увійти": "Login now",
+    "Увійти": "Login",
     "Немає облікового запису?": "Don't have an account?",
     "Зареєструйтесь": "Sign up",
-  "Забули пароль?": "Forgot?"
+  "Забули пароль?": "Forgot?",
+  "Зареєструватись": "Create account",
+  "Вже маєш акаунт?": "Already have an account?",
+  "Форма реєстрації": "Create an account",
+  "Продовжити через Goggle": "Continue with Goggle",
+  "або": "OR"
 }

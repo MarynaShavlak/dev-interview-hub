@@ -3,7 +3,7 @@ import { TestProps } from '@/shared/types/tests';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import cls from './Text.module.scss';
 
-export type TextVariant = 'primary' | 'error' | 'accent' | 'link';
+export type TextVariant = 'primary' | 'error' | 'accent';
 export type TextAlign = 'right' | 'left' | 'center';
 export type TextSize = 's' | 'm' | 'l';
 

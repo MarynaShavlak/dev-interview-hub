@@ -13,7 +13,8 @@ export type ButtonVariant =
     | 'filled'
     | 'save'
     | 'cancel'
-    | 'accent';
+    | 'accent'
+    | 'link';
 
 export type ButtonSize = 's' | 'm' | 'l' | 'xl';
 

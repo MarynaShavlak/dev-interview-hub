@@ -19,3 +19,17 @@
     top: 0;
     right: 0;
 }
+
+.formDivider {
+
+    &::before,
+    &::after {
+        content: "";
+        height: 7px ;
+        width:7px;
+        background-color: var(--accent-redesigned);
+
+    }
+}
+
+

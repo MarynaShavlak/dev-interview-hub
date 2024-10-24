@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
-import { memo, useContext } from 'react';
-import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+import { memo, useContext, useState } from 'react';
+import { signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 import { HStack, VStack } from '@/shared/ui/common/Stack';
 import { useLoginForm } from '../../../lib/hooks/useLoginForm';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
@@ -12,6 +12,7 @@ import { LoginFormProps } from '../LoginForm';
 import { Context } from '../../../../../../json-server/firebase';
 import { Icon } from '@/shared/ui/redesigned/Icon';
 import EyeIconRedesigned from '@/shared/assets/icons/eye.svg';
+import GoogleIcon from '@/shared/assets/icons/google.svg';
 
 export const RedesignedLoginForm = memo(
     ({ className, onSuccess }: LoginFormProps) => {
@@ -26,8 +27,27 @@ export const RedesignedLoginForm = memo(
             onLoginClick,
         } = useLoginForm(onSuccess);
 
+        const [isLoginFormOpen, setIsLoginFormOpen] = useState(true);
+
+        const formTitle = isLoginFormOpen
+            ? t('Форма авторизації')
+            : t('Форма реєстрації');
+        const buttonText = isLoginFormOpen ? t('Увійти') : t('Зареєструватись');
+        const buttonGoogleText = t('Продовжити через Goggle');
+        const redirectText = isLoginFormOpen
+            ? t('Немає облікового запису?')
+            : t('Вже маєш акаунт?');
+
+        const redirectLinkText = isLoginFormOpen
+            ? t('Зареєструйтесь')
+            : t('Увійти');
+
         const { auth } = useContext(Context);
         console.log('auth', auth);
+
+        const handleRedirectLinkClick = () => {
+            setIsLoginFormOpen((prevState) => !prevState);
+        };
 
         const login = async () => {
             const provider = new GoogleAuthProvider();
@@ -41,7 +61,7 @@ export const RedesignedLoginForm = memo(
                 className={classNames(cls.LoginForm, {}, [className])}
                 data-testid="login-form"
             >
-                <Text title={t('Форма авторизації')} />
+                <Text title={formTitle} />
                 {error && (
                     <Text
                         text={t('Ви ввели невірний логін або пароль')}
@@ -57,12 +77,33 @@ export const RedesignedLoginForm = memo(
                     data-testid="login-username-input"
                     label={t('Email')}
                 />
-                <VStack className={cls.passwordInputWrapper} max>
-                    <Text
-                        text={t('Забули пароль?')}
-                        variant="link"
-                        className={cls.passwordInputLink}
-                    />
+
+                {isLoginFormOpen ? (
+                    <VStack className={cls.passwordInputWrapper} max>
+                        <Button
+                            variant="link"
+                            className={cls.passwordInputLink}
+                        >
+                            {t('Забули пароль?')}
+                        </Button>
+
+                        <Input
+                            type="text"
+                            placeholder={t('Введіть пароль')}
+                            onChange={onChangePassword}
+                            value={password}
+                            data-testid="login-password-input"
+                            label={t('Пароль')}
+                            addonRight={
+                                <Icon
+                                    Svg={EyeIconRedesigned}
+                                    clickable
+                                    onClick={(e: any) => console.log(e.target)}
+                                />
+                            }
+                        />
+                    </VStack>
+                ) : (
                     <Input
                         type="text"
                         placeholder={t('Введіть пароль')}
@@ -78,7 +119,7 @@ export const RedesignedLoginForm = memo(
                             />
                         }
                     />
-                </VStack>
+                )}
 
                 <Button
                     max
@@ -89,15 +130,38 @@ export const RedesignedLoginForm = memo(
                     disabled={isLoading}
                     data-testid="login-submit-btn"
                 >
-                    {t('Увійти')}
+                    {buttonText}
                 </Button>
+                <HStack
+                    className={cls.formDivider}
+                    align="center"
+                    justify="center"
+                >
+                    <Text text={t('або')} />
+                </HStack>
+
+                <Button
+                    max
+                    variant="outline"
+                    addonLeft={<Icon Svg={GoogleIcon} width="25" height="25" />}
+                    className={cls.loginBtn}
+                    // onClick={onLoginClick}
+                    onClick={login}
+                    disabled={isLoading}
+                    data-testid="login-submit-btn"
+                >
+                    {buttonGoogleText}
+                </Button>
+
                 <HStack
                     justify="center"
                     className={cls.formRedirectWrapper}
                     gap="8"
                 >
-                    <Text text={t('Немає облікового запису?')} />
-                    <Text text={t('Зареєструйтесь')} variant="link" />
+                    <Text text={redirectText} />
+                    <Button variant="link" onClick={handleRedirectLinkClick}>
+                        {redirectLinkText}
+                    </Button>
                 </HStack>
             </VStack>
         );
