@@ -67,15 +67,19 @@ export const RedesignedLoginForm = memo(
                         variant="error"
                     />
                 )}
-                {/* <Input */}
-                {/*    autofocus */}
-                {/*    type="text" */}
-                {/*    placeholder={t('Введіть email')} */}
-                {/*    onChange={onChangeUsername} */}
-                {/*    value={username} */}
-                {/*    data-testid="login-username-input" */}
-                {/*    label={t('Email')} */}
-                {/* /> */}
+                <Input
+                    autofocus
+                    type="text"
+                    placeholder={t('Введіть email')}
+                    onChange={onChangeUsername}
+                    value={username}
+                    data-testid="login-username-input"
+                    label={t('Email')}
+                    validations={{
+                        isEmpty: true,
+                        isEmail: true,
+                    }}
+                />
 
                 {isLoginFormOpen ? (
                     <VStack className={cls.passwordInputWrapper} max>
@@ -85,7 +89,7 @@ export const RedesignedLoginForm = memo(
                         >
                             {t('Забули пароль?')}
                         </Button>
-                        {}
+
                         <Input
                             type="text"
                             placeholder={t('Введіть пароль')}
@@ -100,7 +104,11 @@ export const RedesignedLoginForm = memo(
                                     onClick={(e: any) => console.log(e.target)}
                                 />
                             }
-                            validations={{ isEmpty: true, minLength: 3 }}
+                            validations={{
+                                isEmpty: true,
+                                minLength: 3,
+                                maxLength: 8,
+                            }}
                         />
                     </VStack>
                 ) : (

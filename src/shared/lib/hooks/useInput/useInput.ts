@@ -1,6 +1,5 @@
 import { ChangeEvent, FocusEvent, useEffect, useRef, useState } from 'react';
 import { trimText } from '../../text/trimText/trimText';
-import { InputValidations } from '@/shared/ui/redesigned/Input';
 
 /**
  * Custom hook for managing input field state, focus, and validation.
@@ -32,40 +31,6 @@ interface UseInputProps {
     onChange?: (value: string) => void;
     onBlur?: () => void;
 }
-
-export const useValidation = (
-    value: string | number | undefined,
-    validations: InputValidations = {},
-) => {
-    const [isEmpty, setEmpty] = useState(true);
-    const [minLengthError, setMinLengthError] = useState(false);
-
-    useEffect(() => {
-        Object.entries(validations).forEach(([validation, rule]) => {
-            switch (validation) {
-                case 'minLength':
-                    if (typeof value === 'string' && value.length < rule) {
-                        setMinLengthError(true);
-                    } else {
-                        setMinLengthError(false);
-                    }
-                    break;
-                case 'isEmpty':
-                    if (value) {
-                        setEmpty(false);
-                    } else {
-                        setEmpty(true);
-                    }
-                    break;
-                default:
-                    console.warn(`Unknown validation: ${validation}`);
-                    break;
-            }
-        });
-    }, [validations, value]);
-
-    return { isEmpty, minLengthError };
-};
 
 export const useInput = ({
     autofocus,
