@@ -1,5 +1,6 @@
 import { ChangeEvent, FocusEvent, useEffect, useRef, useState } from 'react';
 import { trimText } from '../../text/trimText/trimText';
+import { InputValidations } from '@/shared/ui/redesigned/Input';
 
 /**
  * Custom hook for managing input field state, focus, and validation.
@@ -32,15 +33,50 @@ interface UseInputProps {
     onBlur?: () => void;
 }
 
-export function useInput({
+export const useValidation = (
+    value: string | number | undefined,
+    validations: InputValidations = {},
+) => {
+    const [isEmpty, setEmpty] = useState(true);
+    const [minLengthError, setMinLengthError] = useState(false);
+
+    useEffect(() => {
+        Object.entries(validations).forEach(([validation, rule]) => {
+            switch (validation) {
+                case 'minLength':
+                    if (typeof value === 'string' && value.length < rule) {
+                        setMinLengthError(true);
+                    } else {
+                        setMinLengthError(false);
+                    }
+                    break;
+                case 'isEmpty':
+                    if (value) {
+                        setEmpty(false);
+                    } else {
+                        setEmpty(true);
+                    }
+                    break;
+                default:
+                    console.warn(`Unknown validation: ${validation}`);
+                    break;
+            }
+        });
+    }, [validations, value]);
+
+    return { isEmpty, minLengthError };
+};
+
+export const useInput = ({
     autofocus,
     digitsOnly,
     onChange,
     onBlur,
-}: UseInputProps) {
+}: UseInputProps) => {
     const ref = useRef<HTMLInputElement>(null);
     const [isFocused, setIsFocused] = useState(false);
     const [caretPosition, setCaretPosition] = useState(0);
+    const [isDirty, setIsDirty] = useState(false);
 
     useEffect(() => {
         if (autofocus) {
@@ -61,14 +97,12 @@ export function useInput({
         const trimmedValue = trimText(e.target.value);
         onChange?.(trimmedValue);
         setIsFocused(false);
+        setIsDirty(true);
         onBlur?.();
-        console.log('isFocused in Blur', isFocused);
     };
 
     const onFocus = () => {
-        console.log('isFocused BEFORE', isFocused);
         setIsFocused(true);
-        console.log('isFocused AFTER', isFocused);
     };
     const onSelect = (e: any) => {
         setCaretPosition(e?.target?.selectionStart || 0);
@@ -77,10 +111,11 @@ export function useInput({
     return {
         ref,
         isFocused,
+        isDirty,
         onChangeHandler,
         onBlurHandler,
         onFocus,
         onSelect,
         caretPosition,
     };
-}
+};

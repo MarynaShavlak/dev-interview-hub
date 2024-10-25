@@ -1,9 +1,11 @@
 import React, { InputHTMLAttributes, memo, ReactNode, useId } from 'react';
-import { useInput } from '@/shared/lib/hooks/useInput/useInput';
+import { useTranslation } from 'react-i18next';
+import { useInput, useValidation } from '@/shared/lib/hooks/useInput/useInput';
 import { classNames, Mods } from '@/shared/lib/classes/classNames/classNames';
 import { Text } from '../Text';
 import cls from './Input.module.scss';
 import { VStack } from '../../common/Stack';
+import { ValidateProfileError } from '@/features/EditableProfileCard';
 
 type HTMLInputProps = Omit<
     InputHTMLAttributes<HTMLInputElement>,
@@ -11,6 +13,13 @@ type HTMLInputProps = Omit<
 >;
 
 type InputSize = 's' | 'm' | 'l';
+
+export interface InputValidations {
+    isEmpty?: boolean;
+    minLength?: number;
+    maxLength?: number;
+    isEmail?: boolean;
+}
 
 interface InputProps extends HTMLInputProps {
     className?: string;
@@ -25,6 +34,7 @@ interface InputProps extends HTMLInputProps {
     size?: InputSize;
     digitsOnly?: boolean;
     clear?: boolean;
+    validations?: InputValidations;
 }
 
 export const Input = memo((props: InputProps) => {
@@ -43,13 +53,17 @@ export const Input = memo((props: InputProps) => {
         addonRight,
         digitsOnly = false,
         clear = false,
+        validations,
 
         ...otherProps
     } = props;
 
     const generatedId = useId();
+    const { t } = useTranslation('');
 
-    const { ref, isFocused, onChangeHandler, onBlurHandler, onFocus } =
+    const valid = useValidation(value, validations);
+    console.log('valid', valid);
+    const { ref, isFocused, onChangeHandler, onBlurHandler, onFocus, isDirty } =
         useInput({ autofocus, digitsOnly, onChange, onBlur });
     const mods: Mods = {
         [cls.readonly]: readonly,
@@ -57,6 +71,28 @@ export const Input = memo((props: InputProps) => {
         [cls.withAddonLeft]: Boolean(addonLeft),
         [cls.withAddonRight]: Boolean(addonRight),
         [cls.clear]: clear,
+    };
+
+    enum ValidateInputError {
+        INCORRECT_USER_DATA = 'INCORRECT_USER_DATA',
+        INCORRECT_USERNAME = 'INCORRECT_USERNAME',
+        INCORRECT_AGE = 'INCORRECT_AGE',
+        NO_DATA = 'NO_DATA',
+        SERVER_ERROR = 'SERVER_ERROR',
+    }
+
+    const validateInputErrorTranslates = {
+        [ValidateProfileError.SERVER_ERROR]: t(
+            'Помилка сервера при збереженні даннних',
+        ),
+        [ValidateProfileError.NO_DATA]: t('Дані не вказано'),
+        [ValidateProfileError.INCORRECT_USER_DATA]: t(
+            "Прізвище та ім'я є обов'язковими полями",
+        ),
+        [ValidateProfileError.INCORRECT_USERNAME]: t(
+            "Ім'я користувача є обов'язковим полем",
+        ),
+        [ValidateProfileError.INCORRECT_AGE]: t('Некоректний формат віку'),
     };
 
     const input = (
@@ -87,6 +123,7 @@ export const Input = memo((props: InputProps) => {
     if (label) {
         return (
             <VStack max gap="8">
+                {valid.isEmpty && isDirty && <p>111111</p>}
                 <Text text={label} />
                 {input}
             </VStack>

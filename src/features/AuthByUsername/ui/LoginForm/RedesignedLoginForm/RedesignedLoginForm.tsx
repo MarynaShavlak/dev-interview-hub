@@ -43,7 +43,6 @@ export const RedesignedLoginForm = memo(
             : t('Увійти');
 
         const { auth } = useContext(Context);
-        console.log('auth', auth);
 
         const handleRedirectLinkClick = () => {
             setIsLoginFormOpen((prevState) => !prevState);
@@ -59,7 +58,7 @@ export const RedesignedLoginForm = memo(
             <VStack
                 gap="16"
                 className={classNames(cls.LoginForm, {}, [className])}
-                data-testid="login-form"
+                data-testid="auth-form"
             >
                 <Text title={formTitle} />
                 {error && (
@@ -68,15 +67,15 @@ export const RedesignedLoginForm = memo(
                         variant="error"
                     />
                 )}
-                <Input
-                    autofocus
-                    type="text"
-                    placeholder={t('Введіть email')}
-                    onChange={onChangeUsername}
-                    value={username}
-                    data-testid="login-username-input"
-                    label={t('Email')}
-                />
+                {/* <Input */}
+                {/*    autofocus */}
+                {/*    type="text" */}
+                {/*    placeholder={t('Введіть email')} */}
+                {/*    onChange={onChangeUsername} */}
+                {/*    value={username} */}
+                {/*    data-testid="login-username-input" */}
+                {/*    label={t('Email')} */}
+                {/* /> */}
 
                 {isLoginFormOpen ? (
                     <VStack className={cls.passwordInputWrapper} max>
@@ -86,7 +85,7 @@ export const RedesignedLoginForm = memo(
                         >
                             {t('Забули пароль?')}
                         </Button>
-
+                        {}
                         <Input
                             type="text"
                             placeholder={t('Введіть пароль')}
@@ -101,6 +100,7 @@ export const RedesignedLoginForm = memo(
                                     onClick={(e: any) => console.log(e.target)}
                                 />
                             }
+                            validations={{ isEmpty: true, minLength: 3 }}
                         />
                     </VStack>
                 ) : (
@@ -136,6 +136,7 @@ export const RedesignedLoginForm = memo(
                     className={cls.formDivider}
                     align="center"
                     justify="center"
+                    max
                 >
                     <Text text={t('або')} />
                 </HStack>
