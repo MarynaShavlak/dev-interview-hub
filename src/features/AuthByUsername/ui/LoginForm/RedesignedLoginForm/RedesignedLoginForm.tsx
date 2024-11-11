@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { memo, useContext, useState } from 'react';
+import { memo, useContext, useMemo, useState } from 'react';
 import { signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 import { HStack, VStack } from '@/shared/ui/common/Stack';
 import { useLoginForm } from '../../../lib/hooks/useLoginForm';
@@ -13,6 +13,7 @@ import { Context } from '../../../../../../json-server/firebase';
 import { Icon } from '@/shared/ui/redesigned/Icon';
 import EyeIconRedesigned from '@/shared/assets/icons/eye.svg';
 import GoogleIcon from '@/shared/assets/icons/google.svg';
+import { useValidation } from '@/shared/lib/hooks/useValidation/useValidation';
 
 export const RedesignedLoginForm = memo(
     ({ className, onSuccess }: LoginFormProps) => {
@@ -44,6 +45,37 @@ export const RedesignedLoginForm = memo(
 
         const { auth } = useContext(Context);
 
+        const memoizedUsernameValidations = useMemo(
+            () => ({
+                isEmpty: true,
+                isEmail: true,
+            }),
+            [],
+        );
+
+        const memoizedPasswordValidations = useMemo(
+            () => ({
+                isEmpty: true,
+                minLength: 3,
+                maxLength: 8,
+            }),
+            [],
+        );
+
+        const usernameValidation = useValidation(
+            username,
+            memoizedUsernameValidations,
+        );
+        const passwordValidation = useValidation(
+            password,
+            memoizedPasswordValidations,
+        );
+
+        const hasErrors =
+            Object.values(usernameValidation).some((error) => error) ||
+            Object.values(passwordValidation).some((error) => error);
+
+        console.log('hasErrors', hasErrors);
         const handleRedirectLinkClick = () => {
             setIsLoginFormOpen((prevState) => !prevState);
         };
@@ -75,10 +107,8 @@ export const RedesignedLoginForm = memo(
                     value={username}
                     data-testid="login-username-input"
                     label={t('Email')}
-                    validations={{
-                        isEmpty: true,
-                        isEmail: true,
-                    }}
+                    validations={memoizedUsernameValidations}
+                    errors={usernameValidation}
                 />
 
                 {isLoginFormOpen ? (
@@ -104,11 +134,8 @@ export const RedesignedLoginForm = memo(
                                     onClick={(e: any) => console.log(e.target)}
                                 />
                             }
-                            validations={{
-                                isEmpty: true,
-                                minLength: 3,
-                                maxLength: 8,
-                            }}
+                            validations={memoizedPasswordValidations}
+                            errors={passwordValidation}
                         />
                     </VStack>
                 ) : (
@@ -135,7 +162,7 @@ export const RedesignedLoginForm = memo(
                     className={cls.loginBtn}
                     onClick={onLoginClick}
                     // onClick={login}
-                    disabled={isLoading}
+                    disabled={isLoading || hasErrors}
                     data-testid="login-submit-btn"
                 >
                     {buttonText}
@@ -156,7 +183,7 @@ export const RedesignedLoginForm = memo(
                     className={cls.loginBtn}
                     // onClick={onLoginClick}
                     onClick={login}
-                    disabled={isLoading}
+                    disabled={isLoading || hasErrors}
                     data-testid="login-submit-btn"
                 >
                     {buttonGoogleText}

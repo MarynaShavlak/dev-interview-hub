@@ -1,12 +1,20 @@
-import React, { InputHTMLAttributes, memo, ReactNode, useId } from 'react';
+import React, {
+    InputHTMLAttributes,
+    memo,
+    ReactNode,
+    useId,
+    useMemo,
+} from 'react';
 import { useTranslation } from 'react-i18next';
 import { useInput } from '@/shared/lib/hooks/useInput/useInput';
 import { classNames, Mods } from '@/shared/lib/classes/classNames/classNames';
 import { Text } from '../Text';
 import cls from './Input.module.scss';
 import { VStack } from '../../common/Stack';
-import { useValidation } from '@/shared/lib/hooks/useValidation/useValidation';
-import type { InputValidations } from '@/shared/lib/hooks/useValidation/useValidation';
+import {
+    ValidationErrors,
+    InputValidations,
+} from '@/shared/lib/hooks/useValidation/useValidation';
 
 type HTMLInputProps = Omit<
     InputHTMLAttributes<HTMLInputElement>,
@@ -29,7 +37,67 @@ interface InputProps extends HTMLInputProps {
     digitsOnly?: boolean;
     clear?: boolean;
     validations?: InputValidations;
+    errors?: ValidationErrors;
 }
+
+interface ValidationErrorMessagesProps {
+    isDirty: boolean;
+    value?: string | number;
+    validations?: InputValidations;
+    errors: ValidationErrors;
+}
+
+const ValidationErrorMessages = memo(
+    ({ isDirty, value, validations, errors }: ValidationErrorMessagesProps) => {
+        const { t } = useTranslation();
+        // const errors = useValidation(value, validations);
+
+        const validationMessages = useMemo(
+            () => ({
+                EMPTY_FIELD: t('Поле є обов’язковим для заповнення'),
+                INVALID_EMAIL: t('Невірний формат електронної пошти'),
+                MIN_LENGTH_VIOLATION: t(
+                    'Мінімальна довжина поля не відповідає вимогам',
+                ),
+                MAX_LENGTH_VIOLATION: t('Максимальна довжина поля перевищена'),
+            }),
+            [t],
+        );
+        if (!isDirty) return null;
+        return (
+            <>
+                {errors.isEmpty && (
+                    <Text
+                        size="s"
+                        variant="error"
+                        text={validationMessages.EMPTY_FIELD}
+                    />
+                )}
+                {!errors.isEmpty && errors.minLengthError && (
+                    <Text
+                        size="s"
+                        variant="error"
+                        text={validationMessages.MIN_LENGTH_VIOLATION}
+                    />
+                )}
+                {errors.maxLengthError && (
+                    <Text
+                        size="s"
+                        variant="error"
+                        text={validationMessages.MAX_LENGTH_VIOLATION}
+                    />
+                )}
+                {!errors.isEmpty && errors.emailError && (
+                    <Text
+                        size="s"
+                        variant="error"
+                        text={validationMessages.INVALID_EMAIL}
+                    />
+                )}
+            </>
+        );
+    },
+);
 
 export const Input = memo((props: InputProps) => {
     const {
@@ -48,15 +116,13 @@ export const Input = memo((props: InputProps) => {
         digitsOnly = false,
         clear = false,
         validations,
+        errors,
 
         ...otherProps
     } = props;
 
     const generatedId = useId();
-    const { t } = useTranslation();
 
-    const errors = useValidation(value, validations);
-    console.log('errors', errors);
     const { ref, isFocused, onChangeHandler, onBlurHandler, onFocus, isDirty } =
         useInput({ autofocus, digitsOnly, onChange, onBlur });
     const mods: Mods = {
@@ -66,36 +132,13 @@ export const Input = memo((props: InputProps) => {
         [cls.withAddonRight]: Boolean(addonRight),
         [cls.clear]: clear,
     };
-
-    enum ValidateInputError {
-        EMPTY_FIELD = 'EMPTY_FIELD',
-        INVALID_EMAIL = 'INVALID_EMAIL',
-        MIN_LENGTH_VIOLATION = 'MIN_LENGTH_VIOLATION',
-        MAX_LENGTH_VIOLATION = 'MAX_LENGTH_VIOLATION',
-    }
-
-    const validateInputErrorTranslates = {
-        [ValidateInputError.EMPTY_FIELD]: t(
-            'Поле є обов’язковим для заповнення',
-        ),
-        [ValidateInputError.INVALID_EMAIL]: t(
-            'Невірний формат електронної пошти',
-        ),
-        [ValidateInputError.MIN_LENGTH_VIOLATION]: t(
-            'Мінімальна довжина поля не відповідає вимогам',
-        ),
-        [ValidateInputError.MAX_LENGTH_VIOLATION]: t(
-            'Максимальна довжина поля перевищена',
-        ),
-    };
+    const wrapperClasses = classNames(cls.InputWrapper, mods, [
+        className,
+        cls[size],
+    ]);
 
     const input = (
-        <div
-            className={classNames(cls.InputWrapper, mods, [
-                className,
-                cls[size],
-            ])}
-        >
+        <div className={wrapperClasses}>
             <div className={cls.addonLeft}>{addonLeft}</div>
             <input
                 id={generatedId}
@@ -119,48 +162,12 @@ export const Input = memo((props: InputProps) => {
             <VStack max gap="4">
                 <Text text={label} />
                 {input}
-                {isDirty && errors.isEmpty && (
-                    <Text
-                        size="s"
-                        variant="error"
-                        text={
-                            validateInputErrorTranslates[
-                                ValidateInputError.EMPTY_FIELD
-                            ]
-                        }
-                    />
-                )}
-                {isDirty && !errors.isEmpty && errors.minLengthError && (
-                    <Text
-                        size="s"
-                        variant="error"
-                        text={
-                            validateInputErrorTranslates[
-                                ValidateInputError.MIN_LENGTH_VIOLATION
-                            ]
-                        }
-                    />
-                )}
-                {isDirty && errors.maxLengthError && (
-                    <Text
-                        size="s"
-                        variant="error"
-                        text={
-                            validateInputErrorTranslates[
-                                ValidateInputError.MAX_LENGTH_VIOLATION
-                            ]
-                        }
-                    />
-                )}
-                {isDirty && !errors.isEmpty && errors.emailError && (
-                    <Text
-                        size="s"
-                        variant="error"
-                        text={
-                            validateInputErrorTranslates[
-                                ValidateInputError.INVALID_EMAIL
-                            ]
-                        }
+                {errors && (
+                    <ValidationErrorMessages
+                        isDirty={isDirty}
+                        value={value}
+                        validations={validations}
+                        errors={errors}
                     />
                 )}
             </VStack>

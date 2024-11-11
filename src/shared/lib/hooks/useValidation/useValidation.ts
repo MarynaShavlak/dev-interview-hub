@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-interface ValidationErrors {
+export interface ValidationErrors {
     isEmpty: boolean;
     minLengthError: boolean;
     maxLengthError: boolean;
@@ -24,6 +24,8 @@ export const useValidation = (
         maxLengthError: false,
         emailError: false,
     });
+
+    const [isValid, setIsValid] = useState(false);
 
     useEffect(() => {
         const newErrors: ValidationErrors = { ...errors }; // Copy the current state
@@ -73,6 +75,7 @@ export const useValidation = (
         });
 
         setErrors(newErrors);
+        setIsValid(!Object.values(newErrors).some((error) => error));
     }, [value, validations]);
 
     return errors;
