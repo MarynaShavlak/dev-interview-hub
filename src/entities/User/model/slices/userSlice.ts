@@ -19,6 +19,12 @@ export const userSlice = buildSlice({
         logout: (state) => {
             state.authData = undefined;
         },
+        setUser: (state, { payload }: PayloadAction<User>) => {
+            state.authData = payload;
+        },
+        clearUserData: (state) => {
+            state.authData = undefined;
+        },
     },
     extraReducers: (builder) => {
         builder.addCase(

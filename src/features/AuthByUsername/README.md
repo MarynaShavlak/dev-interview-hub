@@ -80,7 +80,7 @@ AuthByUsername/
   
 ### 3. `lib/`:  Utility functions and hooks.
 - **`hook/`**
-  - [**useLoginForm.ts**](./lib/hooks/README.md):  Custom hook for managing form logic and state.
+  - [**useLoginForm.ts**](lib/hooks/useLoginForm/README.md):  Custom hook for managing form logic and state.
 
 
 ### 4. `index.ts`

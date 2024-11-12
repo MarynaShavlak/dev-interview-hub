@@ -1,8 +1,12 @@
 import { useTranslation } from 'react-i18next';
 import { memo, useContext, useMemo, useState } from 'react';
-import { signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
+import {
+    signInWithPopup,
+    GoogleAuthProvider,
+    createUserWithEmailAndPassword,
+} from 'firebase/auth';
 import { HStack, VStack } from '@/shared/ui/common/Stack';
-import { useLoginForm } from '../../../lib/hooks/useLoginForm';
+import { useLoginForm } from '../../../lib/hooks/useLoginForm/useLoginForm';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { Button } from '@/shared/ui/redesigned/Button';
 import { Input } from '@/shared/ui/redesigned/Input';
@@ -26,6 +30,7 @@ export const RedesignedLoginForm = memo(
             onChangeUsername,
             onChangePassword,
             onLoginClick,
+            onSignupClick,
         } = useLoginForm(onSuccess);
 
         const [isLoginFormOpen, setIsLoginFormOpen] = useState(true);
@@ -44,6 +49,7 @@ export const RedesignedLoginForm = memo(
             : t('Увійти');
 
         const { auth } = useContext(Context);
+        console.log('current', auth.currentUser?.email);
 
         const memoizedUsernameValidations = useMemo(
             () => ({
@@ -75,15 +81,44 @@ export const RedesignedLoginForm = memo(
             Object.values(usernameValidation).some((error) => error) ||
             Object.values(passwordValidation).some((error) => error);
 
-        console.log('hasErrors', hasErrors);
         const handleRedirectLinkClick = () => {
             setIsLoginFormOpen((prevState) => !prevState);
         };
 
-        const login = async () => {
-            const provider = new GoogleAuthProvider();
-            const { user } = await signInWithPopup(auth, provider);
-            console.log(user);
+        const loginWithGoogle = async () => {
+            try {
+                const provider = new GoogleAuthProvider();
+                const { user } = await signInWithPopup(auth, provider);
+                console.log('user with google', user);
+            } catch (err) {
+                console.error('Error during Google sign-in:', err);
+            }
+        };
+
+        // const loginWithEmail = async () => {
+        //     try {
+        //         const { user } = await signInWithEmailAndPassword(
+        //             auth,
+        //             username,
+        //             password,
+        //         );
+        //         console.log(user);
+        //     } catch (err) {
+        //         console.error('Error during email sign-in:', err);
+        //     }
+        // };
+
+        const signinWithEmail = async () => {
+            try {
+                const { user } = await createUserWithEmailAndPassword(
+                    auth,
+                    username,
+                    password,
+                );
+                console.log('create user', user);
+            } catch (err) {
+                console.error('Error during account creation:', err);
+            }
         };
 
         return (
@@ -160,7 +195,7 @@ export const RedesignedLoginForm = memo(
                     max
                     variant="accent"
                     className={cls.loginBtn}
-                    onClick={onLoginClick}
+                    onClick={isLoginFormOpen ? onLoginClick : onSignupClick}
                     // onClick={login}
                     disabled={isLoading || hasErrors}
                     data-testid="login-submit-btn"
@@ -182,8 +217,8 @@ export const RedesignedLoginForm = memo(
                     addonLeft={<Icon Svg={GoogleIcon} width="25" height="25" />}
                     className={cls.loginBtn}
                     // onClick={onLoginClick}
-                    onClick={login}
-                    disabled={isLoading || hasErrors}
+                    onClick={loginWithGoogle}
+                    disabled={isLoading}
                     data-testid="login-submit-btn"
                 >
                     {buttonGoogleText}

@@ -1,12 +1,13 @@
 import { useCallback } from 'react';
 import { useForceUpdate } from '@/shared/lib/render/forceUpdate';
-import { loginByUsername } from '../../model/services/loginByUsername/loginByUsername';
-import { useLoginError } from '../../model/selectors/getLoginError/getLoginError';
-import { useLoginIsLoading } from '../../model/selectors/getLoginIsLoading/getLoginIsLoading';
-import { useLoginPassword } from '../../model/selectors/getLoginPassword/getLoginPassword';
-import { useLoginUsername } from '../../model/selectors/getLoginUsername/getLoginUsername';
-import { useLoginActions } from '../../model/slices/loginSlice';
+import { loginByUsername } from '../../../model/services/loginByUsername/loginByUsername';
+import { useLoginError } from '../../../model/selectors/getLoginError/getLoginError';
+import { useLoginIsLoading } from '../../../model/selectors/getLoginIsLoading/getLoginIsLoading';
+import { useLoginPassword } from '../../../model/selectors/getLoginPassword/getLoginPassword';
+import { useLoginUsername } from '../../../model/selectors/getLoginUsername/getLoginUsername';
+import { useLoginActions } from '../../../model/slices/loginSlice';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { useAuthentication } from '../useAuthentication/useAuthentication';
 
 /**
  * Custom hook for managing the state and behavior of a login form.
@@ -40,6 +41,10 @@ export const useLoginForm = (onSuccess: () => void) => {
     const error = useLoginError();
     const forceUpdate = useForceUpdate();
     const { setPassword, setUsername } = useLoginActions();
+    const { signUpCall } = useAuthentication({
+        forceUpdate,
+        onSuccess,
+    });
 
     const onChangeUsername = useCallback(
         (value: string) => {
@@ -63,6 +68,17 @@ export const useLoginForm = (onSuccess: () => void) => {
         }
     }, [dispatch, onSuccess, password, username, forceUpdate]);
 
+    const onSignupClick = useCallback(async () => {
+        signUpCall(username, password);
+        // const result = await dispatch(
+        //     signupByEmail({ username, password, signUpCall }),
+        // );
+        // if (result.meta.requestStatus === 'fulfilled') {
+        //     onSuccess();
+        //     forceUpdate();
+        // }
+    }, [dispatch, onSuccess, password, username, forceUpdate]);
+
     return {
         username,
         password,
@@ -71,5 +87,6 @@ export const useLoginForm = (onSuccess: () => void) => {
         onChangeUsername,
         onChangePassword,
         onLoginClick,
+        onSignupClick,
     };
 };
