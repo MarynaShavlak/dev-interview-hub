@@ -1,6 +1,5 @@
 import { memo } from 'react';
 import { RedesignedLoginForm } from './RedesignedLoginForm/RedesignedLoginForm';
-import { DeprecatedLoginForm } from './DeprecatedLoginForm/DeprecatedLoginForm';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
 import {
     DynamicModuleLoader,
@@ -23,7 +22,8 @@ const LoginForm = memo((props: LoginFormProps) => {
             <ToggleFeaturesComponent
                 feature="isAppRedesigned"
                 on={<RedesignedLoginForm {...props} />}
-                off={<DeprecatedLoginForm {...props} />}
+                off={<RedesignedLoginForm {...props} />}
+                // off={<DeprecatedLoginForm {...props} />}
             />
         </DynamicModuleLoader>
     );

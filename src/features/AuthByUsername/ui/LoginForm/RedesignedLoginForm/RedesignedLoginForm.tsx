@@ -1,10 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { memo, useContext, useMemo, useState } from 'react';
-import {
-    signInWithPopup,
-    GoogleAuthProvider,
-    createUserWithEmailAndPassword,
-} from 'firebase/auth';
+import { signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 import { HStack, VStack } from '@/shared/ui/common/Stack';
 import { useLoginForm } from '../../../lib/hooks/useLoginForm/useLoginForm';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
@@ -95,32 +91,6 @@ export const RedesignedLoginForm = memo(
             }
         };
 
-        // const loginWithEmail = async () => {
-        //     try {
-        //         const { user } = await signInWithEmailAndPassword(
-        //             auth,
-        //             username,
-        //             password,
-        //         );
-        //         console.log(user);
-        //     } catch (err) {
-        //         console.error('Error during email sign-in:', err);
-        //     }
-        // };
-
-        const signinWithEmail = async () => {
-            try {
-                const { user } = await createUserWithEmailAndPassword(
-                    auth,
-                    username,
-                    password,
-                );
-                console.log('create user', user);
-            } catch (err) {
-                console.error('Error during account creation:', err);
-            }
-        };
-
         return (
             <VStack
                 gap="16"
@@ -196,7 +166,6 @@ export const RedesignedLoginForm = memo(
                     variant="accent"
                     className={cls.loginBtn}
                     onClick={isLoginFormOpen ? onLoginClick : onSignupClick}
-                    // onClick={login}
                     disabled={isLoading || hasErrors}
                     data-testid="login-submit-btn"
                 >

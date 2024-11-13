@@ -1,6 +1,4 @@
 import { useCallback } from 'react';
-import { useForceUpdate } from '@/shared/lib/render/forceUpdate';
-import { loginByUsername } from '../../../model/services/loginByUsername/loginByUsername';
 import { useLoginError } from '../../../model/selectors/getLoginError/getLoginError';
 import { useLoginIsLoading } from '../../../model/selectors/getLoginIsLoading/getLoginIsLoading';
 import { useLoginPassword } from '../../../model/selectors/getLoginPassword/getLoginPassword';
@@ -39,12 +37,9 @@ export const useLoginForm = (onSuccess: () => void) => {
     const password = useLoginPassword();
     const isLoading = useLoginIsLoading();
     const error = useLoginError();
-    const forceUpdate = useForceUpdate();
+    // const forceUpdate = useForceUpdate();
     const { setPassword, setUsername } = useLoginActions();
-    const { signUpCall } = useAuthentication({
-        forceUpdate,
-        onSuccess,
-    });
+    const { signUpCall, signInCall } = useAuthentication({ onSuccess });
 
     const onChangeUsername = useCallback(
         (value: string) => {
@@ -61,15 +56,16 @@ export const useLoginForm = (onSuccess: () => void) => {
     );
 
     const onLoginClick = useCallback(async () => {
-        const result = await dispatch(loginByUsername({ username, password }));
-        if (result.meta.requestStatus === 'fulfilled') {
-            onSuccess();
-            forceUpdate();
-        }
-    }, [dispatch, onSuccess, password, username, forceUpdate]);
+        await signInCall({ email: username, password });
+        // const result = await dispatch(loginByUsername({ username, password }));
+        // if (result.meta.requestStatus === 'fulfilled') {
+        //     onSuccess();
+        //     forceUpdate();
+        // }
+    }, [password, signInCall, username]);
 
     const onSignupClick = useCallback(async () => {
-        signUpCall(username, password);
+        await signUpCall({ email: username, password });
         // const result = await dispatch(
         //     signupByEmail({ username, password, signUpCall }),
         // );
@@ -77,7 +73,7 @@ export const useLoginForm = (onSuccess: () => void) => {
         //     onSuccess();
         //     forceUpdate();
         // }
-    }, [dispatch, onSuccess, password, username, forceUpdate]);
+    }, [password, signUpCall, username]);
 
     return {
         username,

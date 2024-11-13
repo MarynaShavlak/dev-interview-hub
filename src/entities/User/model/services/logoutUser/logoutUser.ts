@@ -1,4 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { signOut } from 'firebase/auth';
 import { clearUserDataFromStorage } from '../../../lib/userUtils/userUtils';
 import { userActions } from '../../slices/userSlice';
 import { ThunkConfig } from '@/app/providers/StoreProvider';
@@ -18,15 +19,18 @@ import { ThunkConfig } from '@/app/providers/StoreProvider';
 export const logoutUser = createAsyncThunk<void, void, ThunkConfig<string>>(
     'user/logout',
     async (_, thunkApi) => {
-        const { dispatch } = thunkApi;
+        const { extra, dispatch, rejectWithValue } = thunkApi;
+        const { auth } = extra;
+        const { logout } = userActions;
 
         try {
-            dispatch(userActions.logout());
+            await signOut(auth);
+            dispatch(logout());
             clearUserDataFromStorage();
         } catch (error) {
             console.error('Failed to logout user:', error);
 
-            return thunkApi.rejectWithValue('Logout failed');
+            return rejectWithValue('Logout failed');
         }
         return undefined;
     },

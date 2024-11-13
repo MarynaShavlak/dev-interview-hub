@@ -19,7 +19,7 @@ export const DeprecatedLoginForm = memo(
             error,
             onChangeUsername,
             onChangePassword,
-            onLoginClick,
+            // onLoginClick,
         } = useLoginForm(onSuccess);
 
         return (
@@ -50,7 +50,7 @@ export const DeprecatedLoginForm = memo(
                 <Button
                     theme={ButtonTheme.OUTLINE}
                     className={cls.loginBtn}
-                    onClick={onLoginClick}
+                    // onClick={onLoginClick}
                     disabled={isLoading}
                 >
                     {t('Вхід')}

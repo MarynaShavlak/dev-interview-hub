@@ -1,73 +1,70 @@
-import { useContext, useState } from 'react';
-import {
-    signInWithEmailAndPassword,
-    signOut,
-    UserCredential,
-    User as FirebaseUser,
-} from 'firebase/auth';
+import { useState } from 'react';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { Context } from '../../../../../../json-server/firebase';
-import { User, userActions } from '@/entities/User';
-import { signupByEmail } from '../../../model/services/loginByUsername/loginByUsername';
+
+import {
+    loginByUsername,
+    signupByEmail,
+} from '../../../model/services/loginByUsername/loginByUsername';
+import { useForceUpdate } from '@/shared/lib/render/forceUpdate';
+import { logoutUser } from '@/entities/User';
 
 interface AuthCredentials {
     email: string;
     password: string;
 }
 
-const mapFirebaseUserToCustomUser = (firebaseUser: FirebaseUser): User => {
-    return {
-        id: firebaseUser.uid,
-        username: firebaseUser.email || 'Unknown',
-        avatar: firebaseUser.photoURL || undefined,
-    };
-};
+interface UseAuthenticationProps {
+    onSuccess?: () => void;
+}
 
-export const useAuthentication = () => {
+interface UseAuthenticationReturn {
+    isFetchingUser: boolean;
+    signInCall: (credentials: AuthCredentials) => Promise<void>;
+    signUpCall: (credentials: AuthCredentials) => Promise<void>;
+    signOutCall: () => Promise<void>;
+}
+
+export const useAuthentication = ({
+    onSuccess,
+}: UseAuthenticationProps): UseAuthenticationReturn => {
     const dispatch = useAppDispatch();
-    const [isLoading, setIsLoading] = useState(false);
-    const { auth } = useContext(Context);
-    const { setUser, clearUserData } = userActions;
+    const forceUpdate = useForceUpdate();
+    const [isFetchingUser, setIsFetchingUser] = useState(false);
 
     const signInCall = async ({ email, password }: AuthCredentials) => {
-        setIsLoading(true);
-        try {
-            const userCredential: UserCredential =
-                await signInWithEmailAndPassword(auth, email, password);
-            const customUser: User = mapFirebaseUserToCustomUser(
-                userCredential.user,
-            );
-            return customUser;
-            // await dispatch(setUser(customUser));
-        } catch (err) {
-            console.log(err);
-        } finally {
-            setIsLoading(false);
-        }
+        setIsFetchingUser(true);
+
+        await dispatch(loginByUsername({ username: email, password }))
+            .unwrap()
+            .then((data) => {
+                onSuccess?.();
+                forceUpdate();
+                setIsFetchingUser(false);
+            });
     };
 
     const signUpCall = async ({ email, password }: AuthCredentials) => {
-        setIsLoading(true);
-        dispatch(signupByEmail())
+        setIsFetchingUser(true);
+        await dispatch(signupByEmail({ email, password }))
             .unwrap()
             .then((data) => {
-                onSucees?.();
-                forceUpdate?.();
-                setIsLoading(false);
+                onSuccess?.();
+                forceUpdate();
+                setIsFetchingUser(false);
             });
     };
 
     const signOutCall = async () => {
-        setIsLoading(true);
-        try {
-            await signOut(auth);
-            dispatch(clearUserData());
-        } catch (err) {
-            console.log(err);
-        } finally {
-            setIsLoading(false);
-        }
+        setIsFetchingUser(true);
+
+        await dispatch(logoutUser())
+            .unwrap()
+            .then((data) => {
+                // onSuccess?.();
+                // forceUpdate?.();
+                setIsFetchingUser(false);
+            });
     };
 
-    return { isLoading, signInCall, signUpCall, signOutCall };
+    return { isFetchingUser, signUpCall, signInCall, signOutCall };
 };

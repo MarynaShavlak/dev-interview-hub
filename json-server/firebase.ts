@@ -28,9 +28,9 @@ const defaultContextValue: FirebaseContextType = {
 
 export const Context = createContext<FirebaseContextType>(defaultContextValue);
 
-const firebaseApp = initializeApp(firebaseConfig);
-const firestore = getFirestore(firebaseApp);
-const auth = getAuth();
+export const firebaseApp = initializeApp(firebaseConfig);
+export const firestore = getFirestore(firebaseApp);
+export const auth = getAuth();
 
 export const useFirebaseContext = () => {
     return useMemo(

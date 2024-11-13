@@ -23,7 +23,7 @@ export const initAuthData = createAsyncThunk<User, void, ThunkConfig<string>>(
         const { rejectWithValue, dispatch } = thunkApi;
 
         const userId = localStorage.getItem(USER_LOCALSTORAGE_KEY) as string;
-
+        console.log(userId, userId);
         if (!userId) {
             return rejectWithValue('No user ID found in local storage.');
         }

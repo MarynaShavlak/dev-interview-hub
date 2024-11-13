@@ -1,7 +1,6 @@
 import { useTranslation } from 'react-i18next';
-import React, { memo, useCallback, useContext } from 'react';
+import React, { memo, useCallback } from 'react';
 import { useSelector } from 'react-redux';
-import { signOut } from 'firebase/auth';
 import { Dropdown as DropdownDeprecated } from '@/shared/ui/deprecated/Popups';
 import { Dropdown } from '@/shared/ui/redesigned/Popups';
 import { Avatar as AvatarDeprecated } from '@/shared/ui/deprecated/Avatar';
@@ -12,10 +11,14 @@ import {
     getRouteProfile,
     getRouteSettings,
 } from '@/shared/const/router/router';
-import { isUserAdmin, isUserManager, useUserAuthData } from '@/entities/User';
+import {
+    isUserAdmin,
+    isUserManager,
+    logoutUser,
+    useUserAuthData,
+} from '@/entities/User';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import cls from './AvatarDropdown.module.scss';
-import { Context } from '../../../../../json-server/firebase';
 
 interface AvatarDropdownProps {
     className?: string;
@@ -28,19 +31,13 @@ export const AvatarDropdown = memo(({ className }: AvatarDropdownProps) => {
     const isManager = useSelector(isUserManager);
     const authData = useUserAuthData();
 
-    const { auth } = useContext(Context);
-
-    // const onLogout = useCallback(() => {
-    //     dispatch(logoutUser());
-    // }, [dispatch]);
-
     const onLogout = useCallback(async () => {
         try {
-            await signOut(auth);
+            await dispatch(logoutUser());
         } catch (err) {
             console.error('Error during logout:', err);
         }
-    }, [auth]);
+    }, [dispatch]);
 
     const isAdminPanelAvailable = isAdmin || isManager;
 

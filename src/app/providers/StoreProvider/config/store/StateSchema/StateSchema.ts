@@ -6,6 +6,9 @@ import {
 } from '@reduxjs/toolkit';
 import { AxiosInstance } from 'axios';
 import { CombinedState } from 'redux';
+import { FirebaseApp } from 'firebase/app';
+import { Auth } from 'firebase/auth';
+import { Firestore } from 'firebase/firestore';
 import { UIScrollSchema } from '@/widgets/Page';
 import { ArticleDetailsSchema } from '@/entities/Article';
 import { UserSchema } from '@/entities/User';
@@ -54,6 +57,9 @@ export interface ReduxStoreWithManager extends EnhancedStore<StateSchema> {
 
 export interface ThunkExtraArg {
     api: AxiosInstance;
+    firebaseApp: FirebaseApp;
+    auth: Auth;
+    firestore: Firestore;
 }
 
 export interface ThunkConfig<T> {

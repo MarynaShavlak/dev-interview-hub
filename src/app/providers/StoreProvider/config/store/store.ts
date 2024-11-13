@@ -6,6 +6,11 @@ import { $api } from '@/shared/api/api';
 import { rtkApi } from '@/shared/api/rtkApi';
 import { StateSchema, ThunkExtraArg } from './StateSchema/StateSchema';
 import { createReducerManager } from './reducerManager/reducerManager';
+import {
+    auth,
+    firebaseApp,
+    firestore,
+} from '../../../../../../json-server/firebase';
 
 export const createReduxStore = (
     initialState?: StateSchema,
@@ -22,6 +27,9 @@ export const createReduxStore = (
 
     const extraArg: ThunkExtraArg = {
         api: $api,
+        firebaseApp,
+        auth,
+        firestore,
     };
 
     const store = configureStore({
