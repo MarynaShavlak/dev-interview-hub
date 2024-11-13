@@ -17,7 +17,7 @@ import { useValidation } from '@/shared/lib/hooks/useValidation/useValidation';
 
 export const RedesignedLoginForm = memo(
     ({ className, onSuccess }: LoginFormProps) => {
-        const { t } = useTranslation();
+        const { t } = useTranslation('profile');
         const {
             username,
             password,
@@ -91,32 +91,31 @@ export const RedesignedLoginForm = memo(
             }
         };
 
-        return (
-            <VStack
-                gap="16"
-                className={classNames(cls.LoginForm, {}, [className])}
-                data-testid="auth-form"
-            >
-                <Text title={formTitle} />
-                {error && (
-                    <Text
-                        text={t('Ви ввели невірний логін або пароль')}
-                        variant="error"
+        const SignInForm = () => {
+            return (
+                <VStack
+                    gap="16"
+                    className={classNames(cls.LoginForm, {}, [className])}
+                    data-testid="auth-form-sign-in"
+                >
+                    <Text title={formTitle} />
+                    {error && (
+                        <Text
+                            text={t('Ви ввели невірний логін або пароль')}
+                            variant="error"
+                        />
+                    )}
+                    <Input
+                        autofocus
+                        type="text"
+                        placeholder={t('Введіть email')}
+                        onChange={onChangeUsername}
+                        value={username}
+                        data-testid="login-username-input"
+                        label={t('Email')}
+                        validations={memoizedUsernameValidations}
+                        errors={usernameValidation}
                     />
-                )}
-                <Input
-                    autofocus
-                    type="text"
-                    placeholder={t('Введіть email')}
-                    onChange={onChangeUsername}
-                    value={username}
-                    data-testid="login-username-input"
-                    label={t('Email')}
-                    validations={memoizedUsernameValidations}
-                    errors={usernameValidation}
-                />
-
-                {isLoginFormOpen ? (
                     <VStack className={cls.passwordInputWrapper} max>
                         <Button
                             variant="link"
@@ -143,13 +142,120 @@ export const RedesignedLoginForm = memo(
                             errors={passwordValidation}
                         />
                     </VStack>
-                ) : (
+
+                    <Button
+                        max
+                        variant="accent"
+                        className={cls.loginBtn}
+                        onClick={onLoginClick}
+                        disabled={isLoading || hasErrors}
+                        data-testid="login-submit-btn"
+                    >
+                        {buttonText}
+                    </Button>
+                    <HStack
+                        className={cls.formDivider}
+                        align="center"
+                        justify="center"
+                        max
+                    >
+                        <Text text={t('або')} />
+                    </HStack>
+
+                    <Button
+                        max
+                        variant="outline"
+                        addonLeft={
+                            <Icon Svg={GoogleIcon} width="25" height="25" />
+                        }
+                        className={cls.loginBtn}
+                        // onClick={onLoginClick}
+                        onClick={loginWithGoogle}
+                        disabled={isLoading}
+                        data-testid="login-submit-btn"
+                    >
+                        {buttonGoogleText}
+                    </Button>
+
+                    <HStack
+                        justify="center"
+                        className={cls.formRedirectWrapper}
+                        gap="8"
+                    >
+                        <Text text={redirectText} />
+                        <Button
+                            variant="link"
+                            onClick={handleRedirectLinkClick}
+                        >
+                            {redirectLinkText}
+                        </Button>
+                    </HStack>
+                </VStack>
+            );
+        };
+
+        const SignUpForm = () => {
+            return (
+                <VStack
+                    gap="16"
+                    className={classNames(cls.LoginForm, {}, [className])}
+                    data-testid="auth-form-sign-up"
+                >
+                    <Text title={formTitle} />
+                    {/* {error && ( */}
+                    {/*    <Text */}
+                    {/*        text={t('Ви ввели невірний логін або пароль')} */}
+                    {/*        variant="error" */}
+                    {/*    /> */}
+                    {/* )} */}
+                    <Input
+                        autofocus
+                        type="text"
+                        placeholder={t("Введіть ваше ім'я")}
+                        onChange={onChangeUsername}
+                        value={username}
+                        data-testid="signup-firstname-input"
+                        label={t("Ім'я")}
+                        validations={memoizedUsernameValidations}
+                        errors={usernameValidation}
+                    />
+                    <Input
+                        type="text"
+                        placeholder={t('Введіть Ваше прізвище')}
+                        onChange={onChangeUsername}
+                        value={username}
+                        data-testid="signup-lastname-input"
+                        label={t('Прізвище')}
+                        validations={memoizedUsernameValidations}
+                        errors={usernameValidation}
+                    />
+                    <Input
+                        type="text"
+                        placeholder={t("Введіть ім'я користувача")}
+                        onChange={onChangeUsername}
+                        value={username}
+                        data-testid="signup-username-input"
+                        label={t("Ім'я користувача")}
+                        validations={memoizedUsernameValidations}
+                        errors={usernameValidation}
+                    />
+                    <Input
+                        type="text"
+                        placeholder={t('Введіть email')}
+                        onChange={onChangeUsername}
+                        value={username}
+                        data-testid="signup-email-input"
+                        label={t('Email')}
+                        validations={memoizedUsernameValidations}
+                        errors={usernameValidation}
+                    />
+
                     <Input
                         type="text"
                         placeholder={t('Введіть пароль')}
                         onChange={onChangePassword}
                         value={password}
-                        data-testid="login-password-input"
+                        data-testid="signup--password-input"
                         label={t('Пароль')}
                         addonRight={
                             <Icon
@@ -159,51 +265,57 @@ export const RedesignedLoginForm = memo(
                             />
                         }
                     />
-                )}
 
-                <Button
-                    max
-                    variant="accent"
-                    className={cls.loginBtn}
-                    onClick={isLoginFormOpen ? onLoginClick : onSignupClick}
-                    disabled={isLoading || hasErrors}
-                    data-testid="login-submit-btn"
-                >
-                    {buttonText}
-                </Button>
-                <HStack
-                    className={cls.formDivider}
-                    align="center"
-                    justify="center"
-                    max
-                >
-                    <Text text={t('або')} />
-                </HStack>
-
-                <Button
-                    max
-                    variant="outline"
-                    addonLeft={<Icon Svg={GoogleIcon} width="25" height="25" />}
-                    className={cls.loginBtn}
-                    // onClick={onLoginClick}
-                    onClick={loginWithGoogle}
-                    disabled={isLoading}
-                    data-testid="login-submit-btn"
-                >
-                    {buttonGoogleText}
-                </Button>
-
-                <HStack
-                    justify="center"
-                    className={cls.formRedirectWrapper}
-                    gap="8"
-                >
-                    <Text text={redirectText} />
-                    <Button variant="link" onClick={handleRedirectLinkClick}>
-                        {redirectLinkText}
+                    <Button
+                        max
+                        variant="accent"
+                        className={cls.loginBtn}
+                        onClick={onSignupClick}
+                        disabled={isLoading || hasErrors}
+                        data-testid="login-submit-btn"
+                    >
+                        {buttonText}
                     </Button>
-                </HStack>
-            </VStack>
-        );
+                    <HStack
+                        className={cls.formDivider}
+                        align="center"
+                        justify="center"
+                        max
+                    >
+                        <Text text={t('або')} />
+                    </HStack>
+
+                    <Button
+                        max
+                        variant="outline"
+                        addonLeft={
+                            <Icon Svg={GoogleIcon} width="25" height="25" />
+                        }
+                        className={cls.loginBtn}
+                        // onClick={onLoginClick}
+                        onClick={loginWithGoogle}
+                        disabled={isLoading}
+                        data-testid="login-submit-btn"
+                    >
+                        {buttonGoogleText}
+                    </Button>
+
+                    <HStack
+                        justify="center"
+                        className={cls.formRedirectWrapper}
+                        gap="8"
+                    >
+                        <Text text={redirectText} />
+                        <Button
+                            variant="link"
+                            onClick={handleRedirectLinkClick}
+                        >
+                            {redirectLinkText}
+                        </Button>
+                    </HStack>
+                </VStack>
+            );
+        };
+        return isLoginFormOpen ? <SignInForm /> : <SignUpForm />;
     },
 );

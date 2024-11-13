@@ -56,6 +56,7 @@ export const loginByUsername = createAsyncThunk<
         if (!userCredential) {
             throw new Error('No user data returned from Firebase');
         }
+        console.log('userCredential', userCredential);
         const customUser: User = mapFirebaseUserToCustomUser(
             userCredential.user,
         );
@@ -77,7 +78,7 @@ export const signupByEmail = createAsyncThunk<
 >('login/signupByEmail', async (authData, thunkAPI) => {
     const { extra, dispatch, rejectWithValue } = thunkAPI;
     const { setUser } = userActions;
-    const { auth } = extra;
+    const { auth, firestore } = extra;
     try {
         const userCredential: UserCredential =
             await createUserWithEmailAndPassword(
@@ -85,6 +86,13 @@ export const signupByEmail = createAsyncThunk<
                 authData.email,
                 authData.password,
             );
+
+        auth.onAuthStateChanged((user) => {
+            if (user) {
+                console.log('this user', user);
+                const { uid } = user;
+            }
+        });
 
         if (!userCredential) {
             throw new Error('No user data returned from Firebase');
