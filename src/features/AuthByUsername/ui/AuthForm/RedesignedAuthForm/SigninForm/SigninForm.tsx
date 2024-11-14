@@ -1,4 +1,4 @@
-import { memo, useMemo } from 'react';
+import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { VStack } from '@/shared/ui/common/Stack';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
@@ -11,6 +11,7 @@ import EyeIconRedesigned from '@/shared/assets/icons/eye.svg';
 import { useLoginForm } from '../../../../lib/hooks/useLoginForm/useLoginForm';
 import { AuthFormProps } from '../../AuthForm';
 import { useValidation } from '@/shared/lib/hooks/useValidation/useValidation';
+import { useAuthValidationConfig } from '../../../../lib/hooks/useAuthValidations/useAuthValidations';
 
 export const SignInForm = memo((props: AuthFormProps) => {
     const { className, onSuccess } = props;
@@ -25,32 +26,14 @@ export const SignInForm = memo((props: AuthFormProps) => {
         onLoginClick,
     } = useLoginForm(onSuccess);
 
-    const memoizedEmailValidations = useMemo(
-        () => ({
-            isEmpty: true,
-            isEmail: true,
-        }),
-        [],
-    );
+    const validConfig = useAuthValidationConfig();
 
-    const memoizedPasswordValidations = useMemo(
-        () => ({
-            isEmpty: true,
-            minLength: 3,
-            maxLength: 8,
-        }),
-        [],
-    );
+    const emailErrors = useValidation(email, validConfig.email);
+    const passwordErrors = useValidation(password, validConfig.password);
 
-    const emailValidation = useValidation(email, memoizedEmailValidations);
-    const passwordValidation = useValidation(
-        password,
-        memoizedPasswordValidations,
+    const hasErrors = [emailErrors, passwordErrors].some((validation) =>
+        Object.values(validation).some((error) => error),
     );
-
-    const hasErrors =
-        Object.values(emailValidation).some((error) => error) ||
-        Object.values(passwordValidation).some((error) => error);
 
     return (
         <VStack
@@ -73,8 +56,8 @@ export const SignInForm = memo((props: AuthFormProps) => {
                 value={email}
                 data-testid="login-email-input"
                 label={t('Email')}
-                validations={memoizedEmailValidations}
-                errors={emailValidation}
+                validations={validConfig.email}
+                errors={emailErrors}
             />
             <VStack className={cls.passwordInputWrapper} max>
                 <Button variant="link" className={cls.passwordInputLink}>
@@ -95,8 +78,8 @@ export const SignInForm = memo((props: AuthFormProps) => {
                             onClick={(e: any) => console.log(e.target)}
                         />
                     }
-                    validations={memoizedPasswordValidations}
-                    errors={passwordValidation}
+                    validations={validConfig.password}
+                    errors={passwordErrors}
                 />
             </VStack>
 

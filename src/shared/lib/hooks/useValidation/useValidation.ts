@@ -5,6 +5,7 @@ export interface ValidationErrors {
     minLengthError: boolean;
     maxLengthError: boolean;
     emailError: boolean;
+    usernameError: boolean;
 }
 
 export interface InputValidations {
@@ -12,6 +13,7 @@ export interface InputValidations {
     minLength?: number;
     maxLength?: number;
     isEmail?: boolean;
+    isUsername?: boolean;
 }
 
 export const useValidation = (
@@ -23,6 +25,7 @@ export const useValidation = (
         minLengthError: false,
         maxLengthError: false,
         emailError: false,
+        usernameError: false,
     });
 
     const [isValid, setIsValid] = useState(false);
@@ -34,6 +37,7 @@ export const useValidation = (
         newErrors.minLengthError = false;
         newErrors.maxLengthError = false;
         newErrors.emailError = false;
+        newErrors.usernameError = false;
 
         Object.entries(validations).forEach(([validation, rule]) => {
             switch (validation) {
@@ -65,6 +69,17 @@ export const useValidation = (
                         !emailRegex.test(value.toLowerCase())
                     ) {
                         newErrors.emailError = true;
+                    }
+                    break;
+                }
+                case 'isUsername': {
+                    const usernameRegex =
+                        /^(?=.{8,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/;
+                    if (
+                        typeof value === 'string' &&
+                        !usernameRegex.test(value)
+                    ) {
+                        newErrors.usernameError = true;
                     }
                     break;
                 }

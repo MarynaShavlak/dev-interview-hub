@@ -10,6 +10,8 @@ import { Icon } from '@/shared/ui/redesigned/Icon';
 import EyeIconRedesigned from '@/shared/assets/icons/eye.svg';
 import { AuthFormProps } from '../../AuthForm';
 import { useSignupForm } from '../../../../lib/hooks/useSignupForm/useSignupForm';
+import { useValidation } from '@/shared/lib/hooks/useValidation/useValidation';
+import { useAuthValidationConfig } from '../../../../lib/hooks/useAuthValidations/useAuthValidations';
 
 export const SignUpForm = memo((props: AuthFormProps) => {
     const { className, onSuccess } = props;
@@ -30,6 +32,21 @@ export const SignUpForm = memo((props: AuthFormProps) => {
         onChangePassword,
         onSignupClick,
     } = useSignupForm(onSuccess);
+
+    const validConfig = useAuthValidationConfig();
+    const emailErrors = useValidation(email, validConfig.email);
+    const passwordErrors = useValidation(password, validConfig.password);
+    const usernameErrors = useValidation(username, validConfig.username);
+    const firstnameErrors = useValidation(firstname, validConfig.firstname);
+    const lastnameErrors = useValidation(lastname, validConfig.lastname);
+
+    const hasErrors = [
+        emailErrors,
+        passwordErrors,
+        usernameErrors,
+        firstnameErrors,
+        lastnameErrors,
+    ].some((validation) => Object.values(validation).some((error) => error));
     return (
         <VStack
             gap="16"
@@ -37,32 +54,34 @@ export const SignUpForm = memo((props: AuthFormProps) => {
             data-testid="auth-form-sign-up"
         >
             <Text title={t('Форма реєстрації')} />
-            {/* {error && ( */}
-            {/*    <Text */}
-            {/*        text={t('Ви ввели невірний логін або пароль')} */}
-            {/*        variant="error" */}
-            {/*    /> */}
-            {/* )} */}
+            {error && (
+                <Text
+                    text={t(
+                        'Під час реєстрації виникла помилка. Спробуйте, будь ласка, пізніше',
+                    )}
+                    variant="error"
+                />
+            )}
             <Input
                 autofocus
                 type="text"
                 placeholder={t("Введіть ваше ім'я")}
-                onChange={onChangeUsername}
-                value={username}
+                onChange={onChangeFirstname}
+                value={firstname}
                 data-testid="signup-firstname-input"
                 label={t("Ім'я")}
-                validations={memoizedUsernameValidations}
-                errors={usernameValidation}
+                validations={validConfig.firstname}
+                errors={firstnameErrors}
             />
             <Input
                 type="text"
                 placeholder={t('Введіть Ваше прізвище')}
-                onChange={onChangeUsername}
-                value={username}
+                onChange={onChangeLastname}
+                value={lastname}
                 data-testid="signup-lastname-input"
                 label={t('Прізвище')}
-                validations={memoizedUsernameValidations}
-                errors={usernameValidation}
+                validations={validConfig.lastname}
+                errors={lastnameErrors}
             />
             <Input
                 type="text"
@@ -71,18 +90,18 @@ export const SignUpForm = memo((props: AuthFormProps) => {
                 value={username}
                 data-testid="signup-username-input"
                 label={t("Ім'я користувача")}
-                validations={memoizedUsernameValidations}
-                errors={usernameValidation}
+                validations={validConfig.username}
+                errors={usernameErrors}
             />
             <Input
                 type="text"
                 placeholder={t('Введіть email')}
-                onChange={onChangeUsername}
-                value={username}
+                onChange={onChangeEmail}
+                value={email}
                 data-testid="signup-email-input"
                 label={t('Email')}
-                validations={memoizedUsernameValidations}
-                errors={usernameValidation}
+                validations={validConfig.email}
+                errors={emailErrors}
             />
 
             <Input
@@ -99,6 +118,8 @@ export const SignUpForm = memo((props: AuthFormProps) => {
                         onClick={(e: any) => console.log(e.target)}
                     />
                 }
+                validations={validConfig.password}
+                errors={passwordErrors}
             />
 
             <Button
@@ -109,7 +130,7 @@ export const SignUpForm = memo((props: AuthFormProps) => {
                 disabled={isLoading || hasErrors}
                 data-testid="login-submit-btn"
             >
-                {buttonText}
+                {t('Зареєструватись')}
             </Button>
         </VStack>
     );

@@ -20,7 +20,7 @@ export const Normal = Template.bind({});
 Normal.args = {};
 Normal.decorators = [
     StoreDecorator({
-        loginForm: { username: '123', password: 'asd' },
+        loginForm: { email: 'mary@gmail.com', password: 'asd' },
     }),
 ];
 
@@ -28,7 +28,7 @@ export const withError = Template.bind({});
 withError.args = {};
 withError.decorators = [
     StoreDecorator({
-        loginForm: { username: '123', password: 'asd', error: 'ERROR' },
+        loginForm: { email: 'mary@gmail.com', password: 'asd', error: 'ERROR' },
     }),
 ];
 
@@ -44,7 +44,7 @@ export const NormalRedesigned = Template.bind({});
 NormalRedesigned.args = {};
 NormalRedesigned.decorators = [
     StoreDecorator({
-        loginForm: { username: '123', password: 'asd' },
+        loginForm: { email: 'mary@gmail.com', password: 'asd' },
     }),
     NewDesignDecorator,
 ];
@@ -53,7 +53,7 @@ export const withErrorRedesigned = Template.bind({});
 withErrorRedesigned.args = {};
 withErrorRedesigned.decorators = [
     StoreDecorator({
-        loginForm: { username: '123', password: 'asd', error: 'ERROR' },
+        loginForm: { email: 'mary@gmail.com', password: 'asd', error: 'ERROR' },
     }),
     NewDesignDecorator,
 ];

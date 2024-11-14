@@ -55,5 +55,8 @@
     "Введіть пароль": "Enter password",
     "Форма авторизації": "Login to your account",
     "Введіть ваше ім'я": "Enter your firstname",
-    "Введіть Ваше прізвище": "Enter your lastname"
+    "Введіть Ваше прізвище": "Enter your lastname",
+  "Під час реєстрації виникла помилка": {
+    " Спробуйте, будь ласка, пізніше": "The registration process encountered an error. Please try again later."
+  }
 }
