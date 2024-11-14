@@ -1,11 +1,11 @@
 import { lazy, Suspense } from 'react';
-import { LoginFormProps } from './LoginForm';
+import { AuthFormProps } from './AuthForm';
 
 import { Skeleton } from '@/shared/ui/redesigned/Skeleton';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
 import { Loader } from '@/shared/ui/deprecated/Loader';
 
-const LoginFormLazy = lazy(() => import('./LoginForm'));
+const AuthFormLazy = lazy(() => import('./AuthForm'));
 
 const fallback = (
     <ToggleFeaturesComponent
@@ -14,10 +14,10 @@ const fallback = (
         off={<Loader />}
     />
 );
-export const LoginFormAsync = (props: LoginFormProps) => {
+export const AuthFormAsync = (props: AuthFormProps) => {
     return (
         <Suspense fallback={fallback}>
-            <LoginFormLazy {...props} />
+            <AuthFormLazy {...props} />
         </Suspense>
     );
 };

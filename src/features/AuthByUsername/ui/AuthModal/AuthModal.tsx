@@ -1,17 +1,17 @@
 import { memo } from 'react';
 import { Modal } from '@/shared/ui/common/Modal';
-import { LoginFormAsync as LoginForm } from '../LoginForm/LoginForm.async';
+import { AuthFormAsync as AuthForm } from '../AuthForm/AuthForm.async';
 
-interface LoginModalProps {
+interface AuthModalProps {
     className?: string;
     isOpen: boolean;
     onClose: () => void;
 }
 
-export const LoginModal = memo(
-    ({ className, isOpen, onClose }: LoginModalProps) => (
+export const AuthModal = memo(
+    ({ className, isOpen, onClose }: AuthModalProps) => (
         <Modal className={className} isOpen={isOpen} onClose={onClose} lazy>
-            <LoginForm onSuccess={onClose} />
+            <AuthForm onSuccess={onClose} />
         </Modal>
     ),
 );

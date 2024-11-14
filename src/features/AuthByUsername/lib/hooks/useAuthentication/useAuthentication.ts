@@ -1,12 +1,10 @@
 import { useState } from 'react';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 
-import {
-    loginByUsername,
-    signupByEmail,
-} from '../../../model/services/loginByUsername/loginByUsername';
+import { loginByUsername } from '../../../model/services/loginByUsername/loginByUsername';
 import { useForceUpdate } from '@/shared/lib/render/forceUpdate';
 import { logoutUser } from '@/entities/User';
+import { signupByEmail } from '../../../model/services/signupByEmail/signupByEmail';
 
 interface AuthCredentials {
     email: string;

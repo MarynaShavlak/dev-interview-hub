@@ -23,7 +23,7 @@ The project includes comprehensive tests for selectors, ensuring they accurately
 ## 3. Login Form Selectors
 | Selector  | Purpose                                                                                   | Edge Cases Handled                         |
 |----------------|-------------------------------------------------------------------------------------------|--------------------------------------------|
- | [getLoginUsername](../../../src/features/AuthByUsername/model/selectors/getLoginUsername/getLoginUsername.test.ts) | Verifies that the selector correctly returns the username from the login form state.       | Handles cases with an empty state.         |
+ | [getLoginEmail](../../../src/features/AuthByUsername/model/selectors/getLoginEmail/getLoginEmail.test.ts) | Verifies that the selector correctly returns the username from the login form state.       | Handles cases with an empty state.         |
   | [getLoginPassword](../../../src/features/AuthByUsername/model/selectors/getLoginPassword/getLoginPassword.ts) | Ensures that the selector returns the password from the login form state.                  | Manages scenarios with an empty state.     |
  | [getLoginIsLoading](../../../src/features/AuthByUsername/model/selectors/getLoginIsLoading/getLoginIsLoading.test.ts) | Confirms that the selector correctly returns the loading state for the login form.         | Handles cases with an empty state.         |
 | [getLoginError](../..//src/features/AuthByUsername/model/selectors/getLoginError/getLoginError.test.ts) | Verifies that the selector correctly returns the error message from the login form state.  | Manages cases where the state is empty.    |

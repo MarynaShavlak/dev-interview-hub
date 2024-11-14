@@ -5,12 +5,12 @@ import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { Button, ButtonTheme } from '@/shared/ui/deprecated/Button';
 import { Input } from '@/shared/ui/deprecated/Input';
 import { Text, TextTheme } from '@/shared/ui/deprecated/Text';
-import cls from '../LoginForm.module.scss';
+import cls from '../AuthForm.module.scss';
 import { VStack } from '@/shared/ui/common/Stack';
-import { LoginFormProps } from '../LoginForm';
+import { AuthFormProps } from '../AuthForm';
 
-export const DeprecatedLoginForm = memo(
-    ({ className, onSuccess }: LoginFormProps) => {
+export const DeprecatedAuthForm = memo(
+    ({ className, onSuccess }: AuthFormProps) => {
         const { t } = useTranslation();
         const {
             username,

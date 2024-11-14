@@ -50,19 +50,19 @@ Here's an example of using the Modal component with lazy loading:
 ```typescript jsx
 import { memo, Suspense } from 'react';
 import { Modal } from '@/shared/ui/redesigned/Modal';
-import { LoginFormAsync } from '../LoginForm/LoginForm.async';
+import { AuthFormAsync } from '../AuthForm/AuthForm.async';
 import { Loader } from '@/shared/ui/deprecated/Loader';
 
-interface LoginModalProps {
+interface AuthModalProps {
     className?: string;
     isOpen: boolean;
     onClose: () => void;
 }
 
-export const LoginModal = memo(
-    ({ className, isOpen, onClose }: LoginModalProps) => (
+export const AuthModal = memo(
+    ({ className, isOpen, onClose }: AuthModalProps) => (
         <Modal
-            className="LoginModal"
+            className="AuthModal"
             isOpen={isOpen}
             onClose={onClose}
             lazy // Enables lazy loading for the modal content

@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useAuthModal } from '../../lib/hooks/useAuthModal';
-import { LoginModal } from '@/features/AuthByUsername';
+import { AuthModal } from '@/features/AuthByUsername';
 import { Button } from '@/shared/ui/redesigned/Button';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import cls from '../Navbar.module.scss';
@@ -51,7 +51,7 @@ export const NotAuthorizedNavbar = memo(({ className }: NavbarProps) => {
             />
 
             {isAuthModal && (
-                <LoginModal isOpen={isAuthModal} onClose={onCloseModal} />
+                <AuthModal isOpen={isAuthModal} onClose={onCloseModal} />
             )}
         </header>
     );

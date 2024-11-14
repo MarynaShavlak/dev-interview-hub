@@ -1,11 +1,11 @@
-# DeprecatedLoginForm
+# DeprecatedAuthForm
 
 ## Overview
-The **`DeprecatedLoginForm`** component represents the legacy login interface, designed to handle user authentication with deprecated UI elements. This component provides a familiar login experience for users during the transition to a redesigned login form. It integrates older UI components while maintaining essential functionality and visual consistency with the previous design system.
+The **`DeprecatedAuthForm`** component represents the legacy login interface, designed to handle user authentication with deprecated UI elements. This component provides a familiar login experience for users during the transition to a redesigned login form. It integrates older UI components while maintaining essential functionality and visual consistency with the previous design system.
 
 ## Props
 
-The **`DeprecatedLoginForm`** component accepts the following props:
+The **`DeprecatedAuthForm`** component accepts the following props:
 
 | Prop      | Type          | Required / Optional | Description                                                     |
 |-----------|---------------|----------------------|-----------------------------------------------------------------|
@@ -23,7 +23,7 @@ The **`DeprecatedLoginForm`** component accepts the following props:
 
 ## Usage Example
 ```typescript jsx
-import { DeprecatedLoginForm } from '@/entities/LoginForm/DeprecatedLoginForm';
+import { DeprecatedAuthForm } from '@/entities/AuthForm/DeprecatedAuthForm';
 
 const LoginPage = () => {
     const handleLoginSuccess = () => {
@@ -31,7 +31,7 @@ const LoginPage = () => {
     };
 
     return (
-        <DeprecatedLoginForm
+        <DeprecatedAuthForm
             className="login-form"
             onSuccess={handleLoginSuccess}
         />
@@ -40,4 +40,4 @@ const LoginPage = () => {
 ```
 ## Conclusion
 
-The **`DeprecatedLoginForm`** component serves as a legacy login interface, maintaining continuity for users during the transition to newer design standards. Its primary role is to provide a functional login experience using deprecated UI elements while ensuring essential authentication features are preserved. This component integrates classic UI components and manages form state with the `useLoginForm` hook, allowing for efficient handling of user inputs and authentication processes. Despite its outdated design, it remains a crucial part of the application for users who interact with legacy systems or require familiarity with previous interfaces.
+The **`DeprecatedAuthForm`** component serves as a legacy login interface, maintaining continuity for users during the transition to newer design standards. Its primary role is to provide a functional login experience using deprecated UI elements while ensuring essential authentication features are preserved. This component integrates classic UI components and manages form state with the `useLoginForm` hook, allowing for efficient handling of user inputs and authentication processes. Despite its outdated design, it remains a crucial part of the application for users who interact with legacy systems or require familiarity with previous interfaces.

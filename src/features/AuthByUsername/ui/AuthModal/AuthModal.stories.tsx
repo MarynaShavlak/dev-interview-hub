@@ -1,23 +1,23 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { LoginModal } from './LoginModal';
+import { AuthModal } from './AuthModal';
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator/NewDesignDecorator';
 
 // Set up the metadata for the component in Storybook
 export default {
-    title: 'features/AuthByUsername/LoginModal',
-    component: LoginModal,
+    title: 'features/AuthByUsername/AuthModal',
+    component: AuthModal,
     argTypes: {
         isOpen: { control: 'boolean' },
         backgroundColor: { control: 'color' },
     },
     decorators: [StoreDecorator({})],
-} as ComponentMeta<typeof LoginModal>;
+} as ComponentMeta<typeof AuthModal>;
 
 // Template for creating various stories
-const Template: ComponentStory<typeof LoginModal> = (args) => (
-    <LoginModal {...args} />
+const Template: ComponentStory<typeof AuthModal> = (args) => (
+    <AuthModal {...args} />
 );
 
 export const Normal = Template.bind({});

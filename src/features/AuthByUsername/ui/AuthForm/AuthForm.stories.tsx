@@ -1,19 +1,19 @@
 import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
-import LoginForm from './LoginForm';
+import AuthForm from './AuthForm';
 import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator/NewDesignDecorator';
 
 export default {
-    title: 'features/AuthByUsername/LoginForm',
-    component: LoginForm,
+    title: 'features/AuthByUsername/AuthForm',
+    component: AuthForm,
     argTypes: {
         backgroundColor: { control: 'color' },
     },
-} as ComponentMeta<typeof LoginForm>;
+} as ComponentMeta<typeof AuthForm>;
 
-const Template: ComponentStory<typeof LoginForm> = (args) => (
-    <LoginForm {...args} />
+const Template: ComponentStory<typeof AuthForm> = (args) => (
+    <AuthForm {...args} />
 );
 
 export const Normal = Template.bind({});

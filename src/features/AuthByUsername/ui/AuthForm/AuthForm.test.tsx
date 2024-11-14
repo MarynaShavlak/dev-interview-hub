@@ -1,9 +1,9 @@
 import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { componentRender } from '@/shared/lib/tests/componentRender/componentRender';
-import LoginForm from './LoginForm';
+import AuthForm from './AuthForm';
 import { setFeatureFlags } from '@/shared/lib/features';
-import { loginReducer } from '../../model/slices/loginSlice';
+import { loginReducer } from '../../model/slices/loginSlice/loginSlice';
 import { $api } from '@/shared/api/api';
 
 const options = {
@@ -24,13 +24,13 @@ describe('LoginForm Component', () => {
 
     test('should render the LoginForm component.', async () => {
         const onSuccessMock = jest.fn();
-        componentRender(<LoginForm onSuccess={onSuccessMock} />, options);
+        componentRender(<AuthForm onSuccess={onSuccessMock} />, options);
         expect(screen.getByTestId('login-form')).toBeInTheDocument();
     });
 
     test('should update the username and password fields on user input.', async () => {
         const onSuccessMock = jest.fn();
-        componentRender(<LoginForm onSuccess={onSuccessMock} />, options);
+        componentRender(<AuthForm onSuccess={onSuccessMock} />, options);
 
         const usernameInput = screen.getByTestId('login-username-input');
         const passwordInput = screen.getByTestId('login-password-input');
@@ -44,7 +44,7 @@ describe('LoginForm Component', () => {
 
     test('should display an error message when login fails.', async () => {
         const onSuccessMock = jest.fn();
-        componentRender(<LoginForm onSuccess={onSuccessMock} />, options);
+        componentRender(<AuthForm onSuccess={onSuccessMock} />, options);
 
         await userEvent.type(
             screen.getByTestId('login-username-input'),
@@ -66,7 +66,7 @@ describe('LoginForm Component', () => {
 
     test('should disable the login button while loading.', async () => {
         const onSuccessMock = jest.fn();
-        componentRender(<LoginForm onSuccess={onSuccessMock} />, options);
+        componentRender(<AuthForm onSuccess={onSuccessMock} />, options);
 
         await userEvent.type(
             screen.getByTestId('login-username-input'),
@@ -90,7 +90,7 @@ describe('LoginForm Component', () => {
         });
 
         const onSuccessMock = jest.fn();
-        componentRender(<LoginForm onSuccess={onSuccessMock} />, options);
+        componentRender(<AuthForm onSuccess={onSuccessMock} />, options);
 
         await userEvent.type(
             screen.getByTestId('login-username-input'),
@@ -109,7 +109,7 @@ describe('LoginForm Component', () => {
 
     test('should display an error message when the username is empty.', async () => {
         const onSuccessMock = jest.fn();
-        componentRender(<LoginForm onSuccess={onSuccessMock} />, options);
+        componentRender(<AuthForm onSuccess={onSuccessMock} />, options);
 
         await userEvent.type(
             screen.getByTestId('login-password-input'),
@@ -127,7 +127,7 @@ describe('LoginForm Component', () => {
 
     test('should display an error message when the password is empty.', async () => {
         const onSuccessMock = jest.fn();
-        componentRender(<LoginForm onSuccess={onSuccessMock} />, options);
+        componentRender(<AuthForm onSuccess={onSuccessMock} />, options);
 
         await userEvent.type(
             screen.getByTestId('login-username-input'),
@@ -145,7 +145,7 @@ describe('LoginForm Component', () => {
 
     test('should display errors when both username and password are empty.', async () => {
         const onSuccessMock = jest.fn();
-        componentRender(<LoginForm onSuccess={onSuccessMock} />, options);
+        componentRender(<AuthForm onSuccess={onSuccessMock} />, options);
 
         await userEvent.click(screen.getByTestId('login-submit-btn'));
 
@@ -158,7 +158,7 @@ describe('LoginForm Component', () => {
 
     test('should clear error message and update fields when retrying after a failed login attempt.', async () => {
         const onSuccessMock = jest.fn();
-        componentRender(<LoginForm onSuccess={onSuccessMock} />, options);
+        componentRender(<AuthForm onSuccess={onSuccessMock} />, options);
 
         // Trigger a failed login attempt
         await userEvent.type(

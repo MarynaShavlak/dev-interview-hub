@@ -39,7 +39,7 @@ import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch
 import { loginByUsername } from '../../model/services/loginByUsername/loginByUsername';
 
 
-export const LoginForm = () => {
+export const AuthForm = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const dispatch = useAppDispatch();

@@ -2,50 +2,57 @@ import { useCallback } from 'react';
 import { useLoginError } from '../../../model/selectors/getLoginError/getLoginError';
 import { useLoginIsLoading } from '../../../model/selectors/getLoginIsLoading/getLoginIsLoading';
 import { useLoginPassword } from '../../../model/selectors/getLoginPassword/getLoginPassword';
-import { useLoginUsername } from '../../../model/selectors/getLoginUsername/getLoginUsername';
-import { useLoginActions } from '../../../model/slices/loginSlice';
-import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { useLoginEmail } from '../../../model/selectors/getLoginEmail/getLoginEmail';
+import { useLoginActions } from '../../../model/slices/loginSlice/loginSlice';
 import { useAuthentication } from '../useAuthentication/useAuthentication';
 
 /**
  * Custom hook for managing the state and behavior of a login form.
- * It handles username and password input changes, login requests, and provides status and error information.
+ * It handles email and password input changes, login requests, and provides status and error information.
  *
  * @param {function} onSuccess - A callback function that is invoked when the login is successful. Can be used to trigger post-login actions, such as redirecting the user or updating the UI.
  *
  * @returns {{
- *    username: string;
+ *    email: string;
  *    password: string;
  *    isLoading: boolean;
  *    error: string | null;
- *    onChangeUsername: (value: string) => void;
+ *    onChangeEmail: (value: string) => void;
  *    onChangePassword: (value: string) => void;
  *    onLoginClick: () => void;
  * }} An object with the following properties:
- *  - `username`: A string representing the current value of the username input field.
+ *  - `email`: A string representing the current value of the email input field.
  *  - `password`: A string representing the current value of the password input field.
  *  - `isLoading`: A boolean indicating whether the login request is in progress.
  *  - `error`: A string or null indicating an error message if the login request fails.
- *  - `onChangeUsername`: A function to handle changes in the username input field. Accepts the new username value as a parameter.
+ *  - `onChangeEmail`: A function to handle changes in the email input field. Accepts the new email value as a parameter.
  *  - `onChangePassword`: A function to handle changes in the password input field. Accepts the new password value as a parameter.
  *  - `onLoginClick`: A function to handle the login button click event. Initiates the login process.
  */
 
-export const useLoginForm = (onSuccess: () => void) => {
-    const dispatch = useAppDispatch();
-    const username = useLoginUsername();
+export const useLoginForm = (
+    onSuccess: () => void,
+): {
+    email: string;
+    password: string;
+    isLoading: boolean;
+    error: string | undefined;
+    onChangeEmail: (value: string) => void;
+    onChangePassword: (value: string) => void;
+    onLoginClick: () => void;
+} => {
+    const email = useLoginEmail();
     const password = useLoginPassword();
     const isLoading = useLoginIsLoading();
     const error = useLoginError();
-    // const forceUpdate = useForceUpdate();
-    const { setPassword, setUsername } = useLoginActions();
-    const { signUpCall, signInCall } = useAuthentication({ onSuccess });
+    const { setPassword, setEmail } = useLoginActions();
+    const { signInCall } = useAuthentication({ onSuccess });
 
-    const onChangeUsername = useCallback(
+    const onChangeEmail = useCallback(
         (value: string) => {
-            setUsername(value);
+            setEmail(value);
         },
-        [setUsername],
+        [setEmail],
     );
 
     const onChangePassword = useCallback(
@@ -56,33 +63,16 @@ export const useLoginForm = (onSuccess: () => void) => {
     );
 
     const onLoginClick = useCallback(async () => {
-        await signInCall({ email: username, password });
-        // const result = await dispatch(loginByUsername({ username, password }));
-        // if (result.meta.requestStatus === 'fulfilled') {
-        //     onSuccess();
-        //     forceUpdate();
-        // }
-    }, [password, signInCall, username]);
-
-    const onSignupClick = useCallback(async () => {
-        await signUpCall({ email: username, password });
-        // const result = await dispatch(
-        //     signupByEmail({ username, password, signUpCall }),
-        // );
-        // if (result.meta.requestStatus === 'fulfilled') {
-        //     onSuccess();
-        //     forceUpdate();
-        // }
-    }, [password, signUpCall, username]);
+        await signInCall({ email, password });
+    }, [password, signInCall, email]);
 
     return {
-        username,
+        email,
         password,
         isLoading,
         error,
-        onChangeUsername,
+        onChangeEmail,
         onChangePassword,
         onLoginClick,
-        onSignupClick,
     };
 };

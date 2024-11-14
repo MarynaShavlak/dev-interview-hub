@@ -1,6 +1,6 @@
 import { loginActions, loginReducer } from './loginSlice';
-import { LoginSchema } from '../types/loginSchema';
-import { loginByUsername } from '../services/loginByUsername/loginByUsername';
+import { LoginSchema } from '../../types/loginSchema';
+import { loginByUsername } from '../../services/loginByUsername/loginByUsername';
 import { testUserData } from '@/entities/User/testing';
 
 describe('loginSlice tests', () => {

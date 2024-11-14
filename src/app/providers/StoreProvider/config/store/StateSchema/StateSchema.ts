@@ -13,7 +13,7 @@ import { UIScrollSchema } from '@/widgets/Page';
 import { ArticleDetailsSchema } from '@/entities/Article';
 import { UserSchema } from '@/entities/User';
 
-import { LoginSchema } from '@/features/AuthByUsername';
+import { LoginSchema, SignupSchema } from '@/features/AuthByUsername';
 import { ProfileSchema } from '@/features/EditableProfileCard';
 import { ArticlesPageSchema } from '@/pages/ArticlesPage';
 import { rtkApi } from '@/shared/api/rtkApi';
@@ -27,6 +27,7 @@ export interface StateSchema {
 
     // Async reducers
     loginForm?: LoginSchema;
+    signupForm?: SignupSchema;
     profile?: ProfileSchema;
     articleDetails?: ArticleDetailsSchema;
     addCommentForm?: AddCommentFormSchema;

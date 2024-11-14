@@ -45,16 +45,16 @@ The project includes component tests using React Testing Library to verify that 
 | **Thank-You Message**           | Correctly displays a thank-you message when a rating is provided.                                            |                                   
 | **Feedback Modal**              | Appropriately shows or hides the feedback modal based on the component's configuration.Verifies that the modal can be closed without submitting feedback or correctly submits feedback.                       | 
 
-## 6. [LoginForm](../../../src/features/AuthByUsername/ui/LoginForm/LoginForm.test.tsx) Component
+## 6. [AuthForm](../../../src/features/AuthByUsername/ui/AuthForm/AuthForm.test.tsx) Component
 
-| Aspect                          | Purpose                                                                                                        | 
-|---------------------------------|-----------------------------------------------------------------------------------------------------------------|
-| **Rendering**                   |  Ensures that the `LoginForm` component renders correctly.                                                        |                                 
-| **Field Updates**               | Updates the username and password fields on user input.                                                        |                                  
+| Aspect                          | Purpose                                                                                                          | 
+|---------------------------------|------------------------------------------------------------------------------------------------------------------|
+| **Rendering**                   | Ensures that the `AuthForm` component renders correctly.                                                         |                                 
+| **Field Updates**               | Updates the username and password fields on user input.                                                          |                                  
 | **Login Scenarios**             | Handles various login scenarios, including displaying error messages for incorrect credentials and empty fields. |                                   
 | **Button State**                | Verifies that the login button is disabled while loading.                                                        |                                   
 | **Success Callback**            | Calls the `onSuccess` callback upon successful login.                                                            |                                   
-| **Error Handling**              | Clears error messages and allows retry after a failed login attempt.                                            |                                   
+| **Error Handling**              | Clears error messages and allows retry after a failed login attempt.                                             |                                   
 
 ## 7. [AddCommentForm](../../../src/entities/Comment/ui/AddCommentForm/AddCommentForm.test.tsx) Component
 

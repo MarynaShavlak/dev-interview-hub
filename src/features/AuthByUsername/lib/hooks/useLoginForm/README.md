@@ -18,7 +18,7 @@ An object with the following properties:
 ### Internal Behavior
 
 1. **State Management**:
-    - **`username` and `password`**: Managed via Redux selectors `useLoginUsername` and `useLoginPassword`. Updated using the `setUsername` and `setPassword` actions from the login slice.
+    - **`username` and `password`**: Managed via Redux selectors `useLoginEmail` and `useLoginPassword`. Updated using the `setUsername` and `setPassword` actions from the login slice.
     - **`isLoading`**: Managed via the `useLoginIsLoading` selector.
     - **`error`**: Managed via the `useLoginError` selector.
     - **`forceUpdate`**: Utilized to trigger a component re-render after a successful login.

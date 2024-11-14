@@ -18,23 +18,23 @@ AuthByUsername/
 │   │   │   └── getLoginIsLoading.ts
 │   │   ├── getLoginPassword/
 │   │   │   └── getLoginPassword.ts
-│   │   └── getLoginUsername/
-│   │       └── getLoginUsername.ts
+│   │   └── getLoginEmail/
+│   │       └── getLoginEmail.ts
 │   ├── services/
 │   │   └── loginByUsername/
 │   │       └── loginByUsername.ts
 │   └── slices/
 │       └── loginSlice.ts
 ├── ui/
-│   ├── LoginForm/
-│   │   ├── DeprecatedLoginForm/
-│   │   │   └── DeprecatedLoginForm.tsx
-│   │   ├── RedesignedLoginForm/
-│   │   │   └── RedesignedLoginForm.tsx
-│   │   ├── LoginForm.module.scss
-│   │   └── LoginForm.tsx
-│   └── LoginModal/
-│       └── LoginModal.tsx
+│   ├── AuthForm/
+│   │   ├── DeprecatedAuthForm/
+│   │   │   └── DeprecatedAuthForm.tsx
+│   │   ├── RedesignedAuthForm/
+│   │   │   └── RedesignedAuthForm.tsx
+│   │   ├── AuthForm.module.scss
+│   │   └── AuthForm.tsx
+│   └── AuthModal/
+│       └── AuthModal.tsx
 ├── lib/
 │   └── hooks/
 │       └── useLoginForm.ts
@@ -52,31 +52,31 @@ AuthByUsername/
     - [**getLoginIsLoading.ts**](./model/selectors/getLoginIsLoading/README.md):  Indicates if login is in progress.
   - **`getLoginPassword/`**
     - [**getLoginPassword.ts**](./model/selectors/getLoginPassword/README.md):   Retrieves the password.
-  - **`getLoginUsername/`**
-    - [**getLoginUsername.ts**](./model/selectors/getLoginUsername/README.md):  Retrieves the username.
+  - **`getLoginEmail/`**
+    - [**getLoginEmail.ts**](model/selectors/getLoginEmail/README.md):  Retrieves the username.
     
 - **`services/`**
   - **`loginByUsername/`**
     - [**loginByUsername.ts**](./model/services/loginByUsername/README.md): Manages the login API request.
 
 - **`slices/`**
-  - [**loginSlice.ts**](model/slices/README.md):Defines the Redux slice for managing login-related state, including actions and reducers.
+  - [**loginSlice.ts**](model/slices/loginSlice/README.md):Defines the Redux slice for managing login-related state, including actions and reducers.
 
 - **`types/`**
   - [**loginSchema.ts**](./model/types/loginSchema.ts): Schema for login form.
 
 ### 2. `ui/`: UI components
 
-- **`LoginForm/`**
-  - [**LoginForm.tsx**](./ui/LoginForm/README.md): Main login form component that handles user input and submission for authentication.
-  - **LoginForm.module.scss**: Styles for the `LoginForm` component.
-  - **`DeprecatedLoginForm/`**
-    - [**DeprecatedLoginForm.tsx**](./ui/LoginForm/DeprecatedLoginForm/README.md): Legacy version of the login form used in the older UI design.
-  - **`RedesignedLoginForm/`**
-    - [**RedesignedLoginForm.tsx**](./ui/LoginForm/RedesignedLoginForm/README.md): Updated login form that aligns with the redesigned UI.
+- **`AuthForm/`**
+  - [**AuthForm.tsx**](ui/AuthForm/README.md): Main login form component that handles user input and submission for authentication.
+  - **AuthForm.module.scss**: Styles for the `AuthForm` component.
+  - **`DeprecatedAuthForm/`**
+    - [**DeprecatedAuthForm.tsx**](ui/AuthForm/DeprecatedAuthForm/README.md): Legacy version of the login form used in the older UI design.
+  - **`RedesignedAuthForm/`**
+    - [**RedesignedAuthForm.tsx**](ui/AuthForm/RedesignedAuthForm/README.md): Updated login form that aligns with the redesigned UI.
 
-- **`LoginModal/`**
-  - [**LoginModal.tsx**](./ui/LoginModal/README.md): Modal component that displays the `LoginForm` within a popup window for a focused user experience..
+- **`AuthModal/`**
+  - [**AuthModal.tsx**](ui/AuthModal/README.md): Modal component that displays the `AuthForm` within a popup window for a focused user experience..
   
 ### 3. `lib/`:  Utility functions and hooks.
 - **`hook/`**
@@ -97,7 +97,7 @@ Entry point for testing-related functionalities within the AuthByUsername module
     - `LoginSchema`: Schema defining the state of the login form.
 
 - **Components**:
-    - `LoginModal`: Component for modal dialog for user authentication.
+    - `AuthModal`: Component for modal dialog for user authentication.
 
 ## Public Testing API
 - **Testing Exports**:

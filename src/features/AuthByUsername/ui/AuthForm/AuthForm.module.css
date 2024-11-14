@@ -1,4 +1,4 @@
-.LoginForm {
+.AuthForm {
   display: flex;
   flex-direction: column;
   width: 460px;
@@ -11,4 +11,4 @@
 .loginBtn {
   margin-top: 15px;
   margin-left: auto;
-}/*# sourceMappingURL=LoginForm.module.css.map */
+}/*# sourceMappingURL=AuthForm.module.css.map */

@@ -2,7 +2,7 @@
 
 ## Overview
 The `NotAuthorizedNavbar` component provides a navigation bar for users who are not authenticated. 
-It displays a login button and, if the login modal is active, renders the `LoginModal` component. 
+It displays a login button and, if the login modal is active, renders the `AuthModal` component. 
 This component adapts its appearance based on the application's feature flags, switching between redesigned and deprecated styles as necessary. 
 It ensures that unauthenticated users have easy access to the login functionality and maintains a consistent user experience across different design versions of the application.
 
@@ -22,7 +22,7 @@ The **`NotAuthorizedNavbar`** component accepts the following props:
 
 ## Features
 1. **Feature Flag Driven**: Utilizes the `toggleFeatures` utility to switch between the redesigned and deprecated button styles based on the isAppRedesigned feature flag. This ensures that the navbar's appearance aligns with the overall design system of the application.
-2. **Login Modal Integration**: Manages the visibility of the `LoginModal` based on the authentication state, providing a seamless login experience.
+2. **Login Modal Integration**: Manages the visibility of the `AuthModal` based on the authentication state, providing a seamless login experience.
 3. **Responsive Design**: The component adapts its appearance dynamically to fit the design specifications defined by the feature flags, ensuring a consistent look and feel across different application states.
 
 

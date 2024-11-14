@@ -86,7 +86,7 @@ const store = configureStore({
 import { useCallback } from 'react';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 
-export const LoginForm = () => {
+export const AuthForm = () => {
     const dispatch = useAppDispatch();
     const { setUsername, setPassword } = useLoginActions();
 

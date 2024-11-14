@@ -4,7 +4,7 @@
 These selectors are designed to access and retrieve the login username from the Redux store. They streamline the management of the login state within the application, providing efficient data retrieval mechanisms for login-related operations.
 ## Import Statements
 ```typescript
-export const [useLoginUsername, getLoginUsername] = buildSelector(
+export const [useLoginEmail, getLoginEmail] = buildSelector(
         (state: StateSchema) => state?.loginForm?.username || '',
 );
 ```
@@ -13,7 +13,7 @@ export const [useLoginUsername, getLoginUsername] = buildSelector(
 
 ## Selectors
 
-### `useLoginUsername` and `getLoginUsername`
+### `useLoginEmail` and `getLoginEmail`
 ```typescript
 export const [useProfileData, getProfileData] = buildSelector(
     (state: StateSchema) => state.profile?.data,
@@ -23,19 +23,19 @@ export const [useProfileData, getProfileData] = buildSelector(
 - **Parameters**:
     - `state`: The entire Redux store state, adhering to the `StateSchema` type.
 - **Returns**:
-    - `getLoginUsername`: A selector function that returns the login username from the `loginForm` object in the Redux store.
-    - `useLoginUsername`: A custom hook that uses the `getLoginUsername` selector to retrieve the login username directly within React components.
+    - `getLoginEmail`: A selector function that returns the login username from the `loginForm` object in the Redux store.
+    - `useLoginEmail`: A custom hook that uses the `getLoginEmail` selector to retrieve the login username directly within React components.
 - **Usage**:
-    - `getLoginUsername`: Use this selector when you need to access the  user login username in non-component code or for server-side operations.
-    - `useLoginUsername`: Use this custom hook within React components to access the user login username directly from the Redux store. 
+    - `getLoginEmail`: Use this selector when you need to access the  user login username in non-component code or for server-side operations.
+    - `useLoginEmail`: Use this custom hook within React components to access the user login username directly from the Redux store. 
 
 ## Usage Examples
-`useLoginUsername` in Component
+`useLoginEmail` in Component
 ```typescript jsx
-import { useLoginUsername } from '@/features/AuthByUsername';
+import { useLoginEmail } from '@/features/AuthByUsername';
 
-export function LoginUsernameComponent() {
-  const username = useLoginUsername();
+export function LoginEmailComponent() {
+  const username = useLoginEmail();
 
   return (
           <div>

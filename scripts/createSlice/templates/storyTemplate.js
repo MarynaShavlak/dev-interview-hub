@@ -9,8 +9,8 @@
  * @return {string} The content of the Storybook configuration file as a string.
  *
  * @example
- * // returns a string that sets up a Storybook story for the `LoginForm'` component under the `features` layer
- * module.exports('features', 'LoginForm');
+ * // returns a string that sets up a Storybook story for the `AuthForm'` component under the `features` layer
+ * module.exports('features', 'AuthForm');
  */
 
 module.exports = (layer, componentName) => `import React from 'react';
