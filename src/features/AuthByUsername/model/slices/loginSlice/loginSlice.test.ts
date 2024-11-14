@@ -6,7 +6,7 @@ import { testUserData } from '@/entities/User/testing';
 describe('loginSlice tests', () => {
     const initialState: LoginSchema = {
         isLoading: false,
-        username: '',
+        email: '',
         password: '',
         error: undefined,
     };
@@ -16,13 +16,13 @@ describe('loginSlice tests', () => {
     });
 
     test('should handle setUsername action', () => {
-        const state: DeepPartial<LoginSchema> = { username: 'oldUsername' };
+        const state: DeepPartial<LoginSchema> = { email: 'oldEmail@gmail.com' };
         expect(
             loginReducer(
                 state as LoginSchema,
-                loginActions.setUsername('newUsername'),
+                loginActions.setEmail('newEmail@gmail.com'),
             ),
-        ).toEqual({ username: 'newUsername' });
+        ).toEqual({ email: 'newEmail@gmail.com' });
     });
 
     test('should handle setPassword action', () => {
@@ -56,7 +56,7 @@ describe('loginSlice tests', () => {
             loginReducer(
                 state as LoginSchema,
                 loginByUsername.fulfilled(testUserData, '', {
-                    username: '',
+                    email: '',
                     password: '',
                 }),
             ),
@@ -73,7 +73,7 @@ describe('loginSlice tests', () => {
                 loginByUsername.rejected(
                     new Error('Login failed'),
                     '',
-                    { username: '', password: '' },
+                    { email: '', password: '' },
                     'Login failed',
                 ),
             ),
@@ -86,12 +86,12 @@ describe('loginSlice tests', () => {
     test('should handle multiple actions in sequence', () => {
         let state: LoginSchema = initialState;
 
-        state = loginReducer(state, loginActions.setUsername('user1'));
+        state = loginReducer(state, loginActions.setEmail('user1'));
         state = loginReducer(state, loginActions.setPassword('pass1'));
         state = loginReducer(state, loginByUsername.pending);
 
         expect(state).toEqual({
-            username: 'user1',
+            email: 'user1',
             password: 'pass1',
             isLoading: true,
             error: undefined,
@@ -100,13 +100,13 @@ describe('loginSlice tests', () => {
         state = loginReducer(
             state,
             loginByUsername.fulfilled(testUserData, '', {
-                username: 'user1',
+                email: 'user1',
                 password: 'pass1',
             }),
         );
 
         expect(state).toEqual({
-            username: 'user1',
+            email: 'user1',
             password: 'pass1',
             isLoading: false,
             error: undefined,

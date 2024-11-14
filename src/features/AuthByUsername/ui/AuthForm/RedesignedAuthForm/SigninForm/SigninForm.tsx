@@ -10,8 +10,10 @@ import { Icon } from '@/shared/ui/redesigned/Icon';
 import EyeIconRedesigned from '@/shared/assets/icons/eye.svg';
 import { useLoginForm } from '../../../../lib/hooks/useLoginForm/useLoginForm';
 import { AuthFormProps } from '../../AuthForm';
-import { useValidation } from '@/shared/lib/hooks/useValidation/useValidation';
-import { useAuthValidationConfig } from '../../../../lib/hooks/useAuthValidations/useAuthValidations';
+import {
+    useAuthFormValidations,
+    useAuthValidationConfig,
+} from '../../../../lib/hooks/useAuthValidations/useAuthValidations';
 
 export const SignInForm = memo((props: AuthFormProps) => {
     const { className, onSuccess } = props;
@@ -28,12 +30,12 @@ export const SignInForm = memo((props: AuthFormProps) => {
 
     const validConfig = useAuthValidationConfig();
 
-    const emailErrors = useValidation(email, validConfig.email);
-    const passwordErrors = useValidation(password, validConfig.password);
+    const {
+        hasErrors,
+        passwordErrors,
 
-    const hasErrors = [emailErrors, passwordErrors].some((validation) =>
-        Object.values(validation).some((error) => error),
-    );
+        emailErrors,
+    } = useAuthFormValidations({ email, password }, validConfig);
 
     return (
         <VStack

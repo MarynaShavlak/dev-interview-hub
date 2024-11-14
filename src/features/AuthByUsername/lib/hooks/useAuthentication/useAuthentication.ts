@@ -32,7 +32,7 @@ export const useAuthentication = ({
     const signInCall = async ({ email, password }: AuthCredentials) => {
         setIsFetchingUser(true);
 
-        await dispatch(loginByUsername({ username: email, password }))
+        await dispatch(loginByUsername({ email, password }))
             .unwrap()
             .then((data) => {
                 onSuccess?.();

@@ -5,7 +5,7 @@ import { userActions } from '@/entities/User';
 
 describe('async thunk loginByUsername test', () => {
     const userAuthenticationData = {
-        username: 'testUsername',
+        email: 'testEmail@gmail.com',
         password: '123',
     };
     beforeEach(() => {
@@ -30,15 +30,15 @@ describe('async thunk loginByUsername test', () => {
         expect(result.payload).toEqual(testUserData);
     });
 
-    test('error login with empty username', async () => {
+    test('error login with empty email', async () => {
         const thunk = new TestAsyncThunk(loginByUsername);
         thunk.api.post.mockReturnValue(Promise.resolve({ status: 403 }));
-        const result = await thunk.callThunk({ username: '', password: '123' });
+        const result = await thunk.callThunk({ email: '', password: '123' });
 
         expect(thunk.dispatch).toHaveBeenCalledTimes(2);
         expect(result.meta.requestStatus).toBe('rejected');
         expect(result.payload).toBe(
-            'Login failed. Please check your username and password and try again.',
+            'Login failed. Please check your email and password and try again.',
         );
     });
 
@@ -46,14 +46,14 @@ describe('async thunk loginByUsername test', () => {
         const thunk = new TestAsyncThunk(loginByUsername);
         thunk.api.post.mockReturnValue(Promise.resolve({ status: 403 }));
         const result = await thunk.callThunk({
-            username: 'testUsername',
+            email: 'testEmail@gmail.com',
             password: '',
         });
 
         expect(thunk.dispatch).toHaveBeenCalledTimes(2);
         expect(result.meta.requestStatus).toBe('rejected');
         expect(result.payload).toBe(
-            'Login failed. Please check your username and password and try again.',
+            'Login failed. Please check your email and password and try again.',
         );
     });
 
@@ -70,7 +70,7 @@ describe('async thunk loginByUsername test', () => {
         );
         expect(result.meta.requestStatus).toBe('rejected');
         expect(result.payload).toBe(
-            'Login failed. Please check your username and password and try again.',
+            'Login failed. Please check your email and password and try again.',
         );
     });
 
@@ -86,7 +86,7 @@ describe('async thunk loginByUsername test', () => {
         );
         expect(result.meta.requestStatus).toBe('rejected');
         expect(result.payload).toBe(
-            'Login failed. Please check your username and password and try again.',
+            'Login failed. Please check your email and password and try again.',
         );
     });
 
@@ -104,7 +104,7 @@ describe('async thunk loginByUsername test', () => {
         );
         expect(result.meta.requestStatus).toBe('rejected');
         expect(result.payload).toBe(
-            'Login failed. Please check your username and password and try again.',
+            'Login failed. Please check your email and password and try again.',
         );
     });
 
@@ -118,7 +118,7 @@ describe('async thunk loginByUsername test', () => {
         expect(thunk.dispatch).toHaveBeenCalledTimes(3);
         expect(result.meta.requestStatus).toBe('rejected');
         expect(result.payload).toBe(
-            'Login failed. Please check your username and password and try again.',
+            'Login failed. Please check your email and password and try again.',
         );
     });
 
@@ -134,7 +134,7 @@ describe('async thunk loginByUsername test', () => {
         );
         expect(result.meta.requestStatus).toBe('rejected');
         expect(result.payload).toBe(
-            'Login failed. Please check your username and password and try again.',
+            'Login failed. Please check your email and password and try again.',
         );
     });
 
@@ -164,9 +164,9 @@ describe('async thunk loginByUsername test', () => {
 //  getState = jest.fn();
 // });
 // test('success login', async () => {
-//     const testUserData = { username: 'afff', id: '12' };
+//     const testUserData = { email: 'afff', id: '12' };
 //     mockedAxios.post.mockReturnValue(Promise.resolve({ data: testUserData }));
-//     const action = loginByUsername({ username: 'afff', password: '123' });
+//     const action = loginByUsername({ email: 'afff', password: '123' });
 //     const result = await action(dispatch, getState, undefined);
 //     expect(dispatch).toHaveBeenCalledWith(userActions.setAuthData(testUserData));
 //     expect(mockedAxios.post).toHaveBeenCalled();
@@ -176,9 +176,9 @@ describe('async thunk loginByUsername test', () => {
 // });
 //
 // test('error login', async () => {
-//     const testUserData = { username: 'afff', id: '12' };
+//     const testUserData = { email: 'afff', id: '12' };
 //     mockedAxios.post.mockReturnValue(Promise.resolve({ data: testUserData }));
-//     const action = loginByUsername({ username: 'afff', password: '123' });
+//     const action = loginByUsername({ email: 'afff', password: '123' });
 //     const result = await action(dispatch, getState, undefined);
 //     expect(mockedAxios.post).toHaveBeenCalled();
 //     expect(mockedAxios.post).toHaveBeenCalledTimes(2);
