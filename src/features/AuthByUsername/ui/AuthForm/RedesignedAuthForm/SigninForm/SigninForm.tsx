@@ -30,15 +30,17 @@ export const SignInForm = memo((props: AuthFormProps) => {
 
     const validConfig = useAuthValidationConfig();
 
-    const {
-        hasErrors,
-        passwordErrors,
+    const { hasErrors, passwordErrors, emailErrors } = useAuthFormValidations(
+        { email, password },
+        validConfig,
+    );
 
-        emailErrors,
-    } = useAuthFormValidations({ email, password }, validConfig);
-
+    console.log('hasErrors in SigninForm', hasErrors);
+    console.log('passwordErrors in SigninForm', passwordErrors);
+    console.log('emailErrors in SigninForm', emailErrors);
     return (
         <VStack
+            max
             gap="16"
             className={classNames(cls.AuthForm, {}, [className])}
             data-testid="auth-form-sign-in"
@@ -51,7 +53,6 @@ export const SignInForm = memo((props: AuthFormProps) => {
                 />
             )}
             <Input
-                autofocus
                 type="text"
                 placeholder={t('Введіть email')}
                 onChange={onChangeEmail}

@@ -125,6 +125,8 @@ export const Input = memo((props: InputProps) => {
 
     const { ref, isFocused, onChangeHandler, onBlurHandler, onFocus, isDirty } =
         useInput({ autofocus, digitsOnly, onChange, onBlur });
+
+    console.log('isDirty', isDirty);
     const mods: Mods = {
         [cls.readonly]: readonly,
         [cls.focused]: isFocused,

@@ -51,6 +51,7 @@ export const SignUpForm = memo((props: AuthFormProps) => {
 
     return (
         <VStack
+            max
             gap="16"
             className={classNames(cls.AuthForm, {}, [className])}
             data-testid="auth-form-sign-up"
@@ -65,7 +66,6 @@ export const SignUpForm = memo((props: AuthFormProps) => {
                 />
             )}
             <Input
-                autofocus
                 type="text"
                 placeholder={t("Введіть ваше ім'я")}
                 onChange={onChangeFirstname}
