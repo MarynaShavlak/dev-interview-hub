@@ -8,8 +8,8 @@ import { Input } from '@/shared/ui/redesigned/Input';
 import { Button } from '@/shared/ui/redesigned/Button';
 import { Icon } from '@/shared/ui/redesigned/Icon';
 import EyeIconRedesigned from '@/shared/assets/icons/eye.svg';
-import { useLoginForm } from '../../../../lib/hooks/useLoginForm/useLoginForm';
 import { AuthFormProps } from '../../AuthForm';
+import { useLoginForm } from '../../../../lib/hooks/useLoginForm/useLoginForm';
 import {
     useAuthFormValidations,
     useAuthValidationConfig,
