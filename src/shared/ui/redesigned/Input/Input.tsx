@@ -50,7 +50,6 @@ interface ValidationErrorMessagesProps {
 const ValidationErrorMessages = memo(
     ({ isDirty, value, validations, errors }: ValidationErrorMessagesProps) => {
         const { t } = useTranslation();
-        // const errors = useValidation(value, validations);
 
         const validationMessages = useMemo(
             () => ({
@@ -60,6 +59,7 @@ const ValidationErrorMessages = memo(
                     'Мінімальна довжина поля не відповідає вимогам',
                 ),
                 MAX_LENGTH_VIOLATION: t('Максимальна довжина поля перевищена'),
+                INVALID_USERNAME: t("Неправильне ім'я користувача"),
             }),
             [t],
         );
@@ -94,6 +94,13 @@ const ValidationErrorMessages = memo(
                         text={validationMessages.INVALID_EMAIL}
                     />
                 )}
+                {!errors.isEmpty && errors.usernameError && (
+                    <Text
+                        size="s"
+                        variant="error"
+                        text={validationMessages.INVALID_USERNAME}
+                    />
+                )}
             </>
         );
     },
@@ -126,7 +133,6 @@ export const Input = memo((props: InputProps) => {
     const { ref, isFocused, onChangeHandler, onBlurHandler, onFocus, isDirty } =
         useInput({ autofocus, digitsOnly, onChange, onBlur });
 
-    console.log('isDirty', isDirty);
     const mods: Mods = {
         [cls.readonly]: readonly,
         [cls.focused]: isFocused,

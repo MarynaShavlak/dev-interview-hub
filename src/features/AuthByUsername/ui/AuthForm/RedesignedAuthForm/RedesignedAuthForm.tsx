@@ -17,7 +17,7 @@ export const RedesignedAuthForm = memo((props: AuthFormProps) => {
 
     const [isLoginFormOpen, setIsLoginFormOpen] = useState(true);
 
-    const buttonGoogleText = t('Продовжити через Goggle');
+    const buttonGoogleText = t('Продовжити через Google');
     const redirectText = isLoginFormOpen
         ? t('Немає облікового запису?')
         : t('Вже маєш акаунт?');

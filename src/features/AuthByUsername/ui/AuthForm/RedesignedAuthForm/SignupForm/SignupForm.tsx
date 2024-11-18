@@ -49,6 +49,8 @@ export const SignUpForm = memo((props: AuthFormProps) => {
         validConfig,
     );
 
+    console.log('usernameErrors', usernameErrors);
+
     return (
         <VStack
             max
