@@ -14,6 +14,7 @@ import {
     useAuthFormValidations,
     useAuthValidationConfig,
 } from '../../../../lib/hooks/useAuthValidations/useAuthValidations';
+import { useErrorText } from '../../../../lib/hooks/useErrorText/useErrorText';
 
 export const SignUpForm = memo((props: AuthFormProps) => {
     const { className, onSuccess } = props;
@@ -48,6 +49,7 @@ export const SignUpForm = memo((props: AuthFormProps) => {
         { email, password, username, firstname, lastname },
         validConfig,
     );
+    const errorText = useErrorText(error);
 
     return (
         <VStack
@@ -57,14 +59,7 @@ export const SignUpForm = memo((props: AuthFormProps) => {
             data-testid="auth-form-sign-up"
         >
             <Text title={t('Форма реєстрації')} />
-            {error && (
-                <Text
-                    text={t(
-                        'Під час реєстрації виникла помилка. Спробуйте, будь ласка, пізніше',
-                    )}
-                    variant="error"
-                />
-            )}
+            {error && <Text text={errorText} variant="error" />}
             <Input
                 type="text"
                 placeholder={t("Введіть ваше ім'я")}

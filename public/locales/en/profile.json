@@ -58,5 +58,8 @@
     "Введіть Ваше прізвище": "Enter your lastname",
   "Під час реєстрації виникла помилка": {
     " Спробуйте, будь ласка, пізніше": "The registration process encountered an error. Please try again later."
-  }
+  },
+  "Зайнятий email": "This email is already in use. Please try another.",
+    "Невалідний email": "The provided email address format is invalid.",
+    "Забагато запитів": "Too many requests. Please wait and try again later."
 }

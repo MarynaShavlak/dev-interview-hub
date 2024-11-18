@@ -35,36 +35,40 @@ export const useAuthentication = ({
     const signInCall = async ({ email, password }: AuthCredentials) => {
         setIsFetchingUser(true);
 
-        await dispatch(loginByUsername({ email, password }))
-            .unwrap()
-            .then((data) => {
-                onSuccess?.();
-                forceUpdate();
-                setIsFetchingUser(false);
-            });
+        try {
+            await dispatch(loginByUsername({ email, password })).unwrap();
+            onSuccess?.();
+            forceUpdate();
+        } catch (error) {
+            console.error('Error during sign in:', error);
+        } finally {
+            setIsFetchingUser(false);
+        }
     };
 
     const signUpCall = async (signUpData: SignupCredentials) => {
         setIsFetchingUser(true);
-        await dispatch(signupByEmail(signUpData))
-            .unwrap()
-            .then((data) => {
-                onSuccess?.();
-                forceUpdate();
-                setIsFetchingUser(false);
-            });
+        try {
+            await dispatch(signupByEmail(signUpData)).unwrap();
+            onSuccess?.();
+            forceUpdate();
+        } catch (error) {
+            console.error('Error during sign up:', error);
+        } finally {
+            setIsFetchingUser(false);
+        }
     };
 
     const signOutCall = async () => {
         setIsFetchingUser(true);
 
-        await dispatch(logoutUser())
-            .unwrap()
-            .then((data) => {
-                // onSuccess?.();
-                // forceUpdate?.();
-                setIsFetchingUser(false);
-            });
+        try {
+            await dispatch(logoutUser()).unwrap();
+        } catch (error) {
+            console.error('Error during sign out:', error);
+        } finally {
+            setIsFetchingUser(false);
+        }
     };
 
     return { isFetchingUser, signUpCall, signInCall, signOutCall };

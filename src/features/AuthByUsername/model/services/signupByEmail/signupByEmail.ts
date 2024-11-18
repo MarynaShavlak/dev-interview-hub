@@ -12,6 +12,7 @@ import {
 } from '@/entities/User';
 import { ThunkConfig } from '@/app/providers/StoreProvider';
 import { Theme } from '@/shared/const/theme';
+import { FirebaseAuthErrorCode } from '../../types/firebaseAuthErrorCode';
 
 export interface SignupCredentials {
     firstname: string;
@@ -89,7 +90,25 @@ export const signupByEmail = createAsyncThunk<
         handleUserAuthentication(customUser);
         return customUser;
     } catch (err) {
-        console.error('Signup failed failed:', err);
+        const firebaseError = err as {
+            code: FirebaseAuthErrorCode;
+            message: string;
+        };
+        if (firebaseError.code) {
+            switch (firebaseError.code) {
+                case 'auth/email-already-in-use':
+                    return rejectWithValue('auth/email-already-in-use');
+                case 'auth/invalid-email':
+                    return rejectWithValue('auth/invalid-email');
+                case 'auth/too-many-requests':
+                    return rejectWithValue('auth/too-many-requests');
+                default:
+                    return rejectWithValue(
+                        `Signup failed due to: ${firebaseError.message}`,
+                    );
+            }
+        }
+
         return rejectWithValue('Signup failed. Please try again.');
     }
 });
