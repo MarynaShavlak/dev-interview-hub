@@ -51,6 +51,7 @@ export const useSignupForm = (
     onChangeEmail: (value: string) => void;
     onChangePassword: (value: string) => void;
     onSignupClick: () => void;
+    onAuthByGoogleClick: () => void;
 } => {
     const username = useSignupUsername();
     const lastname = useSignupLastname();
@@ -62,7 +63,7 @@ export const useSignupForm = (
 
     const { setPassword, setUsername, setFirstname, setLastname, setEmail } =
         useSignupActions();
-    const { signUpCall } = useAuthentication({ onSuccess });
+    const { signUpCall, authByGoogleCall } = useAuthentication({ onSuccess });
 
     const onChangeUsername = useCallback(
         (value: string) => {
@@ -100,6 +101,10 @@ export const useSignupForm = (
         await signUpCall({ username, lastname, firstname, password, email });
     }, [signUpCall, username, lastname, firstname, password, email]);
 
+    const onAuthByGoogleClick = useCallback(async () => {
+        await authByGoogleCall();
+    }, [authByGoogleCall]);
+
     return {
         username,
         firstname,
@@ -114,5 +119,6 @@ export const useSignupForm = (
         onChangeLastname,
         onChangeFirstname,
         onSignupClick,
+        onAuthByGoogleClick,
     };
 };

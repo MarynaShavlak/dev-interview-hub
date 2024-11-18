@@ -1,18 +1,16 @@
 import { User as FirebaseUser } from '@firebase/auth';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { createUserWithEmailAndPassword, UserCredential } from 'firebase/auth';
-import { collection } from '@firebase/firestore';
-import { addDoc } from 'firebase/firestore';
 import {
     handleUserAuthentication,
     User,
     userActions,
     UserFullInfo,
-    UserRole,
 } from '@/entities/User';
 import { ThunkConfig } from '@/app/providers/StoreProvider';
-import { Theme } from '@/shared/const/theme';
 import { FirebaseAuthErrorCode } from '../../types/firebaseAuthErrorCode';
+import { getInitialUserData } from '../../../lib/utilities/getInitialUserData/getInitialUserData';
+import { addNewUserToFirestore } from '../../../lib/utilities/addNewUserToFirestore/addNewUserToFirestore';
 
 export interface SignupCredentials {
     firstname: string;
@@ -49,7 +47,7 @@ export const signupByEmail = createAsyncThunk<
 
         const { uid } = userCredential.user;
         console.log('uid', uid);
-        const usersReference = collection(firestore, 'users');
+
         const data: UserFullInfo = {
             id: uid,
             username: signUpData.username,
@@ -60,18 +58,10 @@ export const signupByEmail = createAsyncThunk<
             // age: undefined,
             // currency: undefined,
             // country: undefined,
-            city: '',
-            roles: [UserRole.USER],
-            features: { isArticleRatingEnabled: true, isAppRedesigned: true },
-            jsonSettings: {
-                theme: Theme.LIGHT,
-                isFirstVisit: true,
-                settingsPageHasBeenOpen: false,
-                isArticlesPageWasOpened: false,
-            },
+            ...getInitialUserData(),
         };
-        await addDoc(usersReference, data);
 
+        await addNewUserToFirestore(firestore, data);
         // auth.onAuthStateChanged((user) => {
         //     if (user) {
         //         console.log('this user', user);

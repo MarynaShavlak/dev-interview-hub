@@ -8,6 +8,7 @@ import {
     signupByEmail,
     SignupCredentials,
 } from '../../../model/services/signupByEmail/signupByEmail';
+import { authByGoogleProvider } from '../../../model/services/authByGoogleProvider/authByGoogleProvider';
 
 interface AuthCredentials {
     email: string;
@@ -23,6 +24,7 @@ interface UseAuthenticationReturn {
     signInCall: (credentials: AuthCredentials) => Promise<void>;
     signUpCall: (credentials: SignupCredentials) => Promise<void>;
     signOutCall: () => Promise<void>;
+    authByGoogleCall: () => Promise<void>;
 }
 
 export const useAuthentication = ({
@@ -59,6 +61,19 @@ export const useAuthentication = ({
         }
     };
 
+    const authByGoogleCall = async () => {
+        setIsFetchingUser(true);
+        try {
+            await dispatch(authByGoogleProvider()).unwrap();
+            onSuccess?.();
+            forceUpdate();
+        } catch (error) {
+            console.error('Error during google authentication:', error);
+        } finally {
+            setIsFetchingUser(false);
+        }
+    };
+
     const signOutCall = async () => {
         setIsFetchingUser(true);
 
@@ -71,5 +86,11 @@ export const useAuthentication = ({
         }
     };
 
-    return { isFetchingUser, signUpCall, signInCall, signOutCall };
+    return {
+        isFetchingUser,
+        signUpCall,
+        signInCall,
+        signOutCall,
+        authByGoogleCall,
+    };
 };
