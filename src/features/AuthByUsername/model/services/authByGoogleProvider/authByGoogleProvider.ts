@@ -12,8 +12,8 @@ import {
     UserFullInfo,
 } from '@/entities/User';
 import { ThunkConfig } from '@/app/providers/StoreProvider';
-import { getInitialUserData } from '../../../lib/utilities/getInitialUserData/getInitialUserData';
 import { addNewUserToFirestore } from '../../../lib/utilities/addNewUserToFirestore/addNewUserToFirestore';
+import { prepareUserData } from '../../../lib/utilities/prepareUserData/prepareUserData';
 
 export const mapFirebaseUserToCustomUser = (
     firebaseUser: FirebaseUser,
@@ -55,26 +55,14 @@ export const authByGoogleProvider = createAsyncThunk<
 
     try {
         const firebaseUser = await signInWithGoogle(auth);
-        const { uid, photoURL, email, displayName } = firebaseUser;
-
         const userExists = await checkUserExists(firestore, firebaseUser.uid);
 
         if (!userExists) {
-            const data: UserFullInfo = {
-                id: uid,
-                username: email || '',
-                lastname: displayName?.split(' ')[1] || '',
-                firstname: displayName?.split(' ')[0] || '',
-                email: email || '',
-                avatar: photoURL || '',
-                ...getInitialUserData(),
-            };
-
+            const data: UserFullInfo = prepareUserData(firebaseUser);
             await addNewUserToFirestore(firestore, data);
         }
 
         const customUser = mapFirebaseUserToCustomUser(firebaseUser);
-
         dispatch(setUser(customUser));
         handleUserAuthentication(customUser);
 

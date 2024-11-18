@@ -1,6 +1,6 @@
 import { User as FirebaseUser } from '@firebase/auth';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { createUserWithEmailAndPassword, UserCredential } from 'firebase/auth';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 import {
     handleUserAuthentication,
     User,
@@ -9,8 +9,8 @@ import {
 } from '@/entities/User';
 import { ThunkConfig } from '@/app/providers/StoreProvider';
 import { FirebaseAuthErrorCode } from '../../types/firebaseAuthErrorCode';
-import { getInitialUserData } from '../../../lib/utilities/getInitialUserData/getInitialUserData';
 import { addNewUserToFirestore } from '../../../lib/utilities/addNewUserToFirestore/addNewUserToFirestore';
+import { prepareUserData } from '../../../lib/utilities/prepareUserData/prepareUserData';
 
 export interface SignupCredentials {
     firstname: string;
@@ -29,6 +29,23 @@ export const mapFirebaseUserToCustomUser = (
         avatar: firebaseUser.photoURL || undefined,
     };
 };
+
+const handleFirebaseError = (error: {
+    code: FirebaseAuthErrorCode;
+    message: string;
+}) => {
+    switch (error.code) {
+        case 'auth/email-already-in-use':
+            return 'auth/email-already-in-use';
+        case 'auth/invalid-email':
+            return 'auth/invalid-email';
+        case 'auth/too-many-requests':
+            return 'auth/too-many-requests';
+        default:
+            return `Signup failed due to: ${error.message}`;
+    }
+};
+
 export const signupByEmail = createAsyncThunk<
     User,
     SignupCredentials,
@@ -38,43 +55,18 @@ export const signupByEmail = createAsyncThunk<
     const { setUser } = userActions;
     const { auth, firestore } = extra;
     try {
-        const userCredential: UserCredential =
-            await createUserWithEmailAndPassword(
-                auth,
-                signUpData.email,
-                signUpData.password,
-            );
+        const { user: firebaseUser } = await createUserWithEmailAndPassword(
+            auth,
+            signUpData.email,
+            signUpData.password,
+        );
 
-        const { uid } = userCredential.user;
-        console.log('uid', uid);
-
-        const data: UserFullInfo = {
-            id: uid,
-            username: signUpData.username,
-            lastname: signUpData.lastname,
-            firstname: signUpData.firstname,
-            email: signUpData.email,
-            avatar: '',
-            // age: undefined,
-            // currency: undefined,
-            // country: undefined,
-            ...getInitialUserData(),
-        };
-
-        await addNewUserToFirestore(firestore, data);
-        // auth.onAuthStateChanged((user) => {
-        //     if (user) {
-        //         console.log('this user', user);
-        //         const { uid } = user;
-        //
-        // });
-
-        if (!userCredential) {
+        if (!firebaseUser) {
             throw new Error('No user data returned from Firebase');
         }
-        const customUser: User = mapFirebaseUserToCustomUser(
-            userCredential.user,
-        );
+        const data: UserFullInfo = prepareUserData(firebaseUser, signUpData);
+        await addNewUserToFirestore(firestore, data);
+        const customUser: User = mapFirebaseUserToCustomUser(firebaseUser);
 
         dispatch(setUser(customUser));
         handleUserAuthentication(customUser);
@@ -84,21 +76,11 @@ export const signupByEmail = createAsyncThunk<
             code: FirebaseAuthErrorCode;
             message: string;
         };
-        if (firebaseError.code) {
-            switch (firebaseError.code) {
-                case 'auth/email-already-in-use':
-                    return rejectWithValue('auth/email-already-in-use');
-                case 'auth/invalid-email':
-                    return rejectWithValue('auth/invalid-email');
-                case 'auth/too-many-requests':
-                    return rejectWithValue('auth/too-many-requests');
-                default:
-                    return rejectWithValue(
-                        `Signup failed due to: ${firebaseError.message}`,
-                    );
-            }
-        }
+        const errorMessage = firebaseError.code
+            ? handleFirebaseError(firebaseError)
+            : 'Signup failed. Please try again.';
 
-        return rejectWithValue('Signup failed. Please try again.');
+        console.error('Error during signup:', err);
+        return rejectWithValue(errorMessage);
     }
 });

@@ -1,8 +1,6 @@
 import { useTranslation } from 'react-i18next';
-import { memo, useContext } from 'react';
-import { signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
+import { memo } from 'react';
 import { AuthFormProps } from '../AuthForm';
-import { Context } from '../../../../../../json-server/firebase';
 import { SignInForm } from './SigninForm/SigninForm';
 import { SignUpForm } from './SignupForm/SignupForm';
 import { HStack, VStack } from '@/shared/ui/common/Stack';
@@ -18,12 +16,6 @@ export const RedesignedAuthForm = memo((props: AuthFormProps) => {
     const { t } = useTranslation('profile');
     const { onAuthByGoogleClick } = useSignupForm(props.onSuccess);
     const { isLoginFormOpen, toggleForm } = useToggleForm();
-
-    // const [isLoginFormOpen, setIsLoginFormOpen] = useState(true);
-    // const handleRedirectLinkClick = () => {
-    //     setIsLoginFormOpen((prevState) => !prevState);
-    // };
-
     const buttonGoogleText = t('Продовжити через Google');
     const redirectText = isLoginFormOpen
         ? t('Немає облікового запису?')
@@ -32,19 +24,6 @@ export const RedesignedAuthForm = memo((props: AuthFormProps) => {
     const redirectLinkText = isLoginFormOpen
         ? t('Зареєструйтесь')
         : t('Увійти');
-
-    const { auth } = useContext(Context);
-    // console.log('current', auth.currentUser?.email);
-
-    const loginWithGoogle = async () => {
-        try {
-            const provider = new GoogleAuthProvider();
-            const { user } = await signInWithPopup(auth, provider);
-            console.log('user with google', user);
-        } catch (err) {
-            console.error('Error during Google sign-in:', err);
-        }
-    };
 
     return (
         <VStack gap="16">
