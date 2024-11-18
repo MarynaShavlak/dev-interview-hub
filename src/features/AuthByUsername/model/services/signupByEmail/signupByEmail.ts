@@ -1,10 +1,22 @@
 import { User as FirebaseUser } from '@firebase/auth';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { createUserWithEmailAndPassword, UserCredential } from 'firebase/auth';
-import { handleUserAuthentication, User, userActions } from '@/entities/User';
+import { collection } from '@firebase/firestore';
+import { addDoc } from 'firebase/firestore';
+import {
+    handleUserAuthentication,
+    User,
+    userActions,
+    UserFullInfo,
+    UserRole,
+} from '@/entities/User';
 import { ThunkConfig } from '@/app/providers/StoreProvider';
+import { Theme } from '@/shared/const/theme';
 
-export interface SignupByEmailProps {
+export interface SignupCredentials {
+    firstname: string;
+    lastname: string;
+    username: string;
     email: string;
     password: string;
 }
@@ -20,9 +32,9 @@ export const mapFirebaseUserToCustomUser = (
 };
 export const signupByEmail = createAsyncThunk<
     User,
-    SignupByEmailProps,
+    SignupCredentials,
     ThunkConfig<string>
->('login/signupByEmail', async (authData, thunkAPI) => {
+>('login/signupByEmail', async (signUpData, thunkAPI) => {
     const { extra, dispatch, rejectWithValue } = thunkAPI;
     const { setUser } = userActions;
     const { auth, firestore } = extra;
@@ -30,16 +42,41 @@ export const signupByEmail = createAsyncThunk<
         const userCredential: UserCredential =
             await createUserWithEmailAndPassword(
                 auth,
-                authData.email,
-                authData.password,
+                signUpData.email,
+                signUpData.password,
             );
 
-        auth.onAuthStateChanged((user) => {
-            if (user) {
-                console.log('this user', user);
-                const { uid } = user;
-            }
-        });
+        const { uid } = userCredential.user;
+        console.log('uid', uid);
+        const usersReference = collection(firestore, 'users');
+        const data: UserFullInfo = {
+            id: uid,
+            username: signUpData.username,
+            lastname: signUpData.lastname,
+            firstname: signUpData.firstname,
+            email: signUpData.email,
+            avatar: '',
+            // age: undefined,
+            // currency: undefined,
+            // country: undefined,
+            city: '',
+            roles: [UserRole.USER],
+            features: { isArticleRatingEnabled: true, isAppRedesigned: true },
+            jsonSettings: {
+                theme: Theme.LIGHT,
+                isFirstVisit: true,
+                settingsPageHasBeenOpen: false,
+                isArticlesPageWasOpened: false,
+            },
+        };
+        await addDoc(usersReference, data);
+
+        // auth.onAuthStateChanged((user) => {
+        //     if (user) {
+        //         console.log('this user', user);
+        //         const { uid } = user;
+        //
+        // });
 
         if (!userCredential) {
             throw new Error('No user data returned from Firebase');

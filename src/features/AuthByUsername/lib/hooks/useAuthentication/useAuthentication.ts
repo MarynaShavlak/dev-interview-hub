@@ -4,7 +4,10 @@ import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch
 import { loginByUsername } from '../../../model/services/loginByUsername/loginByUsername';
 import { useForceUpdate } from '@/shared/lib/render/forceUpdate';
 import { logoutUser } from '@/entities/User';
-import { signupByEmail } from '../../../model/services/signupByEmail/signupByEmail';
+import {
+    signupByEmail,
+    SignupCredentials,
+} from '../../../model/services/signupByEmail/signupByEmail';
 
 interface AuthCredentials {
     email: string;
@@ -18,7 +21,7 @@ interface UseAuthenticationProps {
 interface UseAuthenticationReturn {
     isFetchingUser: boolean;
     signInCall: (credentials: AuthCredentials) => Promise<void>;
-    signUpCall: (credentials: AuthCredentials) => Promise<void>;
+    signUpCall: (credentials: SignupCredentials) => Promise<void>;
     signOutCall: () => Promise<void>;
 }
 
@@ -41,9 +44,9 @@ export const useAuthentication = ({
             });
     };
 
-    const signUpCall = async ({ email, password }: AuthCredentials) => {
+    const signUpCall = async (signUpData: SignupCredentials) => {
         setIsFetchingUser(true);
-        await dispatch(signupByEmail({ email, password }))
+        await dispatch(signupByEmail(signUpData))
             .unwrap()
             .then((data) => {
                 onSuccess?.();

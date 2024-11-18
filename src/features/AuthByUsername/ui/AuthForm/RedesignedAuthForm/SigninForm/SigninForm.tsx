@@ -35,9 +35,6 @@ export const SignInForm = memo((props: AuthFormProps) => {
         validConfig,
     );
 
-    console.log('hasErrors in SigninForm', hasErrors);
-    console.log('passwordErrors in SigninForm', passwordErrors);
-    console.log('emailErrors in SigninForm', emailErrors);
     return (
         <VStack
             max

@@ -97,8 +97,8 @@ export const useSignupForm = (
     );
 
     const onSignupClick = useCallback(async () => {
-        await signUpCall({ email, password });
-    }, [password, signUpCall, email]);
+        await signUpCall({ username, lastname, firstname, password, email });
+    }, [signUpCall, username, lastname, firstname, password, email]);
 
     return {
         username,

@@ -1,6 +1,8 @@
 import { JsonSettings } from './jsonSettings';
 import { FeatureFlags } from '@/shared/types/featureFlags/featureFlags';
 import { UserRole } from '../consts/consts';
+import { Currency } from '@/entities/Currency';
+import { Country } from '@/entities/Country';
 
 /**
  * Interface representing a user.
@@ -30,4 +32,20 @@ export interface User {
 export interface UserSchema {
     authData?: User;
     _inited: boolean;
+}
+
+export interface UserFullInfo {
+    id: string;
+    firstname: string;
+    lastname: string;
+    age?: number;
+    currency?: Currency;
+    country?: Country;
+    city?: string;
+    username: string;
+    email: string;
+    avatar?: string;
+    roles?: UserRole[];
+    features?: FeatureFlags;
+    jsonSettings?: JsonSettings;
 }
