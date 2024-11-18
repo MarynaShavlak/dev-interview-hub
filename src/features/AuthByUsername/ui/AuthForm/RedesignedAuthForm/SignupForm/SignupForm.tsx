@@ -8,6 +8,7 @@ import { Input } from '@/shared/ui/redesigned/Input';
 import { Button } from '@/shared/ui/redesigned/Button';
 import { Icon } from '@/shared/ui/redesigned/Icon';
 import EyeIconRedesigned from '@/shared/assets/icons/eye.svg';
+import EyeInvisibleIconRedesigned from '@/shared/assets/icons/eye-slash.svg';
 import { AuthFormProps } from '../../AuthForm';
 import { useSignupForm } from '../../../../lib/hooks/useSignupForm/useSignupForm';
 import {
@@ -15,6 +16,7 @@ import {
     useAuthValidationConfig,
 } from '../../../../lib/hooks/useAuthValidations/useAuthValidations';
 import { useErrorText } from '../../../../lib/hooks/useErrorText/useErrorText';
+import { useToggleVisibility } from '../../../../lib/hooks/useToggleVisibility/useToggleVisibility';
 
 export const SignUpForm = memo((props: AuthFormProps) => {
     const { className, onSuccess } = props;
@@ -50,6 +52,7 @@ export const SignUpForm = memo((props: AuthFormProps) => {
         validConfig,
     );
     const errorText = useErrorText(error);
+    const { isVisible, toggleVisibility } = useToggleVisibility();
 
     return (
         <VStack
@@ -102,7 +105,7 @@ export const SignUpForm = memo((props: AuthFormProps) => {
             />
 
             <Input
-                type="text"
+                type={isVisible ? 'text' : 'password'}
                 placeholder={t('Введіть пароль')}
                 onChange={onChangePassword}
                 value={password}
@@ -110,9 +113,13 @@ export const SignUpForm = memo((props: AuthFormProps) => {
                 label={t('Пароль')}
                 addonRight={
                     <Icon
-                        Svg={EyeIconRedesigned}
+                        Svg={
+                            isVisible
+                                ? EyeIconRedesigned
+                                : EyeInvisibleIconRedesigned
+                        }
                         clickable
-                        onClick={(e: any) => console.log(e.target)}
+                        onClick={toggleVisibility}
                     />
                 }
                 validations={validConfig.password}
