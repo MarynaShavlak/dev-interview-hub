@@ -23,17 +23,6 @@ export interface User {
     jsonSettings?: JsonSettings;
 }
 
-/**
- * Interface representing the schema of a user.
- *
- * @property {User} [authData] - The authenticated user's data. Optional.
- * @property {boolean} _inited - Indicates whether the user  has been initialized.
- */
-export interface UserSchema {
-    authData?: User;
-    _inited: boolean;
-}
-
 export interface UserFullInfo {
     id: string;
     firstname: string;
@@ -48,4 +37,15 @@ export interface UserFullInfo {
     roles?: UserRole[];
     features?: FeatureFlags;
     jsonSettings?: JsonSettings;
+}
+
+/**
+ * Interface representing the schema of a user.
+ *
+ * @property {User} [authData] - The authenticated user's data. Optional.
+ * @property {boolean} _inited - Indicates whether the user  has been initialized.
+ */
+export interface UserSchema {
+    authData?: User;
+    _inited: boolean;
 }

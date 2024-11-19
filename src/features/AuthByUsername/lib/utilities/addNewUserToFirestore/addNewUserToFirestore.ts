@@ -7,6 +7,7 @@ export const addNewUserToFirestore = async (
     userInfo: UserFullInfo,
 ) => {
     const usersReference = collection(firestore, 'users');
-    await addDoc(usersReference, userInfo);
-    console.log('New user added to Firestore:', userInfo.id);
+    const docRef = await addDoc(usersReference, userInfo);
+    console.log('New user added to Firestore:', docRef.id);
+    return docRef;
 };

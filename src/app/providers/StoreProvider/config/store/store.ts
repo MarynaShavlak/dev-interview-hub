@@ -3,7 +3,7 @@ import { CombinedState, Reducer } from 'redux';
 import { scrollReducer } from '@/widgets/Page';
 import { userReducer } from '@/entities/User';
 import { $api } from '@/shared/api/api';
-import { rtkApi } from '@/shared/api/rtkApi';
+import { firestoreApi, rtkApi } from '@/shared/api/rtkApi';
 import { StateSchema, ThunkExtraArg } from './StateSchema/StateSchema';
 import { createReducerManager } from './reducerManager/reducerManager';
 import {
@@ -21,6 +21,7 @@ export const createReduxStore = (
         user: userReducer,
         scroll: scrollReducer,
         [rtkApi.reducerPath]: rtkApi.reducer,
+        [firestoreApi.reducerPath]: firestoreApi.reducer,
     };
 
     const reducerManager = createReducerManager(rootReducers);
@@ -41,7 +42,9 @@ export const createReduxStore = (
                 thunk: {
                     extraArgument: extraArg,
                 },
-            }).concat(rtkApi.middleware),
+            })
+                .concat(rtkApi.middleware)
+                .concat(firestoreApi.middleware),
     });
 
     // @ts-ignore

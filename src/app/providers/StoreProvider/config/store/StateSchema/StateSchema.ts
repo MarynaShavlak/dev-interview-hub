@@ -16,7 +16,7 @@ import { UserSchema } from '@/entities/User';
 import { LoginSchema, SignupSchema } from '@/features/AuthByUsername';
 import { ProfileSchema } from '@/features/EditableProfileCard';
 import { ArticlesPageSchema } from '@/pages/ArticlesPage';
-import { rtkApi } from '@/shared/api/rtkApi';
+import { firestoreApi, rtkApi } from '@/shared/api/rtkApi';
 import { AddCommentFormSchema } from '@/entities/Comment';
 import { ArticleCommentsSchema } from '@/features/ArticleComments';
 
@@ -24,7 +24,7 @@ export interface StateSchema {
     user: UserSchema;
     scroll: UIScrollSchema;
     [rtkApi.reducerPath]: ReturnType<typeof rtkApi.reducer>;
-
+    [firestoreApi.reducerPath]: ReturnType<typeof firestoreApi.reducer>;
     // Async reducers
     loginForm?: LoginSchema;
     signupForm?: SignupSchema;

@@ -1,4 +1,8 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import {
+    createApi,
+    fakeBaseQuery,
+    fetchBaseQuery,
+} from '@reduxjs/toolkit/query/react';
 import { USER_LOCALSTORAGE_KEY } from '@/shared/const/localstorage';
 
 /**
@@ -30,5 +34,11 @@ export const rtkApi = createApi({
             return headers;
         },
     }),
+    endpoints: (builder) => ({}),
+});
+
+export const firestoreApi = createApi({
+    reducerPath: 'firestoreApi',
+    baseQuery: fakeBaseQuery(),
     endpoints: (builder) => ({}),
 });
