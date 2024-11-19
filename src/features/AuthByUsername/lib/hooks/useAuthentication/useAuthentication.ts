@@ -9,6 +9,7 @@ import {
     SignupCredentials,
 } from '../../../model/services/signupByEmail/signupByEmail';
 import { authByGoogleProvider } from '../../../model/services/authByGoogleProvider/authByGoogleProvider';
+import { resetPassword } from '../../../model/services/resetPassword/resetPassword';
 
 interface AuthCredentials {
     email: string;
@@ -25,6 +26,7 @@ interface UseAuthenticationReturn {
     signUpCall: (credentials: SignupCredentials) => Promise<void>;
     signOutCall: () => Promise<void>;
     authByGoogleCall: () => Promise<void>;
+    resetPasswordCall: (email: string) => void;
 }
 
 export const useAuthentication = ({
@@ -86,11 +88,24 @@ export const useAuthentication = ({
         }
     };
 
+    const resetPasswordCall = async (email: string) => {
+        setIsFetchingUser(true);
+        try {
+            await dispatch(resetPassword(email));
+            console.log('Password reset email sent successfully.');
+        } catch (error) {
+            console.error('Error sending password reset email:', error);
+        } finally {
+            setIsFetchingUser(false);
+        }
+    };
+
     return {
         isFetchingUser,
         signUpCall,
         signInCall,
         signOutCall,
         authByGoogleCall,
+        resetPasswordCall,
     };
 };

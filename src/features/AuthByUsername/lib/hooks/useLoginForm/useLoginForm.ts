@@ -31,7 +31,7 @@ import { useAuthentication } from '../useAuthentication/useAuthentication';
  */
 
 export const useLoginForm = (
-    onSuccess: () => void,
+    onSuccess?: () => void,
 ): {
     email: string;
     password: string;
@@ -40,13 +40,14 @@ export const useLoginForm = (
     onChangeEmail: (value: string) => void;
     onChangePassword: (value: string) => void;
     onLoginClick: () => void;
+    onResetPasswordClick: () => void;
 } => {
     const email = useLoginEmail();
     const password = useLoginPassword();
     const isLoading = useLoginIsLoading();
     const error = useLoginError();
     const { setPassword, setEmail } = useLoginActions();
-    const { signInCall } = useAuthentication({ onSuccess });
+    const { signInCall, resetPasswordCall } = useAuthentication({ onSuccess });
 
     const onChangeEmail = useCallback(
         (value: string) => {
@@ -66,6 +67,10 @@ export const useLoginForm = (
         await signInCall({ email, password });
     }, [password, signInCall, email]);
 
+    const onResetPasswordClick = useCallback(async () => {
+        await resetPasswordCall(email);
+    }, [resetPasswordCall, email]);
+
     return {
         email,
         password,
@@ -74,5 +79,6 @@ export const useLoginForm = (
         onChangeEmail,
         onChangePassword,
         onLoginClick,
+        onResetPasswordClick,
     };
 };

@@ -21,7 +21,7 @@ export const loginByUsername = createAsyncThunk<
     User,
     LoginByUsernameProps,
     ThunkConfig<string>
->('login/loginByUsername', async (authData, thunkAPI) => {
+>('auth/loginByUsername', async (authData, thunkAPI) => {
     const { extra, dispatch, rejectWithValue } = thunkAPI;
     const { setUser } = userActions;
     const { auth } = extra;

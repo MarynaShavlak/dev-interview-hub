@@ -44,7 +44,7 @@ export const RedesignedAuthForm = memo((props: AuthFormProps) => {
                 max
                 variant="outline"
                 addonLeft={<Icon Svg={GoogleIcon} width="25" height="25" />}
-                className={cls.loginBtn}
+                className={cls.authBtn}
                 onClick={onAuthByGoogleClick}
                 data-testid="login-submit-btn"
             >

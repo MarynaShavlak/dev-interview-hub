@@ -12,9 +12,11 @@ import EyeInvisibleIconRedesigned from '@/shared/assets/icons/eye-slash.svg';
 
 import { AuthFormProps } from '../../AuthForm';
 import { useLoginForm } from '../../../../lib/hooks/useLoginForm/useLoginForm';
-import { useAuthValidationConfig } from '../../../../lib/hooks/useAuthValidations/useAuthValidations';
+import { useAuthValidationConfig } from '../../../../lib/hooks/useAuthValidationConfig/useAuthValidationConfig';
 import { useToggleVisibility } from '../../../../lib/hooks/useToggleVisibility/useToggleVisibility';
 import { useAuthFormValidations } from '../../../../lib/hooks/useAuthFormValidations/useAuthFormValidations';
+import { useToggleForm } from '../../../../lib/hooks/useToggleForm/useToggleForm';
+import { RecoverPasswordForm } from '../RecoverPasswordForm/RecoverPasswordForm';
 
 export const SignInForm = memo((props: AuthFormProps) => {
     const { className, onSuccess } = props;
@@ -38,6 +40,7 @@ export const SignInForm = memo((props: AuthFormProps) => {
     );
 
     const { isVisible, toggleVisibility } = useToggleVisibility();
+    const { isLoginFormOpen, toggleForm } = useToggleForm();
 
     return (
         <VStack
@@ -45,62 +48,73 @@ export const SignInForm = memo((props: AuthFormProps) => {
             gap="16"
             className={classNames(cls.AuthForm, {}, [className])}
             data-testid="auth-form-sign-in"
+            align="center"
         >
-            <Text title={t('Форма авторизації')} />
-            {error && (
-                <Text
-                    text={t('Ви ввели невірний логін або пароль')}
-                    variant="error"
-                />
-            )}
-            <Input
-                type="text"
-                placeholder={t('Введіть email')}
-                onChange={onChangeEmail}
-                value={email}
-                data-testid="login-email-input"
-                label={t('Email')}
-                validations={validConfig.email}
-                errors={emailErrors}
-            />
-            <VStack className={cls.passwordInputWrapper} max>
-                <Button variant="link" className={cls.passwordInputLink}>
-                    {t('Забули пароль?')}
-                </Button>
-
-                <Input
-                    type={isVisible ? 'text' : 'password'}
-                    placeholder={t('Введіть пароль')}
-                    onChange={onChangePassword}
-                    value={password}
-                    data-testid="login-password-input"
-                    label={t('Пароль')}
-                    addonRight={
-                        <Icon
-                            Svg={
-                                isVisible
-                                    ? EyeIconRedesigned
-                                    : EyeInvisibleIconRedesigned
-                            }
-                            clickable
-                            onClick={toggleVisibility}
+            {!isLoginFormOpen ? (
+                <RecoverPasswordForm toggleForm={toggleForm} />
+            ) : (
+                <>
+                    <Text title={t('Форма авторизації')} />
+                    {error && (
+                        <Text
+                            text={t('Ви ввели невірний логін або пароль')}
+                            variant="error"
                         />
-                    }
-                    validations={validConfig.password}
-                    errors={passwordErrors}
-                />
-            </VStack>
+                    )}
+                    <Input
+                        type="text"
+                        placeholder={t('Введіть email')}
+                        onChange={onChangeEmail}
+                        value={email}
+                        data-testid="login-email-input"
+                        label={t('Email')}
+                        validations={validConfig.email}
+                        errors={emailErrors}
+                    />
+                    <VStack className={cls.passwordInputWrapper} max>
+                        <Button
+                            variant="link"
+                            className={cls.passwordInputLink}
+                            onClick={toggleForm}
+                        >
+                            {t('Забули пароль?')}
+                        </Button>
 
-            <Button
-                max
-                variant="accent"
-                className={cls.loginBtn}
-                onClick={onLoginClick}
-                disabled={isLoading || hasErrors}
-                data-testid="login-submit-btn"
-            >
-                {t('Увійти')}
-            </Button>
+                        <Input
+                            type={isVisible ? 'text' : 'password'}
+                            placeholder={t('Введіть пароль')}
+                            onChange={onChangePassword}
+                            value={password}
+                            data-testid="login-password-input"
+                            label={t('Пароль')}
+                            addonRight={
+                                <Icon
+                                    Svg={
+                                        isVisible
+                                            ? EyeIconRedesigned
+                                            : EyeInvisibleIconRedesigned
+                                    }
+                                    clickable
+                                    onClick={toggleVisibility}
+                                />
+                            }
+                            validations={validConfig.password}
+                            errors={passwordErrors}
+                        />
+                    </VStack>
+
+                    <Button
+                        max
+                        variant="accent"
+                        className={cls.authBtn}
+                        onClick={onLoginClick}
+                        disabled={isLoading || hasErrors}
+                        data-testid="login-submit-btn"
+                    >
+                        {t('Увійти')}
+                    </Button>
+                </>
+            )}
         </VStack>
     );
 });

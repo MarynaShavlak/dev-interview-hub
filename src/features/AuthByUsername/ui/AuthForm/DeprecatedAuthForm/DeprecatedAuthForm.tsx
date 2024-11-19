@@ -41,7 +41,7 @@ import { AuthFormProps } from '../AuthForm';
 //                 />
 //                 <Button
 //                     theme={ButtonTheme.OUTLINE}
-//                     className={cls.loginBtn}
+//                     className={cls.authBtn}
 //                     // onClick={onLoginClick}
 //                     disabled={isLoading}
 //                 >

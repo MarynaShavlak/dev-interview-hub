@@ -61,5 +61,10 @@
   "Зайнятий email": "This email is already in use. Please try another.",
     "Невалідний email": "The provided email address format is invalid.",
     "Забагато запитів": "Too many requests. Please wait and try again later.",
-  "Продовжити через Google": "Continue with Google"
+  "Продовжити через Google": "Continue with Google",
+  "Відновлення паролю": "Recover Password",
+    "Вкажіть адресу": "Enter the email address you used to register and we'll send you the instruction",
+    "Скинути пароль": "Reset password",
+  "Я пам'ятаю пароль": "I remember password",
+    "Помилка відновлення паролю": "Password recovery error. Please try again later."
 }

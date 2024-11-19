@@ -6,7 +6,7 @@ import {
 export const useAuthFormValidations = (
     data: Record<string, string>,
     validConfig: Record<string, InputValidations>,
-    mode: 'signIn' | 'signUp',
+    mode: 'signIn' | 'signUp' | 'resetPassword',
 ) => {
     const emailErrors = useValidation(data.email, validConfig.email);
     const passwordErrors = useValidation(data.password, validConfig.password);
@@ -17,16 +17,25 @@ export const useAuthFormValidations = (
     );
     const lastnameErrors = useValidation(data.lastname, validConfig.lastname);
 
-    const relevantErrors =
-        mode === 'signIn'
-            ? [emailErrors, passwordErrors]
-            : [
-                  emailErrors,
-                  passwordErrors,
-                  usernameErrors,
-                  firstnameErrors,
-                  lastnameErrors,
-              ];
+    let relevantErrors;
+
+    switch (mode) {
+        case 'signIn':
+            relevantErrors = [emailErrors, passwordErrors];
+            break;
+        case 'resetPassword':
+            relevantErrors = [emailErrors];
+            break;
+        default:
+            relevantErrors = [
+                emailErrors,
+                passwordErrors,
+                usernameErrors,
+                firstnameErrors,
+                lastnameErrors,
+            ];
+            break;
+    }
 
     const hasErrors = relevantErrors.some((validation) =>
         Object.values(validation).some((error) => error),

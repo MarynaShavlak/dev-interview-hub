@@ -11,7 +11,7 @@ import EyeIconRedesigned from '@/shared/assets/icons/eye.svg';
 import EyeInvisibleIconRedesigned from '@/shared/assets/icons/eye-slash.svg';
 import { AuthFormProps } from '../../AuthForm';
 import { useSignupForm } from '../../../../lib/hooks/useSignupForm/useSignupForm';
-import { useAuthValidationConfig } from '../../../../lib/hooks/useAuthValidations/useAuthValidations';
+import { useAuthValidationConfig } from '../../../../lib/hooks/useAuthValidationConfig/useAuthValidationConfig';
 import { useErrorText } from '../../../../lib/hooks/useErrorText/useErrorText';
 import { useToggleVisibility } from '../../../../lib/hooks/useToggleVisibility/useToggleVisibility';
 import { useAuthFormValidations } from '../../../../lib/hooks/useAuthFormValidations/useAuthFormValidations';
@@ -128,7 +128,7 @@ export const SignUpForm = memo((props: AuthFormProps) => {
             <Button
                 max
                 variant="accent"
-                className={cls.loginBtn}
+                className={cls.authBtn}
                 onClick={onSignupClick}
                 disabled={isLoading || hasErrors}
                 data-testid="login-submit-btn"
