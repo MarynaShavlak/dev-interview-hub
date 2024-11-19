@@ -1,12 +1,6 @@
-import { User as FirebaseUser } from '@firebase/auth';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import {
-    handleUserAuthentication,
-    User,
-    userActions,
-    UserFullInfo,
-} from '@/entities/User';
+import { handleUserAuthentication, User, userActions } from '@/entities/User';
 import { ThunkConfig } from '@/app/providers/StoreProvider';
 import { FirebaseAuthErrorCode } from '../../types/firebaseAuthErrorCode';
 import { addNewUserToFirestore } from '../../../lib/utilities/addNewUserToFirestore/addNewUserToFirestore';
@@ -20,15 +14,15 @@ export interface SignupCredentials {
     password: string;
 }
 
-export const mapFirebaseUserToCustomUser = (
-    firebaseUser: FirebaseUser,
-): User => {
-    return {
-        id: firebaseUser.uid,
-        username: firebaseUser.email || 'Unknown',
-        avatar: firebaseUser.photoURL || undefined,
-    };
-};
+// export const mapFirebaseUserToCustomUser = (
+//     firebaseUser: FirebaseUser,
+// ): User => {
+//     return {
+//         id: firebaseUser.uid,
+//         username: firebaseUser.email || 'Unknown',
+//         avatar: firebaseUser.photoURL || undefined,
+//     };
+// };
 
 const handleFirebaseError = (error: {
     code: FirebaseAuthErrorCode;
@@ -64,16 +58,16 @@ export const signupByEmail = createAsyncThunk<
         if (!firebaseUser) {
             throw new Error('No user data returned from Firebase');
         }
-        const data: UserFullInfo = prepareUserData(firebaseUser, signUpData);
+        const data: User = prepareUserData(firebaseUser, signUpData);
         const userDocRef = await addNewUserToFirestore(firestore, data);
         const documentId = userDocRef.id;
         console.log('New user document ID:', documentId);
 
-        const customUser: User = mapFirebaseUserToCustomUser(firebaseUser);
+        // const customUser: User = mapFirebaseUserToCustomUser(firebaseUser);
 
-        dispatch(setUser(customUser));
-        handleUserAuthentication(customUser, documentId);
-        return customUser;
+        dispatch(setUser(data));
+        handleUserAuthentication(data, documentId);
+        return data;
     } catch (err) {
         const firebaseError = err as {
             code: FirebaseAuthErrorCode;

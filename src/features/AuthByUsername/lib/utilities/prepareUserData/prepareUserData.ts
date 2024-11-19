@@ -1,12 +1,12 @@
 import { User as FirebaseUser } from '@firebase/auth';
-import { UserFullInfo } from '@/entities/User';
+import { User } from '@/entities/User';
 import { getInitialUserData } from '../getInitialUserData/getInitialUserData';
 import { SignupCredentials } from '../../../model/services/signupByEmail/signupByEmail';
 
 export const prepareUserData = (
     firebaseUser: FirebaseUser,
     signUpData?: SignupCredentials,
-): UserFullInfo => {
+): User => {
     if (signUpData) {
         const { username, lastname, firstname, email } = signUpData;
         return {

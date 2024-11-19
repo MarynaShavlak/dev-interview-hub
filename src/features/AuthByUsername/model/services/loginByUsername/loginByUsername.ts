@@ -1,8 +1,10 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { signInWithEmailAndPassword, UserCredential } from 'firebase/auth';
-import { handleUserAuthentication, User, userActions } from '@/entities/User';
+import { collection, getDocs } from 'firebase/firestore';
+import { userActions } from '@/entities/User';
 import { ThunkConfig } from '@/app/providers/StoreProvider';
-import { mapFirebaseUserToCustomUser } from '../signupByEmail/signupByEmail';
+
+import { firestore } from '../../../../../../json-server/firebase';
 
 interface LoginByUsernameProps {
     email: string;
@@ -18,7 +20,7 @@ interface LoginByUsernameProps {
  */
 
 export const loginByUsername = createAsyncThunk<
-    User,
+    any,
     LoginByUsernameProps,
     ThunkConfig<string>
 >('auth/loginByUsername', async (authData, thunkAPI) => {
@@ -36,12 +38,22 @@ export const loginByUsername = createAsyncThunk<
             throw new Error('No user data returned from Firebase');
         }
         console.log('userCredential', userCredential);
-        const customUser: User = mapFirebaseUserToCustomUser(
-            userCredential.user,
-        );
-        dispatch(setUser(customUser));
-        handleUserAuthentication(customUser, '');
-        return customUser;
+        // const customUser: User = mapFirebaseUserToCustomUser(
+        //     userCredential.user,
+        // );
+        const myId = userCredential.user.uid;
+        const usersReference = collection(firestore, 'users');
+        const data = await getDocs(usersReference);
+        const filteredData = data.docs.map((doc) => ({
+            ...doc.data(),
+            id: doc.id,
+        }));
+        console.log('filteredData', filteredData);
+        const user = filteredData.find((user) => user.id === myId);
+        console.log('user in login', user);
+        // dispatch(setUser(customUser));
+        // handleUserAuthentication(user, '');
+        return user;
     } catch (err) {
         console.error('Log in failed:', err);
         return rejectWithValue(

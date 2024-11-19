@@ -15,7 +15,7 @@ export {
     userActions,
     useUserActions,
 } from './model/slices/userSlice';
-export type { UserSchema, User, UserFullInfo } from './model/types/user';
+export type { UserSchema, User } from './model/types/user';
 export type { JsonSettings } from './model/types/jsonSettings';
 export { UserRole } from './model/consts/consts';
 export { logoutUser } from './model/services/logoutUser/logoutUser';

@@ -5,25 +5,20 @@ import { Auth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { collection } from '@firebase/firestore';
 import { Firestore, getDocs, query, where } from 'firebase/firestore';
 
-import {
-    handleUserAuthentication,
-    User,
-    userActions,
-    UserFullInfo,
-} from '@/entities/User';
+import { handleUserAuthentication, User, userActions } from '@/entities/User';
 import { ThunkConfig } from '@/app/providers/StoreProvider';
 import { addNewUserToFirestore } from '../../../lib/utilities/addNewUserToFirestore/addNewUserToFirestore';
 import { prepareUserData } from '../../../lib/utilities/prepareUserData/prepareUserData';
 
-export const mapFirebaseUserToCustomUser = (
-    firebaseUser: FirebaseUser,
-): User => {
-    return {
-        id: firebaseUser.uid,
-        username: firebaseUser.email || 'Unknown',
-        avatar: firebaseUser.photoURL || undefined,
-    };
-};
+// export const mapFirebaseUserToCustomUser = (
+//     firebaseUser: FirebaseUser,
+// ): User => {
+//     return {
+//         id: firebaseUser.uid,
+//         username: firebaseUser.email || 'Unknown',
+//         avatar: firebaseUser.photoURL || undefined,
+//     };
+// };
 
 const checkUserExists = async (
     firestore: Firestore,
@@ -56,19 +51,21 @@ export const authByGoogleProvider = createAsyncThunk<
     try {
         const firebaseUser = await signInWithGoogle(auth);
         const userExists = await checkUserExists(firestore, firebaseUser.uid);
+        const data = prepareUserData(firebaseUser);
         let documentId;
         if (!userExists) {
-            const data: UserFullInfo = prepareUserData(firebaseUser);
+            // const data: UserFullInfo = prepareUserData(firebaseUser);
             const userDocRef = await addNewUserToFirestore(firestore, data);
             documentId = userDocRef.id;
             console.log('New user document ID:', documentId);
         }
 
-        const customUser = mapFirebaseUserToCustomUser(firebaseUser);
-        dispatch(setUser(customUser));
-        handleUserAuthentication(customUser, documentId || '');
+        console.log('by google data to set in slice', data);
+        // const customUser = mapFirebaseUserToCustomUser(firebaseUser);
+        dispatch(setUser(data));
+        handleUserAuthentication(data, documentId || '');
 
-        return customUser;
+        return data;
     } catch (err) {
         console.error('Error during Google sign-in:', err);
         return rejectWithValue(

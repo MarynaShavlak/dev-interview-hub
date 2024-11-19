@@ -8,6 +8,9 @@ export const testArticleData: Article = {
     id: '1',
     user: {
         id: '123',
+        email: '',
+        firstname: '',
+        lastname: '',
         username: 'testUsername',
         avatar,
     },
@@ -78,6 +81,9 @@ export const testArticlesListData: Article[] = [
         id: '1',
         user: {
             id: '123',
+            email: '',
+            firstname: '',
+            lastname: '',
             username: 'testUsername',
             avatar,
         },
@@ -99,6 +105,9 @@ export const testArticlesListData: Article[] = [
         id: '2',
         user: {
             id: '123',
+            email: '',
+            firstname: '',
+            lastname: '',
             username: 'testUsername',
             avatar,
         },
@@ -120,6 +129,9 @@ export const testArticlesListData: Article[] = [
         id: '3',
         user: {
             id: '123',
+            email: '',
+            firstname: '',
+            lastname: '',
             username: 'testUsername',
             avatar,
         },
@@ -141,6 +153,9 @@ export const testArticlesListData: Article[] = [
         id: '4',
         user: {
             id: '123',
+            email: '',
+            firstname: '',
+            lastname: '',
             username: 'testUsername',
             avatar,
         },
@@ -162,6 +177,9 @@ export const testArticlesListData: Article[] = [
         id: '5',
         user: {
             id: '123',
+            email: '',
+            firstname: '',
+            lastname: '',
             username: 'testUsername',
             avatar,
         },
@@ -183,6 +201,9 @@ export const testArticlesListData: Article[] = [
         id: '6',
         user: {
             id: '123',
+            email: '',
+            firstname: '',
+            lastname: '',
             username: 'testUsername',
             avatar,
         },
@@ -204,6 +225,9 @@ export const testArticlesListData: Article[] = [
         id: '7',
         user: {
             id: '123',
+            email: '',
+            firstname: '',
+            lastname: '',
             username: 'testUsername',
             avatar,
         },
@@ -225,6 +249,9 @@ export const testArticlesListData: Article[] = [
         id: '8',
         user: {
             id: '123',
+            email: '',
+            firstname: '',
+            lastname: '',
             username: 'testUsername',
             avatar,
         },
@@ -246,6 +273,9 @@ export const testArticlesListData: Article[] = [
         id: '9',
         user: {
             id: '123',
+            email: '',
+            firstname: '',
+            lastname: '',
             username: 'testUsername',
             avatar,
         },
@@ -267,6 +297,9 @@ export const testArticlesListData: Article[] = [
         id: '10',
         user: {
             id: '123',
+            email: '',
+            firstname: '',
+            lastname: '',
             username: 'testUsername',
             avatar,
         },

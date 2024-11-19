@@ -1,6 +1,6 @@
 import { doc, getDoc } from 'firebase/firestore';
 import { firestoreApi, rtkApi } from '@/shared/api/rtkApi';
-import { User, UserFullInfo } from '../model/types/user';
+import { User } from '../model/types/user';
 import { JsonSettings } from '../model/types/jsonSettings';
 import { firestore } from '../../../../json-server/firebase';
 
@@ -41,7 +41,7 @@ export const useUsers = userApi.useGetUsersQuery;
 
 export const userFirebaseApi = firestoreApi.injectEndpoints({
     endpoints: (build) => ({
-        getUserDataById: build.query<UserFullInfo, string>({
+        getUserDataById: build.query<User, string>({
             async queryFn(userId) {
                 try {
                     const userDocRef = doc(firestore, 'users', userId);
@@ -53,7 +53,7 @@ export const userFirebaseApi = firestoreApi.injectEndpoints({
                             data: {
                                 id: docSnapshot.id,
                                 ...docSnapshot.data(),
-                            } as UserFullInfo,
+                            } as User,
                         };
                     }
                     return {

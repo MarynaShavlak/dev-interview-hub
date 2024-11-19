@@ -14,16 +14,8 @@ import { Country } from '@/entities/Country';
  * @property {FeatureFlags} [features] - Feature flags associated with the user. Optional.
  * @property {JsonSettings} [jsonSettings] - JSON settings for the user. Optional.
  */
-export interface User {
-    id: string;
-    username: string;
-    avatar?: string;
-    roles?: UserRole[];
-    features?: FeatureFlags;
-    jsonSettings?: JsonSettings;
-}
 
-export interface UserFullInfo {
+export interface User {
     id: string;
     firstname: string;
     lastname: string;
@@ -49,3 +41,12 @@ export interface UserSchema {
     authData?: User;
     _inited: boolean;
 }
+
+// export interface User {
+//     id: string;
+//     username: string;
+//     avatar?: string;
+//     roles?: UserRole[];
+//     features?: FeatureFlags;
+//     jsonSettings?: JsonSettings;
+// }

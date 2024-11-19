@@ -1,7 +1,7 @@
-import { UserFullInfo, UserRole } from '@/entities/User';
+import { User, UserRole } from '@/entities/User';
 import { Theme } from '@/shared/const/theme';
 
-export const getInitialUserData = (): Partial<UserFullInfo> => {
+export const getInitialUserData = (): Partial<User> => {
     return {
         city: '',
         roles: [UserRole.USER],
