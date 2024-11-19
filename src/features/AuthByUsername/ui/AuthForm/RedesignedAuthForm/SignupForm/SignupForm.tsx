@@ -11,12 +11,10 @@ import EyeIconRedesigned from '@/shared/assets/icons/eye.svg';
 import EyeInvisibleIconRedesigned from '@/shared/assets/icons/eye-slash.svg';
 import { AuthFormProps } from '../../AuthForm';
 import { useSignupForm } from '../../../../lib/hooks/useSignupForm/useSignupForm';
-import {
-    useAuthFormValidations,
-    useAuthValidationConfig,
-} from '../../../../lib/hooks/useAuthValidations/useAuthValidations';
+import { useAuthValidationConfig } from '../../../../lib/hooks/useAuthValidations/useAuthValidations';
 import { useErrorText } from '../../../../lib/hooks/useErrorText/useErrorText';
 import { useToggleVisibility } from '../../../../lib/hooks/useToggleVisibility/useToggleVisibility';
+import { useAuthFormValidations } from '../../../../lib/hooks/useAuthFormValidations/useAuthFormValidations';
 
 export const SignUpForm = memo((props: AuthFormProps) => {
     const { className, onSuccess } = props;
@@ -50,6 +48,7 @@ export const SignUpForm = memo((props: AuthFormProps) => {
     } = useAuthFormValidations(
         { email, password, username, firstname, lastname },
         validConfig,
+        'signUp',
     );
     const errorText = useErrorText(error);
     const { isVisible, toggleVisibility } = useToggleVisibility();
