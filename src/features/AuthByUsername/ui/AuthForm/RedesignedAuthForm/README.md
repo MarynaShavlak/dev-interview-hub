@@ -1,7 +1,7 @@
 # RedesignedAuthForm 
 
 ## Overview
-The **`RedesignedAuthForm`** component offers a contemporary login interface designed to provide an improved user experience with modern UI elements and enhanced functionality. It is optimized for better usability and aesthetics, replacing older login form designs with a more refined and user-friendly approach. The component integrates seamlessly with the application's internationalization setup and leverages the `useLoginForm` hook for managing form state and actions.
+The **`RedesignedAuthForm`** component offers a contemporary login interface designed to provide an improved user experience with modern UI elements and enhanced functionality. It is optimized for better usability and aesthetics, replacing older login form designs with a more refined and user-friendly approach. The component integrates seamlessly with the application's internationalization setup and leverages the `useSignInForm` hook for managing form state and actions.
 
 ## Props
 

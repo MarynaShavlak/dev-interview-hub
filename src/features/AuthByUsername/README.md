@@ -37,7 +37,7 @@ AuthByUsername/
 │       └── AuthModal.tsx
 ├── lib/
 │   └── hooks/
-│       └── useLoginForm.ts
+│       └── useSignInForm.ts
 ├── index.ts
 └── testing.ts
 ```
@@ -80,7 +80,7 @@ AuthByUsername/
   
 ### 3. `lib/`:  Utility functions and hooks.
 - **`hook/`**
-  - [**useLoginForm.ts**](lib/hooks/useLoginForm/README.md):  Custom hook for managing form logic and state.
+  - [**useSignInForm.ts**](lib/hooks/useSignInForm/README.md):  Custom hook for managing form logic and state.
 
 
 ### 4. `index.ts`

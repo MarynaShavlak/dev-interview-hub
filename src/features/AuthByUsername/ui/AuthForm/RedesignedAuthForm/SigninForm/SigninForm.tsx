@@ -6,17 +6,14 @@ import cls from '../../AuthForm.module.scss';
 import { Text } from '@/shared/ui/redesigned/Text';
 import { Input } from '@/shared/ui/redesigned/Input';
 import { Button } from '@/shared/ui/redesigned/Button';
-import { Icon } from '@/shared/ui/redesigned/Icon';
-import EyeIconRedesigned from '@/shared/assets/icons/eye.svg';
-import EyeInvisibleIconRedesigned from '@/shared/assets/icons/eye-slash.svg';
 
 import { AuthFormProps } from '../../AuthForm';
-import { useLoginForm } from '../../../../lib/hooks/useLoginForm/useLoginForm';
+import { useSignInForm } from '../../../../lib/hooks/useSignInForm/useSignInForm';
 import { useAuthValidationConfig } from '../../../../lib/hooks/useAuthValidationConfig/useAuthValidationConfig';
-import { useToggleVisibility } from '../../../../lib/hooks/useToggleVisibility/useToggleVisibility';
 import { useAuthFormValidations } from '../../../../lib/hooks/useAuthFormValidations/useAuthFormValidations';
 import { useToggleForm } from '../../../../lib/hooks/useToggleForm/useToggleForm';
 import { RecoverPasswordForm } from '../RecoverPasswordForm/RecoverPasswordForm';
+import { PasswordInput } from '../PasswordInput/PasswordInput';
 
 export const SignInForm = memo((props: AuthFormProps) => {
     const { className, onSuccess } = props;
@@ -29,7 +26,7 @@ export const SignInForm = memo((props: AuthFormProps) => {
         onChangeEmail,
         onChangePassword,
         onLoginClick,
-    } = useLoginForm(onSuccess);
+    } = useSignInForm(onSuccess);
 
     const validConfig = useAuthValidationConfig();
 
@@ -39,7 +36,6 @@ export const SignInForm = memo((props: AuthFormProps) => {
         'signIn',
     );
 
-    const { isVisible, toggleVisibility } = useToggleVisibility();
     const { isLoginFormOpen, toggleForm } = useToggleForm();
 
     return (
@@ -79,27 +75,13 @@ export const SignInForm = memo((props: AuthFormProps) => {
                         >
                             {t('Забули пароль?')}
                         </Button>
-
-                        <Input
-                            type={isVisible ? 'text' : 'password'}
-                            placeholder={t('Введіть пароль')}
-                            onChange={onChangePassword}
-                            value={password}
-                            data-testid="login-password-input"
-                            label={t('Пароль')}
-                            addonRight={
-                                <Icon
-                                    Svg={
-                                        isVisible
-                                            ? EyeIconRedesigned
-                                            : EyeInvisibleIconRedesigned
-                                    }
-                                    clickable
-                                    onClick={toggleVisibility}
-                                />
-                            }
-                            validations={validConfig.password}
-                            errors={passwordErrors}
+                        <PasswordInput
+                            password={password}
+                            onChangePassword={onChangePassword}
+                            passwordErrors={passwordErrors}
+                            validConfig={validConfig}
+                            withResetOption
+                            onShowResetForm={toggleForm}
                         />
                     </VStack>
 

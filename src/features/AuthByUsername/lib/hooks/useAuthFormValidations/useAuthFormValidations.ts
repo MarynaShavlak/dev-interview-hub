@@ -1,11 +1,9 @@
-import {
-    InputValidations,
-    useValidation,
-} from '@/shared/lib/hooks/useValidation/useValidation';
+import { useValidation } from '@/shared/lib/hooks/useValidation/useValidation';
+import { AuthValidation } from '../useAuthValidationConfig/useAuthValidationConfig';
 
 export const useAuthFormValidations = (
     data: Record<string, string>,
-    validConfig: Record<string, InputValidations>,
+    validConfig: AuthValidation,
     mode: 'signIn' | 'signUp' | 'resetPassword',
 ) => {
     const emailErrors = useValidation(data.email, validConfig.email);

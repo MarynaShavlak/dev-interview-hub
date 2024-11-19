@@ -12,7 +12,7 @@ import { AuthFormProps } from '../AuthForm';
 //             onChangeUsername,
 //             onChangePassword,
 //             // onLoginClick,
-//         } = useLoginForm(onSuccess);
+//         } = useSignInForm(onSuccess);
 //
 //         return (
 //             <VStack

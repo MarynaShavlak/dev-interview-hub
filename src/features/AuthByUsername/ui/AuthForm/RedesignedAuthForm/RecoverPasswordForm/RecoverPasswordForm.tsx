@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Text } from '@/shared/ui/redesigned/Text';
 import { Button } from '@/shared/ui/redesigned/Button';
 
-import { useLoginForm } from '../../../../lib/hooks/useLoginForm/useLoginForm';
+import { useSignInForm } from '../../../../lib/hooks/useSignInForm/useSignInForm';
 import { useAuthValidationConfig } from '../../../../lib/hooks/useAuthValidationConfig/useAuthValidationConfig';
 import { useAuthFormValidations } from '../../../../lib/hooks/useAuthFormValidations/useAuthFormValidations';
 import { Input } from '@/shared/ui/redesigned/Input';
@@ -17,12 +17,12 @@ export const RecoverPasswordForm = memo(
     ({ toggleForm }: RecoverPasswordFormProps) => {
         const { t } = useTranslation('profile');
         const [isEmailSent, setIsEmailSent] = useState(false);
-
         const toggleContent = useCallback(() => {
             setIsEmailSent(true);
         }, []);
+
         const { email, isLoading, error, onChangeEmail, onResetPasswordClick } =
-            useLoginForm(toggleContent);
+            useSignInForm(toggleContent);
 
         const redirectLinkText = t("Я пам'ятаю пароль");
 
@@ -33,9 +33,7 @@ export const RecoverPasswordForm = memo(
             validConfig,
             'resetPassword',
         );
-        console.log('isLoading', isLoading);
 
-        console.log('error', error);
         return (
             <>
                 <Text title={t('Відновлення паролю')} />

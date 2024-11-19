@@ -30,7 +30,7 @@ import { useAuthentication } from '../useAuthentication/useAuthentication';
  *  - `onLoginClick`: A function to handle the login button click event. Initiates the login process.
  */
 
-export const useLoginForm = (
+export const useSignInForm = (
     onSuccess?: () => void,
 ): {
     email: string;

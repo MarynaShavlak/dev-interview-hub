@@ -6,15 +6,13 @@ import cls from '../../AuthForm.module.scss';
 import { Text } from '@/shared/ui/redesigned/Text';
 import { Input } from '@/shared/ui/redesigned/Input';
 import { Button } from '@/shared/ui/redesigned/Button';
-import { Icon } from '@/shared/ui/redesigned/Icon';
-import EyeIconRedesigned from '@/shared/assets/icons/eye.svg';
-import EyeInvisibleIconRedesigned from '@/shared/assets/icons/eye-slash.svg';
 import { AuthFormProps } from '../../AuthForm';
-import { useSignupForm } from '../../../../lib/hooks/useSignupForm/useSignupForm';
+
 import { useAuthValidationConfig } from '../../../../lib/hooks/useAuthValidationConfig/useAuthValidationConfig';
 import { useErrorText } from '../../../../lib/hooks/useErrorText/useErrorText';
-import { useToggleVisibility } from '../../../../lib/hooks/useToggleVisibility/useToggleVisibility';
 import { useAuthFormValidations } from '../../../../lib/hooks/useAuthFormValidations/useAuthFormValidations';
+import { useSignUpForm } from '../../../../lib/hooks/useSignUpForm/useSignUpForm';
+import { PasswordInput } from '../PasswordInput/PasswordInput';
 
 export const SignUpForm = memo((props: AuthFormProps) => {
     const { className, onSuccess } = props;
@@ -34,7 +32,7 @@ export const SignUpForm = memo((props: AuthFormProps) => {
         onChangeEmail,
         onChangePassword,
         onSignupClick,
-    } = useSignupForm(onSuccess);
+    } = useSignUpForm(onSuccess);
 
     const validConfig = useAuthValidationConfig();
 
@@ -51,7 +49,6 @@ export const SignUpForm = memo((props: AuthFormProps) => {
         'signUp',
     );
     const errorText = useErrorText(error);
-    const { isVisible, toggleVisibility } = useToggleVisibility();
 
     return (
         <VStack
@@ -103,26 +100,11 @@ export const SignUpForm = memo((props: AuthFormProps) => {
                 errors={emailErrors}
             />
 
-            <Input
-                type={isVisible ? 'text' : 'password'}
-                placeholder={t('Введіть пароль')}
-                onChange={onChangePassword}
-                value={password}
-                data-testid="signup--password-input"
-                label={t('Пароль')}
-                addonRight={
-                    <Icon
-                        Svg={
-                            isVisible
-                                ? EyeIconRedesigned
-                                : EyeInvisibleIconRedesigned
-                        }
-                        clickable
-                        onClick={toggleVisibility}
-                    />
-                }
-                validations={validConfig.password}
-                errors={passwordErrors}
+            <PasswordInput
+                password={password}
+                onChangePassword={onChangePassword}
+                passwordErrors={passwordErrors}
+                validConfig={validConfig}
             />
 
             <Button

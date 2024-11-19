@@ -16,7 +16,7 @@ The **`DeprecatedAuthForm`** component accepts the following props:
 
 1. **Legacy UI Integration**: Utilizes outdated UI components such as `Button`, `Input`, and `Text` to provide a consistent look and feel with the previous design system, ensuring a smooth user experience during the transition period.
 
-2. **Form Handling**: Integrates the `useLoginForm` hook for managing login form state, including username and password inputs, error handling, and loading states. This setup ensures that form interactions are handled efficiently.
+2. **Form Handling**: Integrates the `useSignInForm` hook for managing login form state, including username and password inputs, error handling, and loading states. This setup ensures that form interactions are handled efficiently.
 
 3. **Localized Text**: Employs the `useTranslation` hook to provide localized text for placeholders and error messages, enhancing accessibility and supporting multiple languages.
 
@@ -40,4 +40,4 @@ const LoginPage = () => {
 ```
 ## Conclusion
 
-The **`DeprecatedAuthForm`** component serves as a legacy login interface, maintaining continuity for users during the transition to newer design standards. Its primary role is to provide a functional login experience using deprecated UI elements while ensuring essential authentication features are preserved. This component integrates classic UI components and manages form state with the `useLoginForm` hook, allowing for efficient handling of user inputs and authentication processes. Despite its outdated design, it remains a crucial part of the application for users who interact with legacy systems or require familiarity with previous interfaces.
+The **`DeprecatedAuthForm`** component serves as a legacy login interface, maintaining continuity for users during the transition to newer design standards. Its primary role is to provide a functional login experience using deprecated UI elements while ensuring essential authentication features are preserved. This component integrates classic UI components and manages form state with the `useSignInForm` hook, allowing for efficient handling of user inputs and authentication processes. Despite its outdated design, it remains a crucial part of the application for users who interact with legacy systems or require familiarity with previous interfaces.

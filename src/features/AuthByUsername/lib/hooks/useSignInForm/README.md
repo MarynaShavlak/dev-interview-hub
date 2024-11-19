@@ -1,6 +1,6 @@
-#  `useLoginForm` Hook
+#  `useSignInForm` Hook
 
-The `useLoginForm` hook is a custom React hook that manages the state and actions for a login form. It integrates with Redux to handle username and password changes, perform login operations, and manage the loading state and potential errors during the login process.
+The `useSignInForm` hook is a custom React hook that manages the state and actions for a login form. It integrates with Redux to handle username and password changes, perform login operations, and manage the loading state and potential errors during the login process.
 
 ## Parameters
 -  `onSuccess`(`() => void`):  A callback function that is executed upon successful login. This function can be used to trigger any post-login actions, such as redirecting the user or updating the UI.
@@ -32,14 +32,14 @@ An object with the following properties:
     - **`useCallback`**: Ensures that the `onChangeUsername`, `onChangePassword`, and `onLoginClick` functions are memoized to avoid unnecessary re-renders.
 
 ## Usage Example
-This example demonstrates how to use the `useLoginForm` hook within a login component to handle user authentication.
+This example demonstrates how to use the `useSignInForm` hook within a login component to handle user authentication.
 
 ```typescript jsx
 import React from 'react';
-import { useLoginForm } from '@/features/AuthByUsername';
+import { useSignInForm } from '@/features/AuthByUsername';
 
 const LoginComponent = () => {
-   const { username, password, isLoading, error, onChangeUsername, onChangePassword, onLoginClick } = useLoginForm(() => {
+   const { username, password, isLoading, error, onChangeUsername, onChangePassword, onLoginClick } = useSignInForm(() => {
       console.log('Login successful');
    });
 
@@ -70,4 +70,4 @@ export default LoginComponent;
 ```
 
 ## Conclusion 
-The `useLoginForm` hook provides a comprehensive solution for managing the state and interactions of a login form in a React application. By integrating with Redux, it ensures that the username, password, loading state, and error messages are seamlessly managed and updated. The hook encapsulates the complexity of handling form changes and the login process, offering clean and easy-to-use handlers for updating input fields and submitting the form.
+The `useSignInForm` hook provides a comprehensive solution for managing the state and interactions of a login form in a React application. By integrating with Redux, it ensures that the username, password, loading state, and error messages are seamlessly managed and updated. The hook encapsulates the complexity of handling form changes and the login process, offering clean and easy-to-use handlers for updating input fields and submitting the form.

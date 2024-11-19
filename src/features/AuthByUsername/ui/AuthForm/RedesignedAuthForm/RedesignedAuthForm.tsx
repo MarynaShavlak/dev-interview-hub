@@ -10,11 +10,11 @@ import { Button } from '@/shared/ui/redesigned/Button';
 import { Icon } from '@/shared/ui/redesigned/Icon';
 import GoogleIcon from '@/shared/assets/icons/google.svg';
 import { useToggleForm } from '../../../lib/hooks/useToggleForm/useToggleForm';
-import { useSignupForm } from '../../../lib/hooks/useSignupForm/useSignupForm';
+import { useSignUpForm } from '../../../lib/hooks/useSignUpForm/useSignUpForm';
 
 export const RedesignedAuthForm = memo((props: AuthFormProps) => {
     const { t } = useTranslation('profile');
-    const { onAuthByGoogleClick } = useSignupForm(props.onSuccess);
+    const { onAuthByGoogleClick } = useSignUpForm(props.onSuccess);
     const { isLoginFormOpen, toggleForm } = useToggleForm();
     const buttonGoogleText = t('Продовжити через Google');
     const redirectText = isLoginFormOpen

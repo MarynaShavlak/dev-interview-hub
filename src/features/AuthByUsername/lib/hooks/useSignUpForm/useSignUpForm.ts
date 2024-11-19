@@ -35,7 +35,7 @@ import {
  *  - `onLoginClick`: A function to handle the login button click event. Initiates the login process.
  */
 
-export const useSignupForm = (
+export const useSignUpForm = (
     onSuccess: () => void,
 ): {
     username: string;
