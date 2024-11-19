@@ -72,7 +72,7 @@ export const signupByEmail = createAsyncThunk<
         const customUser: User = mapFirebaseUserToCustomUser(firebaseUser);
 
         dispatch(setUser(customUser));
-        handleUserAuthentication(customUser);
+        handleUserAuthentication(customUser, documentId);
         return customUser;
     } catch (err) {
         const firebaseError = err as {

@@ -22,9 +22,12 @@ export const initializeUserFeatures = (user: User): void => {
  *
  * @param {User} user - The user object containing feature flags and other information.
  */
-export const handleUserAuthentication = (user: User): void => {
+export const handleUserAuthentication = (
+    user: User,
+    documentId: string,
+): void => {
     initializeUserFeatures(user);
-    localStorage.setItem(USER_LOCALSTORAGE_KEY, user.id.toString());
+    localStorage.setItem(USER_LOCALSTORAGE_KEY, documentId);
 };
 
 /**

@@ -40,7 +40,7 @@ export const loginByUsername = createAsyncThunk<
             userCredential.user,
         );
         dispatch(setUser(customUser));
-        handleUserAuthentication(customUser);
+        handleUserAuthentication(customUser, '');
         return customUser;
     } catch (err) {
         console.error('Log in failed:', err);

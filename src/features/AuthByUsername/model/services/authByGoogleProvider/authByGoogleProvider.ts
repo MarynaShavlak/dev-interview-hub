@@ -56,15 +56,17 @@ export const authByGoogleProvider = createAsyncThunk<
     try {
         const firebaseUser = await signInWithGoogle(auth);
         const userExists = await checkUserExists(firestore, firebaseUser.uid);
-
+        let documentId;
         if (!userExists) {
             const data: UserFullInfo = prepareUserData(firebaseUser);
-            await addNewUserToFirestore(firestore, data);
+            const userDocRef = await addNewUserToFirestore(firestore, data);
+            documentId = userDocRef.id;
+            console.log('New user document ID:', documentId);
         }
 
         const customUser = mapFirebaseUserToCustomUser(firebaseUser);
         dispatch(setUser(customUser));
-        handleUserAuthentication(customUser);
+        handleUserAuthentication(customUser, documentId || '');
 
         return customUser;
     } catch (err) {
