@@ -66,5 +66,6 @@
     "Вкажіть адресу": "Enter the email address you used to register and we'll send you the instruction",
     "Скинути пароль": "Reset password",
   "Я пам'ятаю пароль": "I remember password",
-    "Помилка відновлення паролю": "Password recovery error. Please try again later."
+    "Помилка відновлення паролю": "Password recovery error. Please try again later.",
+    "Лист {{email}} відновлення паролю": "If account {{email}} exist, an email will be sent with further instructions"
 }

@@ -92,6 +92,7 @@ export const useAuthentication = ({
         setIsFetchingUser(true);
         try {
             await dispatch(resetPassword(email));
+            onSuccess?.();
             console.log('Password reset email sent successfully.');
         } catch (error) {
             console.error('Error sending password reset email:', error);
