@@ -1,4 +1,5 @@
-import { doc, getDoc } from 'firebase/firestore';
+import { getDocs, query, where } from 'firebase/firestore';
+import { collection } from '@firebase/firestore';
 import { firestoreApi, rtkApi } from '@/shared/api/rtkApi';
 import { User } from '../model/types/user';
 import { JsonSettings } from '../model/types/jsonSettings';
@@ -44,15 +45,15 @@ export const userFirebaseApi = firestoreApi.injectEndpoints({
         getUserDataById: build.query<User, string>({
             async queryFn(userId) {
                 try {
-                    const userDocRef = doc(firestore, 'users', userId);
-                    console.log('data', userDocRef);
-                    const docSnapshot = await getDoc(userDocRef);
-                    console.log('data', docSnapshot);
-                    if (docSnapshot.exists()) {
+                    const usersReference = collection(firestore, 'users');
+                    const q = query(usersReference, where('id', '==', userId));
+                    const querySnapshot = await getDocs(q);
+                    if (!querySnapshot.empty) {
+                        const userData = querySnapshot.docs[0].data();
                         return {
                             data: {
-                                id: docSnapshot.id,
-                                ...docSnapshot.data(),
+                                id: querySnapshot.docs[0].id,
+                                ...userData,
                             } as User,
                         };
                     }
@@ -69,3 +70,10 @@ export const userFirebaseApi = firestoreApi.injectEndpoints({
 
 export const getUserDataByIdQuery =
     userFirebaseApi.endpoints.getUserDataById.initiate;
+
+export const useGetUserDataById = userFirebaseApi.useGetUserDataByIdQuery;
+
+// const userDocRef = doc(firestore, 'users', userId);
+// console.log('data', userDocRef);
+// const docSnapshot = await getDoc(userDocRef);
+// console.log('data', docSnapshot);

@@ -11,10 +11,10 @@ import {
     ReducersList,
 } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { VStack } from '@/shared/ui/common/Stack';
-import { fetchProfileData } from '../../model/services/fetchProfileData/fetchProfileData';
 import { profileReducer } from '../../model/slices/profileSlice';
 import { EditableProfileCardHeader } from '../EditableProfileCardHeader/EditableProfileCardHeader';
 import cls from './EditableProfileCard.module.scss';
+import { getAuthData } from '@/entities/User';
 
 interface EditableProfileCardProps {
     className?: string;
@@ -33,7 +33,7 @@ export const EditableProfileCard = memo((props: EditableProfileCardProps) => {
 
     useInitialEffect(() => {
         if (id) {
-            dispatch(fetchProfileData(id));
+            dispatch(getAuthData(id));
         }
     });
 

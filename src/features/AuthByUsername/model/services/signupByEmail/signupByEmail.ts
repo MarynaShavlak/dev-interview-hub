@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { getDoc } from 'firebase/firestore';
 import { handleUserAuthentication, User, userActions } from '@/entities/User';
 import { ThunkConfig } from '@/app/providers/StoreProvider';
 import { FirebaseAuthErrorCode } from '../../types/firebaseAuthErrorCode';
@@ -60,13 +61,16 @@ export const signupByEmail = createAsyncThunk<
         }
         const data: User = prepareUserData(firebaseUser, signUpData);
         const userDocRef = await addNewUserToFirestore(firestore, data);
-        const documentId = userDocRef.id;
-        console.log('New user document ID:', documentId);
+        // const documentId = userDocRef.id;
+        const doc = await getDoc(userDocRef);
+        const userData = doc.data();
+        console.log('userData', userData);
 
+        // console.log('New user document ID:', documentId);
         // const customUser: User = mapFirebaseUserToCustomUser(firebaseUser);
 
         dispatch(setUser(data));
-        handleUserAuthentication(data, documentId);
+        handleUserAuthentication(data, userData?.id);
         return data;
     } catch (err) {
         const firebaseError = err as {

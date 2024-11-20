@@ -3,7 +3,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { Auth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 
 import { collection } from '@firebase/firestore';
-import { Firestore, getDocs, query, where } from 'firebase/firestore';
+import { Firestore, getDoc, getDocs, query, where } from 'firebase/firestore';
 
 import { handleUserAuthentication, User, userActions } from '@/entities/User';
 import { ThunkConfig } from '@/app/providers/StoreProvider';
@@ -56,8 +56,11 @@ export const authByGoogleProvider = createAsyncThunk<
         if (!userExists) {
             // const data: UserFullInfo = prepareUserData(firebaseUser);
             const userDocRef = await addNewUserToFirestore(firestore, data);
-            documentId = userDocRef.id;
-            console.log('New user document ID:', documentId);
+            const doc = await getDoc(userDocRef);
+            documentId = doc.data()?.id;
+
+            // documentId = userDocRef.id;
+            // console.log('New user document ID:', documentId);
         }
 
         console.log('by google data to set in slice', data);
