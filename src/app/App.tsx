@@ -8,7 +8,7 @@ import { withThemeProvider } from './providers/ThemeProvider/ui/withThemeProvide
 function App() {
     const inited = useUserInited();
     const dispatch = useAppDispatch();
-    console.log('inited???', inited);
+
     useEffect(() => {
         if (!inited) {
             dispatch(initAuthData());

@@ -1,4 +1,4 @@
-import { getDocs, query, updateDoc, where } from 'firebase/firestore';
+import { getDoc, getDocs, query, updateDoc, where } from 'firebase/firestore';
 import { collection } from '@firebase/firestore';
 import { firestoreApi, rtkApi } from '@/shared/api/rtkApi';
 import { User } from '../model/types/user';
@@ -80,7 +80,18 @@ export const userFirebaseApi = firestoreApi.injectEndpoints({
                     if (!querySnapshot.empty) {
                         const userDocRef = querySnapshot.docs[0].ref;
                         await updateDoc(userDocRef, updates);
-                        return { data: undefined };
+
+                        const updatedDoc = await getDoc(userDocRef);
+                        const updatedData = updatedDoc.data();
+                        console.log('updated DATA', updatedData);
+                        if (updatedData) {
+                            return {
+                                data: {
+                                    // id: userDocRef.id,
+                                    ...updatedData,
+                                } as User,
+                            };
+                        }
                     }
                     return {
                         error: { name: 'NotFound', message: 'User not found' },

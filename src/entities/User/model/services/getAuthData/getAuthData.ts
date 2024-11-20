@@ -18,8 +18,6 @@ export const getAuthData = createAsyncThunk<User, string, ThunkConfig<string>>(
             const response = await dispatch(
                 getUserDataByIdQuery(userId),
             ).unwrap();
-            console.log('response in getAuthData', response);
-
             return response;
         } catch (error) {
             console.error('Error during getting auth data:', error);

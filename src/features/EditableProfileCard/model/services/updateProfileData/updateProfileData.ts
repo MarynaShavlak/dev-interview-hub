@@ -26,7 +26,7 @@ export const updateProfileData = createAsyncThunk<
         const response = await dispatch(
             updateUserDataMutation({ userId: formData?.id, updates: formData }),
         ).unwrap();
-        console.log('response in getAuthData', response);
+        console.log('updateProfileData', response);
 
         return response;
     } catch (error) {

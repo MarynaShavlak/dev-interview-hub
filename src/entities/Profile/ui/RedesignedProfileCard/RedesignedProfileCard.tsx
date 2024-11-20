@@ -27,7 +27,6 @@ export const RedesignedProfileCard = memo((props: ProfileCardProps) => {
     const { t } = useTranslation('profile');
     const additionalClasses = getFlexClasses({ vStack: true, gap: '32' });
 
-    console.log('DATA OF PROFILE', data);
     return (
         <Card
             padding="24"

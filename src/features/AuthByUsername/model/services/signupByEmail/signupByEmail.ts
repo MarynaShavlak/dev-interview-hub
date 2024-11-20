@@ -64,7 +64,7 @@ export const signupByEmail = createAsyncThunk<
         // const documentId = userDocRef.id;
         const doc = await getDoc(userDocRef);
         const userData = doc.data();
-        console.log('userData', userData);
+        console.log('userData in SignupByEmail', userData);
 
         // console.log('New user document ID:', documentId);
         // const customUser: User = mapFirebaseUserToCustomUser(firebaseUser);

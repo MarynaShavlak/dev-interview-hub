@@ -12,8 +12,8 @@ import { User } from '../../model/types/user';
  */
 export const initializeUserFeatures = (user: User): void => {
     setFeatureFlags(user.features);
-    const designKey = user.features?.isAppRedesigned ? 'new' : 'new';
-    // const designKey = user.features?.isAppRedesigned ? 'new' : 'old';
+    // const designKey = user.features?.isAppRedesigned ? 'new' : 'new';
+    const designKey = user.features?.isAppRedesigned ? 'new' : 'old';
     localStorage.setItem(LOCAL_STORAGE_LAST_DESIGN_KEY, designKey);
 };
 

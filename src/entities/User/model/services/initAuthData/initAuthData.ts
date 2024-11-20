@@ -4,6 +4,7 @@ import { ThunkConfig } from '@/app/providers/StoreProvider';
 import { User } from '../../types/user';
 import { USER_LOCALSTORAGE_KEY } from '@/shared/const/localstorage';
 import { getUserDataByIdQuery } from '../../../api/userApi';
+import { initializeUserFeatures } from '../../../lib/userUtils/userUtils';
 
 /**
  * Thunk to initialize authentication data based on user ID stored in local storage.
@@ -21,10 +22,7 @@ export const initAuthData = createAsyncThunk<User, void, ThunkConfig<string>>(
     'user/initAuthData',
     async (newJsonSettings, thunkApi) => {
         const { rejectWithValue, dispatch, extra } = thunkApi;
-
         const userId = localStorage.getItem(USER_LOCALSTORAGE_KEY) as string;
-
-        console.log(userId, userId);
         if (!userId) {
             return rejectWithValue('No user ID found in local storage.');
         }
@@ -35,7 +33,7 @@ export const initAuthData = createAsyncThunk<User, void, ThunkConfig<string>>(
             ).unwrap();
             console.log('response in init', response);
 
-            // initializeUserFeatures(response);
+            initializeUserFeatures(response);
 
             return response;
         } catch (error) {

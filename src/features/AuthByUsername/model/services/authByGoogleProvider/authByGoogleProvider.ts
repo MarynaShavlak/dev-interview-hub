@@ -52,21 +52,29 @@ export const authByGoogleProvider = createAsyncThunk<
         const firebaseUser = await signInWithGoogle(auth);
         const userExists = await checkUserExists(firestore, firebaseUser.uid);
         const data = prepareUserData(firebaseUser);
-        let documentId;
+
         if (!userExists) {
-            // const data: UserFullInfo = prepareUserData(firebaseUser);
+            const data: User = prepareUserData(firebaseUser);
             const userDocRef = await addNewUserToFirestore(firestore, data);
             const doc = await getDoc(userDocRef);
-            documentId = doc.data()?.id;
-
-            // documentId = userDocRef.id;
-            // console.log('New user document ID:', documentId);
+            const userData = doc.data();
+            console.log('userData in Google Provider', userData);
         }
 
-        console.log('by google data to set in slice', data);
+        const usersReference = collection(firestore, 'users');
+        const q = query(usersReference, where('id', '==', firebaseUser.uid));
+        const querySnapshot = await getDocs(q);
+        let loggedUserData;
+        if (!querySnapshot.empty) {
+            const userDocRef = querySnapshot.docs[0].ref;
+            const doc = await getDoc(userDocRef);
+            loggedUserData = doc.data() as User;
+        }
+
+        console.log('by google data to set in slice', loggedUserData);
         // const customUser = mapFirebaseUserToCustomUser(firebaseUser);
-        dispatch(setUser(data));
-        handleUserAuthentication(data, documentId || '');
+        dispatch(setUser(loggedUserData));
+        handleUserAuthentication(data, firebaseUser.uid);
 
         return data;
     } catch (err) {
