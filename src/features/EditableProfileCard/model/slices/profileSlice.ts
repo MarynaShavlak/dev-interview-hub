@@ -23,11 +23,12 @@ export const profileSlice = buildSlice({
             state.validateErrors = undefined;
             state.form = state.data;
         },
-        updateProfile: (state, action: PayloadAction<User>) => {
-            state.form = {
+        updateProfile: (state, action: PayloadAction<Partial<User>>) => {
+            const data = {
                 ...state.form,
                 ...action.payload,
             };
+            state.form = data as User;
         },
     },
     extraReducers: (builder) => {
