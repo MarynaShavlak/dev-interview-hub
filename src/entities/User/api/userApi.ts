@@ -1,4 +1,4 @@
-import { getDocs, query, where } from 'firebase/firestore';
+import { getDocs, query, updateDoc, where } from 'firebase/firestore';
 import { collection } from '@firebase/firestore';
 import { firestoreApi, rtkApi } from '@/shared/api/rtkApi';
 import { User } from '../model/types/user';
@@ -40,6 +40,8 @@ export const setJsonSettingsMutation =
 // export const getUserDataByIdQuery = userApi.endpoints.getUserDataById.initiate;
 export const useUsers = userApi.useGetUsersQuery;
 
+// _______________________________________________________________________
+
 export const userFirebaseApi = firestoreApi.injectEndpoints({
     endpoints: (build) => ({
         getUserDataById: build.query<User, string>({
@@ -65,11 +67,37 @@ export const userFirebaseApi = firestoreApi.injectEndpoints({
                 }
             },
         }),
+        updateUserData: build.mutation<
+            User,
+            { userId: string; updates: Partial<User> }
+        >({
+            async queryFn({ userId, updates }) {
+                try {
+                    const usersReference = collection(firestore, 'users');
+                    const q = query(usersReference, where('id', '==', userId));
+                    const querySnapshot = await getDocs(q);
+
+                    if (!querySnapshot.empty) {
+                        const userDocRef = querySnapshot.docs[0].ref;
+                        await updateDoc(userDocRef, updates);
+                        return { data: undefined };
+                    }
+                    return {
+                        error: { name: 'NotFound', message: 'User not found' },
+                    };
+                } catch (error) {
+                    return { error };
+                }
+            },
+        }),
     }),
 });
 
 export const getUserDataByIdQuery =
     userFirebaseApi.endpoints.getUserDataById.initiate;
+
+export const updateUserDataMutation =
+    userFirebaseApi.endpoints.updateUserData.initiate;
 
 export const useGetUserDataById = userFirebaseApi.useGetUserDataByIdQuery;
 

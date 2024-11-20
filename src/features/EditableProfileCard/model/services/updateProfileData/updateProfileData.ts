@@ -1,24 +1,16 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig } from '@/app/providers/StoreProvider';
-import { Profile } from '@/entities/Profile';
 import { ValidateProfileError } from '../../consts/consts';
 import { getProfileForm } from '../../selectors/getProfileForm/getProfileForm';
 import { validateProfileData } from '../validateProfileData/validateProfileData';
-
-/**
- * Thunk to update the profile data.
- *
- *   @param {void} - No parameters.
- *   @param {ThunkAPI} thunkAPI - The thunkAPI object provided by Redux Toolkit, containing dispatch, getState, extra, and more.
- *   @returns A thunk action that resolves to the updated profile data.
- */
+import { updateUserDataMutation, User } from '@/entities/User';
 
 export const updateProfileData = createAsyncThunk<
-    Profile,
+    User,
     void,
     ThunkConfig<ValidateProfileError[]>
->('profile/updateProfileData', async (_, thunkApi) => {
-    const { extra, rejectWithValue, getState } = thunkApi;
+>('profile/updateProfileData', async (User, thunkApi) => {
+    const { extra, rejectWithValue, getState, dispatch } = thunkApi;
     const formData = getProfileForm(getState());
     const errors = validateProfileData(formData);
 
@@ -31,18 +23,14 @@ export const updateProfileData = createAsyncThunk<
     }
 
     try {
-        const response = await extra.api.put<Profile>(
-            `/profile/${formData?.id}`,
-            formData,
-        );
+        const response = await dispatch(
+            updateUserDataMutation({ userId: formData?.id, updates: formData }),
+        ).unwrap();
+        console.log('response in getAuthData', response);
 
-        if (!response.data) {
-            throw new Error('No data returned from API');
-        }
-
-        return response.data;
+        return response;
     } catch (error) {
-        console.error('Failed to update profile data:', error);
+        console.error('Failed to update user data:', error);
         return rejectWithValue([ValidateProfileError.SERVER_ERROR]);
     }
 });

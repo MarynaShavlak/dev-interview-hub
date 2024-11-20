@@ -3,7 +3,7 @@ import { updateProfileData } from '../services/updateProfileData/updateProfileDa
 import { ProfileSchema } from '../types/editableProfileCardSchema';
 import { profileActions, profileReducer } from './profileSlice';
 import { testProfileData } from '@/entities/Profile/testing';
-import { Profile } from '@/entities/Profile';
+import { User } from '@/entities/User';
 
 describe('profileSlice tests', () => {
     const initialState: ProfileSchema = {
@@ -111,7 +111,7 @@ describe('profileSlice tests', () => {
             isLoading: true,
         };
 
-        const emptyProfileData: Profile = {} as Profile;
+        const emptyProfileData: User = {} as User;
 
         const newState = profileReducer(
             state as ProfileSchema,
