@@ -1,8 +1,8 @@
-import { getDoc, getDocs, query, updateDoc, where } from 'firebase/firestore';
+import { getDoc, updateDoc } from 'firebase/firestore';
 import { firestoreApi, rtkApi } from '@/shared/api/rtkApi';
 import { User } from '../model/types/user';
 import { JsonSettings } from '../model/types/jsonSettings';
-import { dataPoint } from '@/shared/lib/firestore/firestore';
+import { getUserDocRefById } from '../lib/utilities/getUserDocRefById/getUserDocRefById';
 
 interface SetJsonSettingsArg {
     userId: string;
@@ -46,16 +46,13 @@ export const userFirebaseApi = firestoreApi.injectEndpoints({
         getUserDataById: build.query<User, string>({
             async queryFn(userId) {
                 try {
-                    const usersCollection = dataPoint<User>('users');
-                    const q = query(usersCollection, where('id', '==', userId));
-                    const querySnapshot = await getDocs(q);
-                    if (!querySnapshot.empty) {
-                        const userData = querySnapshot.docs[0].data();
-                        return {
-                            data: {
-                                ...userData,
-                            } as User,
-                        };
+                    const userDocRef = await getUserDocRefById(userId);
+                    if (userDocRef) {
+                        const userDoc = await getDoc(userDocRef);
+                        const userData = userDoc.data();
+                        if (userData) {
+                            return { data: { ...userData } as User };
+                        }
                     }
                     return {
                         error: { name: 'NotFound', message: 'User not found' },
@@ -71,14 +68,10 @@ export const userFirebaseApi = firestoreApi.injectEndpoints({
         >({
             async queryFn({ userId, updates }) {
                 try {
-                    const usersCollection = dataPoint<User>('users');
-                    const q = query(usersCollection, where('id', '==', userId));
-                    const querySnapshot = await getDocs(q);
+                    const userDocRef = await getUserDocRefById(userId);
 
-                    if (!querySnapshot.empty) {
-                        const userDocRef = querySnapshot.docs[0].ref;
+                    if (userDocRef) {
                         await updateDoc(userDocRef, updates);
-
                         const updatedDoc = await getDoc(userDocRef);
                         const updatedData = updatedDoc.data();
                         console.log('updated DATA', updatedData);
@@ -95,6 +88,7 @@ export const userFirebaseApi = firestoreApi.injectEndpoints({
                         error: { name: 'NotFound', message: 'User not found' },
                     };
                 } catch (error) {
+                    console.error('Error updating user data:', error);
                     return { error };
                 }
             },
