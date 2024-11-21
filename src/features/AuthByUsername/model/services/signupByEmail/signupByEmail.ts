@@ -60,7 +60,7 @@ export const signupByEmail = createAsyncThunk<
             throw new Error('No user data returned from Firebase');
         }
         const data: User = prepareUserData(firebaseUser, signUpData);
-        const userDocRef = await addNewUserToFirestore(firestore, data);
+        const userDocRef = await addNewUserToFirestore(data);
         // const documentId = userDocRef.id;
         const doc = await getDoc(userDocRef);
         const userData = doc.data();

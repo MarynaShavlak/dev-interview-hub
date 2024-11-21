@@ -1,9 +1,8 @@
 import { getDoc, getDocs, query, updateDoc, where } from 'firebase/firestore';
-import { collection } from '@firebase/firestore';
 import { firestoreApi, rtkApi } from '@/shared/api/rtkApi';
 import { User } from '../model/types/user';
 import { JsonSettings } from '../model/types/jsonSettings';
-import { firestore } from '../../../../json-server/firebase';
+import { dataPoint } from '@/shared/lib/firestore/firestore';
 
 interface SetJsonSettingsArg {
     userId: string;
@@ -47,14 +46,13 @@ export const userFirebaseApi = firestoreApi.injectEndpoints({
         getUserDataById: build.query<User, string>({
             async queryFn(userId) {
                 try {
-                    const usersReference = collection(firestore, 'users');
-                    const q = query(usersReference, where('id', '==', userId));
+                    const usersCollection = dataPoint<User>('users');
+                    const q = query(usersCollection, where('id', '==', userId));
                     const querySnapshot = await getDocs(q);
                     if (!querySnapshot.empty) {
                         const userData = querySnapshot.docs[0].data();
                         return {
                             data: {
-                                id: querySnapshot.docs[0].id,
                                 ...userData,
                             } as User,
                         };
@@ -73,8 +71,8 @@ export const userFirebaseApi = firestoreApi.injectEndpoints({
         >({
             async queryFn({ userId, updates }) {
                 try {
-                    const usersReference = collection(firestore, 'users');
-                    const q = query(usersReference, where('id', '==', userId));
+                    const usersCollection = dataPoint<User>('users');
+                    const q = query(usersCollection, where('id', '==', userId));
                     const querySnapshot = await getDocs(q);
 
                     if (!querySnapshot.empty) {

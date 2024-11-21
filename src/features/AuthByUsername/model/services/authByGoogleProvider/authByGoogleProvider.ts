@@ -20,7 +20,7 @@ export const authByGoogleProvider = createAsyncThunk<
 
     try {
         const firebaseUser = await signInWithGoogle(auth);
-        const userExists = await checkUserExists(firestore, firebaseUser.uid);
+        const userExists = await checkUserExists(firebaseUser.uid);
 
         let userData: User;
 
@@ -28,7 +28,7 @@ export const authByGoogleProvider = createAsyncThunk<
 
         if (!userExists) {
             const newUser = prepareUserData(firebaseUser);
-            const userDocRef = await addNewUserToFirestore(firestore, newUser);
+            const userDocRef = await addNewUserToFirestore(newUser);
             userData = newUser;
             const doc = await getDoc(userDocRef);
 

@@ -1,23 +1,13 @@
-import {
-    Firestore,
-    collection,
-    getDocs,
-    query,
-    where,
-    getDoc,
-} from 'firebase/firestore';
-import { createFirestoreConverter } from '@/shared/lib/firestore/firestore';
+import { Firestore, getDocs, query, where, getDoc } from 'firebase/firestore';
+import { dataPoint } from '@/shared/lib/firestore/firestore';
 import { User } from '@/entities/User';
 
 export const fetchUserFromFirestore = async (
     firestore: Firestore,
     uid: string,
 ): Promise<User | null> => {
-    const userConverter = createFirestoreConverter<User>();
-    const usersReference = collection(firestore, 'users').withConverter(
-        userConverter,
-    );
-    const userQuery = query(usersReference, where('id', '==', uid));
+    const usersCollection = dataPoint<User>('users');
+    const userQuery = query(usersCollection, where('id', '==', uid));
     const querySnapshot = await getDocs(userQuery);
 
     if (!querySnapshot.empty) {

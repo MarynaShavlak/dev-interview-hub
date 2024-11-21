@@ -1,7 +1,3 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
-import { ThunkConfig } from '@/app/providers/StoreProvider';
-import { Profile } from '@/entities/Profile';
-
 /**
  * Fetches the profile data for a given profile ID.
  *
@@ -10,23 +6,24 @@ import { Profile } from '@/entities/Profile';
  * @returns A thunk action that resolves to the profile data.
  */
 
-export const fetchProfileData = createAsyncThunk<
-    Profile,
-    string,
-    ThunkConfig<string>
->('profile/fetchProfileData', async (profileId, thunkApi) => {
-    const { extra, rejectWithValue } = thunkApi;
-
-    try {
-        const response = await extra.api.get<Profile>(`/profile/${profileId}`);
-
-        if (!response.data) {
-            throw new Error('No data returned from API');
-        }
-
-        return response.data;
-    } catch (error) {
-        console.error('Failed to fetch profile data:', error);
-        return rejectWithValue('Failed to fetch profile data');
-    }
-});
+// export const fetchProfileData = createAsyncThunk<
+//     Profile,
+//     string,
+//     ThunkConfig<string>
+// >('profile/fetchProfileData', async (profileId, thunkApi) => {
+//     const { extra, rejectWithValue } = thunkApi;
+//
+//     try {
+//         const response = await extra.api.get<Profile>(`/profile/${profileId}`);
+//
+//         if (!response.data) {
+//             throw new Error('No data returned from API');
+//         }
+//
+//         return response.data;
+//     } catch (error) {
+//         console.error('Failed to fetch profile data:', error);
+//         return rejectWithValue('Failed to fetch profile data');
+//     }
+// });
+export {};

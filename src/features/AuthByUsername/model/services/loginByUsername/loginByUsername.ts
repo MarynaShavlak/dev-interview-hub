@@ -1,10 +1,10 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { signInWithEmailAndPassword, UserCredential } from 'firebase/auth';
-import { collection, getDocs } from 'firebase/firestore';
-import { userActions } from '@/entities/User';
+import { getDocs } from 'firebase/firestore';
+import { User, userActions } from '@/entities/User';
 import { ThunkConfig } from '@/app/providers/StoreProvider';
 
-import { firestore } from '../../../../../../json-server/firebase';
+import { dataPoint } from '@/shared/lib/firestore/firestore';
 
 interface LoginByUsernameProps {
     email: string;
@@ -42,8 +42,8 @@ export const loginByUsername = createAsyncThunk<
         //     userCredential.user,
         // );
         const myId = userCredential.user.uid;
-        const usersReference = collection(firestore, 'users');
-        const data = await getDocs(usersReference);
+        const usersCollection = dataPoint<User>('users');
+        const data = await getDocs(usersCollection);
         const filteredData = data.docs.map((doc) => ({
             ...doc.data(),
             id: doc.id,
