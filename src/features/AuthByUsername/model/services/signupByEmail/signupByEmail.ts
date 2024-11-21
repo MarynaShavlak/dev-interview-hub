@@ -70,7 +70,7 @@ export const signupByEmail = createAsyncThunk<
         // const customUser: User = mapFirebaseUserToCustomUser(firebaseUser);
 
         dispatch(setUser(data));
-        handleUserAuthentication(data, userData?.id);
+        handleUserAuthentication(data, userData?.id || '');
         return data;
     } catch (err) {
         const firebaseError = err as {

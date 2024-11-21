@@ -1,43 +1,13 @@
-import { User as FirebaseUser } from '@firebase/auth';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { Auth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
-
-import { collection } from '@firebase/firestore';
-import { Firestore, getDoc, getDocs, query, where } from 'firebase/firestore';
+import { getDoc } from 'firebase/firestore';
 
 import { handleUserAuthentication, User, userActions } from '@/entities/User';
 import { ThunkConfig } from '@/app/providers/StoreProvider';
 import { addNewUserToFirestore } from '../../../lib/utilities/addNewUserToFirestore/addNewUserToFirestore';
 import { prepareUserData } from '../../../lib/utilities/prepareUserData/prepareUserData';
-
-// export const mapFirebaseUserToCustomUser = (
-//     firebaseUser: FirebaseUser,
-// ): User => {
-//     return {
-//         id: firebaseUser.uid,
-//         username: firebaseUser.email || 'Unknown',
-//         avatar: firebaseUser.photoURL || undefined,
-//     };
-// };
-
-const checkUserExists = async (
-    firestore: Firestore,
-    uid: string,
-): Promise<boolean> => {
-    const usersReference = collection(firestore, 'users');
-    const existingUserQuery = query(usersReference, where('id', '==', uid));
-    const existingUserSnapshot = await getDocs(existingUserQuery);
-    return !existingUserSnapshot.empty;
-};
-
-const signInWithGoogle = async (auth: Auth): Promise<FirebaseUser> => {
-    const provider = new GoogleAuthProvider();
-    const { user } = await signInWithPopup(auth, provider);
-    if (!user) {
-        throw new Error('No user data returned from Firebase');
-    }
-    return user;
-};
+import { fetchUserFromFirestore } from '../../../lib/utilities/fetchUserFromFirestore/fetchUserFromFirestore';
+import { checkUserExists } from '../../../lib/utilities/checkUserExists/checkUserExists';
+import { signInWithGoogle } from '../../../lib/utilities/signInWithGoogle/signInWithGoogle';
 
 export const authByGoogleProvider = createAsyncThunk<
     User,
@@ -51,30 +21,34 @@ export const authByGoogleProvider = createAsyncThunk<
     try {
         const firebaseUser = await signInWithGoogle(auth);
         const userExists = await checkUserExists(firestore, firebaseUser.uid);
+
+        let userData: User;
+
         const data = prepareUserData(firebaseUser);
 
         if (!userExists) {
-            const data: User = prepareUserData(firebaseUser);
-            const userDocRef = await addNewUserToFirestore(firestore, data);
+            const newUser = prepareUserData(firebaseUser);
+            const userDocRef = await addNewUserToFirestore(firestore, newUser);
+            userData = newUser;
             const doc = await getDoc(userDocRef);
-            const userData = doc.data();
-            console.log('userData in Google Provider', userData);
+
+            // console.log('userData in Google Provider', userData);
+        } else {
+            const existingUser = await fetchUserFromFirestore(
+                firestore,
+                firebaseUser.uid,
+            );
+            if (!existingUser) {
+                throw new Error('Existing user not found in Firestore');
+            }
+            userData = existingUser;
+            console.log('existingUser from google', existingUser);
         }
 
-        const usersReference = collection(firestore, 'users');
-        const q = query(usersReference, where('id', '==', firebaseUser.uid));
-        const querySnapshot = await getDocs(q);
-        let loggedUserData;
-        if (!querySnapshot.empty) {
-            const userDocRef = querySnapshot.docs[0].ref;
-            const doc = await getDoc(userDocRef);
-            loggedUserData = doc.data() as User;
-        }
-
-        console.log('by google data to set in slice', loggedUserData);
+        console.log('by google data to set in slice', userData);
         // const customUser = mapFirebaseUserToCustomUser(firebaseUser);
-        dispatch(setUser(loggedUserData));
-        handleUserAuthentication(data, firebaseUser.uid);
+        dispatch(setUser(userData));
+        handleUserAuthentication(userData, firebaseUser.uid);
 
         return data;
     } catch (err) {
@@ -84,3 +58,14 @@ export const authByGoogleProvider = createAsyncThunk<
         );
     }
 });
+
+// const usersReference = collection(firestore, 'users');
+// const q = query(usersReference, where('id', '==', firebaseUser.uid));
+// const querySnapshot = await getDocs(q);
+//
+// let loggedUserData;
+// if (!querySnapshot.empty) {
+//     const userDocRef = querySnapshot.docs[0].ref;
+//     const doc = await getDoc(userDocRef);
+//     loggedUserData = doc.data();
+// }

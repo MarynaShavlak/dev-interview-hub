@@ -18,6 +18,7 @@ export const getAuthData = createAsyncThunk<User, string, ThunkConfig<string>>(
             const response = await dispatch(
                 getUserDataByIdQuery(userId),
             ).unwrap();
+            console.log('Auth in getAuth in Profile:', response);
             return response;
         } catch (error) {
             console.error('Error during getting auth data:', error);
