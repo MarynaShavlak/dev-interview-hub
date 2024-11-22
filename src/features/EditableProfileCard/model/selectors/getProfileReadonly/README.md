@@ -31,7 +31,7 @@ export const [useProfileReadonly, getProfileReadonly] = buildSelector(
 
 ## Usage Example
 ```typescript jsx
-import { useProfileReadonly } from '@/features/editableProfileCard';
+import { useProfileReadonly } from '@/features/EditableProfileCard';
 
 export function ProfileEditButton() {
   const isReadonly = useProfileReadonly();

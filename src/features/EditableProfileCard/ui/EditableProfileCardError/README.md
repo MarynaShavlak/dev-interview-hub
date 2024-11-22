@@ -27,7 +27,7 @@ The **`EditableProfileCardError`** component accepts the following props:
 
 ## Usage Example
 ```typescript jsx
-import { EditableProfileCardError } from '@/features/editableProfileCard/EditableProfileCardError';
+import { EditableProfileCardError } from '@/features/EditableProfileCard/EditableProfileCardError';
 import { ValidateProfileError } from '../../model/consts/consts';
 
 const App = () => {

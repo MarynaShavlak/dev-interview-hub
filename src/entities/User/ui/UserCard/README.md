@@ -1,12 +1,12 @@
-# ProfileCard 
+# UserCard 
 
 ## Overview
-The **`ProfileCard`** component provides a user interface for displaying and editing user profile information. 
-It adapts its rendering based on the `isAppRedesigned` feature flag, switching between the `RedesignedProfileCard` and `DeprecatedProfileCard` components to deliver either the latest design or the legacy version. 
+The **`UserCard`** component provides a user interface for displaying and editing user profile information. 
+It adapts its rendering based on the `isAppRedesigned` feature flag, switching between the `RedesignedUserCard` and `DeprecatedUserCard` components to deliver either the latest design or the legacy version. 
 The component handles different states including loading, error, and data display, ensuring a smooth user experience across various scenarios.
 
 ## Props
-The **`RedesignedProfileCard`** component accepts the following props:
+The **`RedesignedUserCard`** component accepts the following props:
 
 | Prop                | Type                           | Required / Optional | Description                                                                            |
 |---------------------|--------------------------------|----------------------|----------------------------------------------------------------------------------------|
@@ -34,7 +34,7 @@ The **`RedesignedProfileCard`** component accepts the following props:
 ```typescript jsx
 import { memo } from 'react';
 import { useProfile } from '../../lib/hooks/useProfile';
-import { ProfileCard } from '@/entities/Profile';
+import { UserCard } from '@/entities/Profile';
 
 export const EditableProfileCardContainer = memo(() => {
     const {
@@ -53,7 +53,7 @@ export const EditableProfileCardContainer = memo(() => {
     } = useProfile();
 
     return (
-        <ProfileCard
+        <UserCard
             data={formData}
             isLoading={isLoading}
             error={error}
@@ -71,4 +71,4 @@ export const EditableProfileCardContainer = memo(() => {
 });
 ```
 ## Conclusion
-The **`ProfileCard`** entity is essential for managing and displaying user profile information in both redesigned and legacy formats. It ensures that users have a consistent and responsive experience, regardless of the application's current feature set. By handling loading states, errors, and providing various callback functions, it allows for a robust and interactive profile management system that adapts to different design requirements and user needs.
+The **`UserCard`** entity is essential for managing and displaying user profile information in both redesigned and legacy formats. It ensures that users have a consistent and responsive experience, regardless of the application's current feature set. By handling loading states, errors, and providing various callback functions, it allows for a robust and interactive profile management system that adapts to different design requirements and user needs.

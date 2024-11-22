@@ -1,5 +1,5 @@
-export { RedesignedProfileCardSkeleton } from './ui/RedesignedProfileCard/RedesignedProfileCardSkeleton/RedesignedProfileCardSkeleton';
+export { RedesignedUserCardSkeleton } from '@/entities/User/ui/RedesignedUserCard/RedesignedUserCardSkeleton/RedesignedUserCardSkeleton';
 
 export type { Profile } from './model/types/profile';
-export { ProfileCard } from './ui/ProfileCard/ProfileCard';
+export { UserCard } from '@/entities/User/ui/UserCard/UserCard';
 export { useProfiles } from './api/profileApi';

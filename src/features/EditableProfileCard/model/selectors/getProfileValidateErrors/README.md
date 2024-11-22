@@ -30,7 +30,7 @@ export const [useProfileValidateErrors, getProfileValidateErrors] =
 
 ## Usage Examples
 ```typescript jsx
-import { useProfileValidateErrors } from '@/features/editableProfileCard';
+import { useProfileValidateErrors } from '@/features/EditableProfileCard';
 
 eexport function ProfileValidationErrors() {
   const validateErrors = useProfileValidateErrors();

@@ -33,7 +33,7 @@ The **`EditableProfileCard`** component accepts the following props:
 ```typescript jsx
 import { memo } from 'react';
 import { useParams } from 'react-router-dom';
-import { EditableProfileCard } from '@/features/editableProfileCard';
+import { EditableProfileCard } from '@/features/EditableProfileCard';
 import { VStack } from '@/shared/ui/redesigned/Stack';
 
 export const ProfileContainer = memo(() => {

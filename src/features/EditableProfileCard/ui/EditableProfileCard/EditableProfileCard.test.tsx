@@ -39,22 +39,17 @@ describe('EditableProfileCard Component', () => {
             screen.getByTestId('EditableProfileCardHeader.EditButton'),
         );
 
-        await userEvent.clear(screen.getByTestId('ProfileCard.firstname'));
-        await userEvent.clear(screen.getByTestId('ProfileCard.lastname'));
+        await userEvent.clear(screen.getByTestId('UserCard.firstname'));
+        await userEvent.clear(screen.getByTestId('UserCard.lastname'));
 
+        await userEvent.type(screen.getByTestId('UserCard.firstname'), 'name1');
         await userEvent.type(
-            screen.getByTestId('ProfileCard.firstname'),
-            'name1',
-        );
-        await userEvent.type(
-            screen.getByTestId('ProfileCard.lastname'),
+            screen.getByTestId('UserCard.lastname'),
             'lastname1',
         );
 
-        expect(screen.getByTestId('ProfileCard.firstname')).toHaveValue(
-            'name1',
-        );
-        expect(screen.getByTestId('ProfileCard.lastname')).toHaveValue(
+        expect(screen.getByTestId('UserCard.firstname')).toHaveValue('name1');
+        expect(screen.getByTestId('UserCard.lastname')).toHaveValue(
             'lastname1',
         );
 
@@ -62,12 +57,8 @@ describe('EditableProfileCard Component', () => {
             screen.getByTestId('EditableProfileCardHeader.CancelButton'),
         );
 
-        expect(screen.getByTestId('ProfileCard.firstname')).toHaveValue(
-            'Maryna',
-        );
-        expect(screen.getByTestId('ProfileCard.lastname')).toHaveValue(
-            'Shavlak',
-        );
+        expect(screen.getByTestId('UserCard.firstname')).toHaveValue('Maryna');
+        expect(screen.getByTestId('UserCard.lastname')).toHaveValue('Shavlak');
     });
 
     test('should display an error when form validation fails', async () => {
@@ -76,7 +67,7 @@ describe('EditableProfileCard Component', () => {
             screen.getByTestId('EditableProfileCardHeader.EditButton'),
         );
 
-        await userEvent.clear(screen.getByTestId('ProfileCard.firstname'));
+        await userEvent.clear(screen.getByTestId('UserCard.firstname'));
 
         await userEvent.click(
             screen.getByTestId('EditableProfileCardHeader.SaveButton'),
@@ -94,10 +85,7 @@ describe('EditableProfileCard Component', () => {
             screen.getByTestId('EditableProfileCardHeader.EditButton'),
         );
 
-        await userEvent.type(
-            screen.getByTestId('ProfileCard.firstname'),
-            'user',
-        );
+        await userEvent.type(screen.getByTestId('UserCard.firstname'), 'user');
 
         await userEvent.click(
             screen.getByTestId('EditableProfileCardHeader.SaveButton'),

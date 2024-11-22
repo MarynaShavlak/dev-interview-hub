@@ -11,19 +11,19 @@ Profile/
 │   └── types/
 │       └── profile.ts
 ├── ui/
-│   └── DeprecatedProfileCard/
-│   │   ├── DeprecatedProfileCardError/
-│   │   ├── DeprecatedProfileCardLoader/
-│   │   ├── DeprecatedProfileCard.module.scss
-│   │   ├── DeprecatedProfileCard.tsx
+│   └── DeprecatedUserCard/
+│   │   ├── DeprecatedUserCardError/
+│   │   ├── DeprecatedUserCardLoader/
+│   │   ├── DeprecatedUserCard.module.scss
+│   │   ├── DeprecatedUserCard.tsx
 │   │   └── README.md
-│   └── ProfileCard/
-│   │   ├── ProfileCard.tsx
-│   └── RedesignedProfileCard/
-│   │   ├── RedesignedProfileCardError/
-│   │   ├── RedesignedProfileCardSkeleton/
-│   │   ├── RedesignedProfileCard.module.scss
-│   │   ├── RedesignedProfileCard.tsx
+│   └── UserCard/
+│   │   ├── UserCard.tsx
+│   └── RedesignedUserCard/
+│   │   ├── RedesignedUserCardError/
+│   │   ├── RedesignedUserCardSkeleton/
+│   │   ├── RedesignedUserCard.module.scss
+│   │   ├── RedesignedUserCard.tsx
 ├── index.ts
 ├── testing.ts
 ```
@@ -37,20 +37,20 @@ Profile/
 
 ### 2. `ui/`: UI components
 
-#### 2.1. `ProfileCard/`: Manages the display and interaction of the profile card UI.
-- [**ProfileCard.tsx**](./ui/ProfileCard/README.md): The main `ProfileCard` component, responsible for rendering the profile card.
+#### 2.1. `UserCard/`: Manages the display and interaction of the profile card UI.
+- [**UserCard.tsx**](../User/ui/UserCard/README.md): The main `UserCard` component, responsible for rendering the profile card.
 
-#### 2.2. `DeprecatedProfileCard/`: Manages the display and interaction of the deprecated profile card UI.
-- **`DeprecatedProfileCard.module.scss`**: Contains the styles specific to the `DeprecatedProfileCard` component.
-- [**DeprecatedProfileCard.tsx**](./ui/DeprecatedProfileCard/README.md): The main `DeprecatedProfileCard` component, responsible for rendering the deprecated profile card.
-- [**DeprecatedProfileCardError**](./ui/DeprecatedProfileCard/DeprecatedProfileCardError/README.md): Handles the display of errors in the deprecated profile card.
-- [**DeprecatedProfileCardLoader**](./ui/DeprecatedProfileCard/DeprecatedProfileCardLoader/README.md): Manages the loading state of the deprecated profile card.
+#### 2.2. `DeprecatedUserCard/`: Manages the display and interaction of the deprecated profile card UI.
+- **`DeprecatedUserCard.module.scss`**: Contains the styles specific to the `DeprecatedUserCard` component.
+- [**DeprecatedUserCard.tsx**](../User/ui/DeprecatedUserCard/README.md): The main `DeprecatedUserCard` component, responsible for rendering the deprecated profile card.
+- [**DeprecatedUserCardError**](../User/ui/DeprecatedUserCard/DeprecatedUserCardError/README.md): Handles the display of errors in the deprecated profile card.
+- [**DeprecatedUserCardLoader**](../User/ui/DeprecatedUserCard/DeprecatedUserCardLoader/README.md): Manages the loading state of the deprecated profile card.
 
-#### 2.3. `RedesignedProfileCard/`: Manages the display and interaction of the redesigned profile card UI.
-- **`RedesignedProfileCard.module.scss`**: Contains the styles specific to the `RedesignedProfileCard` component.
-- [**RedesignedProfileCard.tsx**](./ui/RedesignedProfileCard/README.md): The main `RedesignedProfileCard` component, responsible for rendering the redesigned profile card.
-- [**RedesignedProfileCardError**](./ui/RedesignedProfileCard/RedesignedProfileCardError/README.md): Handles the display of errors in the redesigned profile card.
-- [**RedesignedProfileCardSkeleton**](./ui/RedesignedProfileCard/RedesignedProfileCardSkeleton/README.md): Manages the loading state of the redesigned profile card.
+#### 2.3. `RedesignedUserCard/`: Manages the display and interaction of the redesigned profile card UI.
+- **`RedesignedUserCard.module.scss`**: Contains the styles specific to the `RedesignedUserCard` component.
+- [**RedesignedUserCard.tsx**](../User/ui/RedesignedUserCard/README.md): The main `RedesignedUserCard` component, responsible for rendering the redesigned profile card.
+- [**RedesignedUserCardError**](../User/ui/RedesignedUserCard/RedesignedUserCardError/README.md): Handles the display of errors in the redesigned profile card.
+- [**RedesignedUserCardSkeleton**](../User/ui/RedesignedUserCard/RedesignedUserCardSkeleton/README.md): Manages the loading state of the redesigned profile card.
 
 ### 3. `index.ts`
 - **`index.ts`**: Entry point for the Profile module, exporting the necessary components and types for use in the application.
@@ -64,8 +64,8 @@ Entry point for testing-related functionalities within the Profile module. It is
     - `Profile` - An interface defining the structure of a user profile object.
 
 - **Components**:
-    - `ProfileCard` - A component for displaying and editing user profile information.
-    - `RedesignedProfileCardSkeleton` - A skeleton loading screen for the redesigned profile card.
+    - `UserCard` - A component for displaying and editing user profile information.
+    - `RedesignedUserCardSkeleton` - A skeleton loading screen for the redesigned profile card.
 
 ## Public Testing API
 - **Testing Exports**:

@@ -85,7 +85,7 @@ EditableProfileCard/
 - **`slices/`**
     - [**profileSlice.ts**](model/slices/README.md):Manages the Redux state for the profile, including actions and reducers for updating and fetching profile data.
 - **`types/`**
-    - [**editableProfileCardSchema.ts**](./model/types/editableProfileCardSchema.ts): Defines the schema for the profile data
+    - [**EditableProfileCardSchema.ts**](./model/types/editableProfileCardSchema.ts): Defines the schema for the profile data
 - **`consts/`**
     - [**consts.ts**](./model/consts/README.md): Defines const for profile card states and configurations.
 

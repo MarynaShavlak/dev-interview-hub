@@ -6,15 +6,15 @@ import {
     TextAlign,
     TextTheme,
 } from '@/shared/ui/deprecated/Text';
-import cls from '../DeprecatedProfileCard.module.scss';
+import cls from '../DeprecatedUserCard.module.scss';
 
-export const DeprecatedProfileCardError = () => {
+export const DeprecatedUserCardError = () => {
     const { t } = useTranslation('profile');
     return (
         <HStack
             justify="center"
             max
-            className={classNames(cls.ProfileCard, {}, [cls.error])}
+            className={classNames(cls.UserCard, {}, [cls.error])}
         >
             <TextDeprecated
                 theme={TextTheme.ERROR}

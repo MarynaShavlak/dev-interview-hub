@@ -33,7 +33,7 @@ export const [useProfileData, getProfileData] = buildSelector(
 ## Usage Examples
 ## Example 1: `useProfileData` in Component
 ```typescript jsx
-import { useProfileData } from '@/features/editableProfileCard';
+import { useProfileData } from '@/features/EditableProfileCard';
 
 export function UserProfile() {
   const profileData = useProfileData();
@@ -55,7 +55,7 @@ export function UserProfile() {
 import { createSelector } from '@reduxjs/toolkit';
 
 import { getUserAuthData } from '@/entities/User';
-import { getProfileData } from '@/features/editableProfileCard';
+import { getProfileData } from '@/features/EditableProfileCard';
 
 export const getCanProfileEdit = createSelector(
         [getUserAuthData, getProfileData],

@@ -31,7 +31,7 @@ export const [useProfileIsLoading, getProfileIsLoading] = buildSelector(
 
 ## Usage Example
 ```typescript jsx
-import { useProfileIsLoading } from '@/features/editableProfileCard';
+import { useProfileIsLoading } from '@/features/EditableProfileCard';
 
 export function ProfileLoadingIndicator() {
   const isLoading = useProfileIsLoading();

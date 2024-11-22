@@ -1,19 +1,19 @@
 import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import { ProfileCard } from './ProfileCard';
-import { testProfileData } from '../../testing';
+import { UserCard } from './UserCard';
+import { testProfileData } from '../../../Profile/testing';
 import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator/NewDesignDecorator';
 
 export default {
-    title: 'entities/Profile/ProfileCard',
-    component: ProfileCard,
+    title: 'entities/Profile/UserCard',
+    component: UserCard,
     argTypes: {
         backgroundColor: { control: 'color' },
     },
-} as ComponentMeta<typeof ProfileCard>;
+} as ComponentMeta<typeof UserCard>;
 
-const Template: ComponentStory<typeof ProfileCard> = (args) => (
-    <ProfileCard {...args} />
+const Template: ComponentStory<typeof UserCard> = (args) => (
+    <UserCard {...args} />
 );
 
 const primaryArgs = {

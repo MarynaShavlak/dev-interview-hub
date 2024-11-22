@@ -1,6 +1,6 @@
 import { memo } from 'react';
 import { useProfile } from '../../lib/hooks/useProfile';
-import { ProfileCard } from '@/entities/Profile';
+import { UserCard } from '@/entities/Profile';
 
 export const EditableProfileCardContainer = memo(() => {
     const {
@@ -19,7 +19,7 @@ export const EditableProfileCardContainer = memo(() => {
     } = useProfile();
 
     return (
-        <ProfileCard
+        <UserCard
             data={formData}
             isLoading={isLoading}
             error={error}

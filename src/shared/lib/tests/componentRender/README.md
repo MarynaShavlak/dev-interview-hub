@@ -74,7 +74,7 @@ describe('Sidebar Component', () => {
 ### Example 2: Testing EditableProfileCard with Mocked Data in Cypress test case
 
 ```typescript jsx
-import { EditableProfileCard } from '@/features/editableProfileCard';
+import { EditableProfileCard } from '@/features/EditableProfileCard';
 import { TestProvider } from '@/shared/lib/tests/componentRender/componentRender';
 
 const USER_ID = '1';

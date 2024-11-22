@@ -29,7 +29,7 @@ The **`EditableProfileCardHeader`** component accepts the following props:
 
 ## Usage Example
 ```typescript jsx
-import { EditableProfileCardHeader } from '@/features/editableProfileCardr/EditableProfileCardHeader';
+import { EditableProfileCardHeader } from '@/features/EditableProfileCardr/EditableProfileCardHeader';
 
 const ProfileHeader = () => {
     return (

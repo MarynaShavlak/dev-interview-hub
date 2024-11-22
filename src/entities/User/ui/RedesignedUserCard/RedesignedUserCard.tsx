@@ -8,11 +8,11 @@ import { Avatar } from '@/shared/ui/redesigned/Avatar';
 import { Input } from '@/shared/ui/redesigned/Input';
 import { CurrencySelect } from '@/entities/Currency';
 import { CountrySelect } from '@/entities/Country';
-import { ProfileCardProps } from '../ProfileCard/ProfileCard';
+import { UserCardProps } from '../UserCard/UserCard';
 import { useInputValidationConfig } from '@/shared/lib/hooks/validationHooks/useInputValidationConfig/useInputValidationConfig';
 import { useFormValidation } from '@/shared/lib/hooks/validationHooks/useFormValidation/useFormValidation';
 
-export const RedesignedProfileCard = memo((props: ProfileCardProps) => {
+export const RedesignedUserCard = memo((props: UserCardProps) => {
     const {
         className,
         data,
@@ -58,7 +58,7 @@ export const RedesignedProfileCard = memo((props: ProfileCardProps) => {
                         label={`${t('Email')}:`}
                         readonly
                         disabled
-                        data-testid="ProfileCard.email"
+                        data-testid="UserCard.email"
                     />
                     <Input
                         value={data?.firstname}
@@ -66,7 +66,7 @@ export const RedesignedProfileCard = memo((props: ProfileCardProps) => {
                         onChange={onChangeFirstname}
                         readonly={readonly}
                         disabled={readonly}
-                        data-testid="ProfileCard.firstname"
+                        data-testid="UserCard.firstname"
                         validations={validConfig.firstname}
                         errors={firstnameErrors}
                     />
@@ -76,7 +76,7 @@ export const RedesignedProfileCard = memo((props: ProfileCardProps) => {
                         onChange={onChangeLastname}
                         readonly={readonly}
                         disabled={readonly}
-                        data-testid="ProfileCard.lastname"
+                        data-testid="UserCard.lastname"
                         validations={validConfig.lastname}
                         errors={lastnameErrors}
                     />
@@ -88,7 +88,7 @@ export const RedesignedProfileCard = memo((props: ProfileCardProps) => {
                         readonly={readonly}
                         disabled={readonly}
                         digitsOnly
-                        data-testid="ProfileCard.age"
+                        data-testid="UserCard.age"
                     />
                 </VStack>
                 <VStack gap="16" max>
@@ -98,7 +98,7 @@ export const RedesignedProfileCard = memo((props: ProfileCardProps) => {
                         onChange={onChangeUsername}
                         readonly={readonly}
                         disabled={readonly}
-                        data-testid="ProfileCard.username"
+                        data-testid="UserCard.username"
                         validations={validConfig.lastname}
                         errors={usernameErrors}
                     />
@@ -108,7 +108,7 @@ export const RedesignedProfileCard = memo((props: ProfileCardProps) => {
                     {/*    onChange={onChangeAvatar} */}
                     {/*    readonly={readonly} */}
                     {/*    disabled={readonly} */}
-                    {/*    data-testid="ProfileCard.avatar" */}
+                    {/*    data-testid="UserCard.avatar" */}
                     {/* /> */}
                     <CurrencySelect
                         value={data?.currency}
@@ -126,7 +126,7 @@ export const RedesignedProfileCard = memo((props: ProfileCardProps) => {
                         onChange={onChangeCity}
                         readonly={readonly}
                         disabled={readonly}
-                        data-testid="ProfileCard.city"
+                        data-testid="UserCard.city"
                     />
                 </VStack>
             </HStack>

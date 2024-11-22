@@ -32,7 +32,7 @@ export const [useProfileError, getProfileError] = buildSelector(
 
 ## Usage Example
 ```typescript jsx
-import { useProfileError } from '@/features/editableProfileCard';
+import { useProfileError } from '@/features/EditableProfileCard';
 
 export function ProfileErrorComponent() {
   const profileError = useProfileError();

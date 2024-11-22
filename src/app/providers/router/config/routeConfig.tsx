@@ -1,4 +1,4 @@
-import { RedesignedProfileCardSkeleton as ProfileSkeleton } from '@/entities/Profile';
+import { RedesignedUserCardSkeleton as ProfileSkeleton } from '@/entities/Profile';
 import { UserRole } from '@/entities/User';
 import { AboutPage, AboutPageSkeleton } from '@/pages/AboutPage';
 import { AdminPanelPage, AdminPanelPageSkeleton } from '@/pages/AdminPanelPage';

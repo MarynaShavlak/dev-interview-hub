@@ -2,7 +2,7 @@ import { Card } from '@/shared/ui/redesigned/Card';
 import { HStack, VStack } from '@/shared/ui/common/Stack';
 import { Skeleton } from '@/shared/ui/redesigned/Skeleton';
 
-export const RedesignedProfileCardSkeleton = () => {
+export const RedesignedUserCardSkeleton = () => {
     return (
         <Card padding="24" max>
             <VStack gap="32">

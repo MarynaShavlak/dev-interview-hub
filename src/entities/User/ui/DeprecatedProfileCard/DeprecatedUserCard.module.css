@@ -1,4 +1,4 @@
-.ProfileCard {
+.UserCard {
   padding: 20px;
   border: 2px solid var(--inverted-bg-color);
 }
@@ -10,4 +10,4 @@
 
 .editing {
   border: 2px solid var(--inverted-primary-color);
-}/*# sourceMappingURL=DeprecatedProfileCard.module.css.map */
+}/*# sourceMappingURL=DeprecatedUserCard.module.css.map */

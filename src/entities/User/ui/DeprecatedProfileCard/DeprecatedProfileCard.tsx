@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { ProfileCardProps } from '../ProfileCard/ProfileCard';
+import { UserCardProps } from '../UserCard/UserCard';
 import { classNames, Mods } from '@/shared/lib/classes/classNames/classNames';
 import { HStack, VStack } from '@/shared/ui/common/Stack';
 
@@ -7,9 +7,9 @@ import { CurrencySelect } from '@/entities/Currency';
 import { CountrySelect } from '@/entities/Country';
 import { Input as InputDeprecated } from '@/shared/ui/deprecated/Input';
 import { Avatar as AvatarDeprecated } from '@/shared/ui/deprecated/Avatar';
-import cls from './DeprecatedProfileCard.module.scss';
+import cls from './DeprecatedUserCard.module.scss';
 
-export const DeprecatedProfileCard = (props: ProfileCardProps) => {
+export const DeprecatedUserCard = (props: UserCardProps) => {
     const {
         className,
         data,
@@ -33,7 +33,7 @@ export const DeprecatedProfileCard = (props: ProfileCardProps) => {
         <VStack
             gap="8"
             max
-            className={classNames(cls.ProfileCard, mods, [className])}
+            className={classNames(cls.UserCard, mods, [className])}
         >
             {data?.avatar && (
                 <HStack justify="center" max>
@@ -50,21 +50,21 @@ export const DeprecatedProfileCard = (props: ProfileCardProps) => {
                 placeholder={t("Ім'я користувача")}
                 onChange={onChangeUsername}
                 readonly={readonly}
-                data-testid="ProfileCard.username"
+                data-testid="UserCard.username"
             />
             <InputDeprecated
                 value={data?.firstname}
                 placeholder={t("Ваше ім'я")}
                 onChange={onChangeFirstname}
                 readonly={readonly}
-                data-testid="ProfileCard.firstname"
+                data-testid="UserCard.firstname"
             />
             <InputDeprecated
                 value={data?.lastname}
                 placeholder={t('Ваше прізвище')}
                 onChange={onChangeLastname}
                 readonly={readonly}
-                data-testid="ProfileCard.lastname"
+                data-testid="UserCard.lastname"
             />
             <InputDeprecated
                 value={data?.age}
@@ -72,14 +72,14 @@ export const DeprecatedProfileCard = (props: ProfileCardProps) => {
                 onChange={onChangeAge}
                 readonly={readonly}
                 digitsOnly
-                data-testid="ProfileCard.age"
+                data-testid="UserCard.age"
             />
             <InputDeprecated
                 value={data?.city}
                 placeholder={t('Ваше місто')}
                 onChange={onChangeCity}
                 readonly={readonly}
-                data-testid="ProfileCard.city"
+                data-testid="UserCard.city"
             />
             <InputDeprecated
                 value={data?.avatar}
@@ -87,7 +87,7 @@ export const DeprecatedProfileCard = (props: ProfileCardProps) => {
                 className={cls.inputAvatar}
                 onChange={onChangeAvatar}
                 readonly={readonly}
-                data-testid="ProfileCard.avatar"
+                data-testid="UserCard.avatar"
             />
             <CurrencySelect
                 value={data?.currency}

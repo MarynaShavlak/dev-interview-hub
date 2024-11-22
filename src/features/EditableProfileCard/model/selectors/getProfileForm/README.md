@@ -32,7 +32,7 @@ export const [useProfileForm, getProfileForm] = buildSelector(
 ## Usage Examples
 ## Example 1: `useProfileForm` in Component
 ```typescript jsx
-import { useProfileForm } from '@/features/editableProfileCard';
+import { useProfileForm } from '@/features/EditableProfileCard';
 
 export function ProfileFormComponent() {
   const profileForm = useProfileForm();
