@@ -1,12 +1,13 @@
-import { Profile } from '@/entities/Profile';
 import { ValidateProfileError } from '../../consts/consts';
+import { User } from '@/entities/User';
 
-export const validateProfileData = (profile?: Profile) => {
+export const validateProfileData = (profile?: Partial<User>) => {
     if (!profile) {
         return [ValidateProfileError.NO_DATA];
     }
 
     const { firstname, lastname, age, username } = profile;
+    console.log('age', age);
 
     const errors: ValidateProfileError[] = [];
 
@@ -17,7 +18,7 @@ export const validateProfileData = (profile?: Profile) => {
         errors.push(ValidateProfileError.INCORRECT_USERNAME);
     }
 
-    if (!age || !Number.isInteger(age)) {
+    if (age !== undefined && !Number.isInteger(Number(age))) {
         errors.push(ValidateProfileError.INCORRECT_AGE);
     }
 

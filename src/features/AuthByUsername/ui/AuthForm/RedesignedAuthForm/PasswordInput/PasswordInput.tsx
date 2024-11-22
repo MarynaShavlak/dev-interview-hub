@@ -9,8 +9,8 @@ import EyeIconRedesigned from '@/shared/assets/icons/eye.svg';
 import EyeInvisibleIconRedesigned from '@/shared/assets/icons/eye-slash.svg';
 
 import { useToggleVisibility } from '../../../../lib/hooks/useToggleVisibility/useToggleVisibility';
-import { ValidationErrors } from '@/shared/lib/hooks/useValidation/useValidation';
-import { AuthValidation } from '../../../../lib/hooks/useAuthValidationConfig/useAuthValidationConfig';
+import { ValidationErrors } from '@/shared/lib/hooks/validationHooks/useInputErrors/useInputErrors';
+import { AuthValidation } from '@/shared/lib/hooks/validationHooks/useInputValidationConfig/useInputValidationConfig';
 
 interface PasswordInputProps {
     password: string;

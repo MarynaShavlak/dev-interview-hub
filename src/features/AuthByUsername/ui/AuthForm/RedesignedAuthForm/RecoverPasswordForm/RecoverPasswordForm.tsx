@@ -4,8 +4,8 @@ import { Text } from '@/shared/ui/redesigned/Text';
 import { Button } from '@/shared/ui/redesigned/Button';
 
 import { useSignInForm } from '../../../../lib/hooks/useSignInForm/useSignInForm';
-import { useAuthValidationConfig } from '../../../../lib/hooks/useAuthValidationConfig/useAuthValidationConfig';
-import { useAuthFormValidations } from '../../../../lib/hooks/useAuthFormValidations/useAuthFormValidations';
+import { useInputValidationConfig } from '@/shared/lib/hooks/validationHooks/useInputValidationConfig/useInputValidationConfig';
+import { useFormValidation } from '@/shared/lib/hooks/validationHooks/useFormValidation/useFormValidation';
 import { Input } from '@/shared/ui/redesigned/Input';
 import cls from '../../AuthForm.module.scss';
 
@@ -26,9 +26,9 @@ export const RecoverPasswordForm = memo(
 
         const redirectLinkText = t("Я пам'ятаю пароль");
 
-        const validConfig = useAuthValidationConfig();
+        const validConfig = useInputValidationConfig();
 
-        const { hasErrors, emailErrors } = useAuthFormValidations(
+        const { hasErrors, emailErrors } = useFormValidation(
             { email },
             validConfig,
             'resetPassword',

@@ -9,6 +9,8 @@ import { Input } from '@/shared/ui/redesigned/Input';
 import { CurrencySelect } from '@/entities/Currency';
 import { CountrySelect } from '@/entities/Country';
 import { ProfileCardProps } from '../ProfileCard/ProfileCard';
+import { useInputValidationConfig } from '@/shared/lib/hooks/validationHooks/useInputValidationConfig/useInputValidationConfig';
+import { useFormValidation } from '@/shared/lib/hooks/validationHooks/useFormValidation/useFormValidation';
 
 export const RedesignedProfileCard = memo((props: ProfileCardProps) => {
     const {
@@ -26,6 +28,15 @@ export const RedesignedProfileCard = memo((props: ProfileCardProps) => {
     } = props;
     const { t } = useTranslation('profile');
     const additionalClasses = getFlexClasses({ vStack: true, gap: '32' });
+    const validConfig = useInputValidationConfig();
+    const { username = '', firstname = '', lastname = '' } = data || {};
+
+    const { hasErrors, lastnameErrors, usernameErrors, firstnameErrors } =
+        useFormValidation(
+            { username, firstname, lastname },
+            validConfig,
+            'profile',
+        );
 
     return (
         <Card
@@ -43,12 +54,21 @@ export const RedesignedProfileCard = memo((props: ProfileCardProps) => {
             <HStack gap="24" max align="start">
                 <VStack gap="16" max>
                     <Input
+                        value={data?.email}
+                        label={`${t('Email')}:`}
+                        readonly
+                        disabled
+                        data-testid="ProfileCard.email"
+                    />
+                    <Input
                         value={data?.firstname}
                         label={`${t("Ім'я")}:`}
                         onChange={onChangeFirstname}
                         readonly={readonly}
                         disabled={readonly}
                         data-testid="ProfileCard.firstname"
+                        validations={validConfig.firstname}
+                        errors={firstnameErrors}
                     />
                     <Input
                         value={data?.lastname}
@@ -57,7 +77,10 @@ export const RedesignedProfileCard = memo((props: ProfileCardProps) => {
                         readonly={readonly}
                         disabled={readonly}
                         data-testid="ProfileCard.lastname"
+                        validations={validConfig.lastname}
+                        errors={lastnameErrors}
                     />
+
                     <Input
                         value={data?.age || ''}
                         label={`${t('Вік')}:`}
@@ -66,14 +89,6 @@ export const RedesignedProfileCard = memo((props: ProfileCardProps) => {
                         disabled={readonly}
                         digitsOnly
                         data-testid="ProfileCard.age"
-                    />
-                    <Input
-                        value={data?.city || ''}
-                        label={`${t('Місто')}:`}
-                        onChange={onChangeCity}
-                        readonly={readonly}
-                        disabled={readonly}
-                        data-testid="ProfileCard.city"
                     />
                 </VStack>
                 <VStack gap="16" max>
@@ -84,15 +99,17 @@ export const RedesignedProfileCard = memo((props: ProfileCardProps) => {
                         readonly={readonly}
                         disabled={readonly}
                         data-testid="ProfileCard.username"
+                        validations={validConfig.lastname}
+                        errors={usernameErrors}
                     />
-                    <Input
-                        value={data?.avatar}
-                        label={`${t('Посилання на аватар')}:`}
-                        onChange={onChangeAvatar}
-                        readonly={readonly}
-                        disabled={readonly}
-                        data-testid="ProfileCard.avatar"
-                    />
+                    {/* <Input */}
+                    {/*    value={data?.avatar} */}
+                    {/*    label={`${t('Посилання на аватар')}:`} */}
+                    {/*    onChange={onChangeAvatar} */}
+                    {/*    readonly={readonly} */}
+                    {/*    disabled={readonly} */}
+                    {/*    data-testid="ProfileCard.avatar" */}
+                    {/* /> */}
                     <CurrencySelect
                         value={data?.currency}
                         onChange={onChangeCurrency}
@@ -102,6 +119,14 @@ export const RedesignedProfileCard = memo((props: ProfileCardProps) => {
                         value={data?.country}
                         onChange={onChangeCountry}
                         readonly={readonly}
+                    />
+                    <Input
+                        value={data?.city || ''}
+                        label={`${t('Місто')}:`}
+                        onChange={onChangeCity}
+                        readonly={readonly}
+                        disabled={readonly}
+                        data-testid="ProfileCard.city"
                     />
                 </VStack>
             </HStack>

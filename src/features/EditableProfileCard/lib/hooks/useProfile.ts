@@ -7,6 +7,8 @@ import { useProfileIsLoading } from '../../model/selectors/getProfileIsLoading/g
 import { useProfileReadonly } from '../../model/selectors/getProfileReadonly/getProfileReadonly';
 import { useProfileValidateErrors } from '../../model/selectors/getProfileValidateErrors/getProfileValidateErrors';
 import { useProfileActions } from '../../model/slices/profileSlice';
+import { useInputValidationConfig } from '@/shared/lib/hooks/validationHooks/useInputValidationConfig/useInputValidationConfig';
+import { useFormValidation } from '@/shared/lib/hooks/validationHooks/useFormValidation/useFormValidation';
 
 /**
  * Custom hook for managing profile data and updates.
@@ -48,8 +50,17 @@ export const useProfile = () => {
     const error = useProfileError();
     const readonly = useProfileReadonly();
     const validateErrors = useProfileValidateErrors();
-
     const { updateProfile } = useProfileActions();
+
+    const validConfig = useInputValidationConfig();
+    const { username = '', firstname = '', lastname = '' } = formData || {};
+
+    const { hasErrors } = useFormValidation(
+        { username, firstname, lastname },
+        validConfig,
+        'profile',
+    );
+
     const onChangeFirstname = useCallback(
         (value?: string) => {
             updateProfile({ firstname: value || '' });
@@ -73,7 +84,7 @@ export const useProfile = () => {
 
     const onChangeAge = useCallback(
         (value?: string) => {
-            updateProfile({ age: Number(value || 0) });
+            updateProfile({ age: value || '' });
         },
         [updateProfile],
     );
@@ -120,5 +131,6 @@ export const useProfile = () => {
         onChangeCurrency,
         onChangeAge,
         onChangeCity,
+        hasErrors,
     };
 };

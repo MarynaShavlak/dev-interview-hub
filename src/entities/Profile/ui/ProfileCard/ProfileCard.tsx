@@ -5,14 +5,13 @@ import { RedesignedProfileCard } from '../RedesignedProfileCard/RedesignedProfil
 import { RedesignedProfileCardError } from '../RedesignedProfileCard/RedesignedProfileCardError/RedesignedProfileCardError';
 import { RedesignedProfileCardSkeleton } from '../RedesignedProfileCard/RedesignedProfileCardSkeleton/RedesignedProfileCardSkeleton';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
-
 import { Currency } from '@/entities/Currency';
 import { Country } from '@/entities/Country';
-import { Profile } from '../../model/types/profile';
+import { User } from '@/entities/User';
 
 export interface ProfileCardProps {
     className?: string;
-    data?: Profile;
+    data?: User;
     error?: string;
     isLoading?: boolean;
     readonly?: boolean;

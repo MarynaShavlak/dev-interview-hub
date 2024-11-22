@@ -8,9 +8,9 @@ import { Input } from '@/shared/ui/redesigned/Input';
 import { Button } from '@/shared/ui/redesigned/Button';
 import { AuthFormProps } from '../../AuthForm';
 
-import { useAuthValidationConfig } from '../../../../lib/hooks/useAuthValidationConfig/useAuthValidationConfig';
+import { useInputValidationConfig } from '@/shared/lib/hooks/validationHooks/useInputValidationConfig/useInputValidationConfig';
 import { useErrorText } from '../../../../lib/hooks/useErrorText/useErrorText';
-import { useAuthFormValidations } from '../../../../lib/hooks/useAuthFormValidations/useAuthFormValidations';
+import { useFormValidation } from '@/shared/lib/hooks/validationHooks/useFormValidation/useFormValidation';
 import { useSignUpForm } from '../../../../lib/hooks/useSignUpForm/useSignUpForm';
 import { PasswordInput } from '../PasswordInput/PasswordInput';
 
@@ -34,7 +34,7 @@ export const SignUpForm = memo((props: AuthFormProps) => {
         onSignupClick,
     } = useSignUpForm(onSuccess);
 
-    const validConfig = useAuthValidationConfig();
+    const validConfig = useInputValidationConfig();
 
     const {
         hasErrors,
@@ -43,7 +43,7 @@ export const SignUpForm = memo((props: AuthFormProps) => {
         usernameErrors,
         firstnameErrors,
         emailErrors,
-    } = useAuthFormValidations(
+    } = useFormValidation(
         { email, password, username, firstname, lastname },
         validConfig,
         'signUp',

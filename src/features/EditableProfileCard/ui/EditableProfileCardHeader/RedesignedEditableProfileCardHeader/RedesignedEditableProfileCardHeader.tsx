@@ -12,12 +12,20 @@ interface RedesignedEditableProfileCardHeaderProps {
     canEdit: boolean;
     readonly?: boolean;
     className?: string;
+    hasErrors?: boolean;
 }
 
 export const RedesignedEditableProfileCardHeader = memo(
     (props: RedesignedEditableProfileCardHeaderProps) => {
-        const { className, onEdit, onCancelEdit, onSave, readonly, canEdit } =
-            props;
+        const {
+            className,
+            onEdit,
+            onCancelEdit,
+            onSave,
+            readonly,
+            canEdit,
+            hasErrors,
+        } = props;
         const { t } = useTranslation('profile');
 
         return (
@@ -48,6 +56,7 @@ export const RedesignedEditableProfileCardHeader = memo(
                                 <Button
                                     variant="save"
                                     onClick={onSave}
+                                    disabled={hasErrors}
                                     data-testid="EditableProfileCardHeader.SaveButton"
                                 >
                                     {t('Зберегти')}

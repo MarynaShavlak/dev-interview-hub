@@ -1,8 +1,8 @@
-import { InputValidations } from '@/shared/lib/hooks/useValidation/useValidation';
+import { InputValidations } from '../useInputErrors/useInputErrors';
 
 export type AuthValidation = Record<string, InputValidations>;
 
-export const useAuthValidationConfig = (): AuthValidation => {
+export const useInputValidationConfig = (): AuthValidation => {
     return {
         email: {
             isEmpty: true,

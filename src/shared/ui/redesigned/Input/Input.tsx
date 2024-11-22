@@ -14,7 +14,7 @@ import { VStack } from '../../common/Stack';
 import {
     ValidationErrors,
     InputValidations,
-} from '@/shared/lib/hooks/useValidation/useValidation';
+} from '@/shared/lib/hooks/validationHooks/useInputErrors/useInputErrors';
 
 type HTMLInputProps = Omit<
     InputHTMLAttributes<HTMLInputElement>,

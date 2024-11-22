@@ -9,8 +9,8 @@ import { Button } from '@/shared/ui/redesigned/Button';
 
 import { AuthFormProps } from '../../AuthForm';
 import { useSignInForm } from '../../../../lib/hooks/useSignInForm/useSignInForm';
-import { useAuthValidationConfig } from '../../../../lib/hooks/useAuthValidationConfig/useAuthValidationConfig';
-import { useAuthFormValidations } from '../../../../lib/hooks/useAuthFormValidations/useAuthFormValidations';
+import { useInputValidationConfig } from '@/shared/lib/hooks/validationHooks/useInputValidationConfig/useInputValidationConfig';
+import { useFormValidation } from '@/shared/lib/hooks/validationHooks/useFormValidation/useFormValidation';
 import { useToggleForm } from '../../../../lib/hooks/useToggleForm/useToggleForm';
 import { RecoverPasswordForm } from '../RecoverPasswordForm/RecoverPasswordForm';
 import { PasswordInput } from '../PasswordInput/PasswordInput';
@@ -28,9 +28,9 @@ export const SignInForm = memo((props: AuthFormProps) => {
         onLoginClick,
     } = useSignInForm(onSuccess);
 
-    const validConfig = useAuthValidationConfig();
+    const validConfig = useInputValidationConfig();
 
-    const { hasErrors, passwordErrors, emailErrors } = useAuthFormValidations(
+    const { hasErrors, passwordErrors, emailErrors } = useFormValidation(
         { email, password },
         validConfig,
         'signIn',

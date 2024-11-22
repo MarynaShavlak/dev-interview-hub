@@ -1,19 +1,19 @@
-import { useValidation } from '@/shared/lib/hooks/useValidation/useValidation';
-import { AuthValidation } from '../useAuthValidationConfig/useAuthValidationConfig';
+import { useInputErrors } from '../useInputErrors/useInputErrors';
+import { AuthValidation } from '../useInputValidationConfig/useInputValidationConfig';
 
-export const useAuthFormValidations = (
+export const useFormValidation = (
     data: Record<string, string>,
     validConfig: AuthValidation,
-    mode: 'signIn' | 'signUp' | 'resetPassword',
+    mode: 'signIn' | 'signUp' | 'resetPassword' | 'profile',
 ) => {
-    const emailErrors = useValidation(data.email, validConfig.email);
-    const passwordErrors = useValidation(data.password, validConfig.password);
-    const usernameErrors = useValidation(data.username, validConfig.username);
-    const firstnameErrors = useValidation(
+    const emailErrors = useInputErrors(data.email, validConfig.email);
+    const passwordErrors = useInputErrors(data.password, validConfig.password);
+    const usernameErrors = useInputErrors(data.username, validConfig.username);
+    const firstnameErrors = useInputErrors(
         data.firstname,
         validConfig.firstname,
     );
-    const lastnameErrors = useValidation(data.lastname, validConfig.lastname);
+    const lastnameErrors = useInputErrors(data.lastname, validConfig.lastname);
 
     let relevantErrors;
 
@@ -23,6 +23,9 @@ export const useAuthFormValidations = (
             break;
         case 'resetPassword':
             relevantErrors = [emailErrors];
+            break;
+        case 'profile':
+            relevantErrors = [usernameErrors, firstnameErrors, lastnameErrors];
             break;
         default:
             relevantErrors = [

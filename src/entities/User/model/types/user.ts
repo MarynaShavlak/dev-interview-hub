@@ -19,7 +19,7 @@ export interface User {
     id: string;
     firstname: string;
     lastname: string;
-    age?: number;
+    age?: string;
     currency?: Currency;
     country?: Country;
     city?: string;

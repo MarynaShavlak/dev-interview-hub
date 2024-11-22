@@ -8,6 +8,7 @@ import { useProfileActions } from '../../model/slices/profileSlice';
 import { useProfileReadonly } from '../../model/selectors/getProfileReadonly/getProfileReadonly';
 import { useProfileData } from '../../model/selectors/getProfileData/getProfileData';
 import { updateUserProfileThunk } from '../../model/services/updateUserProfileThunk/updateUserProfileThunk';
+import { useProfile } from '../../lib/hooks/useProfile';
 
 interface EditableProfileCardHeaderProps {
     className?: string;
@@ -22,6 +23,7 @@ export const EditableProfileCardHeader = memo(
         const canEdit = authData?.id === profileData?.id;
         const readonly = useProfileReadonly();
         const dispatch = useAppDispatch();
+        const { hasErrors } = useProfile();
         const { setReadonly, cancelEdit } = useProfileActions();
 
         const onSave = useCallback(() => {
@@ -42,6 +44,7 @@ export const EditableProfileCardHeader = memo(
             onSave,
             canEdit,
             readonly,
+            hasErrors,
             className,
         };
 

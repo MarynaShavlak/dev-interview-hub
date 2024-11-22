@@ -1,6 +1,7 @@
 import { ValidateProfileError } from '../../consts/consts';
 import { testProfileData } from '@/entities/Profile/testing';
 import { validateProfileData } from './validateProfileData';
+import { User } from '@/entities/User';
 
 describe('validateProfileData test', () => {
     test('valid profile data', async () => {
@@ -40,14 +41,14 @@ describe('validateProfileData test', () => {
     test('age is not an integer', () => {
         const result = validateProfileData({
             ...testProfileData,
-            age: 25.5,
+            age: '25.5',
         });
 
         expect(result).toEqual([ValidateProfileError.INCORRECT_AGE]);
     });
 
     test('incorrect all', async () => {
-        const result = validateProfileData({});
+        const result = validateProfileData({} as User);
 
         expect(result).toEqual([
             ValidateProfileError.INCORRECT_USER_DATA,
@@ -75,7 +76,7 @@ describe('validateProfileData test', () => {
             firstname: '',
             lastname: '',
             username: '',
-            age: 0,
+            age: '0',
         });
 
         expect(result).toEqual([

@@ -22,7 +22,7 @@ import { validateProfileData, ValidateProfileError } from './validateProfileData
 const profile: Profile = {
     firstname: 'John',
     lastname: 'Doe',
-    age: 30,
+    age: '30',
     username: 'johndoe',
 };
 

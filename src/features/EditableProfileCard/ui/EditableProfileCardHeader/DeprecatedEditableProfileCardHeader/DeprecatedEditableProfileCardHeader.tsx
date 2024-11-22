@@ -12,12 +12,20 @@ interface DeprecatedEditableProfileCardHeaderProps {
     canEdit: boolean;
     readonly?: boolean;
     className?: string;
+    hasErrors?: boolean;
 }
 
 export const DeprecatedEditableProfileCardHeader = memo(
     (props: DeprecatedEditableProfileCardHeaderProps) => {
-        const { className, onEdit, onCancelEdit, onSave, readonly, canEdit } =
-            props;
+        const {
+            className,
+            onEdit,
+            onCancelEdit,
+            onSave,
+            readonly,
+            canEdit,
+            hasErrors,
+        } = props;
         const { t } = useTranslation('profile');
 
         return (

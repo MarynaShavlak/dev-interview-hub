@@ -14,7 +14,7 @@ export const resetProfile = (profileId: string) => {
             id: '4',
             firstname: 'test',
             lastname: 'user',
-            age: 465,
+            age: '25',
             currency: 'EUR',
             country: 'Ukraine',
             city: 'Kharkiv',

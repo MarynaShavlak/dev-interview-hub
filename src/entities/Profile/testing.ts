@@ -6,7 +6,7 @@ import { User } from '@/entities/User';
 export const testProfileData: User = {
     id: '1',
     username: 'admin',
-    age: 29,
+    age: '29',
     country: Country.Ukraine,
     lastname: 'Shavlak',
     firstname: 'Maryna',
