@@ -16,6 +16,8 @@ export const prepareUserData = (
             firstname,
             email,
             avatar: '',
+            age: '',
+            city: '',
             ...getInitialUserData(),
         };
     }
@@ -28,6 +30,8 @@ export const prepareUserData = (
         firstname,
         email: email || '',
         avatar: photoURL || '',
+        age: '',
+        city: '',
         ...getInitialUserData(),
     };
 };

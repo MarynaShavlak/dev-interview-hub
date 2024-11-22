@@ -11,6 +11,9 @@ import { CountrySelect } from '@/entities/Country';
 import { UserCardProps } from '../UserCard/UserCard';
 import { useInputValidationConfig } from '@/shared/lib/hooks/validationHooks/useInputValidationConfig/useInputValidationConfig';
 import { useFormValidation } from '@/shared/lib/hooks/validationHooks/useFormValidation/useFormValidation';
+import cls from '../UserCard/UserCard.module.scss';
+import PhotoIcon from '@/shared/assets/icons/photo-edit.svg';
+import { Icon } from '@/shared/ui/redesigned/Icon';
 
 export const RedesignedUserCard = memo((props: UserCardProps) => {
     const {
@@ -45,11 +48,22 @@ export const RedesignedUserCard = memo((props: UserCardProps) => {
             className={classNames(className ?? '', {}, additionalClasses)}
         >
             <HStack justify="center" max>
-                <Avatar
-                    size={128}
-                    src={data?.avatar}
-                    alt={t('Аватар користувача')}
-                />
+                <div className={cls.avatarWrap}>
+                    <Avatar
+                        size={128}
+                        src={data?.avatar}
+                        alt={t('Аватар користувача')}
+                    />
+                    <div className={cls.uploadFileWrapper}>
+                        <input type="file" />
+                        <Icon
+                            Svg={PhotoIcon}
+                            className={cls.photoIcon}
+                            width={18}
+                            height={18}
+                        />
+                    </div>
+                </div>
             </HStack>
             <HStack gap="24" max align="start">
                 <VStack gap="16" max>

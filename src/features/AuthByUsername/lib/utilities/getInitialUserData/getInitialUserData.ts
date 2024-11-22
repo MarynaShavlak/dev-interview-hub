@@ -3,7 +3,6 @@ import { Theme } from '@/shared/const/theme';
 
 export const getInitialUserData = (): Partial<User> => {
     return {
-        city: '',
         roles: [UserRole.USER],
         features: {
             isArticleRatingEnabled: true,
