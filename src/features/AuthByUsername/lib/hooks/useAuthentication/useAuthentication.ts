@@ -8,7 +8,7 @@ import {
     signupByEmail,
     SignupCredentials,
 } from '../../../model/services/signupByEmail/signupByEmail';
-import { authByGoogleProvider } from '../../../model/services/authByGoogleProvider/authByGoogleProvider';
+import { authByGoogleThunk } from '../../../model/services/authByGoogleThunk/authByGoogleThunk';
 import { resetPassword } from '../../../model/services/resetPassword/resetPassword';
 
 interface AuthCredentials {
@@ -66,7 +66,7 @@ export const useAuthentication = ({
     const authByGoogleCall = async () => {
         setIsFetchingUser(true);
         try {
-            await dispatch(authByGoogleProvider()).unwrap();
+            await dispatch(authByGoogleThunk()).unwrap();
             onSuccess?.();
             forceUpdate();
         } catch (error) {

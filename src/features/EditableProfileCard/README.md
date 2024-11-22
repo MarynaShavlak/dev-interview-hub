@@ -79,7 +79,7 @@ EditableProfileCard/
     - **`fetchProfileData/`**
         - [**fetchProfileData.ts**](./model/services/fetchProfileData/README.md): Fetches the user's profile data from the server.
     - **`updateProfileData/`**
-        - [**updateProfileData.ts**](./model/services/updateProfileData/README.md): Handles the API request to update user profile information.
+        - [**updateProfileData.ts**](model/services/updateUserProfileThunk/README.md): Handles the API request to update user profile information.
     - **`validateProfileData/`**
         - [**validateProfileData.ts**](./model/services/validateProfileData/README.md): Validates the user input for profile updates.
 - **`slices/`**

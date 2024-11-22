@@ -5,7 +5,7 @@ import { getProfileForm } from '../../selectors/getProfileForm/getProfileForm';
 import { validateProfileData } from '../validateProfileData/validateProfileData';
 import { updateUserDataMutation, User, userActions } from '@/entities/User';
 
-export const updateProfileData = createAsyncThunk<
+export const updateUserProfileThunk = createAsyncThunk<
     User,
     void,
     ThunkConfig<ValidateProfileError[]>

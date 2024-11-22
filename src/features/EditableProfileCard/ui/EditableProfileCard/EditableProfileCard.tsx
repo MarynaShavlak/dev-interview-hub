@@ -1,11 +1,10 @@
-import { memo } from 'react';
+import { memo, useEffect } from 'react';
 import { EditableProfileCardContainer } from '../EditableProfileCardContainer/EditableProfileCardContainer';
 import { useProfile } from '../../lib/hooks/useProfile';
 import { EditableProfileCardError } from '../EditableProfileCardError/EditableProfileCardError';
 import { toggleFeatures } from '@/shared/lib/features';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
-import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect/useInitialEffect';
 import {
     DynamicModuleLoader,
     ReducersList,
@@ -14,7 +13,8 @@ import { VStack } from '@/shared/ui/common/Stack';
 import { profileReducer } from '../../model/slices/profileSlice';
 import { EditableProfileCardHeader } from '../EditableProfileCardHeader/EditableProfileCardHeader';
 import cls from './EditableProfileCard.module.scss';
-import { getProfileData } from '@/entities/User';
+
+import { getUserProfileThunk } from '../../model/services/getUserProfileThunk/getUserProfileThunk';
 
 interface EditableProfileCardProps {
     className?: string;
@@ -31,11 +31,27 @@ export const EditableProfileCard = memo((props: EditableProfileCardProps) => {
 
     const dispatch = useAppDispatch();
 
-    useInitialEffect(() => {
-        if (id) {
-            dispatch(getProfileData(id));
+    // useInitialEffect(() => {
+    //     if (id) {
+    //         dispatch(getUserProfileThunk(id));
+    //     }
+    // });
+
+    useEffect(() => {
+        if (__PROJECT__ !== 'storybook' && __PROJECT__ !== 'jest') {
+            if (id) {
+                const action = dispatch(getUserProfileThunk(id));
+
+                // Cleanup the listener when component unmounts or id changes
+                return () => {
+                    // Abort the thunk action and clean up the listener if necessary
+                    action.abort();
+                };
+            }
         }
-    });
+        // Ensure consistent return when no action is taken
+        return undefined; // Explicit return when no cleanup is needed
+    }, [dispatch, id]);
 
     const mainClass = toggleFeatures({
         name: 'isAppRedesigned',

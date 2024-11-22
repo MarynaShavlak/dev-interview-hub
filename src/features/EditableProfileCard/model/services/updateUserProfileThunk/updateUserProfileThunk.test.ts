@@ -1,11 +1,11 @@
 import { TestAsyncThunk } from '@/shared/lib/tests/TestAsyncThunk/TestAsyncThunk';
 import { ValidateProfileError } from '../../consts/consts';
-import { updateProfileData } from './updateProfileData';
+import { updateUserProfileThunk } from './updateUserProfileThunk';
 import { testProfileData } from '@/entities/Profile/testing';
 
-describe('async thunk updateProfileData test', () => {
+describe('async thunk getUserProfileThunk test', () => {
     test('success updating profile data', async () => {
-        const thunk = new TestAsyncThunk(updateProfileData, {
+        const thunk = new TestAsyncThunk(updateUserProfileThunk, {
             profile: {
                 form: testProfileData,
             },
@@ -27,7 +27,7 @@ describe('async thunk updateProfileData test', () => {
     });
 
     test('error updating profile data with 403 status', async () => {
-        const thunk = new TestAsyncThunk(updateProfileData, {
+        const thunk = new TestAsyncThunk(updateUserProfileThunk, {
             profile: {
                 form: testProfileData,
             },
@@ -47,7 +47,7 @@ describe('async thunk updateProfileData test', () => {
 
     test('validate error with incorrect user data', async () => {
         const invalidProfileData = { ...testProfileData, lastname: '' };
-        const thunk = new TestAsyncThunk(updateProfileData, {
+        const thunk = new TestAsyncThunk(updateUserProfileThunk, {
             profile: {
                 form: invalidProfileData,
             },
@@ -68,7 +68,7 @@ describe('async thunk updateProfileData test', () => {
             username: '',
             age: undefined,
         };
-        const thunk = new TestAsyncThunk(updateProfileData, {
+        const thunk = new TestAsyncThunk(updateUserProfileThunk, {
             profile: {
                 form: invalidProfileData,
             },
@@ -85,7 +85,7 @@ describe('async thunk updateProfileData test', () => {
     });
 
     test('error updating profile data with network error', async () => {
-        const thunk = new TestAsyncThunk(updateProfileData, {
+        const thunk = new TestAsyncThunk(updateUserProfileThunk, {
             profile: {
                 form: testProfileData,
             },
@@ -107,7 +107,7 @@ describe('async thunk updateProfileData test', () => {
     });
 
     test('error updating profile data with missing data in response', async () => {
-        const thunk = new TestAsyncThunk(updateProfileData, {
+        const thunk = new TestAsyncThunk(updateUserProfileThunk, {
             profile: {
                 form: testProfileData,
             },
@@ -127,7 +127,7 @@ describe('async thunk updateProfileData test', () => {
     });
 
     test('multiple simultaneous profile update requests', async () => {
-        const thunk = new TestAsyncThunk(updateProfileData, {
+        const thunk = new TestAsyncThunk(updateUserProfileThunk, {
             profile: {
                 form: testProfileData,
             },
@@ -157,7 +157,7 @@ describe('async thunk updateProfileData test', () => {
 
     test('error with incomplete profile data but valid according to validation rules', async () => {
         const incompleteProfileData = { ...testProfileData, city: undefined };
-        const thunk = new TestAsyncThunk(updateProfileData, {
+        const thunk = new TestAsyncThunk(updateUserProfileThunk, {
             profile: {
                 form: incompleteProfileData,
             },
@@ -180,7 +180,7 @@ describe('async thunk updateProfileData test', () => {
 
     test('error when profile id is missing', async () => {
         const profileDataWithoutId = { ...testProfileData, id: undefined };
-        const thunk = new TestAsyncThunk(updateProfileData, {
+        const thunk = new TestAsyncThunk(updateUserProfileThunk, {
             profile: {
                 form: profileDataWithoutId,
             },
@@ -196,7 +196,7 @@ describe('async thunk updateProfileData test', () => {
     });
 
     test('error updating profile data with 401 status', async () => {
-        const thunk = new TestAsyncThunk(updateProfileData, {
+        const thunk = new TestAsyncThunk(updateUserProfileThunk, {
             profile: {
                 form: testProfileData,
             },

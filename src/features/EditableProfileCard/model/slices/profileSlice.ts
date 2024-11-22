@@ -1,8 +1,10 @@
 import { PayloadAction } from '@reduxjs/toolkit';
-import { updateProfileData } from '../services/updateProfileData/updateProfileData';
+
 import { ProfileSchema } from '../types/editableProfileCardSchema';
 import { buildSlice } from '@/shared/lib/store';
 import { User } from '@/entities/User';
+import { getUserProfileThunk } from '../services/getUserProfileThunk/getUserProfileThunk';
+import { updateUserProfileThunk } from '../services/updateUserProfileThunk/updateUserProfileThunk';
 
 const initialState: ProfileSchema = {
     readonly: true,
@@ -33,28 +35,28 @@ export const profileSlice = buildSlice({
     },
     extraReducers: (builder) => {
         builder
-            .addCase(getAuthData.pending, (state) => {
+            .addCase(getUserProfileThunk.pending, (state) => {
                 state.error = undefined;
                 state.isLoading = true;
             })
             .addCase(
-                getAuthData.fulfilled,
+                getUserProfileThunk.fulfilled,
                 (state, action: PayloadAction<User>) => {
                     state.isLoading = false;
                     state.data = action.payload;
                     state.form = action.payload;
                 },
             )
-            .addCase(getAuthData.rejected, (state, action) => {
+            .addCase(getUserProfileThunk.rejected, (state, action) => {
                 state.isLoading = false;
                 state.error = action.payload;
             })
-            .addCase(updateProfileData.pending, (state) => {
+            .addCase(updateUserProfileThunk.pending, (state) => {
                 state.validateErrors = undefined;
                 state.isLoading = true;
             })
             .addCase(
-                updateProfileData.fulfilled,
+                updateUserProfileThunk.fulfilled,
                 (state, action: PayloadAction<User>) => {
                     state.isLoading = false;
                     state.data = action.payload;
@@ -63,7 +65,7 @@ export const profileSlice = buildSlice({
                     state.validateErrors = undefined;
                 },
             )
-            .addCase(updateProfileData.rejected, (state, action) => {
+            .addCase(updateUserProfileThunk.rejected, (state, action) => {
                 state.isLoading = false;
                 state.validateErrors = action.payload;
             });

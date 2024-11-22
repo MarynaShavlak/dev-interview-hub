@@ -9,7 +9,7 @@ import { fetchUserFromFirestore } from '../../../lib/utilities/fetchUserFromFire
 import { checkUserExists } from '../../../lib/utilities/checkUserExists/checkUserExists';
 import { signInWithGoogle } from '../../../lib/utilities/signInWithGoogle/signInWithGoogle';
 
-export const authByGoogleProvider = createAsyncThunk<
+export const authByGoogleThunk = createAsyncThunk<
     User,
     void,
     ThunkConfig<string>

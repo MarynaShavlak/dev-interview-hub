@@ -1,5 +1,5 @@
 import { ValidateProfileError } from '../consts/consts';
-import { updateProfileData } from '../services/updateProfileData/updateProfileData';
+import { updateUserProfileThunk } from '../services/updateUserProfileThunk/updateUserProfileThunk';
 import { ProfileSchema } from '../types/editableProfileCardSchema';
 import { profileActions, profileReducer } from './profileSlice';
 import { testProfileData } from '@/entities/Profile/testing';
@@ -80,7 +80,10 @@ describe('profileSlice tests', () => {
         };
 
         expect(
-            profileReducer(state as ProfileSchema, updateProfileData.pending),
+            profileReducer(
+                state as ProfileSchema,
+                updateUserProfileThunk.pending,
+            ),
         ).toEqual({
             isLoading: true,
             validateErrors: undefined,
@@ -95,7 +98,7 @@ describe('profileSlice tests', () => {
         expect(
             profileReducer(
                 state as ProfileSchema,
-                updateProfileData.fulfilled(testProfileData, ''),
+                updateUserProfileThunk.fulfilled(testProfileData, ''),
             ),
         ).toEqual({
             isLoading: false,
@@ -115,7 +118,7 @@ describe('profileSlice tests', () => {
 
         const newState = profileReducer(
             state as ProfileSchema,
-            updateProfileData.fulfilled(emptyProfileData, ''),
+            updateUserProfileThunk.fulfilled(emptyProfileData, ''),
         );
 
         expect(newState.isLoading).toBe(false);

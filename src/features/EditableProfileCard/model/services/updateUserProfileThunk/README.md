@@ -1,6 +1,6 @@
-#  `updateProfileData` Thunk Documentation
+#  `updateUserProfileThunk` Thunk Documentation
 
-The `updateProfileData` thunk is an asynchronous action responsible for updating profile data on the server. It validates the profile data, performs an API call to update the data, and manages potential errors during the process.
+The `updateUserProfileThunk` thunk is an asynchronous action responsible for updating profile data on the server. It validates the profile data, performs an API call to update the data, and manages potential errors during the process.
 ## Parameters
 This thunk does not require any parameters, except `thunkApi`. The thunk uses the current state to fetch profile data and validate it.
 
@@ -46,4 +46,4 @@ export default ProfileUpdateButton;
 ```
 
 ## Conclusion 
-The `updateProfileData` thunk provides a robust mechanism for updating profile data. It integrates validation, API communication, and error handling into a single asynchronous action. This approach ensures that profile data updates are validated and managed efficiently, with clear error reporting to maintain a reliable user experience.
+The `updateUserProfileThunk` thunk provides a robust mechanism for updating profile data. It integrates validation, API communication, and error handling into a single asynchronous action. This approach ensures that profile data updates are validated and managed efficiently, with clear error reporting to maintain a reliable user experience.

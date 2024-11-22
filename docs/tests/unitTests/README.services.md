@@ -13,7 +13,7 @@
 - **Success**: Ensures profile data is fetched successfully with a valid ID.
 - **Error Handling**: Includes tests for 403 status, network errors, missing response data, and simultaneous requests.
 
-### [updateProfileData](../../../src/features/EditableProfileCard/model/services/updateProfileData/updateProfileData.test.ts)
+### [updateProfileData](../../../src/features/EditableProfileCard/model/services/updateUserProfileThunk/updateUserProfileThunk.test.ts)
 - **Success**: Verifies profile data updates correctly.
 - **Error Handling**: Covers 403 status, incorrect user data, multiple validation issues, network errors, missing response data, incomplete but valid data, missing profile ID, and 401 status.
 

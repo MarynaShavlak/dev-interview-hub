@@ -7,7 +7,7 @@ import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch
 import { useProfileActions } from '../../model/slices/profileSlice';
 import { useProfileReadonly } from '../../model/selectors/getProfileReadonly/getProfileReadonly';
 import { useProfileData } from '../../model/selectors/getProfileData/getProfileData';
-import { updateProfileData } from '../../model/services/updateProfileData/updateProfileData';
+import { updateUserProfileThunk } from '../../model/services/updateUserProfileThunk/updateUserProfileThunk';
 
 interface EditableProfileCardHeaderProps {
     className?: string;
@@ -25,7 +25,7 @@ export const EditableProfileCardHeader = memo(
         const { setReadonly, cancelEdit } = useProfileActions();
 
         const onSave = useCallback(() => {
-            dispatch(updateProfileData());
+            dispatch(updateUserProfileThunk());
         }, [dispatch]);
 
         const onEdit = useCallback(() => {
