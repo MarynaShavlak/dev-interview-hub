@@ -1,4 +1,3 @@
-// Adjust imports as necessary
 import { query, where, getDocs, DocumentReference } from 'firebase/firestore';
 import { dataPoint } from '@/shared/lib/firestore/firestore';
 import { User } from '../../../model/types/user';

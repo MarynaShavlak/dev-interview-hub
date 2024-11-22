@@ -4,12 +4,9 @@ import { saveJsonSettings } from '../services/saveJsonSettings/saveJsonSettings'
 import { JsonSettings } from '../types/jsonSettings';
 import { buildSlice } from '@/shared/lib/store';
 import { UserSchema, User } from '../types/user';
-import { getAuthData } from '../services/getAuthData/getAuthData';
 
 const initialState: UserSchema = {
     _inited: false,
-    isLoading: false,
-    error: undefined,
 };
 
 export const userSlice = buildSlice({
@@ -47,21 +44,6 @@ export const userSlice = buildSlice({
         );
         builder.addCase(initAuthData.rejected, (state) => {
             state._inited = true;
-        });
-        builder.addCase(getAuthData.pending, (state) => {
-            state.error = undefined;
-            state.isLoading = true;
-        });
-        builder.addCase(
-            getAuthData.fulfilled,
-            (state, { payload }: PayloadAction<User>) => {
-                state.isLoading = false;
-                state.authData = payload;
-            },
-        );
-        builder.addCase(getAuthData.rejected, (state, { payload }) => {
-            state.isLoading = false;
-            state.error = payload;
         });
     },
 });

@@ -2,7 +2,7 @@ import { PayloadAction } from '@reduxjs/toolkit';
 import { updateProfileData } from '../services/updateProfileData/updateProfileData';
 import { ProfileSchema } from '../types/editableProfileCardSchema';
 import { buildSlice } from '@/shared/lib/store';
-import { getAuthData, User } from '@/entities/User';
+import { User } from '@/entities/User';
 
 const initialState: ProfileSchema = {
     readonly: true,

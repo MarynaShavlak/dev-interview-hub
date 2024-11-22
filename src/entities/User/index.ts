@@ -1,6 +1,6 @@
 export { updateUserDataMutation } from './api/userApi';
 
-export { getAuthData } from './model/services/getAuthData/getAuthData';
+export { getProfileData } from '@/features/EditableProfileCard/model/services/getProfileData/getProfileData';
 export { initAuthData } from './model/services/initAuthData/initAuthData';
 export { saveJsonSettings } from './model/services/saveJsonSettings/saveJsonSettings';
 export {

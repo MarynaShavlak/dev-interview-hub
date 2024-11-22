@@ -3,7 +3,7 @@ import { ThunkConfig } from '@/app/providers/StoreProvider';
 import { ValidateProfileError } from '../../consts/consts';
 import { getProfileForm } from '../../selectors/getProfileForm/getProfileForm';
 import { validateProfileData } from '../validateProfileData/validateProfileData';
-import { updateUserDataMutation, User } from '@/entities/User';
+import { updateUserDataMutation, User, userActions } from '@/entities/User';
 
 export const updateProfileData = createAsyncThunk<
     User,
@@ -11,6 +11,7 @@ export const updateProfileData = createAsyncThunk<
     ThunkConfig<ValidateProfileError[]>
 >('profile/updateProfileData', async (User, thunkApi) => {
     const { extra, rejectWithValue, getState, dispatch } = thunkApi;
+    const { setUser } = userActions;
     const formData = getProfileForm(getState());
     const errors = validateProfileData(formData);
 
@@ -27,7 +28,7 @@ export const updateProfileData = createAsyncThunk<
             updateUserDataMutation({ userId: formData?.id, updates: formData }),
         ).unwrap();
         console.log('updateProfileData', response);
-
+        dispatch(setUser(response));
         return response;
     } catch (error) {
         console.error('Failed to update user data:', error);

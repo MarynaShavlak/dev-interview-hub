@@ -9,8 +9,6 @@ import { Theme } from '@/shared/const/theme';
 describe('userSlice tests', () => {
     const initialState: UserSchema = {
         _inited: false,
-        isLoading: false,
-        error: undefined,
     };
 
     test('should return the initial state', () => {
@@ -88,8 +86,6 @@ describe('userSlice tests', () => {
         const initialState: UserSchema = {
             authData: initialAuthData,
             _inited: false,
-            isLoading: false,
-            error: undefined,
         };
 
         const jsonSettings1: JsonSettings = { theme: Theme.DARK };

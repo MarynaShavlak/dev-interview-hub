@@ -14,7 +14,7 @@ import { VStack } from '@/shared/ui/common/Stack';
 import { profileReducer } from '../../model/slices/profileSlice';
 import { EditableProfileCardHeader } from '../EditableProfileCardHeader/EditableProfileCardHeader';
 import cls from './EditableProfileCard.module.scss';
-import { getAuthData } from '@/entities/User';
+import { getProfileData } from '@/entities/User';
 
 interface EditableProfileCardProps {
     className?: string;
@@ -33,7 +33,7 @@ export const EditableProfileCard = memo((props: EditableProfileCardProps) => {
 
     useInitialEffect(() => {
         if (id) {
-            dispatch(getAuthData(id));
+            dispatch(getProfileData(id));
         }
     });
 
