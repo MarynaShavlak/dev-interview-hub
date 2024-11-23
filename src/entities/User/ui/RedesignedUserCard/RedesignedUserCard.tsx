@@ -14,6 +14,7 @@ import { useFormValidation } from '@/shared/lib/hooks/validationHooks/useFormVal
 import cls from '../UserCard/UserCard.module.scss';
 import PhotoIcon from '@/shared/assets/icons/photo-edit.svg';
 import { Icon } from '@/shared/ui/redesigned/Icon';
+import { Box } from '@/shared/ui/common/Box';
 
 export const RedesignedUserCard = memo((props: UserCardProps) => {
     const {
@@ -31,6 +32,11 @@ export const RedesignedUserCard = memo((props: UserCardProps) => {
     } = props;
     const { t } = useTranslation('profile');
     const additionalClasses = getFlexClasses({ vStack: true, gap: '32' });
+    const uploadLabelClasses = getFlexClasses({
+        vStack: true,
+        align: 'center',
+        justify: 'center',
+    });
     const validConfig = useInputValidationConfig();
     const { username = '', firstname = '', lastname = '' } = data || {};
 
@@ -54,15 +60,28 @@ export const RedesignedUserCard = memo((props: UserCardProps) => {
                         src={data?.avatar}
                         alt={t('Аватар користувача')}
                     />
-                    <div className={cls.uploadFileWrapper}>
-                        <input type="file" />
-                        <Icon
-                            Svg={PhotoIcon}
-                            className={cls.photoIcon}
-                            width={18}
-                            height={18}
+                    <Box className={cls.uploadFileWrapper}>
+                        <input
+                            type="file"
+                            id="file-input"
+                            className={cls.uploadInput}
                         />
-                    </div>
+                        <label
+                            htmlFor="file-input"
+                            className={classNames(
+                                cls.uploadLabel,
+                                {},
+                                uploadLabelClasses,
+                            )}
+                        >
+                            <Icon
+                                Svg={PhotoIcon}
+                                className={cls.photoIcon}
+                                width={18}
+                                height={18}
+                            />
+                        </label>
+                    </Box>
                 </div>
             </HStack>
             <HStack gap="24" max align="start">
