@@ -1,20 +1,161 @@
-import { memo } from 'react';
+import { ChangeEvent, memo, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { v4 } from 'uuid';
+import { ref } from 'firebase/storage';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { getFlexClasses } from '@/shared/lib/classes/getFlexClasses/getFlexClasses';
 import { Card } from '@/shared/ui/redesigned/Card';
 import { HStack, VStack } from '@/shared/ui/common/Stack';
 import { Avatar } from '@/shared/ui/redesigned/Avatar';
 import { Input } from '@/shared/ui/redesigned/Input';
+import { Text } from '@/shared/ui/redesigned/Text';
 import { CurrencySelect } from '@/entities/Currency';
 import { CountrySelect } from '@/entities/Country';
 import { UserCardProps } from '../UserCard/UserCard';
 import { useInputValidationConfig } from '@/shared/lib/hooks/validationHooks/useInputValidationConfig/useInputValidationConfig';
 import { useFormValidation } from '@/shared/lib/hooks/validationHooks/useFormValidation/useFormValidation';
 import cls from '../UserCard/UserCard.module.scss';
-import PhotoIcon from '@/shared/assets/icons/photo-edit.svg';
+import EditIcon from '@/shared/assets/icons/edit.svg';
 import { Icon } from '@/shared/ui/redesigned/Icon';
 import { Box } from '@/shared/ui/common/Box';
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { firebaseStorage } from '../../../../../json-server/firebase';
+import { uploadImageThunk } from '../../model/services/uploadImageThunk/uploadImageThunk';
+
+const imageMimeType = /image\/(png|jpg|jpeg)/i;
+
+interface ImageUploaderProps {
+    avatar: string;
+}
+
+const ImageUploader = ({ avatar }: ImageUploaderProps) => {
+    const [selectedImage, setSelectedImage] = useState<File | null>(null);
+    const [imagePreview, setImagePreview] = useState<string | null>(null);
+    const [error, setError] = useState<string | null>(null);
+    const { t } = useTranslation('profile');
+    const uploadLabelClasses = getFlexClasses({
+        vStack: true,
+        align: 'center',
+        justify: 'center',
+    });
+    const dispatch = useAppDispatch();
+
+    useEffect(() => {
+        let fileReader: FileReader | null = null;
+        let isCancelled = false;
+
+        if (selectedImage) {
+            fileReader = new FileReader();
+            fileReader.onloadend = (e) => {
+                if (!isCancelled) {
+                    setImagePreview(e.target?.result as string);
+                }
+            };
+            fileReader.readAsDataURL(selectedImage);
+        }
+
+        return () => {
+            isCancelled = true;
+            if (fileReader && fileReader.readyState === 1) {
+                fileReader.abort();
+            }
+        };
+    }, [selectedImage]);
+
+    // const uploadImageInStore = async () => {
+    //     if (!selectedImage) return;
+    //     const imageRef = ref(
+    //         firebaseStorage,
+    //         `images/users/${selectedImage.name + v4()}`,
+    //     );
+    //     await uploadBytes(imageRef, selectedImage);
+    // };
+
+    const handleImageChange = (event: ChangeEvent<HTMLInputElement>) => {
+        const file = event.target.files?.[0];
+        if (!file) return;
+        if (!file.type.match(imageMimeType)) {
+            setError(t('Некоректний тип файлу'));
+            setSelectedImage(null);
+            setImagePreview(null);
+            return;
+        }
+
+        // Clear error and set the file
+        setError(null);
+        setSelectedImage(file);
+    };
+
+    const uploadImage = async () => {
+        if (!selectedImage) return;
+
+        const uniqueFilePath = `images/users/${selectedImage.name}_${v4()}`;
+        const imageRef = ref(firebaseStorage, uniqueFilePath);
+        console.log('imageRef', imageRef);
+        // await uploadBytes(imageRef, selectedImage);
+        // console.log('successfull update');
+        dispatch(uploadImageThunk(selectedImage))
+            .unwrap()
+            .then(() => setError(null)) // Success handling
+            .catch(() => setError(t('Не вдалося завантажити зображення')));
+    };
+
+    const handleRemoveImage = (): void => {
+        setSelectedImage(null);
+        setImagePreview(null);
+    };
+
+    console.log('imagePreview', imagePreview);
+    console.log('avatar', avatar);
+    return (
+        <VStack justify="center" align="center" max>
+            <div className={cls.avatarWrap}>
+                {imagePreview && (
+                    <Avatar
+                        size={128}
+                        src={imagePreview}
+                        alt={t('Аватар користувача')}
+                    />
+                )}
+
+                {!imagePreview && (
+                    <Avatar
+                        size={128}
+                        src={avatar}
+                        alt={t('Аватар користувача')}
+                    />
+                )}
+
+                <Box className={cls.uploadFileWrapper}>
+                    <label
+                        htmlFor="file-input"
+                        className={classNames(
+                            cls.uploadLabel,
+                            {},
+                            uploadLabelClasses,
+                        )}
+                    >
+                        <Icon
+                            Svg={EditIcon}
+                            className={cls.photoIcon}
+                            width={18}
+                            height={18}
+                        />
+                    </label>
+                    <input
+                        type="file"
+                        id="file-input"
+                        className={cls.uploadInput}
+                        accept="image/*"
+                        onChange={handleImageChange}
+                    />
+                </Box>
+            </div>
+            <span onClick={uploadImage}>3333</span>
+            {error && <Text text={error} variant="error" />}
+        </VStack>
+    );
+};
 
 export const RedesignedUserCard = memo((props: UserCardProps) => {
     const {
@@ -32,11 +173,7 @@ export const RedesignedUserCard = memo((props: UserCardProps) => {
     } = props;
     const { t } = useTranslation('profile');
     const additionalClasses = getFlexClasses({ vStack: true, gap: '32' });
-    const uploadLabelClasses = getFlexClasses({
-        vStack: true,
-        align: 'center',
-        justify: 'center',
-    });
+
     const validConfig = useInputValidationConfig();
     const { username = '', firstname = '', lastname = '' } = data || {};
 
@@ -53,37 +190,8 @@ export const RedesignedUserCard = memo((props: UserCardProps) => {
             max
             className={classNames(className ?? '', {}, additionalClasses)}
         >
-            <HStack justify="center" max>
-                <div className={cls.avatarWrap}>
-                    <Avatar
-                        size={128}
-                        src={data?.avatar}
-                        alt={t('Аватар користувача')}
-                    />
-                    <Box className={cls.uploadFileWrapper}>
-                        <input
-                            type="file"
-                            id="file-input"
-                            className={cls.uploadInput}
-                        />
-                        <label
-                            htmlFor="file-input"
-                            className={classNames(
-                                cls.uploadLabel,
-                                {},
-                                uploadLabelClasses,
-                            )}
-                        >
-                            <Icon
-                                Svg={PhotoIcon}
-                                className={cls.photoIcon}
-                                width={18}
-                                height={18}
-                            />
-                        </label>
-                    </Box>
-                </div>
-            </HStack>
+            <ImageUploader avatar={data?.avatar || ''} />
+
             <HStack gap="24" max align="start">
                 <VStack gap="16" max>
                     <Input

@@ -10,6 +10,7 @@ import {
     auth,
     firebaseApp,
     firestore,
+    firebaseStorage,
 } from '../../../../../../json-server/firebase';
 
 export const createReduxStore = (
@@ -31,6 +32,7 @@ export const createReduxStore = (
         firebaseApp,
         auth,
         firestore,
+        firebaseStorage,
     };
 
     const store = configureStore({

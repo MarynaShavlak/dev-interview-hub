@@ -107,6 +107,7 @@ module.exports = {
         'react/jsx-max-props-per-line': ['error', { maximum: 5 }],
         'no-console': 'off',
         'no-alert': 'off',
+        'jsx-a11y/ label-has-associated-control': 'off',
     },
     globals: {
         __IS_DEV__: true,

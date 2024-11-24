@@ -17071,6 +17071,11 @@
   "resolved" "https://registry.npmjs.org/uuid-browser/-/uuid-browser-3.1.0.tgz"
   "version" "3.1.0"
 
+"uuid@^11.0.3":
+  "integrity" "sha512-d0z310fCWv5dJwnX1Y/MncBAqGMKEzlBb1AOf7z9K8ALnd0utBX/msg/fA0+sbyN1ihbMsLhrBlnl1ak7Wa0rg=="
+  "resolved" "https://registry.npmjs.org/uuid/-/uuid-11.0.3.tgz"
+  "version" "11.0.3"
+
 "uuid@^3.3.2":
   "integrity" "sha512-HjSDRw6gZE5JMggctHBcjVak08+KEVhSIiDzFnT9S9aegmp85S/bReBVTb4QTFaRNptJ9kuYaNhnbNEOkbKb/A=="
   "resolved" "https://registry.npmjs.org/uuid/-/uuid-3.4.0.tgz"

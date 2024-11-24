@@ -9,6 +9,7 @@ import { CombinedState } from 'redux';
 import { FirebaseApp } from 'firebase/app';
 import { Auth } from 'firebase/auth';
 import { Firestore } from 'firebase/firestore';
+import { FirebaseStorage } from 'firebase/storage';
 import { UIScrollSchema } from '@/widgets/Page';
 import { ArticleDetailsSchema } from '@/entities/Article';
 import { UserSchema } from '@/entities/User';
@@ -61,6 +62,7 @@ export interface ThunkExtraArg {
     firebaseApp: FirebaseApp;
     auth: Auth;
     firestore: Firestore;
+    firebaseStorage: FirebaseStorage;
 }
 
 export interface ThunkConfig<T> {
