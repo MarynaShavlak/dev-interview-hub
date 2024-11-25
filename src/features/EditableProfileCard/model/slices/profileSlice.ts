@@ -11,6 +11,7 @@ const initialState: ProfileSchema = {
     isLoading: false,
     error: undefined,
     data: undefined,
+    uploadedProfilePhoto: null,
 };
 
 export const profileSlice = buildSlice({
@@ -31,6 +32,12 @@ export const profileSlice = buildSlice({
                 ...action.payload,
             };
             state.form = data as User;
+        },
+        setUploadedProfilePhoto: (
+            state,
+            action: PayloadAction<File | null>,
+        ) => {
+            state.uploadedProfilePhoto = action.payload;
         },
     },
     extraReducers: (builder) => {

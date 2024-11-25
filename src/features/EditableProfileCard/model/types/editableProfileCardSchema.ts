@@ -19,4 +19,5 @@ export interface ProfileSchema {
     error?: string;
     readonly: boolean;
     validateErrors?: ValidateProfileError[];
+    uploadedProfilePhoto?: null | File;
 }

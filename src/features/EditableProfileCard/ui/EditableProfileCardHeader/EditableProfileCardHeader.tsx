@@ -9,6 +9,8 @@ import { useProfileReadonly } from '../../model/selectors/getProfileReadonly/get
 import { useProfileData } from '../../model/selectors/getProfileData/getProfileData';
 import { updateUserProfileThunk } from '../../model/services/updateUserProfileThunk/updateUserProfileThunk';
 import { useProfile } from '../../lib/hooks/useProfile';
+import { useUploadedProfilePhoto } from '../../model/selectors/getUploadedProfilePhoto/getUploadedProfilePhoto';
+import { uploadImageThunk } from '../../model/services/uploadImageThunk/uploadImageThunk';
 
 interface EditableProfileCardHeaderProps {
     className?: string;
@@ -23,12 +25,19 @@ export const EditableProfileCardHeader = memo(
         const canEdit = authData?.id === profileData?.id;
         const readonly = useProfileReadonly();
         const dispatch = useAppDispatch();
-        const { hasErrors } = useProfile();
+        const { hasErrors, onChangeAvatar } = useProfile();
         const { setReadonly, cancelEdit } = useProfileActions();
+        const uploadedProfilePhoto = useUploadedProfilePhoto();
 
-        const onSave = useCallback(() => {
+        const onSave = useCallback(async () => {
+            if (uploadedProfilePhoto) {
+                const url = await dispatch(
+                    uploadImageThunk(uploadedProfilePhoto),
+                ).unwrap();
+                onChangeAvatar(url);
+            }
             dispatch(updateUserProfileThunk());
-        }, [dispatch]);
+        }, [dispatch, onChangeAvatar, uploadedProfilePhoto]);
 
         const onEdit = useCallback(() => {
             setReadonly(false);

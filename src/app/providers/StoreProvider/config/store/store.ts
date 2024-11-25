@@ -44,6 +44,10 @@ export const createReduxStore = (
                 thunk: {
                     extraArgument: extraArg,
                 },
+                serializableCheck: {
+                    ignoredActions: ['profile/setUploadedProfilePhoto'],
+                    ignoredPaths: ['profile.uploadedProfilePhoto'],
+                },
             })
                 .concat(rtkApi.middleware)
                 .concat(firestoreApi.middleware),

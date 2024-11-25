@@ -13,6 +13,7 @@ export const updateUserProfileThunk = createAsyncThunk<
     const { extra, rejectWithValue, getState, dispatch } = thunkApi;
     const { setUser } = userActions;
     const formData = getProfileForm(getState());
+    // const uploadedProfilePhoto = getUploadedProfilePhoto(getState());
     const errors = validateProfileData(formData);
 
     if (!formData?.id) {
@@ -24,6 +25,11 @@ export const updateUserProfileThunk = createAsyncThunk<
     }
 
     try {
+        // if (uploadedProfilePhoto) {
+        //     const url = await dispatch(
+        //         uploadImageThunk(uploadedProfilePhoto),
+        //     ).unwrap();
+        // }
         const response = await dispatch(
             updateUserDataMutation({ userId: formData?.id, updates: formData }),
         ).unwrap();

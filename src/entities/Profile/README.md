@@ -38,7 +38,7 @@ Profile/
 ### 2. `ui/`: UI components
 
 #### 2.1. `UserCard/`: Manages the display and interaction of the profile card UI.
-- [**UserCard.tsx**](../User/ui/UserCard/README.md): The main `UserCard` component, responsible for rendering the profile card.
+- [**UserCard.tsx**](../../features/EditableProfileCard/ui/UserCard/README.md): The main `UserCard` component, responsible for rendering the profile card.
 
 #### 2.2. `DeprecatedUserCard/`: Manages the display and interaction of the deprecated profile card UI.
 - **`DeprecatedUserCard.module.scss`**: Contains the styles specific to the `DeprecatedUserCard` component.
@@ -48,9 +48,9 @@ Profile/
 
 #### 2.3. `RedesignedUserCard/`: Manages the display and interaction of the redesigned profile card UI.
 - **`RedesignedUserCard.module.scss`**: Contains the styles specific to the `RedesignedUserCard` component.
-- [**RedesignedUserCard.tsx**](../User/ui/RedesignedUserCard/README.md): The main `RedesignedUserCard` component, responsible for rendering the redesigned profile card.
-- [**RedesignedUserCardError**](../User/ui/RedesignedUserCard/RedesignedUserCardError/README.md): Handles the display of errors in the redesigned profile card.
-- [**RedesignedUserCardSkeleton**](../User/ui/RedesignedUserCard/RedesignedUserCardSkeleton/README.md): Manages the loading state of the redesigned profile card.
+- [**RedesignedUserCard.tsx**](../../features/EditableProfileCard/ui/UserCard/RedesignedUserCard/README.md): The main `RedesignedUserCard` component, responsible for rendering the redesigned profile card.
+- [**RedesignedUserCardError**](../../features/EditableProfileCard/ui/UserCard/RedesignedUserCard/RedesignedUserCardError/README.md): Handles the display of errors in the redesigned profile card.
+- [**RedesignedUserCardSkeleton**](../../features/EditableProfileCard/ui/UserCard/RedesignedUserCard/RedesignedUserCardSkeleton/README.md): Manages the loading state of the redesigned profile card.
 
 ### 3. `index.ts`
 - **`index.ts`**: Entry point for the Profile module, exporting the necessary components and types for use in the application.

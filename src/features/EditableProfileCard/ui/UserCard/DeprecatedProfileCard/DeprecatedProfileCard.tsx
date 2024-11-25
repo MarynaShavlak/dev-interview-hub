@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { UserCardProps } from '../UserCard/UserCard';
+import { UserCardProps } from '../UserCard';
 import { classNames, Mods } from '@/shared/lib/classes/classNames/classNames';
 import { HStack, VStack } from '@/shared/ui/common/Stack';
 

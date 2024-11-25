@@ -1,14 +1,14 @@
-import { RedesignedUserCard } from '../RedesignedUserCard/RedesignedUserCard';
-import { RedesignedUserCardError } from '../RedesignedUserCard/RedesignedUserCardError/RedesignedUserCardError';
+import { RedesignedUserCard } from './RedesignedUserCard/RedesignedUserCard';
+import { RedesignedUserCardError } from './RedesignedUserCard/RedesignedUserCardError/RedesignedUserCardError';
 
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
 import { Currency } from '@/entities/Currency';
 import { Country } from '@/entities/Country';
-import { User } from '../..';
-import { RedesignedUserCardSkeleton } from '../RedesignedUserCard/RedesignedUserCardSkeleton/RedesignedUserCardSkeleton';
-import { DeprecatedUserCardLoader } from '../DeprecatedProfileCard/DeprecatedUserCardLoader/DeprecatedUserCardLoader';
-import { DeprecatedUserCardError } from '../DeprecatedProfileCard/DeprecatedUserCardError/DeprecatedUserCardError';
-import { DeprecatedUserCard } from '../DeprecatedProfileCard/DeprecatedProfileCard';
+import { User } from '../../../../entities/User';
+import { RedesignedUserCardSkeleton } from './RedesignedUserCard/RedesignedUserCardSkeleton/RedesignedUserCardSkeleton';
+import { DeprecatedUserCardLoader } from './DeprecatedProfileCard/DeprecatedUserCardLoader/DeprecatedUserCardLoader';
+import { DeprecatedUserCardError } from './DeprecatedProfileCard/DeprecatedUserCardError/DeprecatedUserCardError';
+import { DeprecatedUserCard } from './DeprecatedProfileCard/DeprecatedProfileCard';
 
 export interface UserCardProps {
     className?: string;

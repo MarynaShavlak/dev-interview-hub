@@ -9,15 +9,16 @@ import { Input } from '@/shared/ui/redesigned/Input';
 import { Text } from '@/shared/ui/redesigned/Text';
 import { CurrencySelect } from '@/entities/Currency';
 import { CountrySelect } from '@/entities/Country';
-import { UserCardProps } from '../UserCard/UserCard';
+import { UserCardProps } from '../UserCard';
 import { useInputValidationConfig } from '@/shared/lib/hooks/validationHooks/useInputValidationConfig/useInputValidationConfig';
 import { useFormValidation } from '@/shared/lib/hooks/validationHooks/useFormValidation/useFormValidation';
-import cls from '../UserCard/UserCard.module.scss';
+import cls from '../UserCard.module.scss';
 import EditIcon from '@/shared/assets/icons/edit.svg';
 import { Icon } from '@/shared/ui/redesigned/Icon';
 import { Box } from '@/shared/ui/common/Box';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { uploadImageThunk } from '../../model/services/uploadImageThunk/uploadImageThunk';
+import { profileActions } from '../../../model/slices/profileSlice';
+import { uploadImageThunk } from '../../../model/services/uploadImageThunk/uploadImageThunk';
 
 const imageMimeType = /image\/(png|jpg|jpeg)/i;
 
@@ -31,6 +32,7 @@ const ImageUploader = ({ avatar, readonly }: ImageUploaderProps) => {
     const [imagePreview, setImagePreview] = useState<string | null>(null);
     const [error, setError] = useState<string | null>(null);
     const { t } = useTranslation('profile');
+    const { setUploadedProfilePhoto } = profileActions;
     const uploadLabelClasses = getFlexClasses({
         vStack: true,
         align: 'center',
@@ -39,26 +41,41 @@ const ImageUploader = ({ avatar, readonly }: ImageUploaderProps) => {
     const dispatch = useAppDispatch();
 
     useEffect(() => {
-        let fileReader: FileReader | null = null;
-        let isCancelled = false;
+        let previewUrl: string | null = null;
 
         if (selectedImage) {
-            fileReader = new FileReader();
-            fileReader.onloadend = (e) => {
-                if (!isCancelled) {
-                    setImagePreview(e.target?.result as string);
-                }
-            };
-            fileReader.readAsDataURL(selectedImage);
+            previewUrl = window.URL.createObjectURL(selectedImage);
+            setImagePreview(previewUrl);
         }
 
         return () => {
-            isCancelled = true;
-            if (fileReader && fileReader.readyState === 1) {
-                fileReader.abort();
+            if (previewUrl) {
+                window.URL.revokeObjectURL(previewUrl);
             }
         };
     }, [selectedImage]);
+
+    // useEffect(() => {
+    //     let fileReader: FileReader | null = null;
+    //     let isCancelled = false;
+    //
+    //     if (selectedImage) {
+    //         fileReader = new FileReader();
+    //         fileReader.onloadend = (e) => {
+    //             if (!isCancelled) {
+    //                 setImagePreview(e.target?.result as string);
+    //             }
+    //         };
+    //         fileReader.readAsDataURL(selectedImage);
+    //     }
+    //
+    //     return () => {
+    //         isCancelled = true;
+    //         if (fileReader && fileReader.readyState === 1) {
+    //             fileReader.abort();
+    //         }
+    //     };
+    // }, [selectedImage]);
 
     const handleImageChange = (event: ChangeEvent<HTMLInputElement>) => {
         const file = event.target.files?.[0];
@@ -67,12 +84,14 @@ const ImageUploader = ({ avatar, readonly }: ImageUploaderProps) => {
             setError(t('Некоректний тип файлу'));
             setSelectedImage(null);
             setImagePreview(null);
+            dispatch(setUploadedProfilePhoto(null));
             return;
         }
 
         // Clear error and set the file
         setError(null);
         setSelectedImage(file);
+        dispatch(setUploadedProfilePhoto(file));
     };
 
     const uploadImage = async () => {
@@ -82,6 +101,7 @@ const ImageUploader = ({ avatar, readonly }: ImageUploaderProps) => {
                 uploadImageThunk(selectedImage),
             ).unwrap();
             console.log('url', url);
+            // onChangeAvatar(url);
             setError(null);
         } catch (e) {
             console.log('Error on upload avatar:');

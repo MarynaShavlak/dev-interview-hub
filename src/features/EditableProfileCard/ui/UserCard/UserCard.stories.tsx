@@ -1,7 +1,7 @@
 import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { UserCard } from './UserCard';
-import { testProfileData } from '../../../Profile/testing';
+import { testProfileData } from '../../../../entities/Profile/testing';
 import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator/NewDesignDecorator';
 
 export default {
