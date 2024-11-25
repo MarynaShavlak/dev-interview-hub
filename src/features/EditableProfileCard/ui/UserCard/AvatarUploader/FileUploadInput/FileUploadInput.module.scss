@@ -1,0 +1,32 @@
+
+.uploadFileWrapper {
+  position: absolute;
+  bottom: 12px;
+  right: 5px;
+}
+
+
+.uploadInput {
+  display: none;
+}
+
+.uploadLabel{
+  position: relative;
+  background: var(--light-bg-redesigned);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid var(--icon-redesigned);
+  overflow: hidden;
+  cursor: pointer;
+  &:hover {
+    .photoIcon {
+      fill: var(--accent-redesigned);
+    }
+  }
+}
+
+.photoIcon {
+  fill: var(--icon-redesigned);
+  cursor: pointer;
+}

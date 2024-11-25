@@ -50,7 +50,7 @@ export const useProfile = () => {
     const error = useProfileError();
     const readonly = useProfileReadonly();
     const validateErrors = useProfileValidateErrors();
-    const { updateProfile } = useProfileActions();
+    const { updateProfile, setUploadedProfilePhoto } = useProfileActions();
 
     const validConfig = useInputValidationConfig();
     const { username = '', firstname = '', lastname = '' } = formData || {};
@@ -59,6 +59,11 @@ export const useProfile = () => {
         { username, firstname, lastname },
         validConfig,
         'profile',
+    );
+
+    const onFileUpload = useCallback(
+        (file: File | null) => setUploadedProfilePhoto(file),
+        [setUploadedProfilePhoto],
     );
 
     const onChangeFirstname = useCallback(
@@ -132,5 +137,6 @@ export const useProfile = () => {
         onChangeAge,
         onChangeCity,
         hasErrors,
+        onFileUpload,
     };
 };

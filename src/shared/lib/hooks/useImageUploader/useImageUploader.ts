@@ -1,6 +1,7 @@
 import { ChangeEvent, useEffect, useState } from 'react';
 
-const imageMimeType = /image\/(png|jpg|jpeg)/i;
+// const imageMimeType = /image\/(png|jpg|jpeg)/i;
+const imageMimeType = /^image\//i;
 
 interface UseImageUploaderProps {
     initialAvatar: string;
@@ -8,11 +9,19 @@ interface UseImageUploaderProps {
     errorMessage: string;
 }
 
+interface UseImageUploaderReturn {
+    avatarSrc: string;
+    imagePreview: string | null;
+    error: string | null;
+    handleImageChange: (event: ChangeEvent<HTMLInputElement>) => void;
+    resetImage: () => void;
+}
+
 export const useImageUploader = ({
     initialAvatar,
     onFileUpload,
     errorMessage,
-}: UseImageUploaderProps) => {
+}: UseImageUploaderProps): UseImageUploaderReturn => {
     const [selectedImage, setSelectedImage] = useState<File | null>(null);
     const [imagePreview, setImagePreview] = useState<string | null>(null);
     const [error, setError] = useState<string | null>(null);

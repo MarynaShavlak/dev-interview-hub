@@ -16,6 +16,7 @@ export const EditableProfileCardContainer = memo(() => {
         onChangeCurrency,
         onChangeAge,
         onChangeCity,
+        onFileUpload,
     } = useProfile();
 
     return (
@@ -32,6 +33,7 @@ export const EditableProfileCardContainer = memo(() => {
             onChangeAvatar={onChangeAvatar}
             onChangeCurrency={onChangeCurrency}
             onChangeCountry={onChangeCountry}
+            onFileUpload={onFileUpload}
         />
     );
 });

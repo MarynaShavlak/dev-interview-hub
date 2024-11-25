@@ -24,6 +24,7 @@ export interface UserCardProps {
     onChangeAvatar?: (value?: string) => void;
     onChangeCurrency?: (currency: Currency) => void;
     onChangeCountry?: (country: Country) => void;
+    onFileUpload: (file: File | null) => void;
 }
 
 export const UserCard = (props: UserCardProps) => {
