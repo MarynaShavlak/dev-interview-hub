@@ -1,7 +1,5 @@
 import { ChangeEvent, memo, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { v4 } from 'uuid';
-import { ref } from 'firebase/storage';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { getFlexClasses } from '@/shared/lib/classes/getFlexClasses/getFlexClasses';
 import { Card } from '@/shared/ui/redesigned/Card';
@@ -19,16 +17,16 @@ import EditIcon from '@/shared/assets/icons/edit.svg';
 import { Icon } from '@/shared/ui/redesigned/Icon';
 import { Box } from '@/shared/ui/common/Box';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { firebaseStorage } from '../../../../../json-server/firebase';
 import { uploadImageThunk } from '../../model/services/uploadImageThunk/uploadImageThunk';
 
 const imageMimeType = /image\/(png|jpg|jpeg)/i;
 
 interface ImageUploaderProps {
     avatar: string;
+    readonly?: boolean;
 }
 
-const ImageUploader = ({ avatar }: ImageUploaderProps) => {
+const ImageUploader = ({ avatar, readonly }: ImageUploaderProps) => {
     const [selectedImage, setSelectedImage] = useState<File | null>(null);
     const [imagePreview, setImagePreview] = useState<string | null>(null);
     const [error, setError] = useState<string | null>(null);
@@ -62,15 +60,6 @@ const ImageUploader = ({ avatar }: ImageUploaderProps) => {
         };
     }, [selectedImage]);
 
-    // const uploadImageInStore = async () => {
-    //     if (!selectedImage) return;
-    //     const imageRef = ref(
-    //         firebaseStorage,
-    //         `images/users/${selectedImage.name + v4()}`,
-    //     );
-    //     await uploadBytes(imageRef, selectedImage);
-    // };
-
     const handleImageChange = (event: ChangeEvent<HTMLInputElement>) => {
         const file = event.target.files?.[0];
         if (!file) return;
@@ -88,16 +77,16 @@ const ImageUploader = ({ avatar }: ImageUploaderProps) => {
 
     const uploadImage = async () => {
         if (!selectedImage) return;
-
-        const uniqueFilePath = `images/users/${selectedImage.name}_${v4()}`;
-        const imageRef = ref(firebaseStorage, uniqueFilePath);
-        console.log('imageRef', imageRef);
-        // await uploadBytes(imageRef, selectedImage);
-        // console.log('successfull update');
-        dispatch(uploadImageThunk(selectedImage))
-            .unwrap()
-            .then(() => setError(null)) // Success handling
-            .catch(() => setError(t('Не вдалося завантажити зображення')));
+        try {
+            const url = await dispatch(
+                uploadImageThunk(selectedImage),
+            ).unwrap();
+            console.log('url', url);
+            setError(null);
+        } catch (e) {
+            console.log('Error on upload avatar:');
+            setError(t('Не вдалося завантажити зображення'));
+        }
     };
 
     const handleRemoveImage = (): void => {
@@ -105,54 +94,59 @@ const ImageUploader = ({ avatar }: ImageUploaderProps) => {
         setImagePreview(null);
     };
 
-    console.log('imagePreview', imagePreview);
-    console.log('avatar', avatar);
     return (
         <VStack justify="center" align="center" max>
-            <div className={cls.avatarWrap}>
-                {imagePreview && (
-                    <Avatar
-                        size={128}
-                        src={imagePreview}
-                        alt={t('Аватар користувача')}
-                    />
-                )}
-
-                {!imagePreview && (
-                    <Avatar
-                        size={128}
-                        src={avatar}
-                        alt={t('Аватар користувача')}
-                    />
-                )}
-
-                <Box className={cls.uploadFileWrapper}>
-                    <label
-                        htmlFor="file-input"
-                        className={classNames(
-                            cls.uploadLabel,
-                            {},
-                            uploadLabelClasses,
+            {readonly && (
+                <Avatar size={128} src={avatar} alt={t('Аватар користувача')} />
+            )}
+            {!readonly && (
+                <>
+                    <div className={cls.avatarWrap}>
+                        {imagePreview && (
+                            <Avatar
+                                size={128}
+                                src={imagePreview}
+                                alt={t('Аватар користувача')}
+                            />
                         )}
-                    >
-                        <Icon
-                            Svg={EditIcon}
-                            className={cls.photoIcon}
-                            width={18}
-                            height={18}
-                        />
-                    </label>
-                    <input
-                        type="file"
-                        id="file-input"
-                        className={cls.uploadInput}
-                        accept="image/*"
-                        onChange={handleImageChange}
-                    />
-                </Box>
-            </div>
-            <span onClick={uploadImage}>3333</span>
-            {error && <Text text={error} variant="error" />}
+
+                        {!imagePreview && (
+                            <Avatar
+                                size={128}
+                                src={avatar}
+                                alt={t('Аватар користувача')}
+                            />
+                        )}
+
+                        <Box className={cls.uploadFileWrapper}>
+                            <label
+                                htmlFor="file-input"
+                                className={classNames(
+                                    cls.uploadLabel,
+                                    {},
+                                    uploadLabelClasses,
+                                )}
+                            >
+                                <Icon
+                                    Svg={EditIcon}
+                                    className={cls.photoIcon}
+                                    width={18}
+                                    height={18}
+                                />
+                            </label>
+                            <input
+                                type="file"
+                                id="file-input"
+                                className={cls.uploadInput}
+                                accept="image/*"
+                                onChange={handleImageChange}
+                            />
+                        </Box>
+                    </div>
+                    <span onClick={uploadImage}>click to upload image</span>
+                    {error && <Text text={error} variant="error" />}
+                </>
+            )}
         </VStack>
     );
 };
@@ -190,7 +184,7 @@ export const RedesignedUserCard = memo((props: UserCardProps) => {
             max
             className={classNames(className ?? '', {}, additionalClasses)}
         >
-            <ImageUploader avatar={data?.avatar || ''} />
+            <ImageUploader avatar={data?.avatar || ''} readonly={readonly} />
 
             <HStack gap="24" max align="start">
                 <VStack gap="16" max>
