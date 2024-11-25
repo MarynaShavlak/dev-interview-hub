@@ -1,9 +1,9 @@
 import { TestAsyncThunk } from '@/shared/lib/tests/TestAsyncThunk/TestAsyncThunk';
-import { loginByUsername } from './loginByUsername';
+import { loginByEmailThunk } from './loginByEmailThunk';
 import { testUserData } from '@/entities/User/testing';
 import { userActions } from '@/entities/User';
 
-describe('async thunk loginByUsername test', () => {
+describe('async thunk loginByEmail test', () => {
     const userAuthenticationData = {
         email: 'testEmail@gmail.com',
         password: '123',
@@ -13,7 +13,7 @@ describe('async thunk loginByUsername test', () => {
     });
 
     test('success login', async () => {
-        const thunk = new TestAsyncThunk(loginByUsername);
+        const thunk = new TestAsyncThunk(loginByEmailThunk);
         thunk.api.post.mockReturnValue(Promise.resolve({ data: testUserData }));
         const result = await thunk.callThunk(userAuthenticationData);
 
@@ -31,7 +31,7 @@ describe('async thunk loginByUsername test', () => {
     });
 
     test('error login with empty email', async () => {
-        const thunk = new TestAsyncThunk(loginByUsername);
+        const thunk = new TestAsyncThunk(loginByEmailThunk);
         thunk.api.post.mockReturnValue(Promise.resolve({ status: 403 }));
         const result = await thunk.callThunk({ email: '', password: '123' });
 
@@ -43,7 +43,7 @@ describe('async thunk loginByUsername test', () => {
     });
 
     test('error login with missing password', async () => {
-        const thunk = new TestAsyncThunk(loginByUsername);
+        const thunk = new TestAsyncThunk(loginByEmailThunk);
         thunk.api.post.mockReturnValue(Promise.resolve({ status: 403 }));
         const result = await thunk.callThunk({
             email: 'testEmail@gmail.com',
@@ -58,7 +58,7 @@ describe('async thunk loginByUsername test', () => {
     });
 
     test('error login with wrong credentials', async () => {
-        const thunk = new TestAsyncThunk(loginByUsername);
+        const thunk = new TestAsyncThunk(loginByEmailThunk);
         thunk.api.post.mockReturnValue(Promise.resolve({ status: 403 }));
         const result = await thunk.callThunk(userAuthenticationData);
 
@@ -75,7 +75,7 @@ describe('async thunk loginByUsername test', () => {
     });
 
     test('error login with missing data in response', async () => {
-        const thunk = new TestAsyncThunk(loginByUsername);
+        const thunk = new TestAsyncThunk(loginByEmailThunk);
         thunk.api.post.mockReturnValue(Promise.resolve({ data: null }));
         const result = await thunk.callThunk(userAuthenticationData);
 
@@ -91,7 +91,7 @@ describe('async thunk loginByUsername test', () => {
     });
 
     test('network error during login', async () => {
-        const thunk = new TestAsyncThunk(loginByUsername);
+        const thunk = new TestAsyncThunk(loginByEmailThunk);
         thunk.api.post.mockReturnValue(
             Promise.reject(new Error('Network Error')),
         );
@@ -109,7 +109,7 @@ describe('async thunk loginByUsername test', () => {
     });
 
     test('error login with unexpected server response', async () => {
-        const thunk = new TestAsyncThunk(loginByUsername);
+        const thunk = new TestAsyncThunk(loginByEmailThunk);
         thunk.api.post.mockReturnValue(
             Promise.resolve({ data: { unexpectedField: 'value' } }),
         );
@@ -123,7 +123,7 @@ describe('async thunk loginByUsername test', () => {
     });
 
     test('server error during login (500)', async () => {
-        const thunk = new TestAsyncThunk(loginByUsername);
+        const thunk = new TestAsyncThunk(loginByEmailThunk);
         thunk.api.post.mockReturnValue(Promise.resolve({ status: 500 }));
         const result = await thunk.callThunk(userAuthenticationData);
 
@@ -139,7 +139,7 @@ describe('async thunk loginByUsername test', () => {
     });
 
     test('multiple simultaneous login requests', async () => {
-        const thunk = new TestAsyncThunk(loginByUsername);
+        const thunk = new TestAsyncThunk(loginByEmailThunk);
         thunk.api.post.mockReturnValue(Promise.resolve({ data: testUserData }));
 
         const results = await Promise.all([
@@ -166,7 +166,7 @@ describe('async thunk loginByUsername test', () => {
 // test('success login', async () => {
 //     const testUserData = { email: 'afff', id: '12' };
 //     mockedAxios.post.mockReturnValue(Promise.resolve({ data: testUserData }));
-//     const action = loginByUsername({ email: 'afff', password: '123' });
+//     const action = loginByEmail({ email: 'afff', password: '123' });
 //     const result = await action(dispatch, getState, undefined);
 //     expect(dispatch).toHaveBeenCalledWith(userActions.setAuthData(testUserData));
 //     expect(mockedAxios.post).toHaveBeenCalled();
@@ -178,7 +178,7 @@ describe('async thunk loginByUsername test', () => {
 // test('error login', async () => {
 //     const testUserData = { email: 'afff', id: '12' };
 //     mockedAxios.post.mockReturnValue(Promise.resolve({ data: testUserData }));
-//     const action = loginByUsername({ email: 'afff', password: '123' });
+//     const action = loginByEmail({ email: 'afff', password: '123' });
 //     const result = await action(dispatch, getState, undefined);
 //     expect(mockedAxios.post).toHaveBeenCalled();
 //     expect(mockedAxios.post).toHaveBeenCalledTimes(2);

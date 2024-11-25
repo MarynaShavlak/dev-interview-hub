@@ -1,7 +1,7 @@
 import { User as FirebaseUser } from '@firebase/auth';
 import { User } from '@/entities/User';
 import { getInitialUserData } from '../getInitialUserData/getInitialUserData';
-import { SignupCredentials } from '../../../model/services/signupByEmail/signupByEmail';
+import { SignupCredentials } from '../../../model/services/signupByEmailThunk/signupByEmailThunk';
 
 export const prepareUserData = (
     firebaseUser: FirebaseUser,

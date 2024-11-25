@@ -30,9 +30,9 @@
 - **Setting Password**: Ensures that the `setPassword` action updates the `password` in the state as expected.
 
 ### Async Action Handling
-- **Pending Login Action**: Checks that when `loginByUsername` is pending, the `isLoading` state is set to `true`, and any previous error is cleared.
-- **Fulfilled Login Action**: Confirms that when `loginByUsername` is fulfilled, the `isLoading` state is set to `false`.
-- **Rejected Login Action**: Ensures that when `loginByUsername` is rejected, the `isLoading` state is set to `false`, and the error message is correctly set in the state.
+- **Pending Login Action**: Checks that when `loginByEmailThunk` is pending, the `isLoading` state is set to `true`, and any previous error is cleared.
+- **Fulfilled Login Action**: Confirms that when `loginByEmailThunk` is fulfilled, the `isLoading` state is set to `false`.
+- **Rejected Login Action**: Ensures that when `loginByEmailThunk` is rejected, the `isLoading` state is set to `false`, and the error message is correctly set in the state.
 
 ### Sequential Actions
 - **Handling Multiple Actions**: Verifies that sequential actions, including setting the username and password and handling login states, update the state correctly through pending, fulfilled, and error scenarios.

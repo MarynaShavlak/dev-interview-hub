@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect, useState } from 'react';
+import { ChangeEvent, useCallback, useEffect, useState } from 'react';
 
 // const imageMimeType = /image\/(png|jpg|jpeg)/i;
 const imageMimeType = /^image\//i;
@@ -45,26 +45,29 @@ export const useImageUploader = ({
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [selectedImage]);
 
-    const resetImage = () => {
+    const resetImage = useCallback(() => {
         setSelectedImage(null);
         setImagePreview(null);
         setAvatarSrc('');
         onFileUpload(null);
-    };
+    }, [onFileUpload]);
 
-    const handleImageChange = (event: ChangeEvent<HTMLInputElement>) => {
-        const file = event.target.files?.[0];
-        if (!file) return;
+    const handleImageChange = useCallback(
+        (event: ChangeEvent<HTMLInputElement>) => {
+            const file = event.target.files?.[0];
+            if (!file) return;
 
-        if (!file.type.match(imageMimeType)) {
-            setError(errorMessage);
-            resetImage();
-            return;
-        }
+            if (!file.type.match(imageMimeType)) {
+                setError(errorMessage);
+                resetImage();
+                return;
+            }
 
-        setError(null);
-        setSelectedImage(file);
-    };
+            setError(null);
+            setSelectedImage(file);
+        },
+        [errorMessage, resetImage],
+    );
 
     return {
         avatarSrc,

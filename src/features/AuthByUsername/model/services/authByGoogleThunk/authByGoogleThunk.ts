@@ -34,10 +34,7 @@ export const authByGoogleThunk = createAsyncThunk<
 
             // console.log('userData in Google Provider', userData);
         } else {
-            const existingUser = await fetchUserFromFirestore(
-                firestore,
-                firebaseUser.uid,
-            );
+            const existingUser = await fetchUserFromFirestore(firebaseUser.uid);
             if (!existingUser) {
                 throw new Error('Existing user not found in Firestore');
             }

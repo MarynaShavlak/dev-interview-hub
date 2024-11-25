@@ -1,7 +1,8 @@
 import { PayloadAction } from '@reduxjs/toolkit';
 import { buildSlice } from '@/shared/lib/store';
-import { SignupSchema } from '../../../model/types/signupSchema';
-import { signupByEmail } from '../../services/signupByEmail/signupByEmail';
+
+import { signupByEmailThunk } from '../../services/signupByEmailThunk/signupByEmailThunk';
+import { SignupSchema } from '../../types/signupSchema';
 
 const initialState: SignupSchema = {
     isLoading: false,
@@ -35,14 +36,14 @@ export const signupSlice = buildSlice({
     },
     extraReducers: (builder) => {
         builder
-            .addCase(signupByEmail.pending, (state) => {
+            .addCase(signupByEmailThunk.pending, (state) => {
                 state.error = undefined;
                 state.isLoading = true;
             })
-            .addCase(signupByEmail.fulfilled, (state, action) => {
+            .addCase(signupByEmailThunk.fulfilled, (state, action) => {
                 state.isLoading = false;
             })
-            .addCase(signupByEmail.rejected, (state, action) => {
+            .addCase(signupByEmailThunk.rejected, (state, action) => {
                 state.isLoading = false;
                 state.error = action.payload;
             });

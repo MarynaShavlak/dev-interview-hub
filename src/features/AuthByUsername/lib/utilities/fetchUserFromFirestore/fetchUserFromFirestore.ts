@@ -1,9 +1,8 @@
-import { Firestore, getDocs, query, where, getDoc } from 'firebase/firestore';
+import { getDocs, query, where, getDoc } from 'firebase/firestore';
 import { dataPoint } from '@/shared/lib/firestore/firestore';
 import { User } from '@/entities/User';
 
 export const fetchUserFromFirestore = async (
-    firestore: Firestore,
     uid: string,
 ): Promise<User | null> => {
     const usersCollection = dataPoint<User>('users');

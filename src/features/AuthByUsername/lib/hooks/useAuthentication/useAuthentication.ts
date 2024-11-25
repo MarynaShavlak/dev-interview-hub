@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 
-import { loginByUsername } from '../../../model/services/loginByUsername/loginByUsername';
+import { loginByEmailThunk } from '../../../model/services/loginByEmailThunk/loginByEmailThunk';
 import { useForceUpdate } from '@/shared/lib/render/forceUpdate';
 import { logoutUser } from '@/entities/User';
 import {
-    signupByEmail,
+    signupByEmailThunk,
     SignupCredentials,
-} from '../../../model/services/signupByEmail/signupByEmail';
+} from '../../../model/services/signupByEmailThunk/signupByEmailThunk';
 import { authByGoogleThunk } from '../../../model/services/authByGoogleThunk/authByGoogleThunk';
 import { resetPassword } from '../../../model/services/resetPassword/resetPassword';
 
@@ -40,7 +40,7 @@ export const useAuthentication = ({
         setIsFetchingUser(true);
 
         try {
-            await dispatch(loginByUsername({ email, password })).unwrap();
+            await dispatch(loginByEmailThunk({ email, password })).unwrap();
             onSuccess?.();
             forceUpdate();
         } catch (error) {
@@ -53,7 +53,7 @@ export const useAuthentication = ({
     const signUpCall = async (signUpData: SignupCredentials) => {
         setIsFetchingUser(true);
         try {
-            await dispatch(signupByEmail(signUpData)).unwrap();
+            await dispatch(signupByEmailThunk(signUpData)).unwrap();
             onSuccess?.();
             forceUpdate();
         } catch (error) {

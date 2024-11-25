@@ -26,7 +26,7 @@ An object with the following properties:
 2. **Callbacks**:
     - **`onChangeUsername`**: Updates the username state by dispatching the `setUsername` action.
     - **`onChangePassword`**: Updates the password state by dispatching the `setPassword` action.
-    - **`onLoginClick`**: Handles the login process by dispatching the `loginByUsername` thunk with the current username and password. If the login is successful, the `onSuccess` callback is executed, and the component is re-rendered using `forceUpdate`.
+    - **`onLoginClick`**: Handles the login process by dispatching the `loginByEmailThunk` thunk with the current username and password. If the login is successful, the `onSuccess` callback is executed, and the component is re-rendered using `forceUpdate`.
 
 3. **Effects**:
     - **`useCallback`**: Ensures that the `onChangeUsername`, `onChangePassword`, and `onLoginClick` functions are memoized to avoid unnecessary re-renders.

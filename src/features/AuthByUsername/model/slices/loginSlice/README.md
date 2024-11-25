@@ -9,13 +9,13 @@ It utilizes `buildSlice` function to handle username and password inputs, as wel
 import { PayloadAction } from '@reduxjs/toolkit';
 import { buildSlice } from '@/shared/lib/store';
 import { LoginSchema } from '../types/loginSchema';
-import { loginByUsername } from '../services/loginByUsername/loginByUsername';
+import { loginByEmailThunk } from '../services/loginByEmailThunk/loginByEmailThunk';
 ```
 
 - `PayloadAction`: A type from Redux Toolkit used to define the shape of action payloads.
 - `buildSlice`: A custom utility function for creating Redux slices.
 - `LoginSchema`: TypeScript type defining the structure for login state.
-- `loginByUsername`: Service function for asynchronous login authentication.
+- `loginByEmailThunk`: Service function for asynchronous login authentication.
 
 
 ## Initial State
@@ -38,7 +38,7 @@ It includes:
 - **name**: The name of the slice, which is **'login'**.
 - **initialState**: The initial state defined earlier.
 - **reducers**: An object containing reducer functions.
-- **extraReducers**: Handles asynchronous actions for `loginByUsername` service requests.
+- **extraReducers**: Handles asynchronous actions for `loginByEmailThunk` service requests.
 - 
 ## Reducers
 
@@ -52,9 +52,9 @@ It includes:
 
 | **Action**                  | **Description**                             | **Payload**      | **State Changes**                                          |
 |-----------------------------|---------------------------------------------|------------------|-----------------------------------------------------------|
-| `loginByUsername.pending`   | Indicates that the login request is pending | None             | Sets `isLoading` to `true` and clears any existing `error`.|
-| `loginByUsername.fulfilled` | Handles successful login authentication     | None             | Sets `isLoading` to `false`.                               |
-| `loginByUsername.rejected`  | Handles errors encountered during login     | `Error` object   | Sets `isLoading` to `false` and updates `error` with the payload. |
+| `loginByEmailThunk.pending`   | Indicates that the login request is pending | None             | Sets `isLoading` to `true` and clears any existing `error`.|
+| `loginByEmailThunk.fulfilled` | Handles successful login authentication     | None             | Sets `isLoading` to `false`.                               |
+| `loginByEmailThunk.rejected`  | Handles errors encountered during login     | `Error` object   | Sets `isLoading` to `false` and updates `error` with the payload. |
 
 
 ## Exports
@@ -92,7 +92,7 @@ export const AuthForm = () => {
 
     const handleLogin = useCallback(() => {
         // Dispatch login action using credentials
-        dispatch(loginByUsername({ username, password }));
+        dispatch(loginByEmailThunk({ username, password }));
     }, [dispatch, username, password]);
 
     return (
@@ -107,4 +107,4 @@ export const AuthForm = () => {
 
 ## Conclusion 
 The `loginSlice` manages login state and user authentication seamlessly within Redux, offering a structured approach to handle input changes, loading states, and error handling. 
-By integrating with `loginByUsername` service asynchronously, this slice enhances application security and user experience by ensuring reliable login functionalities.
+By integrating with `loginByEmailThunk` service asynchronously, this slice enhances application security and user experience by ensuring reliable login functionalities.

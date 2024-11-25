@@ -1,7 +1,7 @@
 import { PayloadAction } from '@reduxjs/toolkit';
 import { buildSlice } from '@/shared/lib/store';
 import { LoginSchema } from '../../types/loginSchema';
-import { loginByUsername } from '../../services/loginByUsername/loginByUsername';
+import { loginByEmailThunk } from '../../services/loginByEmailThunk/loginByEmailThunk';
 
 const initialState: LoginSchema = {
     isLoading: false,
@@ -22,14 +22,14 @@ export const loginSlice = buildSlice({
     },
     extraReducers: (builder) => {
         builder
-            .addCase(loginByUsername.pending, (state) => {
+            .addCase(loginByEmailThunk.pending, (state) => {
                 state.error = undefined;
                 state.isLoading = true;
             })
-            .addCase(loginByUsername.fulfilled, (state, action) => {
+            .addCase(loginByEmailThunk.fulfilled, (state, action) => {
                 state.isLoading = false;
             })
-            .addCase(loginByUsername.rejected, (state, action) => {
+            .addCase(loginByEmailThunk.rejected, (state, action) => {
                 state.isLoading = false;
                 state.error = action.payload;
             });

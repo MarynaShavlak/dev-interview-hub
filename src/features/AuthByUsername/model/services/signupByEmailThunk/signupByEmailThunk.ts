@@ -41,7 +41,7 @@ const handleFirebaseError = (error: {
     }
 };
 
-export const signupByEmail = createAsyncThunk<
+export const signupByEmailThunk = createAsyncThunk<
     User,
     SignupCredentials,
     ThunkConfig<string>

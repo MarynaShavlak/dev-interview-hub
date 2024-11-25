@@ -21,8 +21,8 @@ AuthByUsername/
 │   │   └── getLoginEmail/
 │   │       └── getLoginEmail.ts
 │   ├── services/
-│   │   └── loginByUsername/
-│   │       └── loginByUsername.ts
+│   │   └── loginByEmailThunk/
+│   │       └── loginByEmailThunk.ts
 │   └── slices/
 │       └── loginSlice.ts
 ├── ui/
@@ -56,8 +56,8 @@ AuthByUsername/
     - [**getLoginEmail.ts**](model/selectors/getLoginEmail/README.md):  Retrieves the username.
     
 - **`services/`**
-  - **`loginByUsername/`**
-    - [**loginByUsername.ts**](./model/services/loginByUsername/README.md): Manages the login API request.
+  - **`loginByEmailThunk/`**
+    - [**loginByEmailThunk.ts**](model/services/loginByEmailThunk/README.md): Manages the login API request.
 
 - **`slices/`**
   - [**loginSlice.ts**](model/slices/loginSlice/README.md):Defines the Redux slice for managing login-related state, including actions and reducers.

@@ -2,7 +2,7 @@
 
 ## 1. AuthByUsername Service
 
-### [loginByUsername](../../../src/features/AuthByUsername/model/services/loginByUsername/loginByUsername.test.ts)
+### [loginByEmailThunk](../../../src/features/AuthByUsername/model/services/loginByEmailThunk/loginByEmailThunk.test.ts)
 - **Success**: Validates successful login with correct credentials.
 - **Error Handling**: Covers scenarios such as empty username, missing password, wrong credentials, incomplete response data, network issues, unexpected server responses, and server errors (500).
 - **Simultaneous Requests**: Tests the handling of multiple login requests.

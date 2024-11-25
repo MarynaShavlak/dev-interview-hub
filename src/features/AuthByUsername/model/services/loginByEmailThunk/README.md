@@ -1,6 +1,6 @@
-#  `loginByUsername` Thunk Documentation
+#  `loginByEmailThunk` Thunk Documentation
 
-The `loginByUsername` thunk is an asynchronous action designed to handle user login using a username and password.
+The `loginByEmailThunk` thunk is an asynchronous action designed to handle user login using a username and password.
 This thunk leverages the `createAsyncThunk` function from Redux Toolkit to manage the asynchronous logic and state management required for user authentication.
 
 ## Parameters
@@ -31,12 +31,12 @@ If an error occurs, it logs the error to the console and returns a rejected prom
 This ensures that any issues during the login process can be identified and addressed promptly.
 
 ## Usage Example
-The following example demonstrates how to use the `loginByUsername` thunk in a React component to fetch and display profile data.
+The following example demonstrates how to use the `loginByEmailThunk` thunk in a React component to fetch and display profile data.
 
 ```typescript jsx
 import { memo } from 'react';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { loginByUsername } from '../../model/services/loginByUsername/loginByUsername';
+import { loginByEmailThunk } from '../../model/services/loginByEmailThunk/loginByEmailThunk';
 
 
 export const AuthForm = () => {
@@ -46,7 +46,7 @@ export const AuthForm = () => {
 
     const handleLogin = async () => {
         try {
-            const user = await dispatch(loginByUsername({ username, password }));
+            const user = await dispatch(loginByEmailThunk({ username, password }));
             console.log('User logged in:', user);
         } catch (error) {
             console.error('Login error:', error);
@@ -74,4 +74,4 @@ export const AuthForm = () => {
 ```
 
 ## Conclusion 
-The `loginByUsername` thunk provides a robust mechanism for handling user login by username and password. It manages the asynchronous API call, processes the response, and updates the application state with the authenticated user data. This thunk is essential for components that require user authentication, ensuring a smooth and secure login experience with proper error handling and state management.
+The `loginByEmailThunk` thunk provides a robust mechanism for handling user login by username and password. It manages the asynchronous API call, processes the response, and updates the application state with the authenticated user data. This thunk is essential for components that require user authentication, ensuring a smooth and secure login experience with proper error handling and state management.

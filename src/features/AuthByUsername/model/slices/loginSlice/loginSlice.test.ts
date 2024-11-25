@@ -1,6 +1,6 @@
 import { loginActions, loginReducer } from './loginSlice';
 import { LoginSchema } from '../../types/loginSchema';
-import { loginByUsername } from '../../services/loginByUsername/loginByUsername';
+import { loginByEmailThunk } from '../../services/loginByEmailThunk/loginByEmailThunk';
 import { testUserData } from '@/entities/User/testing';
 
 describe('loginSlice tests', () => {
@@ -35,27 +35,27 @@ describe('loginSlice tests', () => {
         ).toEqual({ password: 'newPassword' });
     });
 
-    test('should handle loginByUsername.pending', () => {
+    test('should handle loginByEmail.pending', () => {
         const state: DeepPartial<LoginSchema> = {
             isLoading: false,
             error: 'Some error',
         };
 
         expect(
-            loginReducer(state as LoginSchema, loginByUsername.pending),
+            loginReducer(state as LoginSchema, loginByEmailThunk.pending),
         ).toEqual({
             isLoading: true,
             error: undefined,
         });
     });
 
-    test('should handle loginByUsername.fulfilled', () => {
+    test('should handle loginByEmail.fulfilled', () => {
         const state: DeepPartial<LoginSchema> = { isLoading: true };
 
         expect(
             loginReducer(
                 state as LoginSchema,
-                loginByUsername.fulfilled(testUserData, '', {
+                loginByEmailThunk.fulfilled(testUserData, '', {
                     email: '',
                     password: '',
                 }),
@@ -65,12 +65,12 @@ describe('loginSlice tests', () => {
         });
     });
 
-    test('should handle loginByUsername.rejected', () => {
+    test('should handle loginByEmail.rejected', () => {
         const state: DeepPartial<LoginSchema> = { isLoading: true };
         expect(
             loginReducer(
                 state as LoginSchema,
-                loginByUsername.rejected(
+                loginByEmailThunk.rejected(
                     new Error('Login failed'),
                     '',
                     { email: '', password: '' },
@@ -88,7 +88,7 @@ describe('loginSlice tests', () => {
 
         state = loginReducer(state, loginActions.setEmail('user1'));
         state = loginReducer(state, loginActions.setPassword('pass1'));
-        state = loginReducer(state, loginByUsername.pending);
+        state = loginReducer(state, loginByEmailThunk.pending);
 
         expect(state).toEqual({
             email: 'user1',
@@ -99,7 +99,7 @@ describe('loginSlice tests', () => {
 
         state = loginReducer(
             state,
-            loginByUsername.fulfilled(testUserData, '', {
+            loginByEmailThunk.fulfilled(testUserData, '', {
                 email: 'user1',
                 password: 'pass1',
             }),
