@@ -25,11 +25,6 @@ export const updateUserProfileThunk = createAsyncThunk<
     }
 
     try {
-        // if (uploadedProfilePhoto) {
-        //     const url = await dispatch(
-        //         uploadImageThunk(uploadedProfilePhoto),
-        //     ).unwrap();
-        // }
         const response = await dispatch(
             updateUserDataMutation({ userId: formData?.id, updates: formData }),
         ).unwrap();

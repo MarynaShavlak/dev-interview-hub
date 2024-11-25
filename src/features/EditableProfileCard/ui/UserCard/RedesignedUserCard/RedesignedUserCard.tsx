@@ -18,7 +18,7 @@ import { Icon } from '@/shared/ui/redesigned/Icon';
 import { Box } from '@/shared/ui/common/Box';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { profileActions } from '../../../model/slices/profileSlice';
-import { uploadImageThunk } from '../../../model/services/uploadImageThunk/uploadImageThunk';
+import { Button } from '@/shared/ui/redesigned/Button';
 
 const imageMimeType = /image\/(png|jpg|jpeg)/i;
 
@@ -31,6 +31,8 @@ const ImageUploader = ({ avatar, readonly }: ImageUploaderProps) => {
     const [selectedImage, setSelectedImage] = useState<File | null>(null);
     const [imagePreview, setImagePreview] = useState<string | null>(null);
     const [error, setError] = useState<string | null>(null);
+    const [avatarSrc, setAvatarSrc] = useState<string>(avatar || '');
+
     const { t } = useTranslation('profile');
     const { setUploadedProfilePhoto } = profileActions;
     const uploadLabelClasses = getFlexClasses({
@@ -46,6 +48,7 @@ const ImageUploader = ({ avatar, readonly }: ImageUploaderProps) => {
         if (selectedImage) {
             previewUrl = window.URL.createObjectURL(selectedImage);
             setImagePreview(previewUrl);
+            setAvatarSrc(previewUrl);
         }
 
         return () => {
@@ -55,28 +58,6 @@ const ImageUploader = ({ avatar, readonly }: ImageUploaderProps) => {
         };
     }, [selectedImage]);
 
-    // useEffect(() => {
-    //     let fileReader: FileReader | null = null;
-    //     let isCancelled = false;
-    //
-    //     if (selectedImage) {
-    //         fileReader = new FileReader();
-    //         fileReader.onloadend = (e) => {
-    //             if (!isCancelled) {
-    //                 setImagePreview(e.target?.result as string);
-    //             }
-    //         };
-    //         fileReader.readAsDataURL(selectedImage);
-    //     }
-    //
-    //     return () => {
-    //         isCancelled = true;
-    //         if (fileReader && fileReader.readyState === 1) {
-    //             fileReader.abort();
-    //         }
-    //     };
-    // }, [selectedImage]);
-
     const handleImageChange = (event: ChangeEvent<HTMLInputElement>) => {
         const file = event.target.files?.[0];
         if (!file) return;
@@ -84,34 +65,21 @@ const ImageUploader = ({ avatar, readonly }: ImageUploaderProps) => {
             setError(t('Некоректний тип файлу'));
             setSelectedImage(null);
             setImagePreview(null);
+            setAvatarSrc('');
             dispatch(setUploadedProfilePhoto(null));
             return;
         }
 
-        // Clear error and set the file
         setError(null);
         setSelectedImage(file);
         dispatch(setUploadedProfilePhoto(file));
     };
 
-    const uploadImage = async () => {
-        if (!selectedImage) return;
-        try {
-            const url = await dispatch(
-                uploadImageThunk(selectedImage),
-            ).unwrap();
-            console.log('url', url);
-            // onChangeAvatar(url);
-            setError(null);
-        } catch (e) {
-            console.log('Error on upload avatar:');
-            setError(t('Не вдалося завантажити зображення'));
-        }
-    };
-
     const handleRemoveImage = (): void => {
         setSelectedImage(null);
         setImagePreview(null);
+        setAvatarSrc('');
+        dispatch(setUploadedProfilePhoto(null));
     };
 
     return (
@@ -133,7 +101,7 @@ const ImageUploader = ({ avatar, readonly }: ImageUploaderProps) => {
                         {!imagePreview && (
                             <Avatar
                                 size={128}
-                                src={avatar}
+                                src={avatarSrc}
                                 alt={t('Аватар користувача')}
                             />
                         )}
@@ -163,7 +131,14 @@ const ImageUploader = ({ avatar, readonly }: ImageUploaderProps) => {
                             />
                         </Box>
                     </div>
-                    <span onClick={uploadImage}>click to upload image</span>
+                    <Button
+                        variant="cancel"
+                        onClick={handleRemoveImage}
+                        size="s"
+                    >
+                        {t('Видалити зображення')}
+                    </Button>
+
                     {error && <Text text={error} variant="error" />}
                 </>
             )}
@@ -180,7 +155,6 @@ export const RedesignedUserCard = memo((props: UserCardProps) => {
         onChangeLastname,
         onChangeAge,
         onChangeCity,
-        onChangeAvatar,
         onChangeUsername,
         onChangeCountry,
         onChangeCurrency,
@@ -191,7 +165,7 @@ export const RedesignedUserCard = memo((props: UserCardProps) => {
     const validConfig = useInputValidationConfig();
     const { username = '', firstname = '', lastname = '' } = data || {};
 
-    const { hasErrors, lastnameErrors, usernameErrors, firstnameErrors } =
+    const { lastnameErrors, usernameErrors, firstnameErrors } =
         useFormValidation(
             { username, firstname, lastname },
             validConfig,
@@ -257,14 +231,7 @@ export const RedesignedUserCard = memo((props: UserCardProps) => {
                         validations={validConfig.lastname}
                         errors={usernameErrors}
                     />
-                    {/* <Input */}
-                    {/*    value={data?.avatar} */}
-                    {/*    label={`${t('Посилання на аватар')}:`} */}
-                    {/*    onChange={onChangeAvatar} */}
-                    {/*    readonly={readonly} */}
-                    {/*    disabled={readonly} */}
-                    {/*    data-testid="UserCard.avatar" */}
-                    {/* /> */}
+
                     <CurrencySelect
                         value={data?.currency}
                         onChange={onChangeCurrency}

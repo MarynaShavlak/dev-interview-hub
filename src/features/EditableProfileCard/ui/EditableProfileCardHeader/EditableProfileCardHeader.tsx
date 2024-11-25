@@ -35,7 +35,10 @@ export const EditableProfileCardHeader = memo(
                     uploadImageThunk(uploadedProfilePhoto),
                 ).unwrap();
                 onChangeAvatar(url);
+            } else {
+                onChangeAvatar('');
             }
+
             dispatch(updateUserProfileThunk());
         }, [dispatch, onChangeAvatar, uploadedProfilePhoto]);
 
