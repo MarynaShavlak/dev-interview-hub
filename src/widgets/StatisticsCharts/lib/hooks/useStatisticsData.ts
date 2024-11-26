@@ -14,7 +14,7 @@ export const useStatisticsData = () => {
         data: articles,
         isLoading: isArticlesLoading,
         error: isArticlesError,
-    } = useArticles(null);
+    } = useArticles({});
     const {
         data: ratings = [],
         isLoading: isRatingsLoading,

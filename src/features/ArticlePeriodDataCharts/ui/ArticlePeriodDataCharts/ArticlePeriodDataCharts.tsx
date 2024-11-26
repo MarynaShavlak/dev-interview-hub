@@ -13,7 +13,7 @@ export const ArticlePeriodDataCharts = memo(
     (props: ArticlePeriodDataChartsProps) => {
         const { t } = useTranslation('admin');
 
-        const { isLoading: isArticlesLoading, error } = useArticles(null);
+        const { isLoading: isArticlesLoading, error } = useArticles({});
 
         if (error) return null;
 

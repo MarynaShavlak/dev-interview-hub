@@ -13,6 +13,14 @@ import { useArticleListFetcher } from '../../../lib/hooks/useArticlesPage/useArt
 import cls from '../ArticlesPage.module.scss';
 import { ArticleInfiniteList } from '../../ArticleInfiniteList/ArticleInfiniteList';
 import { useArticles } from '@/entities/Article';
+import {
+    useArticlesPageCategory,
+    useArticlesPageLimit,
+    useArticlesPageNum,
+    useArticlesPageOrder,
+    useArticlesPageSearch,
+    useArticlesPageSort,
+} from '../../../model/selectors/articlesPageSelectors';
 
 const reducers: ReducersList = {
     articlesPage: articlesPageReducer,
@@ -20,7 +28,21 @@ const reducers: ReducersList = {
 
 export const RedesignedArticlesPage = (props: ArticlesPageProps) => {
     const { onLoadNextPart } = useArticleListFetcher();
-    const { data, isLoading } = useArticles(null);
+
+    const limit = useArticlesPageLimit();
+    const sort = useArticlesPageSort();
+    const order = useArticlesPageOrder();
+    const search = useArticlesPageSearch();
+    const page = useArticlesPageNum();
+    const category = useArticlesPageCategory();
+    const { data, isLoading } = useArticles({
+        limit,
+        sort,
+        page,
+        category,
+        search,
+        order,
+    });
     console.log('articles:', data);
     console.log('quantity:', data?.length);
     return (

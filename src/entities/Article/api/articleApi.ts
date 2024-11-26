@@ -1,7 +1,20 @@
-import { getDocs, limit, query, startAt } from 'firebase/firestore';
+import {
+    getDocs,
+    limit,
+    query,
+    startAt,
+    where,
+    orderBy,
+} from 'firebase/firestore';
+
 import { firestoreApi, rtkApi } from '@/shared/api/rtkApi';
 import { Article } from '../model/types/article';
 import { dataPoint } from '@/shared/lib/firestore/firestore';
+import {
+    ArticleCategory,
+    ArticleSortField,
+} from '../model/consts/articleConsts';
+import { SortOrder } from '@/shared/types/sortOrder';
 
 export const articleApi = rtkApi.injectEndpoints({
     endpoints: (build) => ({
@@ -18,13 +31,35 @@ export const articleApi = rtkApi.injectEndpoints({
 
 export const articleFirebaseApi = firestoreApi.injectEndpoints({
     endpoints: (build) => ({
-        getArticles: build.query<Article[], null>({
-            async queryFn() {
+        getArticles: build.query<
+            Article[],
+            {
+                sort?: ArticleSortField;
+                order?: SortOrder;
+                search?: string;
+                category?: ArticleCategory;
+                limit?: number;
+                page?: number;
+            }
+        >({
+            async queryFn({ sort, order, search, category, limit: max, page }) {
                 try {
                     const articlesCollection = dataPoint<Article>('articles');
                     let queryRef = query(articlesCollection);
-                    const max = 11;
-                    const page = 1;
+
+                    if (sort) {
+                        queryRef = query(
+                            queryRef,
+                            orderBy(sort, order || 'asc'),
+                        );
+                    }
+
+                    if (category && category !== ArticleCategory.ALL) {
+                        queryRef = query(
+                            queryRef,
+                            where('category', 'array-contains', category),
+                        );
+                    }
 
                     if (max) {
                         queryRef = query(queryRef, limit(max));
@@ -39,6 +74,10 @@ export const articleFirebaseApi = firestoreApi.injectEndpoints({
                                 );
                             }
                         }
+                    }
+
+                    if (sort) {
+                        queryRef = query(queryRef, orderBy(sort, order));
                     }
 
                     // queryRef = query(
