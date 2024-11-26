@@ -57,49 +57,6 @@ export const userFirebaseApi = firestoreApi.injectEndpoints({
                     return {
                         error: { name: 'NotFound', message: 'User not found' },
                     };
-                    // const userDocRef = await getUserDocRefById(userId);
-                    // if (!userDocRef) {
-                    //     return {
-                    //         error: {
-                    //             name: 'NotFound',
-                    //             message: 'User not found',
-                    //         },
-                    //     };
-                    // }
-                    //
-                    // // Use a custom promise to integrate onSnapshot with async queryFn
-                    // return await new Promise((resolve) => {
-                    //     const unsubscribe = onSnapshot(
-                    //         userDocRef,
-                    //         (snapshot) => {
-                    //             if (snapshot.exists()) {
-                    //                 const userData = snapshot.data();
-                    //                 resolve({ data: { ...userData } as User });
-                    //             } else {
-                    //                 resolve({
-                    //                     error: {
-                    //                         name: 'NotFound',
-                    //                         message: 'User not found',
-                    //                     },
-                    //                 });
-                    //             }
-                    //         },
-                    //         (error) => {
-                    //             resolve({ error });
-                    //         },
-                    //     );
-                    //
-                    //     // Abort listener on cancellation
-                    //     signal?.addEventListener('abort', () => {
-                    //         unsubscribe();
-                    //         resolve({
-                    //             error: {
-                    //                 name: 'Aborted',
-                    //                 message: 'Listener aborted',
-                    //             },
-                    //         });
-                    //     });
-                    // });
                 } catch (error) {
                     return { error };
                 }
