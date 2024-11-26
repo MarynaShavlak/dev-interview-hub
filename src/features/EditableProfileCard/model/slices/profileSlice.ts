@@ -11,7 +11,7 @@ const initialState: ProfileSchema = {
     isLoading: false,
     error: undefined,
     data: undefined,
-    uploadedProfilePhoto: null,
+    uploadedProfilePhoto: undefined,
 };
 
 export const profileSlice = buildSlice({
