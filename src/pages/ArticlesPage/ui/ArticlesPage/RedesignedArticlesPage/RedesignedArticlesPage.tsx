@@ -22,7 +22,7 @@ export const RedesignedArticlesPage = (props: ArticlesPageProps) => {
     const { onLoadNextPart } = useArticleListFetcher();
     const { data, isLoading } = useArticles(null);
     console.log('articles:', data);
-
+    console.log('quantity:', data?.length);
     return (
         <DynamicModuleLoader reducers={reducers} removeAfterUnmount={false}>
             <StickyContentLayout

@@ -1,4 +1,4 @@
-import { getDocs, orderBy, query } from 'firebase/firestore';
+import { getDocs, query, where } from 'firebase/firestore';
 import { firestoreApi, rtkApi } from '@/shared/api/rtkApi';
 import { Article } from '../model/types/article';
 import { dataPoint } from '@/shared/lib/firestore/firestore';
@@ -22,11 +22,29 @@ export const articleFirebaseApi = firestoreApi.injectEndpoints({
             async queryFn() {
                 try {
                     const articlesCollection = dataPoint<Article>('articles');
+                    let queryRef = query(articlesCollection);
+                    // queryRef = query(
+                    //     articlesCollection,
+                    //     orderBy('views', 'asc'),
+                    //     // limit(10),
+                    // );
 
-                    const queryRef = query(
-                        articlesCollection,
-                        orderBy('views', 'asc'),
+                    // ___________Category______________
+                    // if (category && category !== ArticleCategory.ALL) {
+                    //     queryRef = query(queryRef, where('category', '==', category));
+                    // }
+                    // __________________________________________________-
+
+                    queryRef = query(
+                        queryRef,
+                        where('category', 'array-contains', 'React'),
                     );
+
+                    queryRef = query(
+                        queryRef,
+                        where('title', 'array-contains', 'React'),
+                    );
+
                     const querySnapshot = await getDocs(queryRef);
                     const articles: Article[] = [];
                     if (!querySnapshot.empty) {
