@@ -76,29 +76,6 @@ export const articleFirebaseApi = firestoreApi.injectEndpoints({
                         }
                     }
 
-                    // queryRef = query(
-                    //     articlesCollection,
-                    //     orderBy('views', 'asc'),
-                    //     // limit(10),
-                    // );
-
-                    // ___________Category______________
-                    // if (category && category !== ArticleCategory.ALL) {
-                    //     queryRef = query(queryRef, where('category', '==', category));
-                    // }
-                    // __________________________________________________-
-
-                    // queryRef = query(
-                    //     queryRef,
-                    //     where('category', 'array-contains', 'React'),
-                    // );
-
-                    // queryRef = query(
-                    //     queryRef,
-                    //     where('title', '<=', 'DOM'),
-                    //     // where('title', '<=', `React`),
-                    // );
-
                     const querySnapshot = await getDocs(queryRef);
                     const articles: Article[] = [];
 
@@ -106,10 +83,7 @@ export const articleFirebaseApi = firestoreApi.injectEndpoints({
                         querySnapshot?.forEach((doc) => {
                             articles.push({ ...doc.data() });
                         });
-                        // const filteredArticles = querySnapshot.docs
-                        //     .map((doc) => doc.data())
-                        //     .filter((article) => article.title.includes('DOM'));
-                        // console.log('filteredArticles', filteredArticles);
+
                         return { data: articles };
                     }
 
@@ -131,3 +105,31 @@ export const articleFirebaseApi = firestoreApi.injectEndpoints({
 export const useArticles = articleFirebaseApi.useGetArticlesQuery;
 export const getArticlesQuery =
     articleFirebaseApi.endpoints.getArticles.initiate;
+
+// const filteredArticles = querySnapshot.docs
+//     .map((doc) => doc.data())
+//     .filter((article) => article.title.includes('DOM'));
+// console.log('filteredArticles', filteredArticles);
+
+// queryRef = query(
+//     articlesCollection,
+//     orderBy('views', 'asc'),
+//     // limit(10),
+// );
+
+// ___________Category______________
+// if (category && category !== ArticleCategory.ALL) {
+//     queryRef = query(queryRef, where('category', '==', category));
+// }
+// __________________________________________________-
+
+// queryRef = query(
+//     queryRef,
+//     where('category', 'array-contains', 'React'),
+// );
+
+// queryRef = query(
+//     queryRef,
+//     where('title', '<=', 'DOM'),
+//     // where('title', '<=', `React`),
+// );

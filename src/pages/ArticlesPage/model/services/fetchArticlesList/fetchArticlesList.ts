@@ -38,11 +38,22 @@ export const fetchArticlesList = createAsyncThunk<
 >('articlesPage/fetchArticlesList', async (props, thunkApi) => {
     const { extra, rejectWithValue, getState, dispatch } = thunkApi;
     const limit = getArticlesPageLimit(getState());
+    console.log('Articles Page Limit:', limit);
+
     const sort = getArticlesPageSort(getState());
+    console.log('Articles Page Sort:', sort);
+
     const order = getArticlesPageOrder(getState());
+    console.log('Articles Page Order:', order);
+
     const search = getArticlesPageSearch(getState());
+    console.log('Articles Page Search:', search);
+
     const page = getArticlesPageNum(getState());
+    console.log('Articles Page Number:', page);
+
     const category = getArticlesPageCategory(getState());
+    console.log('Articles Page Category:', category);
 
     try {
         addQueryParams({
@@ -92,8 +103,8 @@ export const fetchArticlesList = createAsyncThunk<
                 search,
                 category:
                     category === ArticleCategory.ALL ? undefined : category,
-                limit: objectsLimit,
-                page: pageLimit,
+                limit,
+                page,
             }),
         ).unwrap();
         console.log('SIMPLE response', response.data);
