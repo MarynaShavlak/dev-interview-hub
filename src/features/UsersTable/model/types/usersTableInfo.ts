@@ -1,4 +1,3 @@
-import { Profile } from '@/entities/Profile';
 import { ColorOption } from './types';
 
 export interface UserPartial {
@@ -6,11 +5,16 @@ export interface UserPartial {
     username: string;
     role: ColorOption | null;
     features: string;
+    age: string;
+    city: string;
+    country: string;
+    currency: string;
+    avatar: string;
+    lastname: string;
+    firstname: string;
 }
 
-export interface UsersTableInfo
-    extends UserPartial,
-        Omit<Profile, 'id' | 'username'> {
+export interface UsersTableInfo extends UserPartial {
     articlesQuantity: number;
 }
 

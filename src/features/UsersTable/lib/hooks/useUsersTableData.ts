@@ -1,5 +1,4 @@
 import { useUsers } from '@/entities/User';
-import { useProfiles } from '@/entities/Profile';
 import { useArticles } from '@/entities/Article';
 import { getRoleData } from '../helpers/getData/getRolesData/getRoleData';
 import { getEnabledUserFeatures } from '../helpers/getData/processUserFeatures/processUserFeatures';
@@ -8,22 +7,42 @@ import { ArticlesByUserData } from '../../model/types/usersTableInfo';
 
 export const useUsersTableData = () => {
     const { data: users, isLoading: isUsersLoading } = useUsers();
-    const { data: profiles, isLoading: isProfilesLoading } = useProfiles(null);
+
     const { data: articles, isLoading: isArticlesLoading } = useArticles({});
 
-    const isLoading = isUsersLoading || isProfilesLoading || isArticlesLoading;
+    const isLoading = isUsersLoading || isArticlesLoading;
 
-    if (!users || !profiles || !articles)
-        return { users: [], profiles: [], articles: [], isLoading };
+    if (!users || !articles) return { users: [], articles: [], isLoading };
 
-    const partialUsersData = users.map(({ id, roles, features, username }) => {
-        return {
-            id: id || '',
-            username: username || '',
-            role: getRoleData(roles),
-            features: getEnabledUserFeatures(features),
-        };
-    });
+    const partialUsersData = users.map(
+        ({
+            id,
+            roles,
+            features,
+            username,
+            age,
+            city,
+            country,
+            avatar,
+            lastname,
+            firstname,
+            currency,
+        }) => {
+            return {
+                id: id || '',
+                username: username || '',
+                role: getRoleData(roles),
+                features: getEnabledUserFeatures(features),
+                age: age || '',
+                city: city || '',
+                country: country || '',
+                currency: currency || '',
+                avatar: avatar || '',
+                lastname,
+                firstname,
+            };
+        },
+    );
 
     // const partialProfilesData = profiles.map((profile) => {
     //     const {
@@ -60,7 +79,7 @@ export const useUsersTableData = () => {
 
     const combinedData = getCombinedUsersData(
         partialUsersData,
-        profiles,
+
         articlesByUserData,
     );
 
