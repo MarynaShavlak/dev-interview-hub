@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig } from '@/app/providers/StoreProvider';
-import { Article, ArticleCategory } from '@/entities/Article';
+import { Article, ArticleCategory, getArticlesQuery } from '@/entities/Article';
 import { addQueryParams } from '@/shared/lib/url/addQueryParams/addQueryParams';
 import {
     getArticlesPageLimit,
@@ -36,7 +36,7 @@ export const fetchArticlesList = createAsyncThunk<
     FetchArticlesListProps,
     ThunkConfig<string>
 >('articlesPage/fetchArticlesList', async (props, thunkApi) => {
-    const { extra, rejectWithValue, getState } = thunkApi;
+    const { extra, rejectWithValue, getState, dispatch } = thunkApi;
     const limit = getArticlesPageLimit(getState());
     const sort = getArticlesPageSort(getState());
     const order = getArticlesPageOrder(getState());
@@ -85,8 +85,21 @@ export const fetchArticlesList = createAsyncThunk<
         //           );
         // console.log('filteredArticles', filteredArticles);
         // return filteredArticles;
-
-        return response.data;
+        const articlesResponse = await dispatch(
+            getArticlesQuery({
+                sort,
+                order,
+                search,
+                category:
+                    category === ArticleCategory.ALL ? undefined : category,
+                limit: objectsLimit,
+                page: pageLimit,
+            }),
+        ).unwrap();
+        console.log('SIMPLE response', response.data);
+        console.log('firebase articles response', articlesResponse);
+        // return response.data;
+        return articlesResponse;
     } catch (error) {
         console.error('Error fetching articles list:', error);
         return rejectWithValue('Failed to fetch articles.');

@@ -129,3 +129,5 @@ export const articleFirebaseApi = firestoreApi.injectEndpoints({
 
 // export const useArticles = articleApi.useGetArticlesQuery;
 export const useArticles = articleFirebaseApi.useGetArticlesQuery;
+export const getArticlesQuery =
+    articleFirebaseApi.endpoints.getArticles.initiate;
