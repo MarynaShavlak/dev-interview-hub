@@ -76,10 +76,6 @@ export const articleFirebaseApi = firestoreApi.injectEndpoints({
                         }
                     }
 
-                    if (sort) {
-                        queryRef = query(queryRef, orderBy(sort, order));
-                    }
-
                     // queryRef = query(
                     //     articlesCollection,
                     //     orderBy('views', 'asc'),
