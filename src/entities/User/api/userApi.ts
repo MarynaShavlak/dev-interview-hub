@@ -1,8 +1,9 @@
-import { getDoc, updateDoc } from 'firebase/firestore';
+import { getDoc, getDocs, query, updateDoc } from 'firebase/firestore';
 import { firestoreApi, rtkApi } from '@/shared/api/rtkApi';
 import { User } from '../model/types/user';
 import { JsonSettings } from '../model/types/jsonSettings';
 import { getUserDocRefById } from '../lib/utilities/getUserDocRefById/getUserDocRefById';
+import { dataPoint } from '@/shared/lib/firestore/firestore';
 
 interface SetJsonSettingsArg {
     userId: string;
@@ -37,12 +38,38 @@ export const userApi = rtkApi.injectEndpoints({
 export const setJsonSettingsMutation =
     userApi.endpoints.setJsonSettings.initiate;
 // export const getUserDataByIdQuery = userApi.endpoints.getUserDataById.initiate;
-export const useUsers = userApi.useGetUsersQuery;
+// export const useUsers = userApi.useGetUsersQuery;
 
 // _______________________________________________________________________
 
 export const userFirebaseApi = firestoreApi.injectEndpoints({
     endpoints: (build) => ({
+        getUsers: build.query<User[], void>({
+            async queryFn() {
+                try {
+                    const usersCollection = dataPoint<User>('users');
+                    const queryRef = query(usersCollection);
+                    const querySnapshot = await getDocs(queryRef);
+
+                    if (!querySnapshot.empty) {
+                        const users = querySnapshot.docs.map((doc) => ({
+                            ...doc.data(),
+                        }));
+                        console.log('all users', users);
+                        return { data: users };
+                    }
+
+                    return {
+                        error: {
+                            name: 'NotFound',
+                            message: 'Users not found',
+                        },
+                    };
+                } catch (error) {
+                    return { error };
+                }
+            },
+        }),
         getUserDataById: build.query<User, string>({
             async queryFn(userId) {
                 try {
@@ -101,6 +128,8 @@ export const getUserDataByIdQuery =
 
 export const updateUserDataMutation =
     userFirebaseApi.endpoints.updateUserData.initiate;
+
+export const useUsers = userFirebaseApi.useGetUsersQuery;
 
 export const useGetUserDataById = userFirebaseApi.useGetUserDataByIdQuery;
 

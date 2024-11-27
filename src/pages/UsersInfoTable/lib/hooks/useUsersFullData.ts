@@ -8,7 +8,7 @@ import { getCombinedUsersData } from '../helpers/getCombinedUsersData/getCombine
 import { ArticlesByUserData } from '../../model/types/userFullInfo';
 
 export const useUsersFullData = () => {
-    const { data: users, isLoading: isUsersLoading } = useUsers(null);
+    const { data: users, isLoading: isUsersLoading } = useUsers();
     const { data: profiles, isLoading: isProfilesLoading } = useProfiles(null);
     const { data: articles, isLoading: isArticlesLoading } = useArticles({});
 

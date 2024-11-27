@@ -7,7 +7,7 @@ import { getCombinedUsersData } from '../helpers/getData/getCombinedUsersData/ge
 import { ArticlesByUserData } from '../../model/types/usersTableInfo';
 
 export const useUsersTableData = () => {
-    const { data: users, isLoading: isUsersLoading } = useUsers(null);
+    const { data: users, isLoading: isUsersLoading } = useUsers();
     const { data: profiles, isLoading: isProfilesLoading } = useProfiles(null);
     const { data: articles, isLoading: isArticlesLoading } = useArticles({});
 

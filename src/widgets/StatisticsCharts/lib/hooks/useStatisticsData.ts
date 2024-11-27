@@ -9,7 +9,7 @@ export const useStatisticsData = () => {
         data: users,
         isLoading: isUsersLoading,
         error: isUsersError,
-    } = useUsers(null);
+    } = useUsers();
     const {
         data: articles,
         isLoading: isArticlesLoading,
