@@ -57,12 +57,12 @@ import { getUserAuthData } from '../selectors/getUserAuthData/getUserAuthData';
 import { getJsonSettings } from '../selectors/jsonSettings';
 import { setJsonSettingsMutation } from '../../api/userApi';
 
-export const saveJsonSettings = createAsyncThunk<
+export const saveJsonSettingsThunk = createAsyncThunk<
         JsonSettings,
         JsonSettings,
         ThunkConfig<string>
         >(
-        'user/saveJsonSettings',
+        'user/saveJsonSettingsThunk',
         async (newJsonSettings, { rejectWithValue, getState, dispatch }) => {
           const state = getState();
           const userData = getUserAuthData(state);

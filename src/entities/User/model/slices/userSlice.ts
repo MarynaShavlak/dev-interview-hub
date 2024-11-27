@@ -1,6 +1,6 @@
 import { PayloadAction } from '@reduxjs/toolkit';
 import { initAuthData } from '../services/initAuthData/initAuthData';
-import { saveJsonSettings } from '../services/saveJsonSettings/saveJsonSettings';
+import { saveJsonSettingsThunk } from '../services/saveJsonSettingsThunk/saveJsonSettingsThunk';
 import { JsonSettings } from '../types/jsonSettings';
 import { buildSlice } from '@/shared/lib/store';
 import { UserSchema, User } from '../types/user';
@@ -28,7 +28,7 @@ export const userSlice = buildSlice({
     },
     extraReducers: (builder) => {
         builder.addCase(
-            saveJsonSettings.fulfilled,
+            saveJsonSettingsThunk.fulfilled,
             (state, { payload }: PayloadAction<JsonSettings>) => {
                 if (state.authData) {
                     state.authData.jsonSettings = payload;

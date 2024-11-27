@@ -1,6 +1,6 @@
 import React, { memo, useCallback } from 'react';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
-import { saveJsonSettings } from '@/entities/User';
+import { saveJsonSettingsThunk } from '@/entities/User';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useTheme } from '@/shared/lib/hooks/useTheme/useTheme';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
@@ -23,7 +23,7 @@ export const ThemeSwitcher = memo(({ className }: ThemeSwitcherProps) => {
 
     const onToggleHandler = useCallback(() => {
         toggleTheme((newTheme) => {
-            dispatch(saveJsonSettings({ theme: newTheme }));
+            dispatch(saveJsonSettingsThunk({ theme: newTheme }));
         });
     }, [dispatch, toggleTheme]);
 

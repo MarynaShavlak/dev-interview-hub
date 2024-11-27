@@ -3,7 +3,7 @@ import { User, UserSchema } from '../types/user';
 import { testUserData } from '../../testing';
 import { JsonSettings } from '../types/jsonSettings';
 import { initAuthData } from '../../model/services/initAuthData/initAuthData';
-import { saveJsonSettings } from '../../model/services/saveJsonSettings/saveJsonSettings';
+import { saveJsonSettingsThunk } from '../services/saveJsonSettingsThunk/saveJsonSettingsThunk';
 import { Theme } from '@/shared/const/theme';
 
 describe('userSlice tests', () => {
@@ -43,7 +43,7 @@ describe('userSlice tests', () => {
         const state: DeepPartial<UserSchema> = { authData };
         const newState = userReducer(
             state as UserSchema,
-            saveJsonSettings.fulfilled(jsonSettings, '', jsonSettings),
+            saveJsonSettingsThunk.fulfilled(jsonSettings, '', jsonSettings),
         );
         expect(newState).toEqual({
             authData: {
@@ -93,11 +93,11 @@ describe('userSlice tests', () => {
 
         let state = userReducer(
             initialState,
-            saveJsonSettings.fulfilled(jsonSettings1, '', jsonSettings1),
+            saveJsonSettingsThunk.fulfilled(jsonSettings1, '', jsonSettings1),
         );
         state = userReducer(
             state,
-            saveJsonSettings.fulfilled(jsonSettings2, '', jsonSettings2),
+            saveJsonSettingsThunk.fulfilled(jsonSettings2, '', jsonSettings2),
         );
 
         expect(state.authData?.jsonSettings).toEqual(jsonSettings2);

@@ -109,12 +109,12 @@
 - **Logout Action**: Confirms that the reducer clears the `authData` when the `logout` action is dispatched.
 
 ### Async Action Handling
-- **Fulfilled Save JSON Settings**: Checks that the reducer updates the `jsonSettings` in `authData` when `saveJsonSettings` completes successfully.
+- **Fulfilled Save JSON Settings**: Checks that the reducer updates the `jsonSettings` in `authData` when `saveJsonSettingsThunk` completes successfully.
 - **Fulfilled Init Auth Data**: Ensures that the reducer sets the `authData` and `_inited` flag to `true` upon successful initialization.
 - **Rejected Init Auth Data**: Verifies that the `_inited` flag is set to `true` even if the initialization fails.
 
 ### Concurrent Actions
-- **Handling Multiple Save JSON Settings Actions**: Confirms that the reducer handles multiple `saveJsonSettings` actions correctly by applying the most recent settings.
+- **Handling Multiple Save JSON Settings Actions**: Confirms that the reducer handles multiple `saveJsonSettingsThunk` actions correctly by applying the most recent settings.
 
 ---
 

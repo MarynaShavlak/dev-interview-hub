@@ -54,11 +54,11 @@ The `query` function constructs the request object, setting the URL to `/users/$
 ## Usage Examples
 ### Example 1: Updating User Settings
 ```typescript
-export const saveJsonSettings = createAsyncThunk<
+export const saveJsonSettingsThunk = createAsyncThunk<
         JsonSettings,
         JsonSettings,
         ThunkConfig<string>
-        >('user/saveJsonSettings', async (newJsonSettings, thunkApi) => {
+        >('user/saveJsonSettingsThunk', async (newJsonSettings, thunkApi) => {
    const { rejectWithValue, getState, dispatch } = thunkApi;
    const userData = getUserAuthData(getState());
    const currentSettings = getJsonSettings(getState());

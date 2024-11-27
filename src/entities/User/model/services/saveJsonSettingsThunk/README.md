@@ -1,9 +1,9 @@
-#  `saveJsonSettings` Thunk Documentation
+#  `saveJsonSettingsThunk` Thunk Documentation
 
-The `saveJsonSettings` thunk is an asynchronous action designed to update and save the user's JSON settings.
+The `saveJsonSettingsThunk` thunk is an asynchronous action designed to update and save the user's JSON settings.
 This thunk leverages the `createAsyncThunk` function from Redux Toolkit to manage the asynchronous logic and state management required for updating JSON settings.
 
-The`saveJsonSettings` thunk updates the current JSON settings for a user by merging new settings with the existing ones and saving them to the server. 
+The`saveJsonSettingsThunk` thunk updates the current JSON settings for a user by merging new settings with the existing ones and saving them to the server. 
 This process ensures that only the relevant changes are made while preserving the existing settings.
 
 
@@ -33,13 +33,13 @@ The thunk catches and handles errors during the settings update process. If an e
 This ensures that any issues during the update process can be identified and addressed promptly.
 
 ## Usage Example
-The following example demonstrates how to use the `saveJsonSettings` thunk in a React component to initialize and display user authentication data.
+The following example demonstrates how to use the `saveJsonSettingsThunk` thunk in a React component to initialize and display user authentication data.
 
 ```typescript jsx
 import { useTranslation } from 'react-i18next';
 import { memo, useEffect, useState } from 'react';
 import { Text } from '@/shared/ui/redesigned/Text';
-import { saveJsonSettings, useJsonSettings } from '@/entities/User';
+import { saveJsonSettingsThunk, useJsonSettings } from '@/entities/User';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 
 export const ArticlePageGreeting = memo(() => {
@@ -51,7 +51,7 @@ export const ArticlePageGreeting = memo(() => {
     useEffect(() => {
         if (!isArticlesPageWasOpened) {
             setIsOpen(true);
-            dispatch(saveJsonSettings({ isArticlesPageWasOpened: true }));
+            dispatch(saveJsonSettingsThunk({ isArticlesPageWasOpened: true }));
         }
     }, [dispatch, isArticlesPageWasOpened]);
 
@@ -70,4 +70,4 @@ export const ArticlePageGreeting = memo(() => {
 ```
 
 ## Conclusion 
-The `saveJsonSettings` thunk provides a reliable mechanism for updating and saving user JSON settings. It manages the asynchronous API call, processes the response, and updates the application state with the new settings. This thunk is essential for components that require user-specific settings, ensuring a seamless and efficient settings update process with proper error handling and state management.
+The `saveJsonSettingsThunk` thunk provides a reliable mechanism for updating and saving user JSON settings. It manages the asynchronous API call, processes the response, and updates the application state with the new settings. This thunk is essential for components that require user-specific settings, ensuring a seamless and efficient settings update process with proper error handling and state management.

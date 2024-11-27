@@ -31,8 +31,8 @@ User/
 │   │   │   └── initAuthData.ts
 │   │   ├── logoutUser/
 │   │   │   └── logoutUser.ts
-│   │   ├── saveJsonSettings/
-│   │   │   └── saveJsonSettings.ts
+│   │   ├── saveJsonSettingsThunk/
+│   │   │   └── saveJsonSettingsThunk.ts
 │   └── slices/
 │       └── userSlice.ts
 │   ├── types/
@@ -71,8 +71,8 @@ User/
 
 - **initAuthData/**
     - [**initAuthData.ts**](./model/services/initAuthData/README.md): Service to initialize user authentication data.
-- **saveJsonSettings/**
-    - [**saveJsonSettings.ts**](./model/services/saveJsonSettings/README.md): Service to save user-specific JSON settings.
+- **saveJsonSettingsThunk/**
+    - [**saveJsonSettingsThunk.ts**](model/services/saveJsonSettingsThunk/README.md): Service to save user-specific JSON settings.
 - **logout/**
   - [**logout.ts**](./model/services/logoutUser/README.md): Service to handle additional server-side logout processes if required.
 

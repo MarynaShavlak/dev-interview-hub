@@ -8,7 +8,7 @@ It leverages the `buildSlice` utility to handle user data, authentication status
 ```typescript
 import { PayloadAction } from '@reduxjs/toolkit';
 import { initAuthData } from '../services/initAuthData/initAuthData';
-import { saveJsonSettings } from '../services/saveJsonSettings/saveJsonSettings';
+import { saveJsonSettingsThunk } from '../services/saveJsonSettingsThunk/saveJsonSettingsThunk';
 import { JsonSettings } from '../types/jsonSettings';
 import { buildSlice } from '@/shared/lib/store';
 import { UserSchema, User } from '../types/user';
@@ -17,7 +17,7 @@ import { UserSchema, User } from '../types/user';
 - `PayloadAction`: A type from Redux Toolkit used to define the shape of action payloads.
 - `buildSlice`: A custom utility function for creating Redux slices.
 - `initAuthData`: Service function for initializing user authentication data.
-- `saveJsonSettings`: Service function for saving user-specific JSON settings.
+- `saveJsonSettingsThunk`: Service function for saving user-specific JSON settings.
 - `UserSchema` and  `User`: Service function for asynchronous login authentication.
 - `JsonSettings`: TypeScript type defining the structure for user JSON settings.
 
@@ -37,7 +37,7 @@ It includes:
 - **name**: The name of the slice, which is **'user'**.
 - **initialState**: The initial state defined earlier.
 - **reducers**: An object containing reducer functions.
-- **extraReducers**: Handles asynchronous actions for `saveJsonSettings` and `initAuthData` service requests.
+- **extraReducers**: Handles asynchronous actions for `saveJsonSettingsThunk` and `initAuthData` service requests.
 
 ## Reducers
 
@@ -50,7 +50,7 @@ It includes:
 
 | **Action**                | **Description**                                      | **Payload**      | **State Changes**                                          | **Purpose**                                      |
 |---------------------------|------------------------------------------------------|------------------|-----------------------------------------------------------|--------------------------------------------------|
-| `saveJsonSettings.fulfilled` | Handles successful saving of JSON settings         | `JsonSettings`   | Updates `state.authData.jsonSettings` if `authData` is present. | Updates user settings with the new JSON settings. |
+| `saveJsonSettingsThunk.fulfilled` | Handles successful saving of JSON settings         | `JsonSettings`   | Updates `state.authData.jsonSettings` if `authData` is present. | Updates user settings with the new JSON settings. |
 | `initAuthData.fulfilled`  | Handles successful initialization of user data       | `User`           | Updates `state.authData` with the payload and sets `_inited` to `true`. | Initializes user data and sets the initialization flag. |
 | `initAuthData.rejected`   | Handles failed initialization of user data            | None             | Sets `_inited` to `true` regardless of the failure.       | Ensures the initialization flag is set even if initialization fails. |
 

@@ -3,7 +3,7 @@ import { ThunkConfig } from '@/app/providers/StoreProvider';
 import { JsonSettings } from '../../types/jsonSettings';
 import { getUserAuthData } from '../../selectors/getUserAuthData/getUserAuthData';
 import { getJsonSettings } from '../../selectors/getJsonSettings/getJsonSettings';
-import { setJsonSettingsMutation } from '../../../api/userApi';
+import { updateUserDataMutation } from '../../../api/userApi';
 
 /**
  * Thunk to save and update user JSON settings.
@@ -17,12 +17,13 @@ import { setJsonSettingsMutation } from '../../../api/userApi';
  * @returns {Promise<JsonSettings>} The updated JSON settings or an error message.
  */
 
-export const saveJsonSettings = createAsyncThunk<
+export const saveJsonSettingsThunk = createAsyncThunk<
     JsonSettings,
     JsonSettings,
     ThunkConfig<string>
 >('user/saveJsonSettings', async (newJsonSettings, thunkApi) => {
     const { rejectWithValue, getState, dispatch } = thunkApi;
+
     const userData = getUserAuthData(getState());
     const currentSettings = getJsonSettings(getState());
 
@@ -31,15 +32,29 @@ export const saveJsonSettings = createAsyncThunk<
     }
 
     try {
+        // const response = await dispatch(
+        //     setJsonSettingsMutation({
+        //         userId: userData.id,
+        //         jsonSettings: {
+        //             ...currentSettings,
+        //             ...newJsonSettings,
+        //         },
+        //     }),
+        // ).unwrap();
+
+        const updatedSettings = {
+            ...currentSettings,
+            ...newJsonSettings,
+        };
         const response = await dispatch(
-            setJsonSettingsMutation({
-                userId: userData.id,
-                jsonSettings: {
-                    ...currentSettings,
-                    ...newJsonSettings,
+            updateUserDataMutation({
+                userId: userData?.id,
+                updates: {
+                    jsonSettings: updatedSettings,
                 },
             }),
         ).unwrap();
+        console.log('updateProfileData', response);
 
         if (!response || !response.jsonSettings) {
             return rejectWithValue('Failed to retrieve updated JSON settings');
