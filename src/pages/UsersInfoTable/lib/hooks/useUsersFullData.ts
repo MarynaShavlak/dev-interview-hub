@@ -1,5 +1,4 @@
 import { useUsers } from '@/entities/User';
-import { useProfiles } from '@/entities/Profile';
 import { useArticles } from '@/entities/Article';
 import { getRolesData } from '../helpers/getRolesData/getRolesData';
 import { getEnabledUserFeatures } from '../helpers/processUserFeatures/processUserFeatures';
@@ -9,26 +8,18 @@ import { ArticlesByUserData } from '../../model/types/userFullInfo';
 
 export const useUsersFullData = () => {
     const { data: users, isLoading: isUsersLoading } = useUsers();
-    const { data: profiles, isLoading: isProfilesLoading } = useProfiles(null);
+    // const { data: profiles, isLoading: isProfilesLoading } = useProfiles(null);
     const { data: articles, isLoading: isArticlesLoading } = useArticles({});
 
-    const isLoading = isUsersLoading || isProfilesLoading || isArticlesLoading;
+    const isLoading = isUsersLoading || isArticlesLoading;
 
-    if (!users || !profiles || !articles)
-        return { users: [], profiles: [], articles: [], isLoading };
+    if (!users || !articles) return { users: [], articles: [], isLoading };
 
-    const partialUsersData = users.map(({ id, roles, features, username }) => {
-        return {
-            id: id || '',
-            username: username || '',
-            roles: getRolesData(roles),
-            features: getEnabledUserFeatures(features),
-        };
-    });
-
-    const partialProfilesData = profiles.map((profile) => {
-        const {
+    const partialUsersData = users.map(
+        ({
             id,
+            roles,
+            features,
             username,
             firstname,
             lastname,
@@ -37,21 +28,23 @@ export const useUsersFullData = () => {
             country,
             avatar,
             city,
-        } = profile;
-
-        return {
-            id,
-            username,
-            age,
-            city,
-            country,
-            currency,
-            avatar,
-            fullName:
-                `${capitalizeFirstLetter(firstname || '')} ${capitalizeFirstLetter(lastname || '')}` ||
-                '',
-        };
-    });
+        }) => {
+            return {
+                id: id || '',
+                username,
+                roles: getRolesData(roles),
+                features: getEnabledUserFeatures(features),
+                age,
+                city,
+                country,
+                currency,
+                avatar,
+                fullName:
+                    `${capitalizeFirstLetter(firstname || '')} ${capitalizeFirstLetter(lastname || '')}` ||
+                    '',
+            };
+        },
+    );
 
     const articlesByUserData: ArticlesByUserData = {};
     articles.forEach((article) => {
@@ -61,7 +54,7 @@ export const useUsersFullData = () => {
 
     const combinedData = getCombinedUsersData(
         partialUsersData,
-        partialProfilesData,
+
         articlesByUserData,
     );
 

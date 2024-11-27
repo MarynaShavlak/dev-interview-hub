@@ -7,8 +7,8 @@ export interface UserPartial {
     features: string;
     age: string;
     city: string;
-    country: string;
     currency: string;
+    country: string;
     avatar: string;
     lastname: string;
     firstname: string;

@@ -44,33 +44,6 @@ export const useUsersTableData = () => {
         },
     );
 
-    // const partialProfilesData = profiles.map((profile) => {
-    //     const {
-    //         id,
-    //         username,
-    //         firstname,
-    //         lastname,
-    //         age,
-    //         currency,
-    //         country,
-    //         avatar,
-    //         city,
-    //     } = profile;
-    //
-    //     return {
-    //         id,
-    //         username,
-    //         age,
-    //         city,
-    //         country,
-    //         currency,
-    //         avatar,
-    //         fullName:
-    //             `${capitalizeFirstLetter(firstname || '')} ${capitalizeFirstLetter(lastname || '')}` ||
-    //             '',
-    //     };
-    // });
-
     const articlesByUserData: ArticlesByUserData = {};
     articles.forEach((article) => {
         const userId: string = article.user.id;
