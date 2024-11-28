@@ -4,8 +4,10 @@
  * @property {number} rate - The numeric rating given to the item. This value is required.
  * @property {string} [feedback] - Optional feedback or comment related to the rating.
  */
+import { User } from '@/entities/User';
 
 export interface RatingType {
     rate: number;
     feedback?: string;
+    user: User;
 }

@@ -1,20 +1,53 @@
-import { rtkApi } from '@/shared/api/rtkApi';
+import { getDocs, query } from 'firebase/firestore';
+import { ArticleRating } from '../model/types/articleRating';
+import { firestoreApi } from '@/shared/api/rtkApi';
+import { dataPoint } from '@/shared/lib/firestore/firestore';
 
-import { RatingType } from '@/entities/Rating';
-
-export interface ArticleRating extends RatingType {
-    articleId: string;
-    userId: string;
-}
-
-export const articlesRatingsApi = rtkApi.injectEndpoints({
+export const articlesRatingFirebaseApi = firestoreApi.injectEndpoints({
     endpoints: (build) => ({
-        getArticlesRatings: build.query<ArticleRating[], null>({
-            query: () => ({
-                url: '/article-ratings',
-            }),
+        getArticlesRatings: build.query<ArticleRating[], void>({
+            async queryFn() {
+                try {
+                    const ratingsCollection =
+                        dataPoint<ArticleRating>('ratings');
+                    const queryRef = query(ratingsCollection);
+                    const querySnapshot = await getDocs(queryRef);
+
+                    if (!querySnapshot.empty) {
+                        const ratings = querySnapshot.docs.map((doc) => ({
+                            ...doc.data(),
+                        }));
+                        console.log('all ratings', ratings);
+                        return { data: ratings };
+                    }
+
+                    return {
+                        error: {
+                            name: 'NotFound',
+                            message: 'Ratings not found',
+                        },
+                    };
+                } catch (error) {
+                    console.error('Error fetching ratings:', error);
+                    return { error };
+                }
+            },
         }),
     }),
 });
 
-export const useArticlesRatings = articlesRatingsApi.useGetArticlesRatingsQuery;
+export const useArticlesRatings =
+    articlesRatingFirebaseApi.useGetArticlesRatingsQuery;
+
+// ////////////////////////////////////
+// export const articlesRatingsApi = rtkApi.injectEndpoints({
+//     endpoints: (build) => ({
+//         getArticlesRatings: build.query<ArticleRating[], null>({
+//             query: () => ({
+//                 url: '/article-ratings',
+//             }),
+//         }),
+//     }),
+// });
+//
+// export const useArticlesRatings = articlesRatingsApi.useGetArticlesRatingsQuery;

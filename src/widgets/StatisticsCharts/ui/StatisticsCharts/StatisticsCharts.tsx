@@ -15,6 +15,7 @@ import { ArticleCategoriesCharts } from '@/features/ArticleCategoriesCharts';
 import { UserRatingsBubbleChart } from '@/features/UserRatingsBubbleChart';
 import { ArticleCommentsCharts } from '@/features/ArticleCommentsCharts';
 import { HStack, VStack } from '@/shared/ui/common/Stack';
+import { processComments } from '../../lib/dataHandlers/processComments/processComments';
 
 export const StatisticsCharts = () => {
     const { t } = useTranslation('admin');
@@ -24,7 +25,7 @@ export const StatisticsCharts = () => {
 
     const data = initializeData(articles, users);
     processArticles(data, articles);
-    // processComments(data, comments);
+    processComments(data, comments);
     processRatings(data, ratings);
 
     console.log('data', data);

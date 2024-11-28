@@ -67,8 +67,8 @@ export const processRatings = (
     };
 
     ratings.forEach((rating) => {
-        const { articleId, rate, feedback, userId } = rating;
-        updateUserRatingData(userId, rate, feedback);
+        const { articleId, rate, feedback, user } = rating;
+        updateUserRatingData(user?.id, rate, feedback);
         updateArticleRatingData(articleId, rate, feedback);
     });
 

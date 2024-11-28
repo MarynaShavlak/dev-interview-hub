@@ -19,13 +19,14 @@ export const useStatisticsData = () => {
         data: ratings = [],
         isLoading: isRatingsLoading,
         error: isRatingsError,
-    } = useArticlesRatings(null);
+    } = useArticlesRatings();
     const {
         data: comments = [],
         isLoading: isCommentsLoading,
         error: isCommentsError,
-    } = useArticlesComments(null);
+    } = useArticlesComments();
     console.log('comments', comments);
+    console.log('ratings', ratings);
 
     const isLoading =
         isUsersLoading ||
