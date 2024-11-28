@@ -34,12 +34,12 @@ const createUserOptionCol = createOptionColumn<UsersTableInfo>();
 const createUserAvatarCol = createImageColumn<UsersTableInfo>();
 
 const columns = [
-    columnHelper.accessor('id', createUserTextCol({ id: 'id', size: 40 })),
+    // columnHelper.accessor('id', createUserTextCol({ id: 'id', size: 40 })),
     columnHelper.accessor(
         'avatar',
         createUserAvatarCol({
             id: 'avatar',
-            size: 30,
+            size: 40,
             className: cls.tableAvatar,
         }),
     ),
