@@ -47,5 +47,5 @@ export const useArticlesComments =
 
 export const getCommentsByArticleIdQuery =
     articlesCommentsFirebaseApi.endpoints.getCommentsByArticleId.initiate;
-const useCommentsByArticleId =
+export const useCommentsByArticleId =
     articlesCommentsFirebaseApi.useGetCommentsByArticleIdQuery;

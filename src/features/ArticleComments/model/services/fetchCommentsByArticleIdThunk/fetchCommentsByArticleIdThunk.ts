@@ -1,8 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { onSnapshot } from 'firebase/firestore';
+import { onSnapshot, query, where } from 'firebase/firestore';
 import { ThunkConfig } from '@/app/providers/StoreProvider';
 import { ArticleComment } from '../../..';
-import { getAllDocRefsByField } from '@/shared/lib/firestore/getAllDocRefsByField/getAllDocRefsByField';
+import { dataPoint } from '@/shared/lib/firestore/firestore';
 
 /**
  * Thunk to fetch comments associated with a specific article ID.
@@ -30,103 +30,143 @@ export const fetchCommentsByArticleIdThunk = createAsyncThunk<
     if (!articleId) {
         return rejectWithValue('Article ID is required.');
     }
-
     try {
-        const commentsByArticleRefs =
-            await getAllDocRefsByField<ArticleComment>(
-                'comments',
-                'articleId',
-                articleId,
+        const commentsCollection = dataPoint<ArticleComment>('comments');
+        console.log('commentsCollection', commentsCollection);
+        const commentsQuery = query(
+            commentsCollection,
+            where('articleId', '==', articleId),
+        );
+        console.log('commentsQuery', commentsQuery);
+        return await new Promise((resolve, reject) => {
+            const unsubscribe = onSnapshot(
+                commentsQuery,
+                (snapshot) => {
+                    console.log('snapshot', snapshot.docs);
+                    if (!snapshot.empty) {
+                        const commentsData = snapshot.docs.map((doc) => ({
+                            ...doc.data(),
+                        })) as ArticleComment[];
+                        console.log('commentsData', commentsData);
+
+                        resolve(commentsData); // Resolve with comments data
+                    } else {
+                        // reject(rejectWithValue('Comments not found'));
+                        resolve([]);
+                    }
+                },
+                (error) => {
+                    unsubscribe();
+                    reject(rejectWithValue(error.message));
+                },
             );
 
-        if (!commentsByArticleRefs || commentsByArticleRefs.length === 0) {
-            return rejectWithValue('Comments not found');
-        }
-
-        const commentsData: ArticleComment[] = [];
-        const unsubscribeFunctions: (() => void)[] = [];
-
-        return new Promise((resolve, reject) => {
-            let remaining = commentsByArticleRefs.length;
-
-            commentsByArticleRefs.forEach((docRef, index) => {
-                const unsubscribe = onSnapshot(
-                    docRef,
-                    (snapshot) => {
-                        if (snapshot.exists()) {
-                            const data = snapshot.data() as ArticleComment;
-                            commentsData.push(data);
-
-                            // Resolve once all comments have been received
-                            // eslint-disable-next-line no-plusplus
-                            if (--remaining === 0) {
-                                unsubscribeFunctions.forEach((unsub) =>
-                                    unsub(),
-                                ); // Cleanup
-                                resolve(commentsData); // Resolve with all the collected comments
-                            }
-                        } else {
-                            // eslint-disable-next-line no-plusplus
-                            remaining--; // Decrement remaining if snapshot doesn't exist
-                            if (remaining === 0) {
-                                unsubscribeFunctions.forEach((unsub) =>
-                                    unsub(),
-                                ); // Cleanup
-                                reject(rejectWithValue('Comments not found'));
-                            }
-                        }
-                    },
-                    (error) => {
-                        // eslint-disable-next-line no-plusplus
-                        remaining--; // Decrement remaining on error
-                        if (remaining === 0) {
-                            unsubscribeFunctions.forEach((unsub) => unsub()); // Cleanup
-                            reject(rejectWithValue(error.message));
-                        }
-                    },
-                );
-
-                // Store the unsubscribe function to clean up later
-                unsubscribeFunctions.push(unsubscribe);
-            });
-
-            // Optionally, clean up on abort (if thunk gets canceled)
             thunkApi.signal.addEventListener('abort', () => {
-                unsubscribeFunctions.forEach((unsub) => unsub()); // Cleanup on abort
+                unsubscribe();
                 reject(rejectWithValue('Request aborted'));
             });
         });
-
-        // return await new Promise((resolve, reject) => {
-        //     const unsubscribe = onSnapshot(
-        //         commentsByArticleRefs,
-        //         (snapshot) => {
-        //             if (snapshot.exists()) {
-        //                 const commentsData =
-        //                     snapshot.data() as ArticleComment[];
-        //
-        //                 resolve(commentsData); // Resolve the promise with user data
-        //             } else {
-        //                 unsubscribe(); // Cleanup the listener
-        //                 reject(rejectWithValue('Comments not found'));
-        //             }
-        //         },
-        //         (error) => {
-        //             unsubscribe(); // Cleanup the listener
-        //             reject(rejectWithValue(error.message));
-        //         },
-        //     );
-        //
-        //     // Optionally, clean up on abort (if thunk gets canceled)
-        //     thunkApi.signal.addEventListener('abort', () => {
-        //         unsubscribe();
-        //         reject(rejectWithValue('Request aborted'));
-        //     });
-        // });
     } catch (error) {
         console.error('Error fetching comments by article ID:', error);
         return rejectWithValue('Failed to fetch comments.');
     }
+
+    // try {
+    //     const commentsByArticleRefs =
+    //         await getAllDocRefsByField<ArticleComment>(
+    //             'comments',
+    //             'articleId',
+    //             articleId,
+    //         );
+    //
+    //     if (!commentsByArticleRefs || commentsByArticleRefs.length === 0) {
+    //         return rejectWithValue('Comments not found');
+    //     }
+    //
+    //     const commentsData: ArticleComment[] = [];
+    //     const unsubscribeFunctions: (() => void)[] = [];
+    //
+    //     return new Promise((resolve, reject) => {
+    //         let remaining = commentsByArticleRefs.length;
+    //
+    //         commentsByArticleRefs.forEach((docRef, index) => {
+    //             const unsubscribe = onSnapshot(
+    //                 docRef,
+    //                 (snapshot) => {
+    //                     if (snapshot.exists()) {
+    //                         const data = snapshot.data() as ArticleComment;
+    //                         commentsData.push(data);
+    //
+    //                         // Resolve once all comments have been received
+    //                         // eslint-disable-next-line no-plusplus
+    //                         if (--remaining === 0) {
+    //                             unsubscribeFunctions.forEach((unsub) =>
+    //                                 unsub(),
+    //                             ); // Cleanup
+    //                             resolve(commentsData); // Resolve with all the collected comments
+    //                         }
+    //                     } else {
+    //                         // eslint-disable-next-line no-plusplus
+    //                         remaining--; // Decrement remaining if snapshot doesn't exist
+    //                         if (remaining === 0) {
+    //                             unsubscribeFunctions.forEach((unsub) =>
+    //                                 unsub(),
+    //                             ); // Cleanup
+    //                             reject(rejectWithValue('Comments not found'));
+    //                         }
+    //                     }
+    //                 },
+    //                 (error) => {
+    //                     // eslint-disable-next-line no-plusplus
+    //                     remaining--; // Decrement remaining on error
+    //                     if (remaining === 0) {
+    //                         unsubscribeFunctions.forEach((unsub) => unsub()); // Cleanup
+    //                         reject(rejectWithValue(error.message));
+    //                     }
+    //                 },
+    //             );
+    //
+    //             // Store the unsubscribe function to clean up later
+    //             unsubscribeFunctions.push(unsubscribe);
+    //         });
+    //
+    //         // Optionally, clean up on abort (if thunk gets canceled)
+    //         thunkApi.signal.addEventListener('abort', () => {
+    //             unsubscribeFunctions.forEach((unsub) => unsub()); // Cleanup on abort
+    //             reject(rejectWithValue('Request aborted'));
+    //         });
+    //     });
+    //
+    //     // return await new Promise((resolve, reject) => {
+    //     //     const unsubscribe = onSnapshot(
+    //     //         commentsByArticleRefs,
+    //     //         (snapshot) => {
+    //     //             if (snapshot.exists()) {
+    //     //                 const commentsData =
+    //     //                     snapshot.data() as ArticleComment[];
+    //     //
+    //     //                 resolve(commentsData); // Resolve the promise with user data
+    //     //             } else {
+    //     //                 unsubscribe(); // Cleanup the listener
+    //     //                 reject(rejectWithValue('Comments not found'));
+    //     //             }
+    //     //         },
+    //     //         (error) => {
+    //     //             unsubscribe(); // Cleanup the listener
+    //     //             reject(rejectWithValue(error.message));
+    //     //         },
+    //     //     );
+    //     //
+    //     //     // Optionally, clean up on abort (if thunk gets canceled)
+    //     //     thunkApi.signal.addEventListener('abort', () => {
+    //     //         unsubscribe();
+    //     //         reject(rejectWithValue('Request aborted'));
+    //     //     });
+    //     // });
+    // } catch (error) {
+    //     console.error('Error fetching comments by article ID:', error);
+    //     return rejectWithValue('Failed to fetch comments.');
+    // }
 });
 
 // const response = await extra.api.get<Comment[]>('/comments', {
