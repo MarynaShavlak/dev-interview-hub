@@ -1,9 +1,11 @@
-import { getDoc, getDocs, query, updateDoc } from 'firebase/firestore';
+import { getDoc, updateDoc } from 'firebase/firestore';
 import { firestoreApi, rtkApi } from '@/shared/api/rtkApi';
 import { User } from '../model/types/user';
 import { JsonSettings } from '../model/types/jsonSettings';
 import { getUserDocRefById } from '../lib/utilities/getUserDocRefById/getUserDocRefById';
-import { dataPoint } from '@/shared/lib/firestore/firestore';
+import { fetchCollection } from '@/shared/lib/firestore/fetchCollection/fetchCollection';
+import { fetchDocumentByRef } from '@/shared/lib/firestore/fetchDocumentByRef/fetchDocumentByRef';
+import { getDocRefByField } from '@/shared/lib/firestore/getDocRefByField/getDocRefByField';
 
 interface SetJsonSettingsArg {
     userId: string;
@@ -47,24 +49,8 @@ export const userFirebaseApi = firestoreApi.injectEndpoints({
         getUsers: build.query<User[], void>({
             async queryFn() {
                 try {
-                    const usersCollection = dataPoint<User>('users');
-                    const queryRef = query(usersCollection);
-                    const querySnapshot = await getDocs(queryRef);
-
-                    if (!querySnapshot.empty) {
-                        const users = querySnapshot.docs.map((doc) => ({
-                            ...doc.data(),
-                        }));
-
-                        return { data: users };
-                    }
-
-                    return {
-                        error: {
-                            name: 'NotFound',
-                            message: 'Users not found',
-                        },
-                    };
+                    const users = await fetchCollection<User>('users');
+                    return { data: users };
                 } catch (error) {
                     return { error };
                 }
@@ -73,17 +59,14 @@ export const userFirebaseApi = firestoreApi.injectEndpoints({
         getUserDataById: build.query<User, string>({
             async queryFn(userId) {
                 try {
-                    const userDocRef = await getUserDocRefById(userId);
-                    if (userDocRef) {
-                        const userDoc = await getDoc(userDocRef);
-                        const userData = userDoc.data();
-                        if (userData) {
-                            return { data: { ...userData } as User };
-                        }
-                    }
-                    return {
-                        error: { name: 'NotFound', message: 'User not found' },
-                    };
+                    const userDocRef = await getDocRefByField<User>(
+                        'users',
+                        'id',
+                        userId,
+                    );
+
+                    const userData = await fetchDocumentByRef<User>(userDocRef);
+                    return { data: userData };
                 } catch (error) {
                     return { error };
                 }

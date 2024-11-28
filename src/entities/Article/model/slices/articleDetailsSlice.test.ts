@@ -1,4 +1,4 @@
-import { fetchArticleById } from '../services/fetchArticleById/fetchArticleById';
+import { fetchArticleByIdThunk } from '../services/fetchArticleByIdThunk/fetchArticleByIdThunk';
 import { ArticleDetailsSchema } from '../types/articleDetailsSchema';
 import { articleDetailsReducer } from './articleDetailsSlice';
 import { testArticleData } from '../../testing';
@@ -25,7 +25,7 @@ describe('articleDetailsSlice tests', () => {
         expect(
             articleDetailsReducer(
                 state as ArticleDetailsSchema,
-                fetchArticleById.pending,
+                fetchArticleByIdThunk.pending,
             ),
         ).toEqual({
             isLoading: true,
@@ -39,7 +39,11 @@ describe('articleDetailsSlice tests', () => {
         expect(
             articleDetailsReducer(
                 state as ArticleDetailsSchema,
-                fetchArticleById.fulfilled(testArticleData, 'requestId', ''),
+                fetchArticleByIdThunk.fulfilled(
+                    testArticleData,
+                    'requestId',
+                    '',
+                ),
             ),
         ).toEqual({
             isLoading: false,
@@ -54,7 +58,7 @@ describe('articleDetailsSlice tests', () => {
         expect(
             articleDetailsReducer(
                 state as ArticleDetailsSchema,
-                fetchArticleById.fulfilled(null as any, 'requestId', ''),
+                fetchArticleByIdThunk.fulfilled(null as any, 'requestId', ''),
             ),
         ).toEqual({
             isLoading: false,
@@ -68,7 +72,7 @@ describe('articleDetailsSlice tests', () => {
         expect(
             articleDetailsReducer(
                 state as ArticleDetailsSchema,
-                fetchArticleById.rejected(
+                fetchArticleByIdThunk.rejected(
                     new Error('Fetch failed'),
                     '',
                     undefined,

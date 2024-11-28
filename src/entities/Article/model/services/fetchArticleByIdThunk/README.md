@@ -1,6 +1,6 @@
-#  `fetchArticleById` Thunk Documentation
+#  `fetchArticleByIdThunk` Thunk Documentation
 
-The `fetchArticleById` thunk is an asynchronous action designed to fetch an article by its ID from the backend. This thunk leverages the createAsyncThunk function from Redux Toolkit to handle the asynchronous logic and state management.
+The `fetchArticleByIdThunk` thunk is an asynchronous action designed to fetch an article by its ID from the backend. This thunk leverages the createAsyncThunk function from Redux Toolkit to handle the asynchronous logic and state management.
 
 ## Parameters
 
@@ -29,13 +29,13 @@ The thunk catches and handles errors during the fetch process. If an error occur
 This ensures that any issues during the data fetch can be identified and addressed promptly.
 
 ## Usage Example
-The following example demonstrates how to use the `fetchArticleById` thunk in a React component to fetch and display profile data.
+The following example demonstrates how to use the `fetchArticleByIdThunk` thunk in a React component to fetch and display profile data.
 
 ```typescript jsx
 import { memo } from 'react';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect/useInitialEffect';
-import { fetchArticleById } from '../../model/services/fetchArticleById/fetchArticleById';
+import { fetchArticleByIdThunk } from '../../model/services/fetchArticleByIdThunk/fetchArticleByIdThunk';
 
 interface ArticleDetailsProps {
     className?: string;
@@ -47,7 +47,7 @@ export const ArticleDetails = memo(({ className, id }: ArticleDetailsProps) => {
 
     useInitialEffect(() => {
         if (id) {
-            dispatch(fetchArticleById(id));
+            dispatch(fetchArticleByIdThunk(id));
         }
     });
 
@@ -60,4 +60,4 @@ export const ArticleDetails = memo(({ className, id }: ArticleDetailsProps) => {
 ```
 
 ## Conclusion 
-The `fetchArticleById` thunk provides a reliable mechanism for fetching article data from the backend using an article ID. It handles the asynchronous API call, processes the response, and manages errors effectively. This thunk is essential for components that require dynamic article data retrieval, ensuring a seamless user experience with proper error handling and state management.
+The `fetchArticleByIdThunk` thunk provides a reliable mechanism for fetching article data from the backend using an article ID. It handles the asynchronous API call, processes the response, and manages errors effectively. This thunk is essential for components that require dynamic article data retrieval, ensuring a seamless user experience with proper error handling and state management.

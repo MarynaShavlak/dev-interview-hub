@@ -1,11 +1,11 @@
 import { TestAsyncThunk } from '@/shared/lib/tests/TestAsyncThunk/TestAsyncThunk';
-import { fetchArticleById } from './fetchArticleById';
+import { fetchArticleByIdThunk } from './fetchArticleByIdThunk';
 
 import { testArticleData } from '../../../testing';
 
 describe('async thunk fetchArticleById test', () => {
     test('successfully fetches an article', async () => {
-        const thunk = new TestAsyncThunk(fetchArticleById);
+        const thunk = new TestAsyncThunk(fetchArticleByIdThunk);
         thunk.api.get.mockReturnValue(
             Promise.resolve({ data: testArticleData }),
         );
@@ -22,7 +22,7 @@ describe('async thunk fetchArticleById test', () => {
     });
 
     test('error when article is not found', async () => {
-        const thunk = new TestAsyncThunk(fetchArticleById);
+        const thunk = new TestAsyncThunk(fetchArticleByIdThunk);
         thunk.api.get.mockReturnValue(Promise.resolve({ data: null }));
 
         const result = await thunk.callThunk('1');
@@ -32,7 +32,7 @@ describe('async thunk fetchArticleById test', () => {
     });
 
     test('error when API call fails', async () => {
-        const thunk = new TestAsyncThunk(fetchArticleById);
+        const thunk = new TestAsyncThunk(fetchArticleByIdThunk);
         thunk.api.get.mockReturnValue(
             Promise.reject(new Error('Failed to fetch article.')),
         );
@@ -44,7 +44,7 @@ describe('async thunk fetchArticleById test', () => {
     });
 
     test('error when article ID is missing', async () => {
-        const thunk = new TestAsyncThunk(fetchArticleById);
+        const thunk = new TestAsyncThunk(fetchArticleByIdThunk);
 
         const result = await thunk.callThunk(undefined);
 

@@ -15,8 +15,8 @@ Article/
 │   ├── selectors/
 │   │   └── articleDetails.ts
 │   ├── services/
-│   │   └── fetchArticleById/
-│   │       └── fetchArticleById.ts
+│   │   └── fetchArticleByIdThunk/
+│   │       └── fetchArticleByIdThunk.ts
 │   ├── slices/
 │   │   └── articleDetailsSlice.ts
 │   └── types/
@@ -90,8 +90,8 @@ Article/
   - [**articleDetails.ts**](./model/selectors/README.md): Contains selector functions to retrieve article-related data from the Redux store.
 
 - **`services/`**
-  - **`fetchArticleById/`**
-    - [**fetchArticleById.ts**](./model/services/fetchArticleById/README.md): Fetches article data by ID from the API.
+  - **`fetchArticleByIdThunk/`**
+    - [**fetchArticleByIdThunk.ts**](model/services/fetchArticleByIdThunk/README.md): Fetches article data by ID from the API.
 
 - **`slices/`**
   - [**articleDetailsSlice.ts**](model/slices/README.md): Manages article-related state in Redux, including actions and reducers.

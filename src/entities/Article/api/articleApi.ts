@@ -7,7 +7,7 @@ import {
     orderBy,
 } from 'firebase/firestore';
 
-import { firestoreApi, rtkApi } from '@/shared/api/rtkApi';
+import { firestoreApi } from '@/shared/api/rtkApi';
 import { Article } from '../model/types/article';
 import { dataPoint } from '@/shared/lib/firestore/firestore';
 import {
@@ -15,19 +15,8 @@ import {
     ArticleSortField,
 } from '../model/consts/articleConsts';
 import { SortOrder } from '@/shared/types/sortOrder';
-
-export const articleApi = rtkApi.injectEndpoints({
-    endpoints: (build) => ({
-        getArticles: build.query<Article[], null>({
-            query: () => ({
-                url: '/articles',
-                params: {
-                    _expand: 'user',
-                },
-            }),
-        }),
-    }),
-});
+import { getDocRefByField } from '@/shared/lib/firestore/getDocRefByField/getDocRefByField';
+import { fetchDocumentByRef } from '@/shared/lib/firestore/fetchDocumentByRef/fetchDocumentByRef';
 
 export const articleFirebaseApi = firestoreApi.injectEndpoints({
     endpoints: (build) => ({
@@ -98,6 +87,23 @@ export const articleFirebaseApi = firestoreApi.injectEndpoints({
                 }
             },
         }),
+        getArticleDataById: build.query<Article, string>({
+            async queryFn(articleId) {
+                try {
+                    const articleDocRef = await getDocRefByField<Article>(
+                        'articles',
+                        'id',
+                        articleId,
+                    );
+
+                    const articleData =
+                        await fetchDocumentByRef<Article>(articleDocRef);
+                    return { data: articleData };
+                } catch (error) {
+                    return { error };
+                }
+            },
+        }),
     }),
 });
 
@@ -105,6 +111,23 @@ export const articleFirebaseApi = firestoreApi.injectEndpoints({
 export const useArticles = articleFirebaseApi.useGetArticlesQuery;
 export const getArticlesQuery =
     articleFirebaseApi.endpoints.getArticles.initiate;
+
+export const getArticleDataByIdQuery =
+    articleFirebaseApi.endpoints.getArticleDataById.initiate;
+const useArticleDataById = articleFirebaseApi.useGetArticleDataByIdQuery;
+
+// export const articleApi = rtkApi.injectEndpoints({
+//     endpoints: (build) => ({
+//         getArticles: build.query<Article[], null>({
+//             query: () => ({
+//                 url: '/articles',
+//                 params: {
+//                     _expand: 'user',
+//                 },
+//             }),
+//         }),
+//     }),
+// });
 
 // const filteredArticles = querySnapshot.docs
 //     .map((doc) => doc.data())

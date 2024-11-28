@@ -8,7 +8,7 @@ Utilizing custom `buildSlice` function, it handles various aspects of article in
 ```typescript
 import { PayloadAction } from '@reduxjs/toolkit';
 import { buildSlice } from '@/shared/lib/store';
-import { fetchArticleById } from '../services/fetchArticleById/fetchArticleById';
+import { fetchArticleByIdThunk } from '../services/fetchArticleByIdThunk/fetchArticleByIdThunk';
 import { Article } from '../types/article';
 import { ArticleDetailsSchema } from '../types/articleDetailsSchema';
 
@@ -17,7 +17,7 @@ import { ArticleDetailsSchema } from '../types/articleDetailsSchema';
 - `buildSlice`: A custom utility function for creating Redux slices.
 - `Article`: A TypeScript type representing the article data structure.
 - `ArticleDetailsSchema`: A TypeScript type defining the schema for article details state.
-- `fetchArticleById`: An asynchronous thunk action for fetching article details by ID.
+- `fetchArticleByIdThunk`: An asynchronous thunk action for fetching article details by ID.
 
 ## Initial State
 ```typescript
@@ -46,9 +46,9 @@ It includes:
 
 | **Action**                   | **Description**                                                                 | **Payload**                            | **State Changes**                                                 |
 |------------------------------|---------------------------------------------------------------------------------|----------------------------------------|--------------------------------------------------------------------|
-| `fetchArticleById.pending`   | Indicates that the article details are being fetched.                               | None                                   | Sets `isLoading` to `true` and clears any existing `error`.        |
-| `fetchArticleById.fulfilled` | Handles successful fetching of article details.                                    | `Article` object with fetched data     | Updates `data` with the fetched article details, and sets `isLoading` to `false`. |
-| `fetchArticleById.rejected`  | Handles errors encountered while fetching article details.                         | Error information                      | Sets `isLoading` to `false` and updates `error` with the payload.  |
+| `fetchArticleByIdThunk.pending`   | Indicates that the article details are being fetched.                               | None                                   | Sets `isLoading` to `true` and clears any existing `error`.        |
+| `fetchArticleByIdThunk.fulfilled` | Handles successful fetching of article details.                                    | `Article` object with fetched data     | Updates `data` with the fetched article details, and sets `isLoading` to `false`. |
+| `fetchArticleByIdThunk.rejected`  | Handles errors encountered while fetching article details.                         | Error information                      | Sets `isLoading` to `false` and updates `error` with the payload.  |
 
 
 ## Exports
@@ -79,13 +79,13 @@ const store = configureStore({
 
 import { useEffect } from 'react';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { fetchArticleById } from '../services/fetchArticleById/fetchArticleById';
+import { fetchArticleByIdThunk } from '../services/fetchArticleByIdThunk/fetchArticleByIdThunk';
 
 const ArticleDetailsComponent = ({ articleId }) => {
     const dispatch = useAppDispatch();
 
     useEffect(() => {
-        dispatch(fetchArticleById(articleId));
+        dispatch(fetchArticleByIdThunk(articleId));
     }, [dispatch, articleId]);
 
     // Your component logic here
@@ -101,4 +101,4 @@ const ArticleDetailsComponent = ({ articleId }) => {
 ## Conclusion 
 The `articleDetailsSlice` effectively manages the state of article details in a Redux-based application. 
 It provides a structured approach to handle loading states and errors, ensuring that article details management is streamlined and maintainable. 
-By integrating the `fetchArticleById` thunk, this slice supports asynchronous operations, enhancing the user experience with seamless data fetching. Utilizing this slice can simplify article-related state management, leading to a more robust and user-friendly application.
+By integrating the `fetchArticleByIdThunk` thunk, this slice supports asynchronous operations, enhancing the user experience with seamless data fetching. Utilizing this slice can simplify article-related state management, leading to a more robust and user-friendly application.

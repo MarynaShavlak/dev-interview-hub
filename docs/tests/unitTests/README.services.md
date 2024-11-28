@@ -22,7 +22,7 @@
 
 ## 3. Article Service
 
-### [fetchArticleById](../../../src/entities/Article/model/services/fetchArticleById/fetchArticleById.test.ts)
+### [fetchArticleByIdThunk](../../../src/entities/Article/model/services/fetchArticleByIdThunk/fetchArticleByIdThunk.test.ts)
 - **Success**: Confirms correct fetching of article data.
 - **Error Handling**: Tests for missing article, API failures, and undefined article ID.
 

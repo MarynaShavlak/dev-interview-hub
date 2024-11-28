@@ -1,32 +1,15 @@
-import { getDocs, query } from 'firebase/firestore';
 import { ArticleRating } from '../model/types/articleRating';
 import { firestoreApi } from '@/shared/api/rtkApi';
-import { dataPoint } from '@/shared/lib/firestore/firestore';
+import { fetchCollection } from '@/shared/lib/firestore/fetchCollection/fetchCollection';
 
 export const articlesRatingFirebaseApi = firestoreApi.injectEndpoints({
     endpoints: (build) => ({
         getArticlesRatings: build.query<ArticleRating[], void>({
             async queryFn() {
                 try {
-                    const ratingsCollection =
-                        dataPoint<ArticleRating>('ratings');
-                    const queryRef = query(ratingsCollection);
-                    const querySnapshot = await getDocs(queryRef);
-
-                    if (!querySnapshot.empty) {
-                        const ratings = querySnapshot.docs.map((doc) => ({
-                            ...doc.data(),
-                        }));
-
-                        return { data: ratings };
-                    }
-
-                    return {
-                        error: {
-                            name: 'NotFound',
-                            message: 'Ratings not found',
-                        },
-                    };
+                    const ratings =
+                        await fetchCollection<ArticleRating>('ratings');
+                    return { data: ratings };
                 } catch (error) {
                     console.error('Error fetching ratings:', error);
                     return { error };

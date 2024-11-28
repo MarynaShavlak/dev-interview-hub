@@ -1,7 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { onSnapshot } from 'firebase/firestore';
 import { ThunkConfig } from '@/app/providers/StoreProvider';
-import { User, userActions, getUserDocRefById } from '@/entities/User';
+import { User, userActions } from '@/entities/User';
+import { getDocRefByField } from '@/shared/lib/firestore/getDocRefByField/getDocRefByField';
 
 export const getUserProfileThunk = createAsyncThunk<
     User,
@@ -16,7 +17,7 @@ export const getUserProfileThunk = createAsyncThunk<
     }
 
     try {
-        const userDocRef = await getUserDocRefById(userId);
+        const userDocRef = await getDocRefByField<User>('users', 'id', userId);
         if (!userDocRef) {
             return rejectWithValue('User not found');
         }

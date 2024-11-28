@@ -23,7 +23,7 @@ The **`ArticleDetails`** component accepts the following props:
 
 2. **Dynamic Reducer Management**: Incorporates `DynamicModuleLoader` to manage the `articleDetailsReducer`. This approach dynamically loads the reducer only when needed, which helps in optimizing application performance by reducing the initial bundle size and efficiently handling state.
 
-3. **Initial Data Fetching**: Utilizes the `useInitialEffect` hook to dispatch `fetchArticleById` on component mount. This ensures that article data is fetched and available for rendering as soon as the component is initialized.
+3. **Initial Data Fetching**: Utilizes the `useInitialEffect` hook to dispatch `fetchArticleByIdThunk` on component mount. This ensures that article data is fetched and available for rendering as soon as the component is initialized.
 
 ## Usage Example
 ```typescript jsx
