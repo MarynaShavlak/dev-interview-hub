@@ -228,14 +228,14 @@ export interface Article {
 //         img: 'https://example.com/state-vs-props.jpg',
 //         views: 1120,
 //         createdAt: '22.06.2023',
-        user: {
-            id: 'vvfdFnPQMLVkrnCBjsTZcPsUq9U2',
-            username: 'mainUser',
-            firstname: 'Tetiana',
-            lastname: 'Shavlak',
-            email: 'mainUser@gmail.com',
-            avatar: 'https://drive.google.com/thumbnail?id=1J1xUPYYkJeOsBTpDuf36vsV7UfxlM2uG&sz=w1000',
-        },
+//         user: {
+//             id: 'vvfdFnPQMLVkrnCBjsTZcPsUq9U2',
+//             username: 'mainUser',
+//             firstname: 'Tetiana',
+//             lastname: 'Shavlak',
+//             email: 'mainUser@gmail.com',
+//             avatar: 'https://drive.google.com/thumbnail?id=1J1xUPYYkJeOsBTpDuf36vsV7UfxlM2uG&sz=w1000',
+//         },
 //         category: [ArticleCategory.REACT],
 //         blocks: [
 //             {
@@ -346,14 +346,14 @@ export interface Article {
 //         img: 'https://example.com/class-vs-functional.jpg',
 //         views: 920,
 //         createdAt: '30.09.2023',
-        user: {
-            id: 'zM4UyVgfKNf2vrf5sXmBIxA5QOl2',
-            username: 'mainManager',
-            firstname: 'Maxim',
-            lastname: 'Shavlak',
-            email: 'mainManager@gmail.com',
-            avatar: 'https://st3.depositphotos.com/1071184/13782/v/450/depositphotos_137825710-stock-illustration-business-person-analyzing-financial-statistics.jpg',
-        },
+//         user: {
+//             id: 'zM4UyVgfKNf2vrf5sXmBIxA5QOl2',
+//             username: 'mainManager',
+//             firstname: 'Maxim',
+//             lastname: 'Shavlak',
+//             email: 'mainManager@gmail.com',
+//             avatar: 'https://st3.depositphotos.com/1071184/13782/v/450/depositphotos_137825710-stock-illustration-business-person-analyzing-financial-statistics.jpg',
+//         },
 //         category: [ArticleCategory.REACT],
 //         blocks: [
 //             {
@@ -744,14 +744,14 @@ export interface Article {
 //         img: 'https://example.com/purecomponent.jpg',
 //         views: 350,
 //         createdAt: '11.05.2023',
-        user: {
-            id: 'tfs04ij0b5anHdw2qt6LghQsEfC3',
-            username: 'katyaAdmin',
-            firstname: 'Katya',
-            lastname: 'Ivanova',
-            email: 'katyaAdmin@gmail.com',
-            avatar: 'https://example.com/avatar7.jpg',
-        },
+//         user: {
+//             id: 'tfs04ij0b5anHdw2qt6LghQsEfC3',
+//             username: 'katyaAdmin',
+//             firstname: 'Katya',
+//             lastname: 'Ivanova',
+//             email: 'katyaAdmin@gmail.com',
+//             avatar: 'https://example.com/avatar7.jpg',
+//         },
 //         category: [ArticleCategory.REACT],
 //         blocks: [
 //             {
@@ -1167,14 +1167,14 @@ export interface Article {
 //         img: 'https://example.com/hooks-rules.jpg',
 //         views: 550,
 //         createdAt: '20.02.2024',
-        user: {
-            id: '4g1WI5M1XIZU6VKvIfJBG7TzMsD3',
-            username: 'alexManager',
-            firstname: 'Alex',
-            lastname: 'Johnson',
-            email: 'alexManager@gmail.com',
-            avatar: 'https://example.com/avatar11.jpg',
-        },
+//         user: {
+//             id: '4g1WI5M1XIZU6VKvIfJBG7TzMsD3',
+//             username: 'alexManager',
+//             firstname: 'Alex',
+//             lastname: 'Johnson',
+//             email: 'alexManager@gmail.com',
+//             avatar: 'https://example.com/avatar11.jpg',
+//         },
 //         category: [ArticleCategory.REACT],
 //         blocks: [
 //             {

@@ -2228,7 +2228,16 @@ const ratings = [
         id: '258',
     },
     {
-        userId: 'qkcVyIbnjYeEbaYVKGhtZrny7GC3',
+        user: {
+            id: 'qkcVyIbnjYeEbaYVKGhtZrny7GC3',
+            username: 'sarahManager',
+            firstname: 'Sarah',
+            lastname: 'Cooper',
+
+            email: 'sarahManager@gmail.com',
+
+            avatar: 'https://example.com/avatar20.jpg',
+        },
         articleId: '34',
         rate: 1,
         feedback:
@@ -2269,7 +2278,16 @@ const ratings = [
         id: '261',
     },
     {
-        userId: 'qkcVyIbnjYeEbaYVKGhtZrny7GC3',
+        user: {
+            id: 'qkcVyIbnjYeEbaYVKGhtZrny7GC3',
+            username: 'sarahManager',
+            firstname: 'Sarah',
+            lastname: 'Cooper',
+
+            email: 'sarahManager@gmail.com',
+
+            avatar: 'https://example.com/avatar20.jpg',
+        },
         articleId: '35',
         rate: 1,
         feedback: 'Incomplete and poorly researched. Lacks useful information.',
@@ -2309,7 +2327,16 @@ const ratings = [
         id: '264',
     },
     {
-        userId: 'qkcVyIbnjYeEbaYVKGhtZrny7GC3',
+        user: {
+            id: 'qkcVyIbnjYeEbaYVKGhtZrny7GC3',
+            username: 'sarahManager',
+            firstname: 'Sarah',
+            lastname: 'Cooper',
+
+            email: 'sarahManager@gmail.com',
+
+            avatar: 'https://example.com/avatar20.jpg',
+        },
         articleId: '59',
         rate: 2,
         feedback:
@@ -4606,14 +4633,32 @@ const ratings = [
         id: 3005,
     },
     {
-        userId: 'qkcVyIbnjYeEbaYVKGhtZrny7GC3',
+        user: {
+            id: 'qkcVyIbnjYeEbaYVKGhtZrny7GC3',
+            username: 'sarahManager',
+            firstname: 'Sarah',
+            lastname: 'Cooper',
+
+            email: 'sarahManager@gmail.com',
+
+            avatar: 'https://example.com/avatar20.jpg',
+        },
         articleId: '121',
         rate: 2,
         feedback: 'The article was poorly structured and hard to follow.',
         id: 4001,
     },
     {
-        userId: 'qkcVyIbnjYeEbaYVKGhtZrny7GC3',
+        user: {
+            id: 'qkcVyIbnjYeEbaYVKGhtZrny7GC3',
+            username: 'sarahManager',
+            firstname: 'Sarah',
+            lastname: 'Cooper',
+
+            email: 'sarahManager@gmail.com',
+
+            avatar: 'https://example.com/avatar20.jpg',
+        },
         articleId: '140',
         rate: 2,
         feedback:
@@ -4621,7 +4666,16 @@ const ratings = [
         id: 4002,
     },
     {
-        userId: 'qkcVyIbnjYeEbaYVKGhtZrny7GC3',
+        user: {
+            id: 'qkcVyIbnjYeEbaYVKGhtZrny7GC3',
+            username: 'sarahManager',
+            firstname: 'Sarah',
+            lastname: 'Cooper',
+
+            email: 'sarahManager@gmail.com',
+
+            avatar: 'https://example.com/avatar20.jpg',
+        },
         articleId: '174',
         rate: 2,
         feedback: "The content didn't meet my expectations and lacked clarity.",
