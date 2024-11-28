@@ -17,6 +17,7 @@ export const processRatings = (
         rate: number,
         feedback?: string,
     ) => {
+        console.log('useid', userId);
         const userStats = data.ratingCountsByUser[userId] || {
             totalRating: 0,
             articlesWithRating: 0,
@@ -67,6 +68,7 @@ export const processRatings = (
     };
 
     ratings.forEach((rating) => {
+        console.log('rating', rating);
         const { articleId, rate, feedback, user } = rating;
         updateUserRatingData(user?.id, rate, feedback);
         updateArticleRatingData(articleId, rate, feedback);

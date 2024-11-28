@@ -55,7 +55,7 @@ export const userFirebaseApi = firestoreApi.injectEndpoints({
                         const users = querySnapshot.docs.map((doc) => ({
                             ...doc.data(),
                         }));
-                        console.log('all users', users);
+
                         return { data: users };
                     }
 

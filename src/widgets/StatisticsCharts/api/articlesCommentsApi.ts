@@ -17,7 +17,7 @@ export const articlesCommentsFirebaseApi = firestoreApi.injectEndpoints({
                         const comments = querySnapshot.docs.map((doc) => ({
                             ...doc.data(),
                         }));
-                        console.log('all comments', comments);
+
                         return { data: comments };
                     }
 
@@ -38,21 +38,3 @@ export const articlesCommentsFirebaseApi = firestoreApi.injectEndpoints({
 
 export const useArticlesComments =
     articlesCommentsFirebaseApi.useGetArticlesCommentsQuery;
-
-// __________________________________________________________________-
-
-// export const articlesCommentsApi = rtkApi.injectEndpoints({
-//     endpoints: (build) => ({
-//         getArticlesComments: build.query<ArticleComment[], null>({
-//             query: () => ({
-//                 url: '/comments',
-//                 params: {
-//                     _expand: ['user'],
-//                 },
-//             }),
-//         }),
-//     }),
-// });
-//
-// export const useArticlesComments =
-//     articlesCommentsApi.useGetArticlesCommentsQuery;

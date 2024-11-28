@@ -27,7 +27,6 @@ export const StatisticsCharts = () => {
     processArticles(data, articles);
     processComments(data, comments);
     processRatings(data, ratings);
-
     console.log('data', data);
 
     const {
@@ -50,6 +49,7 @@ export const StatisticsCharts = () => {
 
     if (isLoading) return <StatisticsChartsSkeleton />;
     if (isError) return <StatisticsChartsError />;
+    console.log('ratingCountsByUser', ratingCountsByUser);
 
     return (
         <VStack gap="16">

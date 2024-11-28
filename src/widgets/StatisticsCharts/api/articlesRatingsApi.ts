@@ -17,7 +17,7 @@ export const articlesRatingFirebaseApi = firestoreApi.injectEndpoints({
                         const ratings = querySnapshot.docs.map((doc) => ({
                             ...doc.data(),
                         }));
-                        console.log('all ratings', ratings);
+
                         return { data: ratings };
                     }
 
@@ -38,16 +38,3 @@ export const articlesRatingFirebaseApi = firestoreApi.injectEndpoints({
 
 export const useArticlesRatings =
     articlesRatingFirebaseApi.useGetArticlesRatingsQuery;
-
-// ////////////////////////////////////
-// export const articlesRatingsApi = rtkApi.injectEndpoints({
-//     endpoints: (build) => ({
-//         getArticlesRatings: build.query<ArticleRating[], null>({
-//             query: () => ({
-//                 url: '/article-ratings',
-//             }),
-//         }),
-//     }),
-// });
-//
-// export const useArticlesRatings = articlesRatingsApi.useGetArticlesRatingsQuery;

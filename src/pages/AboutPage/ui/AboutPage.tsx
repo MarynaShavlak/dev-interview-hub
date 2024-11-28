@@ -9,812 +9,1888 @@ const ratingsCollection = collection(firestore, 'ratings');
 
 const ratings = [
     {
-        userId: 'J3aB11HdHTZW6udzrrw2ymBhIOz1',
+        user: {
+            id: 'J3aB11HdHTZW6udzrrw2ymBhIOz1',
+            username: 'mainAdmin',
+            firstname: 'Maryna',
+            lastname: 'Shavlak',
+            email: 'mainAdmin@gmail.com',
+            avatar: 'https://drive.google.com/thumbnail?id=1RD0jSAm8kdTLKa-Vr0daeE8T9-QcfPCa&sz=w1000',
+        },
         articleId: '40',
         rate: 5,
         id: '101',
     },
     {
-        userId: 'vvfdFnPQMLVkrnCBjsTZcPsUq9U2',
+        user: {
+            id: 'vvfdFnPQMLVkrnCBjsTZcPsUq9U2',
+            username: 'mainUser',
+            firstname: 'Tetiana',
+            lastname: 'Shavlak',
+            email: 'mainUser@gmail.com',
+            avatar: 'https://drive.google.com/thumbnail?id=1J1xUPYYkJeOsBTpDuf36vsV7UfxlM2uG&sz=w1000',
+        },
         articleId: '40',
         rate: 4,
         id: '102',
     },
     {
-        userId: 'zM4UyVgfKNf2vrf5sXmBIxA5QOl2',
+        user: {
+            id: 'zM4UyVgfKNf2vrf5sXmBIxA5QOl2',
+            username: 'mainManager',
+            firstname: 'Maxim',
+            lastname: 'Shavlak',
+            email: 'mainManager@gmail.com',
+            avatar: 'https://st3.depositphotos.com/1071184/13782/v/450/depositphotos_137825710-stock-illustration-business-person-analyzing-financial-statistics.jpg',
+        },
         articleId: '40',
         rate: 4,
         id: '103',
     },
     {
-        userId: 'nwPyI60mR9XWY3ozVuRGItx08PY2',
+        user: {
+            id: 'nwPyI60mR9XWY3ozVuRGItx08PY2',
+            username: 'testuser',
+            firstname: 'Test',
+            lastname: 'lastnameUser',
+
+            email: 'testuser@gmail.com',
+
+            avatar: 'https://s1.1zoom.ru/big3/992/367659-alexfas01.jpg',
+        },
         articleId: '40',
         rate: 3,
         id: '104',
     },
     {
-        userId: 'hdkjUiQhjoPIVMqfORNbvEHm4Wg1',
+        user: {
+            id: 'hdkjUiQhjoPIVMqfORNbvEHm4Wg1',
+            username: 'testuser2',
+            firstname: 'Test2',
+            lastname: 'User2',
+
+            email: 'testuser2@gmail.com',
+            avatar: 'FRGDHJ',
+        },
         articleId: '40',
         rate: 5,
         id: '105',
     },
     {
-        userId: 'meuKZ9Dc5ucUuMn72esjwMi9Azl2',
+        user: {
+            id: 'meuKZ9Dc5ucUuMn72esjwMi9Azl2',
+            username: 'markUser',
+            firstname: 'Mark',
+            lastname: 'Smith',
+            email: 'markUser@gmail.com',
+            avatar: 'https://example.com/avatar6.png',
+        },
         articleId: '40',
         rate: 3,
         id: '106',
     },
     {
-        userId: 'tfs04ij0b5anHdw2qt6LghQsEfC3',
+        user: {
+            id: 'tfs04ij0b5anHdw2qt6LghQsEfC3',
+            username: 'katyaAdmin',
+            firstname: 'Katya',
+            lastname: 'Ivanova',
+            email: 'katyaAdmin@gmail.com',
+            avatar: 'https://example.com/avatar7.jpg',
+        },
         articleId: '40',
         rate: 4,
         id: '107',
     },
     {
-        userId: 'd6RJwaIJmjbHTV2PdSg04DpPjWl1',
+        user: {
+            id: 'd6RJwaIJmjbHTV2PdSg04DpPjWl1',
+            username: 'johnManager',
+            firstname: 'John',
+            lastname: 'Doe',
+            email: 'johnManager@gmail.com',
+            avatar: 'https://example.com/avatar8.jpg',
+        },
         articleId: '40',
         rate: 5,
         id: '108',
     },
     {
-        userId: 'MqonEyICTeMapkAPyPFH7w1E5l52',
+        user: {
+            id: 'MqonEyICTeMapkAPyPFH7w1E5l52',
+            username: 'annaUser',
+            firstname: 'Anna',
+            lastname: 'Koval',
+
+            email: 'annaUser@gmail.com',
+
+            avatar: 'https://example.com/avatar9.jpg',
+        },
         articleId: '40',
         rate: 4,
         id: '109',
     },
     {
-        userId: 'ObGe2X8MNTde2RSffQgE0Jpxek72',
+        user: {
+            id: 'ObGe2X8MNTde2RSffQgE0Jpxek72',
+            username: 'lucyAdmin',
+            firstname: 'Lucy',
+            lastname: 'Brown',
+
+            email: 'lucyAdmin@gmail.com',
+
+            avatar: 'https://example.com/avatar10.jpg',
+        },
         articleId: '40',
         rate: 4,
         id: '110',
     },
     {
-        userId: '4g1WI5M1XIZU6VKvIfJBG7TzMsD3',
+        user: {
+            id: '4g1WI5M1XIZU6VKvIfJBG7TzMsD3',
+            username: 'alexManager',
+            firstname: 'Alex',
+            lastname: 'Johnson',
+            email: 'alexManager@gmail.com',
+            avatar: 'https://example.com/avatar11.jpg',
+        },
         articleId: '40',
         rate: 3,
         id: '111',
     },
     {
-        userId: '4juq0tzGf5fNMCXCRFOa5mvFO5O2',
+        user: {
+            id: '4juq0tzGf5fNMCXCRFOa5mvFO5O2',
+            username: 'leoUser',
+            firstname: 'Leo',
+            lastname: 'Mikhailov',
+
+            email: 'leoUser@gmail.com',
+
+            avatar: 'https://example.com/avatar12.jpg',
+        },
         articleId: '40',
         rate: 4,
         id: '112',
     },
     {
-        userId: '9Dpc2pFoeORLyQrxHlGIbe5wjbf2',
+        user: {
+            id: '9Dpc2pFoeORLyQrxHlGIbe5wjbf2',
+            username: 'janeAdmin',
+            firstname: 'Jane',
+            lastname: 'Williams',
+
+            email: 'janeAdmin@gmail.com',
+
+            avatar: 'https://example.com/avatar13.jpg',
+        },
         articleId: '40',
         rate: 5,
         id: '113',
     },
     {
-        userId: 'BrKES0pOcxcgYBUpKmZxBzqKFhl1',
+        user: {
+            id: 'BrKES0pOcxcgYBUpKmZxBzqKFhl1',
+            username: 'peterManager',
+            firstname: 'Peter',
+            lastname: 'Muller',
+
+            email: 'peterManager@gmail.com',
+
+            avatar: 'https://example.com/avatar14.jpg',
+        },
         articleId: '40',
         rate: 3,
         id: '114',
     },
     {
-        userId: 'Ue15ycXTpxVhCZ2eJoOVYaArKEa2',
+        user: {
+            id: 'Ue15ycXTpxVhCZ2eJoOVYaArKEa2',
+            username: 'mariaUser',
+            firstname: 'Maria',
+            lastname: 'Petrova',
+
+            email: 'mariaUser@gmail.com',
+
+            avatar: 'https://example.com/avatar15.jpg',
+        },
         articleId: '40',
         rate: 4,
         id: '115',
     },
     {
-        userId: 'KXv8oUPLQeUXSzoXOWJV4nw47CG2',
+        user: {
+            id: 'KXv8oUPLQeUXSzoXOWJV4nw47CG2',
+            username: 'maxAdmin',
+            firstname: 'Max',
+            lastname: 'Gordon',
+
+            email: 'maxAdmin@gmail.com',
+
+            avatar: 'https://example.com/avatar16.jpg',
+        },
         articleId: '40',
         rate: 4,
         id: '116',
     },
     {
-        userId: '18zZBJnmEqWJNwGj2SvbNiNVXol1',
+        user: {
+            id: '18zZBJnmEqWJNwGj2SvbNiNVXol1',
+            username: 'nickManager',
+            firstname: 'Nick',
+            lastname: 'Garcia',
+
+            email: 'nickManager@gmail.com',
+
+            avatar: 'https://example.com/avatar17.jpg',
+        },
         articleId: '40',
         rate: 5,
         id: '117',
     },
     {
-        userId: 'mYX7XszmZJgEUSU9eeKDJYbP7P22',
+        user: {
+            id: 'mYX7XszmZJgEUSU9eeKDJYbP7P22',
+            username: 'claraUser',
+            firstname: 'Clara',
+            lastname: 'Santos',
+
+            email: 'claraUser@gmail.com',
+
+            avatar: 'https://example.com/avatar18.jpg',
+        },
         articleId: '40',
         rate: 4,
         id: '118',
     },
     {
-        userId: 'Str49JTKBAOoaEhM8XeQLLLPPDp2',
+        user: {
+            id: 'Str49JTKBAOoaEhM8XeQLLLPPDp2',
+            username: 'tomAdmin',
+            firstname: 'Tom',
+            lastname: 'Anderson',
+
+            email: 'tomAdmin@gmail.com',
+
+            avatar: 'https://example.com/avatar19.jpg',
+        },
         articleId: '40',
         rate: 3,
         id: '119',
     },
     {
-        userId: 'J3aB11HdHTZW6udzrrw2ymBhIOz1',
+        user: {
+            id: 'J3aB11HdHTZW6udzrrw2ymBhIOz1',
+            username: 'mainAdmin',
+            firstname: 'Maryna',
+            lastname: 'Shavlak',
+            email: 'mainAdmin@gmail.com',
+            avatar: 'https://drive.google.com/thumbnail?id=1RD0jSAm8kdTLKa-Vr0daeE8T9-QcfPCa&sz=w1000',
+        },
         articleId: '41',
         rate: 5,
         feedback: 'Another great article!',
         id: '120',
     },
     {
-        userId: 'vvfdFnPQMLVkrnCBjsTZcPsUq9U2',
+        user: {
+            id: 'vvfdFnPQMLVkrnCBjsTZcPsUq9U2',
+            username: 'mainUser',
+            firstname: 'Tetiana',
+            lastname: 'Shavlak',
+            email: 'mainUser@gmail.com',
+            avatar: 'https://drive.google.com/thumbnail?id=1J1xUPYYkJeOsBTpDuf36vsV7UfxlM2uG&sz=w1000',
+        },
         articleId: '41',
         rate: 4,
         id: '121',
     },
     {
-        userId: 'zM4UyVgfKNf2vrf5sXmBIxA5QOl2',
+        user: {
+            id: 'zM4UyVgfKNf2vrf5sXmBIxA5QOl2',
+            username: 'mainManager',
+            firstname: 'Maxim',
+            lastname: 'Shavlak',
+            email: 'mainManager@gmail.com',
+            avatar: 'https://st3.depositphotos.com/1071184/13782/v/450/depositphotos_137825710-stock-illustration-business-person-analyzing-financial-statistics.jpg',
+        },
         articleId: '41',
         rate: 4,
         id: '122',
     },
     {
-        userId: 'nwPyI60mR9XWY3ozVuRGItx08PY2',
+        user: {
+            id: 'nwPyI60mR9XWY3ozVuRGItx08PY2',
+            username: 'testuser',
+            firstname: 'Test',
+            lastname: 'lastnameUser',
+
+            email: 'testuser@gmail.com',
+
+            avatar: 'https://s1.1zoom.ru/big3/992/367659-alexfas01.jpg',
+        },
         articleId: '41',
         rate: 3,
         id: '123',
     },
     {
-        userId: 'hdkjUiQhjoPIVMqfORNbvEHm4Wg1',
+        user: {
+            id: 'hdkjUiQhjoPIVMqfORNbvEHm4Wg1',
+            username: 'testuser2',
+            firstname: 'Test2',
+            lastname: 'User2',
+
+            email: 'testuser2@gmail.com',
+            avatar: 'FRGDHJ',
+        },
         articleId: '41',
         rate: 5,
         id: '124',
     },
     {
-        userId: 'meuKZ9Dc5ucUuMn72esjwMi9Azl2',
+        user: {
+            id: 'meuKZ9Dc5ucUuMn72esjwMi9Azl2',
+            username: 'markUser',
+            firstname: 'Mark',
+            lastname: 'Smith',
+            email: 'markUser@gmail.com',
+            avatar: 'https://example.com/avatar6.png',
+        },
         articleId: '41',
         rate: 4,
         id: '125',
     },
     {
-        userId: 'tfs04ij0b5anHdw2qt6LghQsEfC3',
+        user: {
+            id: 'tfs04ij0b5anHdw2qt6LghQsEfC3',
+            username: 'katyaAdmin',
+            firstname: 'Katya',
+            lastname: 'Ivanova',
+            email: 'katyaAdmin@gmail.com',
+            avatar: 'https://example.com/avatar7.jpg',
+        },
         articleId: '41',
         rate: 5,
         id: '126',
     },
     {
-        userId: 'd6RJwaIJmjbHTV2PdSg04DpPjWl1',
+        user: {
+            id: 'd6RJwaIJmjbHTV2PdSg04DpPjWl1',
+            username: 'johnManager',
+            firstname: 'John',
+            lastname: 'Doe',
+            email: 'johnManager@gmail.com',
+            avatar: 'https://example.com/avatar8.jpg',
+        },
         articleId: '41',
         rate: 3,
         id: '127',
     },
     {
-        userId: 'MqonEyICTeMapkAPyPFH7w1E5l52',
+        user: {
+            id: 'MqonEyICTeMapkAPyPFH7w1E5l52',
+            username: 'annaUser',
+            firstname: 'Anna',
+            lastname: 'Koval',
+
+            email: 'annaUser@gmail.com',
+
+            avatar: 'https://example.com/avatar9.jpg',
+        },
         articleId: '41',
         rate: 4,
         id: '128',
     },
     {
-        userId: 'ObGe2X8MNTde2RSffQgE0Jpxek72',
+        user: {
+            id: 'ObGe2X8MNTde2RSffQgE0Jpxek72',
+            username: 'lucyAdmin',
+            firstname: 'Lucy',
+            lastname: 'Brown',
+
+            email: 'lucyAdmin@gmail.com',
+
+            avatar: 'https://example.com/avatar10.jpg',
+        },
         articleId: '41',
         rate: 4,
         id: '129',
     },
     {
-        userId: '4g1WI5M1XIZU6VKvIfJBG7TzMsD3',
+        user: {
+            id: '4g1WI5M1XIZU6VKvIfJBG7TzMsD3',
+            username: 'alexManager',
+            firstname: 'Alex',
+            lastname: 'Johnson',
+            email: 'alexManager@gmail.com',
+            avatar: 'https://example.com/avatar11.jpg',
+        },
         articleId: '41',
         rate: 5,
         id: '130',
     },
     {
-        userId: '4juq0tzGf5fNMCXCRFOa5mvFO5O2',
+        user: {
+            id: '4juq0tzGf5fNMCXCRFOa5mvFO5O2',
+            username: 'leoUser',
+            firstname: 'Leo',
+            lastname: 'Mikhailov',
+
+            email: 'leoUser@gmail.com',
+
+            avatar: 'https://example.com/avatar12.jpg',
+        },
         articleId: '41',
         rate: 3,
         id: '131',
     },
     {
-        userId: '9Dpc2pFoeORLyQrxHlGIbe5wjbf2',
+        user: {
+            id: '9Dpc2pFoeORLyQrxHlGIbe5wjbf2',
+            username: 'janeAdmin',
+            firstname: 'Jane',
+            lastname: 'Williams',
+
+            email: 'janeAdmin@gmail.com',
+
+            avatar: 'https://example.com/avatar13.jpg',
+        },
         articleId: '41',
         rate: 4,
         id: '132',
     },
     {
-        userId: 'BrKES0pOcxcgYBUpKmZxBzqKFhl1',
+        user: {
+            id: 'BrKES0pOcxcgYBUpKmZxBzqKFhl1',
+            username: 'peterManager',
+            firstname: 'Peter',
+            lastname: 'Muller',
+
+            email: 'peterManager@gmail.com',
+
+            avatar: 'https://example.com/avatar14.jpg',
+        },
         articleId: '41',
         rate: 4,
         id: '133',
     },
     {
-        userId: 'Ue15ycXTpxVhCZ2eJoOVYaArKEa2',
+        user: {
+            id: 'Ue15ycXTpxVhCZ2eJoOVYaArKEa2',
+            username: 'mariaUser',
+            firstname: 'Maria',
+            lastname: 'Petrova',
+
+            email: 'mariaUser@gmail.com',
+
+            avatar: 'https://example.com/avatar15.jpg',
+        },
         articleId: '41',
         rate: 5,
         id: '134',
     },
     {
-        userId: 'KXv8oUPLQeUXSzoXOWJV4nw47CG2',
+        user: {
+            id: 'KXv8oUPLQeUXSzoXOWJV4nw47CG2',
+            username: 'maxAdmin',
+            firstname: 'Max',
+            lastname: 'Gordon',
+
+            email: 'maxAdmin@gmail.com',
+
+            avatar: 'https://example.com/avatar16.jpg',
+        },
         articleId: '41',
         rate: 3,
         id: '135',
     },
     {
-        userId: '18zZBJnmEqWJNwGj2SvbNiNVXol1',
+        user: {
+            id: '18zZBJnmEqWJNwGj2SvbNiNVXol1',
+            username: 'nickManager',
+            firstname: 'Nick',
+            lastname: 'Garcia',
+
+            email: 'nickManager@gmail.com',
+
+            avatar: 'https://example.com/avatar17.jpg',
+        },
         articleId: '41',
         rate: 4,
         id: '136',
     },
     {
-        userId: 'mYX7XszmZJgEUSU9eeKDJYbP7P22',
+        user: {
+            id: 'mYX7XszmZJgEUSU9eeKDJYbP7P22',
+            username: 'claraUser',
+            firstname: 'Clara',
+            lastname: 'Santos',
+
+            email: 'claraUser@gmail.com',
+
+            avatar: 'https://example.com/avatar18.jpg',
+        },
         articleId: '41',
         rate: 4,
         id: '137',
     },
     {
-        userId: 'Str49JTKBAOoaEhM8XeQLLLPPDp2',
+        user: {
+            id: 'Str49JTKBAOoaEhM8XeQLLLPPDp2',
+            username: 'tomAdmin',
+            firstname: 'Tom',
+            lastname: 'Anderson',
+
+            email: 'tomAdmin@gmail.com',
+
+            avatar: 'https://example.com/avatar19.jpg',
+        },
         articleId: '41',
         rate: 3,
         id: '138',
     },
     {
-        userId: 'J3aB11HdHTZW6udzrrw2ymBhIOz1',
+        user: {
+            id: 'J3aB11HdHTZW6udzrrw2ymBhIOz1',
+            username: 'mainAdmin',
+            firstname: 'Maryna',
+            lastname: 'Shavlak',
+            email: 'mainAdmin@gmail.com',
+            avatar: 'https://drive.google.com/thumbnail?id=1RD0jSAm8kdTLKa-Vr0daeE8T9-QcfPCa&sz=w1000',
+        },
         articleId: '62',
         rate: 5,
         id: '139',
     },
     {
-        userId: 'vvfdFnPQMLVkrnCBjsTZcPsUq9U2',
+        user: {
+            id: 'vvfdFnPQMLVkrnCBjsTZcPsUq9U2',
+            username: 'mainUser',
+            firstname: 'Tetiana',
+            lastname: 'Shavlak',
+            email: 'mainUser@gmail.com',
+            avatar: 'https://drive.google.com/thumbnail?id=1J1xUPYYkJeOsBTpDuf36vsV7UfxlM2uG&sz=w1000',
+        },
         articleId: '62',
         rate: 4,
         id: '140',
     },
     {
-        userId: 'zM4UyVgfKNf2vrf5sXmBIxA5QOl2',
+        user: {
+            id: 'zM4UyVgfKNf2vrf5sXmBIxA5QOl2',
+            username: 'mainManager',
+            firstname: 'Maxim',
+            lastname: 'Shavlak',
+            email: 'mainManager@gmail.com',
+            avatar: 'https://st3.depositphotos.com/1071184/13782/v/450/depositphotos_137825710-stock-illustration-business-person-analyzing-financial-statistics.jpg',
+        },
         articleId: '62',
         rate: 5,
         feedback: 'Loved the depth of this article',
         id: '141',
     },
     {
-        userId: 'nwPyI60mR9XWY3ozVuRGItx08PY2',
+        user: {
+            id: 'nwPyI60mR9XWY3ozVuRGItx08PY2',
+            username: 'testuser',
+            firstname: 'Test',
+            lastname: 'lastnameUser',
+
+            email: 'testuser@gmail.com',
+
+            avatar: 'https://s1.1zoom.ru/big3/992/367659-alexfas01.jpg',
+        },
         articleId: '62',
         rate: 4,
         id: '142',
     },
     {
-        userId: 'hdkjUiQhjoPIVMqfORNbvEHm4Wg1',
+        user: {
+            id: 'hdkjUiQhjoPIVMqfORNbvEHm4Wg1',
+            username: 'testuser2',
+            firstname: 'Test2',
+            lastname: 'User2',
+
+            email: 'testuser2@gmail.com',
+            avatar: 'FRGDHJ',
+        },
         articleId: '62',
         rate: 3,
         id: '143',
     },
     {
-        userId: 'meuKZ9Dc5ucUuMn72esjwMi9Azl2',
+        user: {
+            id: 'meuKZ9Dc5ucUuMn72esjwMi9Azl2',
+            username: 'markUser',
+            firstname: 'Mark',
+            lastname: 'Smith',
+            email: 'markUser@gmail.com',
+            avatar: 'https://example.com/avatar6.png',
+        },
         articleId: '62',
         rate: 4,
         id: '144',
     },
     {
-        userId: 'tfs04ij0b5anHdw2qt6LghQsEfC3',
+        user: {
+            id: 'tfs04ij0b5anHdw2qt6LghQsEfC3',
+            username: 'katyaAdmin',
+            firstname: 'Katya',
+            lastname: 'Ivanova',
+            email: 'katyaAdmin@gmail.com',
+            avatar: 'https://example.com/avatar7.jpg',
+        },
         articleId: '62',
         rate: 3,
         id: '145',
     },
     {
-        userId: 'd6RJwaIJmjbHTV2PdSg04DpPjWl1',
+        user: {
+            id: 'd6RJwaIJmjbHTV2PdSg04DpPjWl1',
+            username: 'johnManager',
+            firstname: 'John',
+            lastname: 'Doe',
+            email: 'johnManager@gmail.com',
+            avatar: 'https://example.com/avatar8.jpg',
+        },
         articleId: '62',
         rate: 4,
         id: '146',
     },
     {
-        userId: 'MqonEyICTeMapkAPyPFH7w1E5l52',
+        user: {
+            id: 'MqonEyICTeMapkAPyPFH7w1E5l52',
+            username: 'annaUser',
+            firstname: 'Anna',
+            lastname: 'Koval',
+
+            email: 'annaUser@gmail.com',
+
+            avatar: 'https://example.com/avatar9.jpg',
+        },
         articleId: '62',
         rate: 5,
         id: '147',
     },
     {
-        userId: 'ObGe2X8MNTde2RSffQgE0Jpxek72',
+        user: {
+            id: 'ObGe2X8MNTde2RSffQgE0Jpxek72',
+            username: 'lucyAdmin',
+            firstname: 'Lucy',
+            lastname: 'Brown',
+
+            email: 'lucyAdmin@gmail.com',
+
+            avatar: 'https://example.com/avatar10.jpg',
+        },
         articleId: '62',
         rate: 4,
         id: '148',
     },
     {
-        userId: '4g1WI5M1XIZU6VKvIfJBG7TzMsD3',
+        user: {
+            id: '4g1WI5M1XIZU6VKvIfJBG7TzMsD3',
+            username: 'alexManager',
+            firstname: 'Alex',
+            lastname: 'Johnson',
+            email: 'alexManager@gmail.com',
+            avatar: 'https://example.com/avatar11.jpg',
+        },
         articleId: '62',
         rate: 3,
         id: '149',
     },
     {
-        userId: '4juq0tzGf5fNMCXCRFOa5mvFO5O2',
+        user: {
+            id: '4juq0tzGf5fNMCXCRFOa5mvFO5O2',
+            username: 'leoUser',
+            firstname: 'Leo',
+            lastname: 'Mikhailov',
+
+            email: 'leoUser@gmail.com',
+
+            avatar: 'https://example.com/avatar12.jpg',
+        },
         articleId: '62',
         rate: 4,
         id: '150',
     },
     {
-        userId: '9Dpc2pFoeORLyQrxHlGIbe5wjbf2',
+        user: {
+            id: '9Dpc2pFoeORLyQrxHlGIbe5wjbf2',
+            username: 'janeAdmin',
+            firstname: 'Jane',
+            lastname: 'Williams',
+
+            email: 'janeAdmin@gmail.com',
+
+            avatar: 'https://example.com/avatar13.jpg',
+        },
         articleId: '62',
         rate: 5,
         feedback: 'In-depth and insightful',
         id: '151',
     },
     {
-        userId: 'BrKES0pOcxcgYBUpKmZxBzqKFhl1',
+        user: {
+            id: 'BrKES0pOcxcgYBUpKmZxBzqKFhl1',
+            username: 'peterManager',
+            firstname: 'Peter',
+            lastname: 'Muller',
+
+            email: 'peterManager@gmail.com',
+
+            avatar: 'https://example.com/avatar14.jpg',
+        },
         articleId: '62',
         rate: 3,
         id: '152',
     },
     {
-        userId: 'Ue15ycXTpxVhCZ2eJoOVYaArKEa2',
+        user: {
+            id: 'Ue15ycXTpxVhCZ2eJoOVYaArKEa2',
+            username: 'mariaUser',
+            firstname: 'Maria',
+            lastname: 'Petrova',
+
+            email: 'mariaUser@gmail.com',
+
+            avatar: 'https://example.com/avatar15.jpg',
+        },
         articleId: '62',
         rate: 4,
         id: '153',
     },
     {
-        userId: 'KXv8oUPLQeUXSzoXOWJV4nw47CG2',
+        user: {
+            id: 'KXv8oUPLQeUXSzoXOWJV4nw47CG2',
+            username: 'maxAdmin',
+            firstname: 'Max',
+            lastname: 'Gordon',
+
+            email: 'maxAdmin@gmail.com',
+
+            avatar: 'https://example.com/avatar16.jpg',
+        },
         articleId: '62',
         rate: 5,
         id: '154',
     },
     {
-        userId: '18zZBJnmEqWJNwGj2SvbNiNVXol1',
+        user: {
+            id: '18zZBJnmEqWJNwGj2SvbNiNVXol1',
+            username: 'nickManager',
+            firstname: 'Nick',
+            lastname: 'Garcia',
+
+            email: 'nickManager@gmail.com',
+
+            avatar: 'https://example.com/avatar17.jpg',
+        },
         articleId: '62',
         rate: 4,
         id: '155',
     },
     {
-        userId: 'mYX7XszmZJgEUSU9eeKDJYbP7P22',
+        user: {
+            id: 'mYX7XszmZJgEUSU9eeKDJYbP7P22',
+            username: 'claraUser',
+            firstname: 'Clara',
+            lastname: 'Santos',
+
+            email: 'claraUser@gmail.com',
+
+            avatar: 'https://example.com/avatar18.jpg',
+        },
         articleId: '62',
         rate: 4,
         id: '156',
     },
     {
-        userId: 'Str49JTKBAOoaEhM8XeQLLLPPDp2',
+        user: {
+            id: 'Str49JTKBAOoaEhM8XeQLLLPPDp2',
+            username: 'tomAdmin',
+            firstname: 'Tom',
+            lastname: 'Anderson',
+
+            email: 'tomAdmin@gmail.com',
+
+            avatar: 'https://example.com/avatar19.jpg',
+        },
         articleId: '62',
         rate: 3,
         id: '157',
     },
     {
-        userId: 'J3aB11HdHTZW6udzrrw2ymBhIOz1',
+        user: {
+            id: 'J3aB11HdHTZW6udzrrw2ymBhIOz1',
+            username: 'mainAdmin',
+            firstname: 'Maryna',
+            lastname: 'Shavlak',
+            email: 'mainAdmin@gmail.com',
+            avatar: 'https://drive.google.com/thumbnail?id=1RD0jSAm8kdTLKa-Vr0daeE8T9-QcfPCa&sz=w1000',
+        },
         articleId: '141',
         rate: 5,
         id: '158',
     },
     {
-        userId: 'vvfdFnPQMLVkrnCBjsTZcPsUq9U2',
+        user: {
+            id: 'vvfdFnPQMLVkrnCBjsTZcPsUq9U2',
+            username: 'mainUser',
+            firstname: 'Tetiana',
+            lastname: 'Shavlak',
+            email: 'mainUser@gmail.com',
+            avatar: 'https://drive.google.com/thumbnail?id=1J1xUPYYkJeOsBTpDuf36vsV7UfxlM2uG&sz=w1000',
+        },
         articleId: '141',
         rate: 4,
         id: '159',
     },
     {
-        userId: 'zM4UyVgfKNf2vrf5sXmBIxA5QOl2',
+        user: {
+            id: 'zM4UyVgfKNf2vrf5sXmBIxA5QOl2',
+            username: 'mainManager',
+            firstname: 'Maxim',
+            lastname: 'Shavlak',
+            email: 'mainManager@gmail.com',
+            avatar: 'https://st3.depositphotos.com/1071184/13782/v/450/depositphotos_137825710-stock-illustration-business-person-analyzing-financial-statistics.jpg',
+        },
         articleId: '141',
         rate: 5,
         id: '160',
     },
     {
-        userId: 'nwPyI60mR9XWY3ozVuRGItx08PY2',
+        user: {
+            id: 'nwPyI60mR9XWY3ozVuRGItx08PY2',
+            username: 'testuser',
+            firstname: 'Test',
+            lastname: 'lastnameUser',
+
+            email: 'testuser@gmail.com',
+
+            avatar: 'https://s1.1zoom.ru/big3/992/367659-alexfas01.jpg',
+        },
         articleId: '141',
         rate: 3,
         id: '161',
     },
     {
-        userId: 'hdkjUiQhjoPIVMqfORNbvEHm4Wg1',
+        user: {
+            id: 'hdkjUiQhjoPIVMqfORNbvEHm4Wg1',
+            username: 'testuser2',
+            firstname: 'Test2',
+            lastname: 'User2',
+
+            email: 'testuser2@gmail.com',
+            avatar: 'FRGDHJ',
+        },
         articleId: '141',
         rate: 4,
         id: '162',
     },
     {
-        userId: 'meuKZ9Dc5ucUuMn72esjwMi9Azl2',
+        user: {
+            id: 'meuKZ9Dc5ucUuMn72esjwMi9Azl2',
+            username: 'markUser',
+            firstname: 'Mark',
+            lastname: 'Smith',
+            email: 'markUser@gmail.com',
+            avatar: 'https://example.com/avatar6.png',
+        },
         articleId: '141',
         rate: 4,
         id: '163',
     },
     {
-        userId: 'tfs04ij0b5anHdw2qt6LghQsEfC3',
+        user: {
+            id: 'tfs04ij0b5anHdw2qt6LghQsEfC3',
+            username: 'katyaAdmin',
+            firstname: 'Katya',
+            lastname: 'Ivanova',
+            email: 'katyaAdmin@gmail.com',
+            avatar: 'https://example.com/avatar7.jpg',
+        },
         articleId: '141',
         rate: 3,
         id: '164',
     },
     {
-        userId: 'd6RJwaIJmjbHTV2PdSg04DpPjWl1',
+        user: {
+            id: 'd6RJwaIJmjbHTV2PdSg04DpPjWl1',
+            username: 'johnManager',
+            firstname: 'John',
+            lastname: 'Doe',
+            email: 'johnManager@gmail.com',
+            avatar: 'https://example.com/avatar8.jpg',
+        },
         articleId: '141',
         rate: 4,
         id: '165',
     },
     {
-        userId: 'MqonEyICTeMapkAPyPFH7w1E5l52',
+        user: {
+            id: 'MqonEyICTeMapkAPyPFH7w1E5l52',
+            username: 'annaUser',
+            firstname: 'Anna',
+            lastname: 'Koval',
+
+            email: 'annaUser@gmail.com',
+
+            avatar: 'https://example.com/avatar9.jpg',
+        },
         articleId: '141',
         rate: 5,
         id: '166',
     },
     {
-        userId: 'ObGe2X8MNTde2RSffQgE0Jpxek72',
+        user: {
+            id: 'ObGe2X8MNTde2RSffQgE0Jpxek72',
+            username: 'lucyAdmin',
+            firstname: 'Lucy',
+            lastname: 'Brown',
+
+            email: 'lucyAdmin@gmail.com',
+
+            avatar: 'https://example.com/avatar10.jpg',
+        },
         articleId: '141',
         rate: 4,
         id: '167',
     },
     {
-        userId: '4g1WI5M1XIZU6VKvIfJBG7TzMsD3',
+        user: {
+            id: '4g1WI5M1XIZU6VKvIfJBG7TzMsD3',
+            username: 'alexManager',
+            firstname: 'Alex',
+            lastname: 'Johnson',
+            email: 'alexManager@gmail.com',
+            avatar: 'https://example.com/avatar11.jpg',
+        },
         articleId: '141',
         rate: 4,
         id: '168',
     },
     {
-        userId: '4juq0tzGf5fNMCXCRFOa5mvFO5O2',
+        user: {
+            id: '4juq0tzGf5fNMCXCRFOa5mvFO5O2',
+            username: 'leoUser',
+            firstname: 'Leo',
+            lastname: 'Mikhailov',
+
+            email: 'leoUser@gmail.com',
+
+            avatar: 'https://example.com/avatar12.jpg',
+        },
         articleId: '141',
         rate: 4,
         id: '169',
     },
     {
-        userId: '9Dpc2pFoeORLyQrxHlGIbe5wjbf2',
+        user: {
+            id: '9Dpc2pFoeORLyQrxHlGIbe5wjbf2',
+            username: 'janeAdmin',
+            firstname: 'Jane',
+            lastname: 'Williams',
+
+            email: 'janeAdmin@gmail.com',
+
+            avatar: 'https://example.com/avatar13.jpg',
+        },
         articleId: '141',
         rate: 5,
         id: '170',
     },
     {
-        userId: 'BrKES0pOcxcgYBUpKmZxBzqKFhl1',
+        user: {
+            id: 'BrKES0pOcxcgYBUpKmZxBzqKFhl1',
+            username: 'peterManager',
+            firstname: 'Peter',
+            lastname: 'Muller',
+
+            email: 'peterManager@gmail.com',
+
+            avatar: 'https://example.com/avatar14.jpg',
+        },
         articleId: '141',
         rate: 3,
         id: '171',
     },
     {
-        userId: 'Ue15ycXTpxVhCZ2eJoOVYaArKEa2',
+        user: {
+            id: 'Ue15ycXTpxVhCZ2eJoOVYaArKEa2',
+            username: 'mariaUser',
+            firstname: 'Maria',
+            lastname: 'Petrova',
+
+            email: 'mariaUser@gmail.com',
+
+            avatar: 'https://example.com/avatar15.jpg',
+        },
         articleId: '141',
         rate: 4,
         id: '172',
     },
     {
-        userId: 'KXv8oUPLQeUXSzoXOWJV4nw47CG2',
+        user: {
+            id: 'KXv8oUPLQeUXSzoXOWJV4nw47CG2',
+            username: 'maxAdmin',
+            firstname: 'Max',
+            lastname: 'Gordon',
+
+            email: 'maxAdmin@gmail.com',
+
+            avatar: 'https://example.com/avatar16.jpg',
+        },
         articleId: '141',
         rate: 3,
         id: '173',
     },
     {
-        userId: '18zZBJnmEqWJNwGj2SvbNiNVXol1',
+        user: {
+            id: '18zZBJnmEqWJNwGj2SvbNiNVXol1',
+            username: 'nickManager',
+            firstname: 'Nick',
+            lastname: 'Garcia',
+
+            email: 'nickManager@gmail.com',
+
+            avatar: 'https://example.com/avatar17.jpg',
+        },
         articleId: '141',
         rate: 5,
         id: '174',
     },
     {
-        userId: 'mYX7XszmZJgEUSU9eeKDJYbP7P22',
+        user: {
+            id: 'mYX7XszmZJgEUSU9eeKDJYbP7P22',
+            username: 'claraUser',
+            firstname: 'Clara',
+            lastname: 'Santos',
+
+            email: 'claraUser@gmail.com',
+
+            avatar: 'https://example.com/avatar18.jpg',
+        },
         articleId: '141',
         rate: 4,
         id: '175',
     },
     {
-        userId: 'Str49JTKBAOoaEhM8XeQLLLPPDp2',
+        user: {
+            id: 'Str49JTKBAOoaEhM8XeQLLLPPDp2',
+            username: 'tomAdmin',
+            firstname: 'Tom',
+            lastname: 'Anderson',
+
+            email: 'tomAdmin@gmail.com',
+
+            avatar: 'https://example.com/avatar19.jpg',
+        },
         articleId: '141',
         rate: 3,
         id: '176',
     },
     {
-        userId: 'J3aB11HdHTZW6udzrrw2ymBhIOz1',
+        user: {
+            id: 'J3aB11HdHTZW6udzrrw2ymBhIOz1',
+            username: 'mainAdmin',
+            firstname: 'Maryna',
+            lastname: 'Shavlak',
+            email: 'mainAdmin@gmail.com',
+            avatar: 'https://drive.google.com/thumbnail?id=1RD0jSAm8kdTLKa-Vr0daeE8T9-QcfPCa&sz=w1000',
+        },
         articleId: '172',
         rate: 5,
         feedback: 'Outstanding piece!',
         id: '177',
     },
     {
-        userId: 'vvfdFnPQMLVkrnCBjsTZcPsUq9U2',
+        user: {
+            id: 'vvfdFnPQMLVkrnCBjsTZcPsUq9U2',
+            username: 'mainUser',
+            firstname: 'Tetiana',
+            lastname: 'Shavlak',
+            email: 'mainUser@gmail.com',
+            avatar: 'https://drive.google.com/thumbnail?id=1J1xUPYYkJeOsBTpDuf36vsV7UfxlM2uG&sz=w1000',
+        },
         articleId: '172',
         rate: 4,
         id: '178',
     },
     {
-        userId: 'zM4UyVgfKNf2vrf5sXmBIxA5QOl2',
+        user: {
+            id: 'zM4UyVgfKNf2vrf5sXmBIxA5QOl2',
+            username: 'mainManager',
+            firstname: 'Maxim',
+            lastname: 'Shavlak',
+            email: 'mainManager@gmail.com',
+            avatar: 'https://st3.depositphotos.com/1071184/13782/v/450/depositphotos_137825710-stock-illustration-business-person-analyzing-financial-statistics.jpg',
+        },
         articleId: '172',
         rate: 4,
         id: '179',
     },
     {
-        userId: 'nwPyI60mR9XWY3ozVuRGItx08PY2',
+        user: {
+            id: 'nwPyI60mR9XWY3ozVuRGItx08PY2',
+            username: 'testuser',
+            firstname: 'Test',
+            lastname: 'lastnameUser',
+
+            email: 'testuser@gmail.com',
+
+            avatar: 'https://s1.1zoom.ru/big3/992/367659-alexfas01.jpg',
+        },
         articleId: '172',
         rate: 3,
         id: '180',
     },
     {
-        userId: 'hdkjUiQhjoPIVMqfORNbvEHm4Wg1',
+        user: {
+            id: 'hdkjUiQhjoPIVMqfORNbvEHm4Wg1',
+            username: 'testuser2',
+            firstname: 'Test2',
+            lastname: 'User2',
+
+            email: 'testuser2@gmail.com',
+            avatar: 'FRGDHJ',
+        },
         articleId: '172',
         rate: 4,
         id: '181',
     },
     {
-        userId: 'meuKZ9Dc5ucUuMn72esjwMi9Azl2',
+        user: {
+            id: 'meuKZ9Dc5ucUuMn72esjwMi9Azl2',
+            username: 'markUser',
+            firstname: 'Mark',
+            lastname: 'Smith',
+            email: 'markUser@gmail.com',
+            avatar: 'https://example.com/avatar6.png',
+        },
         articleId: '172',
         rate: 5,
         id: '182',
     },
     {
-        userId: 'tfs04ij0b5anHdw2qt6LghQsEfC3',
+        user: {
+            id: 'tfs04ij0b5anHdw2qt6LghQsEfC3',
+            username: 'katyaAdmin',
+            firstname: 'Katya',
+            lastname: 'Ivanova',
+            email: 'katyaAdmin@gmail.com',
+            avatar: 'https://example.com/avatar7.jpg',
+        },
         articleId: '172',
         rate: 4,
         id: '183',
     },
     {
-        userId: 'd6RJwaIJmjbHTV2PdSg04DpPjWl1',
+        user: {
+            id: 'd6RJwaIJmjbHTV2PdSg04DpPjWl1',
+            username: 'johnManager',
+            firstname: 'John',
+            lastname: 'Doe',
+            email: 'johnManager@gmail.com',
+            avatar: 'https://example.com/avatar8.jpg',
+        },
         articleId: '172',
         rate: 3,
         id: '184',
     },
     {
-        userId: 'MqonEyICTeMapkAPyPFH7w1E5l52',
+        user: {
+            id: 'MqonEyICTeMapkAPyPFH7w1E5l52',
+            username: 'annaUser',
+            firstname: 'Anna',
+            lastname: 'Koval',
+
+            email: 'annaUser@gmail.com',
+
+            avatar: 'https://example.com/avatar9.jpg',
+        },
         articleId: '172',
         rate: 4,
         id: '185',
     },
     {
-        userId: 'ObGe2X8MNTde2RSffQgE0Jpxek72',
+        user: {
+            id: 'ObGe2X8MNTde2RSffQgE0Jpxek72',
+            username: 'lucyAdmin',
+            firstname: 'Lucy',
+            lastname: 'Brown',
+
+            email: 'lucyAdmin@gmail.com',
+
+            avatar: 'https://example.com/avatar10.jpg',
+        },
         articleId: '172',
         rate: 5,
         id: '186',
     },
     {
-        userId: '4g1WI5M1XIZU6VKvIfJBG7TzMsD3',
+        user: {
+            id: '4g1WI5M1XIZU6VKvIfJBG7TzMsD3',
+            username: 'alexManager',
+            firstname: 'Alex',
+            lastname: 'Johnson',
+            email: 'alexManager@gmail.com',
+            avatar: 'https://example.com/avatar11.jpg',
+        },
         articleId: '172',
         rate: 4,
         id: '187',
     },
     {
-        userId: '4juq0tzGf5fNMCXCRFOa5mvFO5O2',
+        user: {
+            id: '4juq0tzGf5fNMCXCRFOa5mvFO5O2',
+            username: 'leoUser',
+            firstname: 'Leo',
+            lastname: 'Mikhailov',
+
+            email: 'leoUser@gmail.com',
+
+            avatar: 'https://example.com/avatar12.jpg',
+        },
         articleId: '172',
         rate: 3,
         id: '188',
     },
     {
-        userId: '9Dpc2pFoeORLyQrxHlGIbe5wjbf2',
+        user: {
+            id: '9Dpc2pFoeORLyQrxHlGIbe5wjbf2',
+            username: 'janeAdmin',
+            firstname: 'Jane',
+            lastname: 'Williams',
+
+            email: 'janeAdmin@gmail.com',
+
+            avatar: 'https://example.com/avatar13.jpg',
+        },
         articleId: '172',
         rate: 5,
         feedback: 'Really good content!',
         id: '189',
     },
     {
-        userId: 'BrKES0pOcxcgYBUpKmZxBzqKFhl1',
+        user: {
+            id: 'BrKES0pOcxcgYBUpKmZxBzqKFhl1',
+            username: 'peterManager',
+            firstname: 'Peter',
+            lastname: 'Muller',
+
+            email: 'peterManager@gmail.com',
+
+            avatar: 'https://example.com/avatar14.jpg',
+        },
         articleId: '172',
         rate: 4,
         id: '190',
     },
     {
-        userId: 'Ue15ycXTpxVhCZ2eJoOVYaArKEa2',
+        user: {
+            id: 'Ue15ycXTpxVhCZ2eJoOVYaArKEa2',
+            username: 'mariaUser',
+            firstname: 'Maria',
+            lastname: 'Petrova',
+
+            email: 'mariaUser@gmail.com',
+
+            avatar: 'https://example.com/avatar15.jpg',
+        },
         articleId: '172',
         rate: 3,
         id: '191',
     },
     {
-        userId: 'KXv8oUPLQeUXSzoXOWJV4nw47CG2',
+        user: {
+            id: 'KXv8oUPLQeUXSzoXOWJV4nw47CG2',
+            username: 'maxAdmin',
+            firstname: 'Max',
+            lastname: 'Gordon',
+
+            email: 'maxAdmin@gmail.com',
+
+            avatar: 'https://example.com/avatar16.jpg',
+        },
         articleId: '172',
         rate: 4,
         id: '192',
     },
     {
-        userId: '18zZBJnmEqWJNwGj2SvbNiNVXol1',
+        user: {
+            id: '18zZBJnmEqWJNwGj2SvbNiNVXol1',
+            username: 'nickManager',
+            firstname: 'Nick',
+            lastname: 'Garcia',
+
+            email: 'nickManager@gmail.com',
+
+            avatar: 'https://example.com/avatar17.jpg',
+        },
         articleId: '172',
         rate: 5,
         id: '193',
     },
     {
-        userId: 'mYX7XszmZJgEUSU9eeKDJYbP7P22',
+        user: {
+            id: 'mYX7XszmZJgEUSU9eeKDJYbP7P22',
+            username: 'claraUser',
+            firstname: 'Clara',
+            lastname: 'Santos',
+
+            email: 'claraUser@gmail.com',
+
+            avatar: 'https://example.com/avatar18.jpg',
+        },
         articleId: '172',
         rate: 4,
         id: '194',
     },
     {
-        userId: 'Str49JTKBAOoaEhM8XeQLLLPPDp2',
+        user: {
+            id: 'Str49JTKBAOoaEhM8XeQLLLPPDp2',
+            username: 'tomAdmin',
+            firstname: 'Tom',
+            lastname: 'Anderson',
+
+            email: 'tomAdmin@gmail.com',
+
+            avatar: 'https://example.com/avatar19.jpg',
+        },
         articleId: '172',
         rate: 3,
         id: '195',
     },
     {
-        userId: 'vvfdFnPQMLVkrnCBjsTZcPsUq9U2',
+        user: {
+            id: 'vvfdFnPQMLVkrnCBjsTZcPsUq9U2',
+            username: 'mainUser',
+            firstname: 'Tetiana',
+            lastname: 'Shavlak',
+            email: 'mainUser@gmail.com',
+            avatar: 'https://drive.google.com/thumbnail?id=1J1xUPYYkJeOsBTpDuf36vsV7UfxlM2uG&sz=w1000',
+        },
         articleId: '38',
         rate: 5,
         feedback: 'Very informative and well-structured',
         id: '201',
     },
     {
-        userId: 'zM4UyVgfKNf2vrf5sXmBIxA5QOl2',
+        user: {
+            id: 'zM4UyVgfKNf2vrf5sXmBIxA5QOl2',
+            username: 'mainManager',
+            firstname: 'Maxim',
+            lastname: 'Shavlak',
+            email: 'mainManager@gmail.com',
+            avatar: 'https://st3.depositphotos.com/1071184/13782/v/450/depositphotos_137825710-stock-illustration-business-person-analyzing-financial-statistics.jpg',
+        },
         articleId: '38',
         rate: 4,
         id: '202',
     },
     {
-        userId: 'nwPyI60mR9XWY3ozVuRGItx08PY2',
+        user: {
+            id: 'nwPyI60mR9XWY3ozVuRGItx08PY2',
+            username: 'testuser',
+            firstname: 'Test',
+            lastname: 'lastnameUser',
+
+            email: 'testuser@gmail.com',
+
+            avatar: 'https://s1.1zoom.ru/big3/992/367659-alexfas01.jpg',
+        },
         articleId: '38',
         rate: 3,
         id: '203',
     },
     {
-        userId: 'hdkjUiQhjoPIVMqfORNbvEHm4Wg1',
+        user: {
+            id: 'hdkjUiQhjoPIVMqfORNbvEHm4Wg1',
+            username: 'testuser2',
+            firstname: 'Test2',
+            lastname: 'User2',
+
+            email: 'testuser2@gmail.com',
+            avatar: 'FRGDHJ',
+        },
         articleId: '38',
         rate: 4,
         feedback: 'Good overview, could use more examples',
         id: '204',
     },
     {
-        userId: 'meuKZ9Dc5ucUuMn72esjwMi9Azl2',
+        user: {
+            id: 'meuKZ9Dc5ucUuMn72esjwMi9Azl2',
+            username: 'markUser',
+            firstname: 'Mark',
+            lastname: 'Smith',
+            email: 'markUser@gmail.com',
+            avatar: 'https://example.com/avatar6.png',
+        },
         articleId: '38',
         rate: 5,
         id: '205',
     },
     {
-        userId: 'tfs04ij0b5anHdw2qt6LghQsEfC3',
+        user: {
+            id: 'tfs04ij0b5anHdw2qt6LghQsEfC3',
+            username: 'katyaAdmin',
+            firstname: 'Katya',
+            lastname: 'Ivanova',
+            email: 'katyaAdmin@gmail.com',
+            avatar: 'https://example.com/avatar7.jpg',
+        },
         articleId: '38',
         rate: 4,
         id: '206',
     },
     {
-        userId: 'd6RJwaIJmjbHTV2PdSg04DpPjWl1',
+        user: {
+            id: 'd6RJwaIJmjbHTV2PdSg04DpPjWl1',
+            username: 'johnManager',
+            firstname: 'John',
+            lastname: 'Doe',
+            email: 'johnManager@gmail.com',
+            avatar: 'https://example.com/avatar8.jpg',
+        },
         articleId: '38',
         rate: 4,
         id: '207',
     },
     {
-        userId: 'MqonEyICTeMapkAPyPFH7w1E5l52',
+        user: {
+            id: 'MqonEyICTeMapkAPyPFH7w1E5l52',
+            username: 'annaUser',
+            firstname: 'Anna',
+            lastname: 'Koval',
+
+            email: 'annaUser@gmail.com',
+
+            avatar: 'https://example.com/avatar9.jpg',
+        },
         articleId: '38',
         rate: 5,
         id: '208',
     },
     {
-        userId: 'ObGe2X8MNTde2RSffQgE0Jpxek72',
+        user: {
+            id: 'ObGe2X8MNTde2RSffQgE0Jpxek72',
+            username: 'lucyAdmin',
+            firstname: 'Lucy',
+            lastname: 'Brown',
+
+            email: 'lucyAdmin@gmail.com',
+
+            avatar: 'https://example.com/avatar10.jpg',
+        },
         articleId: '38',
         rate: 3,
         id: '209',
     },
     {
-        userId: 'vvfdFnPQMLVkrnCBjsTZcPsUq9U2',
+        user: {
+            id: 'vvfdFnPQMLVkrnCBjsTZcPsUq9U2',
+            username: 'mainUser',
+            firstname: 'Tetiana',
+            lastname: 'Shavlak',
+            email: 'mainUser@gmail.com',
+            avatar: 'https://drive.google.com/thumbnail?id=1J1xUPYYkJeOsBTpDuf36vsV7UfxlM2uG&sz=w1000',
+        },
         articleId: '39',
         rate: 4,
         id: '210',
     },
     {
-        userId: 'zM4UyVgfKNf2vrf5sXmBIxA5QOl2',
+        user: {
+            id: 'zM4UyVgfKNf2vrf5sXmBIxA5QOl2',
+            username: 'mainManager',
+            firstname: 'Maxim',
+            lastname: 'Shavlak',
+            email: 'mainManager@gmail.com',
+            avatar: 'https://st3.depositphotos.com/1071184/13782/v/450/depositphotos_137825710-stock-illustration-business-person-analyzing-financial-statistics.jpg',
+        },
         articleId: '39',
         rate: 5,
         id: '211',
     },
     {
-        userId: 'nwPyI60mR9XWY3ozVuRGItx08PY2',
+        user: {
+            id: 'nwPyI60mR9XWY3ozVuRGItx08PY2',
+            username: 'testuser',
+            firstname: 'Test',
+            lastname: 'lastnameUser',
+
+            email: 'testuser@gmail.com',
+
+            avatar: 'https://s1.1zoom.ru/big3/992/367659-alexfas01.jpg',
+        },
         articleId: '39',
         rate: 4,
         id: '212',
     },
     {
-        userId: 'hdkjUiQhjoPIVMqfORNbvEHm4Wg1',
+        user: {
+            id: 'hdkjUiQhjoPIVMqfORNbvEHm4Wg1',
+            username: 'testuser2',
+            firstname: 'Test2',
+            lastname: 'User2',
+
+            email: 'testuser2@gmail.com',
+            avatar: 'FRGDHJ',
+        },
         articleId: '39',
         rate: 3,
         id: '213',
     },
     {
-        userId: 'meuKZ9Dc5ucUuMn72esjwMi9Azl2',
+        user: {
+            id: 'meuKZ9Dc5ucUuMn72esjwMi9Azl2',
+            username: 'markUser',
+            firstname: 'Mark',
+            lastname: 'Smith',
+            email: 'markUser@gmail.com',
+            avatar: 'https://example.com/avatar6.png',
+        },
         articleId: '39',
         rate: 4,
         feedback: 'Well explained, clear examples',
         id: '214',
     },
     {
-        userId: 'tfs04ij0b5anHdw2qt6LghQsEfC3',
+        user: {
+            id: 'tfs04ij0b5anHdw2qt6LghQsEfC3',
+            username: 'katyaAdmin',
+            firstname: 'Katya',
+            lastname: 'Ivanova',
+            email: 'katyaAdmin@gmail.com',
+            avatar: 'https://example.com/avatar7.jpg',
+        },
         articleId: '39',
         rate: 5,
         id: '215',
     },
     {
-        userId: 'd6RJwaIJmjbHTV2PdSg04DpPjWl1',
+        user: {
+            id: 'd6RJwaIJmjbHTV2PdSg04DpPjWl1',
+            username: 'johnManager',
+            firstname: 'John',
+            lastname: 'Doe',
+            email: 'johnManager@gmail.com',
+            avatar: 'https://example.com/avatar8.jpg',
+        },
         articleId: '39',
         rate: 3,
         id: '216',
     },
     {
-        userId: 'MqonEyICTeMapkAPyPFH7w1E5l52',
+        user: {
+            id: 'MqonEyICTeMapkAPyPFH7w1E5l52',
+            username: 'annaUser',
+            firstname: 'Anna',
+            lastname: 'Koval',
+
+            email: 'annaUser@gmail.com',
+
+            avatar: 'https://example.com/avatar9.jpg',
+        },
         articleId: '39',
         rate: 5,
         id: '217',
     },
     {
-        userId: 'ObGe2X8MNTde2RSffQgE0Jpxek72',
+        user: {
+            id: 'ObGe2X8MNTde2RSffQgE0Jpxek72',
+            username: 'lucyAdmin',
+            firstname: 'Lucy',
+            lastname: 'Brown',
+
+            email: 'lucyAdmin@gmail.com',
+
+            avatar: 'https://example.com/avatar10.jpg',
+        },
         articleId: '39',
         rate: 4,
         feedback: 'Great insights, could cover more edge cases',
         id: '218',
     },
     {
-        userId: 'vvfdFnPQMLVkrnCBjsTZcPsUq9U2',
+        user: {
+            id: 'vvfdFnPQMLVkrnCBjsTZcPsUq9U2',
+            username: 'mainUser',
+            firstname: 'Tetiana',
+            lastname: 'Shavlak',
+            email: 'mainUser@gmail.com',
+            avatar: 'https://drive.google.com/thumbnail?id=1J1xUPYYkJeOsBTpDuf36vsV7UfxlM2uG&sz=w1000',
+        },
         articleId: '61',
         rate: 4,
         id: '219',
     },
     {
-        userId: 'zM4UyVgfKNf2vrf5sXmBIxA5QOl2',
+        user: {
+            id: 'zM4UyVgfKNf2vrf5sXmBIxA5QOl2',
+            username: 'mainManager',
+            firstname: 'Maxim',
+            lastname: 'Shavlak',
+            email: 'mainManager@gmail.com',
+            avatar: 'https://st3.depositphotos.com/1071184/13782/v/450/depositphotos_137825710-stock-illustration-business-person-analyzing-financial-statistics.jpg',
+        },
         articleId: '61',
         rate: 5,
         feedback: 'One of the best articles on this topic!',
         id: '220',
     },
     {
-        userId: 'nwPyI60mR9XWY3ozVuRGItx08PY2',
+        user: {
+            id: 'nwPyI60mR9XWY3ozVuRGItx08PY2',
+            username: 'testuser',
+            firstname: 'Test',
+            lastname: 'lastnameUser',
+
+            email: 'testuser@gmail.com',
+
+            avatar: 'https://s1.1zoom.ru/big3/992/367659-alexfas01.jpg',
+        },
         articleId: '61',
         rate: 4,
         id: '221',
     },
     {
-        userId: 'hdkjUiQhjoPIVMqfORNbvEHm4Wg1',
+        user: {
+            id: 'hdkjUiQhjoPIVMqfORNbvEHm4Wg1',
+            username: 'testuser2',
+            firstname: 'Test2',
+            lastname: 'User2',
+
+            email: 'testuser2@gmail.com',
+            avatar: 'FRGDHJ',
+        },
         articleId: '61',
         rate: 3,
         id: '222',
     },
     {
-        userId: 'meuKZ9Dc5ucUuMn72esjwMi9Azl2',
+        user: {
+            id: 'meuKZ9Dc5ucUuMn72esjwMi9Azl2',
+            username: 'markUser',
+            firstname: 'Mark',
+            lastname: 'Smith',
+            email: 'markUser@gmail.com',
+            avatar: 'https://example.com/avatar6.png',
+        },
         articleId: '61',
         rate: 5,
         id: '223',
     },
     {
-        userId: 'tfs04ij0b5anHdw2qt6LghQsEfC3',
+        user: {
+            id: 'tfs04ij0b5anHdw2qt6LghQsEfC3',
+            username: 'katyaAdmin',
+            firstname: 'Katya',
+            lastname: 'Ivanova',
+            email: 'katyaAdmin@gmail.com',
+            avatar: 'https://example.com/avatar7.jpg',
+        },
         articleId: '61',
         rate: 4,
         id: '224',
     },
     {
-        userId: 'd6RJwaIJmjbHTV2PdSg04DpPjWl1',
+        user: {
+            id: 'd6RJwaIJmjbHTV2PdSg04DpPjWl1',
+            username: 'johnManager',
+            firstname: 'John',
+            lastname: 'Doe',
+            email: 'johnManager@gmail.com',
+            avatar: 'https://example.com/avatar8.jpg',
+        },
         articleId: '61',
         rate: 4,
         feedback: 'Solid article, well done',
         id: '225',
     },
     {
-        userId: 'MqonEyICTeMapkAPyPFH7w1E5l52',
+        user: {
+            id: 'MqonEyICTeMapkAPyPFH7w1E5l52',
+            username: 'annaUser',
+            firstname: 'Anna',
+            lastname: 'Koval',
+
+            email: 'annaUser@gmail.com',
+
+            avatar: 'https://example.com/avatar9.jpg',
+        },
         articleId: '61',
         rate: 3,
         id: '226',
     },
     {
-        userId: 'ObGe2X8MNTde2RSffQgE0Jpxek72',
+        user: {
+            id: 'ObGe2X8MNTde2RSffQgE0Jpxek72',
+            username: 'lucyAdmin',
+            firstname: 'Lucy',
+            lastname: 'Brown',
+
+            email: 'lucyAdmin@gmail.com',
+
+            avatar: 'https://example.com/avatar10.jpg',
+        },
         articleId: '61',
         rate: 4,
         id: '227',
     },
     {
-        userId: 'vvfdFnPQMLVkrnCBjsTZcPsUq9U2',
+        user: {
+            id: 'vvfdFnPQMLVkrnCBjsTZcPsUq9U2',
+            username: 'mainUser',
+            firstname: 'Tetiana',
+            lastname: 'Shavlak',
+            email: 'mainUser@gmail.com',
+            avatar: 'https://drive.google.com/thumbnail?id=1J1xUPYYkJeOsBTpDuf36vsV7UfxlM2uG&sz=w1000',
+        },
         articleId: '105',
         rate: 5,
         feedback: 'Excellent depth of coverage',
         id: '228',
     },
     {
-        userId: 'zM4UyVgfKNf2vrf5sXmBIxA5QOl2',
+        user: {
+            id: 'zM4UyVgfKNf2vrf5sXmBIxA5QOl2',
+            username: 'mainManager',
+            firstname: 'Maxim',
+            lastname: 'Shavlak',
+            email: 'mainManager@gmail.com',
+            avatar: 'https://st3.depositphotos.com/1071184/13782/v/450/depositphotos_137825710-stock-illustration-business-person-analyzing-financial-statistics.jpg',
+        },
         articleId: '105',
         rate: 4,
         id: '229',
     },
     {
-        userId: 'nwPyI60mR9XWY3ozVuRGItx08PY2',
+        user: {
+            id: 'nwPyI60mR9XWY3ozVuRGItx08PY2',
+            username: 'testuser',
+            firstname: 'Test',
+            lastname: 'lastnameUser',
+
+            email: 'testuser@gmail.com',
+
+            avatar: 'https://s1.1zoom.ru/big3/992/367659-alexfas01.jpg',
+        },
         articleId: '105',
         rate: 4,
         id: '230',
     },
     {
-        userId: 'hdkjUiQhjoPIVMqfORNbvEHm4Wg1',
+        user: {
+            id: 'hdkjUiQhjoPIVMqfORNbvEHm4Wg1',
+            username: 'testuser2',
+            firstname: 'Test2',
+            lastname: 'User2',
+
+            email: 'testuser2@gmail.com',
+            avatar: 'FRGDHJ',
+        },
         articleId: '105',
         rate: 3,
         id: '231',
     },
     {
-        userId: 'meuKZ9Dc5ucUuMn72esjwMi9Azl2',
+        user: {
+            id: 'meuKZ9Dc5ucUuMn72esjwMi9Azl2',
+            username: 'markUser',
+            firstname: 'Mark',
+            lastname: 'Smith',
+            email: 'markUser@gmail.com',
+            avatar: 'https://example.com/avatar6.png',
+        },
         articleId: '105',
         rate: 4,
         id: '232',
     },
     {
-        userId: 'tfs04ij0b5anHdw2qt6LghQsEfC3',
+        user: {
+            id: 'tfs04ij0b5anHdw2qt6LghQsEfC3',
+            username: 'katyaAdmin',
+            firstname: 'Katya',
+            lastname: 'Ivanova',
+            email: 'katyaAdmin@gmail.com',
+            avatar: 'https://example.com/avatar7.jpg',
+        },
         articleId: '105',
         rate: 5,
         id: '233',
     },
     {
-        userId: 'd6RJwaIJmjbHTV2PdSg04DpPjWl1',
+        user: {
+            id: 'd6RJwaIJmjbHTV2PdSg04DpPjWl1',
+            username: 'johnManager',
+            firstname: 'John',
+            lastname: 'Doe',
+            email: 'johnManager@gmail.com',
+            avatar: 'https://example.com/avatar8.jpg',
+        },
         articleId: '105',
         rate: 4,
         id: '234',
     },
     {
-        userId: 'MqonEyICTeMapkAPyPFH7w1E5l52',
+        user: {
+            id: 'MqonEyICTeMapkAPyPFH7w1E5l52',
+            username: 'annaUser',
+            firstname: 'Anna',
+            lastname: 'Koval',
+
+            email: 'annaUser@gmail.com',
+
+            avatar: 'https://example.com/avatar9.jpg',
+        },
         articleId: '105',
         rate: 4,
         id: '235',
     },
     {
-        userId: 'ObGe2X8MNTde2RSffQgE0Jpxek72',
+        user: {
+            id: 'ObGe2X8MNTde2RSffQgE0Jpxek72',
+            username: 'lucyAdmin',
+            firstname: 'Lucy',
+            lastname: 'Brown',
+
+            email: 'lucyAdmin@gmail.com',
+
+            avatar: 'https://example.com/avatar10.jpg',
+        },
         articleId: '105',
         rate: 3,
         id: '236',
     },
     {
-        userId: '4g1WI5M1XIZU6VKvIfJBG7TzMsD3',
+        user: {
+            id: '4g1WI5M1XIZU6VKvIfJBG7TzMsD3',
+            username: 'alexManager',
+            firstname: 'Alex',
+            lastname: 'Johnson',
+            email: 'alexManager@gmail.com',
+            avatar: 'https://example.com/avatar11.jpg',
+        },
         articleId: '37',
         rate: 5,
         feedback: 'Excellent explanation and very detailed. Helped me a lot!',
         id: '237',
     },
     {
-        userId: '4juq0tzGf5fNMCXCRFOa5mvFO5O2',
+        user: {
+            id: '4juq0tzGf5fNMCXCRFOa5mvFO5O2',
+            username: 'leoUser',
+            firstname: 'Leo',
+            lastname: 'Mikhailov',
+
+            email: 'leoUser@gmail.com',
+
+            avatar: 'https://example.com/avatar12.jpg',
+        },
         articleId: '37',
         rate: 4,
         feedback:
@@ -822,21 +1898,48 @@ const ratings = [
         id: '238',
     },
     {
-        userId: '9Dpc2pFoeORLyQrxHlGIbe5wjbf2',
+        user: {
+            id: '9Dpc2pFoeORLyQrxHlGIbe5wjbf2',
+            username: 'janeAdmin',
+            firstname: 'Jane',
+            lastname: 'Williams',
+
+            email: 'janeAdmin@gmail.com',
+
+            avatar: 'https://example.com/avatar13.jpg',
+        },
         articleId: '37',
         rate: 5,
         feedback: 'Well-written and informative, definitely a must-read!',
         id: '239',
     },
     {
-        userId: 'BrKES0pOcxcgYBUpKmZxBzqKFhl1',
+        user: {
+            id: 'BrKES0pOcxcgYBUpKmZxBzqKFhl1',
+            username: 'peterManager',
+            firstname: 'Peter',
+            lastname: 'Muller',
+
+            email: 'peterManager@gmail.com',
+
+            avatar: 'https://example.com/avatar14.jpg',
+        },
         articleId: '37',
         rate: 4,
         feedback: 'Very useful content, but a bit advanced for beginners.',
         id: '240',
     },
     {
-        userId: 'Ue15ycXTpxVhCZ2eJoOVYaArKEa2',
+        user: {
+            id: 'Ue15ycXTpxVhCZ2eJoOVYaArKEa2',
+            username: 'mariaUser',
+            firstname: 'Maria',
+            lastname: 'Petrova',
+
+            email: 'mariaUser@gmail.com',
+
+            avatar: 'https://example.com/avatar15.jpg',
+        },
         articleId: '37',
         rate: 5,
         feedback:
@@ -844,7 +1947,16 @@ const ratings = [
         id: '241',
     },
     {
-        userId: 'KXv8oUPLQeUXSzoXOWJV4nw47CG2',
+        user: {
+            id: 'KXv8oUPLQeUXSzoXOWJV4nw47CG2',
+            username: 'maxAdmin',
+            firstname: 'Max',
+            lastname: 'Gordon',
+
+            email: 'maxAdmin@gmail.com',
+
+            avatar: 'https://example.com/avatar16.jpg',
+        },
         articleId: '60',
         rate: 5,
         feedback:
@@ -852,7 +1964,16 @@ const ratings = [
         id: '242',
     },
     {
-        userId: '18zZBJnmEqWJNwGj2SvbNiNVXol1',
+        user: {
+            id: '18zZBJnmEqWJNwGj2SvbNiNVXol1',
+            username: 'nickManager',
+            firstname: 'Nick',
+            lastname: 'Garcia',
+
+            email: 'nickManager@gmail.com',
+
+            avatar: 'https://example.com/avatar17.jpg',
+        },
         articleId: '60',
         rate: 4,
         feedback:
@@ -860,7 +1981,14 @@ const ratings = [
         id: '243',
     },
     {
-        userId: '4g1WI5M1XIZU6VKvIfJBG7TzMsD3',
+        user: {
+            id: '4g1WI5M1XIZU6VKvIfJBG7TzMsD3',
+            username: 'alexManager',
+            firstname: 'Alex',
+            lastname: 'Johnson',
+            email: 'alexManager@gmail.com',
+            avatar: 'https://example.com/avatar11.jpg',
+        },
         articleId: '60',
         rate: 5,
         feedback:
@@ -868,7 +1996,16 @@ const ratings = [
         id: '244',
     },
     {
-        userId: '4juq0tzGf5fNMCXCRFOa5mvFO5O2',
+        user: {
+            id: '4juq0tzGf5fNMCXCRFOa5mvFO5O2',
+            username: 'leoUser',
+            firstname: 'Leo',
+            lastname: 'Mikhailov',
+
+            email: 'leoUser@gmail.com',
+
+            avatar: 'https://example.com/avatar12.jpg',
+        },
         articleId: '60',
         rate: 4,
         feedback:
@@ -876,7 +2013,16 @@ const ratings = [
         id: '245',
     },
     {
-        userId: '9Dpc2pFoeORLyQrxHlGIbe5wjbf2',
+        user: {
+            id: '9Dpc2pFoeORLyQrxHlGIbe5wjbf2',
+            username: 'janeAdmin',
+            firstname: 'Jane',
+            lastname: 'Williams',
+
+            email: 'janeAdmin@gmail.com',
+
+            avatar: 'https://example.com/avatar13.jpg',
+        },
         articleId: '104',
         rate: 5,
         feedback:
@@ -884,7 +2030,16 @@ const ratings = [
         id: '246',
     },
     {
-        userId: 'BrKES0pOcxcgYBUpKmZxBzqKFhl1',
+        user: {
+            id: 'BrKES0pOcxcgYBUpKmZxBzqKFhl1',
+            username: 'peterManager',
+            firstname: 'Peter',
+            lastname: 'Muller',
+
+            email: 'peterManager@gmail.com',
+
+            avatar: 'https://example.com/avatar14.jpg',
+        },
         articleId: '104',
         rate: 4,
         feedback:
@@ -892,21 +2047,48 @@ const ratings = [
         id: '247',
     },
     {
-        userId: 'Ue15ycXTpxVhCZ2eJoOVYaArKEa2',
+        user: {
+            id: 'Ue15ycXTpxVhCZ2eJoOVYaArKEa2',
+            username: 'mariaUser',
+            firstname: 'Maria',
+            lastname: 'Petrova',
+
+            email: 'mariaUser@gmail.com',
+
+            avatar: 'https://example.com/avatar15.jpg',
+        },
         articleId: '104',
         rate: 5,
         feedback: 'Extremely useful and well-explained. Highly recommended!',
         id: '248',
     },
     {
-        userId: 'KXv8oUPLQeUXSzoXOWJV4nw47CG2',
+        user: {
+            id: 'KXv8oUPLQeUXSzoXOWJV4nw47CG2',
+            username: 'maxAdmin',
+            firstname: 'Max',
+            lastname: 'Gordon',
+
+            email: 'maxAdmin@gmail.com',
+
+            avatar: 'https://example.com/avatar16.jpg',
+        },
         articleId: '104',
         rate: 5,
         feedback: 'Clear, concise, and to the point. Great job!',
         id: '249',
     },
     {
-        userId: '18zZBJnmEqWJNwGj2SvbNiNVXol1',
+        user: {
+            id: '18zZBJnmEqWJNwGj2SvbNiNVXol1',
+            username: 'nickManager',
+            firstname: 'Nick',
+            lastname: 'Garcia',
+
+            email: 'nickManager@gmail.com',
+
+            avatar: 'https://example.com/avatar17.jpg',
+        },
         articleId: '120',
         rate: 5,
         feedback:
@@ -914,7 +2096,14 @@ const ratings = [
         id: '250',
     },
     {
-        userId: '4g1WI5M1XIZU6VKvIfJBG7TzMsD3',
+        user: {
+            id: '4g1WI5M1XIZU6VKvIfJBG7TzMsD3',
+            username: 'alexManager',
+            firstname: 'Alex',
+            lastname: 'Johnson',
+            email: 'alexManager@gmail.com',
+            avatar: 'https://example.com/avatar11.jpg',
+        },
         articleId: '120',
         rate: 4,
         feedback:
@@ -922,7 +2111,16 @@ const ratings = [
         id: '251',
     },
     {
-        userId: '4juq0tzGf5fNMCXCRFOa5mvFO5O2',
+        user: {
+            id: '4juq0tzGf5fNMCXCRFOa5mvFO5O2',
+            username: 'leoUser',
+            firstname: 'Leo',
+            lastname: 'Mikhailov',
+
+            email: 'leoUser@gmail.com',
+
+            avatar: 'https://example.com/avatar12.jpg',
+        },
         articleId: '120',
         rate: 5,
         feedback:
@@ -930,14 +2128,32 @@ const ratings = [
         id: '252',
     },
     {
-        userId: '9Dpc2pFoeORLyQrxHlGIbe5wjbf2',
+        user: {
+            id: '9Dpc2pFoeORLyQrxHlGIbe5wjbf2',
+            username: 'janeAdmin',
+            firstname: 'Jane',
+            lastname: 'Williams',
+
+            email: 'janeAdmin@gmail.com',
+
+            avatar: 'https://example.com/avatar13.jpg',
+        },
         articleId: '139',
         rate: 5,
         feedback: 'A solid article with well-presented information. Loved it!',
         id: '253',
     },
     {
-        userId: 'BrKES0pOcxcgYBUpKmZxBzqKFhl1',
+        user: {
+            id: 'BrKES0pOcxcgYBUpKmZxBzqKFhl1',
+            username: 'peterManager',
+            firstname: 'Peter',
+            lastname: 'Muller',
+
+            email: 'peterManager@gmail.com',
+
+            avatar: 'https://example.com/avatar14.jpg',
+        },
         articleId: '139',
         rate: 5,
         feedback:
@@ -945,7 +2161,16 @@ const ratings = [
         id: '254',
     },
     {
-        userId: 'Ue15ycXTpxVhCZ2eJoOVYaArKEa2',
+        user: {
+            id: 'Ue15ycXTpxVhCZ2eJoOVYaArKEa2',
+            username: 'mariaUser',
+            firstname: 'Maria',
+            lastname: 'Petrova',
+
+            email: 'mariaUser@gmail.com',
+
+            avatar: 'https://example.com/avatar15.jpg',
+        },
         articleId: '139',
         rate: 4,
         feedback:
@@ -953,7 +2178,16 @@ const ratings = [
         id: '255',
     },
     {
-        userId: 'KXv8oUPLQeUXSzoXOWJV4nw47CG2',
+        user: {
+            id: 'KXv8oUPLQeUXSzoXOWJV4nw47CG2',
+            username: 'maxAdmin',
+            firstname: 'Max',
+            lastname: 'Gordon',
+
+            email: 'maxAdmin@gmail.com',
+
+            avatar: 'https://example.com/avatar16.jpg',
+        },
         articleId: '139',
         rate: 5,
         feedback:
@@ -961,7 +2195,16 @@ const ratings = [
         id: '256',
     },
     {
-        userId: 'mYX7XszmZJgEUSU9eeKDJYbP7P22',
+        user: {
+            id: 'mYX7XszmZJgEUSU9eeKDJYbP7P22',
+            username: 'claraUser',
+            firstname: 'Clara',
+            lastname: 'Santos',
+
+            email: 'claraUser@gmail.com',
+
+            avatar: 'https://example.com/avatar18.jpg',
+        },
         articleId: '34',
         rate: 1,
         feedback:
@@ -969,7 +2212,16 @@ const ratings = [
         id: '257',
     },
     {
-        userId: 'Str49JTKBAOoaEhM8XeQLLLPPDp2',
+        user: {
+            id: 'Str49JTKBAOoaEhM8XeQLLLPPDp2',
+            username: 'tomAdmin',
+            firstname: 'Tom',
+            lastname: 'Anderson',
+
+            email: 'tomAdmin@gmail.com',
+
+            avatar: 'https://example.com/avatar19.jpg',
+        },
         articleId: '34',
         rate: 2,
         feedback: 'Not well-structured. The explanations are too vague.',
@@ -984,7 +2236,16 @@ const ratings = [
         id: '259',
     },
     {
-        userId: 'mYX7XszmZJgEUSU9eeKDJYbP7P22',
+        user: {
+            id: 'mYX7XszmZJgEUSU9eeKDJYbP7P22',
+            username: 'claraUser',
+            firstname: 'Clara',
+            lastname: 'Santos',
+
+            email: 'claraUser@gmail.com',
+
+            avatar: 'https://example.com/avatar18.jpg',
+        },
         articleId: '35',
         rate: 2,
         feedback:
@@ -992,7 +2253,16 @@ const ratings = [
         id: '260',
     },
     {
-        userId: 'Str49JTKBAOoaEhM8XeQLLLPPDp2',
+        user: {
+            id: 'Str49JTKBAOoaEhM8XeQLLLPPDp2',
+            username: 'tomAdmin',
+            firstname: 'Tom',
+            lastname: 'Anderson',
+
+            email: 'tomAdmin@gmail.com',
+
+            avatar: 'https://example.com/avatar19.jpg',
+        },
         articleId: '35',
         rate: 1,
         feedback: 'Disappointing. The article barely scratches the surface.',
@@ -1006,7 +2276,16 @@ const ratings = [
         id: '262',
     },
     {
-        userId: 'mYX7XszmZJgEUSU9eeKDJYbP7P22',
+        user: {
+            id: 'mYX7XszmZJgEUSU9eeKDJYbP7P22',
+            username: 'claraUser',
+            firstname: 'Clara',
+            lastname: 'Santos',
+
+            email: 'claraUser@gmail.com',
+
+            avatar: 'https://example.com/avatar18.jpg',
+        },
         articleId: '59',
         rate: 2,
         feedback:
@@ -1014,7 +2293,16 @@ const ratings = [
         id: '263',
     },
     {
-        userId: 'Str49JTKBAOoaEhM8XeQLLLPPDp2',
+        user: {
+            id: 'Str49JTKBAOoaEhM8XeQLLLPPDp2',
+            username: 'tomAdmin',
+            firstname: 'Tom',
+            lastname: 'Anderson',
+
+            email: 'tomAdmin@gmail.com',
+
+            avatar: 'https://example.com/avatar19.jpg',
+        },
         articleId: '59',
         rate: 1,
         feedback: 'Not informative enough. The points are too general.',
@@ -1029,7 +2317,14 @@ const ratings = [
         id: '265',
     },
     {
-        userId: 'J3aB11HdHTZW6udzrrw2ymBhIOz1',
+        user: {
+            id: 'J3aB11HdHTZW6udzrrw2ymBhIOz1',
+            username: 'mainAdmin',
+            firstname: 'Maryna',
+            lastname: 'Shavlak',
+            email: 'mainAdmin@gmail.com',
+            avatar: 'https://drive.google.com/thumbnail?id=1RD0jSAm8kdTLKa-Vr0daeE8T9-QcfPCa&sz=w1000',
+        },
         articleId: '118',
         rate: 4,
         feedback:
@@ -1037,21 +2332,42 @@ const ratings = [
         id: '266',
     },
     {
-        userId: 'vvfdFnPQMLVkrnCBjsTZcPsUq9U2',
+        user: {
+            id: 'vvfdFnPQMLVkrnCBjsTZcPsUq9U2',
+            username: 'mainUser',
+            firstname: 'Tetiana',
+            lastname: 'Shavlak',
+            email: 'mainUser@gmail.com',
+            avatar: 'https://drive.google.com/thumbnail?id=1J1xUPYYkJeOsBTpDuf36vsV7UfxlM2uG&sz=w1000',
+        },
         articleId: '118',
         rate: 3,
         feedback: 'Good article overall, but lacks depth in some areas.',
         id: '267',
     },
     {
-        userId: 'zM4UyVgfKNf2vrf5sXmBIxA5QOl2',
+        user: {
+            id: 'zM4UyVgfKNf2vrf5sXmBIxA5QOl2',
+            username: 'mainManager',
+            firstname: 'Maxim',
+            lastname: 'Shavlak',
+            email: 'mainManager@gmail.com',
+            avatar: 'https://st3.depositphotos.com/1071184/13782/v/450/depositphotos_137825710-stock-illustration-business-person-analyzing-financial-statistics.jpg',
+        },
         articleId: '118',
         rate: 4,
         feedback: 'Solid content, but a bit more detail would make it great.',
         id: '268',
     },
     {
-        userId: 'J3aB11HdHTZW6udzrrw2ymBhIOz1',
+        user: {
+            id: 'J3aB11HdHTZW6udzrrw2ymBhIOz1',
+            username: 'mainAdmin',
+            firstname: 'Maryna',
+            lastname: 'Shavlak',
+            email: 'mainAdmin@gmail.com',
+            avatar: 'https://drive.google.com/thumbnail?id=1RD0jSAm8kdTLKa-Vr0daeE8T9-QcfPCa&sz=w1000',
+        },
         articleId: '131',
         rate: 3,
         feedback:
@@ -1059,7 +2375,14 @@ const ratings = [
         id: '269',
     },
     {
-        userId: 'vvfdFnPQMLVkrnCBjsTZcPsUq9U2',
+        user: {
+            id: 'vvfdFnPQMLVkrnCBjsTZcPsUq9U2',
+            username: 'mainUser',
+            firstname: 'Tetiana',
+            lastname: 'Shavlak',
+            email: 'mainUser@gmail.com',
+            avatar: 'https://drive.google.com/thumbnail?id=1J1xUPYYkJeOsBTpDuf36vsV7UfxlM2uG&sz=w1000',
+        },
         articleId: '131',
         rate: 4,
         feedback:
@@ -1067,20 +2390,43 @@ const ratings = [
         id: '270',
     },
     {
-        userId: 'zM4UyVgfKNf2vrf5sXmBIxA5QOl2',
+        user: {
+            id: 'zM4UyVgfKNf2vrf5sXmBIxA5QOl2',
+            username: 'mainManager',
+            firstname: 'Maxim',
+            lastname: 'Shavlak',
+            email: 'mainManager@gmail.com',
+            avatar: 'https://st3.depositphotos.com/1071184/13782/v/450/depositphotos_137825710-stock-illustration-business-person-analyzing-financial-statistics.jpg',
+        },
         articleId: '131',
         rate: 3,
         id: '271',
     },
     {
-        userId: 'zM4UyVgfKNf2vrf5sXmBIxA5QOl2',
+        user: {
+            id: 'zM4UyVgfKNf2vrf5sXmBIxA5QOl2',
+            username: 'mainManager',
+            firstname: 'Maxim',
+            lastname: 'Shavlak',
+            email: 'mainManager@gmail.com',
+            avatar: 'https://st3.depositphotos.com/1071184/13782/v/450/depositphotos_137825710-stock-illustration-business-person-analyzing-financial-statistics.jpg',
+        },
         articleId: '30',
         rate: 5,
         feedback: 'Excellent explanation with detailed examples, very helpful.',
         id: '272',
     },
     {
-        userId: 'nwPyI60mR9XWY3ozVuRGItx08PY2',
+        user: {
+            id: 'nwPyI60mR9XWY3ozVuRGItx08PY2',
+            username: 'testuser',
+            firstname: 'Test',
+            lastname: 'lastnameUser',
+
+            email: 'testuser@gmail.com',
+
+            avatar: 'https://s1.1zoom.ru/big3/992/367659-alexfas01.jpg',
+        },
         articleId: '30',
         rate: 3,
         feedback:
@@ -1088,28 +2434,57 @@ const ratings = [
         id: '273',
     },
     {
-        userId: 'hdkjUiQhjoPIVMqfORNbvEHm4Wg1',
+        user: {
+            id: 'hdkjUiQhjoPIVMqfORNbvEHm4Wg1',
+            username: 'testuser2',
+            firstname: 'Test2',
+            lastname: 'User2',
+
+            email: 'testuser2@gmail.com',
+            avatar: 'FRGDHJ',
+        },
         articleId: '30',
         rate: 4,
         feedback: 'Good content, but some sections need more clarity.',
         id: '274',
     },
     {
-        userId: 'meuKZ9Dc5ucUuMn72esjwMi9Azl2',
+        user: {
+            id: 'meuKZ9Dc5ucUuMn72esjwMi9Azl2',
+            username: 'markUser',
+            firstname: 'Mark',
+            lastname: 'Smith',
+            email: 'markUser@gmail.com',
+            avatar: 'https://example.com/avatar6.png',
+        },
         articleId: '30',
         rate: 2,
         feedback: 'The article was too brief and lacked in-depth explanations.',
         id: '275',
     },
     {
-        userId: 'tfs04ij0b5anHdw2qt6LghQsEfC3',
+        user: {
+            id: 'tfs04ij0b5anHdw2qt6LghQsEfC3',
+            username: 'katyaAdmin',
+            firstname: 'Katya',
+            lastname: 'Ivanova',
+            email: 'katyaAdmin@gmail.com',
+            avatar: 'https://example.com/avatar7.jpg',
+        },
         articleId: '30',
         rate: 5,
         feedback: 'Really insightful, covers the topic thoroughly.',
         id: '276',
     },
     {
-        userId: 'zM4UyVgfKNf2vrf5sXmBIxA5QOl2',
+        user: {
+            id: 'zM4UyVgfKNf2vrf5sXmBIxA5QOl2',
+            username: 'mainManager',
+            firstname: 'Maxim',
+            lastname: 'Shavlak',
+            email: 'mainManager@gmail.com',
+            avatar: 'https://st3.depositphotos.com/1071184/13782/v/450/depositphotos_137825710-stock-illustration-business-person-analyzing-financial-statistics.jpg',
+        },
         articleId: '31',
         rate: 4,
         feedback:
@@ -1117,70 +2492,146 @@ const ratings = [
         id: '277',
     },
     {
-        userId: 'nwPyI60mR9XWY3ozVuRGItx08PY2',
+        user: {
+            id: 'nwPyI60mR9XWY3ozVuRGItx08PY2',
+            username: 'testuser',
+            firstname: 'Test',
+            lastname: 'lastnameUser',
+
+            email: 'testuser@gmail.com',
+
+            avatar: 'https://s1.1zoom.ru/big3/992/367659-alexfas01.jpg',
+        },
         articleId: '31',
         rate: 5,
         feedback: 'Very well-written and easy to understand, excellent job!',
         id: '278',
     },
     {
-        userId: 'hdkjUiQhjoPIVMqfORNbvEHm4Wg1',
+        user: {
+            id: 'hdkjUiQhjoPIVMqfORNbvEHm4Wg1',
+            username: 'testuser2',
+            firstname: 'Test2',
+            lastname: 'User2',
+
+            email: 'testuser2@gmail.com',
+            avatar: 'FRGDHJ',
+        },
         articleId: '31',
         rate: 3,
         feedback: 'Not bad, but I feel it missed some key points.',
         id: '279',
     },
     {
-        userId: 'meuKZ9Dc5ucUuMn72esjwMi9Azl2',
+        user: {
+            id: 'meuKZ9Dc5ucUuMn72esjwMi9Azl2',
+            username: 'markUser',
+            firstname: 'Mark',
+            lastname: 'Smith',
+            email: 'markUser@gmail.com',
+            avatar: 'https://example.com/avatar6.png',
+        },
         articleId: '31',
         rate: 2,
         feedback: "Too basic, didn't provide enough depth on the subject.",
         id: '280',
     },
     {
-        userId: 'tfs04ij0b5anHdw2qt6LghQsEfC3',
+        user: {
+            id: 'tfs04ij0b5anHdw2qt6LghQsEfC3',
+            username: 'katyaAdmin',
+            firstname: 'Katya',
+            lastname: 'Ivanova',
+            email: 'katyaAdmin@gmail.com',
+            avatar: 'https://example.com/avatar7.jpg',
+        },
         articleId: '31',
         rate: 4,
         feedback: 'Solid article, useful for getting a quick overview.',
         id: '281',
     },
     {
-        userId: 'hdkjUiQhjoPIVMqfORNbvEHm4Wg1',
+        user: {
+            id: 'hdkjUiQhjoPIVMqfORNbvEHm4Wg1',
+            username: 'testuser2',
+            firstname: 'Test2',
+            lastname: 'User2',
+
+            email: 'testuser2@gmail.com',
+            avatar: 'FRGDHJ',
+        },
         articleId: '56',
         rate: 4,
         feedback: 'Great insights, but some sections could use more examples.',
         id: '282',
     },
     {
-        userId: 'meuKZ9Dc5ucUuMn72esjwMi9Azl2',
+        user: {
+            id: 'meuKZ9Dc5ucUuMn72esjwMi9Azl2',
+            username: 'markUser',
+            firstname: 'Mark',
+            lastname: 'Smith',
+            email: 'markUser@gmail.com',
+            avatar: 'https://example.com/avatar6.png',
+        },
         articleId: '56',
         rate: 4,
         feedback: 'Well-written article, enjoyed the clarity of explanation.',
         id: '283',
     },
     {
-        userId: 'hdkjUiQhjoPIVMqfORNbvEHm4Wg1',
+        user: {
+            id: 'hdkjUiQhjoPIVMqfORNbvEHm4Wg1',
+            username: 'testuser2',
+            firstname: 'Test2',
+            lastname: 'User2',
+
+            email: 'testuser2@gmail.com',
+            avatar: 'FRGDHJ',
+        },
         articleId: '88',
         rate: 4,
         feedback: 'Informative, but could be more detailed in certain areas.',
         id: '284',
     },
     {
-        userId: 'meuKZ9Dc5ucUuMn72esjwMi9Azl2',
+        user: {
+            id: 'meuKZ9Dc5ucUuMn72esjwMi9Azl2',
+            username: 'markUser',
+            firstname: 'Mark',
+            lastname: 'Smith',
+            email: 'markUser@gmail.com',
+            avatar: 'https://example.com/avatar6.png',
+        },
         articleId: '88',
         rate: 4,
         feedback: 'Solid content, found it useful for understanding the topic.',
         id: '285',
     },
     {
-        userId: 'hdkjUiQhjoPIVMqfORNbvEHm4Wg1',
+        user: {
+            id: 'hdkjUiQhjoPIVMqfORNbvEHm4Wg1',
+            username: 'testuser2',
+            firstname: 'Test2',
+            lastname: 'User2',
+
+            email: 'testuser2@gmail.com',
+            avatar: 'FRGDHJ',
+        },
         articleId: '100',
         rate: 4,
         feedback: 'Nice overview, but I expected more depth.',
         id: '286',
     },
     {
-        userId: 'meuKZ9Dc5ucUuMn72esjwMi9Azl2',
+        user: {
+            id: 'meuKZ9Dc5ucUuMn72esjwMi9Azl2',
+            username: 'markUser',
+            firstname: 'Mark',
+            lastname: 'Smith',
+            email: 'markUser@gmail.com',
+            avatar: 'https://example.com/avatar6.png',
+        },
         articleId: '100',
         rate: 4,
         feedback:
@@ -1188,364 +2639,796 @@ const ratings = [
         id: '287',
     },
     {
-        userId: 'J3aB11HdHTZW6udzrrw2ymBhIOz1',
+        user: {
+            id: 'J3aB11HdHTZW6udzrrw2ymBhIOz1',
+            username: 'mainAdmin',
+            firstname: 'Maryna',
+            lastname: 'Shavlak',
+            email: 'mainAdmin@gmail.com',
+            avatar: 'https://drive.google.com/thumbnail?id=1RD0jSAm8kdTLKa-Vr0daeE8T9-QcfPCa&sz=w1000',
+        },
         articleId: '16',
         rate: 4,
         feedback: 'Very insightful article, learned a lot!',
         id: '288',
     },
     {
-        userId: 'vvfdFnPQMLVkrnCBjsTZcPsUq9U2',
+        user: {
+            id: 'vvfdFnPQMLVkrnCBjsTZcPsUq9U2',
+            username: 'mainUser',
+            firstname: 'Tetiana',
+            lastname: 'Shavlak',
+            email: 'mainUser@gmail.com',
+            avatar: 'https://drive.google.com/thumbnail?id=1J1xUPYYkJeOsBTpDuf36vsV7UfxlM2uG&sz=w1000',
+        },
         articleId: '16',
         rate: 3,
         feedback: 'Good information, but it could be clearer.',
         id: '289',
     },
     {
-        userId: 'zM4UyVgfKNf2vrf5sXmBIxA5QOl2',
+        user: {
+            id: 'zM4UyVgfKNf2vrf5sXmBIxA5QOl2',
+            username: 'mainManager',
+            firstname: 'Maxim',
+            lastname: 'Shavlak',
+            email: 'mainManager@gmail.com',
+            avatar: 'https://st3.depositphotos.com/1071184/13782/v/450/depositphotos_137825710-stock-illustration-business-person-analyzing-financial-statistics.jpg',
+        },
         articleId: '16',
         rate: 5,
         feedback: 'Excellent resource, highly recommend!',
         id: '290',
     },
     {
-        userId: '18zZBJnmEqWJNwGj2SvbNiNVXol1',
+        user: {
+            id: '18zZBJnmEqWJNwGj2SvbNiNVXol1',
+            username: 'nickManager',
+            firstname: 'Nick',
+            lastname: 'Garcia',
+
+            email: 'nickManager@gmail.com',
+
+            avatar: 'https://example.com/avatar17.jpg',
+        },
         articleId: '17',
         rate: 2,
         feedback: 'Not very engaging, needs improvement.',
         id: '291',
     },
     {
-        userId: 'mYX7XszmZJgEUSU9eeKDJYbP7P22',
+        user: {
+            id: 'mYX7XszmZJgEUSU9eeKDJYbP7P22',
+            username: 'claraUser',
+            firstname: 'Clara',
+            lastname: 'Santos',
+
+            email: 'claraUser@gmail.com',
+
+            avatar: 'https://example.com/avatar18.jpg',
+        },
         articleId: '17',
         rate: 3,
         feedback: 'Decent read, but it felt rushed.',
         id: '292',
     },
     {
-        userId: 'Str49JTKBAOoaEhM8XeQLLLPPDp2',
+        user: {
+            id: 'Str49JTKBAOoaEhM8XeQLLLPPDp2',
+            username: 'tomAdmin',
+            firstname: 'Tom',
+            lastname: 'Anderson',
+
+            email: 'tomAdmin@gmail.com',
+
+            avatar: 'https://example.com/avatar19.jpg',
+        },
         articleId: '17',
         rate: 4,
         feedback: 'Informative, but could use more examples.',
         id: '293',
     },
     {
-        userId: 'J3aB11HdHTZW6udzrrw2ymBhIOz1',
+        user: {
+            id: 'J3aB11HdHTZW6udzrrw2ymBhIOz1',
+            username: 'mainAdmin',
+            firstname: 'Maryna',
+            lastname: 'Shavlak',
+            email: 'mainAdmin@gmail.com',
+            avatar: 'https://drive.google.com/thumbnail?id=1RD0jSAm8kdTLKa-Vr0daeE8T9-QcfPCa&sz=w1000',
+        },
         articleId: '18',
         rate: 5,
         feedback: 'Incredibly helpful, thank you!',
         id: '294',
     },
     {
-        userId: 'vvfdFnPQMLVkrnCBjsTZcPsUq9U2',
+        user: {
+            id: 'vvfdFnPQMLVkrnCBjsTZcPsUq9U2',
+            username: 'mainUser',
+            firstname: 'Tetiana',
+            lastname: 'Shavlak',
+            email: 'mainUser@gmail.com',
+            avatar: 'https://drive.google.com/thumbnail?id=1J1xUPYYkJeOsBTpDuf36vsV7UfxlM2uG&sz=w1000',
+        },
         articleId: '18',
         rate: 4,
         feedback: 'Well structured and easy to follow.',
         id: '295',
     },
     {
-        userId: 'zM4UyVgfKNf2vrf5sXmBIxA5QOl2',
+        user: {
+            id: 'zM4UyVgfKNf2vrf5sXmBIxA5QOl2',
+            username: 'mainManager',
+            firstname: 'Maxim',
+            lastname: 'Shavlak',
+            email: 'mainManager@gmail.com',
+            avatar: 'https://st3.depositphotos.com/1071184/13782/v/450/depositphotos_137825710-stock-illustration-business-person-analyzing-financial-statistics.jpg',
+        },
         articleId: '19',
         rate: 1,
         feedback: 'I found it lacking depth.',
         id: '296',
     },
     {
-        userId: '18zZBJnmEqWJNwGj2SvbNiNVXol1',
+        user: {
+            id: '18zZBJnmEqWJNwGj2SvbNiNVXol1',
+            username: 'nickManager',
+            firstname: 'Nick',
+            lastname: 'Garcia',
+
+            email: 'nickManager@gmail.com',
+
+            avatar: 'https://example.com/avatar17.jpg',
+        },
         articleId: '19',
         rate: 5,
         feedback: 'Fantastic insights, very informative!',
         id: '297',
     },
     {
-        userId: 'mYX7XszmZJgEUSU9eeKDJYbP7P22',
+        user: {
+            id: 'mYX7XszmZJgEUSU9eeKDJYbP7P22',
+            username: 'claraUser',
+            firstname: 'Clara',
+            lastname: 'Santos',
+
+            email: 'claraUser@gmail.com',
+
+            avatar: 'https://example.com/avatar18.jpg',
+        },
         articleId: '20',
         rate: 4,
         feedback: 'Solid article, would love to see more!',
         id: '298',
     },
     {
-        userId: 'Str49JTKBAOoaEhM8XeQLLLPPDp2',
+        user: {
+            id: 'Str49JTKBAOoaEhM8XeQLLLPPDp2',
+            username: 'tomAdmin',
+            firstname: 'Tom',
+            lastname: 'Anderson',
+
+            email: 'tomAdmin@gmail.com',
+
+            avatar: 'https://example.com/avatar19.jpg',
+        },
         articleId: '20',
         rate: 3,
         feedback: 'Good start, but could use more examples.',
         id: '299',
     },
     {
-        userId: 'J3aB11HdHTZW6udzrrw2ymBhIOz1',
+        user: {
+            id: 'J3aB11HdHTZW6udzrrw2ymBhIOz1',
+            username: 'mainAdmin',
+            firstname: 'Maryna',
+            lastname: 'Shavlak',
+            email: 'mainAdmin@gmail.com',
+            avatar: 'https://drive.google.com/thumbnail?id=1RD0jSAm8kdTLKa-Vr0daeE8T9-QcfPCa&sz=w1000',
+        },
         articleId: '21',
         rate: 2,
         feedback: 'Not very clear, needed more detail.',
         id: '300',
     },
     {
-        userId: 'vvfdFnPQMLVkrnCBjsTZcPsUq9U2',
+        user: {
+            id: 'vvfdFnPQMLVkrnCBjsTZcPsUq9U2',
+            username: 'mainUser',
+            firstname: 'Tetiana',
+            lastname: 'Shavlak',
+            email: 'mainUser@gmail.com',
+            avatar: 'https://drive.google.com/thumbnail?id=1J1xUPYYkJeOsBTpDuf36vsV7UfxlM2uG&sz=w1000',
+        },
         articleId: '21',
         rate: 5,
         feedback: 'Loved it! Very informative and clear.',
         id: '301',
     },
     {
-        userId: 'zM4UyVgfKNf2vrf5sXmBIxA5QOl2',
+        user: {
+            id: 'zM4UyVgfKNf2vrf5sXmBIxA5QOl2',
+            username: 'mainManager',
+            firstname: 'Maxim',
+            lastname: 'Shavlak',
+            email: 'mainManager@gmail.com',
+            avatar: 'https://st3.depositphotos.com/1071184/13782/v/450/depositphotos_137825710-stock-illustration-business-person-analyzing-financial-statistics.jpg',
+        },
         articleId: '24',
         rate: 4,
         feedback: 'Great overview, thank you!',
         id: '302',
     },
     {
-        userId: '18zZBJnmEqWJNwGj2SvbNiNVXol1',
+        user: {
+            id: '18zZBJnmEqWJNwGj2SvbNiNVXol1',
+            username: 'nickManager',
+            firstname: 'Nick',
+            lastname: 'Garcia',
+
+            email: 'nickManager@gmail.com',
+
+            avatar: 'https://example.com/avatar17.jpg',
+        },
         articleId: '24',
         rate: 3,
         feedback: 'Helpful, but could use more examples.',
         id: '303',
     },
     {
-        userId: 'mYX7XszmZJgEUSU9eeKDJYbP7P22',
+        user: {
+            id: 'mYX7XszmZJgEUSU9eeKDJYbP7P22',
+            username: 'claraUser',
+            firstname: 'Clara',
+            lastname: 'Santos',
+
+            email: 'claraUser@gmail.com',
+
+            avatar: 'https://example.com/avatar18.jpg',
+        },
         articleId: '25',
         rate: 2,
         feedback: 'Did not meet my expectations.',
         id: '304',
     },
     {
-        userId: 'Str49JTKBAOoaEhM8XeQLLLPPDp2',
+        user: {
+            id: 'Str49JTKBAOoaEhM8XeQLLLPPDp2',
+            username: 'tomAdmin',
+            firstname: 'Tom',
+            lastname: 'Anderson',
+
+            email: 'tomAdmin@gmail.com',
+
+            avatar: 'https://example.com/avatar19.jpg',
+        },
         articleId: '25',
         rate: 4,
         feedback: 'Very useful, learned something new.',
         id: '305',
     },
     {
-        userId: 'J3aB11HdHTZW6udzrrw2ymBhIOz1',
+        user: {
+            id: 'J3aB11HdHTZW6udzrrw2ymBhIOz1',
+            username: 'mainAdmin',
+            firstname: 'Maryna',
+            lastname: 'Shavlak',
+            email: 'mainAdmin@gmail.com',
+            avatar: 'https://drive.google.com/thumbnail?id=1RD0jSAm8kdTLKa-Vr0daeE8T9-QcfPCa&sz=w1000',
+        },
         articleId: '26',
         rate: 5,
         feedback: 'Fantastic article, very well written!',
         id: '306',
     },
     {
-        userId: 'vvfdFnPQMLVkrnCBjsTZcPsUq9U2',
+        user: {
+            id: 'vvfdFnPQMLVkrnCBjsTZcPsUq9U2',
+            username: 'mainUser',
+            firstname: 'Tetiana',
+            lastname: 'Shavlak',
+            email: 'mainUser@gmail.com',
+            avatar: 'https://drive.google.com/thumbnail?id=1J1xUPYYkJeOsBTpDuf36vsV7UfxlM2uG&sz=w1000',
+        },
         articleId: '26',
         rate: 3,
         feedback: 'It was okay, but not what I expected.',
         id: '307',
     },
     {
-        userId: 'zM4UyVgfKNf2vrf5sXmBIxA5QOl2',
+        user: {
+            id: 'zM4UyVgfKNf2vrf5sXmBIxA5QOl2',
+            username: 'mainManager',
+            firstname: 'Maxim',
+            lastname: 'Shavlak',
+            email: 'mainManager@gmail.com',
+            avatar: 'https://st3.depositphotos.com/1071184/13782/v/450/depositphotos_137825710-stock-illustration-business-person-analyzing-financial-statistics.jpg',
+        },
         articleId: '27',
         rate: 4,
         feedback: 'Well done, enjoyed reading it!',
         id: '308',
     },
     {
-        userId: '18zZBJnmEqWJNwGj2SvbNiNVXol1',
+        user: {
+            id: '18zZBJnmEqWJNwGj2SvbNiNVXol1',
+            username: 'nickManager',
+            firstname: 'Nick',
+            lastname: 'Garcia',
+
+            email: 'nickManager@gmail.com',
+
+            avatar: 'https://example.com/avatar17.jpg',
+        },
         articleId: '27',
         rate: 2,
         feedback: 'Could use significant improvement.',
         id: '309',
     },
     {
-        userId: 'mYX7XszmZJgEUSU9eeKDJYbP7P22',
+        user: {
+            id: 'mYX7XszmZJgEUSU9eeKDJYbP7P22',
+            username: 'claraUser',
+            firstname: 'Clara',
+            lastname: 'Santos',
+
+            email: 'claraUser@gmail.com',
+
+            avatar: 'https://example.com/avatar18.jpg',
+        },
         articleId: '27',
         rate: 5,
         feedback: 'Highly informative, great job!',
         id: '310',
     },
     {
-        userId: 'Str49JTKBAOoaEhM8XeQLLLPPDp2',
+        user: {
+            id: 'Str49JTKBAOoaEhM8XeQLLLPPDp2',
+            username: 'tomAdmin',
+            firstname: 'Tom',
+            lastname: 'Anderson',
+
+            email: 'tomAdmin@gmail.com',
+
+            avatar: 'https://example.com/avatar19.jpg',
+        },
         articleId: '27',
         rate: 3,
         feedback: 'Nice article, but I wanted more detail.',
         id: '311',
     },
     {
-        userId: '4juq0tzGf5fNMCXCRFOa5mvFO5O2',
+        user: {
+            id: '4juq0tzGf5fNMCXCRFOa5mvFO5O2',
+            username: 'leoUser',
+            firstname: 'Leo',
+            lastname: 'Mikhailov',
+
+            email: 'leoUser@gmail.com',
+
+            avatar: 'https://example.com/avatar12.jpg',
+        },
         articleId: '6',
         rate: 4,
         feedback: 'Well written and easy to understand.',
         id: '312',
     },
     {
-        userId: '9Dpc2pFoeORLyQrxHlGIbe5wjbf2',
+        user: {
+            id: '9Dpc2pFoeORLyQrxHlGIbe5wjbf2',
+            username: 'janeAdmin',
+            firstname: 'Jane',
+            lastname: 'Williams',
+
+            email: 'janeAdmin@gmail.com',
+
+            avatar: 'https://example.com/avatar13.jpg',
+        },
         articleId: '6',
         rate: 3,
         feedback: 'Decent article but lacking depth.',
         id: '313',
     },
     {
-        userId: 'BrKES0pOcxcgYBUpKmZxBzqKFhl1',
+        user: {
+            id: 'BrKES0pOcxcgYBUpKmZxBzqKFhl1',
+            username: 'peterManager',
+            firstname: 'Peter',
+            lastname: 'Muller',
+
+            email: 'peterManager@gmail.com',
+
+            avatar: 'https://example.com/avatar14.jpg',
+        },
         articleId: '6',
         rate: 5,
         feedback: 'Fantastic insights, very helpful!',
         id: '314',
     },
     {
-        userId: 'Ue15ycXTpxVhCZ2eJoOVYaArKEa2',
+        user: {
+            id: 'Ue15ycXTpxVhCZ2eJoOVYaArKEa2',
+            username: 'mariaUser',
+            firstname: 'Maria',
+            lastname: 'Petrova',
+
+            email: 'mariaUser@gmail.com',
+
+            avatar: 'https://example.com/avatar15.jpg',
+        },
         articleId: '46',
         rate: 4,
         feedback: 'Great overview of the topic.',
         id: '315',
     },
     {
-        userId: 'KXv8oUPLQeUXSzoXOWJV4nw47CG2',
+        user: {
+            id: 'KXv8oUPLQeUXSzoXOWJV4nw47CG2',
+            username: 'maxAdmin',
+            firstname: 'Max',
+            lastname: 'Gordon',
+
+            email: 'maxAdmin@gmail.com',
+
+            avatar: 'https://example.com/avatar16.jpg',
+        },
         articleId: '46',
         rate: 3,
         feedback: 'It was informative, but could be clearer.',
         id: '316',
     },
     {
-        userId: '18zZBJnmEqWJNwGj2SvbNiNVXol1',
+        user: {
+            id: '18zZBJnmEqWJNwGj2SvbNiNVXol1',
+            username: 'nickManager',
+            firstname: 'Nick',
+            lastname: 'Garcia',
+
+            email: 'nickManager@gmail.com',
+
+            avatar: 'https://example.com/avatar17.jpg',
+        },
         articleId: '46',
         rate: 5,
         feedback: 'Loved this article! Very engaging.',
         id: '317',
     },
     {
-        userId: '4juq0tzGf5fNMCXCRFOa5mvFO5O2',
+        user: {
+            id: '4juq0tzGf5fNMCXCRFOa5mvFO5O2',
+            username: 'leoUser',
+            firstname: 'Leo',
+            lastname: 'Mikhailov',
+
+            email: 'leoUser@gmail.com',
+
+            avatar: 'https://example.com/avatar12.jpg',
+        },
         articleId: '9',
         rate: 4,
         feedback: 'Useful information, well structured.',
         id: '318',
     },
     {
-        userId: '9Dpc2pFoeORLyQrxHlGIbe5wjbf2',
+        user: {
+            id: '9Dpc2pFoeORLyQrxHlGIbe5wjbf2',
+            username: 'janeAdmin',
+            firstname: 'Jane',
+            lastname: 'Williams',
+
+            email: 'janeAdmin@gmail.com',
+
+            avatar: 'https://example.com/avatar13.jpg',
+        },
         articleId: '9',
         rate: 3,
         feedback: 'Average article, nothing new.',
         id: '319',
     },
     {
-        userId: 'BrKES0pOcxcgYBUpKmZxBzqKFhl1',
+        user: {
+            id: 'BrKES0pOcxcgYBUpKmZxBzqKFhl1',
+            username: 'peterManager',
+            firstname: 'Peter',
+            lastname: 'Muller',
+
+            email: 'peterManager@gmail.com',
+
+            avatar: 'https://example.com/avatar14.jpg',
+        },
         articleId: '11',
         rate: 5,
         feedback: 'Very comprehensive and well-researched.',
         id: '320',
     },
     {
-        userId: 'Ue15ycXTpxVhCZ2eJoOVYaArKEa2',
+        user: {
+            id: 'Ue15ycXTpxVhCZ2eJoOVYaArKEa2',
+            username: 'mariaUser',
+            firstname: 'Maria',
+            lastname: 'Petrova',
+
+            email: 'mariaUser@gmail.com',
+
+            avatar: 'https://example.com/avatar15.jpg',
+        },
         articleId: '11',
         rate: 4,
         feedback: 'Good article, I learned something new!',
         id: '321',
     },
     {
-        userId: 'KXv8oUPLQeUXSzoXOWJV4nw47CG2',
+        user: {
+            id: 'KXv8oUPLQeUXSzoXOWJV4nw47CG2',
+            username: 'maxAdmin',
+            firstname: 'Max',
+            lastname: 'Gordon',
+
+            email: 'maxAdmin@gmail.com',
+
+            avatar: 'https://example.com/avatar16.jpg',
+        },
         articleId: '13',
         rate: 3,
         feedback: 'It could use more examples to illustrate points.',
         id: '322',
     },
     {
-        userId: '18zZBJnmEqWJNwGj2SvbNiNVXol1',
+        user: {
+            id: '18zZBJnmEqWJNwGj2SvbNiNVXol1',
+            username: 'nickManager',
+            firstname: 'Nick',
+            lastname: 'Garcia',
+
+            email: 'nickManager@gmail.com',
+
+            avatar: 'https://example.com/avatar17.jpg',
+        },
         articleId: '13',
         rate: 4,
         feedback: 'Helpful and well organized!',
         id: '323',
     },
     {
-        userId: '4juq0tzGf5fNMCXCRFOa5mvFO5O2',
+        user: {
+            id: '4juq0tzGf5fNMCXCRFOa5mvFO5O2',
+            username: 'leoUser',
+            firstname: 'Leo',
+            lastname: 'Mikhailov',
+
+            email: 'leoUser@gmail.com',
+
+            avatar: 'https://example.com/avatar12.jpg',
+        },
         articleId: '15',
         rate: 5,
         feedback: 'Excellent read, very insightful!',
         id: '324',
     },
     {
-        userId: '9Dpc2pFoeORLyQrxHlGIbe5wjbf2',
+        user: {
+            id: '9Dpc2pFoeORLyQrxHlGIbe5wjbf2',
+            username: 'janeAdmin',
+            firstname: 'Jane',
+            lastname: 'Williams',
+
+            email: 'janeAdmin@gmail.com',
+
+            avatar: 'https://example.com/avatar13.jpg',
+        },
         articleId: '15',
         rate: 3,
         feedback: 'Informative, but felt a bit rushed.',
         id: '325',
     },
     {
-        userId: 'BrKES0pOcxcgYBUpKmZxBzqKFhl1',
+        user: {
+            id: 'BrKES0pOcxcgYBUpKmZxBzqKFhl1',
+            username: 'peterManager',
+            firstname: 'Peter',
+            lastname: 'Muller',
+
+            email: 'peterManager@gmail.com',
+
+            avatar: 'https://example.com/avatar14.jpg',
+        },
         articleId: '15',
         rate: 4,
         feedback: 'Great article! Would recommend to others.',
         id: '326',
     },
     {
-        userId: 'tfs04ij0b5anHdw2qt6LghQsEfC3',
+        user: {
+            id: 'tfs04ij0b5anHdw2qt6LghQsEfC3',
+            username: 'katyaAdmin',
+            firstname: 'Katya',
+            lastname: 'Ivanova',
+            email: 'katyaAdmin@gmail.com',
+            avatar: 'https://example.com/avatar7.jpg',
+        },
         articleId: '1',
         rate: 5,
         feedback: 'Outstanding article! Very informative and well-structured.',
         id: '401',
     },
     {
-        userId: 'd6RJwaIJmjbHTV2PdSg04DpPjWl1',
+        user: {
+            id: 'd6RJwaIJmjbHTV2PdSg04DpPjWl1',
+            username: 'johnManager',
+            firstname: 'John',
+            lastname: 'Doe',
+            email: 'johnManager@gmail.com',
+            avatar: 'https://example.com/avatar8.jpg',
+        },
         articleId: '1',
         rate: 4,
         feedback: 'Great insights, but could use more examples.',
         id: '402',
     },
     {
-        userId: 'MqonEyICTeMapkAPyPFH7w1E5l52',
+        user: {
+            id: 'MqonEyICTeMapkAPyPFH7w1E5l52',
+            username: 'annaUser',
+            firstname: 'Anna',
+            lastname: 'Koval',
+
+            email: 'annaUser@gmail.com',
+
+            avatar: 'https://example.com/avatar9.jpg',
+        },
         articleId: '2',
         rate: 5,
         feedback: 'Exceptional writing! I learned a lot.',
         id: '403',
     },
     {
-        userId: 'ObGe2X8MNTde2RSffQgE0Jpxek72',
+        user: {
+            id: 'ObGe2X8MNTde2RSffQgE0Jpxek72',
+            username: 'lucyAdmin',
+            firstname: 'Lucy',
+            lastname: 'Brown',
+
+            email: 'lucyAdmin@gmail.com',
+
+            avatar: 'https://example.com/avatar10.jpg',
+        },
         articleId: '2',
         rate: 4,
         feedback: 'Very helpful, a must-read for beginners.',
         id: '404',
     },
     {
-        userId: '4g1WI5M1XIZU6VKvIfJBG7TzMsD3',
+        user: {
+            id: '4g1WI5M1XIZU6VKvIfJBG7TzMsD3',
+            username: 'alexManager',
+            firstname: 'Alex',
+            lastname: 'Johnson',
+            email: 'alexManager@gmail.com',
+            avatar: 'https://example.com/avatar11.jpg',
+        },
         articleId: '43',
         rate: 5,
         feedback: 'A brilliant piece! Covers everything in detail.',
         id: '405',
     },
     {
-        userId: '4juq0tzGf5fNMCXCRFOa5mvFO5O2',
+        user: {
+            id: '4juq0tzGf5fNMCXCRFOa5mvFO5O2',
+            username: 'leoUser',
+            firstname: 'Leo',
+            lastname: 'Mikhailov',
+
+            email: 'leoUser@gmail.com',
+
+            avatar: 'https://example.com/avatar12.jpg',
+        },
         articleId: '43',
         rate: 4,
         feedback: 'Informative and well-researched. I appreciate the effort.',
         id: '406',
     },
     {
-        userId: '9Dpc2pFoeORLyQrxHlGIbe5wjbf2',
+        user: {
+            id: '9Dpc2pFoeORLyQrxHlGIbe5wjbf2',
+            username: 'janeAdmin',
+            firstname: 'Jane',
+            lastname: 'Williams',
+
+            email: 'janeAdmin@gmail.com',
+
+            avatar: 'https://example.com/avatar13.jpg',
+        },
         articleId: '3',
         rate: 5,
         feedback: 'Absolutely fantastic! I found it very engaging.',
         id: '407',
     },
     {
-        userId: 'BrKES0pOcxcgYBUpKmZxBzqKFhl1',
+        user: {
+            id: 'BrKES0pOcxcgYBUpKmZxBzqKFhl1',
+            username: 'peterManager',
+            firstname: 'Peter',
+            lastname: 'Muller',
+
+            email: 'peterManager@gmail.com',
+
+            avatar: 'https://example.com/avatar14.jpg',
+        },
         articleId: '3',
         rate: 4,
         feedback: 'Solid article! Clear explanations throughout.',
         id: '408',
     },
     {
-        userId: 'tfs04ij0b5anHdw2qt6LghQsEfC3',
+        user: {
+            id: 'tfs04ij0b5anHdw2qt6LghQsEfC3',
+            username: 'katyaAdmin',
+            firstname: 'Katya',
+            lastname: 'Ivanova',
+            email: 'katyaAdmin@gmail.com',
+            avatar: 'https://example.com/avatar7.jpg',
+        },
         articleId: '4',
         rate: 5,
         feedback: "One of the best articles I've read this month!",
         id: '409',
     },
     {
-        userId: 'd6RJwaIJmjbHTV2PdSg04DpPjWl1',
+        user: {
+            id: 'd6RJwaIJmjbHTV2PdSg04DpPjWl1',
+            username: 'johnManager',
+            firstname: 'John',
+            lastname: 'Doe',
+            email: 'johnManager@gmail.com',
+            avatar: 'https://example.com/avatar8.jpg',
+        },
         articleId: '4',
         rate: 4,
         feedback: 'Great content! Could benefit from more visuals.',
         id: '410',
     },
     {
-        userId: 'MqonEyICTeMapkAPyPFH7w1E5l52',
+        user: {
+            id: 'MqonEyICTeMapkAPyPFH7w1E5l52',
+            username: 'annaUser',
+            firstname: 'Anna',
+            lastname: 'Koval',
+
+            email: 'annaUser@gmail.com',
+
+            avatar: 'https://example.com/avatar9.jpg',
+        },
         articleId: '44',
         rate: 5,
         feedback: 'Excellent resource! Very thorough and insightful.',
         id: '411',
     },
     {
-        userId: 'ObGe2X8MNTde2RSffQgE0Jpxek72',
+        user: {
+            id: 'ObGe2X8MNTde2RSffQgE0Jpxek72',
+            username: 'lucyAdmin',
+            firstname: 'Lucy',
+            lastname: 'Brown',
+
+            email: 'lucyAdmin@gmail.com',
+
+            avatar: 'https://example.com/avatar10.jpg',
+        },
         articleId: '44',
         rate: 4,
         feedback: 'Very well done! It really helped clarify things.',
         id: '412',
     },
     {
-        userId: 'zM4UyVgfKNf2vrf5sXmBIxA5QOl2',
+        user: {
+            id: 'zM4UyVgfKNf2vrf5sXmBIxA5QOl2',
+            username: 'mainManager',
+            firstname: 'Maxim',
+            lastname: 'Shavlak',
+            email: 'mainManager@gmail.com',
+            avatar: 'https://st3.depositphotos.com/1071184/13782/v/450/depositphotos_137825710-stock-illustration-business-person-analyzing-financial-statistics.jpg',
+        },
         articleId: '76',
         rate: 4,
         feedback:
@@ -1553,98 +3436,219 @@ const ratings = [
         id: '413',
     },
     {
-        userId: 'hdkjUiQhjoPIVMqfORNbvEHm4Wg1',
+        user: {
+            id: 'hdkjUiQhjoPIVMqfORNbvEHm4Wg1',
+            username: 'testuser2',
+            firstname: 'Test2',
+            lastname: 'User2',
+
+            email: 'testuser2@gmail.com',
+            avatar: 'FRGDHJ',
+        },
         articleId: '143',
         rate: 3,
         feedback: 'Decent read, but I expected more detailed examples.',
         id: '414',
     },
     {
-        userId: 'tfs04ij0b5anHdw2qt6LghQsEfC3',
+        user: {
+            id: 'tfs04ij0b5anHdw2qt6LghQsEfC3',
+            username: 'katyaAdmin',
+            firstname: 'Katya',
+            lastname: 'Ivanova',
+            email: 'katyaAdmin@gmail.com',
+            avatar: 'https://example.com/avatar7.jpg',
+        },
         articleId: '144',
         rate: 5,
         feedback: 'Exceptional insights! I learned a lot from this article.',
         id: '415',
     },
     {
-        userId: 'MqonEyICTeMapkAPyPFH7w1E5l52',
+        user: {
+            id: 'MqonEyICTeMapkAPyPFH7w1E5l52',
+            username: 'annaUser',
+            firstname: 'Anna',
+            lastname: 'Koval',
+
+            email: 'annaUser@gmail.com',
+
+            avatar: 'https://example.com/avatar9.jpg',
+        },
         articleId: '145',
         rate: 4,
         feedback: 'Well-written and clear. Great resource for beginners!',
         id: '416',
     },
     {
-        userId: '4g1WI5M1XIZU6VKvIfJBG7TzMsD3',
+        user: {
+            id: '4g1WI5M1XIZU6VKvIfJBG7TzMsD3',
+            username: 'alexManager',
+            firstname: 'Alex',
+            lastname: 'Johnson',
+            email: 'alexManager@gmail.com',
+            avatar: 'https://example.com/avatar11.jpg',
+        },
         articleId: '146',
         rate: 5,
         feedback: 'Outstanding content! I appreciate the thoroughness.',
         id: '417',
     },
     {
-        userId: '9Dpc2pFoeORLyQrxHlGIbe5wjbf2',
+        user: {
+            id: '9Dpc2pFoeORLyQrxHlGIbe5wjbf2',
+            username: 'janeAdmin',
+            firstname: 'Jane',
+            lastname: 'Williams',
+
+            email: 'janeAdmin@gmail.com',
+
+            avatar: 'https://example.com/avatar13.jpg',
+        },
         articleId: '147',
         rate: 4,
         feedback: 'Good information, though some sections felt rushed.',
         id: '418',
     },
     {
-        userId: 'Ue15ycXTpxVhCZ2eJoOVYaArKEa2',
+        user: {
+            id: 'Ue15ycXTpxVhCZ2eJoOVYaArKEa2',
+            username: 'mariaUser',
+            firstname: 'Maria',
+            lastname: 'Petrova',
+
+            email: 'mariaUser@gmail.com',
+
+            avatar: 'https://example.com/avatar15.jpg',
+        },
         articleId: '116',
         rate: 3,
         feedback: 'Average article. Some points were unclear.',
         id: '419',
     },
     {
-        userId: '18zZBJnmEqWJNwGj2SvbNiNVXol1',
+        user: {
+            id: '18zZBJnmEqWJNwGj2SvbNiNVXol1',
+            username: 'nickManager',
+            firstname: 'Nick',
+            lastname: 'Garcia',
+
+            email: 'nickManager@gmail.com',
+
+            avatar: 'https://example.com/avatar17.jpg',
+        },
         articleId: '129',
         rate: 5,
         feedback: 'Fantastic read! Very engaging and well-structured.',
         id: '420',
     },
     {
-        userId: 'mYX7XszmZJgEUSU9eeKDJYbP7P22',
+        user: {
+            id: 'mYX7XszmZJgEUSU9eeKDJYbP7P22',
+            username: 'claraUser',
+            firstname: 'Clara',
+            lastname: 'Santos',
+
+            email: 'claraUser@gmail.com',
+
+            avatar: 'https://example.com/avatar18.jpg',
+        },
         articleId: '78',
         rate: 1,
         feedback: 'The content was lacking depth and clarity.',
         id: '601',
     },
     {
-        userId: 'mYX7XszmZJgEUSU9eeKDJYbP7P22',
+        user: {
+            id: 'mYX7XszmZJgEUSU9eeKDJYbP7P22',
+            username: 'claraUser',
+            firstname: 'Clara',
+            lastname: 'Santos',
+
+            email: 'claraUser@gmail.com',
+
+            avatar: 'https://example.com/avatar18.jpg',
+        },
         articleId: '90',
         rate: 2,
         feedback: 'Not very useful, I expected more detailed information.',
         id: '602',
     },
     {
-        userId: 'mYX7XszmZJgEUSU9eeKDJYbP7P22',
+        user: {
+            id: 'mYX7XszmZJgEUSU9eeKDJYbP7P22',
+            username: 'claraUser',
+            firstname: 'Clara',
+            lastname: 'Santos',
+
+            email: 'claraUser@gmail.com',
+
+            avatar: 'https://example.com/avatar18.jpg',
+        },
         articleId: '158',
         rate: 1,
         feedback: 'This article was confusing and poorly organized.',
         id: '603',
     },
     {
-        userId: 'mYX7XszmZJgEUSU9eeKDJYbP7P22',
+        user: {
+            id: 'mYX7XszmZJgEUSU9eeKDJYbP7P22',
+            username: 'claraUser',
+            firstname: 'Clara',
+            lastname: 'Santos',
+
+            email: 'claraUser@gmail.com',
+
+            avatar: 'https://example.com/avatar18.jpg',
+        },
         articleId: '159',
         rate: 2,
         feedback: "Had potential, but it didn't deliver on the main points.",
         id: '604',
     },
     {
-        userId: 'mYX7XszmZJgEUSU9eeKDJYbP7P22',
+        user: {
+            id: 'mYX7XszmZJgEUSU9eeKDJYbP7P22',
+            username: 'claraUser',
+            firstname: 'Clara',
+            lastname: 'Santos',
+
+            email: 'claraUser@gmail.com',
+
+            avatar: 'https://example.com/avatar18.jpg',
+        },
         articleId: '161',
         rate: 1,
         feedback: 'Very disappointing. The examples were irrelevant.',
         id: '605',
     },
     {
-        userId: 'mYX7XszmZJgEUSU9eeKDJYbP7P22',
+        user: {
+            id: 'mYX7XszmZJgEUSU9eeKDJYbP7P22',
+            username: 'claraUser',
+            firstname: 'Clara',
+            lastname: 'Santos',
+
+            email: 'claraUser@gmail.com',
+
+            avatar: 'https://example.com/avatar18.jpg',
+        },
         articleId: '162',
         rate: 2,
         feedback: 'Could use significant improvements. Lacked engagement.',
         id: '606',
     },
     {
-        userId: 'nwPyI60mR9XWY3ozVuRGItx08PY2',
+        user: {
+            id: 'nwPyI60mR9XWY3ozVuRGItx08PY2',
+            username: 'testuser',
+            firstname: 'Test',
+            lastname: 'lastnameUser',
+
+            email: 'testuser@gmail.com',
+
+            avatar: 'https://s1.1zoom.ru/big3/992/367659-alexfas01.jpg',
+        },
         articleId: '83',
         rate: 5,
         feedback:
@@ -1652,21 +3656,48 @@ const ratings = [
         id: 701,
     },
     {
-        userId: 'nwPyI60mR9XWY3ozVuRGItx08PY2',
+        user: {
+            id: 'nwPyI60mR9XWY3ozVuRGItx08PY2',
+            username: 'testuser',
+            firstname: 'Test',
+            lastname: 'lastnameUser',
+
+            email: 'testuser@gmail.com',
+
+            avatar: 'https://s1.1zoom.ru/big3/992/367659-alexfas01.jpg',
+        },
         articleId: '95',
         rate: 4,
         feedback: 'Good content, very informative and easy to understand.',
         id: 702,
     },
     {
-        userId: 'nwPyI60mR9XWY3ozVuRGItx08PY2',
+        user: {
+            id: 'nwPyI60mR9XWY3ozVuRGItx08PY2',
+            username: 'testuser',
+            firstname: 'Test',
+            lastname: 'lastnameUser',
+
+            email: 'testuser@gmail.com',
+
+            avatar: 'https://s1.1zoom.ru/big3/992/367659-alexfas01.jpg',
+        },
         articleId: '111',
         rate: 5,
         feedback: 'Outstanding explanation of the topic. I learned a lot!',
         id: 703,
     },
     {
-        userId: 'nwPyI60mR9XWY3ozVuRGItx08PY2',
+        user: {
+            id: 'nwPyI60mR9XWY3ozVuRGItx08PY2',
+            username: 'testuser',
+            firstname: 'Test',
+            lastname: 'lastnameUser',
+
+            email: 'testuser@gmail.com',
+
+            avatar: 'https://s1.1zoom.ru/big3/992/367659-alexfas01.jpg',
+        },
         articleId: '126',
         rate: 4,
         feedback:
@@ -1674,32 +3705,77 @@ const ratings = [
         id: 704,
     },
     {
-        userId: 'nwPyI60mR9XWY3ozVuRGItx08PY2',
+        user: {
+            id: 'nwPyI60mR9XWY3ozVuRGItx08PY2',
+            username: 'testuser',
+            firstname: 'Test',
+            lastname: 'lastnameUser',
+
+            email: 'testuser@gmail.com',
+
+            avatar: 'https://s1.1zoom.ru/big3/992/367659-alexfas01.jpg',
+        },
         articleId: '84',
         rate: 5,
         id: 705,
     },
     {
-        userId: 'nwPyI60mR9XWY3ozVuRGItx08PY2',
+        user: {
+            id: 'nwPyI60mR9XWY3ozVuRGItx08PY2',
+            username: 'testuser',
+            firstname: 'Test',
+            lastname: 'lastnameUser',
+
+            email: 'testuser@gmail.com',
+
+            avatar: 'https://s1.1zoom.ru/big3/992/367659-alexfas01.jpg',
+        },
         articleId: '96',
         rate: 5,
         id: 706,
     },
     {
-        userId: 'nwPyI60mR9XWY3ozVuRGItx08PY2',
+        user: {
+            id: 'nwPyI60mR9XWY3ozVuRGItx08PY2',
+            username: 'testuser',
+            firstname: 'Test',
+            lastname: 'lastnameUser',
+
+            email: 'testuser@gmail.com',
+
+            avatar: 'https://s1.1zoom.ru/big3/992/367659-alexfas01.jpg',
+        },
         articleId: '106',
         rate: 4,
         id: 707,
     },
     {
-        userId: 'nwPyI60mR9XWY3ozVuRGItx08PY2',
+        user: {
+            id: 'nwPyI60mR9XWY3ozVuRGItx08PY2',
+            username: 'testuser',
+            firstname: 'Test',
+            lastname: 'lastnameUser',
+
+            email: 'testuser@gmail.com',
+
+            avatar: 'https://s1.1zoom.ru/big3/992/367659-alexfas01.jpg',
+        },
         articleId: '112',
         rate: 5,
         feedback: 'Fantastic article! It was engaging and very informative.',
         id: 708,
     },
     {
-        userId: 'nwPyI60mR9XWY3ozVuRGItx08PY2',
+        user: {
+            id: 'nwPyI60mR9XWY3ozVuRGItx08PY2',
+            username: 'testuser',
+            firstname: 'Test',
+            lastname: 'lastnameUser',
+
+            email: 'testuser@gmail.com',
+
+            avatar: 'https://s1.1zoom.ru/big3/992/367659-alexfas01.jpg',
+        },
         articleId: '53',
         rate: 4,
         feedback:
@@ -1707,21 +3783,48 @@ const ratings = [
         id: 709,
     },
     {
-        userId: 'nwPyI60mR9XWY3ozVuRGItx08PY2',
+        user: {
+            id: 'nwPyI60mR9XWY3ozVuRGItx08PY2',
+            username: 'testuser',
+            firstname: 'Test',
+            lastname: 'lastnameUser',
+
+            email: 'testuser@gmail.com',
+
+            avatar: 'https://s1.1zoom.ru/big3/992/367659-alexfas01.jpg',
+        },
         articleId: '73',
         rate: 5,
         feedback: 'Excellent content! Very well organized and clear.',
         id: 710,
     },
     {
-        userId: 'nwPyI60mR9XWY3ozVuRGItx08PY2',
+        user: {
+            id: 'nwPyI60mR9XWY3ozVuRGItx08PY2',
+            username: 'testuser',
+            firstname: 'Test',
+            lastname: 'lastnameUser',
+
+            email: 'testuser@gmail.com',
+
+            avatar: 'https://s1.1zoom.ru/big3/992/367659-alexfas01.jpg',
+        },
         articleId: '85',
         rate: 4,
         feedback: 'Informative and well-researched. I learned a lot!',
         id: 711,
     },
     {
-        userId: 'nwPyI60mR9XWY3ozVuRGItx08PY2',
+        user: {
+            id: 'nwPyI60mR9XWY3ozVuRGItx08PY2',
+            username: 'testuser',
+            firstname: 'Test',
+            lastname: 'lastnameUser',
+
+            email: 'testuser@gmail.com',
+
+            avatar: 'https://s1.1zoom.ru/big3/992/367659-alexfas01.jpg',
+        },
         articleId: '97',
         rate: 5,
         feedback:
@@ -1729,14 +3832,32 @@ const ratings = [
         id: 712,
     },
     {
-        userId: 'nwPyI60mR9XWY3ozVuRGItx08PY2',
+        user: {
+            id: 'nwPyI60mR9XWY3ozVuRGItx08PY2',
+            username: 'testuser',
+            firstname: 'Test',
+            lastname: 'lastnameUser',
+
+            email: 'testuser@gmail.com',
+
+            avatar: 'https://s1.1zoom.ru/big3/992/367659-alexfas01.jpg',
+        },
         articleId: '74',
         rate: 5,
         feedback: 'Outstanding! The clarity of writing is impressive.',
         id: 713,
     },
     {
-        userId: 'nwPyI60mR9XWY3ozVuRGItx08PY2',
+        user: {
+            id: 'nwPyI60mR9XWY3ozVuRGItx08PY2',
+            username: 'testuser',
+            firstname: 'Test',
+            lastname: 'lastnameUser',
+
+            email: 'testuser@gmail.com',
+
+            avatar: 'https://s1.1zoom.ru/big3/992/367659-alexfas01.jpg',
+        },
         articleId: '86',
         rate: 4,
         feedback:
@@ -1744,21 +3865,46 @@ const ratings = [
         id: 714,
     },
     {
-        userId: 'nwPyI60mR9XWY3ozVuRGItx08PY2',
+        user: {
+            id: 'nwPyI60mR9XWY3ozVuRGItx08PY2',
+            username: 'testuser',
+            firstname: 'Test',
+            lastname: 'lastnameUser',
+
+            email: 'testuser@gmail.com',
+
+            avatar: 'https://s1.1zoom.ru/big3/992/367659-alexfas01.jpg',
+        },
         articleId: '98',
         rate: 5,
         feedback: 'A must-read! It provided practical tips that I can apply.',
         id: 715,
     },
     {
-        userId: 'nwPyI60mR9XWY3ozVuRGItx08PY2',
+        user: {
+            id: 'nwPyI60mR9XWY3ozVuRGItx08PY2',
+            username: 'testuser',
+            firstname: 'Test',
+            lastname: 'lastnameUser',
+
+            email: 'testuser@gmail.com',
+
+            avatar: 'https://s1.1zoom.ru/big3/992/367659-alexfas01.jpg',
+        },
         articleId: '114',
         rate: 4,
         feedback: 'Very informative. I appreciate the thorough research.',
         id: 716,
     },
     {
-        userId: 'd6RJwaIJmjbHTV2PdSg04DpPjWl1',
+        user: {
+            id: 'd6RJwaIJmjbHTV2PdSg04DpPjWl1',
+            username: 'johnManager',
+            firstname: 'John',
+            lastname: 'Doe',
+            email: 'johnManager@gmail.com',
+            avatar: 'https://example.com/avatar8.jpg',
+        },
         articleId: '149',
         rate: 5,
         feedback:
@@ -1766,7 +3912,14 @@ const ratings = [
         id: 801,
     },
     {
-        userId: 'd6RJwaIJmjbHTV2PdSg04DpPjWl1',
+        user: {
+            id: 'd6RJwaIJmjbHTV2PdSg04DpPjWl1',
+            username: 'johnManager',
+            firstname: 'John',
+            lastname: 'Doe',
+            email: 'johnManager@gmail.com',
+            avatar: 'https://example.com/avatar8.jpg',
+        },
         articleId: '164',
         rate: 4,
         feedback:
@@ -1774,77 +3927,156 @@ const ratings = [
         id: 802,
     },
     {
-        userId: 'd6RJwaIJmjbHTV2PdSg04DpPjWl1',
+        user: {
+            id: 'd6RJwaIJmjbHTV2PdSg04DpPjWl1',
+            username: 'johnManager',
+            firstname: 'John',
+            lastname: 'Doe',
+            email: 'johnManager@gmail.com',
+            avatar: 'https://example.com/avatar8.jpg',
+        },
         articleId: '150',
         rate: 5,
         feedback: 'Fantastic read! Engaging from start to finish.',
         id: 803,
     },
     {
-        userId: 'd6RJwaIJmjbHTV2PdSg04DpPjWl1',
+        user: {
+            id: 'd6RJwaIJmjbHTV2PdSg04DpPjWl1',
+            username: 'johnManager',
+            firstname: 'John',
+            lastname: 'Doe',
+            email: 'johnManager@gmail.com',
+            avatar: 'https://example.com/avatar8.jpg',
+        },
         articleId: '165',
         rate: 4,
         feedback: 'Well structured and informative. I learned a lot from it!',
         id: 804,
     },
     {
-        userId: 'd6RJwaIJmjbHTV2PdSg04DpPjWl1',
+        user: {
+            id: 'd6RJwaIJmjbHTV2PdSg04DpPjWl1',
+            username: 'johnManager',
+            firstname: 'John',
+            lastname: 'Doe',
+            email: 'johnManager@gmail.com',
+            avatar: 'https://example.com/avatar8.jpg',
+        },
         articleId: '113',
         rate: 5,
         feedback: 'Excellent insights! This is exactly what I needed.',
         id: 805,
     },
     {
-        userId: 'd6RJwaIJmjbHTV2PdSg04DpPjWl1',
+        user: {
+            id: 'd6RJwaIJmjbHTV2PdSg04DpPjWl1',
+            username: 'johnManager',
+            firstname: 'John',
+            lastname: 'Doe',
+            email: 'johnManager@gmail.com',
+            avatar: 'https://example.com/avatar8.jpg',
+        },
         articleId: '133',
         rate: 4,
         feedback: 'Good content and very easy to follow. Highly recommend.',
         id: 806,
     },
     {
-        userId: 'd6RJwaIJmjbHTV2PdSg04DpPjWl1',
+        user: {
+            id: 'd6RJwaIJmjbHTV2PdSg04DpPjWl1',
+            username: 'johnManager',
+            firstname: 'John',
+            lastname: 'Doe',
+            email: 'johnManager@gmail.com',
+            avatar: 'https://example.com/avatar8.jpg',
+        },
         articleId: '127',
         rate: 5,
         feedback: 'Very informative! I appreciate the depth of analysis.',
         id: 807,
     },
     {
-        userId: 'd6RJwaIJmjbHTV2PdSg04DpPjWl1',
+        user: {
+            id: 'd6RJwaIJmjbHTV2PdSg04DpPjWl1',
+            username: 'johnManager',
+            firstname: 'John',
+            lastname: 'Doe',
+            email: 'johnManager@gmail.com',
+            avatar: 'https://example.com/avatar8.jpg',
+        },
         articleId: '134',
         rate: 4,
         feedback: 'Solid article! It provides practical insights and tips.',
         id: 808,
     },
     {
-        userId: 'd6RJwaIJmjbHTV2PdSg04DpPjWl1',
+        user: {
+            id: 'd6RJwaIJmjbHTV2PdSg04DpPjWl1',
+            username: 'johnManager',
+            firstname: 'John',
+            lastname: 'Doe',
+            email: 'johnManager@gmail.com',
+            avatar: 'https://example.com/avatar8.jpg',
+        },
         articleId: '152',
         rate: 5,
         feedback: 'Outstanding! This article has become one of my favorites.',
         id: 809,
     },
     {
-        userId: 'd6RJwaIJmjbHTV2PdSg04DpPjWl1',
+        user: {
+            id: 'd6RJwaIJmjbHTV2PdSg04DpPjWl1',
+            username: 'johnManager',
+            firstname: 'John',
+            lastname: 'Doe',
+            email: 'johnManager@gmail.com',
+            avatar: 'https://example.com/avatar8.jpg',
+        },
         articleId: '167',
         rate: 4,
         feedback: 'Very well written! It covers the topic thoroughly.',
         id: 810,
     },
     {
-        userId: 'd6RJwaIJmjbHTV2PdSg04DpPjWl1',
+        user: {
+            id: 'd6RJwaIJmjbHTV2PdSg04DpPjWl1',
+            username: 'johnManager',
+            firstname: 'John',
+            lastname: 'Doe',
+            email: 'johnManager@gmail.com',
+            avatar: 'https://example.com/avatar8.jpg',
+        },
         articleId: '153',
         rate: 5,
         feedback: 'Loved it! The insights were very enlightening.',
         id: 811,
     },
     {
-        userId: 'd6RJwaIJmjbHTV2PdSg04DpPjWl1',
+        user: {
+            id: 'd6RJwaIJmjbHTV2PdSg04DpPjWl1',
+            username: 'johnManager',
+            firstname: 'John',
+            lastname: 'Doe',
+            email: 'johnManager@gmail.com',
+            avatar: 'https://example.com/avatar8.jpg',
+        },
         articleId: '168',
         rate: 4,
         feedback: 'Great content! I found it really useful for my research.',
         id: 812,
     },
     {
-        userId: 'MqonEyICTeMapkAPyPFH7w1E5l52',
+        user: {
+            id: 'MqonEyICTeMapkAPyPFH7w1E5l52',
+            username: 'annaUser',
+            firstname: 'Anna',
+            lastname: 'Koval',
+
+            email: 'annaUser@gmail.com',
+
+            avatar: 'https://example.com/avatar9.jpg',
+        },
         articleId: '32',
         rate: 1,
         feedback:
@@ -1852,7 +4084,16 @@ const ratings = [
         id: 901,
     },
     {
-        userId: 'MqonEyICTeMapkAPyPFH7w1E5l52',
+        user: {
+            id: 'MqonEyICTeMapkAPyPFH7w1E5l52',
+            username: 'annaUser',
+            firstname: 'Anna',
+            lastname: 'Koval',
+
+            email: 'annaUser@gmail.com',
+
+            avatar: 'https://example.com/avatar9.jpg',
+        },
         articleId: '33',
         rate: 2,
         feedback:
@@ -1860,7 +4101,16 @@ const ratings = [
         id: 902,
     },
     {
-        userId: 'MqonEyICTeMapkAPyPFH7w1E5l52',
+        user: {
+            id: 'MqonEyICTeMapkAPyPFH7w1E5l52',
+            username: 'annaUser',
+            firstname: 'Anna',
+            lastname: 'Koval',
+
+            email: 'annaUser@gmail.com',
+
+            avatar: 'https://example.com/avatar9.jpg',
+        },
         articleId: '58',
         rate: 1,
         feedback:
@@ -1868,21 +4118,46 @@ const ratings = [
         id: 903,
     },
     {
-        userId: 'MqonEyICTeMapkAPyPFH7w1E5l52',
+        user: {
+            id: 'MqonEyICTeMapkAPyPFH7w1E5l52',
+            username: 'annaUser',
+            firstname: 'Anna',
+            lastname: 'Koval',
+
+            email: 'annaUser@gmail.com',
+
+            avatar: 'https://example.com/avatar9.jpg',
+        },
         articleId: '102',
         rate: 2,
         feedback: 'The content felt rushed and lacked proper structure.',
         id: 904,
     },
     {
-        userId: 'MqonEyICTeMapkAPyPFH7w1E5l52',
+        user: {
+            id: 'MqonEyICTeMapkAPyPFH7w1E5l52',
+            username: 'annaUser',
+            firstname: 'Anna',
+            lastname: 'Koval',
+
+            email: 'annaUser@gmail.com',
+
+            avatar: 'https://example.com/avatar9.jpg',
+        },
         articleId: '36',
         rate: 1,
         feedback: 'Very uninformative. I expected more from this topic.',
         id: 905,
     },
     {
-        userId: '4g1WI5M1XIZU6VKvIfJBG7TzMsD3',
+        user: {
+            id: '4g1WI5M1XIZU6VKvIfJBG7TzMsD3',
+            username: 'alexManager',
+            firstname: 'Alex',
+            lastname: 'Johnson',
+            email: 'alexManager@gmail.com',
+            avatar: 'https://example.com/avatar11.jpg',
+        },
         articleId: '63',
         rate: 5,
         feedback:
@@ -1890,7 +4165,14 @@ const ratings = [
         id: 1101,
     },
     {
-        userId: '4g1WI5M1XIZU6VKvIfJBG7TzMsD3',
+        user: {
+            id: '4g1WI5M1XIZU6VKvIfJBG7TzMsD3',
+            username: 'alexManager',
+            firstname: 'Alex',
+            lastname: 'Johnson',
+            email: 'alexManager@gmail.com',
+            avatar: 'https://example.com/avatar11.jpg',
+        },
         articleId: '151',
         rate: 5,
         feedback:
@@ -1898,7 +4180,14 @@ const ratings = [
         id: 1102,
     },
     {
-        userId: '4g1WI5M1XIZU6VKvIfJBG7TzMsD3',
+        user: {
+            id: '4g1WI5M1XIZU6VKvIfJBG7TzMsD3',
+            username: 'alexManager',
+            firstname: 'Alex',
+            lastname: 'Johnson',
+            email: 'alexManager@gmail.com',
+            avatar: 'https://example.com/avatar11.jpg',
+        },
         articleId: '166',
         rate: 5,
         feedback:
@@ -1906,14 +4195,28 @@ const ratings = [
         id: 1103,
     },
     {
-        userId: '4g1WI5M1XIZU6VKvIfJBG7TzMsD3',
+        user: {
+            id: '4g1WI5M1XIZU6VKvIfJBG7TzMsD3',
+            username: 'alexManager',
+            firstname: 'Alex',
+            lastname: 'Johnson',
+            email: 'alexManager@gmail.com',
+            avatar: 'https://example.com/avatar11.jpg',
+        },
         articleId: '64',
         rate: 5,
         feedback: 'Very informative and engaging. I learned a lot!',
         id: 1104,
     },
     {
-        userId: '4g1WI5M1XIZU6VKvIfJBG7TzMsD3',
+        user: {
+            id: '4g1WI5M1XIZU6VKvIfJBG7TzMsD3',
+            username: 'alexManager',
+            firstname: 'Alex',
+            lastname: 'Johnson',
+            email: 'alexManager@gmail.com',
+            avatar: 'https://example.com/avatar11.jpg',
+        },
         articleId: '76',
         rate: 5,
         feedback:
@@ -1921,7 +4224,14 @@ const ratings = [
         id: 1105,
     },
     {
-        userId: '4g1WI5M1XIZU6VKvIfJBG7TzMsD3',
+        user: {
+            id: '4g1WI5M1XIZU6VKvIfJBG7TzMsD3',
+            username: 'alexManager',
+            firstname: 'Alex',
+            lastname: 'Johnson',
+            email: 'alexManager@gmail.com',
+            avatar: 'https://example.com/avatar11.jpg',
+        },
         articleId: '143',
         rate: 5,
         feedback:
@@ -1929,14 +4239,28 @@ const ratings = [
         id: 1106,
     },
     {
-        userId: '4g1WI5M1XIZU6VKvIfJBG7TzMsD3',
+        user: {
+            id: '4g1WI5M1XIZU6VKvIfJBG7TzMsD3',
+            username: 'alexManager',
+            firstname: 'Alex',
+            lastname: 'Johnson',
+            email: 'alexManager@gmail.com',
+            avatar: 'https://example.com/avatar11.jpg',
+        },
         articleId: '144',
         rate: 5,
         feedback: 'Outstanding! Very well-researched and presented. Thank you!',
         id: 1107,
     },
     {
-        userId: '4g1WI5M1XIZU6VKvIfJBG7TzMsD3',
+        user: {
+            id: '4g1WI5M1XIZU6VKvIfJBG7TzMsD3',
+            username: 'alexManager',
+            firstname: 'Alex',
+            lastname: 'Johnson',
+            email: 'alexManager@gmail.com',
+            avatar: 'https://example.com/avatar11.jpg',
+        },
         articleId: '145',
         rate: 5,
         feedback:
@@ -1944,21 +4268,42 @@ const ratings = [
         id: 1108,
     },
     {
-        userId: '4g1WI5M1XIZU6VKvIfJBG7TzMsD3',
+        user: {
+            id: '4g1WI5M1XIZU6VKvIfJBG7TzMsD3',
+            username: 'alexManager',
+            firstname: 'Alex',
+            lastname: 'Johnson',
+            email: 'alexManager@gmail.com',
+            avatar: 'https://example.com/avatar11.jpg',
+        },
         articleId: '146',
         rate: 5,
         feedback: 'Exceptional quality! This article is a valuable resource.',
         id: 1109,
     },
     {
-        userId: '4g1WI5M1XIZU6VKvIfJBG7TzMsD3',
+        user: {
+            id: '4g1WI5M1XIZU6VKvIfJBG7TzMsD3',
+            username: 'alexManager',
+            firstname: 'Alex',
+            lastname: 'Johnson',
+            email: 'alexManager@gmail.com',
+            avatar: 'https://example.com/avatar11.jpg',
+        },
         articleId: '147',
         rate: 5,
         feedback: 'Loved it! The clarity and detail are impressive.',
         id: 1110,
     },
     {
-        userId: '4g1WI5M1XIZU6VKvIfJBG7TzMsD3',
+        user: {
+            id: '4g1WI5M1XIZU6VKvIfJBG7TzMsD3',
+            username: 'alexManager',
+            firstname: 'Alex',
+            lastname: 'Johnson',
+            email: 'alexManager@gmail.com',
+            avatar: 'https://example.com/avatar11.jpg',
+        },
         articleId: '65',
         rate: 5,
         feedback:
@@ -1966,14 +4311,28 @@ const ratings = [
         id: 1111,
     },
     {
-        userId: '4g1WI5M1XIZU6VKvIfJBG7TzMsD3',
+        user: {
+            id: '4g1WI5M1XIZU6VKvIfJBG7TzMsD3',
+            username: 'alexManager',
+            firstname: 'Alex',
+            lastname: 'Johnson',
+            email: 'alexManager@gmail.com',
+            avatar: 'https://example.com/avatar11.jpg',
+        },
         articleId: '77',
         rate: 5,
         feedback: 'Absolutely loved this! Engaging and very informative.',
         id: 1112,
     },
     {
-        userId: '4g1WI5M1XIZU6VKvIfJBG7TzMsD3',
+        user: {
+            id: '4g1WI5M1XIZU6VKvIfJBG7TzMsD3',
+            username: 'alexManager',
+            firstname: 'Alex',
+            lastname: 'Johnson',
+            email: 'alexManager@gmail.com',
+            avatar: 'https://example.com/avatar11.jpg',
+        },
         articleId: '89',
         rate: 5,
         feedback:
@@ -1981,7 +4340,14 @@ const ratings = [
         id: 1113,
     },
     {
-        userId: '4g1WI5M1XIZU6VKvIfJBG7TzMsD3',
+        user: {
+            id: '4g1WI5M1XIZU6VKvIfJBG7TzMsD3',
+            username: 'alexManager',
+            firstname: 'Alex',
+            lastname: 'Johnson',
+            email: 'alexManager@gmail.com',
+            avatar: 'https://example.com/avatar11.jpg',
+        },
         articleId: '156',
         rate: 5,
         feedback:
@@ -1989,21 +4355,42 @@ const ratings = [
         id: 1114,
     },
     {
-        userId: '4g1WI5M1XIZU6VKvIfJBG7TzMsD3',
+        user: {
+            id: '4g1WI5M1XIZU6VKvIfJBG7TzMsD3',
+            username: 'alexManager',
+            firstname: 'Alex',
+            lastname: 'Johnson',
+            email: 'alexManager@gmail.com',
+            avatar: 'https://example.com/avatar11.jpg',
+        },
         articleId: '157',
         rate: 5,
         feedback: 'Superb article! I enjoyed every bit of it.',
         id: 1115,
     },
     {
-        userId: '4g1WI5M1XIZU6VKvIfJBG7TzMsD3',
+        user: {
+            id: '4g1WI5M1XIZU6VKvIfJBG7TzMsD3',
+            username: 'alexManager',
+            firstname: 'Alex',
+            lastname: 'Johnson',
+            email: 'alexManager@gmail.com',
+            avatar: 'https://example.com/avatar11.jpg',
+        },
         articleId: '160',
         rate: 5,
         feedback: 'Fantastic work! A truly enlightening read.',
         id: 1116,
     },
     {
-        userId: '4g1WI5M1XIZU6VKvIfJBG7TzMsD3',
+        user: {
+            id: '4g1WI5M1XIZU6VKvIfJBG7TzMsD3',
+            username: 'alexManager',
+            firstname: 'Alex',
+            lastname: 'Johnson',
+            email: 'alexManager@gmail.com',
+            avatar: 'https://example.com/avatar11.jpg',
+        },
         articleId: '163',
         rate: 5,
         feedback:
@@ -2011,7 +4398,14 @@ const ratings = [
         id: 1117,
     },
     {
-        userId: 'J3aB11HdHTZW6udzrrw2ymBhIOz1',
+        user: {
+            id: 'J3aB11HdHTZW6udzrrw2ymBhIOz1',
+            username: 'mainAdmin',
+            firstname: 'Maryna',
+            lastname: 'Shavlak',
+            email: 'mainAdmin@gmail.com',
+            avatar: 'https://drive.google.com/thumbnail?id=1RD0jSAm8kdTLKa-Vr0daeE8T9-QcfPCa&sz=w1000',
+        },
         articleId: '45',
         rate: 1,
         feedback:
@@ -2019,7 +4413,14 @@ const ratings = [
         id: 2001,
     },
     {
-        userId: 'J3aB11HdHTZW6udzrrw2ymBhIOz1',
+        user: {
+            id: 'J3aB11HdHTZW6udzrrw2ymBhIOz1',
+            username: 'mainAdmin',
+            firstname: 'Maryna',
+            lastname: 'Shavlak',
+            email: 'mainAdmin@gmail.com',
+            avatar: 'https://drive.google.com/thumbnail?id=1RD0jSAm8kdTLKa-Vr0daeE8T9-QcfPCa&sz=w1000',
+        },
         articleId: '66',
         rate: 1,
         feedback:
@@ -2027,7 +4428,14 @@ const ratings = [
         id: 2002,
     },
     {
-        userId: 'J3aB11HdHTZW6udzrrw2ymBhIOz1',
+        user: {
+            id: 'J3aB11HdHTZW6udzrrw2ymBhIOz1',
+            username: 'mainAdmin',
+            firstname: 'Maryna',
+            lastname: 'Shavlak',
+            email: 'mainAdmin@gmail.com',
+            avatar: 'https://drive.google.com/thumbnail?id=1RD0jSAm8kdTLKa-Vr0daeE8T9-QcfPCa&sz=w1000',
+        },
         articleId: '47',
         rate: 1,
         feedback:
@@ -2035,7 +4443,14 @@ const ratings = [
         id: 2003,
     },
     {
-        userId: 'J3aB11HdHTZW6udzrrw2ymBhIOz1',
+        user: {
+            id: 'J3aB11HdHTZW6udzrrw2ymBhIOz1',
+            username: 'mainAdmin',
+            firstname: 'Maryna',
+            lastname: 'Shavlak',
+            email: 'mainAdmin@gmail.com',
+            avatar: 'https://drive.google.com/thumbnail?id=1RD0jSAm8kdTLKa-Vr0daeE8T9-QcfPCa&sz=w1000',
+        },
         articleId: '48',
         rate: 1,
         feedback:
@@ -2043,7 +4458,14 @@ const ratings = [
         id: 2004,
     },
     {
-        userId: 'J3aB11HdHTZW6udzrrw2ymBhIOz1',
+        user: {
+            id: 'J3aB11HdHTZW6udzrrw2ymBhIOz1',
+            username: 'mainAdmin',
+            firstname: 'Maryna',
+            lastname: 'Shavlak',
+            email: 'mainAdmin@gmail.com',
+            avatar: 'https://drive.google.com/thumbnail?id=1RD0jSAm8kdTLKa-Vr0daeE8T9-QcfPCa&sz=w1000',
+        },
         articleId: '49',
         rate: 1,
         feedback:
@@ -2051,7 +4473,14 @@ const ratings = [
         id: 2005,
     },
     {
-        userId: 'J3aB11HdHTZW6udzrrw2ymBhIOz1',
+        user: {
+            id: 'J3aB11HdHTZW6udzrrw2ymBhIOz1',
+            username: 'mainAdmin',
+            firstname: 'Maryna',
+            lastname: 'Shavlak',
+            email: 'mainAdmin@gmail.com',
+            avatar: 'https://drive.google.com/thumbnail?id=1RD0jSAm8kdTLKa-Vr0daeE8T9-QcfPCa&sz=w1000',
+        },
         articleId: '50',
         rate: 1,
         feedback:
@@ -2059,7 +4488,14 @@ const ratings = [
         id: 2006,
     },
     {
-        userId: 'J3aB11HdHTZW6udzrrw2ymBhIOz1',
+        user: {
+            id: 'J3aB11HdHTZW6udzrrw2ymBhIOz1',
+            username: 'mainAdmin',
+            firstname: 'Maryna',
+            lastname: 'Shavlak',
+            email: 'mainAdmin@gmail.com',
+            avatar: 'https://drive.google.com/thumbnail?id=1RD0jSAm8kdTLKa-Vr0daeE8T9-QcfPCa&sz=w1000',
+        },
         articleId: '51',
         rate: 1,
         feedback:
@@ -2067,7 +4503,14 @@ const ratings = [
         id: 2007,
     },
     {
-        userId: 'J3aB11HdHTZW6udzrrw2ymBhIOz1',
+        user: {
+            id: 'J3aB11HdHTZW6udzrrw2ymBhIOz1',
+            username: 'mainAdmin',
+            firstname: 'Maryna',
+            lastname: 'Shavlak',
+            email: 'mainAdmin@gmail.com',
+            avatar: 'https://drive.google.com/thumbnail?id=1RD0jSAm8kdTLKa-Vr0daeE8T9-QcfPCa&sz=w1000',
+        },
         articleId: '52',
         rate: 1,
         feedback:
@@ -2075,7 +4518,14 @@ const ratings = [
         id: 2008,
     },
     {
-        userId: 'J3aB11HdHTZW6udzrrw2ymBhIOz1',
+        user: {
+            id: 'J3aB11HdHTZW6udzrrw2ymBhIOz1',
+            username: 'mainAdmin',
+            firstname: 'Maryna',
+            lastname: 'Shavlak',
+            email: 'mainAdmin@gmail.com',
+            avatar: 'https://drive.google.com/thumbnail?id=1RD0jSAm8kdTLKa-Vr0daeE8T9-QcfPCa&sz=w1000',
+        },
         articleId: '22',
         rate: 1,
         feedback:
@@ -2083,14 +4533,28 @@ const ratings = [
         id: 2009,
     },
     {
-        userId: 'tfs04ij0b5anHdw2qt6LghQsEfC3',
+        user: {
+            id: 'tfs04ij0b5anHdw2qt6LghQsEfC3',
+            username: 'katyaAdmin',
+            firstname: 'Katya',
+            lastname: 'Ivanova',
+            email: 'katyaAdmin@gmail.com',
+            avatar: 'https://example.com/avatar7.jpg',
+        },
         articleId: '68',
         rate: 2,
         feedback: 'The content was not very engaging and lacked depth.',
         id: 3001,
     },
     {
-        userId: 'tfs04ij0b5anHdw2qt6LghQsEfC3',
+        user: {
+            id: 'tfs04ij0b5anHdw2qt6LghQsEfC3',
+            username: 'katyaAdmin',
+            firstname: 'Katya',
+            lastname: 'Ivanova',
+            email: 'katyaAdmin@gmail.com',
+            avatar: 'https://example.com/avatar7.jpg',
+        },
         articleId: '80',
         rate: 2,
         feedback:
@@ -2098,7 +4562,14 @@ const ratings = [
         id: 3002,
     },
     {
-        userId: 'tfs04ij0b5anHdw2qt6LghQsEfC3',
+        user: {
+            id: 'tfs04ij0b5anHdw2qt6LghQsEfC3',
+            username: 'katyaAdmin',
+            firstname: 'Katya',
+            lastname: 'Ivanova',
+            email: 'katyaAdmin@gmail.com',
+            avatar: 'https://example.com/avatar7.jpg',
+        },
         articleId: '92',
         rate: 2,
         feedback:
@@ -2106,7 +4577,14 @@ const ratings = [
         id: 3003,
     },
     {
-        userId: 'tfs04ij0b5anHdw2qt6LghQsEfC3',
+        user: {
+            id: 'tfs04ij0b5anHdw2qt6LghQsEfC3',
+            username: 'katyaAdmin',
+            firstname: 'Katya',
+            lastname: 'Ivanova',
+            email: 'katyaAdmin@gmail.com',
+            avatar: 'https://example.com/avatar7.jpg',
+        },
         articleId: '108',
         rate: 2,
         feedback:
@@ -2114,7 +4592,14 @@ const ratings = [
         id: 3004,
     },
     {
-        userId: 'tfs04ij0b5anHdw2qt6LghQsEfC3',
+        user: {
+            id: 'tfs04ij0b5anHdw2qt6LghQsEfC3',
+            username: 'katyaAdmin',
+            firstname: 'Katya',
+            lastname: 'Ivanova',
+            email: 'katyaAdmin@gmail.com',
+            avatar: 'https://example.com/avatar7.jpg',
+        },
         articleId: '123',
         rate: 2,
         feedback: 'I appreciate the effort, but the execution was lacking.',
@@ -2143,7 +4628,16 @@ const ratings = [
         id: 4003,
     },
     {
-        userId: 'ObGe2X8MNTde2RSffQgE0Jpxek72',
+        user: {
+            id: 'ObGe2X8MNTde2RSffQgE0Jpxek72',
+            username: 'lucyAdmin',
+            firstname: 'Lucy',
+            lastname: 'Brown',
+
+            email: 'lucyAdmin@gmail.com',
+
+            avatar: 'https://example.com/avatar10.jpg',
+        },
         articleId: '103',
         rate: 4,
         feedback:
@@ -2151,14 +4645,32 @@ const ratings = [
         id: 5001,
     },
     {
-        userId: 'ObGe2X8MNTde2RSffQgE0Jpxek72',
+        user: {
+            id: 'ObGe2X8MNTde2RSffQgE0Jpxek72',
+            username: 'lucyAdmin',
+            firstname: 'Lucy',
+            lastname: 'Brown',
+
+            email: 'lucyAdmin@gmail.com',
+
+            avatar: 'https://example.com/avatar10.jpg',
+        },
         articleId: '119',
         rate: 4,
         feedback: 'Good read! The examples provided were helpful and relevant.',
         id: 5002,
     },
     {
-        userId: 'ObGe2X8MNTde2RSffQgE0Jpxek72',
+        user: {
+            id: 'ObGe2X8MNTde2RSffQgE0Jpxek72',
+            username: 'lucyAdmin',
+            firstname: 'Lucy',
+            lastname: 'Brown',
+
+            email: 'lucyAdmin@gmail.com',
+
+            avatar: 'https://example.com/avatar10.jpg',
+        },
         articleId: '132',
         rate: 4,
         feedback:
@@ -2166,7 +4678,16 @@ const ratings = [
         id: 5003,
     },
     {
-        userId: 'ObGe2X8MNTde2RSffQgE0Jpxek72',
+        user: {
+            id: 'ObGe2X8MNTde2RSffQgE0Jpxek72',
+            username: 'lucyAdmin',
+            firstname: 'Lucy',
+            lastname: 'Brown',
+
+            email: 'lucyAdmin@gmail.com',
+
+            avatar: 'https://example.com/avatar10.jpg',
+        },
         articleId: '173',
         rate: 4,
         feedback: 'Well-written and engaging. It kept my attention throughout!',
