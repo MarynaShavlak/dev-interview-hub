@@ -1,12 +1,11 @@
-import { getDoc } from 'firebase/firestore';
+import { getDoc, getDocs, orderBy, query, where } from 'firebase/firestore';
 import { firestoreApi } from '@/shared/api/rtkApi';
 
 import { fetchCollection } from '@/shared/lib/firestore/fetchCollection/fetchCollection';
 import { ArticleComment } from '../model/types/articleComment';
-import { getAllDocRefsByField } from '@/shared/lib/firestore/getAllDocRefsByField/getAllDocRefsByField';
-import { fetchAllDocumentsByRefs } from '@/shared/lib/firestore/fetchAllDocumentsByRefs/fetchAllDocumentsByRefs';
 import { User } from '@/entities/User';
 import { addDocToFirestore } from '@/shared/lib/firestore/addDocToFirestore/addDocToFirestore';
+import { dataPoint } from '@/shared/lib/firestore/firestore';
 
 export const articlesCommentsFirebaseApi = firestoreApi.injectEndpoints({
     endpoints: (build) => ({
@@ -25,18 +24,31 @@ export const articlesCommentsFirebaseApi = firestoreApi.injectEndpoints({
         getCommentsByArticleId: build.query<ArticleComment[], string>({
             async queryFn(articleId) {
                 try {
-                    const commentsByArticleRefs =
-                        await getAllDocRefsByField<ArticleComment>(
-                            'comments',
-                            'articleId',
-                            articleId,
-                        );
+                    const commentsCollection =
+                        dataPoint<ArticleComment>('comments');
+                    console.log('commentsCollection', commentsCollection);
+                    const commentsQuery = query(
+                        commentsCollection,
+                        where('articleId', '==', articleId),
+                        orderBy('createdAt', 'desc'),
+                    );
 
-                    const comments =
-                        await fetchAllDocumentsByRefs<ArticleComment>(
-                            commentsByArticleRefs,
-                        );
-                    return { data: comments };
+                    const querySnapshot = await getDocs(commentsQuery);
+                    const comments: ArticleComment[] = [];
+
+                    if (!querySnapshot.empty) {
+                        querySnapshot.forEach((doc) => {
+                            comments.push({ ...doc.data() });
+                        });
+
+                        return { data: comments };
+                    }
+                    return {
+                        error: {
+                            name: 'NotFound',
+                            message: 'Comments not found',
+                        },
+                    };
                 } catch (error) {
                     return { error };
                 }
@@ -83,3 +95,16 @@ export const useCommentsByArticleId =
 
 export const addCommentMutation =
     articlesCommentsFirebaseApi.endpoints.addComment.initiate;
+
+// const commentsByArticleRefs =
+//     await getAllDocRefsByField<ArticleComment>(
+//         'comments',
+//         'articleId',
+//         articleId,
+//     );
+//
+// const comments =
+//     await fetchAllDocumentsByRefs<ArticleComment>(
+//         commentsByArticleRefs,
+//     );
+// return { data: comments };

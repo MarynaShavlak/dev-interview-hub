@@ -4,8 +4,8 @@ import { getUserAuthData } from '@/entities/User';
 import { ThunkConfig } from '@/app/providers/StoreProvider';
 import { Comment } from '@/entities/Comment';
 import { getArticleDetailsData } from '@/entities/Article';
-import { fetchCommentsByArticleIdThunk } from '../fetchCommentsByArticleIdThunk/fetchCommentsByArticleIdThunk';
 import { addCommentMutation } from '../../../api/articleCommentsApi';
+import { fetchCommentsByArticleIdThunk } from '../fetchCommentsByArticleIdThunk/fetchCommentsByArticleIdThunk';
 
 /**
  * Thunk to add a comment to an article.
