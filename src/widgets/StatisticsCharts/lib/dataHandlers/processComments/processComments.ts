@@ -1,5 +1,5 @@
 import { StatisticsData } from '../../../model/types/stats';
-import { ArticleComment } from '../../../model/types/articleComment';
+import { ArticleComment } from '../../../../../features/ArticleComments/model/types/articleComment';
 
 export const processComments = (
     data: StatisticsData,

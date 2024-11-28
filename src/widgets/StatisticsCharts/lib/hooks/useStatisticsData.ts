@@ -2,7 +2,7 @@
 import { useUsers } from '@/entities/User';
 import { useArticles } from '@/entities/Article';
 import { useArticlesRatings } from '../../api/articlesRatingsApi';
-import { useArticlesComments } from '../../api/articlesCommentsApi';
+import { useArticlesComments } from '@/features/ArticleComments';
 
 export const useStatisticsData = () => {
     const {
