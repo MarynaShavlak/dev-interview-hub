@@ -5,7 +5,6 @@ import { ThunkConfig } from '@/app/providers/StoreProvider';
 import { Comment } from '@/entities/Comment';
 import { getArticleDetailsData } from '@/entities/Article';
 import { addCommentMutation } from '../../../api/articleCommentsApi';
-import { fetchCommentsByArticleIdThunk } from '../fetchCommentsByArticleIdThunk/fetchCommentsByArticleIdThunk';
 
 /**
  * Thunk to add a comment to an article.
@@ -64,7 +63,7 @@ export const addCommentForArticleThunk = createAsyncThunk<
             return rejectWithValue('No data received from API.');
         }
 
-        dispatch(fetchCommentsByArticleIdThunk(article.id));
+        // dispatch(fetchCommentsByArticleIdThunk(article.id));
 
         return addedComment;
     } catch (error) {

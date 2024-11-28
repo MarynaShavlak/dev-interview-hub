@@ -22,6 +22,7 @@ import {
     DynamicModuleLoader,
     ReducersList,
 } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
+import { useCommentsByArticleId } from '../api/articleCommentsApi';
 
 export interface ArticleCommentsProps {
     className?: string;
@@ -37,6 +38,8 @@ const ArticleComments = memo((props: ArticleCommentsProps) => {
     const dispatch = useAppDispatch();
     const sectionTitleText = t('Коментарі');
 
+    const { data } = useCommentsByArticleId(id || '');
+    console.log('data', data);
     const onSendComment = useCallback(
         (text: string) => {
             dispatch(addCommentForArticleThunk(text));

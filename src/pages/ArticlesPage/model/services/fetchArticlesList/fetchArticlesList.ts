@@ -68,22 +68,22 @@ export const fetchArticlesList = createAsyncThunk<
         console.log('objectsLimit', objectsLimit);
         console.log('page', page);
         console.log('pageLimit', pageLimit);
-        const response = await extra.api.get<Article[]>('/articles', {
-            params: {
-                _expand: 'user',
-                _limit: objectsLimit,
-                _page: pageLimit,
-                _sort: sort,
-                _order: order,
-                q: search,
-                category:
-                    category === ArticleCategory.ALL ? undefined : category,
-            },
-        });
-
-        if (!response.data) {
-            return rejectWithValue('No articles found.');
-        }
+        // const response = await extra.api.get<Article[]>('/articles', {
+        //     params: {
+        //         _expand: 'user',
+        //         _limit: objectsLimit,
+        //         _page: pageLimit,
+        //         _sort: sort,
+        //         _order: order,
+        //         q: search,
+        //         category:
+        //             category === ArticleCategory.ALL ? undefined : category,
+        //     },
+        // });
+        //
+        // if (!response.data) {
+        //     return rejectWithValue('No articles found.');
+        // }
         // console.log('response.data', response.data);
         // console.log('category', category);
         // const filteredArticles =
@@ -107,7 +107,7 @@ export const fetchArticlesList = createAsyncThunk<
                 page,
             }),
         ).unwrap();
-        console.log('SIMPLE response', response.data);
+
         console.log('firebase articles response', articlesResponse);
         // return response.data;
         return articlesResponse;

@@ -22,7 +22,7 @@ export const RedesignedGridViewCard = memo((props: BaseCardProps) => {
         vStack: true,
         gap: '8',
     });
-
+    console.log('article', article);
     return (
         <AppLink
             data-testid="ArticleListItem"
@@ -71,7 +71,7 @@ export const RedesignedGridViewCard = memo((props: BaseCardProps) => {
                         </HStack>
                         <Avatar
                             size={32}
-                            src={article.user.avatar}
+                            src={article.user?.avatar}
                             className={cls.user}
                             userName={article.user.username}
                         />
