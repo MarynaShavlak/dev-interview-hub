@@ -20,7 +20,7 @@ The **`ArticleComments`** component accepts the following props:
 
 
 ## Features
-1. **Comment Fetching and Display**: Automatically fetches and displays comments for the specified article using the `fetchCommentsByArticleId` service. Comments are displayed in a list format, with support for loading and error states.
+1. **Comment Fetching and Display**: Automatically fetches and displays comments for the specified article using the `fetchCommentsByArticleIdThunk` service. Comments are displayed in a list format, with support for loading and error states.
 
 2. **Add Comment Functionality**: Provides a form for users to submit new comments. The submission is handled by the `addCommentForArticle` service, which updates the comment list upon success.
 

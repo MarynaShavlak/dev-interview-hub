@@ -5,9 +5,12 @@ import { testCommentsData } from '@/entities/Comment/testing';
 import { testArticleData } from '@/entities/Article/testing';
 import { testUserData } from '@/entities/User/testing';
 
-jest.mock('../fetchCommentsByArticleId/fetchCommentsByArticleId', () => ({
-    fetchCommentsByArticleId: jest.fn(),
-}));
+jest.mock(
+    '@/features/ArticleComments/model/services/fetchCommentsByArticleIdThunk/fetchCommentsByArticleIdThunk',
+    () => ({
+        fetchCommentsByArticleId: jest.fn(),
+    }),
+);
 
 describe('async thunk addCommentForArticle test', () => {
     test('successfully adds a comment', async () => {

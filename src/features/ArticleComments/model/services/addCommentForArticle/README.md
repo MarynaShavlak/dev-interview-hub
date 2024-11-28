@@ -19,7 +19,7 @@ The `addCommentForArticle` thunk is an asynchronous action designed to add a new
 1. **Data Validation**: Checks if user data, the article, and the comment text are available. If any of these are missing, it returns a rejection with an error message stating **'Required data is missing.'**.
 2. **API Call**: Makes an asynchronous POST request to the **'/comments'** endpoint using the `extra.api` object. The request payload includes `articleId`, `userId`, and the comment text.
 3. **Response Handling**: Validates the response from the API. If no data is returned, it rejects with an error message **'No data received from API.'**.
-4. **State Update**: On should handle successful response, dispatches `fetchCommentsByArticleId` to refresh the comments list for the article.
+4. **State Update**: On should handle successful response, dispatches `fetchCommentsByArticleIdThunk` to refresh the comments list for the article.
 5. **Return Data**: If successful, returns the newly added comment.
 
 ## Error Handling

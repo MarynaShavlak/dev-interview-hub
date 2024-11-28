@@ -1,8 +1,8 @@
 import { articleCommentsReducer } from './articleCommentsSlice';
 import { ArticleCommentsSchema } from '../types/ArticleCommentsSchema';
-import { fetchCommentsByArticleId } from '../services/fetchCommentsByArticleId/fetchCommentsByArticleId';
-import { testCommentsData } from '@/entities/Comment/testing';
-import { Comment } from '@/entities/Comment';
+import { fetchCommentsByArticleIdThunk } from '../services/fetchCommentsByArticleIdThunk/fetchCommentsByArticleIdThunk';
+import { ArticleComment } from '../../model/types/articleComment';
+import { testCommentsData } from '../../testing';
 
 describe('articleCommentsSlice tests', () => {
     const initialState: ArticleCommentsSchema = {
@@ -28,13 +28,13 @@ describe('articleCommentsSlice tests', () => {
         expect(
             articleCommentsReducer(
                 initialState,
-                fetchCommentsByArticleId.pending,
+                fetchCommentsByArticleIdThunk.pending,
             ),
         ).toEqual(expectedState);
     });
 
     test('should handle fetchCommentsByArticleId.fulfilled', () => {
-        const comments: Comment[] = testCommentsData;
+        const comments: ArticleComment[] = testCommentsData;
 
         const expectedState: ArticleCommentsSchema = {
             isLoading: false,
@@ -49,7 +49,7 @@ describe('articleCommentsSlice tests', () => {
         expect(
             articleCommentsReducer(
                 initialState,
-                fetchCommentsByArticleId.fulfilled(comments, '123', ''),
+                fetchCommentsByArticleIdThunk.fulfilled(comments, '123', ''),
             ),
         ).toEqual(expectedState);
     });
@@ -65,7 +65,7 @@ describe('articleCommentsSlice tests', () => {
         expect(
             articleCommentsReducer(
                 initialState,
-                fetchCommentsByArticleId.rejected(
+                fetchCommentsByArticleIdThunk.rejected(
                     new Error(error),
                     '',
                     undefined,
@@ -76,7 +76,7 @@ describe('articleCommentsSlice tests', () => {
     });
 
     test('should handle fetchCommentsByArticleId.fulfilled with empty array', () => {
-        const comments: Comment[] = [];
+        const comments: ArticleComment[] = [];
 
         const expectedState: ArticleCommentsSchema = {
             isLoading: false,
@@ -88,13 +88,13 @@ describe('articleCommentsSlice tests', () => {
         expect(
             articleCommentsReducer(
                 initialState,
-                fetchCommentsByArticleId.fulfilled(comments, '123', ''),
+                fetchCommentsByArticleIdThunk.fulfilled(comments, '123', ''),
             ),
         ).toEqual(expectedState);
     });
 
     test('should handle fetchCommentsByArticleId.fulfilled with duplicate comments', () => {
-        const comments: Comment[] = [
+        const comments: ArticleComment[] = [
             { ...testCommentsData[0] },
             { ...testCommentsData[0] },
         ];
@@ -111,7 +111,7 @@ describe('articleCommentsSlice tests', () => {
         expect(
             articleCommentsReducer(
                 initialState,
-                fetchCommentsByArticleId.fulfilled(comments, '123', ''),
+                fetchCommentsByArticleIdThunk.fulfilled(comments, '123', ''),
             ),
         ).toEqual(expectedState);
     });

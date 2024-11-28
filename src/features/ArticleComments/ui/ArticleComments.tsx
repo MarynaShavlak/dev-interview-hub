@@ -8,7 +8,7 @@ import { Text } from '@/shared/ui/redesigned/Text';
 import { AddCommentForm, CommentList } from '@/entities/Comment';
 import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect/useInitialEffect';
 import { VStack } from '@/shared/ui/common/Stack';
-import { fetchCommentsByArticleId } from '../model/services/fetchCommentsByArticleId/fetchCommentsByArticleId';
+import { fetchCommentsByArticleIdThunk } from '../model/services/fetchCommentsByArticleIdThunk/fetchCommentsByArticleIdThunk';
 import {
     articleCommentsReducer,
     getArticleComments,
@@ -45,7 +45,7 @@ const ArticleComments = memo((props: ArticleCommentsProps) => {
     );
 
     useInitialEffect(() => {
-        dispatch(fetchCommentsByArticleId(id));
+        dispatch(fetchCommentsByArticleIdThunk(id));
     });
     const reducers: ReducersList = {
         articleComments: articleCommentsReducer,

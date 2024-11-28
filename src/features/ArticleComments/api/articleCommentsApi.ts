@@ -24,7 +24,7 @@ export const articlesCommentsFirebaseApi = firestoreApi.injectEndpoints({
                 try {
                     const commentsByArticleRefs =
                         await getAllDocRefsByField<ArticleComment>(
-                            'articles',
+                            'comments',
                             'articleId',
                             articleId,
                         );

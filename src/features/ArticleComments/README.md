@@ -16,8 +16,8 @@ ArticleComments/
 │   ├── services/
 │   │   ├── addCommentForArticle/
 │   │   │   └── addCommentForArticle.ts
-│   │   ├── fetchCommentsByArticleId/
-│   │   │   └── fetchCommentsByArticleId.ts
+│   │   ├── fetchCommentsByArticleIdThunk/
+│   │   │   └── fetchCommentsByArticleIdThunk.ts
 │   ├── slices/
 │   │   └── articleCommentsSlice.ts
 │   └── types/
@@ -38,8 +38,8 @@ ArticleComments/
 - **`services/`**
     - **`addCommentForArticle/`**
         - [**addCommentForArticle/.ts**](./model/services/addCommentForArticle/README.md): Service function that handles adding a new comment to an article. It dispatches necessary actions to update the state after the comment is successfully added.
-    - **`fetchCommentsByArticleId/`**
-        - [**fetchCommentsByArticleId/.ts**](./model/services/fetchCommentsByArticleId/README.md): Service function that fetches comments based on the article ID from the API. It manages loading and error states while populating the Redux store with the fetched comments.
+    - **`fetchCommentsByArticleIdThunk/`**
+        - [**fetchCommentsByArticleIdThunk/.ts**](model/services/fetchCommentsByArticleIdThunk/README.md): Service function that fetches comments based on the article ID from the API. It manages loading and error states while populating the Redux store with the fetched comments.
       
 - **`slices/`**
     - [**articleCommentsSlice.ts**](model/slices/README.md): Defines the Redux slice for managing the comments state. It contains reducers for adding comments, fetching comments, and handling error and loading states.

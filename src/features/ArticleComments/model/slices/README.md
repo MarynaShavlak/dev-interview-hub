@@ -10,7 +10,7 @@ The `createEntityAdapter` simplifies the process of handling collections of enti
 import { createEntityAdapter, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Comment } from '@/entities/Comment';
 import { StateSchema } from '@/app/providers/StoreProvider';
-import { fetchCommentsByArticleId } from './fetchCommentsByArticleId';
+import { fetchCommentsByArticleIdThunk } from './fetchCommentsByArticleIdThunk';
 import { ArticleCommentsSchema } from './ArticleCommentsSchema';
 ```
 
@@ -19,7 +19,7 @@ import { ArticleCommentsSchema } from './ArticleCommentsSchema';
 - `PayloadAction`: Type from Redux Toolkit defining action payload shapes.
 - `Comment`: Type representing the structure of individual comments.
 - `StateSchema`: Type representing the overall shape of the Redux store state.
-- `fetchCommentsByArticleId`: Asynchronous thunk action for fetching comments by article ID.
+- `fetchCommentsByArticleIdThunk`: Asynchronous thunk action for fetching comments by article ID.
 - `ArticleCommentsSchema`: TypeScript type defining the schema for article comments state.
 
 ## Initial State
@@ -70,9 +70,9 @@ This selector provides an abstraction for accessing normalized comment entities,
 
 | **Action**                          | **Description**                                           | **Payload**                    | **State Changes**                                                                |
 |-------------------------------------|-----------------------------------------------------------|--------------------------------|----------------------------------------------------------------------------------|
-| `fetchCommentsByArticleId.pending`  | Indicates that comments for an article are being fetched. | None                           | Sets `isLoading` to `true` and clears any existing `error`.                      |
-| `fetchCommentsByArticleId.fulfilled`| Handles successful fetching of comments.                  | Array of `Comment` objects     | Updates state with fetched comments using `commentsAdapter.setAll`.              |
-| `fetchCommentsByArticleId.rejected` | Handles errors encountered during comment fetching.       | Error information              | Sets `isLoading` to `false` and updates `error` with the payload.                |
+| `fetchCommentsByArticleIdThunk.pending`  | Indicates that comments for an article are being fetched. | None                           | Sets `isLoading` to `true` and clears any existing `error`.                      |
+| `fetchCommentsByArticleIdThunk.fulfilled`| Handles successful fetching of comments.                  | Array of `Comment` objects     | Updates state with fetched comments using `commentsAdapter.setAll`.              |
+| `fetchCommentsByArticleIdThunk.rejected` | Handles errors encountered during comment fetching.       | Error information              | Sets `isLoading` to `false` and updates `error` with the payload.                |
 
 ## Exports
 ```typescript
@@ -98,7 +98,7 @@ import { useSelector } from 'react-redux';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { CommentList } from '@/entities/Comment';
 import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect/useInitialEffect';
-import { fetchCommentsByArticleId } from '../model/services/fetchCommentsByArticleId/fetchCommentsByArticleId';
+import { fetchCommentsByArticleIdThunk } from '../model/services/fetchCommentsByArticleIdThunk/fetchCommentsByArticleIdThunk';
 import { getArticleComments } from '../model/slices/articleCommentsSlice';
 import {
     useArticleCommentsError,
@@ -117,7 +117,7 @@ const ArticleComments = memo((props: ArticleCommentsProps) => {
     const dispatch = useAppDispatch();
 
     useInitialEffect(() => {
-        dispatch(fetchCommentsByArticleId(id));
+        dispatch(fetchCommentsByArticleIdThunk(id));
     });
 
     return (
@@ -136,4 +136,4 @@ export default ArticleComments;
 ## Conclusion
 The `articleCommentsSlice` is a robust solution for managing the state of comments related to an article in a Redux-based application. 
 By utilizing `createEntityAdapter`, it ensures efficient and normalized handling of comment data.
-This adapter abstracts much of the boilerplate involved in managing entity collections by automatically generating a set of basic CRUD operations (Create, Read, Update, Delete) and selectors. These operations can be applied to both individual entities and all entities at once, removing the need to manually implement these functionalities. The slice seamlessly integrates with asynchronous thunks like `fetchCommentsByArticleId`, providing a structured approach to manage loading states and errors. This results in a more maintainable and scalable state management solution for applications that rely heavily on user comments.
+This adapter abstracts much of the boilerplate involved in managing entity collections by automatically generating a set of basic CRUD operations (Create, Read, Update, Delete) and selectors. These operations can be applied to both individual entities and all entities at once, removing the need to manually implement these functionalities. The slice seamlessly integrates with asynchronous thunks like `fetchCommentsByArticleIdThunk`, providing a structured approach to manage loading states and errors. This results in a more maintainable and scalable state management solution for applications that rely heavily on user comments.

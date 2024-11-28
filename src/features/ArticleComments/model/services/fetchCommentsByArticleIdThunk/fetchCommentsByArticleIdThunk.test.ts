@@ -1,10 +1,10 @@
 import { TestAsyncThunk } from '@/shared/lib/tests/TestAsyncThunk/TestAsyncThunk';
-import { fetchCommentsByArticleId } from './fetchCommentsByArticleId';
+import { fetchCommentsByArticleIdThunk } from './fetchCommentsByArticleIdThunk';
 import { testCommentsData } from '../../../../../entities/Comment/testing';
 
 describe('async thunk fetchCommentsByArticleId test', () => {
     test('success - returns comments', async () => {
-        const thunk = new TestAsyncThunk(fetchCommentsByArticleId);
+        const thunk = new TestAsyncThunk(fetchCommentsByArticleIdThunk);
         thunk.api.get.mockReturnValue(
             Promise.resolve({ data: testCommentsData }),
         );
@@ -22,7 +22,7 @@ describe('async thunk fetchCommentsByArticleId test', () => {
     });
 
     test('error - no comments found', async () => {
-        const thunk = new TestAsyncThunk(fetchCommentsByArticleId);
+        const thunk = new TestAsyncThunk(fetchCommentsByArticleIdThunk);
         thunk.api.get.mockReturnValue(Promise.resolve({ data: null }));
 
         const result = await thunk.callThunk('1');
@@ -32,7 +32,7 @@ describe('async thunk fetchCommentsByArticleId test', () => {
     });
 
     test('error - API failure', async () => {
-        const thunk = new TestAsyncThunk(fetchCommentsByArticleId);
+        const thunk = new TestAsyncThunk(fetchCommentsByArticleIdThunk);
         thunk.api.get.mockReturnValue(
             Promise.reject(new Error('Failed to fetch comments.')),
         );
@@ -44,7 +44,7 @@ describe('async thunk fetchCommentsByArticleId test', () => {
     });
 
     test('error - missing article ID', async () => {
-        const thunk = new TestAsyncThunk(fetchCommentsByArticleId);
+        const thunk = new TestAsyncThunk(fetchCommentsByArticleIdThunk);
 
         const result = await thunk.callThunk(undefined);
 

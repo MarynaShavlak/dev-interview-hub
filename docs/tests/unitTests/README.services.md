@@ -26,7 +26,7 @@
 - **Success**: Confirms correct fetching of article data.
 - **Error Handling**: Tests for missing article, API failures, and undefined article ID.
 
-### [fetchCommentsByArticleId](../../../src/features/ArticleComments/model/services/fetchCommentsByArticleId/fetchCommentsByArticleId.ts)
+### [fetchCommentsByArticleIdThunk](../../../src/features/ArticleComments/model/services/fetchCommentsByArticleIdThunk/fetchCommentsByArticleIdThunk.ts)
 - **Success**: Verifies successful retrieval of comments.
 - **Error Handling**: Covers scenarios with no comments, API failures, and missing article ID.
 

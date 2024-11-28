@@ -1,6 +1,6 @@
-# `fetchCommentsByArticleId` Thunk Documentation
+# `fetchCommentsByArticleIdThunk` Thunk Documentation
 
-The `fetchCommentsByArticleId` thunk is an asynchronous action designed to retrieve comments associated with a specific article from the backend. This thunk utilizes the `createAsyncThunk` function from Redux Toolkit to handle asynchronous logic and state management.
+The `fetchCommentsByArticleIdThunk` thunk is an asynchronous action designed to retrieve comments associated with a specific article from the backend. This thunk utilizes the `createAsyncThunk` function from Redux Toolkit to handle asynchronous logic and state management.
 
 ## Parameters
 
@@ -27,13 +27,13 @@ The thunk handles errors during the fetch process by catching exceptions and log
 
 ## Usage Example
 
-The following example demonstrates how to use the `fetchCommentsByArticleId` thunk in a React component to fetch and display comments.
+The following example demonstrates how to use the `fetchCommentsByArticleIdThunk` thunk in a React component to fetch and display comments.
 
 ```typescript jsx
 import { memo } from 'react';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect/useInitialEffect';
-import { fetchCommentsByArticleId } from '../../model/services/fetchCommentsByArticleId/fetchCommentsByArticleId';
+import { fetchCommentsByArticleIdThunk } from '../../model/services/fetchCommentsByArticleIdThunk/fetchCommentsByArticleIdThunk';
 
 interface CommentsListProps {
     className?: string;
@@ -45,7 +45,7 @@ export const CommentsList = memo(({ className, articleId }: CommentsListProps) =
 
     useInitialEffect(() => {
         if (articleId) {
-            dispatch(fetchCommentsByArticleId(articleId));
+            dispatch(fetchCommentsByArticleIdThunk(articleId));
         }
     });
 
@@ -57,4 +57,4 @@ export const CommentsList = memo(({ className, articleId }: CommentsListProps) =
 });
 ```
 ## Conclusion
-The `fetchCommentsByArticleId` thunk provides a robust mechanism for fetching comments associated with an article. It manages the asynchronous API call, processes the response data, and handles errors effectively. This thunk is crucial for components that need to display or interact with comments related to a specific article, ensuring a smooth user experience and accurate data retrieval.
+The `fetchCommentsByArticleIdThunk` thunk provides a robust mechanism for fetching comments associated with an article. It manages the asynchronous API call, processes the response data, and handles errors effectively. This thunk is crucial for components that need to display or interact with comments related to a specific article, ensuring a smooth user experience and accurate data retrieval.
