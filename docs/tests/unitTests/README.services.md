@@ -30,7 +30,7 @@
 - **Success**: Verifies successful retrieval of comments.
 - **Error Handling**: Covers scenarios with no comments, API failures, and missing article ID.
 
-### [addCommentForArticle](../../../src/features/ArticleComments/model/services/addCommentForArticle/addCommentForArticle.test.ts)
+### [addCommentForArticleThunk](../../../src/features/ArticleComments/model/services/addCommentForArticleThunk/addCommentForArticleThunk.test.ts)
 - **Success**: Ensures comments are added successfully.
 - **Error Handling**: Includes cases with missing user data, article details, comment text, API failures, and incomplete response data.
 

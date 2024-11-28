@@ -1,5 +1,5 @@
 import { EntityState } from '@reduxjs/toolkit';
-import { Comment } from '@/entities/Comment';
+import { ArticleComment } from '../../model/types/articleComment';
 
 /**
  * Interface representing the schema for managing article comments.
@@ -16,7 +16,7 @@ import { Comment } from '@/entities/Comment';
  * @property {string} [error] - Represents any error that occurred during the loading of comments. This value is optional.
  */
 
-export interface ArticleCommentsSchema extends EntityState<Comment> {
+export interface ArticleCommentsSchema extends EntityState<ArticleComment> {
     isLoading?: boolean;
     error?: string;
 }

@@ -47,6 +47,7 @@ export const createReduxStore = (
                 serializableCheck: {
                     ignoredActions: ['profile/setUploadedProfilePhoto'],
                     ignoredPaths: ['profile.uploadedProfilePhoto'],
+                    ignoredActionPaths: ['meta.arg', 'meta.baseQueryMeta'],
                 },
             })
                 .concat(rtkApi.middleware)

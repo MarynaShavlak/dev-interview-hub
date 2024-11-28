@@ -1,4 +1,4 @@
-import { addCommentForArticle } from './addCommentForArticle';
+import { addCommentForArticleThunk } from './addCommentForArticleThunk';
 import { TestAsyncThunk } from '@/shared/lib/tests/TestAsyncThunk/TestAsyncThunk';
 
 import { testCommentsData } from '@/entities/Comment/testing';
@@ -14,7 +14,7 @@ jest.mock(
 
 describe('async thunk addCommentForArticle test', () => {
     test('successfully adds a comment', async () => {
-        const thunk = new TestAsyncThunk(addCommentForArticle, {
+        const thunk = new TestAsyncThunk(addCommentForArticleThunk, {
             articleDetails: { data: testArticleData },
             user: {
                 authData: testUserData,
@@ -37,7 +37,7 @@ describe('async thunk addCommentForArticle test', () => {
     });
 
     test('error when user data is missing', async () => {
-        const thunk = new TestAsyncThunk(addCommentForArticle, {
+        const thunk = new TestAsyncThunk(addCommentForArticleThunk, {
             user: {},
             articleDetails: { data: testArticleData },
         });
@@ -49,7 +49,7 @@ describe('async thunk addCommentForArticle test', () => {
     });
 
     test('error when article details are missing', async () => {
-        const thunk = new TestAsyncThunk(addCommentForArticle, {
+        const thunk = new TestAsyncThunk(addCommentForArticleThunk, {
             articleDetails: {
                 data: undefined,
             },
@@ -64,7 +64,7 @@ describe('async thunk addCommentForArticle test', () => {
     });
 
     test('error when comment text is missing', async () => {
-        const thunk = new TestAsyncThunk(addCommentForArticle, {
+        const thunk = new TestAsyncThunk(addCommentForArticleThunk, {
             articleDetails: { data: testArticleData },
             user: {
                 authData: testUserData,
@@ -78,7 +78,7 @@ describe('async thunk addCommentForArticle test', () => {
     });
 
     test('error when API call fails', async () => {
-        const thunk = new TestAsyncThunk(addCommentForArticle, {
+        const thunk = new TestAsyncThunk(addCommentForArticleThunk, {
             articleDetails: { data: testArticleData },
             user: {
                 authData: testUserData,
@@ -96,7 +96,7 @@ describe('async thunk addCommentForArticle test', () => {
     });
 
     test('error with missing data in response', async () => {
-        const thunk = new TestAsyncThunk(addCommentForArticle, {
+        const thunk = new TestAsyncThunk(addCommentForArticleThunk, {
             articleDetails: { data: testArticleData },
             user: {
                 authData: testUserData,

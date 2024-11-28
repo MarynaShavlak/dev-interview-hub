@@ -33,14 +33,14 @@ import { memo, useCallback } from 'react';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { AddCommentForm } from '@/features/addCommentForm';
 import { VStack } from '@/shared/ui/redesigned/Stack';
-import { addCommentForArticle } from '../model/services/addCommentForArticle/addCommentForArticle';
+import { addCommentForArticleThunk } from '../model/services/addCommentForArticleThunk/addCommentForArticleThunk';
 
 const ArticleComments = memo(() => {
     const dispatch = useAppDispatch();
 
     const onSendComment = useCallback(
         (text: string) => {
-            dispatch(addCommentForArticle(text));
+            dispatch(addCommentForArticleThunk(text));
         },
         [dispatch],
     );

@@ -1,6 +1,6 @@
-# `addCommentForArticle` Thunk Documentation
+# `addCommentForArticleThunk` Thunk Documentation
 
-The `addCommentForArticle` thunk is an asynchronous action designed to add a new comment to a specific article. This thunk uses the `createAsyncThunk` function from Redux Toolkit to handle the asynchronous logic and manage state updates. It ensures that the comment is added only if the necessary data is available and handles scenarios where the data might be missing or the API request fails.
+The `addCommentForArticleThunk` thunk is an asynchronous action designed to add a new comment to a specific article. This thunk uses the `createAsyncThunk` function from Redux Toolkit to handle the asynchronous logic and manage state updates. It ensures that the comment is added only if the necessary data is available and handles scenarios where the data might be missing or the API request fails.
 
 ## Parameters
 
@@ -28,12 +28,12 @@ The thunk handles errors during the comment addition process by catching excepti
 
 ## Usage Example
 
-The following example demonstrates how to use the `addCommentForArticle` thunk in a React component to add a comment:
+The following example demonstrates how to use the `addCommentForArticleThunk` thunk in a React component to add a comment:
 
 ```typescript jsx
 import { memo, useState } from 'react';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { addCommentForArticle } from '../../model/services/addCommentForArticle/addCommentForArticle';
+import { addCommentForArticleThunk } from '../../model/services/addCommentForArticleThunk/addCommentForArticleThunk';
 
 interface AddCommentFormProps {
     articleId: string;
@@ -45,7 +45,7 @@ export const AddCommentForm = memo(({ articleId }: AddCommentFormProps) => {
 
     const handleSubmit = () => {
         if (commentText) {
-            dispatch(addCommentForArticle(commentText));
+            dispatch(addCommentForArticleThunk(commentText));
             setCommentText('');
         }
     };
@@ -63,4 +63,4 @@ export const AddCommentForm = memo(({ articleId }: AddCommentFormProps) => {
 ```
 
 ## Conclusion
-The `addCommentForArticle` thunk provides a reliable mechanism for adding comments to an article. It manages the asynchronous API call, processes the response data, and handles errors effectively. This thunk is essential for components that allow users to submit comments, ensuring a smooth user experience and proper data management.
+The `addCommentForArticleThunk` thunk provides a reliable mechanism for adding comments to an article. It manages the asynchronous API call, processes the response data, and handles errors effectively. This thunk is essential for components that allow users to submit comments, ensuring a smooth user experience and proper data management.

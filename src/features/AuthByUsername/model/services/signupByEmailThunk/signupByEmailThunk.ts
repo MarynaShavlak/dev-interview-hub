@@ -4,8 +4,8 @@ import { getDoc } from 'firebase/firestore';
 import { handleUserAuthentication, User, userActions } from '@/entities/User';
 import { ThunkConfig } from '@/app/providers/StoreProvider';
 import { FirebaseAuthErrorCode } from '../../types/firebaseAuthErrorCode';
-import { addNewUserToFirestore } from '../../../lib/utilities/addNewUserToFirestore/addNewUserToFirestore';
 import { prepareUserData } from '../../../lib/utilities/prepareUserData/prepareUserData';
+import { addDocToFirestore } from '@/shared/lib/firestore/addDocToFirestore/addDocToFirestore';
 
 export interface SignupCredentials {
     firstname: string;
@@ -60,7 +60,7 @@ export const signupByEmailThunk = createAsyncThunk<
             throw new Error('No user data returned from Firebase');
         }
         const data: User = prepareUserData(firebaseUser, signUpData);
-        const userDocRef = await addNewUserToFirestore(data);
+        const userDocRef = await addDocToFirestore<User>('users', data);
         // const documentId = userDocRef.id;
         const doc = await getDoc(userDocRef);
         const userData = doc.data();

@@ -17,7 +17,7 @@ import {
     useArticleCommentsError,
     useArticleCommentsIsLoading,
 } from '../model/selectors/comments';
-import { addCommentForArticle } from '../model/services/addCommentForArticle/addCommentForArticle';
+import { addCommentForArticleThunk } from '../model/services/addCommentForArticleThunk/addCommentForArticleThunk';
 import {
     DynamicModuleLoader,
     ReducersList,
@@ -39,7 +39,7 @@ const ArticleComments = memo((props: ArticleCommentsProps) => {
 
     const onSendComment = useCallback(
         (text: string) => {
-            dispatch(addCommentForArticle(text));
+            dispatch(addCommentForArticleThunk(text));
         },
         [dispatch],
     );

@@ -4,13 +4,13 @@ import {
     PayloadAction,
 } from '@reduxjs/toolkit';
 
-import { Comment } from '@/entities/Comment';
 import { StateSchema } from '@/app/providers/StoreProvider';
 
 import { fetchCommentsByArticleIdThunk } from '../services/fetchCommentsByArticleIdThunk/fetchCommentsByArticleIdThunk';
 import { ArticleCommentsSchema } from '../types/ArticleCommentsSchema';
+import { ArticleComment } from '../..';
 
-const commentsAdapter = createEntityAdapter<Comment>({
+const commentsAdapter = createEntityAdapter<ArticleComment>({
     selectId: (comment) => comment.id,
 });
 
@@ -35,7 +35,7 @@ const articleCommentsSlice = createSlice({
             })
             .addCase(
                 fetchCommentsByArticleIdThunk.fulfilled,
-                (state, action: PayloadAction<Comment[]>) => {
+                (state, action: PayloadAction<ArticleComment[]>) => {
                     state.isLoading = false;
                     commentsAdapter.setAll(state, action.payload);
                 },

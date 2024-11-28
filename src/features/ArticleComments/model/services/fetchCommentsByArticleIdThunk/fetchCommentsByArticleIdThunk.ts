@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { onSnapshot, query, where } from 'firebase/firestore';
+import { onSnapshot, orderBy, query, where } from 'firebase/firestore';
 import { ThunkConfig } from '@/app/providers/StoreProvider';
 import { ArticleComment } from '../../..';
 import { dataPoint } from '@/shared/lib/firestore/firestore';
@@ -16,7 +16,7 @@ import { dataPoint } from '@/shared/lib/firestore/firestore';
  *        If undefined, the thunk will reject with an error message.
  * @param {ThunkAPI} thunkAPI - The thunkAPI object provided by Redux Toolkit, containing
  *        dispatch, getState, extra, and more.
- * @returns {Promise<Comment[]>} A promise that resolves to an array of comments or
+ * @returns {Promise<ArticleComment[]>} A promise that resolves to an array of comments or
  *        rejects with an error message.
  */
 
@@ -36,6 +36,7 @@ export const fetchCommentsByArticleIdThunk = createAsyncThunk<
         const commentsQuery = query(
             commentsCollection,
             where('articleId', '==', articleId),
+            orderBy('createdAt', 'desc'),
         );
         console.log('commentsQuery', commentsQuery);
         return await new Promise((resolve, reject) => {

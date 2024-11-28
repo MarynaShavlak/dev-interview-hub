@@ -3,11 +3,11 @@ import { getDoc } from 'firebase/firestore';
 
 import { handleUserAuthentication, User, userActions } from '@/entities/User';
 import { ThunkConfig } from '@/app/providers/StoreProvider';
-import { addNewUserToFirestore } from '../../../lib/utilities/addNewUserToFirestore/addNewUserToFirestore';
 import { prepareUserData } from '../../../lib/utilities/prepareUserData/prepareUserData';
 import { fetchUserFromFirestore } from '../../../lib/utilities/fetchUserFromFirestore/fetchUserFromFirestore';
 import { checkUserExists } from '../../../lib/utilities/checkUserExists/checkUserExists';
 import { signInWithGoogle } from '../../../lib/utilities/signInWithGoogle/signInWithGoogle';
+import { addDocToFirestore } from '@/shared/lib/firestore/addDocToFirestore/addDocToFirestore';
 
 export const authByGoogleThunk = createAsyncThunk<
     User,
@@ -28,7 +28,7 @@ export const authByGoogleThunk = createAsyncThunk<
 
         if (!userExists) {
             const newUser = prepareUserData(firebaseUser);
-            const userDocRef = await addNewUserToFirestore(newUser);
+            const userDocRef = await addDocToFirestore<User>('users', newUser);
             userData = newUser;
             const doc = await getDoc(userDocRef);
 

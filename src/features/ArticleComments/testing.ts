@@ -7,6 +7,7 @@ export const testCommentsData: ArticleComment[] = [
         id: '1',
         articleId: 'gkhgks',
         text: 'Text of comment 1',
+        createdAt: new Date().toISOString(),
         user: {
             id: '123',
             email: '',
@@ -19,6 +20,7 @@ export const testCommentsData: ArticleComment[] = [
     {
         id: '2',
         text: 'Text of comment 2',
+        createdAt: new Date().toISOString(),
         articleId: 'gkhgks',
         user: {
             id: '123',

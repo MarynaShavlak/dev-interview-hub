@@ -22,7 +22,7 @@ The **`ArticleComments`** component accepts the following props:
 ## Features
 1. **Comment Fetching and Display**: Automatically fetches and displays comments for the specified article using the `fetchCommentsByArticleIdThunk` service. Comments are displayed in a list format, with support for loading and error states.
 
-2. **Add Comment Functionality**: Provides a form for users to submit new comments. The submission is handled by the `addCommentForArticle` service, which updates the comment list upon success.
+2. **Add Comment Functionality**: Provides a form for users to submit new comments. The submission is handled by the `addCommentForArticleThunk` service, which updates the comment list upon success.
 
 3. **Feature Flag Adaptation**: Uses the `ToggleFeaturesComponent` to adjust the UI based on whether the application is using the redesigned interface (`isAppRedesigned` feature flag). This ensures the component remains visually consistent with the rest of the application.
 
