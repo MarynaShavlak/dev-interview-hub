@@ -1,10 +1,8 @@
 import { rtkApi } from '@/shared/api/rtkApi';
-
-import { User } from '@/entities/User';
+import { Comment } from '@/entities/Comment';
 
 export interface ArticleComment extends Comment {
     articleId: string;
-    user: User;
 }
 
 export const articlesCommentsApi = rtkApi.injectEndpoints({

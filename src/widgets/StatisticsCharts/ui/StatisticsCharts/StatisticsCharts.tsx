@@ -1,7 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import React from 'react';
 import { DashboardStats } from '@/features/DashboardStats';
-import { processComments } from '../../lib/dataHandlers/processComments/processComments';
 import { processRatings } from '../../lib/dataHandlers/processRatings/processRatings';
 import { initializeData } from '../../lib/dataHandlers/initializeData/initializeData';
 import { processArticles } from '../../lib/dataHandlers/processArticles/processArticles';
@@ -25,7 +24,7 @@ export const StatisticsCharts = () => {
 
     const data = initializeData(articles, users);
     processArticles(data, articles);
-    processComments(data, comments);
+    // processComments(data, comments);
     processRatings(data, ratings);
 
     console.log('data', data);

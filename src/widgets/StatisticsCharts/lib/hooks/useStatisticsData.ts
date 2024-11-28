@@ -25,6 +25,7 @@ export const useStatisticsData = () => {
         isLoading: isCommentsLoading,
         error: isCommentsError,
     } = useArticlesComments(null);
+    console.log('comments', comments);
 
     const isLoading =
         isUsersLoading ||
