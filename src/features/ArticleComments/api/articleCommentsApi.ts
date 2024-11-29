@@ -59,7 +59,7 @@ export const articlesCommentsFirebaseApi = firestoreApi
                 },
             }),
             getCommentsByArticleId: build.query<ArticleComment[], string>({
-                providesTags: ['ArticleComments'],
+                providesTags: [{ type: 'ArticleComments', id: 'commentId' }],
                 keepUnusedDataFor: 3600,
                 async queryFn(articleId) {
                     try {
@@ -127,7 +127,7 @@ export const articlesCommentsFirebaseApi = firestoreApi
                 ArticleComment,
                 { articleId: string; user: User; text: string; id: string }
             >({
-                invalidatesTags: ['ArticleComments'],
+                invalidatesTags: [{ type: 'ArticleComments', id: 'commentId' }],
                 async queryFn(newComment) {
                     try {
                         const docRef = await addDocToFirestore<ArticleComment>(
@@ -163,24 +163,8 @@ export const articlesCommentsFirebaseApi = firestoreApi
 export const useArticlesComments =
     articlesCommentsFirebaseApi.useGetArticlesCommentsQuery;
 
-export const getCommentsByArticleIdQuery =
-    articlesCommentsFirebaseApi.endpoints.getCommentsByArticleId.initiate;
-
 export const useCommentsByArticleId =
     articlesCommentsFirebaseApi.useGetCommentsByArticleIdQuery;
 
 export const addCommentMutation =
     articlesCommentsFirebaseApi.endpoints.addComment.initiate;
-
-// const commentsByArticleRefs =
-//     await getAllDocRefsByField<ArticleComment>(
-//         'comments',
-//         'articleId',
-//         articleId,
-//     );
-//
-// const comments =
-//     await fetchAllDocumentsByRefs<ArticleComment>(
-//         commentsByArticleRefs,
-//     );
-// return { data: comments };
