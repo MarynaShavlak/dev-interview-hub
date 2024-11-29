@@ -1,25 +1,14 @@
 import { useTranslation } from 'react-i18next';
 import { memo, useCallback } from 'react';
-import { useSelector } from 'react-redux';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { Text as TextDeprecated, TextSize } from '@/shared/ui/deprecated/Text';
 import { Text } from '@/shared/ui/redesigned/Text';
 import { AddCommentForm, CommentList } from '@/entities/Comment';
 import { VStack } from '@/shared/ui/common/Stack';
-import {
-    articleCommentsReducer,
-    getArticleComments,
-} from '../model/slices/articleCommentsSlice';
-import {
-    useArticleCommentsError,
-    useArticleCommentsIsLoading,
-} from '../model/selectors/comments';
+
 import { addCommentForArticleThunk } from '../model/services/addCommentForArticleThunk/addCommentForArticleThunk';
-import {
-    DynamicModuleLoader,
-    ReducersList,
-} from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
+
 import { useCommentsByArticleId } from '../api/articleCommentsApi';
 
 export interface ArticleCommentsProps {
@@ -30,11 +19,7 @@ export interface ArticleCommentsProps {
 const ArticleComments = memo((props: ArticleCommentsProps) => {
     const { className, id } = props;
     const { t } = useTranslation('articleDetails');
-    const comments = useSelector(getArticleComments.selectAll);
 
-    console.log('comments', comments);
-    const commentsIsLoading = useArticleCommentsIsLoading();
-    const error = useArticleCommentsError();
     const dispatch = useAppDispatch();
     const sectionTitleText = t('Коментарі');
 
@@ -45,39 +30,36 @@ const ArticleComments = memo((props: ArticleCommentsProps) => {
         [dispatch],
     );
 
-    const reducers: ReducersList = {
-        articleComments: articleCommentsReducer,
-    };
-
-    const { data } = useCommentsByArticleId(id);
-    console.log('data of comments', data);
+    const {
+        data: comments,
+        isLoading: commentsIsLoading,
+        error,
+    } = useCommentsByArticleId(id);
 
     return (
-        <DynamicModuleLoader reducers={reducers}>
-            <VStack
-                gap="16"
-                max
-                className={className}
-                data-testid="article-comments"
-            >
-                <ToggleFeaturesComponent
-                    feature="isAppRedesigned"
-                    on={<Text size="l" title={sectionTitleText} />}
-                    off={
-                        <TextDeprecated
-                            size={TextSize.L}
-                            title={sectionTitleText}
-                        />
-                    }
-                />
-                <AddCommentForm onSendComment={onSendComment} />
-                <CommentList
-                    isLoading={commentsIsLoading}
-                    comments={data}
-                    error={error}
-                />
-            </VStack>
-        </DynamicModuleLoader>
+        <VStack
+            gap="16"
+            max
+            className={className}
+            data-testid="article-comments"
+        >
+            <ToggleFeaturesComponent
+                feature="isAppRedesigned"
+                on={<Text size="l" title={sectionTitleText} />}
+                off={
+                    <TextDeprecated
+                        size={TextSize.L}
+                        title={sectionTitleText}
+                    />
+                }
+            />
+            <AddCommentForm onSendComment={onSendComment} />
+            <CommentList
+                isLoading={commentsIsLoading}
+                comments={comments}
+                error={error as string}
+            />
+        </VStack>
     );
 });
 

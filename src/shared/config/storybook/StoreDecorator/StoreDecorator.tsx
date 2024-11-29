@@ -5,7 +5,6 @@ import { addCommentFormReducer } from '@/entities/Comment/testing';
 import { loginReducer, signupReducer } from '@/features/AuthByUsername/testing';
 import { profileReducer } from '@/features/EditableProfileCard/testing';
 import { ReducersList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
-import { articleCommentsReducer } from '@/features/ArticleComments/testing';
 import { articlesPageReducer } from '@/pages/ArticlesPage/testing';
 
 /**
@@ -32,7 +31,7 @@ const defaultAsyncReducers: ReducersList = {
     profile: profileReducer,
     articleDetails: articleDetailsReducer,
     addCommentForm: addCommentFormReducer,
-    articleComments: articleCommentsReducer,
+
     articlesPage: articlesPageReducer,
 };
 

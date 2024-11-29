@@ -86,7 +86,9 @@ export const articlesCommentsFirebaseApi = firestoreApi
                             'Error fetching comments by article ID:',
                             error,
                         );
-                        return { error };
+                        return {
+                            error: 'Error fetching comments by article ID',
+                        };
                     }
                 },
                 async onCacheEntryAdded(
@@ -163,6 +165,7 @@ export const useArticlesComments =
 
 export const getCommentsByArticleIdQuery =
     articlesCommentsFirebaseApi.endpoints.getCommentsByArticleId.initiate;
+
 export const useCommentsByArticleId =
     articlesCommentsFirebaseApi.useGetCommentsByArticleIdQuery;
 

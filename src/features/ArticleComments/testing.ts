@@ -1,7 +1,5 @@
 import { ArticleComment } from './model/types/articleComment';
 
-export { articleCommentsReducer } from './model/slices/articleCommentsSlice';
-
 export const testCommentsData: ArticleComment[] = [
     {
         id: '1',
