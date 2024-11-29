@@ -8,7 +8,7 @@ import { addDocToFirestore } from '@/shared/lib/firestore/addDocToFirestore/addD
 import { dataPoint } from '@/shared/lib/firestore/firestore';
 
 export const articlesCommentsFirebaseApi = firestoreApi
-    .enhanceEndpoints({ addTagTypes: ['Comments'] })
+    // .enhanceEndpoints({ addTagTypes: ['Comments'] })
     .injectEndpoints({
         endpoints: (build) => ({
             getArticlesComments: build.query<ArticleComment[], void>({
@@ -22,7 +22,7 @@ export const articlesCommentsFirebaseApi = firestoreApi
                         return { error };
                     }
                 },
-                providesTags: ['Comments'],
+                // providesTags: ['Comments'],
             }),
             getCommentsByArticleId: build.query<ArticleComment[], string>({
                 async queryFn(articleId) {
@@ -37,6 +37,7 @@ export const articlesCommentsFirebaseApi = firestoreApi
                         );
 
                         const querySnapshot = await getDocs(commentsQuery);
+
                         const comments: ArticleComment[] = [];
 
                         if (!querySnapshot.empty) {
@@ -56,7 +57,7 @@ export const articlesCommentsFirebaseApi = firestoreApi
                         return { error };
                     }
                 },
-                providesTags: ['Comments'],
+                // providesTags: ['Comments'],
             }),
             addComment: build.mutation<
                 ArticleComment,
@@ -90,7 +91,7 @@ export const articlesCommentsFirebaseApi = firestoreApi
                         return { error };
                     }
                 },
-                invalidatesTags: ['Comments'],
+                // invalidatesTags: ['Comments'],
             }),
         }),
     });

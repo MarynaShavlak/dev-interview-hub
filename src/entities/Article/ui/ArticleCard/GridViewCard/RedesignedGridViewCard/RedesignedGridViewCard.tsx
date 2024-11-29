@@ -73,7 +73,7 @@ export const RedesignedGridViewCard = memo((props: BaseCardProps) => {
                             size={32}
                             src={article.user?.avatar}
                             className={cls.user}
-                            userName={article.user.username}
+                            userName={article.user?.username}
                         />
                     </VStack>
                 </VStack>

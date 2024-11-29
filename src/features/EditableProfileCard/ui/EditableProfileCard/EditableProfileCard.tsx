@@ -1,4 +1,4 @@
-import { memo, useEffect } from 'react';
+import { memo } from 'react';
 import { EditableProfileCardContainer } from '../EditableProfileCardContainer/EditableProfileCardContainer';
 import { useProfile } from '../../lib/hooks/useProfile';
 import { EditableProfileCardError } from '../EditableProfileCardError/EditableProfileCardError';
@@ -13,7 +13,7 @@ import { VStack } from '@/shared/ui/common/Stack';
 import { profileReducer } from '../../model/slices/profileSlice';
 import { EditableProfileCardHeader } from '../EditableProfileCardHeader/EditableProfileCardHeader';
 import cls from './EditableProfileCard.module.scss';
-
+import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect/useInitialEffect';
 import { getUserProfileThunk } from '../../model/services/getUserProfileThunk/getUserProfileThunk';
 
 interface EditableProfileCardProps {
@@ -28,30 +28,13 @@ const reducers: ReducersList = {
 export const EditableProfileCard = memo((props: EditableProfileCardProps) => {
     const { className, id } = props;
     const { validateErrors } = useProfile();
-
     const dispatch = useAppDispatch();
 
-    // useInitialEffect(() => {
-    //     if (id) {
-    //         dispatch(getUserProfileThunk(id));
-    //     }
-    // });
-
-    useEffect(() => {
-        if (__PROJECT__ !== 'storybook' && __PROJECT__ !== 'jest') {
-            if (id) {
-                const action = dispatch(getUserProfileThunk(id));
-
-                // Cleanup the listener when component unmounts or id changes
-                return () => {
-                    // Abort the thunk action and clean up the listener if necessary
-                    action.abort();
-                };
-            }
+    useInitialEffect(() => {
+        if (id) {
+            dispatch(getUserProfileThunk(id));
         }
-        // Ensure consistent return when no action is taken
-        return undefined; // Explicit return when no cleanup is needed
-    }, [dispatch, id]);
+    });
 
     const mainClass = toggleFeatures({
         name: 'isAppRedesigned',
@@ -75,3 +58,25 @@ export const EditableProfileCard = memo((props: EditableProfileCardProps) => {
         </DynamicModuleLoader>
     );
 });
+
+// useInitialEffect(() => {
+//     if (id) {
+//         dispatch(getUserProfileThunk(id));
+//     }
+// });
+
+// useEffect(() => {
+//     if (__PROJECT__ !== 'storybook' && __PROJECT__ !== 'jest') {
+//         if (id) {
+//             const action = dispatch(getUserProfileThunk(id));
+//
+//             // Cleanup the listener when component unmounts or id changes
+//             return () => {
+//                 // Abort the thunk action and clean up the listener if necessary
+//                 action.abort();
+//             };
+//         }
+//     }
+//     // Ensure consistent return when no action is taken
+//     return undefined; // Explicit return when no cleanup is needed
+// }, [dispatch, id]);
