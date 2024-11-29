@@ -1,53 +1,49 @@
-import {
-    createEntityAdapter,
-    createSlice,
-    PayloadAction,
-} from '@reduxjs/toolkit';
+import { createEntityAdapter, createSlice } from '@reduxjs/toolkit';
 
 import { StateSchema } from '@/app/providers/StoreProvider';
 
-import { fetchCommentsByArticleIdThunk } from '../services/fetchCommentsByArticleIdThunk/fetchCommentsByArticleIdThunk';
 import { ArticleCommentsSchema } from '../types/ArticleCommentsSchema';
 import { ArticleComment } from '../..';
 
-const commentsAdapter = createEntityAdapter<ArticleComment>({
+export const commentsAdapter = createEntityAdapter<ArticleComment>({
     selectId: (comment) => comment.id,
 });
 
 export const getArticleComments = commentsAdapter.getSelectors<StateSchema>(
     (state) => state.articleComments || commentsAdapter.getInitialState(),
 );
-
-const articleCommentsSlice = createSlice({
-    name: 'articleDetailsCommentsSlice',
-    initialState: commentsAdapter.getInitialState<ArticleCommentsSchema>({
+export const initialState =
+    commentsAdapter.getInitialState<ArticleCommentsSchema>({
         isLoading: false,
         error: undefined,
         ids: [],
         entities: {},
-    }),
+    });
+
+const articleCommentsSlice = createSlice({
+    name: 'articleCommentsSlice',
+    initialState,
     reducers: {},
-    extraReducers: (builder) => {
-        builder
-            .addCase(fetchCommentsByArticleIdThunk.pending, (state) => {
-                state.error = undefined;
-                state.isLoading = true;
-            })
-            .addCase(
-                fetchCommentsByArticleIdThunk.fulfilled,
-                (state, action: PayloadAction<ArticleComment[]>) => {
-                    state.isLoading = false;
-                    commentsAdapter.setAll(state, action.payload);
-                },
-            )
-            .addCase(
-                fetchCommentsByArticleIdThunk.rejected,
-                (state, action) => {
-                    state.isLoading = false;
-                    state.error = action.payload;
-                },
-            );
-    },
 });
 
 export const { reducer: articleCommentsReducer } = articleCommentsSlice;
+
+// builder
+//     .addCase(fetchCommentsByArticleIdThunk.pending, (state) => {
+//         state.error = undefined;
+//         state.isLoading = true;
+//     })
+//     .addCase(
+//         fetchCommentsByArticleIdThunk.fulfilled,
+//         (state, action: PayloadAction<ArticleComment[]>) => {
+//             state.isLoading = false;
+//             commentsAdapter.setAll(state, action.payload);
+//         },
+//     )
+//     .addCase(
+//         fetchCommentsByArticleIdThunk.rejected,
+//         (state, action) => {
+//             state.isLoading = false;
+//             state.error = action.payload;
+//         },
+//     );

@@ -10,10 +10,9 @@ export const updateUserProfileThunk = createAsyncThunk<
     void,
     ThunkConfig<ValidateProfileError[]>
 >('profile/updateProfileData', async (User, thunkApi) => {
-    const { extra, rejectWithValue, getState, dispatch } = thunkApi;
+    const { rejectWithValue, getState, dispatch } = thunkApi;
     const { setUser } = userActions;
     const formData = getProfileForm(getState());
-    // const uploadedProfilePhoto = getUploadedProfilePhoto(getState());
     const errors = validateProfileData(formData);
 
     if (!formData?.id) {
@@ -28,7 +27,7 @@ export const updateUserProfileThunk = createAsyncThunk<
         const response = await dispatch(
             updateUserDataMutation({ userId: formData?.id, updates: formData }),
         ).unwrap();
-        console.log('updateProfileData', response);
+
         dispatch(setUser(response));
         return response;
     } catch (error) {

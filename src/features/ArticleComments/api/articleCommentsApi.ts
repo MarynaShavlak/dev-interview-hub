@@ -1,4 +1,11 @@
-import { getDoc, getDocs, orderBy, query, where } from 'firebase/firestore';
+import {
+    getDoc,
+    getDocs,
+    onSnapshot,
+    orderBy,
+    query,
+    where,
+} from 'firebase/firestore';
 import { firestoreApi } from '@/shared/api/rtkApi';
 
 import { fetchCollection } from '@/shared/lib/firestore/fetchCollection/fetchCollection';
@@ -8,10 +15,12 @@ import { addDocToFirestore } from '@/shared/lib/firestore/addDocToFirestore/addD
 import { dataPoint } from '@/shared/lib/firestore/firestore';
 
 export const articlesCommentsFirebaseApi = firestoreApi
-    // .enhanceEndpoints({ addTagTypes: ['Comments'] })
+    .enhanceEndpoints({ addTagTypes: ['ArticleComments'] })
     .injectEndpoints({
         endpoints: (build) => ({
             getArticlesComments: build.query<ArticleComment[], void>({
+                providesTags: ['ArticleComments'],
+                keepUnusedDataFor: 3600,
                 async queryFn() {
                     try {
                         const comments =
@@ -22,14 +31,41 @@ export const articlesCommentsFirebaseApi = firestoreApi
                         return { error };
                     }
                 },
-                // providesTags: ['Comments'],
+                async onCacheEntryAdded(
+                    _,
+                    { updateCachedData, cacheDataLoaded, cacheEntryRemoved },
+                ) {
+                    await cacheDataLoaded;
+                    let unsubscribe;
+                    try {
+                        const collectionRef =
+                            dataPoint<ArticleComment>('comments');
+                        const queryRef = query(collectionRef);
+                        unsubscribe = onSnapshot(queryRef, (snapshot) => {
+                            updateCachedData((draft) => {
+                                const result = snapshot?.docs?.map((doc) =>
+                                    doc.data(),
+                                ) as ArticleComment[];
+                            });
+                        });
+                    } catch (error) {
+                        console.error('Error in comments!', error);
+                    }
+
+                    await cacheEntryRemoved;
+                    if (unsubscribe) {
+                        unsubscribe();
+                    }
+                },
             }),
             getCommentsByArticleId: build.query<ArticleComment[], string>({
+                providesTags: ['ArticleComments'],
+                keepUnusedDataFor: 3600,
                 async queryFn(articleId) {
                     try {
                         const commentsCollection =
                             dataPoint<ArticleComment>('comments');
-                        console.log('commentsCollection', commentsCollection);
+
                         const commentsQuery = query(
                             commentsCollection,
                             where('articleId', '==', articleId),
@@ -40,29 +76,56 @@ export const articlesCommentsFirebaseApi = firestoreApi
 
                         const comments: ArticleComment[] = [];
 
-                        if (!querySnapshot.empty) {
-                            querySnapshot.forEach((doc) => {
-                                comments.push({ ...doc.data() });
-                            });
+                        querySnapshot.forEach((doc) => {
+                            comments.push({ ...doc.data() });
+                        });
 
-                            return { data: comments };
-                        }
-                        return {
-                            error: {
-                                name: 'NotFound',
-                                message: 'Comments not found',
-                            },
-                        };
+                        return { data: comments };
                     } catch (error) {
+                        console.error(
+                            'Error fetching comments by article ID:',
+                            error,
+                        );
                         return { error };
                     }
                 },
-                // providesTags: ['Comments'],
+                async onCacheEntryAdded(
+                    articleId,
+                    { updateCachedData, cacheDataLoaded, cacheEntryRemoved },
+                ) {
+                    await cacheDataLoaded;
+                    let unsubscribe;
+                    try {
+                        const commentsCollection =
+                            dataPoint<ArticleComment>('comments');
+                        const commentsQuery = query(
+                            commentsCollection,
+                            where('articleId', '==', articleId),
+                            orderBy('createdAt', 'desc'),
+                        );
+
+                        unsubscribe = onSnapshot(commentsQuery, (snapshot) => {
+                            updateCachedData((draft) => {
+                                const result = snapshot?.docs?.map((doc) =>
+                                    doc.data(),
+                                ) as ArticleComment[];
+                            });
+                        });
+                    } catch (error) {
+                        console.error('Error in comments snapshot:', error);
+                    }
+
+                    await cacheEntryRemoved;
+                    if (unsubscribe) {
+                        unsubscribe();
+                    }
+                },
             }),
             addComment: build.mutation<
                 ArticleComment,
                 { articleId: string; user: User; text: string; id: string }
             >({
+                invalidatesTags: ['ArticleComments'],
                 async queryFn(newComment) {
                     try {
                         const docRef = await addDocToFirestore<ArticleComment>(
@@ -91,7 +154,6 @@ export const articlesCommentsFirebaseApi = firestoreApi
                         return { error };
                     }
                 },
-                // invalidatesTags: ['Comments'],
             }),
         }),
     });

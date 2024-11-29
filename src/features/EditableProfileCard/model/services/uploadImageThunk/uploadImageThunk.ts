@@ -20,8 +20,7 @@ export const uploadImageThunk = createAsyncThunk<
         const uploadResult = await uploadBytes(imageRef, file);
         const { fullPath } = uploadResult.metadata;
         const pathReference = ref(firebaseStorage, fullPath);
-        const url = await getDownloadURL(pathReference);
-        return url;
+        return await getDownloadURL(pathReference);
     } catch (error) {
         const errorMessage =
             error instanceof Error ? error.message : 'Failed to upload image';

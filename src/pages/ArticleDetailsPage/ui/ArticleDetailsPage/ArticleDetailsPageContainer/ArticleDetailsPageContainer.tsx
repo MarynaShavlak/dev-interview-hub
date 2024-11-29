@@ -21,6 +21,7 @@ export const ArticleDetailsPageContainer = memo(() => {
     const currentUserdata = useUserAuthData();
     const articleAuthorId = article?.user.id;
     const authedUserId = currentUserdata?.id;
+    if (!id) return null;
 
     return (
         <VStack gap="16" max>

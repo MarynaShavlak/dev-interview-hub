@@ -25,6 +25,7 @@ export const fetchCommentsByArticleIdThunk = createAsyncThunk<
     ThunkConfig<string>
 >('articleDetails/fetchCommentsByArticleId', async (articleId, thunkApi) => {
     const { extra, rejectWithValue, dispatch } = thunkApi;
+    console.log('articleId', articleId);
 
     if (!articleId) {
         return rejectWithValue('Article ID is required.');

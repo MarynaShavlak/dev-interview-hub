@@ -6,9 +6,7 @@ import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch
 import { Text as TextDeprecated, TextSize } from '@/shared/ui/deprecated/Text';
 import { Text } from '@/shared/ui/redesigned/Text';
 import { AddCommentForm, CommentList } from '@/entities/Comment';
-import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect/useInitialEffect';
 import { VStack } from '@/shared/ui/common/Stack';
-import { fetchCommentsByArticleIdThunk } from '../model/services/fetchCommentsByArticleIdThunk/fetchCommentsByArticleIdThunk';
 import {
     articleCommentsReducer,
     getArticleComments,
@@ -26,20 +24,20 @@ import { useCommentsByArticleId } from '../api/articleCommentsApi';
 
 export interface ArticleCommentsProps {
     className?: string;
-    id?: string;
+    id: string;
 }
 
 const ArticleComments = memo((props: ArticleCommentsProps) => {
     const { className, id } = props;
     const { t } = useTranslation('articleDetails');
     const comments = useSelector(getArticleComments.selectAll);
+
+    console.log('comments', comments);
     const commentsIsLoading = useArticleCommentsIsLoading();
     const error = useArticleCommentsError();
     const dispatch = useAppDispatch();
     const sectionTitleText = t('Коментарі');
 
-    const { data } = useCommentsByArticleId(id || '');
-    console.log('data', data);
     const onSendComment = useCallback(
         (text: string) => {
             dispatch(addCommentForArticleThunk(text));
@@ -47,12 +45,12 @@ const ArticleComments = memo((props: ArticleCommentsProps) => {
         [dispatch],
     );
 
-    useInitialEffect(() => {
-        dispatch(fetchCommentsByArticleIdThunk(id));
-    });
     const reducers: ReducersList = {
         articleComments: articleCommentsReducer,
     };
+
+    const { data } = useCommentsByArticleId(id);
+    console.log('data of comments', data);
 
     return (
         <DynamicModuleLoader reducers={reducers}>
@@ -75,7 +73,7 @@ const ArticleComments = memo((props: ArticleCommentsProps) => {
                 <AddCommentForm onSendComment={onSendComment} />
                 <CommentList
                     isLoading={commentsIsLoading}
-                    comments={comments}
+                    comments={data}
                     error={error}
                 />
             </VStack>

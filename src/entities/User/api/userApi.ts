@@ -109,11 +109,10 @@ export const userFirebaseApi = firestoreApi
                             await updateDoc(userDocRef, updates);
                             const updatedDoc = await getDoc(userDocRef);
                             const updatedData = updatedDoc.data();
-                            console.log('updated DATA', updatedData);
+
                             if (updatedData) {
                                 return {
                                     data: {
-                                        // id: userDocRef.id,
                                         ...updatedData,
                                     } as User,
                                 };
@@ -136,15 +135,9 @@ export const userFirebaseApi = firestoreApi
 
 export const getUserDataByIdQuery =
     userFirebaseApi.endpoints.getUserDataById.initiate;
-
 export const updateUserDataMutation =
     userFirebaseApi.endpoints.updateUserData.initiate;
-
-export const useUsers = userFirebaseApi.useGetUsersQuery;
-
-const { useGetUsersQuery } = userFirebaseApi;
-
-export const useGetUserDataById = userFirebaseApi.useGetUserDataByIdQuery;
+export const { useGetUsersQuery: useUsers } = userFirebaseApi;
 
 // interface SetJsonSettingsArg {
 //     userId: string;

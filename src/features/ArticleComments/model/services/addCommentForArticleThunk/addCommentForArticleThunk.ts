@@ -63,8 +63,6 @@ export const addCommentForArticleThunk = createAsyncThunk<
             return rejectWithValue('No data received from API.');
         }
 
-        // dispatch(fetchCommentsByArticleIdThunk(article.id));
-
         return addedComment;
     } catch (error) {
         console.error('Error adding comment for article:', error);
