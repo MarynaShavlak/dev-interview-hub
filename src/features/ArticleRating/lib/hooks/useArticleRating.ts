@@ -1,8 +1,9 @@
-import { useCallback } from 'react';
+import { useCallback, useMemo } from 'react';
+import { v4 } from 'uuid';
 import { useUserAuthData } from '@/entities/User';
 import {
-    useGetArticleRating,
-    useRateArticle,
+    useAddArticleRating,
+    useGetArticleRatingByUserId,
 } from '../../api/articleRatingApi';
 
 /**
@@ -27,26 +28,42 @@ import {
 
 export const useArticleRating = (articleId: string) => {
     const userData = useUserAuthData();
-    const { data, isLoading, error } = useGetArticleRating({
+
+    const userInfo = useMemo(
+        () => ({
+            id: userData?.id ?? '',
+            avatar: userData?.avatar ?? '',
+            email: userData?.email ?? '',
+            firstname: userData?.firstname ?? '',
+            lastname: userData?.lastname ?? '',
+            username: userData?.username ?? '',
+        }),
+        [userData],
+    );
+
+    const { data, isLoading, error } = useGetArticleRatingByUserId({
         articleId,
         userId: userData?.id ?? '',
     });
-    const [rateArticleMutation] = useRateArticle();
+    console.log('rating', data);
+
+    const [rateArticleMutation] = useAddArticleRating();
 
     const handleRateArticle = useCallback(
         (starsCount: number, feedback?: string) => {
             try {
                 rateArticleMutation({
-                    userId: userData?.id ?? '',
+                    user: userInfo,
                     articleId,
                     rate: starsCount,
-                    feedback,
+                    feedback: feedback || null,
+                    id: v4(),
                 });
             } catch (e) {
                 console.log(e);
             }
         },
-        [articleId, rateArticleMutation, userData?.id],
+        [articleId, rateArticleMutation, userInfo],
     );
 
     const onSubmitFeedback = useCallback(

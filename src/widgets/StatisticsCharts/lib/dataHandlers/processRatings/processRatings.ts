@@ -1,10 +1,10 @@
 import { ArticleStats, StatisticsData } from '../../../model/types/stats';
-import { ArticleRating } from '../../../model/types/articleRating';
+import { ArticleRatingData } from '../../../../../features/ArticleRating/model/types/articleRatingData';
 import { calculateAverage } from '@/shared/lib/mathCalculations/calculateAverage';
 
 export const processRatings = (
     data: StatisticsData,
-    ratings?: ArticleRating[],
+    ratings?: ArticleRatingData[],
 ) => {
     if (!ratings || ratings.length === 0) return;
 
@@ -15,7 +15,7 @@ export const processRatings = (
     const updateUserRatingData = (
         userId: string,
         rate: number,
-        feedback?: string,
+        feedback: string | null,
     ) => {
         const userStats = data.ratingCountsByUser[userId] || {
             totalRating: 0,
@@ -37,7 +37,7 @@ export const processRatings = (
     const updateArticleRatingData = (
         articleId: string,
         rate: number,
-        feedback: string | undefined,
+        feedback: string | null,
     ) => {
         const articleStats = articleRatingStats[articleId] || {
             totalRating: 0,

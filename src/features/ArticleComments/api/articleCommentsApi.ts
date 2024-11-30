@@ -1,11 +1,4 @@
-import {
-    getDoc,
-    getDocs,
-    onSnapshot,
-    orderBy,
-    query,
-    where,
-} from 'firebase/firestore';
+import { getDoc, onSnapshot, query } from 'firebase/firestore';
 import { firestoreApi } from '@/shared/api/rtkApi';
 
 import { fetchCollection } from '@/shared/lib/firestore/fetchCollection/fetchCollection';
@@ -13,6 +6,8 @@ import { ArticleComment } from '../model/types/articleComment';
 import { User } from '@/entities/User';
 import { addDocToFirestore } from '@/shared/lib/firestore/addDocToFirestore/addDocToFirestore';
 import { dataPoint } from '@/shared/lib/firestore/firestore';
+import { createArticleCommentsQuery } from '../lib/utilities/createArticleCommentsQuery/createArticleCommentsQuery';
+import { fetchQueryResults } from '@/shared/lib/firestore/fetchQueryResults/fetchQueryResults';
 
 export const articlesCommentsFirebaseApi = firestoreApi
     .enhanceEndpoints({ addTagTypes: ['ArticleComments'] })
@@ -63,22 +58,13 @@ export const articlesCommentsFirebaseApi = firestoreApi
                 keepUnusedDataFor: 3600,
                 async queryFn(articleId) {
                     try {
-                        const commentsCollection =
-                            dataPoint<ArticleComment>('comments');
+                        const commentsQuery =
+                            createArticleCommentsQuery(articleId);
 
-                        const commentsQuery = query(
-                            commentsCollection,
-                            where('articleId', '==', articleId),
-                            orderBy('createdAt', 'desc'),
-                        );
-
-                        const querySnapshot = await getDocs(commentsQuery);
-
-                        const comments: ArticleComment[] = [];
-
-                        querySnapshot.forEach((doc) => {
-                            comments.push({ ...doc.data() });
-                        });
+                        const comments =
+                            await fetchQueryResults<ArticleComment>(
+                                commentsQuery,
+                            );
 
                         return { data: comments };
                     } catch (error) {
@@ -98,13 +84,8 @@ export const articlesCommentsFirebaseApi = firestoreApi
                     await cacheDataLoaded;
                     let unsubscribe;
                     try {
-                        const commentsCollection =
-                            dataPoint<ArticleComment>('comments');
-                        const commentsQuery = query(
-                            commentsCollection,
-                            where('articleId', '==', articleId),
-                            orderBy('createdAt', 'desc'),
-                        );
+                        const commentsQuery =
+                            createArticleCommentsQuery(articleId);
 
                         unsubscribe = onSnapshot(commentsQuery, (snapshot) => {
                             updateCachedData((draft) => {

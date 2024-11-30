@@ -2,7 +2,7 @@ import React, { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { collection, setDoc, doc } from 'firebase/firestore';
 import { Page } from '@/widgets/Page';
-import { ArticleRating } from '@/widgets/StatisticsCharts';
+import { ArticleRatingData } from '@/widgets/StatisticsCharts';
 import { firestore } from '../../../../json-server/firebase';
 
 const ratingsCollection = collection(firestore, 'ratings');
@@ -19,6 +19,8 @@ const ratings = [
         },
         articleId: '40',
         rate: 5,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '101',
     },
     {
@@ -32,6 +34,8 @@ const ratings = [
         },
         articleId: '40',
         rate: 4,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '102',
     },
     {
@@ -45,6 +49,8 @@ const ratings = [
         },
         articleId: '40',
         rate: 4,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '103',
     },
     {
@@ -60,6 +66,8 @@ const ratings = [
         },
         articleId: '40',
         rate: 3,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '104',
     },
     {
@@ -74,6 +82,8 @@ const ratings = [
         },
         articleId: '40',
         rate: 5,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '105',
     },
     {
@@ -87,6 +97,8 @@ const ratings = [
         },
         articleId: '40',
         rate: 3,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '106',
     },
     {
@@ -100,6 +112,8 @@ const ratings = [
         },
         articleId: '40',
         rate: 4,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '107',
     },
     {
@@ -113,6 +127,8 @@ const ratings = [
         },
         articleId: '40',
         rate: 5,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '108',
     },
     {
@@ -128,6 +144,8 @@ const ratings = [
         },
         articleId: '40',
         rate: 4,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '109',
     },
     {
@@ -143,6 +161,8 @@ const ratings = [
         },
         articleId: '40',
         rate: 4,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '110',
     },
     {
@@ -156,6 +176,8 @@ const ratings = [
         },
         articleId: '40',
         rate: 3,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '111',
     },
     {
@@ -171,6 +193,8 @@ const ratings = [
         },
         articleId: '40',
         rate: 4,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '112',
     },
     {
@@ -186,6 +210,8 @@ const ratings = [
         },
         articleId: '40',
         rate: 5,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '113',
     },
     {
@@ -201,6 +227,8 @@ const ratings = [
         },
         articleId: '40',
         rate: 3,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '114',
     },
     {
@@ -216,6 +244,8 @@ const ratings = [
         },
         articleId: '40',
         rate: 4,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '115',
     },
     {
@@ -231,6 +261,8 @@ const ratings = [
         },
         articleId: '40',
         rate: 4,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '116',
     },
     {
@@ -246,6 +278,8 @@ const ratings = [
         },
         articleId: '40',
         rate: 5,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '117',
     },
     {
@@ -261,6 +295,8 @@ const ratings = [
         },
         articleId: '40',
         rate: 4,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '118',
     },
     {
@@ -276,6 +312,8 @@ const ratings = [
         },
         articleId: '40',
         rate: 3,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '119',
     },
     {
@@ -289,6 +327,7 @@ const ratings = [
         },
         articleId: '41',
         rate: 5,
+        createdAt: new Date().toISOString(),
         feedback: 'Another great article!',
         id: '120',
     },
@@ -303,6 +342,8 @@ const ratings = [
         },
         articleId: '41',
         rate: 4,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '121',
     },
     {
@@ -316,6 +357,8 @@ const ratings = [
         },
         articleId: '41',
         rate: 4,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '122',
     },
     {
@@ -331,6 +374,8 @@ const ratings = [
         },
         articleId: '41',
         rate: 3,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '123',
     },
     {
@@ -345,6 +390,8 @@ const ratings = [
         },
         articleId: '41',
         rate: 5,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '124',
     },
     {
@@ -358,6 +405,8 @@ const ratings = [
         },
         articleId: '41',
         rate: 4,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '125',
     },
     {
@@ -371,6 +420,8 @@ const ratings = [
         },
         articleId: '41',
         rate: 5,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '126',
     },
     {
@@ -384,6 +435,8 @@ const ratings = [
         },
         articleId: '41',
         rate: 3,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '127',
     },
     {
@@ -399,6 +452,8 @@ const ratings = [
         },
         articleId: '41',
         rate: 4,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '128',
     },
     {
@@ -414,6 +469,8 @@ const ratings = [
         },
         articleId: '41',
         rate: 4,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '129',
     },
     {
@@ -427,6 +484,8 @@ const ratings = [
         },
         articleId: '41',
         rate: 5,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '130',
     },
     {
@@ -442,6 +501,8 @@ const ratings = [
         },
         articleId: '41',
         rate: 3,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '131',
     },
     {
@@ -457,6 +518,8 @@ const ratings = [
         },
         articleId: '41',
         rate: 4,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '132',
     },
     {
@@ -472,6 +535,8 @@ const ratings = [
         },
         articleId: '41',
         rate: 4,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '133',
     },
     {
@@ -487,6 +552,8 @@ const ratings = [
         },
         articleId: '41',
         rate: 5,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '134',
     },
     {
@@ -502,6 +569,8 @@ const ratings = [
         },
         articleId: '41',
         rate: 3,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '135',
     },
     {
@@ -517,6 +586,8 @@ const ratings = [
         },
         articleId: '41',
         rate: 4,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '136',
     },
     {
@@ -532,6 +603,8 @@ const ratings = [
         },
         articleId: '41',
         rate: 4,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '137',
     },
     {
@@ -547,6 +620,8 @@ const ratings = [
         },
         articleId: '41',
         rate: 3,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '138',
     },
     {
@@ -560,6 +635,8 @@ const ratings = [
         },
         articleId: '62',
         rate: 5,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '139',
     },
     {
@@ -573,6 +650,8 @@ const ratings = [
         },
         articleId: '62',
         rate: 4,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '140',
     },
     {
@@ -586,6 +665,7 @@ const ratings = [
         },
         articleId: '62',
         rate: 5,
+        createdAt: new Date().toISOString(),
         feedback: 'Loved the depth of this article',
         id: '141',
     },
@@ -602,6 +682,8 @@ const ratings = [
         },
         articleId: '62',
         rate: 4,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '142',
     },
     {
@@ -616,6 +698,8 @@ const ratings = [
         },
         articleId: '62',
         rate: 3,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '143',
     },
     {
@@ -629,6 +713,8 @@ const ratings = [
         },
         articleId: '62',
         rate: 4,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '144',
     },
     {
@@ -642,6 +728,8 @@ const ratings = [
         },
         articleId: '62',
         rate: 3,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '145',
     },
     {
@@ -655,6 +743,8 @@ const ratings = [
         },
         articleId: '62',
         rate: 4,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '146',
     },
     {
@@ -670,6 +760,8 @@ const ratings = [
         },
         articleId: '62',
         rate: 5,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '147',
     },
     {
@@ -685,6 +777,8 @@ const ratings = [
         },
         articleId: '62',
         rate: 4,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '148',
     },
     {
@@ -698,6 +792,8 @@ const ratings = [
         },
         articleId: '62',
         rate: 3,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '149',
     },
     {
@@ -713,6 +809,8 @@ const ratings = [
         },
         articleId: '62',
         rate: 4,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '150',
     },
     {
@@ -728,6 +826,7 @@ const ratings = [
         },
         articleId: '62',
         rate: 5,
+        createdAt: new Date().toISOString(),
         feedback: 'In-depth and insightful',
         id: '151',
     },
@@ -744,6 +843,8 @@ const ratings = [
         },
         articleId: '62',
         rate: 3,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '152',
     },
     {
@@ -759,6 +860,8 @@ const ratings = [
         },
         articleId: '62',
         rate: 4,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '153',
     },
     {
@@ -774,6 +877,8 @@ const ratings = [
         },
         articleId: '62',
         rate: 5,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '154',
     },
     {
@@ -789,6 +894,8 @@ const ratings = [
         },
         articleId: '62',
         rate: 4,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '155',
     },
     {
@@ -804,6 +911,8 @@ const ratings = [
         },
         articleId: '62',
         rate: 4,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '156',
     },
     {
@@ -819,6 +928,8 @@ const ratings = [
         },
         articleId: '62',
         rate: 3,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '157',
     },
     {
@@ -832,6 +943,8 @@ const ratings = [
         },
         articleId: '141',
         rate: 5,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '158',
     },
     {
@@ -845,6 +958,8 @@ const ratings = [
         },
         articleId: '141',
         rate: 4,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '159',
     },
     {
@@ -858,6 +973,8 @@ const ratings = [
         },
         articleId: '141',
         rate: 5,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '160',
     },
     {
@@ -873,6 +990,8 @@ const ratings = [
         },
         articleId: '141',
         rate: 3,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '161',
     },
     {
@@ -887,6 +1006,8 @@ const ratings = [
         },
         articleId: '141',
         rate: 4,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '162',
     },
     {
@@ -900,6 +1021,8 @@ const ratings = [
         },
         articleId: '141',
         rate: 4,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '163',
     },
     {
@@ -913,6 +1036,8 @@ const ratings = [
         },
         articleId: '141',
         rate: 3,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '164',
     },
     {
@@ -926,6 +1051,8 @@ const ratings = [
         },
         articleId: '141',
         rate: 4,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '165',
     },
     {
@@ -941,6 +1068,8 @@ const ratings = [
         },
         articleId: '141',
         rate: 5,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '166',
     },
     {
@@ -956,6 +1085,8 @@ const ratings = [
         },
         articleId: '141',
         rate: 4,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '167',
     },
     {
@@ -969,6 +1100,8 @@ const ratings = [
         },
         articleId: '141',
         rate: 4,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '168',
     },
     {
@@ -984,6 +1117,8 @@ const ratings = [
         },
         articleId: '141',
         rate: 4,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '169',
     },
     {
@@ -999,6 +1134,8 @@ const ratings = [
         },
         articleId: '141',
         rate: 5,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '170',
     },
     {
@@ -1014,6 +1151,8 @@ const ratings = [
         },
         articleId: '141',
         rate: 3,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '171',
     },
     {
@@ -1029,6 +1168,8 @@ const ratings = [
         },
         articleId: '141',
         rate: 4,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '172',
     },
     {
@@ -1044,6 +1185,8 @@ const ratings = [
         },
         articleId: '141',
         rate: 3,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '173',
     },
     {
@@ -1059,6 +1202,8 @@ const ratings = [
         },
         articleId: '141',
         rate: 5,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '174',
     },
     {
@@ -1074,6 +1219,8 @@ const ratings = [
         },
         articleId: '141',
         rate: 4,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '175',
     },
     {
@@ -1089,6 +1236,8 @@ const ratings = [
         },
         articleId: '141',
         rate: 3,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '176',
     },
     {
@@ -1102,6 +1251,7 @@ const ratings = [
         },
         articleId: '172',
         rate: 5,
+        createdAt: new Date().toISOString(),
         feedback: 'Outstanding piece!',
         id: '177',
     },
@@ -1116,6 +1266,8 @@ const ratings = [
         },
         articleId: '172',
         rate: 4,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '178',
     },
     {
@@ -1129,6 +1281,8 @@ const ratings = [
         },
         articleId: '172',
         rate: 4,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '179',
     },
     {
@@ -1144,6 +1298,8 @@ const ratings = [
         },
         articleId: '172',
         rate: 3,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '180',
     },
     {
@@ -1158,6 +1314,8 @@ const ratings = [
         },
         articleId: '172',
         rate: 4,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '181',
     },
     {
@@ -1171,6 +1329,8 @@ const ratings = [
         },
         articleId: '172',
         rate: 5,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '182',
     },
     {
@@ -1184,6 +1344,8 @@ const ratings = [
         },
         articleId: '172',
         rate: 4,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '183',
     },
     {
@@ -1197,6 +1359,8 @@ const ratings = [
         },
         articleId: '172',
         rate: 3,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '184',
     },
     {
@@ -1212,6 +1376,8 @@ const ratings = [
         },
         articleId: '172',
         rate: 4,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '185',
     },
     {
@@ -1227,6 +1393,8 @@ const ratings = [
         },
         articleId: '172',
         rate: 5,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '186',
     },
     {
@@ -1240,6 +1408,8 @@ const ratings = [
         },
         articleId: '172',
         rate: 4,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '187',
     },
     {
@@ -1255,6 +1425,8 @@ const ratings = [
         },
         articleId: '172',
         rate: 3,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '188',
     },
     {
@@ -1270,6 +1442,7 @@ const ratings = [
         },
         articleId: '172',
         rate: 5,
+        createdAt: new Date().toISOString(),
         feedback: 'Really good content!',
         id: '189',
     },
@@ -1286,6 +1459,8 @@ const ratings = [
         },
         articleId: '172',
         rate: 4,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '190',
     },
     {
@@ -1301,6 +1476,8 @@ const ratings = [
         },
         articleId: '172',
         rate: 3,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '191',
     },
     {
@@ -1316,6 +1493,8 @@ const ratings = [
         },
         articleId: '172',
         rate: 4,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '192',
     },
     {
@@ -1331,6 +1510,8 @@ const ratings = [
         },
         articleId: '172',
         rate: 5,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '193',
     },
     {
@@ -1346,6 +1527,8 @@ const ratings = [
         },
         articleId: '172',
         rate: 4,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '194',
     },
     {
@@ -1361,6 +1544,8 @@ const ratings = [
         },
         articleId: '172',
         rate: 3,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '195',
     },
     {
@@ -1374,6 +1559,7 @@ const ratings = [
         },
         articleId: '38',
         rate: 5,
+        createdAt: new Date().toISOString(),
         feedback: 'Very informative and well-structured',
         id: '201',
     },
@@ -1388,6 +1574,8 @@ const ratings = [
         },
         articleId: '38',
         rate: 4,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '202',
     },
     {
@@ -1403,6 +1591,8 @@ const ratings = [
         },
         articleId: '38',
         rate: 3,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '203',
     },
     {
@@ -1417,6 +1607,7 @@ const ratings = [
         },
         articleId: '38',
         rate: 4,
+        createdAt: new Date().toISOString(),
         feedback: 'Good overview, could use more examples',
         id: '204',
     },
@@ -1431,6 +1622,8 @@ const ratings = [
         },
         articleId: '38',
         rate: 5,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '205',
     },
     {
@@ -1444,6 +1637,8 @@ const ratings = [
         },
         articleId: '38',
         rate: 4,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '206',
     },
     {
@@ -1457,6 +1652,8 @@ const ratings = [
         },
         articleId: '38',
         rate: 4,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '207',
     },
     {
@@ -1472,6 +1669,8 @@ const ratings = [
         },
         articleId: '38',
         rate: 5,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '208',
     },
     {
@@ -1487,6 +1686,8 @@ const ratings = [
         },
         articleId: '38',
         rate: 3,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '209',
     },
     {
@@ -1500,6 +1701,8 @@ const ratings = [
         },
         articleId: '39',
         rate: 4,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '210',
     },
     {
@@ -1513,6 +1716,8 @@ const ratings = [
         },
         articleId: '39',
         rate: 5,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '211',
     },
     {
@@ -1528,6 +1733,8 @@ const ratings = [
         },
         articleId: '39',
         rate: 4,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '212',
     },
     {
@@ -1542,6 +1749,8 @@ const ratings = [
         },
         articleId: '39',
         rate: 3,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '213',
     },
     {
@@ -1555,6 +1764,7 @@ const ratings = [
         },
         articleId: '39',
         rate: 4,
+        createdAt: new Date().toISOString(),
         feedback: 'Well explained, clear examples',
         id: '214',
     },
@@ -1569,6 +1779,8 @@ const ratings = [
         },
         articleId: '39',
         rate: 5,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '215',
     },
     {
@@ -1582,6 +1794,8 @@ const ratings = [
         },
         articleId: '39',
         rate: 3,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '216',
     },
     {
@@ -1597,6 +1811,8 @@ const ratings = [
         },
         articleId: '39',
         rate: 5,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '217',
     },
     {
@@ -1612,6 +1828,7 @@ const ratings = [
         },
         articleId: '39',
         rate: 4,
+        createdAt: new Date().toISOString(),
         feedback: 'Great insights, could cover more edge cases',
         id: '218',
     },
@@ -1626,6 +1843,8 @@ const ratings = [
         },
         articleId: '61',
         rate: 4,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '219',
     },
     {
@@ -1639,6 +1858,7 @@ const ratings = [
         },
         articleId: '61',
         rate: 5,
+        createdAt: new Date().toISOString(),
         feedback: 'One of the best articles on this topic!',
         id: '220',
     },
@@ -1655,6 +1875,8 @@ const ratings = [
         },
         articleId: '61',
         rate: 4,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '221',
     },
     {
@@ -1669,6 +1891,8 @@ const ratings = [
         },
         articleId: '61',
         rate: 3,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '222',
     },
     {
@@ -1682,6 +1906,8 @@ const ratings = [
         },
         articleId: '61',
         rate: 5,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '223',
     },
     {
@@ -1695,6 +1921,8 @@ const ratings = [
         },
         articleId: '61',
         rate: 4,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '224',
     },
     {
@@ -1708,6 +1936,7 @@ const ratings = [
         },
         articleId: '61',
         rate: 4,
+        createdAt: new Date().toISOString(),
         feedback: 'Solid article, well done',
         id: '225',
     },
@@ -1724,6 +1953,8 @@ const ratings = [
         },
         articleId: '61',
         rate: 3,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '226',
     },
     {
@@ -1739,6 +1970,8 @@ const ratings = [
         },
         articleId: '61',
         rate: 4,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '227',
     },
     {
@@ -1752,6 +1985,7 @@ const ratings = [
         },
         articleId: '105',
         rate: 5,
+        createdAt: new Date().toISOString(),
         feedback: 'Excellent depth of coverage',
         id: '228',
     },
@@ -1766,6 +2000,8 @@ const ratings = [
         },
         articleId: '105',
         rate: 4,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '229',
     },
     {
@@ -1781,6 +2017,8 @@ const ratings = [
         },
         articleId: '105',
         rate: 4,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '230',
     },
     {
@@ -1795,6 +2033,8 @@ const ratings = [
         },
         articleId: '105',
         rate: 3,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '231',
     },
     {
@@ -1808,6 +2048,8 @@ const ratings = [
         },
         articleId: '105',
         rate: 4,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '232',
     },
     {
@@ -1821,6 +2063,8 @@ const ratings = [
         },
         articleId: '105',
         rate: 5,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '233',
     },
     {
@@ -1834,6 +2078,8 @@ const ratings = [
         },
         articleId: '105',
         rate: 4,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '234',
     },
     {
@@ -1849,6 +2095,8 @@ const ratings = [
         },
         articleId: '105',
         rate: 4,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '235',
     },
     {
@@ -1864,6 +2112,8 @@ const ratings = [
         },
         articleId: '105',
         rate: 3,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '236',
     },
     {
@@ -1877,6 +2127,7 @@ const ratings = [
         },
         articleId: '37',
         rate: 5,
+        createdAt: new Date().toISOString(),
         feedback: 'Excellent explanation and very detailed. Helped me a lot!',
         id: '237',
     },
@@ -1893,6 +2144,7 @@ const ratings = [
         },
         articleId: '37',
         rate: 4,
+        createdAt: new Date().toISOString(),
         feedback:
             'Great article, clear and concise. Could include more examples.',
         id: '238',
@@ -1910,6 +2162,7 @@ const ratings = [
         },
         articleId: '37',
         rate: 5,
+        createdAt: new Date().toISOString(),
         feedback: 'Well-written and informative, definitely a must-read!',
         id: '239',
     },
@@ -1926,6 +2179,7 @@ const ratings = [
         },
         articleId: '37',
         rate: 4,
+        createdAt: new Date().toISOString(),
         feedback: 'Very useful content, but a bit advanced for beginners.',
         id: '240',
     },
@@ -1942,6 +2196,7 @@ const ratings = [
         },
         articleId: '37',
         rate: 5,
+        createdAt: new Date().toISOString(),
         feedback:
             'Superb article, provided great insights and helped improve my code.',
         id: '241',
@@ -1959,6 +2214,7 @@ const ratings = [
         },
         articleId: '60',
         rate: 5,
+        createdAt: new Date().toISOString(),
         feedback:
             'Brilliant! The concepts are well explained with solid examples.',
         id: '242',
@@ -1976,6 +2232,7 @@ const ratings = [
         },
         articleId: '60',
         rate: 4,
+        createdAt: new Date().toISOString(),
         feedback:
             'Very clear and insightful. Would love to see more practical applications.',
         id: '243',
@@ -1991,6 +2248,7 @@ const ratings = [
         },
         articleId: '60',
         rate: 5,
+        createdAt: new Date().toISOString(),
         feedback:
             'Loved the structure of the article. Easy to follow and informative.',
         id: '244',
@@ -2008,6 +2266,7 @@ const ratings = [
         },
         articleId: '60',
         rate: 4,
+        createdAt: new Date().toISOString(),
         feedback:
             'Good article, helped clarify some tough concepts. Could use more depth in some areas.',
         id: '245',
@@ -2025,6 +2284,7 @@ const ratings = [
         },
         articleId: '104',
         rate: 5,
+        createdAt: new Date().toISOString(),
         feedback:
             'Fantastic explanation! One of the best articles on this topic I’ve read.',
         id: '246',
@@ -2042,6 +2302,7 @@ const ratings = [
         },
         articleId: '104',
         rate: 4,
+        createdAt: new Date().toISOString(),
         feedback:
             'Good read, very helpful for understanding advanced concepts.',
         id: '247',
@@ -2059,6 +2320,7 @@ const ratings = [
         },
         articleId: '104',
         rate: 5,
+        createdAt: new Date().toISOString(),
         feedback: 'Extremely useful and well-explained. Highly recommended!',
         id: '248',
     },
@@ -2075,6 +2337,7 @@ const ratings = [
         },
         articleId: '104',
         rate: 5,
+        createdAt: new Date().toISOString(),
         feedback: 'Clear, concise, and to the point. Great job!',
         id: '249',
     },
@@ -2091,6 +2354,7 @@ const ratings = [
         },
         articleId: '120',
         rate: 5,
+        createdAt: new Date().toISOString(),
         feedback:
             'Top-notch article with great examples. Really helped me understand the topic.',
         id: '250',
@@ -2106,6 +2370,7 @@ const ratings = [
         },
         articleId: '120',
         rate: 4,
+        createdAt: new Date().toISOString(),
         feedback:
             'Well-written and easy to grasp. Would love more real-world applications.',
         id: '251',
@@ -2123,6 +2388,7 @@ const ratings = [
         },
         articleId: '120',
         rate: 5,
+        createdAt: new Date().toISOString(),
         feedback:
             'Really insightful and clear explanations. Great for learners!',
         id: '252',
@@ -2140,6 +2406,7 @@ const ratings = [
         },
         articleId: '139',
         rate: 5,
+        createdAt: new Date().toISOString(),
         feedback: 'A solid article with well-presented information. Loved it!',
         id: '253',
     },
@@ -2156,6 +2423,7 @@ const ratings = [
         },
         articleId: '139',
         rate: 5,
+        createdAt: new Date().toISOString(),
         feedback:
             'Great article! The explanations are very thorough and useful.',
         id: '254',
@@ -2173,6 +2441,7 @@ const ratings = [
         },
         articleId: '139',
         rate: 4,
+        createdAt: new Date().toISOString(),
         feedback:
             'Very well-written and easy to follow. A bit more detail would be nice.',
         id: '255',
@@ -2190,6 +2459,7 @@ const ratings = [
         },
         articleId: '139',
         rate: 5,
+        createdAt: new Date().toISOString(),
         feedback:
             'An amazing resource for this topic. Clear and comprehensive.',
         id: '256',
@@ -2207,6 +2477,7 @@ const ratings = [
         },
         articleId: '34',
         rate: 1,
+        createdAt: new Date().toISOString(),
         feedback:
             'The article lacks clarity and proper examples. Hard to follow.',
         id: '257',
@@ -2224,6 +2495,7 @@ const ratings = [
         },
         articleId: '34',
         rate: 2,
+        createdAt: new Date().toISOString(),
         feedback: 'Not well-structured. The explanations are too vague.',
         id: '258',
     },
@@ -2240,6 +2512,7 @@ const ratings = [
         },
         articleId: '34',
         rate: 1,
+        createdAt: new Date().toISOString(),
         feedback:
             'Poorly written and difficult to understand. Needs a lot of improvement.',
         id: '259',
@@ -2257,6 +2530,7 @@ const ratings = [
         },
         articleId: '35',
         rate: 2,
+        createdAt: new Date().toISOString(),
         feedback:
             "The content is shallow and doesn't cover the topic in-depth.",
         id: '260',
@@ -2274,6 +2548,7 @@ const ratings = [
         },
         articleId: '35',
         rate: 1,
+        createdAt: new Date().toISOString(),
         feedback: 'Disappointing. The article barely scratches the surface.',
         id: '261',
     },
@@ -2290,6 +2565,7 @@ const ratings = [
         },
         articleId: '35',
         rate: 1,
+        createdAt: new Date().toISOString(),
         feedback: 'Incomplete and poorly researched. Lacks useful information.',
         id: '262',
     },
@@ -2306,6 +2582,7 @@ const ratings = [
         },
         articleId: '59',
         rate: 2,
+        createdAt: new Date().toISOString(),
         feedback:
             'The article is overly simplified. Needs more depth and examples.',
         id: '263',
@@ -2323,6 +2600,7 @@ const ratings = [
         },
         articleId: '59',
         rate: 1,
+        createdAt: new Date().toISOString(),
         feedback: 'Not informative enough. The points are too general.',
         id: '264',
     },
@@ -2339,6 +2617,7 @@ const ratings = [
         },
         articleId: '59',
         rate: 2,
+        createdAt: new Date().toISOString(),
         feedback:
             'The article leaves a lot of questions unanswered. Needs improvement.',
         id: '265',
@@ -2354,6 +2633,7 @@ const ratings = [
         },
         articleId: '118',
         rate: 4,
+        createdAt: new Date().toISOString(),
         feedback:
             'Well-written, but could use more examples to clarify key points.',
         id: '266',
@@ -2369,6 +2649,7 @@ const ratings = [
         },
         articleId: '118',
         rate: 3,
+        createdAt: new Date().toISOString(),
         feedback: 'Good article overall, but lacks depth in some areas.',
         id: '267',
     },
@@ -2383,6 +2664,7 @@ const ratings = [
         },
         articleId: '118',
         rate: 4,
+        createdAt: new Date().toISOString(),
         feedback: 'Solid content, but a bit more detail would make it great.',
         id: '268',
     },
@@ -2397,6 +2679,7 @@ const ratings = [
         },
         articleId: '131',
         rate: 3,
+        createdAt: new Date().toISOString(),
         feedback:
             "Decent article, but it doesn't cover all aspects of the topic.",
         id: '269',
@@ -2412,6 +2695,7 @@ const ratings = [
         },
         articleId: '131',
         rate: 4,
+        createdAt: new Date().toISOString(),
         feedback:
             'Good structure and flow, but more examples would be helpful.',
         id: '270',
@@ -2427,6 +2711,8 @@ const ratings = [
         },
         articleId: '131',
         rate: 3,
+        createdAt: new Date().toISOString(),
+        feedback: null,
         id: '271',
     },
     {
@@ -2440,6 +2726,7 @@ const ratings = [
         },
         articleId: '30',
         rate: 5,
+        createdAt: new Date().toISOString(),
         feedback: 'Excellent explanation with detailed examples, very helpful.',
         id: '272',
     },
@@ -2456,6 +2743,7 @@ const ratings = [
         },
         articleId: '30',
         rate: 3,
+        createdAt: new Date().toISOString(),
         feedback:
             'The article is okay, but could benefit from more real-world examples.',
         id: '273',
@@ -2472,6 +2760,7 @@ const ratings = [
         },
         articleId: '30',
         rate: 4,
+        createdAt: new Date().toISOString(),
         feedback: 'Good content, but some sections need more clarity.',
         id: '274',
     },
@@ -2486,6 +2775,7 @@ const ratings = [
         },
         articleId: '30',
         rate: 2,
+        createdAt: new Date().toISOString(),
         feedback: 'The article was too brief and lacked in-depth explanations.',
         id: '275',
     },
@@ -2500,6 +2790,7 @@ const ratings = [
         },
         articleId: '30',
         rate: 5,
+        createdAt: new Date().toISOString(),
         feedback: 'Really insightful, covers the topic thoroughly.',
         id: '276',
     },
@@ -2514,6 +2805,7 @@ const ratings = [
         },
         articleId: '31',
         rate: 4,
+        createdAt: new Date().toISOString(),
         feedback:
             'Great article, but a few sections could use more elaboration.',
         id: '277',
@@ -2531,6 +2823,7 @@ const ratings = [
         },
         articleId: '31',
         rate: 5,
+        createdAt: new Date().toISOString(),
         feedback: 'Very well-written and easy to understand, excellent job!',
         id: '278',
     },
@@ -2546,6 +2839,7 @@ const ratings = [
         },
         articleId: '31',
         rate: 3,
+        createdAt: new Date().toISOString(),
         feedback: 'Not bad, but I feel it missed some key points.',
         id: '279',
     },
@@ -2560,6 +2854,7 @@ const ratings = [
         },
         articleId: '31',
         rate: 2,
+        createdAt: new Date().toISOString(),
         feedback: "Too basic, didn't provide enough depth on the subject.",
         id: '280',
     },
@@ -2574,6 +2869,7 @@ const ratings = [
         },
         articleId: '31',
         rate: 4,
+        createdAt: new Date().toISOString(),
         feedback: 'Solid article, useful for getting a quick overview.',
         id: '281',
     },
@@ -2589,6 +2885,7 @@ const ratings = [
         },
         articleId: '56',
         rate: 4,
+        createdAt: new Date().toISOString(),
         feedback: 'Great insights, but some sections could use more examples.',
         id: '282',
     },
@@ -2603,6 +2900,7 @@ const ratings = [
         },
         articleId: '56',
         rate: 4,
+        createdAt: new Date().toISOString(),
         feedback: 'Well-written article, enjoyed the clarity of explanation.',
         id: '283',
     },
@@ -2618,6 +2916,7 @@ const ratings = [
         },
         articleId: '88',
         rate: 4,
+        createdAt: new Date().toISOString(),
         feedback: 'Informative, but could be more detailed in certain areas.',
         id: '284',
     },
@@ -2632,6 +2931,7 @@ const ratings = [
         },
         articleId: '88',
         rate: 4,
+        createdAt: new Date().toISOString(),
         feedback: 'Solid content, found it useful for understanding the topic.',
         id: '285',
     },
@@ -2647,6 +2947,7 @@ const ratings = [
         },
         articleId: '100',
         rate: 4,
+        createdAt: new Date().toISOString(),
         feedback: 'Nice overview, but I expected more depth.',
         id: '286',
     },
@@ -2661,6 +2962,7 @@ const ratings = [
         },
         articleId: '100',
         rate: 4,
+        createdAt: new Date().toISOString(),
         feedback:
             'Good article, but it could benefit from additional examples.',
         id: '287',
@@ -2676,6 +2978,7 @@ const ratings = [
         },
         articleId: '16',
         rate: 4,
+        createdAt: new Date().toISOString(),
         feedback: 'Very insightful article, learned a lot!',
         id: '288',
     },
@@ -2690,6 +2993,7 @@ const ratings = [
         },
         articleId: '16',
         rate: 3,
+        createdAt: new Date().toISOString(),
         feedback: 'Good information, but it could be clearer.',
         id: '289',
     },
@@ -2704,6 +3008,7 @@ const ratings = [
         },
         articleId: '16',
         rate: 5,
+        createdAt: new Date().toISOString(),
         feedback: 'Excellent resource, highly recommend!',
         id: '290',
     },
@@ -2720,6 +3025,7 @@ const ratings = [
         },
         articleId: '17',
         rate: 2,
+        createdAt: new Date().toISOString(),
         feedback: 'Not very engaging, needs improvement.',
         id: '291',
     },
@@ -2736,6 +3042,7 @@ const ratings = [
         },
         articleId: '17',
         rate: 3,
+        createdAt: new Date().toISOString(),
         feedback: 'Decent read, but it felt rushed.',
         id: '292',
     },
@@ -2752,6 +3059,7 @@ const ratings = [
         },
         articleId: '17',
         rate: 4,
+        createdAt: new Date().toISOString(),
         feedback: 'Informative, but could use more examples.',
         id: '293',
     },
@@ -2766,6 +3074,7 @@ const ratings = [
         },
         articleId: '18',
         rate: 5,
+        createdAt: new Date().toISOString(),
         feedback: 'Incredibly helpful, thank you!',
         id: '294',
     },
@@ -2780,6 +3089,7 @@ const ratings = [
         },
         articleId: '18',
         rate: 4,
+        createdAt: new Date().toISOString(),
         feedback: 'Well structured and easy to follow.',
         id: '295',
     },
@@ -2794,6 +3104,7 @@ const ratings = [
         },
         articleId: '19',
         rate: 1,
+        createdAt: new Date().toISOString(),
         feedback: 'I found it lacking depth.',
         id: '296',
     },
@@ -2810,6 +3121,7 @@ const ratings = [
         },
         articleId: '19',
         rate: 5,
+        createdAt: new Date().toISOString(),
         feedback: 'Fantastic insights, very informative!',
         id: '297',
     },
@@ -2826,6 +3138,7 @@ const ratings = [
         },
         articleId: '20',
         rate: 4,
+        createdAt: new Date().toISOString(),
         feedback: 'Solid article, would love to see more!',
         id: '298',
     },
@@ -2842,6 +3155,7 @@ const ratings = [
         },
         articleId: '20',
         rate: 3,
+        createdAt: new Date().toISOString(),
         feedback: 'Good start, but could use more examples.',
         id: '299',
     },
@@ -2856,6 +3170,7 @@ const ratings = [
         },
         articleId: '21',
         rate: 2,
+        createdAt: new Date().toISOString(),
         feedback: 'Not very clear, needed more detail.',
         id: '300',
     },
@@ -2870,6 +3185,7 @@ const ratings = [
         },
         articleId: '21',
         rate: 5,
+        createdAt: new Date().toISOString(),
         feedback: 'Loved it! Very informative and clear.',
         id: '301',
     },
@@ -2884,6 +3200,7 @@ const ratings = [
         },
         articleId: '24',
         rate: 4,
+        createdAt: new Date().toISOString(),
         feedback: 'Great overview, thank you!',
         id: '302',
     },
@@ -2900,6 +3217,7 @@ const ratings = [
         },
         articleId: '24',
         rate: 3,
+        createdAt: new Date().toISOString(),
         feedback: 'Helpful, but could use more examples.',
         id: '303',
     },
@@ -2916,6 +3234,7 @@ const ratings = [
         },
         articleId: '25',
         rate: 2,
+        createdAt: new Date().toISOString(),
         feedback: 'Did not meet my expectations.',
         id: '304',
     },
@@ -2932,6 +3251,7 @@ const ratings = [
         },
         articleId: '25',
         rate: 4,
+        createdAt: new Date().toISOString(),
         feedback: 'Very useful, learned something new.',
         id: '305',
     },
@@ -2946,6 +3266,7 @@ const ratings = [
         },
         articleId: '26',
         rate: 5,
+        createdAt: new Date().toISOString(),
         feedback: 'Fantastic article, very well written!',
         id: '306',
     },
@@ -2960,6 +3281,7 @@ const ratings = [
         },
         articleId: '26',
         rate: 3,
+        createdAt: new Date().toISOString(),
         feedback: 'It was okay, but not what I expected.',
         id: '307',
     },
@@ -2974,6 +3296,7 @@ const ratings = [
         },
         articleId: '27',
         rate: 4,
+        createdAt: new Date().toISOString(),
         feedback: 'Well done, enjoyed reading it!',
         id: '308',
     },
@@ -2990,6 +3313,7 @@ const ratings = [
         },
         articleId: '27',
         rate: 2,
+        createdAt: new Date().toISOString(),
         feedback: 'Could use significant improvement.',
         id: '309',
     },
@@ -3006,6 +3330,7 @@ const ratings = [
         },
         articleId: '27',
         rate: 5,
+        createdAt: new Date().toISOString(),
         feedback: 'Highly informative, great job!',
         id: '310',
     },
@@ -3022,6 +3347,7 @@ const ratings = [
         },
         articleId: '27',
         rate: 3,
+        createdAt: new Date().toISOString(),
         feedback: 'Nice article, but I wanted more detail.',
         id: '311',
     },
@@ -3038,6 +3364,7 @@ const ratings = [
         },
         articleId: '6',
         rate: 4,
+        createdAt: new Date().toISOString(),
         feedback: 'Well written and easy to understand.',
         id: '312',
     },
@@ -3054,6 +3381,7 @@ const ratings = [
         },
         articleId: '6',
         rate: 3,
+        createdAt: new Date().toISOString(),
         feedback: 'Decent article but lacking depth.',
         id: '313',
     },
@@ -3070,6 +3398,7 @@ const ratings = [
         },
         articleId: '6',
         rate: 5,
+        createdAt: new Date().toISOString(),
         feedback: 'Fantastic insights, very helpful!',
         id: '314',
     },
@@ -3086,6 +3415,7 @@ const ratings = [
         },
         articleId: '46',
         rate: 4,
+        createdAt: new Date().toISOString(),
         feedback: 'Great overview of the topic.',
         id: '315',
     },
@@ -3102,6 +3432,7 @@ const ratings = [
         },
         articleId: '46',
         rate: 3,
+        createdAt: new Date().toISOString(),
         feedback: 'It was informative, but could be clearer.',
         id: '316',
     },
@@ -3118,6 +3449,7 @@ const ratings = [
         },
         articleId: '46',
         rate: 5,
+        createdAt: new Date().toISOString(),
         feedback: 'Loved this article! Very engaging.',
         id: '317',
     },
@@ -3134,6 +3466,7 @@ const ratings = [
         },
         articleId: '9',
         rate: 4,
+        createdAt: new Date().toISOString(),
         feedback: 'Useful information, well structured.',
         id: '318',
     },
@@ -3150,6 +3483,7 @@ const ratings = [
         },
         articleId: '9',
         rate: 3,
+        createdAt: new Date().toISOString(),
         feedback: 'Average article, nothing new.',
         id: '319',
     },
@@ -3166,6 +3500,7 @@ const ratings = [
         },
         articleId: '11',
         rate: 5,
+        createdAt: new Date().toISOString(),
         feedback: 'Very comprehensive and well-researched.',
         id: '320',
     },
@@ -3182,6 +3517,7 @@ const ratings = [
         },
         articleId: '11',
         rate: 4,
+        createdAt: new Date().toISOString(),
         feedback: 'Good article, I learned something new!',
         id: '321',
     },
@@ -3198,6 +3534,7 @@ const ratings = [
         },
         articleId: '13',
         rate: 3,
+        createdAt: new Date().toISOString(),
         feedback: 'It could use more examples to illustrate points.',
         id: '322',
     },
@@ -3214,6 +3551,7 @@ const ratings = [
         },
         articleId: '13',
         rate: 4,
+        createdAt: new Date().toISOString(),
         feedback: 'Helpful and well organized!',
         id: '323',
     },
@@ -3230,6 +3568,7 @@ const ratings = [
         },
         articleId: '15',
         rate: 5,
+        createdAt: new Date().toISOString(),
         feedback: 'Excellent read, very insightful!',
         id: '324',
     },
@@ -3246,6 +3585,7 @@ const ratings = [
         },
         articleId: '15',
         rate: 3,
+        createdAt: new Date().toISOString(),
         feedback: 'Informative, but felt a bit rushed.',
         id: '325',
     },
@@ -3262,6 +3602,7 @@ const ratings = [
         },
         articleId: '15',
         rate: 4,
+        createdAt: new Date().toISOString(),
         feedback: 'Great article! Would recommend to others.',
         id: '326',
     },
@@ -3276,6 +3617,7 @@ const ratings = [
         },
         articleId: '1',
         rate: 5,
+        createdAt: new Date().toISOString(),
         feedback: 'Outstanding article! Very informative and well-structured.',
         id: '401',
     },
@@ -3290,6 +3632,7 @@ const ratings = [
         },
         articleId: '1',
         rate: 4,
+        createdAt: new Date().toISOString(),
         feedback: 'Great insights, but could use more examples.',
         id: '402',
     },
@@ -3306,6 +3649,7 @@ const ratings = [
         },
         articleId: '2',
         rate: 5,
+        createdAt: new Date().toISOString(),
         feedback: 'Exceptional writing! I learned a lot.',
         id: '403',
     },
@@ -3322,6 +3666,7 @@ const ratings = [
         },
         articleId: '2',
         rate: 4,
+        createdAt: new Date().toISOString(),
         feedback: 'Very helpful, a must-read for beginners.',
         id: '404',
     },
@@ -3336,6 +3681,7 @@ const ratings = [
         },
         articleId: '43',
         rate: 5,
+        createdAt: new Date().toISOString(),
         feedback: 'A brilliant piece! Covers everything in detail.',
         id: '405',
     },
@@ -3352,6 +3698,7 @@ const ratings = [
         },
         articleId: '43',
         rate: 4,
+        createdAt: new Date().toISOString(),
         feedback: 'Informative and well-researched. I appreciate the effort.',
         id: '406',
     },
@@ -3368,6 +3715,7 @@ const ratings = [
         },
         articleId: '3',
         rate: 5,
+        createdAt: new Date().toISOString(),
         feedback: 'Absolutely fantastic! I found it very engaging.',
         id: '407',
     },
@@ -3384,6 +3732,7 @@ const ratings = [
         },
         articleId: '3',
         rate: 4,
+        createdAt: new Date().toISOString(),
         feedback: 'Solid article! Clear explanations throughout.',
         id: '408',
     },
@@ -3398,6 +3747,7 @@ const ratings = [
         },
         articleId: '4',
         rate: 5,
+        createdAt: new Date().toISOString(),
         feedback: "One of the best articles I've read this month!",
         id: '409',
     },
@@ -3412,6 +3762,7 @@ const ratings = [
         },
         articleId: '4',
         rate: 4,
+        createdAt: new Date().toISOString(),
         feedback: 'Great content! Could benefit from more visuals.',
         id: '410',
     },
@@ -3428,6 +3779,7 @@ const ratings = [
         },
         articleId: '44',
         rate: 5,
+        createdAt: new Date().toISOString(),
         feedback: 'Excellent resource! Very thorough and insightful.',
         id: '411',
     },
@@ -3444,6 +3796,7 @@ const ratings = [
         },
         articleId: '44',
         rate: 4,
+        createdAt: new Date().toISOString(),
         feedback: 'Very well done! It really helped clarify things.',
         id: '412',
     },
@@ -3458,6 +3811,7 @@ const ratings = [
         },
         articleId: '76',
         rate: 4,
+        createdAt: new Date().toISOString(),
         feedback:
             'Very informative article! Helped me understand the topic better.',
         id: '413',
@@ -3474,6 +3828,7 @@ const ratings = [
         },
         articleId: '143',
         rate: 3,
+        createdAt: new Date().toISOString(),
         feedback: 'Decent read, but I expected more detailed examples.',
         id: '414',
     },
@@ -3488,6 +3843,7 @@ const ratings = [
         },
         articleId: '144',
         rate: 5,
+        createdAt: new Date().toISOString(),
         feedback: 'Exceptional insights! I learned a lot from this article.',
         id: '415',
     },
@@ -3504,6 +3860,7 @@ const ratings = [
         },
         articleId: '145',
         rate: 4,
+        createdAt: new Date().toISOString(),
         feedback: 'Well-written and clear. Great resource for beginners!',
         id: '416',
     },
@@ -3518,6 +3875,7 @@ const ratings = [
         },
         articleId: '146',
         rate: 5,
+        createdAt: new Date().toISOString(),
         feedback: 'Outstanding content! I appreciate the thoroughness.',
         id: '417',
     },
@@ -3534,6 +3892,7 @@ const ratings = [
         },
         articleId: '147',
         rate: 4,
+        createdAt: new Date().toISOString(),
         feedback: 'Good information, though some sections felt rushed.',
         id: '418',
     },
@@ -3550,6 +3909,7 @@ const ratings = [
         },
         articleId: '116',
         rate: 3,
+        createdAt: new Date().toISOString(),
         feedback: 'Average article. Some points were unclear.',
         id: '419',
     },
@@ -3566,6 +3926,7 @@ const ratings = [
         },
         articleId: '129',
         rate: 5,
+        createdAt: new Date().toISOString(),
         feedback: 'Fantastic read! Very engaging and well-structured.',
         id: '420',
     },
@@ -3582,6 +3943,7 @@ const ratings = [
         },
         articleId: '78',
         rate: 1,
+        createdAt: new Date().toISOString(),
         feedback: 'The content was lacking depth and clarity.',
         id: '601',
     },
@@ -3598,6 +3960,7 @@ const ratings = [
         },
         articleId: '90',
         rate: 2,
+        createdAt: new Date().toISOString(),
         feedback: 'Not very useful, I expected more detailed information.',
         id: '602',
     },
@@ -3614,6 +3977,7 @@ const ratings = [
         },
         articleId: '158',
         rate: 1,
+        createdAt: new Date().toISOString(),
         feedback: 'This article was confusing and poorly organized.',
         id: '603',
     },
@@ -3630,6 +3994,7 @@ const ratings = [
         },
         articleId: '159',
         rate: 2,
+        createdAt: new Date().toISOString(),
         feedback: "Had potential, but it didn't deliver on the main points.",
         id: '604',
     },
@@ -3646,6 +4011,7 @@ const ratings = [
         },
         articleId: '161',
         rate: 1,
+        createdAt: new Date().toISOString(),
         feedback: 'Very disappointing. The examples were irrelevant.',
         id: '605',
     },
@@ -3662,6 +4028,7 @@ const ratings = [
         },
         articleId: '162',
         rate: 2,
+        createdAt: new Date().toISOString(),
         feedback: 'Could use significant improvements. Lacked engagement.',
         id: '606',
     },
@@ -3678,9 +4045,10 @@ const ratings = [
         },
         articleId: '83',
         rate: 5,
+        createdAt: new Date().toISOString(),
         feedback:
             'An excellent article! It provided great insights and was very well-written.',
-        id: 701,
+        id: '701',
     },
     {
         user: {
@@ -3695,8 +4063,9 @@ const ratings = [
         },
         articleId: '95',
         rate: 4,
+        createdAt: new Date().toISOString(),
         feedback: 'Good content, very informative and easy to understand.',
-        id: 702,
+        id: '702',
     },
     {
         user: {
@@ -3711,8 +4080,9 @@ const ratings = [
         },
         articleId: '111',
         rate: 5,
+        createdAt: new Date().toISOString(),
         feedback: 'Outstanding explanation of the topic. I learned a lot!',
-        id: 703,
+        id: '703',
     },
     {
         user: {
@@ -3727,9 +4097,10 @@ const ratings = [
         },
         articleId: '126',
         rate: 4,
+        createdAt: new Date().toISOString(),
         feedback:
             'Well-structured and engaging. Would definitely recommend it.',
-        id: 704,
+        id: '704',
     },
     {
         user: {
@@ -3744,7 +4115,9 @@ const ratings = [
         },
         articleId: '84',
         rate: 5,
-        id: 705,
+        createdAt: new Date().toISOString(),
+        feedback: null,
+        id: '705',
     },
     {
         user: {
@@ -3759,7 +4132,9 @@ const ratings = [
         },
         articleId: '96',
         rate: 5,
-        id: 706,
+        createdAt: new Date().toISOString(),
+        feedback: null,
+        id: '706',
     },
     {
         user: {
@@ -3774,7 +4149,9 @@ const ratings = [
         },
         articleId: '106',
         rate: 4,
-        id: 707,
+        createdAt: new Date().toISOString(),
+        feedback: null,
+        id: '707',
     },
     {
         user: {
@@ -3789,8 +4166,9 @@ const ratings = [
         },
         articleId: '112',
         rate: 5,
+        createdAt: new Date().toISOString(),
         feedback: 'Fantastic article! It was engaging and very informative.',
-        id: 708,
+        id: '708',
     },
     {
         user: {
@@ -3805,9 +4183,10 @@ const ratings = [
         },
         articleId: '53',
         rate: 4,
+        createdAt: new Date().toISOString(),
         feedback:
             'Great insights! I will be using this information moving forward.',
-        id: 709,
+        id: '709',
     },
     {
         user: {
@@ -3822,8 +4201,9 @@ const ratings = [
         },
         articleId: '73',
         rate: 5,
+        createdAt: new Date().toISOString(),
         feedback: 'Excellent content! Very well organized and clear.',
-        id: 710,
+        id: '710',
     },
     {
         user: {
@@ -3838,8 +4218,9 @@ const ratings = [
         },
         articleId: '85',
         rate: 4,
+        createdAt: new Date().toISOString(),
         feedback: 'Informative and well-researched. I learned a lot!',
-        id: 711,
+        id: '711',
     },
     {
         user: {
@@ -3854,9 +4235,10 @@ const ratings = [
         },
         articleId: '97',
         rate: 5,
+        createdAt: new Date().toISOString(),
         feedback:
             "This was one of the best articles I've read on this subject.",
-        id: 712,
+        id: '712',
     },
     {
         user: {
@@ -3871,8 +4253,9 @@ const ratings = [
         },
         articleId: '74',
         rate: 5,
+        createdAt: new Date().toISOString(),
         feedback: 'Outstanding! The clarity of writing is impressive.',
-        id: 713,
+        id: '713',
     },
     {
         user: {
@@ -3887,9 +4270,10 @@ const ratings = [
         },
         articleId: '86',
         rate: 4,
+        createdAt: new Date().toISOString(),
         feedback:
             'Good article with valuable insights. Keep up the great work!',
-        id: 714,
+        id: '714',
     },
     {
         user: {
@@ -3904,8 +4288,9 @@ const ratings = [
         },
         articleId: '98',
         rate: 5,
+        createdAt: new Date().toISOString(),
         feedback: 'A must-read! It provided practical tips that I can apply.',
-        id: 715,
+        id: '715',
     },
     {
         user: {
@@ -3920,8 +4305,9 @@ const ratings = [
         },
         articleId: '114',
         rate: 4,
+        createdAt: new Date().toISOString(),
         feedback: 'Very informative. I appreciate the thorough research.',
-        id: 716,
+        id: '716',
     },
     {
         user: {
@@ -3934,9 +4320,10 @@ const ratings = [
         },
         articleId: '149',
         rate: 5,
+        createdAt: new Date().toISOString(),
         feedback:
             'Absolutely loved this article! It was insightful and well-written.',
-        id: 801,
+        id: '801',
     },
     {
         user: {
@@ -3949,9 +4336,10 @@ const ratings = [
         },
         articleId: '164',
         rate: 4,
+        createdAt: new Date().toISOString(),
         feedback:
             'Great information presented clearly. I found it very helpful.',
-        id: 802,
+        id: '802',
     },
     {
         user: {
@@ -3964,8 +4352,9 @@ const ratings = [
         },
         articleId: '150',
         rate: 5,
+        createdAt: new Date().toISOString(),
         feedback: 'Fantastic read! Engaging from start to finish.',
-        id: 803,
+        id: '803',
     },
     {
         user: {
@@ -3978,8 +4367,9 @@ const ratings = [
         },
         articleId: '165',
         rate: 4,
+        createdAt: new Date().toISOString(),
         feedback: 'Well structured and informative. I learned a lot from it!',
-        id: 804,
+        id: '804',
     },
     {
         user: {
@@ -3992,8 +4382,9 @@ const ratings = [
         },
         articleId: '113',
         rate: 5,
+        createdAt: new Date().toISOString(),
         feedback: 'Excellent insights! This is exactly what I needed.',
-        id: 805,
+        id: '805',
     },
     {
         user: {
@@ -4006,8 +4397,9 @@ const ratings = [
         },
         articleId: '133',
         rate: 4,
+        createdAt: new Date().toISOString(),
         feedback: 'Good content and very easy to follow. Highly recommend.',
-        id: 806,
+        id: '806',
     },
     {
         user: {
@@ -4020,8 +4412,9 @@ const ratings = [
         },
         articleId: '127',
         rate: 5,
+        createdAt: new Date().toISOString(),
         feedback: 'Very informative! I appreciate the depth of analysis.',
-        id: 807,
+        id: '807',
     },
     {
         user: {
@@ -4034,8 +4427,9 @@ const ratings = [
         },
         articleId: '134',
         rate: 4,
+        createdAt: new Date().toISOString(),
         feedback: 'Solid article! It provides practical insights and tips.',
-        id: 808,
+        id: '808',
     },
     {
         user: {
@@ -4048,8 +4442,9 @@ const ratings = [
         },
         articleId: '152',
         rate: 5,
+        createdAt: new Date().toISOString(),
         feedback: 'Outstanding! This article has become one of my favorites.',
-        id: 809,
+        id: '809',
     },
     {
         user: {
@@ -4062,8 +4457,9 @@ const ratings = [
         },
         articleId: '167',
         rate: 4,
+        createdAt: new Date().toISOString(),
         feedback: 'Very well written! It covers the topic thoroughly.',
-        id: 810,
+        id: '810',
     },
     {
         user: {
@@ -4076,8 +4472,9 @@ const ratings = [
         },
         articleId: '153',
         rate: 5,
+        createdAt: new Date().toISOString(),
         feedback: 'Loved it! The insights were very enlightening.',
-        id: 811,
+        id: '811',
     },
     {
         user: {
@@ -4090,8 +4487,9 @@ const ratings = [
         },
         articleId: '168',
         rate: 4,
+        createdAt: new Date().toISOString(),
         feedback: 'Great content! I found it really useful for my research.',
-        id: 812,
+        id: '812',
     },
     {
         user: {
@@ -4106,9 +4504,10 @@ const ratings = [
         },
         articleId: '32',
         rate: 1,
+        createdAt: new Date().toISOString(),
         feedback:
             'I found this article to be poorly written and lacking depth.',
-        id: 901,
+        id: '901',
     },
     {
         user: {
@@ -4123,9 +4522,10 @@ const ratings = [
         },
         articleId: '33',
         rate: 2,
+        createdAt: new Date().toISOString(),
         feedback:
             'Not very helpful. The information provided was vague and unclear.',
-        id: 902,
+        id: '902',
     },
     {
         user: {
@@ -4140,9 +4540,10 @@ const ratings = [
         },
         articleId: '58',
         rate: 1,
+        createdAt: new Date().toISOString(),
         feedback:
             "Disappointed with this article. It didn't meet my expectations.",
-        id: 903,
+        id: '903',
     },
     {
         user: {
@@ -4157,8 +4558,9 @@ const ratings = [
         },
         articleId: '102',
         rate: 2,
+        createdAt: new Date().toISOString(),
         feedback: 'The content felt rushed and lacked proper structure.',
-        id: 904,
+        id: '904',
     },
     {
         user: {
@@ -4173,8 +4575,9 @@ const ratings = [
         },
         articleId: '36',
         rate: 1,
+        createdAt: new Date().toISOString(),
         feedback: 'Very uninformative. I expected more from this topic.',
-        id: 905,
+        id: '905',
     },
     {
         user: {
@@ -4187,9 +4590,10 @@ const ratings = [
         },
         articleId: '63',
         rate: 5,
+        createdAt: new Date().toISOString(),
         feedback:
             'Absolutely fantastic article! It provided great insights and was very well written.',
-        id: 1101,
+        id: '1101',
     },
     {
         user: {
@@ -4202,9 +4606,10 @@ const ratings = [
         },
         articleId: '151',
         rate: 5,
+        createdAt: new Date().toISOString(),
         feedback:
             'A must-read! The content is very relevant and easy to understand.',
-        id: 1102,
+        id: '1102',
     },
     {
         user: {
@@ -4217,9 +4622,10 @@ const ratings = [
         },
         articleId: '166',
         rate: 5,
+        createdAt: new Date().toISOString(),
         feedback:
             'This article exceeded my expectations! Great job on the details.',
-        id: 1103,
+        id: '1103',
     },
     {
         user: {
@@ -4232,8 +4638,9 @@ const ratings = [
         },
         articleId: '64',
         rate: 5,
+        createdAt: new Date().toISOString(),
         feedback: 'Very informative and engaging. I learned a lot!',
-        id: 1104,
+        id: '1104',
     },
     {
         user: {
@@ -4246,9 +4653,10 @@ const ratings = [
         },
         articleId: '76',
         rate: 5,
+        createdAt: new Date().toISOString(),
         feedback:
             'Incredible read! The author did a great job breaking down complex topics.',
-        id: 1105,
+        id: '1105',
     },
     {
         user: {
@@ -4261,9 +4669,10 @@ const ratings = [
         },
         articleId: '143',
         rate: 5,
+        createdAt: new Date().toISOString(),
         feedback:
             "One of the best articles I've read on this subject. Highly recommended!",
-        id: 1106,
+        id: '1106',
     },
     {
         user: {
@@ -4276,8 +4685,9 @@ const ratings = [
         },
         articleId: '144',
         rate: 5,
+        createdAt: new Date().toISOString(),
         feedback: 'Outstanding! Very well-researched and presented. Thank you!',
-        id: 1107,
+        id: '1107',
     },
     {
         user: {
@@ -4290,9 +4700,10 @@ const ratings = [
         },
         articleId: '145',
         rate: 5,
+        createdAt: new Date().toISOString(),
         feedback:
             'Fantastic insights! I really appreciate the depth of information provided.',
-        id: 1108,
+        id: '1108',
     },
     {
         user: {
@@ -4305,8 +4716,9 @@ const ratings = [
         },
         articleId: '146',
         rate: 5,
+        createdAt: new Date().toISOString(),
         feedback: 'Exceptional quality! This article is a valuable resource.',
-        id: 1109,
+        id: '1109',
     },
     {
         user: {
@@ -4319,8 +4731,9 @@ const ratings = [
         },
         articleId: '147',
         rate: 5,
+        createdAt: new Date().toISOString(),
         feedback: 'Loved it! The clarity and detail are impressive.',
-        id: 1110,
+        id: '1110',
     },
     {
         user: {
@@ -4333,9 +4746,10 @@ const ratings = [
         },
         articleId: '65',
         rate: 5,
+        createdAt: new Date().toISOString(),
         feedback:
             'Brilliantly written! This article provides all the necessary information.',
-        id: 1111,
+        id: '1111',
     },
     {
         user: {
@@ -4348,8 +4762,9 @@ const ratings = [
         },
         articleId: '77',
         rate: 5,
+        createdAt: new Date().toISOString(),
         feedback: 'Absolutely loved this! Engaging and very informative.',
-        id: 1112,
+        id: '1112',
     },
     {
         user: {
@@ -4362,9 +4777,10 @@ const ratings = [
         },
         articleId: '89',
         rate: 5,
+        createdAt: new Date().toISOString(),
         feedback:
             'Incredible content! Thank you for sharing such valuable information.',
-        id: 1113,
+        id: '1113',
     },
     {
         user: {
@@ -4377,9 +4793,10 @@ const ratings = [
         },
         articleId: '156',
         rate: 5,
+        createdAt: new Date().toISOString(),
         feedback:
             'Highly insightful! This article really opened my eyes to new concepts.',
-        id: 1114,
+        id: '1114',
     },
     {
         user: {
@@ -4392,8 +4809,9 @@ const ratings = [
         },
         articleId: '157',
         rate: 5,
+        createdAt: new Date().toISOString(),
         feedback: 'Superb article! I enjoyed every bit of it.',
-        id: 1115,
+        id: '1115',
     },
     {
         user: {
@@ -4406,8 +4824,9 @@ const ratings = [
         },
         articleId: '160',
         rate: 5,
+        createdAt: new Date().toISOString(),
         feedback: 'Fantastic work! A truly enlightening read.',
-        id: 1116,
+        id: '1116',
     },
     {
         user: {
@@ -4420,9 +4839,10 @@ const ratings = [
         },
         articleId: '163',
         rate: 5,
+        createdAt: new Date().toISOString(),
         feedback:
             'Excellent! The author did a great job explaining everything.',
-        id: 1117,
+        id: '1117',
     },
     {
         user: {
@@ -4435,9 +4855,10 @@ const ratings = [
         },
         articleId: '45',
         rate: 1,
+        createdAt: new Date().toISOString(),
         feedback:
             'Very disappointing. The content was poorly organized and not informative.',
-        id: 2001,
+        id: '2001',
     },
     {
         user: {
@@ -4450,9 +4871,10 @@ const ratings = [
         },
         articleId: '66',
         rate: 1,
+        createdAt: new Date().toISOString(),
         feedback:
             'I expected more depth. This article felt superficial and unhelpful.',
-        id: 2002,
+        id: '2002',
     },
     {
         user: {
@@ -4465,9 +4887,10 @@ const ratings = [
         },
         articleId: '47',
         rate: 1,
+        createdAt: new Date().toISOString(),
         feedback:
             'This was a waste of time. The points made were irrelevant and confusing.',
-        id: 2003,
+        id: '2003',
     },
     {
         user: {
@@ -4480,9 +4903,10 @@ const ratings = [
         },
         articleId: '48',
         rate: 1,
+        createdAt: new Date().toISOString(),
         feedback:
             "Extremely unhelpful. The explanations were lacking and didn't clarify anything.",
-        id: 2004,
+        id: '2004',
     },
     {
         user: {
@@ -4495,9 +4919,10 @@ const ratings = [
         },
         articleId: '49',
         rate: 1,
+        createdAt: new Date().toISOString(),
         feedback:
             "The article was too vague. I couldn't find any useful information.",
-        id: 2005,
+        id: '2005',
     },
     {
         user: {
@@ -4510,9 +4935,10 @@ const ratings = [
         },
         articleId: '50',
         rate: 1,
+        createdAt: new Date().toISOString(),
         feedback:
             'Not worth reading. The writing was unclear and disorganized.',
-        id: 2006,
+        id: '2006',
     },
     {
         user: {
@@ -4525,9 +4951,10 @@ const ratings = [
         },
         articleId: '51',
         rate: 1,
+        createdAt: new Date().toISOString(),
         feedback:
             'Very poor quality. The author seems to lack expertise on the subject.',
-        id: 2007,
+        id: '2007',
     },
     {
         user: {
@@ -4540,9 +4967,10 @@ const ratings = [
         },
         articleId: '52',
         rate: 1,
+        createdAt: new Date().toISOString(),
         feedback:
             "I was really disappointed with this article. It didn't cover the topic properly.",
-        id: 2008,
+        id: '2008',
     },
     {
         user: {
@@ -4555,9 +4983,10 @@ const ratings = [
         },
         articleId: '22',
         rate: 1,
+        createdAt: new Date().toISOString(),
         feedback:
             'This article was frustrating to read. It offered no valuable insights.',
-        id: 2009,
+        id: '2009',
     },
     {
         user: {
@@ -4570,8 +4999,9 @@ const ratings = [
         },
         articleId: '68',
         rate: 2,
+        createdAt: new Date().toISOString(),
         feedback: 'The content was not very engaging and lacked depth.',
-        id: 3001,
+        id: '3001',
     },
     {
         user: {
@@ -4584,9 +5014,10 @@ const ratings = [
         },
         articleId: '80',
         rate: 2,
+        createdAt: new Date().toISOString(),
         feedback:
             'I found the article to be somewhat useful, but overall it missed key points.',
-        id: 3002,
+        id: '3002',
     },
     {
         user: {
@@ -4599,9 +5030,10 @@ const ratings = [
         },
         articleId: '92',
         rate: 2,
+        createdAt: new Date().toISOString(),
         feedback:
             "The explanations were unclear and didn't provide enough detail.",
-        id: 3003,
+        id: '3003',
     },
     {
         user: {
@@ -4614,9 +5046,10 @@ const ratings = [
         },
         articleId: '108',
         rate: 2,
+        createdAt: new Date().toISOString(),
         feedback:
             'It was a decent attempt, but it fell short of my expectations.',
-        id: 3004,
+        id: '3004',
     },
     {
         user: {
@@ -4629,8 +5062,9 @@ const ratings = [
         },
         articleId: '123',
         rate: 2,
+        createdAt: new Date().toISOString(),
         feedback: 'I appreciate the effort, but the execution was lacking.',
-        id: 3005,
+        id: '3005',
     },
     {
         user: {
@@ -4645,8 +5079,9 @@ const ratings = [
         },
         articleId: '121',
         rate: 2,
+        createdAt: new Date().toISOString(),
         feedback: 'The article was poorly structured and hard to follow.',
-        id: 4001,
+        id: '4001',
     },
     {
         user: {
@@ -4661,9 +5096,10 @@ const ratings = [
         },
         articleId: '140',
         rate: 2,
+        createdAt: new Date().toISOString(),
         feedback:
             'I expected more depth and insight; it felt very superficial.',
-        id: 4002,
+        id: '4002',
     },
     {
         user: {
@@ -4678,8 +5114,9 @@ const ratings = [
         },
         articleId: '174',
         rate: 2,
+        createdAt: new Date().toISOString(),
         feedback: "The content didn't meet my expectations and lacked clarity.",
-        id: 4003,
+        id: '4003',
     },
     {
         user: {
@@ -4694,9 +5131,10 @@ const ratings = [
         },
         articleId: '103',
         rate: 4,
+        createdAt: new Date().toISOString(),
         feedback:
             'Great insights and well-researched content. I found it very informative!',
-        id: 5001,
+        id: '5001',
     },
     {
         user: {
@@ -4711,8 +5149,9 @@ const ratings = [
         },
         articleId: '119',
         rate: 4,
+        createdAt: new Date().toISOString(),
         feedback: 'Good read! The examples provided were helpful and relevant.',
-        id: 5002,
+        id: '5002',
     },
     {
         user: {
@@ -4727,9 +5166,10 @@ const ratings = [
         },
         articleId: '132',
         rate: 4,
+        createdAt: new Date().toISOString(),
         feedback:
             'Overall, a solid article. I appreciate the clear explanations.',
-        id: 5003,
+        id: '5003',
     },
     {
         user: {
@@ -4744,12 +5184,13 @@ const ratings = [
         },
         articleId: '173',
         rate: 4,
+        createdAt: new Date().toISOString(),
         feedback: 'Well-written and engaging. It kept my attention throughout!',
-        id: 5004,
+        id: '5004',
     },
 ];
 
-async function uploadRatings(ratings: ArticleRating[]) {
+async function uploadRatings(ratings: ArticleRatingData[]) {
     try {
         // @ts-ignore
         const promises = [];
