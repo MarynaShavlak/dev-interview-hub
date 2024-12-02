@@ -22,7 +22,7 @@ export const RedesignedGridViewCard = memo((props: BaseCardProps) => {
         vStack: true,
         gap: '8',
     });
-    console.log('article', article);
+
     return (
         <AppLink
             data-testid="ArticleListItem"

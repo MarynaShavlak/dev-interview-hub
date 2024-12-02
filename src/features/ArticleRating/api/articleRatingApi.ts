@@ -1,6 +1,5 @@
 import { getDoc, onSnapshot } from 'firebase/firestore';
-import { firestoreApi, rtkApi } from '@/shared/api/rtkApi';
-import { RatingData } from '@/entities/Rating';
+import { firestoreApi } from '@/shared/api/rtkApi';
 import { ArticleRatingData } from '../model/types/articleRatingData';
 import { createArticleRatingQuery } from '../lib/utilities/createArticleRatingQuery/createArticleRatingQuery';
 import { fetchQueryResults } from '@/shared/lib/firestore/fetchQueryResults/fetchQueryResults';
@@ -124,27 +123,3 @@ export const useGetArticleRatingByUserId =
     articleRatingFirebaseApi.useGetArticleRatingByUserIdQuery;
 export const useAddArticleRating =
     articleRatingFirebaseApi.useRateArticleMutation;
-
-export const articleRatingApi = rtkApi.injectEndpoints({
-    endpoints: (build) => ({
-        getArticleRating: build.query<RatingData[], GetArticleRatingArg>({
-            query: ({ articleId, userId }) => ({
-                url: '/article-ratings',
-                params: {
-                    userId,
-                    articleId,
-                },
-            }),
-        }),
-        rateArticle: build.mutation<void, RateArticleArg>({
-            query: (arg) => ({
-                url: '/article-ratings',
-                method: 'POST',
-                body: arg,
-            }),
-        }),
-    }),
-});
-
-export const useGetArticleRating = articleRatingApi.useGetArticleRatingQuery;
-export const useRateArticle = articleRatingApi.useRateArticleMutation;
