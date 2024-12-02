@@ -1,13 +1,8 @@
 import { useTranslation } from 'react-i18next';
 import { liteClient as algoliasearch } from 'algoliasearch/lite';
-import {
-    Configure,
-    InstantSearch,
-    RefinementList,
-    SearchBox,
-} from 'react-instantsearch';
-import { useState } from 'react';
-import type { RefinementListProps } from 'react-instantsearch';
+import React, { useState } from 'react';
+import { Configure, InstantSearch, Menu, MenuProps } from 'react-instantsearch';
+
 import { ArticleCategoryTabs } from '@/features/ArticleCategoryTabs';
 import { ArticleSortSelector } from '@/features/ArticleSortSelector';
 import { ArticlesFiltersProps } from '../ArticlesFilters';
@@ -24,60 +19,109 @@ const searchClient = algoliasearch(
     '5fac3ea964aecac5d90374450bd541ab',
 );
 
-// Hit component to display search results
-const Hit = ({ hit }: { hit: any }) => (
-    <div className="hit">
-        <h3>{hit.title}</h3>
-        <p>{hit.description}</p>
-        <small>Category: {hit.category}</small>
-    </div>
-);
-
-const transformItems: RefinementListProps['transformItems'] = (items) => {
-    return items.map((item) => ({
-        ...item,
-        label: item.label.toUpperCase(),
-    }));
+const transformItems: MenuProps['transformItems'] = (items) => {
+    // return items.map((item) => ({
+    //     ...item,
+    //     label: `${item.label} `,
+    // }));
+    console.log('items', items);
+    return [
+        {
+            label: 'All items',
+            value: '',
+            count: items.reduce((total, item) => total + item.count, 0),
+            isRefined: items.every((item) => !item.isRefined),
+        },
+        ...items.map((item) => ({
+            ...item,
+            label: `${item.label}`,
+        })),
+    ];
 };
 
 const AlgoliaSearch = () => {
-    const [query, setQuery] = useState('');
-    const [selectedCategory, setSelectedCategory] = useState('React');
+    const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
 
     return (
         <InstantSearch searchClient={searchClient} indexName="articles">
-            {/* Configure default filters */}
-            <Configure filters="category" hitsPerPage={10} />
-
-            <div className="search-container">
-                {/* Search input */}
-                <SearchBox
-                    translations={{
-                        // @ts-ignore
-                        placeholder: 'Search for articles...',
-                    }}
-                    // @ts-ignore
-                    onChange={(event) => setQuery(event.target.value)}
-                />
-
-                <div className="filters">
-                    <RefinementList
-                        attribute="category"
-                        transformItems={transformItems}
-                    />
-                </div>
-
-                {/* /!* Display search results *!/ */}
-                {/* <div className="results"> */}
-                {/*    <Hits hitComponent={Hit} /> */}
-                {/* </div> */}
-
-                {/* /!* Pagination *!/ */}
-                {/* <Pagination /> */}
-            </div>
+            {/* Configure dynamic filters based on selected categories */}
+            <Configure
+                // filters={selectedCategories
+                //     .map((cat) => `category:"${cat}"`)
+                //     .join(' OR ')}
+                hitsPerPage={9}
+            />
+            {/* <RefinementList attribute="category" /> */}
+            <Menu
+                attribute="category"
+                limit={250}
+                transformItems={transformItems}
+                classNames={{
+                    link: cls.MenuItem,
+                    count: cls.categoryCount,
+                }}
+            />
         </InstantSearch>
     );
 };
+// const AlgoliaSearch = () => {
+//     return (
+//         <InstantSearch searchClient={searchClient} indexName="articles">
+//             <Configure filters="category" hitsPerPage={10} />
+//             <div className="search-container">
+//                 <div className="filters">
+//                     <RefinementList attribute="category" />
+//                 </div>
+//             </div>
+//         </InstantSearch>
+//     );
+// };
+{
+    /* /!* Display search results *!/ */
+}
+{
+    /* <div className="results"> */
+}
+{
+    /*    <Hits hitComponent={Hit} /> */
+}
+{
+    /* </div> */
+}
+
+{
+    /* /!* Pagination *!/ */
+}
+{
+    /* <Pagination /> */
+}
+{
+    /* Search input */
+}
+{
+    /* <SearchBox */
+}
+{
+    /*    translations={{ */
+}
+{
+    /*        // @ts-ignore */
+}
+{
+    /*        placeholder: 'Search for articles...', */
+}
+{
+    /*    }} */
+}
+{
+    /*    // @ts-ignore */
+}
+{
+    /*    onChange={(event) => setQuery(event.target.value)} */
+}
+{
+    /* /> */
+}
 
 export const RedesignedArticlesFilters = (props: ArticlesFiltersProps) => {
     const {
