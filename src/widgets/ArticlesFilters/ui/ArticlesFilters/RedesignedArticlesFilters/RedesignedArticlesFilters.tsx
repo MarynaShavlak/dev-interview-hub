@@ -26,12 +26,12 @@ const transformItems: MenuProps['transformItems'] = (items) => {
     // }));
     console.log('items', items);
     return [
-        {
-            label: 'All items',
-            value: '',
-            count: items.reduce((total, item) => total + item.count, 0),
-            isRefined: items.every((item) => !item.isRefined),
-        },
+        // {
+        //     label: 'All items',
+        //     value: '',
+        //     count: items.reduce((total, item) => total + item.count, 0),
+        //     isRefined: items.every((item) => !item.isRefined),
+        // },
         ...items.map((item) => ({
             ...item,
             label: `${item.label}`,
@@ -40,21 +40,27 @@ const transformItems: MenuProps['transformItems'] = (items) => {
 };
 
 const AlgoliaSearch = () => {
-    const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+    const [selectedCategory, setSelectedCategory] = useState<string | null>(
+        null,
+    );
 
+    const handleCategoryChange = (category: string) => {
+        // Update selected category; 'null' or empty string for "All items"
+        setSelectedCategory(category);
+    };
     return (
         <InstantSearch searchClient={searchClient} indexName="articles">
             {/* Configure dynamic filters based on selected categories */}
             <Configure
-                // filters={selectedCategories
-                //     .map((cat) => `category:"${cat}"`)
-                //     .join(' OR ')}
-                hitsPerPage={9}
+                filters={
+                    selectedCategory ? `category:"${selectedCategory}"` : ''
+                }
+                hitsPerPage={200}
             />
             {/* <RefinementList attribute="category" /> */}
             <Menu
                 attribute="category"
-                limit={250}
+                // limit={250}
                 transformItems={transformItems}
                 classNames={{
                     link: cls.MenuItem,
