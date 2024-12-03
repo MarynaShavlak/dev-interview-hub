@@ -1,66 +1,58 @@
+/* General Component Styling */
 .ArticlesFilters {
-    width: 280px;
+  width: 280px;
 }
 
-
+/* Category Count Styles */
 .categoryCount {
-  display:inline-flex;
+  display: inline-flex;
   justify-content: center;
-
-   background-color: var(--light-bg-redesigned);
-  padding:2px;
-
+  background-color: var(--light-bg-redesigned);
+  padding: 2px;
   border-radius: 10px;
   min-width: 30px;
 }
 
+/* Menu Item Styles */
+
+.MenuList{
+  display: flex;
+  gap: 8px;
+  cursor: pointer;
+  flex-direction: column;
+}
 
 .MenuItem {
-  display:flex;
-  gap:8px;
-  align-items: center;
-}
-
-.SubmitSearchBtn {
-  display: flex;
-  padding:0;
-  margin:0;
-  background: transparent;
-  border:none;
-  position: absolute;
-  left: 8px;
-}
-
-.ResetSearchBtn {
-  display: flex;
-  padding:0;
-  margin:0;
-  background: transparent;
-  border:none;
-  position: absolute;
-  right: 0;
-  transition: fill 300ms ease-in-out ;
+  min-width: 80px;
+  padding: 6px 16px;
+  transition: border 300ms ease-in;
+  width: fit-content;
   cursor: pointer;
-  &:hover {
-    .ResetIcon {
-      fill: var(--cancel-redesigned);
-
-    }
-  }
 }
 
+.SelectedMenuItem {
+  border-radius: 40px;
+  background: var(--light-bg-redesigned);
+}
 
+.MenuLink {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  font: var(--font-m-redesigned);
+  color: var(--text-redesigned);
+}
 
+/* Search Form Styles */
 .SubmitInputWrapper {
   display: flex;
   position: relative;
   align-items: center;
   border-radius: 48px;
-  padding: 8px 16px;
+  padding: 8px 16px 8px 40px;
   border: 2px solid var(--icon-redesigned);
   width: 100%;
   height: 38px;
-  padding-left: 40px;
 }
 
 .SearchInput {
@@ -71,7 +63,34 @@
   background: none;
 }
 
-
+/* Hide the default cancel button for search inputs */
 input[type="search" i]::-webkit-search-cancel-button {
-  display:none;
+  display: none;
+}
+
+/* Button Styles */
+.SubmitSearchBtn,
+.ResetSearchBtn {
+  display: flex;
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  border: none;
+  position: absolute;
+  cursor: pointer;
+}
+
+.SubmitSearchBtn {
+  left: 8px;
+}
+
+.ResetSearchBtn {
+  right: 0;
+  transition: fill 300ms ease-in-out;
+
+  &:hover {
+    .ResetIcon {
+      fill: var(--cancel-redesigned);
+    }
+  }
 }

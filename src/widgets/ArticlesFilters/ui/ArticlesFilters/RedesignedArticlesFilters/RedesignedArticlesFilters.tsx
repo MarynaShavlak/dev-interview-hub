@@ -75,7 +75,6 @@ const AlgoliaSearch = () => {
                     <Icon Svg={CloseIcon} className={cls.ResetIcon} />
                 )}
                 submitIconComponent={() => <Icon Svg={SearchIcon} />}
-                // addonLeft={<Icon Svg={SearchIcon} />}
                 data-testid="ArticlesPage.SearchInput"
                 classNames={{
                     submit: cls.SubmitSearchBtn,
@@ -91,8 +90,11 @@ const AlgoliaSearch = () => {
                 // limit={250}
                 transformItems={transformItems}
                 classNames={{
-                    link: cls.MenuItem,
+                    link: cls.MenuLink,
                     count: cls.categoryCount,
+                    list: cls.MenuList,
+                    item: cls.MenuItem,
+                    selectedItem: cls.SelectedMenuItem,
                 }}
             />
             <SortBy
