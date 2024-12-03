@@ -84,19 +84,30 @@ const AlgoliaSearch = () => {
                 }}
             />
             {/* <RefinementList attribute="category" /> */}
-            <ClearRefinements />
-            <Menu
-                attribute="category"
-                // limit={250}
-                transformItems={transformItems}
-                classNames={{
-                    link: cls.MenuLink,
-                    count: cls.categoryCount,
-                    list: cls.MenuList,
-                    item: cls.MenuItem,
-                    selectedItem: cls.SelectedMenuItem,
-                }}
-            />
+            <VStack gap="8">
+                <ClearRefinements
+                    translations={{
+                        resetButtonText: t('Вcі статті'),
+                    }}
+                    classNames={{
+                        button: cls.AllItemsBtn,
+                        disabledButton: cls.AllItemsBtnNotSelected,
+                    }}
+                />
+                <Menu
+                    attribute="category"
+                    // limit={250}
+                    transformItems={transformItems}
+                    classNames={{
+                        link: cls.MenuLink,
+                        count: cls.categoryCount,
+                        list: cls.MenuList,
+                        item: cls.MenuItem,
+                        selectedItem: cls.SelectedMenuItem,
+                    }}
+                />
+            </VStack>
+
             <SortBy
                 items={[
                     { label: 'Views (asc)', value: 'articles_views_asc' },
@@ -116,64 +127,6 @@ const AlgoliaSearch = () => {
         </InstantSearch>
     );
 };
-// const AlgoliaSearch = () => {
-//     return (
-//         <InstantSearch searchClient={searchClient} indexName="articles">
-//             <Configure filters="category" hitsPerPage={10} />
-//             <div className="search-container">
-//                 <div className="filters">
-//                     <RefinementList attribute="category" />
-//                 </div>
-//             </div>
-//         </InstantSearch>
-//     );
-// };
-{
-    /* /!* Display search results *!/ */
-}
-{
-    /* <div className="results"> */
-}
-{
-    /*    <Hits hitComponent={Hit} /> */
-}
-{
-    /* </div> */
-}
-
-{
-    /* /!* Pagination *!/ */
-}
-{
-    /* <Pagination /> */
-}
-{
-    /* Search input */
-}
-{
-    /* <SearchBox */
-}
-{
-    /*    translations={{ */
-}
-{
-    /*        // @ts-ignore */
-}
-{
-    /*        placeholder: 'Search for articles...', */
-}
-{
-    /*    }} */
-}
-{
-    /*    // @ts-ignore */
-}
-{
-    /*    onChange={(event) => setQuery(event.target.value)} */
-}
-{
-    /* /> */
-}
 
 export const RedesignedArticlesFilters = (props: ArticlesFiltersProps) => {
     const {

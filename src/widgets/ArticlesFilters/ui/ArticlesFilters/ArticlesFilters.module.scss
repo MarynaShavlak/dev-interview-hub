@@ -22,13 +22,35 @@
   flex-direction: column;
 }
 
-.MenuItem {
+.MenuItem, .AllItemsBtn {
   min-width: 80px;
   padding: 6px 16px;
   transition: border 300ms ease-in;
   width: fit-content;
   cursor: pointer;
 }
+
+.AllItemsBtn {
+  border-radius: 40px;
+  background: transparent;
+}
+
+.AllItemsBtn, .AllItemsBtnNotSelected  {
+  display: flex;
+  border:none;
+  align-items: center;
+  font: var(--font-m-redesigned);
+  color: var(--text-redesigned);
+}
+
+.AllItemsBtnNotSelected {
+
+  background: var(--light-bg-redesigned);
+}
+
+
+
+
 
 .SelectedMenuItem {
   border-radius: 40px;
