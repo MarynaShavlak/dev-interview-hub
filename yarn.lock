@@ -14204,7 +14204,7 @@
     "is-dom" "^1.0.0"
     "prop-types" "^15.0.0"
 
-"react-instantsearch-core@7.13.8":
+"react-instantsearch-core@^7.13.8", "react-instantsearch-core@7.13.8":
   "integrity" "sha512-1bcHCFJ3Qw9HWFkeM5MNMqzw0BI4LIR61qI1lPAcJREih9NXy3R3inPeOk2T2FKkgAp5PJbjNQ3DOTxErV88jg=="
   "resolved" "https://registry.npmjs.org/react-instantsearch-core/-/react-instantsearch-core-7.13.8.tgz"
   "version" "7.13.8"

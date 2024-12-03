@@ -38,22 +38,22 @@ export const fetchArticlesList = createAsyncThunk<
 >('articlesPage/fetchArticlesList', async (props, thunkApi) => {
     const { extra, rejectWithValue, getState, dispatch } = thunkApi;
     const limit = getArticlesPageLimit(getState());
-    console.log('Articles Page Limit:', limit);
+    // console.log('Articles Page Limit:', limit);
 
     const sort = getArticlesPageSort(getState());
-    console.log('Articles Page Sort:', sort);
+    // console.log('Articles Page Sort:', sort);
 
     const order = getArticlesPageOrder(getState());
-    console.log('Articles Page Order:', order);
+    // console.log('Articles Page Order:', order);
 
     const search = getArticlesPageSearch(getState());
-    console.log('Articles Page Search:', search);
+    // console.log('Articles Page Search:', search);
 
     const page = getArticlesPageNum(getState());
-    console.log('Articles Page Number:', page);
+    // console.log('Articles Page Number:', page);
 
     const category = getArticlesPageCategory(getState());
-    console.log('Articles Page Category:', category);
+    // console.log('Articles Page Category:', category);
 
     try {
         addQueryParams({
@@ -65,9 +65,9 @@ export const fetchArticlesList = createAsyncThunk<
         const objectsLimit =
             category === ArticleCategory.ALL ? limit : undefined;
         const pageLimit = category === ArticleCategory.ALL ? page : undefined;
-        console.log('objectsLimit', objectsLimit);
-        console.log('page', page);
-        console.log('pageLimit', pageLimit);
+        // console.log('objectsLimit', objectsLimit);
+        // console.log('page', page);
+        // console.log('pageLimit', pageLimit);
 
         const articlesResponse = await dispatch(
             getArticlesQuery({
@@ -81,7 +81,7 @@ export const fetchArticlesList = createAsyncThunk<
             }),
         ).unwrap();
 
-        console.log('firebase articles response', articlesResponse);
+        // console.log('firebase articles response', articlesResponse);
 
         return articlesResponse;
     } catch (error) {

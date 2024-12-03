@@ -11,7 +11,7 @@ import popupCls from '../../styles/popup.module.scss';
 import cls from './ListBox.module.scss';
 
 interface ListBoxProps<T extends string> {
-    items: ListBoxItem<T>[];
+    items: ListBoxItem<T>[] | any;
     onChange: (value: T) => void;
     value?: T;
     defaultValue?: string;
@@ -44,6 +44,7 @@ export function ListBox<T extends string>(props: ListBoxProps<T>) {
     ]);
 
     const selectedItem = useMemo(() => {
+        // @ts-ignore
         return items?.find((item) => item.value === value);
     }, [items, value]);
     return (
@@ -65,6 +66,7 @@ export function ListBox<T extends string>(props: ListBoxProps<T>) {
                     <Each
                         of={items}
                         render={(item) => (
+                            // @ts-ignore
                             <Option key={item.value} item={item} />
                         )}
                     />
