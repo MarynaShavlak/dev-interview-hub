@@ -1,7 +1,15 @@
 import { useTranslation } from 'react-i18next';
 import { liteClient as algoliasearch } from 'algoliasearch/lite';
 import React, { useState } from 'react';
-import { Configure, InstantSearch, Menu, MenuProps } from 'react-instantsearch';
+import {
+    ClearRefinements,
+    Configure,
+    InstantSearch,
+    Menu,
+    MenuProps,
+    SearchBox,
+    SortBy,
+} from 'react-instantsearch';
 
 import { ArticleCategoryTabs } from '@/features/ArticleCategoryTabs';
 import { ArticleSortSelector } from '@/features/ArticleSortSelector';
@@ -13,6 +21,7 @@ import { Card } from '@/shared/ui/redesigned/Card';
 import { VStack } from '@/shared/ui/common/Stack';
 import { Input } from '@/shared/ui/redesigned/Input';
 import SearchIcon from '@/shared/assets/icons/search.svg';
+import CloseIcon from '@/shared/assets/icons/close.svg';
 
 const searchClient = algoliasearch(
     '6L3XOJ5FZ8',
@@ -24,7 +33,7 @@ const transformItems: MenuProps['transformItems'] = (items) => {
     //     ...item,
     //     label: `${item.label} `,
     // }));
-    console.log('items', items);
+
     return [
         // {
         //     label: 'All items',
@@ -40,6 +49,7 @@ const transformItems: MenuProps['transformItems'] = (items) => {
 };
 
 const AlgoliaSearch = () => {
+    const { t } = useTranslation();
     const [selectedCategory, setSelectedCategory] = useState<string | null>(
         null,
     );
@@ -57,7 +67,25 @@ const AlgoliaSearch = () => {
                 }
                 hitsPerPage={200}
             />
+            <SearchBox
+                // onChange={onChangeSearch}
+                // value={search}
+                placeholder={t('Пошук')}
+                resetIconComponent={() => (
+                    <Icon Svg={CloseIcon} className={cls.ResetIcon} />
+                )}
+                submitIconComponent={() => <Icon Svg={SearchIcon} />}
+                // addonLeft={<Icon Svg={SearchIcon} />}
+                data-testid="ArticlesPage.SearchInput"
+                classNames={{
+                    submit: cls.SubmitSearchBtn,
+                    reset: cls.ResetSearchBtn,
+                    form: cls.SubmitInputWrapper,
+                    input: cls.SearchInput,
+                }}
+            />
             {/* <RefinementList attribute="category" /> */}
+            <ClearRefinements />
             <Menu
                 attribute="category"
                 // limit={250}
@@ -66,6 +94,22 @@ const AlgoliaSearch = () => {
                     link: cls.MenuItem,
                     count: cls.categoryCount,
                 }}
+            />
+            <SortBy
+                items={[
+                    { label: 'Views (asc)', value: 'articles_views_asc' },
+                    { label: 'Views (desc)', value: 'articles_views_desc' },
+                    {
+                        label: 'Creation date (asc)',
+                        value: 'articles_createdAt_asc',
+                    },
+                    {
+                        label: 'Creation date (desc)',
+                        value: 'articles_createdAt_desc',
+                    },
+                    { label: 'Title (asc)', value: 'articles_title_asc' },
+                    { label: 'Title (desc)', value: 'articles_title_desc' },
+                ]}
             />
         </InstantSearch>
     );
@@ -149,10 +193,6 @@ export const RedesignedArticlesFilters = (props: ArticlesFiltersProps) => {
         >
             <VStack gap="32">
                 <AlgoliaSearch />
-                {/* <InstantSearch searchClient={searchClient} indexName="articles"> */}
-                {/*    <SearchBox /> */}
-                {/*    <RefinementList attribute="category" /> */}
-                {/* </InstantSearch> */}
                 <Input
                     onChange={onChangeSearch}
                     value={search}
