@@ -51,8 +51,8 @@ export const UiDesignSwitcher = memo(() => {
     const forceUpdate = useForceUpdate();
 
     const items = [
-        { content: t('Новий'), value: 'new' },
-        { content: t('Старий'), value: 'old' },
+        { label: t('Новий'), value: 'new' },
+        { label: t('Старий'), value: 'old' },
     ];
 
     const onChange = async (value: string) => {

@@ -10,7 +10,7 @@ The types used in the `DropdownItem` component are defined as follows:
 ```typescript
 export interface DropdownOption{
     disabled?: boolean;
-    content?: ReactNode;
+    label?: ReactNode;
     onClick?: () => void;
     href?: string;
 }
@@ -23,7 +23,7 @@ The DropdownItem component accepts the required props `item` of type `DropdownOp
 |--------|------------------|---------------------|----------------------------------------------------------------------------------------------|
 | `item` | `DropdownOption`   |        Required     | An object containing the item's properties and behavior.                                     |
 | `item.disabled` | `boolean`    |      Optional       | If `true`, the menu item will be disabled and non-interactive.                              |
-| `item.content`  | `ReactNode`  |      Optional       | The content to be displayed inside the menu item.                                            |
+| `item.label`  | `ReactNode`  |      Optional       | The content to be displayed inside the menu item.                                            |
 | `item.onClick`  | `() => void` |      Optional       | A callback function to be executed when the menu item is clicked.                            |
 | `item.href`     | `string`     |      Optional       | A URL that the menu item will navigate to when clicked. If provided, the item will be a link.|
 

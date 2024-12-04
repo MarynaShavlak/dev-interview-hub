@@ -7,7 +7,7 @@ import popupCls from '../../../styles/popup.module.scss';
 
 export interface DropdownOption {
     disabled?: boolean;
-    content?: ReactNode;
+    label?: ReactNode;
     onClick?: () => void;
     href?: string;
 }
@@ -26,7 +26,7 @@ export const DropdownItem = memo(({ item }: DropdownItemInterface) => {
                 [popupCls.active]: active,
             })}
         >
-            {item.content}
+            {item.label}
         </button>
     );
 

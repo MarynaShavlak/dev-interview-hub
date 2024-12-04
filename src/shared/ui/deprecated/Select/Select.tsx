@@ -5,7 +5,7 @@ import cls from './Select.module.scss';
 
 export interface SelectOption<T extends string> {
     value: T;
-    content: string;
+    label: string;
     readonly?: boolean;
 }
 
@@ -41,7 +41,7 @@ export const Select = <T extends string>(props: SelectProps<T>) => {
                             value={opt.value}
                             key={opt.value}
                         >
-                            {opt.content}
+                            {opt.label}
                         </option>
                     );
                 }}

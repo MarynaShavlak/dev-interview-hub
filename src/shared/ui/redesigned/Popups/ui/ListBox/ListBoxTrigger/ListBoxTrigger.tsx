@@ -25,7 +25,7 @@ export function ListBoxTrigger<T extends string>(
             disabled={readonly}
             addonRight={<Icon Svg={ArrowIcon} />}
         >
-            {selectedItem?.content ?? defaultValue}
+            {selectedItem?.label ?? defaultValue}
         </HListBox.Button>
     );
 }

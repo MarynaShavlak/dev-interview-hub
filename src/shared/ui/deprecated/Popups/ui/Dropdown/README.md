@@ -35,8 +35,8 @@ import { Dropdown } from '@/shared/ui/Dropdown';
 import { DropdownItemProps } from '@/shared/ui/DropdownItem/DropdownItem';
 
 const items: DropdownItemProps[] = [
-    { content: 'Item 1', onClick: () => alert('Item 1 clicked!') },
-    { content: 'Item 2', href: '/page2' },
+    { label: 'Item 1', onClick: () => alert('Item 1 clicked!') },
+    { label: 'Item 2', href: '/page2' },
 ];
 
 export const DropdownWithDirectionExample = () => {

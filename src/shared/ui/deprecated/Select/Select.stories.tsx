@@ -16,8 +16,8 @@ export const Basic = Template.bind({});
 Basic.args = {
     label: 'Select an option',
     options: [
-        { value: '1', content: 'Option 1' },
-        { value: '2', content: 'Option 2' },
+        { value: '1', label: 'Option 1' },
+        { value: '2', label: 'Option 2' },
     ],
 };
 
@@ -26,8 +26,8 @@ WithDefaultValue.args = {
     label: 'Select an option',
     value: '2',
     options: [
-        { value: '1', content: 'Option 1' },
-        { value: '2', content: 'Option 2' },
+        { value: '1', label: 'Option 1' },
+        { value: '2', label: 'Option 2' },
     ],
 };
 
@@ -36,7 +36,7 @@ ReadOnly.args = {
     label: 'Select an option',
     readonly: true,
     options: [
-        { value: '1', content: 'Option 1' },
-        { value: '2', content: 'Option 2' },
+        { value: '1', label: 'Option 1' },
+        { value: '2', label: 'Option 2' },
     ],
 };

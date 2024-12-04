@@ -20,7 +20,7 @@ export function ListBoxTrigger<T extends string>(
             as={Button}
             disabled={readonly}
         >
-            {selectedItem?.content ?? defaultValue}
+            {selectedItem?.label ?? defaultValue}
         </HListBox.Button>
     );
 }

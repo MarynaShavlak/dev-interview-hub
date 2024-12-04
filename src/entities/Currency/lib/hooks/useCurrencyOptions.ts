@@ -17,15 +17,15 @@ export const useCurrencyOptions = () => {
     return [
         {
             value: Currency.UAH,
-            content: t('гривня'),
+            label: t('гривня'),
         },
         {
             value: Currency.EUR,
-            content: t('євро'),
+            label: t('євро'),
         },
         {
             value: Currency.USD,
-            content: t('долар'),
+            label: t('долар'),
         },
     ] as SelectOption<Currency>[];
 };

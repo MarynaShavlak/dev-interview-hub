@@ -30,11 +30,11 @@ export const UiDesignSwitcher = memo((props: UiDesignSwitcherProps) => {
 
     const items = [
         {
-            content: t('Новий'),
+            label: t('Новий'),
             value: 'new',
         },
         {
-            content: t('Старий'),
+            label: t('Старий'),
             value: 'old',
         },
     ];

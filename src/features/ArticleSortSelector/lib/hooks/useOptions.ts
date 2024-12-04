@@ -18,11 +18,11 @@ export const useOrderOptions = () => {
     return [
         {
             value: 'asc',
-            content: t('зростанню'),
+            label: t('зростанню'),
         },
         {
             value: 'desc',
-            content: t('спаданню'),
+            label: t('спаданню'),
         },
     ] as SelectOption<SortOrder>[];
 };
@@ -42,15 +42,15 @@ export const useSortFieldOptions = () => {
     return [
         {
             value: ArticleSortField.CREATED,
-            content: t('даті створення'),
+            label: t('даті створення'),
         },
         {
             value: ArticleSortField.TITLE,
-            content: t('назві'),
+            label: t('назві'),
         },
         {
             value: ArticleSortField.VIEWS,
-            content: t('переглядам'),
+            label: t('переглядам'),
         },
     ] as SelectOption<ArticleSortField>[];
 };

@@ -9,7 +9,7 @@ import cls from './Option.module.scss';
 
 export interface ListBoxItem<T extends string> {
     value: T;
-    content: ReactNode;
+    label: ReactNode;
     disabled?: boolean;
 }
 interface OptionItemProps<T extends string> {
@@ -45,7 +45,7 @@ export function Option<T extends string>({ item }: OptionItemProps<T>) {
                     )}
                 >
                     <HStack gap="8">
-                        {item.content}
+                        {item.label}
                         {selected && <Icon Svg={CheckedIcon} />}
                     </HStack>
                 </li>

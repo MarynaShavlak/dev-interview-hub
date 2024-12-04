@@ -34,8 +34,8 @@ export const Normal = Template.bind({});
 Normal.args = {
     value: '123',
     items: [
-        { content: 'Option 1', value: '123' },
-        { content: 'Option 2', value: '456' },
+        { label: 'Option 1', value: '123' },
+        { label: 'Option 2', value: '456' },
     ],
 };
 
@@ -44,8 +44,8 @@ TopLeft.args = {
     direction: 'top left' as DropdownDirection,
     value: '123',
     items: [
-        { content: 'Option A', value: '123' },
-        { content: 'Option B', value: '456' },
+        { label: 'Option A', value: '123' },
+        { label: 'Option B', value: '456' },
     ],
 };
 
@@ -54,8 +54,8 @@ TopRight.args = {
     direction: 'top right' as DropdownDirection,
     value: '123',
     items: [
-        { content: 'Option X', value: '123' },
-        { content: 'Option Y', value: '456' },
+        { label: 'Option X', value: '123' },
+        { label: 'Option Y', value: '456' },
     ],
 };
 
@@ -64,8 +64,8 @@ BottomLeft.args = {
     direction: 'bottom left' as DropdownDirection,
     value: '123',
     items: [
-        { content: 'Option 1', value: '123' },
-        { content: 'Option 2', value: '456' },
+        { label: 'Option 1', value: '123' },
+        { label: 'Option 2', value: '456' },
     ],
 };
 
@@ -74,16 +74,16 @@ BottomRight.args = {
     direction: 'bottom right' as DropdownDirection,
     value: '123',
     items: [
-        { content: 'Option 1', value: '123' },
-        { content: 'Option 2', value: '456' },
+        { label: 'Option 1', value: '123' },
+        { label: 'Option 2', value: '456' },
     ],
 };
 
 export const NoSelectedValue = Template.bind({});
 NoSelectedValue.args = {
     items: [
-        { content: 'Option 1', value: '123' },
-        { content: 'Option 2', value: '456' },
+        { label: 'Option 1', value: '123' },
+        { label: 'Option 2', value: '456' },
     ],
     defaultValue: '123',
 };
@@ -93,8 +93,8 @@ ReadOnly.args = {
     readonly: true,
     value: '123',
     items: [
-        { content: 'Option 1', value: '123' },
-        { content: 'Option 2', value: '456' },
+        { label: 'Option 1', value: '123' },
+        { label: 'Option 2', value: '456' },
     ],
 };
 
@@ -103,7 +103,7 @@ WithLabel.args = {
     label: 'Select an option',
     value: '123',
     items: [
-        { content: 'Option 1', value: '123' },
-        { content: 'Option 2', value: '456' },
+        { label: 'Option 1', value: '123' },
+        { label: 'Option 2', value: '456' },
     ],
 };

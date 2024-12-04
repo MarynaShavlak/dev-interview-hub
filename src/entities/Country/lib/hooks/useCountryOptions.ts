@@ -17,23 +17,23 @@ export const useCountryOptions = () => {
     return [
         {
             value: Country.Ukraine,
-            content: t('Україна'),
+            label: t('Україна'),
         },
         {
             value: Country.Poland,
-            content: t('Польща'),
+            label: t('Польща'),
         },
         {
             value: Country.Croatia,
-            content: t('Хорватія'),
+            label: t('Хорватія'),
         },
         {
             value: Country.Germany,
-            content: t('Німмеччина'),
+            label: t('Німмеччина'),
         },
         {
             value: Country.Ireland,
-            content: t('Ірландія'),
+            label: t('Ірландія'),
         },
     ] as SelectOption<Country>[];
 };

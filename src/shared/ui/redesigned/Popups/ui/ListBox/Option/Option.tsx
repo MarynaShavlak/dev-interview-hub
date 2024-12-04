@@ -9,7 +9,7 @@ import cls from './Option.module.scss';
 
 export interface ListBoxItem<T extends string> {
     value: T;
-    content: ReactNode;
+    label: ReactNode;
     disabled?: boolean;
 }
 interface OptionItemProps<T extends string> {
@@ -49,7 +49,7 @@ export function Option<T extends string>({ item }: OptionItemProps<T>) {
                         className={classNames(cls.wrap, {})}
                         justify="between"
                     >
-                        {item.content}
+                        {item.label}
                         {selected && (
                             <Icon
                                 Svg={CheckedIcon}
