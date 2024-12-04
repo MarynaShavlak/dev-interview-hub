@@ -18,7 +18,7 @@ export const DeprecatedArticleSortSelector = memo(
         const rawOrderOptions = useOrderOptions();
         const orderOptions = useMemo(() => rawOrderOptions, [rawOrderOptions]);
 
-        const rawSortFieldOptions = useSortFieldOptions();
+        const rawSortFieldOptions = useSortFieldOptions(order);
         const sortFieldOptions = useMemo(
             () => rawSortFieldOptions,
             [rawSortFieldOptions],

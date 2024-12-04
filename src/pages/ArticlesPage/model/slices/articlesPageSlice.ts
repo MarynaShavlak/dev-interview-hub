@@ -31,7 +31,7 @@ const articlesPageSlice = buildSlice({
         hasMore: true,
         _inited: false,
         limit: 9,
-        sort: ArticleSortField.CREATED,
+        sort: ArticleSortField.CREATED_ASC,
         search: '',
         order: 'asc',
         category: ArticleCategory.ALL,

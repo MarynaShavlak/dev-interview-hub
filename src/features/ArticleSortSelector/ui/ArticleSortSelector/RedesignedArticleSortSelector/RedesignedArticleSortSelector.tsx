@@ -8,32 +8,11 @@ import {
 import { ListBox } from '@/shared/ui/redesigned/Popups';
 import { ArticleSortSelectorProps } from '../ArticleSortSelector';
 import { ArticleSortField } from '@/entities/Article';
-
-const SortBy: React.FC = () => {
-    const { refine, currentRefinement, options } = useSortBy({
-        items: [
-            { value: 'instant_search', label: 'Default' },
-            { value: 'instant_search_price_asc', label: 'Price Ascending' },
-            { value: 'instant_search_price_desc', label: 'Price Descending' },
-        ],
-    });
-
-    const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-        const selectedValue = event.target.value;
-        refine(selectedValue);
-        console.log(`Sorting changed to: ${selectedValue}`); // Custom callback
-    };
-
-    return (
-        <select value={currentRefinement} onChange={handleChange}>
-            {options.map((item) => (
-                <option key={item.value} value={item.value}>
-                    {item.label}
-                </option>
-            ))}
-        </select>
-    );
-};
+import { classNames } from '@/shared/lib/classes/classNames/classNames';
+import { VStack } from '@/shared/ui/common/Stack';
+import { Text } from '@/shared/ui/redesigned/Text';
+import { Box } from '@/shared/ui/common/Box';
+import { getFlexClasses } from '@/shared/lib/classes/getFlexClasses/getFlexClasses';
 
 export const RedesignedArticleSortSelector = memo(
     (props: ArticleSortSelectorProps) => {
@@ -43,21 +22,22 @@ export const RedesignedArticleSortSelector = memo(
         const rawOrderOptions = useOrderOptions();
         const orderOptions = useMemo(() => rawOrderOptions, [rawOrderOptions]);
 
-        const rawSortFieldOptions = useSortFieldOptions();
+        const rawSortFieldOptions = useSortFieldOptions(order);
         const sortFieldOptions = useMemo(
             () => rawSortFieldOptions,
             [rawSortFieldOptions],
         );
 
         const { refine, currentRefinement, options } = useSortBy({
-            items: [
-                { label: 'Views (asc)', value: 'articles_views_asc' },
-                {
-                    label: 'Creation date (asc)',
-                    value: 'articles_createdAt_asc',
-                },
-                { label: 'Title (asc)', value: 'articles_title_asc' },
-            ],
+            items: sortFieldOptions,
+            // [
+            //     { label: 'Views (asc)', value: 'articles_views_asc' },
+            //     {
+            //         label: 'Creation date (asc)',
+            //         value: 'articles_createdAt_asc',
+            //     },
+            //     { label: 'Title (asc)', value: 'articles_title_asc' },
+            // ],
         });
 
         const handleChange = (sort: ArticleSortField) => {
@@ -65,22 +45,36 @@ export const RedesignedArticleSortSelector = memo(
             refine(sort);
             console.log(`Sorting changed to: ${sort}`); // Custom callback
         };
-        console.log('algolia options', options);
-        console.log('react options', sortFieldOptions);
-        return (
-            <div>
-                <ListBox
-                    items={options}
-                    value={sort}
-                    onChange={(e) => handleChange(e)}
-                />
+        // console.log('algolia options', options);
+        // console.log('react options', sortFieldOptions);
 
-                <ListBox
-                    items={orderOptions}
-                    value={order}
-                    onChange={onChangeOrder}
-                />
-            </div>
+        const additionalClasses = getFlexClasses({
+            align: 'center',
+            hStack: true,
+        });
+        return (
+            <Box
+                className={classNames('', {}, [
+                    ...additionalClasses,
+                    className,
+                ])}
+            >
+                <VStack gap="8">
+                    <Text text={t('Сортувати ПО')} />
+
+                    <ListBox
+                        items={options}
+                        value={sort}
+                        onChange={handleChange}
+                    />
+
+                    <ListBox
+                        items={orderOptions}
+                        value={order}
+                        onChange={onChangeOrder}
+                    />
+                </VStack>
+            </Box>
         );
     },
 );
@@ -121,3 +115,29 @@ export const RedesignedArticleSortSelector = memo(
 //         );
 //     },
 // );
+
+// const SortBy: React.FC = () => {
+//     const { refine, currentRefinement, options } = useSortBy({
+//         items: [
+//             { value: 'instant_search', label: 'Default' },
+//             { value: 'instant_search_price_asc', label: 'Price Ascending' },
+//             { value: 'instant_search_price_desc', label: 'Price Descending' },
+//         ],
+//     });
+//
+//     const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+//         const selectedValue = event.target.value;
+//         refine(selectedValue);
+//         console.log(`Sorting changed to: ${selectedValue}`); // Custom callback
+//     };
+//
+//     return (
+//         <select value={currentRefinement} onChange={handleChange}>
+//             {options.map((item) => (
+//                 <option key={item.value} value={item.value}>
+//                     {item.label}
+//                 </option>
+//             ))}
+//         </select>
+//     );
+// };

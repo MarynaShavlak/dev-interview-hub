@@ -26,7 +26,7 @@ const Template: ComponentStory<typeof ArticlesFilters> = (args) => {
     const [search, setSearch] = useState<string>(argsSearch || '');
     const [order, setOrder] = useState<SortOrder>(argsOrder || 'asc');
     const [sort, setSort] = useState<ArticleSortField>(
-        argsSort || ArticleSortField.CREATED,
+        argsSort || ArticleSortField.CREATED_ASC,
     );
     const [category, setCategory] = useState<ArticleCategory>(
         argsCategory || ArticleCategory.ALL,
@@ -55,7 +55,7 @@ const Template: ComponentStory<typeof ArticlesFilters> = (args) => {
 
 export const Normal = Template.bind({});
 Normal.args = {
-    sort: ArticleSortField.CREATED,
+    sort: ArticleSortField.CREATED_ASC,
     order: 'asc',
     category: ArticleCategory.ALL,
     search: '',

@@ -32,6 +32,8 @@ export function ListBox<T extends string>(props: ListBoxProps<T>) {
         direction = 'bottom right',
         label,
     } = props;
+    // console.log('value in sort listbox', value);
+    // console.log('items in sort listbox', items);
 
     const optionsClasses = classNames(cls.options, {}, [
         mapDirectionClass[direction],
@@ -47,6 +49,9 @@ export function ListBox<T extends string>(props: ListBoxProps<T>) {
         // @ts-ignore
         return items?.find((item) => item.value === value);
     }, [items, value]);
+
+    // console.log('selectedItem in sort listbox', selectedItem);
+    // console.log('default in sort listbox', defaultValue);
     return (
         <HStack gap="4">
             {label && <span>{`${label}:`}</span>}

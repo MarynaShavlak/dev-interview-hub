@@ -41,7 +41,7 @@ export const [useArticlesPageOrder, getArticlesPageOrder] = buildSelector(
 
 export const [useArticlesPageSort, getArticlesPageSort] = buildSelector(
     (state: StateSchema) =>
-        state.articlesPage?.sort || ArticleSortField.CREATED,
+        state.articlesPage?.sort || ArticleSortField.CREATED_ASC,
 );
 
 export const [useArticlesPageSearch, getArticlesPageSearch] = buildSelector(

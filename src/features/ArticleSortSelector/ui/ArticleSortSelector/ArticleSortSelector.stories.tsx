@@ -18,7 +18,7 @@ const Template: ComponentStory<typeof ArticleSortSelector> = (args) => {
     const { order: argsOrder, sort: argsSort } = args;
     const [order, setOrder] = useState<SortOrder>(argsOrder || 'asc');
     const [sort, setSort] = useState<ArticleSortField>(
-        argsSort || ArticleSortField.TITLE,
+        argsSort || ArticleSortField.TITLE_ASC,
     );
 
     const handleOrderChange = (newOrder: SortOrder) => {
@@ -46,6 +46,6 @@ Normal.args = {};
 export const NormalRedesigned = Template.bind({});
 NormalRedesigned.args = {
     order: 'asc',
-    sort: ArticleSortField.TITLE,
+    sort: ArticleSortField.TITLE_ASC,
 };
 NormalRedesigned.decorators = [NewDesignDecorator];

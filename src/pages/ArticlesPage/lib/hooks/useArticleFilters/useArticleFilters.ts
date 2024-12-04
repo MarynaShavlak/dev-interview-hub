@@ -96,10 +96,17 @@ export const useArticleFilters = () => {
 
     const onChangeOrder = useCallback(
         (newOrder: SortOrder) => {
+            console.log('old order', order);
+            const sortField = sort.split('_')[1];
+            const updatedSort =
+                `articles_${sortField}_${newOrder}` as ArticleSortField;
+            console.log('updatedSort', updatedSort);
             setOrder(newOrder);
+            setSort(updatedSort);
+            console.log('neworder', newOrder);
             resetPageAndFetchData();
         },
-        [setOrder, resetPageAndFetchData],
+        [order, setOrder, resetPageAndFetchData],
     );
 
     const onChangeSearch = useCallback(

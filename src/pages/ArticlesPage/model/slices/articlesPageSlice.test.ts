@@ -21,7 +21,7 @@ describe('articlesPageSlice tests', () => {
         hasMore: true,
         _inited: false,
         limit: 9,
-        sort: ArticleSortField.CREATED,
+        sort: ArticleSortField.CREATED_ASC,
         search: '',
         order: 'asc',
         category: ArticleCategory.ALL,
@@ -68,7 +68,7 @@ describe('articlesPageSlice tests', () => {
     });
 
     test('should handle setSort action', () => {
-        const sort: ArticleSortField = ArticleSortField.TITLE;
+        const sort: ArticleSortField = ArticleSortField.TITLE_ASC;
         const expectedState = { ...initialState, sort };
         expect(
             articlesPageReducer(
@@ -173,7 +173,7 @@ describe('articlesPageSlice tests', () => {
             hasMore: false,
             _inited: false,
             limit: 9,
-            sort: ArticleSortField.CREATED,
+            sort: ArticleSortField.CREATED_ASC,
             search: '',
             order: 'asc',
             category: ArticleCategory.ALL,
@@ -209,7 +209,7 @@ describe('articlesPageSlice tests', () => {
             hasMore: false,
             _inited: false,
             limit: 9,
-            sort: ArticleSortField.CREATED,
+            sort: ArticleSortField.CREATED_ASC,
             search: '',
             order: 'asc',
             category: ArticleCategory.ALL,

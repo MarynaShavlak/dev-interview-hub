@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
-import { ArticleSortField } from '@/entities/Article';
 import { SortOrder } from '@/shared/types/sortOrder';
 import { SelectOption } from '@/shared/ui/deprecated/Select';
+import { ArticleSortField } from '@/entities/Article';
 
 /**
  * Custom hook for retrieving localized sorting order options for articles.
@@ -37,20 +37,41 @@ export const useOrderOptions = () => {
  *
  */
 
-export const useSortFieldOptions = () => {
+export const useSortFieldOptions = (order: SortOrder) => {
     const { t } = useTranslation('articles');
-    return [
-        {
-            value: ArticleSortField.CREATED,
-            label: t('даті створення'),
-        },
-        {
-            value: ArticleSortField.TITLE,
-            label: t('назві'),
-        },
-        {
-            value: ArticleSortField.VIEWS,
-            label: t('переглядам'),
-        },
-    ] as SelectOption<ArticleSortField>[];
+    console.log('order', order);
+    const items =
+        order === 'asc'
+            ? [
+                  { label: t('переглядам'), value: 'articles_views_asc' },
+                  {
+                      label: t('даті створення'),
+                      value: 'articles_createdAt_asc',
+                  },
+                  { label: t('назві'), value: 'articles_title_asc' },
+              ]
+            : [
+                  { label: t('переглядам'), value: 'articles_views_desc' },
+                  {
+                      label: t('даті створення'),
+                      value: 'articles_createdAt_desc',
+                  },
+                  { label: t('назві'), value: 'articles_title_desc' },
+              ];
+    return items as SelectOption<ArticleSortField>[];
 };
+
+// return [
+//     {
+//         value: ArticleSortField.CREATED,
+//         label: t('даті створення'),
+//     },
+//     {
+//         value: ArticleSortField.TITLE,
+//         label: t('назві'),
+//     },
+//     {
+//         value: ArticleSortField.VIEWS,
+//         label: t('переглядам'),
+//     },
+// ] as SelectOption<ArticleSortField>[];

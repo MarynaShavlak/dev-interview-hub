@@ -46,7 +46,7 @@ describe('initArticlesPage thunk', () => {
 
         const searchParams = new URLSearchParams({
             order: 'asc',
-            sort: ArticleSortField.TITLE,
+            sort: ArticleSortField.TITLE_ASC,
             search: 'test',
             category: ArticleCategory.IT,
         });
@@ -58,7 +58,7 @@ describe('initArticlesPage thunk', () => {
             articlesPageActions.setOrder('asc'),
         );
         expect(thunk.dispatch).toHaveBeenCalledWith(
-            articlesPageActions.setSort(ArticleSortField.TITLE),
+            articlesPageActions.setSort(ArticleSortField.TITLE_ASC),
         );
         expect(thunk.dispatch).toHaveBeenCalledWith(
             articlesPageActions.setSearch('test'),

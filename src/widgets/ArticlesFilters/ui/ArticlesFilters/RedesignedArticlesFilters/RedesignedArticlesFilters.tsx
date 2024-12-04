@@ -20,10 +20,6 @@ import { VStack } from '@/shared/ui/common/Stack';
 import SearchIcon from '@/shared/assets/icons/search.svg';
 import CloseIcon from '@/shared/assets/icons/close.svg';
 import { SortOrder } from '@/shared/types/sortOrder';
-import { Text } from '@/shared/ui/redesigned/Text';
-import { Box } from '@/shared/ui/common/Box';
-import { getFlexClasses } from '@/shared/lib/classes/getFlexClasses/getFlexClasses';
-import { ArticleSortField } from '@/entities/Article';
 
 const searchClient = algoliasearch(
     '6L3XOJ5FZ8',
@@ -102,56 +98,7 @@ export const RedesignedArticlesFilters = (props: ArticlesFiltersProps) => {
         // Update selected category; 'null' or empty string for "All items"
         setSelectedCategory(category);
     };
-    const getSortItems = (order: SortOrder) => {
-        return order === 'asc'
-            ? [
-                  { label: 'Views (asc)', value: 'articles_views_asc' },
-                  {
-                      label: 'Creation date (asc)',
-                      value: 'articles_createdAt_asc',
-                  },
-                  { label: 'Title (asc)', value: 'articles_title_asc' },
-              ]
-            : [
-                  { label: 'Views (desc)', value: 'articles_views_desc' },
-                  {
-                      label: 'Creation date (desc)',
-                      value: 'articles_createdAt_desc',
-                  },
-                  { label: 'Title (desc)', value: 'articles_title_desc' },
-              ];
-    };
 
-    const items = getSortItems(order);
-    console.log('itesm', items);
-
-    // const { options } = useSortBy({
-    //     items,
-    // });
-
-    const toggleOrder = (order: SortOrder) => {
-        onChangeOrder(order);
-        console.log('order', order);
-    };
-
-    const toggleSortOption = (sort: ArticleSortField) => {
-        onChangeSort(sort);
-        console.log('sort', sort);
-    };
-
-    // @ts-ignore
-    const transformSortItems = (items) => {
-        // @ts-ignore
-        return items.map((item) => ({
-            ...item,
-            label: item.label.toUpperCase(),
-        }));
-    };
-
-    const additionalClasses = getFlexClasses({
-        align: 'center',
-        hStack: true,
-    });
     return (
         <Card
             className={classNames(cls.ArticlesFilters, {}, [className])}
@@ -207,27 +154,12 @@ export const RedesignedArticlesFilters = (props: ArticlesFiltersProps) => {
                             }}
                         />
                     </VStack>
-
-                    <Box
-                        className={classNames('', {}, [
-                            ...additionalClasses,
-                            className,
-                        ])}
-                    >
-                        <VStack gap="8">
-                            <Text text={t('Сортувати ПО')} />
-                            <SortBy
-                            // items={items}
-                            // transformItems={transformSortItems}
-                            />
-                            <ArticleSortSelector
-                                order={order}
-                                sort={sort}
-                                onChangeOrder={toggleOrder}
-                                onChangeSort={onChangeSort}
-                            />
-                        </VStack>
-                    </Box>
+                    <ArticleSortSelector
+                        order={order}
+                        sort={sort}
+                        onChangeOrder={onChangeOrder}
+                        onChangeSort={onChangeSort}
+                    />
                 </InstantSearch>
             </VStack>
         </Card>

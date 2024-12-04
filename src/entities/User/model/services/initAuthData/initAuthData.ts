@@ -31,7 +31,7 @@ export const initAuthData = createAsyncThunk<User, void, ThunkConfig<string>>(
             const response = await dispatch(
                 getUserDataByIdQuery(userId),
             ).unwrap();
-            console.log('response in init', response);
+            // console.log('response in init', response);
 
             initializeUserFeatures(response);
 
