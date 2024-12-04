@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { liteClient as algoliasearch } from 'algoliasearch/lite';
-import React, { useState } from 'react';
+import React from 'react';
 import {
     ClearRefinements,
     MenuProps,
@@ -26,22 +26,27 @@ const searchClient = algoliasearch(
 );
 
 const transformItems: MenuProps['transformItems'] = (items) => {
-    // return items.map((item) => ({
-    //     ...item,
-    //     label: `${item.label} `,
-    // }));
-    // console.log('items in transform', items);
+    const allCategories = [
+        { label: 'React', value: 'React' },
+        { label: 'HTML', value: 'HTML' },
+        { label: 'CSS', value: 'CSS' },
+        { label: 'IT', value: 'IT' },
+        { label: 'TypeScript', value: 'TypeScript' },
+        { label: 'JavaScript', value: 'JavaScript' },
+    ];
     return [
-        // {
-        //     label: 'All items',
-        //     value: '',
-        //     count: items.reduce((total, item) => total + item.count, 0),
-        //     isRefined: items.every((item) => !item.isRefined),
-        // },
-        ...items.map((item) => ({
-            ...item,
-            label: `${item.label}`,
-        })),
+        ...allCategories.map((category) => {
+            const matchingItem = items.find(
+                (item) => item.label === category.label,
+            );
+            return (
+                matchingItem || {
+                    ...category,
+                    count: 0,
+                    isRefined: false,
+                }
+            );
+        }),
     ];
 };
 
@@ -59,19 +64,6 @@ export const RedesignedArticlesFilters = (props: ArticlesFiltersProps) => {
     } = props;
     const { t } = useTranslation();
 
-    const [selectedCategory, setSelectedCategory] = useState<string | null>(
-        null,
-    );
-
-    const allCategories = [
-        { label: 'React', value: 'React' },
-        { label: 'HTML', value: 'HTML' },
-        { label: 'CSS', value: 'CSS' },
-        { label: 'IT', value: 'IT' },
-        { label: 'TypeScript', value: 'TypeScript' },
-        { label: 'JavaScript', value: 'JavaScript' },
-    ];
-
     console.log('sorttttt:', sort);
     return (
         <Card
@@ -84,14 +76,7 @@ export const RedesignedArticlesFilters = (props: ArticlesFiltersProps) => {
                     indexName={sort}
                     future={{ preserveSharedStateOnUnmount: false }}
                 >
-                    <Configure
-                        filters={
-                            selectedCategory
-                                ? `category:"${selectedCategory}"`
-                                : ''
-                        }
-                        hitsPerPage={200}
-                    />
+                    <Configure hitsPerPage={200} />
                     <SearchBox
                         // onChange={onChangeSearch}
                         // value={search}
@@ -122,29 +107,7 @@ export const RedesignedArticlesFilters = (props: ArticlesFiltersProps) => {
 
                         <RefinementList
                             attribute="category"
-                            // transformItems={(items) =>
-                            //     items.sort((a, b) =>
-                            //         a.label.localeCompare(b.label),
-                            //     )
-                            // }
-                            transformItems={(items) => {
-                                const mergedItems = allCategories.map(
-                                    (category) => {
-                                        const matchingItem = items.find(
-                                            (item) =>
-                                                item.label === category.label,
-                                        );
-                                        return (
-                                            matchingItem || {
-                                                ...category,
-                                                count: 0,
-                                                isRefined: false,
-                                            }
-                                        );
-                                    },
-                                );
-                                return mergedItems;
-                            }}
+                            transformItems={transformItems}
                             classNames={{
                                 count: cls.categoryCount,
                                 list: cls.MenuList,
