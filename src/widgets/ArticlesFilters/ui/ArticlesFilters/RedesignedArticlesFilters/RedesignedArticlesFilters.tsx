@@ -3,8 +3,8 @@ import { liteClient as algoliasearch } from 'algoliasearch/lite';
 import React, { useState } from 'react';
 import {
     ClearRefinements,
-    Menu,
     MenuProps,
+    RefinementList,
     SearchBox,
 } from 'react-instantsearch';
 
@@ -116,16 +116,34 @@ export const RedesignedArticlesFilters = (props: ArticlesFiltersProps) => {
                             }}
                         />
 
-                        <Menu
+                        {/* <Menu */}
+                        {/*    attribute="category" */}
+                        {/*    // limit={250} */}
+                        {/*    transformItems={transformItems} */}
+                        {/*    classNames={{ */}
+                        {/*        link: cls.MenuLink, */}
+                        {/*        count: cls.categoryCount, */}
+                        {/*        list: cls.MenuList, */}
+                        {/*        item: cls.MenuItem, */}
+                        {/*        selectedItem: cls.SelectedMenuItem, */}
+                        {/*    }} */}
+                        {/* /> */}
+                        <RefinementList
                             attribute="category"
                             // limit={250}
-                            transformItems={transformItems}
+                            transformItems={(items) =>
+                                items.sort((a, b) =>
+                                    a.label.localeCompare(b.label),
+                                )
+                            }
                             classNames={{
-                                link: cls.MenuLink,
+                                // link: cls.MenuLink,
                                 count: cls.categoryCount,
                                 list: cls.MenuList,
+                                label: cls.MenuLabel,
                                 item: cls.MenuItem,
                                 selectedItem: cls.SelectedMenuItem,
+                                checkbox: cls.MenuCheckbox,
                             }}
                         />
                     </VStack>
