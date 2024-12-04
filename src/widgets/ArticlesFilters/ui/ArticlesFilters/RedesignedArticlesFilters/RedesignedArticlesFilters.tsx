@@ -63,10 +63,14 @@ export const RedesignedArticlesFilters = (props: ArticlesFiltersProps) => {
         null,
     );
 
-    const handleCategoryChange = (category: string) => {
-        // Update selected category; 'null' or empty string for "All items"
-        setSelectedCategory(category);
-    };
+    const allCategories = [
+        { label: 'React', value: 'React' },
+        { label: 'HTML', value: 'HTML' },
+        { label: 'CSS', value: 'CSS' },
+        { label: 'IT', value: 'IT' },
+        { label: 'TypeScript', value: 'TypeScript' },
+        { label: 'JavaScript', value: 'JavaScript' },
+    ];
 
     console.log('sorttttt:', sort);
     return (
@@ -116,28 +120,32 @@ export const RedesignedArticlesFilters = (props: ArticlesFiltersProps) => {
                             }}
                         />
 
-                        {/* <Menu */}
-                        {/*    attribute="category" */}
-                        {/*    // limit={250} */}
-                        {/*    transformItems={transformItems} */}
-                        {/*    classNames={{ */}
-                        {/*        link: cls.MenuLink, */}
-                        {/*        count: cls.categoryCount, */}
-                        {/*        list: cls.MenuList, */}
-                        {/*        item: cls.MenuItem, */}
-                        {/*        selectedItem: cls.SelectedMenuItem, */}
-                        {/*    }} */}
-                        {/* /> */}
                         <RefinementList
                             attribute="category"
-                            // limit={250}
-                            transformItems={(items) =>
-                                items.sort((a, b) =>
-                                    a.label.localeCompare(b.label),
-                                )
-                            }
+                            // transformItems={(items) =>
+                            //     items.sort((a, b) =>
+                            //         a.label.localeCompare(b.label),
+                            //     )
+                            // }
+                            transformItems={(items) => {
+                                const mergedItems = allCategories.map(
+                                    (category) => {
+                                        const matchingItem = items.find(
+                                            (item) =>
+                                                item.label === category.label,
+                                        );
+                                        return (
+                                            matchingItem || {
+                                                ...category,
+                                                count: 0,
+                                                isRefined: false,
+                                            }
+                                        );
+                                    },
+                                );
+                                return mergedItems;
+                            }}
                             classNames={{
-                                // link: cls.MenuLink,
                                 count: cls.categoryCount,
                                 list: cls.MenuList,
                                 label: cls.MenuLabel,
