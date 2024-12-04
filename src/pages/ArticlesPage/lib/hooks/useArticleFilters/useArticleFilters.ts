@@ -91,22 +91,22 @@ export const useArticleFilters = () => {
             setSort(newSort);
             resetPageAndFetchData();
         },
-        [setSort, resetPageAndFetchData],
+        [setSort],
     );
 
     const onChangeOrder = useCallback(
         (newOrder: SortOrder) => {
-            console.log('old order', order);
+            // console.log('old order', order);
             const sortField = sort.split('_')[1];
             const updatedSort =
                 `articles_${sortField}_${newOrder}` as ArticleSortField;
-            console.log('updatedSort', updatedSort);
+            // console.log('updatedSort', updatedSort);
             setOrder(newOrder);
             setSort(updatedSort);
-            console.log('neworder', newOrder);
+            // console.log('neworder', newOrder);
             resetPageAndFetchData();
         },
-        [order, setOrder, resetPageAndFetchData],
+        [sort, setOrder, setSort],
     );
 
     const onChangeSearch = useCallback(

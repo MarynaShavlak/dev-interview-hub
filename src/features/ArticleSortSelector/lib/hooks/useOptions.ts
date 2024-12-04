@@ -39,7 +39,7 @@ export const useOrderOptions = () => {
 
 export const useSortFieldOptions = (order: SortOrder) => {
     const { t } = useTranslation('articles');
-    console.log('order', order);
+
     const items =
         order === 'asc'
             ? [

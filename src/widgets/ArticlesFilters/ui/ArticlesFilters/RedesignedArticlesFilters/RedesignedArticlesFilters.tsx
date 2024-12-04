@@ -8,7 +8,7 @@ import {
     SearchBox,
 } from 'react-instantsearch';
 
-import { InstantSearch, Configure, useSortBy } from 'react-instantsearch-core';
+import { InstantSearch, Configure } from 'react-instantsearch-core';
 
 import { ArticleSortSelector } from '@/features/ArticleSortSelector';
 import { ArticlesFiltersProps } from '../ArticlesFilters';
@@ -19,6 +19,7 @@ import { Card } from '@/shared/ui/redesigned/Card';
 import { VStack } from '@/shared/ui/common/Stack';
 import SearchIcon from '@/shared/assets/icons/search.svg';
 import CloseIcon from '@/shared/assets/icons/close.svg';
+import { ArticleSortField } from '@/entities/Article';
 import { SortOrder } from '@/shared/types/sortOrder';
 
 const searchClient = algoliasearch(
@@ -31,7 +32,7 @@ const transformItems: MenuProps['transformItems'] = (items) => {
     //     ...item,
     //     label: `${item.label} `,
     // }));
-
+    // console.log('items in transform', items);
     return [
         // {
         //     label: 'All items',
@@ -44,36 +45,6 @@ const transformItems: MenuProps['transformItems'] = (items) => {
             label: `${item.label}`,
         })),
     ];
-};
-
-interface AlgoliaSearchProps {
-    order: SortOrder;
-}
-
-const SortBy: React.FC = () => {
-    const { refine, currentRefinement, options } = useSortBy({
-        items: [
-            { value: 'instant_search', label: 'Default' },
-            { value: 'instant_search_price_asc', label: 'Price Ascending' },
-            { value: 'instant_search_price_desc', label: 'Price Descending' },
-        ],
-    });
-
-    const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-        const selectedValue = event.target.value;
-        refine(selectedValue);
-        console.log(`Sorting changed to: ${selectedValue}`); // Custom callback
-    };
-
-    return (
-        <select value={currentRefinement} onChange={handleChange}>
-            {options.map((item) => (
-                <option key={item.value} value={item.value}>
-                    {item.label}
-                </option>
-            ))}
-        </select>
-    );
 };
 
 export const RedesignedArticlesFilters = (props: ArticlesFiltersProps) => {
@@ -98,6 +69,8 @@ export const RedesignedArticlesFilters = (props: ArticlesFiltersProps) => {
         // Update selected category; 'null' or empty string for "All items"
         setSelectedCategory(category);
     };
+
+    const getIndexName = (sort: ArticleSortField, order: SortOrder) => {};
 
     return (
         <Card
@@ -141,6 +114,7 @@ export const RedesignedArticlesFilters = (props: ArticlesFiltersProps) => {
                                 disabledButton: cls.AllItemsBtnNotSelected,
                             }}
                         />
+
                         <Menu
                             attribute="category"
                             // limit={250}
@@ -317,5 +291,31 @@ export const RedesignedArticlesFilters = (props: ArticlesFiltersProps) => {
 //                 onChangeSort={onChangeSort}
 //             />
 //         </InstantSearch>
+//     );
+// };
+
+// const SortBy: React.FC = () => {
+//     const { refine, currentRefinement, options } = useSortBy({
+//         items: [
+//             { value: 'instant_search', label: 'Default' },
+//             { value: 'instant_search_price_asc', label: 'Price Ascending' },
+//             { value: 'instant_search_price_desc', label: 'Price Descending' },
+//         ],
+//     });
+//
+//     const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+//         const selectedValue = event.target.value;
+//         refine(selectedValue);
+//         console.log(`Sorting changed to: ${selectedValue}`); // Custom callback
+//     };
+//
+//     return (
+//         <select value={currentRefinement} onChange={handleChange}>
+//             {options.map((item) => (
+//                 <option key={item.value} value={item.value}>
+//                     {item.label}
+//                 </option>
+//             ))}
+//         </select>
 //     );
 // };
