@@ -1,4 +1,4 @@
-import { memo, ReactNode, useCallback } from 'react';
+import { memo, useCallback } from 'react';
 import { FlexDirection } from '@/shared/types/flexTypes';
 import { Each } from '@/shared/lib/components/Each/Each';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
@@ -8,7 +8,7 @@ import { Flex } from '../../common/Stack/Flex/Flex';
 
 export interface TabItem {
     value: string;
-    content: ReactNode;
+    label: string;
 }
 
 interface TabsProps {
@@ -48,7 +48,7 @@ export const Tabs = memo((props: TabsProps) => {
                             onClick={clickHandle(tab)}
                             border="round"
                         >
-                            {tab.content}
+                            {tab.label}
                         </Card>
                     );
                 }}

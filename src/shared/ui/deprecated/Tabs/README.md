@@ -45,9 +45,9 @@ import {useState } from 'react';
 import { Tabs } from '@/shared/ui/redesigned/Tabs';
 
 const tabs = [
-    { value: 'tab1', content: 'Tab 1 Content' },
-    { value: 'tab2', content: 'Tab 2 Content' },
-    { value: 'tab3', content: 'Tab 3 Content' }
+    { value: 'tab1', label: 'Tab 1 Content' },
+    { value: 'tab2', label: 'Tab 2 Content' },
+    { value: 'tab3', label: 'Tab 3 Content' }
 ];
 
 export const BasicTabsExample = () => {

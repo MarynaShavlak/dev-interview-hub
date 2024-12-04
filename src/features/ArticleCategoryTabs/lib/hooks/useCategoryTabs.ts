@@ -16,32 +16,28 @@ export const useCategoryTabs = () => {
     const { t } = useTranslation('articles');
     return [
         {
-            value: ArticleCategory.ALL,
-            content: t('Вcі статті'),
-        },
-        {
             value: ArticleCategory.IT,
-            content: t('IT'),
+            label: t('IT'),
         },
         {
             value: ArticleCategory.HTML,
-            content: t('HTML'),
+            label: t('HTML'),
         },
         {
             value: ArticleCategory.CSS,
-            content: t('CSS'),
+            label: t('CSS'),
         },
         {
             value: ArticleCategory.REACT,
-            content: t('React'),
+            label: t('React'),
         },
         {
             value: ArticleCategory.JAVASCRIPT,
-            content: t('JavaScript'),
+            label: t('JavaScript'),
         },
         {
             value: ArticleCategory.TYPESCRIPT,
-            content: t('TypeScript'),
+            label: t('TypeScript'),
         },
     ] as TabItem[];
 };

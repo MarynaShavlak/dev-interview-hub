@@ -1,12 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { liteClient as algoliasearch } from 'algoliasearch/lite';
 import React from 'react';
-import {
-    ClearRefinements,
-    MenuProps,
-    RefinementList,
-    SearchBox,
-} from 'react-instantsearch';
+import { MenuProps, SearchBox } from 'react-instantsearch';
 
 import { InstantSearch, Configure } from 'react-instantsearch-core';
 
@@ -19,6 +14,7 @@ import { Card } from '@/shared/ui/redesigned/Card';
 import { VStack } from '@/shared/ui/common/Stack';
 import SearchIcon from '@/shared/assets/icons/search.svg';
 import CloseIcon from '@/shared/assets/icons/close.svg';
+import { ArticleCategoryTabs } from '@/features/ArticleCategoryTabs';
 
 const searchClient = algoliasearch(
     '6L3XOJ5FZ8',
@@ -64,7 +60,6 @@ export const RedesignedArticlesFilters = (props: ArticlesFiltersProps) => {
     } = props;
     const { t } = useTranslation();
 
-    console.log('sorttttt:', sort);
     return (
         <Card
             className={classNames(cls.ArticlesFilters, {}, [className])}
@@ -93,31 +88,36 @@ export const RedesignedArticlesFilters = (props: ArticlesFiltersProps) => {
                             input: cls.SearchInput,
                         }}
                     />
+                    <ArticleCategoryTabs
+                        value={category}
+                        onChangeCategory={onChangeCategory}
+                        className={cls.tabs}
+                    />
 
-                    <VStack gap="8">
-                        <ClearRefinements
-                            translations={{
-                                resetButtonText: t('Вcі статті'),
-                            }}
-                            classNames={{
-                                button: cls.AllItemsBtn,
-                                disabledButton: cls.AllItemsBtnNotSelected,
-                            }}
-                        />
+                    {/* <VStack gap="8"> */}
+                    {/*    <ClearRefinements */}
+                    {/*        translations={{ */}
+                    {/*            resetButtonText: t('Вcі статті'), */}
+                    {/*        }} */}
+                    {/*        classNames={{ */}
+                    {/*            button: cls.AllItemsBtn, */}
+                    {/*            disabledButton: cls.AllItemsBtnNotSelected, */}
+                    {/*        }} */}
+                    {/*    /> */}
 
-                        <RefinementList
-                            attribute="category"
-                            transformItems={transformItems}
-                            classNames={{
-                                count: cls.categoryCount,
-                                list: cls.MenuList,
-                                label: cls.MenuLabel,
-                                item: cls.MenuItem,
-                                selectedItem: cls.SelectedMenuItem,
-                                checkbox: cls.MenuCheckbox,
-                            }}
-                        />
-                    </VStack>
+                    {/*    <RefinementList */}
+                    {/*        attribute="category" */}
+                    {/*        transformItems={transformItems} */}
+                    {/*        classNames={{ */}
+                    {/*            count: cls.categoryCount, */}
+                    {/*            list: cls.MenuList, */}
+                    {/*            label: cls.MenuLabel, */}
+                    {/*            item: cls.MenuItem, */}
+                    {/*            selectedItem: cls.SelectedMenuItem, */}
+                    {/*            checkbox: cls.MenuCheckbox, */}
+                    {/*        }} */}
+                    {/*    /> */}
+                    {/* </VStack> */}
                     <ArticleSortSelector
                         order={order}
                         sort={sort}

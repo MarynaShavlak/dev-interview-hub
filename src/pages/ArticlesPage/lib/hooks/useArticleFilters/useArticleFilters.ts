@@ -120,8 +120,9 @@ export const useArticleFilters = () => {
 
     const onChangeCategory = useCallback(
         (value: ArticleCategory) => {
+            console.log('valueeee', value);
             setCategory(value);
-            resetPageAndFetchData();
+            // resetPageAndFetchData();
         },
         [setCategory, resetPageAndFetchData],
     );
