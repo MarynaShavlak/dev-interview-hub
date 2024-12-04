@@ -19,8 +19,6 @@ import { Card } from '@/shared/ui/redesigned/Card';
 import { VStack } from '@/shared/ui/common/Stack';
 import SearchIcon from '@/shared/assets/icons/search.svg';
 import CloseIcon from '@/shared/assets/icons/close.svg';
-import { ArticleSortField } from '@/entities/Article';
-import { SortOrder } from '@/shared/types/sortOrder';
 
 const searchClient = algoliasearch(
     '6L3XOJ5FZ8',
@@ -70,15 +68,18 @@ export const RedesignedArticlesFilters = (props: ArticlesFiltersProps) => {
         setSelectedCategory(category);
     };
 
-    const getIndexName = (sort: ArticleSortField, order: SortOrder) => {};
-
+    console.log('sorttttt:', sort);
     return (
         <Card
             className={classNames(cls.ArticlesFilters, {}, [className])}
             padding="24"
         >
             <VStack gap="32">
-                <InstantSearch searchClient={searchClient} indexName="articles">
+                <InstantSearch
+                    searchClient={searchClient}
+                    indexName={sort}
+                    future={{ preserveSharedStateOnUnmount: false }}
+                >
                     <Configure
                         filters={
                             selectedCategory

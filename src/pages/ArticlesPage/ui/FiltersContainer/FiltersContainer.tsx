@@ -19,6 +19,10 @@ export const FiltersContainer = memo((props: FiltersContainerProps) => {
         order,
     } = useArticleFilters();
 
+    if (!sort || !order) {
+        return null;
+    }
+
     return (
         <ArticlesFilters
             category={category}

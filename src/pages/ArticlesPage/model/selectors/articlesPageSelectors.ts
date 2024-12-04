@@ -1,9 +1,5 @@
 import { StateSchema } from '@/app/providers/StoreProvider';
-import {
-    ArticleCategory,
-    ArticleSortField,
-    ArticleView,
-} from '@/entities/Article';
+import { ArticleCategory, ArticleView } from '@/entities/Article';
 import { buildSelector } from '@/shared/lib/store';
 
 export const [useArticlesPageIsLoading, getArticlesPageIsLoading] =
@@ -40,8 +36,8 @@ export const [useArticlesPageOrder, getArticlesPageOrder] = buildSelector(
 );
 
 export const [useArticlesPageSort, getArticlesPageSort] = buildSelector(
-    (state: StateSchema) =>
-        state.articlesPage?.sort || ArticleSortField.CREATED_ASC,
+    (state: StateSchema) => state.articlesPage?.sort,
+    // state.articlesPage?.sort || ArticleSortField.CREATED_ASC,
 );
 
 export const [useArticlesPageSearch, getArticlesPageSearch] = buildSelector(
