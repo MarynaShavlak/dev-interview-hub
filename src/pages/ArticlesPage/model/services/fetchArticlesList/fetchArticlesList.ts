@@ -1,7 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig } from '@/app/providers/StoreProvider';
 import { Article, ArticleCategory, getArticlesQuery } from '@/entities/Article';
-import { addQueryParams } from '@/shared/lib/url/addQueryParams/addQueryParams';
 import {
     getArticlesPageLimit,
     getArticlesPageNum,
@@ -56,12 +55,12 @@ export const fetchArticlesList = createAsyncThunk<
     // console.log('Articles Page Category:', category);
 
     try {
-        addQueryParams({
-            sort,
-            order,
-            search,
-            category,
-        });
+        // addQueryParams({
+        //     sort,
+        //     order,
+        //     search,
+        //     category,
+        // });
         const objectsLimit =
             category === ArticleCategory.ALL ? limit : undefined;
         const pageLimit = category === ArticleCategory.ALL ? page : undefined;

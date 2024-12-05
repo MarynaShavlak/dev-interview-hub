@@ -122,7 +122,7 @@ export const useArticleFilters = () => {
         (value: ArticleCategory) => {
             console.log('valueeee', value);
             setCategory(value);
-            // resetPageAndFetchData();
+            resetPageAndFetchData();
         },
         [setCategory, resetPageAndFetchData],
     );

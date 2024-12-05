@@ -31,14 +31,6 @@ export const RedesignedArticleSortSelector = memo(
 
         const { refine, currentRefinement, options } = useSortBy({
             items: sortFieldOptions,
-            // [
-            //     { label: 'Views (asc)', value: 'articles_views_asc' },
-            //     {
-            //         label: 'Creation date (asc)',
-            //         value: 'articles_createdAt_asc',
-            //     },
-            //     { label: 'Title (asc)', value: 'articles_title_asc' },
-            // ],
         });
 
         const handleSortOptionChange = (sort: ArticleSortField) => {
@@ -55,12 +47,7 @@ export const RedesignedArticleSortSelector = memo(
             const updatedSort = `articles_${sortField}_${newOrder}`;
             console.log(`updatedSort: ${updatedSort}`);
             refine(updatedSort);
-            //
-            // console.log(`Sorting changed to: ${sort}`);
-            // Custom callback
         };
-        // console.log('algolia options', options);
-        // console.log('react options', sortFieldOptions);
 
         const additionalClasses = getFlexClasses({
             align: 'center',

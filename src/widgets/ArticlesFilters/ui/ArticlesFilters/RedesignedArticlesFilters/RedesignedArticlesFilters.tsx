@@ -1,8 +1,8 @@
 import { useTranslation } from 'react-i18next';
 import { liteClient as algoliasearch } from 'algoliasearch/lite';
+import { history } from 'instantsearch.js/es/lib/routers';
 import React from 'react';
-import { MenuProps, SearchBox } from 'react-instantsearch';
-
+import { SearchBox } from 'react-instantsearch';
 import { InstantSearch, Configure } from 'react-instantsearch-core';
 
 import { ArticleSortSelector } from '@/features/ArticleSortSelector';
@@ -21,29 +21,37 @@ const searchClient = algoliasearch(
     '5fac3ea964aecac5d90374450bd541ab',
 );
 
-const transformItems: MenuProps['transformItems'] = (items) => {
-    const allCategories = [
-        { label: 'React', value: 'React' },
-        { label: 'HTML', value: 'HTML' },
-        { label: 'CSS', value: 'CSS' },
-        { label: 'IT', value: 'IT' },
-        { label: 'TypeScript', value: 'TypeScript' },
-        { label: 'JavaScript', value: 'JavaScript' },
-    ];
-    return [
-        ...allCategories.map((category) => {
-            const matchingItem = items.find(
-                (item) => item.label === category.label,
-            );
-            return (
-                matchingItem || {
-                    ...category,
-                    count: 0,
-                    isRefined: false,
-                }
-            );
-        }),
-    ];
+const routingConfig = {
+    stateMapping: {
+        // @ts-ignore
+        stateToRoute(uiState) {
+            return {
+                query: uiState?.indexName?.query || '',
+                page: uiState?.indexName?.page || 1,
+                category: uiState?.indexName?.refinementList?.category || [],
+                sort: uiState?.indexName?.sortBy || 'default',
+            };
+        },
+        // @ts-ignore
+        routeToState(routeState) {
+            return {
+                indexName: {
+                    query: routeState.query || '',
+                    page: routeState.page || 1,
+                    refinementList: {
+                        category: routeState.category || [],
+                    },
+                    sortBy: routeState.sort || 'default',
+                },
+            };
+        },
+    },
+    router: history({
+        writeDelay: 400, // Debounce time for updating the URL
+        getLocation() {
+            return window.location;
+        },
+    }),
 };
 
 export const RedesignedArticlesFilters = (props: ArticlesFiltersProps) => {
@@ -69,12 +77,10 @@ export const RedesignedArticlesFilters = (props: ArticlesFiltersProps) => {
                 <InstantSearch
                     searchClient={searchClient}
                     indexName={sort}
-                    future={{ preserveSharedStateOnUnmount: false }}
+                    routing={routingConfig}
                 >
                     <Configure hitsPerPage={200} />
                     <SearchBox
-                        // onChange={onChangeSearch}
-                        // value={search}
                         placeholder={t('Пошук')}
                         resetIconComponent={() => (
                             <Icon Svg={CloseIcon} className={cls.ResetIcon} />
@@ -94,30 +100,6 @@ export const RedesignedArticlesFilters = (props: ArticlesFiltersProps) => {
                         className={cls.tabs}
                     />
 
-                    {/* <VStack gap="8"> */}
-                    {/*    <ClearRefinements */}
-                    {/*        translations={{ */}
-                    {/*            resetButtonText: t('Вcі статті'), */}
-                    {/*        }} */}
-                    {/*        classNames={{ */}
-                    {/*            button: cls.AllItemsBtn, */}
-                    {/*            disabledButton: cls.AllItemsBtnNotSelected, */}
-                    {/*        }} */}
-                    {/*    /> */}
-
-                    {/*    <RefinementList */}
-                    {/*        attribute="category" */}
-                    {/*        transformItems={transformItems} */}
-                    {/*        classNames={{ */}
-                    {/*            count: cls.categoryCount, */}
-                    {/*            list: cls.MenuList, */}
-                    {/*            label: cls.MenuLabel, */}
-                    {/*            item: cls.MenuItem, */}
-                    {/*            selectedItem: cls.SelectedMenuItem, */}
-                    {/*            checkbox: cls.MenuCheckbox, */}
-                    {/*        }} */}
-                    {/*    /> */}
-                    {/* </VStack> */}
                     <ArticleSortSelector
                         order={order}
                         sort={sort}
@@ -129,6 +111,106 @@ export const RedesignedArticlesFilters = (props: ArticlesFiltersProps) => {
         </Card>
     );
 };
+
+const indexName = 'articles_createdAt_asc';
+
+const routing = {
+    router: history(),
+    stateMapping: {
+        // @ts-ignore
+        stateToRoute(uiState) {
+            const indexUiState = uiState[indexName];
+            return {
+                q: indexUiState.query,
+                category: indexUiState.refinementList?.category,
+                // page: indexUiState.page,
+            };
+        },
+        // @ts-ignore
+        routeToState(routeState) {
+            return {
+                [indexName]: {
+                    query: routeState.q,
+                    refinementList: {
+                        category: routeState.category,
+                    },
+                    // page: routeState.page,
+                },
+            };
+        },
+    },
+};
+
+{
+    /* <VStack gap="8"> */
+}
+{
+    /*    <ClearRefinements */
+}
+{
+    /*        translations={{ */
+}
+{
+    /*            resetButtonText: t('Вcі статті'), */
+}
+{
+    /*        }} */
+}
+{
+    /*        classNames={{ */
+}
+{
+    /*            button: cls.AllItemsBtn, */
+}
+{
+    /*            disabledButton: cls.AllItemsBtnNotSelected, */
+}
+{
+    /*        }} */
+}
+{
+    /*    /> */
+}
+
+{
+    /*    <RefinementList */
+}
+{
+    /*        attribute="category" */
+}
+{
+    /*        transformItems={transformItems} */
+}
+{
+    /*        classNames={{ */
+}
+{
+    /*            count: cls.categoryCount, */
+}
+{
+    /*            list: cls.MenuList, */
+}
+{
+    /*            label: cls.MenuLabel, */
+}
+{
+    /*            item: cls.MenuItem, */
+}
+{
+    /*            selectedItem: cls.SelectedMenuItem, */
+}
+{
+    /*            checkbox: cls.MenuCheckbox, */
+}
+{
+    /*        }} */
+}
+{
+    /*    /> */
+}
+{
+    /* </VStack> */
+}
 
 {
     /* <Input */
@@ -308,4 +390,31 @@ export const RedesignedArticlesFilters = (props: ArticlesFiltersProps) => {
 //             ))}
 //         </select>
 //     );
+// };
+
+//
+//
+// const transformItems: MenuProps['transformItems'] = (items) => {
+//     const allCategories = [
+//         { label: 'React', value: 'React' },
+//         { label: 'HTML', value: 'HTML' },
+//         { label: 'CSS', value: 'CSS' },
+//         { label: 'IT', value: 'IT' },
+//         { label: 'TypeScript', value: 'TypeScript' },
+//         { label: 'JavaScript', value: 'JavaScript' },
+//     ];
+//     return [
+//         ...allCategories.map((category) => {
+//             const matchingItem = items.find(
+//                 (item) => item.label === category.label,
+//             );
+//             return (
+//                 matchingItem || {
+//                     ...category,
+//                     count: 0,
+//                     isRefined: false,
+//                 }
+//             );
+//         }),
+//     ];
 // };
