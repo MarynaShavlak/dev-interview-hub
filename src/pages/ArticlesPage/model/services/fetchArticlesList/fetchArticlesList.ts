@@ -70,7 +70,7 @@ export const fetchArticlesList = createAsyncThunk<
 
         const articlesResponse = await dispatch(
             getArticlesQuery({
-                sort,
+                // sort: ArticleSortField.CREATED_DESC,
                 order,
                 search,
                 category:
@@ -80,7 +80,7 @@ export const fetchArticlesList = createAsyncThunk<
             }),
         ).unwrap();
 
-        // console.log('firebase articles response', articlesResponse);
+        console.log('firebase articles response', articlesResponse);
 
         return articlesResponse;
     } catch (error) {

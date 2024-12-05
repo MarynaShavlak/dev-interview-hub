@@ -40,26 +40,58 @@ export const useOrderOptions = () => {
 export const useSortFieldOptions = (order: SortOrder) => {
     const { t } = useTranslation('articles');
 
-    const items =
-        order === 'asc'
-            ? [
-                  { label: t('переглядам'), value: 'articles_views_asc' },
-                  {
-                      label: t('даті створення'),
-                      value: 'articles_createdAt_asc',
-                  },
-                  { label: t('назві'), value: 'articles_title_asc' },
-              ]
-            : [
-                  { label: t('переглядам'), value: 'articles_views_desc' },
-                  {
-                      label: t('даті створення'),
-                      value: 'articles_createdAt_desc',
-                  },
-                  { label: t('назві'), value: 'articles_title_desc' },
-              ];
+    const items = [
+        {
+            label: `${t('переглядам')}   ↑`,
+            value: 'articles_views_asc',
+        },
+        {
+            label: `${t('даті створення')}   ↑`,
+            value: 'articles_createdAt_asc',
+        },
+        {
+            label: `${t('назві')}  ↑`,
+            value: 'articles_title_asc',
+        },
+        {
+            label: `${t('переглядам')}  ↓`,
+            value: 'articles_views_desc',
+        },
+        {
+            label: `${t('даті створення')}  ↓`,
+            value: 'articles_createdAt_desc',
+        },
+        {
+            label: `${t('назві')}  ↓`,
+            value: 'articles_title_desc',
+        },
+    ];
     return items as SelectOption<ArticleSortField>[];
 };
+
+// export const useSortFieldOptions = (order: SortOrder) => {
+//     const { t } = useTranslation('articles');
+//
+//     const items =
+//         order === 'asc'
+//             ? [
+//                   { label: t('переглядам'), value: 'articles_views_asc' },
+//                   {
+//                       label: t('даті створення'),
+//                       value: 'articles_createdAt_asc',
+//                   },
+//                   { label: t('назві'), value: 'articles_title_asc' },
+//               ]
+//             : [
+//                   { label: t('переглядам'), value: 'articles_views_desc' },
+//                   {
+//                       label: t('даті створення'),
+//                       value: 'articles_createdAt_desc',
+//                   },
+//                   { label: t('назві'), value: 'articles_title_desc' },
+//               ];
+//     return items as SelectOption<ArticleSortField>[];
+// };
 
 // return [
 //     {

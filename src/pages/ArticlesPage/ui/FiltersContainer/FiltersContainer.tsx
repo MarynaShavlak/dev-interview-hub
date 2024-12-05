@@ -18,10 +18,11 @@ export const FiltersContainer = memo((props: FiltersContainerProps) => {
         onChangeOrder,
         order,
     } = useArticleFilters();
+    console.log('sort when first hook usage', sort);
 
-    if (!sort || !order) {
-        return null;
-    }
+    // if (!sort || !order) {
+    //     return null;
+    // }
 
     return (
         <ArticlesFilters

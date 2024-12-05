@@ -8,7 +8,7 @@ import { SortOrder } from '@/shared/types/sortOrder';
 
 export interface ArticleSortSelectorProps {
     className?: string;
-    sort: ArticleSortField;
+    sort: ArticleSortField | null;
     order: SortOrder;
     onChangeOrder: (newOrder: SortOrder) => void;
     onChangeSort: (newSort: ArticleSortField) => void;

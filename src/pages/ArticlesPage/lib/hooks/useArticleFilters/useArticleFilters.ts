@@ -81,17 +81,17 @@ export const useArticleFilters = () => {
             setView(view);
             localStorage.setItem(ARTICLES_VIEW_LOCALSTORAGE_KEY, view);
             setLimit(view === ArticleView.GRID ? 9 : 4);
-            resetPageAndFetchData();
+            // resetPageAndFetchData();
         },
-        [resetPageAndFetchData, setLimit, setView],
+        [setLimit, setView],
     );
 
     const onChangeSort = useCallback(
         (newSort: ArticleSortField) => {
             setSort(newSort);
-            resetPageAndFetchData();
+            // resetPageAndFetchData();
         },
-        [resetPageAndFetchData, setSort],
+        [setSort],
     );
 
     const onChangeOrder = useCallback(
@@ -104,9 +104,9 @@ export const useArticleFilters = () => {
             setOrder(newOrder);
             setSort(updatedSort);
             // console.log('neworder', newOrder);
-            resetPageAndFetchData();
+            // resetPageAndFetchData();
         },
-        [sort, setOrder, setSort, resetPageAndFetchData],
+        [sort, setOrder, setSort],
     );
 
     const onChangeSearch = useCallback(
@@ -122,9 +122,9 @@ export const useArticleFilters = () => {
         (value: ArticleCategory) => {
             console.log('valueeee', value);
             setCategory(value);
-            resetPageAndFetchData();
+            // resetPageAndFetchData();
         },
-        [setCategory, resetPageAndFetchData],
+        [setCategory],
     );
 
     return {

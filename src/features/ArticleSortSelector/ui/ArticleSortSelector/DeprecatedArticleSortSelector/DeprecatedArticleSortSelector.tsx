@@ -31,7 +31,7 @@ export const DeprecatedArticleSortSelector = memo(
                 <Select<ArticleSortField>
                     options={sortFieldOptions}
                     label={t('Сортувати ПО')}
-                    value={sort}
+                    value={sort || ArticleSortField.CREATED_ASC}
                     onChange={onChangeSort}
                 />
                 <Select

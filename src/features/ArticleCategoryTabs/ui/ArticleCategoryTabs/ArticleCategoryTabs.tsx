@@ -1,9 +1,5 @@
 import React, { memo, useMemo } from 'react';
-import {
-    ClearRefinements,
-    RefinementList,
-    useInstantSearch,
-} from 'react-instantsearch';
+import { ClearRefinements, RefinementList } from 'react-instantsearch';
 import { useTranslation } from 'react-i18next';
 import { useCategoryTabs } from '../../lib/hooks/useCategoryTabs';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
@@ -22,7 +18,6 @@ export const ArticleCategoryTabs = memo((props: ArticleCategoryTabsProps) => {
     const { t } = useTranslation();
     const rawCategoryTabs = useCategoryTabs();
     const categoryTabs = useMemo(() => rawCategoryTabs, [rawCategoryTabs]);
-    const { uiState } = useInstantSearch();
 
     return (
         <ToggleFeaturesComponent

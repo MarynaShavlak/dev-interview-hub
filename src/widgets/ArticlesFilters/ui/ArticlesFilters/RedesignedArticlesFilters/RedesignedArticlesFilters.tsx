@@ -1,11 +1,10 @@
 import { useTranslation } from 'react-i18next';
 import { liteClient as algoliasearch } from 'algoliasearch/lite';
 import { history } from 'instantsearch.js/es/lib/routers';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { SearchBox } from 'react-instantsearch';
 import { InstantSearch, Configure } from 'react-instantsearch-core';
-
-import { ArticleSortSelector } from '@/features/ArticleSortSelector';
+// import { ArticleSortSelector } from '@/features/ArticleSortSelector';
 import { ArticlesFiltersProps } from '../ArticlesFilters';
 import { Icon } from '@/shared/ui/redesigned/Icon';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
@@ -15,44 +14,13 @@ import { VStack } from '@/shared/ui/common/Stack';
 import SearchIcon from '@/shared/assets/icons/search.svg';
 import CloseIcon from '@/shared/assets/icons/close.svg';
 import { ArticleCategoryTabs } from '@/features/ArticleCategoryTabs';
+import { ArticleSortSelector } from '@/features/ArticleSortSelector';
+import { ArticleSortField } from '@/entities/Article';
 
 const searchClient = algoliasearch(
     '6L3XOJ5FZ8',
     '5fac3ea964aecac5d90374450bd541ab',
 );
-
-const routingConfig = {
-    stateMapping: {
-        // @ts-ignore
-        stateToRoute(uiState) {
-            return {
-                query: uiState?.indexName?.query || '',
-                page: uiState?.indexName?.page || 1,
-                category: uiState?.indexName?.refinementList?.category || [],
-                sort: uiState?.indexName?.sortBy || 'default',
-            };
-        },
-        // @ts-ignore
-        routeToState(routeState) {
-            return {
-                indexName: {
-                    query: routeState.query || '',
-                    page: routeState.page || 1,
-                    refinementList: {
-                        category: routeState.category || [],
-                    },
-                    sortBy: routeState.sort || 'default',
-                },
-            };
-        },
-    },
-    router: history({
-        writeDelay: 400, // Debounce time for updating the URL
-        getLocation() {
-            return window.location;
-        },
-    }),
-};
 
 export const RedesignedArticlesFilters = (props: ArticlesFiltersProps) => {
     const {
@@ -68,6 +36,57 @@ export const RedesignedArticlesFilters = (props: ArticlesFiltersProps) => {
     } = props;
     const { t } = useTranslation();
 
+    const [indexName, setIndexName] = useState<ArticleSortField>(sort);
+    console.log('sort', sort);
+    // if (!sort) return null;
+
+    useEffect(() => {
+        if (sort) {
+            setIndexName(sort);
+        }
+    }, [sort]);
+    console.log('indexName', indexName);
+
+    // if (!indexName) return null;
+
+    const routing = {
+        router: history({
+            cleanUrlOnDispose: true,
+        }),
+        stateMapping: {
+            // @ts-ignore
+            stateToRoute(uiState) {
+                const indexUiState = uiState[indexName];
+                console.log('uiState', uiState);
+                // console.log('indexUiState', indexUiState);
+                return {
+                    q: indexUiState?.query,
+                    // categories: indexUiState.menu?.categories,
+                    category: indexUiState?.refinementList?.category,
+                    sort: indexUiState?.sortBy,
+                    // page: indexUiState.page,
+                };
+            },
+            // @ts-ignore
+            routeToState(routeState) {
+                return {
+                    [indexName]: {
+                        query: routeState.q,
+                        // menu: {
+                        //     categories: routeState.categories,
+                        // },
+                        refinementList: {
+                            category: routeState.category,
+                        },
+                        sortBy: routeState.sort,
+
+                        // page: routeState.page,
+                    },
+                };
+            },
+        },
+    };
+
     return (
         <Card
             className={classNames(cls.ArticlesFilters, {}, [className])}
@@ -76,8 +95,13 @@ export const RedesignedArticlesFilters = (props: ArticlesFiltersProps) => {
             <VStack gap="32">
                 <InstantSearch
                     searchClient={searchClient}
-                    indexName={sort}
-                    routing={routingConfig}
+                    indexName={indexName}
+                    // indexName={sort}
+                    // routing
+                    routing={routing}
+                    future={{
+                        preserveSharedStateOnUnmount: true,
+                    }}
                 >
                     <Configure hitsPerPage={200} />
                     <SearchBox
@@ -99,7 +123,34 @@ export const RedesignedArticlesFilters = (props: ArticlesFiltersProps) => {
                         onChangeCategory={onChangeCategory}
                         className={cls.tabs}
                     />
-
+                    {/* <SortBy */}
+                    {/*    items={[ */}
+                    {/*        { */}
+                    {/*            label: `${t('переглядам')}   ↑`, */}
+                    {/*            value: 'articles_views_asc', */}
+                    {/*        }, */}
+                    {/*        { */}
+                    {/*            label: `${t('даті створення')}   ↑`, */}
+                    {/*            value: 'articles_createdAt_asc', */}
+                    {/*        }, */}
+                    {/*        { */}
+                    {/*            label: `${t('назві')}  ↑`, */}
+                    {/*            value: 'articles_title_asc', */}
+                    {/*        }, */}
+                    {/*        { */}
+                    {/*            label: `${t('переглядам')}  ↓`, */}
+                    {/*            value: 'articles_views_desc', */}
+                    {/*        }, */}
+                    {/*        { */}
+                    {/*            label: `${t('даті створення')}  ↓`, */}
+                    {/*            value: 'articles_createdAt_desc', */}
+                    {/*        }, */}
+                    {/*        { */}
+                    {/*            label: `${t('назві')}  ↓`, */}
+                    {/*            value: 'articles_title_desc', */}
+                    {/*        }, */}
+                    {/*    ]} */}
+                    {/* /> */}
                     <ArticleSortSelector
                         order={order}
                         sort={sort}
@@ -110,35 +161,6 @@ export const RedesignedArticlesFilters = (props: ArticlesFiltersProps) => {
             </VStack>
         </Card>
     );
-};
-
-const indexName = 'articles_createdAt_asc';
-
-const routing = {
-    router: history(),
-    stateMapping: {
-        // @ts-ignore
-        stateToRoute(uiState) {
-            const indexUiState = uiState[indexName];
-            return {
-                q: indexUiState.query,
-                category: indexUiState.refinementList?.category,
-                // page: indexUiState.page,
-            };
-        },
-        // @ts-ignore
-        routeToState(routeState) {
-            return {
-                [indexName]: {
-                    query: routeState.q,
-                    refinementList: {
-                        category: routeState.category,
-                    },
-                    // page: routeState.page,
-                },
-            };
-        },
-    },
 };
 
 {
