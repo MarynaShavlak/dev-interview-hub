@@ -1,5 +1,4 @@
 // firebaseConfig.ts
-import { createContext, useMemo } from 'react';
 import { FirebaseApp, initializeApp } from 'firebase/app';
 import { getAuth, Auth } from 'firebase/auth';
 import { getFirestore, Firestore } from 'firebase/firestore';
@@ -22,28 +21,7 @@ interface FirebaseContextType {
     firebaseStorage: FirebaseStorage;
 }
 
-const defaultContextValue: FirebaseContextType = {
-    firebaseApp: {} as FirebaseApp,
-    auth: {} as Auth,
-    firestore: {} as Firestore,
-    firebaseStorage: {} as FirebaseStorage,
-};
-
-export const Context = createContext<FirebaseContextType>(defaultContextValue);
-
 export const firebaseApp = initializeApp(firebaseConfig);
 export const firestore = getFirestore(firebaseApp);
 export const auth = getAuth();
 export const firebaseStorage = getStorage(firebaseApp);
-
-export const useFirebaseContext = () => {
-    return useMemo(
-        () => ({
-            firebaseApp,
-            auth,
-            firestore,
-            firebaseStorage,
-        }),
-        [],
-    );
-};

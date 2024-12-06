@@ -130,6 +130,7 @@
     "webpack-dev-server": "^4.7.4"
   },
   "dependencies": {
+    "@algolia/autocomplete-js": "^1.17.7",
     "@headlessui/react": "^1.6.6",
     "@mdx-js/react": "^3.0.1",
     "@react-spring/web": "^9.5.2",

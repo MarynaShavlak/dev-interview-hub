@@ -1,8 +1,10 @@
 import { ArticleView } from '@/entities/Article';
-import ListIcon from '@/shared/assets/icons/burger.svg';
+import ListIcon from '@/shared/assets/icons/wide-list.svg';
 import ListIconDeprecated from '@/shared/assets/icons/list-24-24.svg';
 import TiledIcon from '@/shared/assets/icons/tile.svg';
 import TiledIconDeprecated from '@/shared/assets/icons/tiled-24-24.svg';
+import SequenceIcon from '@/shared/assets/icons/list-ordered.svg';
+
 import { toggleFeatures } from '@/shared/lib/features';
 
 /**
@@ -11,6 +13,14 @@ import { toggleFeatures } from '@/shared/lib/features';
  */
 
 export const viewTypes = [
+    {
+        view: ArticleView.SEQUENCE,
+        icon: toggleFeatures({
+            name: 'isAppRedesigned',
+            on: () => SequenceIcon,
+            off: () => SequenceIcon,
+        }),
+    },
     {
         view: ArticleView.GRID,
         icon: toggleFeatures({

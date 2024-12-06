@@ -1,4 +1,5 @@
 import { HTMLAttributeAnchorTarget, memo } from 'react';
+import { useHits } from 'react-instantsearch-core';
 import cls from './ArticleList.module.scss';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { toggleFeatures } from '@/shared/lib/features';
@@ -32,6 +33,10 @@ export const ArticleList = memo((props: ArticleListProps) => {
         off: () => cls.ArticleList,
     });
     const classes = classNames(mainClass, {}, [className, cls[view]]);
+    const hitsApi = useHits({
+        escapeHTML: false,
+    });
+    console.log(hitsApi.items);
 
     const content = (
         <>

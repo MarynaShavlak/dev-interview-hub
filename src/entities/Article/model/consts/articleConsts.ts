@@ -38,4 +38,5 @@ export enum ArticleCategory {
 export enum ArticleView {
     LIST = 'LIST',
     GRID = 'GRID',
+    SEQUENCE = 'SEQUENCE',
 }

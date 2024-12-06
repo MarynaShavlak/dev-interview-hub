@@ -4,7 +4,6 @@ import React, { useEffect, useState } from 'react';
 import { SearchBox } from 'react-instantsearch';
 import { Configure, InstantSearch } from 'react-instantsearch-core';
 // import { ArticleSortSelector } from '@/features/ArticleSortSelector';
-
 import { ArticlesFiltersProps } from '../ArticlesFilters';
 import { Icon } from '@/shared/ui/redesigned/Icon';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
@@ -15,13 +14,22 @@ import SearchIcon from '@/shared/assets/icons/search.svg';
 import CloseIcon from '@/shared/assets/icons/close.svg';
 import { ArticleCategoryTabs } from '@/features/ArticleCategoryTabs';
 import { ArticleSortSelector } from '@/features/ArticleSortSelector';
-import { ArticleSortField } from '@/entities/Article';
+import { ArticleSortField, useArticles } from '@/entities/Article';
 import { createRoutingConfig } from '../../../model/config/routingConfig';
 
 const searchClient = algoliasearch(
     '6L3XOJ5FZ8',
     '5fac3ea964aecac5d90374450bd541ab',
 );
+
+const HitComponent = ({ hit }: { hit: any }) => {
+    return (
+        <Card className={cls.HitCard}>
+            <h3>{hit.title}</h3>
+            <p>{hit.subtitle}</p>
+        </Card>
+    );
+};
 
 export const RedesignedArticlesFilters = (props: ArticlesFiltersProps) => {
     const {
@@ -38,6 +46,7 @@ export const RedesignedArticlesFilters = (props: ArticlesFiltersProps) => {
     const { t } = useTranslation();
 
     const [indexName, setIndexName] = useState<ArticleSortField>(sort);
+    const { data: articles, isLoading: isArticlesLoading } = useArticles({});
 
     useEffect(() => {
         if (sort) {
@@ -45,9 +54,10 @@ export const RedesignedArticlesFilters = (props: ArticlesFiltersProps) => {
         }
     }, [sort]);
 
-    if (!indexName) return null;
+    // if (!indexName) return null;
 
     const routing = createRoutingConfig(indexName);
+    if (!articles) return null;
 
     return (
         <Card
@@ -90,6 +100,8 @@ export const RedesignedArticlesFilters = (props: ArticlesFiltersProps) => {
                         onChangeOrder={onChangeOrder}
                         onChangeSort={onChangeSort}
                     />
+                    {/* <ArticleList view={ArticleView.GRID} articles={articles} /> */}
+                    {/* <Hits hitComponent={HitComponent} /> */}
                 </InstantSearch>
             </VStack>
         </Card>

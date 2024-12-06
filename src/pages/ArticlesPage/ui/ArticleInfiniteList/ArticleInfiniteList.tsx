@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
-import { RedesignedArticleInfiniteList } from './RedesignedArticleInfiniteList/RedesignedArticleInfiniteList';
 import { DeprecatedArticleInfiniteList } from './DeprecatedArticleInfiniteList/DeprecatedArticleInfiniteList';
+import { RedesignedArticleInfiniteList } from './RedesignedArticleInfiniteList/RedesignedArticleInfiniteList';
 
 export interface ArticleInfiniteListProps {
     onInfiniteScroll: () => void;

@@ -1,11 +1,13 @@
 .ArticleViewSelector {
     .notSelected {
         fill: var(--secondary-color);
+        stroke: var(--secondary-color);
     }
 }
 
 .ArticleViewSelectorRedesigned {
     .notSelected {
         color: var(--light-bg-redesigned);
+        stroke: var(--light-bg-redesigned);
     }
 }
