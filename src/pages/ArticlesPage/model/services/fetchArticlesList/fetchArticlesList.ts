@@ -80,7 +80,7 @@ export const fetchArticlesList = createAsyncThunk<
             }),
         ).unwrap();
 
-        console.log('firebase articles response', articlesResponse);
+        // console.log('firebase articles response', articlesResponse);
 
         return articlesResponse;
     } catch (error) {

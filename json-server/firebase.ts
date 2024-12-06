@@ -1,8 +1,8 @@
 // firebaseConfig.ts
-import { FirebaseApp, initializeApp } from 'firebase/app';
-import { getAuth, Auth } from 'firebase/auth';
-import { getFirestore, Firestore } from 'firebase/firestore';
-import { FirebaseStorage, getStorage } from 'firebase/storage';
+import { initializeApp } from 'firebase/app';
+import { getAuth } from 'firebase/auth';
+import { getFirestore } from 'firebase/firestore';
+import { getStorage } from 'firebase/storage';
 
 const firebaseConfig = {
     apiKey: 'AIzaSyBiGo0Kq8YUFPYQ0DetFJxOuqUh3C7nGQA',
@@ -13,13 +13,6 @@ const firebaseConfig = {
     appId: '1:195551545741:web:e56f301b462aa7f15c95c4',
     measurementId: 'G-68TP2P78NV',
 };
-
-interface FirebaseContextType {
-    firebaseApp: FirebaseApp;
-    auth: Auth;
-    firestore: Firestore;
-    firebaseStorage: FirebaseStorage;
-}
 
 export const firebaseApp = initializeApp(firebaseConfig);
 export const firestore = getFirestore(firebaseApp);

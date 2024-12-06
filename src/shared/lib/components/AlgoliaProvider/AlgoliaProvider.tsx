@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 import { liteClient as algoliasearch } from 'algoliasearch/lite';
 import { InstantSearch, Configure } from 'react-instantsearch-core';
 
-import type { Router, StateMapping, UiState } from 'instantsearch.js';
+import type { Router, StateMapping } from 'instantsearch.js';
 
 const searchClient = algoliasearch(
     '6L3XOJ5FZ8', // Application ID
@@ -17,7 +17,8 @@ export type RouterProps<TUiState, TRouteState> = {
 interface AlgoliaProviderProps {
     indexName: string;
     children: ReactNode;
-    routing?: RouterProps<UiState, UiState> | boolean;
+    // routing: RouterProps<UiState, UiState> | boolean;
+    routing: any;
 }
 
 export const AlgoliaProvider = (props: AlgoliaProviderProps) => {
@@ -27,6 +28,9 @@ export const AlgoliaProvider = (props: AlgoliaProviderProps) => {
             searchClient={searchClient}
             indexName={indexName}
             routing={routing}
+            future={{
+                preserveSharedStateOnUnmount: true,
+            }}
         >
             <Configure hitsPerPage={200} />
             {children}

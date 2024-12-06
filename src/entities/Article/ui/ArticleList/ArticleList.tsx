@@ -36,7 +36,7 @@ export const ArticleList = memo((props: ArticleListProps) => {
     const hitsApi = useHits({
         escapeHTML: false,
     });
-    console.log(hitsApi.items);
+    console.log('inArticle list', hitsApi.items);
 
     const content = (
         <>
