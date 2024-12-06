@@ -5,6 +5,8 @@ import { SearchBox } from 'react-instantsearch';
 import { InstantSearch, Configure } from 'react-instantsearch-core';
 // import { ArticleSortSelector } from '@/features/ArticleSortSelector';
 import { history } from 'instantsearch.js/es/lib/routers';
+import type { UiState, StateMapping, Router } from 'instantsearch.js';
+
 import { ArticlesFiltersProps } from '../ArticlesFilters';
 import { Icon } from '@/shared/ui/redesigned/Icon';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
@@ -17,54 +19,65 @@ import { ArticleCategoryTabs } from '@/features/ArticleCategoryTabs';
 import { ArticleSortSelector } from '@/features/ArticleSortSelector';
 import { ArticleSortField } from '@/entities/Article';
 
-const searchClient = algoliasearch(
-    '6L3XOJ5FZ8',
-    '5fac3ea964aecac5d90374450bd541ab',
-);
-
-function getCategorySlug(name: any) {
+function getCategorySlug(name: string) {
     return name.split(' ').map(encodeURIComponent).join('-');
 }
 
-function getCategoryName(slug: any) {
+function getCategoryName(slug: string) {
     return slug.split('-').map(decodeURIComponent).join(' ');
 }
 
-export function createRoutingConfig(indexName: string) {
+type RouterProps<TUiState, TRouteState> = {
+    router?: Router<TRouteState>;
+    stateMapping?: StateMapping<TUiState, TRouteState>;
+};
+
+export type ArticlesRouteState = {
+    query?: string;
+    category?: string;
+    sort?: string;
+};
+
+export interface ArticlesUiState extends UiState {
+    [indexName: string]: {
+        query?: string;
+        refinementList?: {
+            category?: string[];
+        };
+        sortBy?: string;
+    };
+}
+
+export const createRoutingConfig = (
+    indexName: string,
+): RouterProps<ArticlesUiState, ArticlesRouteState> => {
     console.log('in Function indexName', indexName);
     return {
         router: history({
             cleanUrlOnDispose: true,
         }),
         stateMapping: {
-            stateToRoute(uiState: any) {
+            stateToRoute(uiState: ArticlesUiState): ArticlesRouteState {
                 const indexUiState = uiState[indexName] || {};
                 console.log('indexUiState.sortBy', indexUiState.sortBy);
                 return {
                     query: indexUiState.query,
-                    // category: indexUiState.refinementList?.category?.join(','),
                     category: indexUiState.refinementList?.category
                         ?.map(getCategorySlug)
                         .join('-'),
-
                     sort: indexUiState.sortBy,
                 };
             },
-            routeToState(routeState: any) {
+            routeToState(routeState: ArticlesRouteState): ArticlesUiState {
                 return {
                     [indexName]: {
                         query: routeState.query || '',
-                        // refinementList: {
-                        //     category: routeState.category
-                        //         ? routeState.category.split(',')
-                        //         : [],
-                        // },
                         refinementList: {
                             category: routeState.category
                                 ? routeState.category
                                       .split('-')
                                       .map(getCategoryName)
-                                : [], // Convert hyphen-separated slugs back to category names
+                                : [],
                         },
                         sortBy: routeState.sort,
                     },
@@ -72,19 +85,51 @@ export function createRoutingConfig(indexName: string) {
             },
         },
     };
-}
+};
+const searchClient = algoliasearch(
+    '6L3XOJ5FZ8',
+    '5fac3ea964aecac5d90374450bd541ab',
+);
 
-export function useIndexName(sort: string, order: string) {
-    const [indexName, setIndexName] = useState(`articles_${sort}_${order}`);
-
-    useEffect(() => {
-        if (sort && order) {
-            setIndexName(`articles_${sort}_${order}`);
-        }
-    }, [sort, order]);
-
-    return indexName;
-}
+// export function createRoutingConfig(indexName: string) {
+//     console.log('in Function indexName', indexName);
+//     return {
+//         router: history({
+//             cleanUrlOnDispose: true,
+//         }),
+//         stateMapping: {
+//             stateToRoute(uiState: UiState) {
+//                 const indexUiState = uiState[indexName] || {};
+//                 console.log('indexUiState.sortBy', indexUiState.sortBy);
+//                 return {
+//                     query: indexUiState.query,
+//
+//                     category: indexUiState.refinementList?.category
+//                         ?.map(getCategorySlug)
+//                         .join('-'),
+//
+//                     sort: indexUiState.sortBy,
+//                 };
+//             },
+//             routeToState(routeState: any): UiState {
+//                 return {
+//                     [indexName]: {
+//                         query: routeState.query || '',
+//
+//                         refinementList: {
+//                             category: routeState.category
+//                                 ? routeState.category
+//                                       .split('-')
+//                                       .map(getCategoryName)
+//                                 : [],
+//                         },
+//                         sortBy: routeState.sort,
+//                     },
+//                 };
+//             },
+//         },
+//     };
+// }
 
 export const RedesignedArticlesFilters = (props: ArticlesFiltersProps) => {
     const {
@@ -101,8 +146,6 @@ export const RedesignedArticlesFilters = (props: ArticlesFiltersProps) => {
     const { t } = useTranslation();
 
     const [indexName, setIndexName] = useState<ArticleSortField>(sort);
-    console.log('sort', sort);
-    // if (!sort) return null;
 
     useEffect(() => {
         if (sort) {
@@ -111,8 +154,6 @@ export const RedesignedArticlesFilters = (props: ArticlesFiltersProps) => {
     }, [sort]);
 
     if (!indexName) return null;
-
-    console.log('indexName', indexName);
 
     const routing = createRoutingConfig(indexName);
 
@@ -125,8 +166,6 @@ export const RedesignedArticlesFilters = (props: ArticlesFiltersProps) => {
                 <InstantSearch
                     searchClient={searchClient}
                     indexName={indexName}
-                    // indexName={sort}
-                    // routing
                     routing={routing}
                     future={{
                         preserveSharedStateOnUnmount: true,
