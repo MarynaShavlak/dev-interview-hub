@@ -26,9 +26,9 @@ export const RedesignedArticleSortSelector = memo(
             items: sortFieldOptions,
         });
 
-        const handleSortOptionChange = (sort: ArticleSortField) => {
-            onChangeSort(sort);
-            refine(sort);
+        const handleSortOptionChange = (newSort: ArticleSortField) => {
+            onChangeSort(newSort);
+            refine(newSort);
         };
 
         const additionalClasses = getFlexClasses({

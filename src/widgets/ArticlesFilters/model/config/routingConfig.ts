@@ -1,13 +1,15 @@
 import { history } from 'instantsearch.js/es/lib/routers';
-import {
-    ArticlesRouteState,
-    ArticlesUiState,
-    RouterProps,
-} from '../types/articlesFiltersTypes';
+
 import {
     getCategoryName,
     getCategorySlug,
 } from '../../lib/utils/categoryUtils/categoryUtils';
+import {
+    ArticlesRouteState,
+    ArticlesUiState,
+    RouterProps,
+} from '../../articlesFiltersTypes';
+import { ArticleSortField } from '@/entities/Article';
 
 export const createRoutingConfig = (
     indexName: string,
@@ -19,16 +21,18 @@ export const createRoutingConfig = (
         stateMapping: {
             stateToRoute(uiState: ArticlesUiState): ArticlesRouteState {
                 const indexUiState = uiState[indexName] || {};
-
+                console.log('indexUiState', indexUiState);
                 return {
                     query: indexUiState.query,
                     category: indexUiState.refinementList?.category
                         ?.map(getCategorySlug)
                         .join('-'),
-                    sort: indexUiState.sortBy,
+                    sort: indexUiState.sortBy || ArticleSortField.CREATED_ASC,
                 };
             },
             routeToState(routeState: ArticlesRouteState): ArticlesUiState {
+                console.log('routeState', routeState);
+                console.log('routeState.sort', routeState.sort);
                 return {
                     [indexName]: {
                         query: routeState.query || '',
@@ -39,7 +43,7 @@ export const createRoutingConfig = (
                                       .map(getCategoryName)
                                 : [],
                         },
-                        sortBy: routeState.sort,
+                        sortBy: routeState.sort || ArticleSortField.CREATED_ASC,
                     },
                 };
             },

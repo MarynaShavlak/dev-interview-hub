@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next';
 import React from 'react';
 import { SearchBox } from 'react-instantsearch';
 // import { ArticleSortSelector } from '@/features/ArticleSortSelector';
+import { Configure } from 'react-instantsearch-core';
 import { ArticlesFiltersProps } from '../ArticlesFilters';
 import { Icon } from '@/shared/ui/redesigned/Icon';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
@@ -12,7 +13,6 @@ import SearchIcon from '@/shared/assets/icons/search.svg';
 import CloseIcon from '@/shared/assets/icons/close.svg';
 import { ArticleCategoryTabs } from '@/features/ArticleCategoryTabs';
 import { ArticleSortSelector } from '@/features/ArticleSortSelector';
-import { useArticles } from '@/entities/Article';
 
 // const HitComponent = ({ hit }: { hit: any }) => {
 //     return (
@@ -22,6 +22,11 @@ import { useArticles } from '@/entities/Article';
 //         </Card>
 //     );
 // };
+
+// const searchClient = algoliasearch(
+//     '6L3XOJ5FZ8', // Application ID
+//     '5fac3ea964aecac5d90374450bd541ab', // Search-Only API Key
+// );
 
 export const RedesignedArticlesFilters = (props: ArticlesFiltersProps) => {
     const {
@@ -37,9 +42,14 @@ export const RedesignedArticlesFilters = (props: ArticlesFiltersProps) => {
     } = props;
     const { t } = useTranslation();
 
-    const { data: articles, isLoading: isArticlesLoading } = useArticles({});
-
-    if (!articles) return null;
+    // const [indexName, setIndexName] = useState<ArticleSortField>(sort);
+    // // const routing = createRoutingConfig(indexName);
+    // useEffect(() => {
+    //     if (sort) {
+    //         setIndexName(sort);
+    //     }
+    // }, [sort]);
+    if (!sort) return null;
 
     return (
         <Card
@@ -47,6 +57,15 @@ export const RedesignedArticlesFilters = (props: ArticlesFiltersProps) => {
             padding="24"
         >
             <VStack gap="32">
+                {/* <InstantSearch */}
+                {/*    searchClient={searchClient} */}
+                {/*    indexName={indexName} */}
+                {/*    routing={routing} */}
+                {/*    future={{ */}
+                {/*        preserveSharedStateOnUnmount: true, */}
+                {/*    }} */}
+                {/* > */}
+                <Configure hitsPerPage={200} />
                 <SearchBox
                     placeholder={t('Пошук')}
                     resetIconComponent={() => (
@@ -73,6 +92,7 @@ export const RedesignedArticlesFilters = (props: ArticlesFiltersProps) => {
                     onChangeOrder={onChangeOrder}
                     onChangeSort={onChangeSort}
                 />
+                {/* </InstantSearch> */}
 
                 {/* <ArticleList view={ArticleView.GRID} articles={articles} /> */}
                 {/* <Hits hitComponent={HitComponent} /> */}
