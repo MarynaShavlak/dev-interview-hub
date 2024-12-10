@@ -9,7 +9,7 @@ import cls from '../ArticlesPage/ArticlesPage.module.scss';
 
 const additionalClasses = getFlexClasses({
     hStack: true,
-    gap: '24',
+    gap: '8',
     align: 'center',
     justify: 'center',
 });
@@ -28,6 +28,7 @@ export const ArticlesPageSkeleton = memo(() => {
                 >
                     <Skeleton width="18px" height="18px" />
                     <Skeleton width="18px" height="18px" />
+                    <Skeleton width="18px" height="18px" />
                 </Card>
             }
             right={
@@ -40,10 +41,10 @@ export const ArticlesPageSkeleton = memo(() => {
                             <Skeleton width="120px" height="36px" />
                             <Skeleton width="120px" height="36px" />
                             <Skeleton width="120px" height="36px" />
+                            <Skeleton width="120px" height="36px" />
                         </VStack>
                         <VStack gap="8">
                             <Skeleton width="120px" height="20px" />
-                            <Skeleton width="60px" height="32px" />
                             <Skeleton width="60px" height="32px" />
                         </VStack>
                     </VStack>
