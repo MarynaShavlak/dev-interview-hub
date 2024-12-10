@@ -25,14 +25,15 @@ const reducers: ReducersList = {
 };
 
 const searchClient = algoliasearch(
-    '6L3XOJ5FZ8', // Application ID
-    '5fac3ea964aecac5d90374450bd541ab', // Search-Only API Key
+    '6L3XOJ5FZ8',
+    '5fac3ea964aecac5d90374450bd541ab',
 );
 
 export const RedesignedArticlesPage = (props: ArticlesPageProps) => {
     const { onLoadNextPart } = useArticleListFetcher();
     const { sort } = useArticleFilters();
     const [indexName, setIndexName] = useState<ArticleSortField>(sort);
+
     const routing = createRoutingConfig(indexName);
 
     useEffect(() => {
@@ -41,38 +42,35 @@ export const RedesignedArticlesPage = (props: ArticlesPageProps) => {
         }
     }, [sort]);
 
-    // const searchClient = algoliasearch(
-    //     '6L3XOJ5FZ8', // Application ID
-    //     '5fac3ea964aecac5d90374450bd541ab', // Search-Only API Key
-    // );
-
     return (
         <DynamicModuleLoader reducers={reducers} removeAfterUnmount={false}>
-            <InstantSearch
-                searchClient={searchClient}
-                indexName={indexName}
-                routing={routing}
-                future={{
-                    preserveSharedStateOnUnmount: true,
-                }}
-            >
-                <StickyContentLayout
-                    left={<ViewSelectorContainer />}
-                    right={<FiltersContainer />}
-                    content={
-                        <main
-                            className={cls.ArticlesPageRedesigned}
-                            data-testid="ArticlesPage"
-                        >
-                            <ArticleInfiniteList
-                                onInfiniteScroll={onLoadNextPart}
-                            />
+            {searchClient && (
+                <InstantSearch
+                    searchClient={searchClient}
+                    indexName={indexName}
+                    routing={routing}
+                    future={{
+                        preserveSharedStateOnUnmount: true,
+                    }}
+                >
+                    <StickyContentLayout
+                        left={<ViewSelectorContainer />}
+                        right={<FiltersContainer />}
+                        content={
+                            <main
+                                className={cls.ArticlesPageRedesigned}
+                                data-testid="ArticlesPage"
+                            >
+                                <ArticleInfiniteList
+                                    onInfiniteScroll={onLoadNextPart}
+                                />
 
-                            <ArticlePageGreeting />
-                        </main>
-                    }
-                />
-            </InstantSearch>
+                                <ArticlePageGreeting />
+                            </main>
+                        }
+                    />
+                </InstantSearch>
+            )}
         </DynamicModuleLoader>
     );
 };

@@ -1,4 +1,4 @@
-import { HTMLAttributeAnchorTarget, memo, useEffect, useState } from 'react';
+import { HTMLAttributeAnchorTarget, memo } from 'react';
 import { useHits } from 'react-instantsearch-core';
 import cls from './ArticleList.module.scss';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
@@ -9,7 +9,6 @@ import { ArticleListSkeleton } from './ArticleListSkeleton/ArticleListSkeleton';
 import { Each } from '@/shared/lib/components/Each/Each';
 import { HStack, VStack } from '@/shared/ui/common/Stack';
 import { ArticleCard } from '../../ui/ArticleCard/ArticleCard';
-import { getDataByDocId } from '@/shared/lib/firestore/getDataByDocId/getDataByDocId';
 
 export interface ArticleListProps {
     className?: string;
@@ -18,6 +17,25 @@ export interface ArticleListProps {
     target?: HTMLAttributeAnchorTarget;
     view: ArticleView;
 }
+
+type HitsItems = ReturnType<typeof useHits>['items'];
+type ArticleWithoutBlocks = Omit<Article, 'blocks'>;
+
+const transformItems = (items: HitsItems): Article[] => {
+    return items.map((item) => {
+        const { category, id, title, subtitle, user, views, createdAt } = item;
+        return {
+            category,
+            id,
+            title,
+            subtitle,
+            user,
+            views,
+            createdAt,
+            blocks: [],
+        };
+    });
+};
 
 export const ArticleList = memo((props: ArticleListProps) => {
     const {
@@ -34,38 +52,17 @@ export const ArticleList = memo((props: ArticleListProps) => {
         off: () => cls.ArticleList,
     });
     const classes = classNames(mainClass, {}, [className, cls[view]]);
-    const hitsApi = useHits({});
+    const { items } = useHits({});
+    // useEffect(() => {
+    //     console.log('items', items);
+    // }, [items]);
+    const articlesToRender = transformItems(items);
+    console.log('articlesToRender', articlesToRender);
 
-    const [fullObjects, setFullObjects] = useState<Article[] | null>(null);
-    // console.log('inArticle list', hitsApi.items);
-
-    const { items } = hitsApi;
-
-    useEffect(() => {
-        if (items?.length > 0) {
-            const fetchFullObjects = async () => {
-                const fullObjectsData = await Promise.all(
-                    items.map(async (item) =>
-                        getDataByDocId<Article>('articles', item.objectID),
-                    ),
-                );
-                setFullObjects(
-                    fullObjectsData.filter(
-                        (obj): obj is Article => obj !== null,
-                    ),
-                );
-            };
-
-            fetchFullObjects();
-        }
-        console.log('items', items);
-    }, [items]);
-
-    console.log('fullObjects', fullObjects);
     const content = (
         <>
             <Each
-                of={articles}
+                of={articlesToRender}
                 render={(item) => {
                     return (
                         <ArticleCard

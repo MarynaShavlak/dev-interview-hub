@@ -21,7 +21,7 @@ export const createRoutingConfig = (
         stateMapping: {
             stateToRoute(uiState: ArticlesUiState): ArticlesRouteState {
                 const indexUiState = uiState[indexName] || {};
-                console.log('indexUiState', indexUiState);
+                // console.log('indexUiState', indexUiState);
                 return {
                     query: indexUiState.query,
                     category: indexUiState.refinementList?.category
@@ -31,8 +31,8 @@ export const createRoutingConfig = (
                 };
             },
             routeToState(routeState: ArticlesRouteState): ArticlesUiState {
-                console.log('routeState', routeState);
-                console.log('routeState.sort', routeState.sort);
+                // console.log('routeState', routeState);
+                // console.log('routeState.sort', routeState.sort);
                 return {
                     [indexName]: {
                         query: routeState.query || '',
