@@ -13,7 +13,7 @@ import { getFlexClasses } from '@/shared/lib/classes/getFlexClasses/getFlexClass
 
 export const RedesignedArticleSortSelector = memo(
     (props: ArticleSortSelectorProps) => {
-        const { className, onChangeOrder, onChangeSort, order, sort } = props;
+        const { className, onChangeSort, sort } = props;
         const { t } = useTranslation('articles');
 
         const rawSortFieldOptions = useSortFieldOptions();
@@ -47,7 +47,7 @@ export const RedesignedArticleSortSelector = memo(
 
                     <ListBox
                         items={options}
-                        value={sort || ArticleSortField.CREATED_ASC}
+                        value={sort}
                         onChange={handleSortOptionChange}
                     />
                 </VStack>

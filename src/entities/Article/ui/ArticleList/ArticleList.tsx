@@ -53,6 +53,8 @@ export const ArticleList = memo((props: ArticleListProps) => {
     });
     const classes = classNames(mainClass, {}, [className, cls[view]]);
     const { items } = useHits({});
+    // const { status } = useInstantSearch();
+    // console.log('status', status);
     // useEffect(() => {
     //     console.log('items', items);
     // }, [items]);

@@ -19,6 +19,8 @@ export const ArticleCategoryTabs = memo((props: ArticleCategoryTabsProps) => {
     const rawCategoryTabs = useCategoryTabs();
     const categoryTabs = useMemo(() => rawCategoryTabs, [rawCategoryTabs]);
 
+    console.log('rerender categories');
+
     return (
         <ToggleFeaturesComponent
             feature="isAppRedesigned"
@@ -66,16 +68,6 @@ export const ArticleCategoryTabs = memo((props: ArticleCategoryTabsProps) => {
             }
             off={
                 <VStack gap="8" className={className}>
-                    <ClearRefinements
-                        translations={{
-                            resetButtonText: t('Вcі статті'),
-                        }}
-                        classNames={{
-                            button: cls.AllItemsBtn,
-                            disabledButton: cls.AllItemsBtnNotSelected,
-                        }}
-                    />
-
                     <RefinementList
                         attribute="category"
                         transformItems={(items) => {
