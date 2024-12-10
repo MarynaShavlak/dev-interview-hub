@@ -1,7 +1,8 @@
 import React, { memo } from 'react';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
 import { DeprecatedArticleInfiniteList } from './DeprecatedArticleInfiniteList/DeprecatedArticleInfiniteList';
-import { ArticleList, ArticleView, useArticles } from '@/entities/Article';
+import { ArticleList, useArticles } from '@/entities/Article';
+import { useArticleFilters } from '../../lib/hooks/useArticleFilters/useArticleFilters';
 
 export interface ArticleInfiniteListProps {
     onInfiniteScroll: () => void;
@@ -12,11 +13,12 @@ export const ArticleInfiniteList = memo(
         const { data: articles, isLoading: isArticlesLoading } = useArticles(
             {},
         );
+        const { view } = useArticleFilters();
         if (!articles) return null;
         return (
             <ToggleFeaturesComponent
                 feature="isAppRedesigned"
-                on={<ArticleList view={ArticleView.GRID} articles={articles} />}
+                on={<ArticleList view={view} articles={articles} />}
                 off={
                     <DeprecatedArticleInfiniteList
                         onInfiniteScroll={onInfiniteScroll}

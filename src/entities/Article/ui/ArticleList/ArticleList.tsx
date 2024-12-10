@@ -63,13 +63,14 @@ export const ArticleList = memo((props: ArticleListProps) => {
         <>
             <Each
                 of={articlesToRender}
-                render={(item) => {
+                render={(item, index) => {
                     return (
                         <ArticleCard
                             article={item}
                             view={view}
                             target={target}
                             key={item.id}
+                            index={index}
                         />
                     );
                 }}

@@ -3,12 +3,14 @@ import { GridViewCard } from './GridViewCard/GridViewCard';
 import { ListViewCard } from './ListViewCard/ListViewCard';
 import { ArticleView } from '../../model/consts/articleConsts';
 import { Article } from '../../model/types/article';
+import { SequenceViewCard } from './SequenceViewCard/SequenceViewCard';
 
 export interface BaseCardProps {
     className?: string;
     article: Article;
     target?: HTMLAttributeAnchorTarget;
     handleClick?: () => void;
+    index?: number;
 }
 
 interface ArticleCardProps extends BaseCardProps {
@@ -16,7 +18,7 @@ interface ArticleCardProps extends BaseCardProps {
 }
 
 export const ArticleCard = memo((props: ArticleCardProps) => {
-    const { className, article, target, view, handleClick } = props;
+    const { className, article, target, view, handleClick, index } = props;
 
     if (view === ArticleView.LIST) {
         return (
@@ -28,12 +30,26 @@ export const ArticleCard = memo((props: ArticleCardProps) => {
         );
     }
 
-    return (
-        <GridViewCard
-            className={className}
-            article={article}
-            target={target}
-            handleClick={handleClick}
-        />
-    );
+    if (view === ArticleView.GRID) {
+        return (
+            <GridViewCard
+                className={className}
+                article={article}
+                target={target}
+                handleClick={handleClick}
+            />
+        );
+    }
+    if (view === ArticleView.SEQUENCE) {
+        return (
+            <SequenceViewCard
+                className={className}
+                article={article}
+                target={target}
+                handleClick={handleClick}
+                index={index}
+            />
+        );
+    }
+    return null;
 });
