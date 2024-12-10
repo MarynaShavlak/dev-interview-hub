@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { liteClient as algoliasearch } from 'algoliasearch/lite';
 import { InstantSearch } from 'react-instantsearch-core';
+import { Pagination } from 'react-instantsearch';
 import { StickyContentLayout } from '@/shared/layouts/StickyContentLayout';
 import { ViewSelectorContainer } from '../../ViewSelectorContainer/ViewSelectorContainer';
 import { ArticlesPageProps } from '../ArticlesPage';
@@ -19,6 +20,8 @@ import { ArticleInfiniteList } from '../../ArticleInfiniteList/ArticleInfiniteLi
 import { useArticleFilters } from '../../../lib/hooks/useArticleFilters/useArticleFilters';
 import { createRoutingConfig } from '@/widgets/ArticlesFilters';
 import { ArticleSortField } from '@/entities/Article';
+import { classNames } from '@/shared/lib/classes/classNames/classNames';
+import { VStack } from '@/shared/ui/common/Stack';
 
 const reducers: ReducersList = {
     articlesPage: articlesPageReducer,
@@ -57,16 +60,31 @@ export const RedesignedArticlesPage = (props: ArticlesPageProps) => {
                         left={<ViewSelectorContainer />}
                         right={<FiltersContainer />}
                         content={
-                            <main
-                                className={cls.ArticlesPageRedesigned}
+                            <VStack
+                                gap="24"
+                                className={classNames(
+                                    cls.ArticlesPageRedesigned,
+                                    {},
+                                    [],
+                                )}
                                 data-testid="ArticlesPage"
                             >
                                 <ArticleInfiniteList
                                     onInfiniteScroll={onLoadNextPart}
                                 />
+                                <Pagination
+                                    classNames={{
+                                        list: cls.pagList,
+                                        root: cls.pagWrap,
+                                        item: cls.pagItem,
+                                        selectedItem: cls.pagSelectedItem,
+                                        link: cls.pagLink,
+                                        disabledItem: cls.pagDisabledItem,
+                                    }}
+                                />
 
                                 <ArticlePageGreeting />
-                            </main>
+                            </VStack>
                         }
                     />
                 </InstantSearch>

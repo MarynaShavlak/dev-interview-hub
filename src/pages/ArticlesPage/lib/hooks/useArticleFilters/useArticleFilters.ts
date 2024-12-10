@@ -5,6 +5,7 @@ import {
     useArticlesPageSort,
     useArticlesPageCategory,
     useArticlesPageView,
+    useArticlesPageLimit,
 } from '../../../model/selectors/articlesPageSelectors';
 import {
     ArticleSortField,
@@ -53,6 +54,7 @@ export const useArticleFilters = () => {
     const order = useArticlesPageOrder();
     const search = useArticlesPageSearch();
     const category = useArticlesPageCategory();
+    const limit = useArticlesPageLimit();
     const {
         setPage,
         setOrder,
@@ -80,7 +82,14 @@ export const useArticleFilters = () => {
         (view: ArticleView) => {
             setView(view);
             localStorage.setItem(ARTICLES_VIEW_LOCALSTORAGE_KEY, view);
-            setLimit(view === ArticleView.GRID ? 9 : 4);
+            let limit = 20;
+            if (view === ArticleView.GRID) {
+                limit = 9;
+            } else if (view === ArticleView.LIST) {
+                limit = 4;
+            }
+
+            setLimit(limit);
             // resetPageAndFetchData();
         },
         [setLimit, setView],
@@ -129,6 +138,7 @@ export const useArticleFilters = () => {
 
     return {
         view,
+        limit,
         sort,
         order,
         search,

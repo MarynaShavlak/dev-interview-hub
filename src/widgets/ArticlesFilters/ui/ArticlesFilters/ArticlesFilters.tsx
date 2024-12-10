@@ -11,6 +11,7 @@ export interface ArticlesFiltersProps {
     order: SortOrder;
     category: ArticleCategory;
     search: string;
+    limit: number;
     onChangeSearch: (value: string) => void;
     onChangeOrder: (newOrder: SortOrder) => void;
     onChangeSort: (newSort: ArticleSortField) => void;

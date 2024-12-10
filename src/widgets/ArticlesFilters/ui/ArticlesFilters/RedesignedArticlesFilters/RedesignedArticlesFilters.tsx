@@ -36,6 +36,7 @@ export const RedesignedArticlesFilters = (props: ArticlesFiltersProps) => {
         search,
         onChangeSort,
         sort,
+        limit,
         onChangeOrder,
         order,
         category,
@@ -50,6 +51,7 @@ export const RedesignedArticlesFilters = (props: ArticlesFiltersProps) => {
     //     }
     // }, [sort]);
     if (!sort) return null;
+    console.log('limit', limit);
 
     return (
         <Card
@@ -57,15 +59,7 @@ export const RedesignedArticlesFilters = (props: ArticlesFiltersProps) => {
             padding="24"
         >
             <VStack gap="32">
-                {/* <InstantSearch */}
-                {/*    searchClient={searchClient} */}
-                {/*    indexName={indexName} */}
-                {/*    routing={routing} */}
-                {/*    future={{ */}
-                {/*        preserveSharedStateOnUnmount: true, */}
-                {/*    }} */}
-                {/* > */}
-                <Configure hitsPerPage={200} />
+                <Configure hitsPerPage={limit} />
                 <SearchBox
                     placeholder={t('Пошук')}
                     resetIconComponent={() => (
@@ -92,10 +86,6 @@ export const RedesignedArticlesFilters = (props: ArticlesFiltersProps) => {
                     onChangeOrder={onChangeOrder}
                     onChangeSort={onChangeSort}
                 />
-                {/* </InstantSearch> */}
-
-                {/* <ArticleList view={ArticleView.GRID} articles={articles} /> */}
-                {/* <Hits hitComponent={HitComponent} /> */}
             </VStack>
         </Card>
     );

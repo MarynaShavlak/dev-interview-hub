@@ -1,7 +1,12 @@
 import { createEntityAdapter, PayloadAction } from '@reduxjs/toolkit';
 import { buildSlice } from '@/shared/lib/store';
 import { StateSchema } from '@/app/providers/StoreProvider';
-import { Article, ArticleCategory, ArticleSortField, ArticleView, } from '@/entities/Article';
+import {
+    Article,
+    ArticleCategory,
+    ArticleSortField,
+    ArticleView,
+} from '@/entities/Article';
 import { SortOrder } from '@/shared/types/sortOrder';
 import { ArticlesPageSchema } from '../types/articlesPageSchema';
 import { fetchArticlesList } from '../../model/services/fetchArticlesList/fetchArticlesList';
@@ -59,7 +64,14 @@ const articlesPageSlice = buildSlice({
         },
         initState: (state, action: PayloadAction<ArticleView>) => {
             state.view = action.payload;
-            state.limit = action.payload === ArticleView.LIST ? 4 : 9;
+
+            state.limit =
+                // eslint-disable-next-line no-nested-ternary
+                action.payload === ArticleView.GRID
+                    ? 9
+                    : action.payload === ArticleView.LIST
+                      ? 4
+                      : 20;
             state._inited = true;
         },
     },

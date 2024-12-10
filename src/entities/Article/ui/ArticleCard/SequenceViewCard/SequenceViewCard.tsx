@@ -49,7 +49,7 @@ export const SequenceViewCard = memo((props: BaseCardProps) => {
                             <Text
                                 text={String(index + 1)}
                                 className={cls.orderNumber}
-                                size="l"
+                                size="m"
                             />
                         </Card>
                     )}

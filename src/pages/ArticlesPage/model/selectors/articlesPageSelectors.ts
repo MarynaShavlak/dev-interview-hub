@@ -24,7 +24,7 @@ export const [useArticlesPageNum, getArticlesPageNum] = buildSelector(
 );
 
 export const [useArticlesPageLimit, getArticlesPageLimit] = buildSelector(
-    (state: StateSchema) => state.articlesPage?.limit || 9,
+    (state: StateSchema) => state.articlesPage?.limit || 20,
 );
 
 export const [useArticlesPageHasMore, getArticlesPageHasMore] = buildSelector(

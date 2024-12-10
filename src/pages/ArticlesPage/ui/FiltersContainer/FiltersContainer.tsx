@@ -17,6 +17,7 @@ export const FiltersContainer = memo((props: FiltersContainerProps) => {
         search,
         onChangeOrder,
         order,
+        limit,
     } = useArticleFilters();
     // console.log('sort when first hook usage', sort);
 
@@ -32,6 +33,7 @@ export const FiltersContainer = memo((props: FiltersContainerProps) => {
             onChangeOrder={onChangeOrder}
             search={search}
             sort={sort}
+            limit={limit}
             onChangeSort={onChangeSort}
             onChangeCategory={onChangeCategory}
             className={className}
