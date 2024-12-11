@@ -11,7 +11,7 @@ import { ArticleList } from '@/entities/Article';
 import { useArticleFilters } from '../../lib/hooks/useArticleFilters/useArticleFilters';
 
 export const ArticlesPageContent = () => {
-    // const { data: articles, isLoading: isArticlesLoading } = useArticles({});
+    // const { data: articles, isLoading: isArticlesLoading } = useArticles();
 
     const { view } = useArticleFilters();
 

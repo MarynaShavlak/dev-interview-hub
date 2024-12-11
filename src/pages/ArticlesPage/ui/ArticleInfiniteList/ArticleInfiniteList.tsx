@@ -10,9 +10,7 @@ export interface ArticleInfiniteListProps {
 
 export const ArticleInfiniteList = memo(
     ({ onInfiniteScroll }: ArticleInfiniteListProps) => {
-        const { data: articles, isLoading: isArticlesLoading } = useArticles(
-            {},
-        );
+        const { data: articles, isLoading: isArticlesLoading } = useArticles();
         const { view } = useArticleFilters();
         if (!articles) return null;
         return (

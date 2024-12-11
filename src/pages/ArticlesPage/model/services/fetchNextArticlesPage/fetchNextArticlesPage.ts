@@ -6,7 +6,7 @@ import {
     getArticlesPageNum,
 } from '../../selectors/articlesPageSelectors';
 import { articlesPageActions } from '../../slices/articlesPageSlice';
-import { fetchArticlesList } from '../fetchArticlesList/fetchArticlesList';
+// import { fetchArticlesList } from '../fetchArticlesList/fetchArticlesList';
 
 /**
  * Thunk to fetch the next page of articles if there are more pages to load.
@@ -34,6 +34,6 @@ export const fetchNextArticlesPage = createAsyncThunk<
 
     if (hasMore && !isLoading) {
         dispatch(articlesPageActions.setPage(page + 1));
-        await dispatch(fetchArticlesList({}));
+        // await dispatch(fetchArticlesList({}));
     }
 });

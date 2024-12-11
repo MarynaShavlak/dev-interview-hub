@@ -15,8 +15,6 @@ import {
 import { useArticlesPageActions } from '../../../model/slices/articlesPageSlice';
 import { SortOrder } from '@/shared/types/sortOrder';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { fetchArticlesList } from '../../../model/services/fetchArticlesList/fetchArticlesList';
-import { useDebounce } from '@/shared/lib/hooks/useDebounce/useDebounce';
 import { ARTICLES_VIEW_LOCALSTORAGE_KEY } from '@/shared/const/localstorage';
 
 /**
@@ -67,16 +65,16 @@ export const useArticleFilters = () => {
 
     const dispatch = useAppDispatch();
 
-    const fetchData = useCallback(() => {
-        dispatch(fetchArticlesList({ replace: true }));
-    }, [dispatch]);
+    // const fetchData = useCallback(() => {
+    //     dispatch(fetchArticlesList({ replace: true }));
+    // }, [dispatch]);
+    //
+    // const debouncedFetchData = useDebounce(fetchData, 500);
 
-    const debouncedFetchData = useDebounce(fetchData, 500);
-
-    const resetPageAndFetchData = useCallback(() => {
-        setPage(1);
-        fetchData();
-    }, [fetchData, setPage]);
+    // const resetPageAndFetchData = useCallback(() => {
+    //     setPage(1);
+    //     fetchData();
+    // }, [fetchData, setPage]);
 
     const onChangeView = useCallback(
         (view: ArticleView) => {
@@ -122,9 +120,13 @@ export const useArticleFilters = () => {
         (search: string) => {
             setSearch(search);
             setPage(1);
-            debouncedFetchData();
+            // debouncedFetchData();
         },
-        [setPage, setSearch, debouncedFetchData],
+        [
+            setPage,
+            setSearch,
+            // debouncedFetchData
+        ],
     );
 
     const onChangeCategory = useCallback(

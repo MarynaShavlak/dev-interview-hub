@@ -8,7 +8,7 @@ import {
 import { SortOrder } from '@/shared/types/sortOrder';
 import { getArticlesPageInited } from '../../selectors/articlesPageSelectors';
 import { articlesPageActions } from '../../slices/articlesPageSlice';
-import { fetchArticlesList } from '../fetchArticlesList/fetchArticlesList';
+// import { fetchArticlesList } from '../fetchArticlesList/fetchArticlesList';
 import { ARTICLES_VIEW_LOCALSTORAGE_KEY } from '@/shared/const/localstorage';
 
 /**
@@ -71,6 +71,6 @@ export const initArticlesPage = createAsyncThunk<
 
         console.log('initArticlesPage thunk view', view);
         dispatch(articlesPageActions.initState(view));
-        dispatch(fetchArticlesList({}));
+        // dispatch(fetchArticlesList({}));
     }
 });

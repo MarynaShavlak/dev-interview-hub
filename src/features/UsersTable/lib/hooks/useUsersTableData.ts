@@ -8,7 +8,7 @@ import { ArticlesByUserData } from '../../model/types/usersTableInfo';
 export const useUsersTableData = () => {
     const { data: users, isLoading: isUsersLoading } = useUsers();
 
-    const { data: articles, isLoading: isArticlesLoading } = useArticles({});
+    const { data: articles, isLoading: isArticlesLoading } = useArticles();
 
     const isLoading = isUsersLoading || isArticlesLoading;
 
