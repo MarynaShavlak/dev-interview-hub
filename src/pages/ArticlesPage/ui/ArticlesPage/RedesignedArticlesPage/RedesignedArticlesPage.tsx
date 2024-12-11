@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { liteClient as algoliasearch } from 'algoliasearch/lite';
 import { Configure, InstantSearch } from 'react-instantsearch-core';
+import { useSearchParams } from 'react-router-dom';
 import { StickyContentLayout } from '@/shared/layouts/StickyContentLayout';
 import { ViewSelectorContainer } from '../../ViewSelectorContainer/ViewSelectorContainer';
 import { ArticlesPageProps } from '../ArticlesPage';
@@ -16,6 +17,9 @@ import { useArticleFilters } from '../../../lib/hooks/useArticleFilters/useArtic
 import { createRoutingConfig } from '@/widgets/ArticlesFilters';
 import { ArticleSortField } from '@/entities/Article';
 import { ArticlesPageContent } from '../../ArticlesPageContent/ArticlesPageContent';
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect/useInitialEffect';
+import { initArticlesPage } from '../../../model/services/initArticlesPage/initArticlesPage';
 
 const reducers: ReducersList = {
     articlesPage: articlesPageReducer,
@@ -28,6 +32,12 @@ const searchClient = algoliasearch(
 
 export const RedesignedArticlesPage = (props: ArticlesPageProps) => {
     const { className } = props;
+    const dispatch = useAppDispatch();
+    const [searchParams] = useSearchParams();
+
+    useInitialEffect(() => {
+        dispatch(initArticlesPage(searchParams));
+    });
     const { sort, limit } = useArticleFilters();
     const [indexName, setIndexName] = useState<ArticleSortField>(sort);
 

@@ -1,5 +1,5 @@
 import { HTMLAttributeAnchorTarget, memo } from 'react';
-import { useHits, useInstantSearch } from 'react-instantsearch-core';
+import { useHits } from 'react-instantsearch-core';
 import cls from './ArticleList.module.scss';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { toggleFeatures } from '@/shared/lib/features';
@@ -58,8 +58,8 @@ export const ArticleList = memo((props: ArticleListProps) => {
         page = results.page;
     }
 
-    const { status } = useInstantSearch();
-    console.log('status', status);
+    // const { status } = useInstantSearch();
+    // console.log('status', status);
     // useEffect(() => {
     //     console.log('page ', page);
     // }, [page]);
