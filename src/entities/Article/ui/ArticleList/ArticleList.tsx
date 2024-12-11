@@ -64,7 +64,7 @@ export const ArticleList = memo((props: ArticleListProps) => {
     //     console.log('page ', page);
     // }, [page]);
     const articlesToRender = transformItems(items);
-    console.log('articlesToRender', articlesToRender);
+    // console.log('articlesToRender', articlesToRender);
 
     const content = (
         <>

@@ -1,111 +1,69 @@
-import {
-    getDocs,
-    limit,
-    query,
-    startAt,
-    where,
-    orderBy,
-} from 'firebase/firestore';
+import { query, onSnapshot } from 'firebase/firestore';
 
 import { firestoreApi } from '@/shared/api/rtkApi';
 import { Article } from '../model/types/article';
 import { dataPoint } from '@/shared/lib/firestore/firestore';
-import {
-    ArticleCategory,
-    ArticleSortField,
-} from '../model/consts/articleConsts';
-import { SortOrder } from '@/shared/types/sortOrder';
+
 import { getDocRefByField } from '@/shared/lib/firestore/getDocRefByField/getDocRefByField';
 import { fetchDocumentByRef } from '@/shared/lib/firestore/fetchDocumentByRef/fetchDocumentByRef';
 
-export const articleFirebaseApi = firestoreApi.injectEndpoints({
-    endpoints: (build) => ({
-        getArticles: build.query<
-            Article[],
-            {
-                sort?: ArticleSortField;
-                order?: SortOrder;
-                search?: string;
-                category?: ArticleCategory;
-                limit?: number;
-                page?: number;
-            }
-        >({
-            async queryFn({ sort, order, search, category, limit: max, page }) {
-                try {
-                    const articlesCollection = dataPoint<Article>('articles');
-                    let queryRef = query(articlesCollection);
-
-                    if (sort) {
-                        queryRef = query(
-                            queryRef,
-                            orderBy(sort, order || 'asc'),
-                        );
-                    }
-
-                    if (category && category !== ArticleCategory.ALL) {
-                        queryRef = query(
-                            queryRef,
-                            where('category', 'array-contains', category),
-                        );
-                    }
-
-                    if (max) {
-                        queryRef = query(queryRef, limit(max));
-                        if (page && page > 1) {
-                            const skip = (page - 1) * max;
-                            const snapshots = await getDocs(queryRef);
-                            const lastVisible = snapshots.docs[skip - 1];
-                            if (lastVisible) {
-                                queryRef = query(
-                                    queryRef,
-                                    startAt(lastVisible),
-                                );
-                            }
-                        }
-                    }
-
-                    const querySnapshot = await getDocs(queryRef);
-                    const articles: Article[] = [];
-
-                    if (!querySnapshot.empty) {
-                        querySnapshot?.forEach((doc) => {
-                            articles.push({ ...doc.data() });
+export const articleFirebaseApi = firestoreApi
+    .enhanceEndpoints({
+        addTagTypes: ['Articles'],
+    })
+    .injectEndpoints({
+        endpoints: (build) => ({
+            getArticles: build.query<Article[], void>({
+                providesTags: ['Articles'],
+                keepUnusedDataFor: 3600,
+                async queryFn() {
+                    return { data: [] };
+                },
+                async onCacheEntryAdded(
+                    _,
+                    { updateCachedData, cacheDataLoaded, cacheEntryRemoved },
+                ) {
+                    await cacheDataLoaded;
+                    let unsubscribe;
+                    try {
+                        const collectionRef = dataPoint<Article>('articles');
+                        const queryRef = query(collectionRef);
+                        unsubscribe = onSnapshot(queryRef, (snapshot) => {
+                            updateCachedData((draft) => {
+                                return snapshot?.docs?.map((doc) =>
+                                    doc.data(),
+                                ) as Article[];
+                            });
                         });
-
-                        return { data: articles };
+                    } catch (error) {
+                        console.log('error in articles!', error);
+                        throw new Error('Something went wrong with articles.');
                     }
+                    await cacheEntryRemoved;
+                    if (unsubscribe) {
+                        unsubscribe();
+                    }
+                },
+            }),
+            getArticleDataById: build.query<Article, string>({
+                async queryFn(articleId) {
+                    try {
+                        const articleDocRef = await getDocRefByField<Article>(
+                            'articles',
+                            'id',
+                            articleId,
+                        );
 
-                    return {
-                        error: {
-                            name: 'NotFound',
-                            message: 'Articles not found',
-                        },
-                    };
-                } catch (error) {
-                    return { error };
-                }
-            },
+                        const articleData =
+                            await fetchDocumentByRef<Article>(articleDocRef);
+                        return { data: articleData };
+                    } catch (error) {
+                        return { error };
+                    }
+                },
+            }),
         }),
-        getArticleDataById: build.query<Article, string>({
-            async queryFn(articleId) {
-                try {
-                    const articleDocRef = await getDocRefByField<Article>(
-                        'articles',
-                        'id',
-                        articleId,
-                    );
-
-                    const articleData =
-                        await fetchDocumentByRef<Article>(articleDocRef);
-                    return { data: articleData };
-                } catch (error) {
-                    return { error };
-                }
-            },
-        }),
-    }),
-});
+    });
 
 // export const useArticles = articleApi.useGetArticlesQuery;
 export const useArticles = articleFirebaseApi.useGetArticlesQuery;
@@ -156,3 +114,59 @@ const useArticleDataById = articleFirebaseApi.useGetArticleDataByIdQuery;
 //     where('title', '<=', 'DOM'),
 //     // where('title', '<=', `React`),
 // );
+
+// async queryFn() {
+//     try {
+//         const articlesCollection = dataPoint<Article>('articles');
+//         let queryRef = query(articlesCollection);
+//
+//         if (sort) {
+//             queryRef = query(
+//                 queryRef,
+//                 orderBy(sort, order || 'asc'),
+//             );
+//         }
+//
+//         if (category && category !== ArticleCategory.ALL) {
+//             queryRef = query(
+//                 queryRef,
+//                 where('category', 'array-contains', category),
+//             );
+//         }
+//
+//         if (max) {
+//             queryRef = query(queryRef, limit(max));
+//             if (page && page > 1) {
+//                 const skip = (page - 1) * max;
+//                 const snapshots = await getDocs(queryRef);
+//                 const lastVisible = snapshots.docs[skip - 1];
+//                 if (lastVisible) {
+//                     queryRef = query(
+//                         queryRef,
+//                         startAt(lastVisible),
+//                     );
+//                 }
+//             }
+//         }
+//
+//         const querySnapshot = await getDocs(queryRef);
+//         const articles: Article[] = [];
+//
+//         if (!querySnapshot.empty) {
+//             querySnapshot?.forEach((doc) => {
+//                 articles.push({ ...doc.data() });
+//             });
+//
+//             return { data: articles };
+//         }
+//
+//         return {
+//             error: {
+//                 name: 'NotFound',
+//                 message: 'Articles not found',
+//             },
+//         };
+//     } catch (error) {
+//         return { error };
+//     }
+// },
