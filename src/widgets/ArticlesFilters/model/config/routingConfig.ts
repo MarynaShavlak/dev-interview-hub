@@ -28,6 +28,7 @@ export const createRoutingConfig = (
                         ?.map(getCategorySlug)
                         .join('-'),
                     sort: indexUiState.sortBy || ArticleSortField.CREATED_ASC,
+                    page: indexUiState.page,
                 };
             },
             routeToState(routeState: ArticlesRouteState): ArticlesUiState {
@@ -44,6 +45,7 @@ export const createRoutingConfig = (
                                 : [],
                         },
                         sortBy: routeState.sort || ArticleSortField.CREATED_ASC,
+                        page: routeState.page,
                     },
                 };
             },

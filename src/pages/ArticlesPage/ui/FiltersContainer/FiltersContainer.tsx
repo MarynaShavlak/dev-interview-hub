@@ -25,6 +25,17 @@ export const FiltersContainer = memo((props: FiltersContainerProps) => {
     //     return null;
     // }
 
+    // const { status, results } = useInstantSearch();
+    // const isLoading = status === 'loading';
+    // console.log('status', status);
+    // console.log('result', results);
+    // console.group('Logging Parameters');
+    // console.log('limit:', limit);
+    // console.log('sort:', sort);
+    // console.log('order:', order);
+    // console.log('category:', category);
+    // console.groupEnd();
+
     return (
         <ArticlesFilters
             category={category}

@@ -19,8 +19,6 @@ export const ArticleCategoryTabs = memo((props: ArticleCategoryTabsProps) => {
     const rawCategoryTabs = useCategoryTabs();
     const categoryTabs = useMemo(() => rawCategoryTabs, [rawCategoryTabs]);
 
-    console.log('rerender categories');
-
     return (
         <ToggleFeaturesComponent
             feature="isAppRedesigned"
@@ -71,6 +69,7 @@ export const ArticleCategoryTabs = memo((props: ArticleCategoryTabsProps) => {
                     <RefinementList
                         attribute="category"
                         transformItems={(items) => {
+                            if (items.length === 0) return [];
                             return [
                                 ...categoryTabs.map((category) => {
                                     const matchingItem = items.find(

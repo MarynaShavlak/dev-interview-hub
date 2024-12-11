@@ -52,12 +52,17 @@ export const ArticleList = memo((props: ArticleListProps) => {
         off: () => cls.ArticleList,
     });
     const classes = classNames(mainClass, {}, [className, cls[view]]);
-    const { items } = useHits({});
+    const { items, results } = useHits({});
+    let page = 0;
+    if (results) {
+        page = results.page;
+    }
+
     // const { status } = useInstantSearch();
     // console.log('status', status);
     // useEffect(() => {
-    //     console.log('items', items);
-    // }, [items]);
+    //     console.log('page ', page);
+    // }, [page]);
     const articlesToRender = transformItems(items);
     console.log('articlesToRender', articlesToRender);
 
@@ -73,6 +78,7 @@ export const ArticleList = memo((props: ArticleListProps) => {
                             target={target}
                             key={item.id}
                             index={index}
+                            page={page + 1}
                         />
                     );
                 }}

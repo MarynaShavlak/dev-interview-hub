@@ -8,6 +8,7 @@ export type ArticlesRouteState = {
     query?: string;
     category?: string;
     sort?: string;
+    page?: number;
 };
 
 export interface ArticlesUiState extends UiState {
@@ -17,5 +18,6 @@ export interface ArticlesUiState extends UiState {
             category?: string[];
         };
         sortBy?: string;
+        page?: number;
     };
 }

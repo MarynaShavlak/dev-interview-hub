@@ -11,6 +11,7 @@ export interface BaseCardProps {
     target?: HTMLAttributeAnchorTarget;
     handleClick?: () => void;
     index?: number;
+    page?: number;
 }
 
 interface ArticleCardProps extends BaseCardProps {
@@ -18,38 +19,23 @@ interface ArticleCardProps extends BaseCardProps {
 }
 
 export const ArticleCard = memo((props: ArticleCardProps) => {
-    const { className, article, target, view, handleClick, index } = props;
+    const { className, article, target, view, handleClick, index, page } =
+        props;
+    const computedIndex =
+        view === ArticleView.SEQUENCE && index !== undefined && page
+            ? (page - 1) * 20 + index + 1
+            : undefined;
 
-    if (view === ArticleView.LIST) {
-        return (
-            <ListViewCard
-                className={className}
-                article={article}
-                handleClick={handleClick}
-            />
-        );
-    }
+    const commonProps = { className, article, target, handleClick };
 
-    if (view === ArticleView.GRID) {
-        return (
-            <GridViewCard
-                className={className}
-                article={article}
-                target={target}
-                handleClick={handleClick}
-            />
-        );
+    switch (view) {
+        case ArticleView.LIST:
+            return <ListViewCard {...commonProps} />;
+        case ArticleView.GRID:
+            return <GridViewCard {...commonProps} />;
+        case ArticleView.SEQUENCE:
+            return <SequenceViewCard {...commonProps} index={computedIndex} />;
+        default:
+            return null;
     }
-    if (view === ArticleView.SEQUENCE) {
-        return (
-            <SequenceViewCard
-                className={className}
-                article={article}
-                target={target}
-                handleClick={handleClick}
-                index={index}
-            />
-        );
-    }
-    return null;
 });

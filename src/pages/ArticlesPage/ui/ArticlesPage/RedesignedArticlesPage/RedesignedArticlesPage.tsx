@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { liteClient as algoliasearch } from 'algoliasearch/lite';
-import { InstantSearch } from 'react-instantsearch-core';
+import { Configure, InstantSearch } from 'react-instantsearch-core';
 import { Pagination } from 'react-instantsearch';
 import { StickyContentLayout } from '@/shared/layouts/StickyContentLayout';
 import { ViewSelectorContainer } from '../../ViewSelectorContainer/ViewSelectorContainer';
@@ -34,7 +34,7 @@ const searchClient = algoliasearch(
 
 export const RedesignedArticlesPage = (props: ArticlesPageProps) => {
     const { onLoadNextPart } = useArticleListFetcher();
-    const { sort } = useArticleFilters();
+    const { sort, limit } = useArticleFilters();
     const [indexName, setIndexName] = useState<ArticleSortField>(sort);
 
     const routing = createRoutingConfig(indexName);
@@ -56,12 +56,14 @@ export const RedesignedArticlesPage = (props: ArticlesPageProps) => {
                         preserveSharedStateOnUnmount: true,
                     }}
                 >
+                    <Configure hitsPerPage={limit} />
                     <StickyContentLayout
                         left={<ViewSelectorContainer />}
                         right={<FiltersContainer />}
                         content={
                             <VStack
                                 gap="24"
+                                justify="between"
                                 className={classNames(
                                     cls.ArticlesPageRedesigned,
                                     {},
