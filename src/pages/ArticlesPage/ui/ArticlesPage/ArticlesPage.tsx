@@ -11,7 +11,7 @@ const ArticlesPage = ({ className }: ArticlesPageProps) => {
     return (
         <ToggleFeaturesComponent
             feature="isAppRedesigned"
-            on={<RedesignedArticlesPage />}
+            on={<RedesignedArticlesPage className={className} />}
             off={<DeprecatedArticlesPage />}
         />
     );
