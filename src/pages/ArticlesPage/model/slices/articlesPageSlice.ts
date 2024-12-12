@@ -1,41 +1,31 @@
-import { createEntityAdapter, PayloadAction } from '@reduxjs/toolkit';
+import { PayloadAction } from '@reduxjs/toolkit';
 import { buildSlice } from '@/shared/lib/store';
-import { StateSchema } from '@/app/providers/StoreProvider';
 import {
-    Article,
     ArticleCategory,
     ArticleSortField,
     ArticleView,
 } from '@/entities/Article';
 import { SortOrder } from '@/shared/types/sortOrder';
-import { ArticlesPageSchema } from '../types/articlesPageSchema';
+import { ArticlesPageSchema } from '../..';
 
-export const articlesAdapter = createEntityAdapter<Article>({
-    selectId: (article) => article.id,
-});
-
-export const getArticles = articlesAdapter.getSelectors<StateSchema>(
-    (state) => state.articlesPage || articlesAdapter.getInitialState(),
-);
+const initialState: ArticlesPageSchema = {
+    isLoading: false,
+    error: undefined,
+    view: ArticleView.GRID,
+    page: 1,
+    hasMore: true,
+    _inited: false,
+    limit: 9,
+    sort: ArticleSortField.CREATED_ASC,
+    search: '',
+    order: 'asc',
+    category: ArticleCategory.ALL,
+    scrollStopArticleIndex: 0,
+};
 
 const articlesPageSlice = buildSlice({
     name: 'articlesPageSlice',
-    initialState: articlesAdapter.getInitialState<ArticlesPageSchema>({
-        isLoading: false,
-        error: undefined,
-        ids: [],
-        entities: {},
-        view: ArticleView.GRID,
-        page: 1,
-        hasMore: true,
-        _inited: false,
-        limit: 9,
-        sort: ArticleSortField.CREATED_ASC,
-        search: '',
-        order: 'asc',
-        category: ArticleCategory.ALL,
-        scrollStopArticleIndex: 0,
-    }),
+    initialState,
     reducers: {
         setView: (state, action: PayloadAction<ArticleView>) => {
             state.view = action.payload;

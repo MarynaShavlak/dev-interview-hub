@@ -1,7 +1,7 @@
 import { memo, useCallback } from 'react';
 import { useSelector } from 'react-redux';
 import { Virtuoso, VirtuosoGrid } from 'react-virtuoso';
-import { getArticles } from '../../../model/slices/articlesPageSlice';
+
 import {
     useArticlesPageError,
     useArticlesPageIsLoading,
@@ -13,6 +13,7 @@ import {
     ArticleCard,
     ArticleListSkeleton,
     ArticleView,
+    getArticles,
     NoArticlesFound,
 } from '@/entities/Article';
 import cls from '../ArticleInfiniteList.module.scss';

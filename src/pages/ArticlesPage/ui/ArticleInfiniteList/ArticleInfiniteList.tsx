@@ -1,7 +1,8 @@
 import React, { memo } from 'react';
+import { useSelector } from 'react-redux';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
 import { DeprecatedArticleInfiniteList } from './DeprecatedArticleInfiniteList/DeprecatedArticleInfiniteList';
-import { ArticleList, useArticles } from '@/entities/Article';
+import { ArticleList, getArticles, useArticles } from '@/entities/Article';
 import { useArticleFilters } from '../../lib/hooks/useArticleFilters/useArticleFilters';
 
 export interface ArticleInfiniteListProps {
@@ -10,7 +11,8 @@ export interface ArticleInfiniteListProps {
 
 export const ArticleInfiniteList = memo(
     ({ onInfiniteScroll }: ArticleInfiniteListProps) => {
-        const { data: articles, isLoading: isArticlesLoading } = useArticles();
+        const { isLoading: isArticlesLoading } = useArticles();
+        const articles = useSelector(getArticles.selectAll);
         const { view } = useArticleFilters();
         if (!articles) return null;
         return (

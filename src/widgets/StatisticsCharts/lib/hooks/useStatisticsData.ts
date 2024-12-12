@@ -4,7 +4,7 @@ import { useUsers } from '@/entities/User';
 
 import { useArticlesRatings } from '../../api/articlesRatingsApi';
 import { useArticlesComments } from '@/features/ArticleComments';
-import { getArticles, useArticles } from '@/pages/ArticlesPage';
+import { getArticles, useArticles } from '@/entities/Article';
 
 export const useStatisticsData = () => {
     const {

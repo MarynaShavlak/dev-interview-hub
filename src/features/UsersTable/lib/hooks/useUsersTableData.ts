@@ -1,5 +1,6 @@
+import { useSelector } from 'react-redux';
 import { useUsers } from '@/entities/User';
-import { useArticles } from '@/entities/Article';
+import { getArticles, useArticles } from '@/entities/Article';
 import { getRoleData } from '../helpers/getData/getRolesData/getRoleData';
 import { getEnabledUserFeatures } from '../helpers/getData/processUserFeatures/processUserFeatures';
 import { getCombinedUsersData } from '../helpers/getData/getCombinedUsersData/getCombinedUsersData';
@@ -8,7 +9,8 @@ import { ArticlesByUserData } from '../../model/types/usersTableInfo';
 export const useUsersTableData = () => {
     const { data: users, isLoading: isUsersLoading } = useUsers();
 
-    const { data: articles, isLoading: isArticlesLoading } = useArticles();
+    const { isLoading: isArticlesLoading } = useArticles();
+    const articles = useSelector(getArticles.selectAll);
 
     const isLoading = isUsersLoading || isArticlesLoading;
 

@@ -143,7 +143,12 @@
 
 
 .SEQUENCE {
-    width: 100%;
+    width: 90%;
+    cursor:pointer;
+    transition: transform 300ms ease;
+    &:hover {
+        transform: scale(1.1);
+    }
 }
 
 

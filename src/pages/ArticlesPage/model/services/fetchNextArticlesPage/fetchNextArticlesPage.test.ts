@@ -10,8 +10,8 @@ describe('async thunk fetchNextArticlesPage test', () => {
         const thunk = new TestAsyncThunk(fetchNextArticlesPage, {
             articlesPage: {
                 page: 2,
-                ids: [],
-                entities: {},
+                // ids: [],
+                // entities: {},
                 limit: 5,
                 isLoading: false,
                 hasMore: true,
@@ -31,8 +31,8 @@ describe('async thunk fetchNextArticlesPage test', () => {
         const thunk = new TestAsyncThunk(fetchNextArticlesPage, {
             articlesPage: {
                 page: 2,
-                ids: [],
-                entities: {},
+                // ids: [],
+                // entities: {},
                 limit: 5,
                 isLoading: false,
                 hasMore: false,
@@ -52,8 +52,8 @@ describe('async thunk fetchNextArticlesPage test', () => {
         const thunk = new TestAsyncThunk(fetchNextArticlesPage, {
             articlesPage: {
                 page: 2,
-                ids: [],
-                entities: {},
+                // ids: [],
+                // entities: {},
                 limit: 5,
                 isLoading: true,
                 hasMore: true,
@@ -74,8 +74,8 @@ describe('async thunk fetchNextArticlesPage test', () => {
         const thunk = new TestAsyncThunk(fetchNextArticlesPage, {
             articlesPage: {
                 page: initialPage,
-                ids: [],
-                entities: {},
+                // ids: [],
+                // entities: {},
                 limit: 5,
                 isLoading: false,
                 hasMore: true,
@@ -94,8 +94,8 @@ describe('async thunk fetchNextArticlesPage test', () => {
         const thunk = new TestAsyncThunk(fetchNextArticlesPage, {
             articlesPage: {
                 page: 2,
-                ids: [],
-                entities: {},
+                // ids: [],
+                // entities: {},
                 limit: 5,
                 isLoading: false,
                 hasMore: undefined,

@@ -1,6 +1,7 @@
 import {
     AnyAction,
     EnhancedStore,
+    EntityState,
     Reducer,
     ReducersMapObject,
 } from '@reduxjs/toolkit';
@@ -11,7 +12,7 @@ import { Auth } from 'firebase/auth';
 import { Firestore } from 'firebase/firestore';
 import { FirebaseStorage } from 'firebase/storage';
 import { UIScrollSchema } from '@/widgets/Page';
-import { ArticleDetailsSchema } from '@/entities/Article';
+import { Article, ArticleDetailsSchema } from '@/entities/Article';
 import { UserSchema } from '@/entities/User';
 
 import { LoginSchema, SignupSchema } from '@/features/AuthByUsername';
@@ -35,6 +36,7 @@ export interface StateSchema {
     articlesPage?: ArticlesPageSchema;
     // articleDetailsPage?: ArticleDetailsPageSchema;
     articleComments?: ArticleCommentsSchema;
+    articles?: EntityState<Article>;
 }
 
 export type StateSchemaKey = keyof StateSchema;
