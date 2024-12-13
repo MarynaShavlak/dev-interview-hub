@@ -8,7 +8,7 @@ import { getDocRefByField } from '@/shared/lib/firestore/getDocRefByField/getDoc
 import { fetchDocumentByRef } from '@/shared/lib/firestore/fetchDocumentByRef/fetchDocumentByRef';
 
 import { dataPoint } from '@/shared/lib/firestore/firestore';
-import { articlesAdapter } from '../model/slices/articleSlice';
+import { articlesAdapter, initialState } from '../model/slices/articleSlice';
 
 export const articleFirebaseApi = firestoreApi
     .enhanceEndpoints({
@@ -19,6 +19,7 @@ export const articleFirebaseApi = firestoreApi
             getArticles: build.query<EntityState<Article>, void>({
                 providesTags: ['Articles'],
                 keepUnusedDataFor: 3600,
+
                 async queryFn(): Promise<
                     QueryReturnValue<EntityState<Article>, unknown, unknown>
                 > {
@@ -41,13 +42,14 @@ export const articleFirebaseApi = firestoreApi
                         const queryRef = query(collectionRef);
                         unsubscribe = onSnapshot(queryRef, (snapshot) => {
                             updateCachedData((draft) => {
-                                // return snapshot?.docs?.map((doc) =>
-                                //     doc.data(),
-                                // ) as Article[];
+                                // console.log('Draft before update:', draft);
+
                                 articlesAdapter.setAll(
                                     draft,
                                     snapshot.docs.map((doc) => doc.data()),
                                 );
+
+                                // console.log('Draft after update:', draft);
                             });
                         });
                     } catch (error) {
@@ -91,3 +93,12 @@ const useArticleDataById = articleFirebaseApi.useGetArticleDataByIdQuery;
 export const useArticles = articleFirebaseApi.useGetArticlesQuery;
 export const getArticlesQuery =
     articleFirebaseApi.endpoints.getArticles.initiate;
+
+// @ts-ignore
+export const selectEntryResult = (state) =>
+    articleFirebaseApi.endpoints.getArticles.select()(state).data;
+
+const entrySelectors = articlesAdapter.getSelectors(
+    (state) => selectEntryResult(state) ?? initialState,
+);
+export const selectEntry = entrySelectors.selectAll;

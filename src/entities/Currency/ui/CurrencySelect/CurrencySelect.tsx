@@ -31,7 +31,6 @@ export const CurrencySelect = memo(
             off: () => labelText,
             on: () => t('Валюта'),
         });
-        console.log('options in currency seect', options);
 
         const props = {
             className,

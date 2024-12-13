@@ -1,3 +1,9 @@
+export { selectEntry } from './api/articleApi';
+
+export { articleFirebaseApi } from './api/articleApi';
+
+export { articleReducer } from './model/slices/articleSlice';
+
 export { getArticles } from './model/slices/articleSlice';
 
 export { ArticleSection } from './model/consts/articleConsts';

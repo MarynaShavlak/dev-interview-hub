@@ -69,7 +69,6 @@ export const initArticlesPage = createAsyncThunk<
             ARTICLES_VIEW_LOCALSTORAGE_KEY,
         ) as ArticleView;
 
-        console.log('initArticlesPage thunk view', view);
         dispatch(articlesPageActions.initState(view));
         // dispatch(fetchArticlesList({}));
     }

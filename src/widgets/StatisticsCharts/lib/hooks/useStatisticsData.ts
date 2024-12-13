@@ -1,10 +1,11 @@
 // useStatisticsData.ts
+
 import { useSelector } from 'react-redux';
 import { useUsers } from '@/entities/User';
 
 import { useArticlesRatings } from '../../api/articlesRatingsApi';
 import { useArticlesComments } from '@/features/ArticleComments';
-import { getArticles, useArticles } from '@/entities/Article';
+import { useArticles, selectEntry } from '@/entities/Article';
 
 export const useStatisticsData = () => {
     const {
@@ -12,12 +13,13 @@ export const useStatisticsData = () => {
         isLoading: isUsersLoading,
         error: isUsersError,
     } = useUsers();
-    const articles = useSelector(getArticles.selectAll);
-    const {
-        // data: articles,
-        isLoading: isArticlesLoading,
-        error: isArticlesError,
-    } = useArticles();
+    const { isLoading: isArticlesLoading, error: isArticlesError } =
+        useArticles();
+    const articles = useSelector(selectEntry);
+    console.log('entries', articles);
+    // const articles = useSelector(getArticles.selectAll);
+    // console.log('articles', articles);
+
     const {
         data: ratings = [],
         isLoading: isRatingsLoading,
@@ -40,3 +42,10 @@ export const useStatisticsData = () => {
 
     return { users, articles, ratings, comments, isLoading, isError };
 };
+
+// export const useStatisticsData = () => {
+//     const articles = useSelector(getArticles.selectAll);
+//     console.log('articles', articles);
+//
+//     return { articles };
+// };

@@ -7,8 +7,9 @@ export const articlesAdapter = createEntityAdapter<Article>({
     selectId: (article) => article.id,
 });
 
+export const initialState = articlesAdapter.getInitialState();
 export const getArticles = articlesAdapter.getSelectors<StateSchema>(
-    (state) => state.articles || articlesAdapter.getInitialState(),
+    (state) => state.articles || initialState,
 );
 
 const articleSlice = buildSlice({
