@@ -8,20 +8,21 @@ import { Text } from '@/shared/ui/redesigned/Text';
 import cls from '../ArticleDetails.module.scss';
 import { AppImage } from '@/shared/ui/common/AppImage';
 import { VStack } from '@/shared/ui/common/Stack';
-import {
-    useArticleDetailsData,
-    useArticleDetailsError,
-    useArticleDetailsIsLoading,
-} from '../../../model/selectors/articleDetails';
+
 import { ArticleDetailsError } from '../ArticleDetailsError/ArticleDetailsError';
 import { ArticleDetailsSkeleton } from '../ArticleDetailsSkeleton/ArticleDetailsSkeleton';
 import { AppLink } from '@/shared/ui/redesigned/AppLink';
+import { ArticleDetailsProps } from '../ArticleDetails';
+import { useArticleDataById } from '../../..';
 
-export const RedesignedArticleDetails = memo((s) => {
+export const RedesignedArticleDetails = memo((props: ArticleDetailsProps) => {
     const { t } = useTranslation('articles');
-    const article = useArticleDetailsData();
-    const isLoading = useArticleDetailsIsLoading();
-    const error = useArticleDetailsError();
+    const { id } = props;
+    // const article = useArticleDetailsData();
+    // const isLoading = useArticleDetailsIsLoading();
+    // const error = useArticleDetailsError();
+
+    const { data: article, isLoading, error } = useArticleDataById(id || '');
 
     if (isLoading) {
         return <ArticleDetailsSkeleton />;

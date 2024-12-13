@@ -12,7 +12,8 @@ import {
     ArticleList,
     ArticleListSkeleton,
     ArticleView,
-    useArticleDetailsData,
+    useArticleDataById,
+    // useArticleDetailsData,
 } from '@/entities/Article';
 import { VStack } from '@/shared/ui/common/Stack';
 import { useArticleRecommendationsList } from '../../api/articleRecommendationsApi';
@@ -21,13 +22,14 @@ import { Skeleton as SkeletonDeprecated } from '@/shared/ui/deprecated/Skeleton'
 
 export interface ArticleRecommendationsListProps {
     className?: string;
+    id: string;
 }
 
 const ArticleRecommendationsList = memo(
     (props: ArticleRecommendationsListProps) => {
-        const { className } = props;
+        const { className, id } = props;
         const { t } = useTranslation('articleDetails');
-        const article = useArticleDetailsData();
+        const { data: article } = useArticleDataById(id);
         const title = t('Рекомендуємо');
         const articleCategory = article?.category[0] || ArticleCategory.ALL;
         const errorTitle = t('Помилка завантаження рекомендацій');

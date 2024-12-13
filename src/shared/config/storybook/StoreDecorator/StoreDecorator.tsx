@@ -1,6 +1,5 @@
 import { Story } from '@storybook/react';
 import { StateSchema, StoreProvider } from '@/app/providers/StoreProvider';
-import { articleDetailsReducer } from '@/entities/Article/testing';
 import { addCommentFormReducer } from '@/entities/Comment/testing';
 import { loginReducer, signupReducer } from '@/features/AuthByUsername/testing';
 import { profileReducer } from '@/features/EditableProfileCard/testing';
@@ -29,7 +28,7 @@ const defaultAsyncReducers: ReducersList = {
     loginForm: loginReducer,
     signupForm: signupReducer,
     profile: profileReducer,
-    articleDetails: articleDetailsReducer,
+    // articleDetails: articleDetailsReducer,
     addCommentForm: addCommentFormReducer,
 
     articlesPage: articlesPageReducer,

@@ -25,7 +25,7 @@ const ArticleComments = memo((props: ArticleCommentsProps) => {
 
     const onSendComment = useCallback(
         (text: string) => {
-            dispatch(addCommentForArticleThunk(text));
+            dispatch(addCommentForArticleThunk({ text, articleId: id }));
         },
         [dispatch],
     );

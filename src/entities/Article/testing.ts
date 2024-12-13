@@ -2,7 +2,7 @@ import { Article } from './model/types/article';
 import { ArticleCategory, ArticleSection } from './model/consts/articleConsts';
 import avatar from '@/shared/assets/tests/avatar-dropdown.png';
 
-export { articleDetailsReducer } from './model/slices/articleDetailsSlice';
+// export { articleDetailsReducer } from './model/slices/articleDetailsSlice';
 
 export const testArticleData: Article = {
     id: '1',

@@ -5,7 +5,7 @@ import { useUsers } from '@/entities/User';
 
 import { useArticlesRatings } from '../../api/articlesRatingsApi';
 import { useArticlesComments } from '@/features/ArticleComments';
-import { useArticles, selectEntry } from '@/entities/Article';
+import { useArticles, selectAllArticles } from '@/entities/Article';
 
 export const useStatisticsData = () => {
     const {
@@ -15,7 +15,7 @@ export const useStatisticsData = () => {
     } = useUsers();
     const { isLoading: isArticlesLoading, error: isArticlesError } =
         useArticles();
-    const articles = useSelector(selectEntry);
+    const articles = useSelector(selectAllArticles);
     console.log('entries', articles);
     // const articles = useSelector(getArticles.selectAll);
     // console.log('articles', articles);

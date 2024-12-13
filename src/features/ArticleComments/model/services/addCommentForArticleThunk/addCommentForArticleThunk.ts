@@ -3,8 +3,8 @@ import { v4 } from 'uuid';
 import { getUserAuthData } from '@/entities/User';
 import { ThunkConfig } from '@/app/providers/StoreProvider';
 import { Comment } from '@/entities/Comment';
-import { getArticleDetailsData } from '@/entities/Article';
 import { addCommentMutation } from '../../../api/articleCommentsApi';
+import { getArticleDataByIdQuery } from '@/entities/Article';
 
 /**
  * Thunk to add a comment to an article.
@@ -22,50 +22,57 @@ import { addCommentMutation } from '../../../api/articleCommentsApi';
 
 export const addCommentForArticleThunk = createAsyncThunk<
     Comment,
-    string,
+    { text: string; articleId: string },
     ThunkConfig<string>
->('articleDetails/addCommentForArticle', async (text, thunkApi) => {
-    const { extra, dispatch, rejectWithValue, getState } = thunkApi;
+>(
+    'articleDetails/addCommentForArticle',
+    async ({ text, articleId }, thunkApi) => {
+        const { extra, dispatch, rejectWithValue, getState } = thunkApi;
 
-    try {
-        const userData = getUserAuthData(getState());
-        const article = getArticleDetailsData(getState());
-        if (!userData) {
-            return rejectWithValue('User authentication data is missing.');
+        try {
+            const userData = getUserAuthData(getState());
+            // const article = getArticleDetailsData(getState());
+            const article = await dispatch(
+                getArticleDataByIdQuery(articleId),
+            ).unwrap();
+
+            if (!userData) {
+                return rejectWithValue('User authentication data is missing.');
+            }
+
+            if (!article) {
+                return rejectWithValue('Article details are missing.');
+            }
+
+            if (!text || text.trim() === '') {
+                return rejectWithValue('Comment text cannot be empty.');
+            }
+            const userInfo = {
+                id: userData.id,
+                avatar: userData.avatar,
+                email: userData.email,
+                firstname: userData.firstname,
+                lastname: userData.lastname,
+                username: userData.username,
+            };
+            const commentId = v4();
+            const addedComment = await dispatch(
+                addCommentMutation({
+                    articleId: article.id,
+                    user: userInfo,
+                    text,
+                    id: commentId,
+                }),
+            ).unwrap();
+
+            if (!addedComment) {
+                return rejectWithValue('No data received from API.');
+            }
+
+            return addedComment;
+        } catch (error) {
+            console.error('Error adding comment for article:', error);
+            return rejectWithValue('Failed to add comment.');
         }
-
-        if (!article) {
-            return rejectWithValue('Article details are missing.');
-        }
-
-        if (!text || text.trim() === '') {
-            return rejectWithValue('Comment text cannot be empty.');
-        }
-        const userInfo = {
-            id: userData.id,
-            avatar: userData.avatar,
-            email: userData.email,
-            firstname: userData.firstname,
-            lastname: userData.lastname,
-            username: userData.username,
-        };
-        const commentId = v4();
-        const addedComment = await dispatch(
-            addCommentMutation({
-                articleId: article.id,
-                user: userInfo,
-                text,
-                id: commentId,
-            }),
-        ).unwrap();
-
-        if (!addedComment) {
-            return rejectWithValue('No data received from API.');
-        }
-
-        return addedComment;
-    } catch (error) {
-        console.error('Error adding comment for article:', error);
-        return rejectWithValue('Failed to add comment.');
-    }
-});
+    },
+);

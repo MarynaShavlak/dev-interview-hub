@@ -1,4 +1,5 @@
 import { memo } from 'react';
+import { useParams } from 'react-router-dom';
 import cls from '../ArticleDetailsPage.module.scss';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { Page } from '@/widgets/Page';
@@ -11,6 +12,8 @@ import { AdditionalInfoContainer } from '../../AdditionalInfoContainer/Additiona
 
 export const RedesignedArticleDetailsPage = memo(
     ({ className }: ArticleDetailsPageProps) => {
+        const { id } = useParams<{ id: string }>();
+        if (!id) return null;
         return (
             <StickyContentLayout
                 left={<ArticleListNavigationButton />}
@@ -20,10 +23,10 @@ export const RedesignedArticleDetailsPage = memo(
                             className,
                         ])}
                     >
-                        <ArticleDetailsPageContainer />
+                        <ArticleDetailsPageContainer id={id} />
                     </Page>
                 }
-                right={<AdditionalInfoContainer />}
+                right={<AdditionalInfoContainer id={id} />}
             />
         );
     },

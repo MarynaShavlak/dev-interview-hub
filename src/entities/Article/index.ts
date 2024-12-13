@@ -1,4 +1,6 @@
-export { selectEntry } from './api/articleApi';
+export { useArticleDataById } from './api/articleApi';
+
+export { selectAllArticles } from './api/articleApi';
 
 export { articleFirebaseApi } from './api/articleApi';
 
@@ -15,15 +17,19 @@ export {
     ArticleSortField,
     ArticleCategory,
 } from './model/consts/articleConsts';
-export {
-    getArticleDetailsData,
-    useArticleDetailsData,
-    useArticleDetailsIsLoading,
-    useArticleDetailsError,
-} from './model/selectors/articleDetails';
+// export {
+//     getArticleDetailsData,
+//     useArticleDetailsData,
+//     useArticleDetailsIsLoading,
+//     useArticleDetailsError,
+// } from './model/selectors/articleDetails';
 export { ArticleList } from './ui/ArticleList/ArticleList';
 export { NoArticlesFound } from './ui/ArticleList/NoArticlesFound/NoArticlesFound';
 export { ArticleCard } from './ui/ArticleCard/ArticleCard';
 export { ArticleListSkeleton } from './ui/ArticleList/ArticleListSkeleton/ArticleListSkeleton';
 export { ArticleDetails } from './ui/ArticleDetails/ArticleDetails';
-export { useArticles, getArticlesQuery } from './api/articleApi';
+export {
+    useArticles,
+    getArticlesQuery,
+    getArticleDataByIdQuery,
+} from './api/articleApi';

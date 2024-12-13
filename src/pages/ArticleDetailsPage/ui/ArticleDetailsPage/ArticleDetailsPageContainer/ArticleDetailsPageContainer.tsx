@@ -1,10 +1,10 @@
 import { memo } from 'react';
-import { useParams } from 'react-router-dom';
 import { VStack } from '@/shared/ui/common/Stack';
 import {
     ArticleDetails,
-    useArticleDetailsData,
-    useArticleDetailsError,
+    useArticleDataById,
+    // useArticleDetailsData,
+    // useArticleDetailsError,
 } from '@/entities/Article';
 import { ArticleComments } from '@/features/ArticleComments';
 import { ArticleRating } from '@/features/ArticleRating';
@@ -14,41 +14,49 @@ import { ToggleFeaturesComponent } from '@/shared/lib/features';
 import { ArticleRecommendationsList } from '@/features/ArticleRecommendationsList';
 import { useUserAuthData } from '@/entities/User';
 
-export const ArticleDetailsPageContainer = memo(() => {
-    const { id } = useParams<{ id: string }>();
-    const error = useArticleDetailsError();
-    const article = useArticleDetailsData();
-    const currentUserdata = useUserAuthData();
-    const articleAuthorId = article?.user.id;
-    const authedUserId = currentUserdata?.id;
-    if (!id) return null;
+interface ArticleDetailsPageContainerProps {
+    id: string;
+}
 
-    return (
-        <VStack gap="16" max>
-            <ToggleFeaturesComponent
-                feature="isAppRedesigned"
-                on={
-                    <Card max fullHeight border="round" padding="24">
-                        <ArticleDetails id={id} />
-                    </Card>
-                }
-                off={
+export const ArticleDetailsPageContainer = memo(
+    ({ id }: ArticleDetailsPageContainerProps) => {
+        const { data: article, isLoading, error } = useArticleDataById(id);
+        // const error = useArticleDetailsError();
+        // const article = useArticleDetailsData();
+        const currentUserdata = useUserAuthData();
+        const articleAuthorId = article?.user.id;
+        const authedUserId = currentUserdata?.id;
+
+        console.log('article', article);
+        if (!id) return null;
+
+        return (
+            <VStack gap="16" max>
+                <ToggleFeaturesComponent
+                    feature="isAppRedesigned"
+                    on={
+                        <Card max fullHeight border="round" padding="24">
+                            <ArticleDetails id={id} />
+                        </Card>
+                    }
+                    off={
+                        <>
+                            <ArticleDetailsPageHeader id={id} />
+                            <ArticleDetails id={id} />
+                        </>
+                    }
+                />
+                {article && !error && (
                     <>
-                        <ArticleDetailsPageHeader />
-                        <ArticleDetails id={id} />
-                    </>
-                }
-            />
-            {article && !error && (
-                <>
-                    {articleAuthorId !== authedUserId && (
-                        <ArticleRating articleId={id} />
-                    )}
+                        {articleAuthorId !== authedUserId && (
+                            <ArticleRating articleId={id} />
+                        )}
 
-                    <ArticleRecommendationsList />
-                    <ArticleComments id={id} />
-                </>
-            )}
-        </VStack>
-    );
-});
+                        <ArticleRecommendationsList id={id} />
+                        <ArticleComments id={id} />
+                    </>
+                )}
+            </VStack>
+        );
+    },
+);

@@ -10,17 +10,18 @@ import { Text, TextSize } from '@/shared/ui/deprecated/Text';
 import cls from '../ArticleDetails.module.scss';
 import { ArticleDetailsSkeleton } from '../ArticleDetailsSkeleton/ArticleDetailsSkeleton';
 import { ArticleDetailsError } from '../ArticleDetailsError/ArticleDetailsError';
-import {
-    useArticleDetailsData,
-    useArticleDetailsError,
-    useArticleDetailsIsLoading,
-} from '../../../model/selectors/articleDetails';
-import { AppLink } from '@/shared/ui/deprecated/AppLink';
 
-export const DeprecatedArticleDetails = memo(() => {
-    const article = useArticleDetailsData();
-    const isLoading = useArticleDetailsIsLoading();
-    const error = useArticleDetailsError();
+import { AppLink } from '@/shared/ui/deprecated/AppLink';
+import { ArticleDetailsProps } from '../ArticleDetails';
+import { useArticleDataById } from '../../..';
+
+export const DeprecatedArticleDetails = memo((props: ArticleDetailsProps) => {
+    const { id } = props;
+    const { data: article, isLoading, error } = useArticleDataById(id || '');
+
+    // const article = useArticleDetailsData();
+    // const isLoading = useArticleDetailsIsLoading();
+    // const error = useArticleDetailsError();
     const subtitleText = article?.subtitle.text;
     const subtitleLink = article?.subtitle.link;
 

@@ -1,23 +1,17 @@
-import { memo, useEffect } from 'react';
+import { memo } from 'react';
 import { RedesignedArticleDetails } from './RedesignedArticleDetails/RedesignedArticleDetails';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
 import { DeprecatedArticleDetails } from './DeprecatedArticleDetails/DeprecatedArticleDetails';
-import {
-    DynamicModuleLoader,
-    ReducersList,
-} from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
-import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 
-import { fetchArticleByIdThunk } from '../../model/services/fetchArticleByIdThunk/fetchArticleByIdThunk';
-import { articleDetailsReducer } from '../../model/slices/articleDetailsSlice';
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 
 export interface ArticleDetailsProps {
     id?: string;
 }
 
-const reducers: ReducersList = {
-    articleDetails: articleDetailsReducer,
-};
+// const reducers: ReducersList = {
+//     articleDetails: articleDetailsReducer,
+// };
 
 export const ArticleDetails = memo((props: ArticleDetailsProps) => {
     const { id } = props;
@@ -26,26 +20,26 @@ export const ArticleDetails = memo((props: ArticleDetailsProps) => {
     //     dispatch(fetchArticleByIdThunk(id));
     // });
 
-    useEffect(() => {
-        if (__PROJECT__ !== 'storybook' && __PROJECT__ !== 'jest') {
-            if (id) {
-                const action = dispatch(fetchArticleByIdThunk(id));
-                return () => {
-                    action.abort();
-                };
-            }
-        }
-
-        return undefined;
-    }, [dispatch, id]);
+    // useEffect(() => {
+    //     if (__PROJECT__ !== 'storybook' && __PROJECT__ !== 'jest') {
+    //         if (id) {
+    //             const action = dispatch(fetchArticleByIdThunk(id));
+    //             return () => {
+    //                 action.abort();
+    //             };
+    //         }
+    //     }
+    //
+    //     return undefined;
+    // }, [dispatch, id]);
 
     return (
-        <DynamicModuleLoader reducers={reducers}>
-            <ToggleFeaturesComponent
-                feature="isAppRedesigned"
-                on={<RedesignedArticleDetails />}
-                off={<DeprecatedArticleDetails />}
-            />
-        </DynamicModuleLoader>
+        // <DynamicModuleLoader reducers={reducers}>
+        <ToggleFeaturesComponent
+            feature="isAppRedesigned"
+            on={<RedesignedArticleDetails id={id} />}
+            off={<DeprecatedArticleDetails id={id} />}
+        />
+        // </DynamicModuleLoader>
     );
 });

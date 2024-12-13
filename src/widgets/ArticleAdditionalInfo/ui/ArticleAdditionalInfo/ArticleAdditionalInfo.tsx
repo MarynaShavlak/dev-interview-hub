@@ -12,11 +12,12 @@ interface ArticleAdditionalInfoProps {
     author: User;
     createdAt: string;
     views: number;
+    id: string;
 }
 
 export const ArticleAdditionalInfo = memo(
     (props: ArticleAdditionalInfoProps) => {
-        const { className, author, createdAt, views } = props;
+        const { className, author, createdAt, views, id } = props;
         const { t } = useTranslation('articleDetails');
 
         return (
@@ -33,7 +34,7 @@ export const ArticleAdditionalInfo = memo(
                     />
                     <Text text={createdAt} />
                 </HStack>
-                <ArticleEditNavigationButton />
+                <ArticleEditNavigationButton id={id} />
                 <Text
                     text={t('{{count}} переглядів', { count: views })}
                     data-testid="ArticleDetails.Views"

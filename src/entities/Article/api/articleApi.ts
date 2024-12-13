@@ -63,6 +63,9 @@ export const articleFirebaseApi = firestoreApi
                 },
             }),
             getArticleDataById: build.query<Article, string>({
+                providesTags: (result, error, articleId) => [
+                    { type: 'Articles', id: articleId },
+                ],
                 async queryFn(articleId) {
                     try {
                         const articleDocRef = await getDocRefByField<Article>(
@@ -75,7 +78,43 @@ export const articleFirebaseApi = firestoreApi
                             await fetchDocumentByRef<Article>(articleDocRef);
                         return { data: articleData };
                     } catch (error) {
-                        return { error };
+                        console.error('Error fetching article data:', error);
+                        return { error: { message: 'Article not found' } };
+                    }
+                },
+                async onCacheEntryAdded(
+                    articleId,
+                    { updateCachedData, cacheDataLoaded, cacheEntryRemoved },
+                ) {
+                    await cacheDataLoaded;
+                    let unsubscribe;
+                    try {
+                        const articleDocRef = await getDocRefByField<Article>(
+                            'articles',
+                            'id',
+                            articleId,
+                        );
+
+                        unsubscribe = articleDocRef
+                            ? onSnapshot(articleDocRef, (doc) => {
+                                  if (doc.exists()) {
+                                      updateCachedData(
+                                          () => doc.data() as Article,
+                                      );
+                                  } else {
+                                      console.log(
+                                          'Article not found in snapshot',
+                                      );
+                                  }
+                              })
+                            : null;
+                    } catch (error) {
+                        console.error('Error in article data snapshot:', error);
+                    }
+
+                    await cacheEntryRemoved;
+                    if (unsubscribe) {
+                        unsubscribe();
                     }
                 },
             }),
@@ -88,7 +127,7 @@ export const articleFirebaseApi = firestoreApi
 
 export const getArticleDataByIdQuery =
     articleFirebaseApi.endpoints.getArticleDataById.initiate;
-const useArticleDataById = articleFirebaseApi.useGetArticleDataByIdQuery;
+export const useArticleDataById = articleFirebaseApi.useGetArticleDataByIdQuery;
 
 export const useArticles = articleFirebaseApi.useGetArticlesQuery;
 export const getArticlesQuery =
@@ -101,4 +140,23 @@ export const selectEntryResult = (state) =>
 const entrySelectors = articlesAdapter.getSelectors(
     (state) => selectEntryResult(state) ?? initialState,
 );
-export const selectEntry = entrySelectors.selectAll;
+export const selectAllArticles = entrySelectors.selectAll;
+
+// ____________________________________________
+// getArticleDataById: build.query<Article, string>({
+//     async queryFn(articleId) {
+//         try {
+//             const articleDocRef = await getDocRefByField<Article>(
+//                 'articles',
+//                 'id',
+//                 articleId,
+//             );
+//
+//             const articleData =
+//                 await fetchDocumentByRef<Article>(articleDocRef);
+//             return { data: articleData };
+//         } catch (error) {
+//             return { error };
+//         }
+//     },
+// }),
