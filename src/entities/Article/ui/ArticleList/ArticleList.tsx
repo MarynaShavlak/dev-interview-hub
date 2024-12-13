@@ -58,6 +58,8 @@ export const ArticleList = memo((props: ArticleListProps) => {
         page = results.page;
     }
 
+    console.log('results', results);
+
     // const { status } = useInstantSearch();
     // console.log('status', status);
     // useEffect(() => {

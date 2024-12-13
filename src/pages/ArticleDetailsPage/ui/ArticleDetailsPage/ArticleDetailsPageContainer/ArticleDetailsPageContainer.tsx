@@ -12,6 +12,7 @@ import { Card } from '@/shared/ui/redesigned/Card';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
 import { useUserAuthData } from '@/entities/User';
 import { ArticleControls } from '@/widgets/ArticleControls';
+import { ArticleRecommendationsList } from '@/features/ArticleRecommendationsList';
 
 interface ArticleDetailsPageContainerProps {
     id: string;
@@ -51,7 +52,7 @@ export const ArticleDetailsPageContainer = memo(
                             <ArticleRating articleId={id} />
                         )}
 
-                        {/* <ArticleRecommendationsList id={id} /> */}
+                        <ArticleRecommendationsList id={id} />
                         <ArticleComments id={id} />
                     </>
                 )}

@@ -8,17 +8,18 @@ import {
 } from '@/shared/ui/deprecated/Text';
 import { Text } from '@/shared/ui/redesigned/Text';
 import {
+    ArticleCard,
     ArticleCategory,
-    ArticleList,
     ArticleListSkeleton,
     ArticleView,
     useArticleDataById,
     // useArticleDetailsData,
 } from '@/entities/Article';
-import { VStack } from '@/shared/ui/common/Stack';
+import { HStack, VStack } from '@/shared/ui/common/Stack';
 import { useArticleRecommendationsList } from '../../api/articleRecommendationsApi';
 import { Skeleton } from '@/shared/ui/redesigned/Skeleton';
 import { Skeleton as SkeletonDeprecated } from '@/shared/ui/deprecated/Skeleton';
+import { Each } from '@/shared/lib/components/Each/Each';
 
 export interface ArticleRecommendationsListProps {
     className?: string;
@@ -30,6 +31,7 @@ const ArticleRecommendationsList = memo(
         const { className, id } = props;
         const { t } = useTranslation('articleDetails');
         const { data: article } = useArticleDataById(id);
+        console.log('aaaaa', article);
         const title = t('Рекомендуємо');
         const articleCategory = article?.category[0] || ArticleCategory.ALL;
         const errorTitle = t('Помилка завантаження рекомендацій');
@@ -51,6 +53,15 @@ const ArticleRecommendationsList = memo(
             category: articleCategory,
             exceptArticleId: article?.id || '0',
         });
+
+        // const mainClass = toggleFeatures({
+        //     name: 'isAppRedesigned',
+        //     on: () => cls.ArticleListRedesigned,
+        //     off: () => cls.ArticleList,
+        // });
+        // const classes = classNames(mainClass, {}, [className, cls[view]]);
+
+        console.log('recommends', articles);
 
         if (isLoading) {
             return (
@@ -132,11 +143,28 @@ const ArticleRecommendationsList = memo(
                     on={<Text size="l" title={title} />}
                     off={<TextDeprecated size={TextSize.L} title={title} />}
                 />
-                <ArticleList
-                    articles={articles}
-                    target="_blank"
-                    view={ArticleView.GRID}
-                />
+                <HStack wrap="wrap" gap="16">
+                    <Each
+                        of={articles}
+                        render={(item, index) => {
+                            return (
+                                <ArticleCard
+                                    article={item}
+                                    view={ArticleView.GRID}
+                                    target="_blank"
+                                    key={item.id}
+                                    index={index}
+                                />
+                            );
+                        }}
+                    />
+                </HStack>
+
+                {/* <ArticleList */}
+                {/*    articles={articles} */}
+                {/*    target="_blank" */}
+                {/*    view={ArticleView.GRID} */}
+                {/* /> */}
             </VStack>
         );
     },

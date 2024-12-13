@@ -45,7 +45,7 @@ export const useArticleRating = (articleId: string) => {
         articleId,
         userId: userData?.id ?? '',
     });
-    console.log('rating', data);
+    // console.log('rating', data);
 
     const [rateArticleMutation] = useAddArticleRating();
 

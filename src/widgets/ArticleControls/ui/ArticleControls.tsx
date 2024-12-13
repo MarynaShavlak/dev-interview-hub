@@ -21,7 +21,7 @@ export const ArticleControls = memo((props: ArticleControlsProps) => {
     const { user: author, createdAt, views, id } = article;
     const { t } = useTranslation('articleDetails');
     const canEdit = useSelector(getCanEditArticle(id));
-    console.log('canEdit', canEdit);
+
     return (
         <ToggleFeaturesComponent
             feature="isAppRedesigned"
