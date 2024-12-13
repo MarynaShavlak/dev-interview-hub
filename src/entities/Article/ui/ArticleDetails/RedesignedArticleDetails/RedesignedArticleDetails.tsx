@@ -13,7 +13,7 @@ import { ArticleDetailsError } from '../ArticleDetailsError/ArticleDetailsError'
 import { ArticleDetailsSkeleton } from '../ArticleDetailsSkeleton/ArticleDetailsSkeleton';
 import { AppLink } from '@/shared/ui/redesigned/AppLink';
 import { ArticleDetailsProps } from '../ArticleDetails';
-import { useArticleDataById } from '../../..';
+import { useArticleDataById } from '../../../api/articleApi';
 
 export const RedesignedArticleDetails = memo((props: ArticleDetailsProps) => {
     const { t } = useTranslation('articles');

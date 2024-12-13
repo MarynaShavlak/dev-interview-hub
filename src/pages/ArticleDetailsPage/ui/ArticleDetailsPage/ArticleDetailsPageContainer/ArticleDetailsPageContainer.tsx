@@ -9,10 +9,9 @@ import {
 import { ArticleComments } from '@/features/ArticleComments';
 import { ArticleRating } from '@/features/ArticleRating';
 import { Card } from '@/shared/ui/redesigned/Card';
-import { ArticleDetailsPageHeader } from '../DeprecatedArticleDetailsPage/ArticleDetailsPageHeader/ArticleDetailsPageHeader';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
-import { ArticleRecommendationsList } from '@/features/ArticleRecommendationsList';
 import { useUserAuthData } from '@/entities/User';
+import { ArticleControls } from '@/widgets/ArticleControls';
 
 interface ArticleDetailsPageContainerProps {
     id: string;
@@ -28,7 +27,7 @@ export const ArticleDetailsPageContainer = memo(
         const authedUserId = currentUserdata?.id;
 
         console.log('article', article);
-        if (!id) return null;
+        if (!id || !article) return null;
 
         return (
             <VStack gap="16" max>
@@ -41,7 +40,7 @@ export const ArticleDetailsPageContainer = memo(
                     }
                     off={
                         <>
-                            <ArticleDetailsPageHeader id={id} />
+                            <ArticleControls article={article} />
                             <ArticleDetails id={id} />
                         </>
                     }
@@ -52,7 +51,7 @@ export const ArticleDetailsPageContainer = memo(
                             <ArticleRating articleId={id} />
                         )}
 
-                        <ArticleRecommendationsList id={id} />
+                        {/* <ArticleRecommendationsList id={id} /> */}
                         <ArticleComments id={id} />
                     </>
                 )}

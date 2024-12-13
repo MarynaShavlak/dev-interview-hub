@@ -5,9 +5,9 @@ import { AdditionalInfoContainerSkeleton } from './AdditionalInfoContainerSkelet
 //     useArticleDetailsData,
 // } from '@/entities/Article';
 import { Card } from '@/shared/ui/redesigned/Card';
-import { ArticleAdditionalInfo } from '@/widgets/ArticleAdditionalInfo';
 import cls from './AdditionalInfoContainer.module.scss';
 import { useArticleDataById } from '@/entities/Article';
+import { ArticleControls } from '@/widgets/ArticleControls';
 
 interface ArticleDetailsPageContainerProps {
     id: string;
@@ -28,12 +28,7 @@ export const AdditionalInfoContainer = memo(
         }
         return (
             <Card padding="24" border="round" className={cls.card}>
-                <ArticleAdditionalInfo
-                    id={id}
-                    author={article.user}
-                    createdAt={article.createdAt}
-                    views={article.views}
-                />
+                <ArticleControls article={article} />
             </Card>
         );
     },

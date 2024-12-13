@@ -1,1 +1,2 @@
-export { ArticleAdditionalInfo } from './ui/ArticleAdditionalInfo/ArticleAdditionalInfo';
+// export { ArticleAdditionalInfo } from './ui/ArticleAdditionalInfo/ArticleAdditionalInfo';
+export {};

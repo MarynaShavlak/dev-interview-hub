@@ -13,7 +13,7 @@ import { ArticleDetailsError } from '../ArticleDetailsError/ArticleDetailsError'
 
 import { AppLink } from '@/shared/ui/deprecated/AppLink';
 import { ArticleDetailsProps } from '../ArticleDetails';
-import { useArticleDataById } from '../../..';
+import { useArticleDataById } from '../../../api/articleApi';
 
 export const DeprecatedArticleDetails = memo((props: ArticleDetailsProps) => {
     const { id } = props;

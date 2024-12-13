@@ -50,5 +50,5 @@ The project includes comprehensive tests for selectors, ensuring they accurately
 
  | Selector  | Purpose                                                                                   | Edge Cases Handled                         |
 |----------------|-------------------------------------------------------------------------------------------|--------------------------------------------|
- | [getCanEditArticle](../../../src/pages/ArticleDetailsPage/model/selectors/getCanEditArticle/getCanEditArticle.test.ts) | Verifies that the selector returns `true` when the article's author matches the authenticated user, and `false` otherwise. | Handles cases where either article data or user data is missing, returning `false` in those scenarios. |
+ | [getCanEditArticle](../../../src/widgets/ArticleControls/model/selectors/getCanEditArticle/getCanEditArticle.test.ts) | Verifies that the selector returns `true` when the article's author matches the authenticated user, and `false` otherwise. | Handles cases where either article data or user data is missing, returning `false` in those scenarios. |
 
