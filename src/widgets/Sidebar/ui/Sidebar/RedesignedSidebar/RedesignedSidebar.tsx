@@ -49,6 +49,7 @@ export const RedesignedSidebar = memo((props: RedesignedSidebarProps) => {
                 Svg={ArrowIcon}
                 clickable
             />
+
             <div className={cls.switchers}>
                 <ThemeSwitcher />
                 <LangSwitcher short={collapsed} className={cls.lang} />

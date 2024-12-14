@@ -20,6 +20,8 @@ import { ArticlesPageContent } from '../../ArticlesPageContent/ArticlesPageConte
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect/useInitialEffect';
 import { initArticlesPage } from '../../../model/services/initArticlesPage/initArticlesPage';
+import { VStack } from '@/shared/ui/common/Stack';
+import { ArticleCreateNavigationButton } from '@/features/ArticleCreateNavigationButton';
 
 const reducers: ReducersList = {
     articlesPage: articlesPageReducer,
@@ -63,7 +65,12 @@ export const RedesignedArticlesPage = (props: ArticlesPageProps) => {
                     <Configure hitsPerPage={limit} />
                     {/* <VirtualPagination /> */}
                     <StickyContentLayout
-                        left={<ViewSelectorContainer />}
+                        left={
+                            <VStack gap="24">
+                                <ViewSelectorContainer />
+                                <ArticleCreateNavigationButton />
+                            </VStack>
+                        }
                         right={<FiltersContainer />}
                         content={<ArticlesPageContent />}
                     />
