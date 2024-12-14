@@ -30,6 +30,10 @@ import {
     getRouteSettings,
 } from '@/shared/const/router/router';
 import { AppRoutesProps } from '@/shared/types/router';
+import {
+    ArticleCreatePage,
+    ArticleCreatePageSkeleton,
+} from '@/pages/ArticleCreatePage';
 
 export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
     [AppRoutes.MAIN]: {
@@ -68,9 +72,9 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
     },
     [AppRoutes.ARTICLE_CREATE]: {
         path: getRouteArticleCreate(),
-        element: <ArticleEditPage />,
+        element: <ArticleCreatePage />,
         authOnly: true,
-        skeleton: <ArticleEditPageSkeleton />,
+        skeleton: <ArticleCreatePageSkeleton />,
     },
     [AppRoutes.ARTICLE_EDIT]: {
         path: getRouteArticleEdit(':id'),

@@ -11,6 +11,7 @@ import { getRouteArticleDetails } from '@/shared/const/router/router';
 import cls from '../ArticleCard.module.scss';
 import { getFlexClasses } from '@/shared/lib/classes/getFlexClasses/getFlexClasses';
 import { BaseCardProps } from '../ArticleCard';
+import { OrderCard } from '@/shared/ui/redesigned/OrderCard';
 
 export const SequenceViewCard = memo((props: BaseCardProps) => {
     const { t } = useTranslation('articles');
@@ -20,11 +21,6 @@ export const SequenceViewCard = memo((props: BaseCardProps) => {
         align: 'center',
     });
 
-    const additionalOrderClasses = getFlexClasses({
-        hStack: true,
-        align: 'center',
-        justify: 'center',
-    });
     return (
         <Card
             border="partial"
@@ -36,23 +32,7 @@ export const SequenceViewCard = memo((props: BaseCardProps) => {
         >
             <HStack justify="between" max>
                 <HStack gap="24">
-                    {index !== undefined && (
-                        <Card
-                            border="round"
-                            variant="light"
-                            className={classNames(
-                                cls.orderWrap,
-                                {},
-                                additionalOrderClasses,
-                            )}
-                        >
-                            <Text
-                                text={String(index)}
-                                className={cls.orderNumber}
-                                size="m"
-                            />
-                        </Card>
-                    )}
+                    {index !== undefined && <OrderCard index={index} />}
                     <AppLink
                         target={target}
                         to={getRouteArticleDetails(article.id)}

@@ -7,7 +7,7 @@
     "Коментарів немає": "There are no comments yet",
     "Рекомендуємо": "Recommendations",
     "Редагувати статтю": "Edit article",
-    "Створення нової статті": "New article creation",
+    "Створення нової статті": "Create New Article",
     "Редагування статтті із ID = ": "Edit Article with ID = ",
     "Оцінка статей скоро з'явиться": "Article ratings coming soon",
     "Редагувати": "Edit",
@@ -35,5 +35,6 @@
     " Будь ласка, перевірте пізніше": {
       "": "There are currently no recommendations available. Please check back later."
     }
-  }
+  },
+  "Заголовок статті": "Article title"
 }
