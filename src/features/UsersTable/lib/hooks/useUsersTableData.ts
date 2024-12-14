@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import { useUsers } from '@/entities/User';
-import { getArticles, useArticles } from '@/entities/Article';
+import { selectAllArticles, useArticles } from '@/entities/Article';
 import { getRoleData } from '../helpers/getData/getRolesData/getRoleData';
 import { getEnabledUserFeatures } from '../helpers/getData/processUserFeatures/processUserFeatures';
 import { getCombinedUsersData } from '../helpers/getData/getCombinedUsersData/getCombinedUsersData';
@@ -10,8 +10,8 @@ export const useUsersTableData = () => {
     const { data: users, isLoading: isUsersLoading } = useUsers();
 
     const { isLoading: isArticlesLoading } = useArticles();
-    const articles = useSelector(getArticles.selectAll);
-
+    const articles = useSelector(selectAllArticles);
+    // console.log('articles', articles);
     const isLoading = isUsersLoading || isArticlesLoading;
 
     if (!users || !articles) return { users: [], articles: [], isLoading };
@@ -22,6 +22,7 @@ export const useUsersTableData = () => {
             roles,
             features,
             username,
+            email,
             age,
             city,
             country,
@@ -33,6 +34,7 @@ export const useUsersTableData = () => {
             return {
                 id: id || '',
                 username: username || '',
+                email: email || '',
                 role: getRoleData(roles),
                 features: getEnabledUserFeatures(features),
                 age: age || '',

@@ -47,6 +47,7 @@ export function ListBox<T extends string>(props: ListBoxProps<T>) {
         // @ts-ignore
         return items?.find((item) => item.value === value);
     }, [items, value]);
+    console.log('value', value, items);
 
     return (
         <HStack gap="4">

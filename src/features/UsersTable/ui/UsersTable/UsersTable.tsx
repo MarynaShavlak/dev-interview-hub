@@ -48,6 +48,10 @@ const columns = [
         createUserEditableCol({ id: 'username', size: 120 }),
     ),
     columnHelper.accessor(
+        'email',
+        createUserEditableCol({ id: 'email', size: 120 }),
+    ),
+    columnHelper.accessor(
         'firstname',
         createUserEditableCol({ id: 'firstname', size: 120 }),
     ),

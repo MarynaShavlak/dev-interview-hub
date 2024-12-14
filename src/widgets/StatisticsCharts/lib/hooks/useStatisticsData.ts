@@ -16,7 +16,7 @@ export const useStatisticsData = () => {
     const { isLoading: isArticlesLoading, error: isArticlesError } =
         useArticles();
     const articles = useSelector(selectAllArticles);
-    console.log('entries', articles);
+    // console.log('entries', articles);
     // const articles = useSelector(getArticles.selectAll);
     // console.log('articles', articles);
 

@@ -20,7 +20,7 @@ const createListBoxOption = (option: ColorOption | string) => {
     ) : (
         <Text text={option} size="s" />
     );
-    return { value, content };
+    return { value, label: content };
 };
 
 export const OptionCell = <TData,>({

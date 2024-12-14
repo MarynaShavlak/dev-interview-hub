@@ -3,6 +3,7 @@ import { ColorOption } from './types';
 export interface UserPartial {
     id: string;
     username: string;
+    email: string;
     role: ColorOption | null;
     features: string;
     age: string;
