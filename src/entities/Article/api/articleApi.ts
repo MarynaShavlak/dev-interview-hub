@@ -121,10 +121,6 @@ export const articleFirebaseApi = firestoreApi
         }),
     });
 
-// export const useArticles = articleFirebaseApi.useGetArticlesQuery;
-// export const getArticlesQuery =
-//     articleFirebaseApi.endpoints.getArticles.initiate;
-
 export const getArticleDataByIdQuery =
     articleFirebaseApi.endpoints.getArticleDataById.initiate;
 export const useArticleDataById = articleFirebaseApi.useGetArticleDataByIdQuery;
@@ -133,12 +129,17 @@ export const useArticles = articleFirebaseApi.useGetArticlesQuery;
 export const getArticlesQuery =
     articleFirebaseApi.endpoints.getArticles.initiate;
 
-// @ts-ignore
-export const selectEntryResult = (state) =>
+type RootState = {
+    [articleFirebaseApi.reducerPath]: ReturnType<
+        typeof articleFirebaseApi.reducer
+    >;
+};
+
+export const selectEntryResult = (state: RootState) =>
     articleFirebaseApi.endpoints.getArticles.select()(state).data;
 
 const entrySelectors = articlesAdapter.getSelectors(
-    (state) => selectEntryResult(state) ?? initialState,
+    (state: RootState) => selectEntryResult(state) ?? initialState,
 );
 export const selectAllArticles = entrySelectors.selectAll;
 

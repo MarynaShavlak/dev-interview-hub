@@ -9,14 +9,13 @@ import {
 import { Text } from '@/shared/ui/redesigned/Text';
 import {
     ArticleCard,
-    ArticleCategory,
     ArticleListSkeleton,
     ArticleView,
     useArticleDataById,
     // useArticleDetailsData,
 } from '@/entities/Article';
 import { HStack, VStack } from '@/shared/ui/common/Stack';
-import { useArticleRecommendationsList } from '../../api/articleRecommendationsApi';
+import { useArticlesRecomendations } from '../../api/articleRecommendationsApi';
 import { Skeleton } from '@/shared/ui/redesigned/Skeleton';
 import { Skeleton as SkeletonDeprecated } from '@/shared/ui/deprecated/Skeleton';
 import { Each } from '@/shared/lib/components/Each/Each';
@@ -31,9 +30,9 @@ const ArticleRecommendationsList = memo(
         const { className, id } = props;
         const { t } = useTranslation('articleDetails');
         const { data: article } = useArticleDataById(id);
-        console.log('aaaaa', article);
+        // console.log('aaaaa', article);
         const title = t('Рекомендуємо');
-        const articleCategory = article?.category[0] || ArticleCategory.ALL;
+        const articleCategory = article?.category;
         const errorTitle = t('Помилка завантаження рекомендацій');
 
         const errorText = t(
@@ -44,16 +43,25 @@ const ArticleRecommendationsList = memo(
             'Наразі немає доступних рекомендацій. Будь ласка, перевірте пізніше.',
         );
 
+        // const {
+        //     isLoading,
+        //     data: articles,
+        //     error,
+        // } = useArticleRecommendationsList({
+        //     limit: 3,
+        //     category: articleCategory,
+        //     exceptArticleId: article?.id || '0',
+        // });
+
         const {
             isLoading,
             data: articles,
             error,
-        } = useArticleRecommendationsList({
+        } = useArticlesRecomendations({
             limit: 3,
-            category: articleCategory,
+            category: articleCategory || [],
             exceptArticleId: article?.id || '0',
         });
-
         // const mainClass = toggleFeatures({
         //     name: 'isAppRedesigned',
         //     on: () => cls.ArticleListRedesigned,
