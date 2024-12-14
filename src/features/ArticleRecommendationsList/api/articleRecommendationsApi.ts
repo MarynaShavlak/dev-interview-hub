@@ -1,9 +1,10 @@
-import { getDocs, onSnapshot, query, where } from 'firebase/firestore';
+import { onSnapshot } from 'firebase/firestore';
 import { Article, ArticleCategory } from '@/entities/Article';
 
 import { firestoreApi } from '@/shared/api/rtkApi';
-import { dataPoint } from '@/shared/lib/firestore/firestore';
 import { getRandomItems } from '@/shared/lib/mathCalculations/getRandomItems';
+import { createArticlesRecommendationsQuery } from '../lib/utilities/createArticlesRecommendationsQuery/createArticlesRecommendationsQuery';
+import { fetchQueryResults } from '@/shared/lib/firestore/fetchQueryResults/fetchQueryResults';
 
 interface ArticleRecommendationsParams {
     limit: number;
@@ -27,36 +28,40 @@ export const recommendationsFirebaseApi = firestoreApi
                 keepUnusedDataFor: 3600,
                 async queryFn({ category, limit, exceptArticleId }) {
                     try {
-                        console.log('category: ', category);
-                        const collectionRef = dataPoint<Article>('articles');
-                        let queryRef = query(collectionRef);
+                        // const collectionRef = dataPoint<Article>('articles');
+                        // let queryRef = query(collectionRef);
+                        //
+                        // // Filter by category
+                        // if (category) {
+                        //     queryRef = query(
+                        //         queryRef,
+                        //         where(
+                        //             'category',
+                        //             'array-contains-any',
+                        //             category,
+                        //         ),
+                        //     );
+                        // }
+                        //
+                        // if (exceptArticleId) {
+                        //     queryRef = query(
+                        //         queryRef,
+                        //         where('id', '!=', exceptArticleId),
+                        //     );
+                        // }
+                        const queryRef = createArticlesRecommendationsQuery(
+                            category,
+                            exceptArticleId,
+                        );
+                        // const recommendations: Article[] = [];
+                        // const querySnapshot = await getDocs(queryRef);
+                        // querySnapshot.forEach((doc) => {
+                        //     recommendations.push(doc.data());
+                        // });
 
-                        // Filter by category
-                        if (category) {
-                            queryRef = query(
-                                queryRef,
-                                where(
-                                    'category',
-                                    'array-contains-any',
-                                    category,
-                                ),
-                            );
-                        }
+                        const data = await fetchQueryResults<Article>(queryRef);
 
-                        if (exceptArticleId) {
-                            queryRef = query(
-                                queryRef,
-                                where('id', '!=', exceptArticleId),
-                            );
-                        }
-
-                        const recommendations: Article[] = [];
-                        const querySnapshot = await getDocs(queryRef);
-                        querySnapshot.forEach((doc) => {
-                            recommendations.push(doc.data());
-                        });
-
-                        return { data: getRandomItems(recommendations, 3) };
+                        return { data: getRandomItems(data, limit) };
                     } catch (error) {
                         console.error('Error fetching recommendations:', error);
                         return { error };
@@ -69,26 +74,19 @@ export const recommendationsFirebaseApi = firestoreApi
                     await cacheDataLoaded;
                     let unsubscribe;
                     try {
-                        console.log('category1111: ', category);
-                        const collectionRef = dataPoint<Article>('articles');
-                        let queryRef = query(
-                            collectionRef,
-                            where('category', 'array-contains-any', category),
+                        const queryRef = createArticlesRecommendationsQuery(
+                            category,
+                            exceptArticleId,
                         );
-                        if (exceptArticleId) {
-                            queryRef = query(
-                                queryRef,
-                                where('id', '!=', exceptArticleId),
-                            );
-                        }
                         unsubscribe = onSnapshot(queryRef, (snapshot) => {
                             updateCachedData((draft) => {
-                                const result = getRandomItems(
-                                    snapshot?.docs?.map((doc) =>
+                                const updatedData = getRandomItems(
+                                    snapshot.docs.map((doc) =>
                                         doc.data(),
                                     ) as Article[],
-                                    3,
+                                    limit,
                                 );
+                                draft.splice(0, draft.length, ...updatedData);
                             });
                         });
                     } catch (error) {
