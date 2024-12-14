@@ -1,16 +1,9 @@
 import { onSnapshot } from 'firebase/firestore';
 import { Article, ArticleCategory } from '@/entities/Article';
-
 import { firestoreApi } from '@/shared/api/rtkApi';
 import { getRandomItems } from '@/shared/lib/mathCalculations/getRandomItems';
 import { createArticlesRecommendationsQuery } from '../lib/utilities/createArticlesRecommendationsQuery/createArticlesRecommendationsQuery';
 import { fetchQueryResults } from '@/shared/lib/firestore/fetchQueryResults/fetchQueryResults';
-
-interface ArticleRecommendationsParams {
-    limit: number;
-    category: ArticleCategory;
-    exceptArticleId: string;
-}
 
 export const recommendationsFirebaseApi = firestoreApi
     .enhanceEndpoints({ addTagTypes: ['ArticleRecommendations'] })
@@ -28,36 +21,10 @@ export const recommendationsFirebaseApi = firestoreApi
                 keepUnusedDataFor: 3600,
                 async queryFn({ category, limit, exceptArticleId }) {
                     try {
-                        // const collectionRef = dataPoint<Article>('articles');
-                        // let queryRef = query(collectionRef);
-                        //
-                        // // Filter by category
-                        // if (category) {
-                        //     queryRef = query(
-                        //         queryRef,
-                        //         where(
-                        //             'category',
-                        //             'array-contains-any',
-                        //             category,
-                        //         ),
-                        //     );
-                        // }
-                        //
-                        // if (exceptArticleId) {
-                        //     queryRef = query(
-                        //         queryRef,
-                        //         where('id', '!=', exceptArticleId),
-                        //     );
-                        // }
                         const queryRef = createArticlesRecommendationsQuery(
                             category,
                             exceptArticleId,
                         );
-                        // const recommendations: Article[] = [];
-                        // const querySnapshot = await getDocs(queryRef);
-                        // querySnapshot.forEach((doc) => {
-                        //     recommendations.push(doc.data());
-                        // });
 
                         const data = await fetchQueryResults<Article>(queryRef);
 
