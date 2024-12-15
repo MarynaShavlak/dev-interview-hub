@@ -25,7 +25,8 @@ export const RedesignedListViewCard = memo((props: BaseCardProps) => {
         (block) => block.type === ArticleSection.TEXT,
     ) as ArticleTextBlock;
     const additionalClasses = getFlexClasses({ vStack: true, gap: '16' });
-
+    const subtitleText = article?.subtitle.text;
+    const subtitleLink = article?.subtitle.link;
     return (
         <div
             className={classNames(cls.ArticleListItemRedesigned, {}, [
@@ -54,7 +55,15 @@ export const RedesignedListViewCard = memo((props: BaseCardProps) => {
                     bold
                     data-testid="ArticleListItem.Title"
                 />
-                <Text title={article.subtitle.text} size="s" />
+
+                {!subtitleLink && <Text title={subtitleText} />}
+                {subtitleLink && (
+                    <VStack gap="4">
+                        <Text text={subtitleText} />
+                        <Text title={subtitleLink} size="s" />
+                    </VStack>
+                )}
+
                 <AppImage
                     fallback={
                         <Skeleton

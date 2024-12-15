@@ -36,5 +36,9 @@
       "": "There are currently no recommendations available. Please check back later."
     }
   },
-  "Заголовок статті": "Article title"
+  "Заголовок статті": "Title",
+  "Підзаголовок статті": "Subtitle",
+  "Додати посилання": "Add link",
+  "Посилання": "Link (optional)",
+  "Видалити посилання": "Delete link"
 }
