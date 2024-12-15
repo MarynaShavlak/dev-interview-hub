@@ -25,5 +25,10 @@ export const useInputValidationConfig = (): AuthValidation => {
             minLength: 3,
             maxLength: 8,
         },
+        title: {
+            isEmpty: true,
+            minLength: 2,
+            maxLength: 10,
+        },
     };
 };

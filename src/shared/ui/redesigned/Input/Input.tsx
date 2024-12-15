@@ -1,21 +1,15 @@
-import React, {
-    InputHTMLAttributes,
-    memo,
-    ReactNode,
-    useId,
-    useMemo,
-} from 'react';
-import { useTranslation } from 'react-i18next';
+import React, { InputHTMLAttributes, memo, ReactNode, useId } from 'react';
 import { useInput } from '@/shared/lib/hooks/useInput/useInput';
 import { classNames, Mods } from '@/shared/lib/classes/classNames/classNames';
 import { Text } from '../Text';
 import cls from './Input.module.scss';
-import { VStack } from '../../common/Stack';
+import { HStack, VStack } from '../../common/Stack';
 import {
-    ValidationErrors,
     InputValidations,
+    ValidationErrors,
 } from '@/shared/lib/hooks/validationHooks/useInputErrors/useInputErrors';
 import { FlexGap } from '@/shared/types/flexTypes';
+import { ValidationErrorMessages } from './ValidationErrorMessages/ValidationErrorMessages';
 
 type HTMLInputProps = Omit<
     InputHTMLAttributes<HTMLInputElement>,
@@ -41,73 +35,9 @@ interface InputProps extends HTMLInputProps {
     errors?: ValidationErrors;
     gap?: FlexGap;
     maxWidth?: boolean;
+    labelBold?: boolean;
+    maxLengthIndicator?: boolean;
 }
-
-interface ValidationErrorMessagesProps {
-    isDirty: boolean;
-    value?: string | number;
-    validations?: InputValidations;
-    errors: ValidationErrors;
-}
-
-const ValidationErrorMessages = memo(
-    ({ isDirty, value, validations, errors }: ValidationErrorMessagesProps) => {
-        const { t } = useTranslation();
-
-        const validationMessages = useMemo(
-            () => ({
-                EMPTY_FIELD: t('Поле є обов’язковим для заповнення'),
-                INVALID_EMAIL: t('Невірний формат електронної пошти'),
-                MIN_LENGTH_VIOLATION: t(
-                    'Мінімальна довжина поля не відповідає вимогам',
-                ),
-                MAX_LENGTH_VIOLATION: t('Максимальна довжина поля перевищена'),
-                INVALID_USERNAME: t("Неправильне ім'я користувача"),
-            }),
-            [t],
-        );
-        if (!isDirty) return null;
-        return (
-            <>
-                {errors.isEmpty && (
-                    <Text
-                        size="s"
-                        variant="error"
-                        text={validationMessages.EMPTY_FIELD}
-                    />
-                )}
-                {!errors.isEmpty && errors.minLengthError && (
-                    <Text
-                        size="s"
-                        variant="error"
-                        text={validationMessages.MIN_LENGTH_VIOLATION}
-                    />
-                )}
-                {errors.maxLengthError && (
-                    <Text
-                        size="s"
-                        variant="error"
-                        text={validationMessages.MAX_LENGTH_VIOLATION}
-                    />
-                )}
-                {!errors.isEmpty && errors.emailError && (
-                    <Text
-                        size="s"
-                        variant="error"
-                        text={validationMessages.INVALID_EMAIL}
-                    />
-                )}
-                {!errors.isEmpty && errors.usernameError && (
-                    <Text
-                        size="s"
-                        variant="error"
-                        text={validationMessages.INVALID_USERNAME}
-                    />
-                )}
-            </>
-        );
-    },
-);
 
 export const Input = memo((props: InputProps) => {
     const {
@@ -129,6 +59,8 @@ export const Input = memo((props: InputProps) => {
         errors,
         gap = '4',
         maxWidth = true,
+        labelBold = false,
+        maxLengthIndicator = false,
 
         ...otherProps
     } = props;
@@ -169,11 +101,29 @@ export const Input = memo((props: InputProps) => {
             <div className={cls.addonRight}>{addonRight}</div>
         </div>
     );
+    const currentInputLength = String(value).length;
+    const maxInputLength = validations?.maxLength || 0;
+    const isLimitExceeded = currentInputLength > maxInputLength;
 
     if (label) {
         return (
             <VStack max={maxWidth} gap={gap}>
-                <Text text={label} />
+                {!maxLengthIndicator && <Text text={label} bold={labelBold} />}
+                {maxLengthIndicator && (
+                    <HStack max justify="between">
+                        <Text text={label} bold={labelBold} />
+                        <span
+                            className={classNames(
+                                cls.InputLimit,
+                                { [cls.isLimitExceeded]: isLimitExceeded },
+                                [],
+                            )}
+                        >
+                            <span>{currentInputLength}</span>/
+                            <span>{maxInputLength}</span>
+                        </span>
+                    </HStack>
+                )}
                 {input}
                 {errors && (
                     <ValidationErrorMessages
