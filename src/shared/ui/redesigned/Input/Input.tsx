@@ -15,6 +15,7 @@ import {
     ValidationErrors,
     InputValidations,
 } from '@/shared/lib/hooks/validationHooks/useInputErrors/useInputErrors';
+import { FlexGap } from '@/shared/types/flexTypes';
 
 type HTMLInputProps = Omit<
     InputHTMLAttributes<HTMLInputElement>,
@@ -38,6 +39,8 @@ interface InputProps extends HTMLInputProps {
     clear?: boolean;
     validations?: InputValidations;
     errors?: ValidationErrors;
+    gap?: FlexGap;
+    maxWidth?: boolean;
 }
 
 interface ValidationErrorMessagesProps {
@@ -124,6 +127,8 @@ export const Input = memo((props: InputProps) => {
         clear = false,
         validations,
         errors,
+        gap = '4',
+        maxWidth = true,
 
         ...otherProps
     } = props;
@@ -167,7 +172,7 @@ export const Input = memo((props: InputProps) => {
 
     if (label) {
         return (
-            <VStack max gap="4">
+            <VStack max={maxWidth} gap={gap}>
                 <Text text={label} />
                 {input}
                 {errors && (
