@@ -11,6 +11,12 @@ import { useInputValidationConfig } from '@/shared/lib/hooks/validationHooks/use
 import { Button } from '@/shared/ui/redesigned/Button';
 import AddIcon from '@/shared/assets/icons/plus.svg';
 import { Icon } from '@/shared/ui/redesigned/Icon';
+import { useCreateArticle } from '../../lib/hooks/useCreateArticle/useCreateArticle';
+import {
+    DynamicModuleLoader,
+    ReducersList,
+} from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
+import { createArticleReducer } from '../../model/slices/createArticleSlice';
 
 interface ArticleCreatePageProps {
     className?: string;
@@ -26,6 +32,10 @@ export const useToggleVisibility = () => {
     return { isVisible, toggleVisibility };
 };
 
+const reducers: ReducersList = {
+    createArticle: createArticleReducer,
+};
+
 const ArticleCreatePage = memo((props: ArticleCreatePageProps) => {
     const { className } = props;
     const { t } = useTranslation('articleDetails');
@@ -34,79 +44,105 @@ const ArticleCreatePage = memo((props: ArticleCreatePageProps) => {
     const { isVisible: isLinkInputAdded, toggleVisibility: toggleLinkInput } =
         useToggleVisibility();
 
+    const {
+        formData,
+        onChangeTitle,
+        onChangeSubtitleText,
+        onChangeSubtitleLink,
+        error,
+        isLoading,
+        // readonly,
+        // onChangeFirstname,
+        // onChangeLastname,
+        // onChangeUsername,
+        // onChangeAvatar,
+        // onChangeCountry,
+        // onChangeCurrency,
+        // onChangeAge,
+        // onChangeCity,
+        // onFileUpload,
+    } = useCreateArticle();
+    console.log('formData', formData);
+
     const linkButtonText = isLinkInputAdded
         ? t('Видалити посилання')
         : t('Додати посилання');
 
     return (
-        <Page className={classNames(cls.ArticleEditPage, {}, [className])}>
-            <VStack gap="24">
-                <Text title={t('Створення нової статті')} size="l" />
-                <HStack gap="16" align="start" max>
-                    <OrderCard index={1} />
+        <DynamicModuleLoader reducers={reducers}>
+            <Page className={classNames(cls.ArticleEditPage, {}, [className])}>
+                <VStack gap="24">
+                    <Text title={t('Створення нової статті')} size="l" />
+                    <HStack gap="16" align="start" max>
+                        <OrderCard index={1} />
 
-                    <Input
-                        value={value}
-                        label={t('Заголовок статті')}
-                        labelBold
-                        gap="16"
-                        maxWidth={false}
-                        className={cls.InputName}
-                        onChange={(value) => setValue(value)}
-                        // readonly={readonly}
-                        // disabled={readonly}
-                        // data-testid="UserCard.username"
-                        validations={validConfig.title}
-                        maxLengthIndicator
-                        // errors={usernameErrors}
-                    />
-                    {/* </VStack> */}
-                </HStack>
-
-                <HStack gap="16" align="start" max>
-                    <OrderCard index={2} />
-                    <VStack gap="16">
                         <Input
-                            value={value}
-                            label={t('Підзаголовок статті')}
+                            value={formData?.title || ''}
+                            label={t('Заголовок статті')}
                             labelBold
                             gap="16"
                             maxWidth={false}
                             className={cls.InputName}
-                            onChange={(value) => setValue(value)}
-                            validations={validConfig.subtitle}
+                            onChange={onChangeTitle}
+                            // readonly={readonly}
+                            // disabled={readonly}
+                            // data-testid="UserCard.username"
+                            validations={validConfig.title}
                             maxLengthIndicator
+                            // errors={usernameErrors}
                         />
-                        {isLinkInputAdded && (
+                        {/* </VStack> */}
+                    </HStack>
+
+                    <HStack gap="16" align="start" max>
+                        <OrderCard index={2} />
+                        <VStack gap="16">
                             <Input
-                                value={value}
-                                label={t('Посилання')}
+                                value={formData?.subtitle.text || ''}
+                                label={t('Підзаголовок статті')}
                                 labelBold
                                 gap="16"
                                 maxWidth={false}
                                 className={cls.InputName}
-                                onChange={(value) => setValue(value)}
+                                onChange={onChangeSubtitleText}
                                 validations={validConfig.subtitle}
                                 maxLengthIndicator
                             />
-                        )}
-                    </VStack>
+                            {isLinkInputAdded && (
+                                <Input
+                                    value={formData?.subtitle.link || ''}
+                                    label={t('Посилання')}
+                                    labelBold
+                                    gap="16"
+                                    maxWidth={false}
+                                    className={cls.InputName}
+                                    onChange={onChangeSubtitleLink}
+                                    validations={validConfig.subtitle}
+                                    maxLengthIndicator
+                                />
+                            )}
+                        </VStack>
 
-                    <Button
-                        variant="filled"
-                        addonLeft={
-                            !isLinkInputAdded && (
-                                <Icon Svg={AddIcon} width={16} height={16} />
-                            )
-                        }
-                        className={cls.addLinkButton}
-                        onClick={toggleLinkInput}
-                    >
-                        {linkButtonText}
-                    </Button>
-                </HStack>
-            </VStack>
-        </Page>
+                        <Button
+                            variant="filled"
+                            addonLeft={
+                                !isLinkInputAdded && (
+                                    <Icon
+                                        Svg={AddIcon}
+                                        width={16}
+                                        height={16}
+                                    />
+                                )
+                            }
+                            className={cls.addLinkButton}
+                            onClick={toggleLinkInput}
+                        >
+                            {linkButtonText}
+                        </Button>
+                    </HStack>
+                </VStack>
+            </Page>
+        </DynamicModuleLoader>
     );
 });
 

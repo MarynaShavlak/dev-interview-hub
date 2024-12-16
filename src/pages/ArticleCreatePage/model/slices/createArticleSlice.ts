@@ -1,6 +1,8 @@
+import { PayloadAction } from '@reduxjs/toolkit';
 import { buildSlice } from '@/shared/lib/store';
 import { User } from '@/entities/User';
 import { CreateArticleSchema } from '../types/createArticleSchema';
+import { Article } from '@/entities/Article';
 
 const initialState: CreateArticleSchema = {
     isLoading: false,
@@ -23,7 +25,24 @@ const initialState: CreateArticleSchema = {
 export const createArticleSlice = buildSlice({
     name: 'createArticle',
     initialState,
-    reducers: {},
+    reducers: {
+        updateCreateArticleForm: (
+            state,
+            action: PayloadAction<Partial<Article>>,
+        ) => {
+            const data = {
+                ...state.form,
+                ...action.payload,
+            };
+            state.form = data as Article;
+        },
+        updateSubtitleLink(state, action) {
+            state.form.subtitle.link = action.payload;
+        },
+        updateSubtitleText(state, action) {
+            state.form.subtitle.text = action.payload;
+        },
+    },
 });
 
 export const {
