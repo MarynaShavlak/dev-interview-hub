@@ -21,6 +21,7 @@ import { ArticlesPageSchema } from '@/pages/ArticlesPage';
 import { firestoreApi, rtkApi } from '@/shared/api/rtkApi';
 import { AddCommentFormSchema } from '@/entities/Comment';
 import { ArticleCommentsSchema } from '@/features/ArticleComments';
+import { CreateArticleSchema } from '@/pages/ArticleCreatePage';
 
 export interface StateSchema {
     user: UserSchema;
@@ -37,6 +38,7 @@ export interface StateSchema {
     // articleDetailsPage?: ArticleDetailsPageSchema;
     articleComments?: ArticleCommentsSchema;
     articles?: EntityState<Article>;
+    createArticle?: CreateArticleSchema;
 }
 
 export type StateSchemaKey = keyof StateSchema;

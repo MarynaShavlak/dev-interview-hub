@@ -5,7 +5,7 @@ import { Avatar } from '@/shared/ui/redesigned/Avatar';
 import cls from '../UserCard.module.scss';
 
 import { Button } from '@/shared/ui/redesigned/Button';
-import { FileUploadInput } from './FileUploadInput/FileUploadInput';
+import { FileUploadInput } from '@/shared/ui/redesigned/FileUploadInput/FileUploadInput';
 import { Text } from '@/shared/ui/redesigned/Text';
 import { Box } from '@/shared/ui/common/Box/Box';
 
