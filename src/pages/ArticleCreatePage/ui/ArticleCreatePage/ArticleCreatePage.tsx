@@ -1,5 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import React, { memo, useCallback, useMemo, useState } from 'react';
+import { EditorState } from 'draft-js';
+import { Editor } from 'react-draft-wysiwyg';
 import { Page } from '@/widgets/Page';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import cls from './ArticleCreatePage.module.scss';
@@ -46,6 +48,12 @@ const ArticleCreatePage = memo((props: ArticleCreatePageProps) => {
     const [value, setValue] = useState('');
     const { isVisible: isLinkInputAdded, toggleVisibility: toggleLinkInput } =
         useToggleVisibility();
+
+    const [editorState, setEditorState] = useState(EditorState.createEmpty());
+
+    const onEditorStateChange = (newState: EditorState) => {
+        setEditorState(newState);
+    };
 
     const {
         formData,
@@ -240,6 +248,15 @@ const ArticleCreatePage = memo((props: ArticleCreatePageProps) => {
                                     <b>{t('зображення')}</b>
                                 </Button>
                             </HStack>
+                            <Editor
+                                editorState={editorState}
+                                onEditorStateChange={onEditorStateChange}
+                                toolbarClassName="toolbarClassName"
+                                wrapperClassName="wrapperClassName"
+                                editorClassName="editorClassName"
+                                placeholder={`${t('Напишіть тект параграфу')}...`}
+                                // onEditorStateChange={this.onEditorStateChange}
+                            />
                         </VStack>
                     </HStack>
                 </VStack>
