@@ -180,6 +180,68 @@ const ArticleCreatePage = memo((props: ArticleCreatePageProps) => {
                         {/* /> */}
                         {/* </VStack> */}
                     </HStack>
+                    <HStack gap="16" align="start" max>
+                        <OrderCard index={4} />
+                        <VStack gap="16">
+                            <Text text={t('Блоки статті')} bold />
+                            <HStack gap="24">
+                                <Button
+                                    variant="filled"
+                                    addonLeft={
+                                        <Icon
+                                            Svg={AddIcon}
+                                            width={16}
+                                            height={16}
+                                        />
+                                    }
+                                    className={cls.addLinkButton}
+                                    onClick={() =>
+                                        console.log('add text block')
+                                    }
+                                >
+                                    {t('Додати')} {t('блок')}
+                                    &nbsp;
+                                    <b>{t('тексту')}</b>
+                                </Button>
+                                <Button
+                                    variant="filled"
+                                    addonLeft={
+                                        <Icon
+                                            Svg={AddIcon}
+                                            width={16}
+                                            height={16}
+                                        />
+                                    }
+                                    className={cls.addLinkButton}
+                                    onClick={() =>
+                                        console.log('add code block')
+                                    }
+                                >
+                                    {t('Додати')} {t('блок')}
+                                    &nbsp;
+                                    <b>{t('коду')}</b>
+                                </Button>
+                                <Button
+                                    variant="filled"
+                                    addonLeft={
+                                        <Icon
+                                            Svg={AddIcon}
+                                            width={16}
+                                            height={16}
+                                        />
+                                    }
+                                    className={cls.addLinkButton}
+                                    onClick={() =>
+                                        console.log('add image block')
+                                    }
+                                >
+                                    {t('Додати')} {t('блок')}
+                                    &nbsp;
+                                    <b>{t('зображення')}</b>
+                                </Button>
+                            </HStack>
+                        </VStack>
+                    </HStack>
                 </VStack>
             </Page>
         </DynamicModuleLoader>

@@ -73,7 +73,7 @@ export const Tabs = memo((props: TabsProps) => {
                         : tab.value === value;
 
                     // console.log('value:', value, tab.value, isSelected);
-                    console.log('tab value:', tab.value);
+                    // console.log('tab value:', tab.value);
                     return (
                         <Card
                             variant={isSelected ? 'light' : 'normal'}
