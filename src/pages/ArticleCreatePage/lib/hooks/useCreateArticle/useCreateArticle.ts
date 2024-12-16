@@ -13,8 +13,12 @@ export const useCreateArticle = () => {
     const error = useCreateArticleError();
     // const readonly = useProfileReadonly();
     // const validateErrors = useProfileValidateErrors();
-    const { updateCreateArticleForm, updateSubtitleText, updateSubtitleLink } =
-        useCreateArticleActions();
+    const {
+        updateCreateArticleForm,
+        updateSubtitleText,
+        updateSubtitleLink,
+        updateCategory,
+    } = useCreateArticleActions();
     //
     const validConfig = useInputValidationConfig();
     const { title, subtitle } = formData || {};
@@ -40,7 +44,6 @@ export const useCreateArticle = () => {
 
     const onChangeSubtitleText = useCallback(
         (value?: string) => {
-            // @ts-ignore
             updateSubtitleText(value || '');
         },
         [updateSubtitleText],
@@ -48,10 +51,16 @@ export const useCreateArticle = () => {
 
     const onChangeSubtitleLink = useCallback(
         (value?: string) => {
-            // @ts-ignore
             updateSubtitleLink(value || '');
         },
         [updateSubtitleLink],
+    );
+
+    const onChangeCategory = useCallback(
+        (value?: string) => {
+            updateCategory(value || '');
+        },
+        [updateCategory],
     );
 
     // const onChangeSubtitleLink = useCallback(
@@ -114,6 +123,7 @@ export const useCreateArticle = () => {
         onChangeTitle,
         onChangeSubtitleText,
         onChangeSubtitleLink,
+        onChangeCategory,
         // readonly,
         // validateErrors,
         // onChangeFirstname,

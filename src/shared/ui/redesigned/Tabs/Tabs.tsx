@@ -1,10 +1,10 @@
 import { memo, useCallback } from 'react';
-import { FlexDirection } from '@/shared/types/flexTypes';
 import { Each } from '@/shared/lib/components/Each/Each';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { Card } from '../Card/Card';
 import cls from './Tabs.module.scss';
 import { Flex } from '../../common/Stack/Flex/Flex';
+import { FlexDirection } from '@/shared/types/flexTypes';
 
 export interface TabItem {
     value: string;
@@ -14,19 +14,47 @@ export interface TabItem {
 interface TabsProps {
     className?: string;
     tabs: TabItem[];
-    value: string;
+    value: string | string[];
     onTabClick: (tab: TabItem) => void;
     direction?: FlexDirection;
+    multiselect?: boolean;
 }
 
 export const Tabs = memo((props: TabsProps) => {
-    const { className, tabs, onTabClick, value, direction = 'row' } = props;
+    const {
+        className,
+        tabs,
+        onTabClick,
+        value,
+        direction = 'row',
+        multiselect = false,
+    } = props;
+
+    // const clickHandle = useCallback(
+    //     (tab: TabItem) => () => {
+    //         onTabClick(tab);
+    //     },
+    //     [onTabClick],
+    // );
 
     const clickHandle = useCallback(
         (tab: TabItem) => () => {
-            onTabClick(tab);
+            if (multiselect) {
+                // For multi-select, update value as array of strings
+                const newValue = Array.isArray(value)
+                    ? value.includes(tab.value)
+                        ? value.filter((v) => v !== tab.value)
+                        : [...value, tab.value]
+                    : [tab.value]; // Convert single value to array if needed
+                onTabClick({
+                    value: newValue.join(','),
+                    label: tab.label,
+                }); // Pass as string joined by comma
+            } else {
+                onTabClick(tab); // For single select, just pass the tab
+            }
         },
-        [onTabClick],
+        [onTabClick, value, multiselect],
     );
 
     return (
@@ -39,12 +67,18 @@ export const Tabs = memo((props: TabsProps) => {
             <Each
                 of={tabs}
                 render={(tab) => {
-                    const isSelected = tab.value === value;
+                    // const isSelected = tab.value === value;
+                    const isSelected = Array.isArray(value)
+                        ? value.includes(tab.value)
+                        : tab.value === value;
+
+                    // console.log('value:', value, tab.value, isSelected);
+                    console.log('tab value:', tab.value);
                     return (
                         <Card
                             variant={isSelected ? 'light' : 'normal'}
                             className={classNames(cls.tab, {})}
-                            key={tab.value}
+                            key={tab.value as string}
                             onClick={clickHandle(tab)}
                             border="round"
                         >

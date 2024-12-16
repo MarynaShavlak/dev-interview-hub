@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { memo, useCallback, useState } from 'react';
+import React, { memo, useCallback, useMemo, useState } from 'react';
 import { Page } from '@/widgets/Page';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import cls from './ArticleCreatePage.module.scss';
@@ -17,6 +17,9 @@ import {
     ReducersList,
 } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { createArticleReducer } from '../../model/slices/createArticleSlice';
+import { Tabs } from '@/shared/ui/redesigned/Tabs';
+import { useCategoryTabs } from '@/features/ArticleCategoryTabs';
+import { ArticleCategory } from '@/entities/Article';
 
 interface ArticleCreatePageProps {
     className?: string;
@@ -49,6 +52,7 @@ const ArticleCreatePage = memo((props: ArticleCreatePageProps) => {
         onChangeTitle,
         onChangeSubtitleText,
         onChangeSubtitleLink,
+        onChangeCategory,
         error,
         isLoading,
         // readonly,
@@ -64,9 +68,17 @@ const ArticleCreatePage = memo((props: ArticleCreatePageProps) => {
     } = useCreateArticle();
     console.log('formData', formData);
 
+    const deleteSubtitleLink = useCallback(() => {
+        onChangeSubtitleLink('');
+        toggleLinkInput();
+    }, [onChangeSubtitleLink, toggleLinkInput]);
+
     const linkButtonText = isLinkInputAdded
         ? t('Видалити посилання')
         : t('Додати посилання');
+
+    const rawCategoryTabs = useCategoryTabs();
+    const categoryTabs = useMemo(() => rawCategoryTabs, [rawCategoryTabs]);
 
     return (
         <DynamicModuleLoader reducers={reducers}>
@@ -91,9 +103,7 @@ const ArticleCreatePage = memo((props: ArticleCreatePageProps) => {
                             maxLengthIndicator
                             // errors={usernameErrors}
                         />
-                        {/* </VStack> */}
                     </HStack>
-
                     <HStack gap="16" align="start" max>
                         <OrderCard index={2} />
                         <VStack gap="16">
@@ -135,10 +145,40 @@ const ArticleCreatePage = memo((props: ArticleCreatePageProps) => {
                                 )
                             }
                             className={cls.addLinkButton}
-                            onClick={toggleLinkInput}
+                            onClick={deleteSubtitleLink}
                         >
                             {linkButtonText}
                         </Button>
+                    </HStack>
+                    <HStack gap="16" align="start" max>
+                        <OrderCard index={3} />
+                        <VStack gap="16">
+                            <Text text={t('Категорії статей')} bold />
+                            <Tabs
+                                tabs={categoryTabs}
+                                value={formData?.category as ArticleCategory[]}
+                                onTabClick={(tab) => {
+                                    onChangeCategory(tab.value);
+                                }}
+                            />
+                        </VStack>
+
+                        {/* <Input */}
+                        {/*    value={formData?.title || ''} */}
+                        {/*    label={t('Заголовок статті')} */}
+                        {/*    labelBold */}
+                        {/*    gap="16" */}
+                        {/*    maxWidth={false} */}
+                        {/*    className={cls.InputName} */}
+                        {/*    onChange={onChangeTitle} */}
+                        {/*    // readonly={readonly} */}
+                        {/*    // disabled={readonly} */}
+                        {/*    // data-testid="UserCard.username" */}
+                        {/*    validations={validConfig.title} */}
+                        {/*    maxLengthIndicator */}
+                        {/*    // errors={usernameErrors} */}
+                        {/* /> */}
+                        {/* </VStack> */}
                     </HStack>
                 </VStack>
             </Page>

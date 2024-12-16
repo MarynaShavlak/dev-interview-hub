@@ -42,6 +42,20 @@ export const createArticleSlice = buildSlice({
         updateSubtitleText(state, action) {
             state.form.subtitle.text = action.payload;
         },
+        updateCategory(state, action) {
+            const categoryToAdd = action.payload;
+
+            // Ensure the category array exists
+            if (state.form.category && Array.isArray(state.form.category)) {
+                const index = state.form.category.indexOf(categoryToAdd);
+
+                if (index === -1) {
+                    state.form.category.push(categoryToAdd);
+                } else {
+                    state.form.category.splice(index, 1);
+                }
+            }
+        },
     },
 });
 
