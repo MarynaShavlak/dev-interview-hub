@@ -1,7 +1,8 @@
 import { useTranslation } from 'react-i18next';
-import React, { memo, useState } from 'react';
-import { EditorState } from 'draft-js';
+import React, { memo, useCallback, useState } from 'react';
+import { EditorState, convertToRaw, ContentState } from 'draft-js';
 import { Editor } from 'react-draft-wysiwyg';
+import draftToHtml from 'draftjs-to-html';
 import { Page } from '@/widgets/Page';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import cls from './ArticleCreatePage.module.scss';
@@ -9,9 +10,6 @@ import { Text } from '@/shared/ui/redesigned/Text';
 import { HStack, VStack } from '@/shared/ui/common/Stack';
 import { OrderCard } from '@/shared/ui/redesigned/OrderCard';
 import { useInputValidationConfig } from '@/shared/lib/hooks/validationHooks/useInputValidationConfig/useInputValidationConfig';
-import { Button } from '@/shared/ui/redesigned/Button';
-import AddIcon from '@/shared/assets/icons/plus.svg';
-import { Icon } from '@/shared/ui/redesigned/Icon';
 import { useCreateArticle } from '../../lib/hooks/useCreateArticle/useCreateArticle';
 import {
     DynamicModuleLoader,
@@ -21,6 +19,11 @@ import { createArticleReducer } from '../../model/slices/createArticleSlice';
 import { useToggleVisibility } from '@/shared/lib/hooks/useToggleVisibility/useToggleVisibility';
 import { TitleSubtitleForm } from '../TitleSubtitleForm/TitleSubtitleForm';
 import { AddCategoryForm } from '../AddCategoryForm/AddCategoryForm';
+import { AddArticleBlocksButtons } from '../AddArticleBlocksButtons/AddArticleBlocksButtons';
+import { Article } from '@/entities/Article';
+import { Icon } from '@/shared/ui/redesigned/Icon';
+import AddIcon from '@/shared/assets/icons/plus.svg';
+import { Button } from '@/shared/ui/redesigned/Button';
 
 interface ArticleCreatePageProps {
     className?: string;
@@ -44,24 +47,28 @@ const ArticleCreatePage = memo((props: ArticleCreatePageProps) => {
         setEditorState(newState);
     };
 
-    const {
-        formData,
+    const onAddTextBlockBtnClick = useCallback(() => {
+        toggleTextBlock();
+    }, [toggleTextBlock]);
 
-        error,
-        isLoading,
-        // readonly,
-        // onChangeFirstname,
-        // onChangeLastname,
-        // onChangeUsername,
-        // onChangeAvatar,
-        // onChangeCountry,
-        // onChangeCurrency,
-        // onChangeAge,
-        // onChangeCity,
-        // onFileUpload,
-    } = useCreateArticle();
+    const handleAddParagraph = useCallback(() => {
+        const content = draftToHtml(
+            convertToRaw(editorState.getCurrentContent()),
+        );
+        const plainText = editorState.getCurrentContent().getPlainText();
+        const newContentState = ContentState.createFromText(plainText);
+        const newEditorState = EditorState.createWithContent(newContentState);
+
+        // Update the editor state
+        setEditorState(newEditorState);
+        console.log(plainText);
+        // onAddParagraph(content);
+    }, [editorState]);
+
+    const { formData } = useCreateArticle();
     console.log('formData', formData);
 
+    const blocks: Article['blocks'] = [];
     return (
         <DynamicModuleLoader reducers={reducers}>
             <Page className={classNames(cls.ArticleEditPage, {}, [className])}>
@@ -73,78 +80,69 @@ const ArticleCreatePage = memo((props: ArticleCreatePageProps) => {
                         <OrderCard index={4} />
                         <VStack gap="16">
                             <Text text={t('Блоки статті')} bold />
-                            <HStack gap="24">
-                                <Button
-                                    variant="filled"
-                                    addonLeft={
-                                        <Icon
-                                            Svg={AddIcon}
-                                            width={16}
-                                            height={16}
-                                        />
-                                    }
-                                    className={cls.addLinkButton}
-                                    onClick={() => {
-                                        toggleTextBlock();
-                                        console.log('add text block');
-                                    }}
-                                >
-                                    {t('Додати')} {t('блок')}
-                                    &nbsp;
-                                    <b>{t('тексту')}</b>
-                                </Button>
-                                <Button
-                                    variant="filled"
-                                    addonLeft={
-                                        <Icon
-                                            Svg={AddIcon}
-                                            width={16}
-                                            height={16}
-                                        />
-                                    }
-                                    className={cls.addLinkButton}
-                                    onClick={() =>
-                                        console.log('add code block')
-                                    }
-                                >
-                                    {t('Додати')} {t('блок')}
-                                    &nbsp;
-                                    <b>{t('коду')}</b>
-                                </Button>
-                                <Button
-                                    variant="filled"
-                                    addonLeft={
-                                        <Icon
-                                            Svg={AddIcon}
-                                            width={16}
-                                            height={16}
-                                        />
-                                    }
-                                    className={cls.addLinkButton}
-                                    onClick={() =>
-                                        console.log('add image block')
-                                    }
-                                >
-                                    {t('Додати')} {t('блок')}
-                                    &nbsp;
-                                    <b>{t('зображення')}</b>
-                                </Button>
-                            </HStack>
+                            <AddArticleBlocksButtons
+                                onAddTextBlockBtnClick={onAddTextBlockBtnClick}
+                            />
+
                             {isTextBlockAdded && (
-                                <VStack gap="16" align="start" max>
+                                <HStack gap="16">
                                     <Editor
                                         editorState={editorState}
+                                        toolbar={{
+                                            options: [
+                                                'inline',
+                                                'emoji',
+                                                'list',
+
+                                                'remove',
+                                                'history',
+                                            ],
+                                            inline: {
+                                                options: [
+                                                    'bold',
+                                                    'italic',
+                                                    'underline',
+                                                    'strikethrough',
+                                                    'superscript',
+                                                    'subscript',
+                                                ],
+                                            },
+                                        }}
                                         onEditorStateChange={
                                             onEditorStateChange
                                         }
-                                        toolbarClassName="toolbarClassName"
-                                        wrapperClassName="wrapperClassName"
-                                        editorClassName="editorClassName"
-                                        placeholder={`${t('Напишіть тект параграфу')}...`}
+                                        toolbarClassName={cls.editorToolbar}
+                                        wrapperClassName={cls.editorWrapper}
+                                        editorClassName={cls.editorTextArea}
+
                                         // onEditorStateChange={this.onEditorStateChange}
                                     />
-                                </VStack>
+                                    <HStack gap="16">
+                                        <Button
+                                            variant="filled"
+                                            addonLeft={
+                                                <Icon
+                                                    Svg={AddIcon}
+                                                    width={16}
+                                                    height={16}
+                                                />
+                                            }
+                                            onClick={handleAddParagraph}
+                                            className={cls.addParagraphButton}
+                                        >
+                                            {t('Зберегти')}
+                                        </Button>
+                                    </HStack>
+                                </HStack>
                             )}
+
+                            <Text
+                                text={draftToHtml(
+                                    convertToRaw(
+                                        editorState.getCurrentContent(),
+                                    ),
+                                )}
+                            />
                         </VStack>
                     </HStack>
                 </VStack>
