@@ -1,4 +1,5 @@
 import { memo } from 'react';
+import DOMPurify from 'dompurify';
 import { TestProps } from '@/shared/types/tests';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import cls from './Text.module.scss';
@@ -53,6 +54,8 @@ export const Text = memo((props: TextProps) => {
         sizeClass,
     ].filter(Boolean);
 
+    const sanitizedText = text ? DOMPurify.sanitize(text) : '';
+
     return (
         <div
             className={classNames(
@@ -69,10 +72,17 @@ export const Text = memo((props: TextProps) => {
                     {title}
                 </HeaderTag>
             )}
-            {text && (
-                <p className={cls.text} data-testid={`${dataTestId}.Paragraph`}>
-                    {text}
-                </p>
+            {/* {text && ( */}
+            {/*    <p className={cls.text} data-testid={`${dataTestId}.Paragraph`}> */}
+            {/*        {text} */}
+            {/*    </p> */}
+            {/* )} */}
+            {sanitizedText && (
+                <p
+                    className={cls.text}
+                    data-testid={`${dataTestId}.Paragraph`}
+                    dangerouslySetInnerHTML={{ __html: sanitizedText }}
+                />
             )}
         </div>
     );
