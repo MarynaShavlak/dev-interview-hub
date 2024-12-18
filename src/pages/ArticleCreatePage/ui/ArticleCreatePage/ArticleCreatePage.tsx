@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import React, { memo, useCallback, useState } from 'react';
-import { EditorState, convertToRaw, ContentState, Modifier } from 'draft-js';
+import { ContentState, convertToRaw, EditorState, Modifier } from 'draft-js';
 import { Editor } from 'react-draft-wysiwyg';
 import draftToHtml from 'draftjs-to-html';
 import { v4 } from 'uuid';
@@ -25,6 +25,7 @@ import { Article, ArticleSection } from '@/entities/Article';
 import { Icon } from '@/shared/ui/redesigned/Icon';
 import AddIcon from '@/shared/assets/icons/plus.svg';
 import { Button } from '@/shared/ui/redesigned/Button';
+import { extractHtmlStrings } from '@/shared/lib/text/extractHtmlStrings/extractHtmlStrings';
 
 interface ArticleCreatePageProps {
     className?: string;
@@ -32,30 +33,6 @@ interface ArticleCreatePageProps {
 
 const reducers: ReducersList = {
     createArticle: createArticleReducer,
-};
-
-/**
- * Extracts full HTML strings from <p>, <ul>, and <ol> tags in the provided markup.
- *
- * @param {string} markup - The input HTML markup string.
- * @returns {string[]} An array of full HTML strings including the tags.
- */
-export const extractHtmlStrings = (markup: string): string[] => {
-    // Parse the markup into a DOM structure
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(markup, 'text/html');
-
-    // Select all <p>, <ul>, and <ol> elements
-    const elements = doc.querySelectorAll('p, ul, ol');
-
-    // Map the elements to their outerHTML and filter out empty results
-
-    return Array.from(elements)
-        .filter((element) => element.innerHTML.trim().length > 0) // Exclude empty elements
-        .map((element) => element.outerHTML.trim());
-    // return Array.from(elements)
-    //     .map((element) => element.outerHTML.trim()) // Include tags and trim whitespace
-    //     .filter((html) => html.length > 0);
 };
 
 const ArticleCreatePage = memo((props: ArticleCreatePageProps) => {
@@ -76,7 +53,7 @@ const ArticleCreatePage = memo((props: ArticleCreatePageProps) => {
         toggleTextBlock();
     }, [toggleTextBlock]);
 
-    const handleAddParagraph = useCallback(() => {
+    const saveTextBlock = useCallback(() => {
         const content = draftToHtml(
             convertToRaw(editorState.getCurrentContent()),
         );
@@ -89,15 +66,8 @@ const ArticleCreatePage = memo((props: ArticleCreatePageProps) => {
             paragraphs: arr,
             title: '',
         };
-        // const plainText = editorState.getCurrentContent().getPlainText();
-        // const newContentState = ContentState.createFromText(plainText);
-        // const newEditorState = EditorState.createWithContent(newContentState);
-        //
-        // // Update the editor state
-        // setEditorState(newEditorState);
-        // console.log(content);
+
         console.log(textBlock);
-        // onAddParagraph(content);
     }, [editorState]);
 
     const { formData } = useCreateArticle();
@@ -157,7 +127,7 @@ const ArticleCreatePage = memo((props: ArticleCreatePageProps) => {
                             />
 
                             {isTextBlockAdded && (
-                                <HStack gap="16">
+                                <HStack gap="16" align="end">
                                     <Editor
                                         handlePastedText={handlePastedText}
                                         editorState={editorState}
@@ -200,8 +170,8 @@ const ArticleCreatePage = memo((props: ArticleCreatePageProps) => {
                                                     height={16}
                                                 />
                                             }
-                                            onClick={handleAddParagraph}
-                                            className={cls.addParagraphButton}
+                                            onClick={saveTextBlock}
+                                            className={cls.saveTextBlockButton}
                                         >
                                             {t('Зберегти')}
                                         </Button>
