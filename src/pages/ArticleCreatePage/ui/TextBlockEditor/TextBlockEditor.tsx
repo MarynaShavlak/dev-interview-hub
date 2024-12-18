@@ -30,7 +30,10 @@ export const TextBlockEditor = memo((props: TextBlockEditorProps) => {
     const [editorState, setEditorState] = useState(EditorState.createEmpty());
     const [textBlock, setTextBlock] = useState<ArticleTextBlock | null>(null);
     const content = draftToHtml(convertToRaw(editorState.getCurrentContent()));
+    console.log('draft', convertToRaw(editorState.getCurrentContent()));
+    console.log('content', content);
     const paragraphs = extractHtmlStrings(content);
+    console.log('paragraphs', paragraphs);
     const isSaveDisabled = paragraphs.length === 0;
 
     const onEditorStateChange = (newState: EditorState) => {
