@@ -22,7 +22,7 @@ export const useCreateArticle = () => {
     //
     const validConfig = useInputValidationConfig();
     const { title, subtitle } = formData || {};
-    console.log('titles', title, subtitle);
+    // console.log('titles', title, subtitle);
 
     // const { hasErrors } = useFormValidation(
     //     { username, firstname, lastname },
