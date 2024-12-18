@@ -3,10 +3,36 @@
     font-weight: 700;
 
 }
+
+.List {
+  counter-reset: custom-counter;
+}
+
 .unordered {
-  list-style: circle;
+  position: relative;
+  &::before {
+    content: '';
+    display: inline-block;
+    width:8px;
+    height:8px;
+    border-radius: 50%;
+    background-color: var(--accent-redesigned);
+    margin-right:8px;
+  }
 }
 
 .ordered {
-  list-style:decimal;
+  position: relative;
+  margin-left: 20px;
+  //list-style: decimal;
+
+  &::before {
+    content: counter(custom-counter) '.';
+    counter-increment: custom-counter;
+    position: absolute;
+    left: -20px;
+    color: var(--accent-redesigned);
+    font-weight: bold;
+
+  }
 }

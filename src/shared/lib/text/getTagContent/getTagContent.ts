@@ -14,7 +14,7 @@ export const getTagContent = (markupString: string): ParseContentResult => {
         return {
             name: 'unordered',
             items: Array.from(listItems).map(
-                (item) => item.textContent?.trim() || '',
+                (item) => item.innerHTML?.trim() || '',
             ),
         };
     }
@@ -23,7 +23,7 @@ export const getTagContent = (markupString: string): ParseContentResult => {
         return {
             name: 'ordered',
             items: Array.from(listItems).map(
-                (item) => item.textContent?.trim() || '',
+                (item) => item.innerHTML?.trim() || '',
             ),
         };
     }
