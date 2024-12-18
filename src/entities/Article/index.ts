@@ -1,3 +1,7 @@
+export { ArticleTextBlockComponent } from './ui/ArticleTextBlockComponent/ArticleTextBlockComponent';
+
+export type { ArticleTextBlock } from './model/types/article';
+
 export { useArticleDataById } from './api/articleApi';
 
 export { selectAllArticles } from './api/articleApi';

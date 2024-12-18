@@ -12,13 +12,16 @@ interface ArticleTextBlockComponentProps {
     block: ArticleTextBlock;
 }
 
-const renderText = (text: string) => (
-    <ToggleFeaturesComponent
-        feature="isAppRedesigned"
-        on={<Text text={text} className={cls.paragraph} />}
-        off={<TextDeprecated text={text} className={cls.paragraph} />}
-    />
-);
+const renderText = (text: string) => {
+    return (
+        <ToggleFeaturesComponent
+            feature="isAppRedesigned"
+            on={<Text text={text} className={cls.paragraph} />}
+            off={<TextDeprecated text={text} className={cls.paragraph} />}
+        />
+    );
+};
+
 export const ArticleTextBlockComponent = memo(
     (props: ArticleTextBlockComponentProps) => {
         const { className, block } = props;

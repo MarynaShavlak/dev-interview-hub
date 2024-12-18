@@ -11,6 +11,10 @@ export const extractHtmlStrings = (markup: string): string[] => {
     const elements = doc.querySelectorAll('p, ul, ol');
 
     return Array.from(elements)
-        .filter((element) => element.innerHTML.trim().length > 0)
+        .filter((element) => {
+            const content = element.innerHTML.replace(/&nbsp;/g, '').trim();
+
+            return content.length > 0;
+        })
         .map((element) => element.outerHTML.trim());
 };

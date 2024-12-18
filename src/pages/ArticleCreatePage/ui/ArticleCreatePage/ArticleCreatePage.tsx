@@ -1,8 +1,5 @@
 import { useTranslation } from 'react-i18next';
 import React, { memo, useCallback, useState } from 'react';
-import { ContentState, convertToRaw, EditorState, Modifier } from 'draft-js';
-import { Editor } from 'react-draft-wysiwyg';
-import draftToHtml from 'draftjs-to-html';
 import { v4 } from 'uuid';
 import { Page } from '@/widgets/Page';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
@@ -21,11 +18,8 @@ import { useToggleVisibility } from '@/shared/lib/hooks/useToggleVisibility/useT
 import { TitleSubtitleForm } from '../TitleSubtitleForm/TitleSubtitleForm';
 import { AddCategoryForm } from '../AddCategoryForm/AddCategoryForm';
 import { AddArticleBlocksButtons } from '../AddArticleBlocksButtons/AddArticleBlocksButtons';
-import { Article, ArticleSection } from '@/entities/Article';
-import { Icon } from '@/shared/ui/redesigned/Icon';
-import AddIcon from '@/shared/assets/icons/plus.svg';
-import { Button } from '@/shared/ui/redesigned/Button';
-import { extractHtmlStrings } from '@/shared/lib/text/extractHtmlStrings/extractHtmlStrings';
+import { Article, ArticleTextBlock } from '@/entities/Article';
+import { TextBlockEditor } from '../TextBlockEditor/TextBlockEditor';
 
 interface ArticleCreatePageProps {
     className?: string;
@@ -39,78 +33,28 @@ const ArticleCreatePage = memo((props: ArticleCreatePageProps) => {
     const { className } = props;
     const { t } = useTranslation('articleDetails');
     const validConfig = useInputValidationConfig();
+    const [textBlocks, setTextBlocks] = useState<Array<{ id: string }>>([]);
+    const [allBlocks, setAllBlocks] = useState<Article['blocks']>([]);
     const [value, setValue] = useState('');
+    console.log('textBlocks', textBlocks);
 
-    const { isVisible: isTextBlockAdded, toggleVisibility: toggleTextBlock } =
+    const { isVisible: isTextBlockAdded, showElement: showTextBlock } =
         useToggleVisibility();
-    const [editorState, setEditorState] = useState(EditorState.createEmpty());
-
-    const onEditorStateChange = (newState: EditorState) => {
-        setEditorState(newState);
-    };
 
     const onAddTextBlockBtnClick = useCallback(() => {
-        toggleTextBlock();
-    }, [toggleTextBlock]);
-
-    const saveTextBlock = useCallback(() => {
-        const content = draftToHtml(
-            convertToRaw(editorState.getCurrentContent()),
-        );
-
-        const arr = extractHtmlStrings(content);
-
-        const textBlock = {
-            id: v4(),
-            type: ArticleSection.TEXT,
-            paragraphs: arr,
-            title: '',
-        };
-
-        console.log(textBlock);
-    }, [editorState]);
+        setTextBlocks((prev) => [...prev, { id: v4() }]);
+    }, []);
 
     const { formData } = useCreateArticle();
-    console.log('formData', formData);
+    // console.log('formData', formData);
 
-    const handlePastedText = (
-        text: string,
-        html: string | undefined,
-        editorState: EditorState,
-    ) => {
-        if (!text) {
-            // If there's no plain text, default behavior can be used
-            return false;
-        }
+    // const blocks: Article['blocks'] = [];
 
-        // Step 1: Create a plain text content block from the pasted text
-        const plainTextContent = ContentState.createFromText(text);
-
-        // Step 2: Get the current selection in the editor
-        const currentSelection = editorState.getSelection();
-
-        // Step 3: Replace the selected content with the plain text
-        const newContentState = Modifier.replaceWithFragment(
-            editorState.getCurrentContent(),
-            currentSelection,
-            plainTextContent.getBlockMap(),
-        );
-
-        // Step 4: Push the updated content state into a new editor state
-        const newEditorState = EditorState.push(
-            editorState,
-            newContentState,
-            'insert-fragment',
-        );
-
-        // Step 5: Update the editor state
-        setEditorState(newEditorState);
-
-        return true;
-    };
-
-    const blocks: Article['blocks'] = [];
-
+    const addBlockInArticle = useCallback((newBlock: ArticleTextBlock) => {
+        console.log('ArticleBlock', newBlock);
+        setAllBlocks((prevBlocks) => [...prevBlocks, newBlock]);
+    }, []);
+    console.log('ALLBlocks', allBlocks);
     return (
         <DynamicModuleLoader reducers={reducers}>
             <Page className={classNames(cls.ArticleEditPage, {}, [className])}>
@@ -125,67 +69,14 @@ const ArticleCreatePage = memo((props: ArticleCreatePageProps) => {
                             <AddArticleBlocksButtons
                                 onAddTextBlockBtnClick={onAddTextBlockBtnClick}
                             />
+                            {textBlocks.map((block) => (
+                                <TextBlockEditor
+                                    key={block.id}
+                                    addBlockInArticle={addBlockInArticle}
+                                />
+                            ))}
 
-                            {isTextBlockAdded && (
-                                <HStack gap="16" align="end">
-                                    <Editor
-                                        handlePastedText={handlePastedText}
-                                        editorState={editorState}
-                                        toolbar={{
-                                            options: [
-                                                'inline',
-                                                'emoji',
-                                                'list',
-
-                                                'remove',
-                                                'history',
-                                            ],
-                                            inline: {
-                                                options: [
-                                                    'bold',
-                                                    'italic',
-                                                    'underline',
-                                                    'strikethrough',
-                                                    'superscript',
-                                                    'subscript',
-                                                ],
-                                            },
-                                        }}
-                                        onEditorStateChange={
-                                            onEditorStateChange
-                                        }
-                                        toolbarClassName={cls.editorToolbar}
-                                        wrapperClassName={cls.editorWrapper}
-                                        editorClassName={cls.editorTextArea}
-
-                                        // onEditorStateChange={this.onEditorStateChange}
-                                    />
-                                    <HStack gap="16">
-                                        <Button
-                                            variant="filled"
-                                            addonLeft={
-                                                <Icon
-                                                    Svg={AddIcon}
-                                                    width={16}
-                                                    height={16}
-                                                />
-                                            }
-                                            onClick={saveTextBlock}
-                                            className={cls.saveTextBlockButton}
-                                        >
-                                            {t('Зберегти')}
-                                        </Button>
-                                    </HStack>
-                                </HStack>
-                            )}
-
-                            <Text
-                                text={draftToHtml(
-                                    convertToRaw(
-                                        editorState.getCurrentContent(),
-                                    ),
-                                )}
-                            />
+                            {/* {isTextBlockAdded && <TextBlockEditor />} */}
                         </VStack>
                     </HStack>
                 </VStack>
