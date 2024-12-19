@@ -108,6 +108,9 @@ export const TextBlockEditor = memo((props: TextBlockEditorProps) => {
                                 'subscript',
                             ],
                         },
+                        list: {
+                            options: ['unordered', 'ordered'],
+                        },
                     }}
                     onEditorStateChange={onEditorStateChange}
                     toolbarClassName={cls.editorToolbar}

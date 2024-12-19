@@ -11,7 +11,7 @@ export type ListType = 'ordered' | 'unordered';
 
 interface ListProps extends TestProps {
     className?: string;
-    items: (string | string[])[];
+    items: string[];
 
     variant?: ListVariant;
     size?: ListSize;
@@ -50,57 +50,6 @@ export const List = memo((props: ListProps) => {
         gap: '8',
     });
 
-    //     return (
-    //         <ListTag
-    //             className={classNames(cls.List, { [cls.bold]: bold }, [
-    //                 ...mainClasses,
-    //                 ...additionalClasses,
-    //             ])}
-    //             data-testid={dataTestId}
-    //         >
-    //             {items.map((item, index) => {
-    //                 const sanitizedItem = DOMPurify.sanitize(item);
-    //                 return (
-    //                     <li
-    //                         key={index}
-    //                         className={itemClass}
-    //                         data-testid={`${dataTestId}.Item.${index}`}
-    //                         dangerouslySetInnerHTML={{ __html: sanitizedItem }}
-    //                     />
-    //                 );
-    //             })}
-    //         </ListTag>
-    //     );
-    // });
-    const renderListItems = (listItems: (string | string[])[]) => {
-        return listItems.map((item, index) => {
-            if (Array.isArray(item)) {
-                // Render a nested list if item is an array
-                return (
-                    <li
-                        key={index}
-                        className={itemClass}
-                        data-testid={`${dataTestId}.NestedItem.${index}`}
-                    >
-                        <ListTag>
-                            {renderListItems(item)} {/* Recursive rendering */}
-                        </ListTag>
-                    </li>
-                );
-            }
-            // Sanitize and render a simple list item
-            const sanitizedItem = DOMPurify.sanitize(item);
-            return (
-                <li
-                    key={index}
-                    className={itemClass}
-                    data-testid={`${dataTestId}.Item.${index}`}
-                    dangerouslySetInnerHTML={{ __html: sanitizedItem }}
-                />
-            );
-        });
-    };
-
     return (
         <ListTag
             className={classNames(cls.List, { [cls.bold]: bold }, [
@@ -109,7 +58,58 @@ export const List = memo((props: ListProps) => {
             ])}
             data-testid={dataTestId}
         >
-            {renderListItems(items)}
+            {items.map((item, index) => {
+                const sanitizedItem = DOMPurify.sanitize(item);
+                return (
+                    <li
+                        key={index}
+                        className={itemClass}
+                        data-testid={`${dataTestId}.Item.${index}`}
+                        dangerouslySetInnerHTML={{ __html: sanitizedItem }}
+                    />
+                );
+            })}
         </ListTag>
     );
 });
+// const renderListItems = (listItems: (string | string[])[]) => {
+//     return listItems.map((item, index) => {
+//         if (Array.isArray(item)) {
+//             // Render a nested list if item is an array
+//             return (
+//                 <li
+//                     key={index}
+//                     className={itemClass}
+//                     data-testid={`${dataTestId}.NestedItem.${index}`}
+//                 >
+//                     <ListTag>
+//                         {renderListItems(item)} {/* Recursive rendering */}
+//                     </ListTag>
+//                 </li>
+//             );
+//         }
+//         // Sanitize and render a simple list item
+//         const sanitizedItem = DOMPurify.sanitize(item);
+//         return (
+//             <li
+//                 key={index}
+//                 className={itemClass}
+//                 data-testid={`${dataTestId}.Item.${index}`}
+//                 dangerouslySetInnerHTML={{ __html: sanitizedItem }}
+//             />
+//         );
+//     });
+// };
+
+// return (
+//     <ListTag
+//         className={classNames(cls.List, { [cls.bold]: bold }, [
+//             ...mainClasses,
+//             ...additionalClasses,
+//         ])}
+//         data-testid={dataTestId}
+//     >
+//         {renderListItems(items)}
+//     </ListTag>
+// );
+// });
