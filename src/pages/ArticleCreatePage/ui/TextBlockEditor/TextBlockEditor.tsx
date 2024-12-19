@@ -20,11 +20,13 @@ import { extractHtmlStrings } from '@/shared/lib/text/extractHtmlStrings/extract
 
 interface TextBlockEditorProps {
     className?: string;
+    blockId: string;
     addBlockInArticle: (block: ArticleTextBlock) => void;
+    onDeleteTextBlock: (id: string) => void;
 }
 
 export const TextBlockEditor = memo((props: TextBlockEditorProps) => {
-    const { className, addBlockInArticle } = props;
+    const { className, addBlockInArticle, onDeleteTextBlock, blockId } = props;
     const { t } = useTranslation('articleDetails');
     const validConfig = useInputValidationConfig();
     const [editorState, setEditorState] = useState(EditorState.createEmpty());
@@ -51,6 +53,10 @@ export const TextBlockEditor = memo((props: TextBlockEditorProps) => {
         setTextBlock(newTextBlock);
         addBlockInArticle(newTextBlock);
     }, [addBlockInArticle, paragraphs]);
+
+    const deleteTextBlock = useCallback(() => {
+        onDeleteTextBlock(blockId);
+    }, [onDeleteTextBlock, blockId]);
 
     const { formData } = useCreateArticle();
     // console.log('formData', formData);
@@ -85,67 +91,64 @@ export const TextBlockEditor = memo((props: TextBlockEditorProps) => {
 
     return (
         <>
-            <HStack gap="16" align="end">
-                <Editor
-                    handlePastedText={handlePastedText}
-                    editorState={editorState}
-                    toolbar={{
-                        options: [
-                            'inline',
-                            'emoji',
-                            'list',
-
-                            'remove',
-                            'history',
-                        ],
-                        inline: {
+            {!textBlock && (
+                <HStack gap="16" align="end">
+                    <Editor
+                        handlePastedText={handlePastedText}
+                        editorState={editorState}
+                        toolbar={{
                             options: [
-                                'bold',
-                                'italic',
-                                'underline',
-                                'strikethrough',
-                                'superscript',
-                                'subscript',
-                            ],
-                        },
-                        list: {
-                            options: ['unordered', 'ordered'],
-                        },
-                    }}
-                    onEditorStateChange={onEditorStateChange}
-                    toolbarClassName={cls.editorToolbar}
-                    wrapperClassName={cls.editorWrapper}
-                    editorClassName={cls.editorTextArea}
+                                'inline',
+                                'emoji',
+                                'list',
 
-                    // onEditorStateChange={this.onEditorStateChange}
-                />
-                <VStack gap="16">
-                    <Button
-                        variant="save"
-                        addonLeft={
-                            <Icon Svg={AddIcon} width={16} height={16} />
-                        }
-                        onClick={saveTextBlock}
-                        className={cls.saveTextBlockButton}
-                        disabled={isSaveDisabled}
-                    >
-                        {t('Зберегти')}
-                    </Button>
-                    <Button
-                        variant="cancel"
-                        onClick={saveTextBlock}
-                        className={cls.saveTextBlockButton}
-                    >
-                        {t('Видалити')}
-                    </Button>
-                </VStack>
-            </HStack>
+                                'remove',
+                                'history',
+                            ],
+                            inline: {
+                                options: [
+                                    'bold',
+                                    'italic',
+                                    'underline',
+                                    'strikethrough',
+                                    'superscript',
+                                    'subscript',
+                                ],
+                            },
+                            list: {
+                                options: ['unordered', 'ordered'],
+                            },
+                        }}
+                        onEditorStateChange={onEditorStateChange}
+                        toolbarClassName={cls.editorToolbar}
+                        wrapperClassName={cls.editorWrapper}
+                        editorClassName={cls.editorTextArea}
+
+                        // onEditorStateChange={this.onEditorStateChange}
+                    />
+                    <VStack gap="16">
+                        <Button
+                            variant="save"
+                            addonLeft={
+                                <Icon Svg={AddIcon} width={16} height={16} />
+                            }
+                            onClick={saveTextBlock}
+                            className={cls.saveTextBlockButton}
+                            disabled={isSaveDisabled}
+                        >
+                            {t('Зберегти')}
+                        </Button>
+                        <Button
+                            variant="cancel"
+                            onClick={deleteTextBlock}
+                            className={cls.saveTextBlockButton}
+                        >
+                            {t('Видалити')}
+                        </Button>
+                    </VStack>
+                </HStack>
+            )}
             {textBlock && <ArticleTextBlockComponent block={textBlock} />}
-            {/* <Text */}
-            {/*    text={draftToHtml( */}
-            {/*        convertToRaw(editorState.getCurrentContent()), */}
-            {/*    )} */}
-            {/* /> */}
         </>
     );
 });

@@ -8,6 +8,7 @@ import cls from './ArticleTextBlockComponent.module.scss';
 import { ArticleTextBlock } from '../../model/types/article';
 import { getTagContent } from '@/shared/lib/text/getTagContent/getTagContent';
 import { List } from '@/shared/ui/redesigned/List';
+import { VStack } from '@/shared/ui/common/Stack';
 
 interface ArticleTextBlockComponentProps {
     className?: string;
@@ -16,8 +17,8 @@ interface ArticleTextBlockComponentProps {
 
 const renderText = (text: string) => {
     const result = getTagContent(text);
-    console.log('!!!!@Text', text);
-    console.log('result', result);
+    // console.log('!!!!@Text', text);
+    // console.log('result', result);
 
     if (typeof result === 'string') {
         return (
@@ -62,7 +63,9 @@ export const ArticleTextBlockComponent = memo(
                         }
                     />
                 )}
-                <Each of={block.paragraphs} render={renderText} />
+                <VStack gap="8">
+                    <Each of={block.paragraphs} render={renderText} />
+                </VStack>
             </div>
         );
     },

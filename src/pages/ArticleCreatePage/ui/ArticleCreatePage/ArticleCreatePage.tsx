@@ -7,14 +7,11 @@ import cls from './ArticleCreatePage.module.scss';
 import { Text } from '@/shared/ui/redesigned/Text';
 import { HStack, VStack } from '@/shared/ui/common/Stack';
 import { OrderCard } from '@/shared/ui/redesigned/OrderCard';
-import { useInputValidationConfig } from '@/shared/lib/hooks/validationHooks/useInputValidationConfig/useInputValidationConfig';
-import { useCreateArticle } from '../../lib/hooks/useCreateArticle/useCreateArticle';
 import {
     DynamicModuleLoader,
     ReducersList,
 } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { createArticleReducer } from '../../model/slices/createArticleSlice';
-import { useToggleVisibility } from '@/shared/lib/hooks/useToggleVisibility/useToggleVisibility';
 import { TitleSubtitleForm } from '../TitleSubtitleForm/TitleSubtitleForm';
 import { AddCategoryForm } from '../AddCategoryForm/AddCategoryForm';
 import { AddArticleBlocksButtons } from '../AddArticleBlocksButtons/AddArticleBlocksButtons';
@@ -32,29 +29,33 @@ const reducers: ReducersList = {
 const ArticleCreatePage = memo((props: ArticleCreatePageProps) => {
     const { className } = props;
     const { t } = useTranslation('articleDetails');
-    const validConfig = useInputValidationConfig();
+    // const validConfig = useInputValidationConfig();
     const [textBlocks, setTextBlocks] = useState<Array<{ id: string }>>([]);
     const [allBlocks, setAllBlocks] = useState<Article['blocks']>([]);
-    const [value, setValue] = useState('');
+    // const [value, setValue] = useState('');
     console.log('textBlocks', textBlocks);
 
-    const { isVisible: isTextBlockAdded, showElement: showTextBlock } =
-        useToggleVisibility();
+    // const { isVisible: isTextBlockAdded, showElement: showTextBlock } =
+    //     useToggleVisibility();
 
     const onAddTextBlockBtnClick = useCallback(() => {
         setTextBlocks((prev) => [...prev, { id: v4() }]);
     }, []);
 
-    const { formData } = useCreateArticle();
-    // console.log('formData', formData);
-
-    // const blocks: Article['blocks'] = [];
+    // const { formData } = useCreateArticle();
 
     const addBlockInArticle = useCallback((newBlock: ArticleTextBlock) => {
         console.log('ArticleBlock', newBlock);
         setAllBlocks((prevBlocks) => [...prevBlocks, newBlock]);
     }, []);
-    console.log('ALLBlocks', allBlocks);
+
+    const onDeleteTextBlock = useCallback((id: string) => {
+        setTextBlocks((prev) => prev.filter((block) => block.id !== id));
+        setAllBlocks((prevBlocks) =>
+            prevBlocks.filter((block) => block.id !== id),
+        );
+    }, []);
+
     return (
         <DynamicModuleLoader reducers={reducers}>
             <Page className={classNames(cls.ArticleEditPage, {}, [className])}>
@@ -72,11 +73,11 @@ const ArticleCreatePage = memo((props: ArticleCreatePageProps) => {
                             {textBlocks.map((block) => (
                                 <TextBlockEditor
                                     key={block.id}
+                                    blockId={block.id}
                                     addBlockInArticle={addBlockInArticle}
+                                    onDeleteTextBlock={onDeleteTextBlock}
                                 />
                             ))}
-
-                            {/* {isTextBlockAdded && <TextBlockEditor />} */}
                         </VStack>
                     </HStack>
                 </VStack>
