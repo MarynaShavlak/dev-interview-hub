@@ -33,8 +33,8 @@ const ArticleCreatePage = memo((props: ArticleCreatePageProps) => {
     const [textBlocks, setTextBlocks] = useState<Array<{ id: string }>>([]);
     const [allBlocks, setAllBlocks] = useState<Article['blocks']>([]);
     // const [value, setValue] = useState('');
-    console.log('textBlocks', textBlocks);
-
+    // console.log('textBlocks', textBlocks);
+    console.log('allBlocks', allBlocks);
     // const { isVisible: isTextBlockAdded, showElement: showTextBlock } =
     //     useToggleVisibility();
 
@@ -45,9 +45,20 @@ const ArticleCreatePage = memo((props: ArticleCreatePageProps) => {
     // const { formData } = useCreateArticle();
 
     const addBlockInArticle = useCallback((newBlock: ArticleTextBlock) => {
-        console.log('ArticleBlock', newBlock);
+        // console.log('ArticleBlock', newBlock);
         setAllBlocks((prevBlocks) => [...prevBlocks, newBlock]);
     }, []);
+
+    const updateBlockInArticle = useCallback(
+        (updatedBlock: ArticleTextBlock) => {
+            setAllBlocks((prevBlocks) =>
+                prevBlocks.map((block) =>
+                    block.id === updatedBlock.id ? updatedBlock : block,
+                ),
+            );
+        },
+        [],
+    );
 
     const onDeleteTextBlock = useCallback((id: string) => {
         setTextBlocks((prev) => prev.filter((block) => block.id !== id));
@@ -76,6 +87,7 @@ const ArticleCreatePage = memo((props: ArticleCreatePageProps) => {
                                     blockId={block.id}
                                     addBlockInArticle={addBlockInArticle}
                                     onDeleteTextBlock={onDeleteTextBlock}
+                                    onEditBlock={updateBlockInArticle}
                                 />
                             ))}
                         </VStack>

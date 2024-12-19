@@ -17,11 +17,11 @@ function removeSubstringStrings(arr: string[]) {
 
 export const extractHtmlStrings = (markup: string): string[] => {
     const parser = new DOMParser();
-    console.log('markup', markup);
+    // console.log('markup', markup);
     const doc = parser.parseFromString(markup, 'text/html');
     //
     const elements = doc.querySelectorAll('p, ul, ol');
-    console.log(elements);
+    // console.log(elements);
 
     const result = Array.from(elements)
         .filter((element) => {

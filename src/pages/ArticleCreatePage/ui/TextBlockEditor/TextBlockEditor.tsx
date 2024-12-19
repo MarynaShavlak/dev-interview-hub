@@ -3,6 +3,7 @@ import React, { memo, useCallback, useState } from 'react';
 import { ContentState, convertToRaw, EditorState, Modifier } from 'draft-js';
 import { Editor } from 'react-draft-wysiwyg';
 import draftToHtml from 'draftjs-to-html';
+import htmlToDraft from 'html-to-draftjs';
 import { v4 } from 'uuid';
 import cls from './TextBlockEditor.module.scss';
 import { HStack, VStack } from '@/shared/ui/common/Stack';
@@ -28,6 +29,18 @@ interface TextBlockEditorProps {
     onDeleteTextBlock: (id: string) => void;
     onEditBlock?: (block: ArticleTextBlock) => void;
 }
+const initializeEditorStateFromHTML = (htmlString: string): EditorState => {
+    const contentBlock = htmlToDraft(htmlString);
+
+    if (contentBlock) {
+        const contentState = ContentState.createFromBlockArray(
+            contentBlock.contentBlocks,
+            contentBlock.entityMap,
+        );
+        return EditorState.createWithContent(contentState);
+    }
+    return EditorState.createEmpty();
+};
 
 export const TextBlockEditor = memo((props: TextBlockEditorProps) => {
     const {
@@ -43,7 +56,7 @@ export const TextBlockEditor = memo((props: TextBlockEditorProps) => {
     const [isAlreadyCreated, setIsAlreadyCreated] = useState(true);
     const [textBlock, setTextBlock] = useState<ArticleTextBlock | null>(null);
     const content = draftToHtml(convertToRaw(editorState.getCurrentContent()));
-    console.log('draft', convertToRaw(editorState.getCurrentContent()));
+    // console.log('draft', convertToRaw(editorState.getCurrentContent()));
     // console.log('content', content);
     const paragraphs = extractHtmlStrings(content);
     console.log('textBlock', textBlock);
@@ -54,22 +67,56 @@ export const TextBlockEditor = memo((props: TextBlockEditorProps) => {
         setEditorState(newState);
     };
 
-    const saveTextBlock = useCallback(() => {
-        const newTextBlock: ArticleTextBlock = {
-            id: v4(),
-            type: ArticleSection.TEXT,
-            paragraphs,
-            title: '',
-        };
+    // const saveTextBlock = useCallback(() => {
+    //     const newTextBlock: ArticleTextBlock = {
+    //         id: v4(),
+    //         type: ArticleSection.TEXT,
+    //         paragraphs,
+    //         title: '',
+    //     };
+    //
+    //     setTextBlock(newTextBlock);
+    //     setIsAlreadyCreated(false);
+    //     addBlockInArticle(newTextBlock);
+    // }
 
-        setTextBlock(newTextBlock);
+    const saveTextBlock = useCallback(() => {
+        if (textBlock) {
+            // Update existing block
+            const updatedTextBlock: ArticleTextBlock = {
+                ...textBlock,
+                paragraphs,
+            };
+
+            setTextBlock(updatedTextBlock);
+            if (onEditBlock) {
+                onEditBlock(updatedTextBlock);
+            }
+        } else {
+            const newTextBlock: ArticleTextBlock = {
+                id: v4(),
+                type: ArticleSection.TEXT,
+                paragraphs,
+                title: '',
+            };
+
+            setTextBlock(newTextBlock);
+            addBlockInArticle(newTextBlock);
+        }
+
         setIsAlreadyCreated(false);
-        addBlockInArticle(newTextBlock);
-    }, [addBlockInArticle, paragraphs]);
+    }, [addBlockInArticle, onEditBlock, paragraphs, textBlock]);
 
     const deleteTextBlock = useCallback(() => {
         onDeleteTextBlock(blockId);
     }, [onDeleteTextBlock, blockId]);
+
+    const editTextBlock = useCallback(() => {
+        const data = textBlock?.paragraphs?.join('\n');
+        const state = initializeEditorStateFromHTML(data || '');
+        setEditorState(state);
+        setIsAlreadyCreated(true);
+    }, [textBlock?.paragraphs]);
 
     // const { formData } = useCreateArticle();
     // console.log('formData', formData);
@@ -181,16 +228,7 @@ export const TextBlockEditor = memo((props: TextBlockEditorProps) => {
                         <Icon
                             clickable
                             Svg={EditIcon}
-                            onClick={() => {
-                                setEditorState(
-                                    EditorState.createWithContent(
-                                        ContentState.createFromText(
-                                            textBlock.paragraphs.join('\n'),
-                                        ),
-                                    ),
-                                );
-                                setIsAlreadyCreated(true);
-                            }}
+                            onClick={editTextBlock}
                             width="18"
                         />
                         <Icon
