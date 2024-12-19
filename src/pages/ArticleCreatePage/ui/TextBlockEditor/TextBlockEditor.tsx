@@ -4,10 +4,8 @@ import { ContentState, convertToRaw, EditorState, Modifier } from 'draft-js';
 import { Editor } from 'react-draft-wysiwyg';
 import draftToHtml from 'draftjs-to-html';
 import { v4 } from 'uuid';
-import cls from '../ArticleCreatePage/ArticleCreatePage.module.scss';
+import cls from './TextBlockEditor.module.scss';
 import { HStack, VStack } from '@/shared/ui/common/Stack';
-import { useInputValidationConfig } from '@/shared/lib/hooks/validationHooks/useInputValidationConfig/useInputValidationConfig';
-import { useCreateArticle } from '../../lib/hooks/useCreateArticle/useCreateArticle';
 import {
     ArticleSection,
     ArticleTextBlock,
@@ -15,27 +13,41 @@ import {
 } from '@/entities/Article';
 import { Icon } from '@/shared/ui/redesigned/Icon';
 import AddIcon from '@/shared/assets/icons/plus.svg';
+import DeleteIcon from '@/shared/assets/icons/delete.svg';
+import EditIcon from '@/shared/assets/icons/edit.svg';
 import { Button } from '@/shared/ui/redesigned/Button';
 import { extractHtmlStrings } from '@/shared/lib/text/extractHtmlStrings/extractHtmlStrings';
+import { Card } from '@/shared/ui/redesigned/Card';
+import { classNames } from '@/shared/lib/classes/classNames/classNames';
+import { getFlexClasses } from '@/shared/lib/classes/getFlexClasses/getFlexClasses';
 
 interface TextBlockEditorProps {
     className?: string;
     blockId: string;
     addBlockInArticle: (block: ArticleTextBlock) => void;
     onDeleteTextBlock: (id: string) => void;
+    onEditBlock?: (block: ArticleTextBlock) => void;
 }
 
 export const TextBlockEditor = memo((props: TextBlockEditorProps) => {
-    const { className, addBlockInArticle, onDeleteTextBlock, blockId } = props;
+    const {
+        className,
+        addBlockInArticle,
+        onDeleteTextBlock,
+        blockId,
+        onEditBlock,
+    } = props;
     const { t } = useTranslation('articleDetails');
-    const validConfig = useInputValidationConfig();
+    // const validConfig = useInputValidationConfig();
     const [editorState, setEditorState] = useState(EditorState.createEmpty());
+    const [isAlreadyCreated, setIsAlreadyCreated] = useState(true);
     const [textBlock, setTextBlock] = useState<ArticleTextBlock | null>(null);
     const content = draftToHtml(convertToRaw(editorState.getCurrentContent()));
     console.log('draft', convertToRaw(editorState.getCurrentContent()));
-    console.log('content', content);
+    // console.log('content', content);
     const paragraphs = extractHtmlStrings(content);
-    console.log('paragraphs', paragraphs);
+    console.log('textBlock', textBlock);
+    // console.log('paragraphs', paragraphs);
     const isSaveDisabled = paragraphs.length === 0;
 
     const onEditorStateChange = (newState: EditorState) => {
@@ -51,6 +63,7 @@ export const TextBlockEditor = memo((props: TextBlockEditorProps) => {
         };
 
         setTextBlock(newTextBlock);
+        setIsAlreadyCreated(false);
         addBlockInArticle(newTextBlock);
     }, [addBlockInArticle, paragraphs]);
 
@@ -58,7 +71,7 @@ export const TextBlockEditor = memo((props: TextBlockEditorProps) => {
         onDeleteTextBlock(blockId);
     }, [onDeleteTextBlock, blockId]);
 
-    const { formData } = useCreateArticle();
+    // const { formData } = useCreateArticle();
     // console.log('formData', formData);
 
     const handlePastedText = (
@@ -91,7 +104,7 @@ export const TextBlockEditor = memo((props: TextBlockEditorProps) => {
 
     return (
         <>
-            {!textBlock && (
+            {isAlreadyCreated && (
                 <HStack gap="16" align="end">
                     <Editor
                         handlePastedText={handlePastedText}
@@ -148,7 +161,47 @@ export const TextBlockEditor = memo((props: TextBlockEditorProps) => {
                     </VStack>
                 </HStack>
             )}
-            {textBlock && <ArticleTextBlockComponent block={textBlock} />}
+            {!isAlreadyCreated && textBlock && (
+                <Card
+                    className={classNames(
+                        cls.previewBlockWrapper,
+                        {},
+                        getFlexClasses({
+                            hStack: true,
+
+                            align: 'start',
+                            justify: 'between',
+                        }),
+                    )}
+                    max
+                    fullHeight
+                >
+                    <ArticleTextBlockComponent block={textBlock} />
+                    <VStack className={cls.previewBlockBtnsWrapper} gap="8">
+                        <Icon
+                            clickable
+                            Svg={EditIcon}
+                            onClick={() => {
+                                setEditorState(
+                                    EditorState.createWithContent(
+                                        ContentState.createFromText(
+                                            textBlock.paragraphs.join('\n'),
+                                        ),
+                                    ),
+                                );
+                                setIsAlreadyCreated(true);
+                            }}
+                            width="18"
+                        />
+                        <Icon
+                            clickable
+                            Svg={DeleteIcon}
+                            onClick={deleteTextBlock}
+                            width="24"
+                        />
+                    </VStack>
+                </Card>
+            )}
         </>
     );
 });

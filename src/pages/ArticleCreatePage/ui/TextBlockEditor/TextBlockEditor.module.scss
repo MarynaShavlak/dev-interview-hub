@@ -1,0 +1,46 @@
+.previewBlockWrapper {
+  border: 2px solid var(--icon-redesigned);
+  overflow: hidden;
+}
+
+
+.editorWrapper {
+  border-radius: 24px ;
+
+  border: 2px solid var(--icon-redesigned);
+}
+
+
+.editorToolbar {
+
+  background: var(--dark-bg-redesigned);
+  padding:8px;
+  border-radius: 24px 24px 16px 16px;
+  border: 2px solid var(--dark-bg-redesigned);
+
+}
+
+
+.editorTextArea {
+  border-radius: 16px;
+  padding: 8px 16px;
+  //border: 2px solid var(--icon-redesigned);
+}
+
+
+.saveTextBlockButton {
+  align-self: end;
+  min-width: 130px;
+}
+
+
+.previewBlockBtnsWrapper {
+ background-color: var(--light-bg-redesigned);
+  padding:4px;
+  align-items: stretch;
+  margin-top: -8px;
+  margin-right: -8px;
+  border-bottom-left-radius: 16px;
+
+
+}

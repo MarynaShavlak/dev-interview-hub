@@ -4,7 +4,7 @@ type ParseContentResult =
 
 export const getTagContent = (markupString: string): ParseContentResult => {
     // const updatedHtmlString = fixNestedLists(markupString);
-    console.log('markupString', markupString);
+    // console.log('markupString', markupString);
     const parser = new DOMParser();
     const doc = parser.parseFromString(markupString, 'text/html');
 
