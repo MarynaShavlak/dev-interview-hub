@@ -1,12 +1,16 @@
 import React, { memo, useCallback, useState } from 'react';
 import { convertToRaw, EditorState } from 'draft-js';
 import draftToHtml from 'draftjs-to-html';
-import { HStack } from '@/shared/ui/common/Stack';
+import { useTranslation } from 'react-i18next';
+import { HStack, VStack } from '@/shared/ui/common/Stack';
 import { ArticleSection, ArticleTextBlock } from '@/entities/Article';
 import { extractHtmlStrings } from '@/shared/lib/text/extractHtmlStrings/extractHtmlStrings';
 import { TextBlockPreview } from './TextBlockPreview/TextBlockPreview';
 import { MarkupHTMLCreator } from '@/shared/ui/redesigned/MarkupHTMLCreator';
 import { TextBlockActionButtonList } from './TextBlockActionButtonList/TextBlockActionButtonList';
+import cls from '../ArticleCreatePage/ArticleCreatePage.module.scss';
+import { Input } from '@/shared/ui/redesigned/Input';
+import { useInputValidationConfig } from '@/shared/lib/hooks/validationHooks/useInputValidationConfig/useInputValidationConfig';
 
 interface TextBlockEditorProps {
     className?: string;
@@ -33,6 +37,14 @@ export const TextBlockEditor = memo((props: TextBlockEditorProps) => {
 
     const isSaveDisabled = paragraphs.length === 0;
 
+    const [title, setTitle] = useState('');
+    const validConfig = useInputValidationConfig();
+    const { t } = useTranslation('articleDetails');
+
+    const handleTitleChange = useCallback((value: string) => {
+        setTitle(value);
+    }, []);
+
     const onEditorStateChange = (newState: EditorState) => {
         setEditorState(newState);
     };
@@ -42,7 +54,7 @@ export const TextBlockEditor = memo((props: TextBlockEditorProps) => {
             id: blockId,
             type: ArticleSection.TEXT,
             paragraphs,
-            title: '',
+            title,
         };
 
         if (onEditBlock) {
@@ -64,24 +76,39 @@ export const TextBlockEditor = memo((props: TextBlockEditorProps) => {
     return (
         <>
             {!isSaved ? (
-                <HStack gap="16" align="end">
-                    <MarkupHTMLCreator
-                        editorState={editorState}
-                        onEditorStateChange={onEditorStateChange}
-                        onPastText={setEditorState}
+                <VStack gap="16">
+                    <Input
+                        value={title}
+                        label={t('Заголовок блоку')}
+                        labelBold
+                        gap="16"
+                        maxWidth={false}
+                        className={cls.InputName}
+                        onChange={handleTitleChange}
+                        validations={validConfig.title}
+                        maxLengthIndicator
+                        // errors={usernameErrors}
                     />
-                    <TextBlockActionButtonList
-                        saveTextBlock={saveTextBlock}
-                        deleteTextBlock={deleteTextBlock}
-                        isSaveDisabled={isSaveDisabled}
-                    />
-                </HStack>
+                    <HStack gap="16" align="end">
+                        <MarkupHTMLCreator
+                            editorState={editorState}
+                            onEditorStateChange={onEditorStateChange}
+                            onPastText={setEditorState}
+                        />
+                        <TextBlockActionButtonList
+                            saveTextBlock={saveTextBlock}
+                            deleteTextBlock={deleteTextBlock}
+                            isSaveDisabled={isSaveDisabled}
+                        />
+                    </HStack>
+                </VStack>
             ) : (
                 <TextBlockPreview
                     textBlock={{
                         id: blockId,
                         type: ArticleSection.TEXT,
                         paragraphs,
+                        title,
                     }}
                     editTextBlock={editTextBlock}
                     deleteTextBlock={deleteTextBlock}

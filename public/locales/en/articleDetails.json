@@ -51,5 +51,6 @@
   "коду": "code",
   "Напишіть тект параграфу": "Type paragraph text",
   "Зберегти": "Save",
-  "Видалити": "Delete"
+  "Видалити": "Delete",
+  "Заголовок блоку": "Block title( optional)"
 }
