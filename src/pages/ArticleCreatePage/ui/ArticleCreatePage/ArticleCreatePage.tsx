@@ -17,6 +17,7 @@ import { AddArticleBlocksButtons } from '../AddArticleBlocksButtons/AddArticleBl
 import { TextBlockEditor } from '../TextBlockEditor/TextBlockEditor';
 import { useArticleBlocks } from '../../lib/hooks/useArticleBlocks/useArticleBlocks';
 import { Each } from '@/shared/lib/components/Each/Each';
+import { CodeBlockEditor } from '../CodeBlockEditor/CodeBlockEditor';
 
 interface ArticleCreatePageProps {
     className?: string;
@@ -53,6 +54,7 @@ const ArticleCreatePage = memo((props: ArticleCreatePageProps) => {
                             <AddArticleBlocksButtons
                                 onAddTextBlockBtnClick={createEmptyTextBlock}
                             />
+                            <CodeBlockEditor />
                             <Each
                                 of={allBlocks}
                                 render={(block, index) => {
