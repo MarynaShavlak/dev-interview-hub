@@ -4,4 +4,7 @@ export type Language =
     | 'python'
     | 'java'
     | 'csharp'
-    | 'php';
+    | 'php'
+    | 'html'
+    | 'css'
+    | 'scss';
