@@ -5,12 +5,11 @@ import cls from './MarkupHTMLCreator.module.scss';
 
 interface MarkupHTMLCreatorProps {
     editorState: EditorState;
-    onPastText: (editorState: EditorState) => void;
     onEditorStateChange: (editorState: EditorState) => void;
 }
 
 export const MarkupHTMLCreator = memo((props: MarkupHTMLCreatorProps) => {
-    const { editorState, onPastText, onEditorStateChange } = props;
+    const { editorState, onEditorStateChange } = props;
 
     const handlePastedText = (
         text: string,
@@ -35,7 +34,7 @@ export const MarkupHTMLCreator = memo((props: MarkupHTMLCreatorProps) => {
             'insert-fragment',
         );
 
-        onPastText(newEditorState);
+        onEditorStateChange(newEditorState);
 
         return true;
     };
