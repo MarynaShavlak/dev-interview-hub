@@ -15,7 +15,7 @@ import { createArticleReducer } from '../../model/slices/createArticleSlice';
 import { TitleSubtitleForm } from '../TitleSubtitleForm/TitleSubtitleForm';
 import { AddCategoryForm } from '../AddCategoryForm/AddCategoryForm';
 import { AddArticleBlocksButtons } from '../AddArticleBlocksButtons/AddArticleBlocksButtons';
-import { Article, ArticleTextBlock } from '@/entities/Article';
+import { Article, ArticleSection, ArticleTextBlock } from '@/entities/Article';
 import { TextBlockEditor } from '../TextBlockEditor/TextBlockEditor';
 
 interface ArticleCreatePageProps {
@@ -29,24 +29,30 @@ const reducers: ReducersList = {
 const ArticleCreatePage = memo((props: ArticleCreatePageProps) => {
     const { className } = props;
     const { t } = useTranslation('articleDetails');
-    // const validConfig = useInputValidationConfig();
-    const [textBlocks, setTextBlocks] = useState<Array<{ id: string }>>([]);
+
+    // const [textBlocks, setTextBlocks] = useState<Array<{ id: string }>>([]);
+
     const [allBlocks, setAllBlocks] = useState<Article['blocks']>([]);
-    // const [value, setValue] = useState('');
-    // console.log('textBlocks', textBlocks);
     console.log('allBlocks', allBlocks);
-    // const { isVisible: isTextBlockAdded, showElement: showTextBlock } =
-    //     useToggleVisibility();
+    // console.log('textBlocks', textBlocks);
 
     const onAddTextBlockBtnClick = useCallback(() => {
-        setTextBlocks((prev) => [...prev, { id: v4() }]);
+        const newTextBlock: ArticleTextBlock = {
+            id: v4(),
+            type: ArticleSection.TEXT,
+            paragraphs: [],
+            title: '',
+        };
+        setAllBlocks((prevBlocks) => [...prevBlocks, newTextBlock]);
     }, []);
 
-    // const { formData } = useCreateArticle();
-
     const addBlockInArticle = useCallback((newBlock: ArticleTextBlock) => {
-        // console.log('ArticleBlock', newBlock);
         setAllBlocks((prevBlocks) => [...prevBlocks, newBlock]);
+        // setAllBlocks((prevBlocks) =>
+        //     prevBlocks.map((block) =>
+        //         block.id === newBlock.id ? newBlock : block,
+        //     ),
+        // );
     }, []);
 
     const updateBlockInArticle = useCallback(
@@ -60,8 +66,16 @@ const ArticleCreatePage = memo((props: ArticleCreatePageProps) => {
         [],
     );
 
+    // const onDeleteTextBlock = useCallback((id: string) => {
+    //     console.log('id!!!!!!', id);
+    //     setTextBlocks((prev) => prev.filter((block) => block.id !== id));
+    //     setAllBlocks((prevBlocks) =>
+    //         prevBlocks.filter((block) => block.id !== id),
+    //     );
+    // }, []);
     const onDeleteTextBlock = useCallback((id: string) => {
-        setTextBlocks((prev) => prev.filter((block) => block.id !== id));
+        console.log('Deleting text block with id:', id);
+
         setAllBlocks((prevBlocks) =>
             prevBlocks.filter((block) => block.id !== id),
         );
@@ -81,7 +95,7 @@ const ArticleCreatePage = memo((props: ArticleCreatePageProps) => {
                             <AddArticleBlocksButtons
                                 onAddTextBlockBtnClick={onAddTextBlockBtnClick}
                             />
-                            {textBlocks.map((block) => (
+                            {allBlocks.map((block) => (
                                 <TextBlockEditor
                                     key={block.id}
                                     blockId={block.id}
