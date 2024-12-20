@@ -1,6 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import React, { memo, useCallback, useState } from 'react';
-import { v4 } from 'uuid';
+import React, { memo } from 'react';
 import { Page } from '@/widgets/Page';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import cls from './ArticleCreatePage.module.scss';
@@ -15,8 +14,9 @@ import { createArticleReducer } from '../../model/slices/createArticleSlice';
 import { TitleSubtitleForm } from '../TitleSubtitleForm/TitleSubtitleForm';
 import { AddCategoryForm } from '../AddCategoryForm/AddCategoryForm';
 import { AddArticleBlocksButtons } from '../AddArticleBlocksButtons/AddArticleBlocksButtons';
-import { Article, ArticleSection, ArticleTextBlock } from '@/entities/Article';
 import { TextBlockEditor } from '../TextBlockEditor/TextBlockEditor';
+import { useArticleBlocks } from '../../lib/hooks/useArticleBlocks/useArticleBlocks';
+import { Each } from '@/shared/lib/components/Each/Each';
 
 interface ArticleCreatePageProps {
     className?: string;
@@ -29,57 +29,15 @@ const reducers: ReducersList = {
 const ArticleCreatePage = memo((props: ArticleCreatePageProps) => {
     const { className } = props;
     const { t } = useTranslation('articleDetails');
-
-    // const [textBlocks, setTextBlocks] = useState<Array<{ id: string }>>([]);
-
-    const [allBlocks, setAllBlocks] = useState<Article['blocks']>([]);
+    const {
+        blocks: allBlocks,
+        createEmptyTextBlock,
+        addBlock,
+        updateBlock,
+        deleteBlock,
+    } = useArticleBlocks();
+    // const [allBlocks, setAllBlocks] = useState<Article['blocks']>([]);
     console.log('allBlocks', allBlocks);
-    // console.log('textBlocks', textBlocks);
-
-    const onAddTextBlockBtnClick = useCallback(() => {
-        const newTextBlock: ArticleTextBlock = {
-            id: v4(),
-            type: ArticleSection.TEXT,
-            paragraphs: [],
-            title: '',
-        };
-        setAllBlocks((prevBlocks) => [...prevBlocks, newTextBlock]);
-    }, []);
-
-    const addBlockInArticle = useCallback((newBlock: ArticleTextBlock) => {
-        setAllBlocks((prevBlocks) => [...prevBlocks, newBlock]);
-        // setAllBlocks((prevBlocks) =>
-        //     prevBlocks.map((block) =>
-        //         block.id === newBlock.id ? newBlock : block,
-        //     ),
-        // );
-    }, []);
-
-    const updateBlockInArticle = useCallback(
-        (updatedBlock: ArticleTextBlock) => {
-            setAllBlocks((prevBlocks) =>
-                prevBlocks.map((block) =>
-                    block.id === updatedBlock.id ? updatedBlock : block,
-                ),
-            );
-        },
-        [],
-    );
-
-    // const onDeleteTextBlock = useCallback((id: string) => {
-    //     console.log('id!!!!!!', id);
-    //     setTextBlocks((prev) => prev.filter((block) => block.id !== id));
-    //     setAllBlocks((prevBlocks) =>
-    //         prevBlocks.filter((block) => block.id !== id),
-    //     );
-    // }, []);
-    const onDeleteTextBlock = useCallback((id: string) => {
-        console.log('Deleting text block with id:', id);
-
-        setAllBlocks((prevBlocks) =>
-            prevBlocks.filter((block) => block.id !== id),
-        );
-    }, []);
 
     return (
         <DynamicModuleLoader reducers={reducers}>
@@ -93,17 +51,22 @@ const ArticleCreatePage = memo((props: ArticleCreatePageProps) => {
                         <VStack gap="16">
                             <Text text={t('Блоки статті')} bold />
                             <AddArticleBlocksButtons
-                                onAddTextBlockBtnClick={onAddTextBlockBtnClick}
+                                onAddTextBlockBtnClick={createEmptyTextBlock}
                             />
-                            {allBlocks.map((block) => (
-                                <TextBlockEditor
-                                    key={block.id}
-                                    blockId={block.id}
-                                    addBlockInArticle={addBlockInArticle}
-                                    onDeleteTextBlock={onDeleteTextBlock}
-                                    onEditBlock={updateBlockInArticle}
-                                />
-                            ))}
+                            <Each
+                                of={allBlocks}
+                                render={(block, index) => {
+                                    return (
+                                        <TextBlockEditor
+                                            key={block.id}
+                                            blockId={block.id}
+                                            addBlockInArticle={addBlock}
+                                            onDeleteTextBlock={deleteBlock}
+                                            onEditBlock={updateBlock}
+                                        />
+                                    );
+                                }}
+                            />
                         </VStack>
                     </HStack>
                 </VStack>

@@ -9,7 +9,7 @@ export const useTextBlockActions = (
     onEditBlock?: (block: ArticleTextBlock) => void,
     onDeleteTextBlock?: (id: string) => void,
 ) => {
-    const saveTextBlock = useCallback(() => {
+    const saveBlock = useCallback(() => {
         const updatedTextBlock: ArticleTextBlock = {
             id: blockId,
             type: ArticleSection.TEXT,
@@ -24,11 +24,11 @@ export const useTextBlockActions = (
         }
     }, [addBlockInArticle, blockId, onEditBlock, paragraphs, title]);
 
-    const deleteTextBlock = useCallback(() => {
+    const deleteBlock = useCallback(() => {
         if (onDeleteTextBlock) {
             onDeleteTextBlock(blockId);
         }
     }, [onDeleteTextBlock, blockId]);
 
-    return { saveTextBlock, deleteTextBlock };
+    return { saveTextBlock: saveBlock, deleteTextBlock: deleteBlock };
 };

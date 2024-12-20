@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useState } from 'react';
+import React, { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { HStack, VStack } from '@/shared/ui/common/Stack';
 import { ArticleSection, ArticleTextBlock } from '@/entities/Article';
@@ -10,6 +10,7 @@ import { Input } from '@/shared/ui/redesigned/Input';
 import { useBlockTitle } from '../../lib/hooks/useBlockTitle/useBlockTitle';
 import { useEditorState } from '../../lib/hooks/useEditorState/useEditorState';
 import { useTextBlockActions } from '../../lib/hooks/useTextBlockActions/useTextBlockActions';
+import { useToggleVisibility } from '@/shared/lib/hooks/useToggleVisibility/useToggleVisibility';
 
 interface TextBlockEditorProps {
     className?: string;
@@ -27,12 +28,12 @@ export const TextBlockEditor = memo((props: TextBlockEditorProps) => {
         onEditBlock,
         className,
     } = props;
-
-    const [isSaved, setIsSaved] = useState(false);
+    const { isVisible: isBlockSaved, toggleVisibility: toggleBlockSaveState } =
+        useToggleVisibility();
 
     const { title, handleTitleChange, validConfig } = useBlockTitle();
-    const { editorState, paragraphs, onEditorStateChange } = useEditorState();
-    const isSaveDisabled = paragraphs.length === 0;
+    const { editorState, paragraphs, onEditorStateChange, isEmptyContent } =
+        useEditorState();
     const { t } = useTranslation('articleDetails');
     const { saveTextBlock, deleteTextBlock } = useTextBlockActions(
         blockId,
@@ -43,33 +44,14 @@ export const TextBlockEditor = memo((props: TextBlockEditorProps) => {
         onDeleteTextBlock,
     );
 
-    // const saveTextBlock = useCallback(() => {
-    //     const updatedTextBlock: ArticleTextBlock = {
-    //         id: blockId,
-    //         type: ArticleSection.TEXT,
-    //         paragraphs,
-    //         title,
-    //     };
-    //
-    //     if (onEditBlock) {
-    //         onEditBlock(updatedTextBlock);
-    //     } else {
-    //         addBlockInArticle(updatedTextBlock);
-    //     }
-    //     setIsSaved(true);
-    // }, [addBlockInArticle, blockId, onEditBlock, paragraphs, title]);
-    //
-    // const deleteTextBlock = useCallback(() => {
-    //     onDeleteTextBlock(blockId);
-    // }, [onDeleteTextBlock, blockId]);
-
-    const editTextBlock = useCallback(() => {
-        setIsSaved(false);
-    }, []);
+    const handleSaveTextBlock = useCallback(() => {
+        saveTextBlock();
+        toggleBlockSaveState();
+    }, [saveTextBlock, toggleBlockSaveState]);
 
     return (
         <>
-            {!isSaved ? (
+            {!isBlockSaved ? (
                 <VStack gap="16">
                     <Input
                         value={title}
@@ -89,12 +71,9 @@ export const TextBlockEditor = memo((props: TextBlockEditorProps) => {
                             onEditorStateChange={onEditorStateChange}
                         />
                         <TextBlockActionButtonList
-                            saveTextBlock={() => {
-                                saveTextBlock();
-                                setIsSaved(true);
-                            }}
+                            saveTextBlock={handleSaveTextBlock}
                             deleteTextBlock={deleteTextBlock}
-                            isSaveDisabled={isSaveDisabled}
+                            isSaveDisabled={isEmptyContent}
                         />
                     </HStack>
                 </VStack>
@@ -106,7 +85,7 @@ export const TextBlockEditor = memo((props: TextBlockEditorProps) => {
                         paragraphs,
                         title,
                     }}
-                    editTextBlock={editTextBlock}
+                    editTextBlock={toggleBlockSaveState}
                     deleteTextBlock={deleteTextBlock}
                 />
             )}

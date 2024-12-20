@@ -12,6 +12,7 @@ export const useEditorState = () => {
         (newState: EditorState) => setEditorState(newState),
         [],
     );
+    const isEmptyContent = paragraphs.length === 0;
 
-    return { editorState, paragraphs, onEditorStateChange };
+    return { editorState, paragraphs, onEditorStateChange, isEmptyContent };
 };
