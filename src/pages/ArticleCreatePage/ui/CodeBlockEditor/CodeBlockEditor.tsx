@@ -56,7 +56,8 @@ export const CodeBlockEditor: React.FC = () => {
                     },
                     formatOnType: true,
                 }}
-                height="75vh"
+                height="200px"
+                width="100%"
                 theme={codeTheme}
                 language={language}
                 defaultLanguage={CODE_SNIPPETS.javascript}
