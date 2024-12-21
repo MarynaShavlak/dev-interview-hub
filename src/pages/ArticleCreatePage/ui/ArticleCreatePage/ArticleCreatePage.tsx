@@ -18,6 +18,7 @@ import { TextBlockEditor } from '../TextBlockEditor/TextBlockEditor';
 import { useArticleBlocks } from '../../lib/hooks/useArticleBlocks/useArticleBlocks';
 import { Each } from '@/shared/lib/components/Each/Each';
 import { CodeBlockEditor } from '../CodeBlockEditor/CodeBlockEditor';
+import { ArticleSection } from '@/entities/Article';
 
 interface ArticleCreatePageProps {
     className?: string;
@@ -33,6 +34,7 @@ const ArticleCreatePage = memo((props: ArticleCreatePageProps) => {
     const {
         blocks: allBlocks,
         createEmptyTextBlock,
+        createEmptyCodeBlock,
         addBlock,
         updateBlock,
         deleteBlock,
@@ -53,20 +55,36 @@ const ArticleCreatePage = memo((props: ArticleCreatePageProps) => {
                             <Text text={t('Блоки статті')} bold />
                             <AddArticleBlocksButtons
                                 onAddTextBlockBtnClick={createEmptyTextBlock}
+                                onAddCodeBlockBtnClick={createEmptyCodeBlock}
                             />
-                            <CodeBlockEditor />
+
                             <Each
                                 of={allBlocks}
                                 render={(block, index) => {
-                                    return (
-                                        <TextBlockEditor
-                                            key={block.id}
-                                            blockId={block.id}
-                                            addBlockInArticle={addBlock}
-                                            onDeleteTextBlock={deleteBlock}
-                                            onEditBlock={updateBlock}
-                                        />
-                                    );
+                                    const blockType = block.type;
+                                    if (blockType === ArticleSection.TEXT) {
+                                        return (
+                                            <TextBlockEditor
+                                                key={block.id}
+                                                blockId={block.id}
+                                                addBlockInArticle={addBlock}
+                                                onDeleteTextBlock={deleteBlock}
+                                                onEditBlock={updateBlock}
+                                            />
+                                        );
+                                    }
+                                    if (blockType === ArticleSection.CODE) {
+                                        return (
+                                            <CodeBlockEditor
+                                                key={block.id}
+                                                blockId={block.id}
+                                                addBlockInArticle={addBlock}
+                                                onDeleteTextBlock={deleteBlock}
+                                                onEditBlock={updateBlock}
+                                            />
+                                        );
+                                    }
+                                    return null;
                                 }}
                             />
                         </VStack>

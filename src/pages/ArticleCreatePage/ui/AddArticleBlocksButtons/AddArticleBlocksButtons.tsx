@@ -8,11 +8,17 @@ import { Icon } from '@/shared/ui/redesigned/Icon';
 
 interface AddArticleBlocksButtonsProps {
     onAddTextBlockBtnClick: () => void;
+    onAddCodeBlockBtnClick: () => void;
+    onAddImageBlockBtnClick?: () => void;
 }
 
 export const AddArticleBlocksButtons = memo(
     (props: AddArticleBlocksButtonsProps) => {
-        const { onAddTextBlockBtnClick } = props;
+        const {
+            onAddTextBlockBtnClick,
+            onAddImageBlockBtnClick,
+            onAddCodeBlockBtnClick,
+        } = props;
         const { t } = useTranslation('articleDetails');
 
         return (
@@ -31,7 +37,7 @@ export const AddArticleBlocksButtons = memo(
                     variant="filled"
                     addonLeft={<Icon Svg={AddIcon} width={16} height={16} />}
                     className={cls.addLinkButton}
-                    onClick={() => console.log('add code block')}
+                    onClick={onAddCodeBlockBtnClick}
                 >
                     {t('Додати')} {t('блок')}
                     &nbsp;

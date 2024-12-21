@@ -1,9 +1,14 @@
 import { useState, useCallback } from 'react';
 import { v4 } from 'uuid';
-import { ArticleTextBlock, ArticleSection } from '@/entities/Article';
+import {
+    ArticleTextBlock,
+    ArticleSection,
+    ArticleBlock,
+    ArticleCodeBlock,
+} from '@/entities/Article';
 
 export const useArticleBlocks = () => {
-    const [blocks, setBlocks] = useState<ArticleTextBlock[]>([]);
+    const [blocks, setBlocks] = useState<ArticleBlock[]>([]);
 
     const createEmptyTextBlock = useCallback(() => {
         const newTextBlock: ArticleTextBlock = {
@@ -15,11 +20,21 @@ export const useArticleBlocks = () => {
         setBlocks((prevBlocks) => [...prevBlocks, newTextBlock]);
     }, []);
 
-    const addBlock = useCallback((block: ArticleTextBlock) => {
+    const createEmptyCodeBlock = useCallback(() => {
+        const newTextBlock: ArticleCodeBlock = {
+            id: v4(),
+            type: ArticleSection.CODE,
+            code: '',
+            description: '',
+        };
+        setBlocks((prevBlocks) => [...prevBlocks, newTextBlock]);
+    }, []);
+
+    const addBlock = useCallback((block: ArticleBlock) => {
         setBlocks((prevBlocks) => [...prevBlocks, block]);
     }, []);
 
-    const updateBlock = useCallback((updatedBlock: ArticleTextBlock) => {
+    const updateBlock = useCallback((updatedBlock: ArticleBlock) => {
         setBlocks((prevBlocks) =>
             prevBlocks.map((block) =>
                 block.id === updatedBlock.id ? updatedBlock : block,
@@ -33,5 +48,12 @@ export const useArticleBlocks = () => {
         );
     }, []);
 
-    return { blocks, createEmptyTextBlock, addBlock, updateBlock, deleteBlock };
+    return {
+        blocks,
+        createEmptyTextBlock,
+        createEmptyCodeBlock,
+        addBlock,
+        updateBlock,
+        deleteBlock,
+    };
 };
