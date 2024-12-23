@@ -19,6 +19,7 @@ import { useArticleBlocks } from '../../lib/hooks/useArticleBlocks/useArticleBlo
 import { Each } from '@/shared/lib/components/Each/Each';
 import { CodeBlockEditor } from '../CodeBlockEditor/CodeBlockEditor';
 import { ArticleSection } from '@/entities/Article';
+import { ImageBlockEditor } from '../ImageBlockEditor/ImageBlockEditor';
 
 interface ArticleCreatePageProps {
     className?: string;
@@ -42,6 +43,29 @@ const ArticleCreatePage = memo((props: ArticleCreatePageProps) => {
     // const [allBlocks, setAllBlocks] = useState<Article['blocks']>([]);
     console.log('allBlocks', allBlocks);
 
+    const onFileUpload = (file: File | null) => {
+        if (!file) {
+            console.error('No file provided for upload.');
+            return;
+        }
+
+        // Example upload logic: Replace with actual implementation
+        const reader = new FileReader();
+        reader.onload = () => {
+            const imageUrl = reader.result as string;
+            console.log('Uploaded image URL:', imageUrl);
+            //
+            // // Add image block to article
+            // addBlock({
+            //     id: `image-${Date.now()}`,
+            //     type: ArticleSection.IMAGE,
+            //     src: imageUrl,
+            //     alt: file.name,
+            // });
+        };
+        reader.readAsDataURL(file);
+    };
+
     return (
         <DynamicModuleLoader reducers={reducers}>
             <Page
@@ -58,6 +82,11 @@ const ArticleCreatePage = memo((props: ArticleCreatePageProps) => {
                             <AddArticleBlocksButtons
                                 onAddTextBlockBtnClick={createEmptyTextBlock}
                                 onAddCodeBlockBtnClick={createEmptyCodeBlock}
+                                // onAddImageBlockBtnClick={createEmptyImageBlock}
+                            />
+                            <ImageBlockEditor
+                                avatar=""
+                                onFileUpload={onFileUpload}
                             />
 
                             <Each
@@ -85,6 +114,9 @@ const ArticleCreatePage = memo((props: ArticleCreatePageProps) => {
                                                 onEditBlock={updateBlock}
                                             />
                                         );
+                                    }
+                                    if (blockType === ArticleSection.IMAGE) {
+                                        return <div key={block.id}>55555</div>;
                                     }
                                     return null;
                                 }}

@@ -69,5 +69,6 @@
     "Помилка відновлення паролю": "Password recovery error. Please try again later.",
     "Лист {{email}} відновлення паролю": "If account {{email}} exist, an email will be sent with further instructions",
   "Некоректний тип файлу": "Invalid image type. Please upload a PNG, JPG, or JPEG.",
-  "Видалити зображення": "Delete picture"
+  "Видалити зображення": "Delete picture",
+  "Завантажити зображення": "Upload picture"
 }

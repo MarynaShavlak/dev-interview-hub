@@ -47,7 +47,7 @@ export const AddArticleBlocksButtons = memo(
                     variant="filled"
                     addonLeft={<Icon Svg={AddIcon} width={16} height={16} />}
                     className={cls.addLinkButton}
-                    onClick={() => console.log('add image block')}
+                    onClick={onAddImageBlockBtnClick}
                 >
                     {t('Додати')} {t('блок')}
                     &nbsp;

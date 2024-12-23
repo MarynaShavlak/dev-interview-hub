@@ -1,33 +1,43 @@
-import { ChangeEvent } from 'react';
+import { ChangeEvent, ReactNode } from 'react';
 import cls from './FileUploadInput.module.scss';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import EditIcon from '@/shared/assets/icons/edit.svg';
-import { Icon } from '@/shared/ui/redesigned/Icon';
-import { Box } from '@/shared/ui/common/Box';
+import { Icon } from '../Icon';
+import { Box } from '../../common/Box';
 import { getFlexClasses } from '@/shared/lib/classes/getFlexClasses/getFlexClasses';
 
 interface FileUploadInputProps {
     onChange: (event: ChangeEvent<HTMLInputElement>) => void;
+    AddFileElement?: ReactNode;
+    className?: string;
 }
 
-export const FileUploadInput = ({ onChange }: FileUploadInputProps) => {
+export const FileUploadInput = ({
+    onChange,
+    AddFileElement,
+    className,
+}: FileUploadInputProps) => {
     const uploadLabelClasses = getFlexClasses({
         vStack: true,
         align: 'center',
         justify: 'center',
     });
+    const labelClass = AddFileElement ? '' : cls.uploadLabel;
+    const boxClass = AddFileElement ? '' : cls.uploadFileAbsoluteWrapper;
     return (
-        <Box className={cls.uploadFileWrapper}>
+        <Box className={boxClass}>
             <label
                 htmlFor="file-input"
-                className={classNames(cls.uploadLabel, {}, uploadLabelClasses)}
+                className={classNames(labelClass, {}, uploadLabelClasses)}
             >
-                <Icon
-                    Svg={EditIcon}
-                    className={cls.photoIcon}
-                    width={18}
-                    height={18}
-                />
+                {AddFileElement || (
+                    <Icon
+                        Svg={EditIcon}
+                        className={cls.photoIcon}
+                        width={18}
+                        height={18}
+                    />
+                )}
             </label>
             <input
                 type="file"
