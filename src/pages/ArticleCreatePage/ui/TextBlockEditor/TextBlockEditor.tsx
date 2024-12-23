@@ -20,14 +20,14 @@ interface TextBlockEditorProps {
     className?: string;
     blockId: string;
     addBlockInArticle: (block: ArticleTextBlock) => void;
-    onDeleteTextBlock: (id: string) => void;
+    deleteBlockFromArticle: (id: string) => void;
     onEditBlock?: (block: ArticleTextBlock) => void;
 }
 
 export const TextBlockEditor = memo((props: TextBlockEditorProps) => {
     const {
         addBlockInArticle,
-        onDeleteTextBlock,
+        deleteBlockFromArticle,
         blockId,
         onEditBlock,
         className,
@@ -45,11 +45,12 @@ export const TextBlockEditor = memo((props: TextBlockEditorProps) => {
         paragraphs,
         addBlockInArticle,
         onEditBlock,
-        onDeleteTextBlock,
+        deleteBlockFromArticle,
     });
 
     const handleSaveTextBlock = useCallback(() => {
         saveTextBlock();
+
         toggleBlockSaveState();
     }, [saveTextBlock, toggleBlockSaveState]);
 

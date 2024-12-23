@@ -1,5 +1,6 @@
 import { useCallback } from 'react';
 import { ArticleCodeBlock, ArticleSection } from '@/entities/Article';
+import { useCreateArticle } from '../useCreateArticle/useCreateArticle';
 
 interface UseCodeBlockActionsParams {
     blockId: string;
@@ -7,7 +8,7 @@ interface UseCodeBlockActionsParams {
     code: string;
     addBlockInArticle: (block: ArticleCodeBlock) => void;
     onEditBlock?: (block: ArticleCodeBlock) => void;
-    onDeleteTextBlock?: (id: string) => void;
+    deleteBlockFromArticle?: (id: string) => void;
 }
 
 export const useCodeBlockActions = ({
@@ -16,10 +17,11 @@ export const useCodeBlockActions = ({
     code,
     addBlockInArticle,
     onEditBlock,
-    onDeleteTextBlock,
+    deleteBlockFromArticle,
 }: UseCodeBlockActionsParams) => {
+    const { formData, onChangeBlocks, onDeleteBlock } = useCreateArticle();
     const saveBlock = useCallback(() => {
-        const updatedTextBlock: ArticleCodeBlock = {
+        const updatedBlock: ArticleCodeBlock = {
             id: blockId,
             type: ArticleSection.CODE,
             code,
@@ -27,17 +29,26 @@ export const useCodeBlockActions = ({
         };
 
         if (onEditBlock) {
-            onEditBlock(updatedTextBlock);
+            onEditBlock(updatedBlock);
         } else {
-            addBlockInArticle(updatedTextBlock);
+            addBlockInArticle(updatedBlock);
         }
-    }, [addBlockInArticle, blockId, onEditBlock, code, description]);
+        onChangeBlocks(updatedBlock);
+    }, [
+        blockId,
+        code,
+        description,
+        onEditBlock,
+        onChangeBlocks,
+        addBlockInArticle,
+    ]);
 
     const deleteBlock = useCallback(() => {
-        if (onDeleteTextBlock) {
-            onDeleteTextBlock(blockId);
+        if (deleteBlockFromArticle) {
+            deleteBlockFromArticle(blockId);
+            onDeleteBlock(blockId);
         }
-    }, [onDeleteTextBlock, blockId]);
+    }, [deleteBlockFromArticle, blockId, onDeleteBlock]);
 
     return { saveCodeBlock: saveBlock, deleteCodeBlock: deleteBlock };
 };

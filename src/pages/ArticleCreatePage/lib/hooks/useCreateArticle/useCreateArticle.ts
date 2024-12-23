@@ -6,6 +6,7 @@ import {
 } from '../../../model/selectors/getCreateArticleSelectors';
 import { useInputValidationConfig } from '@/shared/lib/hooks/validationHooks/useInputValidationConfig/useInputValidationConfig';
 import { useCreateArticleActions } from '../../../model/slices/createArticleSlice';
+import { ArticleBlock } from '@/entities/Article';
 
 export const useCreateArticle = () => {
     const formData = useCreateArticleForm();
@@ -18,6 +19,8 @@ export const useCreateArticle = () => {
         updateSubtitleText,
         updateSubtitleLink,
         updateCategory,
+        updateBlocks,
+        deleteBlock,
     } = useCreateArticleActions();
     //
     const validConfig = useInputValidationConfig();
@@ -63,58 +66,19 @@ export const useCreateArticle = () => {
         [updateCategory],
     );
 
-    // const onChangeSubtitleLink = useCallback(
-    //     (value?: string) => {
-    //         updateCreateArticleForm({
-    //             subtitle: {
-    //                 link: value || '', // Update only the text property
-    //             },
-    //         });
-    //     },
-    //     [updateCreateArticleForm],
-    // );
-    //
-    // const onChangeCity = useCallback(
-    //     (value?: string) => {
-    //         updateProfile({ city: value || '' });
-    //     },
-    //     [updateProfile],
-    // );
-    //
-    // const onChangeAge = useCallback(
-    //     (value?: string) => {
-    //         updateProfile({ age: value || '' });
-    //     },
-    //     [updateProfile],
-    // );
-    //
-    // const onChangeUsername = useCallback(
-    //     (value?: string) => {
-    //         updateProfile({ username: value || '' });
-    //     },
-    //     [updateProfile],
-    // );
-    //
-    // const onChangeAvatar = useCallback(
-    //     (value?: string) => {
-    //         updateProfile({ avatar: value || '' });
-    //     },
-    //     [updateProfile],
-    // );
-    //
-    // const onChangeCurrency = useCallback(
-    //     (currency: Currency) => {
-    //         updateProfile({ currency });
-    //     },
-    //     [updateProfile],
-    // );
-    //
-    // const onChangeCountry = useCallback(
-    //     (country: Country) => {
-    //         updateProfile({ country });
-    //     },
-    //     [updateProfile],
-    // );
+    const onChangeBlocks = useCallback(
+        (block: ArticleBlock) => {
+            updateBlocks(block);
+        },
+        [updateBlocks],
+    );
+
+    const onDeleteBlock = useCallback(
+        (id: string) => {
+            deleteBlock(id);
+        },
+        [deleteBlock],
+    );
 
     return {
         formData,
@@ -124,17 +88,73 @@ export const useCreateArticle = () => {
         onChangeSubtitleText,
         onChangeSubtitleLink,
         onChangeCategory,
-        // readonly,
-        // validateErrors,
-        // onChangeFirstname,
-        // onChangeLastname,
-        // onChangeUsername,
-        // onChangeAvatar,
-        // onChangeCountry,
-        // onChangeCurrency,
-        // onChangeAge,
-        // onChangeCity,
-        // hasErrors,
-        // onFileUpload,
+        onChangeBlocks,
+        onDeleteBlock,
     };
 };
+
+// const onChangeSubtitleLink = useCallback(
+//     (value?: string) => {
+//         updateCreateArticleForm({
+//             subtitle: {
+//                 link: value || '', // Update only the text property
+//             },
+//         });
+//     },
+//     [updateCreateArticleForm],
+// );
+//
+// const onChangeCity = useCallback(
+//     (value?: string) => {
+//         updateProfile({ city: value || '' });
+//     },
+//     [updateProfile],
+// );
+//
+// const onChangeAge = useCallback(
+//     (value?: string) => {
+//         updateProfile({ age: value || '' });
+//     },
+//     [updateProfile],
+// );
+//
+// const onChangeUsername = useCallback(
+//     (value?: string) => {
+//         updateProfile({ username: value || '' });
+//     },
+//     [updateProfile],
+// );
+//
+// const onChangeAvatar = useCallback(
+//     (value?: string) => {
+//         updateProfile({ avatar: value || '' });
+//     },
+//     [updateProfile],
+// );
+//
+// const onChangeCurrency = useCallback(
+//     (currency: Currency) => {
+//         updateProfile({ currency });
+//     },
+//     [updateProfile],
+// );
+//
+// const onChangeCountry = useCallback(
+//     (country: Country) => {
+//         updateProfile({ country });
+//     },
+//     [updateProfile],
+// );
+
+// readonly,
+// validateErrors,
+// onChangeFirstname,
+// onChangeLastname,
+// onChangeUsername,
+// onChangeAvatar,
+// onChangeCountry,
+// onChangeCurrency,
+// onChangeAge,
+// onChangeCity,
+// hasErrors,
+// onFileUpload,

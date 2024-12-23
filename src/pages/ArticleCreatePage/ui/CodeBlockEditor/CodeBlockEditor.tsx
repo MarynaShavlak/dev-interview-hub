@@ -21,21 +21,21 @@ interface CodeBlockEditorProps {
     className?: string;
     blockId: string;
     addBlockInArticle: (block: ArticleCodeBlock) => void;
-    onDeleteTextBlock: (id: string) => void;
+    deleteBlockFromArticle: (id: string) => void;
     onEditBlock?: (block: ArticleCodeBlock) => void;
 }
 
 export const CodeBlockEditor = memo((props: CodeBlockEditorProps) => {
     const {
         addBlockInArticle,
-        onDeleteTextBlock,
+        deleteBlockFromArticle,
         blockId,
         onEditBlock,
         className,
     } = props;
 
     const [code, setCode] = useState<string>('');
-    console.log('value', code);
+    // console.log('value', code);
     const isEmptyContent = code.trim().length === 0;
 
     const { t } = useTranslation('articleDetails');
@@ -50,7 +50,7 @@ export const CodeBlockEditor = memo((props: CodeBlockEditorProps) => {
         code,
         addBlockInArticle,
         onEditBlock,
-        onDeleteTextBlock,
+        deleteBlockFromArticle,
     });
 
     const handleSaveCodeBlock = useCallback(() => {

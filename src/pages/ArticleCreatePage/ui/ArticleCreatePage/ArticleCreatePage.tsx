@@ -20,6 +20,7 @@ import { Each } from '@/shared/lib/components/Each/Each';
 import { CodeBlockEditor } from '../CodeBlockEditor/CodeBlockEditor';
 import { ArticleSection } from '@/entities/Article';
 import { ImageBlockEditor } from '../ImageBlockEditor/ImageBlockEditor';
+import { useCreateArticle } from '../../lib/hooks/useCreateArticle/useCreateArticle';
 
 interface ArticleCreatePageProps {
     className?: string;
@@ -41,7 +42,7 @@ const ArticleCreatePage = memo((props: ArticleCreatePageProps) => {
         deleteBlock,
     } = useArticleBlocks();
     // const [allBlocks, setAllBlocks] = useState<Article['blocks']>([]);
-    console.log('allBlocks', allBlocks);
+    // console.log('allBlocks', allBlocks);
 
     const onFileUpload = (file: File | null) => {
         if (!file) {
@@ -65,6 +66,10 @@ const ArticleCreatePage = memo((props: ArticleCreatePageProps) => {
         };
         reader.readAsDataURL(file);
     };
+
+    const { formData } = useCreateArticle();
+
+    console.log('formData', formData);
 
     return (
         <DynamicModuleLoader reducers={reducers}>
@@ -99,7 +104,9 @@ const ArticleCreatePage = memo((props: ArticleCreatePageProps) => {
                                                 key={block.id}
                                                 blockId={block.id}
                                                 addBlockInArticle={addBlock}
-                                                onDeleteTextBlock={deleteBlock}
+                                                deleteBlockFromArticle={
+                                                    deleteBlock
+                                                }
                                                 onEditBlock={updateBlock}
                                             />
                                         );
@@ -110,7 +117,9 @@ const ArticleCreatePage = memo((props: ArticleCreatePageProps) => {
                                                 key={block.id}
                                                 blockId={block.id}
                                                 addBlockInArticle={addBlock}
-                                                onDeleteTextBlock={deleteBlock}
+                                                deleteBlockFromArticle={
+                                                    deleteBlock
+                                                }
                                                 onEditBlock={updateBlock}
                                             />
                                         );

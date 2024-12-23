@@ -1,5 +1,6 @@
 import { useCallback } from 'react';
 import { ArticleSection, ArticleTextBlock } from '@/entities/Article';
+import { useCreateArticle } from '../useCreateArticle/useCreateArticle';
 
 interface UseTextBlockActionsParams {
     blockId: string;
@@ -7,7 +8,7 @@ interface UseTextBlockActionsParams {
     paragraphs: string[];
     addBlockInArticle: (block: ArticleTextBlock) => void;
     onEditBlock?: (block: ArticleTextBlock) => void;
-    onDeleteTextBlock?: (id: string) => void;
+    deleteBlockFromArticle?: (id: string) => void;
 }
 
 export const useTextBlockActions = ({
@@ -16,8 +17,9 @@ export const useTextBlockActions = ({
     paragraphs,
     addBlockInArticle,
     onEditBlock,
-    onDeleteTextBlock,
+    deleteBlockFromArticle,
 }: UseTextBlockActionsParams) => {
+    const { formData, onDeleteBlock, onChangeBlocks } = useCreateArticle();
     const saveBlock = useCallback(() => {
         const updatedTextBlock: ArticleTextBlock = {
             id: blockId,
@@ -31,13 +33,22 @@ export const useTextBlockActions = ({
         } else {
             addBlockInArticle(updatedTextBlock);
         }
-    }, [addBlockInArticle, blockId, onEditBlock, paragraphs, title]);
+        onChangeBlocks(updatedTextBlock);
+    }, [
+        addBlockInArticle,
+        blockId,
+        onChangeBlocks,
+        onEditBlock,
+        paragraphs,
+        title,
+    ]);
 
     const deleteBlock = useCallback(() => {
-        if (onDeleteTextBlock) {
-            onDeleteTextBlock(blockId);
+        if (deleteBlockFromArticle) {
+            deleteBlockFromArticle(blockId);
+            onDeleteBlock(blockId);
         }
-    }, [onDeleteTextBlock, blockId]);
+    }, [deleteBlockFromArticle, blockId, onDeleteBlock]);
 
     return { saveTextBlock: saveBlock, deleteTextBlock: deleteBlock };
 };
