@@ -1,8 +1,11 @@
 import React, { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { HStack, VStack } from '@/shared/ui/common/Stack';
-import { ArticleSection, ArticleTextBlock } from '@/entities/Article';
-import { TextBlockPreview } from './TextBlockPreview/TextBlockPreview';
+import {
+    ArticleSection,
+    ArticleTextBlock,
+    ArticleTextBlockComponent,
+} from '@/entities/Article';
 import { MarkupHTMLCreator } from '@/shared/ui/redesigned/MarkupHTMLCreator';
 import { BlockActionButtonList } from '../BlockActionButtonList/BlockActionButtonList';
 import cls from '../ArticleCreatePage/ArticleCreatePage.module.scss';
@@ -11,6 +14,7 @@ import { useBlockTitle } from '../../lib/hooks/useBlockTitle/useBlockTitle';
 import { useEditorState } from '../../lib/hooks/useEditorState/useEditorState';
 import { useTextBlockActions } from '../../lib/hooks/useTextBlockActions/useTextBlockActions';
 import { useToggleVisibility } from '@/shared/lib/hooks/useToggleVisibility/useToggleVisibility';
+import { BlockPreview } from '../BlockPreview/BlockPreview';
 
 interface TextBlockEditorProps {
     className?: string;
@@ -78,15 +82,16 @@ export const TextBlockEditor = memo((props: TextBlockEditorProps) => {
                     </HStack>
                 </VStack>
             ) : (
-                <TextBlockPreview
-                    textBlock={{
+                <BlockPreview
+                    block={{
                         id: blockId,
                         type: ArticleSection.TEXT,
                         paragraphs,
                         title,
                     }}
-                    editTextBlock={toggleBlockSaveState}
-                    deleteTextBlock={deleteTextBlock}
+                    editBlock={toggleBlockSaveState}
+                    deleteBlock={deleteTextBlock}
+                    BlockComponent={ArticleTextBlockComponent}
                 />
             )}
         </>

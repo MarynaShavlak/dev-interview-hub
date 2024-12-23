@@ -44,7 +44,9 @@ const ArticleCreatePage = memo((props: ArticleCreatePageProps) => {
 
     return (
         <DynamicModuleLoader reducers={reducers}>
-            <Page className={classNames(cls.ArticleEditPage, {}, [className])}>
+            <Page
+                className={classNames(cls.ArticleCreatePage, {}, [className])}
+            >
                 <VStack gap="24">
                     <Text title={t('Створення нової статті')} size="l" />
                     <TitleSubtitleForm />

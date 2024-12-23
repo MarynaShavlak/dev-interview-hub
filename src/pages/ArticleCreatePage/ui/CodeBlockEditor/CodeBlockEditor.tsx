@@ -6,11 +6,16 @@ import { HStack, VStack } from '@/shared/ui/common/Stack';
 import { useBlockTitle } from '../../lib/hooks/useBlockTitle/useBlockTitle';
 
 import { Skeleton } from '@/shared/ui/redesigned/Skeleton';
-import { ArticleCodeBlock } from '@/entities/Article';
+import {
+    ArticleCodeBlock,
+    ArticleCodeBlockComponent,
+    ArticleSection,
+} from '@/entities/Article';
 import { useToggleVisibility } from '@/shared/lib/hooks/useToggleVisibility/useToggleVisibility';
 import { CodeEditor } from '@/shared/ui/redesigned/CodeEditor';
 import { useCodeBlockActions } from '../../lib/hooks/useCodeBlockActions/useCodeBlockActions';
 import { BlockActionButtonList } from '../BlockActionButtonList/BlockActionButtonList';
+import { BlockPreview } from '../BlockPreview/BlockPreview';
 
 interface CodeBlockEditorProps {
     className?: string;
@@ -54,31 +59,48 @@ export const CodeBlockEditor = memo((props: CodeBlockEditorProps) => {
     }, [saveCodeBlock, toggleBlockSaveState]);
 
     return (
-        <VStack gap="16">
-            <Input
-                value={title}
-                label={t('Опис коду')}
-                labelBold
-                gap="16"
-                maxWidth={false}
-                className={cls.InputName}
-                onChange={handleTitleChange}
-                validations={validConfig.title}
-                maxLengthIndicator
-            />
-            <HStack gap="16" align="end">
-                <CodeEditor
-                    height="200px"
-                    width="500px"
-                    loader={<Skeleton width="100%" height="200px" />}
-                    onChangeCode={setCode}
-                />
-                <BlockActionButtonList
-                    saveBlock={handleSaveCodeBlock}
+        <>
+            {!isBlockSaved ? (
+                <VStack gap="16">
+                    <Input
+                        value={title}
+                        label={t('Опис коду')}
+                        labelBold
+                        gap="16"
+                        maxWidth={false}
+                        className={cls.InputName}
+                        onChange={handleTitleChange}
+                        validations={validConfig.title}
+                        maxLengthIndicator
+                    />
+                    <HStack gap="16" align="end">
+                        <CodeEditor
+                            height="200px"
+                            width="500px"
+                            loader={<Skeleton width="100%" height="200px" />}
+                            onChangeCode={setCode}
+                            initialCode={code}
+                        />
+                        <BlockActionButtonList
+                            saveBlock={handleSaveCodeBlock}
+                            deleteBlock={deleteCodeBlock}
+                            isSaveDisabled={isEmptyContent}
+                        />
+                    </HStack>
+                </VStack>
+            ) : (
+                <BlockPreview
+                    block={{
+                        id: blockId,
+                        type: ArticleSection.CODE,
+                        code,
+                        description: title,
+                    }}
+                    editBlock={toggleBlockSaveState}
                     deleteBlock={deleteCodeBlock}
-                    isSaveDisabled={isEmptyContent}
+                    BlockComponent={ArticleCodeBlockComponent}
                 />
-            </HStack>
-        </VStack>
+            )}
+        </>
     );
 });

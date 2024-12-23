@@ -1,5 +1,5 @@
 export { ArticleTextBlockComponent } from './ui/ArticleTextBlockComponent/ArticleTextBlockComponent';
-
+export { ArticleCodeBlockComponent } from './ui/ArticleCodeBlockComponent/ArticleCodeBlockComponent';
 export type {
     ArticleBlock,
     ArticleTextBlock,
