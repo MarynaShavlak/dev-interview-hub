@@ -4,35 +4,35 @@ import { Button } from '@/shared/ui/redesigned/Button';
 import { VStack } from '@/shared/ui/common/Stack';
 import { Icon } from '@/shared/ui/redesigned/Icon';
 import AddIcon from '@/shared/assets/icons/plus.svg';
-import cls from './TextBlockActionButtonList.module.scss';
+import cls from './BlockActionButtonList.module.scss';
 
-interface TextBlockActionButtonListProps {
-    saveTextBlock: () => void;
-    deleteTextBlock: () => void;
+interface BlockActionButtonListProps {
+    saveBlock: () => void;
+    deleteBlock: () => void;
     isSaveDisabled: boolean;
 }
 
-export const TextBlockActionButtonList = ({
-    saveTextBlock,
-    deleteTextBlock,
+export const BlockActionButtonList = ({
+    saveBlock,
+    deleteBlock,
     isSaveDisabled,
-}: TextBlockActionButtonListProps) => {
+}: BlockActionButtonListProps) => {
     const { t } = useTranslation('articleDetails');
     return (
         <VStack gap="16">
             <Button
                 variant="save"
                 addonLeft={<Icon Svg={AddIcon} width={16} height={16} />}
-                onClick={saveTextBlock}
-                className={cls.textBlockActionButton}
+                onClick={saveBlock}
+                className={cls.blockActionButton}
                 disabled={isSaveDisabled}
             >
                 {t('Зберегти')}
             </Button>
             <Button
                 variant="cancel"
-                onClick={deleteTextBlock}
-                className={cls.textBlockActionButton}
+                onClick={deleteBlock}
+                className={cls.blockActionButton}
             >
                 {t('Видалити')}
             </Button>

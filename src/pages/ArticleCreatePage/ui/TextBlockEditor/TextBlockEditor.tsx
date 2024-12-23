@@ -4,7 +4,7 @@ import { HStack, VStack } from '@/shared/ui/common/Stack';
 import { ArticleSection, ArticleTextBlock } from '@/entities/Article';
 import { TextBlockPreview } from './TextBlockPreview/TextBlockPreview';
 import { MarkupHTMLCreator } from '@/shared/ui/redesigned/MarkupHTMLCreator';
-import { TextBlockActionButtonList } from './TextBlockActionButtonList/TextBlockActionButtonList';
+import { BlockActionButtonList } from '../BlockActionButtonList/BlockActionButtonList';
 import cls from '../ArticleCreatePage/ArticleCreatePage.module.scss';
 import { Input } from '@/shared/ui/redesigned/Input';
 import { useBlockTitle } from '../../lib/hooks/useBlockTitle/useBlockTitle';
@@ -35,14 +35,14 @@ export const TextBlockEditor = memo((props: TextBlockEditorProps) => {
     const { editorState, paragraphs, onEditorStateChange, isEmptyContent } =
         useEditorState();
     const { t } = useTranslation('articleDetails');
-    const { saveTextBlock, deleteTextBlock } = useTextBlockActions(
+    const { saveTextBlock, deleteTextBlock } = useTextBlockActions({
         blockId,
         title,
         paragraphs,
         addBlockInArticle,
         onEditBlock,
         onDeleteTextBlock,
-    );
+    });
 
     const handleSaveTextBlock = useCallback(() => {
         saveTextBlock();
@@ -70,9 +70,9 @@ export const TextBlockEditor = memo((props: TextBlockEditorProps) => {
                             editorState={editorState}
                             onEditorStateChange={onEditorStateChange}
                         />
-                        <TextBlockActionButtonList
-                            saveTextBlock={handleSaveTextBlock}
-                            deleteTextBlock={deleteTextBlock}
+                        <BlockActionButtonList
+                            saveBlock={handleSaveTextBlock}
+                            deleteBlock={deleteTextBlock}
                             isSaveDisabled={isEmptyContent}
                         />
                     </HStack>
