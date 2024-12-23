@@ -7,6 +7,7 @@ import { Article, ArticleBlock } from '@/entities/Article';
 const initialState: CreateArticleSchema = {
     isLoading: false,
     error: undefined,
+    uploadedArticleImage: undefined,
     form: {
         id: '',
         user: {} as User,
@@ -64,41 +65,27 @@ export const createArticleSlice = buildSlice({
 
             if (blockIndex !== -1) {
                 // If the block exists, check for content to determine operation
-                if (Object.keys(incomingBlock).length > 1) {
-                    // Update block if it has additional properties
-                    state.form.blocks[blockIndex] = {
-                        ...state.form.blocks[blockIndex],
-                        ...incomingBlock,
-                    };
-                } else {
-                    // Delete block if only ID is provided
-                    state.form.blocks.splice(blockIndex, 1);
-                }
+
+                state.form.blocks[blockIndex] = {
+                    ...state.form.blocks[blockIndex],
+                    ...incomingBlock,
+                };
             } else {
                 // Add new block if not found
                 state.form.blocks.push(incomingBlock);
             }
         },
-        // updateBlock(
-        //     state,
-        //     action: PayloadAction<{ id: string; data: Partial<ArticleBlock> }>,
-        // ) {
-        //     const { id, data } = action.payload;
-        //     const blockIndex = state.form.blocks.findIndex(
-        //         (block) => block.id === id,
-        //     );
-        //
-        //     if (blockIndex !== -1) {
-        //         state.form.blocks[blockIndex] = {
-        //             ...state.form.blocks[blockIndex],
-        //             ...data,
-        //         };
-        //     }
-        // },
+
         deleteBlock(state, action: PayloadAction<string>) {
             state.form.blocks = state.form.blocks.filter(
                 (block) => block.id !== action.payload,
             );
+        },
+        setUploadedArticleImage: (
+            state,
+            action: PayloadAction<File | null>,
+        ) => {
+            state.uploadedArticleImage = action.payload;
         },
     },
 });

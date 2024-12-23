@@ -21,6 +21,7 @@ export const useCreateArticle = () => {
         updateCategory,
         updateBlocks,
         deleteBlock,
+        setUploadedArticleImage,
     } = useCreateArticleActions();
     //
     const validConfig = useInputValidationConfig();
@@ -80,6 +81,10 @@ export const useCreateArticle = () => {
         [deleteBlock],
     );
 
+    const onFileUpload = useCallback(
+        (file: File | null) => setUploadedArticleImage(file),
+        [setUploadedArticleImage],
+    );
     return {
         formData,
         error,
@@ -90,6 +95,7 @@ export const useCreateArticle = () => {
         onChangeCategory,
         onChangeBlocks,
         onDeleteBlock,
+        onFileUpload,
     };
 };
 

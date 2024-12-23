@@ -44,30 +44,30 @@ const ArticleCreatePage = memo((props: ArticleCreatePageProps) => {
     // const [allBlocks, setAllBlocks] = useState<Article['blocks']>([]);
     // console.log('allBlocks', allBlocks);
 
-    const onFileUpload = (file: File | null) => {
-        if (!file) {
-            console.error('No file provided for upload.');
-            return;
-        }
+    // const onFileUpload = (file: File | null) => {
+    //     if (!file) {
+    //         console.error('No file provided for upload.');
+    //         return;
+    //     }
+    //
+    //     // Example upload logic: Replace with actual implementation
+    //     const reader = new FileReader();
+    //     reader.onload = () => {
+    //         const imageUrl = reader.result as string;
+    //         console.log('Uploaded image URL:', imageUrl);
+    //         //
+    //         // // Add image block to article
+    //         // addBlock({
+    //         //     id: `image-${Date.now()}`,
+    //         //     type: ArticleSection.IMAGE,
+    //         //     src: imageUrl,
+    //         //     alt: file.name,
+    //         // });
+    //     };
+    //     reader.readAsDataURL(file);
+    // };
 
-        // Example upload logic: Replace with actual implementation
-        const reader = new FileReader();
-        reader.onload = () => {
-            const imageUrl = reader.result as string;
-            console.log('Uploaded image URL:', imageUrl);
-            //
-            // // Add image block to article
-            // addBlock({
-            //     id: `image-${Date.now()}`,
-            //     type: ArticleSection.IMAGE,
-            //     src: imageUrl,
-            //     alt: file.name,
-            // });
-        };
-        reader.readAsDataURL(file);
-    };
-
-    const { formData } = useCreateArticle();
+    const { formData, onFileUpload } = useCreateArticle();
 
     console.log('formData', formData);
 

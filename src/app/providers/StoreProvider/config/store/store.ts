@@ -45,8 +45,14 @@ export const createReduxStore = (
                     extraArgument: extraArg,
                 },
                 serializableCheck: {
-                    ignoredActions: ['profile/setUploadedProfilePhoto'],
-                    ignoredPaths: ['profile.uploadedProfilePhoto'],
+                    ignoredActions: [
+                        'profile/setUploadedProfilePhoto',
+                        'createArticle/setUploadedArticleImage',
+                    ],
+                    ignoredPaths: [
+                        'profile.uploadedProfilePhoto',
+                        'createArticle.uploadedArticleImage',
+                    ],
                     ignoredActionPaths: ['meta.arg', 'meta.baseQueryMeta'],
                 },
             })
