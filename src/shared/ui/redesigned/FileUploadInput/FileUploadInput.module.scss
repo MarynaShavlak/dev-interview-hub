@@ -19,6 +19,7 @@
   border: 1px solid var(--icon-redesigned);
   overflow: hidden;
   cursor: pointer;
+  z-index: 2;
   &:hover {
     .photoIcon {
       fill: var(--accent-redesigned);

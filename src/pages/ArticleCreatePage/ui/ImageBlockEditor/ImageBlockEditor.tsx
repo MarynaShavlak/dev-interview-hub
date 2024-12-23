@@ -1,9 +1,10 @@
 import { useTranslation } from 'react-i18next';
 import React from 'react';
 import { useImageUploader } from '@/shared/lib/hooks/useImageUploader/useImageUploader';
-import { VStack } from '@/shared/ui/common/Stack';
+import { HStack, VStack } from '@/shared/ui/common/Stack';
 import cls from './ImageBlockEditor.module.scss';
 import UploadIcon from '@/shared/assets/icons/upload.svg';
+import EditIcon from '@/shared/assets/icons/edit.svg';
 import { Button } from '@/shared/ui/redesigned/Button';
 import { FileUploadInput } from '@/shared/ui/redesigned/FileUploadInput/FileUploadInput';
 import { Text } from '@/shared/ui/redesigned/Text';
@@ -13,6 +14,8 @@ import { Card } from '@/shared/ui/redesigned/Card';
 import { Icon } from '@/shared/ui/redesigned/Icon';
 import { getFlexClasses } from '@/shared/lib/classes/getFlexClasses/getFlexClasses';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
+import { useBlockTitle } from '../../lib/hooks/useBlockTitle/useBlockTitle';
+import { Input } from '@/shared/ui/redesigned/Input';
 
 interface ImageBlockEditorProps {
     avatar: string;
@@ -27,6 +30,7 @@ export const ImageBlockEditor = ({
     const { t } = useTranslation('profile');
     const errorMessage = t('Некоректний тип файлу');
     const avatarTextPlaceholder = t('Аватар користувача');
+    const { title, handleTitleChange, validConfig } = useBlockTitle();
 
     const { avatarSrc, imagePreview, error, handleImageChange, resetImage } =
         useImageUploader({
@@ -41,59 +45,113 @@ export const ImageBlockEditor = ({
         justify: 'center',
     });
 
+    const uploadButtonFlexClasses = getFlexClasses({
+        hStack: true,
+        align: 'center',
+        justify: 'center',
+        gap: '4',
+    });
+
     return (
         <VStack justify="center" align="center" max>
-            <VStack gap="4" align="center">
-                <Box className={cls.avatarWrap}>
-                    {imagePreview && (
-                        <ArticleImageBlockComponent
-                            block={{
-                                type: ArticleSection.IMAGE,
-                                title: '222',
-                                src: imagePreview,
-                                id: 'hhhh',
-                            }}
-                        />
-                        // <Avatar
-                        //     size={128}
-                        //     src={imagePreview}
-                        //     alt={avatarTextPlaceholder}
-                        // />
-                    )}
-
-                    {!imagePreview && (
-                        <Card
-                            className={classNames(
-                                cls.uploadZone,
-                                {},
-                                uploadZoneClasses,
-                            )}
-                        >
-                            <FileUploadInput
-                                onChange={handleImageChange}
-                                AddFileElement={
-                                    <Button
-                                        addonLeft={
-                                            <Icon
-                                                Svg={UploadIcon}
-                                                width={16}
-                                                height={16}
-                                            />
+            <VStack gap="16" max>
+                <Input
+                    value={title}
+                    label={t('Назва зображення')}
+                    labelBold
+                    gap="16"
+                    maxWidth={false}
+                    className={cls.InputName}
+                    onChange={handleTitleChange}
+                    validations={validConfig.title}
+                    maxLengthIndicator
+                    // errors={usernameErrors}
+                />
+                <VStack gap="4" align="center">
+                    <Box className={cls.avatarWrap}>
+                        {imagePreview && (
+                            <VStack gap="16" align="center">
+                                <ArticleImageBlockComponent
+                                    block={{
+                                        type: ArticleSection.IMAGE,
+                                        title,
+                                        src: imagePreview,
+                                        id: 'hhhh',
+                                    }}
+                                />
+                                <HStack max justify="between">
+                                    <FileUploadInput
+                                        onChange={handleImageChange}
+                                        AddFileElement={
+                                            <span
+                                                className={classNames(
+                                                    cls.uploadZoneBtn,
+                                                    {},
+                                                    uploadButtonFlexClasses,
+                                                )}
+                                            >
+                                                <Icon
+                                                    Svg={EditIcon}
+                                                    width={16}
+                                                    height={16}
+                                                />
+                                                {t('Змінити зображення')}
+                                            </span>
                                         }
+                                    />
+                                    <Button
+                                        variant="cancel"
+                                        onClick={resetImage}
                                         size="s"
                                     >
-                                        {t('Завантажити зображення')}
+                                        {t('Видалити зображення')}
                                     </Button>
-                                }
-                                // className={cls.uploadZoneButton}
-                            />
-                        </Card>
-                    )}
-                </Box>
-                <Button variant="cancel" onClick={resetImage} size="s">
-                    {t('Видалити зображення')}
-                </Button>
-                {error && <Text text={error} variant="error" />}
+                                </HStack>
+                            </VStack>
+                        )}
+
+                        {!imagePreview && (
+                            <VStack gap="16" align="center">
+                                <Card
+                                    className={classNames(
+                                        cls.uploadZone,
+                                        {},
+                                        uploadZoneClasses,
+                                    )}
+                                >
+                                    <FileUploadInput
+                                        onChange={handleImageChange}
+                                        AddFileElement={
+                                            <span
+                                                className={classNames(
+                                                    cls.uploadZoneBtn,
+                                                    {},
+                                                    uploadButtonFlexClasses,
+                                                )}
+                                            >
+                                                <Icon
+                                                    Svg={UploadIcon}
+                                                    width={16}
+                                                    height={16}
+                                                />
+                                                {t('Завантажити зображення')}
+                                            </span>
+                                        }
+                                    />
+                                </Card>
+                                <Button
+                                    variant="cancel"
+                                    onClick={resetImage}
+                                    size="s"
+                                >
+                                    {t('Видалити зображення')}
+                                </Button>
+                            </VStack>
+                        )}
+                    </Box>
+
+                    {error && <Text text={error} variant="error" />}
+                </VStack>
             </VStack>
         </VStack>
     );
