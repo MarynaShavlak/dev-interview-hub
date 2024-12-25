@@ -5,6 +5,7 @@ import {
     ArticleSection,
     ArticleBlock,
     ArticleCodeBlock,
+    ArticleImageBlock,
 } from '@/entities/Article';
 
 export const useArticleBlocks = () => {
@@ -26,6 +27,16 @@ export const useArticleBlocks = () => {
             type: ArticleSection.CODE,
             code: '',
             description: '',
+        };
+        setBlocks((prevBlocks) => [...prevBlocks, newTextBlock]);
+    }, []);
+
+    const createEmptyImageBlock = useCallback(() => {
+        const newTextBlock: ArticleImageBlock = {
+            id: v4(),
+            type: ArticleSection.IMAGE,
+            src: '',
+            title: '',
         };
         setBlocks((prevBlocks) => [...prevBlocks, newTextBlock]);
     }, []);
@@ -52,6 +63,7 @@ export const useArticleBlocks = () => {
         blocks,
         createEmptyTextBlock,
         createEmptyCodeBlock,
+        createEmptyImageBlock,
         addBlock,
         updateBlock,
         deleteBlock,
