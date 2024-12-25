@@ -79,7 +79,9 @@ export const ImageBlockEditor = (props: ImageBlockEditorProps) => {
             onFileUpload,
             errorMessage,
         });
-    const isEmptyContent = imagePreview?.length === 0;
+    const isEmptyContent = !imagePreview || imagePreview.length === 0;
+    console.log('imagePreview', imagePreview);
+    console.log('isEmptyContent', isEmptyContent);
 
     const { saveImageBlock, deleteImageBlock } = useImageBlockActions({
         blockId: block.id,
@@ -90,8 +92,8 @@ export const ImageBlockEditor = (props: ImageBlockEditorProps) => {
         deleteBlockFromArticle,
     });
 
-    const handleSaveImageBlock = useCallback(() => {
-        saveImageBlock();
+    const handleSaveImageBlock = useCallback(async () => {
+        await saveImageBlock();
         toggleBlockSaveState();
     }, [saveImageBlock, toggleBlockSaveState]);
 
