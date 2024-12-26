@@ -6,24 +6,45 @@
 .uploadZone {
   width:500px;
   height:200px;
-  border: 1px dashed var(--accent-redesigned)
-}
+  border: 1px dashed var(--accent-redesigned);
 
+}
 
 .uploadZoneBtn {
   font: var(--font-s-redesigned);
   border: 2px solid var(--icon-redesigned);
+  color: var(--text-redesigned);
+  background: var(--light-bg-redesigned);
   border-radius: 34px;
   cursor: pointer;
-  color: var(--text-redesigned);
   padding: 8px 16px;
-  //display: flex;
-  //align-items: center;
-  //justify-content: center;
-  //gap:4px;
+  transition:opacity 300ms ease-in, background 300ms ease;
   &:hover {
     color: var(--accent-redesigned);
   }
 
 }
 
+.uploadZoneBtnWrap {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-color: transparent;
+  cursor: pointer;
+  transition: background-color 300ms ease-in;
+
+  .uploadZoneBtn {
+    opacity:0;
+  }
+  &:hover {
+    background-color: var(--skeleton-shadow);
+    .uploadZoneBtn {
+      opacity:1;
+    }
+  }
+}
+
+
+.previewWrap {
+  position:relative;
+}

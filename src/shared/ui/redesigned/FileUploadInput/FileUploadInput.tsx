@@ -23,7 +23,9 @@ export const FileUploadInput = ({
         justify: 'center',
     });
     const labelClass = AddFileElement ? '' : cls.uploadLabel;
-    const boxClass = AddFileElement ? '' : cls.uploadFileAbsoluteWrapper;
+    const boxClass = AddFileElement
+        ? cls.uploadFileCenteredWrapper
+        : cls.uploadFileAbsoluteWrapper;
     return (
         <Box className={boxClass}>
             <label
