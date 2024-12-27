@@ -1,7 +1,5 @@
 import React, { ChangeEvent, ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
-import { VStack } from '../../common/Stack';
-import { Box } from '../../common/Box/Box';
 import { Card } from '../Card';
 import cls from './FileUploadZone.module.scss';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
@@ -34,7 +32,6 @@ export const FileUploadZone = (props: FileUploadZoneProps) => {
         align: 'center',
         justify: 'center',
     });
-    const previewWrapClass = imagePreview ? cls.previewWrap : '';
 
     const uploadButtonFlexClasses = getFlexClasses({
         hStack: true,
@@ -64,32 +61,31 @@ export const FileUploadZone = (props: FileUploadZoneProps) => {
     const text = imagePreview
         ? t('Змінити зображення')
         : t('Завантажити зображення');
+    console.log('inZONE imagePreview', imagePreview);
 
     return (
-        <Box className={cls.avatarWrap}>
-            <VStack gap="16" align="center" className={previewWrapClass}>
-                {imagePreview ? (
-                    <div className={cls.uploadZoneBtnWrap}>
-                        <FileUploadInput
-                            onChange={handleImageChange}
-                            AddFileElement={renderUploadButton(icon, text)}
-                        />
-                    </div>
-                ) : (
-                    <Card
-                        className={classNames(
-                            cls.uploadZone,
-                            {},
-                            uploadZoneClasses,
-                        )}
-                    >
-                        <FileUploadInput
-                            onChange={handleImageChange}
-                            AddFileElement={renderUploadButton(icon, text)}
-                        />
-                    </Card>
-                )}
-            </VStack>
-        </Box>
+        <>
+            {imagePreview ? (
+                <div className={cls.uploadZoneBtnWrap}>
+                    <FileUploadInput
+                        onChange={handleImageChange}
+                        AddFileElement={renderUploadButton(icon, text)}
+                    />
+                </div>
+            ) : (
+                <Card
+                    className={classNames(
+                        cls.uploadZone,
+                        {},
+                        uploadZoneClasses,
+                    )}
+                >
+                    <FileUploadInput
+                        onChange={handleImageChange}
+                        AddFileElement={renderUploadButton(icon, text)}
+                    />
+                </Card>
+            )}
+        </>
     );
 };

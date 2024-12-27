@@ -7,6 +7,8 @@ import { Skeleton } from '@/shared/ui/redesigned/Skeleton';
 import { AppImage } from '@/shared/ui/common/AppImage';
 import cls from './AddHeroForm.module.scss';
 import defaultImage from '@/shared/assets/images/default-img-list.png';
+import { useImageUploader } from '@/shared/lib/hooks/useImageUploader/useImageUploader';
+import { FileUploadZone } from '@/shared/ui/redesigned/FileUploadZone';
 
 interface AddHeroFormProps {
     index: number;
@@ -14,6 +16,19 @@ interface AddHeroFormProps {
 export const AddHeroForm = memo((props: AddHeroFormProps) => {
     const { index } = props;
     const { t } = useTranslation('articleDetails');
+    const errorMessage = t('Некоректний тип файлу');
+
+    const {
+        avatarSrc,
+        imagePreview,
+        error,
+        handleImageChange,
+        resetImage,
+        selectedImage,
+    } = useImageUploader({
+        initialAvatar: '',
+        errorMessage,
+    });
 
     return (
         <HStack gap="16" align="start" max>
@@ -34,12 +49,12 @@ export const AddHeroForm = memo((props: AddHeroFormProps) => {
                     src=""
                     className={cls.img}
                 />
-                {/* <ImageBlockEditor */}
-                {/*   block={block} */}
-                {/*   addBlockInArticle={addBlockInArticle} */}
-                {/*   deleteBlockFromArticle={deleteBlockFromArticle} */}
-                {/*   onEditBlock={onEditBlock} */}
-                {/* /> */}
+                <FileUploadZone
+                    imagePreview={imagePreview}
+                    handleImageChange={handleImageChange}
+                    resetImage={resetImage}
+                />
+                {error && <Text text={error} variant="error" />}
             </VStack>
         </HStack>
     );

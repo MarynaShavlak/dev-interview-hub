@@ -55,5 +55,6 @@
   "Заголовок блоку": "Block title( optional)",
   "Опис коду": "Code description ( optional)",
   "Банер статті": "Banner",
-  "Дефолтне зображення картинки статті": "The default image of the article image"
+  "Дефолтне зображення картинки статті": "The default image of the article image",
+  "Некоректний тип файлу": "Invalid image type. Please upload a PNG, JPG, or JPEG."
 }

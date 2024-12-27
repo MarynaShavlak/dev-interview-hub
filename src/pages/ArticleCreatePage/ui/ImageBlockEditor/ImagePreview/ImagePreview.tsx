@@ -31,7 +31,7 @@ export const ImagePreview = (props: ImagePreviewProps) => {
     return (
         <VStack gap="4" align="center">
             <Box className={cls.avatarWrap}>
-                <VStack gap="16" align="center" className={previewWrapClass}>
+                <VStack gap="16" align="center" className={cls.previewWrap}>
                     {imagePreview && (
                         <ArticleImageBlockComponent
                             block={{
