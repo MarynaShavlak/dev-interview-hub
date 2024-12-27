@@ -77,8 +77,6 @@ export const AddHeroForm = memo((props: AddHeroFormProps) => {
 
                     {error && <Text text={error} variant="error" />}
                 </VStack>
-
-                {error && <Text text={error} variant="error" />}
             </VStack>
         </HStack>
     );

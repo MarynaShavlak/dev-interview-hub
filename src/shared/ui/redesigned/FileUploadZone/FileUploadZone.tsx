@@ -8,6 +8,7 @@ import { FileUploadInput } from '../FileUploadInput/FileUploadInput';
 import { Icon } from '../Icon';
 import EditIcon from '@/shared/assets/icons/edit.svg';
 import UploadIcon from '@/shared/assets/icons/upload.svg';
+import CloseIcon from '@/shared/assets/icons/close.svg';
 
 interface FileUploadZoneProps {
     imagePreview: string | null;
@@ -70,6 +71,12 @@ export const FileUploadZone = (props: FileUploadZoneProps) => {
                     <FileUploadInput
                         onChange={handleImageChange}
                         AddFileElement={renderUploadButton(icon, text)}
+                    />
+                    <Icon
+                        Svg={CloseIcon}
+                        className={cls.resetImageIcon}
+                        clickable
+                        onClick={resetImage}
                     />
                 </div>
             ) : (

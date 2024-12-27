@@ -20,6 +20,17 @@
 
 }
 
+
+
+.resetImageIcon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  fill: var(--cancel-redesigned);
+  opacity:0;
+  transition:opacity 300ms ease-in;
+}
+
 .uploadZoneBtnWrap {
   width: 100%;
   height: 100%;
@@ -36,6 +47,11 @@
     .uploadZoneBtn {
       opacity:1;
     }
+    .resetImageIcon {
+      opacity:1;
+    }
+
   }
 }
+
 
