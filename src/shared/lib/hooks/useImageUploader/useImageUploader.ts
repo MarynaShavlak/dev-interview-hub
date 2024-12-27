@@ -5,7 +5,7 @@ const imageMimeType = /^image\//i;
 
 interface UseImageUploaderProps {
     initialAvatar: string;
-    onFileUpload: (file: File | null) => void; // Callback to handle uploaded file
+    onFileUpload?: (file: File | null) => void; // Callback to handle uploaded file
     errorMessage: string;
 }
 
@@ -15,6 +15,7 @@ interface UseImageUploaderReturn {
     error: string | null;
     handleImageChange: (event: ChangeEvent<HTMLInputElement>) => void;
     resetImage: () => void;
+    selectedImage: File | null;
 }
 
 export const useImageUploader = ({
@@ -27,6 +28,8 @@ export const useImageUploader = ({
     const [error, setError] = useState<string | null>(null);
     const [avatarSrc, setAvatarSrc] = useState<string>(initialAvatar || '');
 
+    console.log('in useImageUploader:::: selectedImage', selectedImage);
+
     useEffect(() => {
         let previewUrl: string | null = null;
 
@@ -34,7 +37,7 @@ export const useImageUploader = ({
             previewUrl = window.URL.createObjectURL(selectedImage);
             setImagePreview(previewUrl);
             setAvatarSrc(previewUrl);
-            onFileUpload(selectedImage);
+            // onFileUpload(selectedImage);
         }
 
         return () => {
@@ -49,11 +52,12 @@ export const useImageUploader = ({
         setSelectedImage(null);
         setImagePreview(null);
         setAvatarSrc('');
-        onFileUpload(null);
+        onFileUpload?.(null);
     }, [onFileUpload]);
 
     const handleImageChange = useCallback(
         (event: ChangeEvent<HTMLInputElement>) => {
+            console.log('event.target.files', event.target.files);
             const file = event.target.files?.[0];
             if (!file) return;
 
@@ -75,5 +79,6 @@ export const useImageUploader = ({
         error,
         handleImageChange,
         resetImage,
+        selectedImage,
     };
 };

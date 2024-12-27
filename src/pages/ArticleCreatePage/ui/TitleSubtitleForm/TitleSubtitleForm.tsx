@@ -12,7 +12,13 @@ import { useInputValidationConfig } from '@/shared/lib/hooks/validationHooks/use
 import { useCreateArticle } from '../../lib/hooks/useCreateArticle/useCreateArticle';
 import { useToggleVisibility } from '@/shared/lib/hooks/useToggleVisibility/useToggleVisibility';
 
-export const TitleSubtitleForm = ({}) => {
+interface TitleSubtitleFormProps {
+    titleIndex: number;
+    subtitleIndex: number;
+}
+
+export const TitleSubtitleForm = (props: TitleSubtitleFormProps) => {
+    const { titleIndex, subtitleIndex } = props;
     const { t } = useTranslation('articleDetails');
     const validConfig = useInputValidationConfig();
     const { isVisible: isLinkInputAdded, toggleVisibility: toggleLinkInput } =
@@ -37,7 +43,7 @@ export const TitleSubtitleForm = ({}) => {
     return (
         <VStack gap="24">
             <HStack gap="16" align="start" max>
-                <OrderCard index={1} />
+                <OrderCard index={titleIndex} />
 
                 <Input
                     value={formData?.title || ''}
@@ -53,7 +59,7 @@ export const TitleSubtitleForm = ({}) => {
                 />
             </HStack>
             <HStack gap="16" align="start" max>
-                <OrderCard index={2} />
+                <OrderCard index={subtitleIndex} />
                 <VStack gap="16">
                     <Input
                         value={formData?.subtitle.text || ''}

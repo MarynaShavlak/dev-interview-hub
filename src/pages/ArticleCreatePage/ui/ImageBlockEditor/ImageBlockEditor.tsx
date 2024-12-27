@@ -3,7 +3,11 @@ import React, { useCallback } from 'react';
 import { useImageUploader } from '@/shared/lib/hooks/useImageUploader/useImageUploader';
 import { HStack, VStack } from '@/shared/ui/common/Stack';
 import cls from './ImageBlockEditor.module.scss';
-import { ArticleImageBlock } from '@/entities/Article';
+import {
+    ArticleImageBlock,
+    ArticleImageBlockComponent,
+    ArticleSection,
+} from '@/entities/Article';
 import { useBlockTitle } from '../../lib/hooks/useBlockTitle/useBlockTitle';
 import { Input } from '@/shared/ui/redesigned/Input';
 import { useToggleVisibility } from '@/shared/lib/hooks/useToggleVisibility/useToggleVisibility';
@@ -11,11 +15,12 @@ import { useToggleVisibility } from '@/shared/lib/hooks/useToggleVisibility/useT
 import { useImageBlockActions } from '../../lib/hooks/useImageBlockActions/useImageBlockActions';
 import { BlockActionButtonList } from '../BlockActionButtonList/BlockActionButtonList';
 import { ImagePreview } from './ImagePreview/ImagePreview';
+import { BlockPreview } from '../BlockPreview/BlockPreview';
 
 interface ImageBlockEditorProps {
     // avatar: string;
     // blockId: string;
-    onFileUpload: (file: File | null) => void;
+    // onFileUpload: (file: File | null) => void;
     block: ArticleImageBlock;
     addBlockInArticle: (block: ArticleImageBlock) => void;
     deleteBlockFromArticle: (id: string) => void;
@@ -31,23 +36,28 @@ export const ImageBlockEditor = (props: ImageBlockEditorProps) => {
         deleteBlockFromArticle,
 
         onEditBlock,
-        onFileUpload,
+        // onFileUpload,
     } = props;
+
     const { t } = useTranslation('profile');
     const errorMessage = t('Некоректний тип файлу');
     const { title, handleTitleChange, validConfig } = useBlockTitle();
     const { isVisible: isBlockSaved, toggleVisibility: toggleBlockSaveState } =
         useToggleVisibility();
 
-    const { avatarSrc, imagePreview, error, handleImageChange, resetImage } =
-        useImageUploader({
-            initialAvatar: block.src,
-            onFileUpload,
-            errorMessage,
-        });
+    const {
+        avatarSrc,
+        imagePreview,
+        error,
+        handleImageChange,
+        resetImage,
+        selectedImage,
+    } = useImageUploader({
+        initialAvatar: block.src,
+
+        errorMessage,
+    });
     const isEmptyContent = !imagePreview || imagePreview.length === 0;
-    console.log('imagePreview', imagePreview);
-    console.log('isEmptyContent', isEmptyContent);
 
     const { saveImageBlock, deleteImageBlock } = useImageBlockActions({
         blockId: block.id,
@@ -56,6 +66,8 @@ export const ImageBlockEditor = (props: ImageBlockEditorProps) => {
         addBlockInArticle,
         onEditBlock,
         deleteBlockFromArticle,
+        selectedImage,
+        // resetImage,
     });
 
     const handleSaveImageBlock = useCallback(async () => {
@@ -64,36 +76,52 @@ export const ImageBlockEditor = (props: ImageBlockEditorProps) => {
     }, [saveImageBlock, toggleBlockSaveState]);
 
     return (
-        <VStack justify="center" align="center" max>
-            <VStack gap="16" max>
-                <Input
-                    value={title}
-                    label={t('Назва зображення')}
-                    labelBold
-                    gap="16"
-                    maxWidth={false}
-                    className={cls.InputName}
-                    onChange={handleTitleChange}
-                    validations={validConfig.title}
-                    maxLengthIndicator
-                    // errors={usernameErrors}
-                />
-                <HStack gap="16" align="end">
-                    <ImagePreview
-                        imagePreview={imagePreview}
-                        handleImageChange={handleImageChange}
-                        resetImage={resetImage}
-                        error={error}
-                        title={title}
-                    />
+        <>
+            {!isBlockSaved ? (
+                <VStack justify="center" align="center" max>
+                    <VStack gap="16" max>
+                        <Input
+                            value={title}
+                            label={t('Назва зображення')}
+                            labelBold
+                            gap="16"
+                            maxWidth={false}
+                            className={cls.InputName}
+                            onChange={handleTitleChange}
+                            validations={validConfig.title}
+                            maxLengthIndicator
+                            // errors={usernameErrors}
+                        />
+                        <HStack gap="16" align="end">
+                            <ImagePreview
+                                imagePreview={imagePreview}
+                                handleImageChange={handleImageChange}
+                                resetImage={resetImage}
+                                error={error}
+                                title={title}
+                            />
 
-                    <BlockActionButtonList
-                        saveBlock={handleSaveImageBlock}
-                        deleteBlock={deleteImageBlock}
-                        isSaveDisabled={isEmptyContent}
-                    />
-                </HStack>
-            </VStack>
-        </VStack>
+                            <BlockActionButtonList
+                                saveBlock={handleSaveImageBlock}
+                                deleteBlock={deleteImageBlock}
+                                isSaveDisabled={isEmptyContent}
+                            />
+                        </HStack>
+                    </VStack>
+                </VStack>
+            ) : (
+                <BlockPreview
+                    block={{
+                        id: block.id,
+                        type: ArticleSection.IMAGE,
+                        src: block.src,
+                        title,
+                    }}
+                    editBlock={toggleBlockSaveState}
+                    deleteBlock={deleteImageBlock}
+                    BlockComponent={ArticleImageBlockComponent}
+                />
+            )}
+        </>
     );
 };

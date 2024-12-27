@@ -4,7 +4,7 @@ export interface CreateArticleSchema {
     form: Article;
     isLoading: boolean;
     error?: string;
-    uploadedArticleImage?: null | File;
+    // uploadedArticleImage?: null | File;
 
     // uploadedProfilePhoto?: null | File;
 }

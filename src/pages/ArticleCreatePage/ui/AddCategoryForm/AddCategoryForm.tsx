@@ -8,14 +8,19 @@ import { ArticleCategory } from '@/entities/Article';
 import { useCreateArticle } from '../../lib/hooks/useCreateArticle/useCreateArticle';
 import { useCategoryTabs } from '@/features/ArticleCategoryTabs';
 
-export const AddCategoryForm = () => {
+interface AddCategoryFormProps {
+    index: number;
+}
+
+export const AddCategoryForm = (props: AddCategoryFormProps) => {
     const { t } = useTranslation('articleDetails');
+    const { index } = props;
     const { formData, onChangeCategory } = useCreateArticle();
     const rawCategoryTabs = useCategoryTabs();
     const categoryTabs = useMemo(() => rawCategoryTabs, [rawCategoryTabs]);
     return (
         <HStack gap="16" align="start" max>
-            <OrderCard index={3} />
+            <OrderCard index={index} />
             <VStack gap="16">
                 <Text text={t('Категорії статей')} bold />
                 <Tabs

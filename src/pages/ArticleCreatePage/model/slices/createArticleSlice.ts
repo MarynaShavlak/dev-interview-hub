@@ -7,7 +7,7 @@ import { Article, ArticleBlock } from '@/entities/Article';
 const initialState: CreateArticleSchema = {
     isLoading: false,
     error: undefined,
-    uploadedArticleImage: undefined,
+    // uploadedArticleImage: undefined,
     form: {
         id: '',
         user: {} as User,
@@ -81,12 +81,12 @@ export const createArticleSlice = buildSlice({
                 (block) => block.id !== action.payload,
             );
         },
-        setUploadedArticleImage: (
-            state,
-            action: PayloadAction<File | null>,
-        ) => {
-            state.uploadedArticleImage = action.payload;
-        },
+        // setUploadedArticleImage: (
+        //     state,
+        //     action: PayloadAction<File | null>,
+        // ) => {
+        //     state.uploadedArticleImage = action.payload;
+        // },
     },
 });
 

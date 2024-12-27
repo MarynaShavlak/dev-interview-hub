@@ -1,4 +1,5 @@
 import { ChangeEvent, ReactNode } from 'react';
+import { v4 } from 'uuid';
 import cls from './FileUploadInput.module.scss';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import EditIcon from '@/shared/assets/icons/edit.svg';
@@ -26,10 +27,11 @@ export const FileUploadInput = ({
     const boxClass = AddFileElement
         ? cls.uploadFileCenteredWrapper
         : cls.uploadFileAbsoluteWrapper;
+    const inputId = v4();
     return (
         <Box className={boxClass}>
             <label
-                htmlFor="file-input"
+                htmlFor={inputId}
                 className={classNames(labelClass, {}, uploadLabelClasses)}
             >
                 {AddFileElement || (
@@ -43,7 +45,7 @@ export const FileUploadInput = ({
             </label>
             <input
                 type="file"
-                id="file-input"
+                id={inputId}
                 className={cls.uploadInput}
                 accept="image/*"
                 onChange={onChange}

@@ -1,7 +1,6 @@
 import { useCallback } from 'react';
 import { ArticleImageBlock, ArticleSection } from '@/entities/Article';
 import { useCreateArticle } from '../useCreateArticle/useCreateArticle';
-import { useUploadedArticleImage } from '../../../model/selectors/getCreateArticleSelectors';
 import { uploadImageThunk } from '../../../model/services/uploadImageThunk/uploadImageThunk';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 
@@ -12,6 +11,8 @@ interface UseCodeBlockActionsParams {
     addBlockInArticle: (block: ArticleImageBlock) => void;
     onEditBlock?: (block: ArticleImageBlock) => void;
     deleteBlockFromArticle?: (id: string) => void;
+    selectedImage: File | null;
+    // resetImage: () => void;
 }
 
 export const useImageBlockActions = ({
@@ -21,28 +22,31 @@ export const useImageBlockActions = ({
     addBlockInArticle,
     onEditBlock,
     deleteBlockFromArticle,
+    selectedImage,
+    // resetImage,
 }: UseCodeBlockActionsParams) => {
     const dispatch = useAppDispatch();
     const { formData, onChangeBlocks, onDeleteBlock } = useCreateArticle();
-    const uploadedArticleImage = useUploadedArticleImage();
-    console.log('uploadedArticleImage', uploadedArticleImage);
+    // const uploadedArticleImage = useUploadedArticleImage();
+    // console.log('uploadedArticleImage', uploadedArticleImage);
 
     const getArticleImageUrl = useCallback(async () => {
         // console.log('profileData', profileData);
         // console.log('formData', formData);
-        console.log('uploadedArticleImage', uploadedArticleImage);
-        if (uploadedArticleImage) {
+        console.log('in getArticleImageUrl selectedImage', selectedImage);
+        if (selectedImage) {
             const url = await dispatch(
-                uploadImageThunk(uploadedArticleImage),
+                uploadImageThunk(selectedImage),
             ).unwrap();
             return url;
             // onChangeAvatar(url);
         }
-        if (uploadedArticleImage == null) {
+        if (selectedImage == null) {
             // onChangeAvatar('');
             return '';
         }
-    }, [dispatch, uploadedArticleImage]);
+        // resetImage();
+    }, [dispatch, selectedImage]);
 
     const saveBlock = useCallback(async () => {
         const imageUrl = await getArticleImageUrl();

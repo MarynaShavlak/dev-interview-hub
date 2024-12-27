@@ -53,5 +53,7 @@
   "Зберегти": "Save",
   "Видалити": "Delete",
   "Заголовок блоку": "Block title( optional)",
-  "Опис коду": "Code description ( optional)"
+  "Опис коду": "Code description ( optional)",
+  "Банер статті": "Banner",
+  "Дефолтне зображення картинки статті": "The default image of the article image"
 }

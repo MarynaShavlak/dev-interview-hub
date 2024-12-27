@@ -12,6 +12,6 @@ export const [useCreateArticleError, getCreateArticleError] = buildSelector(
     (state: StateSchema) => state.createArticle?.error,
 );
 
-export const [useUploadedArticleImage, getUploadedArticle] = buildSelector(
-    (state: StateSchema) => state.createArticle?.uploadedArticleImage,
-);
+// export const [useUploadedArticleImage, getUploadedArticle] = buildSelector(
+//     (state: StateSchema) => state.createArticle?.uploadedArticleImage,
+// );
