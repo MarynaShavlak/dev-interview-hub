@@ -76,7 +76,7 @@ export const CodeBlockEditor = memo((props: CodeBlockEditorProps) => {
                     <HStack gap="16" align="end">
                         <CodeEditor
                             height="200px"
-                            width="500px"
+                            width="400px"
                             loader={<Skeleton width="100%" height="200px" />}
                             onChangeCode={setCode}
                             initialCode={code}

@@ -1,15 +1,17 @@
 import { useTranslation } from 'react-i18next';
 import React, { memo } from 'react';
 import cls from '../ArticleCreatePage/ArticleCreatePage.module.scss';
-import { VStack } from '@/shared/ui/common/Stack';
+import { HStack, VStack } from '@/shared/ui/common/Stack';
 import { Button } from '@/shared/ui/redesigned/Button';
 import AddIcon from '@/shared/assets/icons/plus.svg';
 import { Icon } from '@/shared/ui/redesigned/Icon';
+import { FlexDirection } from '@/shared/types/flexTypes';
 
 interface AddArticleBlocksButtonsProps {
     onAddTextBlockBtnClick: () => void;
     onAddCodeBlockBtnClick: () => void;
     onAddImageBlockBtnClick?: () => void;
+    direction: FlexDirection;
 }
 
 export const AddArticleBlocksButtons = memo(
@@ -18,11 +20,13 @@ export const AddArticleBlocksButtons = memo(
             onAddTextBlockBtnClick,
             onAddImageBlockBtnClick,
             onAddCodeBlockBtnClick,
+            direction,
         } = props;
         const { t } = useTranslation('articleDetails');
+        const Wrapper = direction === 'row' ? HStack : VStack;
 
         return (
-            <VStack gap="24">
+            <Wrapper gap="24" className={cls.stickyBtns}>
                 <Button
                     variant="filled"
                     addonLeft={<Icon Svg={AddIcon} width={16} height={16} />}
@@ -53,7 +57,7 @@ export const AddArticleBlocksButtons = memo(
                     &nbsp;
                     <b>{t('зображення')}</b>
                 </Button>
-            </VStack>
+            </Wrapper>
         );
     },
 );

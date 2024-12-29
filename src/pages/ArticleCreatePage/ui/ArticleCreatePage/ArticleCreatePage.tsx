@@ -35,7 +35,7 @@ const ArticleCreatePage = memo((props: ArticleCreatePageProps) => {
             <Page
                 className={classNames(cls.ArticleCreatePage, {}, [className])}
             >
-                <VStack gap="24">
+                <VStack gap="24" max>
                     <Text title={t('Створення нової статті')} size="l" />
                     <TitleSubtitleForm titleIndex={1} subtitleIndex={2} />
                     <AddHeroForm index={3} />
