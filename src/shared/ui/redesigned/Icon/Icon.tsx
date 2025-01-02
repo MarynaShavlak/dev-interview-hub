@@ -53,7 +53,7 @@ export const Icon = memo((props: IconProps) => {
                 className={classNames(
                     cls.button,
                     { [cls.isDisabled]: disabled },
-                    [],
+                    [className],
                 )}
                 onClick={props.onClick}
                 style={{ height, width }}

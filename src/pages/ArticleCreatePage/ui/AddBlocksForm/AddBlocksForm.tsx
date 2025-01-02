@@ -30,7 +30,7 @@ export const AddBlocksForm = memo((props: AddBlocksFormProps) => {
             <OrderCard index={index} />
             <VStack gap="16" className={cls.addBlocksForm}>
                 <Text text={t('Блоки статті')} bold />
-
+                <div className={cls.example}>6666</div>
                 <HStack
                     justify={allBlocks.length ? 'between' : 'start'}
                     align="end"

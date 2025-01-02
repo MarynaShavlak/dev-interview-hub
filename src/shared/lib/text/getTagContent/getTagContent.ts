@@ -30,7 +30,7 @@ export const getTagContent = (markupString: string): ParseContentResult => {
         };
     }
 
-    return '';
+    return markupString;
 };
 
 //-----------------------------------------------------------------------------

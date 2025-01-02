@@ -16,16 +16,17 @@ interface ArticleCodeBlockComponentProps {
 export const ArticleCodeBlockComponent = memo(
     (props: ArticleCodeBlockComponentProps) => {
         const { className, block } = props;
+        console.log('block', block);
 
         return (
-            <VStack className={className} gap="16" max align="center">
-                {block.description && (
+            <VStack className={className} gap="16" align="center" max>
+                {block.title && (
                     <ToggleFeaturesComponent
                         feature="isAppRedesigned"
-                        on={<Text text={block.description} bold />}
+                        on={<Text text={block.title} bold />}
                         off={
                             <TextDeprecated
-                                text={block.description}
+                                text={block.title}
                                 className={cls.title}
                             />
                         }

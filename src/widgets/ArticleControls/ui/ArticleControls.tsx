@@ -31,14 +31,14 @@ export const ArticleControls = memo((props: ArticleControlsProps) => {
                     className={classNames('', {}, [className])}
                     data-testid="ArticleDetails.CreatedAt"
                 >
-                    <HStack gap="8">
+                    <VStack gap="8">
                         <Avatar
                             size={32}
                             src={author.avatar}
                             userName={author.username}
                         />
                         <Text text={createdAt} />
-                    </HStack>
+                    </VStack>
                     {canEdit && <ArticleEditNavigationButton id={id} />}
                     <Text
                         text={t('{{count}} переглядів', { count: views })}

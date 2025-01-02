@@ -46,7 +46,7 @@ export const CodeBlockEditor = memo((props: CodeBlockEditorProps) => {
 
     const { saveCodeBlock, deleteCodeBlock } = useCodeBlockActions({
         blockId,
-        description: title,
+        title,
         code,
         addBlockInArticle,
         onEditBlock,
@@ -94,7 +94,7 @@ export const CodeBlockEditor = memo((props: CodeBlockEditorProps) => {
                         id: blockId,
                         type: ArticleSection.CODE,
                         code,
-                        description: title,
+                        title,
                     }}
                     editBlock={toggleBlockSaveState}
                     deleteBlock={deleteCodeBlock}

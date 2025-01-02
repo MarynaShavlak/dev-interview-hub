@@ -4,7 +4,7 @@ import { useCreateArticle } from '../useCreateArticle/useCreateArticle';
 
 interface UseCodeBlockActionsParams {
     blockId: string;
-    description: string;
+    title: string;
     code: string;
     addBlockInArticle: (block: ArticleCodeBlock) => void;
     onEditBlock?: (block: ArticleCodeBlock) => void;
@@ -13,7 +13,7 @@ interface UseCodeBlockActionsParams {
 
 export const useCodeBlockActions = ({
     blockId,
-    description,
+    title,
     code,
     addBlockInArticle,
     onEditBlock,
@@ -25,7 +25,7 @@ export const useCodeBlockActions = ({
             id: blockId,
             type: ArticleSection.CODE,
             code,
-            description,
+            title,
         };
 
         if (onEditBlock) {
@@ -34,14 +34,7 @@ export const useCodeBlockActions = ({
             addBlockInArticle(updatedBlock);
         }
         onChangeBlocks(updatedBlock);
-    }, [
-        blockId,
-        code,
-        description,
-        onEditBlock,
-        onChangeBlocks,
-        addBlockInArticle,
-    ]);
+    }, [blockId, code, title, onEditBlock, onChangeBlocks, addBlockInArticle]);
 
     const deleteBlock = useCallback(() => {
         if (deleteBlockFromArticle) {

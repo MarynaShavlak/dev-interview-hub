@@ -26,7 +26,7 @@ export const useArticleBlocks = () => {
             id: v4(),
             type: ArticleSection.CODE,
             code: '',
-            description: '',
+            title: '',
         };
         setBlocks((prevBlocks) => [...prevBlocks, newTextBlock]);
     }, []);

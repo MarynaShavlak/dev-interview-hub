@@ -21,8 +21,8 @@ export interface ArticleBlockBase {
 export interface ArticleCodeBlock extends ArticleBlockBase {
     type: ArticleSection.CODE;
     code: string;
-    // title?: string;
-    description?: string;
+    title?: string;
+    // description?: string;
 }
 
 /**

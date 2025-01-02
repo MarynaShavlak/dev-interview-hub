@@ -6,13 +6,13 @@ import {
     // useArticleDetailsData,
     // useArticleDetailsError,
 } from '@/entities/Article';
-import { ArticleComments } from '@/features/ArticleComments';
-import { ArticleRating } from '@/features/ArticleRating';
+// import { ArticleComments } from '@/features/ArticleComments';
+// import { ArticleRating } from '@/features/ArticleRating';
 import { Card } from '@/shared/ui/redesigned/Card';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
 import { useUserAuthData } from '@/entities/User';
 import { ArticleControls } from '@/widgets/ArticleControls';
-import { ArticleRecommendationsList } from '@/features/ArticleRecommendationsList';
+// import { ArticleRecommendationsList } from '@/features/ArticleRecommendationsList';
 
 interface ArticleDetailsPageContainerProps {
     id: string;
@@ -35,7 +35,7 @@ export const ArticleDetailsPageContainer = memo(
                 <ToggleFeaturesComponent
                     feature="isAppRedesigned"
                     on={
-                        <Card max fullHeight border="round" padding="24">
+                        <Card fullHeight border="round" padding="24">
                             <ArticleDetails id={id} />
                         </Card>
                     }
@@ -46,16 +46,16 @@ export const ArticleDetailsPageContainer = memo(
                         </>
                     }
                 />
-                {article && !error && (
-                    <>
-                        {articleAuthorId !== authedUserId && (
-                            <ArticleRating articleId={id} />
-                        )}
+                {/* {article && !error && ( */}
+                {/*    <> */}
+                {/*        {articleAuthorId !== authedUserId && ( */}
+                {/*            <ArticleRating articleId={id} /> */}
+                {/*        )} */}
 
-                        <ArticleRecommendationsList id={id} />
-                        <ArticleComments id={id} />
-                    </>
-                )}
+                {/*        <ArticleRecommendationsList id={id} /> */}
+                {/*        <ArticleComments id={id} /> */}
+                {/*    </> */}
+                {/* )} */}
             </VStack>
         );
     },

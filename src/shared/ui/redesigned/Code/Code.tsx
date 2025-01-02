@@ -17,14 +17,16 @@ export const Code = memo((props: CodeProps) => {
     }, [text]);
 
     return (
-        <pre className={classNames(cls.CodeRedesigned, {}, [className])}>
+        <div className={cls.codeWrap}>
+            <pre className={classNames(cls.CodeRedesigned, {}, [className])}>
+                <code>{text}</code>
+            </pre>
             <Icon
                 clickable
                 onClick={onCopy}
                 className={cls.copyBtn}
                 Svg={CopyIconNew}
             />
-            <code>{text}</code>
-        </pre>
+        </div>
     );
 });
