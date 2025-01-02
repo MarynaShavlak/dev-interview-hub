@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import React, { memo } from 'react';
+import React, { memo, useEffect, useRef, useState } from 'react';
 import { Text } from '@/shared/ui/redesigned/Text';
 import { HStack, VStack } from '@/shared/ui/common/Stack';
 import { OrderCard } from '@/shared/ui/redesigned/OrderCard';
@@ -25,12 +25,62 @@ export const AddBlocksForm = memo((props: AddBlocksFormProps) => {
         deleteBlock,
     } = useArticleBlocks();
 
+    const elementRef = useRef<HTMLDivElement>(null);
+    const triggerRef = useRef<HTMLDivElement>(null);
+    const [topPosition, setTopPosition] = useState<number>(0);
+
+    const handleScroll = () => {
+        if (triggerRef.current) {
+            const rect = triggerRef.current.getBoundingClientRect();
+            setTopPosition(rect.top); // Updates the state with the current top position
+        }
+    };
+
+    useEffect(() => {
+        // Attach the scroll event listener
+        window.addEventListener('scroll', handleScroll);
+
+        // Initial calculation of position
+        handleScroll();
+
+        // Cleanup: Remove the event listener on unmount
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
+
+    useEffect(() => {
+        if (elementRef.current) {
+            // elementRef.current.style.position = 'fixed';
+            console.log('topPosition', topPosition);
+            if (topPosition > 0) {
+                elementRef.current.style.top = `${topPosition}px`;
+            } else {
+                elementRef.current.style.top = `${0}px`;
+            }
+        }
+    }, [topPosition]);
+
     return (
         <HStack gap="16" align="start" max>
             <OrderCard index={index} />
             <VStack gap="16" className={cls.addBlocksForm}>
                 <Text text={t('Блоки статті')} bold />
-                <div className={cls.example}>6666</div>
+                <div ref={triggerRef} />
+
+                {/* <div className={cls.example}> */}
+                {/*    <p>{topPosition}</p> */}
+                {/* </div> */}
+
+                <div ref={elementRef} className={cls.btnList}>
+                    <AddArticleBlocksButtons
+                        className={cls.example}
+                        direction="row"
+                        onAddTextBlockBtnClick={createEmptyTextBlock}
+                        onAddCodeBlockBtnClick={createEmptyCodeBlock}
+                        onAddImageBlockBtnClick={createEmptyImageBlock}
+                    />
+                </div>
                 <HStack
                     justify={allBlocks.length ? 'between' : 'start'}
                     align="end"
@@ -50,13 +100,6 @@ export const AddBlocksForm = memo((props: AddBlocksFormProps) => {
                             )}
                         />
                     </VStack>
-
-                    <AddArticleBlocksButtons
-                        direction={allBlocks.length ? 'column' : 'row'}
-                        onAddTextBlockBtnClick={createEmptyTextBlock}
-                        onAddCodeBlockBtnClick={createEmptyCodeBlock}
-                        onAddImageBlockBtnClick={createEmptyImageBlock}
-                    />
                 </HStack>
             </VStack>
         </HStack>

@@ -12,6 +12,7 @@ interface AddArticleBlocksButtonsProps {
     onAddCodeBlockBtnClick: () => void;
     onAddImageBlockBtnClick?: () => void;
     direction: FlexDirection;
+    className?: string;
 }
 
 export const AddArticleBlocksButtons = memo(
@@ -21,12 +22,13 @@ export const AddArticleBlocksButtons = memo(
             onAddImageBlockBtnClick,
             onAddCodeBlockBtnClick,
             direction,
+            className,
         } = props;
         const { t } = useTranslation('articleDetails');
         const Wrapper = direction === 'row' ? HStack : VStack;
 
         return (
-            <Wrapper gap="24" className={cls.stickyBtns}>
+            <>
                 <Button
                     variant="filled"
                     addonLeft={<Icon Svg={AddIcon} width={16} height={16} />}
@@ -57,7 +59,7 @@ export const AddArticleBlocksButtons = memo(
                     &nbsp;
                     <b>{t('зображення')}</b>
                 </Button>
-            </Wrapper>
+            </>
         );
     },
 );

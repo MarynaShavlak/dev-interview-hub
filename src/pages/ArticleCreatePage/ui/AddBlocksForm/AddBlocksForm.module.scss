@@ -1,6 +1,24 @@
 .addBlocksForm {
-  flex-grow: 1;
+  position: relative;
 
 }
 
 
+.example {
+  background-color: red;
+  height:50px;
+  width:100%;
+  //position:fixed;
+  //top: 714px;
+
+
+
+}
+
+.btnList {
+  display:flex;
+  gap:24px;
+  position:fixed;
+  background-color: red;
+  z-index: 2;
+}
