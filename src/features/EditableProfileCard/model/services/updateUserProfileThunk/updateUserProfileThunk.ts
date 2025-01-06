@@ -9,7 +9,7 @@ export const updateUserProfileThunk = createAsyncThunk<
     User,
     void,
     ThunkConfig<ValidateProfileError[]>
->('profile/updateProfileData', async (User, thunkApi) => {
+>('profile/updateUserProfile', async (User, thunkApi) => {
     const { rejectWithValue, getState, dispatch } = thunkApi;
     const { setUser } = userActions;
     const formData = getProfileForm(getState());

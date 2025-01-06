@@ -1,6 +1,5 @@
 import { useTranslation } from 'react-i18next';
 import React, { memo, useCallback } from 'react';
-import { v4 } from 'uuid';
 import { HStack } from '@/shared/ui/common/Stack';
 
 import { useCreateArticle } from '../../lib/hooks/useCreateArticle/useCreateArticle';
@@ -8,11 +7,11 @@ import { Button } from '@/shared/ui/redesigned/Button';
 import { useUserAuthData } from '@/entities/User';
 import { useInputValidationConfig } from '@/shared/lib/hooks/validationHooks/useInputValidationConfig/useInputValidationConfig';
 import { useFormValidation } from '@/shared/lib/hooks/validationHooks/useFormValidation/useFormValidation';
-import { Article } from '@/entities/Article';
 
 import { useUploadedArticleImage } from '../../model/selectors/getCreateArticleSelectors';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { uploadArticleImageThunk } from '../../model/services/uploadArticleImageThunk/uploadImageThunk';
+import { createArticleThunk } from '../../model/services/createArticleThunk/createArticleThunk';
 
 interface ArticleCreatePageHeaderProps {
     className?: string;
@@ -42,41 +41,17 @@ export const ArticleCreatePageHeader = memo(
         const uploadedArticleImage = useUploadedArticleImage();
 
         const onSave = useCallback(async () => {
-            console.log('hjjj', formData);
-            console.log('uploadedArticleImage', uploadedArticleImage);
-            if (!authData) {
-                console.error('User authentication data is missing');
-                return;
-            }
-            if (!formData) {
-                console.error('Form data is missing');
-                return;
-            }
-
             if (uploadedArticleImage) {
                 const url = await dispatch(
                     uploadArticleImageThunk(uploadedArticleImage),
                 ).unwrap();
-                console.log('url', url);
                 onChangeHeroImage(url);
             }
             if (uploadedArticleImage == null) {
                 onChangeHeroImage('');
             }
-            const createdArticle: Article = {
-                ...formData,
-                id: v4(),
-                user: authData,
-                createdAt: new Date().toISOString(),
-            };
-            console.log('createdArticle', createdArticle);
-        }, [
-            authData,
-            dispatch,
-            formData,
-            onChangeHeroImage,
-            uploadedArticleImage,
-        ]);
+            dispatch(createArticleThunk());
+        }, [dispatch, onChangeHeroImage, uploadedArticleImage]);
 
         return (
             <HStack gap="8">
