@@ -55,7 +55,6 @@ export const ImageBlockEditor = (props: ImageBlockEditorProps) => {
         selectedImage,
     } = useImageUploader({
         initialAvatar: block.src,
-
         errorMessage,
     });
     const isEmptyContent = !imagePreview || imagePreview.length === 0;

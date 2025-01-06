@@ -37,7 +37,7 @@ export const useImageUploader = ({
             previewUrl = window.URL.createObjectURL(selectedImage);
             setImagePreview(previewUrl);
             setAvatarSrc(previewUrl);
-            // onFileUpload(selectedImage);
+            onFileUpload?.(selectedImage);
         }
 
         return () => {

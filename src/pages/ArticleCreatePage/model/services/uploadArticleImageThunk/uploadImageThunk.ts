@@ -3,7 +3,7 @@ import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import { v4 } from 'uuid';
 import { ThunkConfig } from '@/app/providers/StoreProvider';
 
-export const uploadImageThunk = createAsyncThunk<
+export const uploadArticleImageThunk = createAsyncThunk<
     string,
     File,
     ThunkConfig<string>

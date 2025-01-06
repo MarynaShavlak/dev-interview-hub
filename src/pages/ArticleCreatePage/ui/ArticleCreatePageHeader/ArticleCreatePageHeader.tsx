@@ -10,6 +10,10 @@ import { useInputValidationConfig } from '@/shared/lib/hooks/validationHooks/use
 import { useFormValidation } from '@/shared/lib/hooks/validationHooks/useFormValidation/useFormValidation';
 import { Article } from '@/entities/Article';
 
+import { useUploadedArticleImage } from '../../model/selectors/getCreateArticleSelectors';
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { uploadArticleImageThunk } from '../../model/services/uploadArticleImageThunk/uploadImageThunk';
+
 interface ArticleCreatePageHeaderProps {
     className?: string;
 }
@@ -20,11 +24,11 @@ export const ArticleCreatePageHeader = memo(
         const { t } = useTranslation('articleDetails');
         const { formData } = useCreateArticle();
         const isSomeBlockAdded = Number(formData?.blocks.length) > 0;
-
+        const dispatch = useAppDispatch();
         const authData = useUserAuthData();
         const validConfig = useInputValidationConfig();
+        const { onChangeHeroImage } = useCreateArticle();
 
-        // console.log('formData ', formData);
         const { hasErrors } = useFormValidation(
             {
                 title: formData?.title || '',
@@ -35,8 +39,11 @@ export const ArticleCreatePageHeader = memo(
             'article',
         );
 
-        const onSave = useCallback(() => {
+        const uploadedArticleImage = useUploadedArticleImage();
+
+        const onSave = useCallback(async () => {
             console.log('hjjj', formData);
+            console.log('uploadedArticleImage', uploadedArticleImage);
             if (!authData) {
                 console.error('User authentication data is missing');
                 return;
@@ -45,6 +52,17 @@ export const ArticleCreatePageHeader = memo(
                 console.error('Form data is missing');
                 return;
             }
+
+            if (uploadedArticleImage) {
+                const url = await dispatch(
+                    uploadArticleImageThunk(uploadedArticleImage),
+                ).unwrap();
+                console.log('url', url);
+                onChangeHeroImage(url);
+            }
+            if (uploadedArticleImage == null) {
+                onChangeHeroImage('');
+            }
             const createdArticle: Article = {
                 ...formData,
                 id: v4(),
@@ -52,7 +70,13 @@ export const ArticleCreatePageHeader = memo(
                 createdAt: new Date().toISOString(),
             };
             console.log('createdArticle', createdArticle);
-        }, [authData, formData]);
+        }, [
+            authData,
+            dispatch,
+            formData,
+            onChangeHeroImage,
+            uploadedArticleImage,
+        ]);
 
         return (
             <HStack gap="8">
@@ -65,7 +89,8 @@ export const ArticleCreatePageHeader = memo(
                 <Button
                     variant="save"
                     onClick={onSave}
-                    disabled={hasErrors || !isSomeBlockAdded}
+                    // disabled={hasErrors || !isSomeBlockAdded}
+                    disabled={false}
                 >
                     {t('Зберегти')}
                 </Button>

@@ -6,7 +6,7 @@ import { HStack, VStack } from '@/shared/ui/common/Stack';
 import { Text } from '@/shared/ui/redesigned/Text';
 import { useCreateArticle } from '../../lib/hooks/useCreateArticle/useCreateArticle';
 import { useCategoryTabs } from '@/features/ArticleCategoryTabs';
-import cls from './AddCategoryForm.module.scss';
+
 import { ArticleCategory } from '@/entities/Article';
 
 interface AddCategoryFormProps {
@@ -31,11 +31,7 @@ export const AddCategoryForm = (props: AddCategoryFormProps) => {
             <OrderCard index={index} />
             <VStack gap="16">
                 <Text text={t('Категорії статей')} bold />
-                <Text
-                    text={t('Оберіть категорію')}
-                    className={cls.subtext}
-                    italic
-                />
+                <Text text={t('Оберіть категорію')} italic />
                 <Tabs
                     tabs={categoryTabs}
                     value={formData?.category as ArticleCategory[]}

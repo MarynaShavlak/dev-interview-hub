@@ -10,6 +10,7 @@ import cls from './AddHeroForm.module.scss';
 import { AppImage } from '@/shared/ui/common/AppImage';
 import defaultImage from '@/shared/assets/images/default-img-list.png';
 import { Skeleton } from '@/shared/ui/redesigned/Skeleton';
+import { useCreateArticle } from '../../lib/hooks/useCreateArticle/useCreateArticle';
 
 interface AddHeroFormProps {
     index: number;
@@ -18,6 +19,7 @@ export const AddHeroForm = memo((props: AddHeroFormProps) => {
     const { index } = props;
     const { t } = useTranslation('articleDetails');
     const errorMessage = t('Некоректний тип файлу');
+    const { onFileUpload } = useCreateArticle();
 
     const {
         avatarSrc,
@@ -28,8 +30,21 @@ export const AddHeroForm = memo((props: AddHeroFormProps) => {
         selectedImage,
     } = useImageUploader({
         initialAvatar: '',
+        onFileUpload,
         errorMessage,
     });
+
+    console.log('___selectedImage', selectedImage);
+
+    // const updateImage = useCallback(
+    //     (event: ChangeEvent<HTMLInputElement>) => {
+    //         console.log('!!!!selectedImage', selectedImage);
+    //         onFileUpload(selectedImage);
+    //         handleImageChange(event);
+    //         console.log('SFTER selectedImage', selectedImage);
+    //     },
+    //     [handleImageChange, onFileUpload, selectedImage],
+    // );
 
     const previewWrapClass = imagePreview ? cls.previewWrap : '';
 

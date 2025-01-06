@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 import { ArticleImageBlock, ArticleSection } from '@/entities/Article';
 import { useCreateArticle } from '../useCreateArticle/useCreateArticle';
-import { uploadImageThunk } from '../../../model/services/uploadImageThunk/uploadImageThunk';
+import { uploadArticleImageThunk } from '../../../model/services/uploadArticleImageThunk/uploadImageThunk';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 
 interface UseCodeBlockActionsParams {
@@ -36,7 +36,7 @@ export const useImageBlockActions = ({
         console.log('in getArticleImageUrl selectedImage', selectedImage);
         if (selectedImage) {
             const url = await dispatch(
-                uploadImageThunk(selectedImage),
+                uploadArticleImageThunk(selectedImage),
             ).unwrap();
             return url;
             // onChangeAvatar(url);

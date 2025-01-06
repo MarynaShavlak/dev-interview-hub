@@ -21,7 +21,7 @@ export const useCreateArticle = () => {
         updateCategory,
         updateBlocks,
         deleteBlock,
-        // setUploadedArticleImage,
+        setUploadedArticleImage,
     } = useCreateArticleActions();
     //
     const validConfig = useInputValidationConfig();
@@ -34,11 +34,11 @@ export const useCreateArticle = () => {
     //     'profile',
     // );
     //
-    // const onFileUpload = useCallback(
-    //     (file: File | null) => setUploadedProfilePhoto(file),
-    //     [setUploadedProfilePhoto],
-    // );
-    //
+    const onFileUpload = useCallback(
+        (file: File | null) => setUploadedArticleImage(file),
+        [setUploadedArticleImage],
+    );
+
     const onChangeTitle = useCallback(
         (value?: string) => {
             updateCreateArticleForm({ title: value || '' });
@@ -58,6 +58,13 @@ export const useCreateArticle = () => {
             updateSubtitleLink(value || '');
         },
         [updateSubtitleLink],
+    );
+
+    const onChangeHeroImage = useCallback(
+        (value?: string) => {
+            updateCreateArticleForm({ img: value || '' });
+        },
+        [updateCreateArticleForm],
     );
 
     const onChangeCategory = useCallback(
@@ -96,7 +103,8 @@ export const useCreateArticle = () => {
         onChangeCategory,
         onChangeBlocks,
         onDeleteBlock,
-        // onFileUpload,
+        onChangeHeroImage,
+        onFileUpload,
     };
 };
 

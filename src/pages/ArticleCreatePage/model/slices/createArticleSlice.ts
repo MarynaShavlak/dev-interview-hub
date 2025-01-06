@@ -7,13 +7,13 @@ import { Article, ArticleBlock } from '@/entities/Article';
 const initialState: CreateArticleSchema = {
     isLoading: false,
     error: undefined,
-    // uploadedArticleImage: undefined,
+    uploadedArticleImage: null,
     form: {
         id: '',
         user: {} as User,
         title: '',
         subtitle: { text: '', link: undefined },
-        img: undefined,
+        img: '',
         views: 0,
         createdAt: '',
         category: [],
@@ -79,6 +79,12 @@ export const createArticleSlice = buildSlice({
             state.form.blocks = state.form.blocks.filter(
                 (block) => block.id !== action.payload,
             );
+        },
+        setUploadedArticleImage: (
+            state,
+            action: PayloadAction<File | null>,
+        ) => {
+            state.uploadedArticleImage = action.payload;
         },
         // setUploadedArticleImage: (
         //     state,
