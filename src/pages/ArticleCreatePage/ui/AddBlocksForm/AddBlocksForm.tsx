@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import React, { memo, useEffect, useRef, useState } from 'react';
+import React, { memo, useEffect, useRef } from 'react';
 import { Text } from '@/shared/ui/redesigned/Text';
 import { HStack, VStack } from '@/shared/ui/common/Stack';
 import { OrderCard } from '@/shared/ui/redesigned/OrderCard';
@@ -8,6 +8,8 @@ import { useArticleBlocks } from '../../lib/hooks/useArticleBlocks/useArticleBlo
 import { Each } from '@/shared/lib/components/Each/Each';
 import { BlockRenderer } from './BlockRenderer/BlockRenderer';
 import cls from './AddBlocksForm.module.scss';
+import { useTriggerTopScrollPosition } from '@/shared/lib/hooks/useTriggerTopScrollPosition/useTriggerTopScrollPosition';
+import { getBtnsListStyles } from '../../lib/utils/getBtnsListStyles/getBtnsListStyles';
 
 interface AddBlocksFormProps {
     index: number;
@@ -27,41 +29,12 @@ export const AddBlocksForm = memo((props: AddBlocksFormProps) => {
 
     const elementRef = useRef<HTMLDivElement>(null);
     const triggerRef = useRef<HTMLDivElement>(null);
-    const [topPosition, setTopPosition] = useState<number>(0);
-
-    const handleScroll = () => {
-        if (triggerRef.current) {
-            const rect = triggerRef.current.getBoundingClientRect();
-            setTopPosition(rect.top); // Updates the state with the current top position
-        }
-    };
-
-    useEffect(() => {
-        // Attach the scroll event listener
-        window.addEventListener('scroll', handleScroll);
-
-        // Initial calculation of position
-        handleScroll();
-
-        // Cleanup: Remove the event listener on unmount
-        return () => {
-            window.removeEventListener('scroll', handleScroll);
-        };
-    }, []);
+    const topPosition = useTriggerTopScrollPosition(triggerRef);
 
     useEffect(() => {
         if (elementRef.current) {
-            // elementRef.current.style.position = 'fixed';
-            console.log('topPosition', topPosition);
-            if (topPosition > 0) {
-                console.log('topPosition', topPosition);
-                elementRef.current.style.position = 'static';
-                elementRef.current.style.marginTop = '-16px';
-            } else {
-                elementRef.current.style.position = 'fixed';
-                elementRef.current.style.top = `${0}px`;
-                elementRef.current.style.marginTop = '0';
-            }
+            const styles = getBtnsListStyles(topPosition);
+            Object.assign(elementRef.current.style, styles);
         }
     }, [topPosition]);
 
