@@ -56,5 +56,7 @@
   "Опис коду": "Code description ( optional)",
   "Банер статті": "Banner",
   "Дефолтне зображення картинки статті": "The default image of the article image",
-  "Некоректний тип файлу": "Invalid image type. Please upload a PNG, JPG, or JPEG."
+  "Некоректний тип файлу": "Invalid image type. Please upload a PNG, JPG, or JPEG.",
+  "Оберіть категорію": "*Select at least one category.",
+  "Додайте блок": "*Add at least one block"
 }

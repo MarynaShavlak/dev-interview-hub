@@ -90,8 +90,11 @@ export const useInputErrors = (
                 }
                 case 'isUrl': {
                     if (typeof value === 'string') {
-                        const result = urlSchema.safeParse(value);
-                        newErrors.isUrlError = !result.success;
+                        const stringToCheck = value.trim();
+                        if (stringToCheck !== '') {
+                            const result = urlSchema.safeParse(stringToCheck);
+                            newErrors.isUrlError = !result.success;
+                        }
                     }
                     break;
                 }

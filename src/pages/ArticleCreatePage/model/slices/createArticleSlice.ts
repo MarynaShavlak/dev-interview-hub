@@ -46,7 +46,6 @@ export const createArticleSlice = buildSlice({
         updateCategory(state, action) {
             const categoryToAdd = action.payload;
 
-            // Ensure the category array exists
             if (state.form.category && Array.isArray(state.form.category)) {
                 const index = state.form.category.indexOf(categoryToAdd);
 

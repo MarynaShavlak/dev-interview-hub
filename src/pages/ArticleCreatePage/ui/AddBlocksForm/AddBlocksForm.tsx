@@ -10,6 +10,7 @@ import { BlockRenderer } from './BlockRenderer/BlockRenderer';
 import cls from './AddBlocksForm.module.scss';
 import { useTriggerTopScrollPosition } from '@/shared/lib/hooks/useTriggerTopScrollPosition/useTriggerTopScrollPosition';
 import { getBtnsListStyles } from '../../lib/utils/getBtnsListStyles/getBtnsListStyles';
+import { useCreateArticle } from '../../lib/hooks/useCreateArticle/useCreateArticle';
 
 interface AddBlocksFormProps {
     index: number;
@@ -17,6 +18,8 @@ interface AddBlocksFormProps {
 export const AddBlocksForm = memo((props: AddBlocksFormProps) => {
     const { index } = props;
     const { t } = useTranslation('articleDetails');
+    const { formData } = useCreateArticle();
+    const isSomeBlockAdded = Number(formData?.blocks.length) > 0;
     const {
         blocks: allBlocks,
         createEmptyTextBlock,
@@ -43,6 +46,12 @@ export const AddBlocksForm = memo((props: AddBlocksFormProps) => {
             <OrderCard index={index} />
             <VStack gap="16" className={cls.addBlocksForm} max>
                 <Text text={t('Блоки статті')} bold />
+                <Text
+                    text={t('Додайте блок')}
+                    className={cls.subtext}
+                    italic
+                    variant={isSomeBlockAdded ? 'primary' : 'error'}
+                />
                 <div ref={triggerRef} />
                 <div ref={elementRef} className={cls.btnList}>
                     <AddArticleBlocksButtons

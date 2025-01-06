@@ -82,3 +82,10 @@
         font-weight: 700;
     }
 }
+
+.italic {
+    .title,
+    .text {
+        font-style: italic;
+    }
+}

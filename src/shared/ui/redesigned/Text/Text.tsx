@@ -16,6 +16,7 @@ interface TextProps extends TestProps {
     align?: TextAlign;
     size?: TextSize;
     bold?: boolean;
+    italic?: boolean;
 }
 
 type HeaderTagType = 'h1' | 'h2' | 'h3';
@@ -38,6 +39,7 @@ export const Text = memo((props: TextProps) => {
         text,
         title,
         bold,
+        italic,
         variant = 'primary',
         align = 'left',
         size = 'm',
@@ -60,7 +62,7 @@ export const Text = memo((props: TextProps) => {
         <div
             className={classNames(
                 cls.Text,
-                { [cls.bold]: bold },
+                { [cls.bold]: bold, [cls.italic]: italic },
                 additionalClasses,
             )}
         >

@@ -49,8 +49,8 @@ export const useFormValidation = (
                 titleErrors,
                 subtitleTextErrors,
                 subtitleLinkErrors,
-                blockTitleErrors,
-                blockTitleRequiredErrors,
+                // blockTitleErrors,
+                // blockTitleRequiredErrors,
             ];
             break;
         default:
