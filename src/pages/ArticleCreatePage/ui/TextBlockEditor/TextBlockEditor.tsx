@@ -55,12 +55,15 @@ export const TextBlockEditor = memo((props: TextBlockEditorProps) => {
         toggleBlockSaveState();
     }, [saveTextBlock, toggleBlockSaveState]);
 
-    const { hasErrors, blockTitleErrors } = useFormValidation(
+    const { blockTitleErrors } = useFormValidation(
         {
             blockTitle: title,
         },
         validConfig,
         'article',
+    );
+    const hasInputError = Object.values(blockTitleErrors).some(
+        (error) => error,
     );
 
     return (
@@ -87,7 +90,7 @@ export const TextBlockEditor = memo((props: TextBlockEditorProps) => {
                         <BlockActionButtonList
                             saveBlock={handleSaveTextBlock}
                             deleteBlock={deleteTextBlock}
-                            isSaveDisabled={isEmptyContent}
+                            isSaveDisabled={isEmptyContent || hasInputError}
                         />
                     </HStack>
                 </VStack>

@@ -70,12 +70,15 @@ export const ImageBlockEditor = (props: ImageBlockEditorProps) => {
         selectedImage,
         // resetImage,
     });
-    const { hasErrors, blockTitleErrors } = useFormValidation(
+    const { blockTitleRequiredErrors } = useFormValidation(
         {
             blockTitle: title,
         },
         validConfig,
         'article',
+    );
+    const hasInputError = Object.values(blockTitleRequiredErrors).some(
+        (error) => error,
     );
 
     const handleSaveImageBlock = useCallback(async () => {
@@ -96,9 +99,9 @@ export const ImageBlockEditor = (props: ImageBlockEditorProps) => {
                             maxWidth={false}
                             className={cls.InputName}
                             onChange={handleTitleChange}
-                            validations={validConfig.blockTitle}
+                            validations={validConfig.blockTitleRequired}
                             maxLengthIndicator
-                            errors={blockTitleErrors}
+                            errors={blockTitleRequiredErrors}
                         />
                         <HStack gap="16" align="end" justify="between" max>
                             <ImagePreview
@@ -112,7 +115,7 @@ export const ImageBlockEditor = (props: ImageBlockEditorProps) => {
                             <BlockActionButtonList
                                 saveBlock={handleSaveImageBlock}
                                 deleteBlock={deleteImageBlock}
-                                isSaveDisabled={isEmptyContent}
+                                isSaveDisabled={isEmptyContent || hasInputError}
                             />
                         </HStack>
                     </VStack>

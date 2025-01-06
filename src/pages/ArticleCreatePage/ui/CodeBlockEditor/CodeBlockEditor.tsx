@@ -54,12 +54,16 @@ export const CodeBlockEditor = memo((props: CodeBlockEditorProps) => {
         deleteBlockFromArticle,
     });
 
-    const { hasErrors, blockTitleErrors } = useFormValidation(
+    const { blockTitleErrors } = useFormValidation(
         {
             blockTitle: title,
         },
         validConfig,
         'article',
+    );
+
+    const hasInputError = Object.values(blockTitleErrors).some(
+        (error) => error,
     );
     const handleSaveCodeBlock = useCallback(() => {
         saveCodeBlock();
@@ -93,7 +97,7 @@ export const CodeBlockEditor = memo((props: CodeBlockEditorProps) => {
                         <BlockActionButtonList
                             saveBlock={handleSaveCodeBlock}
                             deleteBlock={deleteCodeBlock}
-                            isSaveDisabled={isEmptyContent}
+                            isSaveDisabled={isEmptyContent || hasInputError}
                         />
                     </HStack>
                 </VStack>

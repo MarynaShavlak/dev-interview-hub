@@ -27,6 +27,10 @@ export const useFormValidation = (
         data.blockTitle,
         validConfig.blockTitle,
     );
+    const blockTitleRequiredErrors = useInputErrors(
+        data.blockTitle,
+        validConfig.blockTitleRequired,
+    );
 
     let relevantErrors;
 
@@ -46,6 +50,7 @@ export const useFormValidation = (
                 subtitleTextErrors,
                 subtitleLinkErrors,
                 blockTitleErrors,
+                blockTitleRequiredErrors,
             ];
             break;
         default:
@@ -62,6 +67,7 @@ export const useFormValidation = (
     const hasErrors = relevantErrors.some((validation) =>
         Object.values(validation).some((error) => error),
     );
+
     return {
         hasErrors,
         emailErrors,
@@ -73,5 +79,6 @@ export const useFormValidation = (
         subtitleTextErrors,
         subtitleLinkErrors,
         blockTitleErrors,
+        blockTitleRequiredErrors,
     };
 };

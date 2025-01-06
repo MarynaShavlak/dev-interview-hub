@@ -28,7 +28,7 @@ export const useImageUploader = ({
     const [error, setError] = useState<string | null>(null);
     const [avatarSrc, setAvatarSrc] = useState<string>(initialAvatar || '');
 
-    console.log('in useImageUploader:::: selectedImage', selectedImage);
+    // console.log('in useImageUploader:::: selectedImage', selectedImage);
 
     useEffect(() => {
         let previewUrl: string | null = null;
@@ -57,7 +57,7 @@ export const useImageUploader = ({
 
     const handleImageChange = useCallback(
         (event: ChangeEvent<HTMLInputElement>) => {
-            console.log('event.target.files', event.target.files);
+            // console.log('event.target.files', event.target.files);
             const file = event.target.files?.[0];
             if (!file) return;
 

@@ -41,5 +41,9 @@ export const useInputValidationConfig = (): InputErrorValidation => {
         blockTitle: {
             maxLength: 8,
         },
+        blockTitleRequired: {
+            isEmpty: true,
+            maxLength: 8,
+        },
     };
 };
