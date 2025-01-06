@@ -62,7 +62,7 @@ export const FileUploadZone = (props: FileUploadZoneProps) => {
     const text = imagePreview
         ? t('Змінити зображення')
         : t('Завантажити зображення');
-    console.log('inZONE imagePreview', imagePreview);
+    // console.log('inZONE imagePreview', imagePreview);
 
     return (
         <>
@@ -81,11 +81,11 @@ export const FileUploadZone = (props: FileUploadZoneProps) => {
                 </div>
             ) : (
                 <Card
-                    className={classNames(
-                        cls.uploadZone,
-                        {},
-                        uploadZoneClasses,
-                    )}
+                    className={classNames(cls.uploadZone, {}, [
+                        ...uploadZoneClasses,
+                        className,
+                    ])}
+                    max
                 >
                     <FileUploadInput
                         onChange={handleImageChange}

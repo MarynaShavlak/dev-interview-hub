@@ -61,7 +61,7 @@ export const CodeBlockEditor = memo((props: CodeBlockEditorProps) => {
     return (
         <>
             {!isBlockSaved ? (
-                <VStack gap="16">
+                <VStack gap="16" max>
                     <Input
                         value={title}
                         label={t('Опис коду')}
@@ -73,10 +73,10 @@ export const CodeBlockEditor = memo((props: CodeBlockEditorProps) => {
                         validations={validConfig.title}
                         maxLengthIndicator
                     />
-                    <HStack gap="16" align="end">
+                    <HStack gap="16" align="end" justify="between" max>
                         <CodeEditor
                             height="200px"
-                            width="400px"
+                            width="600px"
                             loader={<Skeleton width="100%" height="200px" />}
                             onChangeCode={setCode}
                             initialCode={code}

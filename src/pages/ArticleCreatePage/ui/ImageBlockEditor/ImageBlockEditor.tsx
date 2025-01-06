@@ -92,7 +92,7 @@ export const ImageBlockEditor = (props: ImageBlockEditorProps) => {
                             maxLengthIndicator
                             // errors={usernameErrors}
                         />
-                        <HStack gap="16" align="end">
+                        <HStack gap="16" align="end" justify="between" max>
                             <ImagePreview
                                 imagePreview={imagePreview}
                                 handleImageChange={handleImageChange}

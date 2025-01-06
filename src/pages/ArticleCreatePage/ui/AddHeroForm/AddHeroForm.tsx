@@ -36,9 +36,9 @@ export const AddHeroForm = memo((props: AddHeroFormProps) => {
     return (
         <HStack gap="16" align="start" max>
             <OrderCard index={index} />
-            <VStack gap="16">
+            <VStack gap="16" max>
                 <Text text={t('Банер статті')} bold />
-                <VStack gap="4" align="center">
+                <VStack gap="4" align="center" max>
                     <Box className={cls.avatarWrap}>
                         <VStack
                             gap="16"
@@ -71,6 +71,7 @@ export const AddHeroForm = memo((props: AddHeroFormProps) => {
                                 imagePreview={imagePreview}
                                 handleImageChange={handleImageChange}
                                 resetImage={resetImage}
+                                className={cls.heroImageZone}
                             />
                         </VStack>
                     </Box>

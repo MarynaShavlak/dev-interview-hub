@@ -57,7 +57,7 @@ export const TextBlockEditor = memo((props: TextBlockEditorProps) => {
     return (
         <>
             {!isBlockSaved ? (
-                <VStack gap="16">
+                <VStack gap="16" max className={cls.blockWrap}>
                     <Input
                         value={title}
                         label={t('Заголовок блоку')}
@@ -70,7 +70,7 @@ export const TextBlockEditor = memo((props: TextBlockEditorProps) => {
                         maxLengthIndicator
                         // errors={usernameErrors}
                     />
-                    <HStack gap="16" align="end">
+                    <HStack align="end" justify="between" max>
                         <MarkupHTMLCreator
                             editorState={editorState}
                             onEditorStateChange={onEditorStateChange}

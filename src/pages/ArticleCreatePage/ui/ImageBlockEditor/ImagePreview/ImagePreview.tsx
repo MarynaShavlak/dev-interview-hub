@@ -29,9 +29,9 @@ export const ImagePreview = (props: ImagePreviewProps) => {
     const previewWrapClass = imagePreview ? cls.previewWrap : '';
 
     return (
-        <VStack gap="4" align="center">
+        <VStack gap="4" align="center" className={cls.blockImageZone}>
             <Box className={cls.avatarWrap}>
-                <VStack gap="16" align="center" className={previewWrapClass}>
+                <VStack gap="16" max className={previewWrapClass}>
                     {imagePreview && (
                         <ArticleImageBlockComponent
                             block={{
@@ -46,6 +46,7 @@ export const ImagePreview = (props: ImagePreviewProps) => {
                         imagePreview={imagePreview}
                         handleImageChange={handleImageChange}
                         resetImage={resetImage}
+                        className={cls.blockImageZone}
                     />
                 </VStack>
             </Box>

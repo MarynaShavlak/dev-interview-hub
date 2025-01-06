@@ -41,7 +41,7 @@ export const AddBlocksForm = memo((props: AddBlocksFormProps) => {
     return (
         <HStack gap="16" align="start" max>
             <OrderCard index={index} />
-            <VStack gap="16" className={cls.addBlocksForm}>
+            <VStack gap="16" className={cls.addBlocksForm} max>
                 <Text text={t('Блоки статті')} bold />
                 <div ref={triggerRef} />
                 <div ref={elementRef} className={cls.btnList}>
@@ -54,7 +54,7 @@ export const AddBlocksForm = memo((props: AddBlocksFormProps) => {
                     />
                 </div>
 
-                <VStack gap="16">
+                <VStack gap="16" max>
                     <Each
                         of={allBlocks}
                         render={(block) => (
