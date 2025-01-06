@@ -169,7 +169,8 @@
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.2.1",
     "react-virtuoso": "^4.9.0",
-    "uuid": "^11.0.3"
+    "uuid": "^11.0.3",
+    "zod": "^3.24.1"
   },
   "loki": {
     "configurations": {

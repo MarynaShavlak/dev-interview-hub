@@ -1,8 +1,8 @@
 import { InputValidations } from '../useInputErrors/useInputErrors';
 
-export type AuthValidation = Record<string, InputValidations>;
+export type InputErrorValidation = Record<string, InputValidations>;
 
-export const useInputValidationConfig = (): AuthValidation => {
+export const useInputValidationConfig = (): InputErrorValidation => {
     return {
         email: {
             isEmpty: true,
@@ -30,10 +30,13 @@ export const useInputValidationConfig = (): AuthValidation => {
             minLength: 2,
             maxLength: 10,
         },
-        subtitle: {
+        subtitleText: {
             isEmpty: true,
             minLength: 2,
-            maxLength: 50,
+            maxLength: 8,
+        },
+        subtitleLink: {
+            isUrl: true,
         },
     };
 };

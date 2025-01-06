@@ -10,13 +10,13 @@ import EyeInvisibleIconRedesigned from '@/shared/assets/icons/eye-slash.svg';
 
 import { useToggleVisibility } from '../../../../lib/hooks/useToggleVisibility/useToggleVisibility';
 import { ValidationErrors } from '@/shared/lib/hooks/validationHooks/useInputErrors/useInputErrors';
-import { AuthValidation } from '@/shared/lib/hooks/validationHooks/useInputValidationConfig/useInputValidationConfig';
+import { InputErrorValidation } from '@/shared/lib/hooks/validationHooks/useInputValidationConfig/useInputValidationConfig';
 
 interface PasswordInputProps {
     password: string;
     onChangePassword: (value: string) => void;
     passwordErrors: ValidationErrors;
-    validConfig: AuthValidation;
+    validConfig: InputErrorValidation;
     withResetOption?: boolean;
     onShowResetForm?: () => void;
 }

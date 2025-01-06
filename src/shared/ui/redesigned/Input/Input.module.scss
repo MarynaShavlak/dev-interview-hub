@@ -7,6 +7,10 @@
     width: 100%;
 }
 
+.withError {
+    border: 2px solid var(--cancel-redesigned);
+}
+
 .noBorder {
     border: none;
 }
@@ -51,6 +55,9 @@
     .addonRight svg {
         color: var(--accent-redesigned);
     }
+}
+.focused.withError {
+    border: 2px solid var(--cancel-redesigned);
 }
 
 

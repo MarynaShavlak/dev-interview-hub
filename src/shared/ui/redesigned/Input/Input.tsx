@@ -69,13 +69,20 @@ export const Input = memo((props: InputProps) => {
 
     const { ref, isFocused, onChangeHandler, onBlurHandler, onFocus, isDirty } =
         useInput({ autofocus, digitsOnly, onChange, onBlur });
+    const currentInputLength = String(value).length;
+    console.log('currentInputLength', currentInputLength);
 
+    const maxInputLength = validations?.maxLength || Infinity;
+    console.log('maxInputLength', maxInputLength);
+    const isLimitExceeded = currentInputLength > maxInputLength;
+    console.log('isLimitExceeded', isLimitExceeded);
     const mods: Mods = {
         [cls.readonly]: readonly,
         [cls.focused]: isFocused,
         [cls.withAddonLeft]: Boolean(addonLeft),
         [cls.withAddonRight]: Boolean(addonRight),
         [cls.clear]: clear,
+        [cls.withError]: isLimitExceeded,
     };
     const wrapperClasses = classNames(cls.InputWrapper, mods, [
         className,
@@ -101,9 +108,6 @@ export const Input = memo((props: InputProps) => {
             <div className={cls.addonRight}>{addonRight}</div>
         </div>
     );
-    const currentInputLength = String(value).length;
-    const maxInputLength = validations?.maxLength || 0;
-    const isLimitExceeded = currentInputLength > maxInputLength;
 
     if (label) {
         return (

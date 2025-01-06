@@ -26,6 +26,7 @@ export const ValidationErrorMessages = memo(
                 ),
                 MAX_LENGTH_VIOLATION: t('Максимальна довжина поля перевищена'),
                 INVALID_USERNAME: t("Неправильне ім'я користувача"),
+                INVALID_URL: t('Невірний формат URL'),
             }),
             [t],
         );
@@ -65,6 +66,13 @@ export const ValidationErrorMessages = memo(
                         size="s"
                         variant="error"
                         text={validationMessages.INVALID_USERNAME}
+                    />
+                )}
+                {errors.isUrlError && (
+                    <Text
+                        size="s"
+                        variant="error"
+                        text={validationMessages.INVALID_URL}
                     />
                 )}
             </>

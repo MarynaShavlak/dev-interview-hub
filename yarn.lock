@@ -17962,6 +17962,11 @@
   dependencies:
     "@types/yoga-layout" "1.9.2"
 
+"zod@^3.24.1":
+  "integrity" "sha512-muH7gBL9sI1nciMZV67X5fTKKBLtwpZ5VBp1vsOQzj1MhrBZ4wlVCm3gedKZWLp0Oyel8sIGfeiz54Su+OVT+A=="
+  "resolved" "https://registry.npmjs.org/zod/-/zod-3.24.1.tgz"
+  "version" "3.24.1"
+
 "zwitch@^1.0.0":
   "integrity" "sha512-V50KMwwzqJV0NpZIZFwfOD5/lyny3WlSzRiXgA0G7VUnRlqttta1L6UQIHzd6EuBY/cHGfwTIck7w1yH6Q5zUw=="
   "resolved" "https://registry.npmjs.org/zwitch/-/zwitch-1.0.5.tgz"

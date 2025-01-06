@@ -11,6 +11,7 @@ import cls from '../ArticleCreatePage/ArticleCreatePage.module.scss';
 import { useInputValidationConfig } from '@/shared/lib/hooks/validationHooks/useInputValidationConfig/useInputValidationConfig';
 import { useCreateArticle } from '../../lib/hooks/useCreateArticle/useCreateArticle';
 import { useToggleVisibility } from '@/shared/lib/hooks/useToggleVisibility/useToggleVisibility';
+import { useFormValidation } from '@/shared/lib/hooks/validationHooks/useFormValidation/useFormValidation';
 
 interface TitleSubtitleFormProps {
     titleIndex: number;
@@ -40,6 +41,19 @@ export const TitleSubtitleForm = (props: TitleSubtitleFormProps) => {
         ? t('Видалити посилання')
         : t('Додати посилання');
 
+    const { hasErrors, titleErrors, subtitleTextErrors, subtitleLinkErrors } =
+        useFormValidation(
+            {
+                title: formData?.title || '',
+                subtitleText: formData?.subtitle.text || '',
+                subtitleLink: formData?.subtitle.link || '',
+            },
+            validConfig,
+            'article',
+        );
+
+    console.log('subtitleLinkErrors', subtitleLinkErrors);
+
     return (
         <VStack gap="24">
             <HStack gap="16" align="start" max>
@@ -50,12 +64,12 @@ export const TitleSubtitleForm = (props: TitleSubtitleFormProps) => {
                     label={t('Заголовок статті')}
                     labelBold
                     gap="16"
-                    maxWidth={false}
-                    className={cls.InputName}
+                    maxWidth
+                    // className={cls.InputName}
                     onChange={onChangeTitle}
                     validations={validConfig.title}
                     maxLengthIndicator
-                    // errors={usernameErrors}
+                    errors={titleErrors}
                 />
             </HStack>
             <HStack gap="16" align="start" max>
@@ -69,7 +83,8 @@ export const TitleSubtitleForm = (props: TitleSubtitleFormProps) => {
                         maxWidth={false}
                         className={cls.InputName}
                         onChange={onChangeSubtitleText}
-                        validations={validConfig.subtitle}
+                        validations={validConfig.subtitleText}
+                        errors={subtitleTextErrors}
                         maxLengthIndicator
                     />
                     {isLinkInputAdded && (
@@ -81,8 +96,8 @@ export const TitleSubtitleForm = (props: TitleSubtitleFormProps) => {
                             maxWidth={false}
                             className={cls.InputName}
                             onChange={onChangeSubtitleLink}
-                            validations={validConfig.subtitle}
-                            maxLengthIndicator
+                            validations={validConfig.subtitleLink}
+                            errors={subtitleLinkErrors}
                         />
                     )}
                 </VStack>

@@ -1,10 +1,10 @@
 import { useInputErrors } from '../useInputErrors/useInputErrors';
-import { AuthValidation } from '../useInputValidationConfig/useInputValidationConfig';
+import { InputErrorValidation } from '../useInputValidationConfig/useInputValidationConfig';
 
 export const useFormValidation = (
     data: Record<string, string>,
-    validConfig: AuthValidation,
-    mode: 'signIn' | 'signUp' | 'resetPassword' | 'profile',
+    validConfig: InputErrorValidation,
+    mode: 'signIn' | 'signUp' | 'resetPassword' | 'profile' | 'article',
 ) => {
     const emailErrors = useInputErrors(data.email, validConfig.email);
     const passwordErrors = useInputErrors(data.password, validConfig.password);
@@ -14,6 +14,15 @@ export const useFormValidation = (
         validConfig.firstname,
     );
     const lastnameErrors = useInputErrors(data.lastname, validConfig.lastname);
+    const titleErrors = useInputErrors(data.title, validConfig.title);
+    const subtitleTextErrors = useInputErrors(
+        data.subtitleText,
+        validConfig.subtitleText,
+    );
+    const subtitleLinkErrors = useInputErrors(
+        data.subtitleLink,
+        validConfig.subtitleLink,
+    );
 
     let relevantErrors;
 
@@ -26,6 +35,13 @@ export const useFormValidation = (
             break;
         case 'profile':
             relevantErrors = [usernameErrors, firstnameErrors, lastnameErrors];
+            break;
+        case 'article':
+            relevantErrors = [
+                titleErrors,
+                subtitleTextErrors,
+                subtitleLinkErrors,
+            ];
             break;
         default:
             relevantErrors = [
@@ -48,5 +64,8 @@ export const useFormValidation = (
         usernameErrors,
         firstnameErrors,
         lastnameErrors,
+        titleErrors,
+        subtitleTextErrors,
+        subtitleLinkErrors,
     };
 };

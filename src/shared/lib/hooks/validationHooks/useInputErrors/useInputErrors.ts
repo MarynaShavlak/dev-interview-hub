@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { z } from 'zod';
 
 export interface ValidationErrors {
     isEmpty: boolean;
@@ -6,6 +7,7 @@ export interface ValidationErrors {
     maxLengthError: boolean;
     emailError: boolean;
     usernameError: boolean;
+    isUrlError: boolean;
 }
 
 export interface InputValidations {
@@ -14,7 +16,10 @@ export interface InputValidations {
     maxLength?: number;
     isEmail?: boolean;
     isUsername?: boolean;
+    isUrl?: boolean;
 }
+
+const urlSchema = z.string().url();
 
 export const useInputErrors = (
     value: string | number = '',
@@ -26,6 +31,7 @@ export const useInputErrors = (
         maxLengthError: false,
         emailError: false,
         usernameError: false,
+        isUrlError: false,
     });
 
     useEffect(() => {
@@ -35,6 +41,7 @@ export const useInputErrors = (
             maxLengthError: false,
             emailError: false,
             usernameError: false,
+            isUrlError: false,
         };
 
         Object.entries(validations).forEach(([validation, rule]) => {
@@ -78,6 +85,13 @@ export const useInputErrors = (
                         !usernameRegex.test(value)
                     ) {
                         newErrors.usernameError = true;
+                    }
+                    break;
+                }
+                case 'isUrl': {
+                    if (typeof value === 'string') {
+                        const result = urlSchema.safeParse(value);
+                        newErrors.isUrlError = !result.success;
                     }
                     break;
                 }

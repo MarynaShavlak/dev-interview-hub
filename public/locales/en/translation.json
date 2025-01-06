@@ -56,5 +56,5 @@
   "Мінімальна довжина поля не відповідає вимогам": "Minimum length not met",
   "Максимальна довжина поля перевищена": "Maximum length exceeded",
   "Неправильне ім'я користувача": "Invalid username. Must be 8-20 characters, Latin letters, numbers, underscores, or periods, and cannot start/end with an underscore or period.",
-
+  "Невірний формат URL": "Incorrect URL format. Please enter a valid URL."
 }
