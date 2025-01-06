@@ -3,22 +3,12 @@
 
 }
 
-
-.example {
-  background-color: red;
-  height:50px;
-  width:100%;
-  //position:fixed;
-  //top: 714px;
-
-
-
-}
-
 .btnList {
   display:flex;
   gap:24px;
-  position:fixed;
-  background-color: red;
+ background-color: var(--dark-bg-redesigned);
+  border-radius: 12px;
   z-index: 2;
+  padding: 16px;
+  border: 1px solid var(--light-bg-redesigned);
 }

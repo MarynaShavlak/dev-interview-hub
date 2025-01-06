@@ -54,9 +54,13 @@ export const AddBlocksForm = memo((props: AddBlocksFormProps) => {
             // elementRef.current.style.position = 'fixed';
             console.log('topPosition', topPosition);
             if (topPosition > 0) {
-                elementRef.current.style.top = `${topPosition}px`;
+                console.log('topPosition', topPosition);
+                elementRef.current.style.position = 'static';
+                elementRef.current.style.marginTop = '-16px';
             } else {
+                elementRef.current.style.position = 'fixed';
                 elementRef.current.style.top = `${0}px`;
+                elementRef.current.style.marginTop = '0';
             }
         }
     }, [topPosition]);
@@ -67,11 +71,6 @@ export const AddBlocksForm = memo((props: AddBlocksFormProps) => {
             <VStack gap="16" className={cls.addBlocksForm}>
                 <Text text={t('Блоки статті')} bold />
                 <div ref={triggerRef} />
-
-                {/* <div className={cls.example}> */}
-                {/*    <p>{topPosition}</p> */}
-                {/* </div> */}
-
                 <div ref={elementRef} className={cls.btnList}>
                     <AddArticleBlocksButtons
                         className={cls.example}
@@ -81,26 +80,21 @@ export const AddBlocksForm = memo((props: AddBlocksFormProps) => {
                         onAddImageBlockBtnClick={createEmptyImageBlock}
                     />
                 </div>
-                <HStack
-                    justify={allBlocks.length ? 'between' : 'start'}
-                    align="end"
-                    max
-                >
-                    <VStack gap="16">
-                        <Each
-                            of={allBlocks}
-                            render={(block) => (
-                                <BlockRenderer
-                                    key={block.id}
-                                    block={block}
-                                    addBlockInArticle={addBlock}
-                                    deleteBlockFromArticle={deleteBlock}
-                                    onEditBlock={updateBlock}
-                                />
-                            )}
-                        />
-                    </VStack>
-                </HStack>
+
+                <VStack gap="16">
+                    <Each
+                        of={allBlocks}
+                        render={(block) => (
+                            <BlockRenderer
+                                key={block.id}
+                                block={block}
+                                addBlockInArticle={addBlock}
+                                deleteBlockFromArticle={deleteBlock}
+                                onEditBlock={updateBlock}
+                            />
+                        )}
+                    />
+                </VStack>
             </VStack>
         </HStack>
     );
