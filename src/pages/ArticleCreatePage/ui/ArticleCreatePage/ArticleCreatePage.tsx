@@ -10,11 +10,11 @@ import {
     ReducersList,
 } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { createArticleReducer } from '../../model/slices/createArticleSlice';
-import { TitleSubtitleForm } from '../TitleSubtitleForm/TitleSubtitleForm';
+// import { TitleSubtitleForm } from '../TitleSubtitleForm/TitleSubtitleForm';
 import { AddCategoryForm } from '../AddCategoryForm/AddCategoryForm';
 import { useCreateArticle } from '../../lib/hooks/useCreateArticle/useCreateArticle';
 import { AddBlocksForm } from '../AddBlocksForm/AddBlocksForm';
-import { AddHeroForm } from '../AddHeroForm/AddHeroForm';
+// import { AddHeroForm } from '../AddHeroForm/AddHeroForm';
 
 interface ArticleCreatePageProps {
     className?: string;
@@ -37,8 +37,8 @@ const ArticleCreatePage = memo((props: ArticleCreatePageProps) => {
             >
                 <VStack gap="24" max>
                     <Text title={t('Створення нової статті')} size="l" />
-                    <TitleSubtitleForm titleIndex={1} subtitleIndex={2} />
-                    <AddHeroForm index={3} />
+                    {/* <TitleSubtitleForm titleIndex={1} subtitleIndex={2} /> */}
+                    {/* <AddHeroForm index={3} /> */}
                     <AddCategoryForm index={4} />
                     <AddBlocksForm index={5} />
                 </VStack>

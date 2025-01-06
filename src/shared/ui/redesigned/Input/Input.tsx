@@ -70,12 +70,9 @@ export const Input = memo((props: InputProps) => {
     const { ref, isFocused, onChangeHandler, onBlurHandler, onFocus, isDirty } =
         useInput({ autofocus, digitsOnly, onChange, onBlur });
     const currentInputLength = String(value).length;
-    console.log('currentInputLength', currentInputLength);
-
     const maxInputLength = validations?.maxLength || Infinity;
-    console.log('maxInputLength', maxInputLength);
     const isLimitExceeded = currentInputLength > maxInputLength;
-    console.log('isLimitExceeded', isLimitExceeded);
+
     const mods: Mods = {
         [cls.readonly]: readonly,
         [cls.focused]: isFocused,

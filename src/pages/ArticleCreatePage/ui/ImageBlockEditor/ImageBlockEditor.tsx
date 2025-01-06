@@ -16,6 +16,7 @@ import { useImageBlockActions } from '../../lib/hooks/useImageBlockActions/useIm
 import { BlockActionButtonList } from '../BlockActionButtonList/BlockActionButtonList';
 import { ImagePreview } from './ImagePreview/ImagePreview';
 import { BlockPreview } from '../BlockPreview/BlockPreview';
+import { useFormValidation } from '@/shared/lib/hooks/validationHooks/useFormValidation/useFormValidation';
 
 interface ImageBlockEditorProps {
     // avatar: string;
@@ -69,6 +70,13 @@ export const ImageBlockEditor = (props: ImageBlockEditorProps) => {
         selectedImage,
         // resetImage,
     });
+    const { hasErrors, blockTitleErrors } = useFormValidation(
+        {
+            blockTitle: title,
+        },
+        validConfig,
+        'article',
+    );
 
     const handleSaveImageBlock = useCallback(async () => {
         await saveImageBlock();
@@ -88,9 +96,9 @@ export const ImageBlockEditor = (props: ImageBlockEditorProps) => {
                             maxWidth={false}
                             className={cls.InputName}
                             onChange={handleTitleChange}
-                            validations={validConfig.title}
+                            validations={validConfig.blockTitle}
                             maxLengthIndicator
-                            // errors={usernameErrors}
+                            errors={blockTitleErrors}
                         />
                         <HStack gap="16" align="end" justify="between" max>
                             <ImagePreview

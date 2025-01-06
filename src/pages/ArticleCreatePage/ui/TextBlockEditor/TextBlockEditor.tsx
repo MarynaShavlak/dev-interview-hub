@@ -15,6 +15,7 @@ import { useEditorState } from '../../lib/hooks/useEditorState/useEditorState';
 import { useTextBlockActions } from '../../lib/hooks/useTextBlockActions/useTextBlockActions';
 import { useToggleVisibility } from '@/shared/lib/hooks/useToggleVisibility/useToggleVisibility';
 import { BlockPreview } from '../BlockPreview/BlockPreview';
+import { useFormValidation } from '@/shared/lib/hooks/validationHooks/useFormValidation/useFormValidation';
 
 interface TextBlockEditorProps {
     className?: string;
@@ -54,6 +55,14 @@ export const TextBlockEditor = memo((props: TextBlockEditorProps) => {
         toggleBlockSaveState();
     }, [saveTextBlock, toggleBlockSaveState]);
 
+    const { hasErrors, blockTitleErrors } = useFormValidation(
+        {
+            blockTitle: title,
+        },
+        validConfig,
+        'article',
+    );
+
     return (
         <>
             {!isBlockSaved ? (
@@ -66,9 +75,9 @@ export const TextBlockEditor = memo((props: TextBlockEditorProps) => {
                         maxWidth={false}
                         className={cls.InputName}
                         onChange={handleTitleChange}
-                        validations={validConfig.title}
+                        validations={validConfig.blockTitle}
                         maxLengthIndicator
-                        // errors={usernameErrors}
+                        errors={blockTitleErrors}
                     />
                     <HStack align="end" justify="between" max>
                         <MarkupHTMLCreator

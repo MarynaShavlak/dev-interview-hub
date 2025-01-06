@@ -38,5 +38,8 @@ export const useInputValidationConfig = (): InputErrorValidation => {
         subtitleLink: {
             isUrl: true,
         },
+        blockTitle: {
+            maxLength: 8,
+        },
     };
 };

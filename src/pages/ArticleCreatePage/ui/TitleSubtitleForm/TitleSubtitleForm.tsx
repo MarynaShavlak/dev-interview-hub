@@ -52,8 +52,6 @@ export const TitleSubtitleForm = (props: TitleSubtitleFormProps) => {
             'article',
         );
 
-    console.log('subtitleLinkErrors', subtitleLinkErrors);
-
     return (
         <VStack gap="24">
             <HStack gap="16" align="start" max>

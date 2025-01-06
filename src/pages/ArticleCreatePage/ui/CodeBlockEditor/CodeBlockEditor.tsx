@@ -16,6 +16,7 @@ import { CodeEditor } from '@/shared/ui/redesigned/CodeEditor';
 import { useCodeBlockActions } from '../../lib/hooks/useCodeBlockActions/useCodeBlockActions';
 import { BlockActionButtonList } from '../BlockActionButtonList/BlockActionButtonList';
 import { BlockPreview } from '../BlockPreview/BlockPreview';
+import { useFormValidation } from '@/shared/lib/hooks/validationHooks/useFormValidation/useFormValidation';
 
 interface CodeBlockEditorProps {
     className?: string;
@@ -53,6 +54,13 @@ export const CodeBlockEditor = memo((props: CodeBlockEditorProps) => {
         deleteBlockFromArticle,
     });
 
+    const { hasErrors, blockTitleErrors } = useFormValidation(
+        {
+            blockTitle: title,
+        },
+        validConfig,
+        'article',
+    );
     const handleSaveCodeBlock = useCallback(() => {
         saveCodeBlock();
         toggleBlockSaveState();
@@ -70,8 +78,9 @@ export const CodeBlockEditor = memo((props: CodeBlockEditorProps) => {
                         maxWidth={false}
                         className={cls.InputName}
                         onChange={handleTitleChange}
-                        validations={validConfig.title}
+                        validations={validConfig.blockTitle}
                         maxLengthIndicator
+                        errors={blockTitleErrors}
                     />
                     <HStack gap="16" align="end" justify="between" max>
                         <CodeEditor

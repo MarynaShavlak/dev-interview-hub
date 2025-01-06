@@ -23,6 +23,10 @@ export const useFormValidation = (
         data.subtitleLink,
         validConfig.subtitleLink,
     );
+    const blockTitleErrors = useInputErrors(
+        data.blockTitle,
+        validConfig.blockTitle,
+    );
 
     let relevantErrors;
 
@@ -41,6 +45,7 @@ export const useFormValidation = (
                 titleErrors,
                 subtitleTextErrors,
                 subtitleLinkErrors,
+                blockTitleErrors,
             ];
             break;
         default:
@@ -67,5 +72,6 @@ export const useFormValidation = (
         titleErrors,
         subtitleTextErrors,
         subtitleLinkErrors,
+        blockTitleErrors,
     };
 };
