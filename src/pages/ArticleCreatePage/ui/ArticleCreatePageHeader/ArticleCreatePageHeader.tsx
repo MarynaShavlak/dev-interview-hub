@@ -12,6 +12,7 @@ import { useUploadedArticleImage } from '../../model/selectors/getCreateArticleS
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { uploadArticleImageThunk } from '../../model/services/uploadArticleImageThunk/uploadImageThunk';
 import { createArticleThunk } from '../../model/services/createArticleThunk/createArticleThunk';
+import { useCreateArticleActions } from '../../model/slices/createArticleSlice';
 
 interface ArticleCreatePageHeaderProps {
     className?: string;
@@ -21,12 +22,14 @@ export const ArticleCreatePageHeader = memo(
     (props: ArticleCreatePageHeaderProps) => {
         const { className } = props;
         const { t } = useTranslation('articleDetails');
-        const { formData } = useCreateArticle();
+        const { formData, onDeleteAllBlocks } = useCreateArticle();
+        console.log('form', formData);
         const isSomeBlockAdded = Number(formData?.blocks.length) > 0;
         const dispatch = useAppDispatch();
         const validConfig = useInputValidationConfig();
         const { onChangeHeroImage } = useCreateArticle();
         const navigate = useNavigate();
+        const { resetArticle } = useCreateArticleActions();
 
         const { hasErrors } = useFormValidation(
             {
@@ -56,12 +59,14 @@ export const ArticleCreatePageHeader = memo(
             // }
         }, [dispatch, onChangeHeroImage, uploadedArticleImage]);
 
+        const onCancelCreate = useCallback(() => {
+            resetArticle();
+            onDeleteAllBlocks();
+        }, [onDeleteAllBlocks, resetArticle]);
+
         return (
             <HStack gap="8">
-                <Button
-                    variant="cancel"
-                    onClick={() => console.log('reset form data')}
-                >
+                <Button variant="cancel" onClick={onCancelCreate}>
                     {t('Видалити')}
                 </Button>
                 <Button

@@ -5,13 +5,6 @@ export const [useCreateArticleForm, getCreateArticleForm] = buildSelector(
     (state: StateSchema) => state.createArticle?.form,
 );
 
-export const [useCreateArticleIsLoading, getCreateArticleIsLoading] =
-    buildSelector((state: StateSchema) => state.createArticle?.isLoading);
-
-export const [useCreateArticleError, getCreateArticleError] = buildSelector(
-    (state: StateSchema) => state.createArticle?.error,
-);
-
 export const [useUploadedArticleImage, getUploadedArticleImage] = buildSelector(
     (state: StateSchema) => state.createArticle?.uploadedArticleImage,
 );

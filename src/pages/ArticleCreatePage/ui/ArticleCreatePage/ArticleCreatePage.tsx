@@ -15,6 +15,9 @@ import { AddCategoryForm } from '../AddCategoryForm/AddCategoryForm';
 import { AddBlocksForm } from '../AddBlocksForm/AddBlocksForm';
 import { AddHeroForm } from '../AddHeroForm/AddHeroForm';
 import { ArticleCreatePageHeader } from '../ArticleCreatePageHeader/ArticleCreatePageHeader';
+import { useFormValidation } from '@/shared/lib/hooks/validationHooks/useFormValidation/useFormValidation';
+import { useInputValidationConfig } from '@/shared/lib/hooks/validationHooks/useInputValidationConfig/useInputValidationConfig';
+import { useCreateArticle } from '../../lib/hooks/useCreateArticle/useCreateArticle';
 
 interface ArticleCreatePageProps {
     className?: string;
@@ -27,6 +30,19 @@ const reducers: ReducersList = {
 const ArticleCreatePage = memo((props: ArticleCreatePageProps) => {
     const { className } = props;
     const { t } = useTranslation('articleDetails');
+    const validConfig = useInputValidationConfig();
+
+    const { formData } = useCreateArticle();
+    const { hasErrors, titleErrors, subtitleTextErrors, subtitleLinkErrors } =
+        useFormValidation(
+            {
+                title: formData?.title || '',
+                subtitleText: formData?.subtitle.text || '',
+                subtitleLink: formData?.subtitle.link || '',
+            },
+            validConfig,
+            'article',
+        );
 
     return (
         <DynamicModuleLoader reducers={reducers}>
@@ -39,7 +55,15 @@ const ArticleCreatePage = memo((props: ArticleCreatePageProps) => {
                         <ArticleCreatePageHeader />
                     </HStack>
 
-                    <TitleSubtitleForm titleIndex={1} subtitleIndex={2} />
+                    <TitleSubtitleForm
+                        titleIndex={1}
+                        subtitleIndex={2}
+                        errors={{
+                            titleErrors,
+                            subtitleTextErrors,
+                            subtitleLinkErrors,
+                        }}
+                    />
                     <AddHeroForm index={3} />
                     <AddCategoryForm index={4} />
                     <AddBlocksForm index={5} />

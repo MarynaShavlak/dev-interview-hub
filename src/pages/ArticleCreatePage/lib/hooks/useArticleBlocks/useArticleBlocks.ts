@@ -59,6 +59,10 @@ export const useArticleBlocks = () => {
         );
     }, []);
 
+    const deleteAllBlocks = useCallback(() => {
+        setBlocks([]);
+    }, []);
+
     return {
         blocks,
         createEmptyTextBlock,
@@ -67,5 +71,6 @@ export const useArticleBlocks = () => {
         addBlock,
         updateBlock,
         deleteBlock,
+        deleteAllBlocks,
     };
 };

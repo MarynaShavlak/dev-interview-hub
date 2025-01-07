@@ -11,15 +11,20 @@ import cls from '../ArticleCreatePage/ArticleCreatePage.module.scss';
 import { useInputValidationConfig } from '@/shared/lib/hooks/validationHooks/useInputValidationConfig/useInputValidationConfig';
 import { useCreateArticle } from '../../lib/hooks/useCreateArticle/useCreateArticle';
 import { useToggleVisibility } from '@/shared/lib/hooks/useToggleVisibility/useToggleVisibility';
-import { useFormValidation } from '@/shared/lib/hooks/validationHooks/useFormValidation/useFormValidation';
+import { ValidationErrors } from '@/shared/lib/hooks/validationHooks/useInputErrors/useInputErrors';
 
 interface TitleSubtitleFormProps {
     titleIndex: number;
     subtitleIndex: number;
+    errors: {
+        titleErrors: ValidationErrors;
+        subtitleTextErrors: ValidationErrors;
+        subtitleLinkErrors: ValidationErrors;
+    };
 }
 
 export const TitleSubtitleForm = (props: TitleSubtitleFormProps) => {
-    const { titleIndex, subtitleIndex } = props;
+    const { titleIndex, subtitleIndex, errors } = props;
     const { t } = useTranslation('articleDetails');
     const validConfig = useInputValidationConfig();
     const { isVisible: isLinkInputAdded, toggleVisibility: toggleLinkInput } =
@@ -41,16 +46,16 @@ export const TitleSubtitleForm = (props: TitleSubtitleFormProps) => {
         ? t('Видалити посилання')
         : t('Додати посилання');
 
-    const { hasErrors, titleErrors, subtitleTextErrors, subtitleLinkErrors } =
-        useFormValidation(
-            {
-                title: formData?.title || '',
-                subtitleText: formData?.subtitle.text || '',
-                subtitleLink: formData?.subtitle.link || '',
-            },
-            validConfig,
-            'article',
-        );
+    // const { hasErrors, titleErrors, subtitleTextErrors, subtitleLinkErrors } =
+    //     useFormValidation(
+    //         {
+    //             title: formData?.title || '',
+    //             subtitleText: formData?.subtitle.text || '',
+    //             subtitleLink: formData?.subtitle.link || '',
+    //         },
+    //         validConfig,
+    //         'article',
+    //     );
 
     return (
         <VStack gap="24">
@@ -67,7 +72,7 @@ export const TitleSubtitleForm = (props: TitleSubtitleFormProps) => {
                     onChange={onChangeTitle}
                     validations={validConfig.title}
                     maxLengthIndicator
-                    errors={titleErrors}
+                    errors={errors.titleErrors}
                 />
             </HStack>
             <HStack gap="16" align="start" max>
@@ -82,7 +87,7 @@ export const TitleSubtitleForm = (props: TitleSubtitleFormProps) => {
                         className={cls.InputName}
                         onChange={onChangeSubtitleText}
                         validations={validConfig.subtitleText}
-                        errors={subtitleTextErrors}
+                        errors={errors.subtitleTextErrors}
                         maxLengthIndicator
                     />
                     {isLinkInputAdded && (
@@ -95,7 +100,7 @@ export const TitleSubtitleForm = (props: TitleSubtitleFormProps) => {
                             className={cls.InputName}
                             onChange={onChangeSubtitleLink}
                             validations={validConfig.subtitleLink}
-                            errors={subtitleLinkErrors}
+                            errors={errors.subtitleLinkErrors}
                         />
                     )}
                 </VStack>

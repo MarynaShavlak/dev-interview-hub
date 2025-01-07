@@ -29,6 +29,7 @@ export const AddBlocksForm = memo((props: AddBlocksFormProps) => {
         updateBlock,
         deleteBlock,
     } = useArticleBlocks();
+    console.log('allBlocks', allBlocks);
 
     const elementRef = useRef<HTMLDivElement>(null);
     const triggerRef = useRef<HTMLDivElement>(null);
