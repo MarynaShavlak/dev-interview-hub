@@ -37,7 +37,7 @@ export const useInputValidationConfig = (): InputErrorValidation => {
             // minLength: 10,
             // maxLength: 150,
             minLength: 2,
-            maxLength: 870,
+            maxLength: 70,
         },
         subtitleLink: {
             isUrl: true,

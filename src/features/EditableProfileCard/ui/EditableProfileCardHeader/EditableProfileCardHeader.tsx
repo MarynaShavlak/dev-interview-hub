@@ -32,9 +32,6 @@ export const EditableProfileCardHeader = memo(
         const uploadedProfilePhoto = useUploadedProfilePhoto();
 
         const onSave = useCallback(async () => {
-            // console.log('profileData', profileData);
-            // console.log('formData', formData);
-            // console.log('uploadedProfilePhoto', uploadedProfilePhoto);
             if (uploadedProfilePhoto) {
                 const url = await dispatch(
                     uploadImageThunk(uploadedProfilePhoto),
@@ -46,13 +43,7 @@ export const EditableProfileCardHeader = memo(
             }
 
             dispatch(updateUserProfileThunk());
-        }, [
-            dispatch,
-            formData,
-            onChangeAvatar,
-            profileData,
-            uploadedProfilePhoto,
-        ]);
+        }, [dispatch, onChangeAvatar, uploadedProfilePhoto]);
 
         const onEdit = useCallback(() => {
             setReadonly(false);

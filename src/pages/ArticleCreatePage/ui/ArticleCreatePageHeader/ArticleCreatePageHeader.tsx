@@ -18,7 +18,7 @@ export const ArticleCreatePageHeader = memo(
         const { className, hasErrors, onCancel, onSave } = props;
         const { t } = useTranslation('articleDetails');
         const { formData } = useArticleEditor();
-        console.log('form', formData);
+
         const isSomeBlockAdded = Number(formData?.blocks.length) > 0;
 
         return (

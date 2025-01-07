@@ -16,7 +16,6 @@ interface ArticleCodeBlockComponentProps {
 export const ArticleCodeBlockComponent = memo(
     (props: ArticleCodeBlockComponentProps) => {
         const { className, block } = props;
-        console.log('block', block);
 
         return (
             <VStack className={className} gap="16" align="center" max>
