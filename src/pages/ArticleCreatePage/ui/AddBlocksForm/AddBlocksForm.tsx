@@ -4,23 +4,28 @@ import { Text } from '@/shared/ui/redesigned/Text';
 import { HStack, VStack } from '@/shared/ui/common/Stack';
 import { OrderCard } from '@/shared/ui/redesigned/OrderCard';
 import { AddArticleBlocksButtons } from '../AddArticleBlocksButtons/AddArticleBlocksButtons';
-import { useArticleBlocks } from '../../lib/hooks/useArticleBlocks/useArticleBlocks';
 import { Each } from '@/shared/lib/components/Each/Each';
 import { BlockRenderer } from './BlockRenderer/BlockRenderer';
 import cls from './AddBlocksForm.module.scss';
 import { useTriggerTopScrollPosition } from '@/shared/lib/hooks/useTriggerTopScrollPosition/useTriggerTopScrollPosition';
 import { getBtnsListStyles } from '../../lib/utils/getBtnsListStyles/getBtnsListStyles';
 import { useCreateArticle } from '../../lib/hooks/useCreateArticle/useCreateArticle';
+import { ArticleBlock } from '@/entities/Article';
 
 interface AddBlocksFormProps {
     index: number;
+    blocks: ArticleBlock[];
+    createEmptyTextBlock: () => void;
+    createEmptyCodeBlock: () => void;
+    createEmptyImageBlock: () => void;
+    addBlock: (block: ArticleBlock) => void;
+    updateBlock: (updatedBlock: ArticleBlock) => void;
+    deleteBlock: (id: string) => void;
+    deleteAllBlocks: () => void;
 }
 export const AddBlocksForm = memo((props: AddBlocksFormProps) => {
-    const { index } = props;
-    const { t } = useTranslation('articleDetails');
-    const { formData } = useCreateArticle();
-    const isSomeBlockAdded = Number(formData?.blocks.length) > 0;
     const {
+        index,
         blocks: allBlocks,
         createEmptyTextBlock,
         createEmptyCodeBlock,
@@ -28,8 +33,21 @@ export const AddBlocksForm = memo((props: AddBlocksFormProps) => {
         addBlock,
         updateBlock,
         deleteBlock,
-    } = useArticleBlocks();
-    console.log('allBlocks', allBlocks);
+        deleteAllBlocks,
+    } = props;
+    const { t } = useTranslation('articleDetails');
+    const { formData } = useCreateArticle();
+    const isSomeBlockAdded = Number(formData?.blocks.length) > 0;
+    // const {
+    //     blocks: allBlocks,
+    //     createEmptyTextBlock,
+    //     createEmptyCodeBlock,
+    //     createEmptyImageBlock,
+    //     addBlock,
+    //     updateBlock,
+    //     deleteBlock,
+    //     deleteAllBlocks
+    // } = useArticleBlocks();
 
     const elementRef = useRef<HTMLDivElement>(null);
     const triggerRef = useRef<HTMLDivElement>(null);

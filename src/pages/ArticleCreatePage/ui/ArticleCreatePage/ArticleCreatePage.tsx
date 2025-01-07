@@ -18,6 +18,7 @@ import { ArticleCreatePageHeader } from '../ArticleCreatePageHeader/ArticleCreat
 import { useFormValidation } from '@/shared/lib/hooks/validationHooks/useFormValidation/useFormValidation';
 import { useInputValidationConfig } from '@/shared/lib/hooks/validationHooks/useInputValidationConfig/useInputValidationConfig';
 import { useCreateArticle } from '../../lib/hooks/useCreateArticle/useCreateArticle';
+import { useArticleBlocks } from '../../lib/hooks/useArticleBlocks/useArticleBlocks';
 
 interface ArticleCreatePageProps {
     className?: string;
@@ -43,6 +44,17 @@ const ArticleCreatePage = memo((props: ArticleCreatePageProps) => {
             validConfig,
             'article',
         );
+    const {
+        blocks,
+        createEmptyTextBlock,
+        createEmptyCodeBlock,
+        createEmptyImageBlock,
+        addBlock,
+        updateBlock,
+        deleteBlock,
+        deleteAllBlocks,
+    } = useArticleBlocks();
+    console.log('blocks', blocks);
 
     return (
         <DynamicModuleLoader reducers={reducers}>
@@ -52,7 +64,10 @@ const ArticleCreatePage = memo((props: ArticleCreatePageProps) => {
                 <VStack gap="24" max>
                     <HStack justify="between" max className={cls.pageTitleWrap}>
                         <Text title={t('Створення нової статті')} size="l" />
-                        <ArticleCreatePageHeader />
+                        <ArticleCreatePageHeader
+                            hasErrors={hasErrors}
+                            deleteAllBlocks={deleteAllBlocks}
+                        />
                     </HStack>
 
                     <TitleSubtitleForm
@@ -66,7 +81,17 @@ const ArticleCreatePage = memo((props: ArticleCreatePageProps) => {
                     />
                     <AddHeroForm index={3} />
                     <AddCategoryForm index={4} />
-                    <AddBlocksForm index={5} />
+                    <AddBlocksForm
+                        index={5}
+                        blocks={blocks}
+                        createEmptyTextBlock={createEmptyTextBlock}
+                        createEmptyCodeBlock={createEmptyCodeBlock}
+                        createEmptyImageBlock={createEmptyImageBlock}
+                        addBlock={addBlock}
+                        updateBlock={updateBlock}
+                        deleteBlock={deleteBlock}
+                        deleteAllBlocks={deleteAllBlocks}
+                    />
                 </VStack>
             </Page>
         </DynamicModuleLoader>

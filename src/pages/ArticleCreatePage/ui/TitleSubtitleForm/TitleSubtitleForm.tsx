@@ -46,17 +46,6 @@ export const TitleSubtitleForm = (props: TitleSubtitleFormProps) => {
         ? t('Видалити посилання')
         : t('Додати посилання');
 
-    // const { hasErrors, titleErrors, subtitleTextErrors, subtitleLinkErrors } =
-    //     useFormValidation(
-    //         {
-    //             title: formData?.title || '',
-    //             subtitleText: formData?.subtitle.text || '',
-    //             subtitleLink: formData?.subtitle.link || '',
-    //         },
-    //         validConfig,
-    //         'article',
-    //     );
-
     return (
         <VStack gap="24">
             <HStack gap="16" align="start" max>

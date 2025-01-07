@@ -5,8 +5,6 @@ import { HStack } from '@/shared/ui/common/Stack';
 
 import { useCreateArticle } from '../../lib/hooks/useCreateArticle/useCreateArticle';
 import { Button } from '@/shared/ui/redesigned/Button';
-import { useInputValidationConfig } from '@/shared/lib/hooks/validationHooks/useInputValidationConfig/useInputValidationConfig';
-import { useFormValidation } from '@/shared/lib/hooks/validationHooks/useFormValidation/useFormValidation';
 
 import { useUploadedArticleImage } from '../../model/selectors/getCreateArticleSelectors';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
@@ -16,30 +14,22 @@ import { useCreateArticleActions } from '../../model/slices/createArticleSlice';
 
 interface ArticleCreatePageHeaderProps {
     className?: string;
+    hasErrors: boolean;
+    deleteAllBlocks: () => void;
 }
 
 export const ArticleCreatePageHeader = memo(
     (props: ArticleCreatePageHeaderProps) => {
-        const { className } = props;
+        const { className, hasErrors, deleteAllBlocks } = props;
         const { t } = useTranslation('articleDetails');
         const { formData, onDeleteAllBlocks } = useCreateArticle();
         console.log('form', formData);
         const isSomeBlockAdded = Number(formData?.blocks.length) > 0;
         const dispatch = useAppDispatch();
-        const validConfig = useInputValidationConfig();
+
         const { onChangeHeroImage } = useCreateArticle();
         const navigate = useNavigate();
         const { resetArticle } = useCreateArticleActions();
-
-        const { hasErrors } = useFormValidation(
-            {
-                title: formData?.title || '',
-                subtitleText: formData?.subtitle.text || '',
-                subtitleLink: formData?.subtitle.link || '',
-            },
-            validConfig,
-            'article',
-        );
 
         const uploadedArticleImage = useUploadedArticleImage();
 
@@ -62,7 +52,8 @@ export const ArticleCreatePageHeader = memo(
         const onCancelCreate = useCallback(() => {
             resetArticle();
             onDeleteAllBlocks();
-        }, [onDeleteAllBlocks, resetArticle]);
+            deleteAllBlocks();
+        }, [deleteAllBlocks, onDeleteAllBlocks, resetArticle]);
 
         return (
             <HStack gap="8">

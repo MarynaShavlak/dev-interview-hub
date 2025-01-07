@@ -84,6 +84,7 @@ export const createArticleSlice = buildSlice({
         },
         resetArticle: (state) => {
             state.uploadedArticleImage = initialState.uploadedArticleImage;
+            state.form = initialState.form;
         },
     },
 });
