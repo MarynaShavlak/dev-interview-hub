@@ -45,7 +45,7 @@
   "Блоки статті": "Article Blocks",
   "Додати блок тексту": "Add text block",
   "Додати": "Add",
-  "блок": "block",
+  "блок": "Block",
   "тексту": "text",
   "зображення": "image",
   "коду": "code",
@@ -58,5 +58,6 @@
   "Дефолтне зображення картинки статті": "The default image of the article image",
   "Некоректний тип файлу": "Invalid image type. Please upload a PNG, JPG, or JPEG.",
   "Оберіть категорію": "*Select at least one category.",
-  "Додайте блок": "*Add at least one block"
+  "Додайте блок": "*Add at least one block",
+  "Видалити всі": "Delete all"
 }

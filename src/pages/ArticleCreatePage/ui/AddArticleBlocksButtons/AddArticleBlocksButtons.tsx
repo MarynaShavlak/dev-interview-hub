@@ -13,6 +13,7 @@ interface AddArticleBlocksButtonsProps {
     onAddImageBlockBtnClick?: () => void;
     direction: FlexDirection;
     className?: string;
+    deleteAllBlocks: () => void;
 }
 
 export const AddArticleBlocksButtons = memo(
@@ -23,6 +24,7 @@ export const AddArticleBlocksButtons = memo(
             onAddCodeBlockBtnClick,
             direction,
             className,
+            deleteAllBlocks,
         } = props;
         const { t } = useTranslation('articleDetails');
         const Wrapper = direction === 'row' ? HStack : VStack;
@@ -35,9 +37,11 @@ export const AddArticleBlocksButtons = memo(
                     className={cls.addLinkButton}
                     onClick={onAddTextBlockBtnClick}
                 >
-                    {t('Додати')} {t('блок')}
-                    &nbsp;
-                    <b>{t('тексту')}</b>
+                    <span>
+                        {t('блок')}
+                        &nbsp;
+                        <b>{t('тексту')}</b>
+                    </span>
                 </Button>
                 <Button
                     variant="filled"
@@ -45,9 +49,11 @@ export const AddArticleBlocksButtons = memo(
                     className={cls.addLinkButton}
                     onClick={onAddCodeBlockBtnClick}
                 >
-                    {t('Додати')} {t('блок')}
-                    &nbsp;
-                    <b>{t('коду')}</b>
+                    <span>
+                        {t('блок')}
+                        &nbsp;
+                        <b>{t('коду')}</b>
+                    </span>
                 </Button>
                 <Button
                     variant="filled"
@@ -55,9 +61,18 @@ export const AddArticleBlocksButtons = memo(
                     className={cls.addLinkButton}
                     onClick={onAddImageBlockBtnClick}
                 >
-                    {t('Додати')} {t('блок')}
-                    &nbsp;
-                    <b>{t('зображення')}</b>
+                    <span>
+                        {t('блок')}
+                        &nbsp;
+                        <b>{t('зображення')}</b>
+                    </span>
+                </Button>
+                <Button
+                    variant="cancel"
+                    className={cls.deleteBtn}
+                    onClick={deleteAllBlocks}
+                >
+                    {t('Видалити всі')}
                 </Button>
             </>
         );

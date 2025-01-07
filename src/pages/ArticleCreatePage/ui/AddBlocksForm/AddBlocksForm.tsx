@@ -79,6 +79,7 @@ export const AddBlocksForm = memo((props: AddBlocksFormProps) => {
                         onAddTextBlockBtnClick={createEmptyTextBlock}
                         onAddCodeBlockBtnClick={createEmptyCodeBlock}
                         onAddImageBlockBtnClick={createEmptyImageBlock}
+                        deleteAllBlocks={deleteAllBlocks}
                     />
                 </div>
 

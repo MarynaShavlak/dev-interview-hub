@@ -12,8 +12,12 @@
 
 .addLinkButton {
    align-self: end;
-  min-width:178px;
+  width:178px;
 }
+.deleteBtn {
+  width: 150px;
+}
+
 
 
 .blockWrap {
@@ -27,6 +31,5 @@
   padding: 16px 24px;
   border-radius: 16px;
 }
-
 
 
