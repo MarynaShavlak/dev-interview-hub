@@ -9,7 +9,6 @@ import { BlockRenderer } from './BlockRenderer/BlockRenderer';
 import cls from './AddBlocksForm.module.scss';
 import { useTriggerTopScrollPosition } from '@/shared/lib/hooks/useTriggerTopScrollPosition/useTriggerTopScrollPosition';
 import { getBtnsListStyles } from '../../lib/utils/getBtnsListStyles/getBtnsListStyles';
-import { useCreateArticle } from '../../lib/hooks/useCreateArticle/useCreateArticle';
 import { ArticleBlock } from '@/entities/Article';
 
 interface AddBlocksFormProps {
@@ -36,19 +35,7 @@ export const AddBlocksForm = memo((props: AddBlocksFormProps) => {
         deleteAllBlocks,
     } = props;
     const { t } = useTranslation('articleDetails');
-    const { formData } = useCreateArticle();
-    const isSomeBlockAdded = Number(formData?.blocks.length) > 0;
-    // const {
-    //     blocks: allBlocks,
-    //     createEmptyTextBlock,
-    //     createEmptyCodeBlock,
-    //     createEmptyImageBlock,
-    //     addBlock,
-    //     updateBlock,
-    //     deleteBlock,
-    //     deleteAllBlocks
-    // } = useArticleBlocks();
-
+    const isSomeBlockAdded = Number(allBlocks.length) > 0;
     const elementRef = useRef<HTMLDivElement>(null);
     const triggerRef = useRef<HTMLDivElement>(null);
     const topPosition = useTriggerTopScrollPosition(triggerRef);
@@ -80,6 +67,7 @@ export const AddBlocksForm = memo((props: AddBlocksFormProps) => {
                         onAddCodeBlockBtnClick={createEmptyCodeBlock}
                         onAddImageBlockBtnClick={createEmptyImageBlock}
                         deleteAllBlocks={deleteAllBlocks}
+                        isSomeBlockAdded={isSomeBlockAdded}
                     />
                 </div>
 

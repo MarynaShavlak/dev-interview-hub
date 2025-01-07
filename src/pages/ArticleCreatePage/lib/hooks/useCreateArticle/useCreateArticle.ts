@@ -1,11 +1,14 @@
 import { useCallback } from 'react';
-import { useCreateArticleForm } from '../../../model/selectors/getCreateArticleSelectors';
+import {
+    useCreateArticleForm,
+    useUploadedArticleImage,
+} from '../../../model/selectors/getCreateArticleSelectors';
 import { useCreateArticleActions } from '../../../model/slices/createArticleSlice';
 import { ArticleBlock } from '@/entities/Article';
 
 export const useCreateArticle = () => {
     const formData = useCreateArticleForm();
-
+    const uploadedArticleImage = useUploadedArticleImage();
     const {
         updateCreateArticleForm,
         updateSubtitleText,
@@ -13,7 +16,7 @@ export const useCreateArticle = () => {
         updateCategory,
         updateBlocks,
         deleteBlock,
-        deleteAllBlocks,
+        resetArticle,
         setUploadedArticleImage,
     } = useCreateArticleActions();
     //
@@ -71,13 +74,13 @@ export const useCreateArticle = () => {
         },
         [deleteBlock],
     );
-
-    const onDeleteAllBlocks = useCallback(() => {
-        deleteAllBlocks();
-    }, [deleteAllBlocks]);
+    const onResetArticle = useCallback(() => {
+        resetArticle();
+    }, [resetArticle]);
 
     return {
         formData,
+        uploadedArticleImage,
         onChangeTitle,
         onChangeSubtitleText,
         onChangeSubtitleLink,
@@ -86,6 +89,6 @@ export const useCreateArticle = () => {
         onDeleteBlock,
         onChangeHeroImage,
         onFileUpload,
-        onDeleteAllBlocks,
+        onResetArticle,
     };
 };

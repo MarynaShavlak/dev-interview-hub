@@ -1,4 +1,5 @@
 import { ChangeEvent, useCallback, useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 // const imageMimeType = /image\/(png|jpg|jpeg)/i;
 const imageMimeType = /^image\//i;
@@ -6,7 +7,6 @@ const imageMimeType = /^image\//i;
 interface UseImageUploaderProps {
     initialAvatar: string;
     onFileUpload?: (file: File | null) => void; // Callback to handle uploaded file
-    errorMessage: string;
 }
 
 interface UseImageUploaderReturn {
@@ -21,12 +21,13 @@ interface UseImageUploaderReturn {
 export const useImageUploader = ({
     initialAvatar,
     onFileUpload,
-    errorMessage,
 }: UseImageUploaderProps): UseImageUploaderReturn => {
+    const { t } = useTranslation('articleDetails');
     const [selectedImage, setSelectedImage] = useState<File | null>(null);
     const [imagePreview, setImagePreview] = useState<string | null>(null);
     const [error, setError] = useState<string | null>(null);
     const [avatarSrc, setAvatarSrc] = useState<string>(initialAvatar || '');
+    const errorMessage = t('Некоректний тип файлу');
 
     // console.log('in useImageUploader:::: selectedImage', selectedImage);
 

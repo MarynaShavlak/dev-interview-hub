@@ -21,14 +21,12 @@ export const AvatarUploader = ({
     onFileUpload,
 }: ImageUploaderProps) => {
     const { t } = useTranslation('profile');
-    const errorMessage = t('Некоректний тип файлу');
     const avatarTextPlaceholder = t('Аватар користувача');
 
     const { avatarSrc, imagePreview, error, handleImageChange, resetImage } =
         useImageUploader({
             initialAvatar: avatar,
             onFileUpload,
-            errorMessage,
         });
 
     return (

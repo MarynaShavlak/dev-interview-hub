@@ -41,7 +41,7 @@ export const ImageBlockEditor = (props: ImageBlockEditorProps) => {
     } = props;
 
     const { t } = useTranslation('profile');
-    const errorMessage = t('Некоректний тип файлу');
+
     const { title, handleTitleChange, validConfig } = useBlockTitle();
     const { isVisible: isBlockSaved, toggleVisibility: toggleBlockSaveState } =
         useToggleVisibility();
@@ -55,7 +55,6 @@ export const ImageBlockEditor = (props: ImageBlockEditorProps) => {
         selectedImage,
     } = useImageUploader({
         initialAvatar: block.src,
-        errorMessage,
     });
     const isEmptyContent = !imagePreview || imagePreview.length === 0;
 

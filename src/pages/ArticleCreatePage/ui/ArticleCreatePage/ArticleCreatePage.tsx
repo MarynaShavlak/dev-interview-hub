@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
-import React, { memo } from 'react';
+import React, { memo, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Page } from '@/widgets/Page';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import cls from './ArticleCreatePage.module.scss';
@@ -19,6 +20,11 @@ import { useFormValidation } from '@/shared/lib/hooks/validationHooks/useFormVal
 import { useInputValidationConfig } from '@/shared/lib/hooks/validationHooks/useInputValidationConfig/useInputValidationConfig';
 import { useCreateArticle } from '../../lib/hooks/useCreateArticle/useCreateArticle';
 import { useArticleBlocks } from '../../lib/hooks/useArticleBlocks/useArticleBlocks';
+import { useImageUploader } from '@/shared/lib/hooks/useImageUploader/useImageUploader';
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { uploadArticleImageThunk } from '../../model/services/uploadArticleImageThunk/uploadImageThunk';
+import { createArticleThunk } from '../../model/services/createArticleThunk/createArticleThunk';
+import { getRouteArticleDetails } from '@/shared/const/router/router';
 
 interface ArticleCreatePageProps {
     className?: string;
@@ -32,8 +38,16 @@ const ArticleCreatePage = memo((props: ArticleCreatePageProps) => {
     const { className } = props;
     const { t } = useTranslation('articleDetails');
     const validConfig = useInputValidationConfig();
+    const dispatch = useAppDispatch();
+    const navigate = useNavigate();
+    const {
+        formData,
+        uploadedArticleImage,
+        onFileUpload,
+        onResetArticle,
+        onChangeHeroImage,
+    } = useCreateArticle();
 
-    const { formData } = useCreateArticle();
     const { hasErrors, titleErrors, subtitleTextErrors, subtitleLinkErrors } =
         useFormValidation(
             {
@@ -54,7 +68,36 @@ const ArticleCreatePage = memo((props: ArticleCreatePageProps) => {
         deleteBlock,
         deleteAllBlocks,
     } = useArticleBlocks();
-    console.log('blocks', blocks);
+
+    const { imagePreview, error, handleImageChange, resetImage } =
+        useImageUploader({
+            initialAvatar: '',
+            onFileUpload,
+        });
+
+    const onCancelCreate = useCallback(() => {
+        onResetArticle();
+        deleteAllBlocks();
+        resetImage();
+    }, [deleteAllBlocks, onResetArticle, resetImage]);
+
+    const onSaveCreate = useCallback(async () => {
+        if (uploadedArticleImage) {
+            const url = await dispatch(
+                uploadArticleImageThunk(uploadedArticleImage),
+            ).unwrap();
+            onChangeHeroImage(url);
+        }
+        if (uploadedArticleImage == null) {
+            onChangeHeroImage('');
+        }
+        const savedArticle = await dispatch(createArticleThunk()).unwrap();
+        if (savedArticle?.id) {
+            navigate(getRouteArticleDetails(savedArticle.id));
+        }
+        console.log('save');
+        onCancelCreate();
+    }, [dispatch, onCancelCreate, onChangeHeroImage, uploadedArticleImage]);
 
     return (
         <DynamicModuleLoader reducers={reducers}>
@@ -66,7 +109,8 @@ const ArticleCreatePage = memo((props: ArticleCreatePageProps) => {
                         <Text title={t('Створення нової статті')} size="l" />
                         <ArticleCreatePageHeader
                             hasErrors={hasErrors}
-                            deleteAllBlocks={deleteAllBlocks}
+                            onCancel={onCancelCreate}
+                            onSave={onSaveCreate}
                         />
                     </HStack>
 
@@ -79,7 +123,13 @@ const ArticleCreatePage = memo((props: ArticleCreatePageProps) => {
                             subtitleLinkErrors,
                         }}
                     />
-                    <AddHeroForm index={3} />
+                    <AddHeroForm
+                        index={3}
+                        error={error}
+                        handleImageChange={handleImageChange}
+                        resetImage={resetImage}
+                        imagePreview={imagePreview}
+                    />
                     <AddCategoryForm index={4} />
                     <AddBlocksForm
                         index={5}

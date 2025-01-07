@@ -73,9 +73,7 @@ export const createArticleSlice = buildSlice({
                 (block) => block.id !== action.payload,
             );
         },
-        deleteAllBlocks(state) {
-            state.form.blocks = [];
-        },
+
         setUploadedArticleImage: (
             state,
             action: PayloadAction<File | null>,

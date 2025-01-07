@@ -14,6 +14,7 @@ interface AddArticleBlocksButtonsProps {
     direction: FlexDirection;
     className?: string;
     deleteAllBlocks: () => void;
+    isSomeBlockAdded: boolean;
 }
 
 export const AddArticleBlocksButtons = memo(
@@ -25,6 +26,7 @@ export const AddArticleBlocksButtons = memo(
             direction,
             className,
             deleteAllBlocks,
+            isSomeBlockAdded,
         } = props;
         const { t } = useTranslation('articleDetails');
         const Wrapper = direction === 'row' ? HStack : VStack;
@@ -71,6 +73,7 @@ export const AddArticleBlocksButtons = memo(
                     variant="cancel"
                     className={cls.deleteBtn}
                     onClick={deleteAllBlocks}
+                    disabled={!isSomeBlockAdded}
                 >
                     {t('Видалити всі')}
                 </Button>
