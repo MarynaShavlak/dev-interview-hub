@@ -4,7 +4,7 @@ import { Tabs } from '@/shared/ui/redesigned/Tabs';
 import { OrderCard } from '@/shared/ui/redesigned/OrderCard';
 import { HStack, VStack } from '@/shared/ui/common/Stack';
 import { Text } from '@/shared/ui/redesigned/Text';
-import { useCreateArticle } from '../../lib/hooks/useCreateArticle/useCreateArticle';
+import { useArticleEditor } from '../../lib/hooks/useArticleEditor/useArticleEditor';
 import { useCategoryTabs } from '@/features/ArticleCategoryTabs';
 
 import { ArticleCategory } from '@/entities/Article';
@@ -16,7 +16,7 @@ interface AddCategoryFormProps {
 export const AddCategoryForm = (props: AddCategoryFormProps) => {
     const { t } = useTranslation('articleDetails');
     const { index } = props;
-    const { formData, onChangeCategory } = useCreateArticle();
+    const { formData, onChangeCategory } = useArticleEditor();
     const rawCategoryTabs = useCategoryTabs();
     const categoryTabs = useMemo(() => rawCategoryTabs, [rawCategoryTabs]);
 

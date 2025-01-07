@@ -1,10 +1,10 @@
 import { buildSelector } from '@/shared/lib/store';
 import { StateSchema } from '@/app/providers/StoreProvider';
 
-export const [useCreateArticleForm, getCreateArticleForm] = buildSelector(
+export const [useArticleFormData, getArticleFormData] = buildSelector(
     (state: StateSchema) => state.createArticle?.form,
 );
 
-export const [useUploadedArticleImage, getUploadedArticleImage] = buildSelector(
+export const [useArticleUploadPreview, getArticleUploadPreview] = buildSelector(
     (state: StateSchema) => state.createArticle?.uploadedArticleImage,
 );

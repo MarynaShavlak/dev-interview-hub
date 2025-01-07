@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 import { ArticleSection, ArticleTextBlock } from '@/entities/Article';
-import { useCreateArticle } from '../useCreateArticle/useCreateArticle';
+import { useArticleEditor } from '../useArticleEditor/useArticleEditor';
 
 interface UseTextBlockActionsParams {
     blockId: string;
@@ -19,7 +19,7 @@ export const useTextBlockActions = ({
     onEditBlock,
     deleteBlockFromArticle,
 }: UseTextBlockActionsParams) => {
-    const { formData, onDeleteBlock, onChangeBlocks } = useCreateArticle();
+    const { formData, onDeleteBlock, onChangeBlocks } = useArticleEditor();
     const saveBlock = useCallback(() => {
         const updatedTextBlock: ArticleTextBlock = {
             id: blockId,

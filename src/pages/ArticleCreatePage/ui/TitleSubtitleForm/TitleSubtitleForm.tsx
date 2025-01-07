@@ -9,7 +9,7 @@ import { HStack, VStack } from '@/shared/ui/common/Stack';
 import { OrderCard } from '@/shared/ui/redesigned/OrderCard';
 import cls from '../ArticleCreatePage/ArticleCreatePage.module.scss';
 import { useInputValidationConfig } from '@/shared/lib/hooks/validationHooks/useInputValidationConfig/useInputValidationConfig';
-import { useCreateArticle } from '../../lib/hooks/useCreateArticle/useCreateArticle';
+import { useArticleEditor } from '../../lib/hooks/useArticleEditor/useArticleEditor';
 import { useToggleVisibility } from '@/shared/lib/hooks/useToggleVisibility/useToggleVisibility';
 import { ValidationErrors } from '@/shared/lib/hooks/validationHooks/useInputErrors/useInputErrors';
 
@@ -35,7 +35,7 @@ export const TitleSubtitleForm = (props: TitleSubtitleFormProps) => {
         onChangeTitle,
         onChangeSubtitleText,
         onChangeSubtitleLink,
-    } = useCreateArticle();
+    } = useArticleEditor();
 
     const deleteSubtitleLink = useCallback(() => {
         onChangeSubtitleLink('');

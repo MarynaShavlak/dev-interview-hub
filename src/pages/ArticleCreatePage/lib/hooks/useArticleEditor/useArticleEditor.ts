@@ -1,14 +1,14 @@
 import { useCallback } from 'react';
 import {
-    useCreateArticleForm,
-    useUploadedArticleImage,
+    useArticleFormData,
+    useArticleUploadPreview,
 } from '../../../model/selectors/getCreateArticleSelectors';
 import { useCreateArticleActions } from '../../../model/slices/createArticleSlice';
 import { ArticleBlock } from '@/entities/Article';
 
-export const useCreateArticle = () => {
-    const formData = useCreateArticleForm();
-    const uploadedArticleImage = useUploadedArticleImage();
+export const useArticleEditor = () => {
+    const formData = useArticleFormData();
+    const uploadedArticleImage = useArticleUploadPreview();
     const {
         updateCreateArticleForm,
         updateSubtitleText,

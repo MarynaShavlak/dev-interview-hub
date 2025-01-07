@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 import { ArticleImageBlock, ArticleSection } from '@/entities/Article';
-import { useCreateArticle } from '../useCreateArticle/useCreateArticle';
+import { useArticleEditor } from '../useArticleEditor/useArticleEditor';
 import { uploadArticleImageThunk } from '../../../model/services/uploadArticleImageThunk/uploadImageThunk';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 
@@ -26,7 +26,7 @@ export const useImageBlockActions = ({
     // resetImage,
 }: UseCodeBlockActionsParams) => {
     const dispatch = useAppDispatch();
-    const { onChangeBlocks, onDeleteBlock } = useCreateArticle();
+    const { onChangeBlocks, onDeleteBlock } = useArticleEditor();
 
     const getArticleImageUrl = useCallback(async () => {
         console.log('in getArticleImageUrl selectedImage', selectedImage);

@@ -8,7 +8,7 @@ import {
     ArticleImageBlock,
 } from '@/entities/Article';
 
-export const useArticleBlocks = () => {
+export const useArticleContentBlocks = () => {
     const [blocks, setBlocks] = useState<ArticleBlock[]>([]);
 
     const createEmptyTextBlock = useCallback(() => {

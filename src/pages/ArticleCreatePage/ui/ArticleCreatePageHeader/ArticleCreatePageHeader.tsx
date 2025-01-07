@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 import React, { memo } from 'react';
 import { HStack } from '@/shared/ui/common/Stack';
 
-import { useCreateArticle } from '../../lib/hooks/useCreateArticle/useCreateArticle';
+import { useArticleEditor } from '../../lib/hooks/useArticleEditor/useArticleEditor';
 import { Button } from '@/shared/ui/redesigned/Button';
 
 interface ArticleCreatePageHeaderProps {
@@ -17,7 +17,7 @@ export const ArticleCreatePageHeader = memo(
     (props: ArticleCreatePageHeaderProps) => {
         const { className, hasErrors, onCancel, onSave } = props;
         const { t } = useTranslation('articleDetails');
-        const { formData } = useCreateArticle();
+        const { formData } = useArticleEditor();
         console.log('form', formData);
         const isSomeBlockAdded = Number(formData?.blocks.length) > 0;
 

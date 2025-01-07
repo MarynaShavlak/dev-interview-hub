@@ -18,8 +18,8 @@ import { AddHeroForm } from '../AddHeroForm/AddHeroForm';
 import { ArticleCreatePageHeader } from '../ArticleCreatePageHeader/ArticleCreatePageHeader';
 import { useFormValidation } from '@/shared/lib/hooks/validationHooks/useFormValidation/useFormValidation';
 import { useInputValidationConfig } from '@/shared/lib/hooks/validationHooks/useInputValidationConfig/useInputValidationConfig';
-import { useCreateArticle } from '../../lib/hooks/useCreateArticle/useCreateArticle';
-import { useArticleBlocks } from '../../lib/hooks/useArticleBlocks/useArticleBlocks';
+import { useArticleEditor } from '../../lib/hooks/useArticleEditor/useArticleEditor';
+import { useArticleContentBlocks } from '../../lib/hooks/useArticleContentBlocks/useArticleContentBlocks';
 import { useImageUploader } from '@/shared/lib/hooks/useImageUploader/useImageUploader';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { uploadArticleImageThunk } from '../../model/services/uploadArticleImageThunk/uploadImageThunk';
@@ -46,7 +46,7 @@ const ArticleCreatePage = memo((props: ArticleCreatePageProps) => {
         onFileUpload,
         onResetArticle,
         onChangeHeroImage,
-    } = useCreateArticle();
+    } = useArticleEditor();
 
     const { hasErrors, titleErrors, subtitleTextErrors, subtitleLinkErrors } =
         useFormValidation(
@@ -67,7 +67,7 @@ const ArticleCreatePage = memo((props: ArticleCreatePageProps) => {
         updateBlock,
         deleteBlock,
         deleteAllBlocks,
-    } = useArticleBlocks();
+    } = useArticleContentBlocks();
 
     const { imagePreview, error, handleImageChange, resetImage } =
         useImageUploader({
@@ -97,7 +97,13 @@ const ArticleCreatePage = memo((props: ArticleCreatePageProps) => {
         }
         console.log('save');
         onCancelCreate();
-    }, [dispatch, onCancelCreate, onChangeHeroImage, uploadedArticleImage]);
+    }, [
+        dispatch,
+        navigate,
+        onCancelCreate,
+        onChangeHeroImage,
+        uploadedArticleImage,
+    ]);
 
     return (
         <DynamicModuleLoader reducers={reducers}>
