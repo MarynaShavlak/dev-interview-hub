@@ -12,15 +12,13 @@ const initialState: CreateArticleSchema = {
         id: '',
         user: {} as User,
         title: '',
-        subtitle: { text: '', link: undefined },
+        subtitle: { text: '', link: '' },
         img: '',
         views: 0,
         createdAt: '',
         category: [],
         blocks: [],
     },
-
-    // uploadedProfilePhoto: undefined,
 };
 
 export const createArticleSlice = buildSlice({

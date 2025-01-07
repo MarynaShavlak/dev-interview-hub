@@ -26,26 +26,20 @@ export const useImageBlockActions = ({
     // resetImage,
 }: UseCodeBlockActionsParams) => {
     const dispatch = useAppDispatch();
-    const { formData, onChangeBlocks, onDeleteBlock } = useCreateArticle();
-    // const uploadedArticleImage = useUploadedArticleImage();
-    // console.log('uploadedArticleImage', uploadedArticleImage);
+    const { onChangeBlocks, onDeleteBlock } = useCreateArticle();
 
     const getArticleImageUrl = useCallback(async () => {
-        // console.log('profileData', profileData);
-        // console.log('formData', formData);
         console.log('in getArticleImageUrl selectedImage', selectedImage);
         if (selectedImage) {
             const url = await dispatch(
                 uploadArticleImageThunk(selectedImage),
             ).unwrap();
             return url;
-            // onChangeAvatar(url);
         }
         if (selectedImage == null) {
-            // onChangeAvatar('');
             return '';
         }
-        // resetImage();
+        return null;
     }, [dispatch, selectedImage]);
 
     const saveBlock = useCallback(async () => {

@@ -4,6 +4,7 @@ import { ThunkConfig } from '@/app/providers/StoreProvider';
 import { Article } from '@/entities/Article';
 import { getCreateArticleForm } from '../../selectors/getCreateArticleSelectors';
 import { getUserAuthData } from '@/entities/User';
+import { addArticleMutation } from '../../../api/articleCreateApi';
 
 /**
  * Thunk to handle creating a new article.
@@ -37,8 +38,14 @@ export const createArticleThunk = createAsyncThunk<
             createdAt: new Date().toISOString(),
         };
         console.log('newArticle', newArticle);
+        const createdArticle = await dispatch(
+            addArticleMutation(newArticle),
+        ).unwrap();
+        if (!createdArticle) {
+            return rejectWithValue('No data received from API.');
+        }
 
-        return newArticle;
+        return createdArticle;
     } catch (error) {
         console.error('Failed to create article:', error);
         return rejectWithValue('Failed to create article.');

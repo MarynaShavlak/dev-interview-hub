@@ -1,10 +1,10 @@
 import { useTranslation } from 'react-i18next';
 import React, { memo, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { HStack } from '@/shared/ui/common/Stack';
 
 import { useCreateArticle } from '../../lib/hooks/useCreateArticle/useCreateArticle';
 import { Button } from '@/shared/ui/redesigned/Button';
-import { useUserAuthData } from '@/entities/User';
 import { useInputValidationConfig } from '@/shared/lib/hooks/validationHooks/useInputValidationConfig/useInputValidationConfig';
 import { useFormValidation } from '@/shared/lib/hooks/validationHooks/useFormValidation/useFormValidation';
 
@@ -24,9 +24,9 @@ export const ArticleCreatePageHeader = memo(
         const { formData } = useCreateArticle();
         const isSomeBlockAdded = Number(formData?.blocks.length) > 0;
         const dispatch = useAppDispatch();
-        const authData = useUserAuthData();
         const validConfig = useInputValidationConfig();
         const { onChangeHeroImage } = useCreateArticle();
+        const navigate = useNavigate();
 
         const { hasErrors } = useFormValidation(
             {
@@ -50,7 +50,10 @@ export const ArticleCreatePageHeader = memo(
             if (uploadedArticleImage == null) {
                 onChangeHeroImage('');
             }
-            dispatch(createArticleThunk());
+            const savedArticle = await dispatch(createArticleThunk()).unwrap();
+            // if (savedArticle?.id) {
+            //     navigate(getRouteArticleDetails(savedArticle.id));
+            // }
         }, [dispatch, onChangeHeroImage, uploadedArticleImage]);
 
         return (
@@ -64,8 +67,7 @@ export const ArticleCreatePageHeader = memo(
                 <Button
                     variant="save"
                     onClick={onSave}
-                    // disabled={hasErrors || !isSomeBlockAdded}
-                    disabled={false}
+                    disabled={hasErrors || !isSomeBlockAdded}
                 >
                     {t('Зберегти')}
                 </Button>

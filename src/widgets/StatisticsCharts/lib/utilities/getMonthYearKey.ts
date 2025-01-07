@@ -1,7 +1,7 @@
-import { formatMonth } from '@/shared/lib/text/formatMonth/formatMonth';
+import { formatToTwoDigits } from '@/shared/lib/text/formatToTwoDigits/formatToTwoDigits';
 
 export const getMonthYearKey = (date: string): string => {
     const [day, month, year] = date.split('.').map(Number);
-    const monthWithZero = formatMonth(month);
+    const monthWithZero = formatToTwoDigits(month);
     return `${monthWithZero}/${year}`;
 };

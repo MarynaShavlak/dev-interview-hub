@@ -14,10 +14,18 @@ interface AvatarProps {
     size?: number;
     alt?: string;
     userName?: string;
+    textLength?: number;
 }
 
 export const Avatar = memo(
-    ({ className, src, size = 100, alt, userName }: AvatarProps) => {
+    ({
+        className,
+        src,
+        size = 100,
+        alt,
+        userName,
+        textLength,
+    }: AvatarProps) => {
         const mods: Mods = {};
 
         const styles = useMemo<CSSProperties>(
@@ -58,11 +66,15 @@ export const Avatar = memo(
         if (!userName) {
             return avatar;
         }
+        const truncatedUserName =
+            textLength && userName.length > textLength
+                ? `${userName.slice(0, textLength - 3)}...`
+                : userName;
 
         return (
             <HStack gap="8" className={className}>
                 {avatar}
-                <Text text={userName} bold />
+                <Text text={truncatedUserName} bold />
             </HStack>
         );
     },

@@ -14,6 +14,7 @@ import { AppLink } from '@/shared/ui/redesigned/AppLink';
 import cls from '../../ArticleCard.module.scss';
 import { Skeleton } from '@/shared/ui/redesigned/Skeleton';
 import { BaseCardProps } from '../../ArticleCard';
+import { formatDateString } from '@/shared/lib/text/formatDateString/formatDateString';
 
 export const RedesignedGridViewCard = memo((props: BaseCardProps) => {
     const { className, article, target, handleClick } = props;
@@ -22,6 +23,7 @@ export const RedesignedGridViewCard = memo((props: BaseCardProps) => {
         vStack: true,
         gap: '8',
     });
+    const convertedDate = formatDateString(article.createdAt);
 
     return (
         <AppLink
@@ -63,10 +65,7 @@ export const RedesignedGridViewCard = memo((props: BaseCardProps) => {
                     />
                     <VStack gap="4" className={cls.footer} max justify="end">
                         <HStack justify="between" max>
-                            <Text
-                                text={article.createdAt}
-                                className={cls.date}
-                            />
+                            <Text text={convertedDate} className={cls.date} />
                             <ArticleViews article={article} />
                         </HStack>
                         <Avatar
@@ -74,6 +73,7 @@ export const RedesignedGridViewCard = memo((props: BaseCardProps) => {
                             src={article.user?.avatar}
                             className={cls.user}
                             userName={article.user?.username}
+                            textLength={20}
                         />
                     </VStack>
                 </VStack>

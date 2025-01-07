@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { useCallback, useMemo } from 'react';
 import { ArticlePeriodDataChartsProps } from '../../index';
-import { formatMonth } from '@/shared/lib/text/formatMonth/formatMonth';
+import { formatToTwoDigits } from '@/shared/lib/text/formatToTwoDigits/formatToTwoDigits';
 import { CategoryData } from '../../model/types/types';
 
 type DataByPeriod = ArticlePeriodDataChartsProps['data'];
@@ -42,7 +42,7 @@ export const useArticlePeriodData = (
         Object.entries(data).reduce(
             (acc, [key, value], index, entries) => {
                 const [monthStr, yearStr] = key.split('/');
-                const month = formatMonth(monthStr);
+                const month = formatToTwoDigits(monthStr);
                 const year = Number(yearStr);
                 const quarterKey = `${monthToQuarterMap[month]}/${year}`;
 

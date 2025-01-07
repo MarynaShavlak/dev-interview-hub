@@ -27,23 +27,27 @@ export const useInputValidationConfig = (): InputErrorValidation => {
         },
         title: {
             isEmpty: true,
+            // minLength: 10,
+            // maxLength: 70,
             minLength: 2,
-            maxLength: 10,
+            maxLength: 8,
         },
         subtitleText: {
             isEmpty: true,
+            // minLength: 10,
+            // maxLength: 150,
             minLength: 2,
-            maxLength: 8,
+            maxLength: 870,
         },
         subtitleLink: {
             isUrl: true,
         },
         blockTitle: {
-            maxLength: 8,
+            maxLength: 50,
         },
         blockTitleRequired: {
             isEmpty: true,
-            maxLength: 8,
+            maxLength: 50,
         },
     };
 };

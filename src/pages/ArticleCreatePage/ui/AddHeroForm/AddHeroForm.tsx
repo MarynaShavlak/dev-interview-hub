@@ -21,30 +21,12 @@ export const AddHeroForm = memo((props: AddHeroFormProps) => {
     const errorMessage = t('Некоректний тип файлу');
     const { onFileUpload } = useCreateArticle();
 
-    const {
-        avatarSrc,
-        imagePreview,
-        error,
-        handleImageChange,
-        resetImage,
-        selectedImage,
-    } = useImageUploader({
-        initialAvatar: '',
-        onFileUpload,
-        errorMessage,
-    });
-
-    console.log('___selectedImage', selectedImage);
-
-    // const updateImage = useCallback(
-    //     (event: ChangeEvent<HTMLInputElement>) => {
-    //         console.log('!!!!selectedImage', selectedImage);
-    //         onFileUpload(selectedImage);
-    //         handleImageChange(event);
-    //         console.log('SFTER selectedImage', selectedImage);
-    //     },
-    //     [handleImageChange, onFileUpload, selectedImage],
-    // );
+    const { imagePreview, error, handleImageChange, resetImage } =
+        useImageUploader({
+            initialAvatar: '',
+            onFileUpload,
+            errorMessage,
+        });
 
     const previewWrapClass = imagePreview ? cls.previewWrap : '';
 

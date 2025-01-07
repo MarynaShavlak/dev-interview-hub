@@ -10,6 +10,7 @@ import { Text } from '@/shared/ui/redesigned/Text';
 import { ArticleEditNavigationButton } from '@/features/ArticleEditNavigationButton';
 import { ArticleListNavigationButton } from '@/features/ArticleListNavigationButton';
 import { Article } from '@/entities/Article';
+import { formatDateString } from '@/shared/lib/text/formatDateString/formatDateString';
 
 interface ArticleControlsProps {
     className?: string;
@@ -21,6 +22,7 @@ export const ArticleControls = memo((props: ArticleControlsProps) => {
     const { user: author, createdAt, views, id } = article;
     const { t } = useTranslation('articleDetails');
     const canEdit = useSelector(getCanEditArticle(id));
+    const convertedDate = formatDateString(createdAt);
 
     return (
         <ToggleFeaturesComponent
@@ -36,8 +38,9 @@ export const ArticleControls = memo((props: ArticleControlsProps) => {
                             size={32}
                             src={author.avatar}
                             userName={author.username}
+                            textLength={16}
                         />
-                        <Text text={createdAt} />
+                        <Text text={convertedDate} />
                     </VStack>
                     {canEdit && <ArticleEditNavigationButton id={id} />}
                     <Text
