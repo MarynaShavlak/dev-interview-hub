@@ -14,18 +14,19 @@ import { ArticleBlock } from '@/entities/Article';
 interface AddBlocksFormProps {
     index: number;
     blocks: ArticleBlock[];
-    createEmptyTextBlock: () => void;
-    createEmptyCodeBlock: () => void;
-    createEmptyImageBlock: () => void;
-    addBlock: (block: ArticleBlock) => void;
-    updateBlock: (updatedBlock: ArticleBlock) => void;
-    deleteBlock: (id: string) => void;
-    deleteAllBlocks: () => void;
+    blockActions: {
+        createEmptyTextBlock: () => void;
+        createEmptyCodeBlock: () => void;
+        createEmptyImageBlock: () => void;
+        addBlock: (block: ArticleBlock) => void;
+        updateBlock: (updatedBlock: ArticleBlock) => void;
+        deleteBlock: (id: string) => void;
+        deleteAllBlocks: () => void;
+    };
 }
 export const AddBlocksForm = memo((props: AddBlocksFormProps) => {
+    const { index, blocks: allBlocks, blockActions } = props;
     const {
-        index,
-        blocks: allBlocks,
         createEmptyTextBlock,
         createEmptyCodeBlock,
         createEmptyImageBlock,
@@ -33,7 +34,7 @@ export const AddBlocksForm = memo((props: AddBlocksFormProps) => {
         updateBlock,
         deleteBlock,
         deleteAllBlocks,
-    } = props;
+    } = blockActions;
     const { t } = useTranslation('articleDetails');
     const isSomeBlockAdded = Number(allBlocks.length) > 0;
     const elementRef = useRef<HTMLDivElement>(null);
