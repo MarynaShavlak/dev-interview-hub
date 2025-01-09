@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
 import { ArticleImageBlock, ArticleSection } from '@/entities/Article';
 import { useArticleEditor } from '../useArticleEditor/useArticleEditor';
 import { uploadArticleImageThunk } from '../../../model/services/uploadArticleImageThunk/uploadImageThunk';
@@ -12,34 +12,38 @@ interface UseCodeBlockActionsParams {
     onEditBlock?: (block: ArticleImageBlock) => void;
     deleteBlockFromArticle?: (id: string) => void;
     selectedImage: File | null;
-    // resetImage: () => void;
 }
 
 export const useImageBlockActions = ({
     blockId,
-    src,
+
     title,
     addBlockInArticle,
     onEditBlock,
     deleteBlockFromArticle,
     selectedImage,
-    // resetImage,
 }: UseCodeBlockActionsParams) => {
     const dispatch = useAppDispatch();
     const { onChangeBlocks, onDeleteBlock } = useArticleEditor();
+    const [uploadError, setUploadError] = useState<string | null>(null);
 
     const getArticleImageUrl = useCallback(async () => {
-        console.log('in getArticleImageUrl selectedImage', selectedImage);
+        setUploadError(null);
         if (selectedImage) {
-            const url = await dispatch(
-                uploadArticleImageThunk(selectedImage),
-            ).unwrap();
-            return url;
+            try {
+                const url = await dispatch(
+                    uploadArticleImageThunk(selectedImage),
+                ).unwrap();
+
+                return url;
+            } catch (error) {
+                const errorMessage =
+                    error instanceof Error ? error.message : 'Upload failed.';
+                setUploadError(errorMessage);
+                return null;
+            }
         }
-        if (selectedImage == null) {
-            return '';
-        }
-        return null;
+        return '';
     }, [dispatch, selectedImage]);
 
     const saveBlock = useCallback(async () => {
@@ -73,5 +77,9 @@ export const useImageBlockActions = ({
         }
     }, [deleteBlockFromArticle, blockId, onDeleteBlock]);
 
-    return { saveImageBlock: saveBlock, deleteImageBlock: deleteBlock };
+    return {
+        saveImageBlock: saveBlock,
+        deleteImageBlock: deleteBlock,
+        uploadError,
+    };
 };

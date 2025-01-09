@@ -17,11 +17,9 @@ import { BlockActionButtonList } from '../BlockActionButtonList/BlockActionButto
 import { ImagePreview } from './ImagePreview/ImagePreview';
 import { BlockPreview } from '../BlockPreview/BlockPreview';
 import { useFormValidation } from '@/shared/lib/hooks/validationHooks/useFormValidation/useFormValidation';
+import { ImageUploadError } from './ImageUploadError/ImageUploadError';
 
 interface ImageBlockEditorProps {
-    // avatar: string;
-    // blockId: string;
-    // onFileUpload: (file: File | null) => void;
     block: ArticleImageBlock;
     addBlockInArticle: (block: ArticleImageBlock) => void;
     deleteBlockFromArticle: (id: string) => void;
@@ -29,27 +27,18 @@ interface ImageBlockEditorProps {
 }
 
 export const ImageBlockEditor = (props: ImageBlockEditorProps) => {
-    const {
-        // avatar,
-        // blockId,
-        block,
-        addBlockInArticle,
-        deleteBlockFromArticle,
+    const { block, addBlockInArticle, deleteBlockFromArticle, onEditBlock } =
+        props;
 
-        onEditBlock,
-        // onFileUpload,
-    } = props;
-
-    const { t } = useTranslation('profile');
+    const { t } = useTranslation('articleDetails');
 
     const { title, handleTitleChange, validConfig } = useBlockTitle();
     const { isVisible: isBlockSaved, toggleVisibility: toggleBlockSaveState } =
         useToggleVisibility();
 
     const {
-        avatarSrc,
         imagePreview,
-        error,
+        error: imageTypeError,
         handleImageChange,
         resetImage,
         selectedImage,
@@ -58,16 +47,17 @@ export const ImageBlockEditor = (props: ImageBlockEditorProps) => {
     });
     const isEmptyContent = !imagePreview || imagePreview.length === 0;
 
-    const { saveImageBlock, deleteImageBlock } = useImageBlockActions({
-        blockId: block.id,
-        title,
-        src: block.src,
-        addBlockInArticle,
-        onEditBlock,
-        deleteBlockFromArticle,
-        selectedImage,
-        // resetImage,
-    });
+    const { saveImageBlock, deleteImageBlock, uploadError } =
+        useImageBlockActions({
+            blockId: block.id,
+            title,
+            src: block.src,
+            addBlockInArticle,
+            onEditBlock,
+            deleteBlockFromArticle,
+            selectedImage,
+        });
+
     const { blockTitleRequiredErrors } = useFormValidation(
         {
             blockTitle: title,
@@ -84,53 +74,60 @@ export const ImageBlockEditor = (props: ImageBlockEditorProps) => {
         toggleBlockSaveState();
     }, [saveImageBlock, toggleBlockSaveState]);
 
-    return (
-        <>
-            {!isBlockSaved ? (
-                <VStack justify="center" align="center" max>
-                    <VStack gap="16" max>
-                        <Input
-                            value={title}
-                            label={t('Назва зображення')}
-                            labelBold
-                            gap="16"
-                            maxWidth={false}
-                            className={cls.InputName}
-                            onChange={handleTitleChange}
-                            validations={validConfig.blockTitleRequired}
-                            maxLengthIndicator
-                            errors={blockTitleRequiredErrors}
+    if (!isBlockSaved) {
+        return (
+            <VStack justify="center" align="center" max>
+                <VStack gap="16" max>
+                    <Input
+                        value={title}
+                        label={t('Назва зображення')}
+                        labelBold
+                        gap="16"
+                        maxWidth={false}
+                        className={cls.InputName}
+                        onChange={handleTitleChange}
+                        validations={validConfig.blockTitleRequired}
+                        maxLengthIndicator
+                        errors={blockTitleRequiredErrors}
+                    />
+                    <HStack gap="16" align="end" justify="between" max>
+                        <ImagePreview
+                            imagePreview={imagePreview}
+                            handleImageChange={handleImageChange}
+                            resetImage={resetImage}
+                            error={imageTypeError}
+                            title={title}
                         />
-                        <HStack gap="16" align="end" justify="between" max>
-                            <ImagePreview
-                                imagePreview={imagePreview}
-                                handleImageChange={handleImageChange}
-                                resetImage={resetImage}
-                                error={error}
-                                title={title}
-                            />
 
-                            <BlockActionButtonList
-                                saveBlock={handleSaveImageBlock}
-                                deleteBlock={deleteImageBlock}
-                                isSaveDisabled={isEmptyContent || hasInputError}
-                            />
-                        </HStack>
-                    </VStack>
+                        <BlockActionButtonList
+                            saveBlock={handleSaveImageBlock}
+                            deleteBlock={deleteImageBlock}
+                            isSaveDisabled={
+                                isEmptyContent ||
+                                hasInputError ||
+                                !!imageTypeError
+                            }
+                        />
+                    </HStack>
                 </VStack>
-            ) : (
-                <BlockPreview
-                    block={{
-                        id: block.id,
-                        type: ArticleSection.IMAGE,
-                        src: block.src,
-                        title,
-                    }}
-                    editBlock={toggleBlockSaveState}
-                    deleteBlock={deleteImageBlock}
-                    BlockComponent={ArticleImageBlockComponent}
-                />
-            )}
-        </>
+            </VStack>
+        );
+    }
+    if (uploadError) {
+        return <ImageUploadError onRetry={toggleBlockSaveState} />;
+    }
+
+    return (
+        <BlockPreview
+            block={{
+                id: block.id,
+                type: ArticleSection.IMAGE,
+                src: block.src,
+                title,
+            }}
+            editBlock={toggleBlockSaveState}
+            deleteBlock={deleteImageBlock}
+            BlockComponent={ArticleImageBlockComponent}
+        />
     );
 };

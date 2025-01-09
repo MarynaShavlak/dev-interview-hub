@@ -59,5 +59,8 @@
   "Некоректний тип файлу": "Invalid image type. Please upload a PNG, JPG, or JPEG.",
   "Оберіть категорію": "*Select at least one category.",
   "Додайте блок": "*Add at least one block",
-  "Видалити всі": "Delete all"
+  "Видалити всі": "Delete all",
+  "Назва зображення": "Image title (required)",
+  "Помилка завантаження файлу": "File upload error. Please try again.",
+  "Спробувати повторно": "Upload Again"
 }

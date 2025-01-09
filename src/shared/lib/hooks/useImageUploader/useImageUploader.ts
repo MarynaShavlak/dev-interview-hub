@@ -29,8 +29,6 @@ export const useImageUploader = ({
     const [avatarSrc, setAvatarSrc] = useState<string>(initialAvatar || '');
     const errorMessage = t('Некоректний тип файлу');
 
-    // console.log('in useImageUploader:::: selectedImage', selectedImage);
-
     useEffect(() => {
         let previewUrl: string | null = null;
 
