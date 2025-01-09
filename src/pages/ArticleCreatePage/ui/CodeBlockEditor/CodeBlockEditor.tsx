@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next';
 import { Input } from '@/shared/ui/redesigned/Input';
 import cls from '../ArticleCreatePage/ArticleCreatePage.module.scss';
 import { HStack, VStack } from '@/shared/ui/common/Stack';
-import { useBlockTitle } from '../../lib/hooks/useBlockTitle/useBlockTitle';
 
 import { Skeleton } from '@/shared/ui/redesigned/Skeleton';
 import {
@@ -14,9 +13,10 @@ import {
 import { useToggleVisibility } from '@/shared/lib/hooks/useToggleVisibility/useToggleVisibility';
 import { CodeEditor } from '@/shared/ui/redesigned/CodeEditor';
 import { useCodeBlockActions } from '../../lib/hooks/useCodeBlockActions/useCodeBlockActions';
-import { BlockActionButtonList } from '../BlockActionButtonList/BlockActionButtonList';
+import { BlockActionButtonList } from '@/features/BlockActionButtonList';
 import { BlockPreview } from '../BlockPreview/BlockPreview';
 import { useFormValidation } from '@/shared/lib/hooks/validationHooks/useFormValidation/useFormValidation';
+import { useTextInput } from '@/shared/lib/hooks/useTextInput/useTextInput';
 
 interface CodeBlockEditorProps {
     className?: string;
@@ -41,7 +41,11 @@ export const CodeBlockEditor = memo((props: CodeBlockEditorProps) => {
 
     const { t } = useTranslation('articleDetails');
 
-    const { title, handleTitleChange, validConfig } = useBlockTitle();
+    const {
+        value: title,
+        handleChange: handleTitleChange,
+        validConfig,
+    } = useTextInput();
     const { isVisible: isBlockSaved, toggleVisibility: toggleBlockSaveState } =
         useToggleVisibility();
 

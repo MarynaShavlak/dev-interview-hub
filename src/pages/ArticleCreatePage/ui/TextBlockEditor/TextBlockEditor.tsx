@@ -7,15 +7,16 @@ import {
     ArticleTextBlockComponent,
 } from '@/entities/Article';
 import { MarkupHTMLCreator } from '@/shared/ui/redesigned/MarkupHTMLCreator';
-import { BlockActionButtonList } from '../BlockActionButtonList/BlockActionButtonList';
+import { BlockActionButtonList } from '@/features/BlockActionButtonList';
 import cls from '../ArticleCreatePage/ArticleCreatePage.module.scss';
 import { Input } from '@/shared/ui/redesigned/Input';
-import { useBlockTitle } from '../../lib/hooks/useBlockTitle/useBlockTitle';
 import { useEditorState } from '../../lib/hooks/useEditorState/useEditorState';
 import { useTextBlockActions } from '../../lib/hooks/useTextBlockActions/useTextBlockActions';
 import { useToggleVisibility } from '@/shared/lib/hooks/useToggleVisibility/useToggleVisibility';
 import { BlockPreview } from '../BlockPreview/BlockPreview';
 import { useFormValidation } from '@/shared/lib/hooks/validationHooks/useFormValidation/useFormValidation';
+import { useTextInput } from '@/shared/lib/hooks/useTextInput/useTextInput';
+import { TextEditorForm } from '@/widgets/TextEditorForm';
 
 interface TextBlockEditorProps {
     className?: string;
@@ -45,8 +46,11 @@ export const TextBlockEditor = memo((props: TextBlockEditorProps) => {
         showElement: showTextBlock,
     } = useToggleVisibility();
 
-    const { title, handleTitleChange, validConfig } =
-        useBlockTitle(initialTitle);
+    const {
+        value: title,
+        handleChange: handleTitleChange,
+        validConfig,
+    } = useTextInput(initialTitle);
 
     const { editorState, paragraphs, onEditorStateChange, isEmptyContent } =
         useEditorState(initialContentBlock);
@@ -59,7 +63,6 @@ export const TextBlockEditor = memo((props: TextBlockEditorProps) => {
         onEditBlock,
         deleteBlockFromArticle,
     });
-    console.log('isBlockSaved,', isBlockSaved);
 
     const handleSaveTextBlock = useCallback(() => {
         saveTextBlock();
@@ -84,32 +87,41 @@ export const TextBlockEditor = memo((props: TextBlockEditorProps) => {
         return (
             <>
                 {isBlockSaved ? (
-                    <VStack gap="16" max className={cls.blockWrap}>
-                        <Input
-                            value={title}
-                            label={t('Заголовок блоку')}
-                            labelBold
-                            gap="16"
-                            maxWidth={false}
-                            className={cls.InputName}
-                            onChange={handleTitleChange}
-                            validations={validConfig.blockTitle}
-                            maxLengthIndicator
-                            errors={blockTitleErrors}
-                        />
-                        <HStack align="end" justify="between" max>
-                            <MarkupHTMLCreator
-                                editorState={editorState}
-                                onEditorStateChange={onEditorStateChange}
-                            />
-                            <BlockActionButtonList
-                                saveBlock={handleSaveTextBlock}
-                                deleteBlock={deleteTextBlock}
-                                isSaveDisabled={isEmptyContent || hasInputError}
-                            />
-                        </HStack>
-                    </VStack>
+                    <TextEditorForm
+                        title={title}
+                        handleTitleChange={handleTitleChange}
+                        editorState={editorState}
+                        onEditorStateChange={onEditorStateChange}
+                        onSave={handleSaveTextBlock}
+                        onDelete={deleteTextBlock}
+                        isDisabled={isEmptyContent || hasInputError}
+                    />
                 ) : (
+                    // <VStack gap="16" max className={cls.blockWrap}>
+                    //     <Input
+                    //         value={title}
+                    //         label={t('Заголовок блоку')}
+                    //         labelBold
+                    //         gap="16"
+                    //         maxWidth={false}
+                    //         className={cls.InputName}
+                    //         onChange={handleTitleChange}
+                    //         validations={validConfig.blockTitle}
+                    //         maxLengthIndicator
+                    //         errors={blockTitleErrors}
+                    //     />
+                    //     <HStack align="end" justify="between" max>
+                    //         <MarkupHTMLCreator
+                    //             editorState={editorState}
+                    //             onEditorStateChange={onEditorStateChange}
+                    //         />
+                    //         <BlockActionButtonList
+                    //             saveBlock={handleSaveTextBlock}
+                    //             deleteBlock={deleteTextBlock}
+                    //             isSaveDisabled={isEmptyContent || hasInputError}
+                    //         />
+                    //     </HStack>
+                    // </VStack>
                     <BlockPreview
                         block={block}
                         editBlock={showTextBlock}

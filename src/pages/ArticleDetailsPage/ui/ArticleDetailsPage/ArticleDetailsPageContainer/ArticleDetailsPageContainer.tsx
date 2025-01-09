@@ -27,7 +27,7 @@ export const ArticleDetailsPageContainer = memo(
         const articleAuthorId = article?.user.id;
         const authedUserId = currentUserdata?.id;
 
-        console.log('article', article);
+        // console.log('article', article);
         if (!id || !article) return null;
 
         return (

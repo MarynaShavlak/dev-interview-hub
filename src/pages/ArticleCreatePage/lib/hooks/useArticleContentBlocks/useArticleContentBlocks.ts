@@ -10,16 +10,16 @@ import {
 } from '@/entities/Article';
 
 export const useArticleContentBlocks = (formData?: Article) => {
-    console.log('_____', formData);
+    // console.log('_____', formData);
     const existingBlocks = useMemo(() => {
         return formData?.blocks || [];
     }, [formData?.blocks]);
     const [blocks, setBlocks] = useState<ArticleBlock[]>(existingBlocks);
-    console.log('existingBlocks', existingBlocks);
+    // console.log('existingBlocks', existingBlocks);
     useEffect(() => {
         setBlocks(existingBlocks);
     }, [existingBlocks]);
-    console.log('blocks,', blocks);
+    // console.log('blocks,', blocks);
     const createEmptyTextBlock = useCallback(() => {
         const newTextBlock: ArticleTextBlock = {
             id: v4(),

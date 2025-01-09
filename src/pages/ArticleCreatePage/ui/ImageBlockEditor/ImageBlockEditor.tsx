@@ -8,16 +8,16 @@ import {
     ArticleImageBlockComponent,
     ArticleSection,
 } from '@/entities/Article';
-import { useBlockTitle } from '../../lib/hooks/useBlockTitle/useBlockTitle';
 import { Input } from '@/shared/ui/redesigned/Input';
 import { useToggleVisibility } from '@/shared/lib/hooks/useToggleVisibility/useToggleVisibility';
 
 import { useImageBlockActions } from '../../lib/hooks/useImageBlockActions/useImageBlockActions';
-import { BlockActionButtonList } from '../BlockActionButtonList/BlockActionButtonList';
+import { BlockActionButtonList } from '@/features/BlockActionButtonList';
 import { ImagePreview } from './ImagePreview/ImagePreview';
 import { BlockPreview } from '../BlockPreview/BlockPreview';
 import { useFormValidation } from '@/shared/lib/hooks/validationHooks/useFormValidation/useFormValidation';
 import { ImageUploadError } from './ImageUploadError/ImageUploadError';
+import { useTextInput } from '@/shared/lib/hooks/useTextInput/useTextInput';
 
 interface ImageBlockEditorProps {
     block: ArticleImageBlock;
@@ -32,7 +32,11 @@ export const ImageBlockEditor = (props: ImageBlockEditorProps) => {
 
     const { t } = useTranslation('articleDetails');
 
-    const { title, handleTitleChange, validConfig } = useBlockTitle();
+    const {
+        value: title,
+        handleChange: handleTitleChange,
+        validConfig,
+    } = useTextInput();
     const { isVisible: isBlockSaved, toggleVisibility: toggleBlockSaveState } =
         useToggleVisibility();
 
