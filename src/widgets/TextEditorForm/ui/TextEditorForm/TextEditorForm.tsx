@@ -1,9 +1,8 @@
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
+import { EditorState } from 'draft-js';
 import { HStack, VStack } from '@/shared/ui/common/Stack';
-
 import { MarkupHTMLCreator } from '@/shared/ui/redesigned/MarkupHTMLCreator';
-
 import cls from './TextEditorForm.module.scss';
 import { Input } from '@/shared/ui/redesigned/Input';
 import { BlockActionButtonList } from '@/features/BlockActionButtonList';
@@ -13,11 +12,11 @@ import { useInputValidationConfig } from '@/shared/lib/hooks/validationHooks/use
 interface TextEditorFormProps {
     title: string;
     handleTitleChange: (title: string) => void;
-    editorState: any;
-    onEditorStateChange: (state: any) => void;
+    editorState: EditorState;
+    onEditorStateChange: (state: EditorState) => void;
     onSave: () => void;
     onDelete: () => void;
-    isDisabled: boolean;
+    hasContent: boolean;
 }
 
 export const TextEditorForm = memo((props: TextEditorFormProps) => {
@@ -28,7 +27,7 @@ export const TextEditorForm = memo((props: TextEditorFormProps) => {
         onEditorStateChange,
         onSave,
         onDelete,
-        isDisabled,
+        hasContent,
     } = props;
     const { t } = useTranslation('articleDetails');
     const validConfig = useInputValidationConfig();
@@ -38,6 +37,9 @@ export const TextEditorForm = memo((props: TextEditorFormProps) => {
         },
         validConfig,
         'article',
+    );
+    const hasInputError = Object.values(blockTitleErrors).some(
+        (error) => error,
     );
 
     return (
@@ -62,7 +64,7 @@ export const TextEditorForm = memo((props: TextEditorFormProps) => {
                 <BlockActionButtonList
                     saveBlock={onSave}
                     deleteBlock={onDelete}
-                    isSaveDisabled={isDisabled}
+                    isSaveDisabled={hasContent || hasInputError}
                 />
             </HStack>
         </VStack>
