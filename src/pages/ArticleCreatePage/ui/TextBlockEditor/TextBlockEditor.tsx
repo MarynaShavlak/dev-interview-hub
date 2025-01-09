@@ -19,7 +19,8 @@ import { useFormValidation } from '@/shared/lib/hooks/validationHooks/useFormVal
 
 interface TextBlockEditorProps {
     className?: string;
-    blockId: string;
+    // blockId: string;
+    block: ArticleTextBlock;
     addBlockInArticle: (block: ArticleTextBlock) => void;
     deleteBlockFromArticle: (id: string) => void;
     onEditBlock?: (block: ArticleTextBlock) => void;
@@ -29,31 +30,45 @@ export const TextBlockEditor = memo((props: TextBlockEditorProps) => {
     const {
         addBlockInArticle,
         deleteBlockFromArticle,
-        blockId,
+        // blockId,
+        block,
         onEditBlock,
         className,
     } = props;
-    const { isVisible: isBlockSaved, toggleVisibility: toggleBlockSaveState } =
-        useToggleVisibility();
+    const initialTitle = block.title || '';
+    const initialContentBlock = block.paragraphs || [];
+    const isEditMode = Boolean(initialTitle && initialContentBlock);
+    const {
+        isVisible: isBlockSaved,
+        toggleVisibility: toggleBlockSaveState,
+        hideElement: hideTextBlock,
+        showElement: showTextBlock,
+    } = useToggleVisibility();
 
-    const { title, handleTitleChange, validConfig } = useBlockTitle();
+    const { title, handleTitleChange, validConfig } =
+        useBlockTitle(initialTitle);
+
     const { editorState, paragraphs, onEditorStateChange, isEmptyContent } =
-        useEditorState();
+        useEditorState(initialContentBlock);
     const { t } = useTranslation('articleDetails');
     const { saveTextBlock, deleteTextBlock } = useTextBlockActions({
-        blockId,
+        blockId: block.id,
         title,
         paragraphs,
         addBlockInArticle,
         onEditBlock,
         deleteBlockFromArticle,
     });
+    console.log('isBlockSaved,', isBlockSaved);
 
     const handleSaveTextBlock = useCallback(() => {
         saveTextBlock();
+        hideTextBlock();
+    }, [hideTextBlock, saveTextBlock]);
 
+    const handleEditTextBlock = useCallback(() => {
         toggleBlockSaveState();
-    }, [saveTextBlock, toggleBlockSaveState]);
+    }, [toggleBlockSaveState]);
 
     const { blockTitleErrors } = useFormValidation(
         {
@@ -65,6 +80,46 @@ export const TextBlockEditor = memo((props: TextBlockEditorProps) => {
     const hasInputError = Object.values(blockTitleErrors).some(
         (error) => error,
     );
+    if (isEditMode) {
+        return (
+            <>
+                {isBlockSaved ? (
+                    <VStack gap="16" max className={cls.blockWrap}>
+                        <Input
+                            value={title}
+                            label={t('Заголовок блоку')}
+                            labelBold
+                            gap="16"
+                            maxWidth={false}
+                            className={cls.InputName}
+                            onChange={handleTitleChange}
+                            validations={validConfig.blockTitle}
+                            maxLengthIndicator
+                            errors={blockTitleErrors}
+                        />
+                        <HStack align="end" justify="between" max>
+                            <MarkupHTMLCreator
+                                editorState={editorState}
+                                onEditorStateChange={onEditorStateChange}
+                            />
+                            <BlockActionButtonList
+                                saveBlock={handleSaveTextBlock}
+                                deleteBlock={deleteTextBlock}
+                                isSaveDisabled={isEmptyContent || hasInputError}
+                            />
+                        </HStack>
+                    </VStack>
+                ) : (
+                    <BlockPreview
+                        block={block}
+                        editBlock={showTextBlock}
+                        deleteBlock={deleteTextBlock}
+                        BlockComponent={ArticleTextBlockComponent}
+                    />
+                )}
+            </>
+        );
+    }
 
     return (
         <>
@@ -97,12 +152,12 @@ export const TextBlockEditor = memo((props: TextBlockEditorProps) => {
             ) : (
                 <BlockPreview
                     block={{
-                        id: blockId,
+                        id: block.id,
                         type: ArticleSection.TEXT,
                         paragraphs,
                         title,
                     }}
-                    editBlock={toggleBlockSaveState}
+                    editBlock={handleEditTextBlock}
                     deleteBlock={deleteTextBlock}
                     BlockComponent={ArticleTextBlockComponent}
                 />

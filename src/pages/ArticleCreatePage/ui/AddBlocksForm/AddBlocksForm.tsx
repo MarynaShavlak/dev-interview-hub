@@ -26,6 +26,7 @@ interface AddBlocksFormProps {
 }
 export const AddBlocksForm = memo((props: AddBlocksFormProps) => {
     const { index, blocks: allBlocks, blockActions } = props;
+
     const {
         createEmptyTextBlock,
         createEmptyCodeBlock,

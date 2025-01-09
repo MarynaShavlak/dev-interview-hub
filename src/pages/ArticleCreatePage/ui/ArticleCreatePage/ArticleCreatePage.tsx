@@ -10,7 +10,7 @@ import {
     ReducersList,
 } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { createArticleReducer } from '../../model/slices/createArticleSlice';
-import { TitleSubtitleForm } from '../TitleSubtitleForm/TitleSubtitleForm';
+import { ArticleMetaForm } from '../ArticleMetaForm/ArticleMetaForm';
 import { AddCategoryForm } from '../AddCategoryForm/AddCategoryForm';
 import { AddBlocksForm } from '../AddBlocksForm/AddBlocksForm';
 import { AddHeroForm } from '../AddHeroForm/AddHeroForm';
@@ -51,8 +51,8 @@ const ArticleCreatePage = memo((props: ArticleCreatePageProps) => {
         isEditMode,
         editedArticle,
     } = useArticleCreation();
-    console.log('isEditMode', isEditMode);
-    console.log('editedArticle', editedArticle);
+    // console.log('isEditMode', isEditMode);
+    // console.log('editedArticle', editedArticle);
 
     return (
         <DynamicModuleLoader reducers={reducers}>
@@ -69,7 +69,7 @@ const ArticleCreatePage = memo((props: ArticleCreatePageProps) => {
                         />
                     </HStack>
 
-                    <TitleSubtitleForm
+                    <ArticleMetaForm
                         titleIndex={1}
                         subtitleIndex={2}
                         errors={validationErrors}

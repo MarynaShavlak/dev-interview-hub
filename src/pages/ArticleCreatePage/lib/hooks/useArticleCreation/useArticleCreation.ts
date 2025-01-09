@@ -10,7 +10,7 @@ import { useArticleEditor } from '../useArticleEditor/useArticleEditor';
 import { useArticleContentBlocks } from '../useArticleContentBlocks/useArticleContentBlocks';
 import { uploadArticleImageThunk } from '../../../model/services/uploadArticleImageThunk/uploadImageThunk';
 import { createArticleThunk } from '../../../model/services/createArticleThunk/createArticleThunk';
-import { useArticleDataById } from '@/entities/Article';
+import { Article, useArticleDataById } from '@/entities/Article';
 
 export const useArticleCreation = () => {
     const validConfig = useInputValidationConfig();
@@ -50,7 +50,7 @@ export const useArticleCreation = () => {
         updateBlock,
         deleteBlock,
         deleteAllBlocks,
-    } = useArticleContentBlocks();
+    } = useArticleContentBlocks(formData || ({} as Article));
 
     const { imagePreview, error, handleImageChange, resetImage, avatarSrc } =
         useImageUploader({

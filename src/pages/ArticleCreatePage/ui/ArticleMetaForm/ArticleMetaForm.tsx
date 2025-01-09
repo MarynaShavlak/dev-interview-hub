@@ -13,7 +13,7 @@ import { useArticleEditor } from '../../lib/hooks/useArticleEditor/useArticleEdi
 import { useToggleVisibility } from '@/shared/lib/hooks/useToggleVisibility/useToggleVisibility';
 import { ValidationErrors } from '@/shared/lib/hooks/validationHooks/useInputErrors/useInputErrors';
 
-interface TitleSubtitleFormProps {
+interface ArticleMetaFormProps {
     titleIndex: number;
     subtitleIndex: number;
     errors: {
@@ -23,7 +23,7 @@ interface TitleSubtitleFormProps {
     };
 }
 
-export const TitleSubtitleForm = (props: TitleSubtitleFormProps) => {
+export const ArticleMetaForm = (props: ArticleMetaFormProps) => {
     const { titleIndex, subtitleIndex, errors } = props;
     const { t } = useTranslation('articleDetails');
 

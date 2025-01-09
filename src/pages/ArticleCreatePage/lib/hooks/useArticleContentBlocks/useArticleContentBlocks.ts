@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect, useMemo } from 'react';
 import { v4 } from 'uuid';
 import {
     ArticleTextBlock,
@@ -6,11 +6,20 @@ import {
     ArticleBlock,
     ArticleCodeBlock,
     ArticleImageBlock,
+    Article,
 } from '@/entities/Article';
 
-export const useArticleContentBlocks = () => {
-    const [blocks, setBlocks] = useState<ArticleBlock[]>([]);
-
+export const useArticleContentBlocks = (formData?: Article) => {
+    console.log('_____', formData);
+    const existingBlocks = useMemo(() => {
+        return formData?.blocks || [];
+    }, [formData?.blocks]);
+    const [blocks, setBlocks] = useState<ArticleBlock[]>(existingBlocks);
+    console.log('existingBlocks', existingBlocks);
+    useEffect(() => {
+        setBlocks(existingBlocks);
+    }, [existingBlocks]);
+    console.log('blocks,', blocks);
     const createEmptyTextBlock = useCallback(() => {
         const newTextBlock: ArticleTextBlock = {
             id: v4(),

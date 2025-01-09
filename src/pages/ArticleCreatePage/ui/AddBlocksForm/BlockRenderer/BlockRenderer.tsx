@@ -14,11 +14,13 @@ interface BlockRendererProps {
 export const BlockRenderer = (props: BlockRendererProps) => {
     const { block, addBlockInArticle, deleteBlockFromArticle, onEditBlock } =
         props;
+    // console.log('block', block);
     switch (block.type) {
         case ArticleSection.TEXT:
             return (
                 <TextBlockEditor
-                    blockId={block.id}
+                    // blockId={block.id}
+                    block={block}
                     addBlockInArticle={addBlockInArticle}
                     deleteBlockFromArticle={deleteBlockFromArticle}
                     onEditBlock={onEditBlock}
