@@ -1,12 +1,28 @@
+// const { data: article, isLoading, error } = useArticleDataById(id || '');
+// console.log(isEdit, article);
+// useEffect(() => {
+//     if (isEdit && article) {
+//         // Set article data when edit mode is enabled
+//         setArticleData(article);
+//         setEditMode(true);
+//     }
+// }, [isEdit, article, setArticleData, setEditMode]);
+// //
+
 import { useCallback, useEffect } from 'react';
 import {
     useArticleFormData,
     useArticleUploadPreview,
 } from '../../../model/selectors/getCreateArticleSelectors';
 import { useCreateArticleActions } from '../../../model/slices/createArticleSlice';
-import { ArticleBlock, useArticleDataById } from '@/entities/Article';
+import { Article, ArticleBlock } from '@/entities/Article';
 
-export const useArticleEditor = (id?: string, isEdit: boolean = false) => {
+// id?: string, isEdit: boolean = false
+
+export const useArticleEditor = (
+    editedArticle?: Article,
+    isEditMode: boolean = false,
+) => {
     const formData = useArticleFormData();
     const uploadedArticleImage = useArticleUploadPreview();
     const {
@@ -22,15 +38,14 @@ export const useArticleEditor = (id?: string, isEdit: boolean = false) => {
         setEditMode,
     } = useCreateArticleActions();
 
-    const { data: article, isLoading, error } = useArticleDataById(id || '');
+    // const { data: article, isLoading, error } = useArticleDataById(id || '');
+    // console.log(isEdit, article);
     useEffect(() => {
-        if (isEdit && article) {
-            // Set article data when edit mode is enabled
-            setArticleData(article);
+        if (isEditMode && editedArticle) {
+            setArticleData(editedArticle);
             setEditMode(true);
         }
-    }, [isEdit, article, setArticleData, setEditMode]);
-    //
+    }, [editedArticle, isEditMode, setArticleData, setEditMode]);
 
     const onFileUpload = useCallback(
         (file: File | null) => setUploadedArticleImage(file),

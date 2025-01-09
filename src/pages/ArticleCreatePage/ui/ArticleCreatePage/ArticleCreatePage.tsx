@@ -1,6 +1,5 @@
 import { useTranslation } from 'react-i18next';
 import React, { memo } from 'react';
-import { useParams } from 'react-router-dom';
 import { Page } from '@/widgets/Page';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import cls from './ArticleCreatePage.module.scss';
@@ -18,7 +17,6 @@ import { AddHeroForm } from '../AddHeroForm/AddHeroForm';
 import { ArticleCreatePageHeader } from '../ArticleCreatePageHeader/ArticleCreatePageHeader';
 import { useArticleCreation } from '../../lib/hooks/useArticleCreation/useArticleCreation';
 import { SaveArticleError } from '../SaveArticleError/SaveArticleError';
-import { useArticleDataById } from '@/entities/Article';
 
 interface ArticleCreatePageProps {
     className?: string;
@@ -30,9 +28,9 @@ const reducers: ReducersList = {
 
 const ArticleCreatePage = memo((props: ArticleCreatePageProps) => {
     // _________________
-    const { id } = useParams<{ id: string }>();
-    const isEdit = Boolean(id);
-    const { data: article, isLoading, error } = useArticleDataById(id || '');
+    // const { id } = useParams<{ id: string }>();
+    // const isEdit = Boolean(id);
+    // const { data: article, isLoading, error } = useArticleDataById(id || '');
 
     // _____________________
     const { className } = props;
@@ -45,11 +43,16 @@ const ArticleCreatePage = memo((props: ArticleCreatePageProps) => {
         validationErrors,
         handleHeroImageChange,
         heroPreview,
+        heroImage,
         resetHeroImage,
         heroFileTypeError,
         blocks,
         blockActions,
+        isEditMode,
+        editedArticle,
     } = useArticleCreation();
+    console.log('isEditMode', isEditMode);
+    console.log('editedArticle', editedArticle);
 
     return (
         <DynamicModuleLoader reducers={reducers}>
@@ -70,13 +73,15 @@ const ArticleCreatePage = memo((props: ArticleCreatePageProps) => {
                         titleIndex={1}
                         subtitleIndex={2}
                         errors={validationErrors}
+                        isEditMode={isEditMode}
+                        editedArticle={editedArticle}
                     />
                     <AddHeroForm
                         index={3}
                         error={heroFileTypeError}
                         handleImageChange={handleHeroImageChange}
                         resetImage={resetHeroImage}
-                        imagePreview={heroPreview}
+                        imagePreview={heroImage || heroPreview}
                     />
                     <AddCategoryForm index={4} />
                     <AddBlocksForm

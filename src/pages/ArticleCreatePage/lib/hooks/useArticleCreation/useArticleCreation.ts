@@ -1,5 +1,5 @@
 import { useCallback, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useFormValidation } from '@/shared/lib/hooks/validationHooks/useFormValidation/useFormValidation';
 import { useInputValidationConfig } from '@/shared/lib/hooks/validationHooks/useInputValidationConfig/useInputValidationConfig';
 import { useImageUploader } from '@/shared/lib/hooks/useImageUploader/useImageUploader';
@@ -10,19 +10,26 @@ import { useArticleEditor } from '../useArticleEditor/useArticleEditor';
 import { useArticleContentBlocks } from '../useArticleContentBlocks/useArticleContentBlocks';
 import { uploadArticleImageThunk } from '../../../model/services/uploadArticleImageThunk/uploadImageThunk';
 import { createArticleThunk } from '../../../model/services/createArticleThunk/createArticleThunk';
+import { useArticleDataById } from '@/entities/Article';
 
 export const useArticleCreation = () => {
     const validConfig = useInputValidationConfig();
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
     const [saveError, setSaveError] = useState<string | null>(null);
+
+    const { id } = useParams<{ id: string }>();
+    const isEditMode = Boolean(id);
+    const { data: editedArticle } = useArticleDataById(id || '');
+    const initialAvatar = isEditMode ? editedArticle?.img : '';
+
     const {
         formData,
         uploadedArticleImage,
         onFileUpload,
         onResetArticle,
         onChangeHeroImage,
-    } = useArticleEditor();
+    } = useArticleEditor(editedArticle, isEditMode);
 
     const { hasErrors, titleErrors, subtitleTextErrors, subtitleLinkErrors } =
         useFormValidation(
@@ -45,11 +52,13 @@ export const useArticleCreation = () => {
         deleteAllBlocks,
     } = useArticleContentBlocks();
 
-    const { imagePreview, error, handleImageChange, resetImage } =
+    const { imagePreview, error, handleImageChange, resetImage, avatarSrc } =
         useImageUploader({
-            initialAvatar: '',
+            // initialAvatar: '',
+            initialAvatar: initialAvatar || '',
             onFileUpload,
         });
+    // console.log('avatar', avatarSrc);
 
     const onCancelCreate = useCallback(() => {
         onResetArticle();
@@ -99,6 +108,7 @@ export const useArticleCreation = () => {
         },
         handleHeroImageChange: handleImageChange,
         heroPreview: imagePreview,
+        heroImage: avatarSrc,
         resetHeroImage: resetImage,
         heroFileTypeError: error,
         blocks,
@@ -111,5 +121,7 @@ export const useArticleCreation = () => {
             deleteBlock,
             deleteAllBlocks,
         },
+        isEditMode,
+        editedArticle,
     };
 };

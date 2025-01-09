@@ -1,6 +1,5 @@
 import React, { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useParams } from 'react-router-dom';
 import { Input } from '@/shared/ui/redesigned/Input';
 import { Button } from '@/shared/ui/redesigned/Button';
 import { Icon } from '@/shared/ui/redesigned/Icon';
@@ -13,6 +12,7 @@ import { useInputValidationConfig } from '@/shared/lib/hooks/validationHooks/use
 import { useArticleEditor } from '../../lib/hooks/useArticleEditor/useArticleEditor';
 import { useToggleVisibility } from '@/shared/lib/hooks/useToggleVisibility/useToggleVisibility';
 import { ValidationErrors } from '@/shared/lib/hooks/validationHooks/useInputErrors/useInputErrors';
+import { Article } from '@/entities/Article';
 
 interface TitleSubtitleFormProps {
     titleIndex: number;
@@ -22,23 +22,24 @@ interface TitleSubtitleFormProps {
         subtitleTextErrors: ValidationErrors;
         subtitleLinkErrors: ValidationErrors;
     };
+    editedArticle?: Article;
+    isEditMode?: boolean;
 }
 
 export const TitleSubtitleForm = (props: TitleSubtitleFormProps) => {
-    const { titleIndex, subtitleIndex, errors } = props;
+    const { titleIndex, subtitleIndex, errors, editedArticle, isEditMode } =
+        props;
     const { t } = useTranslation('articleDetails');
     const validConfig = useInputValidationConfig();
     const { isVisible: isLinkInputAdded, toggleVisibility: toggleLinkInput } =
         useToggleVisibility();
-    const { id } = useParams<{ id: string }>();
-    const isEdit = Boolean(id);
 
     const {
         formData,
         onChangeTitle,
         onChangeSubtitleText,
         onChangeSubtitleLink,
-    } = useArticleEditor(id, isEdit);
+    } = useArticleEditor();
 
     const deleteSubtitleLink = useCallback(() => {
         onChangeSubtitleLink('');
