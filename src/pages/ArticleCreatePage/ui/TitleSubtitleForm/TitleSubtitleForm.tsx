@@ -1,5 +1,6 @@
 import React, { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useParams } from 'react-router-dom';
 import { Input } from '@/shared/ui/redesigned/Input';
 import { Button } from '@/shared/ui/redesigned/Button';
 import { Icon } from '@/shared/ui/redesigned/Icon';
@@ -29,13 +30,15 @@ export const TitleSubtitleForm = (props: TitleSubtitleFormProps) => {
     const validConfig = useInputValidationConfig();
     const { isVisible: isLinkInputAdded, toggleVisibility: toggleLinkInput } =
         useToggleVisibility();
+    const { id } = useParams<{ id: string }>();
+    const isEdit = Boolean(id);
 
     const {
         formData,
         onChangeTitle,
         onChangeSubtitleText,
         onChangeSubtitleLink,
-    } = useArticleEditor();
+    } = useArticleEditor(id, isEdit);
 
     const deleteSubtitleLink = useCallback(() => {
         onChangeSubtitleLink('');

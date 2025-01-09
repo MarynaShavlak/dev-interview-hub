@@ -17,6 +17,7 @@ const initialState: CreateArticleSchema = {
         category: [],
         blocks: [],
     },
+    isEdit: false,
 };
 
 export const createArticleSlice = buildSlice({
@@ -83,6 +84,12 @@ export const createArticleSlice = buildSlice({
         resetArticle: (state) => {
             state.uploadedArticleImage = initialState.uploadedArticleImage;
             state.form = initialState.form;
+        },
+        setEditMode: (state, action: PayloadAction<boolean>) => {
+            state.isEdit = action.payload;
+        },
+        setArticleData: (state, action: PayloadAction<Article>) => {
+            state.form = { ...state.form, ...action.payload };
         },
     },
 });

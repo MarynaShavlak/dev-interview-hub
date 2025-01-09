@@ -6,10 +6,7 @@ import {
     ArticleDetailsPage,
     ArticleDetailsPageSkeleton,
 } from '@/pages/ArticleDetailsPage';
-import {
-    ArticleEditPage,
-    ArticleEditPageSkeleton,
-} from '@/pages/ArticleEditPage';
+import { ArticleEditPageSkeleton } from '@/pages/ArticleEditPage';
 import { ArticlesPage, ArticlesPageSkeleton } from '@/pages/ArticlesPage';
 import { ForbiddenPage, ForbiddenPageSkeleton } from '@/pages/ForbiddenPage';
 import { MainPage, MainPageSkeleton } from '@/pages/MainPage';
@@ -78,7 +75,7 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
     },
     [AppRoutes.ARTICLE_EDIT]: {
         path: getRouteArticleEdit(':id'),
-        element: <ArticleEditPage />,
+        element: <ArticleCreatePage />,
         authOnly: true,
         skeleton: <ArticleEditPageSkeleton />,
     },
