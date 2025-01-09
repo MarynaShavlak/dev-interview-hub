@@ -44,7 +44,7 @@ export const EditableProfileCardError = memo(
 
         const validateErrorTranslates = {
             [ValidateProfileError.SERVER_ERROR]: t(
-                'Помилка сервера при збереженні даннних',
+                'Помилка сервера при збереженні данних',
             ),
             [ValidateProfileError.NO_DATA]: t('Дані не вказано'),
             [ValidateProfileError.INCORRECT_USER_DATA]: t(

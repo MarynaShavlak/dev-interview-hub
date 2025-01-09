@@ -16,6 +16,7 @@ import { AddBlocksForm } from '../AddBlocksForm/AddBlocksForm';
 import { AddHeroForm } from '../AddHeroForm/AddHeroForm';
 import { ArticleCreatePageHeader } from '../ArticleCreatePageHeader/ArticleCreatePageHeader';
 import { useArticleCreation } from '../../lib/hooks/useArticleCreation/useArticleCreation';
+import { SaveArticleError } from '../SaveArticleError/SaveArticleError';
 
 interface ArticleCreatePageProps {
     className?: string;
@@ -29,7 +30,8 @@ const ArticleCreatePage = memo((props: ArticleCreatePageProps) => {
     const { className } = props;
     const { t } = useTranslation('articleDetails');
     const {
-        hasErrors,
+        hasErrors: hasValidationErrors,
+        saveError,
         onSaveCreate,
         onCancelCreate,
         validationErrors,
@@ -47,10 +49,11 @@ const ArticleCreatePage = memo((props: ArticleCreatePageProps) => {
                 className={classNames(cls.ArticleCreatePage, {}, [className])}
             >
                 <VStack gap="24" max>
+                    {saveError && <SaveArticleError />}
                     <HStack justify="between" max className={cls.pageTitleWrap}>
                         <Text title={t('Створення нової статті')} size="l" />
                         <ArticleCreatePageHeader
-                            hasErrors={hasErrors}
+                            hasErrors={hasValidationErrors}
                             onCancel={onCancelCreate}
                             onSave={onSaveCreate}
                         />

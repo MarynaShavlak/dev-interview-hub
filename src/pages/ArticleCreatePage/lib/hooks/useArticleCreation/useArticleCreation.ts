@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useFormValidation } from '@/shared/lib/hooks/validationHooks/useFormValidation/useFormValidation';
 import { useInputValidationConfig } from '@/shared/lib/hooks/validationHooks/useInputValidationConfig/useInputValidationConfig';
@@ -15,6 +15,7 @@ export const useArticleCreation = () => {
     const validConfig = useInputValidationConfig();
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
+    const [saveError, setSaveError] = useState<string | null>(null);
     const {
         formData,
         uploadedArticleImage,
@@ -57,21 +58,27 @@ export const useArticleCreation = () => {
     }, [deleteAllBlocks, onResetArticle, resetImage]);
 
     const onSaveCreate = useCallback(async () => {
-        if (uploadedArticleImage) {
-            const url = await dispatch(
-                uploadArticleImageThunk(uploadedArticleImage),
-            ).unwrap();
-            onChangeHeroImage(url);
+        try {
+            setSaveError(null);
+            if (uploadedArticleImage) {
+                const url = await dispatch(
+                    uploadArticleImageThunk(uploadedArticleImage),
+                ).unwrap();
+                onChangeHeroImage(url);
+            } else {
+                onChangeHeroImage('');
+            }
+
+            const savedArticle = await dispatch(createArticleThunk()).unwrap();
+            if (savedArticle?.id) {
+                navigate(getRouteArticleDetails(savedArticle.id));
+            }
+
+            onCancelCreate();
+        } catch (error: any) {
+            console.error('Error saving article:', error);
+            setSaveError(error.message || 'An unexpected error occurred.');
         }
-        if (uploadedArticleImage == null) {
-            onChangeHeroImage('');
-        }
-        const savedArticle = await dispatch(createArticleThunk()).unwrap();
-        if (savedArticle?.id) {
-            navigate(getRouteArticleDetails(savedArticle.id));
-        }
-        console.log('save');
-        onCancelCreate();
     }, [
         dispatch,
         navigate,
@@ -81,9 +88,9 @@ export const useArticleCreation = () => {
     ]);
 
     return {
-        // formData,
         hasErrors,
         onCancelCreate,
+        saveError,
         onSaveCreate,
         validationErrors: {
             titleErrors,
