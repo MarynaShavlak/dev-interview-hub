@@ -36,7 +36,7 @@ export const AddArticleBlocksButtons = memo(
                 <Button
                     variant="filled"
                     addonLeft={<Icon Svg={AddIcon} width={16} height={16} />}
-                    className={cls.addLinkButton}
+                    className={cls.addButton}
                     onClick={onAddTextBlockBtnClick}
                 >
                     <span>
@@ -48,7 +48,7 @@ export const AddArticleBlocksButtons = memo(
                 <Button
                     variant="filled"
                     addonLeft={<Icon Svg={AddIcon} width={16} height={16} />}
-                    className={cls.addLinkButton}
+                    className={cls.addButton}
                     onClick={onAddCodeBlockBtnClick}
                 >
                     <span>
@@ -60,7 +60,7 @@ export const AddArticleBlocksButtons = memo(
                 <Button
                     variant="filled"
                     addonLeft={<Icon Svg={AddIcon} width={16} height={16} />}
-                    className={cls.addLinkButton}
+                    className={cls.addButton}
                     onClick={onAddImageBlockBtnClick}
                 >
                     <span>

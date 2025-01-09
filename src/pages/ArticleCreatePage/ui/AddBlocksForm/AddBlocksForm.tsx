@@ -62,7 +62,6 @@ export const AddBlocksForm = memo((props: AddBlocksFormProps) => {
                 <div ref={triggerRef} />
                 <div ref={elementRef} className={cls.btnList}>
                     <AddArticleBlocksButtons
-                        className={cls.example}
                         direction="row"
                         onAddTextBlockBtnClick={createEmptyTextBlock}
                         onAddCodeBlockBtnClick={createEmptyCodeBlock}

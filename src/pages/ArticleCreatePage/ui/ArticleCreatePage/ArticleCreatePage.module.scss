@@ -1,6 +1,14 @@
 .ArticleCreatePage {
-    padding: 10px;
+  padding: 10px;
+  padding-bottom: 20px;
+
   min-width: 844px;
+
+  //flex-grow: 1;
+  ////padding: 20px 20px 20px 40px;
+  //height: calc(100vh - var(--navbar-height));
+  //overflow-y: auto;
+  //flex-shrink: 100;
 
 }
 
@@ -12,10 +20,14 @@
 
 .addLinkButton {
    align-self: end;
-  width:178px;
+  min-width:178px;
+}
+
+.addButton {
+  width:180px;
 }
 .deleteBtn {
-  width: 150px;
+  width: 145px;
 }
 
 
