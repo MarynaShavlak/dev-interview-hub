@@ -89,7 +89,7 @@ export const createArticleSlice = buildSlice({
             state.isEdit = action.payload;
         },
         setArticleData: (state, action: PayloadAction<Article>) => {
-            state.form = { ...state.form, ...action.payload };
+            state.form = action.payload;
         },
     },
 });

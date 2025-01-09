@@ -10,8 +10,8 @@ import { useCallback, useState } from 'react';
 //     return { isVisible, toggleVisibility };
 // };
 
-export const useToggleVisibility = () => {
-    const [isVisible, setIsVisible] = useState<boolean>(false);
+export const useToggleVisibility = (isVisibleEl = false) => {
+    const [isVisible, setIsVisible] = useState<boolean>(isVisibleEl);
     const [clickCount, setClickCount] = useState<number>(0);
 
     const toggleVisibility = useCallback(() => {

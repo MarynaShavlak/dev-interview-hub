@@ -73,8 +73,6 @@ const ArticleCreatePage = memo((props: ArticleCreatePageProps) => {
                         titleIndex={1}
                         subtitleIndex={2}
                         errors={validationErrors}
-                        isEditMode={isEditMode}
-                        editedArticle={editedArticle}
                     />
                     <AddHeroForm
                         index={3}

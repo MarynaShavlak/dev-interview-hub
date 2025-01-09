@@ -12,7 +12,6 @@ import { useInputValidationConfig } from '@/shared/lib/hooks/validationHooks/use
 import { useArticleEditor } from '../../lib/hooks/useArticleEditor/useArticleEditor';
 import { useToggleVisibility } from '@/shared/lib/hooks/useToggleVisibility/useToggleVisibility';
 import { ValidationErrors } from '@/shared/lib/hooks/validationHooks/useInputErrors/useInputErrors';
-import { Article } from '@/entities/Article';
 
 interface TitleSubtitleFormProps {
     titleIndex: number;
@@ -22,17 +21,13 @@ interface TitleSubtitleFormProps {
         subtitleTextErrors: ValidationErrors;
         subtitleLinkErrors: ValidationErrors;
     };
-    editedArticle?: Article;
-    isEditMode?: boolean;
 }
 
 export const TitleSubtitleForm = (props: TitleSubtitleFormProps) => {
-    const { titleIndex, subtitleIndex, errors, editedArticle, isEditMode } =
-        props;
+    const { titleIndex, subtitleIndex, errors } = props;
     const { t } = useTranslation('articleDetails');
+
     const validConfig = useInputValidationConfig();
-    const { isVisible: isLinkInputAdded, toggleVisibility: toggleLinkInput } =
-        useToggleVisibility();
 
     const {
         formData,
@@ -41,27 +36,48 @@ export const TitleSubtitleForm = (props: TitleSubtitleFormProps) => {
         onChangeSubtitleLink,
     } = useArticleEditor();
 
+    const isLinkPresent = Boolean(formData?.subtitle.link);
+    const { isVisible: isLinkInputAdded, toggleVisibility: toggleLinkInput } =
+        useToggleVisibility(isLinkPresent);
+
     const deleteSubtitleLink = useCallback(() => {
         onChangeSubtitleLink('');
         toggleLinkInput();
     }, [onChangeSubtitleLink, toggleLinkInput]);
 
-    const linkButtonText = isLinkInputAdded
+    const handleLinkButtonClick = () => {
+        if (isLinkPresent) {
+            deleteSubtitleLink();
+            toggleLinkInput();
+        } else {
+            toggleLinkInput();
+        }
+    };
+
+    const shouldRenderLinkInput = isLinkInputAdded || isLinkPresent;
+    const shouldShowAddIcon = !isLinkInputAdded && !isLinkPresent;
+    const linkButtonText = shouldRenderLinkInput
         ? t('Видалити посилання')
         : t('Додати посилання');
 
+    if (!formData) {
+        return null;
+    }
+    const {
+        title,
+        subtitle: { text, link },
+    } = formData;
     return (
         <VStack gap="24">
             <HStack gap="16" align="start" max>
                 <OrderCard index={titleIndex} />
 
                 <Input
-                    value={formData?.title || ''}
+                    value={title || ''}
                     label={t('Заголовок статті')}
                     labelBold
                     gap="16"
                     maxWidth
-                    // className={cls.InputName}
                     onChange={onChangeTitle}
                     validations={validConfig.title}
                     maxLengthIndicator
@@ -72,7 +88,7 @@ export const TitleSubtitleForm = (props: TitleSubtitleFormProps) => {
                 <OrderCard index={subtitleIndex} />
                 <VStack gap="16">
                     <Input
-                        value={formData?.subtitle.text || ''}
+                        value={text || ''}
                         label={t('Підзаголовок статті')}
                         labelBold
                         gap="16"
@@ -83,9 +99,10 @@ export const TitleSubtitleForm = (props: TitleSubtitleFormProps) => {
                         errors={errors.subtitleTextErrors}
                         maxLengthIndicator
                     />
-                    {isLinkInputAdded && (
+
+                    {shouldRenderLinkInput && (
                         <Input
-                            value={formData?.subtitle.link || ''}
+                            value={link || ''}
                             label={t('Посилання')}
                             labelBold
                             gap="16"
@@ -101,12 +118,12 @@ export const TitleSubtitleForm = (props: TitleSubtitleFormProps) => {
                 <Button
                     variant="filled"
                     addonLeft={
-                        !isLinkInputAdded && (
+                        shouldShowAddIcon && (
                             <Icon Svg={AddIcon} width={16} height={16} />
                         )
                     }
                     className={cls.addLinkButton}
-                    onClick={deleteSubtitleLink}
+                    onClick={handleLinkButtonClick}
                 >
                     {linkButtonText}
                 </Button>
