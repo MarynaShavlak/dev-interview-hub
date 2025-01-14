@@ -1,6 +1,7 @@
 import { useCallback } from 'react';
-import { ArticleSection, ArticleTextBlock } from '@/entities/Article';
+import { ArticleTextBlock } from '@/entities/Article';
 import { useToggleVisibility } from '@/shared/lib/hooks/useToggleVisibility/useToggleVisibility';
+import { useTextBlockActions } from '../useTextBlockActions/useTextBlockActions';
 
 interface UseTextBlockOperationsProps {
     blockId: string;
@@ -19,32 +20,32 @@ export const useTextBlockOperations = ({
     deleteBlockFromArticle,
     onEditBlock,
 }: UseTextBlockOperationsProps) => {
-    const { isVisible: isEditing, toggleVisibility: toggleEditMode } =
-        useToggleVisibility();
+    const {
+        isVisible: isEditing,
+        toggleVisibility: toggleEditing,
+        hideElement: closeEditing,
+        showElement: openEditing,
+    } = useToggleVisibility();
 
-    const saveTextBlock = useCallback(() => {
-        const updatedBlock: ArticleTextBlock = {
-            id: blockId,
-            type: ArticleSection.TEXT,
-            title,
-            paragraphs,
-        };
+    const { saveTextBlock, deleteTextBlock } = useTextBlockActions({
+        blockId,
+        title,
+        paragraphs,
+        addBlockInArticle,
+        onEditBlock,
+        deleteBlockFromArticle,
+    });
 
-        if (onEditBlock) {
-            onEditBlock(updatedBlock);
-        } else {
-            addBlockInArticle(updatedBlock);
-        }
-    }, [blockId, title, paragraphs, addBlockInArticle, onEditBlock]);
-
-    const deleteTextBlock = useCallback(() => {
-        deleteBlockFromArticle(blockId);
-    }, [blockId, deleteBlockFromArticle]);
+    const handleSaveTextBlock = useCallback(() => {
+        saveTextBlock();
+        closeEditing();
+    }, [closeEditing, saveTextBlock]);
 
     return {
         isEditing,
-        toggleEditMode,
-        saveTextBlock,
-        deleteTextBlock,
+        handleEditTextBlock: toggleEditing,
+        openEditing,
+        handleSaveTextBlock,
+        handleDeleteTextBlock: deleteTextBlock,
     };
 };

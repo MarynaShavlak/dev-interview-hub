@@ -1,14 +1,13 @@
-import React, { memo, useCallback } from 'react';
+import React, { memo } from 'react';
 import {
     ArticleSection,
     ArticleTextBlock,
     ArticleTextBlockComponent,
 } from '@/entities/Article';
-import { useTextBlockActions } from '../../lib/hooks/useTextBlockActions/useTextBlockActions';
-import { useToggleVisibility } from '@/shared/lib/hooks/useToggleVisibility/useToggleVisibility';
 import { BlockPreview } from '../BlockPreview/BlockPreview';
 import { TextEditorForm } from '@/widgets/TextEditorForm';
 import { useTextBlockState } from '../../lib/hooks/useTextBlockState/useTextBlockState';
+import { useTextBlockOperations } from '../../lib/hooks/useTextBlockOperations/useTextBlockOperations';
 
 interface TextBlockEditorProps {
     className?: string;
@@ -31,12 +30,7 @@ export const TextBlockEditor = memo((props: TextBlockEditorProps) => {
     const initialTitle = block.title || '';
     const initialParagraphs = block.paragraphs || [];
     const isEditMode = Boolean(initialTitle && initialParagraphs);
-    const {
-        isVisible: isBlockSaved,
-        toggleVisibility: toggleBlockSaveState,
-        hideElement: hideTextBlock,
-        showElement: showTextBlock,
-    } = useToggleVisibility();
+
     const {
         title,
         handleTitleChange,
@@ -49,42 +43,39 @@ export const TextBlockEditor = memo((props: TextBlockEditorProps) => {
         initialParagraphs,
     });
 
-    const { saveTextBlock, deleteTextBlock } = useTextBlockActions({
+    const {
+        isEditing,
+        handleEditTextBlock,
+        openEditing,
+        handleSaveTextBlock,
+        handleDeleteTextBlock,
+    } = useTextBlockOperations({
         blockId: block.id,
         title,
         paragraphs,
         addBlockInArticle,
-        onEditBlock,
         deleteBlockFromArticle,
+        onEditBlock,
     });
-
-    const handleSaveTextBlock = useCallback(() => {
-        saveTextBlock();
-        hideTextBlock();
-    }, [hideTextBlock, saveTextBlock]);
-
-    const handleEditTextBlock = useCallback(() => {
-        toggleBlockSaveState();
-    }, [toggleBlockSaveState]);
 
     if (isEditMode) {
         return (
             <>
-                {isBlockSaved ? (
+                {isEditing ? (
                     <TextEditorForm
                         title={title}
                         handleTitleChange={handleTitleChange}
                         editorState={editorState}
                         onEditorStateChange={onEditorStateChange}
                         onSave={handleSaveTextBlock}
-                        onDelete={deleteTextBlock}
+                        onDelete={handleDeleteTextBlock}
                         hasContent={isEmptyContent}
                     />
                 ) : (
                     <BlockPreview
                         block={block}
-                        editBlock={showTextBlock}
-                        deleteBlock={deleteTextBlock}
+                        editBlock={openEditing}
+                        deleteBlock={handleDeleteTextBlock}
                         BlockComponent={ArticleTextBlockComponent}
                     />
                 )}
@@ -94,14 +85,14 @@ export const TextBlockEditor = memo((props: TextBlockEditorProps) => {
 
     return (
         <>
-            {!isBlockSaved ? (
+            {!isEditing ? (
                 <TextEditorForm
                     title={title}
                     handleTitleChange={handleTitleChange}
                     editorState={editorState}
                     onEditorStateChange={onEditorStateChange}
                     onSave={handleSaveTextBlock}
-                    onDelete={deleteTextBlock}
+                    onDelete={handleDeleteTextBlock}
                     hasContent={isEmptyContent}
                 />
             ) : (
@@ -113,7 +104,7 @@ export const TextBlockEditor = memo((props: TextBlockEditorProps) => {
                         title,
                     }}
                     editBlock={handleEditTextBlock}
-                    deleteBlock={deleteTextBlock}
+                    deleteBlock={handleDeleteTextBlock}
                     BlockComponent={ArticleTextBlockComponent}
                 />
             )}
