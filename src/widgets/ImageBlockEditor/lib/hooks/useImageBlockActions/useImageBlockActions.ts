@@ -16,7 +16,6 @@ interface UseCodeBlockActionsParams {
 
 export const useImageBlockActions = ({
     blockId,
-
     title,
     addBlockInArticle,
     onEditBlock,
@@ -77,9 +76,16 @@ export const useImageBlockActions = ({
         }
     }, [deleteBlockFromArticle, blockId, onDeleteBlock]);
 
+    const resetUploadError = useCallback(() => {
+        if (uploadError) {
+            setUploadError(null);
+        }
+    }, [uploadError]);
+
     return {
         saveImageBlock: saveBlock,
         deleteImageBlock: deleteBlock,
         uploadError,
+        resetUploadError,
     };
 };

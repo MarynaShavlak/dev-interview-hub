@@ -26,7 +26,7 @@ export const CodeBlockEditor = memo((props: CodeBlockEditorProps) => {
         handleTitleChange,
         code,
         handleCodeChange,
-        isEmptyContent: hasContent,
+        isEmptyContent: hasNoContent,
     } = useCodeBlockState({
         initialTitle,
         initialCode,
@@ -61,7 +61,7 @@ export const CodeBlockEditor = memo((props: CodeBlockEditorProps) => {
         handleTitleChange,
         code,
         onCodeChange: handleCodeChange,
-        hasContent,
+        hasNoContent,
         onSave: handleSaveCodeBlock,
     };
 

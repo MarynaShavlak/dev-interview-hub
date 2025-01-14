@@ -24,7 +24,7 @@ export const TextBlockEditor = memo((props: TextBlockEditorProps) => {
         editorState,
         paragraphs,
         onEditorStateChange,
-        isEmptyContent: hasContent,
+        isEmptyContent: hasNoContent,
     } = useTextBlockState({
         initialTitle,
         initialParagraphs,
@@ -57,7 +57,7 @@ export const TextBlockEditor = memo((props: TextBlockEditorProps) => {
     const formProps = {
         title,
         editorState,
-        hasContent,
+        hasNoContent,
         handleTitleChange,
         onEditorStateChange,
         onSave: handleSaveTextBlock,

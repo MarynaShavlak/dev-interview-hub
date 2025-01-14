@@ -1,24 +1,11 @@
-import { useTranslation } from 'react-i18next';
-import React, { useCallback } from 'react';
-import { useImageUploader } from '@/shared/lib/hooks/useImageUploader/useImageUploader';
-import { HStack, VStack } from '@/shared/ui/common/Stack';
-import cls from './ImageBlockEditor.module.scss';
-import {
-    ArticleImageBlock,
-    ArticleImageBlockComponent,
-    ArticleSection,
-    ArticleBlockPreview,
-} from '@/entities/Article';
-import { Input } from '@/shared/ui/redesigned/Input';
-import { useToggleVisibility } from '@/shared/lib/hooks/useToggleVisibility/useToggleVisibility';
+import React from 'react';
+import { ArticleImageBlock, ArticleSection } from '@/entities/Article';
 
-import { useImageBlockActions } from '../../lib/hooks/useImageBlockActions/useImageBlockActions';
-import { ImagePreview } from '../ImagePreview/ImagePreview';
-import { useFormValidation } from '@/shared/lib/hooks/validationHooks/useFormValidation/useFormValidation';
 import { ImageUploadError } from '../ImageUploadError/ImageUploadError';
-import { useTextInput } from '@/shared/lib/hooks/useTextInput/useTextInput';
-import AddIcon from '@/shared/assets/icons/plus.svg';
-import { ActionButtonList } from '@/shared/ui/redesigned/ActionButtonList';
+import { useImageBlockState } from '../../lib/hooks/useImageBlockState/useImageBlockState';
+
+import { useImageBlockOperations } from '../../lib/hooks/useImageBlockOperations/useImageBlockOperations';
+import { ImageBlockDisplay } from '../ImageBlockDisplay/ImageBlockDisplay';
 
 interface ImageBlockEditorProps {
     block: ArticleImageBlock;
@@ -31,113 +18,77 @@ export const ImageBlockEditor = (props: ImageBlockEditorProps) => {
     const { block, addBlockInArticle, deleteBlockFromArticle, onEditBlock } =
         props;
 
-    const { t } = useTranslation('articleDetails');
-
+    const initialTitle = block.title || '';
+    const initialAvatar = block.src || '';
+    const isEditArticlePage = Boolean(initialTitle && initialAvatar);
     const {
-        value: title,
-        handleChange: handleTitleChange,
-        validConfig,
-    } = useTextInput();
-    const { isVisible: isBlockSaved, toggleVisibility: toggleBlockSaveState } =
-        useToggleVisibility();
-
-    const {
+        title,
+        handleTitleChange,
+        isEmptyContent: hasNoContent,
         imagePreview,
-        error: imageTypeError,
+        imageTypeError,
         handleImageChange,
         resetImage,
         selectedImage,
-    } = useImageUploader({
-        initialAvatar: block.src,
+    } = useImageBlockState({
+        initialTitle,
+        initialAvatar,
     });
-    const isEmptyContent = !imagePreview || imagePreview.length === 0;
 
-    const { saveImageBlock, deleteImageBlock, uploadError } =
-        useImageBlockActions({
-            blockId: block.id,
-            title,
-            src: block.src,
-            addBlockInArticle,
-            onEditBlock,
-            deleteBlockFromArticle,
-            selectedImage,
-        });
+    const {
+        isEditModeActive,
+        toggleEditMode,
+        activateEditMode,
+        handleDeleteImageBlock,
+        handleSaveImageBlock,
+        uploadError,
+        resetUploadError,
+    } = useImageBlockOperations({
+        blockId: block.id,
+        title,
+        src: initialAvatar,
+        addBlockInArticle,
+        deleteBlockFromArticle,
+        onEditBlock,
+        selectedImage,
+    });
 
-    const { blockTitleRequiredErrors } = useFormValidation(
-        {
-            blockTitle: title,
-        },
-        validConfig,
-        'article',
-    );
-    const hasInputError = Object.values(blockTitleRequiredErrors).some(
-        (error) => error,
-    );
+    const currentBlockData: ArticleImageBlock = isEditArticlePage
+        ? block
+        : {
+              id: block.id,
+              type: ArticleSection.IMAGE,
+              src: initialAvatar,
+              title,
+          };
+    const hasNoValidImage = hasNoContent || !!imageTypeError;
 
-    const handleSaveImageBlock = useCallback(async () => {
-        await saveImageBlock();
-        toggleBlockSaveState();
-    }, [saveImageBlock, toggleBlockSaveState]);
+    const formProps = {
+        title,
+        handleTitleChange,
+        onSave: handleSaveImageBlock,
+        imagePreview,
+        imageTypeError,
+        handleImageChange,
+        resetImage,
+        hasNoValidImage,
+    };
 
-    if (!isBlockSaved) {
+    const viewerProps = {
+        editBlock: isEditArticlePage ? activateEditMode : toggleEditMode,
+        block: currentBlockData,
+    };
+
+    if (!uploadError) {
         return (
-            <VStack justify="center" align="center" max>
-                <VStack gap="16" max>
-                    <Input
-                        value={title}
-                        label={t('Назва зображення')}
-                        labelBold
-                        gap="16"
-                        maxWidth={false}
-                        className={cls.InputName}
-                        onChange={handleTitleChange}
-                        validations={validConfig.blockTitleRequired}
-                        maxLengthIndicator
-                        errors={blockTitleRequiredErrors}
-                    />
-                    <HStack gap="16" align="end" justify="between" max>
-                        <ImagePreview
-                            imagePreview={imagePreview}
-                            handleImageChange={handleImageChange}
-                            resetImage={resetImage}
-                            error={imageTypeError}
-                            title={title}
-                        />
-                        <ActionButtonList
-                            successAction={{
-                                label: t('Зберегти'),
-                                onClick: handleSaveImageBlock,
-                                icon: AddIcon,
-                                disabled:
-                                    isEmptyContent ||
-                                    hasInputError ||
-                                    !!imageTypeError,
-                            }}
-                            cancelAction={{
-                                label: t('Видалити'),
-                                onClick: deleteImageBlock,
-                            }}
-                        />
-                    </HStack>
-                </VStack>
-            </VStack>
+            <ImageBlockDisplay
+                isEditArticlePage={isEditArticlePage}
+                isEditing={isEditModeActive}
+                formProps={formProps}
+                onDelete={handleDeleteImageBlock}
+                viewerProps={viewerProps}
+            />
         );
     }
-    if (uploadError) {
-        return <ImageUploadError onRetry={toggleBlockSaveState} />;
-    }
-
-    return (
-        <ArticleBlockPreview
-            block={{
-                id: block.id,
-                type: ArticleSection.IMAGE,
-                src: block.src,
-                title,
-            }}
-            editBlock={toggleBlockSaveState}
-            deleteBlock={deleteImageBlock}
-            BlockComponent={ArticleImageBlockComponent}
-        />
-    );
+    return <ImageUploadError onRetry={resetUploadError} />;
 };

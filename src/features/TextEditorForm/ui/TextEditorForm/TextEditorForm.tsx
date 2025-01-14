@@ -17,7 +17,7 @@ export interface TextEditorFormProps {
     onEditorStateChange: (state: EditorState) => void;
     onSave: () => void;
     onDelete: () => void;
-    hasContent: boolean;
+    hasNoContent: boolean;
 }
 
 export const TextEditorForm = memo((props: TextEditorFormProps) => {
@@ -28,7 +28,7 @@ export const TextEditorForm = memo((props: TextEditorFormProps) => {
         onEditorStateChange,
         onSave,
         onDelete,
-        hasContent,
+        hasNoContent,
     } = props;
     const { t } = useTranslation('articleDetails');
     const validConfig = useInputValidationConfig();
@@ -67,7 +67,7 @@ export const TextEditorForm = memo((props: TextEditorFormProps) => {
                         label: t('Зберегти'),
                         onClick: onSave,
                         icon: AddIcon,
-                        disabled: hasContent || hasInputError,
+                        disabled: hasNoContent || hasInputError,
                     }}
                     cancelAction={{
                         label: t('Видалити'),
