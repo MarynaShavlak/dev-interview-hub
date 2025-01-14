@@ -21,10 +21,10 @@ export const useTextBlockOperations = ({
     onEditBlock,
 }: UseTextBlockOperationsProps) => {
     const {
-        isVisible: isEditing,
-        toggleVisibility: toggleEditing,
-        hideElement: closeEditing,
-        showElement: openEditing,
+        isVisible: isEditModeActive,
+        toggleVisibility: toggleEditMode,
+        hideElement: deactivateEditMode,
+        showElement: activateEditMode,
     } = useToggleVisibility();
 
     const { saveTextBlock, deleteTextBlock } = useTextBlockActions({
@@ -38,13 +38,13 @@ export const useTextBlockOperations = ({
 
     const handleSaveTextBlock = useCallback(() => {
         saveTextBlock();
-        closeEditing();
-    }, [closeEditing, saveTextBlock]);
+        deactivateEditMode();
+    }, [deactivateEditMode, saveTextBlock]);
 
     return {
-        isEditing,
-        handleEditTextBlock: toggleEditing,
-        openEditing,
+        isEditModeActive,
+        toggleEditMode,
+        activateEditMode,
         handleSaveTextBlock,
         handleDeleteTextBlock: deleteTextBlock,
     };

@@ -10,8 +10,6 @@ import { useTextBlockState } from '../../lib/hooks/useTextBlockState/useTextBloc
 import { useTextBlockOperations } from '../../lib/hooks/useTextBlockOperations/useTextBlockOperations';
 
 interface TextBlockEditorProps {
-    className?: string;
-    // blockId: string;
     block: ArticleTextBlock;
     addBlockInArticle: (block: ArticleTextBlock) => void;
     deleteBlockFromArticle: (id: string) => void;
@@ -19,17 +17,11 @@ interface TextBlockEditorProps {
 }
 
 export const TextBlockEditor = memo((props: TextBlockEditorProps) => {
-    const {
-        addBlockInArticle,
-        deleteBlockFromArticle,
-        // blockId,
-        block,
-        onEditBlock,
-        className,
-    } = props;
+    const { addBlockInArticle, deleteBlockFromArticle, block, onEditBlock } =
+        props;
     const initialTitle = block.title || '';
     const initialParagraphs = block.paragraphs || [];
-    const isEditMode = Boolean(initialTitle && initialParagraphs);
+    const isEditArticlePage = Boolean(initialTitle && initialParagraphs);
 
     const {
         title,
@@ -44,9 +36,9 @@ export const TextBlockEditor = memo((props: TextBlockEditorProps) => {
     });
 
     const {
-        isEditing,
-        handleEditTextBlock,
-        openEditing,
+        isEditModeActive,
+        toggleEditMode,
+        activateEditMode,
         handleSaveTextBlock,
         handleDeleteTextBlock,
     } = useTextBlockOperations({
@@ -58,56 +50,78 @@ export const TextBlockEditor = memo((props: TextBlockEditorProps) => {
         onEditBlock,
     });
 
-    if (isEditMode) {
+    const currentBlockData: ArticleTextBlock = isEditArticlePage
+        ? block
+        : {
+              id: block.id,
+              type: ArticleSection.TEXT,
+              paragraphs,
+              title,
+          };
+
+    const renderEditorForm = () => (
+        <TextEditorForm
+            title={title}
+            handleTitleChange={handleTitleChange}
+            editorState={editorState}
+            onEditorStateChange={onEditorStateChange}
+            onSave={handleSaveTextBlock}
+            onDelete={handleDeleteTextBlock}
+            hasContent={isEmptyContent}
+        />
+    );
+
+    const renderViewer = ({ block, editBlock }: any) => (
+        <BlockPreview
+            block={block}
+            editBlock={editBlock}
+            deleteBlock={handleDeleteTextBlock}
+            BlockComponent={ArticleTextBlockComponent}
+        />
+    );
+
+    if (isEditArticlePage) {
         return (
             <>
-                {isEditing ? (
-                    <TextEditorForm
-                        title={title}
-                        handleTitleChange={handleTitleChange}
-                        editorState={editorState}
-                        onEditorStateChange={onEditorStateChange}
-                        onSave={handleSaveTextBlock}
-                        onDelete={handleDeleteTextBlock}
-                        hasContent={isEmptyContent}
-                    />
-                ) : (
-                    <BlockPreview
-                        block={block}
-                        editBlock={openEditing}
-                        deleteBlock={handleDeleteTextBlock}
-                        BlockComponent={ArticleTextBlockComponent}
-                    />
-                )}
+                {
+                    isEditModeActive
+                        ? renderEditorForm()
+                        : renderViewer({
+                              block: currentBlockData,
+                              editBlock: isEditArticlePage
+                                  ? activateEditMode
+                                  : toggleEditMode,
+                          })
+
+                    // <BlockPreview
+                    //     block={currentBlockData}
+                    //     editBlock={activateEditMode}
+                    //     deleteBlock={handleDeleteTextBlock}
+                    //     BlockComponent={ArticleTextBlockComponent}
+                    // />
+                }
             </>
         );
     }
 
     return (
         <>
-            {!isEditing ? (
-                <TextEditorForm
-                    title={title}
-                    handleTitleChange={handleTitleChange}
-                    editorState={editorState}
-                    onEditorStateChange={onEditorStateChange}
-                    onSave={handleSaveTextBlock}
-                    onDelete={handleDeleteTextBlock}
-                    hasContent={isEmptyContent}
-                />
-            ) : (
-                <BlockPreview
-                    block={{
-                        id: block.id,
-                        type: ArticleSection.TEXT,
-                        paragraphs,
-                        title,
-                    }}
-                    editBlock={handleEditTextBlock}
-                    deleteBlock={handleDeleteTextBlock}
-                    BlockComponent={ArticleTextBlockComponent}
-                />
-            )}
+            {
+                !isEditModeActive
+                    ? renderEditorForm()
+                    : renderViewer({
+                          block: currentBlockData,
+                          editBlock: isEditArticlePage
+                              ? activateEditMode
+                              : toggleEditMode,
+                      })
+                // <BlockPreview
+                //     block={currentBlockData}
+                //     editBlock={toggleEditMode}
+                //     deleteBlock={handleDeleteTextBlock}
+                //     BlockComponent={ArticleTextBlockComponent}
+                // />
+            }
         </>
     );
 });
