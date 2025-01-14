@@ -1,13 +1,8 @@
 import React, { memo } from 'react';
-import {
-    ArticleSection,
-    ArticleTextBlock,
-    ArticleTextBlockComponent,
-} from '@/entities/Article';
-import { BlockPreview } from '../BlockPreview/BlockPreview';
-import { TextEditorForm, TextEditorFormProps } from '@/widgets/TextEditorForm';
+import { ArticleSection, ArticleTextBlock } from '@/entities/Article';
 import { useTextBlockState } from '../../lib/hooks/useTextBlockState/useTextBlockState';
 import { useTextBlockOperations } from '../../lib/hooks/useTextBlockOperations/useTextBlockOperations';
+import { TextBlockDisplay } from '../TextBlockDisplay/TextBlockDisplay';
 
 interface TextBlockEditorProps {
     block: ArticleTextBlock;
@@ -15,41 +10,6 @@ interface TextBlockEditorProps {
     deleteBlockFromArticle: (id: string) => void;
     onEditBlock?: (block: ArticleTextBlock) => void;
 }
-
-interface ViewerProps {
-    block: ArticleTextBlock;
-    editBlock: () => void;
-}
-
-interface TextBlockDisplayProps {
-    isEditArticlePage: boolean;
-    isEditing: boolean;
-    formProps: Omit<TextEditorFormProps, 'onDelete'>;
-    viewerProps: ViewerProps;
-    onDelete: () => void;
-}
-
-export const TextBlockDisplay = (props: TextBlockDisplayProps) => {
-    const { isEditing, onDelete, isEditArticlePage, formProps, viewerProps } =
-        props;
-
-    const renderContent = (shouldShowForm: boolean) =>
-        shouldShowForm ? (
-            <TextEditorForm {...formProps} onDelete={onDelete} />
-        ) : (
-            <BlockPreview
-                {...viewerProps}
-                deleteBlock={onDelete}
-                BlockComponent={ArticleTextBlockComponent}
-            />
-        );
-
-    if (isEditArticlePage) {
-        return renderContent(isEditing);
-    }
-
-    return renderContent(!isEditing);
-};
 
 export const TextBlockEditor = memo((props: TextBlockEditorProps) => {
     const { addBlockInArticle, deleteBlockFromArticle, block, onEditBlock } =

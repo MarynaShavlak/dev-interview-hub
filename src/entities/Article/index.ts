@@ -1,3 +1,5 @@
+export { ArticleBlockPreview } from './ui/ArticleBlockPreview/ArticleBlockPreview';
+
 export { ArticleTextBlockComponent } from './ui/ArticleTextBlockComponent/ArticleTextBlockComponent';
 export { ArticleCodeBlockComponent } from './ui/ArticleCodeBlockComponent/ArticleCodeBlockComponent';
 export { ArticleImageBlockComponent } from './ui/ArticleImageBlockComponent/ArticleImageBlockComponent';

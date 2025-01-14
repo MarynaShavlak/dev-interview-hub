@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 import { ArticleSection, ArticleTextBlock } from '@/entities/Article';
-import { useArticleEditor } from '../useArticleEditor/useArticleEditor';
+import { useArticleEditor } from '../../../../../pages/ArticleCreatePage/lib/hooks/useArticleEditor/useArticleEditor';
 
 interface UseTextBlockActionsParams {
     blockId: string;
