@@ -1,7 +1,7 @@
 import { useCallback, useState } from 'react';
 import { ArticleImageBlock, ArticleSection } from '@/entities/Article';
-import { useArticleEditor } from '../useArticleEditor/useArticleEditor';
-import { uploadArticleImageThunk } from '../../../model/services/uploadArticleImageThunk/uploadImageThunk';
+import { useArticleEditor } from '../../../../../pages/ArticleCreatePage/lib/hooks/useArticleEditor/useArticleEditor';
+import { uploadArticleImageThunk } from '../../../../../pages/ArticleCreatePage/model/services/uploadArticleImageThunk/uploadImageThunk';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 
 interface UseCodeBlockActionsParams {

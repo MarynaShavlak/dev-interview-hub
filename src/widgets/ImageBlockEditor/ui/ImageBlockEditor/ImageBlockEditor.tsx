@@ -13,9 +13,9 @@ import { Input } from '@/shared/ui/redesigned/Input';
 import { useToggleVisibility } from '@/shared/lib/hooks/useToggleVisibility/useToggleVisibility';
 
 import { useImageBlockActions } from '../../lib/hooks/useImageBlockActions/useImageBlockActions';
-import { ImagePreview } from './ImagePreview/ImagePreview';
+import { ImagePreview } from '../ImagePreview/ImagePreview';
 import { useFormValidation } from '@/shared/lib/hooks/validationHooks/useFormValidation/useFormValidation';
-import { ImageUploadError } from './ImageUploadError/ImageUploadError';
+import { ImageUploadError } from '../ImageUploadError/ImageUploadError';
 import { useTextInput } from '@/shared/lib/hooks/useTextInput/useTextInput';
 import AddIcon from '@/shared/assets/icons/plus.svg';
 import { ActionButtonList } from '@/shared/ui/redesigned/ActionButtonList';

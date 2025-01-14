@@ -2,7 +2,7 @@ import React from 'react';
 import { ArticleBlock, ArticleSection } from '@/entities/Article';
 import { TextBlockEditor } from '@/widgets/TextBlockEditor';
 import { CodeBlockEditor } from '@/widgets/CodeBlockEditor';
-import { ImageBlockEditor } from '../../ImageBlockEditor/ImageBlockEditor';
+import { ImageBlockEditor } from '@/widgets/ImageBlockEditor';
 
 interface BlockRendererProps {
     block: ArticleBlock;
