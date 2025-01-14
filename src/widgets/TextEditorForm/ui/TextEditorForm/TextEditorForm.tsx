@@ -1,15 +1,16 @@
-import { memo } from 'react';
+import React, { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { EditorState } from 'draft-js';
 import { HStack, VStack } from '@/shared/ui/common/Stack';
 import { MarkupHTMLCreator } from '@/shared/ui/redesigned/MarkupHTMLCreator';
 import cls from './TextEditorForm.module.scss';
 import { Input } from '@/shared/ui/redesigned/Input';
-import { BlockActionButtonList } from '@/features/BlockActionButtonList';
 import { useFormValidation } from '@/shared/lib/hooks/validationHooks/useFormValidation/useFormValidation';
 import { useInputValidationConfig } from '@/shared/lib/hooks/validationHooks/useInputValidationConfig/useInputValidationConfig';
+import AddIcon from '@/shared/assets/icons/plus.svg';
+import { ActionButtonList } from '@/shared/ui/redesigned/ActionButtonList';
 
-interface TextEditorFormProps {
+export interface TextEditorFormProps {
     title: string;
     handleTitleChange: (title: string) => void;
     editorState: EditorState;
@@ -61,10 +62,17 @@ export const TextEditorForm = memo((props: TextEditorFormProps) => {
                     editorState={editorState}
                     onEditorStateChange={onEditorStateChange}
                 />
-                <BlockActionButtonList
-                    saveBlock={onSave}
-                    deleteBlock={onDelete}
-                    isSaveDisabled={hasContent || hasInputError}
+                <ActionButtonList
+                    successAction={{
+                        label: t('Зберегти'),
+                        onClick: onSave,
+                        icon: AddIcon,
+                        disabled: hasContent || hasInputError,
+                    }}
+                    cancelAction={{
+                        label: t('Видалити'),
+                        onClick: onDelete,
+                    }}
                 />
             </HStack>
         </VStack>

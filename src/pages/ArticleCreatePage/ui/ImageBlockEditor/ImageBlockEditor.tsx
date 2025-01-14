@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import React, { useCallback } from 'react';
+import { ActionButtonList } from 'src/shared/ui/redesigned/ActionButtonList';
 import { useImageUploader } from '@/shared/lib/hooks/useImageUploader/useImageUploader';
 import { HStack, VStack } from '@/shared/ui/common/Stack';
 import cls from './ImageBlockEditor.module.scss';
@@ -12,12 +13,12 @@ import { Input } from '@/shared/ui/redesigned/Input';
 import { useToggleVisibility } from '@/shared/lib/hooks/useToggleVisibility/useToggleVisibility';
 
 import { useImageBlockActions } from '../../lib/hooks/useImageBlockActions/useImageBlockActions';
-import { BlockActionButtonList } from '@/features/BlockActionButtonList';
 import { ImagePreview } from './ImagePreview/ImagePreview';
 import { BlockPreview } from '../BlockPreview/BlockPreview';
 import { useFormValidation } from '@/shared/lib/hooks/validationHooks/useFormValidation/useFormValidation';
 import { ImageUploadError } from './ImageUploadError/ImageUploadError';
 import { useTextInput } from '@/shared/lib/hooks/useTextInput/useTextInput';
+import AddIcon from '@/shared/assets/icons/plus.svg';
 
 interface ImageBlockEditorProps {
     block: ArticleImageBlock;
@@ -102,15 +103,20 @@ export const ImageBlockEditor = (props: ImageBlockEditorProps) => {
                             error={imageTypeError}
                             title={title}
                         />
-
-                        <BlockActionButtonList
-                            saveBlock={handleSaveImageBlock}
-                            deleteBlock={deleteImageBlock}
-                            isSaveDisabled={
-                                isEmptyContent ||
-                                hasInputError ||
-                                !!imageTypeError
-                            }
+                        <ActionButtonList
+                            successAction={{
+                                label: t('Зберегти'),
+                                onClick: handleSaveImageBlock,
+                                icon: AddIcon,
+                                disabled:
+                                    isEmptyContent ||
+                                    hasInputError ||
+                                    !!imageTypeError,
+                            }}
+                            cancelAction={{
+                                label: t('Видалити'),
+                                onClick: deleteImageBlock,
+                            }}
                         />
                     </HStack>
                 </VStack>

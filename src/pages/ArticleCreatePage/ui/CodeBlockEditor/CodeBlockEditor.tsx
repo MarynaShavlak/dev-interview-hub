@@ -1,5 +1,6 @@
 import React, { memo, useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { ActionButtonList } from 'src/shared/ui/redesigned/ActionButtonList';
 import { Input } from '@/shared/ui/redesigned/Input';
 import cls from '../ArticleCreatePage/ArticleCreatePage.module.scss';
 import { HStack, VStack } from '@/shared/ui/common/Stack';
@@ -13,10 +14,10 @@ import {
 import { useToggleVisibility } from '@/shared/lib/hooks/useToggleVisibility/useToggleVisibility';
 import { CodeEditor } from '@/shared/ui/redesigned/CodeEditor';
 import { useCodeBlockActions } from '../../lib/hooks/useCodeBlockActions/useCodeBlockActions';
-import { BlockActionButtonList } from '@/features/BlockActionButtonList';
 import { BlockPreview } from '../BlockPreview/BlockPreview';
 import { useFormValidation } from '@/shared/lib/hooks/validationHooks/useFormValidation/useFormValidation';
 import { useTextInput } from '@/shared/lib/hooks/useTextInput/useTextInput';
+import AddIcon from '@/shared/assets/icons/plus.svg';
 
 interface CodeBlockEditorProps {
     className?: string;
@@ -98,10 +99,18 @@ export const CodeBlockEditor = memo((props: CodeBlockEditorProps) => {
                             onChangeCode={setCode}
                             initialCode={code}
                         />
-                        <BlockActionButtonList
-                            saveBlock={handleSaveCodeBlock}
-                            deleteBlock={deleteCodeBlock}
-                            isSaveDisabled={isEmptyContent || hasInputError}
+
+                        <ActionButtonList
+                            successAction={{
+                                label: t('Зберегти'),
+                                onClick: handleSaveCodeBlock,
+                                icon: AddIcon,
+                                disabled: isEmptyContent || hasInputError,
+                            }}
+                            cancelAction={{
+                                label: t('Видалити'),
+                                onClick: deleteCodeBlock,
+                            }}
                         />
                     </HStack>
                 </VStack>

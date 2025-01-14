@@ -5,7 +5,7 @@ import {
     ArticleTextBlockComponent,
 } from '@/entities/Article';
 import { BlockPreview } from '../BlockPreview/BlockPreview';
-import { TextEditorForm } from '@/widgets/TextEditorForm';
+import { TextEditorForm, TextEditorFormProps } from '@/widgets/TextEditorForm';
 import { useTextBlockState } from '../../lib/hooks/useTextBlockState/useTextBlockState';
 import { useTextBlockOperations } from '../../lib/hooks/useTextBlockOperations/useTextBlockOperations';
 
@@ -15,6 +15,41 @@ interface TextBlockEditorProps {
     deleteBlockFromArticle: (id: string) => void;
     onEditBlock?: (block: ArticleTextBlock) => void;
 }
+
+interface ViewerProps {
+    block: ArticleTextBlock;
+    editBlock: () => void;
+}
+
+interface TextBlockDisplayProps {
+    isEditArticlePage: boolean;
+    isEditing: boolean;
+    formProps: Omit<TextEditorFormProps, 'onDelete'>;
+    viewerProps: ViewerProps;
+    onDelete: () => void;
+}
+
+export const TextBlockDisplay = (props: TextBlockDisplayProps) => {
+    const { isEditing, onDelete, isEditArticlePage, formProps, viewerProps } =
+        props;
+
+    const renderContent = (shouldShowForm: boolean) =>
+        shouldShowForm ? (
+            <TextEditorForm {...formProps} onDelete={onDelete} />
+        ) : (
+            <BlockPreview
+                {...viewerProps}
+                deleteBlock={onDelete}
+                BlockComponent={ArticleTextBlockComponent}
+            />
+        );
+
+    if (isEditArticlePage) {
+        return renderContent(isEditing);
+    }
+
+    return renderContent(!isEditing);
+};
 
 export const TextBlockEditor = memo((props: TextBlockEditorProps) => {
     const { addBlockInArticle, deleteBlockFromArticle, block, onEditBlock } =
@@ -29,7 +64,7 @@ export const TextBlockEditor = memo((props: TextBlockEditorProps) => {
         editorState,
         paragraphs,
         onEditorStateChange,
-        isEmptyContent,
+        isEmptyContent: hasContent,
     } = useTextBlockState({
         initialTitle,
         initialParagraphs,
@@ -59,69 +94,27 @@ export const TextBlockEditor = memo((props: TextBlockEditorProps) => {
               title,
           };
 
-    const renderEditorForm = () => (
-        <TextEditorForm
-            title={title}
-            handleTitleChange={handleTitleChange}
-            editorState={editorState}
-            onEditorStateChange={onEditorStateChange}
-            onSave={handleSaveTextBlock}
-            onDelete={handleDeleteTextBlock}
-            hasContent={isEmptyContent}
-        />
-    );
+    const formProps = {
+        title,
+        editorState,
+        hasContent,
+        handleTitleChange,
+        onEditorStateChange,
+        onSave: handleSaveTextBlock,
+    };
 
-    const renderViewer = ({ block, editBlock }: any) => (
-        <BlockPreview
-            block={block}
-            editBlock={editBlock}
-            deleteBlock={handleDeleteTextBlock}
-            BlockComponent={ArticleTextBlockComponent}
-        />
-    );
-
-    if (isEditArticlePage) {
-        return (
-            <>
-                {
-                    isEditModeActive
-                        ? renderEditorForm()
-                        : renderViewer({
-                              block: currentBlockData,
-                              editBlock: isEditArticlePage
-                                  ? activateEditMode
-                                  : toggleEditMode,
-                          })
-
-                    // <BlockPreview
-                    //     block={currentBlockData}
-                    //     editBlock={activateEditMode}
-                    //     deleteBlock={handleDeleteTextBlock}
-                    //     BlockComponent={ArticleTextBlockComponent}
-                    // />
-                }
-            </>
-        );
-    }
+    const viewerProps = {
+        editBlock: isEditArticlePage ? activateEditMode : toggleEditMode,
+        block: currentBlockData,
+    };
 
     return (
-        <>
-            {
-                !isEditModeActive
-                    ? renderEditorForm()
-                    : renderViewer({
-                          block: currentBlockData,
-                          editBlock: isEditArticlePage
-                              ? activateEditMode
-                              : toggleEditMode,
-                      })
-                // <BlockPreview
-                //     block={currentBlockData}
-                //     editBlock={toggleEditMode}
-                //     deleteBlock={handleDeleteTextBlock}
-                //     BlockComponent={ArticleTextBlockComponent}
-                // />
-            }
-        </>
+        <TextBlockDisplay
+            isEditArticlePage={isEditArticlePage}
+            isEditing={isEditModeActive}
+            formProps={formProps}
+            onDelete={handleDeleteTextBlock}
+            viewerProps={viewerProps}
+        />
     );
 });
