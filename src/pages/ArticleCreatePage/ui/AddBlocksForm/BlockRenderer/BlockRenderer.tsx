@@ -1,7 +1,7 @@
 import React from 'react';
 import { ArticleBlock, ArticleSection } from '@/entities/Article';
 import { TextBlockEditor } from '@/widgets/TextBlockEditor';
-import { CodeBlockEditor } from '../../CodeBlockEditor/CodeBlockEditor';
+import { CodeBlockEditor } from '@/widgets/CodeBlockEditor';
 import { ImageBlockEditor } from '../../ImageBlockEditor/ImageBlockEditor';
 
 interface BlockRendererProps {
@@ -28,7 +28,7 @@ export const BlockRenderer = (props: BlockRendererProps) => {
         case ArticleSection.CODE:
             return (
                 <CodeBlockEditor
-                    blockId={block.id}
+                    block={block}
                     addBlockInArticle={addBlockInArticle}
                     deleteBlockFromArticle={deleteBlockFromArticle}
                     onEditBlock={onEditBlock}

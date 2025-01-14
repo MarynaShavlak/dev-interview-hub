@@ -1,5 +1,5 @@
 import { useTextInput } from '@/shared/lib/hooks/useTextInput/useTextInput';
-import { useEditorState } from '../../../../../pages/ArticleCreatePage/lib/hooks/useEditorState/useEditorState';
+import { useEditorState } from '../useEditorState/useEditorState';
 
 interface UseTextBlockStateProps {
     initialTitle: string;

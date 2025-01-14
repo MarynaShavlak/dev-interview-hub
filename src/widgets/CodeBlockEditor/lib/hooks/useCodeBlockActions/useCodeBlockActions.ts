@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 import { ArticleCodeBlock, ArticleSection } from '@/entities/Article';
-import { useArticleEditor } from '../useArticleEditor/useArticleEditor';
+import { useArticleEditor } from '../../../../../pages/ArticleCreatePage/lib/hooks/useArticleEditor/useArticleEditor';
 
 interface UseCodeBlockActionsParams {
     blockId: string;
@@ -24,7 +24,7 @@ export const useCodeBlockActions = ({
         const updatedBlock: ArticleCodeBlock = {
             id: blockId,
             type: ArticleSection.CODE,
-            code,
+            code: code.trim(),
             title,
         };
 
