@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 import React, { memo } from 'react';
 import { HStack } from '@/shared/ui/common/Stack';
 
-import { useArticleEditorState } from '../../lib/hooks/useArticleEditorState/useArticleEditorState';
+import { useArticleFormState } from '../../lib/hooks/useArticleFormState/useArticleFormState';
 import { Button } from '@/shared/ui/redesigned/Button';
 
 interface ArticleEditorPageHeaderProps {
@@ -18,7 +18,7 @@ export const ArticleEditorPageHeader = memo(
         const { className, hasErrors, onCancel, onSave, isEditArticlePage } =
             props;
         const { t } = useTranslation('articleDetails');
-        const { formData } = useArticleEditorState();
+        const { formData } = useArticleFormState();
 
         const isSomeBlockAdded = Number(formData?.blocks.length) > 0;
         const cancelActionBtnText = isEditArticlePage

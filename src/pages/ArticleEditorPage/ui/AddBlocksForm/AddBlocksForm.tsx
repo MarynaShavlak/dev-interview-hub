@@ -10,7 +10,7 @@ import cls from './AddBlocksForm.module.scss';
 import { useTriggerTopScrollPosition } from '@/shared/lib/hooks/useTriggerTopScrollPosition/useTriggerTopScrollPosition';
 import { getBtnsListStyles } from '../../lib/utils/getBtnsListStyles/getBtnsListStyles';
 import { ArticleBlock } from '@/entities/Article';
-import { useArticleEditorState } from '../../lib/hooks/useArticleEditorState/useArticleEditorState';
+import { useArticleFormState } from '../../lib/hooks/useArticleFormState/useArticleFormState';
 
 interface AddBlocksFormProps {
     index: number;
@@ -43,7 +43,7 @@ export const AddBlocksForm = memo((props: AddBlocksFormProps) => {
     const triggerRef = useRef<HTMLDivElement>(null);
     const topPosition = useTriggerTopScrollPosition(triggerRef);
 
-    const { formData, onDeleteBlock, onChangeBlocks } = useArticleEditorState();
+    const { formData, onDeleteBlock, onChangeBlocks } = useArticleFormState();
 
     // ______________________________________________
     const handleDeleteArticleBlock = useCallback(

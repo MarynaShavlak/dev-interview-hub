@@ -6,9 +6,7 @@ import {
 import { useCreateArticleActions } from '../../../model/slices/createArticleSlice';
 import { Article, ArticleBlock } from '@/entities/Article';
 
-// id?: string, isEdit: boolean = false
-
-export const useArticleEditorState = (
+export const useArticleFormState = (
     editedArticle?: Article,
     isEditMode: boolean = false,
 ) => {
@@ -27,8 +25,6 @@ export const useArticleEditorState = (
         setEditMode,
     } = useCreateArticleActions();
 
-    // const { data: article, isLoading, error } = useArticleDataById(id || '');
-    // console.log(isEdit, article);
     useEffect(() => {
         if (isEditMode && editedArticle) {
             setArticleData(editedArticle);

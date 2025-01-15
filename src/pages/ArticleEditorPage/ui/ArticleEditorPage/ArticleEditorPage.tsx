@@ -15,7 +15,7 @@ import { AddCategoryForm } from '../AddCategoryForm/AddCategoryForm';
 import { AddBlocksForm } from '../AddBlocksForm/AddBlocksForm';
 import { AddHeroForm } from '../AddHeroForm/AddHeroForm';
 import { ArticleEditorPageHeader } from '../ArticleEditorPageHeader/ArticleEditorPageHeader';
-import { useArticleCreation } from '../../lib/hooks/useArticleCreation/useArticleCreation';
+import { useArticleEditor } from '../../lib/hooks/useArticleEditor/useArticleEditor';
 import { SaveArticleError } from '../SaveArticleError/SaveArticleError';
 
 interface ArticleEditorPageProps {
@@ -30,22 +30,12 @@ const ArticleEditorPage = memo((props: ArticleEditorPageProps) => {
     const { className } = props;
     const { t } = useTranslation('articleDetails');
     const {
-        hasErrors: hasValidationErrors,
-        saveError,
-        onSaveCreate,
-        onCancelCreate,
-        validationErrors,
-        handleHeroImageChange,
-        heroPreview,
-        heroImage,
-        resetHeroImage,
-        heroFileTypeError,
-        blocks,
+        metadata: { isEditArticlePage, blocks, saveError },
+        validation,
+        heroImage: { preview, src, fileTypeError, handleChange, reset },
+        formActions: { onSave, onCancel },
         blockActions,
-        isEditArticlePage,
-    } = useArticleCreation();
-    // console.log('isEditMode', isEditMode);
-    // console.log('editedArticle', editedArticle);
+    } = useArticleEditor();
 
     const pageTitle = isEditArticlePage
         ? t('Редагування статті')
@@ -60,9 +50,9 @@ const ArticleEditorPage = memo((props: ArticleEditorPageProps) => {
                     <HStack justify="between" max className={cls.pageTitleWrap}>
                         <Text title={pageTitle} size="l" />
                         <ArticleEditorPageHeader
-                            hasErrors={hasValidationErrors}
-                            onCancel={onCancelCreate}
-                            onSave={onSaveCreate}
+                            hasErrors={validation.hasInputErrors}
+                            onCancel={onCancel}
+                            onSave={onSave}
                             isEditArticlePage={isEditArticlePage}
                         />
                     </HStack>
@@ -70,14 +60,14 @@ const ArticleEditorPage = memo((props: ArticleEditorPageProps) => {
                     <ArticleMetaForm
                         titleIndex={1}
                         subtitleIndex={2}
-                        errors={validationErrors}
+                        errors={validation}
                     />
                     <AddHeroForm
                         index={3}
-                        error={heroFileTypeError}
-                        handleImageChange={handleHeroImageChange}
-                        resetImage={resetHeroImage}
-                        imagePreview={heroImage || heroPreview}
+                        error={fileTypeError}
+                        handleImageChange={handleChange}
+                        resetImage={reset}
+                        imagePreview={src || preview}
                     />
                     <AddCategoryForm index={4} />
                     <AddBlocksForm

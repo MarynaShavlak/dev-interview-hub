@@ -9,7 +9,7 @@ import { HStack, VStack } from '@/shared/ui/common/Stack';
 import { OrderCard } from '@/shared/ui/redesigned/OrderCard';
 import cls from './ArticleMetaForm.module.scss';
 import { useInputValidationConfig } from '@/shared/lib/hooks/validationHooks/useInputValidationConfig/useInputValidationConfig';
-import { useArticleEditorState } from '../../lib/hooks/useArticleEditorState/useArticleEditorState';
+import { useArticleFormState } from '../../lib/hooks/useArticleFormState/useArticleFormState';
 import { useToggleVisibility } from '@/shared/lib/hooks/useToggleVisibility/useToggleVisibility';
 import { ValidationErrors } from '@/shared/lib/hooks/validationHooks/useInputErrors/useInputErrors';
 
@@ -17,6 +17,7 @@ interface ArticleMetaFormProps {
     titleIndex: number;
     subtitleIndex: number;
     errors: {
+        hasInputErrors: boolean;
         titleErrors: ValidationErrors;
         subtitleTextErrors: ValidationErrors;
         subtitleLinkErrors: ValidationErrors;
@@ -34,7 +35,7 @@ export const ArticleMetaForm = (props: ArticleMetaFormProps) => {
         onChangeTitle,
         onChangeSubtitleText,
         onChangeSubtitleLink,
-    } = useArticleEditorState();
+    } = useArticleFormState();
 
     const isLinkPresent = Boolean(formData?.subtitle.link);
     const { isVisible: isLinkInputAdded, toggleVisibility: toggleLinkInput } =

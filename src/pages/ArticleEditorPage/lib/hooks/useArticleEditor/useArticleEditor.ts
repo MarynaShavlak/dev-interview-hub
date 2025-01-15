@@ -6,7 +6,7 @@ import { useImageUploader } from '@/shared/lib/hooks/useImageUploader/useImageUp
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 
 import { getRouteArticleDetails } from '@/shared/const/router/router';
-import { useArticleEditorState } from '../useArticleEditorState/useArticleEditorState';
+import { useArticleFormState } from '../useArticleFormState/useArticleFormState';
 import { useArticleBlocksDisplay } from '../useArticleBlocksDisplay/useArticleBlocksDisplay';
 import {
     uploadArticleImageThunk,
@@ -14,7 +14,7 @@ import {
 } from '@/entities/Article';
 import { createArticleThunk } from '../../../model/services/createArticleThunk/createArticleThunk';
 
-export const useArticleCreation = () => {
+export const useArticleEditor = () => {
     const validConfig = useInputValidationConfig();
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
@@ -31,7 +31,7 @@ export const useArticleCreation = () => {
         onFileUpload,
         onResetArticle,
         onChangeHeroImage,
-    } = useArticleEditorState(editedArticle, isEditArticlePage);
+    } = useArticleFormState(editedArticle, isEditArticlePage);
 
     const { hasErrors, titleErrors, subtitleTextErrors, subtitleLinkErrors } =
         useFormValidation(
@@ -97,21 +97,19 @@ export const useArticleCreation = () => {
     ]);
 
     return {
-        hasErrors,
-        onCancelCreate,
-        saveError,
-        onSaveCreate,
-        validationErrors: {
+        metadata: {
+            isEditArticlePage,
+            blocks,
+            saveError,
+        },
+
+        validation: {
+            hasInputErrors: hasErrors,
             titleErrors,
             subtitleTextErrors,
             subtitleLinkErrors,
         },
-        handleHeroImageChange: handleImageChange,
-        heroPreview: imagePreview,
-        heroImage: avatarSrc,
-        resetHeroImage: resetImage,
-        heroFileTypeError: error,
-        blocks,
+
         blockActions: {
             insertTextBlock,
             insertCodeBlock,
@@ -121,7 +119,17 @@ export const useArticleCreation = () => {
             removeBlock,
             clearBlocks,
         },
-        isEditArticlePage,
-        editedArticle,
+        formActions: {
+            onSave: onSaveCreate,
+            onCancel: onCancelCreate,
+        },
+
+        heroImage: {
+            preview: imagePreview,
+            src: avatarSrc,
+            fileTypeError: error,
+            handleChange: handleImageChange,
+            reset: resetImage,
+        },
     };
 };
