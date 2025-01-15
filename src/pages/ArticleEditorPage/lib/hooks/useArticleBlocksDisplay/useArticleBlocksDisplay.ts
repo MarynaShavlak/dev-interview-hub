@@ -1,4 +1,4 @@
-import { useState, useCallback, useMemo, useEffect } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { v4 } from 'uuid';
 import {
     ArticleTextBlock,
@@ -9,33 +9,26 @@ import {
     Article,
 } from '@/entities/Article';
 
-export const useArticleContentBlocks = (
+export const useArticleBlocksDisplay = (
     isEditArticlePage: boolean,
-    formData?: Article,
+    initialArticle?: Article,
 ) => {
-    // console.log('_____', formData);
-    const existingBlocks = useMemo(() => {
-        return formData?.blocks || [];
-    }, [formData?.blocks]);
     const [blocks, setBlocks] = useState<ArticleBlock[]>(() => {
-        if (isEditArticlePage && formData?.blocks) {
-            return formData.blocks;
+        if (isEditArticlePage && initialArticle?.blocks) {
+            return initialArticle.blocks;
         }
         return [];
     });
     const [isInitialized, setIsInitialized] = useState(false);
-    console.log('existingBlocks', existingBlocks);
-    console.log('formData', formData);
 
     useEffect(() => {
-        if (isEditArticlePage && formData?.blocks && !isInitialized) {
-            setBlocks(formData.blocks);
+        if (isEditArticlePage && initialArticle?.blocks && !isInitialized) {
+            setBlocks(initialArticle.blocks);
             setIsInitialized(true);
         }
-    }, [formData, isEditArticlePage, isInitialized]);
+    }, [initialArticle, isEditArticlePage, isInitialized]);
 
-    console.log('blocks,', blocks);
-    const createEmptyTextBlock = useCallback(() => {
+    const insertTextBlock = useCallback(() => {
         const newTextBlock: ArticleTextBlock = {
             id: v4(),
             type: ArticleSection.TEXT,
@@ -45,24 +38,24 @@ export const useArticleContentBlocks = (
         setBlocks((prevBlocks) => [...prevBlocks, newTextBlock]);
     }, []);
 
-    const createEmptyCodeBlock = useCallback(() => {
-        const newTextBlock: ArticleCodeBlock = {
+    const insertCodeBlock = useCallback(() => {
+        const newCodeBlock: ArticleCodeBlock = {
             id: v4(),
             type: ArticleSection.CODE,
             code: '',
             title: '',
         };
-        setBlocks((prevBlocks) => [...prevBlocks, newTextBlock]);
+        setBlocks((prevBlocks) => [...prevBlocks, newCodeBlock]);
     }, []);
 
-    const createEmptyImageBlock = useCallback(() => {
-        const newTextBlock: ArticleImageBlock = {
+    const insertImageBlock = useCallback(() => {
+        const newImageBlock: ArticleImageBlock = {
             id: v4(),
             type: ArticleSection.IMAGE,
             src: '',
             title: '',
         };
-        setBlocks((prevBlocks) => [...prevBlocks, newTextBlock]);
+        setBlocks((prevBlocks) => [...prevBlocks, newImageBlock]);
     }, []);
 
     const addBlock = useCallback((block: ArticleBlock) => {
@@ -77,25 +70,25 @@ export const useArticleContentBlocks = (
         );
     }, []);
 
-    const deleteBlock = useCallback((id: string) => {
+    const removeBlock = useCallback((id: string) => {
         setBlocks((prevBlocks) => {
             const updatedBlocks = prevBlocks.filter((block) => block.id !== id);
             return updatedBlocks;
         });
     }, []);
 
-    const deleteAllBlocks = useCallback(() => {
+    const clearBlocks = useCallback(() => {
         setBlocks([]);
     }, []);
 
     return {
         blocks,
-        createEmptyTextBlock,
-        createEmptyCodeBlock,
-        createEmptyImageBlock,
+        insertTextBlock,
+        insertCodeBlock,
+        insertImageBlock,
         addBlock,
         updateBlock,
-        deleteBlock,
-        deleteAllBlocks,
+        removeBlock,
+        clearBlocks,
     };
 };

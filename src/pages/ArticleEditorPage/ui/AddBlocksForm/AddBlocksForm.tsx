@@ -16,26 +16,26 @@ interface AddBlocksFormProps {
     index: number;
     blocks: ArticleBlock[];
     blockActions: {
-        createEmptyTextBlock: () => void;
-        createEmptyCodeBlock: () => void;
-        createEmptyImageBlock: () => void;
+        insertTextBlock: () => void;
+        insertCodeBlock: () => void;
+        insertImageBlock: () => void;
         addBlock: (block: ArticleBlock) => void;
         updateBlock: (updatedBlock: ArticleBlock) => void;
-        deleteBlock: (id: string) => void;
-        deleteAllBlocks: () => void;
+        removeBlock: (id: string) => void;
+        clearBlocks: () => void;
     };
 }
 export const AddBlocksForm = memo((props: AddBlocksFormProps) => {
     const { index, blocks: allBlocks, blockActions } = props;
 
     const {
-        createEmptyTextBlock,
-        createEmptyCodeBlock,
-        createEmptyImageBlock,
+        insertTextBlock,
+        insertCodeBlock,
+        insertImageBlock,
         addBlock,
         updateBlock,
-        deleteBlock,
-        deleteAllBlocks,
+        removeBlock,
+        clearBlocks,
     } = blockActions;
     const { t } = useTranslation('articleDetails');
     const isSomeBlockAdded = Number(allBlocks.length) > 0;
@@ -49,10 +49,10 @@ export const AddBlocksForm = memo((props: AddBlocksFormProps) => {
     const handleDeleteArticleBlock = useCallback(
         (blockId: string) => {
             console.log('___in common function', blockId);
-            deleteBlock(blockId);
+            removeBlock(blockId);
             onDeleteBlock(blockId);
         },
-        [deleteBlock, onDeleteBlock],
+        [removeBlock, onDeleteBlock],
     );
 
     const handleUpdateArticleBlock = useCallback(
@@ -94,10 +94,10 @@ export const AddBlocksForm = memo((props: AddBlocksFormProps) => {
                 <div ref={elementRef} className={cls.btnList}>
                     <AddArticleBlocksButtons
                         direction="row"
-                        onAddTextBlockBtnClick={createEmptyTextBlock}
-                        onAddCodeBlockBtnClick={createEmptyCodeBlock}
-                        onAddImageBlockBtnClick={createEmptyImageBlock}
-                        deleteAllBlocks={deleteAllBlocks}
+                        onAddTextBlockBtnClick={insertTextBlock}
+                        onAddCodeBlockBtnClick={insertCodeBlock}
+                        onAddImageBlockBtnClick={insertImageBlock}
+                        deleteAllBlocks={clearBlocks}
                         isSomeBlockAdded={isSomeBlockAdded}
                     />
                 </div>

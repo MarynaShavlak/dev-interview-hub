@@ -7,7 +7,7 @@ import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch
 
 import { getRouteArticleDetails } from '@/shared/const/router/router';
 import { useArticleEditorState } from '../useArticleEditorState/useArticleEditorState';
-import { useArticleContentBlocks } from '../useArticleContentBlocks/useArticleContentBlocks';
+import { useArticleBlocksDisplay } from '../useArticleBlocksDisplay/useArticleBlocksDisplay';
 import {
     uploadArticleImageThunk,
     useArticleDataById,
@@ -45,14 +45,14 @@ export const useArticleCreation = () => {
         );
     const {
         blocks,
-        createEmptyTextBlock,
-        createEmptyCodeBlock,
-        createEmptyImageBlock,
+        insertTextBlock,
+        insertCodeBlock,
+        insertImageBlock,
         addBlock,
         updateBlock,
-        deleteBlock,
-        deleteAllBlocks,
-    } = useArticleContentBlocks(isEditArticlePage, formData);
+        removeBlock,
+        clearBlocks,
+    } = useArticleBlocksDisplay(isEditArticlePage, formData);
 
     const { imagePreview, error, handleImageChange, resetImage, avatarSrc } =
         useImageUploader({
@@ -62,9 +62,9 @@ export const useArticleCreation = () => {
 
     const onCancelCreate = useCallback(() => {
         onResetArticle();
-        deleteAllBlocks();
+        clearBlocks();
         resetImage();
-    }, [deleteAllBlocks, onResetArticle, resetImage]);
+    }, [clearBlocks, onResetArticle, resetImage]);
 
     const onSaveCreate = useCallback(async () => {
         try {
@@ -113,13 +113,13 @@ export const useArticleCreation = () => {
         heroFileTypeError: error,
         blocks,
         blockActions: {
-            createEmptyTextBlock,
-            createEmptyCodeBlock,
-            createEmptyImageBlock,
+            insertTextBlock,
+            insertCodeBlock,
+            insertImageBlock,
             addBlock,
             updateBlock,
-            deleteBlock,
-            deleteAllBlocks,
+            removeBlock,
+            clearBlocks,
         },
         isEditArticlePage,
         editedArticle,
