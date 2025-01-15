@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React, { memo, useMemo } from 'react';
 import { ArticleSection, ArticleTextBlock } from '@/entities/Article';
 import { useTextBlockState } from '../../lib/hooks/useTextBlockState/useTextBlockState';
 import { useTextBlockOperations } from '../../lib/hooks/useTextBlockOperations/useTextBlockOperations';
@@ -45,14 +45,18 @@ export const TextBlockEditor = memo((props: TextBlockEditorProps) => {
         onEditBlock,
     });
 
-    const currentBlockData: ArticleTextBlock = isEditArticlePage
-        ? block
-        : {
-              id: block.id,
-              type: ArticleSection.TEXT,
-              paragraphs,
-              title,
-          };
+    const currentBlockData: ArticleTextBlock = useMemo(
+        () =>
+            isEditArticlePage
+                ? block
+                : {
+                      id: block.id,
+                      type: ArticleSection.TEXT,
+                      paragraphs,
+                      title,
+                  },
+        [block, isEditArticlePage, paragraphs, title],
+    );
 
     const formProps = {
         title,

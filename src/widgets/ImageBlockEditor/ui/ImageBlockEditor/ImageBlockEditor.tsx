@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { ArticleImageBlock, ArticleSection } from '@/entities/Article';
 
 import { ImageUploadError } from '../ImageUploadError/ImageUploadError';
@@ -53,14 +53,18 @@ export const ImageBlockEditor = (props: ImageBlockEditorProps) => {
         selectedImage,
     });
 
-    const currentBlockData: ArticleImageBlock = isEditArticlePage
-        ? block
-        : {
-              id: block.id,
-              type: ArticleSection.IMAGE,
-              src: initialAvatar,
-              title,
-          };
+    const currentBlockData: ArticleImageBlock = useMemo(
+        () =>
+            isEditArticlePage
+                ? block
+                : {
+                      id: block.id,
+                      type: ArticleSection.IMAGE,
+                      src: initialAvatar,
+                      title,
+                  },
+        [block, initialAvatar, isEditArticlePage, title],
+    );
     const hasNoValidImage = hasNoContent || !!imageTypeError;
 
     const formProps = {

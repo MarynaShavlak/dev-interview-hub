@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React, { memo, useMemo } from 'react';
 
 import { ArticleCodeBlock, ArticleSection } from '@/entities/Article';
 import { useCodeBlockState } from '../../lib/hooks/useCodeBlockState/useCodeBlockState';
@@ -47,14 +47,18 @@ export const CodeBlockEditor = memo((props: CodeBlockEditorProps) => {
         onEditBlock,
     });
 
-    const currentBlockData: ArticleCodeBlock = isEditArticlePage
-        ? block
-        : {
-              id: block.id,
-              type: ArticleSection.CODE,
-              code,
-              title,
-          };
+    const currentBlockData: ArticleCodeBlock = useMemo(
+        () =>
+            isEditArticlePage
+                ? block
+                : {
+                      id: block.id,
+                      type: ArticleSection.CODE,
+                      code,
+                      title,
+                  },
+        [block, code, isEditArticlePage, title],
+    );
 
     const formProps = {
         title,

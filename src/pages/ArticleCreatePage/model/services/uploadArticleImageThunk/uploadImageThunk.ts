@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { ref, uploadBytes } from 'firebase/storage';
+import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import { v4 } from 'uuid';
 import { ThunkConfig } from '@/app/providers/StoreProvider';
 
@@ -20,8 +20,8 @@ export const uploadArticleImageThunk = createAsyncThunk<
         const uploadResult = await uploadBytes(imageRef, file);
         const { fullPath } = uploadResult.metadata;
         const pathReference = ref(firebaseStorage, fullPath);
-        return rejectWithValue('');
-        // return await getDownloadURL(pathReference);
+
+        return await getDownloadURL(pathReference);
     } catch (error) {
         const errorMessage =
             error instanceof Error ? error.message : 'Failed to upload image';
