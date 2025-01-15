@@ -1,0 +1,95 @@
+import { useTranslation } from 'react-i18next';
+import React, { memo } from 'react';
+import { Page } from '@/widgets/Page';
+import { classNames } from '@/shared/lib/classes/classNames/classNames';
+import cls from './ArticleEditorPage.module.scss';
+import { Text } from '@/shared/ui/redesigned/Text';
+import { HStack, VStack } from '@/shared/ui/common/Stack';
+import {
+    DynamicModuleLoader,
+    ReducersList,
+} from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
+import { createArticleReducer } from '../../model/slices/createArticleSlice';
+import { ArticleMetaForm } from '../ArticleMetaForm/ArticleMetaForm';
+import { AddCategoryForm } from '../AddCategoryForm/AddCategoryForm';
+import { AddBlocksForm } from '../AddBlocksForm/AddBlocksForm';
+import { AddHeroForm } from '../AddHeroForm/AddHeroForm';
+import { ArticleEditorPageHeader } from '../ArticleEditorPageHeader/ArticleEditorPageHeader';
+import { useArticleCreation } from '../../lib/hooks/useArticleCreation/useArticleCreation';
+import { SaveArticleError } from '../SaveArticleError/SaveArticleError';
+
+interface ArticleEditorPageProps {
+    className?: string;
+}
+
+const reducers: ReducersList = {
+    createArticle: createArticleReducer,
+};
+
+const ArticleEditorPage = memo((props: ArticleEditorPageProps) => {
+    const { className } = props;
+    const { t } = useTranslation('articleDetails');
+    const {
+        hasErrors: hasValidationErrors,
+        saveError,
+        onSaveCreate,
+        onCancelCreate,
+        validationErrors,
+        handleHeroImageChange,
+        heroPreview,
+        heroImage,
+        resetHeroImage,
+        heroFileTypeError,
+        blocks,
+        blockActions,
+        isEditArticlePage,
+    } = useArticleCreation();
+    // console.log('isEditMode', isEditMode);
+    // console.log('editedArticle', editedArticle);
+
+    const pageTitle = isEditArticlePage
+        ? t('Редагування статті')
+        : t('Створення нової статті');
+
+    return (
+        <DynamicModuleLoader reducers={reducers}>
+            <Page
+                className={classNames(cls.ArticleEditorPage, {}, [className])}
+            >
+                <VStack gap="24" max>
+                    <HStack justify="between" max className={cls.pageTitleWrap}>
+                        <Text title={pageTitle} size="l" />
+                        <ArticleEditorPageHeader
+                            hasErrors={hasValidationErrors}
+                            onCancel={onCancelCreate}
+                            onSave={onSaveCreate}
+                            isEditArticlePage={isEditArticlePage}
+                        />
+                    </HStack>
+
+                    <ArticleMetaForm
+                        titleIndex={1}
+                        subtitleIndex={2}
+                        errors={validationErrors}
+                    />
+                    <AddHeroForm
+                        index={3}
+                        error={heroFileTypeError}
+                        handleImageChange={handleHeroImageChange}
+                        resetImage={resetHeroImage}
+                        imagePreview={heroImage || heroPreview}
+                    />
+                    <AddCategoryForm index={4} />
+                    <AddBlocksForm
+                        index={5}
+                        blocks={blocks}
+                        blockActions={blockActions}
+                    />
+                    {saveError && <SaveArticleError />}
+                </VStack>
+            </Page>
+        </DynamicModuleLoader>
+    );
+});
+
+export default ArticleEditorPage;

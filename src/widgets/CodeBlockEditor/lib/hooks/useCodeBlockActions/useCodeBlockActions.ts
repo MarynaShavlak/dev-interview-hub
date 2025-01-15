@@ -1,6 +1,5 @@
 import { useCallback } from 'react';
 import { ArticleCodeBlock, ArticleSection } from '@/entities/Article';
-import { useArticleEditor } from '../../../../../pages/ArticleCreatePage/lib/hooks/useArticleEditor/useArticleEditor';
 
 interface UseCodeBlockActionsParams {
     blockId: string;
@@ -19,7 +18,7 @@ export const useCodeBlockActions = ({
     onEditBlock,
     deleteBlockFromArticle,
 }: UseCodeBlockActionsParams) => {
-    const { formData, onChangeBlocks, onDeleteBlock } = useArticleEditor();
+    // const { formData, onChangeBlocks, onDeleteBlock } = useArticleEditorState();
     const saveBlock = useCallback(() => {
         const updatedBlock: ArticleCodeBlock = {
             id: blockId,
@@ -33,15 +32,15 @@ export const useCodeBlockActions = ({
         } else {
             addBlockInArticle(updatedBlock);
         }
-        onChangeBlocks(updatedBlock);
-    }, [blockId, code, title, onEditBlock, onChangeBlocks, addBlockInArticle]);
+        // onChangeBlocks(updatedBlock);
+    }, [blockId, code, title, onEditBlock, addBlockInArticle]);
 
     const deleteBlock = useCallback(() => {
         if (deleteBlockFromArticle) {
             deleteBlockFromArticle(blockId);
-            onDeleteBlock(blockId);
+            // onDeleteBlock(blockId);
         }
-    }, [deleteBlockFromArticle, blockId, onDeleteBlock]);
+    }, [deleteBlockFromArticle, blockId]);
 
     return { saveCodeBlock: saveBlock, deleteCodeBlock: deleteBlock };
 };

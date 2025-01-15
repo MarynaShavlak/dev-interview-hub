@@ -6,7 +6,7 @@ import {
     ArticleDetailsPage,
     ArticleDetailsPageSkeleton,
 } from '@/pages/ArticleDetailsPage';
-import { ArticleEditPageSkeleton } from '@/pages/ArticleEditPage';
+
 import { ArticlesPage, ArticlesPageSkeleton } from '@/pages/ArticlesPage';
 import { ForbiddenPage, ForbiddenPageSkeleton } from '@/pages/ForbiddenPage';
 import { MainPage, MainPageSkeleton } from '@/pages/MainPage';
@@ -28,9 +28,9 @@ import {
 } from '@/shared/const/router/router';
 import { AppRoutesProps } from '@/shared/types/router';
 import {
-    ArticleCreatePage,
-    ArticleCreatePageSkeleton,
-} from '@/pages/ArticleCreatePage';
+    ArticleEditorPage,
+    ArticleEditorPageSkeleton,
+} from '@/pages/ArticleEditorPage';
 
 export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
     [AppRoutes.MAIN]: {
@@ -69,15 +69,15 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
     },
     [AppRoutes.ARTICLE_CREATE]: {
         path: getRouteArticleCreate(),
-        element: <ArticleCreatePage />,
+        element: <ArticleEditorPage />,
         authOnly: true,
-        skeleton: <ArticleCreatePageSkeleton />,
+        skeleton: <ArticleEditorPageSkeleton />,
     },
     [AppRoutes.ARTICLE_EDIT]: {
         path: getRouteArticleEdit(':id'),
-        element: <ArticleCreatePage />,
+        element: <ArticleEditorPage />,
         authOnly: true,
-        skeleton: <ArticleEditPageSkeleton />,
+        skeleton: <ArticleEditorPageSkeleton />,
     },
     [AppRoutes.ADMIN_PANEL]: {
         path: getRouteAdmin(),

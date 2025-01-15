@@ -64,5 +64,7 @@
   "Помилка завантаження файлу": "File upload error. Please try again.",
   "Спробувати повторно": "Upload Again",
   "Помилка збереження статті": "Failed to save article due to server error",
-  "Помилка сервера при збереженні данних": "Server error while saving data. Please try again"
+  "Помилка сервера при збереженні данних": "Server error while saving data. Please try again",
+  "Редагування статті": "Edit article",
+  "Очистити": "Clear"
 }

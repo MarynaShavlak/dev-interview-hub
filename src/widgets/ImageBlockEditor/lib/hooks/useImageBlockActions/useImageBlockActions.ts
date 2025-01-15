@@ -1,7 +1,10 @@
 import { useCallback, useState } from 'react';
-import { ArticleImageBlock, ArticleSection } from '@/entities/Article';
-import { useArticleEditor } from '../../../../../pages/ArticleCreatePage/lib/hooks/useArticleEditor/useArticleEditor';
-import { uploadArticleImageThunk } from '../../../../../pages/ArticleCreatePage/model/services/uploadArticleImageThunk/uploadImageThunk';
+import {
+    ArticleImageBlock,
+    ArticleSection,
+    uploadArticleImageThunk,
+} from '@/entities/Article';
+
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 
 interface UseCodeBlockActionsParams {
@@ -23,7 +26,7 @@ export const useImageBlockActions = ({
     selectedImage,
 }: UseCodeBlockActionsParams) => {
     const dispatch = useAppDispatch();
-    const { onChangeBlocks, onDeleteBlock } = useArticleEditor();
+    // const { onChangeBlocks, onDeleteBlock } = useArticleEditorState();
     const [uploadError, setUploadError] = useState<string | null>(null);
 
     const getArticleImageUrl = useCallback(async () => {
@@ -59,22 +62,22 @@ export const useImageBlockActions = ({
         } else {
             addBlockInArticle(updatedBlock);
         }
-        onChangeBlocks(updatedBlock);
+        // onChangeBlocks(updatedBlock);
     }, [
         getArticleImageUrl,
         blockId,
         title,
         onEditBlock,
-        onChangeBlocks,
+        // onChangeBlocks,
         addBlockInArticle,
     ]);
 
     const deleteBlock = useCallback(() => {
         if (deleteBlockFromArticle) {
             deleteBlockFromArticle(blockId);
-            onDeleteBlock(blockId);
+            // onDeleteBlock(blockId);
         }
-    }, [deleteBlockFromArticle, blockId, onDeleteBlock]);
+    }, [deleteBlockFromArticle, blockId]);
 
     const resetUploadError = useCallback(() => {
         if (uploadError) {

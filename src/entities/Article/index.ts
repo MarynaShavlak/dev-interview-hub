@@ -1,3 +1,5 @@
+export { uploadArticleImageThunk } from './model/services/uploadArticleImageThunk/uploadImageThunk';
+
 export { ArticleBlockPreview } from './ui/ArticleBlockPreview/ArticleBlockPreview';
 
 export { ArticleTextBlockComponent } from './ui/ArticleTextBlockComponent/ArticleTextBlockComponent';
