@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect, useMemo } from 'react';
+import { useState, useCallback, useMemo, useEffect } from 'react';
 import { v4 } from 'uuid';
 import {
     ArticleTextBlock,
@@ -9,16 +9,31 @@ import {
     Article,
 } from '@/entities/Article';
 
-export const useArticleContentBlocks = (formData?: Article) => {
+export const useArticleContentBlocks = (
+    isEditArticlePage: boolean,
+    formData?: Article,
+) => {
     // console.log('_____', formData);
     const existingBlocks = useMemo(() => {
         return formData?.blocks || [];
     }, [formData?.blocks]);
-    const [blocks, setBlocks] = useState<ArticleBlock[]>(existingBlocks);
+    const [blocks, setBlocks] = useState<ArticleBlock[]>(() => {
+        if (isEditArticlePage && formData?.blocks) {
+            return formData.blocks;
+        }
+        return [];
+    });
+    const [isInitialized, setIsInitialized] = useState(false);
     console.log('existingBlocks', existingBlocks);
+    console.log('formData', formData);
+
     useEffect(() => {
-        setBlocks(existingBlocks);
-    }, [existingBlocks]);
+        if (isEditArticlePage && formData?.blocks && !isInitialized) {
+            setBlocks(formData.blocks);
+            setIsInitialized(true);
+        }
+    }, [formData, isEditArticlePage, isInitialized]);
+
     console.log('blocks,', blocks);
     const createEmptyTextBlock = useCallback(() => {
         const newTextBlock: ArticleTextBlock = {
@@ -63,10 +78,10 @@ export const useArticleContentBlocks = (formData?: Article) => {
     }, []);
 
     const deleteBlock = useCallback((id: string) => {
-        console.log('id to delete', id);
-        setBlocks((prevBlocks) =>
-            prevBlocks.filter((block) => block.id !== id),
-        );
+        setBlocks((prevBlocks) => {
+            const updatedBlocks = prevBlocks.filter((block) => block.id !== id);
+            return updatedBlocks;
+        });
     }, []);
 
     const deleteAllBlocks = useCallback(() => {

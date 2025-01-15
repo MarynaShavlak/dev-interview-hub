@@ -10,7 +10,6 @@ import { useArticleEditorState } from '../useArticleEditorState/useArticleEditor
 import { useArticleContentBlocks } from '../useArticleContentBlocks/useArticleContentBlocks';
 import {
     uploadArticleImageThunk,
-    Article,
     useArticleDataById,
 } from '@/entities/Article';
 import { createArticleThunk } from '../../../model/services/createArticleThunk/createArticleThunk';
@@ -53,7 +52,7 @@ export const useArticleCreation = () => {
         updateBlock,
         deleteBlock,
         deleteAllBlocks,
-    } = useArticleContentBlocks(formData || ({} as Article));
+    } = useArticleContentBlocks(isEditArticlePage, formData);
 
     const { imagePreview, error, handleImageChange, resetImage, avatarSrc } =
         useImageUploader({
