@@ -108,7 +108,6 @@ export const useArticleEditor = () => {
         } else {
             navigate(-1);
         }
-        console.log('Cancel article changes');
     }, [navigate, onClearArticle]);
 
     return {

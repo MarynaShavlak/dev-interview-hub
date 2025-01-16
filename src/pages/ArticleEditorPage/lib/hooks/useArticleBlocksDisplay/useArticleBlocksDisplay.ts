@@ -24,17 +24,7 @@ export const useArticleBlocksDisplay = (
         }
     }, [formData, isEditArticlePage]);
 
-    // Combine existing and new blocks for the final blocks array
-    // const blocks = useMemo(() => {
-    //     console.log('___existingbLOCK___', existingBlocks);
-    //     console.log('___newBlocks___', newBlocks);
-    //     return [...existingBlocks, ...newBlocks];
-    // }, [existingBlocks, newBlocks]);
-    // console.log('blocks', blocks);
-
     const blocks = useMemo(() => {
-        console.log('___existingbLOCK___', existingBlocks);
-        console.log('___newBlocks___', newBlocks);
         const existingBlockIds = new Set(
             existingBlocks.map((block) => block.id),
         );
@@ -80,12 +70,10 @@ export const useArticleBlocksDisplay = (
 
     const updateBlock = useCallback(
         (updatedBlock: ArticleBlock) => {
-            console.log('updatedBlock block', updatedBlock);
             // Check if the block is in existing blocks
             const isExistingBlock = existingBlocks.some(
                 (block) => block.id === updatedBlock.id,
             );
-            console.log('isExistingBlock', isExistingBlock);
 
             if (isExistingBlock) {
                 setExistingBlocks((prev) =>
