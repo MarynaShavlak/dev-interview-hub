@@ -30,10 +30,10 @@ const ArticleEditorPage = memo((props: ArticleEditorPageProps) => {
     const { className } = props;
     const { t } = useTranslation('articleDetails');
     const {
-        metadata: { isEditArticlePage, blocks, saveError },
+        metadata: { isEditArticlePage, blocks, saveError, isLoading },
         validation,
         heroImage: { preview, src, fileTypeError, handleChange, reset },
-        formActions: { onSave, onCancel },
+        formActions: { onSave, onClear, onCancelChanges },
         blockActions,
     } = useArticleEditor();
 
@@ -51,8 +51,9 @@ const ArticleEditorPage = memo((props: ArticleEditorPageProps) => {
                         <Text title={pageTitle} size="l" />
                         <ArticleEditorPageHeader
                             hasErrors={validation.hasInputErrors}
-                            onCancel={onCancel}
+                            onClear={onClear}
                             onSave={onSave}
+                            onCancel={onCancelChanges}
                             isEditArticlePage={isEditArticlePage}
                         />
                     </HStack>

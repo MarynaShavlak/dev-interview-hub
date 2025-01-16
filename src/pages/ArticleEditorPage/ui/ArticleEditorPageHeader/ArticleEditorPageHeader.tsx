@@ -8,15 +8,22 @@ import { Button } from '@/shared/ui/redesigned/Button';
 interface ArticleEditorPageHeaderProps {
     className?: string;
     hasErrors: boolean;
-    onCancel: () => void;
+    onClear: () => void;
     onSave: () => void;
+    onCancel: () => void;
     isEditArticlePage: boolean;
 }
 
 export const ArticleEditorPageHeader = memo(
     (props: ArticleEditorPageHeaderProps) => {
-        const { className, hasErrors, onCancel, onSave, isEditArticlePage } =
-            props;
+        const {
+            className,
+            hasErrors,
+            onClear,
+            onSave,
+            isEditArticlePage,
+            onCancel,
+        } = props;
         const { t } = useTranslation('articleDetails');
         const { formData } = useArticleFormState();
 
@@ -27,15 +34,19 @@ export const ArticleEditorPageHeader = memo(
 
         return (
             <HStack gap="8" className={className}>
+                <Button variant="cancel" onClick={onClear}>
+                    {cancelActionBtnText}
+                </Button>
+                {isEditArticlePage && (
+                    <Button onClick={onCancel}>{t('Відмінити')}</Button>
+                )}
+
                 <Button
                     variant="save"
                     onClick={onSave}
                     disabled={hasErrors || !isSomeBlockAdded}
                 >
                     {t('Зберегти')}
-                </Button>
-                <Button variant="cancel" onClick={onCancel}>
-                    {cancelActionBtnText}
                 </Button>
             </HStack>
         );

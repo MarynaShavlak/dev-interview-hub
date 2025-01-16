@@ -66,5 +66,6 @@
   "Помилка збереження статті": "Failed to save article due to server error",
   "Помилка сервера при збереженні данних": "Server error while saving data. Please try again",
   "Редагування статті": "Edit article",
-  "Очистити": "Clear"
+  "Очистити": "Clear",
+  "Відмінити": "Cancel"
 }
