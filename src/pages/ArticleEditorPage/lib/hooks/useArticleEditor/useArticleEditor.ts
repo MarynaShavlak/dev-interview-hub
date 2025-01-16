@@ -53,6 +53,7 @@ export const useArticleEditor = () => {
         removeBlock,
         clearBlocks,
     } = useArticleBlocksDisplay(isEditArticlePage, formData);
+    console.log('blocks', blocks);
 
     const { imagePreview, error, handleImageChange, resetImage, avatarSrc } =
         useImageUploader({

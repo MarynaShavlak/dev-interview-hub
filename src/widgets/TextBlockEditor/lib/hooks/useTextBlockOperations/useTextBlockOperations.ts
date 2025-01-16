@@ -1,7 +1,6 @@
 import { useCallback } from 'react';
-import { ArticleTextBlock } from '@/entities/Article';
+import { ArticleSection, ArticleTextBlock } from '@/entities/Article';
 import { useToggleVisibility } from '@/shared/lib/hooks/useToggleVisibility/useToggleVisibility';
-import { useTextBlockActions } from '../useTextBlockActions/useTextBlockActions';
 
 interface UseTextBlockOperationsProps {
     blockId: string;
@@ -23,28 +22,41 @@ export const useTextBlockOperations = ({
     const {
         isVisible: isEditModeActive,
         toggleVisibility: toggleEditMode,
-        hideElement: deactivateEditMode,
-        showElement: activateEditMode,
+        hideElement: exitEditMode,
+        showElement: enterEditMode,
     } = useToggleVisibility();
 
-    const { saveTextBlock, deleteTextBlock } = useTextBlockActions({
-        blockId,
-        title,
-        paragraphs,
-        addBlockInArticle,
-        onEditBlock,
-        deleteBlockFromArticle,
-    });
+    const saveTextBlock = useCallback(() => {
+        const updatedTextBlock: ArticleTextBlock = {
+            id: blockId,
+            type: ArticleSection.TEXT,
+            paragraphs,
+            title,
+        };
+
+        if (onEditBlock) {
+            onEditBlock(updatedTextBlock);
+        } else {
+            addBlockInArticle(updatedTextBlock);
+        }
+    }, [addBlockInArticle, blockId, onEditBlock, paragraphs, title]);
+
+    const deleteTextBlock = useCallback(() => {
+        if (deleteBlockFromArticle) {
+            deleteBlockFromArticle(blockId);
+        }
+    }, [deleteBlockFromArticle, blockId]);
 
     const handleSaveTextBlock = useCallback(() => {
         saveTextBlock();
-        deactivateEditMode();
-    }, [deactivateEditMode, saveTextBlock]);
+        exitEditMode();
+    }, [exitEditMode, saveTextBlock]);
 
     return {
         isEditModeActive,
         toggleEditMode,
-        activateEditMode,
+        enterEditMode,
+        exitEditMode,
         handleSaveTextBlock,
         handleDeleteTextBlock: deleteTextBlock,
     };

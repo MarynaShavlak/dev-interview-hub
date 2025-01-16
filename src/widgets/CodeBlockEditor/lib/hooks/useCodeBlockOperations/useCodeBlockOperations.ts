@@ -1,7 +1,6 @@
 import { useCallback } from 'react';
-import { ArticleCodeBlock } from '@/entities/Article';
+import { ArticleCodeBlock, ArticleSection } from '@/entities/Article';
 import { useToggleVisibility } from '@/shared/lib/hooks/useToggleVisibility/useToggleVisibility';
-import { useCodeBlockActions } from '../useCodeBlockActions/useCodeBlockActions';
 
 interface UseCodeBlockOperationsProps {
     blockId: string;
@@ -23,28 +22,43 @@ export const useCodeBlockOperations = ({
     const {
         isVisible: isEditModeActive,
         toggleVisibility: toggleEditMode,
-        hideElement: deactivateEditMode,
-        showElement: activateEditMode,
+        hideElement: exitEditMode,
+        showElement: enterEditMode,
     } = useToggleVisibility();
 
-    const { saveCodeBlock, deleteCodeBlock } = useCodeBlockActions({
-        blockId,
-        title,
-        code,
-        addBlockInArticle,
-        onEditBlock,
-        deleteBlockFromArticle,
-    });
+    const saveCodeBlock = useCallback(() => {
+        const updatedBlock: ArticleCodeBlock = {
+            id: blockId,
+            type: ArticleSection.CODE,
+            code: code.trim(),
+            title,
+        };
+
+        if (onEditBlock) {
+            onEditBlock(updatedBlock);
+        } else {
+            addBlockInArticle(updatedBlock);
+        }
+        // onChangeBlocks(updatedBlock);
+    }, [blockId, code, title, onEditBlock, addBlockInArticle]);
+
+    const deleteCodeBlock = useCallback(() => {
+        if (deleteBlockFromArticle) {
+            deleteBlockFromArticle(blockId);
+            // onDeleteBlock(blockId);
+        }
+    }, [deleteBlockFromArticle, blockId]);
 
     const handleSaveCodeBlock = useCallback(() => {
         saveCodeBlock();
-        deactivateEditMode();
-    }, [deactivateEditMode, saveCodeBlock]);
+        exitEditMode();
+    }, [exitEditMode, saveCodeBlock]);
 
     return {
         isEditModeActive,
         toggleEditMode,
-        activateEditMode,
+        enterEditMode,
+        exitEditMode,
         handleSaveCodeBlock,
         handleDeleteCodeBlock: deleteCodeBlock,
     };

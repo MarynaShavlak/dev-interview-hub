@@ -35,7 +35,7 @@ export const CodeBlockEditor = memo((props: CodeBlockEditorProps) => {
     const {
         isEditModeActive,
         toggleEditMode,
-        activateEditMode,
+        enterEditMode,
         handleSaveCodeBlock,
         handleDeleteCodeBlock,
     } = useCodeBlockOperations({
@@ -70,7 +70,7 @@ export const CodeBlockEditor = memo((props: CodeBlockEditorProps) => {
     };
 
     const viewerProps = {
-        editBlock: isEditArticlePage ? activateEditMode : toggleEditMode,
+        editBlock: isEditArticlePage ? enterEditMode : toggleEditMode,
         block: currentBlockData,
     };
 

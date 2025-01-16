@@ -1,12 +1,15 @@
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
 import { useToggleVisibility } from '@/shared/lib/hooks/useToggleVisibility/useToggleVisibility';
-import { useImageBlockActions } from '../useImageBlockActions/useImageBlockActions';
-import { ArticleImageBlock } from '@/entities/Article';
+import {
+    ArticleImageBlock,
+    ArticleSection,
+    uploadArticleImageThunk,
+} from '@/entities/Article';
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 
 interface UseImageBlockOperationsProps {
     blockId: string;
     title: string;
-    src: string;
     selectedImage: File | null;
     addBlockInArticle: (block: ArticleImageBlock) => void;
     deleteBlockFromArticle: (id: string) => void;
@@ -16,7 +19,7 @@ interface UseImageBlockOperationsProps {
 export const useImageBlockOperations = ({
     blockId,
     title,
-    src,
+
     addBlockInArticle,
     deleteBlockFromArticle,
     onEditBlock,
@@ -25,31 +28,82 @@ export const useImageBlockOperations = ({
     const {
         isVisible: isEditModeActive,
         toggleVisibility: toggleEditMode,
-        hideElement: deactivateEditMode,
-        showElement: activateEditMode,
+        hideElement: exitEditMode,
+        showElement: enterEditMode,
     } = useToggleVisibility();
 
-    const { saveImageBlock, deleteImageBlock, uploadError, resetUploadError } =
-        useImageBlockActions({
-            blockId,
+    const dispatch = useAppDispatch();
+
+    const [uploadError, setUploadError] = useState<string | null>(null);
+
+    const getArticleImageUrl = useCallback(async () => {
+        setUploadError(null);
+        if (selectedImage) {
+            try {
+                const url = await dispatch(
+                    uploadArticleImageThunk(selectedImage),
+                ).unwrap();
+
+                return url;
+            } catch (error) {
+                const errorMessage =
+                    error instanceof Error ? error.message : 'Upload failed.';
+                setUploadError(errorMessage);
+                return null;
+            }
+        }
+        return '';
+    }, [dispatch, selectedImage]);
+
+    const saveImageBlock = useCallback(async () => {
+        const imageUrl = await getArticleImageUrl();
+        const updatedBlock: ArticleImageBlock = {
+            id: blockId,
+            type: ArticleSection.IMAGE,
+            src: imageUrl || '',
             title,
-            src,
-            addBlockInArticle,
-            onEditBlock,
-            deleteBlockFromArticle,
-            selectedImage,
-        });
+        };
+
+        if (onEditBlock) {
+            onEditBlock(updatedBlock);
+        } else {
+            addBlockInArticle(updatedBlock);
+        }
+    }, [getArticleImageUrl, blockId, title, onEditBlock, addBlockInArticle]);
+
+    const deleteImageBlock = useCallback(() => {
+        if (deleteBlockFromArticle) {
+            deleteBlockFromArticle(blockId);
+        }
+    }, [deleteBlockFromArticle, blockId]);
+
+    const resetUploadError = useCallback(() => {
+        if (uploadError) {
+            setUploadError(null);
+        }
+    }, [uploadError]);
+
+    // const { saveImageBlock, deleteImageBlock, uploadError, resetUploadError } =
+    //     useImageBlockActions({
+    //         blockId,
+    //         title,
+    //         src,
+    //         addBlockInArticle,
+    //         onEditBlock,
+    //         deleteBlockFromArticle,
+    //         selectedImage,
+    //     });
 
     const handleSaveImageBlock = useCallback(async () => {
         await saveImageBlock();
-        deactivateEditMode();
-    }, [deactivateEditMode, saveImageBlock]);
+        exitEditMode();
+    }, [exitEditMode, saveImageBlock]);
 
     return {
         isEditModeActive,
         toggleEditMode,
-        activateEditMode,
-        deactivateEditMode,
+        enterEditMode,
+        exitEditMode,
         handleSaveImageBlock,
         handleDeleteImageBlock: deleteImageBlock,
         uploadError,

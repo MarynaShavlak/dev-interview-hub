@@ -38,7 +38,7 @@ export const ImageBlockEditor = (props: ImageBlockEditorProps) => {
     const {
         isEditModeActive,
         toggleEditMode,
-        activateEditMode,
+        enterEditMode,
         handleDeleteImageBlock,
         handleSaveImageBlock,
         uploadError,
@@ -46,7 +46,7 @@ export const ImageBlockEditor = (props: ImageBlockEditorProps) => {
     } = useImageBlockOperations({
         blockId: block.id,
         title,
-        src: initialAvatar,
+
         addBlockInArticle,
         deleteBlockFromArticle,
         onEditBlock,
@@ -79,7 +79,7 @@ export const ImageBlockEditor = (props: ImageBlockEditorProps) => {
     };
 
     const viewerProps = {
-        editBlock: isEditArticlePage ? activateEditMode : toggleEditMode,
+        editBlock: isEditArticlePage ? enterEditMode : toggleEditMode,
         block: currentBlockData,
     };
 
