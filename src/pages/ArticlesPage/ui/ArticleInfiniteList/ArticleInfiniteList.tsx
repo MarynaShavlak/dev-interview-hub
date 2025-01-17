@@ -11,7 +11,6 @@ export interface ArticleInfiniteListProps {
 
 export const ArticleInfiniteList = memo(
     ({ onInfiniteScroll }: ArticleInfiniteListProps) => {
-        // const { isLoading: isArticlesLoading } = useArticles();
         const articles = useSelector(getArticles.selectAll);
         const { view } = useArticleFilters();
         if (!articles) return null;

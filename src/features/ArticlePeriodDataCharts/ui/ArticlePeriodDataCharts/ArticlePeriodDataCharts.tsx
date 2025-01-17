@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useArticles } from '@/entities/Article';
+import { useGetArticles } from '@/entities/Article';
 
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
 import { DeprecatedArticlePeriodDataCharts } from './DeprecatedArticlePeriodDataCharts/DeprecatedArticlePeriodDataCharts';
@@ -13,7 +13,7 @@ export const ArticlePeriodDataCharts = memo(
     (props: ArticlePeriodDataChartsProps) => {
         const { t } = useTranslation('admin');
 
-        const { isLoading: isArticlesLoading, error } = useArticles();
+        const { isLoading: isArticlesLoading, error } = useGetArticles();
 
         if (error) return null;
 

@@ -1,10 +1,9 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { v4 } from 'uuid';
 import { ThunkConfig } from '@/app/providers/StoreProvider';
-import { Article } from '@/entities/Article';
+import { addArticleMutation, Article } from '@/entities/Article';
 import { getArticleFormData } from '../../selectors/getCreateArticleSelectors';
 import { getUserAuthData } from '@/entities/User';
-import { addArticleMutation } from '../../../api/articleCreateApi';
 
 /**
  * Thunk to handle creating a new article.

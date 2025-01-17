@@ -5,7 +5,7 @@ import { useUsers } from '@/entities/User';
 
 import { useArticlesRatings } from '../../api/articlesRatingsApi';
 import { useArticlesComments } from '@/features/ArticleComments';
-import { useArticles, selectAllArticles } from '@/entities/Article';
+import { useGetArticles, selectAllArticles } from '@/entities/Article';
 
 export const useStatisticsData = () => {
     const {
@@ -14,7 +14,7 @@ export const useStatisticsData = () => {
         error: isUsersError,
     } = useUsers();
     const { isLoading: isArticlesLoading, error: isArticlesError } =
-        useArticles();
+        useGetArticles();
     const articles = useSelector(selectAllArticles);
     // console.log('entries', articles);
     // const articles = useSelector(getArticles.selectAll);

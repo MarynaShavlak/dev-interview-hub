@@ -29,11 +29,12 @@ const reducers: ReducersList = {
 const ArticleEditorPage = memo((props: ArticleEditorPageProps) => {
     const { className } = props;
     const { t } = useTranslation('articleDetails');
+
     const {
         metadata: { isEditArticlePage, blocks, saveError, isLoading },
         validation,
         heroImage: { preview, src, fileTypeError, handleChange, reset },
-        formActions: { onSave, onClear, onCancelChanges },
+        formActions: { onSave, onClear, onCancelChanges, onDelete },
         blockActions,
     } = useArticleEditor();
 
@@ -54,6 +55,7 @@ const ArticleEditorPage = memo((props: ArticleEditorPageProps) => {
                             onClear={onClear}
                             onSave={onSave}
                             onCancel={onCancelChanges}
+                            onDelete={onDelete}
                             isEditArticlePage={isEditArticlePage}
                         />
                     </HStack>

@@ -7,16 +7,15 @@ import cls from '../ArticlesPage/ArticlesPage.module.scss';
 
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { VStack } from '@/shared/ui/common/Stack';
-import { ArticleList } from '@/entities/Article';
+import { ArticleList, useGetArticles } from '@/entities/Article';
 import { useArticleFilters } from '../../lib/hooks/useArticleFilters/useArticleFilters';
 
 export const ArticlesPageContent = () => {
-    // const { data: articles, isLoading: isArticlesLoading } = useArticles();
+    const { data: articles, isLoading: isArticlesLoading } = useGetArticles();
+    console.log('articles', articles);
 
     const { view } = useArticleFilters();
 
-    // if (isArticlesLoading) return <p>11111</p>;
-    // if (!articles) return null;
     return (
         <VStack
             gap="24"

@@ -5,7 +5,6 @@ import { useInputValidationConfig } from '@/shared/lib/hooks/validationHooks/use
 import { useImageUploader } from '@/shared/lib/hooks/useImageUploader/useImageUploader';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 
-import { getRouteArticleDetails } from '@/shared/const/router/router';
 import { useArticleFormState } from '../useArticleFormState/useArticleFormState';
 import { useArticleBlocksDisplay } from '../useArticleBlocksDisplay/useArticleBlocksDisplay';
 import {
@@ -13,9 +12,15 @@ import {
     useArticleDataById,
 } from '@/entities/Article';
 import { createArticleThunk } from '../../../model/services/createArticleThunk/createArticleThunk';
+import { deleteArticleThunk } from '../../../model/services/deleteArticleThunk/deleteArticleThunk';
+import {
+    getRouteArticleDetails,
+    getRouteArticles,
+} from '@/shared/const/router/router';
 
 export const useArticleEditor = () => {
     const validConfig = useInputValidationConfig();
+
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
     const [saveError, setSaveError] = useState<string | null>(null);
@@ -87,12 +92,39 @@ export const useArticleEditor = () => {
             setIsLoading(false);
         }
     }, [
+        uploadedArticleImage,
         dispatch,
-        navigate,
         onClearArticle,
         onChangeHeroImage,
-        uploadedArticleImage,
+        navigate,
     ]);
+
+    const onDeleteArticle = useCallback(async () => {
+        if (!id || !formData) {
+            console.error('Article ID is required to delete the article.');
+            return;
+        }
+
+        const confirmed = window.confirm(
+            'Are you sure you want to delete this article? This action cannot be undone.',
+        );
+
+        if (!confirmed) {
+            return;
+        }
+
+        try {
+            setIsLoading(true);
+            await dispatch(deleteArticleThunk(formData)).unwrap();
+            navigate(getRouteArticles());
+            console.log(`Article with ID "${id}" has been deleted.`);
+        } catch (error: any) {
+            console.error('Error deleting article:', error);
+            setSaveError(error.message || 'Failed to delete the article.');
+        } finally {
+            setIsLoading(false);
+        }
+    }, [dispatch, formData, id, navigate]);
 
     const onCancelArticleChanges = useCallback(() => {
         const hasUnsavedChanges = true;
@@ -132,6 +164,7 @@ export const useArticleEditor = () => {
             onSave: onSaveArticle,
             onClear: onClearArticle,
             onCancelChanges: onCancelArticleChanges,
+            onDelete: onDeleteArticle,
         },
 
         heroImage: {

@@ -44,6 +44,7 @@ export const RedesignedArticlesPage = (props: ArticlesPageProps) => {
     const [indexName, setIndexName] = useState<ArticleSortField>(sort);
 
     const routing = createRoutingConfig(indexName);
+    searchClient.clearCache();
 
     useEffect(() => {
         if (sort) {
