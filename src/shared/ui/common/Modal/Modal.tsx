@@ -7,6 +7,8 @@ import { Overlay } from '../Overlay/Overlay';
 import { Portal } from '../Portal/Portal';
 import cls from './Modal.module.scss';
 import { TestProps } from '@/shared/types/tests';
+import CloseIcon from '@/shared/assets/icons/close.svg';
+import { Icon } from '../../redesigned/Icon';
 
 interface ModalProps extends TestProps {
     className?: string;
@@ -60,7 +62,18 @@ export const Modal = (props: ModalProps) => {
                 data-testid={dataTestId}
             >
                 <Overlay onClick={close} />
-                <div className={cls.content}>{children}</div>
+                <div className={cls.content}>
+                    {onClose && (
+                        <Icon
+                            Svg={CloseIcon}
+                            className={cls.closeIcon}
+                            clickable
+                            onClick={onClose}
+                        />
+                    )}
+
+                    {children}
+                </div>
             </div>
         </Portal>
     );

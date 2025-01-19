@@ -48,3 +48,12 @@
         transform: scale(0.2);
     }
 }
+
+
+.closeIcon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    fill: var(--cancel-redesigned);
+
+}
