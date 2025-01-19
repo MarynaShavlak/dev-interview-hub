@@ -12,6 +12,7 @@ import { Text } from '@/shared/ui/redesigned/Text';
 import { ArticleDetailsPageContainer } from '../ArticleDetailsPageContainer/ArticleDetailsPageContainer';
 import { AdditionalInfoContainer } from '../../AdditionalInfoContainer/AdditionalInfoContainer';
 import { useArticleDataById } from '@/entities/Article';
+import { Skeleton } from '@/shared/ui/redesigned/Skeleton';
 
 export const RedesignedArticleDetailsPage = memo(
     ({ className }: ArticleDetailsPageProps) => {
@@ -24,7 +25,11 @@ export const RedesignedArticleDetailsPage = memo(
             error,
         } = useArticleDataById(id || '');
 
-        if (!id || id.includes('deleted') || !article?.id) {
+        if (isLoading) {
+            return <Skeleton width="100%" height="100vh" border="40px" />;
+        }
+
+        if (!id || !article?.id) {
             return (
                 <StickyContentLayout
                     left={<ArticleListNavigationButton />}

@@ -22,7 +22,6 @@ import {
 } from '@/entities/Article';
 import { createArticleThunk } from '../../../model/services/createArticleThunk/createArticleThunk';
 import { deleteArticleThunk } from '../../../model/services/deleteArticleThunk/deleteArticleThunk';
-import { getRouteArticleDetails } from '@/shared/const/router/router';
 import { searchClient } from '@/shared/config/firebase/searchClient';
 
 interface Metadata {
@@ -128,7 +127,6 @@ export const useArticleEditor = (): UseArticleEditorReturn => {
             const savedArticle = await dispatch(createArticleThunk()).unwrap();
             await searchClient.clearCache();
             if (savedArticle?.id) {
-                navigate(getRouteArticleDetails(savedArticle.id));
                 onClearArticle();
                 return savedArticle.id;
             }
@@ -140,13 +138,7 @@ export const useArticleEditor = (): UseArticleEditorReturn => {
         } finally {
             setIsLoading(false);
         }
-    }, [
-        uploadedArticleImage,
-        dispatch,
-        onClearArticle,
-        onChangeHeroImage,
-        navigate,
-    ]);
+    }, [uploadedArticleImage, dispatch, onClearArticle, onChangeHeroImage]);
 
     const onDeleteArticle = useCallback(async () => {
         if (!id || !formData) {
@@ -169,15 +161,11 @@ export const useArticleEditor = (): UseArticleEditorReturn => {
             ).unwrap();
             await searchClient.clearCache();
             if (deletedArticleId) {
-                // navigate(getRouteArticleDetails(savedArticle.id));
                 onClearArticle();
                 return deletedArticleId;
             }
             console.log(`Article with ID "${id}" has been deleted.`);
             return null;
-
-            // navigate(getRouteArticles());
-            // navigate(getRouteMain());
         } catch (error: any) {
             console.error('Error deleting article:', error);
             setSaveError(error.message || 'Failed to delete the article.');

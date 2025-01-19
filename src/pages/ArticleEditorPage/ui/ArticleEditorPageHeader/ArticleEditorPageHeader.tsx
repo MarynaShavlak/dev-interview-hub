@@ -35,21 +35,18 @@ export const ArticleEditorPageHeader = memo(
         const handleSave = useCallback(async () => {
             const savedArticleId = await onSave();
 
-            // if (formData) {
-            //     navigate(getRouteArticleDetails(formData.id));
-            // }
-        }, [onSave]);
+            if (savedArticleId) {
+                navigate(getRouteArticleDetails(savedArticleId));
+            }
+        }, [navigate, onSave]);
 
         const handleDelete = useCallback(async () => {
             const deletedArticleId = await onDelete();
 
             if (deletedArticleId) {
                 navigate(getRouteArticleDetails(`${deletedArticleId}-deleted`));
-                // navigate(getRouteArticles());
             }
             console.log(deletedArticleId);
-            // navigate(getRouteArticles());
-            // navigate(getRouteArticles(), { replace: true });
         }, [navigate, onDelete]);
 
         const isSomeBlockAdded = Number(formData?.blocks.length) > 0;
