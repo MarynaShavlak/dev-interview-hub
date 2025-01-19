@@ -3,9 +3,11 @@ import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import cls from './Icon.module.scss';
 
 type SvgProps = Omit<React.SVGProps<SVGSVGElement>, 'onClick'>;
+export type IconVariant = 'primary' | 'error' | 'accent';
 
 interface IconBaseProps extends SvgProps {
     className?: string;
+    variant?: IconVariant;
     Svg: React.VFC<React.SVGProps<SVGSVGElement>>;
     'data-testid'?: string;
 }
@@ -29,6 +31,7 @@ export const Icon = memo((props: IconProps) => {
         width = 32,
         height = 32,
         clickable,
+        variant = 'primary',
 
         'data-testid': dataTestId,
         ...otherProps
@@ -38,7 +41,7 @@ export const Icon = memo((props: IconProps) => {
         clickable && props.disabled !== undefined ? props.disabled : false;
     const icon = (
         <Svg
-            className={classNames(cls.Icon, {}, [className])}
+            className={classNames(cls.Icon, {}, [className, cls[variant]])}
             width={width}
             height={height}
             {...otherProps}

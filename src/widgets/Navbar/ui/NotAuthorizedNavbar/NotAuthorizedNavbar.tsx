@@ -1,6 +1,5 @@
 import React, { memo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useAuthModal } from '../../lib/hooks/useAuthModal';
 import { AuthModal } from '@/features/AuthByUsername';
 import { Button } from '@/shared/ui/redesigned/Button';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
@@ -10,13 +9,18 @@ import {
     Button as ButtonDeprecated,
     ButtonTheme,
 } from '@/shared/ui/deprecated/Button';
+import { useToggleVisibility } from '@/shared/lib/hooks/useToggleVisibility/useToggleVisibility';
 
 interface NavbarProps {
     className?: string;
 }
 
 export const NotAuthorizedNavbar = memo(({ className }: NavbarProps) => {
-    const { isAuthModal, onShowModal, onCloseModal } = useAuthModal();
+    const {
+        isVisible: isAuthModal,
+        showElement: onShowModal,
+        hideElement: onCloseModal,
+    } = useToggleVisibility();
     const { t } = useTranslation();
     const entryButtonText = t('Вхід');
 

@@ -146,13 +146,13 @@ export const useArticleEditor = (): UseArticleEditorReturn => {
             return null;
         }
 
-        const confirmed = window.confirm(
-            'Are you sure you want to delete this article? This action cannot be undone.',
-        );
-
-        if (!confirmed) {
-            return null;
-        }
+        // const confirmed = window.confirm(
+        //     'Are you sure you want to delete this article? This action cannot be undone.',
+        // );
+        //
+        // if (!confirmed) {
+        //     return null;
+        // }
 
         try {
             setIsLoading(true);

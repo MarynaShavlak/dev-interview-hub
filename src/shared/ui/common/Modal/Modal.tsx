@@ -65,6 +65,7 @@ export const Modal = (props: ModalProps) => {
                 <div className={cls.content}>
                     {onClose && (
                         <Icon
+                            variant="error"
                             Svg={CloseIcon}
                             className={cls.closeIcon}
                             clickable

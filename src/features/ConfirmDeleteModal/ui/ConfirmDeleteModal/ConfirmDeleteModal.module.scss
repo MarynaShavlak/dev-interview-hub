@@ -1,0 +1,17 @@
+.deleteIconWrap {
+  border-radius: 50%;
+  background-color: var(--cancel-redesigned-alfa);
+  width:40px;
+  height:40px;
+}
+
+.deleteIcon {
+ stroke: var(--cancel-redesigned);
+  fill:var(--cancel-redesigned);
+  color: var(--cancel-redesigned);
+}
+
+
+.confirmContent {
+  min-width: 400px;
+}

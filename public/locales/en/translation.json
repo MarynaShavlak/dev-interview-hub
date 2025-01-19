@@ -57,5 +57,9 @@
   "Максимальна довжина поля перевищена": "Maximum length exceeded",
   "Неправильне ім'я користувача": "Invalid username. Must be 8-20 characters, Latin letters, numbers, underscores, or periods, and cannot start/end with an underscore or period.",
   "Невірний формат URL": "Incorrect URL format. Please enter a valid URL.",
-  "Сторінку видалено":  "Page not found or it was deleted"
+  "Сторінку видалено":  "Page not found or it was deleted",
+  "Підтвердити видалення": "Confirm Delete",
+  "Текст підтвердження": "Are you sure you want to delete",
+  "Текст попередження": "This action cannot be undone.",
+  "Видалити": "Delete"
 }
