@@ -33,7 +33,13 @@ const ArticleEditorPage = memo((props: ArticleEditorPageProps) => {
     const {
         metadata: { isEditArticlePage, blocks, saveError, isLoading },
         validation,
-        heroImage: { preview, src, fileTypeError, handleChange, reset },
+        heroImage: {
+            preview,
+            avatarSrc,
+            fileTypeError,
+            handleImageChange,
+            resetImage,
+        },
         formActions: { onSave, onClear, onCancelChanges, onDelete },
         blockActions,
     } = useArticleEditor();
@@ -68,9 +74,9 @@ const ArticleEditorPage = memo((props: ArticleEditorPageProps) => {
                     <AddHeroForm
                         index={3}
                         error={fileTypeError}
-                        handleImageChange={handleChange}
-                        resetImage={reset}
-                        imagePreview={src || preview}
+                        handleImageChange={handleImageChange}
+                        resetImage={resetImage}
+                        imagePreview={avatarSrc || preview}
                     />
                     <AddCategoryForm index={4} />
                     <AddBlocksForm

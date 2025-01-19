@@ -28,7 +28,7 @@ export const RecoverPasswordForm = memo(
 
         const validConfig = useInputValidationConfig();
 
-        const { hasErrors, emailErrors } = useFormValidation(
+        const { hasInputErrors, emailErrors } = useFormValidation(
             { email },
             validConfig,
             'resetPassword',
@@ -67,7 +67,7 @@ export const RecoverPasswordForm = memo(
                             variant="accent"
                             className={cls.authBtn}
                             onClick={onResetPasswordClick}
-                            disabled={isLoading || hasErrors}
+                            disabled={isLoading || hasInputErrors}
                             data-testid="reset-password-btn"
                         >
                             {t('Скинути пароль')}

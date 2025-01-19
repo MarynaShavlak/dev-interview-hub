@@ -37,7 +37,7 @@ export const SignUpForm = memo((props: AuthFormProps) => {
     const validConfig = useInputValidationConfig();
 
     const {
-        hasErrors,
+        hasInputErrors,
         passwordErrors,
         lastnameErrors,
         usernameErrors,
@@ -112,7 +112,7 @@ export const SignUpForm = memo((props: AuthFormProps) => {
                 variant="accent"
                 className={cls.authBtn}
                 onClick={onSignupClick}
-                disabled={isLoading || hasErrors}
+                disabled={isLoading || hasInputErrors}
                 data-testid="login-submit-btn"
             >
                 {t('Зареєструватись')}

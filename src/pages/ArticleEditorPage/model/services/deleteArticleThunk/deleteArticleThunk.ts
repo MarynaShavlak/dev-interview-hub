@@ -8,7 +8,7 @@ import { Article, deleteArticleMutation } from '@/entities/Article';
  * - Dispatches actions based on success or failure.
  */
 export const deleteArticleThunk = createAsyncThunk<
-    void,
+    string,
     Article,
     ThunkConfig<string>
 >('article/deleteArticle', async (article, thunkApi) => {
@@ -19,8 +19,11 @@ export const deleteArticleThunk = createAsyncThunk<
     }
 
     try {
-        await dispatch(deleteArticleMutation(article)).unwrap();
+        const deletedArticleId = await dispatch(
+            deleteArticleMutation(article),
+        ).unwrap();
         console.log(`Article with ID "${article.id}" has been deleted.`);
+        return deletedArticleId;
     } catch (error) {
         console.error(
             `Failed to delete article with ID "${article.id}":`,

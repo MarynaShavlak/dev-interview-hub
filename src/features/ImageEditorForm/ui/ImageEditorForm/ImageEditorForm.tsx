@@ -15,7 +15,7 @@ export interface ImageEditorFormProps {
     onSave: () => void;
     onDelete: () => void;
     hasNoValidImage: boolean;
-    imagePreview: string | null;
+    preview: string | null;
     imageTypeError: string | null;
     handleImageChange: (event: ChangeEvent<HTMLInputElement>) => void;
     resetImage: () => void;
@@ -29,7 +29,7 @@ export const ImageEditorForm = memo((props: ImageEditorFormProps) => {
         onDelete,
         hasNoValidImage,
         resetImage,
-        imagePreview,
+        preview,
         handleImageChange,
         imageTypeError,
     } = props;
@@ -63,7 +63,7 @@ export const ImageEditorForm = memo((props: ImageEditorFormProps) => {
                 />
                 <HStack gap="16" align="end" justify="between" max>
                     <ImagePreview
-                        imagePreview={imagePreview}
+                        imagePreview={preview}
                         handleImageChange={handleImageChange}
                         resetImage={resetImage}
                         error={imageTypeError}

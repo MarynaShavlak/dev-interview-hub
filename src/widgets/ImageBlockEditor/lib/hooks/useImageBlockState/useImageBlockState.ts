@@ -14,22 +14,22 @@ export const useImageBlockState = ({
         useTextInput(initialTitle);
 
     const {
-        imagePreview,
-        error: imageTypeError,
+        preview,
+        fileTypeError,
         handleImageChange,
         resetImage,
         selectedImage,
     } = useImageUploader({
         initialAvatar,
     });
-    const isEmptyContent = !imagePreview || imagePreview.length === 0;
+    const isEmptyContent = !preview || preview.length === 0;
 
     return {
         title,
         handleTitleChange,
         isEmptyContent,
-        imagePreview,
-        imageTypeError,
+        preview,
+        fileTypeError,
         handleImageChange,
         resetImage,
         selectedImage,

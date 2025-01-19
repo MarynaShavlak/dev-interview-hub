@@ -5,14 +5,15 @@ import { HStack } from '@/shared/ui/common/Stack';
 
 import { useArticleFormState } from '../../lib/hooks/useArticleFormState/useArticleFormState';
 import { Button } from '@/shared/ui/redesigned/Button';
+import { getRouteArticleDetails } from '@/shared/const/router/router';
 
 interface ArticleEditorPageHeaderProps {
     className?: string;
     hasErrors: boolean;
     onClear: () => void;
-    onSave: () => void;
+    onSave: () => Promise<string | null>;
     onCancel: () => void;
-    onDelete: () => void;
+    onDelete: () => Promise<string | null>;
     isEditArticlePage: boolean;
 }
 
@@ -31,18 +32,25 @@ export const ArticleEditorPageHeader = memo(
         const { formData } = useArticleFormState();
         const navigate = useNavigate();
 
-        const handleSave = useCallback(() => {
-            onSave();
+        const handleSave = useCallback(async () => {
+            const savedArticleId = await onSave();
 
             // if (formData) {
             //     navigate(getRouteArticleDetails(formData.id));
             // }
         }, [onSave]);
 
-        const handleDelete = useCallback(() => {
-            onDelete();
+        const handleDelete = useCallback(async () => {
+            const deletedArticleId = await onDelete();
+
+            if (deletedArticleId) {
+                navigate(getRouteArticleDetails(`${deletedArticleId}-deleted`));
+                // navigate(getRouteArticles());
+            }
+            console.log(deletedArticleId);
+            // navigate(getRouteArticles());
             // navigate(getRouteArticles(), { replace: true });
-        }, [onDelete]);
+        }, [navigate, onDelete]);
 
         const isSomeBlockAdded = Number(formData?.blocks.length) > 0;
         const cancelActionBtnText = isEditArticlePage

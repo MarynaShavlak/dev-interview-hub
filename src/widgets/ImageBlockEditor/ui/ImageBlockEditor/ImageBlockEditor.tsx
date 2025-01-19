@@ -25,8 +25,8 @@ export const ImageBlockEditor = (props: ImageBlockEditorProps) => {
         title,
         handleTitleChange,
         isEmptyContent: hasNoContent,
-        imagePreview,
-        imageTypeError,
+        preview,
+        fileTypeError,
         handleImageChange,
         resetImage,
         selectedImage,
@@ -65,14 +65,14 @@ export const ImageBlockEditor = (props: ImageBlockEditorProps) => {
                   },
         [block, initialAvatar, isEditArticlePage, title],
     );
-    const hasNoValidImage = hasNoContent || !!imageTypeError;
+    const hasNoValidImage = hasNoContent || !!fileTypeError;
 
     const formProps = {
         title,
         handleTitleChange,
         onSave: handleSaveImageBlock,
-        imagePreview,
-        imageTypeError,
+        preview,
+        imageTypeError: fileTypeError,
         handleImageChange,
         resetImage,
         hasNoValidImage,

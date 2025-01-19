@@ -368,7 +368,7 @@ export const articleFirebaseApi = firestoreApi
                 },
             }),
 
-            deleteArticle: build.mutation<void, Article>({
+            deleteArticle: build.mutation<string, Article>({
                 invalidatesTags: ['Articles'],
                 async queryFn(articleToDelete) {
                     try {
@@ -376,7 +376,7 @@ export const articleFirebaseApi = firestoreApi
                             'articles',
                             articleToDelete,
                         );
-                        return { data: undefined };
+                        return { data: articleToDelete.id };
                     } catch (error) {
                         return { error };
                     }

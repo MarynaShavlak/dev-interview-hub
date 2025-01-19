@@ -1,11 +1,27 @@
-import { useInputErrors } from '../useInputErrors/useInputErrors';
+import {
+    useInputErrors,
+    ValidationErrors,
+} from '../useInputErrors/useInputErrors';
 import { InputErrorValidation } from '../useInputValidationConfig/useInputValidationConfig';
 
+export interface UseFormValidationReturnType {
+    hasInputErrors: boolean;
+    emailErrors: ValidationErrors;
+    passwordErrors: ValidationErrors;
+    usernameErrors: ValidationErrors;
+    firstnameErrors: ValidationErrors;
+    lastnameErrors: ValidationErrors;
+    titleErrors: ValidationErrors;
+    subtitleTextErrors: ValidationErrors;
+    subtitleLinkErrors: ValidationErrors;
+    blockTitleErrors: ValidationErrors;
+    blockTitleRequiredErrors: ValidationErrors;
+}
 export const useFormValidation = (
     data: Record<string, string>,
     validConfig: InputErrorValidation,
     mode: 'signIn' | 'signUp' | 'resetPassword' | 'profile' | 'article',
-) => {
+): UseFormValidationReturnType => {
     const emailErrors = useInputErrors(data.email, validConfig.email);
     const passwordErrors = useInputErrors(data.password, validConfig.password);
     const usernameErrors = useInputErrors(data.username, validConfig.username);
@@ -64,12 +80,12 @@ export const useFormValidation = (
             break;
     }
 
-    const hasErrors = relevantErrors.some((validation) =>
+    const hasInputErrors = relevantErrors.some((validation) =>
         Object.values(validation).some((error) => error),
     );
 
     return {
-        hasErrors,
+        hasInputErrors,
         emailErrors,
         passwordErrors,
         usernameErrors,

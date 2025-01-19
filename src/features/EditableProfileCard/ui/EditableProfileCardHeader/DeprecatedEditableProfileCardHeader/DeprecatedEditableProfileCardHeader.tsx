@@ -12,7 +12,7 @@ interface DeprecatedEditableProfileCardHeaderProps {
     canEdit: boolean;
     readonly?: boolean;
     className?: string;
-    hasErrors?: boolean;
+    hasInputErrors: boolean;
 }
 
 export const DeprecatedEditableProfileCardHeader = memo(
@@ -24,7 +24,7 @@ export const DeprecatedEditableProfileCardHeader = memo(
             onSave,
             readonly,
             canEdit,
-            hasErrors,
+            hasInputErrors,
         } = props;
         const { t } = useTranslation('profile');
 

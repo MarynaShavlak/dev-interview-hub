@@ -23,7 +23,7 @@ export const AvatarUploader = ({
     const { t } = useTranslation('profile');
     const avatarTextPlaceholder = t('Аватар користувача');
 
-    const { avatarSrc, imagePreview, error, handleImageChange, resetImage } =
+    const { avatarSrc, preview, fileTypeError, handleImageChange, resetImage } =
         useImageUploader({
             initialAvatar: avatar,
             onFileUpload,
@@ -37,15 +37,15 @@ export const AvatarUploader = ({
             {!readonly && (
                 <VStack gap="4" align="center">
                     <Box className={cls.avatarWrap}>
-                        {imagePreview && (
+                        {preview && (
                             <Avatar
                                 size={128}
-                                src={imagePreview}
+                                src={preview}
                                 alt={avatarTextPlaceholder}
                             />
                         )}
 
-                        {!imagePreview && (
+                        {!preview && (
                             <Avatar
                                 size={128}
                                 src={avatarSrc}
@@ -58,7 +58,9 @@ export const AvatarUploader = ({
                     <Button variant="cancel" onClick={resetImage} size="s">
                         {t('Видалити зображення')}
                     </Button>
-                    {error && <Text text={error} variant="error" />}
+                    {fileTypeError && (
+                        <Text text={fileTypeError} variant="error" />
+                    )}
                 </VStack>
             )}
         </VStack>

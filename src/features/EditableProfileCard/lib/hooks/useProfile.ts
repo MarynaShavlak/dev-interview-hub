@@ -55,7 +55,7 @@ export const useProfile = () => {
     const validConfig = useInputValidationConfig();
     const { username = '', firstname = '', lastname = '' } = formData || {};
 
-    const { hasErrors } = useFormValidation(
+    const { hasInputErrors } = useFormValidation(
         { username, firstname, lastname },
         validConfig,
         'profile',
@@ -136,7 +136,7 @@ export const useProfile = () => {
         onChangeCurrency,
         onChangeAge,
         onChangeCity,
-        hasErrors,
+        hasInputErrors,
         onFileUpload,
     };
 };

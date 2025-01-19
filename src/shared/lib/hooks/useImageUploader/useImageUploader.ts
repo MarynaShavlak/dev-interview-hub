@@ -9,10 +9,10 @@ interface UseImageUploaderProps {
     onFileUpload?: (file: File | null) => void; // Callback to handle uploaded file
 }
 
-interface UseImageUploaderReturn {
+export interface UseImageUploaderReturn {
     avatarSrc: string;
-    imagePreview: string | null;
-    error: string | null;
+    preview: string | null;
+    fileTypeError: string | null;
     handleImageChange: (event: ChangeEvent<HTMLInputElement>) => void;
     resetImage: () => void;
     selectedImage: File | null;
@@ -24,8 +24,8 @@ export const useImageUploader = ({
 }: UseImageUploaderProps): UseImageUploaderReturn => {
     const { t } = useTranslation('articleDetails');
     const [selectedImage, setSelectedImage] = useState<File | null>(null);
-    const [imagePreview, setImagePreview] = useState<string | null>(null);
-    const [error, setError] = useState<string | null>(null);
+    const [preview, setPreview] = useState<string | null>(null);
+    const [fileTypeError, setFileTypeError] = useState<string | null>(null);
     const [avatarSrc, setAvatarSrc] = useState<string>(initialAvatar || '');
     const errorMessage = t('Некоректний тип файлу');
 
@@ -34,7 +34,7 @@ export const useImageUploader = ({
 
         if (selectedImage) {
             previewUrl = window.URL.createObjectURL(selectedImage);
-            setImagePreview(previewUrl);
+            setPreview(previewUrl);
             setAvatarSrc(previewUrl);
             onFileUpload?.(selectedImage);
         }
@@ -49,7 +49,7 @@ export const useImageUploader = ({
 
     const resetImage = useCallback(() => {
         setSelectedImage(null);
-        setImagePreview(null);
+        setPreview(null);
         setAvatarSrc('');
         onFileUpload?.(null);
     }, [onFileUpload]);
@@ -61,12 +61,12 @@ export const useImageUploader = ({
             if (!file) return;
 
             if (!file.type.match(imageMimeType)) {
-                setError(errorMessage);
+                setFileTypeError(errorMessage);
                 resetImage();
                 return;
             }
 
-            setError(null);
+            setFileTypeError(null);
             setSelectedImage(file);
         },
         [errorMessage, resetImage],
@@ -74,8 +74,8 @@ export const useImageUploader = ({
 
     return {
         avatarSrc,
-        imagePreview,
-        error,
+        preview,
+        fileTypeError,
         handleImageChange,
         resetImage,
         selectedImage,

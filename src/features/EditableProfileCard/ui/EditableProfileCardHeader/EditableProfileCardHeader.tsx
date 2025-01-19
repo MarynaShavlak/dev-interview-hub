@@ -27,7 +27,7 @@ export const EditableProfileCardHeader = memo(
         const canEdit = authData?.id === profileData?.id;
         const readonly = useProfileReadonly();
         const dispatch = useAppDispatch();
-        const { hasErrors, onChangeAvatar } = useProfile();
+        const { hasInputErrors, onChangeAvatar } = useProfile();
         const { setReadonly, cancelEdit } = useProfileActions();
         const uploadedProfilePhoto = useUploadedProfilePhoto();
 
@@ -59,7 +59,7 @@ export const EditableProfileCardHeader = memo(
             onSave,
             canEdit,
             readonly,
-            hasErrors,
+            hasInputErrors,
             className,
         };
 

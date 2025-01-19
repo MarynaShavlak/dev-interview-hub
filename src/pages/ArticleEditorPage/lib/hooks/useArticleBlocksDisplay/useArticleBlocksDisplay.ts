@@ -9,10 +9,21 @@ import {
     Article,
 } from '@/entities/Article';
 
+export interface UseArticleBlocksDisplayReturnType {
+    blocks: ArticleBlock[];
+    insertTextBlock: () => void;
+    insertCodeBlock: () => void;
+    insertImageBlock: () => void;
+    addBlock: (block: ArticleBlock) => void;
+    updateBlock: (updatedBlock: ArticleBlock) => void;
+    removeBlock: (id: string) => void;
+    clearBlocks: () => void;
+}
+
 export const useArticleBlocksDisplay = (
     isEditArticlePage: boolean,
     formData?: Article,
-) => {
+): UseArticleBlocksDisplayReturnType => {
     // Track existing and new blocks separately
     const [existingBlocks, setExistingBlocks] = useState<ArticleBlock[]>([]);
     const [newBlocks, setNewBlocks] = useState<ArticleBlock[]>([]);
