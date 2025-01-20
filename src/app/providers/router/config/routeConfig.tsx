@@ -13,6 +13,7 @@ import { MainPage, MainPageSkeleton } from '@/pages/MainPage';
 import { NotFoundPage, NotFoundPageSkeleton } from '@/pages/NotFoundPage';
 import { ProfilePage } from '@/pages/ProfilePage';
 import { SettingsPage, SettingsPageSkeleton } from '@/pages/SettingsPage';
+import { MyArticlesPage, MyArticlesPageSkeleton } from '@/pages/MyArticlesPage';
 import {
     AppRoutes,
     getRouteAbout,
@@ -64,9 +65,9 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
     },
     [AppRoutes.MY_ARTICLES]: {
         path: getRouteMyArticles(),
-        element: <ArticlesPage />,
+        element: <MyArticlesPage />,
         authOnly: true,
-        skeleton: <ArticlesPageSkeleton />,
+        skeleton: <MyArticlesPageSkeleton />,
     },
     [AppRoutes.ARTICLE_DETAILS]: {
         path: getRouteArticleDetails(':id'),
