@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next';
+import { useCallback } from 'react';
 import { useImageUploader } from '@/shared/lib/hooks/useImageUploader/useImageUploader';
 import { VStack } from '@/shared/ui/common/Stack';
 import { Avatar } from '@/shared/ui/redesigned/Avatar';
@@ -8,6 +9,8 @@ import { Button } from '@/shared/ui/redesigned/Button';
 import { FileUploadInput } from '@/shared/ui/redesigned/FileUploadInput/FileUploadInput';
 import { Text } from '@/shared/ui/redesigned/Text';
 import { Box } from '@/shared/ui/common/Box/Box';
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { deleteArticleImageThunk } from '@/entities/Article';
 
 interface ImageUploaderProps {
     avatar: string;
@@ -22,11 +25,18 @@ export const AvatarUploader = ({
 }: ImageUploaderProps) => {
     const { t } = useTranslation('profile');
     const avatarTextPlaceholder = t('Аватар користувача');
+    const dispatch = useAppDispatch();
+    const deleteFromStorage = useCallback(async () => {
+        if (avatar) {
+            await dispatch(deleteArticleImageThunk(avatar)).unwrap();
+        }
+    }, [dispatch, avatar]);
 
     const { avatarSrc, preview, fileTypeError, handleImageChange, resetImage } =
         useImageUploader({
             initialAvatar: avatar,
             onFileUpload,
+            deleteFromStorage,
         });
 
     return (

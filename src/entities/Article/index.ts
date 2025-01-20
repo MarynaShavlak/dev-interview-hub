@@ -1,3 +1,5 @@
+export { deleteArticleImageThunk } from './model/services/deleteArticleImageThunk/deleteArticleImageThunk';
+
 export { uploadArticleImageThunk } from './model/services/uploadArticleImageThunk/uploadImageThunk';
 
 export { ArticleBlockPreview } from './ui/ArticleBlockPreview/ArticleBlockPreview';

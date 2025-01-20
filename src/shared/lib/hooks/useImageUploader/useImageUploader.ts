@@ -6,7 +6,9 @@ const imageMimeType = /^image\//i;
 
 interface UseImageUploaderProps {
     initialAvatar: string;
-    onFileUpload?: (file: File | null) => void; // Callback to handle uploaded file
+    deleteFromStorage: (imagePath: string) => void;
+    onFileUpload?: (file: File | null) => void;
+    // Callback to handle uploaded file
 }
 
 export interface UseImageUploaderReturn {
@@ -21,8 +23,10 @@ export interface UseImageUploaderReturn {
 export const useImageUploader = ({
     initialAvatar,
     onFileUpload,
+    deleteFromStorage,
 }: UseImageUploaderProps): UseImageUploaderReturn => {
     const { t } = useTranslation('articleDetails');
+
     const [selectedImage, setSelectedImage] = useState<File | null>(null);
     const [preview, setPreview] = useState<string | null>(null);
     const [fileTypeError, setFileTypeError] = useState<string | null>(null);
@@ -47,12 +51,15 @@ export const useImageUploader = ({
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [selectedImage]);
 
-    const resetImage = useCallback(() => {
+    const resetImage = useCallback(async () => {
+        if (initialAvatar) {
+            await deleteFromStorage(initialAvatar);
+        }
         setSelectedImage(null);
         setPreview(null);
         setAvatarSrc('');
         onFileUpload?.(null);
-    }, [onFileUpload]);
+    }, [deleteFromStorage, initialAvatar, onFileUpload]);
 
     const handleImageChange = useCallback(
         (event: ChangeEvent<HTMLInputElement>) => {

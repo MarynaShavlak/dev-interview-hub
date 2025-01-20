@@ -71,5 +71,7 @@
   "статтю": "article",
   "редагування статті": "article editing",
   "Продовжити редагування": "Keep editing",
-  "Відмінити зміни": "Discard changes"
+  "Відмінити зміни": "Discard changes",
+  "Зберегти статтю": "Save new article",
+  "Зберегти зміни": "Save changes"
 }

@@ -17,6 +17,7 @@ import {
     UseArticleBlocksDisplayReturnType,
 } from '../useArticleBlocksDisplay/useArticleBlocksDisplay';
 import {
+    deleteArticleImageThunk,
     uploadArticleImageThunk,
     useArticleDataById,
 } from '@/entities/Article';
@@ -100,10 +101,17 @@ export const useArticleEditor = (): UseArticleEditorReturn => {
         formData,
     );
 
+    const deleteFromStorage = useCallback(async () => {
+        if (initialAvatar) {
+            await dispatch(deleteArticleImageThunk(initialAvatar)).unwrap();
+        }
+    }, [dispatch, initialAvatar]);
+
     const { preview, fileTypeError, handleImageChange, resetImage, avatarSrc } =
         useImageUploader({
             initialAvatar: initialAvatar || '',
             onFileUpload,
+            deleteFromStorage,
         });
 
     const onClearArticle = useCallback(() => {

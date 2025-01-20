@@ -85,7 +85,7 @@ export const ArticleEditorPageHeader = memo(
                                 onClick={handleUpdate}
                                 disabled={!canSave}
                             >
-                                {t('Зберегти')}
+                                {t('Зберегти зміни')}
                             </Button>
                         </>
                     )}
@@ -99,7 +99,7 @@ export const ArticleEditorPageHeader = memo(
                                 onClick={handleSave}
                                 disabled={!canSave}
                             >
-                                {t('Зберегти')}
+                                {t('Зберегти статтю')}
                             </Button>
                         </>
                     )}
