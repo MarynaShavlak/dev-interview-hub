@@ -12,24 +12,18 @@ import { useArticleNavigation } from '../../lib/hooks/useArticleNavigation/useAr
 interface ArticleEditorPageHeaderProps {
     className?: string;
     hasErrors: boolean;
-    onClear: () => void;
-    onSave: () => Promise<string | null>;
-    onCancel: () => void;
-    onDelete: () => Promise<string | null>;
     isEditArticlePage: boolean;
+    onActions: {
+        clear: () => void;
+        save: () => Promise<string | null>;
+        cancel: () => void;
+        delete: () => Promise<string | null>;
+    };
 }
 
 export const ArticleEditorPageHeader = memo(
     (props: ArticleEditorPageHeaderProps) => {
-        const {
-            className,
-            hasErrors,
-            onClear,
-            onSave,
-            isEditArticlePage,
-            onCancel,
-            onDelete,
-        } = props;
+        const { className, hasErrors, onActions, isEditArticlePage } = props;
         const { t } = useTranslation('articleDetails');
         const { formData } = useArticleFormState();
         const { navigateToArticle } = useArticleNavigation();
@@ -39,29 +33,29 @@ export const ArticleEditorPageHeader = memo(
         const cancelArticleEditing = useToggleVisibility();
 
         const handleSave = useCallback(async () => {
-            const savedArticleId = await onSave();
+            const savedArticleId = await onActions.save();
 
             if (savedArticleId) {
                 navigateToArticle(savedArticleId);
             }
-        }, [navigateToArticle, onSave]);
+        }, [navigateToArticle, onActions]);
 
         const handleDelete = useCallback(async () => {
-            const deletedArticleId = await onDelete();
+            const deletedArticleId = await onActions.delete();
 
             if (deletedArticleId) {
                 navigateToArticle(`${deletedArticleId}-deleted`);
             }
-        }, [navigateToArticle, onDelete]);
+        }, [navigateToArticle, onActions]);
 
         const handleCancel = useCallback(() => {
             if (editedArticleId) {
-                onCancel();
+                onActions.cancel();
                 navigateToArticle(editedArticleId);
             }
-        }, [editedArticleId, navigateToArticle, onCancel]);
+        }, [editedArticleId, navigateToArticle, onActions]);
 
-        const isSomeBlockAdded = Number(formData?.blocks.length) > 0;
+        const canSave = !hasErrors && (formData?.blocks?.length ?? 0) > 0;
 
         return (
             <>
@@ -80,7 +74,7 @@ export const ArticleEditorPageHeader = memo(
                         </>
                     )}
                     {!isEditArticlePage && (
-                        <Button variant="cancel" onClick={onClear}>
+                        <Button variant="cancel" onClick={onActions.clear}>
                             {t('Очистити')}
                         </Button>
                     )}
@@ -88,7 +82,7 @@ export const ArticleEditorPageHeader = memo(
                     <Button
                         variant="save"
                         onClick={handleSave}
-                        disabled={hasErrors || !isSomeBlockAdded}
+                        disabled={!canSave}
                     >
                         {t('Зберегти')}
                     </Button>

@@ -58,10 +58,12 @@ const ArticleEditorPage = memo((props: ArticleEditorPageProps) => {
                         <Text title={pageTitle} size="l" />
                         <ArticleEditorPageHeader
                             hasErrors={validation.hasInputErrors}
-                            onClear={onClear}
-                            onSave={onSave}
-                            onCancel={onCancelChanges}
-                            onDelete={onDelete}
+                            onActions={{
+                                clear: onClear,
+                                save: onSave,
+                                cancel: onCancelChanges,
+                                delete: onDelete,
+                            }}
                             isEditArticlePage={isEditArticlePage}
                         />
                     </HStack>

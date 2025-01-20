@@ -104,6 +104,10 @@ export const useArticleEditor = (): UseArticleEditorReturn => {
             onFileUpload,
         });
 
+    const editedArticled = editedArticle?.id;
+    const formDataId = formData?.id;
+    console.log('editedid', editedArticled);
+    console.log('formid', formDataId);
     const onClearArticle = useCallback(() => {
         onResetArticle();
         blockOperations.clearBlocks();
@@ -171,7 +175,6 @@ export const useArticleEditor = (): UseArticleEditorReturn => {
     return {
         metadata: {
             isEditArticlePage,
-
             blocks: blockOperations.blocks,
             saveError,
             isLoading: isLoading || isArticleLoading,
