@@ -23,6 +23,7 @@ import {
 import { createArticleThunk } from '../../../model/services/createArticleThunk/createArticleThunk';
 import { deleteArticleThunk } from '../../../model/services/deleteArticleThunk/deleteArticleThunk';
 import { searchClient } from '@/shared/config/firebase/searchClient';
+import { updateArticleThunk } from '../../../model/services/updateArticleThunk/updateArticleThunk';
 
 interface Metadata {
     isEditArticlePage: boolean;
@@ -32,6 +33,7 @@ interface Metadata {
 }
 
 interface FormActions {
+    onUpdate: () => Promise<string | null>;
     onSave: () => Promise<string | null>;
     onClear: () => void;
     onCancelChanges: () => void;
@@ -104,10 +106,6 @@ export const useArticleEditor = (): UseArticleEditorReturn => {
             onFileUpload,
         });
 
-    const editedArticled = editedArticle?.id;
-    const formDataId = formData?.id;
-    console.log('editedid', editedArticled);
-    console.log('formid', formDataId);
     const onClearArticle = useCallback(() => {
         onResetArticle();
         blockOperations.clearBlocks();
@@ -168,6 +166,54 @@ export const useArticleEditor = (): UseArticleEditorReturn => {
         }
     }, [dispatch, formData, id, onClearArticle]);
 
+    const onUpdateArticle = useCallback(async () => {
+        if (!id || !formData) {
+            console.error(
+                'Article ID and form data are required to update the article.',
+            );
+            setSaveError('Article data is incomplete.');
+            return null;
+        }
+
+        try {
+            setIsLoading(true);
+            setSaveError(null);
+
+            let heroImageUrl = formData.img;
+
+            if (uploadedArticleImage) {
+                heroImageUrl = await dispatch(
+                    uploadArticleImageThunk(uploadedArticleImage),
+                ).unwrap();
+                onChangeHeroImage(heroImageUrl);
+            } else if (!uploadedArticleImage && !preview) {
+                onChangeHeroImage('');
+            }
+
+            const updatedArticle =
+                await dispatch(updateArticleThunk()).unwrap();
+            await searchClient.clearCache();
+
+            if (updatedArticle?.id) {
+                console.log(
+                    `Article with ID "${updatedArticle.id}" has been updated.`,
+                );
+                return updatedArticle.id;
+            }
+
+            return null;
+        } catch (error: any) {
+            console.error('Error updating article:', error);
+            setSaveError(
+                error.message ||
+                    'An error occurred while updating the article.',
+            );
+            return null;
+        } finally {
+            setIsLoading(false);
+        }
+    }, [id, formData, uploadedArticleImage, dispatch, onChangeHeroImage]);
+
     const onCancelArticleChanges = useCallback(() => {
         onClearArticle();
     }, [onClearArticle]);
@@ -195,6 +241,7 @@ export const useArticleEditor = (): UseArticleEditorReturn => {
             onClear: onClearArticle,
             onCancelChanges: onCancelArticleChanges,
             onDelete: onDeleteArticle,
+            onUpdate: onUpdateArticle,
         },
 
         heroImage: {

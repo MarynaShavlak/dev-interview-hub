@@ -48,4 +48,5 @@ export {
     getArticleDataByIdQuery,
     addArticleMutation,
     deleteArticleMutation,
+    updateArticleMutation,
 } from './api/articleApi';

@@ -16,6 +16,7 @@ interface ArticleEditorPageHeaderProps {
     onActions: {
         clear: () => void;
         save: () => Promise<string | null>;
+        update: () => Promise<string | null>;
         cancel: () => void;
         delete: () => Promise<string | null>;
     };
@@ -37,6 +38,14 @@ export const ArticleEditorPageHeader = memo(
 
             if (savedArticleId) {
                 navigateToArticle(savedArticleId);
+            }
+        }, [navigateToArticle, onActions]);
+
+        const handleUpdate = useCallback(async () => {
+            const updatedArticleId = await onActions.update();
+
+            if (updatedArticleId) {
+                navigateToArticle(updatedArticleId);
             }
         }, [navigateToArticle, onActions]);
 
@@ -71,21 +80,29 @@ export const ArticleEditorPageHeader = memo(
                             <Button onClick={cancelArticleEditing.show}>
                                 {t('Відмінити')}
                             </Button>
+                            <Button
+                                variant="save"
+                                onClick={handleUpdate}
+                                disabled={!canSave}
+                            >
+                                {t('Зберегти')}
+                            </Button>
                         </>
                     )}
                     {!isEditArticlePage && (
-                        <Button variant="cancel" onClick={onActions.clear}>
-                            {t('Очистити')}
-                        </Button>
+                        <>
+                            <Button variant="cancel" onClick={onActions.clear}>
+                                {t('Очистити')}
+                            </Button>
+                            <Button
+                                variant="save"
+                                onClick={handleSave}
+                                disabled={!canSave}
+                            >
+                                {t('Зберегти')}
+                            </Button>
+                        </>
                     )}
-
-                    <Button
-                        variant="save"
-                        onClick={handleSave}
-                        disabled={!canSave}
-                    >
-                        {t('Зберегти')}
-                    </Button>
                 </HStack>
                 {deleteArticleModal.isVisible && (
                     <ConfirmDeleteModal

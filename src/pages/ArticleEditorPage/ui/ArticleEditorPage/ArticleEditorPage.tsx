@@ -40,7 +40,7 @@ const ArticleEditorPage = memo((props: ArticleEditorPageProps) => {
             handleImageChange,
             resetImage,
         },
-        formActions: { onSave, onClear, onCancelChanges, onDelete },
+        formActions: { onSave, onClear, onCancelChanges, onDelete, onUpdate },
         blockActions,
     } = useArticleEditor();
 
@@ -63,6 +63,7 @@ const ArticleEditorPage = memo((props: ArticleEditorPageProps) => {
                                 save: onSave,
                                 cancel: onCancelChanges,
                                 delete: onDelete,
+                                update: onUpdate,
                             }}
                             isEditArticlePage={isEditArticlePage}
                         />
