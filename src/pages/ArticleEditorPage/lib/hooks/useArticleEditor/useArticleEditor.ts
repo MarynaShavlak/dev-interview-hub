@@ -1,5 +1,5 @@
 import { useCallback, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import {
     useFormValidation,
     UseFormValidationReturnType,
@@ -61,9 +61,7 @@ interface UseArticleEditorReturn {
 
 export const useArticleEditor = (): UseArticleEditorReturn => {
     const validConfig = useInputValidationConfig();
-
     const dispatch = useAppDispatch();
-    const navigate = useNavigate();
     const [saveError, setSaveError] = useState<string | null>(null);
     const [isLoading, setIsLoading] = useState(false);
 
@@ -107,6 +105,7 @@ export const useArticleEditor = (): UseArticleEditorReturn => {
         });
 
     const onClearArticle = useCallback(() => {
+        console.log('formData', formData);
         onResetArticle();
         blockOperations.clearBlocks();
         resetImage();
@@ -176,20 +175,8 @@ export const useArticleEditor = (): UseArticleEditorReturn => {
     }, [dispatch, formData, id, onClearArticle]);
 
     const onCancelArticleChanges = useCallback(() => {
-        const hasUnsavedChanges = true;
-
-        if (hasUnsavedChanges) {
-            const confirmed = window.confirm(
-                'You have unsaved changes. Are you sure you want to cancel?',
-            );
-            if (confirmed) {
-                onClearArticle();
-                navigate(-1);
-            }
-        } else {
-            navigate(-1);
-        }
-    }, [navigate, onClearArticle]);
+        onClearArticle();
+    }, [onClearArticle]);
 
     return {
         metadata: {
