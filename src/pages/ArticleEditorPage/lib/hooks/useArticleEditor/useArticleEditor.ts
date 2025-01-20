@@ -41,7 +41,7 @@ interface FormActions {
     onDelete: () => Promise<string | null>;
 }
 
-interface UseArticleEditorReturn {
+export interface UseArticleEditorReturn {
     metadata: Metadata;
     validation: Pick<
         UseFormValidationReturnType,
@@ -66,7 +66,6 @@ export const useArticleEditor = (): UseArticleEditorReturn => {
     const validConfig = useInputValidationConfig();
     const dispatch = useAppDispatch();
     const [saveError, setSaveError] = useState<string | null>(null);
-    const [isLoading, setIsLoading] = useState(false);
 
     const { id } = useParams<{ id: string }>();
     const isEditArticlePage = Boolean(id);
@@ -122,11 +121,10 @@ export const useArticleEditor = (): UseArticleEditorReturn => {
 
     const onSaveArticle = useCallback(async () => {
         try {
-            setIsLoading(true);
             setSaveError(null);
-            let heroImageUrl = '';
+
             if (uploadedArticleImage) {
-                heroImageUrl = await dispatch(
+                const heroImageUrl = await dispatch(
                     uploadArticleImageThunk(uploadedArticleImage),
                 ).unwrap();
                 onChangeHeroImage(heroImageUrl);
@@ -143,8 +141,6 @@ export const useArticleEditor = (): UseArticleEditorReturn => {
             console.error('Error saving article:', error);
             setSaveError(error.message || 'An unexpected error occurred.');
             return null;
-        } finally {
-            setIsLoading(false);
         }
     }, [uploadedArticleImage, dispatch, onClearArticle, onChangeHeroImage]);
 
@@ -154,7 +150,6 @@ export const useArticleEditor = (): UseArticleEditorReturn => {
             return null;
         }
         try {
-            setIsLoading(true);
             const deletedArticleId = await dispatch(
                 deleteArticleThunk(formData),
             ).unwrap();
@@ -169,8 +164,6 @@ export const useArticleEditor = (): UseArticleEditorReturn => {
             console.error('Error deleting article:', error);
             setSaveError(error.message || 'Failed to delete the article.');
             return null;
-        } finally {
-            setIsLoading(false);
         }
     }, [dispatch, formData, id, onClearArticle]);
 
@@ -184,13 +177,10 @@ export const useArticleEditor = (): UseArticleEditorReturn => {
         }
 
         try {
-            setIsLoading(true);
             setSaveError(null);
 
-            let heroImageUrl = formData.img;
-
             if (uploadedArticleImage) {
-                heroImageUrl = await dispatch(
+                const heroImageUrl = await dispatch(
                     uploadArticleImageThunk(uploadedArticleImage),
                 ).unwrap();
                 onChangeHeroImage(heroImageUrl);
@@ -217,10 +207,15 @@ export const useArticleEditor = (): UseArticleEditorReturn => {
                     'An error occurred while updating the article.',
             );
             return null;
-        } finally {
-            setIsLoading(false);
         }
-    }, [id, formData, uploadedArticleImage, dispatch, onChangeHeroImage]);
+    }, [
+        id,
+        formData,
+        uploadedArticleImage,
+        preview,
+        dispatch,
+        onChangeHeroImage,
+    ]);
 
     const onCancelArticleChanges = useCallback(() => {
         onClearArticle();
@@ -231,7 +226,7 @@ export const useArticleEditor = (): UseArticleEditorReturn => {
             isEditArticlePage,
             blocks: blockOperations.blocks,
             saveError,
-            isLoading: isLoading || isArticleLoading,
+            isLoading: isArticleLoading,
         },
 
         validation: {

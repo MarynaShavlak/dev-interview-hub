@@ -8,11 +8,15 @@ import { useToggleVisibility } from '@/shared/lib/hooks/useToggleVisibility/useT
 import { ConfirmDeleteModal } from '@/features/ConfirmDeleteModal';
 import { ConfirmCancelModal } from '@/features/ConfirmCancelModal';
 import { useArticleNavigation } from '../../lib/hooks/useArticleNavigation/useArticleNavigation';
+import cls from './ArticleEditorPageHeader.module.scss';
+import { Text } from '@/shared/ui/redesigned/Text';
+import { Skeleton } from '@/shared/ui/redesigned/Skeleton';
 
 interface ArticleEditorPageHeaderProps {
     className?: string;
     hasErrors: boolean;
     isEditArticlePage: boolean;
+    isLoading: boolean;
     onActions: {
         clear: () => void;
         save: () => Promise<string | null>;
@@ -24,11 +28,20 @@ interface ArticleEditorPageHeaderProps {
 
 export const ArticleEditorPageHeader = memo(
     (props: ArticleEditorPageHeaderProps) => {
-        const { className, hasErrors, onActions, isEditArticlePage } = props;
+        const {
+            className,
+            hasErrors,
+            onActions,
+            isEditArticlePage,
+            isLoading,
+        } = props;
         const { t } = useTranslation('articleDetails');
         const { formData } = useArticleFormState();
         const { navigateToArticle } = useArticleNavigation();
         const editedArticleId = formData?.id;
+        const pageTitle = isEditArticlePage
+            ? t('Редагування статті')
+            : t('Створення нової статті');
 
         const deleteArticleModal = useToggleVisibility();
         const cancelArticleEditing = useToggleVisibility();
@@ -66,8 +79,13 @@ export const ArticleEditorPageHeader = memo(
 
         const canSave = !hasErrors && (formData?.blocks?.length ?? 0) > 0;
 
+        if (isLoading) {
+            return <Skeleton width="100%" height="76px" border="16px" />;
+        }
+
         return (
-            <>
+            <HStack justify="between" max className={cls.pageTitleWrap}>
+                <Text title={pageTitle} size="l" />
                 <HStack gap="8" className={className}>
                     {isEditArticlePage && (
                         <>
@@ -122,7 +140,7 @@ export const ArticleEditorPageHeader = memo(
                         onConfirm={handleCancel}
                     />
                 )}
-            </>
+            </HStack>
         );
     },
 );
