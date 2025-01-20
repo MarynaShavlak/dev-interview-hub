@@ -9,7 +9,6 @@ import { ArticleListSkeleton } from './ArticleListSkeleton/ArticleListSkeleton';
 import { Each } from '@/shared/lib/components/Each/Each';
 import { HStack, VStack } from '@/shared/ui/common/Stack';
 import { ArticleCard } from '../../ui/ArticleCard/ArticleCard';
-import { useGetArticles } from '../../api/articleApi';
 
 export interface ArticleListProps {
     className?: string;
@@ -53,14 +52,12 @@ export const ArticleList = memo((props: ArticleListProps) => {
         off: () => cls.ArticleList,
     });
     const classes = classNames(mainClass, {}, [className, cls[view]]);
-    const { items, results, hits } = useHits({});
+    const { items, results } = useHits({});
     let page = 0;
     if (results) {
         page = results.page;
     }
-    const { data } = useGetArticles();
-    console.log('results', results);
-    console.log('data', data);
+
     const articlesToRender = transformItems(items);
 
     const content = (

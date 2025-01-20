@@ -72,7 +72,7 @@ export const useArticleEditor = (): UseArticleEditorReturn => {
     const { data: editedArticle, isLoading: isArticleLoading } =
         useArticleDataById(id || '');
     const initialAvatar = isEditArticlePage ? editedArticle?.img : '';
-
+    console.log('editedArticle', editedArticle);
     const {
         formData,
         uploadedArticleImage,

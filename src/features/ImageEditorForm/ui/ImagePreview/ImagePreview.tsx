@@ -29,7 +29,12 @@ export const ImagePreview = (props: ImagePreviewProps) => {
     const previewWrapClass = imagePreview ? cls.previewWrap : '';
 
     return (
-        <VStack gap="4" align="center" className={cls.blockImageZone}>
+        <VStack
+            gap="4"
+            align="center"
+            className={cls.blockImageZone}
+            justify="center"
+        >
             <Box className={cls.avatarWrap}>
                 <VStack gap="16" max className={previewWrapClass}>
                     {imagePreview && (
