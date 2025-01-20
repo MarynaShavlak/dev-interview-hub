@@ -26,7 +26,13 @@ export const ArticleEditorPageContent = memo(
         const { blocks, isLoading } = metadata;
 
         if (isLoading) {
-            return <Skeleton width="100%" height="100vh" border="40px" />;
+            return (
+                <Skeleton
+                    width="100%"
+                    height="calc(100vh - 64px)"
+                    border="40px"
+                />
+            );
         }
 
         return (
