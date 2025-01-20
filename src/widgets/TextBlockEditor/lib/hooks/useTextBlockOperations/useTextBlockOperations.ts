@@ -22,8 +22,8 @@ export const useTextBlockOperations = ({
     const {
         isVisible: isEditModeActive,
         toggleVisibility: toggleEditMode,
-        hideElement: exitEditMode,
-        showElement: enterEditMode,
+        hide: exitEditMode,
+        show: enterEditMode,
     } = useToggleVisibility();
 
     const saveTextBlock = useCallback(() => {

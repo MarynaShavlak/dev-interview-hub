@@ -22,8 +22,8 @@ export const useCodeBlockOperations = ({
     const {
         isVisible: isEditModeActive,
         toggleVisibility: toggleEditMode,
-        hideElement: exitEditMode,
-        showElement: enterEditMode,
+        hide: exitEditMode,
+        show: enterEditMode,
     } = useToggleVisibility();
 
     const saveCodeBlock = useCallback(() => {

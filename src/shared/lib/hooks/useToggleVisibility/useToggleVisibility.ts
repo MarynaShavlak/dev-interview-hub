@@ -19,7 +19,7 @@
 //         setClickCount(0); // Reset click count when toggleVisibility is used
 //     }, []);
 //
-//     const showElement = useCallback(() => {
+//     const show = useCallback(() => {
 //         setClickCount((prevCount) => {
 //             const newCount = prevCount + 1;
 //
@@ -30,12 +30,12 @@
 //             return newCount;
 //         });
 //     }, []);
-//     const hideElement = useCallback(() => {
+//     const hide = useCallback(() => {
 //         setIsVisible(false);
 //         setClickCount(0);
 //     }, []);
 //
-//     return { isVisible, toggleVisibility, showElement, hideElement };
+//     return { isVisible, toggleVisibility, show, hide };
 // };
 
 import { useState, useCallback } from 'react';
@@ -47,13 +47,13 @@ export const useToggleVisibility = (isVisibleEl = false) => {
         setIsVisible((prev) => !prev);
     }, []);
 
-    const showElement = useCallback(() => {
+    const show = useCallback(() => {
         setIsVisible(true);
     }, []);
 
-    const hideElement = useCallback(() => {
+    const hide = useCallback(() => {
         setIsVisible(false);
     }, []);
 
-    return { isVisible, toggleVisibility, showElement, hideElement };
+    return { isVisible, toggleVisibility, show, hide };
 };

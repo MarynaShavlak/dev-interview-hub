@@ -18,8 +18,8 @@ interface NavbarProps {
 export const NotAuthorizedNavbar = memo(({ className }: NavbarProps) => {
     const {
         isVisible: isAuthModal,
-        showElement: onShowModal,
-        hideElement: onCloseModal,
+        show: onShowModal,
+        hide: onCloseModal,
     } = useToggleVisibility();
     const { t } = useTranslation();
     const entryButtonText = t('Вхід');

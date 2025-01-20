@@ -105,7 +105,6 @@ export const useArticleEditor = (): UseArticleEditorReturn => {
         });
 
     const onClearArticle = useCallback(() => {
-        console.log('formData', formData);
         onResetArticle();
         blockOperations.clearBlocks();
         resetImage();
@@ -144,15 +143,6 @@ export const useArticleEditor = (): UseArticleEditorReturn => {
             console.error('Article ID is required to delete the article.');
             return null;
         }
-
-        // const confirmed = window.confirm(
-        //     'Are you sure you want to delete this article? This action cannot be undone.',
-        // );
-        //
-        // if (!confirmed) {
-        //     return null;
-        // }
-
         try {
             setIsLoading(true);
             const deletedArticleId = await dispatch(
@@ -181,6 +171,7 @@ export const useArticleEditor = (): UseArticleEditorReturn => {
     return {
         metadata: {
             isEditArticlePage,
+
             blocks: blockOperations.blocks,
             saveError,
             isLoading: isLoading || isArticleLoading,

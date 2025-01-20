@@ -28,8 +28,8 @@ export const useImageBlockOperations = ({
     const {
         isVisible: isEditModeActive,
         toggleVisibility: toggleEditMode,
-        hideElement: exitEditMode,
-        showElement: enterEditMode,
+        hide: exitEditMode,
+        show: enterEditMode,
     } = useToggleVisibility();
 
     const dispatch = useAppDispatch();

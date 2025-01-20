@@ -1,14 +1,13 @@
 import { useTranslation } from 'react-i18next';
 import React, { memo, useCallback } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { HStack } from '@/shared/ui/common/Stack';
 
 import { useArticleFormState } from '../../lib/hooks/useArticleFormState/useArticleFormState';
 import { Button } from '@/shared/ui/redesigned/Button';
-import { getRouteArticleDetails } from '@/shared/const/router/router';
 import { useToggleVisibility } from '@/shared/lib/hooks/useToggleVisibility/useToggleVisibility';
 import { ConfirmDeleteModal } from '@/features/ConfirmDeleteModal';
 import { ConfirmCancelModal } from '@/features/ConfirmCancelModal';
+import { useArticleNavigation } from '../../lib/hooks/useArticleNavigation/useArticleNavigation';
 
 interface ArticleEditorPageHeaderProps {
     className?: string;
@@ -33,68 +32,56 @@ export const ArticleEditorPageHeader = memo(
         } = props;
         const { t } = useTranslation('articleDetails');
         const { formData } = useArticleFormState();
-        const navigate = useNavigate();
+        const { navigateToArticle } = useArticleNavigation();
         const editedArticleId = formData?.id;
 
-        const {
-            isVisible: isConfirmDeleteModal,
-            showElement: onShowConfirmDeleteModal,
-            hideElement: onCloseConfirmDeleteModal,
-        } = useToggleVisibility();
-        const {
-            isVisible: isConfirmCancelModal,
-            showElement: onShowConfirmCancelModal,
-            hideElement: onCloseConfirmCancelModal,
-        } = useToggleVisibility();
+        const deleteArticleModal = useToggleVisibility();
+        const cancelArticleEditing = useToggleVisibility();
 
         const handleSave = useCallback(async () => {
             const savedArticleId = await onSave();
 
             if (savedArticleId) {
-                navigate(getRouteArticleDetails(savedArticleId));
+                navigateToArticle(savedArticleId);
             }
-        }, [navigate, onSave]);
+        }, [navigateToArticle, onSave]);
 
         const handleDelete = useCallback(async () => {
             const deletedArticleId = await onDelete();
 
             if (deletedArticleId) {
-                navigate(getRouteArticleDetails(`${deletedArticleId}-deleted`));
+                navigateToArticle(`${deletedArticleId}-deleted`);
             }
-        }, [navigate, onDelete]);
+        }, [navigateToArticle, onDelete]);
 
         const handleCancel = useCallback(() => {
             if (editedArticleId) {
                 onCancel();
-                navigate(getRouteArticleDetails(editedArticleId));
+                navigateToArticle(editedArticleId);
             }
-        }, [editedArticleId, navigate, onCancel]);
+        }, [editedArticleId, navigateToArticle, onCancel]);
 
         const isSomeBlockAdded = Number(formData?.blocks.length) > 0;
 
-        const confirmationText = `${t('статтю')} "${formData?.title}"`;
-        const cancelText = t('редагування статті');
-        const cancelBtnText = t('Продовжити редагування');
-        const confirmBtnText = t('Відмінити зміни');
         return (
             <>
                 <HStack gap="8" className={className}>
                     {isEditArticlePage && (
-                        <Button
-                            variant="cancel"
-                            onClick={onShowConfirmDeleteModal}
-                        >
-                            {t('Видалити')}
-                        </Button>
+                        <>
+                            <Button
+                                variant="cancel"
+                                onClick={deleteArticleModal.show}
+                            >
+                                {t('Видалити')}
+                            </Button>
+                            <Button onClick={cancelArticleEditing.show}>
+                                {t('Відмінити')}
+                            </Button>
+                        </>
                     )}
                     {!isEditArticlePage && (
                         <Button variant="cancel" onClick={onClear}>
                             {t('Очистити')}
-                        </Button>
-                    )}
-                    {isEditArticlePage && (
-                        <Button onClick={onShowConfirmCancelModal}>
-                            {t('Відмінити')}
                         </Button>
                     )}
 
@@ -106,21 +93,21 @@ export const ArticleEditorPageHeader = memo(
                         {t('Зберегти')}
                     </Button>
                 </HStack>
-                {isConfirmDeleteModal && (
+                {deleteArticleModal.isVisible && (
                     <ConfirmDeleteModal
-                        isOpen={isConfirmDeleteModal}
-                        onCancel={onCloseConfirmDeleteModal}
-                        text={confirmationText}
+                        isOpen={deleteArticleModal.isVisible}
+                        onCancel={deleteArticleModal.hide}
+                        text={`${t('статтю')} "${formData?.title}"`}
                         onConfirm={handleDelete}
                     />
                 )}
-                {isConfirmCancelModal && (
+                {cancelArticleEditing.isVisible && (
                     <ConfirmCancelModal
-                        isOpen={isConfirmCancelModal}
-                        text={cancelText}
-                        cancelBtnText={cancelBtnText}
-                        confirmBtnText={confirmBtnText}
-                        onCancel={onCloseConfirmCancelModal}
+                        isOpen={cancelArticleEditing.isVisible}
+                        text={t('редагування статті')}
+                        cancelBtnText={t('Продовжити редагування')}
+                        confirmBtnText={t('Відмінити зміни')}
+                        onCancel={cancelArticleEditing.hide}
                         onConfirm={handleCancel}
                     />
                 )}
