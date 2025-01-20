@@ -25,6 +25,7 @@ import {
     getRouteMain,
     getRouteProfile,
     getRouteSettings,
+    getRouteMyArticles,
 } from '@/shared/const/router/router';
 import { AppRoutesProps } from '@/shared/types/router';
 import {
@@ -57,6 +58,12 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
     },
     [AppRoutes.ARTICLES]: {
         path: getRouteArticles(),
+        element: <ArticlesPage />,
+        authOnly: true,
+        skeleton: <ArticlesPageSkeleton />,
+    },
+    [AppRoutes.MY_ARTICLES]: {
+        path: getRouteMyArticles(),
         element: <ArticlesPage />,
         authOnly: true,
         skeleton: <ArticlesPageSkeleton />,

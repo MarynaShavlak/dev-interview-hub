@@ -5,12 +5,14 @@ import ArticleIcon from '@/shared/assets/icons/article.svg';
 import ProfileIcon from '@/shared/assets/icons/avatar.svg';
 import MainIcon from '@/shared/assets/icons/home.svg';
 import AboutIcon from '@/shared/assets/icons/Info.svg';
+import LibIcon from '@/shared/assets/icons/lib.svg';
 import MainIconDeprecated from '@/shared/assets/icons/main-20-20.svg';
 import ProfileIconDeprecated from '@/shared/assets/icons/profile-20-20.svg';
 import {
     getRouteAbout,
     getRouteArticles,
     getRouteMain,
+    getRouteMyArticles,
     getRouteProfile,
 } from '@/shared/const/router/router';
 import { toggleFeatures } from '@/shared/lib/features';
@@ -74,6 +76,16 @@ export const useSidebarItems = () => {
                     on: () => ArticleIcon,
                 }),
                 text: 'Статті',
+                authOnly: true,
+            },
+            {
+                path: getRouteMyArticles(),
+                Icon: toggleFeatures({
+                    name: 'isAppRedesigned',
+                    off: () => LibIcon,
+                    on: () => LibIcon,
+                }),
+                text: 'Мої статті',
                 authOnly: true,
             },
         );

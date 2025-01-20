@@ -4,6 +4,7 @@ export enum AppRoutes {
     ABOUT = 'about',
     PROFILE = 'profile',
     ARTICLES = 'articles',
+    MY_ARTICLES = 'my_articles_lib',
     ARTICLE_DETAILS = 'article_details',
     ARTICLE_CREATE = 'article_create',
     ARTICLE_EDIT = 'article_edit',
@@ -22,6 +23,7 @@ export const getRouteArticleCreate = () => '/article/new';
 export const getRouteArticleEdit = (id: string) => `/article/${id}/edit`;
 export const getRouteAdmin = () => '/admin';
 export const getRouteForbidden = () => '/forbidden';
+export const getRouteMyArticles = () => '/my-articles-lib';
 
 export const AppRouteByPathPattern: Record<string, AppRoutes> = {
     [getRouteMain()]: AppRoutes.MAIN,
@@ -34,4 +36,5 @@ export const AppRouteByPathPattern: Record<string, AppRoutes> = {
     [getRouteArticleEdit(':id')]: AppRoutes.ARTICLE_EDIT,
     [getRouteAdmin()]: AppRoutes.ADMIN_PANEL,
     [getRouteForbidden()]: AppRoutes.FORBIDDEN,
+    [getRouteMyArticles()]: AppRoutes.MY_ARTICLES,
 };
