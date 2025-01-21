@@ -22,6 +22,7 @@ export const FilterMenu = ({
     className,
 }: FilterMenuProps) => {
     console.log('filteredOptions', filteredOptions);
+    console.log('allOptions', allOptions);
     return (
         <VStack className={className}>
             <Each

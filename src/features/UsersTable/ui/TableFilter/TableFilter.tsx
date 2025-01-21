@@ -21,6 +21,9 @@ export const TableFilter = (props: FilterPopoverProps) => {
         columnFilters.find((f) => f.id === filterCategory)?.value ||
         ([] as string[]);
 
+    console.log('__filteredOptions', filteredOptions);
+    console.log('__allOptions', allOptions);
+
     const isFilterActive = filteredOptions.length > 0;
     return (
         <Popover

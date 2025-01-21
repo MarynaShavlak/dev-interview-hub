@@ -20,11 +20,11 @@ import { TableHeader } from '../TableHeader/TableHeader';
 import { useUsersTableData } from '../../lib/hooks/useUsersTableData';
 import { UsersTableInfo } from '../../model/types/usersTableInfo';
 import { VStack } from '@/shared/ui/common/Stack';
-import { getUniqueOptions } from '../../lib/helpers/getData/getUniqueOptions/getUniqueOptions';
 import { createStaticTextColumn } from '../../lib/helpers/columnCreators/createStaticColumn/createStaticTextColumn';
 import { createEditableColumn } from '../../lib/helpers/columnCreators/createEditableColumn/createEditableColumn';
 import { createOptionColumn } from '../../lib/helpers/columnCreators/createOptionColumn/createOptionColumn';
 import { createImageColumn } from '../../lib/helpers/columnCreators/createImageColumn/createImageColumn';
+import { getUniqueOptions } from '../../lib/helpers/getData/getUniqueOptions/getUniqueOptions';
 
 const columnHelper = createColumnHelper<UsersTableInfo>();
 
@@ -112,6 +112,7 @@ export const UsersTable = () => {
     const { users, isLoading } = useUsersTableData();
     // console.log('users', users);
     const [data, setData] = useState<UsersTableInfo[]>([]);
+    console.log('data', data);
 
     const [columnFilters, setColumnFilters] = useState<CommonFilterType>([]);
     const [globalFilter, setGlobalFilter] = useState<string>('');
@@ -135,9 +136,20 @@ export const UsersTable = () => {
         [data],
     );
 
+    // const headerOptionsMapping: Record<string, (string | ColorOption)[]> =
+    //     Object.fromEntries(
+    //         Object.keys(data).map((field) => [
+    //             field,
+    //             getUniqueOptions(data, field as keyof UsersTableInfo).filter(
+    //                 (option): option is string | ColorOption =>
+    //                     option !== undefined,
+    //             ),
+    //         ]),
+    //     );
     const headerOptionsMapping: Record<string, (string | ColorOption)[]> =
         Object.fromEntries(
-            Object.keys(data).map((field) => [
+            // Use Object.keys of the first data item if it exists, or empty array as fallback
+            (data.length > 0 ? Object.keys(data[0]) : []).map((field) => [
                 field,
                 getUniqueOptions(data, field as keyof UsersTableInfo).filter(
                     (option): option is string | ColorOption =>
@@ -145,6 +157,7 @@ export const UsersTable = () => {
                 ),
             ]),
         );
+    console.log('!!!!!headerOptionsMapping', headerOptionsMapping);
 
     const table = useReactTable<UsersTableInfo>({
         data,
