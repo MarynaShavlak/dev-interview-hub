@@ -60,5 +60,19 @@ export const useUserArticlesTableData = () => {
     //     articlesByUserData,
     // );
 
+    const combinedArticlesData = articles.map(
+        ({ id, user, title, views, createdAt, category }) => {
+            return {
+                id,
+                user,
+                title,
+
+                views,
+                createdAt,
+                categories: category.join(', '),
+            };
+        },
+    );
+
     return { articles, isLoading };
 };
