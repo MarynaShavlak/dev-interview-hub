@@ -1,5 +1,4 @@
 import { HTMLAttributeAnchorTarget, memo } from 'react';
-import { useHits } from 'react-instantsearch-core';
 import cls from './ArticleList.module.scss';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { toggleFeatures } from '@/shared/lib/features';
@@ -16,26 +15,11 @@ export interface ArticleListProps {
     isLoading?: boolean;
     target?: HTMLAttributeAnchorTarget;
     view: ArticleView;
+    page: number;
+    articlesToRender: Article[];
 }
 
-type HitsItems = ReturnType<typeof useHits>['items'];
 type ArticleWithoutBlocks = Omit<Article, 'blocks'>;
-
-const transformItems = (items: HitsItems): Article[] => {
-    return items.map((item) => {
-        const { category, id, title, subtitle, user, views, createdAt } = item;
-        return {
-            category,
-            id,
-            title,
-            subtitle,
-            user,
-            views,
-            createdAt,
-            blocks: [],
-        };
-    });
-};
 
 export const ArticleList = memo((props: ArticleListProps) => {
     const {
@@ -44,6 +28,8 @@ export const ArticleList = memo((props: ArticleListProps) => {
         view = ArticleView.GRID,
         isLoading,
         target,
+        page,
+        articlesToRender,
     } = props;
 
     const mainClass = toggleFeatures({
@@ -52,13 +38,11 @@ export const ArticleList = memo((props: ArticleListProps) => {
         off: () => cls.ArticleList,
     });
     const classes = classNames(mainClass, {}, [className, cls[view]]);
-    const { items, results } = useHits({});
-    let page = 0;
-    if (results) {
-        page = results.page;
-    }
-
-    const articlesToRender = transformItems(items);
+    // const { items, results } = useHits({});
+    // let page = 0;
+    // if (results) {
+    //     page = results.page;
+    // }
 
     const content = (
         <>
