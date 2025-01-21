@@ -46,6 +46,7 @@ export { ArticleListSkeleton } from './ui/ArticleList/ArticleListSkeleton/Articl
 export { ArticleDetails } from './ui/ArticleDetails/ArticleDetails';
 export {
     useGetArticles,
+    useArticlesByUserId,
     getArticlesQuery,
     getArticleDataByIdQuery,
     addArticleMutation,

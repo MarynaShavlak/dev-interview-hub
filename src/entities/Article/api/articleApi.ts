@@ -10,6 +10,8 @@ import { addDocToFirestore } from '@/shared/lib/firestore/addDocToFirestore/addD
 import { deleteDocFromFirestore } from '@/shared/lib/firestore/deleteDocFromFirestore/deleteDocFromFirestore';
 import { fetchDocumentByRef } from '@/shared/lib/firestore/fetchDocumentByRef/fetchDocumentByRef';
 import { getDocRefByField } from '@/shared/lib/firestore/getDocRefByField/getDocRefByField';
+import { createArticlesByUserQuery } from '../lib/utilities/createArticlesByUserQuery/createArticlesByUserQuery';
+import { fetchQueryResults } from '@/shared/lib/firestore/fetchQueryResults/fetchQueryResults';
 
 const writeClient = algoliasearch(
     '6L3XOJ5FZ8',
@@ -43,6 +45,55 @@ export const articleFirebaseApi = firestoreApi
                         };
                     } catch (error) {
                         return { error: error as unknown };
+                    }
+                },
+            }),
+            getArticlesByUserId: build.query<Article[], string>({
+                providesTags: [{ type: 'Articles', id: 'userId' }],
+                keepUnusedDataFor: 3600,
+                async queryFn(userId) {
+                    try {
+                        const articlesQuery = createArticlesByUserQuery(userId);
+
+                        const articles =
+                            await fetchQueryResults<Article>(articlesQuery);
+
+                        return { data: articles };
+                    } catch (error) {
+                        console.error(
+                            'Error fetching articles by user ID:',
+                            error,
+                        );
+                        return {
+                            error: 'Error fetching articles by user ID',
+                        };
+                    }
+                },
+                async onCacheEntryAdded(
+                    userId,
+                    { updateCachedData, cacheDataLoaded, cacheEntryRemoved },
+                ) {
+                    await cacheDataLoaded;
+                    let unsubscribe;
+                    try {
+                        const articlesQuery = createArticlesByUserQuery(userId);
+
+                        unsubscribe = onSnapshot(articlesQuery, (snapshot) => {
+                            updateCachedData((draft) => {
+                                const result = snapshot?.docs?.map((doc) =>
+                                    doc.data(),
+                                ) as Article[];
+
+                                // draft.splice(0, draft.length, ...result);
+                            });
+                        });
+                    } catch (error) {
+                        console.error('Error in articles snapshot:', error);
+                    }
+
+                    await cacheEntryRemoved;
+                    if (unsubscribe) {
+                        unsubscribe();
                     }
                 },
             }),
@@ -185,6 +236,8 @@ export const getArticleDataByIdQuery =
 export const useArticleDataById = articleFirebaseApi.useGetArticleDataByIdQuery;
 
 export const useGetArticles = articleFirebaseApi.useGetArticlesQuery;
+export const useArticlesByUserId =
+    articleFirebaseApi.useGetArticlesByUserIdQuery;
 export const getArticlesQuery =
     articleFirebaseApi.endpoints.getArticles.initiate;
 
