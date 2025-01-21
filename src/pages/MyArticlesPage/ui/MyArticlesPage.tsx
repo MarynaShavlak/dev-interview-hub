@@ -1,12 +1,9 @@
 import React, { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Page } from '@/widgets/Page';
-import {
-    ArticleList,
-    ArticleView,
-    useArticlesByUserId,
-} from '@/entities/Article';
+import { useArticlesByUserId } from '@/entities/Article';
 import { useUserAuthData } from '@/entities/User';
+import { UsersTable as UserArticlesTable } from '@/features/UserArticlesTable';
 
 const MyArticlesPage = memo(() => {
     const { t } = useTranslation('about');
@@ -26,11 +23,12 @@ const MyArticlesPage = memo(() => {
     return (
         <Page data-testid="My Articles Page">
             My articles Page
-            <ArticleList
-                view={ArticleView.SEQUENCE}
-                articlesToRender={articles}
-                page={0}
-            />
+            <UserArticlesTable />
+            {/* <ArticleList */}
+            {/*    view={ArticleView.SEQUENCE} */}
+            {/*    articlesToRender={articles} */}
+            {/*    page={0} */}
+            {/* /> */}
         </Page>
     );
 });
