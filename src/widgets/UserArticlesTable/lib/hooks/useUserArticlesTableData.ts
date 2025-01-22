@@ -9,14 +9,14 @@ import { useRatingsByArticleIdsList } from '@/features/ArticleRating';
 export const useUserArticlesTableData = () => {
     const currentUserdata = useUserAuthData();
     const authedUserId = currentUserdata?.id || '';
-    console.log('authedUserId', authedUserId);
+
     const {
         data: articles,
         isLoading: isArticlesLoading,
         error: isArticlesError,
     } = useArticlesByUserId(authedUserId);
     const articlesIdArray = articles?.map((article) => article.id);
-    console.log('articlesIdArray', articlesIdArray);
+
     const {
         data: ratings = [],
         isLoading: isRatingsLoading,
@@ -27,8 +27,6 @@ export const useUserArticlesTableData = () => {
         isLoading: isCommentsLoading,
         error: isCommentsError,
     } = useCommentsByArticleIdsList(articlesIdArray || []);
-    console.log('comments', comments);
-    console.log('ratings', ratings);
 
     const isLoading =
         isArticlesLoading || isRatingsLoading || isCommentsLoading;

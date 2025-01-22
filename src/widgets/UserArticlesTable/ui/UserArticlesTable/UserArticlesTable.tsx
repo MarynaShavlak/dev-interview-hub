@@ -7,7 +7,6 @@ import {
     useReactTable,
 } from '@tanstack/react-table';
 import { memo, useCallback, useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import { Box } from '@/shared/ui/common/Box';
 import cls from './UserArticlesTable.module.scss';
 import { SearchInput } from '../SearchInput/SearchInput';
@@ -76,10 +75,8 @@ const columns = [
 ];
 
 export const UserArticlesTable = memo(() => {
-    const { t } = useTranslation('admin');
-
     const { articles, isLoading } = useUserArticlesTableData();
-    // console.log('users', users);
+
     const [data, setData] = useState<UserArticlesTableInfo[]>([]);
     console.log('data', data);
 
@@ -106,7 +103,6 @@ export const UserArticlesTable = memo(() => {
     );
 
     const headerOptionsMapping: Record<string, string[]> = Object.fromEntries(
-        // Use Object.keys of the first data item if it exists, or empty array as fallback
         (data.length > 0 ? Object.keys(data[0]) : []).map((field) => [
             field,
             getUniqueOptions(data, field as keyof UserArticlesTableInfo).filter(
@@ -121,6 +117,11 @@ export const UserArticlesTable = memo(() => {
         state: {
             columnFilters,
             globalFilter,
+        },
+        initialState: {
+            pagination: {
+                pageSize: 20,
+            },
         },
 
         getCoreRowModel: getCoreRowModel(),
