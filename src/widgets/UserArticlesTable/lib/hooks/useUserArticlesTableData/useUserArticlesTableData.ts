@@ -1,7 +1,7 @@
 import { formatDateString } from '@/shared/lib/text/formatDateString/formatDateString';
-import { UserArticlesTableInfo } from '../../model/types/userArticlesTableInfo';
+import { UserArticlesTableInfo } from '../../../model/types/userArticlesTableInfo';
 
-import { useGetArticleStats } from './useGetArticlesStats/useGetArticlesStats';
+import { useGetArticleStats } from '../useGetArticlesStats/useGetArticlesStats';
 
 export const useUserArticlesTableData = () => {
     const { articles, isLoading, isError, stats } = useGetArticleStats();

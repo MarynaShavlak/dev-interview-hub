@@ -1,3 +1,5 @@
+import { memo, useCallback, useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import {
     createColumnHelper,
     getCoreRowModel,
@@ -6,71 +8,38 @@ import {
     getSortedRowModel,
     useReactTable,
 } from '@tanstack/react-table';
-import { memo, useCallback, useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import { Box } from '@/shared/ui/common/Box';
 import cls from './UserArticlesTable.module.scss';
 import { SearchInput } from '../SearchInput/SearchInput';
-import { CommonFilterType } from '../../model/types/types';
 import { TablePagination } from '../TablePagination/TablePagination';
 import { TableRow } from '../TableRow/TableRow';
 import { Each } from '@/shared/lib/components/Each/Each';
 import { TableHeader } from '../TableHeader/TableHeader';
-import { useUserArticlesTableData } from '../../lib/hooks/useUserArticlesTableData';
+import { useUserArticlesTableData } from '../../lib/hooks/useUserArticlesTableData/useUserArticlesTableData';
 import { VStack } from '@/shared/ui/common/Stack';
-import { createStaticTextColumn } from '../../lib/helpers/columnCreators/createStaticColumn/createStaticTextColumn';
-import { getUniqueOptions } from '../../lib/helpers/getData/getUniqueOptions/getUniqueOptions';
 import { UserArticlesTableInfo } from '../../model/types/userArticlesTableInfo';
+import { CommonFilterType } from '../../model/types/types';
+import { generateHeaderOptionsMapping } from '../../lib/helpers/generateHeaderOptionsMapping/generateHeaderOptionsMapping';
+import { createStaticTextColumn } from '../../lib/helpers/columnCreators/createStaticColumn/createStaticTextColumn';
+import { useTableColumns } from '../../lib/hooks/useTableColumns/useTableColumns';
 
 const columnHelper = createColumnHelper<UserArticlesTableInfo>();
-
 const createUserTextCol = createStaticTextColumn<UserArticlesTableInfo>();
-
-// const columns = [
-//     columnHelper.accessor(
-//         'title',
-//         createUserTextCol({ id: 'title', size: 230, sortable: true }),
-//     ),
-//     columnHelper.accessor(
-//         'createdAt',
-//         createUserTextCol({ id: 'createdAt', size: 80, sortable: true }),
-//     ),
-//     columnHelper.accessor(
-//         'categories',
-//         createUserTextCol({
-//             id: 'categories',
-//             size: 200,
-//             sortable: true,
-//             filterable: true,
-//         }),
-//     ),
-//
-//     columnHelper.accessor(
-//         'views',
-//         createUserTextCol({ id: 'views', size: 80, sortable: true }),
-//     ),
-//     columnHelper.accessor(
-//         'commentsQuantity',
-//         createUserTextCol({
-//             id: 'commentsQuantity',
-//             size: 80,
-//             sortable: true,
-//         }),
-//     ),
-//     columnHelper.accessor(
-//         'averageRating',
-//         createUserTextCol({
-//             id: 'averageRating',
-//             size: 80,
-//             sortable: true,
-//             filterable: true,
-//         }),
-//     ),
-// ];
 
 export const UserArticlesTable = memo(() => {
     const { articles, isLoading } = useUserArticlesTableData();
     const { t } = useTranslation('articleDetails');
+    // const {
+    //     tableState,
+    //     // updateTableState,
+    //     data,
+    //     setData,
+    //     updateData,
+    //     globalFilter,
+    //     setGlobalFilter,
+    //     columnFilters,
+    //     setColumnFilters,
+    // } = useTableState();
 
     const [data, setData] = useState<UserArticlesTableInfo[]>([]);
     console.log('data', data);
@@ -82,7 +51,7 @@ export const UserArticlesTable = memo(() => {
         if (!isLoading && articles.length !== data.length) {
             setData(articles); // Update data only if users has changed
         }
-    }, [articles, isLoading, data.length]);
+    }, [articles, isLoading, data.length, setData]);
 
     const updateData = useCallback(
         (rowIndex: number, columnId: string, value: any) => {
@@ -97,68 +66,9 @@ export const UserArticlesTable = memo(() => {
         [data],
     );
 
-    const headerOptionsMapping: Record<string, string[]> = Object.fromEntries(
-        (data.length > 0 ? Object.keys(data[0]) : []).map((field) => [
-            field,
-            getUniqueOptions(data, field as keyof UserArticlesTableInfo).filter(
-                (option): option is string => option !== undefined,
-            ),
-        ]),
-    );
+    const headerOptionsMapping = generateHeaderOptionsMapping(data);
 
-    const columns = [
-        columnHelper.accessor(
-            'title',
-            createUserTextCol({
-                id: t('Заголовок статті'),
-                size: 230,
-                sortable: true,
-            }),
-        ),
-        columnHelper.accessor(
-            'createdAt',
-            createUserTextCol({
-                id: t('Дата створення'),
-                size: 110,
-                sortable: true,
-            }),
-        ),
-        columnHelper.accessor(
-            'categories',
-            createUserTextCol({
-                id: t('Категорії'),
-                size: 185,
-                sortable: true,
-                filterable: true,
-            }),
-        ),
-
-        columnHelper.accessor(
-            'views',
-            createUserTextCol({
-                id: t('Перегляди'),
-                size: 110,
-                sortable: true,
-            }),
-        ),
-        columnHelper.accessor(
-            'commentsQuantity',
-            createUserTextCol({
-                id: t('Коментарі'),
-                size: 110,
-                sortable: true,
-            }),
-        ),
-        columnHelper.accessor(
-            'averageRating',
-            createUserTextCol({
-                id: t('Середній рейтинг'),
-                size: 110,
-                sortable: true,
-                filterable: true,
-            }),
-        ),
-    ];
+    const columns = useTableColumns();
 
     const table = useReactTable<UserArticlesTableInfo>({
         data,
