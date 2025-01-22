@@ -42,8 +42,6 @@ export const TableHeader = <T,>(props: TableHeaderProps<T>) => {
         align: 'center',
     });
 
-    console.log('__headerOptionsMapping', headerOptionsMapping);
-
     return (
         <Box className={cls.tr} key={headerGroup.id}>
             {headerGroup.headers.map((header) => (

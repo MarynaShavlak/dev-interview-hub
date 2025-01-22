@@ -3,9 +3,9 @@
 import { useSelector } from 'react-redux';
 import { useUsers } from '@/entities/User';
 
-import { useArticlesRatings } from '../../api/articlesRatingsApi';
 import { useArticlesComments } from '@/features/ArticleComments';
 import { useGetArticles, selectAllArticles } from '@/entities/Article';
+import { useArticlesRatings } from '@/features/ArticleRating';
 
 export const useStatisticsData = () => {
     const {

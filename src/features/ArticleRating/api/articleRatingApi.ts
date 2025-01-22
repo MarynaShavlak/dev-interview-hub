@@ -5,6 +5,8 @@ import { createArticleRatingQuery } from '../lib/utilities/createArticleRatingQu
 import { fetchQueryResults } from '@/shared/lib/firestore/fetchQueryResults/fetchQueryResults';
 import { User } from '@/entities/User';
 import { addDocToFirestore } from '@/shared/lib/firestore/addDocToFirestore/addDocToFirestore';
+import { fetchCollection } from '@/shared/lib/firestore/fetchCollection/fetchCollection';
+import { createRatingsByArticleIdsQuery } from '../lib/utilities/createRatingsByArticleIdsQuery/createRatingsByArticleIdsQuery';
 
 interface GetArticleRatingArg {
     userId: string;
@@ -23,6 +25,18 @@ export const articleRatingFirebaseApi = firestoreApi
     .enhanceEndpoints({ addTagTypes: ['ArticleRating'] })
     .injectEndpoints({
         endpoints: (build) => ({
+            getArticlesRatings: build.query<ArticleRatingData[], void>({
+                async queryFn() {
+                    try {
+                        const ratings =
+                            await fetchCollection<ArticleRatingData>('ratings');
+                        return { data: ratings };
+                    } catch (error) {
+                        console.error('Error fetching ratings:', error);
+                        return { error };
+                    }
+                },
+            }),
             getArticleRatingByUserId: build.query<
                 ArticleRatingData[],
                 GetArticleRatingArg
@@ -84,6 +98,58 @@ export const articleRatingFirebaseApi = firestoreApi
                     }
                 },
             }),
+            getRatingsByArticleIdsList: build.query<
+                ArticleRatingData[],
+                string[]
+            >({
+                providesTags: ['ArticleRating'],
+                keepUnusedDataFor: 3600,
+                async queryFn(articleIds) {
+                    try {
+                        const ratingsQuery =
+                            createRatingsByArticleIdsQuery(articleIds);
+                        const ratings =
+                            await fetchQueryResults<ArticleRatingData>(
+                                ratingsQuery,
+                            );
+                        return { data: ratings };
+                    } catch (error) {
+                        console.error(
+                            'Error fetching ratings by article IDs:',
+                            error,
+                        );
+                        return {
+                            error: 'Error fetching ratings by article IDs',
+                        };
+                    }
+                },
+                async onCacheEntryAdded(
+                    articleIds,
+                    { updateCachedData, cacheDataLoaded, cacheEntryRemoved },
+                ) {
+                    await cacheDataLoaded;
+                    let unsubscribe;
+                    try {
+                        const ratingsQuery =
+                            createRatingsByArticleIdsQuery(articleIds);
+
+                        unsubscribe = onSnapshot(ratingsQuery, (snapshot) => {
+                            updateCachedData((draft) => {
+                                const result = snapshot?.docs?.map((doc) =>
+                                    doc.data(),
+                                ) as ArticleRatingData[];
+                            });
+                        });
+                    } catch (error) {
+                        console.error('Error in ratings snapshot:', error);
+                    }
+
+                    await cacheEntryRemoved;
+                    if (unsubscribe) {
+                        unsubscribe();
+                    }
+                },
+            }),
             rateArticle: build.mutation<ArticleRatingData, RateArticleArg>({
                 invalidatesTags: [{ type: 'ArticleRating', id: 'ratingId' }],
                 async queryFn(newRating) {
@@ -119,7 +185,13 @@ export const articleRatingFirebaseApi = firestoreApi
         }),
     });
 
+export const useArticlesRatings =
+    articleRatingFirebaseApi.useGetArticlesRatingsQuery;
+
 export const useGetArticleRatingByUserId =
     articleRatingFirebaseApi.useGetArticleRatingByUserIdQuery;
 export const useAddArticleRating =
     articleRatingFirebaseApi.useRateArticleMutation;
+
+export const useRatingsByArticleIdsList =
+    articleRatingFirebaseApi.useGetRatingsByArticleIdsListQuery;

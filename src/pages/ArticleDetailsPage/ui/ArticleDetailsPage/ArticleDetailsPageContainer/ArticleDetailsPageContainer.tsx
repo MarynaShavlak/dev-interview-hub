@@ -12,6 +12,9 @@ import { Card } from '@/shared/ui/redesigned/Card';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
 import { useUserAuthData } from '@/entities/User';
 import { ArticleControls } from '@/widgets/ArticleControls';
+import { ArticleComments } from '@/features/ArticleComments';
+import { ArticleRating } from '@/features/ArticleRating';
+import { ArticleRecommendationsList } from '@/features/ArticleRecommendationsList';
 // import { ArticleRecommendationsList } from '@/features/ArticleRecommendationsList';
 
 interface ArticleDetailsPageContainerProps {
@@ -46,16 +49,16 @@ export const ArticleDetailsPageContainer = memo(
                         </>
                     }
                 />
-                {/* {article && !error && ( */}
-                {/*    <> */}
-                {/*        {articleAuthorId !== authedUserId && ( */}
-                {/*            <ArticleRating articleId={id} /> */}
-                {/*        )} */}
+                {article && !error && (
+                    <>
+                        {articleAuthorId !== authedUserId && (
+                            <ArticleRating articleId={id} />
+                        )}
 
-                {/*        <ArticleRecommendationsList id={id} /> */}
-                {/*        <ArticleComments id={id} /> */}
-                {/*    </> */}
-                {/* )} */}
+                        <ArticleRecommendationsList id={id} />
+                        <ArticleComments id={id} />
+                    </>
+                )}
             </VStack>
         );
     },

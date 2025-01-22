@@ -6,8 +6,8 @@ export interface ArticlePartial
 }
 
 export interface UserArticlesTableInfo extends ArticlePartial {
-    comments: number;
-    rating: number;
+    commentsQuantity: number;
+    averageRating: number | string;
 }
 
 // export interface ArticlesByUserData {

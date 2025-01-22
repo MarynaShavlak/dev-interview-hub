@@ -8,6 +8,7 @@ import { addDocToFirestore } from '@/shared/lib/firestore/addDocToFirestore/addD
 import { dataPoint } from '@/shared/lib/firestore/firestore';
 import { createArticleCommentsQuery } from '../lib/utilities/createArticleCommentsQuery/createArticleCommentsQuery';
 import { fetchQueryResults } from '@/shared/lib/firestore/fetchQueryResults/fetchQueryResults';
+import { createCommentsByArticleIdsQuery } from '../lib/utilities/createCommentsByArticleIdsQuery/createCommentsByArticleIdsQuery';
 
 export const articlesCommentsFirebaseApi = firestoreApi
     .enhanceEndpoints({ addTagTypes: ['ArticleComments'] })
@@ -104,6 +105,58 @@ export const articlesCommentsFirebaseApi = firestoreApi
                     }
                 },
             }),
+            getCommentsByArticleIdsList: build.query<
+                ArticleComment[],
+                string[]
+            >({
+                providesTags: ['ArticleComments'],
+                keepUnusedDataFor: 3600,
+                async queryFn(articleIds) {
+                    try {
+                        const commentsQuery =
+                            createCommentsByArticleIdsQuery(articleIds);
+                        const comments =
+                            await fetchQueryResults<ArticleComment>(
+                                commentsQuery,
+                            );
+                        return { data: comments };
+                    } catch (error) {
+                        console.error(
+                            'Error fetching comments by article IDs:',
+                            error,
+                        );
+                        return {
+                            error: 'Error fetching comments by article IDs',
+                        };
+                    }
+                },
+                async onCacheEntryAdded(
+                    articleIds,
+                    { updateCachedData, cacheDataLoaded, cacheEntryRemoved },
+                ) {
+                    await cacheDataLoaded;
+                    let unsubscribe;
+                    try {
+                        const commentsQuery =
+                            createCommentsByArticleIdsQuery(articleIds);
+
+                        unsubscribe = onSnapshot(commentsQuery, (snapshot) => {
+                            updateCachedData((draft) => {
+                                const result = snapshot?.docs?.map((doc) =>
+                                    doc.data(),
+                                ) as ArticleComment[];
+                            });
+                        });
+                    } catch (error) {
+                        console.error('Error in comments snapshot:', error);
+                    }
+
+                    await cacheEntryRemoved;
+                    if (unsubscribe) {
+                        unsubscribe();
+                    }
+                },
+            }),
             addComment: build.mutation<
                 ArticleComment,
                 { articleId: string; user: User; text: string; id: string }
@@ -149,3 +202,6 @@ export const useCommentsByArticleId =
 
 export const addCommentMutation =
     articlesCommentsFirebaseApi.endpoints.addComment.initiate;
+
+export const useCommentsByArticleIdsList =
+    articlesCommentsFirebaseApi.useGetCommentsByArticleIdsListQuery;

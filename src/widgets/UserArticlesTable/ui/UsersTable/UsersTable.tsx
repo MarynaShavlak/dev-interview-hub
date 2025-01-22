@@ -6,7 +6,7 @@ import {
     getSortedRowModel,
     useReactTable,
 } from '@tanstack/react-table';
-import { useCallback, useEffect, useState } from 'react';
+import { memo, useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Box } from '@/shared/ui/common/Box';
 import cls from './UsersTable.module.scss';
@@ -20,7 +20,7 @@ import { useUserArticlesTableData } from '../../lib/hooks/useUserArticlesTableDa
 import { VStack } from '@/shared/ui/common/Stack';
 import { createStaticTextColumn } from '../../lib/helpers/columnCreators/createStaticColumn/createStaticTextColumn';
 import { getUniqueOptions } from '../../lib/helpers/getData/getUniqueOptions/getUniqueOptions';
-import { Article } from '@/entities/Article';
+import { UserArticlesTableInfo } from '../../model/types/userArticlesTableInfo';
 
 // const columnHelper = createColumnHelper<UsersTableInfo>();
 //
@@ -29,9 +29,9 @@ import { Article } from '@/entities/Article';
 // const createUserOptionCol = createOptionColumn<UsersTableInfo>();
 // const createUserAvatarCol = createImageColumn<UsersTableInfo>();
 
-const columnHelper = createColumnHelper<Article>();
+const columnHelper = createColumnHelper<UserArticlesTableInfo>();
 
-const createUserTextCol = createStaticTextColumn<Article>();
+const createUserTextCol = createStaticTextColumn<UserArticlesTableInfo>();
 // const createUserEditableCol = createEditableColumn<UsersTableInfo>();
 // const createUserOptionCol = createOptionColumn<UsersTableInfo>();
 // const createUserAvatarCol = createImageColumn<UsersTableInfo>();
@@ -100,7 +100,24 @@ const columns = [
 
     columnHelper.accessor(
         'views',
-        createUserTextCol({ id: 'views', size: 200 }),
+        createUserTextCol({ id: 'views', size: 80, sortable: true }),
+    ),
+    columnHelper.accessor(
+        'commentsQuantity',
+        createUserTextCol({
+            id: 'commentsQuantity',
+            size: 80,
+            sortable: true,
+        }),
+    ),
+    columnHelper.accessor(
+        'averageRating',
+        createUserTextCol({
+            id: 'averageRating',
+            size: 200,
+            sortable: true,
+            filterable: true,
+        }),
     ),
     // columnHelper.accessor(
     //     'role',
@@ -114,11 +131,12 @@ const columns = [
     // createOptionColumn('role', USER_ROLE_OPTIONS),
 ];
 
-export const UsersTable = () => {
+export const UsersTable = memo(() => {
     const { t } = useTranslation('admin');
+
     const { articles, isLoading } = useUserArticlesTableData();
     // console.log('users', users);
-    const [data, setData] = useState<Article[]>([]);
+    const [data, setData] = useState<UserArticlesTableInfo[]>([]);
     console.log('data', data);
 
     const [columnFilters, setColumnFilters] = useState<CommonFilterType>([]);
@@ -158,15 +176,17 @@ export const UsersTable = () => {
             // Use Object.keys of the first data item if it exists, or empty array as fallback
             (data.length > 0 ? Object.keys(data[0]) : []).map((field) => [
                 field,
-                getUniqueOptions(data, field as keyof Article).filter(
+                getUniqueOptions(
+                    data,
+                    field as keyof UserArticlesTableInfo,
+                ).filter(
                     (option): option is string | ColorOption =>
                         option !== undefined,
                 ),
             ]),
         );
-    console.log('!!!!!headerOptionsMapping', headerOptionsMapping);
 
-    const table = useReactTable<Article>({
+    const table = useReactTable<UserArticlesTableInfo>({
         data,
         columns,
         state: {
@@ -216,7 +236,7 @@ export const UsersTable = () => {
             </VStack>
         </VStack>
     );
-};
+});
 
 // import {
 //     createColumnHelper,

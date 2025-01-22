@@ -157,7 +157,6 @@ export const UsersTable = () => {
                 ),
             ]),
         );
-    console.log('!!!!!headerOptionsMapping', headerOptionsMapping);
 
     const table = useReactTable<UsersTableInfo>({
         data,
