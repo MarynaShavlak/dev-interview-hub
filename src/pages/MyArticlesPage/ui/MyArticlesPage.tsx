@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { UsersTable as UserArticlesTable } from '@/widgets/UserArticlesTable';
+import { UserArticlesTable } from '@/widgets/UserArticlesTable';
 import { Page } from '@/widgets/Page';
 import { useUserAuthData } from '@/entities/User';
 import { useArticlesByUserId } from '@/entities/Article';

@@ -1,12 +1,6 @@
 import { Dispatch, SetStateAction } from 'react';
 import { TableMeta } from '@tanstack/react-table';
 
-export interface ColorOption {
-    id: string;
-    name: string;
-    color: string;
-}
-
 export interface InputSearchType {
     id: string;
     value: string;

@@ -9,9 +9,9 @@ import {
 import { memo, useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Box } from '@/shared/ui/common/Box';
-import cls from './UsersTable.module.scss';
+import cls from './UserArticlesTable.module.scss';
 import { SearchInput } from '../SearchInput/SearchInput';
-import { ColorOption, CommonFilterType } from '../../model/types/types';
+import { CommonFilterType } from '../../model/types/types';
 import { TablePagination } from '../TablePagination/TablePagination';
 import { TableRow } from '../TableRow/TableRow';
 import { Each } from '@/shared/lib/components/Each/Each';
@@ -32,63 +32,8 @@ import { UserArticlesTableInfo } from '../../model/types/userArticlesTableInfo';
 const columnHelper = createColumnHelper<UserArticlesTableInfo>();
 
 const createUserTextCol = createStaticTextColumn<UserArticlesTableInfo>();
-// const createUserEditableCol = createEditableColumn<UsersTableInfo>();
-// const createUserOptionCol = createOptionColumn<UsersTableInfo>();
-// const createUserAvatarCol = createImageColumn<UsersTableInfo>();
 
 const columns = [
-    // columnHelper.accessor('id', createUserTextCol({ id: 'id', size: 40 })),
-    // columnHelper.accessor(
-    //     'avatar',
-    //     createUserAvatarCol({
-    //         id: 'avatar',
-    //         size: 40,
-    //         className: cls.tableAvatar,
-    //     }),
-    // ),
-    // columnHelper.accessor(
-    //     'username',
-    //     createUserEditableCol({ id: 'username', size: 120 }),
-    // ),
-    // columnHelper.accessor(
-    //     'email',
-    //     createUserEditableCol({ id: 'email', size: 120 }),
-    // ),
-    // columnHelper.accessor(
-    //     'firstname',
-    //     createUserEditableCol({ id: 'firstname', size: 120 }),
-    // ),
-    // columnHelper.accessor(
-    //     'lastname',
-    //     createUserEditableCol({ id: 'lastname', size: 120 }),
-    // ),
-    //
-    // columnHelper.accessor(
-    //     'age',
-    //     createUserTextCol({ id: 'age', size: 80, sortable: true }),
-    // ),
-    // columnHelper.accessor(
-    //     'city',
-    //     createUserEditableCol({ id: 'city', size: 100, sortable: false }),
-    // ),
-    // columnHelper.accessor(
-    //     'country',
-    //     createUserOptionCol({
-    //         id: 'country',
-    //         size: 110,
-    //         options: ['Ukraine', 'Poland', 'Germany'],
-    //         sortable: false,
-    //     }),
-    // ),
-    // columnHelper.accessor(
-    //     'currency',
-    //     createUserOptionCol({
-    //         id: 'currency',
-    //         size: 110,
-    //         options: ['UAH', 'EUR', 'USD'],
-    //         sortable: false,
-    //     }),
-    // ),
     columnHelper.accessor(
         'title',
         createUserTextCol({ id: 'title', size: 80, sortable: true }),
@@ -96,6 +41,15 @@ const columns = [
     columnHelper.accessor(
         'createdAt',
         createUserTextCol({ id: 'createdAt', size: 80, sortable: true }),
+    ),
+    columnHelper.accessor(
+        'categories',
+        createUserTextCol({
+            id: 'categories',
+            size: 200,
+            sortable: true,
+            filterable: true,
+        }),
     ),
 
     columnHelper.accessor(
@@ -119,19 +73,9 @@ const columns = [
             filterable: true,
         }),
     ),
-    // columnHelper.accessor(
-    //     'role',
-    //     createUserOptionCol({
-    //         id: 'role',
-    //         size: 110,
-    //         options: USER_ROLE_OPTIONS,
-    //         sortable: false,
-    //     }),
-    // ),
-    // createOptionColumn('role', USER_ROLE_OPTIONS),
 ];
 
-export const UsersTable = memo(() => {
+export const UserArticlesTable = memo(() => {
     const { t } = useTranslation('admin');
 
     const { articles, isLoading } = useUserArticlesTableData();
@@ -161,30 +105,15 @@ export const UsersTable = memo(() => {
         [data],
     );
 
-    // const headerOptionsMapping: Record<string, (string | ColorOption)[]> =
-    //     Object.fromEntries(
-    //         Object.keys(data).map((field) => [
-    //             field,
-    //             getUniqueOptions(data, field as keyof UsersTableInfo).filter(
-    //                 (option): option is string | ColorOption =>
-    //                     option !== undefined,
-    //             ),
-    //         ]),
-    //     );
-    const headerOptionsMapping: Record<string, (string | ColorOption)[]> =
-        Object.fromEntries(
-            // Use Object.keys of the first data item if it exists, or empty array as fallback
-            (data.length > 0 ? Object.keys(data[0]) : []).map((field) => [
-                field,
-                getUniqueOptions(
-                    data,
-                    field as keyof UserArticlesTableInfo,
-                ).filter(
-                    (option): option is string | ColorOption =>
-                        option !== undefined,
-                ),
-            ]),
-        );
+    const headerOptionsMapping: Record<string, string[]> = Object.fromEntries(
+        // Use Object.keys of the first data item if it exists, or empty array as fallback
+        (data.length > 0 ? Object.keys(data[0]) : []).map((field) => [
+            field,
+            getUniqueOptions(data, field as keyof UserArticlesTableInfo).filter(
+                (option): option is string => option !== undefined,
+            ),
+        ]),
+    );
 
     const table = useReactTable<UserArticlesTableInfo>({
         data,
@@ -237,6 +166,17 @@ export const UsersTable = memo(() => {
         </VStack>
     );
 });
+
+// const headerOptionsMapping: Record<string, (string | ColorOption)[]> =
+//     Object.fromEntries(
+//         Object.keys(data).map((field) => [
+//             field,
+//             getUniqueOptions(data, field as keyof UsersTableInfo).filter(
+//                 (option): option is string | ColorOption =>
+//                     option !== undefined,
+//             ),
+//         ]),
+//     );
 
 // import {
 //     createColumnHelper,

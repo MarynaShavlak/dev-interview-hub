@@ -1,7 +1,6 @@
 import { Popover } from '@/shared/ui/redesigned/Popups';
 import cls from './FilterPopover.module.scss';
 import {
-    ColorOption,
     ColumnFilterHandlerProps,
     CommonFilterType,
 } from '../../model/types/types';
@@ -11,7 +10,7 @@ import { FilterTrigger } from './FilterTrigger/FilterTrigger';
 interface FilterPopoverProps extends ColumnFilterHandlerProps {
     filterCategory: string;
     columnFilters: CommonFilterType;
-    allOptions: (ColorOption | string)[];
+    allOptions: string[];
 }
 
 export const TableFilter = (props: FilterPopoverProps) => {

@@ -6,26 +6,16 @@ import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { SortingIcon } from '../SortingIcon/SortingIcon';
 import { TableFilter } from '../TableFilter/TableFilter';
 import {
-    ColorOption,
     ColumnFilterHandlerProps,
     CommonFilterType,
 } from '../../model/types/types';
 import { getFlexClasses } from '@/shared/lib/classes/getFlexClasses/getFlexClasses';
 import { HStack } from '@/shared/ui/common/Stack';
 
-const ROLE_ADMIN = { id: '1', name: 'Admin', color: '#f77' };
-const ROLE_USER = {
-    id: '2',
-    name: 'User',
-    color: '#62de85',
-};
-const ROLE_MANAGER = { id: '3', name: 'Manager', color: '#5ed3f3' };
-export const uniqueRoles = [ROLE_ADMIN, ROLE_USER, ROLE_MANAGER];
-
 interface TableHeaderProps<T> extends ColumnFilterHandlerProps {
     headerGroup: HeaderGroup<T>;
     columnFilters: CommonFilterType;
-    headerOptionsMapping: Record<string, (string | ColorOption)[]>;
+    headerOptionsMapping: Record<string, string[]>;
 }
 
 export const TableHeader = <T,>(props: TableHeaderProps<T>) => {
