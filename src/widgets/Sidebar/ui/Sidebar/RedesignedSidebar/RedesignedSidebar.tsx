@@ -6,7 +6,8 @@ import { AppLogo } from '@/shared/ui/common/AppLogo';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import cls from './RedesignedSidebar.module.scss';
 import { Icon } from '@/shared/ui/redesigned/Icon';
-import ArrowIcon from '@/shared/assets/icons/arrow-bottom.svg';
+import ArrowLeftIcon from '@/shared/assets/icons/arrow-left.svg';
+import ArrowRightIcon from '@/shared/assets/icons/arrow-right.svg';
 import { Each } from '@/shared/lib/components/Each/Each';
 import { SidebarItem } from '../../SidebarItem/SidebarItem';
 import { useSidebarItems } from '../../../lib/hooks/useSidebarItems/useSidebarItems';
@@ -25,6 +26,12 @@ export const RedesignedSidebar = memo((props: RedesignedSidebarProps) => {
         { [cls.collapsedRedesigned]: collapsed },
         [className],
     );
+    const iconProps = {
+        onClick: toggleCollapse,
+        className: cls.collapseBtn,
+        Svg: collapsed ? ArrowRightIcon : ArrowLeftIcon,
+        clickable: true,
+    };
     return (
         <aside data-testid="sidebar" className={classes}>
             <AppLogo size={collapsed ? 30 : 50} className={cls.appLogo} />
@@ -42,13 +49,8 @@ export const RedesignedSidebar = memo((props: RedesignedSidebarProps) => {
                     }}
                 />
             </VStack>
-            <Icon
-                data-testid="sidebar-toggle"
-                onClick={toggleCollapse}
-                className={cls.collapseBtn}
-                Svg={ArrowIcon}
-                clickable
-            />
+
+            <Icon data-testid="sidebar-toggle" {...iconProps} />
 
             <div className={cls.switchers}>
                 <ThemeSwitcher />

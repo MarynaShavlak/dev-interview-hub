@@ -7,6 +7,7 @@
     overflow: hidden;
     transition: width 0.3s;
 
+
     .appLogo {
         padding-top: 20px;
     }
@@ -20,7 +21,7 @@
         right: 0;
         top: 50%;
         z-index: 10;
-        transform: rotate(90deg);
+        //transform: rotate(90deg);
     }
 
     .switchers {
@@ -51,7 +52,4 @@
         margin-left: 0;
     }
 
-    .collapseBtn {
-        transform: rotate(-90deg);
-    }
 }
