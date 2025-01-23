@@ -6,8 +6,6 @@ import { useGetArticleStats } from '../useGetArticlesStats/useGetArticlesStats';
 export const useUserArticlesTableData = () => {
     const { articles, isLoading, isError, stats } = useGetArticleStats();
 
-    if (!articles) return { articles: [], isLoading, isError };
-
     const combinedArticlesData: UserArticlesTableInfo[] = articles.map(
         ({ id, user, title, views, createdAt, category }) => {
             return {
@@ -23,5 +21,11 @@ export const useUserArticlesTableData = () => {
         },
     );
 
-    return { articles: combinedArticlesData, isLoading, isError };
+    if (!combinedArticlesData) return { articles: [], isLoading, isError };
+
+    return {
+        articles: combinedArticlesData,
+        isLoading,
+        isError,
+    };
 };

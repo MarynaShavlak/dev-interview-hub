@@ -62,9 +62,23 @@ export const FilterItemWithCheckIcon = (props: FilterItemProps) => {
             gap="8"
             onClick={onClickHandler}
         >
-            {!isActive && <Icon Svg={EmptyCheckIcon} width={15} height={15} />}
-            {isActive && <Icon Svg={CheckedIcon} width={15} height={15} />}
-            {option}
+            {!isActive && (
+                <Icon
+                    Svg={EmptyCheckIcon}
+                    width={15}
+                    height={15}
+                    className={cls.checkIcon}
+                />
+            )}
+            {isActive && (
+                <Icon
+                    Svg={CheckedIcon}
+                    width={15}
+                    height={15}
+                    className={cls.checkIcon}
+                />
+            )}
+            <span className={cls.text}> {option}</span>
         </HStack>
     );
 };

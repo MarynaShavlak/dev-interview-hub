@@ -1,6 +1,7 @@
 .filterItem {
   transition: background-color 300ms;
   padding: 5px 10px;
+  display:flex;
   &:hover {
     background: var(--light-bg-redesigned);
   }
@@ -8,4 +9,15 @@
 
 .active {
   background: var(--light-bg-redesigned);
+}
+
+.checkIcon {
+  width: 15px;
+  height: 15px;
+}
+
+.text {
+
+  max-width: 100px;
+  text-align: left;
 }

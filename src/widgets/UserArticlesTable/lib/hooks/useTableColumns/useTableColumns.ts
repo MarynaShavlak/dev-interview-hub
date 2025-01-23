@@ -32,6 +32,7 @@ export const useTableColumns = () => {
                 'categories',
                 createUserTextCol({
                     id: t('Категорії'),
+
                     size: 185,
                     sortable: true,
                     filterable: true,

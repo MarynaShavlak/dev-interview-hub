@@ -19,9 +19,9 @@ import { useUserArticlesTableData } from '../../lib/hooks/useUserArticlesTableDa
 import { VStack } from '@/shared/ui/common/Stack';
 import { UserArticlesTableInfo } from '../../model/types/userArticlesTableInfo';
 import { CommonFilterType } from '../../model/types/types';
-import { generateHeaderOptionsMapping } from '../../lib/helpers/generateHeaderOptionsMapping/generateHeaderOptionsMapping';
 import { createStaticTextColumn } from '../../lib/helpers/columnCreators/createStaticColumn/createStaticTextColumn';
 import { useTableColumns } from '../../lib/hooks/useTableColumns/useTableColumns';
+import { useGetHeaderOptionsWithTranslation } from '../../lib/hooks/useGetHeaderOptionsWithTranslation/useGetHeaderOptionsWithTranslation';
 
 const columnHelper = createColumnHelper<UserArticlesTableInfo>();
 const createUserTextCol = createStaticTextColumn<UserArticlesTableInfo>();
@@ -42,8 +42,6 @@ export const UserArticlesTable = memo(() => {
     // } = useTableState();
 
     const [data, setData] = useState<UserArticlesTableInfo[]>([]);
-    console.log('data', data);
-
     const [columnFilters, setColumnFilters] = useState<CommonFilterType>([]);
     const [globalFilter, setGlobalFilter] = useState<string>('');
 
@@ -66,7 +64,8 @@ export const UserArticlesTable = memo(() => {
         [data],
     );
 
-    const headerOptionsMapping = generateHeaderOptionsMapping(data);
+    const headerOptionsMapping = useGetHeaderOptionsWithTranslation(data);
+    console.log('headerOptionsMapping', headerOptionsMapping);
 
     const columns = useTableColumns();
 
@@ -104,7 +103,6 @@ export const UserArticlesTable = memo(() => {
                     <Each
                         of={table.getHeaderGroups()}
                         render={(headerGroup) => {
-                            console.log('headerGroup', headerGroup);
                             return (
                                 <TableHeader
                                     key={headerGroup.id}
