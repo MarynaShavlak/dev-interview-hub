@@ -3,7 +3,7 @@ import { UserArticlesTableInfo } from '../../../model/types/userArticlesTableInf
 
 import { useGetArticleStats } from '../useGetArticlesStats/useGetArticlesStats';
 
-export const useUserArticlesTableData = () => {
+export const useArticlesByUserData = () => {
     const { articles, isLoading, isError, stats } = useGetArticleStats();
 
     const combinedArticlesData: UserArticlesTableInfo[] = articles.map(

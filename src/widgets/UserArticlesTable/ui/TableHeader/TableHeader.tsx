@@ -36,7 +36,7 @@ export const TableHeader = <T,>(props: TableHeaderProps<T>) => {
         <Box className={cls.tr} key={headerGroup.id}>
             {headerGroup.headers.map((header) => {
                 const d = header.column.columnDef.header;
-                console.log('d', d);
+
                 return (
                     <Box
                         className={classNames(cls.th, {}, [

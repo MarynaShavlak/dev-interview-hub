@@ -63,6 +63,11 @@ export const useTableColumns = () => {
                     filterable: true,
                 }),
             ),
+            columnHelper.display({
+                id: 'action',
+                header: () => 'Action',
+                cell: () => 'icon delete and edit',
+            }),
         ];
     }, [t]);
 };

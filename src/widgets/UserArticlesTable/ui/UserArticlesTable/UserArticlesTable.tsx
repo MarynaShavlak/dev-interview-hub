@@ -1,7 +1,5 @@
 import { memo, useCallback, useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import {
-    createColumnHelper,
     getCoreRowModel,
     getFilteredRowModel,
     getPaginationRowModel,
@@ -15,35 +13,15 @@ import { TablePagination } from '../TablePagination/TablePagination';
 import { TableRow } from '../TableRow/TableRow';
 import { Each } from '@/shared/lib/components/Each/Each';
 import { TableHeader } from '../TableHeader/TableHeader';
-import { useUserArticlesTableData } from '../../lib/hooks/useUserArticlesTableData/useUserArticlesTableData';
+import { useArticlesByUserData } from '../../lib/hooks/useArticlesByUserData/useArticlesByUserData';
 import { VStack } from '@/shared/ui/common/Stack';
 import { UserArticlesTableInfo } from '../../model/types/userArticlesTableInfo';
-import { CommonFilterType } from '../../model/types/types';
-import { createStaticTextColumn } from '../../lib/helpers/columnCreators/createStaticColumn/createStaticTextColumn';
-import { useTableColumns } from '../../lib/hooks/useTableColumns/useTableColumns';
-import { useGetHeaderOptionsWithTranslation } from '../../lib/hooks/useGetHeaderOptionsWithTranslation/useGetHeaderOptionsWithTranslation';
-
-const columnHelper = createColumnHelper<UserArticlesTableInfo>();
-const createUserTextCol = createStaticTextColumn<UserArticlesTableInfo>();
+import { useTableData } from '../../lib/hooks/useTableData/useTableData';
 
 export const UserArticlesTable = memo(() => {
-    const { articles, isLoading } = useUserArticlesTableData();
-    const { t } = useTranslation('articleDetails');
-    // const {
-    //     tableState,
-    //     // updateTableState,
-    //     data,
-    //     setData,
-    //     updateData,
-    //     globalFilter,
-    //     setGlobalFilter,
-    //     columnFilters,
-    //     setColumnFilters,
-    // } = useTableState();
+    const { articles, isLoading } = useArticlesByUserData();
 
     const [data, setData] = useState<UserArticlesTableInfo[]>([]);
-    const [columnFilters, setColumnFilters] = useState<CommonFilterType>([]);
-    const [globalFilter, setGlobalFilter] = useState<string>('');
 
     useEffect(() => {
         if (!isLoading && articles.length !== data.length) {
@@ -64,10 +42,14 @@ export const UserArticlesTable = memo(() => {
         [data],
     );
 
-    const headerOptionsMapping = useGetHeaderOptionsWithTranslation(data);
-    console.log('headerOptionsMapping', headerOptionsMapping);
-
-    const columns = useTableColumns();
+    const {
+        columns,
+        headerOptionsMapping,
+        globalFilter,
+        setGlobalFilter,
+        columnFilters,
+        setColumnFilters,
+    } = useTableData(data);
 
     const table = useReactTable<UserArticlesTableInfo>({
         data,
