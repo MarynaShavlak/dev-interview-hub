@@ -3,12 +3,22 @@ import { createColumnHelper } from '@tanstack/react-table';
 import { useMemo } from 'react';
 import { UserArticlesTableInfo } from '../../../model/types/userArticlesTableInfo';
 import { createStaticTextColumn } from '../../helpers/columnCreators/createStaticColumn/createStaticTextColumn';
+import { HStack } from '@/shared/ui/common/Stack';
+import DeleteIcon from '@/shared/assets/icons/delete.svg';
+import EditIcon from '@/shared/assets/icons/edit.svg';
+import { Icon } from '@/shared/ui/redesigned/Icon';
 
 const columnHelper = createColumnHelper<UserArticlesTableInfo>();
 
+interface useTableColumnProps {
+    deleteRow: (rowIndex: string) => void;
+}
+
 const createUserTextCol = createStaticTextColumn<UserArticlesTableInfo>();
-export const useTableColumns = () => {
+
+export const useTableColumns = (props: useTableColumnProps) => {
     const { t } = useTranslation('articleDetails');
+    const { deleteRow } = props;
 
     return useMemo(() => {
         return [
@@ -65,8 +75,19 @@ export const useTableColumns = () => {
             ),
             columnHelper.display({
                 id: 'action',
-                header: () => 'Action',
-                cell: () => 'icon delete and edit',
+                header: () => t('Дія'),
+                cell: ({ row }) => (
+                    <HStack justify="center" gap="16">
+                        <Icon
+                            Svg={DeleteIcon}
+                            width={18}
+                            variant="error"
+                            clickable
+                            onClick={() => deleteRow(row.original.id)}
+                        />
+                        <Icon Svg={EditIcon} width={18} />
+                    </HStack>
+                ),
             }),
         ];
     }, [t]);

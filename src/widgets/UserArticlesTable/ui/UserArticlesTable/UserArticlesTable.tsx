@@ -21,13 +21,20 @@ import { useTableData } from '../../lib/hooks/useTableData/useTableData';
 export const UserArticlesTable = memo(() => {
     const { articles, isLoading } = useArticlesByUserData();
 
-    const [data, setData] = useState<UserArticlesTableInfo[]>([]);
+    const [data, setData] = useState<UserArticlesTableInfo[]>(articles);
+    console.log('___data', data);
+
+    // useEffect(() => {
+    //     if (!isLoading && articles.length !== data.length) {
+    //         //
+    //         setData(articles); // Update data only if users has changed
+    //     }
+    // }, [articles, isLoading, data.length, setData]);
 
     useEffect(() => {
-        if (!isLoading && articles.length !== data.length) {
-            setData(articles); // Update data only if users has changed
-        }
-    }, [articles, isLoading, data.length, setData]);
+        setData(articles);
+        // @ts-ignore
+    }, []);
 
     const updateData = useCallback(
         (rowIndex: number, columnId: string, value: any) => {
@@ -42,6 +49,22 @@ export const UserArticlesTable = memo(() => {
         [data],
     );
 
+    const deleteRow = useCallback(
+        (rowIndex: string) => {
+            console.log('rowIndex', rowIndex);
+            // setData((prevData) =>
+            //     prevData.map((row, index) =>
+            //         index === rowIndex ? { ...row, [columnId]: value } : row,
+            //     ),
+            // );
+            setData((prevData) =>
+                prevData.filter((row, index) => row.id !== rowIndex),
+            );
+            console.log('data after update: ', data);
+        },
+        [data],
+    );
+
     const {
         columns,
         headerOptionsMapping,
@@ -49,7 +72,7 @@ export const UserArticlesTable = memo(() => {
         setGlobalFilter,
         columnFilters,
         setColumnFilters,
-    } = useTableData(data);
+    } = useTableData({ data, deleteRow });
 
     const table = useReactTable<UserArticlesTableInfo>({
         data,
@@ -72,7 +95,9 @@ export const UserArticlesTable = memo(() => {
         columnResizeMode: 'onChange',
         meta: { updateData },
     });
-
+    if (data.length === 0) {
+        return null;
+    }
     return (
         <VStack gap="16">
             <SearchInput

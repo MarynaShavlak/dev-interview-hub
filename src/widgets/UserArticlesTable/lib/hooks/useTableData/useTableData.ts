@@ -4,11 +4,18 @@ import { useGetHeaderOptionsWithTranslation } from '../useGetHeaderOptionsWithTr
 import { useTableColumns } from '../useTableColumns/useTableColumns';
 import { UserArticlesTableInfo } from '../../../model/types/userArticlesTableInfo';
 
-export const useTableData = (data: UserArticlesTableInfo[]) => {
+interface UserArticlesTableDataProps {
+    data: UserArticlesTableInfo[];
+    deleteRow: (rowIndex: string) => void;
+}
+
+export const useTableData = (props: UserArticlesTableDataProps) => {
+    const { data, deleteRow } = props;
+
     const [columnFilters, setColumnFilters] = useState<CommonFilterType>([]);
     const [globalFilter, setGlobalFilter] = useState<string>('');
     const headerOptionsMapping = useGetHeaderOptionsWithTranslation(data);
-    const columns = useTableColumns();
+    const columns = useTableColumns({ deleteRow });
 
     return {
         columns,
