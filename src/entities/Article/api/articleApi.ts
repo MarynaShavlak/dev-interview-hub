@@ -171,20 +171,7 @@ export const articleFirebaseApi = firestoreApi
                     }
                 },
             }),
-            // deleteArticle: build.mutation<string, Article>({
-            //     invalidatesTags: ['Articles'],
-            //     async queryFn(articleToDelete) {
-            //         try {
-            //             await deleteDocFromFirestore<Article>(
-            //                 'articles',
-            //                 articleToDelete,
-            //             );
-            //             return { data: articleToDelete.id };
-            //         } catch (error) {
-            //             return { error };
-            //         }
-            //     },
-            // }),
+
             deleteArticle: build.mutation<string, string>({
                 invalidatesTags: ['Articles'],
                 async queryFn(articleId) {

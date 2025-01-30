@@ -2,6 +2,7 @@ import {
     FIXED_COLUMNS_WIDTH,
     MINIMUM_TITLE_WIDTH,
     PADDING_RIGHT,
+    TABLE_BORDER_WIDTH,
 } from '../../../model/consts/fixedColumnsWidth';
 
 export const calculateTotalFixedColumnsWidth = () =>
@@ -13,7 +14,7 @@ export const calculateAvailableTitleWidth = (sidebarWidth: number): number => {
         sidebarWidth -
         calculateTotalFixedColumnsWidth() -
         PADDING_RIGHT -
-        2;
+        TABLE_BORDER_WIDTH;
 
     return Math.max(availableWidth, MINIMUM_TITLE_WIDTH);
 };

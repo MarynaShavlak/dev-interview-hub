@@ -186,7 +186,7 @@ export const UserArticlesTable = memo(() => {
                 <ConfirmDeleteModal
                     isOpen={deleteArticleModal.isVisible}
                     onCancel={deleteArticleModal.hide}
-                    text={`${t('статтю')}${modalText}`}
+                    text={`${t('статтю')} ${modalText}`}
                     onConfirm={handleDeleteConfirm}
                 />
             )}
