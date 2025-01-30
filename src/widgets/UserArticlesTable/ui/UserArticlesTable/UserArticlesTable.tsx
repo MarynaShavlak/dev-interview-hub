@@ -15,7 +15,7 @@ import { TableRow } from '../TableRow/TableRow';
 import { Each } from '@/shared/lib/components/Each/Each';
 import { TableHeader } from '../TableHeader/TableHeader';
 import { useArticlesByUserData } from '../../lib/hooks/useArticlesByUserData/useArticlesByUserData';
-import { VStack } from '@/shared/ui/common/Stack';
+import { HStack, VStack } from '@/shared/ui/common/Stack';
 import { UserArticlesTableInfo } from '../../model/types/userArticlesTableInfo';
 import { useTableData } from '../../lib/hooks/useTableData/useTableData';
 import { deleteArticleThunk, useArticleNavigation } from '@/entities/Article';
@@ -23,6 +23,8 @@ import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch
 import { searchClient } from '@/shared/config/firebase/searchClient';
 import { useToggleVisibility } from '@/shared/lib/hooks/useToggleVisibility/useToggleVisibility';
 import { ConfirmDeleteModal } from '@/features/ConfirmDeleteModal';
+import { Text } from '@/shared/ui/redesigned/Text';
+import { ArticleCreateNavigationButton } from '@/features/ArticleCreateNavigationButton';
 
 export const UserArticlesTable = memo(() => {
     const { articles, isLoading } = useArticlesByUserData();
@@ -137,15 +139,24 @@ export const UserArticlesTable = memo(() => {
         columnResizeMode: 'onChange',
         // meta: { updateData },
     });
+    const noArticlesText = t('Не створено жодної статті');
     if (data.length === 0) {
-        return null;
+        return (
+            <VStack gap="16" max align="center">
+                <Text text={noArticlesText} />
+                <ArticleCreateNavigationButton />
+            </VStack>
+        );
     }
     return (
         <VStack gap="16" max>
-            <SearchInput
-                globalFilter={globalFilter}
-                setGlobalFilter={setGlobalFilter}
-            />
+            <HStack justify="between" max>
+                <SearchInput
+                    globalFilter={globalFilter}
+                    setGlobalFilter={setGlobalFilter}
+                />
+                <ArticleCreateNavigationButton />
+            </HStack>
 
             <VStack gap="16" className={cls.tableWrap} data-testid="table">
                 <Box className={cls.table} width={table.getTotalSize()}>

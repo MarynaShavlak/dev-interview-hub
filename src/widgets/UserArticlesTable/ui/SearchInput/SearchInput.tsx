@@ -29,7 +29,7 @@ export const SearchInput = ({
             className={cls.searchInput}
             onChange={onFilterChange}
             value={globalFilter}
-            placeholder={t('Search')}
+            placeholder={t('Пошук')}
             addonLeft={<Icon Svg={SearchIcon} />}
         />
     );

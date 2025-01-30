@@ -22,7 +22,6 @@ const MyArticlesPage = memo(() => {
 
     return (
         <Page data-testid="My Articles Page">
-            My articles Page
             <UserArticlesTable />
             {/* <ArticleList */}
             {/*    view={ArticleView.SEQUENCE} */}
