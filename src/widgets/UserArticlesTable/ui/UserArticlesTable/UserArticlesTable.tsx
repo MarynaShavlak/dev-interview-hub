@@ -1,4 +1,4 @@
-import { memo, useCallback, useEffect, useState } from 'react';
+import React, { memo, useCallback, useEffect, useState } from 'react';
 import {
     getCoreRowModel,
     getFilteredRowModel,
@@ -6,6 +6,7 @@ import {
     getSortedRowModel,
     useReactTable,
 } from '@tanstack/react-table';
+import { useTranslation } from 'react-i18next';
 import { Box } from '@/shared/ui/common/Box';
 import cls from './UserArticlesTable.module.scss';
 import { SearchInput } from '../SearchInput/SearchInput';
@@ -17,19 +18,31 @@ import { useArticlesByUserData } from '../../lib/hooks/useArticlesByUserData/use
 import { VStack } from '@/shared/ui/common/Stack';
 import { UserArticlesTableInfo } from '../../model/types/userArticlesTableInfo';
 import { useTableData } from '../../lib/hooks/useTableData/useTableData';
+import { deleteArticleThunk } from '@/entities/Article';
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { searchClient } from '@/shared/config/firebase/searchClient';
+import { useToggleVisibility } from '@/shared/lib/hooks/useToggleVisibility/useToggleVisibility';
+import { ConfirmDeleteModal } from '@/features/ConfirmDeleteModal';
 
 export const UserArticlesTable = memo(() => {
     const { articles, isLoading } = useArticlesByUserData();
+    const dispatch = useAppDispatch();
+    const { t } = useTranslation('articleDetails');
     console.log('___articles', articles);
-
     const [data, setData] = useState<UserArticlesTableInfo[]>([]);
-    console.log('___data', data);
+    const [selectedArticleId, setSelectedArticleId] = useState<string | null>(
+        null,
+    );
+    const [selectedArticleTitle, setSelectedArticleTitle] =
+        useState<string>('');
 
     useEffect(() => {
         if (!isLoading && articles.length !== data.length) {
             setData(articles);
         }
     }, [articles, isLoading, data.length, setData]);
+
+    const deleteArticleModal = useToggleVisibility();
 
     const updateData = useCallback(
         (rowIndex: number, columnId: string, value: any) => {
@@ -45,15 +58,51 @@ export const UserArticlesTable = memo(() => {
     );
 
     const deleteRow = useCallback(
-        (rowIndex: string) => {
-            console.log('rowIndex', rowIndex);
+        async (articleId: string) => {
+            if (!articleId) {
+                console.error('Article ID is required to delete the article.');
+                return null;
+            }
+            console.log('articleIdx', articleId);
+            try {
+                const deletedArticleId = await dispatch(
+                    deleteArticleThunk(articleId),
+                ).unwrap();
+                await searchClient.clearCache();
+                setData((prevData) =>
+                    prevData.filter((row, index) => row.id !== articleId),
+                );
+                console.log('data after update: ', data);
+                return deletedArticleId;
+            } catch (error: any) {
+                console.error('Error deleting article:', error);
 
-            setData((prevData) =>
-                prevData.filter((row, index) => row.id !== rowIndex),
-            );
-            console.log('data after update: ', data);
+                return null;
+            }
         },
-        [data],
+        [data, dispatch],
+    );
+
+    const handleDeleteConfirm = useCallback(async (): Promise<void> => {
+        if (selectedArticleId) {
+            await deleteRow(selectedArticleId);
+            deleteArticleModal.hide();
+            setSelectedArticleId(null);
+            setSelectedArticleTitle('');
+        }
+    }, [selectedArticleId, deleteRow, deleteArticleModal]);
+
+    const handleDeleteClick = useCallback(
+        (articleId: string) => {
+            console.log('data', data);
+            console.log('articleId', articleId);
+            const article = data.find((item) => item.id === articleId);
+            console.log('article', article);
+            setSelectedArticleId(articleId);
+            setSelectedArticleTitle(article?.title || '');
+            deleteArticleModal.show();
+        },
+        [data, deleteArticleModal],
     );
 
     const {
@@ -63,7 +112,10 @@ export const UserArticlesTable = memo(() => {
         setGlobalFilter,
         columnFilters,
         setColumnFilters,
-    } = useTableData({ data, deleteRow });
+    } = useTableData({ data, deleteRow: handleDeleteClick });
+    const modalText = `${selectedArticleTitle}`
+        ? `"${selectedArticleTitle}"`
+        : '';
 
     const table = useReactTable<UserArticlesTableInfo>({
         data,
@@ -120,6 +172,14 @@ export const UserArticlesTable = memo(() => {
                 </Box>
                 <TablePagination table={table} />
             </VStack>
+            {deleteArticleModal.isVisible && (
+                <ConfirmDeleteModal
+                    isOpen={deleteArticleModal.isVisible}
+                    onCancel={deleteArticleModal.hide}
+                    text={`${t('статтю')}${modalText}`}
+                    onConfirm={handleDeleteConfirm}
+                />
+            )}
         </VStack>
     );
 });
