@@ -18,7 +18,7 @@ import { useArticlesByUserData } from '../../lib/hooks/useArticlesByUserData/use
 import { VStack } from '@/shared/ui/common/Stack';
 import { UserArticlesTableInfo } from '../../model/types/userArticlesTableInfo';
 import { useTableData } from '../../lib/hooks/useTableData/useTableData';
-import { deleteArticleThunk } from '@/entities/Article';
+import { deleteArticleThunk, useArticleNavigation } from '@/entities/Article';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { searchClient } from '@/shared/config/firebase/searchClient';
 import { useToggleVisibility } from '@/shared/lib/hooks/useToggleVisibility/useToggleVisibility';
@@ -28,8 +28,8 @@ export const UserArticlesTable = memo(() => {
     const { articles, isLoading } = useArticlesByUserData();
     const dispatch = useAppDispatch();
     const { t } = useTranslation('articleDetails');
-    console.log('___articles', articles);
     const [data, setData] = useState<UserArticlesTableInfo[]>([]);
+    const { navigateToArticle } = useArticleNavigation();
     const [selectedArticleId, setSelectedArticleId] = useState<string | null>(
         null,
     );
@@ -43,19 +43,6 @@ export const UserArticlesTable = memo(() => {
     }, [articles, isLoading, data.length, setData]);
 
     const deleteArticleModal = useToggleVisibility();
-
-    const updateData = useCallback(
-        (rowIndex: number, columnId: string, value: any) => {
-            console.log('update data');
-            setData((prevData) =>
-                prevData.map((row, index) =>
-                    index === rowIndex ? { ...row, [columnId]: value } : row,
-                ),
-            );
-            console.log('data after update: ', data);
-        },
-        [data],
-    );
 
     const deleteRow = useCallback(
         async (articleId: string) => {
@@ -94,15 +81,23 @@ export const UserArticlesTable = memo(() => {
 
     const handleDeleteClick = useCallback(
         (articleId: string) => {
-            console.log('data', data);
-            console.log('articleId', articleId);
             const article = data.find((item) => item.id === articleId);
-            console.log('article', article);
+
             setSelectedArticleId(articleId);
             setSelectedArticleTitle(article?.title || '');
             deleteArticleModal.show();
         },
         [data, deleteArticleModal],
+    );
+
+    const handleEditClick = useCallback(
+        (articleId: string) => {
+            console.log('articleId', articleId);
+            if (articleId) {
+                navigateToArticle(articleId);
+            }
+        },
+        [navigateToArticle],
     );
 
     const {
@@ -112,7 +107,11 @@ export const UserArticlesTable = memo(() => {
         setGlobalFilter,
         columnFilters,
         setColumnFilters,
-    } = useTableData({ data, deleteRow: handleDeleteClick });
+    } = useTableData({
+        data,
+        deleteRow: handleDeleteClick,
+        editRow: handleEditClick,
+    });
     const modalText = `${selectedArticleTitle}`
         ? `"${selectedArticleTitle}"`
         : '';
@@ -136,7 +135,7 @@ export const UserArticlesTable = memo(() => {
         getPaginationRowModel: getPaginationRowModel(),
         globalFilterFn: 'includesString',
         columnResizeMode: 'onChange',
-        meta: { updateData },
+        // meta: { updateData },
     });
     if (data.length === 0) {
         return null;

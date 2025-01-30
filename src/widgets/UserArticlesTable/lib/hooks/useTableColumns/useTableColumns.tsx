@@ -12,13 +12,14 @@ const columnHelper = createColumnHelper<UserArticlesTableInfo>();
 
 interface useTableColumnProps {
     deleteRow: (rowIndex: string) => void;
+    editRow: (rowIndex: string) => void;
 }
 
 const createUserTextCol = createStaticTextColumn<UserArticlesTableInfo>();
 
 export const useTableColumns = (props: useTableColumnProps) => {
     const { t } = useTranslation('articleDetails');
-    const { deleteRow } = props;
+    const { deleteRow, editRow } = props;
 
     return useMemo(() => {
         return [
@@ -85,10 +86,15 @@ export const useTableColumns = (props: useTableColumnProps) => {
                             clickable
                             onClick={() => deleteRow(row.original.id)}
                         />
-                        <Icon Svg={EditIcon} width={18} />
+                        <Icon
+                            Svg={EditIcon}
+                            width={18}
+                            clickable
+                            onClick={() => editRow(row.original.id)}
+                        />
                     </HStack>
                 ),
             }),
         ];
-    }, [t]);
+    }, [deleteRow, editRow, t]);
 };

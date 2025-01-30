@@ -7,15 +7,16 @@ import { UserArticlesTableInfo } from '../../../model/types/userArticlesTableInf
 interface UserArticlesTableDataProps {
     data: UserArticlesTableInfo[];
     deleteRow: (rowIndex: string) => void;
+    editRow: (rowIndex: string) => void;
 }
 
 export const useTableData = (props: UserArticlesTableDataProps) => {
-    const { data, deleteRow } = props;
+    const { data, deleteRow, editRow } = props;
 
     const [columnFilters, setColumnFilters] = useState<CommonFilterType>([]);
     const [globalFilter, setGlobalFilter] = useState<string>('');
     const headerOptionsMapping = useGetHeaderOptionsWithTranslation(data);
-    const columns = useTableColumns({ deleteRow });
+    const columns = useTableColumns({ deleteRow, editRow });
 
     return {
         columns,

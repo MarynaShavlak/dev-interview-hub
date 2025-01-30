@@ -7,7 +7,7 @@ import { Button } from '@/shared/ui/redesigned/Button';
 import { useToggleVisibility } from '@/shared/lib/hooks/useToggleVisibility/useToggleVisibility';
 import { ConfirmDeleteModal } from '@/features/ConfirmDeleteModal';
 import { ConfirmCancelModal } from '@/features/ConfirmCancelModal';
-import { useArticleNavigation } from '../../lib/hooks/useArticleNavigation/useArticleNavigation';
+import { useArticleNavigation } from '@/entities/Article';
 import cls from './ArticleEditorPageHeader.module.scss';
 import { Text } from '@/shared/ui/redesigned/Text';
 import { Skeleton } from '@/shared/ui/redesigned/Skeleton';
