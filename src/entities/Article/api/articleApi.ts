@@ -1,22 +1,16 @@
 // __________________________
 import { EntityState } from '@reduxjs/toolkit';
 import { getDoc, getDocs, onSnapshot, updateDoc } from 'firebase/firestore';
-import { algoliasearch } from 'algoliasearch';
 import { firestoreApi } from '@/shared/api/rtkApi';
 import { Article } from '../model/types/article';
 import { dataPoint } from '@/shared/lib/firestore/firestore';
 import { articlesAdapter, initialState } from '../model/slices/articleSlice';
 import { addDocToFirestore } from '@/shared/lib/firestore/addDocToFirestore/addDocToFirestore';
-import { deleteDocFromFirestore } from '@/shared/lib/firestore/deleteDocFromFirestore/deleteDocFromFirestore';
 import { fetchDocumentByRef } from '@/shared/lib/firestore/fetchDocumentByRef/fetchDocumentByRef';
 import { getDocRefByField } from '@/shared/lib/firestore/getDocRefByField/getDocRefByField';
 import { createArticlesByUserQuery } from '../lib/utilities/createArticlesByUserQuery/createArticlesByUserQuery';
 import { fetchQueryResults } from '@/shared/lib/firestore/fetchQueryResults/fetchQueryResults';
-
-const writeClient = algoliasearch(
-    '6L3XOJ5FZ8',
-    'b6d387ae3f217cffac3f075dbdbb46d2',
-);
+import { deleteDocFromFirestore } from '@/shared/lib/firestore/deleteDocFromFirestore/deleteDocFromFirestore';
 
 export const articleFirebaseApi = firestoreApi
     .enhanceEndpoints({
@@ -177,15 +171,26 @@ export const articleFirebaseApi = firestoreApi
                     }
                 },
             }),
-            deleteArticle: build.mutation<string, Article>({
+            // deleteArticle: build.mutation<string, Article>({
+            //     invalidatesTags: ['Articles'],
+            //     async queryFn(articleToDelete) {
+            //         try {
+            //             await deleteDocFromFirestore<Article>(
+            //                 'articles',
+            //                 articleToDelete,
+            //             );
+            //             return { data: articleToDelete.id };
+            //         } catch (error) {
+            //             return { error };
+            //         }
+            //     },
+            // }),
+            deleteArticle: build.mutation<string, string>({
                 invalidatesTags: ['Articles'],
-                async queryFn(articleToDelete) {
+                async queryFn(articleId) {
                     try {
-                        await deleteDocFromFirestore<Article>(
-                            'articles',
-                            articleToDelete,
-                        );
-                        return { data: articleToDelete.id };
+                        await deleteDocFromFirestore('articles', articleId);
+                        return { data: articleId };
                     } catch (error) {
                         return { error };
                     }

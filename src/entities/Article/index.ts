@@ -1,3 +1,5 @@
+export { deleteArticleThunk } from './model/services/deleteArticleThunk/deleteArticleThunk';
+
 export { deleteArticleImageThunk } from './model/services/deleteArticleImageThunk/deleteArticleImageThunk';
 
 export { uploadArticleImageThunk } from './model/services/uploadArticleImageThunk/uploadImageThunk';
@@ -50,6 +52,5 @@ export {
     getArticlesQuery,
     getArticleDataByIdQuery,
     addArticleMutation,
-    deleteArticleMutation,
     updateArticleMutation,
 } from './api/articleApi';

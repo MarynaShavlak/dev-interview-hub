@@ -14,7 +14,7 @@ import { transformItems } from '../../lib/utilities/transformItems/transformItem
 
 export const ArticlesPageContent = () => {
     const { data: articles, isLoading: isArticlesLoading } = useGetArticles();
-    console.log('articles', articles);
+    // console.log('articles', articles);
 
     const { view } = useArticleFilters();
 

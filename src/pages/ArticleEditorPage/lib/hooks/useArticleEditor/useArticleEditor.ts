@@ -20,9 +20,9 @@ import {
     deleteArticleImageThunk,
     uploadArticleImageThunk,
     useArticleDataById,
+    deleteArticleThunk,
 } from '@/entities/Article';
 import { createArticleThunk } from '../../../model/services/createArticleThunk/createArticleThunk';
-import { deleteArticleThunk } from '../../../model/services/deleteArticleThunk/deleteArticleThunk';
 import { searchClient } from '@/shared/config/firebase/searchClient';
 import { updateArticleThunk } from '../../../model/services/updateArticleThunk/updateArticleThunk';
 
@@ -151,7 +151,7 @@ export const useArticleEditor = (): UseArticleEditorReturn => {
         }
         try {
             const deletedArticleId = await dispatch(
-                deleteArticleThunk(formData),
+                deleteArticleThunk(formData.id),
             ).unwrap();
             await searchClient.clearCache();
             if (deletedArticleId) {
