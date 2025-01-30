@@ -141,13 +141,13 @@ export const UserArticlesTable = memo(() => {
         return null;
     }
     return (
-        <VStack gap="16">
+        <VStack gap="16" max>
             <SearchInput
                 globalFilter={globalFilter}
                 setGlobalFilter={setGlobalFilter}
             />
 
-            <VStack gap="16" className={cls.tableWrap}>
+            <VStack gap="16" className={cls.tableWrap} data-testid="table">
                 <Box className={cls.table} width={table.getTotalSize()}>
                     <Each
                         of={table.getHeaderGroups()}

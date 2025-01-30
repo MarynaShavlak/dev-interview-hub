@@ -10,7 +10,7 @@ import {
     CommonFilterType,
 } from '../../model/types/types';
 import { getFlexClasses } from '@/shared/lib/classes/getFlexClasses/getFlexClasses';
-import { HStack } from '@/shared/ui/common/Stack';
+import { HStack, VStack } from '@/shared/ui/common/Stack';
 
 interface TableHeaderProps<T> extends ColumnFilterHandlerProps {
     headerGroup: HeaderGroup<T>;
@@ -45,34 +45,27 @@ export const TableHeader = <T,>(props: TableHeaderProps<T>) => {
                         key={header.id}
                         width={header.getSize()}
                     >
-                        <HStack gap="4">
-                            {flexRender(
-                                header.column.columnDef.header,
-                                header.getContext(),
-                            )}
-
-                            {header.column.getCanSort() && (
-                                <SortingIcon column={header.column} />
-                            )}
-                        </HStack>
-
-                        {header.column.getCanFilter() && (
-                            <TableFilter
-                                filterCategory={header.id}
-                                columnFilters={columnFilters}
-                                setColumnFilters={setColumnFilters}
-                                allOptions={
-                                    headerOptionsMapping[header.id] || []
-                                }
-                            />
+                        {flexRender(
+                            header.column.columnDef.header,
+                            header.getContext(),
                         )}
-                        <Box
-                            onMouseDown={header.getResizeHandler()}
-                            onTouchStart={header.getResizeHandler()}
-                            className={classNames(cls.resizer, {
-                                isResizing: header.column.getIsResizing(),
-                            })}
-                        />
+                        <VStack gap="4">
+                            <HStack gap="4">
+                                {header.column.getCanSort() && (
+                                    <SortingIcon column={header.column} />
+                                )}
+                            </HStack>
+                            {header.column.getCanFilter() && (
+                                <TableFilter
+                                    filterCategory={header.id}
+                                    columnFilters={columnFilters}
+                                    setColumnFilters={setColumnFilters}
+                                    allOptions={
+                                        headerOptionsMapping[header.id] || []
+                                    }
+                                />
+                            )}
+                        </VStack>
                     </Box>
                 );
             })}

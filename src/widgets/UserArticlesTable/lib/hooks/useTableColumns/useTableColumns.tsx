@@ -3,10 +3,9 @@ import { createColumnHelper } from '@tanstack/react-table';
 import { useMemo } from 'react';
 import { UserArticlesTableInfo } from '../../../model/types/userArticlesTableInfo';
 import { createStaticTextColumn } from '../../helpers/columnCreators/createStaticColumn/createStaticTextColumn';
-import { HStack } from '@/shared/ui/common/Stack';
-import DeleteIcon from '@/shared/assets/icons/delete.svg';
-import EditIcon from '@/shared/assets/icons/edit.svg';
-import { Icon } from '@/shared/ui/redesigned/Icon';
+import { useCreateActionColumn } from '../../helpers/columnCreators/createActionColumn/createActionColumn';
+import { useTitleColumnWidth } from '../useTitleColumnWidth/useTitleColumnWidth';
+import { FIXED_COLUMNS_WIDTH } from '../../../model/consts/fixedColumnsWidth';
 
 const columnHelper = createColumnHelper<UserArticlesTableInfo>();
 
@@ -20,6 +19,8 @@ const createUserTextCol = createStaticTextColumn<UserArticlesTableInfo>();
 export const useTableColumns = (props: useTableColumnProps) => {
     const { t } = useTranslation('articleDetails');
     const { deleteRow, editRow } = props;
+    const actionColumn = useCreateActionColumn(deleteRow, editRow);
+    const titleColumnWidth = useTitleColumnWidth();
 
     return useMemo(() => {
         return [
@@ -27,7 +28,7 @@ export const useTableColumns = (props: useTableColumnProps) => {
                 'title',
                 createUserTextCol({
                     id: t('Заголовок статті'),
-                    size: 230,
+                    size: titleColumnWidth,
                     sortable: true,
                 }),
             ),
@@ -35,7 +36,7 @@ export const useTableColumns = (props: useTableColumnProps) => {
                 'createdAt',
                 createUserTextCol({
                     id: t('Дата створення'),
-                    size: 110,
+                    size: FIXED_COLUMNS_WIDTH.createdAt,
                     sortable: true,
                 }),
             ),
@@ -43,8 +44,7 @@ export const useTableColumns = (props: useTableColumnProps) => {
                 'categories',
                 createUserTextCol({
                     id: t('Категорії'),
-
-                    size: 185,
+                    size: FIXED_COLUMNS_WIDTH.categories,
                     sortable: true,
                     filterable: true,
                 }),
@@ -53,7 +53,7 @@ export const useTableColumns = (props: useTableColumnProps) => {
                 'views',
                 createUserTextCol({
                     id: t('Перегляди'),
-                    size: 110,
+                    size: FIXED_COLUMNS_WIDTH.views,
                     sortable: true,
                 }),
             ),
@@ -61,7 +61,7 @@ export const useTableColumns = (props: useTableColumnProps) => {
                 'commentsQuantity',
                 createUserTextCol({
                     id: t('Коментарі'),
-                    size: 110,
+                    size: FIXED_COLUMNS_WIDTH.commentsQuantity,
                     sortable: true,
                 }),
             ),
@@ -69,32 +69,12 @@ export const useTableColumns = (props: useTableColumnProps) => {
                 'averageRating',
                 createUserTextCol({
                     id: t('Середній рейтинг'),
-                    size: 110,
+                    size: FIXED_COLUMNS_WIDTH.averageRating,
                     sortable: true,
                     filterable: true,
                 }),
             ),
-            columnHelper.display({
-                id: 'action',
-                header: () => t('Дія'),
-                cell: ({ row }) => (
-                    <HStack justify="center" gap="16">
-                        <Icon
-                            Svg={DeleteIcon}
-                            width={18}
-                            variant="error"
-                            clickable
-                            onClick={() => deleteRow(row.original.id)}
-                        />
-                        <Icon
-                            Svg={EditIcon}
-                            width={18}
-                            clickable
-                            onClick={() => editRow(row.original.id)}
-                        />
-                    </HStack>
-                ),
-            }),
+            actionColumn,
         ];
-    }, [deleteRow, editRow, t]);
+    }, [actionColumn, t, titleColumnWidth]);
 };
