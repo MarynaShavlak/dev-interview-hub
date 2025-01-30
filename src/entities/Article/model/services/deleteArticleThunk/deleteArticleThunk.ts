@@ -5,19 +5,8 @@ import {
     getArticleDataByIdQuery,
 } from '../../../api/articleApi';
 import { deleteArticleImageThunk } from '../../../model/services/deleteArticleImageThunk/deleteArticleImageThunk';
+import { getBlockImageUrls } from '../../../lib/utilities/getBlockImageUrls/getBlockImageUrls';
 
-// Helper function to extract image URLs from article blocks
-const getBlockImageUrls = (blocks: any[]): string[] => {
-    return blocks.reduce((urls: string[], block: any) => {
-        // Check if block has src property and it's a string (image URL)
-        if (block.src && typeof block.src === 'string') {
-            urls.push(block.src);
-        }
-        return urls;
-    }, []);
-};
-
-// Helper function to delete multiple images
 const deleteMultipleImages = async (
     imageUrls: string[],
     dispatch: any,
@@ -51,21 +40,16 @@ export const deleteArticleThunk = createAsyncThunk<
             getArticleDataByIdQuery(articleId),
         ).unwrap();
         console.log(article);
-        const imagesToDelete: string[] = [];
-        if (article?.blocks) {
-            const blockImages = getBlockImageUrls(article.blocks);
-            imagesToDelete.push(...blockImages);
-        }
+
+        const imagesToDelete = article?.blocks
+            ? getBlockImageUrls(article.blocks)
+            : [];
 
         if (imagesToDelete.length > 0) {
             try {
                 await deleteMultipleImages(imagesToDelete, dispatch);
-                console.log(
-                    `Successfully deleted ${imagesToDelete.length} images`,
-                );
             } catch (imageError) {
                 console.error('Failed to delete some images:', imageError);
-
                 return rejectWithValue('Failed to delete article images.');
             }
         }
