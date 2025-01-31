@@ -112,7 +112,7 @@ export const UsersTable = () => {
     const { users, isLoading } = useUsersTableData();
     // console.log('users', users);
     const [data, setData] = useState<UsersTableInfo[]>([]);
-    console.log('data', data);
+    // console.log('data', data);
 
     const [columnFilters, setColumnFilters] = useState<CommonFilterType>([]);
     const [globalFilter, setGlobalFilter] = useState<string>('');

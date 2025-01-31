@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { useUsers } from '@/entities/User';
 
 import { useArticlesComments } from '@/features/ArticleComments';
-import { useGetArticles, selectAllArticles } from '@/entities/Article';
+import { selectAllArticles, useGetArticles } from '@/entities/Article';
 import { useArticlesRatings } from '@/features/ArticleRating';
 
 export const useStatisticsData = () => {
@@ -16,9 +16,9 @@ export const useStatisticsData = () => {
     const { isLoading: isArticlesLoading, error: isArticlesError } =
         useGetArticles();
     const articles = useSelector(selectAllArticles);
+    // const articles = useSelector(getArticles.selectAll);
     // console.log('entries', articles);
     // const articles = useSelector(getArticles.selectAll);
-    // console.log('articles', articles);
 
     const {
         data: ratings = [],

@@ -31,7 +31,7 @@ export const useUserRatingsChartData = (
             }
 
             return {
-                name: `${t('userId')}: ${userId}`,
+                name: `${t('Користувач')}: ${userId}`,
                 data: [
                     [
                         percentageRated,

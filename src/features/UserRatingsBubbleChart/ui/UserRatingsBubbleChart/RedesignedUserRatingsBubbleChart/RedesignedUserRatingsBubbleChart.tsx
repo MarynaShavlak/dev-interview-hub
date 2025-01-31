@@ -2,8 +2,8 @@ import { useTranslation } from 'react-i18next';
 import React, { memo } from 'react';
 import { BubbleChart } from '@/shared/ui/common/Charts/ui/BubbleChart';
 import { Card } from '@/shared/ui/redesigned/Card';
-import { UserRatingsBubbleChartProps } from '../../..';
-import { useUserRatingsChartData } from '../../../lib/hooks/useArticleRatingsCharts';
+import { UserRatingsBubbleChartProps } from '../../../model/types/types';
+import { useUserRatingsChartData } from '../../../lib/hooks/useUserRatingsChartData';
 
 export const RedesignedUserRatingsBubbleChart = memo(
     (props: UserRatingsBubbleChartProps) => {

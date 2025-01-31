@@ -1,6 +1,7 @@
 export interface ArticleCommentCount {
     articleId: string;
     commentCount: number;
+    articleTitle: string;
 }
 
 export interface ArticleCommentsChartsProps {

@@ -11,10 +11,12 @@ export const useArticleCommentsChartData = (
     const labels: string[] = [];
     const commentsByArticlesData: number[] = [];
 
-    articleCommentCounts.forEach(({ articleId, commentCount }) => {
-        labels.push(articleId);
-        commentsByArticlesData.push(commentCount);
-    });
+    articleCommentCounts.forEach(
+        ({ articleId, commentCount, articleTitle }) => {
+            labels.push(articleTitle);
+            commentsByArticlesData.push(commentCount);
+        },
+    );
 
     const commentsByUsersData = Object.entries(commentCountsByUser)
         .map(([username, commentCount]) => ({ x: username, y: commentCount }))

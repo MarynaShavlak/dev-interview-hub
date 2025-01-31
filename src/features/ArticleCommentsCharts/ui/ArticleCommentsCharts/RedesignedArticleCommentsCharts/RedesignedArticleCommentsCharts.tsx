@@ -19,6 +19,8 @@ export const RedesignedArticleCommentsCharts = memo(
                 commentCountsByUser,
             );
 
+        console.log('labels', labels);
+        console.log('articleCommentCounts', articleCommentCounts);
         return (
             <HStack gap="16" className={className}>
                 <Card>

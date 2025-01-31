@@ -66,6 +66,7 @@ export const BubbleChart = (props: BubbleChartProps) => {
             custom: ({ seriesIndex, dataPointIndex, w }) => {
                 const data =
                     w.globals.initialSeries[seriesIndex]?.data[dataPointIndex];
+
                 const { x, y, z } = tooltipData;
 
                 if (data) {

@@ -25,7 +25,7 @@ export const StatisticsCharts = () => {
 
     const data = initializeData(articles, users);
     processArticles(data, articles);
-    processComments(data, comments);
+    processComments(data, comments, articles);
     processRatings(data, ratings);
 
     const {
@@ -43,6 +43,7 @@ export const StatisticsCharts = () => {
         monthlyDataByCategories,
         categories,
     } = data;
+    console.log('articleCommentCounts', articleCommentCounts);
 
     const articlesWithRatingQuantity = activeArticlesList.withRating.size;
 

@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 import React, { memo } from 'react';
 import { BubbleChart } from '@/shared/ui/common/Charts/ui/BubbleChart';
 import { Card } from '@/shared/ui/deprecated/Card';
-import { useUserRatingsChartData } from '../../../lib/hooks/useArticleRatingsCharts';
+import { useUserRatingsChartData } from '../../../lib/hooks/useUserRatingsChartData';
 import { UserRatingsBubbleChartProps } from '../../../model/types/types';
 
 export const DeprecatedUserRatingsBubbleChart = memo(
