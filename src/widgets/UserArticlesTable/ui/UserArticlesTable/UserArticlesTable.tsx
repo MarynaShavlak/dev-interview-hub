@@ -20,6 +20,7 @@ import { TableActionBar } from '../TableActionBar/TableActionBar';
 import { TableHeader } from '../TableHeader/TableHeader';
 import { TableBody } from '../TableBody/TableBody';
 import { useManageTableRow } from '../../lib/hooks/useManageTableRow/useManageTableRow';
+import { DEFAULT_PAGE_SIZE } from '../../model/consts/pagination';
 
 interface UserArticlesTableProps {
     onDeleteArticle: (articleId: string) => Promise<string | null>;
@@ -61,7 +62,7 @@ export const UserArticlesTable = memo(
             },
             initialState: {
                 pagination: {
-                    pageSize: 20,
+                    pageSize: DEFAULT_PAGE_SIZE,
                 },
             },
 
