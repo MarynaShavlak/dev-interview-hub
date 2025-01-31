@@ -3,6 +3,7 @@ import { useToggleVisibility } from '@/shared/lib/hooks/useToggleVisibility/useT
 import {
     ArticleImageBlock,
     ArticleSection,
+    deleteArticleImageThunk,
     uploadArticleImageThunk,
 } from '@/entities/Article';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
@@ -14,16 +15,17 @@ interface UseImageBlockOperationsProps {
     addBlockInArticle: (block: ArticleImageBlock) => void;
     deleteBlockFromArticle: (id: string) => void;
     onEditBlock?: (block: ArticleImageBlock) => void;
+    initialAvatar: string;
 }
 
 export const useImageBlockOperations = ({
     blockId,
     title,
-
     addBlockInArticle,
     deleteBlockFromArticle,
     onEditBlock,
     selectedImage,
+    initialAvatar,
 }: UseImageBlockOperationsProps) => {
     const {
         isVisible: isEditModeActive,
@@ -35,6 +37,12 @@ export const useImageBlockOperations = ({
     const dispatch = useAppDispatch();
 
     const [uploadError, setUploadError] = useState<string | null>(null);
+
+    const deleteFromStorage = useCallback(async () => {
+        if (initialAvatar) {
+            await dispatch(deleteArticleImageThunk(initialAvatar)).unwrap();
+        }
+    }, [dispatch, initialAvatar]);
 
     const getArticleImageUrl = useCallback(async () => {
         setUploadError(null);
@@ -71,11 +79,12 @@ export const useImageBlockOperations = ({
         }
     }, [getArticleImageUrl, blockId, title, onEditBlock, addBlockInArticle]);
 
-    const deleteImageBlock = useCallback(() => {
+    const deleteImageBlock = useCallback(async () => {
         if (deleteBlockFromArticle) {
             deleteBlockFromArticle(blockId);
         }
-    }, [deleteBlockFromArticle, blockId]);
+        await deleteFromStorage();
+    }, [deleteBlockFromArticle, deleteFromStorage, blockId]);
 
     const resetUploadError = useCallback(() => {
         if (uploadError) {

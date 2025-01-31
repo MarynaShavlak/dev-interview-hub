@@ -51,6 +51,8 @@ export const ImageBlockEditor = (props: ImageBlockEditorProps) => {
         deleteBlockFromArticle,
         onEditBlock,
         selectedImage,
+
+        initialAvatar,
     });
 
     const currentBlockData: ArticleImageBlock = useMemo(
