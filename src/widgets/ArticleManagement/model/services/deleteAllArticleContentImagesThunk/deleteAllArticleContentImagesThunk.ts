@@ -1,6 +1,5 @@
-// Constants
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { Article, deleteArticleImageThunk } from '../../..';
+import { Article, deleteArticleImageThunk } from '@/entities/Article';
 import { ThunkConfig } from '@/app/providers/StoreProvider';
 import { getBlockImageUrls } from '../../../lib/utilities/getBlockImageUrls/getBlockImageUrls';
 import { handleThunkError } from '../../../lib/utilities/handleThunkError/handleThunkError';

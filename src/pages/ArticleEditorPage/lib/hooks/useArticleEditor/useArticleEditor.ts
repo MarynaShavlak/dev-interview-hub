@@ -20,11 +20,11 @@ import {
     deleteArticleImageThunk,
     uploadArticleImageThunk,
     useArticleDataById,
-    deleteArticleThunk,
 } from '@/entities/Article';
 import { createArticleThunk } from '../../../model/services/createArticleThunk/createArticleThunk';
 import { searchClient } from '@/shared/config/firebase/searchClient';
 import { updateArticleThunk } from '../../../model/services/updateArticleThunk/updateArticleThunk';
+import { deleteArticleWithRelationsThunk } from '@/widgets/ArticleManagement';
 
 interface Metadata {
     isEditArticlePage: boolean;
@@ -151,7 +151,7 @@ export const useArticleEditor = (): UseArticleEditorReturn => {
         }
         try {
             const deletedArticleId = await dispatch(
-                deleteArticleThunk(formData.id),
+                deleteArticleWithRelationsThunk(formData.id),
             ).unwrap();
             await searchClient.clearCache();
             if (deletedArticleId) {

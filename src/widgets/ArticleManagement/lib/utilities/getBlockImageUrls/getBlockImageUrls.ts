@@ -1,5 +1,4 @@
-import { ArticleBlock } from '../../../model/types/article';
-import { ArticleSection } from '../../../model/consts/articleConsts';
+import { ArticleBlock, ArticleSection } from '@/entities/Article';
 
 export const getBlockImageUrls = (blocks: ArticleBlock[]): string[] => {
     return blocks.reduce((urls: string[], block: ArticleBlock) => {
