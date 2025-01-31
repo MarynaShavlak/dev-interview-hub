@@ -8,7 +8,7 @@ import { TableFilter } from './TableFilter/TableFilter';
 import {
     ColumnFilterHandlerProps,
     CommonFilterType,
-} from '../../model/types/types';
+} from '../../../model/types/types';
 import { getFlexClasses } from '@/shared/lib/classes/getFlexClasses/getFlexClasses';
 import { HStack, VStack } from '@/shared/ui/common/Stack';
 

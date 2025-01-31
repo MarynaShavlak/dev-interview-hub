@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import cls from './FilterItemWithCheckIcon.module.scss';
-import { ColumnFilterHandlerProps } from '../../../../model/types/types';
+import { ColumnFilterHandlerProps } from '../../../../../model/types/types';
 import { Icon } from '@/shared/ui/redesigned/Icon';
 import EmptyCheckIcon from '@/shared/assets/icons/checkbox-empty.svg';
 import CheckedIcon from '@/shared/assets/icons/checkbox-check.svg';

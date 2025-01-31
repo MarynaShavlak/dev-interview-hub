@@ -2,7 +2,7 @@ import React, { memo } from 'react';
 
 import { HeaderGroup } from '@tanstack/react-table';
 import { Each } from '@/shared/lib/components/Each/Each';
-import { TableHeaderCell } from '../TableHeaderCell/TableHeaderCell';
+import { TableHeaderCell } from './TableHeaderCell/TableHeaderCell';
 import { CommonFilterType } from '../../model/types/types';
 
 interface TableHeaderProps<T> {
