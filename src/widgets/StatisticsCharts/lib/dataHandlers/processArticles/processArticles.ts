@@ -4,6 +4,8 @@ import { generateMonths } from '../../utilities/generateMonths';
 import { getMonthYearKey } from '../../utilities/getMonthYearKey';
 import { getYearFromDate } from '../../utilities/getYearFromDate';
 import { calculateAverage } from '@/shared/lib/mathCalculations/calculateAverage';
+import { formatDateString } from '@/shared/lib/text/formatDateString/formatDateString';
+import { formatToTwoDigits } from '@/shared/lib/text/formatToTwoDigits/formatToTwoDigits';
 
 export const processArticles = (data: StatisticsData, articles?: Article[]) => {
     if (!articles) return;
@@ -26,22 +28,37 @@ export const processArticles = (data: StatisticsData, articles?: Article[]) => {
     const initializeMonthlyData = () => {
         const months = generateMonths();
         const yearsArray = Array.from(yearsList).sort();
+        const currentDate = new Date();
+        const currentYear = currentDate.getFullYear();
+        const currentMonth = formatToTwoDigits(currentDate.getMonth() + 1);
+
         yearsArray.forEach((year) => {
             months.forEach((month) => {
-                const key = `${month}/${year}`;
-                data.monthlyDataByCategories[key] = data.categories.reduce(
-                    (acc, category) => {
-                        acc[category] = 0;
-                        return acc;
-                    },
-                    {} as ArticleStats,
-                );
+                // Convert to numbers for comparison
+                const yearNum = Number(year);
+                const monthNum = Number(month);
+                const currentYearNum = Number(currentYear);
+                const currentMonthNum = Number(currentMonth);
+
+                if (
+                    yearNum < currentYearNum ||
+                    (yearNum === currentYearNum && monthNum <= currentMonthNum)
+                ) {
+                    const key = `${month}/${year}`;
+                    data.monthlyDataByCategories[key] = data.categories.reduce(
+                        (acc, category) => {
+                            acc[category] = 0;
+                            return acc;
+                        },
+                        {} as ArticleStats,
+                    );
+                }
             });
         });
     };
 
     const updateMonthlyData = (article: Article) => {
-        const key = getMonthYearKey(article.createdAt);
+        const key = getMonthYearKey(formatDateString(article.createdAt));
         article.category.forEach((category: string) => {
             if (data.monthlyDataByCategories[key]) {
                 data.monthlyDataByCategories[key][category] += 1;
@@ -53,7 +70,7 @@ export const processArticles = (data: StatisticsData, articles?: Article[]) => {
         data.activeUsersList.inArticles.add(article.user.id);
         totalViews += article.views;
         updateCategoryData(article);
-        yearsList.add(getYearFromDate(article.createdAt));
+        yearsList.add(getYearFromDate(formatDateString(article.createdAt)));
     });
 
     initializeMonthlyData();

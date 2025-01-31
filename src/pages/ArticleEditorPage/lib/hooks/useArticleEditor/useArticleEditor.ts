@@ -72,7 +72,7 @@ export const useArticleEditor = (): UseArticleEditorReturn => {
     const { data: editedArticle, isLoading: isArticleLoading } =
         useArticleDataById(id || '');
     const initialAvatar = isEditArticlePage ? editedArticle?.img : '';
-    console.log('editedArticle', editedArticle);
+
     const {
         formData,
         uploadedArticleImage,
@@ -158,7 +158,7 @@ export const useArticleEditor = (): UseArticleEditorReturn => {
                 onClearArticle();
                 return deletedArticleId;
             }
-            console.log(`Article with ID "${id}" has been deleted.`);
+
             return null;
         } catch (error: any) {
             console.error('Error deleting article:', error);

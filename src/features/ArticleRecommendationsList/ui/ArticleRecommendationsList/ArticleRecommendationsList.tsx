@@ -69,8 +69,6 @@ const ArticleRecommendationsList = memo(
         // });
         // const classes = classNames(mainClass, {}, [className, cls[view]]);
 
-        console.log('recommends', articles);
-
         if (isLoading) {
             return (
                 <VStack max gap="8">

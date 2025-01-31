@@ -6,7 +6,6 @@ import { ArticleComment } from '../../../model/types/articleComment';
 export const createCommentsByArticleIdsQuery = (
     articleIds: string[],
 ): Query<ArticleComment> | null => {
-    console.log('articleIds', articleIds);
     if (!articleIds || articleIds.length === 0) {
         return null;
     }

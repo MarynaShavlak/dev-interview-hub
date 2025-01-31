@@ -12,6 +12,7 @@ export const RedesignedArticlePeriodDataCharts = (
 ) => {
     const { t } = useTranslation('admin');
     const { categories, data, className } = props;
+    console.log('data', data);
 
     const {
         quarterlyCategoryData,

@@ -8,7 +8,6 @@ import {
     ReducersList,
 } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { articleReducer } from '@/entities/Article';
-import { UsersTable } from '@/features/UsersTable';
 
 const reducers: ReducersList = {
     articles: articleReducer,
@@ -23,7 +22,7 @@ const AdminPanelPage = () => {
                     <main data-testid="AdminPanelPage">
                         <StatisticsCharts />
 
-                        <UsersTable />
+                        {/* <UsersTable /> */}
 
                         {/* <UsersInfoTable /> */}
                     </main>

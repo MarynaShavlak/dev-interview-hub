@@ -6,10 +6,8 @@ import { ArticleRatingData } from '../../../model/types/articleRatingData';
 export const createRatingsByArticleIdsQuery = (
     articleIds: string[],
 ): Query<ArticleRatingData> | null => {
-    console.log('articleIds', articleIds);
     if (!articleIds || articleIds.length === 0) {
         return null;
-        // throw new Error('Article IDs array must not be empty');
     }
 
     const ratingsCollection = dataPoint<ArticleRatingData>('ratings');
