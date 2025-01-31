@@ -3,7 +3,7 @@ import cls from './FilterPopover.module.scss';
 import {
     ColumnFilterHandlerProps,
     CommonFilterType,
-} from '../../model/types/types';
+} from '../../../model/types/types';
 import { FilterMenu } from './FilterMenu/FilterMenu';
 import { FilterTrigger } from './FilterTrigger/FilterTrigger';
 

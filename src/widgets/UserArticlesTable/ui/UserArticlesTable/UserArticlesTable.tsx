@@ -9,21 +9,20 @@ import {
 import { useTranslation } from 'react-i18next';
 import { Box } from '@/shared/ui/common/Box';
 import cls from './UserArticlesTable.module.scss';
-import { SearchInput } from '../SearchInput/SearchInput';
 import { TablePagination } from '../TablePagination/TablePagination';
 import { TableRow } from '../TableRow/TableRow';
 import { Each } from '@/shared/lib/components/Each/Each';
-import { TableHeader } from '../TableHeader/TableHeader';
 import { useArticlesByUserData } from '../../lib/hooks/useArticlesByUserData/useArticlesByUserData';
-import { HStack, VStack } from '@/shared/ui/common/Stack';
+import { VStack } from '@/shared/ui/common/Stack';
 import { UserArticlesTableInfo } from '../../model/types/userArticlesTableInfo';
 import { useTableData } from '../../lib/hooks/useTableData/useTableData';
 import { useArticleNavigation } from '@/entities/Article';
 import { useToggleVisibility } from '@/shared/lib/hooks/useToggleVisibility/useToggleVisibility';
 import { ConfirmDeleteModal } from '@/features/ConfirmDeleteModal';
-import { Text } from '@/shared/ui/redesigned/Text';
-import { ArticleCreateNavigationButton } from '@/features/ArticleCreateNavigationButton';
-import { Skeleton } from '@/shared/ui/redesigned/Skeleton';
+import { LoadingTableSkeleton } from '../LoadingTableSkeleton/LoadingTableSkeleton';
+import { EmptyTableState } from '../EmptyTableState/EmptyTableState';
+import { TableActionBar } from '../TableActionBar/TableActionBar';
+import { TableHeader } from '../TableHeader/TableHeader';
 
 interface UserArticlesTableProps {
     onDeleteArticle: (articleId: string) => Promise<string | null>;
@@ -36,11 +35,11 @@ export const UserArticlesTable = memo(
         const { t } = useTranslation('articleDetails');
         const [data, setData] = useState<UserArticlesTableInfo[]>([]);
         const { navigateToArticle } = useArticleNavigation();
-        const [selectedArticleId, setSelectedArticleId] = useState<
-            string | null
-        >(null);
-        const [selectedArticleTitle, setSelectedArticleTitle] =
-            useState<string>('');
+
+        const [selectedArticle, setSelectedArticle] = useState<{
+            id: string;
+            title: string;
+        } | null>(null);
 
         useEffect(() => {
             if (!isLoading && articles.length !== data.length) {
@@ -75,21 +74,35 @@ export const UserArticlesTable = memo(
             [onDeleteArticle],
         );
 
-        const handleDeleteConfirm = useCallback(async (): Promise<void> => {
-            if (selectedArticleId) {
-                await deleteTableRow(selectedArticleId);
+        // const handleDeleteConfirm = useCallback(async (): Promise<void> => {
+        //     if (selectedArticleId) {
+        //         await deleteTableRow(selectedArticleId);
+        //         deleteArticleModal.hide();
+        //         setSelectedArticleId(null);
+        //         setSelectedArticleTitle('');
+        //     }
+        // }, [selectedArticleId, deleteTableRow, deleteArticleModal]);
+
+        const handleDeleteConfirm = useCallback(async () => {
+            if (selectedArticle) {
+                await deleteTableRow(selectedArticle.id);
                 deleteArticleModal.hide();
-                setSelectedArticleId(null);
-                setSelectedArticleTitle('');
+                setSelectedArticle(null);
             }
-        }, [selectedArticleId, deleteTableRow, deleteArticleModal]);
+        }, [selectedArticle, deleteTableRow, deleteArticleModal]);
 
         const handleDeleteClick = useCallback(
             (articleId: string) => {
                 const article = data.find((item) => item.id === articleId);
+                if (article) {
+                    setSelectedArticle({
+                        id: articleId,
+                        title: article?.title || '',
+                    });
+                }
 
-                setSelectedArticleId(articleId);
-                setSelectedArticleTitle(article?.title || '');
+                // setSelectedArticleId(articleId);
+                // setSelectedArticleTitle(article?.title || '');
                 deleteArticleModal.show();
             },
             [data, deleteArticleModal],
@@ -117,8 +130,8 @@ export const UserArticlesTable = memo(
             editRow: handleEditClick,
         });
 
-        const modalText = `${selectedArticleTitle}`
-            ? `"${selectedArticleTitle}"`
+        const modalText = selectedArticle?.title
+            ? `"${selectedArticle.title}"`
             : '';
 
         const table = useReactTable<UserArticlesTableInfo>({
@@ -142,55 +155,28 @@ export const UserArticlesTable = memo(
             columnResizeMode: 'onChange',
             // meta: { updateData },
         });
-        const noArticlesText = t('Не створено жодної статті');
 
         if (isLoading) {
-            return (
-                <VStack gap="16" max align="center">
-                    <HStack justify="between" max>
-                        <Skeleton width={300} height={38} border="48px" />
-                        <Skeleton width={120} height={38} border="34px" />
-                    </HStack>
-                    <Skeleton width="100%" height={400} />
-                </VStack>
-            );
+            return <LoadingTableSkeleton />;
         }
         if (data.length === 0) {
-            return (
-                <VStack gap="16" max align="center">
-                    <Text text={noArticlesText} />
-                    <ArticleCreateNavigationButton />
-                </VStack>
-            );
+            return <EmptyTableState />;
         }
 
         return (
             <VStack gap="16" max>
-                <HStack justify="between" max>
-                    <SearchInput
-                        globalFilter={globalFilter}
-                        setGlobalFilter={setGlobalFilter}
-                    />
-                    <ArticleCreateNavigationButton />
-                </HStack>
+                <TableActionBar
+                    globalFilter={globalFilter}
+                    setGlobalFilter={setGlobalFilter}
+                />
 
                 <VStack gap="16" className={cls.tableWrap} data-testid="table">
                     <Box className={cls.table} width={table.getTotalSize()}>
-                        <Each
-                            of={table.getHeaderGroups()}
-                            render={(headerGroup) => {
-                                return (
-                                    <TableHeader
-                                        key={headerGroup.id}
-                                        headerGroup={headerGroup}
-                                        setColumnFilters={setColumnFilters}
-                                        headerOptionsMapping={
-                                            headerOptionsMapping
-                                        }
-                                        columnFilters={columnFilters}
-                                    />
-                                );
-                            }}
+                        <TableHeader
+                            headerGroups={table.getHeaderGroups()}
+                            setColumnFilters={setColumnFilters}
+                            headerOptionsMapping={headerOptionsMapping}
+                            columnFilters={columnFilters}
                         />
 
                         <Each

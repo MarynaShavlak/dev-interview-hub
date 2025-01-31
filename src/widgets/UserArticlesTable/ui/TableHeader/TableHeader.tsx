@@ -1,74 +1,38 @@
-import { flexRender, HeaderGroup } from '@tanstack/react-table';
+import React, { memo } from 'react';
 
-import { Box } from '@/shared/ui/common/Box';
-import cls from './TableHeader.module.scss';
-import { classNames } from '@/shared/lib/classes/classNames/classNames';
-import { SortingIcon } from '../SortingIcon/SortingIcon';
-import { TableFilter } from '../TableFilter/TableFilter';
-import {
-    ColumnFilterHandlerProps,
-    CommonFilterType,
-} from '../../model/types/types';
-import { getFlexClasses } from '@/shared/lib/classes/getFlexClasses/getFlexClasses';
-import { HStack, VStack } from '@/shared/ui/common/Stack';
+import { HeaderGroup } from '@tanstack/react-table';
+import { Each } from '@/shared/lib/components/Each/Each';
+import { TableHeaderCell } from '../TableHeaderCell/TableHeaderCell';
+import { CommonFilterType } from '../../model/types/types';
 
-interface TableHeaderProps<T> extends ColumnFilterHandlerProps {
-    headerGroup: HeaderGroup<T>;
-    columnFilters: CommonFilterType;
+interface TableHeaderProps<T> {
+    headerGroups: HeaderGroup<T>[];
+    setColumnFilters: (filters: any) => void;
     headerOptionsMapping: Record<string, string[]>;
+    columnFilters: CommonFilterType;
 }
 
-export const TableHeader = <T,>(props: TableHeaderProps<T>) => {
+export const TableHeader = memo(<T,>(props: TableHeaderProps<T>) => {
     const {
-        headerGroup,
+        headerGroups,
         setColumnFilters,
-        columnFilters,
         headerOptionsMapping,
+        columnFilters,
     } = props;
-    const additionalClasses = getFlexClasses({
-        hStack: true,
-        gap: '8',
-        justify: 'center',
-        align: 'center',
-    });
-
     return (
-        <Box className={cls.tr} key={headerGroup.id}>
-            {headerGroup.headers.map((header) => {
-                const d = header.column.columnDef.header;
-
+        <Each
+            of={headerGroups}
+            render={(headerGroup) => {
                 return (
-                    <Box
-                        className={classNames(cls.th, {}, [
-                            ...additionalClasses,
-                        ])}
-                        key={header.id}
-                        width={header.getSize()}
-                    >
-                        {flexRender(
-                            header.column.columnDef.header,
-                            header.getContext(),
-                        )}
-                        <VStack gap="4">
-                            <HStack gap="4">
-                                {header.column.getCanSort() && (
-                                    <SortingIcon column={header.column} />
-                                )}
-                            </HStack>
-                            {header.column.getCanFilter() && (
-                                <TableFilter
-                                    filterCategory={header.id}
-                                    columnFilters={columnFilters}
-                                    setColumnFilters={setColumnFilters}
-                                    allOptions={
-                                        headerOptionsMapping[header.id] || []
-                                    }
-                                />
-                            )}
-                        </VStack>
-                    </Box>
+                    <TableHeaderCell
+                        key={headerGroup.id}
+                        headerGroup={headerGroup}
+                        setColumnFilters={setColumnFilters}
+                        headerOptionsMapping={headerOptionsMapping}
+                        columnFilters={columnFilters}
+                    />
                 );
-            })}
-        </Box>
+            }}
+        />
     );
-};
+});

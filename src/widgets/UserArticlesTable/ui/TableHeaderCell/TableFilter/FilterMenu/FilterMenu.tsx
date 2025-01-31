@@ -1,6 +1,6 @@
 import { VStack } from '@/shared/ui/common/Stack';
 import { Each } from '@/shared/lib/components/Each/Each';
-import { ColumnFilterHandlerProps } from '../../../model/types/types';
+import { ColumnFilterHandlerProps } from '../../../../model/types/types';
 import { FilterItemWithCheckIcon } from '../FilterItemWthCheckIcon/FilterItemWithCheckIcon';
 
 interface FilterMenuProps extends ColumnFilterHandlerProps {
