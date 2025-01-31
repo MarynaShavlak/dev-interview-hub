@@ -2,7 +2,7 @@ export { useArticleNavigation } from './lib/hooks/useArticleNavigation/useArticl
 
 export { deleteArticleThunk } from './model/services/deleteArticleThunk/deleteArticleThunk';
 
-export { deleteArticleImageThunk } from './model/services/deleteArticleImageThunk/deleteArticleImageThunk';
+export { deleteArticleImageThunk } from '@/entities/Article/model/services/deleteArticleImageThunk/deleteArticleImageThunk';
 
 export { uploadArticleImageThunk } from './model/services/uploadArticleImageThunk/uploadImageThunk';
 

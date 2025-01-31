@@ -19,12 +19,11 @@ import { HStack, VStack } from '@/shared/ui/common/Stack';
 import { UserArticlesTableInfo } from '../../model/types/userArticlesTableInfo';
 import { useTableData } from '../../lib/hooks/useTableData/useTableData';
 import { useArticleNavigation } from '@/entities/Article';
-import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useToggleVisibility } from '@/shared/lib/hooks/useToggleVisibility/useToggleVisibility';
 import { ConfirmDeleteModal } from '@/features/ConfirmDeleteModal';
 import { Text } from '@/shared/ui/redesigned/Text';
 import { ArticleCreateNavigationButton } from '@/features/ArticleCreateNavigationButton';
-import { useArticlesRatings } from '@/features/ArticleRating';
+import { Skeleton } from '@/shared/ui/redesigned/Skeleton';
 
 interface UserArticlesTableProps {
     onDeleteArticle: (articleId: string) => Promise<string | null>;
@@ -33,7 +32,7 @@ interface UserArticlesTableProps {
 export const UserArticlesTable = memo(
     ({ onDeleteArticle }: UserArticlesTableProps) => {
         const { articles, isLoading } = useArticlesByUserData();
-        const dispatch = useAppDispatch();
+
         const { t } = useTranslation('articleDetails');
         const [data, setData] = useState<UserArticlesTableInfo[]>([]);
         const { navigateToArticle } = useArticleNavigation();
@@ -49,12 +48,9 @@ export const UserArticlesTable = memo(
             }
         }, [articles, isLoading, data.length, setData]);
 
-        const { data: ratings } = useArticlesRatings();
-        console.log('ratings', ratings);
-
         const deleteArticleModal = useToggleVisibility();
 
-        const deleteRow = useCallback(
+        const deleteTableRow = useCallback(
             async (articleId: string) => {
                 if (!articleId) {
                     console.error(
@@ -62,13 +58,13 @@ export const UserArticlesTable = memo(
                     );
                     return null;
                 }
-                console.log('articleIdx', articleId);
+
                 try {
                     const deletedArticleId = await onDeleteArticle(articleId);
                     setData((prevData) =>
                         prevData.filter((row, index) => row.id !== articleId),
                     );
-                    console.log('data after update: ', data);
+
                     return deletedArticleId;
                 } catch (error: any) {
                     console.error('Error deleting article:', error);
@@ -76,17 +72,17 @@ export const UserArticlesTable = memo(
                     return null;
                 }
             },
-            [data, dispatch],
+            [onDeleteArticle],
         );
 
         const handleDeleteConfirm = useCallback(async (): Promise<void> => {
             if (selectedArticleId) {
-                await deleteRow(selectedArticleId);
+                await deleteTableRow(selectedArticleId);
                 deleteArticleModal.hide();
                 setSelectedArticleId(null);
                 setSelectedArticleTitle('');
             }
-        }, [selectedArticleId, deleteRow, deleteArticleModal]);
+        }, [selectedArticleId, deleteTableRow, deleteArticleModal]);
 
         const handleDeleteClick = useCallback(
             (articleId: string) => {
@@ -101,7 +97,6 @@ export const UserArticlesTable = memo(
 
         const handleEditClick = useCallback(
             (articleId: string) => {
-                console.log('articleId', articleId);
                 if (articleId) {
                     navigateToArticle(articleId);
                 }
@@ -121,6 +116,7 @@ export const UserArticlesTable = memo(
             deleteRow: handleDeleteClick,
             editRow: handleEditClick,
         });
+
         const modalText = `${selectedArticleTitle}`
             ? `"${selectedArticleTitle}"`
             : '';
@@ -147,6 +143,18 @@ export const UserArticlesTable = memo(
             // meta: { updateData },
         });
         const noArticlesText = t('Не створено жодної статті');
+
+        if (isLoading) {
+            return (
+                <VStack gap="16" max align="center">
+                    <HStack justify="between" max>
+                        <Skeleton width={300} height={38} border="48px" />
+                        <Skeleton width={120} height={38} border="34px" />
+                    </HStack>
+                    <Skeleton width="100%" height={400} />
+                </VStack>
+            );
+        }
         if (data.length === 0) {
             return (
                 <VStack gap="16" max align="center">
@@ -155,6 +163,7 @@ export const UserArticlesTable = memo(
                 </VStack>
             );
         }
+
         return (
             <VStack gap="16" max>
                 <HStack justify="between" max>
