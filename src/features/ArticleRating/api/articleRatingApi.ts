@@ -7,6 +7,7 @@ import { User } from '@/entities/User';
 import { addDocToFirestore } from '@/shared/lib/firestore/addDocToFirestore/addDocToFirestore';
 import { fetchCollection } from '@/shared/lib/firestore/fetchCollection/fetchCollection';
 import { createRatingsByArticleIdsQuery } from '../lib/utilities/createRatingsByArticleIdsQuery/createRatingsByArticleIdsQuery';
+import { deleteDocFromFirestore } from '@/shared/lib/firestore/deleteDocFromFirestore/deleteDocFromFirestore';
 
 interface GetArticleRatingArg {
     userId: string;
@@ -182,6 +183,36 @@ export const articleRatingFirebaseApi = firestoreApi
                     }
                 },
             }),
+            deleteRatingsByArticleId: build.mutation<void, string>({
+                invalidatesTags: ['ArticleRating'],
+                async queryFn(articleId) {
+                    try {
+                        const ratingsQuery = createRatingsByArticleIdsQuery([
+                            articleId,
+                        ]);
+                        const ratings =
+                            await fetchQueryResults<ArticleRatingData>(
+                                ratingsQuery,
+                            );
+
+                        const deletePromises = ratings.map((rating) =>
+                            deleteDocFromFirestore('ratings', rating.id),
+                        );
+
+                        await Promise.allSettled(deletePromises);
+
+                        return { data: undefined };
+                    } catch (error) {
+                        console.error(
+                            'Error deleting ratings by article ID:',
+                            error,
+                        );
+                        return {
+                            error: 'Error deleting ratings by article ID',
+                        };
+                    }
+                },
+            }),
         }),
     });
 
@@ -195,3 +226,6 @@ export const useAddArticleRating =
 
 export const useRatingsByArticleIdsList =
     articleRatingFirebaseApi.useGetRatingsByArticleIdsListQuery;
+
+export const deleteRatingsByArticleId =
+    articleRatingFirebaseApi.endpoints.deleteRatingsByArticleId.initiate;

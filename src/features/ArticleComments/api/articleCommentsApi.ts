@@ -207,7 +207,7 @@ export const articlesCommentsFirebaseApi = firestoreApi
                             deleteDocFromFirestore('comments', comment.id),
                         );
 
-                        await Promise.all(deletePromises);
+                        await Promise.allSettled(deletePromises);
 
                         return { data: undefined };
                     } catch (error) {

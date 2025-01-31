@@ -22,7 +22,6 @@ export const useArticlesByUserData = () => {
             };
         },
     );
-    // console.log('combinedArticlesData', combinedArticlesData);
 
     if (!combinedArticlesData) return { articles: [], isLoading, isError };
 

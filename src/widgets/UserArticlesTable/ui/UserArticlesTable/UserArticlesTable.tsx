@@ -25,7 +25,7 @@ import { useToggleVisibility } from '@/shared/lib/hooks/useToggleVisibility/useT
 import { ConfirmDeleteModal } from '@/features/ConfirmDeleteModal';
 import { Text } from '@/shared/ui/redesigned/Text';
 import { ArticleCreateNavigationButton } from '@/features/ArticleCreateNavigationButton';
-import { useArticlesComments } from '@/features/ArticleComments';
+import { useArticlesRatings } from '@/features/ArticleRating';
 
 export const UserArticlesTable = memo(() => {
     const { articles, isLoading } = useArticlesByUserData();
@@ -45,8 +45,8 @@ export const UserArticlesTable = memo(() => {
         }
     }, [articles, isLoading, data.length, setData]);
 
-    const { data: comments = [] } = useArticlesComments();
-    console.log('comments', comments);
+    const { data: ratings } = useArticlesRatings();
+    console.log('ratings', ratings);
 
     const deleteArticleModal = useToggleVisibility();
 

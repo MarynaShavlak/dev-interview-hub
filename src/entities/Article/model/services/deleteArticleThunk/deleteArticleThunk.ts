@@ -4,11 +4,10 @@ import {
     deleteArticleMutation,
     getArticleDataByIdQuery,
 } from '../../../api/articleApi';
-import { deleteArticleImageThunk } from '../../../model/services/deleteArticleImageThunk/deleteArticleImageThunk';
-import { getBlockImageUrls } from '../../../lib/utilities/getBlockImageUrls/getBlockImageUrls';
 import { handleThunkError } from '../../../lib/utilities/handleThunkError/handleThunkError';
-import { deleteMultipleImages } from '../../../lib/utilities/deleteMultipleImages/deleteMultipleImages';
-import { deleteCommentsByArticleId } from '@/features/ArticleComments';
+import { deleteAllArticleContentImagesThunk } from '../deleteAllArticleContentImagesThunk/deleteAllArticleContentImagesThunk';
+import { deleteArticleRelatedDataThunk } from '../deleteArticleRelatedDataThunk/deleteArticleRelatedDataThunk';
+import { ERROR_MESSAGES } from '../../consts/errorMessages';
 
 export const deleteArticleThunk = createAsyncThunk<
     string,
@@ -25,56 +24,27 @@ export const deleteArticleThunk = createAsyncThunk<
         const article = await dispatch(
             getArticleDataByIdQuery(articleId),
         ).unwrap();
-        console.log(article);
-
-        const imagesToDelete = article?.blocks
-            ? getBlockImageUrls(article.blocks)
-            : [];
-
-        if (imagesToDelete.length > 0) {
-            try {
-                await deleteMultipleImages(imagesToDelete, dispatch);
-            } catch (imageError) {
-                return rejectWithValue(
-                    handleThunkError(
-                        imageError,
-                        'Failed to delete article block images.',
-                    ),
-                );
-            }
+        if (!article) {
+            return rejectWithValue('Article not found.');
         }
-        if (article?.img) {
-            try {
-                await dispatch(deleteArticleImageThunk(article.img)).unwrap();
-            } catch (imageError) {
-                return rejectWithValue(
-                    handleThunkError(
-                        imageError,
-                        'Failed to delete main article image.',
-                    ),
-                );
-            }
-        }
+
         const deletedArticleId = await dispatch(
             deleteArticleMutation(articleId),
         ).unwrap();
+
         if (deletedArticleId) {
-            try {
-                await dispatch(deleteCommentsByArticleId(articleId));
-            } catch (error) {
-                return rejectWithValue(
-                    handleThunkError(error, `Failed to delete comments`),
-                );
-            }
+            await dispatch(
+                deleteAllArticleContentImagesThunk(article),
+            ).unwrap();
+            await dispatch(
+                deleteArticleRelatedDataThunk(deletedArticleId),
+            ).unwrap();
         }
 
         return deletedArticleId;
     } catch (error) {
         return rejectWithValue(
-            handleThunkError(
-                error,
-                `Failed to delete article with ID "${articleId}".`,
-            ),
+            handleThunkError(error, ERROR_MESSAGES.DELETE_FAIL(articleId)),
         );
     }
 });
