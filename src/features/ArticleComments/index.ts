@@ -1,6 +1,7 @@
 export {
     useArticlesComments,
     useCommentsByArticleIdsList,
+    deleteCommentsByArticleId,
 } from './api/articleCommentsApi';
 
 export type { ArticleCommentsSchema } from './model/types/ArticleCommentsSchema';

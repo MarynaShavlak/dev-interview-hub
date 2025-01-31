@@ -8,6 +8,7 @@ import { deleteArticleImageThunk } from '../../../model/services/deleteArticleIm
 import { getBlockImageUrls } from '../../../lib/utilities/getBlockImageUrls/getBlockImageUrls';
 import { handleThunkError } from '../../../lib/utilities/handleThunkError/handleThunkError';
 import { deleteMultipleImages } from '../../../lib/utilities/deleteMultipleImages/deleteMultipleImages';
+import { deleteCommentsByArticleId } from '@/features/ArticleComments';
 
 export const deleteArticleThunk = createAsyncThunk<
     string,
@@ -57,6 +58,15 @@ export const deleteArticleThunk = createAsyncThunk<
         const deletedArticleId = await dispatch(
             deleteArticleMutation(articleId),
         ).unwrap();
+        if (deletedArticleId) {
+            try {
+                await dispatch(deleteCommentsByArticleId(articleId));
+            } catch (error) {
+                return rejectWithValue(
+                    handleThunkError(error, `Failed to delete comments`),
+                );
+            }
+        }
 
         return deletedArticleId;
     } catch (error) {

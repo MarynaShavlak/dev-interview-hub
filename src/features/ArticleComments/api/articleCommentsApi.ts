@@ -9,6 +9,7 @@ import { dataPoint } from '@/shared/lib/firestore/firestore';
 import { createArticleCommentsQuery } from '../lib/utilities/createArticleCommentsQuery/createArticleCommentsQuery';
 import { fetchQueryResults } from '@/shared/lib/firestore/fetchQueryResults/fetchQueryResults';
 import { createCommentsByArticleIdsQuery } from '../lib/utilities/createCommentsByArticleIdsQuery/createCommentsByArticleIdsQuery';
+import { deleteDocFromFirestore } from '@/shared/lib/firestore/deleteDocFromFirestore/deleteDocFromFirestore';
 
 export const articlesCommentsFirebaseApi = firestoreApi
     .enhanceEndpoints({ addTagTypes: ['ArticleComments'] })
@@ -191,6 +192,35 @@ export const articlesCommentsFirebaseApi = firestoreApi
                     }
                 },
             }),
+            deleteCommentsByArticleId: build.mutation<void, string>({
+                invalidatesTags: ['ArticleComments'],
+                async queryFn(articleId) {
+                    try {
+                        const commentsQuery =
+                            createArticleCommentsQuery(articleId);
+                        const comments =
+                            await fetchQueryResults<ArticleComment>(
+                                commentsQuery,
+                            );
+
+                        const deletePromises = comments.map((comment) =>
+                            deleteDocFromFirestore('comments', comment.id),
+                        );
+
+                        await Promise.all(deletePromises);
+
+                        return { data: undefined };
+                    } catch (error) {
+                        console.error(
+                            'Error deleting comments by article ID:',
+                            error,
+                        );
+                        return {
+                            error: 'Error deleting comments by article ID',
+                        };
+                    }
+                },
+            }),
         }),
     });
 
@@ -205,3 +235,6 @@ export const addCommentMutation =
 
 export const useCommentsByArticleIdsList =
     articlesCommentsFirebaseApi.useGetCommentsByArticleIdsListQuery;
+
+export const deleteCommentsByArticleId =
+    articlesCommentsFirebaseApi.endpoints.deleteCommentsByArticleId.initiate;
