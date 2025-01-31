@@ -116,11 +116,14 @@ export const articlesCommentsFirebaseApi = firestoreApi
                     try {
                         const commentsQuery =
                             createCommentsByArticleIdsQuery(articleIds);
-                        const comments =
-                            await fetchQueryResults<ArticleComment>(
-                                commentsQuery,
-                            );
-                        return { data: comments };
+                        if (commentsQuery) {
+                            const comments =
+                                await fetchQueryResults<ArticleComment>(
+                                    commentsQuery,
+                                );
+                            return { data: comments };
+                        }
+                        return { data: [] };
                     } catch (error) {
                         console.error(
                             'Error fetching comments by article IDs:',
@@ -140,14 +143,18 @@ export const articlesCommentsFirebaseApi = firestoreApi
                     try {
                         const commentsQuery =
                             createCommentsByArticleIdsQuery(articleIds);
-
-                        unsubscribe = onSnapshot(commentsQuery, (snapshot) => {
-                            updateCachedData((draft) => {
-                                const result = snapshot?.docs?.map((doc) =>
-                                    doc.data(),
-                                ) as ArticleComment[];
-                            });
-                        });
+                        if (commentsQuery) {
+                            unsubscribe = onSnapshot(
+                                commentsQuery,
+                                (snapshot) => {
+                                    updateCachedData((draft) => {
+                                        const result = snapshot?.docs?.map(
+                                            (doc) => doc.data(),
+                                        ) as ArticleComment[];
+                                    });
+                                },
+                            );
+                        }
                     } catch (error) {
                         console.error('Error in comments snapshot:', error);
                     }

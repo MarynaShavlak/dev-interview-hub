@@ -5,9 +5,10 @@ import { ArticleComment } from '../../../model/types/articleComment';
 
 export const createCommentsByArticleIdsQuery = (
     articleIds: string[],
-): Query<ArticleComment> => {
+): Query<ArticleComment> | null => {
+    console.log('articleIds', articleIds);
     if (!articleIds || articleIds.length === 0) {
-        throw new Error('Article IDs array must not be empty');
+        return null;
     }
 
     const commentsCollection = dataPoint<ArticleComment>('comments');

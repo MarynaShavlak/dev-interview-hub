@@ -109,11 +109,14 @@ export const articleRatingFirebaseApi = firestoreApi
                     try {
                         const ratingsQuery =
                             createRatingsByArticleIdsQuery(articleIds);
-                        const ratings =
-                            await fetchQueryResults<ArticleRatingData>(
-                                ratingsQuery,
-                            );
-                        return { data: ratings };
+                        if (ratingsQuery) {
+                            const ratings =
+                                await fetchQueryResults<ArticleRatingData>(
+                                    ratingsQuery,
+                                );
+                            return { data: ratings };
+                        }
+                        return { data: [] };
                     } catch (error) {
                         console.error(
                             'Error fetching ratings by article IDs:',
@@ -133,14 +136,18 @@ export const articleRatingFirebaseApi = firestoreApi
                     try {
                         const ratingsQuery =
                             createRatingsByArticleIdsQuery(articleIds);
-
-                        unsubscribe = onSnapshot(ratingsQuery, (snapshot) => {
-                            updateCachedData((draft) => {
-                                const result = snapshot?.docs?.map((doc) =>
-                                    doc.data(),
-                                ) as ArticleRatingData[];
-                            });
-                        });
+                        if (ratingsQuery) {
+                            unsubscribe = onSnapshot(
+                                ratingsQuery,
+                                (snapshot) => {
+                                    updateCachedData((draft) => {
+                                        const result = snapshot?.docs?.map(
+                                            (doc) => doc.data(),
+                                        ) as ArticleRatingData[];
+                                    });
+                                },
+                            );
+                        }
                     } catch (error) {
                         console.error('Error in ratings snapshot:', error);
                     }
@@ -190,17 +197,20 @@ export const articleRatingFirebaseApi = firestoreApi
                         const ratingsQuery = createRatingsByArticleIdsQuery([
                             articleId,
                         ]);
-                        const ratings =
-                            await fetchQueryResults<ArticleRatingData>(
-                                ratingsQuery,
+                        if (ratingsQuery) {
+                            const ratings =
+                                await fetchQueryResults<ArticleRatingData>(
+                                    ratingsQuery,
+                                );
+
+                            const deletePromises = ratings.map((rating) =>
+                                deleteDocFromFirestore('ratings', rating.id),
                             );
 
-                        const deletePromises = ratings.map((rating) =>
-                            deleteDocFromFirestore('ratings', rating.id),
-                        );
+                            await Promise.allSettled(deletePromises);
 
-                        await Promise.allSettled(deletePromises);
-
+                            return { data: undefined };
+                        }
                         return { data: undefined };
                     } catch (error) {
                         console.error(
