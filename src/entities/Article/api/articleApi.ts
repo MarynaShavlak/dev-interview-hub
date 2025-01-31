@@ -171,7 +171,6 @@ export const articleFirebaseApi = firestoreApi
                     }
                 },
             }),
-
             deleteArticle: build.mutation<string, string>({
                 invalidatesTags: ['Articles'],
                 async queryFn(articleId) {

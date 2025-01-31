@@ -6,23 +6,8 @@ import {
 } from '../../../api/articleApi';
 import { deleteArticleImageThunk } from '../../../model/services/deleteArticleImageThunk/deleteArticleImageThunk';
 import { getBlockImageUrls } from '../../../lib/utilities/getBlockImageUrls/getBlockImageUrls';
-
-const deleteMultipleImages = async (
-    imageUrls: string[],
-    dispatch: any,
-): Promise<void> => {
-    const deletePromises = imageUrls.map(async (imageUrl) => {
-        try {
-            await dispatch(deleteArticleImageThunk(imageUrl)).unwrap();
-        } catch (error) {
-            console.error(`Failed to delete image: ${imageUrl}`, error);
-
-            throw error;
-        }
-    });
-
-    await Promise.all(deletePromises);
-};
+import { handleThunkError } from '../../../lib/utilities/handleThunkError/handleThunkError';
+import { deleteMultipleImages } from '../../../lib/utilities/deleteMultipleImages/deleteMultipleImages';
 
 export const deleteArticleThunk = createAsyncThunk<
     string,
@@ -49,29 +34,37 @@ export const deleteArticleThunk = createAsyncThunk<
             try {
                 await deleteMultipleImages(imagesToDelete, dispatch);
             } catch (imageError) {
-                console.error('Failed to delete some images:', imageError);
-                return rejectWithValue('Failed to delete article images.');
+                return rejectWithValue(
+                    handleThunkError(
+                        imageError,
+                        'Failed to delete article block images.',
+                    ),
+                );
             }
         }
         if (article?.img) {
             try {
                 await dispatch(deleteArticleImageThunk(article.img)).unwrap();
             } catch (imageError) {
-                console.error('Failed to delete article image:', imageError);
-
-                return rejectWithValue('Failed to delete article image.');
+                return rejectWithValue(
+                    handleThunkError(
+                        imageError,
+                        'Failed to delete main article image.',
+                    ),
+                );
             }
         }
         const deletedArticleId = await dispatch(
             deleteArticleMutation(articleId),
         ).unwrap();
-        console.log(`Article with ID "${articleId}" has been deleted.`);
+
         return deletedArticleId;
     } catch (error) {
-        console.error(
-            `Failed to delete article with ID "${articleId}":`,
-            error,
+        return rejectWithValue(
+            handleThunkError(
+                error,
+                `Failed to delete article with ID "${articleId}".`,
+            ),
         );
-        return rejectWithValue('Failed to delete article.');
     }
 });
