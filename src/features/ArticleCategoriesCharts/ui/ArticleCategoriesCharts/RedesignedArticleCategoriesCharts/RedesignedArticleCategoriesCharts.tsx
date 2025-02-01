@@ -1,10 +1,10 @@
 import React, { memo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { HStack } from '@/shared/ui/common/Stack';
 import { DonutChart } from '@/shared/ui/common/Charts/ui/DonutChart/DonutChart';
 import { Card } from '@/shared/ui/redesigned/Card';
 import { ArticleCategoriesChartsProps } from '../../../model/types/types';
 import { useArticleCategoriesChartData } from '../../../lib/hooks/useArticleCategoriesChartData';
+import { VStack } from '@/shared/ui/common/Stack';
 
 export const RedesignedArticleCategoriesCharts = memo(
     (props: ArticleCategoriesChartsProps) => {
@@ -15,7 +15,7 @@ export const RedesignedArticleCategoriesCharts = memo(
             useArticleCategoriesChartData(data);
 
         return (
-            <HStack gap="16" max className={className}>
+            <VStack gap="16" max className={className}>
                 <Card>
                     <DonutChart
                         data={articlesByCategories}
@@ -33,7 +33,7 @@ export const RedesignedArticleCategoriesCharts = memo(
                         legendPosition="bottom"
                     />
                 </Card>
-            </HStack>
+            </VStack>
         );
     },
 );

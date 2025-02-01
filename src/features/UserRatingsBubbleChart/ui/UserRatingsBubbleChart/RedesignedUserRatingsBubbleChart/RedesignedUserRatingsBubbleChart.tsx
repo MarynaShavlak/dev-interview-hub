@@ -13,12 +13,14 @@ export const RedesignedUserRatingsBubbleChart = memo(
             data,
             totalArticles,
         );
+        console.log('axXaxisValue', maxXaxisValue);
 
         const xAxisTitle = t('Відсоток оцінених користувачем статей,%');
         const yAxisTitle = t('Середній рейтинг статей наданий користувачем');
         const xTooltip = t('Відсоток оцінених статей');
         const yTooltip = t('Середній рейтинг статей');
         const sizeTooltip = t('Кількість наданих відгуків');
+        const title = t('Аналіз оцінок статей');
         const tooltipData = {
             x: xTooltip,
             y: yTooltip,
@@ -29,13 +31,13 @@ export const RedesignedUserRatingsBubbleChart = memo(
             <Card className={className}>
                 <BubbleChart
                     data={ratingsByUsersData}
-                    width="800"
-                    title={`${xAxisTitle} & ${yAxisTitle}`}
+                    width="384"
+                    title={title}
                     legendPosition="bottom"
                     xAxisTitle={xAxisTitle}
                     yAxisTitle={yAxisTitle}
                     height="300"
-                    minXaxisValue={0}
+                    minXaxisValue={3}
                     maxXaxisValue={maxXaxisValue}
                     maxYaxisValue={6}
                     tooltipData={tooltipData}

@@ -1,3 +1,25 @@
+.dashboard {
+  max-width: 400px;
+  grid-area: 1 / 1 / 4 / 3;
+}
+
+
+.parent {
+  display: grid;
+  grid-template-columns: repeat(2, 192px) 428px;
+  grid-template-rows: repeat(3, 105px) 316px 1fr;
+  grid-column-gap: 16px;
+  grid-row-gap: 16px;
+}
+
+//.div1 { grid-area: 1 / 1 / 4 / 3; }
+.usersActivityChart { grid-area: 1 / 3 / 3 / 4; }
+.articleCategoriesChart { grid-area: 3 / 3 / 7 / 4; }
+//.bubbleChart{ grid-area: 4 / 1 / 316px / 3; }
+
+
+
+
 //.statsWrap {
 //  display: grid;
 //  grid-template-columns: repeat(9, 1fr);

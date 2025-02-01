@@ -8,14 +8,13 @@ import { useStatisticsData } from '../../lib/hooks/useStatisticsData';
 import { StatisticsChartsError } from './StatisticsChartsError';
 import { StatisticsChartsSkeleton } from './StatisticsChartsSkeleton';
 import cls from './StatisticsCharts.module.scss';
-import { ArticlePeriodDataCharts } from '@/features/ArticlePeriodDataCharts';
+// import { ArticlePeriodDataCharts } from '@/features/ArticlePeriodDataCharts';
 import { UsersActivityChart } from '@/features/UsersActivityChart';
-import { ArticleRatingDistributionChart } from '@/features/ArticleRatingDistributionChart';
 import { ArticleCategoriesCharts } from '@/features/ArticleCategoriesCharts';
-import { UserRatingsBubbleChart } from '@/features/UserRatingsBubbleChart';
-import { ArticleCommentsCharts } from '@/features/ArticleCommentsCharts';
-import { HStack, VStack } from '@/shared/ui/common/Stack';
+// import { UserRatingsBubbleChart } from '@/features/UserRatingsBubbleChart';
+// import { ArticleCommentsCharts } from '@/features/ArticleCommentsCharts';
 import { processComments } from '../../lib/dataHandlers/processComments/processComments';
+import { UserRatingsBubbleChart } from '@/features/UserRatingsBubbleChart';
 
 export const StatisticsCharts = () => {
     const { t } = useTranslation('admin');
@@ -50,7 +49,8 @@ export const StatisticsCharts = () => {
     if (isError) return <StatisticsChartsError />;
 
     return (
-        <VStack gap="16">
+        // <VStack gap="16">
+        <div className={cls.parent}>
             <DashboardStats
                 totalArticles={totalArticles}
                 totalUsers={totalUsers}
@@ -60,33 +60,14 @@ export const StatisticsCharts = () => {
                 className={cls.dashboard}
             />
 
-            <HStack gap="16">
-                <UsersActivityChart
-                    activeUsersList={activeUsersList}
-                    totalUsers={totalUsers}
-                    className={cls.usersActivityChart}
-                />
-                <ArticleRatingDistributionChart
-                    ratingDistributionMap={ratingDistributionMap}
-                    totalArticlesWithRatings={articlesWithRatingQuantity}
-                    className={cls.articleRatDistributionChart}
-                />
-            </HStack>
+            <UsersActivityChart
+                activeUsersList={activeUsersList}
+                totalUsers={totalUsers}
+                className={cls.usersActivityChart}
+            />
             <ArticleCategoriesCharts
                 data={categoryData}
                 className={cls.articleCategoriesChart}
-            />
-
-            <ArticlePeriodDataCharts
-                categories={categories}
-                data={monthlyDataByCategories}
-                className={cls.quarterlyChart}
-            />
-
-            <ArticlePeriodDataCharts
-                categories={categories}
-                data={monthlyDataByCategories}
-                className={cls.monthlyChart}
             />
 
             <UserRatingsBubbleChart
@@ -94,12 +75,29 @@ export const StatisticsCharts = () => {
                 totalArticles={totalArticles}
                 className={cls.bubbleChart}
             />
+            {/* <ArticleRatingDistributionChart */}
+            {/*    ratingDistributionMap={ratingDistributionMap} */}
+            {/*    totalArticlesWithRatings={articlesWithRatingQuantity} */}
+            {/*    className={cls.articleRatDistributionChart} */}
+            {/* /> */}
 
-            <ArticleCommentsCharts
-                articleCommentCounts={articleCommentCounts}
-                commentCountsByUser={commentCountsByUser}
-                className={cls.commentsChart}
-            />
-        </VStack>
+            {/* <ArticlePeriodDataCharts */}
+            {/*    categories={categories} */}
+            {/*    data={monthlyDataByCategories} */}
+            {/*    className={cls.quarterlyChart} */}
+            {/* /> */}
+
+            {/* <ArticlePeriodDataCharts */}
+            {/*    categories={categories} */}
+            {/*    data={monthlyDataByCategories} */}
+            {/*    className={cls.monthlyChart} */}
+            {/* /> */}
+
+            {/* <ArticleCommentsCharts */}
+            {/*    articleCommentCounts={articleCommentCounts} */}
+            {/*    commentCountsByUser={commentCountsByUser} */}
+            {/*    className={cls.commentsChart} */}
+            {/* /> */}
+        </div>
     );
 };
