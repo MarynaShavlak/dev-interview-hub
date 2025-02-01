@@ -1,52 +1,74 @@
 import { useTranslation } from 'react-i18next';
-
 import { calculateAverage } from '@/shared/lib/mathCalculations/calculateAverage';
 import { calculatePercentage } from '@/shared/lib/mathCalculations/calculatePercentage';
 import { UserRatingsBubbleChartProps } from '../../model/types/types';
 
+type ChartDataPoint = [number, number, number]; // [percentageRated, averageRating, articlesWithFeedback]
+type ChartDataSeries = { name: string; data: ChartDataPoint[] };
+
+interface ChartData {
+    ratingsByUsersData: ChartDataSeries[];
+    maxXaxisValue: number;
+    minXaxisValue: number;
+    maxYaxisValue: number;
+}
+
 export const useUserRatingsChartData = (
     data: UserRatingsBubbleChartProps['data'],
     totalArticles: number,
-): {
-    ratingsByUsersData: { name: string; data: number[][] }[];
-    maxXaxisValue: number;
-} => {
+): ChartData => {
     const { t } = useTranslation('admin');
-    let maxPercentageRated = 0;
 
-    const ratingsByUsersData = Object.entries(data).map(
-        ([userId, userData]) => {
+    const initialMetrics = {
+        maxPercentageRated: -Infinity,
+        minPercentageRated: Infinity,
+        maxYaxisValue: -Infinity,
+    };
+
+    const ratingsByUsersData = Object.entries(data).reduce<ChartDataSeries[]>(
+        (acc, [userId, userData]) => {
+            const { totalRating, articlesWithRating, articlesWithFeedback } =
+                userData;
+
             const averageRating = calculateAverage(
-                userData.totalRating,
-                userData.articlesWithRating,
+                totalRating,
+                articlesWithRating,
             );
-
             const percentageRated = calculatePercentage(
-                userData.articlesWithRating,
+                articlesWithRating,
                 totalArticles,
             );
 
-            if (percentageRated > maxPercentageRated) {
-                maxPercentageRated = percentageRated;
-            }
+            initialMetrics.maxPercentageRated = Math.max(
+                initialMetrics.maxPercentageRated,
+                percentageRated,
+            );
+            initialMetrics.minPercentageRated = Math.min(
+                initialMetrics.minPercentageRated,
+                percentageRated,
+            );
+            initialMetrics.maxYaxisValue = Math.max(
+                initialMetrics.maxYaxisValue,
+                averageRating,
+            );
 
-            return {
+            acc.push({
                 name: `${t('Користувач')}: ${userId}`,
-                data: [
-                    [
-                        percentageRated,
-                        averageRating,
-                        userData.articlesWithFeedback,
-                    ],
-                ],
-            };
+                data: [[percentageRated, averageRating, articlesWithFeedback]],
+            });
+
+            return acc;
         },
+        [],
     );
 
-    const maxXaxisValue = maxPercentageRated + 2;
+    const { maxPercentageRated, minPercentageRated, maxYaxisValue } =
+        initialMetrics;
 
     return {
         ratingsByUsersData,
-        maxXaxisValue,
+        maxXaxisValue: maxPercentageRated + 2,
+        minXaxisValue: Math.floor(minPercentageRated),
+        maxYaxisValue: Math.ceil(maxYaxisValue * 1.2),
     };
 };

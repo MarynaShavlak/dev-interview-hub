@@ -9,11 +9,12 @@ export const RedesignedUserRatingsBubbleChart = memo(
     (props: UserRatingsBubbleChartProps) => {
         const { t } = useTranslation('admin');
         const { data, totalArticles, className } = props;
-        const { ratingsByUsersData, maxXaxisValue } = useUserRatingsChartData(
-            data,
-            totalArticles,
-        );
-        console.log('axXaxisValue', maxXaxisValue);
+        const {
+            ratingsByUsersData,
+            maxXaxisValue,
+            minXaxisValue,
+            maxYaxisValue,
+        } = useUserRatingsChartData(data, totalArticles);
 
         const xAxisTitle = t('Відсоток оцінених користувачем статей,%');
         const yAxisTitle = t('Середній рейтинг статей наданий користувачем');
@@ -37,9 +38,9 @@ export const RedesignedUserRatingsBubbleChart = memo(
                     xAxisTitle={xAxisTitle}
                     yAxisTitle={yAxisTitle}
                     height="300"
-                    minXaxisValue={3}
+                    minXaxisValue={minXaxisValue}
                     maxXaxisValue={maxXaxisValue}
-                    maxYaxisValue={6}
+                    maxYaxisValue={maxYaxisValue}
                     tooltipData={tooltipData}
                 />
             </Card>
