@@ -49,6 +49,7 @@ export const useBaseChartOptions = (props: BaseChartOptions) => {
                 toggleDataSeries: true,
             },
             position: legendPosition,
+            offsetY: 60,
         },
         theme: {
             mode: chartTheme,

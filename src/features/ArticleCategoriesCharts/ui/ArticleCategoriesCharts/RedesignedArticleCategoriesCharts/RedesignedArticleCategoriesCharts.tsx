@@ -15,13 +15,15 @@ export const RedesignedArticleCategoriesCharts = memo(
             useArticleCategoriesChartData(data);
 
         return (
-            <VStack gap="16" max className={className}>
+            <VStack gap="16" className={className}>
                 <Card>
                     <DonutChart
                         data={articlesByCategories}
                         labels={labels}
                         title={t('Cтатті за категоріями, %')}
                         legendPosition="bottom"
+                        width="412"
+                        height="150"
                     />
                 </Card>
 
@@ -31,6 +33,8 @@ export const RedesignedArticleCategoriesCharts = memo(
                         labels={labels}
                         title={t('Перегляди статей за категоріями, %')}
                         legendPosition="bottom"
+                        width="412"
+                        height="140"
                     />
                 </Card>
             </VStack>

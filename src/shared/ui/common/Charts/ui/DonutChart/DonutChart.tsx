@@ -16,14 +16,15 @@ export const DonutChart = (props: DonutChartProps) => {
         labels,
         title,
         legendPosition = 'right',
-        width = '300',
-        height = '300',
+        width = '200',
+        height = '200',
     } = props;
 
     const baseChartOptions = useBaseChartOptions({
         title,
         legendPosition,
         width,
+        height,
     });
 
     const additionalOptions: ApexCharts.ApexOptions = {
@@ -49,10 +50,24 @@ export const DonutChart = (props: DonutChartProps) => {
             },
         },
         plotOptions: {
+            // pie: {
+            //     donut: {
+            //         size: '45%',
+            //     },
+            // },
             pie: {
+                // customScale: 1.2,
+                startAngle: -90,
+                endAngle: 90,
+                offsetY: 50,
                 donut: {
-                    size: '45%',
+                    size: '150',
                 },
+            },
+        },
+        grid: {
+            padding: {
+                bottom: -85,
             },
         },
         labels,
