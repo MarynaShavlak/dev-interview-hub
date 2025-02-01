@@ -9,14 +9,7 @@ export const processComments = (
 ) => {
     if (!comments || !articles) return;
     if (articles.length === 0) return;
-    console.log('_articles', articles);
-    console.log('_comments', comments);
-    const ids = comments.map((comment) => comment.articleId);
-    console.log('_ids', ids);
-    const artcilesid = articles.map((comment) => comment.id);
-    console.log('_artcilesid', artcilesid);
-    const a = articles.find((art) => art.id === '1');
-    console.log('a', a);
+
     const { commentCountsByUser } = data;
     const activeUsersList = data.activeUsersList.inComments;
     const activeArticlesList = data.activeArticlesList.withComments; // Still using Set<string>
@@ -38,16 +31,18 @@ export const processComments = (
         commentCountsByUser[username] =
             (commentCountsByUser[username] || 0) + 1;
     });
-    console.log('_commentCountsByArticle', commentCountsByArticle);
 
     data.articleCommentCounts = Object.keys(commentCountsByArticle)
         .map((articleId) => {
-            // console.log('articleId', articleId);
             const article = articles.find((art) => art.id === articleId);
             // console.log('article', article);
+            const label = article?.title
+                ? // ? truncateText(article.title, 10)
+                  article.title
+                : 'Unknown Title';
             return {
                 articleId,
-                articleTitle: article?.title || 'Unknown Title',
+                articleTitle: label,
                 commentCount: commentCountsByArticle[articleId],
             };
         })

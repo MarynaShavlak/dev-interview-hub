@@ -43,7 +43,6 @@ export const StatisticsCharts = () => {
         monthlyDataByCategories,
         categories,
     } = data;
-    console.log('articleCommentCounts', articleCommentCounts);
 
     const articlesWithRatingQuantity = activeArticlesList.withRating.size;
 
