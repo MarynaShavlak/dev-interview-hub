@@ -27,7 +27,7 @@ export const RedesignedUsersActivityChart = memo(
                     title={t('Відсоток активних користувачів, %')}
                     legendPosition="top"
                     height="200"
-                    width="380"
+                    width="412"
                     totalLabel={t('Загальний відсоток')}
                 />
             </Card>
