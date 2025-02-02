@@ -19,6 +19,6 @@ export const CHARTS_RECTS: Record<ChartKeys, ChartDimensions> = {
     articleRatingDistributionChart: { width: '220', height: '200' },
     commentsByArticlesChart: { width: '828', height: '300' }, // 828
     commentsByUsersChart: { width: '576', height: '220' },
-    quarterlyCategoryChart: { width: '828', height: '200' }, // 828
-    monthlyCategoryChart: { width: '828', height: '200' }, // 828
+    quarterlyCategoryChart: { width: '828', height: '300' }, // 828
+    monthlyCategoryChart: { width: '828', height: '300' }, // 828
 };

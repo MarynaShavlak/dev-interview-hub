@@ -123,12 +123,16 @@ export const StatisticsCharts = () => {
                 data={monthlyDataByCategories}
                 className={cls.quarterlyChart}
                 isQuarterlyChart
+                quarterlyCategoryDimensions={quarterlyCategoryChart}
+                monthlyCategoryDimensions={monthlyCategoryChart}
             />
             <ArticlePeriodDataCharts
                 categories={categories}
                 data={monthlyDataByCategories}
                 className={cls.monthlyChart}
                 isMonthlyChart
+                quarterlyCategoryDimensions={quarterlyCategoryChart}
+                monthlyCategoryDimensions={monthlyCategoryChart}
             />
         </div>
     );

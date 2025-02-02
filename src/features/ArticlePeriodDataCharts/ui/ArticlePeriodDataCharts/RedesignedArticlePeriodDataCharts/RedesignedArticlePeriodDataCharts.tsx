@@ -10,8 +10,15 @@ export const RedesignedArticlePeriodDataCharts = (
     props: ArticlePeriodDataChartsProps,
 ) => {
     const { t } = useTranslation('admin');
-    const { categories, data, className, isQuarterlyChart, isMonthlyChart } =
-        props;
+    const {
+        categories,
+        data,
+        className,
+        isQuarterlyChart,
+        isMonthlyChart,
+        quarterlyCategoryDimensions,
+        monthlyCategoryDimensions,
+    } = props;
 
     const {
         quarterlyCategoryData,
@@ -33,8 +40,8 @@ export const RedesignedArticlePeriodDataCharts = (
                         legendPosition="top"
                         xAxisTitle={t('Квартал')}
                         yAxisTitle={t('Кількість статей')}
-                        height="300"
-                        width="828"
+                        height={quarterlyCategoryDimensions.height}
+                        width={quarterlyCategoryDimensions.width}
                     />
                 </Card>
             )}
@@ -50,8 +57,8 @@ export const RedesignedArticlePeriodDataCharts = (
                         legendPosition="top"
                         xAxisTitle={t('Місяць')}
                         yAxisTitle={t('Кількість статей')}
-                        height="300"
-                        width="828"
+                        height={monthlyCategoryDimensions.height}
+                        width={monthlyCategoryDimensions.width}
                     />
                 </Card>
             )}
