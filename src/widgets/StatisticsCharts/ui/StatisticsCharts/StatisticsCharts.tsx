@@ -1,5 +1,5 @@
-import { useTranslation } from 'react-i18next';
 import React from 'react';
+import { ArticleCommentatorsDistributionChart } from '@/features/ArticleCommentatorsDistributionChart';
 import { DashboardStats } from '@/features/DashboardStats';
 import { processRatings } from '../../lib/dataHandlers/processRatings/processRatings';
 import { initializeData } from '../../lib/dataHandlers/initializeData/initializeData';
@@ -10,17 +10,15 @@ import { StatisticsChartsSkeleton } from './StatisticsChartsSkeleton';
 import cls from './StatisticsCharts.module.scss';
 import { UsersActivityChart } from '@/features/UsersActivityChart';
 import { ArticleCategoriesCharts } from '@/features/ArticleCategoriesCharts';
-// import { UserRatingsBubbleChart } from '@/features/UserRatingsBubbleChart';
+
 import { processComments } from '../../lib/dataHandlers/processComments/processComments';
 import { UserRatingsBubbleChart } from '@/features/UserRatingsBubbleChart';
 import { ArticleRatingDistributionChart } from '@/features/ArticleRatingDistributionChart';
-import { ArticleCommentsCharts } from '@/features/ArticleCommentsCharts';
 import { ArticlePeriodDataCharts } from '@/features/ArticlePeriodDataCharts';
 import { CHARTS_RECTS } from '../../model/consts/chartsRects';
+import { TopCommentedArticlesChart } from '@/features/TopCommentedArticlesChart';
 
 export const StatisticsCharts = () => {
-    const { t } = useTranslation('admin');
-
     const { users, articles, ratings, comments, isLoading, isError } =
         useStatisticsData();
     const {
@@ -101,21 +99,15 @@ export const StatisticsCharts = () => {
                 width={articleRatingDistributionChart.width}
                 height={articleRatingDistributionChart.height}
             />
-            <ArticleCommentsCharts
-                articleCommentCounts={articleCommentCounts}
+            <ArticleCommentatorsDistributionChart
                 commentCountsByUser={commentCountsByUser}
                 className={cls.commentsDistributionChart}
-                isDistributionChart
-                commentsByUsersDimensions={commentsByUsersChart}
-                commentsByArticlesDimensions={commentsByArticlesChart}
+                chartDimensions={commentsByUsersChart}
             />
-            <ArticleCommentsCharts
-                articleCommentCounts={articleCommentCounts}
-                commentCountsByUser={commentCountsByUser}
+            <TopCommentedArticlesChart
                 className={cls.commentsRatingChart}
-                isRatingChart
-                commentsByUsersDimensions={commentsByUsersChart}
-                commentsByArticlesDimensions={commentsByArticlesChart}
+                articleCommentCounts={articleCommentCounts}
+                chartDimensions={commentsByArticlesChart}
             />
 
             <ArticlePeriodDataCharts

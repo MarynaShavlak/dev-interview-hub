@@ -6,12 +6,8 @@ export interface ArticleCommentCount {
     articleTitle: string;
 }
 
-export interface ArticleCommentsChartsProps {
+export interface TopCommentedArticlesChartProps {
     articleCommentCounts: ArticleCommentCount[];
-    commentCountsByUser: Record<string, number>;
     className?: string;
-    isRatingChart?: boolean;
-    isDistributionChart?: boolean;
-    commentsByArticlesDimensions: ChartDimensions;
-    commentsByUsersDimensions: ChartDimensions;
+    chartDimensions: ChartDimensions;
 }

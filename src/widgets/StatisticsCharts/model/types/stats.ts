@@ -3,8 +3,9 @@ import { ActiveArticlesList } from '@/features/DashboardStats';
 import { ActiveUsersList } from '@/features/UsersActivityChart';
 import { ArticleRatingDistributionChartProps } from '@/features/ArticleRatingDistributionChart';
 import { ArticleCategoriesChartsProps } from '@/features/ArticleCategoriesCharts';
-import { ArticleCommentsChartsProps } from '@/features/ArticleCommentsCharts';
 import { UserRatingsBubbleChartProps } from '@/features/UserRatingsBubbleChart';
+import { TopCommentedArticlesChartProps } from '@/features/TopCommentedArticlesChart';
+import { ArticleCommentatorsDistributionChartProps } from '@/features/ArticleCommentatorsDistributionChart';
 
 export interface ArticleStats {
     [key: string]: number;
@@ -17,8 +18,8 @@ export interface StatisticsData {
     averageViews: number;
     categories: string[];
     categoryData: ArticleCategoriesChartsProps['data'];
-    articleCommentCounts: ArticleCommentsChartsProps['articleCommentCounts'];
-    commentCountsByUser: ArticleCommentsChartsProps['commentCountsByUser'];
+    articleCommentCounts: TopCommentedArticlesChartProps['articleCommentCounts'];
+    commentCountsByUser: ArticleCommentatorsDistributionChartProps['commentCountsByUser'];
     ratingCountsByUser: UserRatingsBubbleChartProps['data'];
     activeUsersList: ActiveUsersList;
     activeArticlesList: ActiveArticlesList;
