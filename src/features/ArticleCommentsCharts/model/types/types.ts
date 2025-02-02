@@ -1,3 +1,5 @@
+import { ChartDimensions } from '@/shared/ui/common/Charts/ui/types';
+
 export interface ArticleCommentCount {
     articleId: string;
     commentCount: number;
@@ -10,4 +12,6 @@ export interface ArticleCommentsChartsProps {
     className?: string;
     isRatingChart?: boolean;
     isDistributionChart?: boolean;
+    commentsByArticlesDimensions: ChartDimensions;
+    commentsByUsersDimensions: ChartDimensions;
 }

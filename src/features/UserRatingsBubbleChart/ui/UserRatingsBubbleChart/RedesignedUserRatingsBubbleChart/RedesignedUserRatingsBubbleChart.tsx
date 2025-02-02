@@ -8,7 +8,7 @@ import { useUserRatingsChartData } from '../../../lib/hooks/useUserRatingsChartD
 export const RedesignedUserRatingsBubbleChart = memo(
     (props: UserRatingsBubbleChartProps) => {
         const { t } = useTranslation('admin');
-        const { data, totalArticles, className } = props;
+        const { data, totalArticles, className, width, height } = props;
         const {
             ratingsByUsersData,
             maxXaxisValue,
@@ -32,12 +32,12 @@ export const RedesignedUserRatingsBubbleChart = memo(
             <Card className={className}>
                 <BubbleChart
                     data={ratingsByUsersData}
-                    width="384"
+                    width={width}
                     title={title}
                     legendPosition="bottom"
                     xAxisTitle={xAxisTitle}
                     yAxisTitle={yAxisTitle}
-                    height="300"
+                    height={height}
                     minXaxisValue={minXaxisValue}
                     maxXaxisValue={maxXaxisValue}
                     maxYaxisValue={maxYaxisValue}

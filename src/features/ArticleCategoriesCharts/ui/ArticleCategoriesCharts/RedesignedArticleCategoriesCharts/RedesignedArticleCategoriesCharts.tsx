@@ -10,7 +10,12 @@ export const RedesignedArticleCategoriesCharts = memo(
     (props: ArticleCategoriesChartsProps) => {
         const { t } = useTranslation('admin');
 
-        const { data, className } = props;
+        const {
+            data,
+            className,
+            articlesByCategoriesDimensions,
+            viewsByCategoriesDimensions,
+        } = props;
         const { labels, viewsByCategories, articlesByCategories } =
             useArticleCategoriesChartData(data);
 
@@ -22,8 +27,8 @@ export const RedesignedArticleCategoriesCharts = memo(
                         labels={labels}
                         title={t('Cтатті за категоріями, %')}
                         legendPosition="bottom"
-                        width="412"
-                        height="150"
+                        width={articlesByCategoriesDimensions.width}
+                        height={articlesByCategoriesDimensions.height}
                     />
                 </Card>
 
@@ -33,8 +38,8 @@ export const RedesignedArticleCategoriesCharts = memo(
                         labels={labels}
                         title={t('Перегляди статей за категоріями, %')}
                         legendPosition="bottom"
-                        width="412"
-                        height="140"
+                        width={viewsByCategoriesDimensions.width}
+                        height={viewsByCategoriesDimensions.height}
                     />
                 </Card>
             </VStack>

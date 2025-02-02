@@ -16,12 +16,24 @@ import { UserRatingsBubbleChart } from '@/features/UserRatingsBubbleChart';
 import { ArticleRatingDistributionChart } from '@/features/ArticleRatingDistributionChart';
 import { ArticleCommentsCharts } from '@/features/ArticleCommentsCharts';
 import { ArticlePeriodDataCharts } from '@/features/ArticlePeriodDataCharts';
+import { CHARTS_RECTS } from '../../model/consts/chartsRects';
 
 export const StatisticsCharts = () => {
     const { t } = useTranslation('admin');
 
     const { users, articles, ratings, comments, isLoading, isError } =
         useStatisticsData();
+    const {
+        activeUsersDataChart,
+        articlesByCategoriesChart,
+        commentsByArticlesChart,
+        commentsByUsersChart,
+        monthlyCategoryChart,
+        ratingsByUsersDataChart,
+        quarterlyCategoryChart,
+        viewsByCategoriesChart,
+        articleRatingDistributionChart,
+    } = CHARTS_RECTS;
 
     const data = initializeData(articles, users);
     processArticles(data, articles);
@@ -65,33 +77,45 @@ export const StatisticsCharts = () => {
                 activeUsersList={activeUsersList}
                 totalUsers={totalUsers}
                 className={cls.usersActivityChart}
+                width={activeUsersDataChart.width}
+                height={activeUsersDataChart.height}
             />
             <ArticleCategoriesCharts
                 data={categoryData}
                 className={cls.articleCategoriesChart}
+                articlesByCategoriesDimensions={articlesByCategoriesChart}
+                viewsByCategoriesDimensions={viewsByCategoriesChart}
             />
 
             <UserRatingsBubbleChart
                 data={ratingCountsByUser}
                 totalArticles={totalArticles}
                 className={cls.bubbleChart}
+                width={ratingsByUsersDataChart.width}
+                height={ratingsByUsersDataChart.height}
             />
             <ArticleRatingDistributionChart
                 ratingDistributionMap={ratingDistributionMap}
                 totalArticlesWithRatings={articlesWithRatingQuantity}
                 className={cls.articleRateDistributionChart}
+                width={articleRatingDistributionChart.width}
+                height={articleRatingDistributionChart.height}
             />
             <ArticleCommentsCharts
                 articleCommentCounts={articleCommentCounts}
                 commentCountsByUser={commentCountsByUser}
                 className={cls.commentsDistributionChart}
                 isDistributionChart
+                commentsByUsersDimensions={commentsByUsersChart}
+                commentsByArticlesDimensions={commentsByArticlesChart}
             />
             <ArticleCommentsCharts
                 articleCommentCounts={articleCommentCounts}
                 commentCountsByUser={commentCountsByUser}
                 className={cls.commentsRatingChart}
                 isRatingChart
+                commentsByUsersDimensions={commentsByUsersChart}
+                commentsByArticlesDimensions={commentsByArticlesChart}
             />
 
             <ArticlePeriodDataCharts

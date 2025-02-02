@@ -8,8 +8,13 @@ import { useRatingsDistributionChartData } from '../../../lib/hooks/useRatingsDi
 export const RedesignedArticleRatingDistributionChart = memo(
     (props: ArticleRatingDistributionChartProps) => {
         const { t } = useTranslation('admin');
-        const { ratingDistributionMap, totalArticlesWithRatings, className } =
-            props;
+        const {
+            ratingDistributionMap,
+            totalArticlesWithRatings,
+            className,
+            width,
+            height,
+        } = props;
 
         const articlesByRatingDistributionData =
             useRatingsDistributionChartData(
@@ -30,8 +35,8 @@ export const RedesignedArticleRatingDistributionChart = memo(
                     labels={labels}
                     title={t('Розподіл статей за оцінками')}
                     legendPosition="top"
-                    height="200"
-                    width="220"
+                    height={height}
+                    width={width}
                     totalLabel={t('Загальна кількість')}
                     totalValue={`${totalArticlesWithRatings}`}
                 />

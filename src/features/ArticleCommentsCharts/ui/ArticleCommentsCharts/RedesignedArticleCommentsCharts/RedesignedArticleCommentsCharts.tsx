@@ -17,6 +17,8 @@ export const RedesignedArticleCommentsCharts = memo(
             className,
             isRatingChart,
             isDistributionChart,
+            commentsByArticlesDimensions,
+            commentsByUsersDimensions,
         } = props;
         const { labels, commentsByArticlesData, commentsByUsersData } =
             useArticleCommentsChartData(
@@ -35,8 +37,8 @@ export const RedesignedArticleCommentsCharts = memo(
                             legendPosition="top"
                             xAxisTitle={t('Назва статті')}
                             yAxisTitle={t('Кількість коментарів')}
-                            height="300"
-                            width="828"
+                            height={commentsByArticlesDimensions.height}
+                            width={commentsByArticlesDimensions.width}
                         />
                     </Card>
                 )}
@@ -47,8 +49,8 @@ export const RedesignedArticleCommentsCharts = memo(
                             title={t(
                                 'Розподіл користувачів за кількістю коментарів',
                             )}
-                            height="220"
-                            width="576"
+                            height={commentsByUsersDimensions.height}
+                            width={commentsByUsersDimensions.width}
                         />
                     </Card>
                 )}

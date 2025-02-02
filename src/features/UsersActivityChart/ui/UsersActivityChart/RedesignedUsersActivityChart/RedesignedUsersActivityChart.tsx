@@ -8,7 +8,7 @@ import { useActiveUsersChartData } from '../../../lib/hooks/useActiveUsersChartD
 export const RedesignedUsersActivityChart = memo(
     (props: UsersActivityChartProps) => {
         const { t } = useTranslation('admin');
-        const { activeUsersList, totalUsers, className } = props;
+        const { activeUsersList, totalUsers, className, width, height } = props;
         const activeUsersData = useActiveUsersChartData(
             activeUsersList,
             totalUsers,
@@ -26,8 +26,8 @@ export const RedesignedUsersActivityChart = memo(
                     labels={activeUserLabels}
                     title={t('Відсоток активних користувачів, %')}
                     legendPosition="top"
-                    height="200"
-                    width="412"
+                    height={height}
+                    width={width}
                     totalLabel={t('Загальний відсоток')}
                 />
             </Card>
