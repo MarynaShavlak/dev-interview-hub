@@ -30,7 +30,8 @@ export const BarChart = (props: BarChartProps) => {
 
     const additionalOptions: ApexCharts.ApexOptions = {
         xaxis: {
-            labels: { rotate: -90 },
+            labels: { rotate: -45, hideOverlappingLabels: false, trim: true },
+
             title: { text: xAxisTitle },
             categories: labels,
         },

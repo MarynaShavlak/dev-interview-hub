@@ -5,4 +5,6 @@ export interface ArticlePeriodDataChartsProps {
     data: Record<string, CategoryData>;
 
     className?: string;
+    isMonthlyChart?: boolean;
+    isQuarterlyChart?: boolean;
 }

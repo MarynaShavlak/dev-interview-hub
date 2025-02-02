@@ -8,13 +8,14 @@ import { useStatisticsData } from '../../lib/hooks/useStatisticsData';
 import { StatisticsChartsError } from './StatisticsChartsError';
 import { StatisticsChartsSkeleton } from './StatisticsChartsSkeleton';
 import cls from './StatisticsCharts.module.scss';
-// import { ArticlePeriodDataCharts } from '@/features/ArticlePeriodDataCharts';
 import { UsersActivityChart } from '@/features/UsersActivityChart';
 import { ArticleCategoriesCharts } from '@/features/ArticleCategoriesCharts';
 // import { UserRatingsBubbleChart } from '@/features/UserRatingsBubbleChart';
-// import { ArticleCommentsCharts } from '@/features/ArticleCommentsCharts';
 import { processComments } from '../../lib/dataHandlers/processComments/processComments';
 import { UserRatingsBubbleChart } from '@/features/UserRatingsBubbleChart';
+import { ArticleRatingDistributionChart } from '@/features/ArticleRatingDistributionChart';
+import { ArticleCommentsCharts } from '@/features/ArticleCommentsCharts';
+import { ArticlePeriodDataCharts } from '@/features/ArticlePeriodDataCharts';
 
 export const StatisticsCharts = () => {
     const { t } = useTranslation('admin');
@@ -75,29 +76,36 @@ export const StatisticsCharts = () => {
                 totalArticles={totalArticles}
                 className={cls.bubbleChart}
             />
-            {/* <ArticleRatingDistributionChart */}
-            {/*    ratingDistributionMap={ratingDistributionMap} */}
-            {/*    totalArticlesWithRatings={articlesWithRatingQuantity} */}
-            {/*    className={cls.articleRatDistributionChart} */}
-            {/* /> */}
+            <ArticleRatingDistributionChart
+                ratingDistributionMap={ratingDistributionMap}
+                totalArticlesWithRatings={articlesWithRatingQuantity}
+                className={cls.articleRateDistributionChart}
+            />
+            <ArticleCommentsCharts
+                articleCommentCounts={articleCommentCounts}
+                commentCountsByUser={commentCountsByUser}
+                className={cls.commentsDistributionChart}
+                isDistributionChart
+            />
+            <ArticleCommentsCharts
+                articleCommentCounts={articleCommentCounts}
+                commentCountsByUser={commentCountsByUser}
+                className={cls.commentsRatingChart}
+                isRatingChart
+            />
 
-            {/* <ArticlePeriodDataCharts */}
-            {/*    categories={categories} */}
-            {/*    data={monthlyDataByCategories} */}
-            {/*    className={cls.quarterlyChart} */}
-            {/* /> */}
-
-            {/* <ArticlePeriodDataCharts */}
-            {/*    categories={categories} */}
-            {/*    data={monthlyDataByCategories} */}
-            {/*    className={cls.monthlyChart} */}
-            {/* /> */}
-
-            {/* <ArticleCommentsCharts */}
-            {/*    articleCommentCounts={articleCommentCounts} */}
-            {/*    commentCountsByUser={commentCountsByUser} */}
-            {/*    className={cls.commentsChart} */}
-            {/* /> */}
+            <ArticlePeriodDataCharts
+                categories={categories}
+                data={monthlyDataByCategories}
+                className={cls.quarterlyChart}
+                isQuarterlyChart
+            />
+            <ArticlePeriodDataCharts
+                categories={categories}
+                data={monthlyDataByCategories}
+                className={cls.monthlyChart}
+                isMonthlyChart
+            />
         </div>
     );
 };

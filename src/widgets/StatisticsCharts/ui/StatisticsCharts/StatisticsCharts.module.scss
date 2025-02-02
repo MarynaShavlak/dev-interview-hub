@@ -7,7 +7,7 @@
 .parent {
   display: grid;
   grid-template-columns: repeat(2, 192px) 428px;
-  grid-template-rows: repeat(4, 105px) 195PX 1fr;
+  grid-template-rows: repeat(4, 105px) 195px 220px repeat(3, 316px);
   grid-column-gap: 16px;
   grid-row-gap: 16px;
 }
@@ -17,42 +17,12 @@
 .articleCategoriesChart {  grid-area: 3 / 3 / 6 / 4; }
 .bubbleChart{ grid-area: 4 / 1 / 6 / 3;}
 
+.articleRateDistributionChart{ grid-area: 6 / 1 / 7 / 2; }
+.commentsDistributionChart{
+  grid-area: 6 / 2 / 7 / 4;
+  margin-left: 44px;
+}
 
-
-
-//.statsWrap {
-//  display: grid;
-//  grid-template-columns: repeat(9, 1fr);
-//  grid-template-rows: repeat(10, 1fr);
-//  grid-column-gap: 16px;
-//  grid-row-gap: 16px;
-//}
-//
-//.dashboard { grid-area: 1 / 1 / 7 / 2; }
-//.quarterlyChart { grid-area: 1 / 2 / 4 / 6; }
-//.usersActivityChart { grid-area: 1 / 6 / 4 / 8; }
-//.articleRatDistributionChart{ grid-area: 1 / 8 / 4 / 10; }
-//.div5 { grid-area: 4 / 6 / 7 / 10; }
-//.div6 { grid-area: 7 / 1 / 11 / 5; }
-//.div7 { grid-area: 7 / 5 / 11 / 10; }
-//.div8 { grid-area: 4 / 2 / 7 / 6; }
-//
-//
-//
-////
-//
-//.quarterlyChart { grid-area: 1 / 2 / 4 / 6; }
-////.div2 { grid-area: 4 / 2 / 7 / 3; }
-////.div3 { grid-area: 4 / 3 / 7 / 4; }
-//.bubbleChart { grid-area: 7 / 1 / 11 / 3; }
-////.div5 { grid-area: 7 / 3 / 11 / 4; }
-//.usersActivityChart { grid-area: 1 / 4 / 4 / 5; }
-//.articleRatDistributionChart { grid-area: 1 / 5 / 4 / 6; }
-//.commentsChart { grid-area: 7 / 3 / 11 / 6;}
-//
-//
-////.div9 { grid-area: 7 / 4 / 11 / 6; }
-//.dashboard { display: grid;grid-area: 1 / 1 / 7 / 2; }
-//
-//
-//.articleCategoriesChart { grid-area: 4 / 2 / 7 / 4; }
+.commentsRatingChart { grid-area: 7 / 1 / 8 / 4; }
+.quarterlyChart { grid-area: 8 / 1 / 9 / 4; }
+.monthlyChart { grid-area: 9 / 1 / 10 / 4; }

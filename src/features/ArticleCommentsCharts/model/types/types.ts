@@ -8,4 +8,6 @@ export interface ArticleCommentsChartsProps {
     articleCommentCounts: ArticleCommentCount[];
     commentCountsByUser: Record<string, number>;
     className?: string;
+    isRatingChart?: boolean;
+    isDistributionChart?: boolean;
 }
