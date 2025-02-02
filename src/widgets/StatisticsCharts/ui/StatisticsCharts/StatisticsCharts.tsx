@@ -1,4 +1,5 @@
 import React from 'react';
+import { ArticleQuarterlyDataChart } from '@/features/ArticleQuarterlyDataChart';
 import { ArticleCommentatorsDistributionChart } from '@/features/ArticleCommentatorsDistributionChart';
 import { DashboardStats } from '@/features/DashboardStats';
 import { processRatings } from '../../lib/dataHandlers/processRatings/processRatings';
@@ -14,9 +15,9 @@ import { ArticleCategoriesCharts } from '@/features/ArticleCategoriesCharts';
 import { processComments } from '../../lib/dataHandlers/processComments/processComments';
 import { UserRatingsBubbleChart } from '@/features/UserRatingsBubbleChart';
 import { ArticleRatingDistributionChart } from '@/features/ArticleRatingDistributionChart';
-import { ArticlePeriodDataCharts } from '@/features/ArticlePeriodDataCharts';
 import { CHARTS_RECTS } from '../../model/consts/chartsRects';
 import { TopCommentedArticlesChart } from '@/features/TopCommentedArticlesChart';
+import { ArticleMonthlyDataChart } from '@/features/ArticleMonthlyDataChart';
 
 export const StatisticsCharts = () => {
     const { users, articles, ratings, comments, isLoading, isError } =
@@ -110,21 +111,17 @@ export const StatisticsCharts = () => {
                 chartDimensions={commentsByArticlesChart}
             />
 
-            <ArticlePeriodDataCharts
-                categories={categories}
-                data={monthlyDataByCategories}
-                className={cls.quarterlyChart}
-                isQuarterlyChart
-                quarterlyCategoryDimensions={quarterlyCategoryChart}
-                monthlyCategoryDimensions={monthlyCategoryChart}
-            />
-            <ArticlePeriodDataCharts
+            <ArticleMonthlyDataChart
                 categories={categories}
                 data={monthlyDataByCategories}
                 className={cls.monthlyChart}
-                isMonthlyChart
-                quarterlyCategoryDimensions={quarterlyCategoryChart}
-                monthlyCategoryDimensions={monthlyCategoryChart}
+                chartDimensions={monthlyCategoryChart}
+            />
+            <ArticleQuarterlyDataChart
+                categories={categories}
+                data={monthlyDataByCategories}
+                className={cls.quarterlyChart}
+                chartDimensions={quarterlyCategoryChart}
             />
         </div>
     );

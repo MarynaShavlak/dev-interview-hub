@@ -6,7 +6,7 @@ import { Skeleton as SkeletonDeprecated } from '@/shared/ui/deprecated/Skeleton'
 import { Card as CardDeprecated } from '@/shared/ui/deprecated/Card';
 import { Card } from '@/shared/ui/redesigned/Card';
 
-export const ArticlePeriodDataChartSkeleton = () => {
+export const ArticleQuarterlyDataChartSkeleton = () => {
     return (
         <VStack gap="16" max>
             <ToggleFeaturesComponent
