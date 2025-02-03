@@ -2,9 +2,10 @@ import { Table } from '@tanstack/react-table';
 import { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Text } from '@/shared/ui/redesigned/Text';
-import cls from './TablePagination.module.scss';
+
 import { Icon } from '@/shared/ui/redesigned/Icon';
-import ArrowIcon from '@/shared/assets/icons/arrow-bottom.svg';
+import ArrowLeftIcon from '@/shared/assets/icons/arrow-left.svg';
+import ArrowRightIcon from '@/shared/assets/icons/arrow-right.svg';
 import { HStack } from '@/shared/ui/common/Stack';
 
 interface TablePaginationProps<T> {
@@ -40,15 +41,13 @@ export const TablePagination = <T,>({ table }: TablePaginationProps<T>) => {
             <HStack>
                 <Icon
                     onClick={handlePrevBtnClick}
-                    className={cls.pagPrevBtn}
-                    Svg={ArrowIcon}
+                    Svg={ArrowLeftIcon}
                     clickable
                     disabled={isDisabledPrevBtn}
                 />
                 <Icon
                     onClick={handleNextBtnClick}
-                    className={cls.pagNextBtn}
-                    Svg={ArrowIcon}
+                    Svg={ArrowRightIcon}
                     clickable
                     disabled={isDisabledNextBtn}
                 />
