@@ -1,9 +1,8 @@
 import React, { memo } from 'react';
-
 import { HeaderGroup } from '@tanstack/react-table';
 import { Each } from '@/shared/lib/components/Each/Each';
+import { CommonFilterType } from '../../model/types/tableTypes';
 import { TableHeaderCell } from './TableHeaderCell/TableHeaderCell';
-import { CommonFilterType } from '../../model/types/types';
 
 interface TableHeaderProps<T> {
     headerGroups: HeaderGroup<T>[];
@@ -12,7 +11,7 @@ interface TableHeaderProps<T> {
     columnFilters: CommonFilterType;
 }
 
-export const TableHeader = memo(<T,>(props: TableHeaderProps<T>) => {
+export const TableHeaderNoResizer = memo(<T,>(props: TableHeaderProps<T>) => {
     const {
         headerGroups,
         setColumnFilters,

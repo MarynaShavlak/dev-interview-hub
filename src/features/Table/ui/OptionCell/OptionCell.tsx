@@ -2,13 +2,13 @@ import { CellContext } from '@tanstack/react-table';
 import { useCallback } from 'react';
 import { ListBox } from '@/shared/ui/redesigned/Popups';
 import { Text } from '@/shared/ui/redesigned/Text';
-import { ColorIndicatorOptionItem } from '../../../../widgets/UsersFullInfoTable/ui/ColorIndicatorOptionItem/ColorIndicatorOptionItem';
-import { TableMetaCustom } from '../../../../widgets/UsersFullInfoTable/model/types/types';
+import { ColorIndicatorOptionItem } from '../ColorIndicatorOptionItem/ColorIndicatorOptionItem';
+
 import cls from './OptionCell.module.scss';
-import { extractOptionValueName } from '../../../../widgets/UsersFullInfoTable/lib/helpers/optionCell/extractOptionValueName/extractOptionValueName';
-import { findNewOptionValue } from '../../../../widgets/UsersFullInfoTable/lib/helpers/optionCell/findNewOptionValue/findNewOptionValue';
-import { isColorOption } from '../../../../widgets/UsersFullInfoTable/lib/helpers/optionCell/isColorOption/isColorOption';
-import { ColorOption } from '../../model/types/tableTypes';
+import { extractOptionValueName } from '../../lib/utilities/optionCell/extractOptionValueName/extractOptionValueName';
+import { findNewOptionValue } from '../../lib/utilities/optionCell/findNewOptionValue/findNewOptionValue';
+import { isColorOption } from '../../lib/utilities/optionCell/isColorOption/isColorOption';
+import { ColorOption, TableMetaCustom } from '../../model/types/tableTypes';
 
 interface OptionCellProps<TData> extends CellContext<TData, any> {
     options: (ColorOption | string)[];

@@ -1,30 +1,34 @@
 import { useCallback } from 'react';
+import { VStack } from '@/shared/ui/common/Stack';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
-import cls from './FilterItemWithCheckIcon.module.scss';
-import { ColumnFilterHandlerProps } from '../../../model/types/types';
-import { Icon } from '@/shared/ui/redesigned/Icon';
-import EmptyCheckIcon from '@/shared/assets/icons/checkbox-empty.svg';
-import CheckedIcon from '@/shared/assets/icons/checkbox-check.svg';
-import { HStack } from '@/shared/ui/common/Stack';
+import cls from './FilterItemWithIndicator.module.scss';
+import {
+    ColorOption,
+    ColumnFilterHandlerProps,
+} from '../../../../../model/types/tableTypes';
+import { ColorIndicatorOptionItem } from '../../../../ColorIndicatorOptionItem/ColorIndicatorOptionItem';
 
 interface FilterItemProps extends ColumnFilterHandlerProps {
-    option: string;
+    option: ColorOption;
     isActive?: boolean;
     filterCategory: string;
 }
 
-export const FilterItemWithCheckIcon = (props: FilterItemProps) => {
+export const FilterItemWithIndicator = (props: FilterItemProps) => {
     const { option, setColumnFilters, isActive, filterCategory } = props;
+    const { id } = option;
 
     const onClickHandler = useCallback(
         () =>
             setColumnFilters((prev) => {
+                // console.log('prev', prev);
+
                 const options = prev.find(
                     (filter) => filter.id === filterCategory,
                 )?.value;
 
                 if (!options) {
-                    return [...prev, { id: filterCategory, value: [option] }];
+                    return [...prev, { id: filterCategory, value: [id] }];
                 }
 
                 return prev.map((f) => {
@@ -33,12 +37,12 @@ export const FilterItemWithCheckIcon = (props: FilterItemProps) => {
 
                         if (Array.isArray(options)) {
                             if (isActive) {
-                                newValue = options.filter((o) => o !== option);
+                                newValue = options.filter((o) => o !== id);
                             } else {
-                                newValue = options.concat(option);
+                                newValue = options.concat(id);
                             }
                         } else {
-                            newValue = [option];
+                            newValue = [id];
                         }
 
                         return {
@@ -49,22 +53,19 @@ export const FilterItemWithCheckIcon = (props: FilterItemProps) => {
                     return f;
                 });
             }),
-        [filterCategory, isActive, option, setColumnFilters],
+        [filterCategory, id, isActive, setColumnFilters],
     );
     return (
-        <HStack
+        <VStack
             max
             className={classNames(
                 cls.filterItem,
                 { [cls.active]: isActive },
                 [],
             )}
-            gap="8"
             onClick={onClickHandler}
         >
-            {!isActive && <Icon Svg={EmptyCheckIcon} width={15} height={15} />}
-            {isActive && <Icon Svg={CheckedIcon} width={15} height={15} />}
-            {option}
-        </HStack>
+            <ColorIndicatorOptionItem option={option} />
+        </VStack>
     );
 };

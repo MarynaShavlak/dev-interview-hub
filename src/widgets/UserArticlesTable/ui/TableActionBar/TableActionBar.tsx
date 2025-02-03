@@ -2,7 +2,7 @@ import React, { memo } from 'react';
 
 import { HStack } from '@/shared/ui/common/Stack';
 import { ArticleCreateNavigationButton } from '@/features/ArticleCreateNavigationButton';
-import { SearchInput } from './SearchInput/SearchInput';
+import { SearchInput } from '@/features/Table';
 
 interface TableActionBarProps {
     globalFilter: string;

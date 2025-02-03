@@ -1,8 +1,7 @@
-import { getUniqueOptionsWithColors } from '@/features/Table';
+import { ColorOption, getUniqueOptionsWithColors } from '@/features/Table';
 import { UsersTableInfo } from '../../../../model/types/usersTableInfo';
-import { ColorOption } from '../../../../model/types/types';
 
-export const generateHeaderOptionsMapping = (data: UsersTableInfo[]) => {
+export const generateHeaderOptionsWithColors = (data: UsersTableInfo[]) => {
     if (data.length === 0) return {};
     return Object.fromEntries(
         // Use Object.keys of the first data item if it exists, or empty array as fallback
@@ -18,5 +17,3 @@ export const generateHeaderOptionsMapping = (data: UsersTableInfo[]) => {
         ]),
     );
 };
-
-export {};

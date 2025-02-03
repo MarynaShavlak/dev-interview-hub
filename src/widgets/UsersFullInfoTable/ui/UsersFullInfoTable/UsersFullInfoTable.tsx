@@ -5,22 +5,23 @@ import {
     getSortedRowModel,
     useReactTable,
 } from '@tanstack/react-table';
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Box } from '@/shared/ui/common/Box';
 
 import cls from './UsersFullInfoTable.module.scss';
-import { SearchInput } from '../SearchInput/SearchInput';
-import { CommonFilterType } from '../../model/types/types';
-import { TablePagination } from '../TablePagination/TablePagination';
+import {
+    SearchInput,
+    TableHeaderWithResizer,
+    TablePagination,
+} from '@/features/Table';
+
 import { TableRow } from '../TableRow/TableRow';
 import { Each } from '@/shared/lib/components/Each/Each';
-import { TableHeader } from '../TableHeader/TableHeader';
 import { useUsersTableData } from '../../lib/hooks/useUsersTableData';
 import { UsersTableInfo } from '../../model/types/usersTableInfo';
 import { VStack } from '@/shared/ui/common/Stack';
-import { getUniqueOptionsWithColors, ColorOption } from '@/features/Table';
-import { useUsersFullInfoTableColumns } from '../../lib/hooks/useUsersFullInfoTableColumns/useUsersFullInfoTableColumns';
+import { useUsersFullInfoTableData } from '../../lib/hooks/useUsersFullInfoTableData/useUsersFullInfoTableData';
 
 export const UsersFullInfoTable = () => {
     const { t } = useTranslation('admin');
@@ -29,16 +30,15 @@ export const UsersFullInfoTable = () => {
     const [data, setData] = useState<UsersTableInfo[]>([]);
     // console.log('data', data);
 
-    const [columnFilters, setColumnFilters] = useState<CommonFilterType>([]);
-    const [globalFilter, setGlobalFilter] = useState<string>('');
+    // const [columnFilters, setColumnFilters] = useState<CommonFilterType>([]);
+    // const [globalFilter, setGlobalFilter] = useState<string>('');
 
-    const deleteRow = (index: string) => {
+    const handleDeleteClick = (index: string) => {
         console.log('index', index);
     };
-    const editRow = (index: string) => {
+    const handleEditClick = (index: string) => {
         console.log('index', index);
     };
-    const columns = useUsersFullInfoTableColumns({ deleteRow, editRow });
 
     useEffect(() => {
         if (!isLoading && users.length !== data.length) {
@@ -46,43 +46,31 @@ export const UsersFullInfoTable = () => {
         }
     }, [users, isLoading, data.length]);
 
-    const updateData = useCallback(
-        (rowIndex: number, columnId: string, value: any) => {
-            console.log('update data');
-            setData((prevData) =>
-                prevData.map((row, index) =>
-                    index === rowIndex ? { ...row, [columnId]: value } : row,
-                ),
-            );
-            console.log('data after update: ', data);
-        },
-        [data],
-    );
-
-    // const headerOptionsMapping: Record<string, (string | ColorOption)[]> =
-    //     Object.fromEntries(
-    //         Object.keys(data).map((field) => [
-    //             field,
-    //             getUniqueOptions(data, field as keyof UsersTableInfo).filter(
-    //                 (option): option is string | ColorOption =>
-    //                     option !== undefined,
+    // const updateData = useCallback(
+    //     (rowIndex: number, columnId: string, value: any) => {
+    //         console.log('update data');
+    //         setData((prevData) =>
+    //             prevData.map((row, index) =>
+    //                 index === rowIndex ? { ...row, [columnId]: value } : row,
     //             ),
-    //         ]),
-    //     );
-    const headerOptionsMapping: Record<string, (string | ColorOption)[]> =
-        Object.fromEntries(
-            // Use Object.keys of the first data item if it exists, or empty array as fallback
-            (data.length > 0 ? Object.keys(data[0]) : []).map((field) => [
-                field,
-                getUniqueOptionsWithColors(
-                    data,
-                    field as keyof UsersTableInfo,
-                ).filter(
-                    (option): option is string | ColorOption =>
-                        option !== undefined,
-                ),
-            ]),
-        );
+    //         );
+    //         console.log('data after update: ', data);
+    //     },
+    //     [data],
+    // );
+
+    const {
+        columns,
+        headerOptionsMapping,
+        globalFilter,
+        setGlobalFilter,
+        columnFilters,
+        setColumnFilters,
+    } = useUsersFullInfoTableData({
+        data,
+        deleteRow: handleDeleteClick,
+        editRow: handleEditClick,
+    });
 
     const table = useReactTable<UsersTableInfo>({
         data,
@@ -98,7 +86,7 @@ export const UsersFullInfoTable = () => {
         getPaginationRowModel: getPaginationRowModel(),
         globalFilterFn: 'includesString',
         columnResizeMode: 'onChange',
-        meta: { updateData },
+        // meta: { updateData },
     });
 
     return (
@@ -114,7 +102,7 @@ export const UsersFullInfoTable = () => {
                         of={table.getHeaderGroups()}
                         render={(headerGroup) => {
                             return (
-                                <TableHeader
+                                <TableHeaderWithResizer
                                     key={headerGroup.id}
                                     headerGroup={headerGroup}
                                     setColumnFilters={setColumnFilters}
@@ -135,205 +123,3 @@ export const UsersFullInfoTable = () => {
         </VStack>
     );
 };
-
-// [
-//     // columnHelper.accessor('id', createUserTextCol({ id: 'id', size: 40 })),
-//     columnHelper.accessor(
-//         'avatar',
-//         createUserAvatarCol({
-//             id: 'avatar',
-//             size: 40,
-//             className: cls.tableAvatar,
-//         }),
-//     ),
-//     columnHelper.accessor(
-//         'username',
-//         createUserEditableCol({ id: 'username', size: 120 }),
-//     ),
-//     columnHelper.accessor(
-//         'email',
-//         createUserEditableCol({ id: 'email', size: 120 }),
-//     ),
-//     columnHelper.accessor(
-//         'firstname',
-//         createUserEditableCol({ id: 'firstname', size: 120 }),
-//     ),
-//     columnHelper.accessor(
-//         'lastname',
-//         createUserEditableCol({ id: 'lastname', size: 120 }),
-//     ),
-//
-//     columnHelper.accessor(
-//         'age',
-//         createUserTextCol({ id: 'age', size: 80, sortable: true }),
-//     ),
-//     columnHelper.accessor(
-//         'city',
-//         createUserEditableCol({ id: 'city', size: 100, sortable: false }),
-//     ),
-//     columnHelper.accessor(
-//         'country',
-//         createUserOptionCol({
-//             id: 'country',
-//             size: 110,
-//             options: ['Ukraine', 'Poland', 'Germany'],
-//             sortable: false,
-//         }),
-//     ),
-//     columnHelper.accessor(
-//         'currency',
-//         createUserOptionCol({
-//             id: 'currency',
-//             size: 110,
-//             options: ['UAH', 'EUR', 'USD'],
-//             sortable: false,
-//         }),
-//     ),
-//     columnHelper.accessor(
-//         'articlesQuantity',
-//         createUserTextCol({ id: 'articlesQuantity', size: 80, sortable: true }),
-//     ),
-//
-//     columnHelper.accessor(
-//         'features',
-//         createUserTextCol({ id: 'features', size: 200 }),
-//     ),
-//     columnHelper.accessor(
-//         'role',
-//         createUserOptionCol({
-//             id: 'role',
-//             size: 110,
-//             options: USER_ROLE_OPTIONS,
-//             sortable: false,
-//         }),
-//     ),
-//     // createOptionColumn('role', USER_ROLE_OPTIONS),
-// ];
-
-/// /////////////////////////
-
-// import {
-//     createColumnHelper,
-//     getCoreRowModel,
-//     getFilteredRowModel,
-//     getPaginationRowModel,
-//     getSortedRowModel,
-//     useReactTable,
-// } from '@tanstack/react-table';
-// import { useCallback, useState } from 'react';
-// import { useTranslation } from 'react-i18next';
-// import { Box } from '@/shared/ui/common/Box';
-// import DATA, { USER_ROLE_OPTIONS } from '../data';
-// import cls from './UsersTable.module.scss';
-// import { EditableCell } from '../EditableCell/EditableCell';
-// import { OptionCell } from '../OptionCell/OptionCell';
-// import { SearchInput } from '../InputSearch/SearchInput';
-// import { ColorOption } from '../ColorIndicatorOptionItem/ColorIndicatorOptionItem';
-// import { CommonFilterType } from '../../model/types/types';
-// import { TablePagination } from '../TablePagination/TablePagination';
-// import { TableRow } from '../TableRow/TableRow';
-// import { Each } from '@/shared/lib/components/Each/Each';
-// import { TableHeader } from '../TableHeader/TableHeader';
-// import { useUsersTableData } from '../../lib/hooks/useUsersTableData';
-//
-// type Task = {
-//     task: string;
-//     role: ColorOption;
-//     due: Date | null;
-//     notes: string;
-// };
-//
-// const columnHelper = createColumnHelper<Task>();
-//
-// const columns = [
-//     columnHelper.accessor('task', {
-//         header: 'Task',
-//         cell: EditableCell,
-//         size: 225,
-//         enableColumnFilter: true,
-//         filterFn: 'includesString',
-//     }),
-//     columnHelper.accessor('role', {
-//         header: 'Role',
-//         cell: (props) => <OptionCell {...props} options={USER_ROLE_OPTIONS} />,
-//         enableColumnFilter: true,
-//         enableSorting: false,
-//         filterFn: (row, columnId, filterRoles) => {
-//             if (filterRoles.length === 0) return true;
-//             const role: ColorOption = row.getValue(columnId);
-//             return filterRoles.includes(role?.id);
-//         },
-//     }),
-//     columnHelper.accessor('due', {
-//         header: 'Due',
-//         cell: (props) => <p>{props.getValue()?.toLocaleTimeString()}</p>,
-//     }),
-//     columnHelper.accessor('notes', {
-//         header: 'Notes',
-//         cell: (props) => <p>{props.getValue()}</p>,
-//     }),
-// ];
-//
-// export const UsersTable = () => {
-//     const { t } = useTranslation();
-//     const { users, isLoading } = useUsersTableData();
-//     console.log('users', users);
-//     const [data, setData] = useState<Task[]>(DATA);
-//
-//     const [columnFilters, setColumnFilters] = useState<CommonFilterType>([]);
-//
-//     const updateData = useCallback(
-//         (rowIndex: number, columnId: string, value: any) => {
-//             setData((prevData) =>
-//                 prevData.map((row, index) =>
-//                     index === rowIndex ? { ...row, [columnId]: value } : row,
-//                 ),
-//             );
-//         },
-//         [],
-//     );
-//
-//     const table = useReactTable<Task>({
-//         data,
-//         columns,
-//         state: {
-//             columnFilters,
-//         },
-//         getCoreRowModel: getCoreRowModel(),
-//         getFilteredRowModel: getFilteredRowModel(),
-//         getSortedRowModel: getSortedRowModel(),
-//         getPaginationRowModel: getPaginationRowModel(),
-//         columnResizeMode: 'onChange',
-//         meta: { updateData },
-//     });
-//
-//     return (
-//         <Box>
-//             <SearchInput
-//                 filterCategory="task"
-//                 columnFilters={columnFilters}
-//                 setColumnFilters={setColumnFilters}
-//             />
-//             <Box className={cls.table} width={table.getTotalSize()}>
-//                 <Each
-//                     of={table.getHeaderGroups()}
-//                     render={(headerGroup) => (
-//                         <TableHeader
-//                             key={headerGroup.id}
-//                             headerGroup={headerGroup}
-//                             setColumnFilters={setColumnFilters}
-//                             allOptions={USER_ROLE_OPTIONS}
-//                             columnFilters={columnFilters}
-//                         />
-//                     )}
-//                 />
-//
-//                 <Each
-//                     of={table.getRowModel().rows}
-//                     render={(row) => <TableRow key={row.id} row={row} />}
-//                 />
-//             </Box>
-//             <TablePagination table={table} />
-//         </Box>
-//     );
-// };

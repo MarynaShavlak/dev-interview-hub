@@ -10,7 +10,7 @@ import {
 import { useTranslation } from 'react-i18next';
 import { Box } from '@/shared/ui/common/Box';
 import cls from './UserArticlesTable.module.scss';
-import { TablePagination } from '../TablePagination/TablePagination';
+import { TablePagination, TableHeaderNoResizer } from '@/features/Table';
 import { VStack } from '@/shared/ui/common/Stack';
 import { UserArticlesTableInfo } from '../../model/types/userArticlesTableInfo';
 import { useUserArticlesTableData } from '../../lib/hooks/useUserArticlesTableData/useUserArticlesTableData';
@@ -18,7 +18,7 @@ import { ConfirmDeleteModal } from '@/features/ConfirmDeleteModal';
 import { LoadingTableSkeleton } from '../LoadingTableSkeleton/LoadingTableSkeleton';
 import { EmptyTableState } from '../EmptyTableState/EmptyTableState';
 import { TableActionBar } from '../TableActionBar/TableActionBar';
-import { TableHeader } from '../TableHeader/TableHeader';
+
 import { TableBody } from '../TableBody/TableBody';
 import { useManageTableRow } from '../../lib/hooks/useManageTableRow/useManageTableRow';
 import { DEFAULT_PAGE_SIZE } from '../../model/consts/pagination';
@@ -93,7 +93,7 @@ export const UserArticlesTable = memo(
 
                 <VStack gap="16" className={cls.tableWrap} data-testid="table">
                     <Box className={cls.table} width={table.getTotalSize()}>
-                        <TableHeader
+                        <TableHeaderNoResizer
                             headerGroups={headerGroups}
                             setColumnFilters={setColumnFilters}
                             headerOptionsMapping={headerOptionsMapping}

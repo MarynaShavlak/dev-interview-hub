@@ -1,5 +1,5 @@
 import React from 'react';
-import { UsersFullInfoTable } from 'src/widgets/UsersFullInfoTable';
+import { UsersFullInfoTable } from '@/widgets/UsersFullInfoTable';
 import { Page } from '@/widgets/Page';
 import { StatisticsCharts } from '@/widgets/StatisticsCharts';
 

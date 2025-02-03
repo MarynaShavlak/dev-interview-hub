@@ -5,8 +5,8 @@ import cls from '../../../ui/UsersFullInfoTable/UsersFullInfoTable.module.scss';
 import { USER_ROLE_OPTIONS } from '../../../ui/data';
 import { UsersTableInfo } from '../../../model/types/usersTableInfo';
 
-import { createEditableColumn } from '../../helpers/columnCreators/createEditableColumn/createEditableColumn';
 import {
+    createEditableColumn,
     createOptionColumn,
     createImageColumn,
     createStaticTextColumn,

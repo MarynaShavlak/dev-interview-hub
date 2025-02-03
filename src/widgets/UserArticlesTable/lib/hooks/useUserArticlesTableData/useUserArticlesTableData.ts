@@ -1,8 +1,9 @@
 import { useState } from 'react';
-import { CommonFilterType } from '../../../model/types/types';
+
 import { useGetHeaderOptionsWithTranslation } from '../useGetHeaderOptionsWithTranslation/useGetHeaderOptionsWithTranslation';
 import { useTableColumns } from '../useTableColumns/useTableColumns';
 import { UserArticlesTableInfo } from '../../../model/types/userArticlesTableInfo';
+import { CommonFilterType } from '@/features/Table';
 
 interface UserArticlesTableDataProps {
     data: UserArticlesTableInfo[];

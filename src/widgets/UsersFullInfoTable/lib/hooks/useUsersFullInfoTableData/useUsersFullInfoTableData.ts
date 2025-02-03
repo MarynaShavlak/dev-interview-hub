@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { UsersTableInfo } from '../../../model/types/usersTableInfo';
-import { CommonFilterType } from '../../../model/types/types';
+
 import { useUsersFullInfoTableColumns } from '../useUsersFullInfoTableColumns/useUsersFullInfoTableColumns';
-import { useGetHeaderOptionsWithTranslation } from '@/widgets/UserArticlesTable';
+import { useGetHeaderOptionsWithTranslation } from '../useGetHeaderOptionsWithTranslation/useGetHeaderOptionsWithTranslation';
+import { CommonFilterType } from '@/features/Table';
 
 interface UsersFullInfoTableDataProps {
     data: UsersTableInfo[];
@@ -18,4 +19,13 @@ export const useUsersFullInfoTableData = (
     const [globalFilter, setGlobalFilter] = useState<string>('');
     const headerOptionsMapping = useGetHeaderOptionsWithTranslation(data);
     const columns = useUsersFullInfoTableColumns({ deleteRow, editRow });
+
+    return {
+        columns,
+        headerOptionsMapping,
+        globalFilter,
+        setGlobalFilter,
+        columnFilters,
+        setColumnFilters,
+    };
 };

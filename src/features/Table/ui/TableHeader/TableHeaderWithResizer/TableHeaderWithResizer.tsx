@@ -1,17 +1,18 @@
 import { flexRender, HeaderGroup } from '@tanstack/react-table';
 
 import { Box } from '@/shared/ui/common/Box';
-import cls from './TableHeader.module.scss';
+import cls from './TableHeaderWithResizer.module.scss';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
-import { SortingIcon } from '../SortingIcon/SortingIcon';
-import { TableFilter } from '../TableFilter/TableFilter';
-import {
-    ColumnFilterHandlerProps,
-    CommonFilterType,
-} from '../../model/types/types';
+
 import { getFlexClasses } from '@/shared/lib/classes/getFlexClasses/getFlexClasses';
 import { HStack } from '@/shared/ui/common/Stack';
-import { ColorOption } from '@/features/Table';
+import {
+    ColorOption,
+    ColumnFilterHandlerProps,
+    CommonFilterType,
+} from '../../../model/types/tableTypes';
+import { SortingIcon } from '../TableHeaderCell/SortingIcon/SortingIcon';
+import { TableFilter } from '../../../ui/TableHeader/TableHeaderCell/TableFilter/TableFilter';
 
 const ROLE_ADMIN = { id: '1', name: 'Admin', color: '#f77' };
 const ROLE_USER = {
@@ -28,7 +29,7 @@ interface TableHeaderProps<T> extends ColumnFilterHandlerProps {
     headerOptionsMapping: Record<string, (string | ColorOption)[]>;
 }
 
-export const TableHeader = <T,>(props: TableHeaderProps<T>) => {
+export const TableHeaderWithResizer = <T,>(props: TableHeaderProps<T>) => {
     const {
         headerGroup,
         setColumnFilters,

@@ -2,8 +2,9 @@ import { CellContext } from '@tanstack/react-table';
 import { useCallback, useEffect, useState } from 'react';
 import { Input } from '@/shared/ui/redesigned/Input';
 import cls from './EditableCell.module.scss';
-import { TableMetaCustom } from '../../model/types/types';
+
 import { trimText } from '@/shared/lib/text/trimText/trimText';
+import { TableMetaCustom } from '@/features/Table';
 
 export type EditableCellProps<T, IDType> = CellContext<T, IDType>;
 

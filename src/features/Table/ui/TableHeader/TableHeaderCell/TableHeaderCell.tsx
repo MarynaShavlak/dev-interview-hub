@@ -5,12 +5,10 @@ import cls from './TableHeaderCell.module.scss';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { SortingIcon } from './SortingIcon/SortingIcon';
 import { TableFilter } from './TableFilter/TableFilter';
-import {
-    ColumnFilterHandlerProps,
-    CommonFilterType,
-} from '../../../model/types/types';
+
 import { getFlexClasses } from '@/shared/lib/classes/getFlexClasses/getFlexClasses';
 import { HStack, VStack } from '@/shared/ui/common/Stack';
+import { ColumnFilterHandlerProps, CommonFilterType } from '@/features/Table';
 
 export interface TableHeaderCellProps<T> extends ColumnFilterHandlerProps {
     headerGroup: HeaderGroup<T>;
