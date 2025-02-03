@@ -14,7 +14,7 @@ export const useBaseChartOptions = (props: BaseChartOptions) => {
         title,
         legendPosition = 'right',
         width = '100%',
-        height = 'auto',
+        height = '100%',
     } = props;
     return {
         chart: {

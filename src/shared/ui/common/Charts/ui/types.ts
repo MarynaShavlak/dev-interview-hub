@@ -3,6 +3,11 @@ export interface ChartDimensions {
     height?: string;
 }
 
+export interface SkeletonDimensions {
+    width: number;
+    height: number;
+}
+
 export interface BaseChartProps extends ChartDimensions {
     title?: string;
     // width?: string;

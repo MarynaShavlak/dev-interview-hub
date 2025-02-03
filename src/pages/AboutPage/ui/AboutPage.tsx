@@ -17,7 +17,7 @@ const ratings = [
             email: 'mainAdmin@gmail.com',
             avatar: 'https://drive.google.com/thumbnail?id=1RD0jSAm8kdTLKa-Vr0daeE8T9-QcfPCa&sz=w1000',
         },
-        articleId: '40',
+        articleId: '0RBxq9c23hOuXE8FK94d',
         rate: 5,
         createdAt: new Date().toISOString(),
         feedback: null,
@@ -32,7 +32,7 @@ const ratings = [
             email: 'mainUser@gmail.com',
             avatar: 'https://drive.google.com/thumbnail?id=1J1xUPYYkJeOsBTpDuf36vsV7UfxlM2uG&sz=w1000',
         },
-        articleId: '40',
+        articleId: '0RBxq9c23hOuXE8FK94d',
         rate: 4,
         createdAt: new Date().toISOString(),
         feedback: null,
@@ -47,7 +47,7 @@ const ratings = [
             email: 'mainManager@gmail.com',
             avatar: 'https://st3.depositphotos.com/1071184/13782/v/450/depositphotos_137825710-stock-illustration-business-person-analyzing-financial-statistics.jpg',
         },
-        articleId: '40',
+        articleId: '0RBxq9c23hOuXE8FK94d',
         rate: 4,
         createdAt: new Date().toISOString(),
         feedback: null,
@@ -64,7 +64,7 @@ const ratings = [
 
             avatar: 'https://s1.1zoom.ru/big3/992/367659-alexfas01.jpg',
         },
-        articleId: '40',
+        articleId: '0RBxq9c23hOuXE8FK94d',
         rate: 3,
         createdAt: new Date().toISOString(),
         feedback: null,
@@ -80,7 +80,7 @@ const ratings = [
             email: 'testuser2@gmail.com',
             avatar: 'FRGDHJ',
         },
-        articleId: '40',
+        articleId: '0RBxq9c23hOuXE8FK94d',
         rate: 5,
         createdAt: new Date().toISOString(),
         feedback: null,
@@ -95,7 +95,7 @@ const ratings = [
             email: 'markUser@gmail.com',
             avatar: 'https://example.com/avatar6.png',
         },
-        articleId: '40',
+        articleId: '0RBxq9c23hOuXE8FK94d',
         rate: 3,
         createdAt: new Date().toISOString(),
         feedback: null,
@@ -110,7 +110,7 @@ const ratings = [
             email: 'katyaAdmin@gmail.com',
             avatar: 'https://example.com/avatar7.jpg',
         },
-        articleId: '40',
+        articleId: '0RBxq9c23hOuXE8FK94d',
         rate: 4,
         createdAt: new Date().toISOString(),
         feedback: null,
@@ -125,7 +125,7 @@ const ratings = [
             email: 'johnManager@gmail.com',
             avatar: 'https://example.com/avatar8.jpg',
         },
-        articleId: '40',
+        articleId: '0RBxq9c23hOuXE8FK94d',
         rate: 5,
         createdAt: new Date().toISOString(),
         feedback: null,
@@ -142,7 +142,7 @@ const ratings = [
 
             avatar: 'https://example.com/avatar9.jpg',
         },
-        articleId: '40',
+        articleId: '0RBxq9c23hOuXE8FK94d',
         rate: 4,
         createdAt: new Date().toISOString(),
         feedback: null,
@@ -159,7 +159,7 @@ const ratings = [
 
             avatar: 'https://example.com/avatar10.jpg',
         },
-        articleId: '40',
+        articleId: '0RBxq9c23hOuXE8FK94d',
         rate: 4,
         createdAt: new Date().toISOString(),
         feedback: null,
@@ -174,7 +174,7 @@ const ratings = [
             email: 'alexManager@gmail.com',
             avatar: 'https://example.com/avatar11.jpg',
         },
-        articleId: '40',
+        articleId: '0RBxq9c23hOuXE8FK94d',
         rate: 3,
         createdAt: new Date().toISOString(),
         feedback: null,
@@ -191,7 +191,7 @@ const ratings = [
 
             avatar: 'https://example.com/avatar12.jpg',
         },
-        articleId: '40',
+        articleId: '0RBxq9c23hOuXE8FK94d',
         rate: 4,
         createdAt: new Date().toISOString(),
         feedback: null,
@@ -208,7 +208,7 @@ const ratings = [
 
             avatar: 'https://example.com/avatar13.jpg',
         },
-        articleId: '40',
+        articleId: '0RBxq9c23hOuXE8FK94d',
         rate: 5,
         createdAt: new Date().toISOString(),
         feedback: null,
@@ -225,7 +225,7 @@ const ratings = [
 
             avatar: 'https://example.com/avatar14.jpg',
         },
-        articleId: '40',
+        articleId: '0RBxq9c23hOuXE8FK94d',
         rate: 3,
         createdAt: new Date().toISOString(),
         feedback: null,
@@ -242,7 +242,7 @@ const ratings = [
 
             avatar: 'https://example.com/avatar15.jpg',
         },
-        articleId: '40',
+        articleId: '0RBxq9c23hOuXE8FK94d',
         rate: 4,
         createdAt: new Date().toISOString(),
         feedback: null,
@@ -259,7 +259,7 @@ const ratings = [
 
             avatar: 'https://example.com/avatar16.jpg',
         },
-        articleId: '40',
+        articleId: '0RBxq9c23hOuXE8FK94d',
         rate: 4,
         createdAt: new Date().toISOString(),
         feedback: null,
@@ -276,7 +276,7 @@ const ratings = [
 
             avatar: 'https://example.com/avatar17.jpg',
         },
-        articleId: '40',
+        articleId: '0RBxq9c23hOuXE8FK94d',
         rate: 5,
         createdAt: new Date().toISOString(),
         feedback: null,
@@ -293,7 +293,7 @@ const ratings = [
 
             avatar: 'https://example.com/avatar18.jpg',
         },
-        articleId: '40',
+        articleId: '0RBxq9c23hOuXE8FK94d',
         rate: 4,
         createdAt: new Date().toISOString(),
         feedback: null,
@@ -310,7 +310,7 @@ const ratings = [
 
             avatar: 'https://example.com/avatar19.jpg',
         },
-        articleId: '40',
+        articleId: '0RBxq9c23hOuXE8FK94d',
         rate: 3,
         createdAt: new Date().toISOString(),
         feedback: null,
@@ -325,7 +325,7 @@ const ratings = [
             email: 'mainAdmin@gmail.com',
             avatar: 'https://drive.google.com/thumbnail?id=1RD0jSAm8kdTLKa-Vr0daeE8T9-QcfPCa&sz=w1000',
         },
-        articleId: '41',
+        articleId: '0io1vmHt9xYH7hKE9Bxe',
         rate: 5,
         createdAt: new Date().toISOString(),
         feedback: 'Another great article!',
@@ -340,7 +340,7 @@ const ratings = [
             email: 'mainUser@gmail.com',
             avatar: 'https://drive.google.com/thumbnail?id=1J1xUPYYkJeOsBTpDuf36vsV7UfxlM2uG&sz=w1000',
         },
-        articleId: '41',
+        articleId: '0io1vmHt9xYH7hKE9Bxe',
         rate: 4,
         createdAt: new Date().toISOString(),
         feedback: null,
@@ -355,7 +355,7 @@ const ratings = [
             email: 'mainManager@gmail.com',
             avatar: 'https://st3.depositphotos.com/1071184/13782/v/450/depositphotos_137825710-stock-illustration-business-person-analyzing-financial-statistics.jpg',
         },
-        articleId: '41',
+        articleId: '0io1vmHt9xYH7hKE9Bxe',
         rate: 4,
         createdAt: new Date().toISOString(),
         feedback: null,
@@ -372,7 +372,7 @@ const ratings = [
 
             avatar: 'https://s1.1zoom.ru/big3/992/367659-alexfas01.jpg',
         },
-        articleId: '41',
+        articleId: '0io1vmHt9xYH7hKE9Bxe',
         rate: 3,
         createdAt: new Date().toISOString(),
         feedback: null,
@@ -388,7 +388,7 @@ const ratings = [
             email: 'testuser2@gmail.com',
             avatar: 'FRGDHJ',
         },
-        articleId: '41',
+        articleId: '0io1vmHt9xYH7hKE9Bxe',
         rate: 5,
         createdAt: new Date().toISOString(),
         feedback: null,
@@ -403,7 +403,7 @@ const ratings = [
             email: 'markUser@gmail.com',
             avatar: 'https://example.com/avatar6.png',
         },
-        articleId: '41',
+        articleId: '0io1vmHt9xYH7hKE9Bxe',
         rate: 4,
         createdAt: new Date().toISOString(),
         feedback: null,
@@ -418,7 +418,7 @@ const ratings = [
             email: 'katyaAdmin@gmail.com',
             avatar: 'https://example.com/avatar7.jpg',
         },
-        articleId: '41',
+        articleId: '0io1vmHt9xYH7hKE9Bxe',
         rate: 5,
         createdAt: new Date().toISOString(),
         feedback: null,
@@ -433,7 +433,7 @@ const ratings = [
             email: 'johnManager@gmail.com',
             avatar: 'https://example.com/avatar8.jpg',
         },
-        articleId: '41',
+        articleId: '0io1vmHt9xYH7hKE9Bxe',
         rate: 3,
         createdAt: new Date().toISOString(),
         feedback: null,
@@ -450,7 +450,7 @@ const ratings = [
 
             avatar: 'https://example.com/avatar9.jpg',
         },
-        articleId: '41',
+        articleId: '0io1vmHt9xYH7hKE9Bxe',
         rate: 4,
         createdAt: new Date().toISOString(),
         feedback: null,
@@ -467,7 +467,7 @@ const ratings = [
 
             avatar: 'https://example.com/avatar10.jpg',
         },
-        articleId: '41',
+        articleId: '0io1vmHt9xYH7hKE9Bxe',
         rate: 4,
         createdAt: new Date().toISOString(),
         feedback: null,
@@ -482,7 +482,7 @@ const ratings = [
             email: 'alexManager@gmail.com',
             avatar: 'https://example.com/avatar11.jpg',
         },
-        articleId: '41',
+        articleId: '0io1vmHt9xYH7hKE9Bxe',
         rate: 5,
         createdAt: new Date().toISOString(),
         feedback: null,
@@ -499,7 +499,7 @@ const ratings = [
 
             avatar: 'https://example.com/avatar12.jpg',
         },
-        articleId: '41',
+        articleId: '0io1vmHt9xYH7hKE9Bxe',
         rate: 3,
         createdAt: new Date().toISOString(),
         feedback: null,
@@ -516,7 +516,7 @@ const ratings = [
 
             avatar: 'https://example.com/avatar13.jpg',
         },
-        articleId: '41',
+        articleId: '0io1vmHt9xYH7hKE9Bxe',
         rate: 4,
         createdAt: new Date().toISOString(),
         feedback: null,
@@ -533,7 +533,7 @@ const ratings = [
 
             avatar: 'https://example.com/avatar14.jpg',
         },
-        articleId: '41',
+        articleId: '0io1vmHt9xYH7hKE9Bxe',
         rate: 4,
         createdAt: new Date().toISOString(),
         feedback: null,
@@ -550,7 +550,7 @@ const ratings = [
 
             avatar: 'https://example.com/avatar15.jpg',
         },
-        articleId: '41',
+        articleId: '0io1vmHt9xYH7hKE9Bxe',
         rate: 5,
         createdAt: new Date().toISOString(),
         feedback: null,
@@ -567,7 +567,7 @@ const ratings = [
 
             avatar: 'https://example.com/avatar16.jpg',
         },
-        articleId: '41',
+        articleId: '0io1vmHt9xYH7hKE9Bxe',
         rate: 3,
         createdAt: new Date().toISOString(),
         feedback: null,
@@ -584,7 +584,7 @@ const ratings = [
 
             avatar: 'https://example.com/avatar17.jpg',
         },
-        articleId: '41',
+        articleId: '0io1vmHt9xYH7hKE9Bxe',
         rate: 4,
         createdAt: new Date().toISOString(),
         feedback: null,
@@ -601,7 +601,7 @@ const ratings = [
 
             avatar: 'https://example.com/avatar18.jpg',
         },
-        articleId: '41',
+        articleId: '0io1vmHt9xYH7hKE9Bxe',
         rate: 4,
         createdAt: new Date().toISOString(),
         feedback: null,
@@ -618,7 +618,7 @@ const ratings = [
 
             avatar: 'https://example.com/avatar19.jpg',
         },
-        articleId: '41',
+        articleId: '0io1vmHt9xYH7hKE9Bxe',
         rate: 3,
         createdAt: new Date().toISOString(),
         feedback: null,
@@ -1249,7 +1249,7 @@ const ratings = [
             email: 'mainAdmin@gmail.com',
             avatar: 'https://drive.google.com/thumbnail?id=1RD0jSAm8kdTLKa-Vr0daeE8T9-QcfPCa&sz=w1000',
         },
-        articleId: '172',
+        articleId: 'NiTKDsAK2wcoSzWyDOKM',
         rate: 5,
         createdAt: new Date().toISOString(),
         feedback: 'Outstanding piece!',
@@ -1264,7 +1264,7 @@ const ratings = [
             email: 'mainUser@gmail.com',
             avatar: 'https://drive.google.com/thumbnail?id=1J1xUPYYkJeOsBTpDuf36vsV7UfxlM2uG&sz=w1000',
         },
-        articleId: '172',
+        articleId: 'NiTKDsAK2wcoSzWyDOKM',
         rate: 4,
         createdAt: new Date().toISOString(),
         feedback: null,
@@ -1279,7 +1279,7 @@ const ratings = [
             email: 'mainManager@gmail.com',
             avatar: 'https://st3.depositphotos.com/1071184/13782/v/450/depositphotos_137825710-stock-illustration-business-person-analyzing-financial-statistics.jpg',
         },
-        articleId: '172',
+        articleId: 'NiTKDsAK2wcoSzWyDOKM',
         rate: 4,
         createdAt: new Date().toISOString(),
         feedback: null,
@@ -1296,7 +1296,7 @@ const ratings = [
 
             avatar: 'https://s1.1zoom.ru/big3/992/367659-alexfas01.jpg',
         },
-        articleId: '172',
+        articleId: 'NiTKDsAK2wcoSzWyDOKM',
         rate: 3,
         createdAt: new Date().toISOString(),
         feedback: null,
@@ -1312,7 +1312,7 @@ const ratings = [
             email: 'testuser2@gmail.com',
             avatar: 'FRGDHJ',
         },
-        articleId: '172',
+        articleId: 'NiTKDsAK2wcoSzWyDOKM',
         rate: 4,
         createdAt: new Date().toISOString(),
         feedback: null,
@@ -1327,7 +1327,7 @@ const ratings = [
             email: 'markUser@gmail.com',
             avatar: 'https://example.com/avatar6.png',
         },
-        articleId: '172',
+        articleId: 'NiTKDsAK2wcoSzWyDOKM',
         rate: 5,
         createdAt: new Date().toISOString(),
         feedback: null,
@@ -1342,7 +1342,7 @@ const ratings = [
             email: 'katyaAdmin@gmail.com',
             avatar: 'https://example.com/avatar7.jpg',
         },
-        articleId: '172',
+        articleId: 'NiTKDsAK2wcoSzWyDOKM',
         rate: 4,
         createdAt: new Date().toISOString(),
         feedback: null,
@@ -1357,7 +1357,7 @@ const ratings = [
             email: 'johnManager@gmail.com',
             avatar: 'https://example.com/avatar8.jpg',
         },
-        articleId: '172',
+        articleId: 'NiTKDsAK2wcoSzWyDOKM',
         rate: 3,
         createdAt: new Date().toISOString(),
         feedback: null,
@@ -1374,7 +1374,7 @@ const ratings = [
 
             avatar: 'https://example.com/avatar9.jpg',
         },
-        articleId: '172',
+        articleId: 'NiTKDsAK2wcoSzWyDOKM',
         rate: 4,
         createdAt: new Date().toISOString(),
         feedback: null,
@@ -1391,7 +1391,7 @@ const ratings = [
 
             avatar: 'https://example.com/avatar10.jpg',
         },
-        articleId: '172',
+        articleId: 'NiTKDsAK2wcoSzWyDOKM',
         rate: 5,
         createdAt: new Date().toISOString(),
         feedback: null,
@@ -1406,7 +1406,7 @@ const ratings = [
             email: 'alexManager@gmail.com',
             avatar: 'https://example.com/avatar11.jpg',
         },
-        articleId: '172',
+        articleId: 'NiTKDsAK2wcoSzWyDOKM',
         rate: 4,
         createdAt: new Date().toISOString(),
         feedback: null,
@@ -1423,7 +1423,7 @@ const ratings = [
 
             avatar: 'https://example.com/avatar12.jpg',
         },
-        articleId: '172',
+        articleId: 'NiTKDsAK2wcoSzWyDOKM',
         rate: 3,
         createdAt: new Date().toISOString(),
         feedback: null,
@@ -1440,7 +1440,7 @@ const ratings = [
 
             avatar: 'https://example.com/avatar13.jpg',
         },
-        articleId: '172',
+        articleId: 'NiTKDsAK2wcoSzWyDOKM',
         rate: 5,
         createdAt: new Date().toISOString(),
         feedback: 'Really good content!',
@@ -1457,7 +1457,7 @@ const ratings = [
 
             avatar: 'https://example.com/avatar14.jpg',
         },
-        articleId: '172',
+        articleId: 'NiTKDsAK2wcoSzWyDOKM',
         rate: 4,
         createdAt: new Date().toISOString(),
         feedback: null,
@@ -1474,7 +1474,7 @@ const ratings = [
 
             avatar: 'https://example.com/avatar15.jpg',
         },
-        articleId: '172',
+        articleId: 'NiTKDsAK2wcoSzWyDOKM',
         rate: 3,
         createdAt: new Date().toISOString(),
         feedback: null,
@@ -1491,7 +1491,7 @@ const ratings = [
 
             avatar: 'https://example.com/avatar16.jpg',
         },
-        articleId: '172',
+        articleId: 'NiTKDsAK2wcoSzWyDOKM',
         rate: 4,
         createdAt: new Date().toISOString(),
         feedback: null,
@@ -1508,7 +1508,7 @@ const ratings = [
 
             avatar: 'https://example.com/avatar17.jpg',
         },
-        articleId: '172',
+        articleId: 'NiTKDsAK2wcoSzWyDOKM',
         rate: 5,
         createdAt: new Date().toISOString(),
         feedback: null,
@@ -1525,7 +1525,7 @@ const ratings = [
 
             avatar: 'https://example.com/avatar18.jpg',
         },
-        articleId: '172',
+        articleId: 'NiTKDsAK2wcoSzWyDOKM',
         rate: 4,
         createdAt: new Date().toISOString(),
         feedback: null,
@@ -1542,7 +1542,7 @@ const ratings = [
 
             avatar: 'https://example.com/avatar19.jpg',
         },
-        articleId: '172',
+        articleId: 'NiTKDsAK2wcoSzWyDOKM',
         rate: 3,
         createdAt: new Date().toISOString(),
         feedback: null,
@@ -1557,7 +1557,7 @@ const ratings = [
             email: 'mainUser@gmail.com',
             avatar: 'https://drive.google.com/thumbnail?id=1J1xUPYYkJeOsBTpDuf36vsV7UfxlM2uG&sz=w1000',
         },
-        articleId: '38',
+        articleId: 'S6MeYnU4ZVtpT2ql2ass',
         rate: 5,
         createdAt: new Date().toISOString(),
         feedback: 'Very informative and well-structured',
@@ -1572,7 +1572,7 @@ const ratings = [
             email: 'mainManager@gmail.com',
             avatar: 'https://st3.depositphotos.com/1071184/13782/v/450/depositphotos_137825710-stock-illustration-business-person-analyzing-financial-statistics.jpg',
         },
-        articleId: '38',
+        articleId: 'S6MeYnU4ZVtpT2ql2ass',
         rate: 4,
         createdAt: new Date().toISOString(),
         feedback: null,
@@ -1589,7 +1589,7 @@ const ratings = [
 
             avatar: 'https://s1.1zoom.ru/big3/992/367659-alexfas01.jpg',
         },
-        articleId: '38',
+        articleId: 'S6MeYnU4ZVtpT2ql2ass',
         rate: 3,
         createdAt: new Date().toISOString(),
         feedback: null,
@@ -1605,7 +1605,7 @@ const ratings = [
             email: 'testuser2@gmail.com',
             avatar: 'FRGDHJ',
         },
-        articleId: '38',
+        articleId: 'S6MeYnU4ZVtpT2ql2ass',
         rate: 4,
         createdAt: new Date().toISOString(),
         feedback: 'Good overview, could use more examples',
@@ -1620,7 +1620,7 @@ const ratings = [
             email: 'markUser@gmail.com',
             avatar: 'https://example.com/avatar6.png',
         },
-        articleId: '38',
+        articleId: 'S6MeYnU4ZVtpT2ql2ass',
         rate: 5,
         createdAt: new Date().toISOString(),
         feedback: null,
@@ -1635,7 +1635,7 @@ const ratings = [
             email: 'katyaAdmin@gmail.com',
             avatar: 'https://example.com/avatar7.jpg',
         },
-        articleId: '38',
+        articleId: 'S6MeYnU4ZVtpT2ql2ass',
         rate: 4,
         createdAt: new Date().toISOString(),
         feedback: null,
@@ -1650,7 +1650,7 @@ const ratings = [
             email: 'johnManager@gmail.com',
             avatar: 'https://example.com/avatar8.jpg',
         },
-        articleId: '38',
+        articleId: 'S6MeYnU4ZVtpT2ql2ass',
         rate: 4,
         createdAt: new Date().toISOString(),
         feedback: null,
@@ -1667,7 +1667,7 @@ const ratings = [
 
             avatar: 'https://example.com/avatar9.jpg',
         },
-        articleId: '38',
+        articleId: 'S6MeYnU4ZVtpT2ql2ass',
         rate: 5,
         createdAt: new Date().toISOString(),
         feedback: null,
@@ -1684,7 +1684,7 @@ const ratings = [
 
             avatar: 'https://example.com/avatar10.jpg',
         },
-        articleId: '38',
+        articleId: 'S6MeYnU4ZVtpT2ql2ass',
         rate: 3,
         createdAt: new Date().toISOString(),
         feedback: null,
@@ -3413,7 +3413,7 @@ const ratings = [
 
             avatar: 'https://example.com/avatar15.jpg',
         },
-        articleId: '46',
+        articleId: '0rm8jCkzDMzp7mvcWFkE',
         rate: 4,
         createdAt: new Date().toISOString(),
         feedback: 'Great overview of the topic.',
@@ -3430,7 +3430,7 @@ const ratings = [
 
             avatar: 'https://example.com/avatar16.jpg',
         },
-        articleId: '46',
+        articleId: '0rm8jCkzDMzp7mvcWFkE',
         rate: 3,
         createdAt: new Date().toISOString(),
         feedback: 'It was informative, but could be clearer.',
@@ -3447,7 +3447,7 @@ const ratings = [
 
             avatar: 'https://example.com/avatar17.jpg',
         },
-        articleId: '46',
+        articleId: '0rm8jCkzDMzp7mvcWFkE',
         rate: 5,
         createdAt: new Date().toISOString(),
         feedback: 'Loved this article! Very engaging.',
@@ -3713,7 +3713,7 @@ const ratings = [
 
             avatar: 'https://example.com/avatar13.jpg',
         },
-        articleId: '3',
+        articleId: 'YczAkFVMNA8qHFcbzs4u',
         rate: 5,
         createdAt: new Date().toISOString(),
         feedback: 'Absolutely fantastic! I found it very engaging.',
@@ -3730,7 +3730,7 @@ const ratings = [
 
             avatar: 'https://example.com/avatar14.jpg',
         },
-        articleId: '3',
+        articleId: 'YczAkFVMNA8qHFcbzs4u',
         rate: 4,
         createdAt: new Date().toISOString(),
         feedback: 'Solid article! Clear explanations throughout.',
@@ -4502,7 +4502,7 @@ const ratings = [
 
             avatar: 'https://example.com/avatar9.jpg',
         },
-        articleId: '32',
+        articleId: 'Q6E0xxzANQWEB4p9V8zE',
         rate: 1,
         createdAt: new Date().toISOString(),
         feedback:
@@ -4520,7 +4520,7 @@ const ratings = [
 
             avatar: 'https://example.com/avatar9.jpg',
         },
-        articleId: '33',
+        articleId: 'QGFc4Vhc1ORljWSb6ekU',
         rate: 2,
         createdAt: new Date().toISOString(),
         feedback:
@@ -4538,7 +4538,7 @@ const ratings = [
 
             avatar: 'https://example.com/avatar9.jpg',
         },
-        articleId: '58',
+        articleId: 'Qq43zhxGQPiaW4CPkvvq',
         rate: 1,
         createdAt: new Date().toISOString(),
         feedback:
@@ -4556,7 +4556,7 @@ const ratings = [
 
             avatar: 'https://example.com/avatar9.jpg',
         },
-        articleId: '102',
+        articleId: 'R3X6aUh1b2b9wgQsF3UT',
         rate: 2,
         createdAt: new Date().toISOString(),
         feedback: 'The content felt rushed and lacked proper structure.',
@@ -4573,7 +4573,7 @@ const ratings = [
 
             avatar: 'https://example.com/avatar9.jpg',
         },
-        articleId: '36',
+        articleId: 'RAzYteOPPs4GKtKcyrLF',
         rate: 1,
         createdAt: new Date().toISOString(),
         feedback: 'Very uninformative. I expected more from this topic.',
@@ -4853,7 +4853,7 @@ const ratings = [
             email: 'mainAdmin@gmail.com',
             avatar: 'https://drive.google.com/thumbnail?id=1RD0jSAm8kdTLKa-Vr0daeE8T9-QcfPCa&sz=w1000',
         },
-        articleId: '45',
+        articleId: '0l0iN5FAovdLJAExvXJR',
         rate: 1,
         createdAt: new Date().toISOString(),
         feedback:
@@ -4885,7 +4885,7 @@ const ratings = [
             email: 'mainAdmin@gmail.com',
             avatar: 'https://drive.google.com/thumbnail?id=1RD0jSAm8kdTLKa-Vr0daeE8T9-QcfPCa&sz=w1000',
         },
-        articleId: '47',
+        articleId: '0u3wkgBLRk3EMOujjXh3',
         rate: 1,
         createdAt: new Date().toISOString(),
         feedback:
@@ -4901,7 +4901,7 @@ const ratings = [
             email: 'mainAdmin@gmail.com',
             avatar: 'https://drive.google.com/thumbnail?id=1RD0jSAm8kdTLKa-Vr0daeE8T9-QcfPCa&sz=w1000',
         },
-        articleId: '48',
+        articleId: '10uE4X1lYTmnoOftIOZ8',
         rate: 1,
         createdAt: new Date().toISOString(),
         feedback:
@@ -4917,7 +4917,7 @@ const ratings = [
             email: 'mainAdmin@gmail.com',
             avatar: 'https://drive.google.com/thumbnail?id=1RD0jSAm8kdTLKa-Vr0daeE8T9-QcfPCa&sz=w1000',
         },
-        articleId: '49',
+        articleId: '19FW0BhZBVjGm983XzEX',
         rate: 1,
         createdAt: new Date().toISOString(),
         feedback:
@@ -4933,7 +4933,7 @@ const ratings = [
             email: 'mainAdmin@gmail.com',
             avatar: 'https://drive.google.com/thumbnail?id=1RD0jSAm8kdTLKa-Vr0daeE8T9-QcfPCa&sz=w1000',
         },
-        articleId: '50',
+        articleId: '1F5E6nO8tLeZGeeJw8eq',
         rate: 1,
         createdAt: new Date().toISOString(),
         feedback:
@@ -4949,7 +4949,7 @@ const ratings = [
             email: 'mainAdmin@gmail.com',
             avatar: 'https://drive.google.com/thumbnail?id=1RD0jSAm8kdTLKa-Vr0daeE8T9-QcfPCa&sz=w1000',
         },
-        articleId: '51',
+        articleId: '1mIJ9KHtKiOUxzjCn5tU',
         rate: 1,
         createdAt: new Date().toISOString(),
         feedback:
@@ -4965,7 +4965,7 @@ const ratings = [
             email: 'mainAdmin@gmail.com',
             avatar: 'https://drive.google.com/thumbnail?id=1RD0jSAm8kdTLKa-Vr0daeE8T9-QcfPCa&sz=w1000',
         },
-        articleId: '52',
+        articleId: '21XeQ8bB1b8QCTVCywEH',
         rate: 1,
         createdAt: new Date().toISOString(),
         feedback:
@@ -4981,7 +4981,7 @@ const ratings = [
             email: 'mainAdmin@gmail.com',
             avatar: 'https://drive.google.com/thumbnail?id=1RD0jSAm8kdTLKa-Vr0daeE8T9-QcfPCa&sz=w1000',
         },
-        articleId: '22',
+        articleId: '25EkbKCheAE5zzR5VUJr',
         rate: 1,
         createdAt: new Date().toISOString(),
         feedback:
@@ -4997,7 +4997,7 @@ const ratings = [
             email: 'katyaAdmin@gmail.com',
             avatar: 'https://example.com/avatar7.jpg',
         },
-        articleId: '68',
+        articleId: '2We9yZZTEqoReayUCgtl',
         rate: 2,
         createdAt: new Date().toISOString(),
         feedback: 'The content was not very engaging and lacked depth.',
@@ -5012,7 +5012,7 @@ const ratings = [
             email: 'katyaAdmin@gmail.com',
             avatar: 'https://example.com/avatar7.jpg',
         },
-        articleId: '80',
+        articleId: '2bbQ8NduyUqRFyHnmmlT',
         rate: 2,
         createdAt: new Date().toISOString(),
         feedback:
@@ -5028,7 +5028,7 @@ const ratings = [
             email: 'katyaAdmin@gmail.com',
             avatar: 'https://example.com/avatar7.jpg',
         },
-        articleId: '92',
+        articleId: '3ovieoltecbxiUObDwMm',
         rate: 2,
         createdAt: new Date().toISOString(),
         feedback:
@@ -5044,7 +5044,7 @@ const ratings = [
             email: 'katyaAdmin@gmail.com',
             avatar: 'https://example.com/avatar7.jpg',
         },
-        articleId: '108',
+        articleId: '4I8rqhWjmMzeAsRfOdT2',
         rate: 2,
         createdAt: new Date().toISOString(),
         feedback:
@@ -5060,7 +5060,7 @@ const ratings = [
             email: 'katyaAdmin@gmail.com',
             avatar: 'https://example.com/avatar7.jpg',
         },
-        articleId: '123',
+        articleId: '4NGOL3p2UGyUWaFtHomz',
         rate: 2,
         createdAt: new Date().toISOString(),
         feedback: 'I appreciate the effort, but the execution was lacking.',
@@ -5077,7 +5077,7 @@ const ratings = [
 
             avatar: 'https://example.com/avatar20.jpg',
         },
-        articleId: '121',
+        articleId: '4SegrOiPJv0kbsEla90b',
         rate: 2,
         createdAt: new Date().toISOString(),
         feedback: 'The article was poorly structured and hard to follow.',
@@ -5094,7 +5094,7 @@ const ratings = [
 
             avatar: 'https://example.com/avatar20.jpg',
         },
-        articleId: '140',
+        articleId: '4hYoI0VS1lAkKB6gZ2ph',
         rate: 2,
         createdAt: new Date().toISOString(),
         feedback:
@@ -5112,7 +5112,7 @@ const ratings = [
 
             avatar: 'https://example.com/avatar20.jpg',
         },
-        articleId: '174',
+        articleId: '4psrL3te9yv5hop16cBW',
         rate: 2,
         createdAt: new Date().toISOString(),
         feedback: "The content didn't meet my expectations and lacked clarity.",
@@ -5129,7 +5129,7 @@ const ratings = [
 
             avatar: 'https://example.com/avatar10.jpg',
         },
-        articleId: '103',
+        articleId: '5IfrSJQZsWTlYx13N2s0',
         rate: 4,
         createdAt: new Date().toISOString(),
         feedback:
@@ -5147,7 +5147,7 @@ const ratings = [
 
             avatar: 'https://example.com/avatar10.jpg',
         },
-        articleId: '119',
+        articleId: 'BBrs7QaWHMZUyWVxM1Jq',
         rate: 4,
         createdAt: new Date().toISOString(),
         feedback: 'Good read! The examples provided were helpful and relevant.',
@@ -5164,7 +5164,7 @@ const ratings = [
 
             avatar: 'https://example.com/avatar10.jpg',
         },
-        articleId: '132',
+        articleId: 'BGCFAUTh0Wx2kUB5o3Tt',
         rate: 4,
         createdAt: new Date().toISOString(),
         feedback:
@@ -5182,7 +5182,7 @@ const ratings = [
 
             avatar: 'https://example.com/avatar10.jpg',
         },
-        articleId: '173',
+        articleId: 'Cb1X27PomBvm2PmJXUYV',
         rate: 4,
         createdAt: new Date().toISOString(),
         feedback: 'Well-written and engaging. It kept my attention throughout!',
@@ -5206,23 +5206,6 @@ async function uploadRatings(ratings: ArticleRatingData[]) {
         console.error('Error uploading ratings:', error);
     }
 }
-
-// async function uploadRatings(ratings: ArticleRating[]) {
-//     try {
-//         // @ts-ignore
-//         const promises = [];
-//         ratings.forEach((rating) => {
-//             const ratingDoc = doc(ratingsCollection);
-//             promises.push(setDoc(ratingDoc, rating));
-//         });
-//
-//         // @ts-ignore
-//         await Promise.all(promises); // Wait for all uploads to complete
-//         console.log('Ratings uploaded successfully!');
-//     } catch (error) {
-//         console.error('Error uploading ratings:', error);
-//     }
-// }
 
 const AboutPage = memo(() => {
     const { t } = useTranslation('about');

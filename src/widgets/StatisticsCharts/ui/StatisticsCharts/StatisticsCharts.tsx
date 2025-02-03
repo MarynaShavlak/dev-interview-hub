@@ -22,13 +22,14 @@ import { ArticleMonthlyDataChart } from '@/features/ArticleMonthlyDataChart';
 export const StatisticsCharts = () => {
     const { users, articles, ratings, comments, isLoading, isError } =
         useStatisticsData();
+
     const {
-        activeUsersDataChart,
+        activeUsersChart,
         articlesByCategoriesChart,
         commentsByArticlesChart,
         commentsByUsersChart,
         monthlyCategoryChart,
-        ratingsByUsersDataChart,
+        ratingsByUsersChart,
         quarterlyCategoryChart,
         viewsByCategoriesChart,
         articleRatingDistributionChart,
@@ -57,11 +58,10 @@ export const StatisticsCharts = () => {
 
     const articlesWithRatingQuantity = activeArticlesList.withRating.size;
 
-    if (isLoading) return <StatisticsChartsSkeleton />;
+    if (!isLoading) return <StatisticsChartsSkeleton />;
     if (isError) return <StatisticsChartsError />;
 
     return (
-        // <VStack gap="16">
         <div className={cls.parent}>
             <DashboardStats
                 totalArticles={totalArticles}
@@ -76,8 +76,8 @@ export const StatisticsCharts = () => {
                 activeUsersList={activeUsersList}
                 totalUsers={totalUsers}
                 className={cls.usersActivityChart}
-                width={activeUsersDataChart.width}
-                height={activeUsersDataChart.height}
+                width={activeUsersChart.width}
+                height={activeUsersChart.height}
             />
             <ArticleCategoriesCharts
                 data={categoryData}
@@ -90,8 +90,8 @@ export const StatisticsCharts = () => {
                 data={ratingCountsByUser}
                 totalArticles={totalArticles}
                 className={cls.bubbleChart}
-                width={ratingsByUsersDataChart.width}
-                height={ratingsByUsersDataChart.height}
+                width={ratingsByUsersChart.width}
+                height={ratingsByUsersChart.height}
             />
             <ArticleRatingDistributionChart
                 ratingDistributionMap={ratingDistributionMap}
