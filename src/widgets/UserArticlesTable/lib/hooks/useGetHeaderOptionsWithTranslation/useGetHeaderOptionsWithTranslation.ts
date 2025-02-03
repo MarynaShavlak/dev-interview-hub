@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { UserArticlesTableInfo } from '../../../model/types/userArticlesTableInfo';
-import { generateHeaderOptionsMapping } from '../../helpers/generateHeaderOptionsMapping/generateHeaderOptionsMapping';
+import { generateHeaderOptionsMapping } from '../../utilities/generateHeaderOptionsMapping/generateHeaderOptionsMapping';
 
 export const useGetHeaderOptionsWithTranslation = (
     data: UserArticlesTableInfo[],

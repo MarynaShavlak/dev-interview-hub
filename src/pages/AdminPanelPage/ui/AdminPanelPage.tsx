@@ -1,4 +1,5 @@
 import React from 'react';
+import { UsersFullInfoTable } from 'src/widgets/UsersFullInfoTable';
 import { Page } from '@/widgets/Page';
 import { StatisticsCharts } from '@/widgets/StatisticsCharts';
 
@@ -8,7 +9,6 @@ import {
     ReducersList,
 } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { articleReducer } from '@/entities/Article';
-import { UsersTable } from '@/features/UsersTable';
 
 const reducers: ReducersList = {
     articles: articleReducer,
@@ -23,7 +23,7 @@ const AdminPanelPage = () => {
                     <main data-testid="AdminPanelPage">
                         <StatisticsCharts />
 
-                        <UsersTable />
+                        <UsersFullInfoTable />
 
                         {/* <UsersInfoTable /> */}
                     </main>

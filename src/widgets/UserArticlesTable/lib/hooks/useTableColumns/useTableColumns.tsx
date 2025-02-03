@@ -2,12 +2,12 @@ import { useTranslation } from 'react-i18next';
 import { createColumnHelper } from '@tanstack/react-table';
 import { useMemo } from 'react';
 import { UserArticlesTableInfo } from '../../../model/types/userArticlesTableInfo';
-import { createStaticTextColumn } from '../../helpers/columnCreators/createStaticColumn/createStaticTextColumn';
-import { useCreateActionColumn } from '../../helpers/columnCreators/createActionColumn/createActionColumn';
+import {
+    createStaticTextColumn,
+    useCreateActionColumn,
+} from '@/features/Table';
 import { useTitleColumnWidth } from '../useTitleColumnWidth/useTitleColumnWidth';
 import { FIXED_COLUMNS_WIDTH } from '../../../model/consts/fixedColumnsWidth';
-
-const columnHelper = createColumnHelper<UserArticlesTableInfo>();
 
 interface useTableColumnProps {
     deleteRow: (rowIndex: string) => void;
@@ -19,7 +19,12 @@ const createUserTextCol = createStaticTextColumn<UserArticlesTableInfo>();
 export const useTableColumns = (props: useTableColumnProps) => {
     const { t } = useTranslation('articleDetails');
     const { deleteRow, editRow } = props;
-    const actionColumn = useCreateActionColumn(deleteRow, editRow);
+    const columnHelper = createColumnHelper<UserArticlesTableInfo>();
+    const actionColumn = useCreateActionColumn<UserArticlesTableInfo>(
+        deleteRow,
+        editRow,
+        FIXED_COLUMNS_WIDTH.action,
+    );
     const titleColumnWidth = useTitleColumnWidth();
 
     return useMemo(() => {
@@ -76,5 +81,5 @@ export const useTableColumns = (props: useTableColumnProps) => {
             ),
             actionColumn,
         ];
-    }, [actionColumn, t, titleColumnWidth]);
+    }, [actionColumn, columnHelper, t, titleColumnWidth]);
 };

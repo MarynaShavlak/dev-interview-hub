@@ -72,5 +72,10 @@
   "Видалити зображення": "Delete picture",
   "Завантажити зображення": "Upload picture",
   "Змінити зображення": "Change picture",
-
+  "Аватар": "Avatar",
+  "Країна": "Country",
+  "Валюта": "Currency",
+  "Кількість статей": "Articles quantity",
+  "Доступні фічі": "Available features",
+  "Роль": "Role"
 }

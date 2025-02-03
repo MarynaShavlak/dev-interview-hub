@@ -4,6 +4,7 @@ import {
     getFilteredRowModel,
     getPaginationRowModel,
     getSortedRowModel,
+    HeaderGroup,
     useReactTable,
 } from '@tanstack/react-table';
 import { useTranslation } from 'react-i18next';
@@ -12,7 +13,7 @@ import cls from './UserArticlesTable.module.scss';
 import { TablePagination } from '../TablePagination/TablePagination';
 import { VStack } from '@/shared/ui/common/Stack';
 import { UserArticlesTableInfo } from '../../model/types/userArticlesTableInfo';
-import { useTableData } from '../../lib/hooks/useTableData/useTableData';
+import { useUserArticlesTableData } from '../../lib/hooks/useUserArticlesTableData/useUserArticlesTableData';
 import { ConfirmDeleteModal } from '@/features/ConfirmDeleteModal';
 import { LoadingTableSkeleton } from '../LoadingTableSkeleton/LoadingTableSkeleton';
 import { EmptyTableState } from '../EmptyTableState/EmptyTableState';
@@ -47,7 +48,7 @@ export const UserArticlesTable = memo(
             setGlobalFilter,
             columnFilters,
             setColumnFilters,
-        } = useTableData({
+        } = useUserArticlesTableData({
             data,
             deleteRow: handleDeleteClick,
             editRow: handleEditClick,
@@ -80,6 +81,8 @@ export const UserArticlesTable = memo(
         if (data.length === 0) {
             return <EmptyTableState />;
         }
+        const headerGroups =
+            table.getHeaderGroups() as HeaderGroup<UserArticlesTableInfo>[];
 
         return (
             <VStack gap="16" max>
@@ -91,7 +94,7 @@ export const UserArticlesTable = memo(
                 <VStack gap="16" className={cls.tableWrap} data-testid="table">
                     <Box className={cls.table} width={table.getTotalSize()}>
                         <TableHeader
-                            headerGroups={table.getHeaderGroups()}
+                            headerGroups={headerGroups}
                             setColumnFilters={setColumnFilters}
                             headerOptionsMapping={headerOptionsMapping}
                             columnFilters={columnFilters}

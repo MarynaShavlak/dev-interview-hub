@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { calculateAvailableTitleWidth } from '../../helpers/calculateAvailableTitleWidth/calculateWidth';
+import { calculateAvailableTitleWidth } from '../../utilities/calculateAvailableTitleWidth/calculateWidth';
 
 export const useTitleColumnWidth = (): number => {
     const [titleColumnWidth, setTitleColumnWidth] = useState(230);
