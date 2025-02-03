@@ -88,6 +88,8 @@ export const UsersFullInfoTable = () => {
         columnResizeMode: 'onChange',
         // meta: { updateData },
     });
+    // const headerGroups =
+    //     table.getHeaderGroups() as HeaderGroup<UsersTableInfo>[];
 
     return (
         <VStack gap="16">

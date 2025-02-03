@@ -20,8 +20,6 @@ interface useUsersFullInfoTableColumnsProps {
     editRow: (rowIndex: string) => void;
 }
 
-const columnHelper = createColumnHelper<UsersTableInfo>();
-
 const createUserTextCol = createStaticTextColumn<UsersTableInfo>();
 const createUserEditableCol = createEditableColumn<UsersTableInfo>();
 const createUserOptionCol = createOptionColumn<UsersTableInfo>();
@@ -32,7 +30,8 @@ export const useUsersFullInfoTableColumns = (
 ) => {
     const { t } = useTranslation('profile');
     const { deleteRow, editRow } = props;
-    const actionColumn = useCreateActionColumn(
+    const columnHelper = createColumnHelper<UsersTableInfo>();
+    const actionColumn = useCreateActionColumn<UsersTableInfo>(
         deleteRow,
         editRow,
         FIXED_COLUMNS_WIDTH.action,

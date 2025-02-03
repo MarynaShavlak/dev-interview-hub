@@ -4,7 +4,7 @@ import DatePicker from 'react-datepicker';
 import { CellContext } from '@tanstack/react-table';
 import { useCallback } from 'react';
 import cls from './DateCell.module.scss';
-import { TableMetaCustom } from '../../model/types/types';
+import { TableMetaCustom } from '../../model/types/tableTypes';
 
 export type DateCellProps<TData> = CellContext<TData, Date>;
 
