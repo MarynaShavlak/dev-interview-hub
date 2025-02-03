@@ -58,7 +58,7 @@ export const StatisticsCharts = () => {
 
     const articlesWithRatingQuantity = activeArticlesList.withRating.size;
 
-    if (!isLoading) return <StatisticsChartsSkeleton />;
+    if (isLoading) return <StatisticsChartsSkeleton />;
     if (isError) return <StatisticsChartsError />;
 
     return (

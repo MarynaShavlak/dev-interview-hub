@@ -10,6 +10,7 @@ import {
     SKELETON_SCALE_GAP,
 } from '../../model/consts/chartsRects';
 import { getSkeletonDimensions } from '../../lib/utilities/getSkeletonDimensions/getSkeletonDimensions';
+import { Each } from '@/shared/lib/components/Each/Each';
 
 export const StatisticsChartsSkeleton = memo(() => {
     const Skeleton = toggleFeatures({
@@ -32,35 +33,16 @@ export const StatisticsChartsSkeleton = memo(() => {
     return (
         <VStack gap={CHART_GAP} className={cls.parent}>
             <HStack gap={CHART_GAP} wrap="wrap" className={cls.dashboard}>
-                <Skeleton
-                    border="12px"
-                    width={DASHBOARD_CARD.width}
-                    height={DASHBOARD_CARD.height}
-                />
-                <Skeleton
-                    border="12px"
-                    width={DASHBOARD_CARD.width}
-                    height={DASHBOARD_CARD.height}
-                />
-                <Skeleton
-                    border="12px"
-                    width={DASHBOARD_CARD.width}
-                    height={DASHBOARD_CARD.height}
-                />
-                <Skeleton
-                    border="12px"
-                    width={DASHBOARD_CARD.width}
-                    height={DASHBOARD_CARD.height}
-                />
-                <Skeleton
-                    border="12px"
-                    width={DASHBOARD_CARD.width}
-                    height={DASHBOARD_CARD.height}
-                />
-                <Skeleton
-                    border="12px"
-                    width={DASHBOARD_CARD.width}
-                    height={DASHBOARD_CARD.height}
+                <Each
+                    of={Array.from({ length: 6 })}
+                    render={(item, index) => (
+                        <Skeleton
+                            border="12px"
+                            key={`dashboard-card-${index}`}
+                            width={DASHBOARD_CARD.width}
+                            height={DASHBOARD_CARD.height}
+                        />
+                    )}
                 />
             </HStack>
             <Skeleton
