@@ -9,6 +9,7 @@ import { extractOptionValueName } from '../../lib/utilities/optionCell/extractOp
 import { findNewOptionValue } from '../../lib/utilities/optionCell/findNewOptionValue/findNewOptionValue';
 import { isColorOption } from '../../lib/utilities/optionCell/isColorOption/isColorOption';
 import { ColorOption, TableMetaCustom } from '../../model/types/tableTypes';
+import { HStack } from '@/shared/ui/common/Stack';
 
 interface OptionCellProps<TData> extends CellContext<TData, any> {
     options: (ColorOption | string)[];
@@ -52,12 +53,14 @@ export const OptionCell = <TData,>({
     );
 
     return (
-        <ListBox
-            value={currentValue}
-            defaultValue={currentValue}
-            items={listBoxOptions}
-            onChange={onCellClick}
-            direction="bottom right"
-        />
+        <HStack max>
+            <ListBox
+                value={currentValue}
+                defaultValue={currentValue}
+                items={listBoxOptions}
+                onChange={onCellClick}
+                direction="bottom right"
+            />
+        </HStack>
     );
 };

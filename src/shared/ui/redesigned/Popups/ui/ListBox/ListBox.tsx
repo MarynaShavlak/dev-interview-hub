@@ -50,7 +50,7 @@ export function ListBox<T extends string>(props: ListBoxProps<T>) {
     // console.log('value', value, items);
 
     return (
-        <HStack gap="4">
+        <HStack gap="4" justify="between" max>
             {label && <span>{`${label}:`}</span>}
             <HListBox
                 disabled={readonly}

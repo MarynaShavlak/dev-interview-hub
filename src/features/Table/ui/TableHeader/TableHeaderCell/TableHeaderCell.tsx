@@ -52,10 +52,12 @@ export const TableHeaderCell = <T,>(props: TableHeaderCellProps<T>) => {
                         key={header.id}
                         width={header.getSize()}
                     >
-                        {flexRender(
-                            header.column.columnDef.header,
-                            header.getContext(),
-                        )}
+                        <span className={cls.headerTitle}>
+                            {flexRender(
+                                header.column.columnDef.header,
+                                header.getContext(),
+                            )}
+                        </span>
 
                         {isSortAvailable && isFilterAvailable && (
                             <VStack className={cls.optionActionBlock}>

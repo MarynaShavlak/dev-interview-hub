@@ -24,6 +24,7 @@
     align-items: center;
     justify-content: center;
 
+
     &:hover:not(.disabled) {
         color: var(--accent-redesigned);
 
@@ -151,3 +152,5 @@
 .max {
     width: 100%;
 }
+
+

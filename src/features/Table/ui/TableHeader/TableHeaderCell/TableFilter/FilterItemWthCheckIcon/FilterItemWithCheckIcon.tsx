@@ -16,6 +16,7 @@ interface FilterItemProps extends ColumnFilterHandlerProps {
 
 export const FilterItemWithCheckIcon = (props: FilterItemProps) => {
     const { option, setColumnFilters, isActive, filterCategory } = props;
+    console.log('option', option);
 
     const onClickHandler = useCallback(
         () =>
@@ -65,7 +66,7 @@ export const FilterItemWithCheckIcon = (props: FilterItemProps) => {
         >
             {!isActive && <Icon Svg={EmptyCheckIcon} width={15} height={15} />}
             {isActive && <Icon Svg={CheckedIcon} width={15} height={15} />}
-            {option}
+            {option || '-'}
         </HStack>
     );
 };

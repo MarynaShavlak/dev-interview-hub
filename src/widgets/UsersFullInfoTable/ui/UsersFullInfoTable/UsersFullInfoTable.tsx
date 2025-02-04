@@ -98,7 +98,7 @@ export const UsersFullInfoTable = () => {
             />
 
             <VStack gap="16" className={cls.tableWrap}>
-                <Box className={cls.table} width="844px">
+                <Box className={cls.table} width={table.getTotalSize()}>
                     <TableHeader
                         headerGroups={table.getHeaderGroups()}
                         setColumnFilters={setColumnFilters}

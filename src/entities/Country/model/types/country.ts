@@ -8,4 +8,5 @@ export enum Country {
     England = 'England',
     Austria = 'Austria',
     Canada = 'Canada',
+    Another = 'Another',
 }

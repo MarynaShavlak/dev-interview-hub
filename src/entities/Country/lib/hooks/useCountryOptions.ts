@@ -35,5 +35,26 @@ export const useCountryOptions = () => {
             value: Country.Ireland,
             label: t('Ірландія'),
         },
+        {
+            value: Country.Another,
+            label: t('Інша'),
+        },
+        {
+            value: Country.USA,
+            label: t('США'),
+        },
+        {
+            value: Country.Austria,
+            label: t('Австрія'),
+        },
+        {
+            value: Country.Canada,
+            label: t('Канада'),
+        },
     ] as SelectOption<Country>[];
 };
+
+// USA = 'USA',
+//     England = 'England',
+//     Austria = 'Austria',
+//     Canada = 'Canada',

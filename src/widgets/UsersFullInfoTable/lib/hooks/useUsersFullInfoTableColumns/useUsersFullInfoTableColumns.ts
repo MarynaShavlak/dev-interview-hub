@@ -113,7 +113,10 @@ export const useUsersFullInfoTableColumns = (
 
             columnHelper.accessor(
                 'features',
-                createUserTextCol({ id: t('Доступні фічі'), size: 200 }),
+                createUserTextCol({
+                    id: t('Доступні фічі'),
+                    size: FIXED_COLUMNS_WIDTH.features,
+                }),
             ),
             columnHelper.accessor(
                 'role',
