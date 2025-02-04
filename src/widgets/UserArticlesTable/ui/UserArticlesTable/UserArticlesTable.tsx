@@ -4,13 +4,12 @@ import {
     getFilteredRowModel,
     getPaginationRowModel,
     getSortedRowModel,
-    HeaderGroup,
     useReactTable,
 } from '@tanstack/react-table';
 import { useTranslation } from 'react-i18next';
 import { Box } from '@/shared/ui/common/Box';
 import cls from './UserArticlesTable.module.scss';
-import { TablePagination, TableHeaderNoResizer } from '@/features/Table';
+import { TablePagination, TableHeader, TableBody } from '@/features/Table';
 import { VStack } from '@/shared/ui/common/Stack';
 import { UserArticlesTableInfo } from '../../model/types/userArticlesTableInfo';
 import { useUserArticlesTableData } from '../../lib/hooks/useUserArticlesTableData/useUserArticlesTableData';
@@ -19,7 +18,6 @@ import { LoadingTableSkeleton } from '../LoadingTableSkeleton/LoadingTableSkelet
 import { EmptyTableState } from '../EmptyTableState/EmptyTableState';
 import { TableActionBar } from '../TableActionBar/TableActionBar';
 
-import { TableBody } from '../TableBody/TableBody';
 import { useManageTableRow } from '../../lib/hooks/useManageTableRow/useManageTableRow';
 import { DEFAULT_PAGE_SIZE } from '../../model/consts/pagination';
 
@@ -81,8 +79,8 @@ export const UserArticlesTable = memo(
         if (data.length === 0) {
             return <EmptyTableState />;
         }
-        const headerGroups =
-            table.getHeaderGroups() as HeaderGroup<UserArticlesTableInfo>[];
+        // const headerGroups =
+        //     table.getHeaderGroups() as HeaderGroup<UserArticlesTableInfo>[];
 
         return (
             <VStack gap="16" max>
@@ -93,11 +91,12 @@ export const UserArticlesTable = memo(
 
                 <VStack gap="16" className={cls.tableWrap} data-testid="table">
                     <Box className={cls.table} width={table.getTotalSize()}>
-                        <TableHeaderNoResizer
+                        <TableHeader
                             headerGroups={table.getHeaderGroups()}
                             setColumnFilters={setColumnFilters}
                             headerOptionsMapping={headerOptionsMapping}
                             columnFilters={columnFilters}
+                            withResizer={false}
                         />
                         <TableBody rows={table.getRowModel().rows} />
                     </Box>

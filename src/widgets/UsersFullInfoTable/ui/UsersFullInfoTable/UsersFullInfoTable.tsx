@@ -5,19 +5,18 @@ import {
     getSortedRowModel,
     useReactTable,
 } from '@tanstack/react-table';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Box } from '@/shared/ui/common/Box';
 
 import cls from './UsersFullInfoTable.module.scss';
 import {
     SearchInput,
-    TableHeaderWithResizer,
+    TableBody,
+    TableHeader,
     TablePagination,
 } from '@/features/Table';
 
-import { TableRow } from '../TableRow/TableRow';
-import { Each } from '@/shared/lib/components/Each/Each';
 import { useUsersTableData } from '../../lib/hooks/useUsersTableData';
 import { UsersTableInfo } from '../../model/types/usersTableInfo';
 import { VStack } from '@/shared/ui/common/Stack';
@@ -99,26 +98,16 @@ export const UsersFullInfoTable = () => {
             />
 
             <VStack gap="16" className={cls.tableWrap}>
-                <Box className={cls.table} width={table.getTotalSize()}>
-                    <Each
-                        of={table.getHeaderGroups()}
-                        render={(headerGroup) => {
-                            return (
-                                <TableHeaderWithResizer
-                                    key={headerGroup.id}
-                                    headerGroup={headerGroup}
-                                    setColumnFilters={setColumnFilters}
-                                    headerOptionsMapping={headerOptionsMapping}
-                                    columnFilters={columnFilters}
-                                />
-                            );
-                        }}
+                <Box className={cls.table} width="844px">
+                    <TableHeader
+                        headerGroups={table.getHeaderGroups()}
+                        setColumnFilters={setColumnFilters}
+                        headerOptionsMapping={headerOptionsMapping}
+                        columnFilters={columnFilters}
+                        withResizer
                     />
 
-                    <Each
-                        of={table.getRowModel().rows}
-                        render={(row) => <TableRow key={row.id} row={row} />}
-                    />
+                    <TableBody rows={table.getRowModel().rows} />
                 </Box>
                 <TablePagination table={table} />
             </VStack>

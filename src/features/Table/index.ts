@@ -1,8 +1,10 @@
-export { TableHeaderNoResizer } from './ui/TableHeader/TableHeaderNoResizer';
+export { TableBody } from './ui/TableBody/TableBody';
+
+export { TableHeader } from './ui/TableHeader/TableHeader';
 
 export { TablePagination } from './ui/TablePagination/TablePagination';
 export { createEditableColumn } from './lib/utilities/columnCreators/createEditableColumn/createEditableColumn';
-export { TableHeaderWithResizer } from './ui/TableHeader/TableHeaderWithResizer/TableHeaderWithResizer';
+
 export { SearchInput } from './ui/SearchInput/SearchInput';
 export { TableFilter } from '@/features/Table/ui/TableHeader/TableHeaderCell/TableFilter/TableFilter';
 export { ColorIndicatorOptionItem } from './ui/ColorIndicatorOptionItem/ColorIndicatorOptionItem';

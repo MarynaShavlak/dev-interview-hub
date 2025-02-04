@@ -1,22 +1,26 @@
 import React, { memo } from 'react';
 import { HeaderGroup } from '@tanstack/react-table';
 import { Each } from '@/shared/lib/components/Each/Each';
-import { CommonFilterType } from '../../model/types/tableTypes';
+import { ColorOption, CommonFilterType } from '../../model/types/tableTypes';
 import { TableHeaderCell } from './TableHeaderCell/TableHeaderCell';
 
 interface TableHeaderProps<T> {
     headerGroups: HeaderGroup<T>[];
     setColumnFilters: (filters: any) => void;
-    headerOptionsMapping: Record<string, string[]>;
+    headerOptionsMapping:
+        | Record<string, string[]>
+        | Record<string, (string | ColorOption)[]>;
     columnFilters: CommonFilterType;
+    withResizer?: boolean;
 }
 
-export const TableHeaderNoResizer = memo(<T,>(props: TableHeaderProps<T>) => {
+export const TableHeader = memo(<T,>(props: TableHeaderProps<T>) => {
     const {
         headerGroups,
         setColumnFilters,
         headerOptionsMapping,
         columnFilters,
+        withResizer = false,
     } = props;
     return (
         <Each
@@ -29,6 +33,7 @@ export const TableHeaderNoResizer = memo(<T,>(props: TableHeaderProps<T>) => {
                         setColumnFilters={setColumnFilters}
                         headerOptionsMapping={headerOptionsMapping}
                         columnFilters={columnFilters}
+                        withResizer={withResizer}
                     />
                 );
             }}

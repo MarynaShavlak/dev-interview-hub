@@ -5,6 +5,7 @@
 
 .th {
   border: 1px solid var(--icon-redesigned);
+
 }
 
 
@@ -18,6 +19,21 @@
   //text-transform: uppercase;
   text-align: center;
 }
+
+
+.optionActionBlock {
+  position: absolute;
+  top: -2px;
+  right:4px;
+}
+
+.optionOneActionBlock {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translate(-8px, -50%);
+}
+
 
 
 .resizer {
