@@ -40,25 +40,3 @@ export const SortingIcon = <T,>({ column }: SortingIconProps<T>) => {
         </>
     );
 };
-// <>
-//     {column.getCanSort() && (
-//         <Icon
-//             Svg={SortIcon}
-//             clickable
-//             width={15}
-//             height={15}
-//             onClick={(event) => {
-//                 column.getToggleSortingHandler()?.(event);
-//             }}
-//         />
-//     )}
-//     {isSorted && (
-//         <Icon
-//             Svg={isSorted === 'asc' ? AscIcon : DescIcon}
-//             width={15}
-//             height={15}
-//         />
-//     )}
-// </>
-//     );
-// };

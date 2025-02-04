@@ -7,7 +7,7 @@ import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { SortingIcon } from './SortingIcon/SortingIcon';
 import { TableFilter } from './TableFilter/TableFilter';
 
-import { HStack, VStack } from '@/shared/ui/common/Stack';
+import { VStack } from '@/shared/ui/common/Stack';
 import {
     ColorOption,
     ColumnFilterHandlerProps,
@@ -59,22 +59,15 @@ export const TableHeaderCell = <T,>(props: TableHeaderCellProps<T>) => {
 
                         {isSortAvailable && isFilterAvailable && (
                             <VStack className={cls.optionActionBlock}>
-                                <HStack gap="4">
-                                    {isSortAvailable && (
-                                        <SortingIcon column={header.column} />
-                                    )}
-                                </HStack>
-                                {isFilterAvailable && (
-                                    <TableFilter
-                                        filterCategory={header.id}
-                                        columnFilters={columnFilters}
-                                        setColumnFilters={setColumnFilters}
-                                        allOptions={
-                                            headerOptionsMapping[header.id] ||
-                                            []
-                                        }
-                                    />
-                                )}
+                                <SortingIcon column={header.column} />
+                                <TableFilter
+                                    filterCategory={header.id}
+                                    columnFilters={columnFilters}
+                                    setColumnFilters={setColumnFilters}
+                                    allOptions={
+                                        headerOptionsMapping[header.id] || []
+                                    }
+                                />
                             </VStack>
                         )}
 
@@ -83,11 +76,7 @@ export const TableHeaderCell = <T,>(props: TableHeaderCellProps<T>) => {
                                 gap="4"
                                 className={cls.optionOneActionBlock}
                             >
-                                <HStack gap="4">
-                                    {isSortAvailable && (
-                                        <SortingIcon column={header.column} />
-                                    )}
-                                </HStack>
+                                <SortingIcon column={header.column} />
                             </VStack>
                         )}
                         {!isSortAvailable && isFilterAvailable && (
@@ -95,17 +84,14 @@ export const TableHeaderCell = <T,>(props: TableHeaderCellProps<T>) => {
                                 gap="4"
                                 className={cls.optionOneActionBlock}
                             >
-                                {isFilterAvailable && (
-                                    <TableFilter
-                                        filterCategory={header.id}
-                                        columnFilters={columnFilters}
-                                        setColumnFilters={setColumnFilters}
-                                        allOptions={
-                                            headerOptionsMapping[header.id] ||
-                                            []
-                                        }
-                                    />
-                                )}
+                                <TableFilter
+                                    filterCategory={header.id}
+                                    columnFilters={columnFilters}
+                                    setColumnFilters={setColumnFilters}
+                                    allOptions={
+                                        headerOptionsMapping[header.id] || []
+                                    }
+                                />
                             </VStack>
                         )}
 
