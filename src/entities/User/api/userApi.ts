@@ -5,6 +5,7 @@ import { getUserDocRefById } from '../lib/utilities/getUserDocRefById/getUserDoc
 import { fetchDocumentByRef } from '@/shared/lib/firestore/fetchDocumentByRef/fetchDocumentByRef';
 import { getDocRefByField } from '@/shared/lib/firestore/getDocRefByField/getDocRefByField';
 import { dataPoint } from '@/shared/lib/firestore/firestore';
+import { deleteDocFromFirestore } from '@/shared/lib/firestore/deleteDocFromFirestore/deleteDocFromFirestore';
 
 export const userFirebaseApi = firestoreApi
     .enhanceEndpoints({
@@ -97,6 +98,17 @@ export const userFirebaseApi = firestoreApi
                     }
                 },
             }),
+            deleteUser: build.mutation<string, string>({
+                invalidatesTags: ['Users'],
+                async queryFn(userId) {
+                    try {
+                        await deleteDocFromFirestore('users', userId);
+                        return { data: userId };
+                    } catch (error) {
+                        return { error };
+                    }
+                },
+            }),
             updateUserData: build.mutation<
                 User,
                 { userId: string; updates: Partial<User> }
@@ -138,6 +150,8 @@ export const getUserDataByIdQuery =
 export const updateUserDataMutation =
     userFirebaseApi.endpoints.updateUserData.initiate;
 export const { useGetUsersQuery: useUsers } = userFirebaseApi;
+
+export const deleteUserMutation = userFirebaseApi.endpoints.deleteUser.initiate;
 
 // interface SetJsonSettingsArg {
 //     userId: string;

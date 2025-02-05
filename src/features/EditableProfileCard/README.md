@@ -108,7 +108,7 @@ EditableProfileCard/
 
 ### 3. `lib/`:  Utility functions and hooks.
 - **`hook/`**
-    - [**useProfile.ts**](./lib/hooks/README.md):  Custom hook for managing the profile form state and interactions.
+    - [**useProfile.ts**](lib/hooks/useProfile/README.md):  Custom hook for managing the profile form state and interactions.
 ### 4. `index.ts`
 - Entry point for the `EditableProfileCard` module, exporting components, functions, and types.
 

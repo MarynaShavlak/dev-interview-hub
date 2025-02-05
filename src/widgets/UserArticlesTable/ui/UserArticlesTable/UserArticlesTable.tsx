@@ -18,7 +18,7 @@ import { LoadingTableSkeleton } from '../LoadingTableSkeleton/LoadingTableSkelet
 import { EmptyTableState } from '../EmptyTableState/EmptyTableState';
 import { TableActionBar } from '../TableActionBar/TableActionBar';
 
-import { useManageTableRow } from '../../lib/hooks/useManageTableRow/useManageTableRow';
+import { useManageUserArticlesTableRow } from '../../lib/hooks/useManageUserArticlesTableRow/useManageUserArticlesTableRow';
 import { DEFAULT_PAGE_SIZE } from '../../model/consts/pagination';
 import { Each } from '@/shared/lib/components/Each/Each';
 
@@ -38,7 +38,7 @@ export const UserArticlesTable = memo(
             isLoading,
             data,
             deleteArticleModal,
-        } = useManageTableRow(onDeleteArticle);
+        } = useManageUserArticlesTableRow(onDeleteArticle);
 
         const {
             columns,

@@ -1,6 +1,6 @@
 import { memo } from 'react';
 import { EditableProfileCardContainer } from '../EditableProfileCardContainer/EditableProfileCardContainer';
-import { useProfile } from '../../lib/hooks/useProfile';
+import { useProfile } from '../../lib/hooks/useProfile/useProfile';
 import { EditableProfileCardError } from '../EditableProfileCardError/EditableProfileCardError';
 import { toggleFeatures } from '@/shared/lib/features';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';

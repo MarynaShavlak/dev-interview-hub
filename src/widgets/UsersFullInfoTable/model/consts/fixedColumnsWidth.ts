@@ -14,4 +14,3 @@ export const FIXED_COLUMNS_WIDTH = {
 };
 
 export const MINIMUM_EMAIL_WIDTH = 90;
-export const MINIMUM_USERNAME_WIDTH = 130;

@@ -4,7 +4,7 @@ import { UserArticlesTableInfo } from '../../../model/types/userArticlesTableInf
 import { useToggleVisibility } from '@/shared/lib/hooks/useToggleVisibility/useToggleVisibility';
 import { useArticlesByUserData } from '../useArticlesByUserData/useArticlesByUserData';
 
-export const useManageTableRow = (
+export const useManageUserArticlesTableRow = (
     onDeleteArticle: (articleId: string) => Promise<string | null>,
 ) => {
     const { articles, isLoading } = useArticlesByUserData();

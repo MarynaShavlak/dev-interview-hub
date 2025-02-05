@@ -1,12 +1,12 @@
 import { useCallback } from 'react';
 import { Country } from '@/entities/Country';
 import { Currency } from '@/entities/Currency';
-import { useProfileError } from '../../model/selectors/getProfileError/getProfileError';
-import { useProfileForm } from '../../model/selectors/getProfileForm/getProfileForm';
-import { useProfileIsLoading } from '../../model/selectors/getProfileIsLoading/getProfileIsLoading';
-import { useProfileReadonly } from '../../model/selectors/getProfileReadonly/getProfileReadonly';
-import { useProfileValidateErrors } from '../../model/selectors/getProfileValidateErrors/getProfileValidateErrors';
-import { useProfileActions } from '../../model/slices/profileSlice';
+import { useProfileError } from '../../../model/selectors/getProfileError/getProfileError';
+import { useProfileForm } from '../../../model/selectors/getProfileForm/getProfileForm';
+import { useProfileIsLoading } from '../../../model/selectors/getProfileIsLoading/getProfileIsLoading';
+import { useProfileReadonly } from '../../../model/selectors/getProfileReadonly/getProfileReadonly';
+import { useProfileValidateErrors } from '../../../model/selectors/getProfileValidateErrors/getProfileValidateErrors';
+import { useProfileActions } from '../../../model/slices/profileSlice';
 import { useInputValidationConfig } from '@/shared/lib/hooks/validationHooks/useInputValidationConfig/useInputValidationConfig';
 import { useFormValidation } from '@/shared/lib/hooks/validationHooks/useFormValidation/useFormValidation';
 

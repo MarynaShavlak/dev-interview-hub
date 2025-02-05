@@ -1,6 +1,6 @@
 import { memo } from 'react';
-import { useProfile } from '../../lib/hooks/useProfile';
-import { UserCard } from '@/entities/Profile';
+import { useProfile } from '../../lib/hooks/useProfile/useProfile';
+import { UserCard } from '../UserCard/UserCard';
 
 export const EditableProfileCardContainer = memo(() => {
     const {

@@ -26,12 +26,7 @@ import { Each } from '@/shared/lib/components/Each/Each';
 export const UsersFullInfoTable = () => {
     const { t } = useTranslation('admin');
     const { users, isLoading } = useUsersTableData();
-    // console.log('users', users);
     const [data, setData] = useState<UsersTableInfo[]>([]);
-    // console.log('data', data);
-
-    // const [columnFilters, setColumnFilters] = useState<CommonFilterType>([]);
-    // const [globalFilter, setGlobalFilter] = useState<string>('');
 
     const handleDeleteClick = (index: string) => {
         console.log('index', index);

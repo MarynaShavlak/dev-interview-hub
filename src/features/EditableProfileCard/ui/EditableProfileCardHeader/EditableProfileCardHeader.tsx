@@ -8,7 +8,7 @@ import { useProfileActions } from '../../model/slices/profileSlice';
 import { useProfileReadonly } from '../../model/selectors/getProfileReadonly/getProfileReadonly';
 import { useProfileData } from '../../model/selectors/getProfileData/getProfileData';
 import { updateUserProfileThunk } from '../../model/services/updateUserProfileThunk/updateUserProfileThunk';
-import { useProfile } from '../../lib/hooks/useProfile';
+import { useProfile } from '../../lib/hooks/useProfile/useProfile';
 import { useUploadedProfilePhoto } from '../../model/selectors/getUploadedProfilePhoto/getUploadedProfilePhoto';
 import { uploadImageThunk } from '../../model/services/uploadImageThunk/uploadImageThunk';
 import { useProfileForm } from '../../model/selectors/getProfileForm/getProfileForm';

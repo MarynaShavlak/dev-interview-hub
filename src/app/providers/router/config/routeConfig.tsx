@@ -1,4 +1,3 @@
-import { RedesignedUserCardSkeleton as ProfileSkeleton } from '@/entities/Profile';
 import { UserRole } from '@/entities/User';
 import { AboutPage, AboutPageSkeleton } from '@/pages/AboutPage';
 import { AdminPanelPage, AdminPanelPageSkeleton } from '@/pages/AdminPanelPage';
@@ -33,6 +32,7 @@ import {
     ArticleEditorPage,
     ArticleEditorPageSkeleton,
 } from '@/pages/ArticleEditorPage';
+import { RedesignedUserCardSkeleton as ProfileSkeleton } from '@/features/EditableProfileCard';
 
 export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
     [AppRoutes.MAIN]: {
