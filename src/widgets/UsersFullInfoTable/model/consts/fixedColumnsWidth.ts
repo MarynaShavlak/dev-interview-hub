@@ -1,7 +1,7 @@
 export const FIXED_COLUMNS_WIDTH = {
     avatar: 50,
     username: 130,
-    email: 90,
+    // email: 90,
     firstname: 90,
     lastname: 110,
     // age: 60,
@@ -13,4 +13,5 @@ export const FIXED_COLUMNS_WIDTH = {
     action: 50,
 };
 
-export const MINIMUM_TITLE_WIDTH = 150;
+export const MINIMUM_EMAIL_WIDTH = 90;
+export const MINIMUM_USERNAME_WIDTH = 130;

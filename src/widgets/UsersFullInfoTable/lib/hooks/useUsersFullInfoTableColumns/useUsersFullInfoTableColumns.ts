@@ -11,9 +11,13 @@ import {
     createImageColumn,
     createStaticTextColumn,
     useCreateActionColumn,
+    useFlexColumnWidth,
 } from '@/features/Table';
 
-import { FIXED_COLUMNS_WIDTH } from '../../../model/consts/fixedColumnsWidth';
+import {
+    FIXED_COLUMNS_WIDTH,
+    MINIMUM_EMAIL_WIDTH,
+} from '../../../model/consts/fixedColumnsWidth';
 
 interface useUsersFullInfoTableColumnsProps {
     deleteRow: (rowIndex: string) => void;
@@ -37,6 +41,11 @@ export const useUsersFullInfoTableColumns = (
         FIXED_COLUMNS_WIDTH.action,
     );
 
+    const emailColumnWidth = useFlexColumnWidth(
+        FIXED_COLUMNS_WIDTH,
+        MINIMUM_EMAIL_WIDTH,
+    );
+
     return useMemo(() => {
         return [
             columnHelper.accessor(
@@ -58,7 +67,7 @@ export const useUsersFullInfoTableColumns = (
                 'email',
                 createUserEditableCol({
                     id: t('Email'),
-                    size: FIXED_COLUMNS_WIDTH.email,
+                    size: emailColumnWidth,
                 }),
             ),
             columnHelper.accessor(

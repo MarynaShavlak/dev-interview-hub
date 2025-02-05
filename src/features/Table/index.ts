@@ -1,7 +1,4 @@
 export { useFlexColumnWidth } from './lib/hooks/useFlexColumnWidth/useFlexColumnWidth';
-
-export { calculateAvailableFlexColumnWidth } from './lib/utilities/calculateAvailableTitleWidth/calculateAvailableFlexColumnWidth';
-
 export { TableRow } from '@/features/Table/ui/TableRow/TableRow';
 export { TableHeader } from './ui/TableHeader/TableHeader';
 export { TablePagination } from './ui/TablePagination/TablePagination';

@@ -17,11 +17,10 @@ interface useTableColumnProps {
     editRow: (rowIndex: string) => void;
 }
 
-const createUserTextCol = createStaticTextColumn<UserArticlesTableInfo>();
-
 export const useTableColumns = (props: useTableColumnProps) => {
     const { t } = useTranslation('articleDetails');
     const { deleteRow, editRow } = props;
+    const createUserTextCol = createStaticTextColumn<UserArticlesTableInfo>();
     const columnHelper = createColumnHelper<UserArticlesTableInfo>();
     const actionColumn = useCreateActionColumn<UserArticlesTableInfo>(
         deleteRow,
@@ -87,5 +86,5 @@ export const useTableColumns = (props: useTableColumnProps) => {
             ),
             actionColumn,
         ];
-    }, [actionColumn, columnHelper, t, titleColumnWidth]);
+    }, [actionColumn, columnHelper, createUserTextCol, t, titleColumnWidth]);
 };
