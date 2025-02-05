@@ -1,19 +1,19 @@
 import { useEffect, useState } from 'react';
-import { calculateAvailableTitleWidth } from '../../utilities/calculateAvailableTitleWidth/calculateWidth';
+
+import {
+    FIXED_COLUMNS_WIDTH,
+    MINIMUM_TITLE_WIDTH,
+} from '../../../model/consts/fixedColumnsWidth';
+import { calculateAvailableFlexColumnWidth } from '@/features/Table';
 
 export const useTitleColumnWidth = (): number => {
     const [titleColumnWidth, setTitleColumnWidth] = useState(230);
 
     useEffect(() => {
         const calculateTitleWidth = () => {
-            const sidebar = document.querySelector(
-                '[data-testid="sidebar-wrap"]',
-            );
-            if (!sidebar) return;
-
-            const sidebarRect = sidebar.getBoundingClientRect();
-            const newTitleWidth = calculateAvailableTitleWidth(
-                sidebarRect.width,
+            const newTitleWidth = calculateAvailableFlexColumnWidth(
+                FIXED_COLUMNS_WIDTH,
+                MINIMUM_TITLE_WIDTH,
             );
             setTitleColumnWidth(newTitleWidth);
         };

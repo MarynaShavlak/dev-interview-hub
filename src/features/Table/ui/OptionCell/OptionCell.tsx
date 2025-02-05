@@ -33,7 +33,7 @@ export const OptionCell = <TData,>({
     options,
 }: OptionCellProps<TData>) => {
     const value = getValue();
-    console.log('value', value);
+
     const meta = table.options.meta as TableMetaCustom<TData>;
     const currentValue = extractOptionValueName(value);
     const listBoxOptions = options.map(createListBoxOption);

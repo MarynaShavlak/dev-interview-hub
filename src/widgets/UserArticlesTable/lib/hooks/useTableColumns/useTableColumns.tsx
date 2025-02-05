@@ -5,9 +5,12 @@ import { UserArticlesTableInfo } from '../../../model/types/userArticlesTableInf
 import {
     createStaticTextColumn,
     useCreateActionColumn,
+    useFlexColumnWidth,
 } from '@/features/Table';
-import { useTitleColumnWidth } from '../useTitleColumnWidth/useTitleColumnWidth';
-import { FIXED_COLUMNS_WIDTH } from '../../../model/consts/fixedColumnsWidth';
+import {
+    FIXED_COLUMNS_WIDTH,
+    MINIMUM_TITLE_WIDTH,
+} from '../../../model/consts/fixedColumnsWidth';
 
 interface useTableColumnProps {
     deleteRow: (rowIndex: string) => void;
@@ -25,7 +28,10 @@ export const useTableColumns = (props: useTableColumnProps) => {
         editRow,
         FIXED_COLUMNS_WIDTH.action,
     );
-    const titleColumnWidth = useTitleColumnWidth();
+    const titleColumnWidth = useFlexColumnWidth(
+        FIXED_COLUMNS_WIDTH,
+        MINIMUM_TITLE_WIDTH,
+    );
 
     return useMemo(() => {
         return [

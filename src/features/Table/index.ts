@@ -1,3 +1,7 @@
+export { useFlexColumnWidth } from './lib/hooks/useFlexColumnWidth/useFlexColumnWidth';
+
+export { calculateAvailableFlexColumnWidth } from './lib/utilities/calculateAvailableTitleWidth/calculateAvailableFlexColumnWidth';
+
 export { TableRow } from '@/features/Table/ui/TableRow/TableRow';
 export { TableHeader } from './ui/TableHeader/TableHeader';
 export { TablePagination } from './ui/TablePagination/TablePagination';
@@ -10,7 +14,7 @@ export { getUniqueOptionsWithColors } from './lib/utilities/getUniqueOptionsWith
 export { createOptionColumn } from './lib/utilities/columnCreators/createOptionColumn/createOptionColumn';
 export { createStaticTextColumn } from './lib/utilities/columnCreators/createStaticColumn/createStaticTextColumn';
 export { createImageColumn } from './lib/utilities/columnCreators/createImageColumn/createImageColumn';
-export { useCreateActionColumn } from './lib/hooks/columnCreators/useCreateActionColumn/useCreateActionColumn';
+export { useCreateActionColumn } from '@/features/Table/lib/hooks/useCreateActionColumn/useCreateActionColumn';
 export type {
     ColorOption,
     CommonFilterType,

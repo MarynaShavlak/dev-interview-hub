@@ -21,7 +21,9 @@ export const MainLayout = memo((props: MainLayoutProps) => {
             </div>
             <div className={cls.rightbar}>
                 <div className={cls.header}>{header}</div>
-                <div className={cls.toolbar}>{toolbar}</div>
+                <div className={cls.toolbar} data-testid="toolbar">
+                    {toolbar}
+                </div>
             </div>
         </div>
     );

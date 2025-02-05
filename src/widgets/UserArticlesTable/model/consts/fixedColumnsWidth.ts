@@ -7,6 +7,4 @@ export const FIXED_COLUMNS_WIDTH = {
     action: 50,
 };
 
-export const PADDING_RIGHT = 100;
 export const MINIMUM_TITLE_WIDTH = 150;
-export const TABLE_BORDER_WIDTH = 4;

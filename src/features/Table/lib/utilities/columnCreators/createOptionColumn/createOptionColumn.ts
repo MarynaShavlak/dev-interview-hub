@@ -19,7 +19,6 @@ export const createOptionColumn = <T>() => {
         filterable = true,
         options,
     }: OptionColumnConfig<T>) => {
-        console.log('options', options);
         return {
             id,
             header: capitalizeFirstLetter(id),
