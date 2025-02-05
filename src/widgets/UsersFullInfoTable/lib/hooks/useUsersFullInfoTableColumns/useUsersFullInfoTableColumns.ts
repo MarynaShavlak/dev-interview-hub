@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
-import { useMemo } from 'react';
 import { createColumnHelper } from '@tanstack/react-table';
+import { useMemo } from 'react';
 import cls from '../../../ui/UsersFullInfoTable/UsersFullInfoTable.module.scss';
 import { USER_ROLE_OPTIONS } from '../../../ui/data';
 import { UsersTableInfo } from '../../../model/types/usersTableInfo';
@@ -20,15 +20,15 @@ interface useUsersFullInfoTableColumnsProps {
     editRow: (rowIndex: string) => void;
 }
 
-const createUserTextCol = createStaticTextColumn<UsersTableInfo>();
-const createUserEditableCol = createEditableColumn<UsersTableInfo>();
-const createUserOptionCol = createOptionColumn<UsersTableInfo>();
-const createUserAvatarCol = createImageColumn<UsersTableInfo>();
-
 export const useUsersFullInfoTableColumns = (
     props: useUsersFullInfoTableColumnsProps,
 ) => {
     const { t } = useTranslation('profile');
+
+    const createUserTextCol = createStaticTextColumn<UsersTableInfo>();
+    const createUserEditableCol = createEditableColumn<UsersTableInfo>();
+    const createUserOptionCol = createOptionColumn<UsersTableInfo>();
+    const createUserAvatarCol = createImageColumn<UsersTableInfo>();
     const { deleteRow, editRow } = props;
     const columnHelper = createColumnHelper<UsersTableInfo>();
     const actionColumn = useCreateActionColumn<UsersTableInfo>(
@@ -75,32 +75,32 @@ export const useUsersFullInfoTableColumns = (
                     size: FIXED_COLUMNS_WIDTH.lastname,
                 }),
             ),
-
-            columnHelper.accessor(
-                'age',
-                createUserTextCol({
-                    id: t('Вік'),
-                    size: FIXED_COLUMNS_WIDTH.age,
-                    sortable: true,
-                }),
-            ),
-            columnHelper.accessor(
-                'city',
-                createUserEditableCol({
-                    id: t('Місто'),
-                    size: FIXED_COLUMNS_WIDTH.city,
-                    sortable: false,
-                }),
-            ),
-            columnHelper.accessor(
-                'country',
-                createUserOptionCol({
-                    id: t('Країна'),
-                    size: FIXED_COLUMNS_WIDTH.country,
-                    options: ['Ukraine', 'Poland', 'Germany'],
-                    sortable: false,
-                }),
-            ),
+            //
+            // columnHelper.accessor(
+            //     'age',
+            //     createUserTextCol({
+            //         id: t('Вік'),
+            //         size: FIXED_COLUMNS_WIDTH.age,
+            //         sortable: true,
+            //     }),
+            // ),
+            // columnHelper.accessor(
+            //     'city',
+            //     createUserEditableCol({
+            //         id: t('Місто'),
+            //         size: FIXED_COLUMNS_WIDTH.city,
+            //         sortable: false,
+            //     }),
+            // ),
+            // columnHelper.accessor(
+            //     'country',
+            //     createUserOptionCol({
+            //         id: t('Країна'),
+            //         size: FIXED_COLUMNS_WIDTH.country,
+            //         options: translatedOptions,
+            //         sortable: false,
+            //     }),
+            // ),
 
             columnHelper.accessor(
                 'articlesQuantity',
@@ -129,5 +129,13 @@ export const useUsersFullInfoTableColumns = (
             ),
             actionColumn,
         ];
-    }, [actionColumn, t]);
+    }, [
+        actionColumn,
+        columnHelper,
+        createUserAvatarCol,
+        createUserEditableCol,
+        createUserOptionCol,
+        createUserTextCol,
+        t,
+    ]);
 };

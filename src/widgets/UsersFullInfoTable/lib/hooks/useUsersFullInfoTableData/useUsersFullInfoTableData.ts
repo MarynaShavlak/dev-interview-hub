@@ -15,10 +15,15 @@ export const useUsersFullInfoTableData = (
     props: UsersFullInfoTableDataProps,
 ) => {
     const { data, deleteRow, editRow } = props;
+
     const [columnFilters, setColumnFilters] = useState<CommonFilterType>([]);
     const [globalFilter, setGlobalFilter] = useState<string>('');
     const headerOptionsMapping = useGetHeaderOptionsWithTranslation(data);
-    const columns = useUsersFullInfoTableColumns({ deleteRow, editRow });
+
+    const columns = useUsersFullInfoTableColumns({
+        deleteRow,
+        editRow,
+    });
 
     return {
         columns,

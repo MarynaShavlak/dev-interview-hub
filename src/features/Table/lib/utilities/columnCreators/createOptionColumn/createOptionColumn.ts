@@ -18,20 +18,23 @@ export const createOptionColumn = <T>() => {
         sortable = true,
         filterable = true,
         options,
-    }: OptionColumnConfig<T>) => ({
-        id,
-        header: capitalizeFirstLetter(id),
-        cell: (props: CellContext<T, any>) =>
-            OptionCell({
-                ...props,
-                options,
-            }),
-        size,
-        enableColumnFilter: filterable,
-        enableSorting: sortable,
-        filterFn: (row: Row<T>, columnId: string, filterCriteria: any) => {
-            if (filterCriteria.length === 0) return true;
-            return filterCriteria.includes(row.getValue(columnId));
-        },
-    });
+    }: OptionColumnConfig<T>) => {
+        console.log('options', options);
+        return {
+            id,
+            header: capitalizeFirstLetter(id),
+            cell: (props: CellContext<T, any>) =>
+                OptionCell({
+                    ...props,
+                    options,
+                }),
+            size,
+            enableColumnFilter: filterable,
+            enableSorting: sortable,
+            filterFn: (row: Row<T>, columnId: string, filterCriteria: any) => {
+                if (filterCriteria.length === 0) return true;
+                return filterCriteria.includes(row.getValue(columnId));
+            },
+        };
+    };
 };

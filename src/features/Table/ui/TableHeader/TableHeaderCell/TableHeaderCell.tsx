@@ -76,7 +76,7 @@ export const TableHeaderCell = <T,>(props: TableHeaderCellProps<T>) => {
                         {isSortAvailable && !isFilterAvailable && (
                             <VStack
                                 gap="4"
-                                className={cls.optionOneActionBlock}
+                                className={cls.optionSortActionBlock}
                             >
                                 <SortingIcon column={header.column} />
                             </VStack>
@@ -84,7 +84,7 @@ export const TableHeaderCell = <T,>(props: TableHeaderCellProps<T>) => {
                         {!isSortAvailable && isFilterAvailable && (
                             <VStack
                                 gap="4"
-                                className={cls.optionOneActionBlock}
+                                className={cls.optionFilterActionBlock}
                             >
                                 <TableFilter
                                     filterCategory={header.id}
