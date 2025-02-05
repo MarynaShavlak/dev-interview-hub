@@ -3,9 +3,9 @@ import {
     useToggleVisibility,
     UseToggleVisibilityReturnType,
 } from '@/shared/lib/hooks/useToggleVisibility/useToggleVisibility';
-import { useUsersTableData } from '../useUsersTableData';
 import { UsersTableInfo } from '../../../model/types/usersTableInfo';
 import { useUserProfileNavigation } from '@/entities/User';
+import { useUsersTableData } from '../useUsersTableData';
 
 interface SelectedUser {
     id: string;
@@ -31,11 +31,10 @@ export const useManageUsersFullInfoTableRow = (
     console.log('_data', data);
 
     useEffect(() => {
-        if (!isLoading && users.length !== data.length) {
-            // if (!isLoading && users) {
+        if (!isLoading && users.length !== data.length && users.length !== 0) {
             setData(users);
         }
-    }, [users, isLoading, setData, data.length]);
+    }, [users, isLoading, data.length, setData]);
 
     const { navigateToUserProfile } = useUserProfileNavigation();
     const deleteUserModal = useToggleVisibility();
@@ -55,6 +54,7 @@ export const useManageUsersFullInfoTableRow = (
                 );
 
                 return deletedUserId;
+                // return userId;
             } catch (error: any) {
                 console.error('Error deleting user:', error);
 

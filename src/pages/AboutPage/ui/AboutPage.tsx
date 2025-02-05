@@ -4,9 +4,10 @@ import { collection, setDoc, doc } from 'firebase/firestore';
 import { Page } from '@/widgets/Page';
 import { ArticleRatingData } from '@/widgets/StatisticsCharts';
 import { firestore } from '../../../../json-server/firebase';
+import { User } from '@/entities/User';
 
 const ratingsCollection = collection(firestore, 'ratings');
-
+const usersCollection = collection(firestore, 'users');
 const ratings = [
     {
         user: {
@@ -5190,32 +5191,6 @@ const ratings = [
     },
 ];
 
-async function uploadRatings(ratings: ArticleRatingData[]) {
-    try {
-        // @ts-ignore
-        const promises = [];
-        ratings.forEach((rating) => {
-            const ratingDoc = doc(ratingsCollection);
-            promises.push(setDoc(ratingDoc, rating));
-        });
-
-        // @ts-ignore
-        await Promise.all(promises); // Wait for all uploads to complete
-        console.log('Ratings uploaded successfully!');
-    } catch (error) {
-        console.error('Error uploading ratings:', error);
-    }
-}
-
-const AboutPage = memo(() => {
-    const { t } = useTranslation('about');
-    // uploadUsers(users);
-    // uploadRatings(ratings);
-    return <Page data-testid="AboutPage">{t('Про сайт')}</Page>;
-});
-
-export default AboutPage;
-
 // const users = [
 //     {
 //         id: 'J3aB11HdHTZW6udzrrw2ymBhIOz1',
@@ -5784,7 +5759,7 @@ export default AboutPage;
 //     },
 // ];
 // const usersCollection = collection(firestore, 'users');
-//
+
 // async function uploadUsers(users: User[]) {
 //     try {
 //         // @ts-ignore
@@ -5801,3 +5776,46 @@ export default AboutPage;
 //         console.error('Error uploading articles:', error);
 //     }
 // }
+
+async function uploadRatings(ratings: ArticleRatingData[]) {
+    try {
+        // @ts-ignore
+        const promises = [];
+        ratings.forEach((rating) => {
+            const ratingDoc = doc(ratingsCollection);
+            promises.push(setDoc(ratingDoc, rating));
+        });
+
+        // @ts-ignore
+        await Promise.all(promises); // Wait for all uploads to complete
+        console.log('Ratings uploaded successfully!');
+    } catch (error) {
+        console.error('Error uploading ratings:', error);
+    }
+}
+
+async function uploadUsers(users: User[]) {
+    try {
+        // @ts-ignore
+        const promises = [];
+        users.forEach((user) => {
+            const userDoc = doc(usersCollection);
+            promises.push(setDoc(userDoc, user));
+        });
+
+        // @ts-ignore
+        await Promise.all(promises); // Wait for all uploads to complete
+        console.log('Users uploaded successfully!');
+    } catch (error) {
+        console.error('Error uploading users:', error);
+    }
+}
+
+const AboutPage = memo(() => {
+    const { t } = useTranslation('about');
+    // uploadUsers(users);
+    // uploadRatings(ratings);
+    return <Page data-testid="AboutPage">{t('Про сайт')}</Page>;
+});
+
+export default AboutPage;

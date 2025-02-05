@@ -33,36 +33,6 @@ interface UsersFullInfoTableProps {
 export const UsersFullInfoTable = memo(
     ({ onDeleteUser }: UsersFullInfoTableProps) => {
         const { t } = useTranslation('admin');
-        // const dispatch = useAppDispatch();
-        //
-        // const handleDeleteUser = useCallback(
-        //     async (userId: string) => {
-        //         try {
-        //             const deletedUserId = await dispatch(
-        //                 deleteUserByAdminThunk(userId),
-        //             ).unwrap();
-        //             await searchClient.clearCache();
-        //             return deletedUserId;
-        //         } catch (error) {
-        //             console.error('Error deleting user:', error);
-        //             return null;
-        //         }
-        //     },
-        //     [dispatch],
-        // );
-
-        // const updateData = useCallback(
-        //     (rowIndex: number, columnId: string, value: any) => {
-        //         console.log('update data');
-        //         setData((prevData) =>
-        //             prevData.map((row, index) =>
-        //                 index === rowIndex ? { ...row, [columnId]: value } : row,
-        //             ),
-        //         );
-        //         console.log('data after update: ', data);
-        //     },
-        //     [data],
-        // );
 
         const {
             handleDeleteClick,
@@ -154,3 +124,16 @@ export const UsersFullInfoTable = memo(
         );
     },
 );
+
+// const updateData = useCallback(
+//     (rowIndex: number, columnId: string, value: any) => {
+//         console.log('update data');
+//         setData((prevData) =>
+//             prevData.map((row, index) =>
+//                 index === rowIndex ? { ...row, [columnId]: value } : row,
+//             ),
+//         );
+//         console.log('data after update: ', data);
+//     },
+//     [data],
+// );

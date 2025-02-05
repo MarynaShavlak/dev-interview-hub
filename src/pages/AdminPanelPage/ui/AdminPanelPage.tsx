@@ -10,8 +10,8 @@ import {
 } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { articleReducer } from '@/entities/Article';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { deleteUserByAdminThunk } from '@/entities/User';
 import { searchClient } from '@/shared/config/firebase/searchClient';
+import { deleteUserThunk } from '@/entities/User';
 
 const reducers: ReducersList = {
     articles: articleReducer,
@@ -24,7 +24,7 @@ const AdminPanelPage = () => {
         async (userId: string) => {
             try {
                 const deletedUserId = await dispatch(
-                    deleteUserByAdminThunk(userId),
+                    deleteUserThunk(userId),
                 ).unwrap();
                 await searchClient.clearCache();
                 return deletedUserId;

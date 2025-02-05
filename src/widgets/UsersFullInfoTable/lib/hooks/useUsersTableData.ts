@@ -1,13 +1,12 @@
 import { useGetUserStats } from './useGetUserStats/useGetUserStats';
 import { getEnabledUserFeatures } from '../helpers/getData/processUserFeatures/processUserFeatures';
 import { getRoleData } from '../helpers/getData/getRolesData/getRoleData';
-import { UsersTableInfo } from '../../model/types/usersTableInfo';
 
 export const useUsersTableData = () => {
     const { isLoading, users, isError, stats } = useGetUserStats();
     if (!users || !stats) return { users: [], isLoading, isError };
 
-    const combinedUsersData: UsersTableInfo[] = users.map(
+    const combinedUsersData = users.map(
         ({
             id,
             roles,
@@ -32,7 +31,7 @@ export const useUsersTableData = () => {
         },
     );
 
-    if (!combinedUsersData) return { users: [], isLoading, isError };
+    // if (!combinedUsersData) return { users: [], isLoading, isError };
 
     return { users: combinedUsersData, isLoading, isError };
 };
