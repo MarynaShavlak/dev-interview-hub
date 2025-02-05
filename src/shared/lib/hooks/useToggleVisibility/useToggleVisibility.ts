@@ -40,7 +40,16 @@
 
 import { useState, useCallback } from 'react';
 
-export const useToggleVisibility = (isVisibleEl = false) => {
+export interface UseToggleVisibilityReturnType {
+    isVisible: boolean;
+    toggleVisibility: () => void;
+    show: () => void;
+    hide: () => void;
+}
+
+export const useToggleVisibility = (
+    isVisibleEl = false,
+): UseToggleVisibilityReturnType => {
     const [isVisible, setIsVisible] = useState<boolean>(isVisibleEl);
 
     const toggleVisibility = useCallback(() => {

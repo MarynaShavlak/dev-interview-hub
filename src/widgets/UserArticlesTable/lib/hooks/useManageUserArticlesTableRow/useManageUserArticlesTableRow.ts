@@ -1,12 +1,31 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useArticleNavigation } from '@/entities/Article';
 import { UserArticlesTableInfo } from '../../../model/types/userArticlesTableInfo';
-import { useToggleVisibility } from '@/shared/lib/hooks/useToggleVisibility/useToggleVisibility';
+import {
+    useToggleVisibility,
+    UseToggleVisibilityReturnType,
+} from '@/shared/lib/hooks/useToggleVisibility/useToggleVisibility';
 import { useArticlesByUserData } from '../useArticlesByUserData/useArticlesByUserData';
+
+interface SelectedArticle {
+    id: string;
+    title: string;
+}
+
+interface UseManageUserArticlesTableRowReturnType {
+    handleDeleteClick: (userId: string) => void;
+    handleEditClick: (userId: string) => void;
+    confirmDelete: () => Promise<void>;
+    selectedArticle: SelectedArticle | null;
+    isLoading: boolean;
+    data: UserArticlesTableInfo[];
+    deleteArticleModal: UseToggleVisibilityReturnType;
+    articleTitle: string;
+}
 
 export const useManageUserArticlesTableRow = (
     onDeleteArticle: (articleId: string) => Promise<string | null>,
-) => {
+): UseManageUserArticlesTableRowReturnType => {
     const { articles, isLoading } = useArticlesByUserData();
 
     const [data, setData] = useState<UserArticlesTableInfo[]>([]);
@@ -19,10 +38,8 @@ export const useManageUserArticlesTableRow = (
 
     const { navigateToArticle } = useArticleNavigation();
     const deleteArticleModal = useToggleVisibility();
-    const [selectedArticle, setSelectedArticle] = useState<{
-        id: string;
-        title: string;
-    } | null>(null);
+    const [selectedArticle, setSelectedArticle] =
+        useState<SelectedArticle | null>(null);
 
     const deleteTableRow = useCallback(
         async (articleId: string) => {

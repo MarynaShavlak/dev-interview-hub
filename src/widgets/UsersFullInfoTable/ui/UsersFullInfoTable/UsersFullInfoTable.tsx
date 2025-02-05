@@ -5,7 +5,7 @@ import {
     getSortedRowModel,
     useReactTable,
 } from '@tanstack/react-table';
-import React, { useEffect, useState } from 'react';
+import React, { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Box } from '@/shared/ui/common/Box';
 
@@ -17,29 +17,50 @@ import {
     TableRow,
 } from '@/features/Table';
 
-import { useUsersTableData } from '../../lib/hooks/useUsersTableData';
 import { UsersTableInfo } from '../../model/types/usersTableInfo';
 import { VStack } from '@/shared/ui/common/Stack';
 import { useUsersFullInfoTableData } from '../../lib/hooks/useUsersFullInfoTableData/useUsersFullInfoTableData';
 import { Each } from '@/shared/lib/components/Each/Each';
 
-export const UsersFullInfoTable = () => {
+import { useManageUsersFullInfoTableRow } from '../../lib/hooks/useManageUsersFullInfoTableRow/useManageUsersFullInfoTableRow';
+import { ConfirmDeleteModal } from '@/features/ConfirmDeleteModal';
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { deleteArticleWithRelationsThunk } from '@/widgets/ArticleManagement';
+import { searchClient } from '@/shared/config/firebase/searchClient';
+
+export const UsersFullInfoTable = memo(() => {
     const { t } = useTranslation('admin');
-    const { users, isLoading } = useUsersTableData();
-    const [data, setData] = useState<UsersTableInfo[]>([]);
-
-    const handleDeleteClick = (index: string) => {
-        console.log('index', index);
-    };
-    const handleEditClick = (index: string) => {
-        console.log('index', index);
-    };
-
-    useEffect(() => {
-        if (!isLoading && users.length !== data.length) {
-            setData(users); // Update data only if users has changed
-        }
-    }, [users, isLoading, data.length]);
+    const dispatch = useAppDispatch();
+    const handleDeleteUser = useCallback(
+        async (articleId: string) => {
+            try {
+                const deletedArticleId = await dispatch(
+                    deleteArticleWithRelationsThunk(articleId),
+                ).unwrap();
+                await searchClient.clearCache();
+                return deletedArticleId;
+            } catch (error) {
+                console.error('Error deleting article:', error);
+                return null;
+            }
+        },
+        [dispatch],
+    );
+    // const { users, isLoading } = useUsersTableData();
+    // const [data, setData] = useState<UsersTableInfo[]>([]);
+    //
+    // const handleDeleteClick = (index: string) => {
+    //     console.log('index', index);
+    // };
+    // const handleEditClick = (index: string) => {
+    //     console.log('index', index);
+    // };
+    //
+    // useEffect(() => {
+    //     if (!isLoading && users.length !== data.length) {
+    //         setData(users); // Update data only if users has changed
+    //     }
+    // }, [users, isLoading, data.length]);
 
     // const updateData = useCallback(
     //     (rowIndex: number, columnId: string, value: any) => {
@@ -53,6 +74,16 @@ export const UsersFullInfoTable = () => {
     //     },
     //     [data],
     // );
+
+    const {
+        handleDeleteClick,
+        handleEditClick,
+        confirmDelete,
+        selectedUser,
+        isLoading,
+        data,
+        deleteUserModal,
+    } = useManageUsersFullInfoTableRow(handleDeleteUser);
 
     const {
         columns,
@@ -113,6 +144,14 @@ export const UsersFullInfoTable = () => {
                 </Box>
                 <TablePagination table={table} />
             </VStack>
+            {deleteUserModal.isVisible && (
+                <ConfirmDeleteModal
+                    isOpen={deleteUserModal.isVisible}
+                    onCancel={deleteUserModal.hide}
+                    text={`${t('користувача')} ${selectedUser?.username}`}
+                    onConfirm={confirmDelete}
+                />
+            )}
         </VStack>
     );
-};
+});

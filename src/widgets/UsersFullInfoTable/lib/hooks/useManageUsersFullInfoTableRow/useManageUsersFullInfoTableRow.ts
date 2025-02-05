@@ -1,12 +1,30 @@
 import { useCallback, useEffect, useState } from 'react';
-import { useToggleVisibility } from '@/shared/lib/hooks/useToggleVisibility/useToggleVisibility';
+import {
+    useToggleVisibility,
+    UseToggleVisibilityReturnType,
+} from '@/shared/lib/hooks/useToggleVisibility/useToggleVisibility';
 import { useUsersTableData } from '../useUsersTableData';
 import { UsersTableInfo } from '../../../model/types/usersTableInfo';
 import { useUserProfileNavigation } from '@/entities/User';
 
+interface SelectedUser {
+    id: string;
+    username: string;
+}
+
+interface UseManageUsersFullInfoTableRowReturnType {
+    handleDeleteClick: (userId: string) => void;
+    handleEditClick: (userId: string) => void;
+    confirmDelete: () => Promise<void>;
+    selectedUser: SelectedUser | null;
+    isLoading: boolean;
+    data: UsersTableInfo[];
+    deleteUserModal: UseToggleVisibilityReturnType;
+}
+
 export const useManageUsersFullInfoTableRow = (
     onDeleteUser: (userId: string) => Promise<string | null>,
-) => {
+): UseManageUsersFullInfoTableRowReturnType => {
     const { users, isLoading } = useUsersTableData();
     const [data, setData] = useState<UsersTableInfo[]>([]);
 
@@ -16,65 +34,55 @@ export const useManageUsersFullInfoTableRow = (
         }
     }, [users, isLoading, data.length, setData]);
 
-    //
-    // useEffect(() => {
-    //     if (!isLoading && articles.length !== data.length) {
-    //         setData(articles);
-    //     }
-    // }, [articles, isLoading, data.length, setData]);
-
     const { navigateToUserProfile } = useUserProfileNavigation();
-    const deleteArticleModal = useToggleVisibility();
-    const [selectedArticle, setSelectedArticle] = useState<{
-        id: string;
-        title: string;
-    } | null>(null);
+    const deleteUserModal = useToggleVisibility();
+    const [selectedUser, setSelectedUser] = useState<SelectedUser | null>(null);
 
-    // const deleteTableRow = useCallback(
-    //     async (articleId: string) => {
-    //         if (!articleId) {
-    //             console.error('Article ID is required to delete the article.');
-    //             return null;
-    //         }
-    //
-    //         try {
-    //             const deletedArticleId = await onDeleteArticle(articleId);
-    //             setData((prevData) =>
-    //                 prevData.filter((row) => row.id !== articleId),
-    //             );
-    //
-    //             return deletedArticleId;
-    //         } catch (error: any) {
-    //             console.error('Error deleting article:', error);
-    //
-    //             return null;
-    //         }
-    //     },
-    //     [onDeleteArticle],
-    // );
-    //
-    // const confirmDelete = useCallback(async () => {
-    //     if (selectedArticle) {
-    //         await deleteTableRow(selectedArticle.id);
-    //         deleteArticleModal.hide();
-    //         setSelectedArticle(null);
-    //     }
-    // }, [selectedArticle, deleteTableRow, deleteArticleModal]);
-    //
-    // const handleDeleteClick = useCallback(
-    //     (articleId: string) => {
-    //         const article = data.find((item) => item.id === articleId);
-    //         if (article) {
-    //             setSelectedArticle({
-    //                 id: articleId,
-    //                 title: article?.title || '',
-    //             });
-    //         }
-    //
-    //         deleteArticleModal.show();
-    //     },
-    //     [data, deleteArticleModal],
-    // );
+    const deleteTableRow = useCallback(
+        async (userId: string) => {
+            if (!userId) {
+                console.error('User ID is required to delete the user.');
+                return null;
+            }
+
+            try {
+                const deletedUserId = await onDeleteUser(userId);
+                setData((prevData) =>
+                    prevData.filter((row) => row.id !== userId),
+                );
+
+                return deletedUserId;
+            } catch (error: any) {
+                console.error('Error deleting user:', error);
+
+                return null;
+            }
+        },
+        [onDeleteUser],
+    );
+
+    const confirmDelete = useCallback(async () => {
+        if (selectedUser) {
+            await deleteTableRow(selectedUser.id);
+            deleteUserModal.hide();
+            setSelectedUser(null);
+        }
+    }, [selectedUser, deleteTableRow, deleteUserModal]);
+
+    const handleDeleteClick = useCallback(
+        (userId: string) => {
+            const user = data.find((item) => item.id === userId);
+            if (user) {
+                setSelectedUser({
+                    id: userId,
+                    username: user?.username || '',
+                });
+            }
+
+            deleteUserModal.show();
+        },
+        [data, deleteUserModal],
+    );
 
     const handleEditClick = useCallback(
         (userId: string) => {
@@ -85,18 +93,13 @@ export const useManageUsersFullInfoTableRow = (
         [navigateToUserProfile],
     );
 
-    const articleTitle = selectedArticle?.title
-        ? `"${selectedArticle.title}"`
-        : '';
-
     return {
-        // handleDeleteClick,
+        handleDeleteClick,
         handleEditClick,
-        // confirmDelete,
-        // selectedArticle,
-        // isLoading,
-        // data,
-        // deleteArticleModal,
-        // articleTitle,
+        confirmDelete,
+        selectedUser,
+        isLoading,
+        data,
+        deleteUserModal,
     };
 };
