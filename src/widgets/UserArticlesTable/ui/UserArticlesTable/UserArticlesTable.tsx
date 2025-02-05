@@ -9,7 +9,7 @@ import {
 import { useTranslation } from 'react-i18next';
 import { Box } from '@/shared/ui/common/Box';
 import cls from './UserArticlesTable.module.scss';
-import { TablePagination, TableHeader, TableBody } from '@/features/Table';
+import { TablePagination, TableHeader, TableRow } from '@/features/Table';
 import { VStack } from '@/shared/ui/common/Stack';
 import { UserArticlesTableInfo } from '../../model/types/userArticlesTableInfo';
 import { useUserArticlesTableData } from '../../lib/hooks/useUserArticlesTableData/useUserArticlesTableData';
@@ -20,6 +20,7 @@ import { TableActionBar } from '../TableActionBar/TableActionBar';
 
 import { useManageTableRow } from '../../lib/hooks/useManageTableRow/useManageTableRow';
 import { DEFAULT_PAGE_SIZE } from '../../model/consts/pagination';
+import { Each } from '@/shared/lib/components/Each/Each';
 
 interface UserArticlesTableProps {
     onDeleteArticle: (articleId: string) => Promise<string | null>;
@@ -90,7 +91,7 @@ export const UserArticlesTable = memo(
                 />
 
                 <VStack gap="16" className={cls.tableWrap} data-testid="table">
-                    <Box className={cls.table} width={table.getTotalSize()}>
+                    <Box className={cls.table}>
                         <TableHeader
                             headerGroups={table.getHeaderGroups()}
                             setColumnFilters={setColumnFilters}
@@ -98,7 +99,12 @@ export const UserArticlesTable = memo(
                             columnFilters={columnFilters}
                             withResizer={false}
                         />
-                        <TableBody rows={table.getRowModel().rows} />
+                        <Each
+                            of={table.getRowModel().rows}
+                            render={(row) => (
+                                <TableRow key={row.id} row={row} />
+                            )}
+                        />
                     </Box>
                     <TablePagination table={table} />
                 </VStack>

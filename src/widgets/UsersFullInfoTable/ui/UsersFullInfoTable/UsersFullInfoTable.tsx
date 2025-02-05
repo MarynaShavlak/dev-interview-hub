@@ -12,15 +12,16 @@ import { Box } from '@/shared/ui/common/Box';
 import cls from './UsersFullInfoTable.module.scss';
 import {
     SearchInput,
-    TableBody,
     TableHeader,
     TablePagination,
+    TableRow,
 } from '@/features/Table';
 
 import { useUsersTableData } from '../../lib/hooks/useUsersTableData';
 import { UsersTableInfo } from '../../model/types/usersTableInfo';
 import { VStack } from '@/shared/ui/common/Stack';
 import { useUsersFullInfoTableData } from '../../lib/hooks/useUsersFullInfoTableData/useUsersFullInfoTableData';
+import { Each } from '@/shared/lib/components/Each/Each';
 
 export const UsersFullInfoTable = () => {
     const { t } = useTranslation('admin');
@@ -110,7 +111,10 @@ export const UsersFullInfoTable = () => {
                         withResizer
                     />
 
-                    <TableBody rows={table.getRowModel().rows} />
+                    <Each
+                        of={table.getRowModel().rows}
+                        render={(row) => <TableRow key={row.id} row={row} />}
+                    />
                 </Box>
                 <TablePagination table={table} />
             </VStack>
