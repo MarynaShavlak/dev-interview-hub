@@ -9,8 +9,8 @@ export const FIXED_COLUMNS_WIDTH = {
     // country: 90,
     articlesQuantity: 100,
     features: 120,
-    role: 110,
+    role: 100,
     action: 50,
 };
 
-export const MINIMUM_EMAIL_WIDTH = 90;
+export const MINIMUM_EMAIL_WIDTH = 100;

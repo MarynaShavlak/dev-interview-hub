@@ -1,4 +1,5 @@
 import { getDoc, onSnapshot, query, updateDoc } from 'firebase/firestore';
+
 import { firestoreApi } from '@/shared/api/rtkApi';
 import { User } from '../model/types/user';
 import { getUserDocRefById } from '../lib/utilities/getUserDocRefById/getUserDocRefById';
@@ -102,6 +103,28 @@ export const userFirebaseApi = firestoreApi
                 invalidatesTags: ['Users'],
                 async queryFn(userId) {
                     try {
+                        const userDocRef = await getDocRefByField<User>(
+                            'users',
+                            'id',
+                            userId,
+                        );
+                        if (!userDocRef) {
+                            return {
+                                error: {
+                                    message: 'User not found in Firestore.',
+                                },
+                            };
+                        }
+
+                        // Fetch user data to check authentication method
+                        const userData =
+                            await fetchDocumentByRef<User>(userDocRef);
+                        if (!userData) {
+                            return {
+                                error: { message: 'User data not found.' },
+                            };
+                        }
+
                         await deleteDocFromFirestore('users', userId);
                         return { data: userId };
                     } catch (error) {
