@@ -1,5 +1,6 @@
 import { CellContext, Row } from '@tanstack/react-table';
 import { capitalizeFirstLetter } from '@/shared/lib/text/capitalizeFirstLetter/capitalizeFirstLetter';
+import { truncateText } from '@/shared/lib/text/truncateText/truncateText';
 
 type StaticTextColumnConfig<T> = {
     id: string;
@@ -8,7 +9,7 @@ type StaticTextColumnConfig<T> = {
     filterable?: boolean;
 };
 
-export const createStaticTextColumn = <T>() => {
+export const createStaticTextColumn = <T>(maxLength?: number) => {
     return ({
         id,
         size,
@@ -18,7 +19,9 @@ export const createStaticTextColumn = <T>() => {
         id,
         header: capitalizeFirstLetter(id),
         cell: (props: CellContext<T, string | number | undefined>) =>
-            `${props.getValue()}`,
+            maxLength
+                ? `${truncateText(String(props.getValue()), maxLength)}`
+                : `${props.getValue()}`,
         size,
         enableColumnFilter: filterable,
         enableSorting: sortable,

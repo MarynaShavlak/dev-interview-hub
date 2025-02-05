@@ -16,6 +16,7 @@ import {
 
 import {
     FIXED_COLUMNS_WIDTH,
+    MAX_COLUMN_CHARACTERS,
     MINIMUM_EMAIL_WIDTH,
 } from '../../../model/consts/fixedColumnsWidth';
 
@@ -30,6 +31,9 @@ export const useUsersFullInfoTableColumns = (
     const { t } = useTranslation('profile');
 
     const createUserTextCol = createStaticTextColumn<UsersTableInfo>();
+    const createUserTrimmedTextCol = createStaticTextColumn<UsersTableInfo>(
+        MAX_COLUMN_CHARACTERS,
+    );
     const createUserEditableCol = createEditableColumn<UsersTableInfo>();
     const createUserOptionCol = createOptionColumn<UsersTableInfo>();
     const createUserAvatarCol = createImageColumn<UsersTableInfo>();
@@ -72,44 +76,18 @@ export const useUsersFullInfoTableColumns = (
             ),
             columnHelper.accessor(
                 'firstname',
-                createUserEditableCol({
+                createUserTextCol({
                     id: t("Ім'я"),
                     size: FIXED_COLUMNS_WIDTH.firstname,
                 }),
             ),
             columnHelper.accessor(
                 'lastname',
-                createUserEditableCol({
+                createUserTextCol({
                     id: t('Прізвище'),
                     size: FIXED_COLUMNS_WIDTH.lastname,
                 }),
             ),
-            //
-            // columnHelper.accessor(
-            //     'age',
-            //     createUserTextCol({
-            //         id: t('Вік'),
-            //         size: FIXED_COLUMNS_WIDTH.age,
-            //         sortable: true,
-            //     }),
-            // ),
-            // columnHelper.accessor(
-            //     'city',
-            //     createUserEditableCol({
-            //         id: t('Місто'),
-            //         size: FIXED_COLUMNS_WIDTH.city,
-            //         sortable: false,
-            //     }),
-            // ),
-            // columnHelper.accessor(
-            //     'country',
-            //     createUserOptionCol({
-            //         id: t('Країна'),
-            //         size: FIXED_COLUMNS_WIDTH.country,
-            //         options: translatedOptions,
-            //         sortable: false,
-            //     }),
-            // ),
 
             columnHelper.accessor(
                 'articlesQuantity',
