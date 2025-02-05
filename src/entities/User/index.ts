@@ -25,3 +25,4 @@ export { UserRole } from './model/consts/consts';
 export { logoutUser } from './model/services/logoutUser/logoutUser';
 export { handleUserAuthentication } from './lib/userUtils/userUtils';
 export { useUsers } from './api/userApi';
+export { deleteUserByAdminThunk } from './model/services/deleteUserByAdminThunk/deleteUserByAdminThunk';

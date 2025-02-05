@@ -5,7 +5,7 @@ import {
     getSortedRowModel,
     useReactTable,
 } from '@tanstack/react-table';
-import React, { memo, useCallback } from 'react';
+import React, { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Box } from '@/shared/ui/common/Box';
 
@@ -24,134 +24,133 @@ import { Each } from '@/shared/lib/components/Each/Each';
 
 import { useManageUsersFullInfoTableRow } from '../../lib/hooks/useManageUsersFullInfoTableRow/useManageUsersFullInfoTableRow';
 import { ConfirmDeleteModal } from '@/features/ConfirmDeleteModal';
-import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { deleteArticleWithRelationsThunk } from '@/widgets/ArticleManagement';
-import { searchClient } from '@/shared/config/firebase/searchClient';
+import { LoadingTableSkeleton } from '../LoadingTableSkeleton/LoadingTableSkeleton';
 
-export const UsersFullInfoTable = memo(() => {
-    const { t } = useTranslation('admin');
-    const dispatch = useAppDispatch();
-    const handleDeleteUser = useCallback(
-        async (articleId: string) => {
-            try {
-                const deletedArticleId = await dispatch(
-                    deleteArticleWithRelationsThunk(articleId),
-                ).unwrap();
-                await searchClient.clearCache();
-                return deletedArticleId;
-            } catch (error) {
-                console.error('Error deleting article:', error);
-                return null;
-            }
-        },
-        [dispatch],
-    );
-    // const { users, isLoading } = useUsersTableData();
-    // const [data, setData] = useState<UsersTableInfo[]>([]);
-    //
-    // const handleDeleteClick = (index: string) => {
-    //     console.log('index', index);
-    // };
-    // const handleEditClick = (index: string) => {
-    //     console.log('index', index);
-    // };
-    //
-    // useEffect(() => {
-    //     if (!isLoading && users.length !== data.length) {
-    //         setData(users); // Update data only if users has changed
-    //     }
-    // }, [users, isLoading, data.length]);
+interface UsersFullInfoTableProps {
+    onDeleteUser: (userId: string) => Promise<string | null>;
+}
 
-    // const updateData = useCallback(
-    //     (rowIndex: number, columnId: string, value: any) => {
-    //         console.log('update data');
-    //         setData((prevData) =>
-    //             prevData.map((row, index) =>
-    //                 index === rowIndex ? { ...row, [columnId]: value } : row,
-    //             ),
-    //         );
-    //         console.log('data after update: ', data);
-    //     },
-    //     [data],
-    // );
+export const UsersFullInfoTable = memo(
+    ({ onDeleteUser }: UsersFullInfoTableProps) => {
+        const { t } = useTranslation('admin');
+        // const dispatch = useAppDispatch();
+        //
+        // const handleDeleteUser = useCallback(
+        //     async (userId: string) => {
+        //         try {
+        //             const deletedUserId = await dispatch(
+        //                 deleteUserByAdminThunk(userId),
+        //             ).unwrap();
+        //             await searchClient.clearCache();
+        //             return deletedUserId;
+        //         } catch (error) {
+        //             console.error('Error deleting user:', error);
+        //             return null;
+        //         }
+        //     },
+        //     [dispatch],
+        // );
 
-    const {
-        handleDeleteClick,
-        handleEditClick,
-        confirmDelete,
-        selectedUser,
-        isLoading,
-        data,
-        deleteUserModal,
-    } = useManageUsersFullInfoTableRow(handleDeleteUser);
+        // const updateData = useCallback(
+        //     (rowIndex: number, columnId: string, value: any) => {
+        //         console.log('update data');
+        //         setData((prevData) =>
+        //             prevData.map((row, index) =>
+        //                 index === rowIndex ? { ...row, [columnId]: value } : row,
+        //             ),
+        //         );
+        //         console.log('data after update: ', data);
+        //     },
+        //     [data],
+        // );
 
-    const {
-        columns,
-        headerOptionsMapping,
-        globalFilter,
-        setGlobalFilter,
-        columnFilters,
-        setColumnFilters,
-    } = useUsersFullInfoTableData({
-        data,
-        deleteRow: handleDeleteClick,
-        editRow: handleEditClick,
-    });
+        const {
+            handleDeleteClick,
+            handleEditClick,
+            confirmDelete,
+            selectedUser,
+            isLoading,
+            data,
+            deleteUserModal,
+        } = useManageUsersFullInfoTableRow(onDeleteUser);
 
-    const table = useReactTable<UsersTableInfo>({
-        data,
-        columns,
-        state: {
-            columnFilters,
+        const {
+            columns,
+            headerOptionsMapping,
             globalFilter,
-        },
+            setGlobalFilter,
+            columnFilters,
+            setColumnFilters,
+        } = useUsersFullInfoTableData({
+            data,
+            deleteRow: handleDeleteClick,
+            editRow: handleEditClick,
+        });
 
-        getCoreRowModel: getCoreRowModel(),
-        getFilteredRowModel: getFilteredRowModel(),
-        getSortedRowModel: getSortedRowModel(),
-        getPaginationRowModel: getPaginationRowModel(),
-        globalFilterFn: 'includesString',
-        columnResizeMode: 'onChange',
-        // meta: { updateData },
-    });
-    // const headerGroups =
-    //     table.getHeaderGroups() as HeaderGroup<UsersTableInfo>[];
+        const table = useReactTable<UsersTableInfo>({
+            data,
+            columns,
+            state: {
+                columnFilters,
+                globalFilter,
+            },
 
-    return (
-        <VStack gap="16">
-            <SearchInput
-                globalFilter={globalFilter}
-                setGlobalFilter={setGlobalFilter}
-            />
+            getCoreRowModel: getCoreRowModel(),
+            getFilteredRowModel: getFilteredRowModel(),
+            getSortedRowModel: getSortedRowModel(),
+            getPaginationRowModel: getPaginationRowModel(),
+            globalFilterFn: 'includesString',
+            columnResizeMode: 'onChange',
+            // meta: { updateData },
+        });
+        // const headerGroups =
+        //     table.getHeaderGroups() as HeaderGroup<UsersTableInfo>[];
 
-            <VStack gap="16" className={cls.tableWrap}>
-                <Box
-                    className={cls.table}
-                    // width={`${table.getTotalSize() + 5}px`}
-                >
-                    <TableHeader
-                        headerGroups={table.getHeaderGroups()}
-                        setColumnFilters={setColumnFilters}
-                        headerOptionsMapping={headerOptionsMapping}
-                        columnFilters={columnFilters}
-                        withResizer
-                    />
+        if (isLoading) {
+            return <LoadingTableSkeleton />;
+        }
+        if (data.length === 0) {
+            return null;
+        }
 
-                    <Each
-                        of={table.getRowModel().rows}
-                        render={(row) => <TableRow key={row.id} row={row} />}
-                    />
-                </Box>
-                <TablePagination table={table} />
-            </VStack>
-            {deleteUserModal.isVisible && (
-                <ConfirmDeleteModal
-                    isOpen={deleteUserModal.isVisible}
-                    onCancel={deleteUserModal.hide}
-                    text={`${t('користувача')} ${selectedUser?.username}`}
-                    onConfirm={confirmDelete}
+        return (
+            <VStack gap="16">
+                <SearchInput
+                    globalFilter={globalFilter}
+                    setGlobalFilter={setGlobalFilter}
                 />
-            )}
-        </VStack>
-    );
-});
+
+                <VStack gap="16" className={cls.tableWrap}>
+                    <Box
+                        className={cls.table}
+                        // width={`${table.getTotalSize() + 5}px`}
+                    >
+                        <TableHeader
+                            headerGroups={table.getHeaderGroups()}
+                            setColumnFilters={setColumnFilters}
+                            headerOptionsMapping={headerOptionsMapping}
+                            columnFilters={columnFilters}
+                            withResizer
+                        />
+
+                        <Each
+                            of={table.getRowModel().rows}
+                            render={(row) => (
+                                <TableRow key={row.id} row={row} />
+                            )}
+                        />
+                    </Box>
+                    <TablePagination table={table} />
+                </VStack>
+                {deleteUserModal.isVisible && (
+                    <ConfirmDeleteModal
+                        isOpen={deleteUserModal.isVisible}
+                        onCancel={deleteUserModal.hide}
+                        text={`${t('користувача')} ${selectedUser?.username}`}
+                        onConfirm={confirmDelete}
+                    />
+                )}
+            </VStack>
+        );
+    },
+);

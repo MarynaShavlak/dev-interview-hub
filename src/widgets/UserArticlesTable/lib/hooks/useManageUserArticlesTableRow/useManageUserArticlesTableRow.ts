@@ -29,7 +29,8 @@ export const useManageUserArticlesTableRow = (
     const { articles, isLoading } = useArticlesByUserData();
 
     const [data, setData] = useState<UserArticlesTableInfo[]>([]);
-
+    console.log('_articles', articles);
+    console.log('_data', data);
     useEffect(() => {
         if (!isLoading && articles.length !== data.length) {
             setData(articles);

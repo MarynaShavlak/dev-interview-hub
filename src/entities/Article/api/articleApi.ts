@@ -29,7 +29,6 @@ export const articleFirebaseApi = firestoreApi
                             ...doc.data(),
                             id: doc.id,
                         })) as Article[];
-                        console.log('articles', articles);
 
                         return {
                             data: articlesAdapter.setAll(

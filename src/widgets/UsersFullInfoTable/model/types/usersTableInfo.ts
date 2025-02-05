@@ -6,10 +6,7 @@ export interface UserPartial {
     email: string;
     role: ColorOption | null;
     features: string;
-    age: string;
-    city: string;
-    currency: string;
-    country: string;
+
     avatar: string;
     lastname: string;
     firstname: string;
@@ -17,8 +14,4 @@ export interface UserPartial {
 
 export interface UsersTableInfo extends UserPartial {
     articlesQuantity: number;
-}
-
-export interface ArticlesByUserData {
-    [userId: string]: number;
 }

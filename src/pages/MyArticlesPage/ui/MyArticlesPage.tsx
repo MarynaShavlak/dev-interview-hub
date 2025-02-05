@@ -7,12 +7,7 @@ import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch
 
 const MyArticlesPage = memo(() => {
     const dispatch = useAppDispatch();
-    //
-    // const currentUserdata = useUserAuthData();
-    //
-    // const authedUserId = currentUserdata?.id || '';
 
-    // const { data: articles } = useArticlesByUserId(authedUserId);
     const handleDeleteArticle = useCallback(
         async (articleId: string) => {
             try {

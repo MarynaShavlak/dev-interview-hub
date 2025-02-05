@@ -20,6 +20,6 @@ export const deleteArticleThunk = createAsyncThunk<
 
         return deletedArticleId;
     } catch (error) {
-        return rejectWithValue('Failed to delete article with');
+        return rejectWithValue(`Failed to delete article with id ${articleId}`);
     }
 });

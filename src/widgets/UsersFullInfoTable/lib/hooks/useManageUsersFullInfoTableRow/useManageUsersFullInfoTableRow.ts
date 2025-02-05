@@ -27,12 +27,15 @@ export const useManageUsersFullInfoTableRow = (
 ): UseManageUsersFullInfoTableRowReturnType => {
     const { users, isLoading } = useUsersTableData();
     const [data, setData] = useState<UsersTableInfo[]>([]);
+    console.log('_users', users);
+    console.log('_data', data);
 
     useEffect(() => {
         if (!isLoading && users.length !== data.length) {
+            // if (!isLoading && users) {
             setData(users);
         }
-    }, [users, isLoading, data.length, setData]);
+    }, [users, isLoading, setData, data.length]);
 
     const { navigateToUserProfile } = useUserProfileNavigation();
     const deleteUserModal = useToggleVisibility();
