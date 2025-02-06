@@ -23,107 +23,95 @@ import { useUsersFullInfoTableData } from '../../lib/hooks/useUsersFullInfoTable
 import { Each } from '@/shared/lib/components/Each/Each';
 
 import { useManageUsersFullInfoTableRow } from '../../lib/hooks/useManageUsersFullInfoTableRow/useManageUsersFullInfoTableRow';
-import { ConfirmDeleteModal } from '@/features/ConfirmDeleteModal';
 import { LoadingTableSkeleton } from '../LoadingTableSkeleton/LoadingTableSkeleton';
 
-interface UsersFullInfoTableProps {
-    onDeleteUser: (userId: string) => Promise<string | null>;
-}
+export const UsersFullInfoTable = memo(() => {
+    const { t } = useTranslation('admin');
 
-export const UsersFullInfoTable = memo(
-    ({ onDeleteUser }: UsersFullInfoTableProps) => {
-        const { t } = useTranslation('admin');
+    const {
+        handleEditClick,
 
-        const {
-            handleDeleteClick,
-            handleEditClick,
-            confirmDelete,
-            selectedUser,
-            isLoading,
-            data,
-            deleteUserModal,
-        } = useManageUsersFullInfoTableRow(onDeleteUser);
+        isLoading,
+        data,
+    } = useManageUsersFullInfoTableRow();
 
-        const {
-            columns,
-            headerOptionsMapping,
-            globalFilter,
-            setGlobalFilter,
+    const {
+        columns,
+        headerOptionsMapping,
+        globalFilter,
+        setGlobalFilter,
+        columnFilters,
+        setColumnFilters,
+    } = useUsersFullInfoTableData({
+        data,
+
+        editRow: handleEditClick,
+    });
+
+    const table = useReactTable<UsersTableInfo>({
+        data,
+        columns,
+        state: {
             columnFilters,
-            setColumnFilters,
-        } = useUsersFullInfoTableData({
-            data,
-            deleteRow: handleDeleteClick,
-            editRow: handleEditClick,
-        });
+            globalFilter,
+        },
 
-        const table = useReactTable<UsersTableInfo>({
-            data,
-            columns,
-            state: {
-                columnFilters,
-                globalFilter,
-            },
+        getCoreRowModel: getCoreRowModel(),
+        getFilteredRowModel: getFilteredRowModel(),
+        getSortedRowModel: getSortedRowModel(),
+        getPaginationRowModel: getPaginationRowModel(),
+        globalFilterFn: 'includesString',
+        columnResizeMode: 'onChange',
+        // meta: { updateData },
+    });
+    // const headerGroups =
+    //     table.getHeaderGroups() as HeaderGroup<UsersTableInfo>[];
 
-            getCoreRowModel: getCoreRowModel(),
-            getFilteredRowModel: getFilteredRowModel(),
-            getSortedRowModel: getSortedRowModel(),
-            getPaginationRowModel: getPaginationRowModel(),
-            globalFilterFn: 'includesString',
-            columnResizeMode: 'onChange',
-            // meta: { updateData },
-        });
-        // const headerGroups =
-        //     table.getHeaderGroups() as HeaderGroup<UsersTableInfo>[];
+    if (isLoading) {
+        return <LoadingTableSkeleton />;
+    }
+    if (data.length === 0) {
+        return null;
+    }
 
-        if (isLoading) {
-            return <LoadingTableSkeleton />;
-        }
-        if (data.length === 0) {
-            return null;
-        }
+    return (
+        <VStack gap="16">
+            <SearchInput
+                globalFilter={globalFilter}
+                setGlobalFilter={setGlobalFilter}
+            />
 
-        return (
-            <VStack gap="16">
-                <SearchInput
-                    globalFilter={globalFilter}
-                    setGlobalFilter={setGlobalFilter}
-                />
-
-                <VStack gap="16" className={cls.tableWrap}>
-                    <Box
-                        className={cls.table}
-                        // width={`${table.getTotalSize() + 5}px`}
-                    >
-                        <TableHeader<UsersTableInfo>
-                            headerGroups={table.getHeaderGroups()}
-                            setColumnFilters={setColumnFilters}
-                            headerOptionsMapping={headerOptionsMapping}
-                            columnFilters={columnFilters}
-                            withResizer
-                        />
-
-                        <Each
-                            of={table.getRowModel().rows}
-                            render={(row) => (
-                                <TableRow key={row.id} row={row} />
-                            )}
-                        />
-                    </Box>
-                    <TablePagination table={table} />
-                </VStack>
-                {deleteUserModal.isVisible && (
-                    <ConfirmDeleteModal
-                        isOpen={deleteUserModal.isVisible}
-                        onCancel={deleteUserModal.hide}
-                        text={`${t('користувача')} ${selectedUser?.username}`}
-                        onConfirm={confirmDelete}
+            <VStack gap="16" className={cls.tableWrap}>
+                <Box
+                    className={cls.table}
+                    // width={`${table.getTotalSize() + 5}px`}
+                >
+                    <TableHeader<UsersTableInfo>
+                        headerGroups={table.getHeaderGroups()}
+                        setColumnFilters={setColumnFilters}
+                        headerOptionsMapping={headerOptionsMapping}
+                        columnFilters={columnFilters}
+                        withResizer
                     />
-                )}
+
+                    <Each
+                        of={table.getRowModel().rows}
+                        render={(row) => <TableRow key={row.id} row={row} />}
+                    />
+                </Box>
+                <TablePagination table={table} />
             </VStack>
-        );
-    },
-);
+            {/* {deleteUserModal.isVisible && ( */}
+            {/*    <ConfirmDeleteModal */}
+            {/*        isOpen={deleteUserModal.isVisible} */}
+            {/*        onCancel={deleteUserModal.hide} */}
+            {/*        text={`${t('користувача')} ${selectedUser?.username}`} */}
+            {/*        onConfirm={confirmDelete} */}
+            {/*    /> */}
+            {/* )} */}
+        </VStack>
+    );
+});
 
 // const updateData = useCallback(
 //     (rowIndex: number, columnId: string, value: any) => {

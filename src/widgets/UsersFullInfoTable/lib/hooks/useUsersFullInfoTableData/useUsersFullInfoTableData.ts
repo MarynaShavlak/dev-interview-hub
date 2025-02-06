@@ -7,7 +7,7 @@ import { CommonFilterType } from '@/features/Table';
 
 interface UsersFullInfoTableDataProps {
     data: UsersTableInfo[];
-    deleteRow: (rowIndex: string) => void;
+    deleteRow?: (rowIndex: string) => void;
     editRow: (rowIndex: string) => void;
 }
 
@@ -21,7 +21,6 @@ export const useUsersFullInfoTableData = (
     const headerOptionsMapping = useGetHeaderOptionsWithTranslation(data);
 
     const columns = useUsersFullInfoTableColumns({
-        deleteRow,
         editRow,
     });
 

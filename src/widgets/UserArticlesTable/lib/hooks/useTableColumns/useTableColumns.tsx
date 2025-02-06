@@ -22,11 +22,11 @@ export const useTableColumns = (props: useTableColumnProps) => {
     const { deleteRow, editRow } = props;
     const createUserTextCol = createStaticTextColumn<UserArticlesTableInfo>();
     const columnHelper = createColumnHelper<UserArticlesTableInfo>();
-    const actionColumn = useCreateActionColumn<UserArticlesTableInfo>(
+    const actionColumn = useCreateActionColumn<UserArticlesTableInfo>({
         deleteRow,
         editRow,
-        FIXED_COLUMNS_WIDTH.action,
-    );
+        width: FIXED_COLUMNS_WIDTH.action,
+    });
     const titleColumnWidth = useFlexColumnWidth(
         FIXED_COLUMNS_WIDTH,
         MINIMUM_TITLE_WIDTH,

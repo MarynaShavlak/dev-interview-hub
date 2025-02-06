@@ -5,11 +5,16 @@ import DeleteIcon from '@/shared/assets/icons/delete.svg';
 import EditIcon from '@/shared/assets/icons/edit.svg';
 import { Icon } from '@/shared/ui/redesigned/Icon';
 
+interface UseCreateActionColumnParams {
+    editRow: (id: string) => void;
+    deleteRow?: (id: string) => void;
+    width?: number;
+}
+
 export const useCreateActionColumn = <T extends { id: string }>(
-    deleteRow: (id: string) => void,
-    editRow: (id: string) => void,
-    width?: number,
+    params: UseCreateActionColumnParams,
 ) => {
+    const { width, editRow, deleteRow } = params;
     const { t } = useTranslation('articleDetails');
     const columnHelper = createColumnHelper<T>();
     return columnHelper.display({
@@ -18,13 +23,15 @@ export const useCreateActionColumn = <T extends { id: string }>(
         size: width || 50,
         cell: ({ row }) => (
             <HStack justify="center" gap="8">
-                <Icon
-                    Svg={DeleteIcon}
-                    width={18}
-                    variant="error"
-                    clickable
-                    onClick={() => deleteRow(row.original.id)}
-                />
+                {deleteRow && (
+                    <Icon
+                        Svg={DeleteIcon}
+                        width={18}
+                        variant="error"
+                        clickable
+                        onClick={() => deleteRow(row.original.id)}
+                    />
+                )}
                 <Icon
                     Svg={EditIcon}
                     width={18}

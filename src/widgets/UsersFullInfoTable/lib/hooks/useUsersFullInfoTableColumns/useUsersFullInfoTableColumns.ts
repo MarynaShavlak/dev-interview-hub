@@ -21,7 +21,7 @@ import {
 } from '../../../model/consts/fixedColumnsWidth';
 
 interface useUsersFullInfoTableColumnsProps {
-    deleteRow: (rowIndex: string) => void;
+    deleteRow?: (rowIndex: string) => void;
     editRow: (rowIndex: string) => void;
 }
 
@@ -39,11 +39,11 @@ export const useUsersFullInfoTableColumns = (
     const createUserAvatarCol = createImageColumn<UsersTableInfo>();
     const { deleteRow, editRow } = props;
     const columnHelper = createColumnHelper<UsersTableInfo>();
-    const actionColumn = useCreateActionColumn<UsersTableInfo>(
+    const actionColumn = useCreateActionColumn<UsersTableInfo>({
         deleteRow,
         editRow,
-        FIXED_COLUMNS_WIDTH.action,
-    );
+        width: FIXED_COLUMNS_WIDTH.action,
+    });
 
     const emailColumnWidth = useFlexColumnWidth(
         FIXED_COLUMNS_WIDTH,
