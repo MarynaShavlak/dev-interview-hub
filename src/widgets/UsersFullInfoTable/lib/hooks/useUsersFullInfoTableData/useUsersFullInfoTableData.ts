@@ -9,12 +9,13 @@ interface UsersFullInfoTableDataProps {
     data: UsersTableInfo[];
     deleteRow?: (rowIndex: string) => void;
     editRow: (rowIndex: string) => void;
+    isEditRoleMode: boolean;
 }
 
 export const useUsersFullInfoTableData = (
     props: UsersFullInfoTableDataProps,
 ) => {
-    const { data, deleteRow, editRow } = props;
+    const { data, deleteRow, editRow, isEditRoleMode } = props;
 
     const [columnFilters, setColumnFilters] = useState<CommonFilterType>([]);
     const [globalFilter, setGlobalFilter] = useState<string>('');
@@ -22,6 +23,7 @@ export const useUsersFullInfoTableData = (
 
     const columns = useUsersFullInfoTableColumns({
         editRow,
+        isEditRoleMode,
     });
 
     return {

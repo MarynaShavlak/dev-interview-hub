@@ -5,7 +5,7 @@ import {
     getSortedRowModel,
     useReactTable,
 } from '@tanstack/react-table';
-import React, { memo } from 'react';
+import React, { memo, useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Box } from '@/shared/ui/common/Box';
 
@@ -18,15 +18,20 @@ import {
 } from '@/features/Table';
 
 import { UsersTableInfo } from '../../model/types/usersTableInfo';
-import { VStack } from '@/shared/ui/common/Stack';
+import { HStack, VStack } from '@/shared/ui/common/Stack';
 import { useUsersFullInfoTableData } from '../../lib/hooks/useUsersFullInfoTableData/useUsersFullInfoTableData';
 import { Each } from '@/shared/lib/components/Each/Each';
 
 import { useManageUsersFullInfoTableRow } from '../../lib/hooks/useManageUsersFullInfoTableRow/useManageUsersFullInfoTableRow';
 import { LoadingTableSkeleton } from '../LoadingTableSkeleton/LoadingTableSkeleton';
+import { Button } from '@/shared/ui/redesigned/Button';
 
 export const UsersFullInfoTable = memo(() => {
     const { t } = useTranslation('admin');
+    const [isEditRoleMode, setIsEditRoleMode] = useState(false);
+    const toggleEditRoleMode = useCallback(() => {
+        setIsEditRoleMode((prev) => !prev);
+    }, []);
 
     const {
         handleEditClick,
@@ -44,7 +49,7 @@ export const UsersFullInfoTable = memo(() => {
         setColumnFilters,
     } = useUsersFullInfoTableData({
         data,
-
+        isEditRoleMode,
         editRow: handleEditClick,
     });
 
@@ -64,8 +69,9 @@ export const UsersFullInfoTable = memo(() => {
         columnResizeMode: 'onChange',
         // meta: { updateData },
     });
-    // const headerGroups =
-    //     table.getHeaderGroups() as HeaderGroup<UsersTableInfo>[];
+    const openEditRoleMode = useCallback(() => {
+        console.log('openEditRoleMode');
+    }, []);
 
     if (isLoading) {
         return <LoadingTableSkeleton />;
@@ -76,10 +82,20 @@ export const UsersFullInfoTable = memo(() => {
 
     return (
         <VStack gap="16">
-            <SearchInput
-                globalFilter={globalFilter}
-                setGlobalFilter={setGlobalFilter}
-            />
+            <HStack justify="between" max>
+                <SearchInput
+                    globalFilter={globalFilter}
+                    setGlobalFilter={setGlobalFilter}
+                />
+                <Button
+                    size="s"
+                    onClick={toggleEditRoleMode}
+                    className={cls.editRoleButton}
+                    variant="save"
+                >
+                    {t('Редагувати ролі користувачів')}
+                </Button>
+            </HStack>
 
             <VStack gap="16" className={cls.tableWrap}>
                 <Box
@@ -101,14 +117,6 @@ export const UsersFullInfoTable = memo(() => {
                 </Box>
                 <TablePagination table={table} />
             </VStack>
-            {/* {deleteUserModal.isVisible && ( */}
-            {/*    <ConfirmDeleteModal */}
-            {/*        isOpen={deleteUserModal.isVisible} */}
-            {/*        onCancel={deleteUserModal.hide} */}
-            {/*        text={`${t('користувача')} ${selectedUser?.username}`} */}
-            {/*        onConfirm={confirmDelete} */}
-            {/*    /> */}
-            {/* )} */}
         </VStack>
     );
 });

@@ -11,7 +11,7 @@ type OptionColumnConfig<T> = {
     options: (ColorOption | string)[];
 };
 
-export const createOptionColumn = <T>() => {
+export const createOptionColumn = <T>(isEditRoleMode: boolean) => {
     return ({
         id,
         size,
@@ -26,6 +26,7 @@ export const createOptionColumn = <T>() => {
                 OptionCell({
                     ...props,
                     options,
+                    isEditRoleMode,
                 }),
             size,
             enableColumnFilter: filterable,

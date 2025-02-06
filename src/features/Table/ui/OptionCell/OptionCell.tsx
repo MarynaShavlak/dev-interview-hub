@@ -15,6 +15,7 @@ import { isUserAdmin, isUserManager } from '@/entities/User';
 
 interface OptionCellProps<TData> extends CellContext<TData, any> {
     options: (ColorOption | string)[];
+    isEditRoleMode: boolean;
 }
 
 const createListBoxOption = (option: ColorOption | string) => {
@@ -33,6 +34,7 @@ export const OptionCell = <TData,>({
     column,
     table,
     options,
+    isEditRoleMode,
 }: OptionCellProps<TData>) => {
     const value = getValue();
 
@@ -59,7 +61,7 @@ export const OptionCell = <TData,>({
     const isManager = useSelector(isUserManager);
     // console.log('isAdmin', isAdmin);
     // console.log('isManager', isManager);
-    if (isAdmin) {
+    if (isAdmin && !isEditRoleMode) {
         return (
             <ColorIndicatorOptionItem
                 option={value}
