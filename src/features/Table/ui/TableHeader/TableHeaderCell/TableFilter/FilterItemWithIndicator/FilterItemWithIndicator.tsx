@@ -8,7 +8,7 @@ import {
 } from '../../../../../model/types/tableTypes';
 import { ColorIndicatorOptionItem } from '../../../../ColorIndicatorOptionItem/ColorIndicatorOptionItem';
 import { getColorOptions } from '../../../../../lib/utilities/getColorOptions/getColorOptions';
-import { useFilterOperations } from '../../../../../lib/hooks/useFilterOperations/useFilterOperations';
+import { useColorOptionsFilterOperations } from '../../../../../lib/hooks/useColorOptionsFilterOperations/useColorOptionsFilterOperations';
 
 interface FilterItemProps extends ColumnFilterHandlerProps {
     option: ColorOption;
@@ -18,7 +18,8 @@ interface FilterItemProps extends ColumnFilterHandlerProps {
 
 export const FilterItemWithIndicator = (props: FilterItemProps) => {
     const { option, setColumnFilters, isActive, filterCategory } = props;
-    const { addNewFilter, updateExistingFilter } = useFilterOperations();
+    const { addNewFilter, updateExistingFilter } =
+        useColorOptionsFilterOperations();
 
     const onClickHandler = useCallback(
         () =>

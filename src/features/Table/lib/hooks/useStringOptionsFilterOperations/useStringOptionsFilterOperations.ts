@@ -1,10 +1,10 @@
 import { useCallback } from 'react';
-import { ColorOption, CommonFilterType } from '../../..';
+import { CommonFilterType } from '../../..';
 import { FilterType } from '../../../model/types/tableTypes';
 
-export const useFilterOperations = () => {
+export const useStringOptionsFilterOperations = () => {
     const createNewFilter = useCallback(
-        (filterCategory: string, option: ColorOption): FilterType => {
+        (filterCategory: string, option: string): FilterType => {
             return { id: filterCategory, value: [option] };
         },
         [],
@@ -13,23 +13,23 @@ export const useFilterOperations = () => {
         (
             prevFilters: CommonFilterType,
             filterCategory: string,
-            option: ColorOption,
+            option: string,
         ): CommonFilterType => {
             return [...prevFilters, createNewFilter(filterCategory, option)];
         },
-        [],
+        [createNewFilter],
     );
 
     const updateFilterValue = useCallback(
         (
-            colorOptions: ColorOption[],
-            option: ColorOption,
+            stringOptions: string[],
+            option: string,
             isActive: boolean,
-        ): ColorOption[] => {
+        ): string[] => {
             if (isActive) {
-                return colorOptions.filter((o) => o.id !== option.id);
+                return stringOptions.filter((o) => o !== option);
             }
-            return [...colorOptions, option];
+            return [...stringOptions, option];
         },
         [],
     );
@@ -38,16 +38,16 @@ export const useFilterOperations = () => {
         (
             prevFilters: CommonFilterType,
             filterCategory: string,
-            option: ColorOption,
+            option: string,
             isActive: boolean,
-            colorOptions: ColorOption[],
+            stringOptions: string[],
         ): CommonFilterType => {
             return prevFilters.map((filter) => {
                 if (filter.id === filterCategory) {
                     return {
                         ...filter,
                         value: updateFilterValue(
-                            colorOptions,
+                            stringOptions,
                             option,
                             isActive,
                         ),

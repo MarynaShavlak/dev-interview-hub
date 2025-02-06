@@ -7,6 +7,8 @@ import EmptyCheckIcon from '@/shared/assets/icons/checkbox-empty.svg';
 import CheckedIcon from '@/shared/assets/icons/checkbox-check.svg';
 import { HStack } from '@/shared/ui/common/Stack';
 import { ColumnFilterHandlerProps } from '../../../../..';
+import { getStringOptions } from '../../../../../lib/utilities/getStringOptions/getStringOptions';
+import { useStringOptionsFilterOperations } from '../../../../../lib/hooks/useStringOptionsFilterOperations/useStringOptionsFilterOperations';
 
 interface FilterItemProps extends ColumnFilterHandlerProps {
     option: string;
@@ -16,41 +18,37 @@ interface FilterItemProps extends ColumnFilterHandlerProps {
 
 export const FilterItemWithCheckIcon = (props: FilterItemProps) => {
     const { option, setColumnFilters, isActive, filterCategory } = props;
+    const { addNewFilter, updateExistingFilter } =
+        useStringOptionsFilterOperations();
 
     const onClickHandler = useCallback(
         () =>
             setColumnFilters((prev) => {
-                const options = prev.find(
+                const existingFilter = prev.find(
                     (filter) => filter.id === filterCategory,
-                )?.value;
+                );
 
-                if (!options) {
-                    return [...prev, { id: filterCategory, value: [option] }];
+                const options = existingFilter?.value;
+                const stringOptions = getStringOptions(options);
+                if (!stringOptions) {
+                    return addNewFilter(prev, filterCategory, option);
                 }
-
-                return prev.map((f) => {
-                    if (f.id === filterCategory) {
-                        let newValue;
-
-                        if (Array.isArray(options)) {
-                            if (isActive) {
-                                newValue = options.filter((o) => o !== option);
-                            } else {
-                                newValue = options.concat(option);
-                            }
-                        } else {
-                            newValue = [option];
-                        }
-
-                        return {
-                            ...f,
-                            value: newValue,
-                        };
-                    }
-                    return f;
-                });
+                return updateExistingFilter(
+                    prev,
+                    filterCategory,
+                    option,
+                    isActive ?? false,
+                    stringOptions,
+                );
             }),
-        [filterCategory, isActive, option, setColumnFilters],
+        [
+            addNewFilter,
+            filterCategory,
+            isActive,
+            option,
+            setColumnFilters,
+            updateExistingFilter,
+        ],
     );
     return (
         <HStack

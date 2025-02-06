@@ -21,8 +21,6 @@ export const FilterMenuWithColorOptions = ({
     filterCategory,
     className,
 }: FilterColorMenuProps) => {
-    console.log('allOptions', allOptions);
-    console.log('filteredOptions', filteredOptions);
     const isFilteredArray = Array.isArray(filteredOptions);
     return (
         <VStack className={className}>
