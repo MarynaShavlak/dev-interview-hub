@@ -93,7 +93,9 @@ export const UsersFullInfoTable = memo(() => {
                     className={cls.editRoleButton}
                     variant="save"
                 >
-                    {t('Редагувати ролі користувачів')}
+                    {!isEditRoleMode
+                        ? t('Редагувати ролі користувачів')
+                        : t('Перейти в режим читання')}
                 </Button>
             </HStack>
 
