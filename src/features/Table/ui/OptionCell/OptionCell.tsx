@@ -1,5 +1,6 @@
 import { CellContext } from '@tanstack/react-table';
 import { useCallback } from 'react';
+import { useSelector } from 'react-redux';
 import { ListBox } from '@/shared/ui/redesigned/Popups';
 import { Text } from '@/shared/ui/redesigned/Text';
 import { ColorIndicatorOptionItem } from '../ColorIndicatorOptionItem/ColorIndicatorOptionItem';
@@ -10,6 +11,7 @@ import { findNewOptionValue } from '../../lib/utilities/optionCell/findNewOption
 import { isColorOption } from '../../lib/utilities/optionCell/isColorOption/isColorOption';
 import { ColorOption, TableMetaCustom } from '../../model/types/tableTypes';
 import { HStack } from '@/shared/ui/common/Stack';
+import { isUserAdmin, isUserManager } from '@/entities/User';
 
 interface OptionCellProps<TData> extends CellContext<TData, any> {
     options: (ColorOption | string)[];
@@ -52,6 +54,19 @@ export const OptionCell = <TData,>({
         },
         [column.id, currentValue, meta, options, row.index],
     );
+
+    const isAdmin = useSelector(isUserAdmin);
+    const isManager = useSelector(isUserManager);
+    // console.log('isAdmin', isAdmin);
+    // console.log('isManager', isManager);
+    if (isAdmin) {
+        return (
+            <ColorIndicatorOptionItem
+                option={value}
+                className={cls.colorOptionItem}
+            />
+        );
+    }
 
     return (
         <HStack max>

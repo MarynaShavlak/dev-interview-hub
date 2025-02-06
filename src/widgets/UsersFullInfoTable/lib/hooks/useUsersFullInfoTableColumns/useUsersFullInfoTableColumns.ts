@@ -19,6 +19,7 @@ import {
     MAX_COLUMN_CHARACTERS,
     MINIMUM_EMAIL_WIDTH,
 } from '../../../model/consts/fixedColumnsWidth';
+import { useSidebarCollapseState } from '../useSidebarCollapseState/useSidebarCollapseState';
 
 interface useUsersFullInfoTableColumnsProps {
     deleteRow?: (rowIndex: string) => void;
@@ -29,6 +30,7 @@ export const useUsersFullInfoTableColumns = (
     props: useUsersFullInfoTableColumnsProps,
 ) => {
     const { t } = useTranslation('profile');
+    const isCollapsed = useSidebarCollapseState();
 
     const createUserTextCol = createStaticTextColumn<UsersTableInfo>();
     const createUserTrimmedTextCol = createStaticTextColumn<UsersTableInfo>(
@@ -50,6 +52,26 @@ export const useUsersFullInfoTableColumns = (
         MINIMUM_EMAIL_WIDTH,
     );
 
+    const usernameCol = isCollapsed
+        ? createUserTextCol({
+              id: t("Ім'я користувача"),
+              size: FIXED_COLUMNS_WIDTH.username,
+          })
+        : createUserTrimmedTextCol({
+              id: t("Ім'я користувача"),
+              size: FIXED_COLUMNS_WIDTH.username,
+          });
+
+    const emailCol = isCollapsed
+        ? createUserTextCol({
+              id: t('Email'),
+              size: emailColumnWidth,
+          })
+        : createUserTrimmedTextCol({
+              id: t('Email'),
+              size: emailColumnWidth,
+          });
+
     return useMemo(() => {
         return [
             columnHelper.accessor(
@@ -60,20 +82,8 @@ export const useUsersFullInfoTableColumns = (
                     className: cls.tableAvatar,
                 }),
             ),
-            columnHelper.accessor(
-                'username',
-                createUserEditableCol({
-                    id: t("Ім'я користувача"),
-                    size: FIXED_COLUMNS_WIDTH.username,
-                }),
-            ),
-            columnHelper.accessor(
-                'email',
-                createUserEditableCol({
-                    id: t('Email'),
-                    size: emailColumnWidth,
-                }),
-            ),
+            columnHelper.accessor('username', usernameCol),
+            columnHelper.accessor('email', emailCol),
             columnHelper.accessor(
                 'firstname',
                 createUserTextCol({
