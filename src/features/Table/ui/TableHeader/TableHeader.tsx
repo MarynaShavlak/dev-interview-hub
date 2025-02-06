@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React from 'react';
 import { HeaderGroup } from '@tanstack/react-table';
 import { Each } from '@/shared/lib/components/Each/Each';
 import { ColorOption, CommonFilterType } from '../../model/types/tableTypes';
@@ -14,7 +14,7 @@ interface TableHeaderProps<T> {
     withResizer?: boolean;
 }
 
-export const TableHeader = memo(<T,>(props: TableHeaderProps<T>) => {
+export const TableHeader = <T,>(props: TableHeaderProps<T>) => {
     const {
         headerGroups,
         setColumnFilters,
@@ -39,4 +39,4 @@ export const TableHeader = memo(<T,>(props: TableHeaderProps<T>) => {
             }}
         />
     );
-});
+};

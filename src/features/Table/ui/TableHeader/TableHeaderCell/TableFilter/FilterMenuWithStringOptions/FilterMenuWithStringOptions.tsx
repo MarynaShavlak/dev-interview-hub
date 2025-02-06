@@ -3,7 +3,7 @@ import { Each } from '@/shared/lib/components/Each/Each';
 import { ColumnFilterHandlerProps } from '../../../../../model/types/tableTypes';
 import { FilterItemWithCheckIcon } from '../FilterItemWthCheckIcon/FilterItemWithCheckIcon';
 
-interface FilterMenuProps extends ColumnFilterHandlerProps {
+export interface FilterStringMenuProps extends ColumnFilterHandlerProps {
     allOptions: string[];
     filteredOptions: string | string[];
     filterCategory: string;
@@ -16,7 +16,7 @@ export const FilterMenuWithStringOptions = ({
     filteredOptions,
     filterCategory,
     className,
-}: FilterMenuProps) => {
+}: FilterStringMenuProps) => {
     return (
         <VStack className={className}>
             <Each

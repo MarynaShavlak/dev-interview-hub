@@ -92,7 +92,7 @@ export const UserArticlesTable = memo(
 
                 <VStack gap="16" className={cls.tableWrap} data-testid="table">
                     <Box className={cls.table}>
-                        <TableHeader
+                        <TableHeader<UserArticlesTableInfo>
                             headerGroups={table.getHeaderGroups()}
                             setColumnFilters={setColumnFilters}
                             headerOptionsMapping={headerOptionsMapping}

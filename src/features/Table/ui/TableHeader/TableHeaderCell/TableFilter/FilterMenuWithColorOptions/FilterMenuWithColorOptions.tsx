@@ -2,15 +2,14 @@ import { VStack } from '@/shared/ui/common/Stack';
 import { Each } from '@/shared/lib/components/Each/Each';
 
 import { FilterItemWithIndicator } from '../FilterItemWithIndicator/FilterItemWithIndicator';
-import { FilterItemWithCheckIcon } from '../FilterItemWthCheckIcon/FilterItemWithCheckIcon';
 import {
     ColorOption,
     ColumnFilterHandlerProps,
 } from '../../../../../model/types/tableTypes';
 
-interface FilterMenuProps extends ColumnFilterHandlerProps {
-    allOptions: (ColorOption | string)[];
-    filteredOptions: string | string[];
+export interface FilterColorMenuProps extends ColumnFilterHandlerProps {
+    allOptions: ColorOption[];
+    filteredOptions: string | ColorOption[];
     filterCategory: string;
     className?: string;
 }
@@ -21,29 +20,24 @@ export const FilterMenuWithColorOptions = ({
     filteredOptions,
     filterCategory,
     className,
-}: FilterMenuProps) => {
+}: FilterColorMenuProps) => {
+    console.log('allOptions', allOptions);
+    console.log('filteredOptions', filteredOptions);
+    const isFilteredArray = Array.isArray(filteredOptions);
     return (
         <VStack className={className}>
             <Each
                 of={allOptions}
                 render={(option) => {
-                    if (typeof option === 'object') {
-                        return (
-                            <FilterItemWithIndicator
-                                option={option}
-                                isActive={filteredOptions.includes(option.id)}
-                                setColumnFilters={setColumnFilters}
-                                key={option.id}
-                                filterCategory={filterCategory}
-                            />
-                        );
-                    }
+                    const isActive = isFilteredArray
+                        ? filteredOptions.includes(option)
+                        : false;
                     return (
-                        <FilterItemWithCheckIcon
+                        <FilterItemWithIndicator
                             option={option}
-                            isActive={filteredOptions.includes(option)}
+                            isActive={isActive}
                             setColumnFilters={setColumnFilters}
-                            key={option}
+                            key={option.id}
                             filterCategory={filterCategory}
                         />
                     );

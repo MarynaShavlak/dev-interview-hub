@@ -16,7 +16,6 @@ interface FilterItemProps extends ColumnFilterHandlerProps {
 
 export const FilterItemWithCheckIcon = (props: FilterItemProps) => {
     const { option, setColumnFilters, isActive, filterCategory } = props;
-    console.log('option', option);
 
     const onClickHandler = useCallback(
         () =>

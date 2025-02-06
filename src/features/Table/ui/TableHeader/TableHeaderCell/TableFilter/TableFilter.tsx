@@ -8,8 +8,10 @@ import {
     ColumnFilterHandlerProps,
     CommonFilterType,
 } from '../../../../model/types/tableTypes';
+import { FilterMenuWithStringOptions } from './FilterMenuWithStringOptions/FilterMenuWithStringOptions';
+import { getFilterOptions } from '../../../../lib/utilities/getFilterOptions/getFilterOptions';
 
-interface FilterPopoverProps extends ColumnFilterHandlerProps {
+export interface FilterPopoverProps extends ColumnFilterHandlerProps {
     filterCategory: string;
     columnFilters: CommonFilterType;
     allOptions: (ColorOption | string)[];
@@ -18,11 +20,16 @@ interface FilterPopoverProps extends ColumnFilterHandlerProps {
 export const TableFilter = (props: FilterPopoverProps) => {
     const { columnFilters, setColumnFilters, filterCategory, allOptions } =
         props;
-    const filteredOptions =
-        columnFilters.find((f) => f.id === filterCategory)?.value ||
-        ([] as string[]);
 
-    const isFilterActive = filteredOptions.length > 0;
+    const {
+        isFilterActive,
+        filteredStringOptions,
+        filteredColorOptions,
+        allStringOptions,
+        allColorOptions,
+        isStringOptions,
+    } = getFilterOptions(filterCategory, columnFilters, allOptions);
+
     return (
         <Popover
             direction="bottom left"
@@ -30,13 +37,24 @@ export const TableFilter = (props: FilterPopoverProps) => {
             noPadding
             className={cls.filterPopover}
         >
-            <FilterMenuWithColorOptions
-                className={cls.filterMenu}
-                allOptions={allOptions}
-                filteredOptions={filteredOptions}
-                setColumnFilters={setColumnFilters}
-                filterCategory={filterCategory}
-            />
+            {isStringOptions && (
+                <FilterMenuWithStringOptions
+                    className={cls.filterMenu}
+                    allOptions={allStringOptions}
+                    filteredOptions={filteredStringOptions}
+                    setColumnFilters={setColumnFilters}
+                    filterCategory={filterCategory}
+                />
+            )}
+            {!isStringOptions && (
+                <FilterMenuWithColorOptions
+                    className={cls.filterMenu}
+                    allOptions={allColorOptions}
+                    filteredOptions={filteredColorOptions}
+                    setColumnFilters={setColumnFilters}
+                    filterCategory={filterCategory}
+                />
+            )}
         </Popover>
     );
 };

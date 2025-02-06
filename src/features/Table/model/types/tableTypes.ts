@@ -14,7 +14,7 @@ export interface InputSearchType {
 
 export interface FilterType {
     id: string;
-    value: string[];
+    value: (string | ColorOption)[];
 }
 
 export type CommonFilterType = (InputSearchType | FilterType)[];

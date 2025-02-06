@@ -21,25 +21,39 @@ export const FilterItemWithIndicator = (props: FilterItemProps) => {
     const onClickHandler = useCallback(
         () =>
             setColumnFilters((prev) => {
-                // console.log('prev', prev);
+                console.log('prev', prev);
 
                 const options = prev.find(
                     (filter) => filter.id === filterCategory,
                 )?.value;
+                const colorOptions = Array.isArray(options)
+                    ? options?.filter(
+                          (option): option is ColorOption =>
+                              typeof option !== 'string',
+                      )
+                    : null;
 
-                if (!options) {
-                    return [...prev, { id: filterCategory, value: [id] }];
+                console.log('colorOptions', colorOptions);
+
+                if (!colorOptions) {
+                    return [...prev, { id: filterCategory, value: [option] }];
                 }
 
                 return prev.map((f) => {
+                    console.log('!!!!!filterCategory', filterCategory);
+                    console.log('f', f);
+                    console.log('options', colorOptions);
                     if (f.id === filterCategory) {
                         let newValue;
+                        console.log('isActive', isActive);
 
-                        if (Array.isArray(options)) {
+                        if (Array.isArray(colorOptions)) {
                             if (isActive) {
-                                newValue = options.filter((o) => o !== id);
+                                newValue = colorOptions.filter(
+                                    (o) => o.id !== option.id,
+                                );
                             } else {
-                                newValue = options.concat(id);
+                                newValue = colorOptions.concat(option);
                             }
                         } else {
                             newValue = [id];
@@ -53,7 +67,7 @@ export const FilterItemWithIndicator = (props: FilterItemProps) => {
                     return f;
                 });
             }),
-        [filterCategory, id, isActive, setColumnFilters],
+        [filterCategory, id, isActive, option, setColumnFilters],
     );
     return (
         <VStack

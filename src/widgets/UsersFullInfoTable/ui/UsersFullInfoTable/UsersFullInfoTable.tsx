@@ -95,7 +95,7 @@ export const UsersFullInfoTable = memo(
                         className={cls.table}
                         // width={`${table.getTotalSize() + 5}px`}
                     >
-                        <TableHeader
+                        <TableHeader<UsersTableInfo>
                             headerGroups={table.getHeaderGroups()}
                             setColumnFilters={setColumnFilters}
                             headerOptionsMapping={headerOptionsMapping}
