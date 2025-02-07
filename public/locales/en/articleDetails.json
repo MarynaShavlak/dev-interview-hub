@@ -81,5 +81,6 @@
   "Id": "Id",
   "Автор": "Author",
   "Дія": "Action",
-  "Не створено жодної статті": "No articles have been created"
+  "Не створено жодної статті": "No articles have been created",
+  "Не знайдено статей за Вашим запитом": "No articles found matching your search."
 }

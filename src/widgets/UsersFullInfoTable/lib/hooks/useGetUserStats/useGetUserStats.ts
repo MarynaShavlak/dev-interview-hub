@@ -1,17 +1,10 @@
 import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { useUsers } from '@/entities/User';
-import { Article, selectAllArticles, useGetArticles } from '@/entities/Article';
+import { selectAllArticles, useGetArticles } from '@/entities/Article';
 
 interface UserStats {
     articlesQuantity: number;
-}
-
-interface UseUserStatsResult {
-    stats: Record<string, UserStats>;
-    isLoading: boolean;
-    isError: boolean;
-    articles: Article[];
 }
 
 export const useGetUserStats = () => {

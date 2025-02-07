@@ -1,3 +1,5 @@
+export { EmptyTableState } from './ui/EmptyTableState/EmptyTableState';
+
 export { useFlexColumnWidth } from './lib/hooks/useFlexColumnWidth/useFlexColumnWidth';
 export { TableRow } from '@/features/Table/ui/TableRow/TableRow';
 export { TableHeader } from './ui/TableHeader/TableHeader';

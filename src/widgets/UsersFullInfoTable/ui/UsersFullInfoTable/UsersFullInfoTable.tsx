@@ -1,16 +1,14 @@
-import {
-    getCoreRowModel,
-    getFilteredRowModel,
-    getPaginationRowModel,
-    getSortedRowModel,
-    useReactTable,
-} from '@tanstack/react-table';
 import React, { memo, useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Box } from '@/shared/ui/common/Box';
 
 import cls from './UsersFullInfoTable.module.scss';
-import { TableHeader, TablePagination, TableRow } from '@/features/Table';
+import {
+    TableHeader,
+    TablePagination,
+    TableRow,
+    EmptyTableState,
+} from '@/features/Table';
 
 import { UsersTableInfo } from '../../model/types/usersTableInfo';
 import { VStack } from '@/shared/ui/common/Stack';
@@ -20,7 +18,7 @@ import { Each } from '@/shared/lib/components/Each/Each';
 import { useManageUsersFullInfoTableRow } from '../../lib/hooks/useManageUsersFullInfoTableRow/useManageUsersFullInfoTableRow';
 import { LoadingTableSkeleton } from '../LoadingTableSkeleton/LoadingTableSkeleton';
 import { TableActionBar } from '../TableActionBar/TableActionBar';
-import { EmptyTableState } from '../EmptyTableState/EmptyTableState';
+import { useTableConfig } from '../../lib/hooks/useTableConfig/useTableConfig';
 
 export const UsersFullInfoTable = memo(() => {
     const { t } = useTranslation('admin');
@@ -46,21 +44,11 @@ export const UsersFullInfoTable = memo(() => {
         editRow: handleEditClick,
     });
 
-    const table = useReactTable<UsersTableInfo>({
+    const table = useTableConfig({
         data,
         columns,
-        state: {
-            columnFilters,
-            globalFilter,
-        },
-
-        getCoreRowModel: getCoreRowModel(),
-        getFilteredRowModel: getFilteredRowModel(),
-        getSortedRowModel: getSortedRowModel(),
-        getPaginationRowModel: getPaginationRowModel(),
-        globalFilterFn: 'includesString',
-        columnResizeMode: 'onChange',
-        // meta: { updateData },
+        globalFilter,
+        columnFilters,
     });
     const isFilteredEmpty = table.getRowModel().rows.length === 0;
 

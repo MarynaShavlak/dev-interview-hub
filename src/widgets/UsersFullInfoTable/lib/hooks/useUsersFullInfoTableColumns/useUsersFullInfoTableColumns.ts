@@ -59,20 +59,24 @@ export const useUsersFullInfoTableColumns = (
         ? createUserTextCol({
               id: t("Ім'я користувача"),
               size: FIXED_COLUMNS_WIDTH.username,
+              filterable: true,
           })
         : createUserTrimmedTextCol({
               id: t("Ім'я користувача"),
               size: FIXED_COLUMNS_WIDTH.username,
+              filterable: true,
           });
 
     const emailCol = isCollapsed
         ? createUserTextCol({
               id: t('Email'),
               size: emailColumnWidth,
+              filterable: true,
           })
         : createUserTrimmedTextCol({
               id: t('Email'),
               size: emailColumnWidth,
+              filterable: true,
           });
 
     return useMemo(() => {
