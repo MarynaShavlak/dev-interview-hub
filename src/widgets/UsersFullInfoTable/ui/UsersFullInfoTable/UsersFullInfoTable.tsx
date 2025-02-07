@@ -10,35 +10,28 @@ import { useTranslation } from 'react-i18next';
 import { Box } from '@/shared/ui/common/Box';
 
 import cls from './UsersFullInfoTable.module.scss';
-import {
-    SearchInput,
-    TableHeader,
-    TablePagination,
-    TableRow,
-} from '@/features/Table';
+import { TableHeader, TablePagination, TableRow } from '@/features/Table';
 
 import { UsersTableInfo } from '../../model/types/usersTableInfo';
-import { HStack, VStack } from '@/shared/ui/common/Stack';
+import { VStack } from '@/shared/ui/common/Stack';
 import { useUsersFullInfoTableData } from '../../lib/hooks/useUsersFullInfoTableData/useUsersFullInfoTableData';
 import { Each } from '@/shared/lib/components/Each/Each';
 
 import { useManageUsersFullInfoTableRow } from '../../lib/hooks/useManageUsersFullInfoTableRow/useManageUsersFullInfoTableRow';
 import { LoadingTableSkeleton } from '../LoadingTableSkeleton/LoadingTableSkeleton';
-import { Button } from '@/shared/ui/redesigned/Button';
+import { TableActionBar } from '../TableActionBar/TableActionBar';
+import { EmptyTableState } from '../EmptyTableState/EmptyTableState';
 
 export const UsersFullInfoTable = memo(() => {
     const { t } = useTranslation('admin');
+
     const [isEditRoleMode, setIsEditRoleMode] = useState(false);
     const toggleEditRoleMode = useCallback(() => {
         setIsEditRoleMode((prev) => !prev);
     }, []);
 
-    const {
-        handleEditClick,
-
-        isLoading,
-        data,
-    } = useManageUsersFullInfoTableRow();
+    const { handleEditClick, isLoading, data } =
+        useManageUsersFullInfoTableRow();
 
     const {
         columns,
@@ -69,56 +62,54 @@ export const UsersFullInfoTable = memo(() => {
         columnResizeMode: 'onChange',
         // meta: { updateData },
     });
-    const openEditRoleMode = useCallback(() => {
-        console.log('openEditRoleMode');
-    }, []);
+    const isFilteredEmpty = table.getRowModel().rows.length === 0;
 
     if (isLoading) {
         return <LoadingTableSkeleton />;
     }
     if (data.length === 0) {
-        return null;
+        return (
+            <EmptyTableState
+                message={t('Не зареєстровано жодного користувача')}
+            />
+        );
     }
 
     return (
         <VStack gap="16">
-            <HStack justify="between" max>
-                <SearchInput
-                    globalFilter={globalFilter}
-                    setGlobalFilter={setGlobalFilter}
+            <TableActionBar
+                globalFilter={globalFilter}
+                setGlobalFilter={setGlobalFilter}
+                isEditRoleMode={isEditRoleMode}
+                toggleEditRoleMode={toggleEditRoleMode}
+                isToggleBtnShown={!isFilteredEmpty}
+            />
+
+            {isFilteredEmpty ? (
+                <EmptyTableState
+                    message={t('Не знайдено користувачів за Вашим запитом')}
                 />
-                <Button
-                    size="s"
-                    onClick={toggleEditRoleMode}
-                    className={cls.editRoleButton}
-                    variant="save"
-                >
-                    {!isEditRoleMode
-                        ? t('Редагувати ролі користувачів')
-                        : t('Перейти в режим читання')}
-                </Button>
-            </HStack>
+            ) : (
+                <VStack gap="16" className={cls.tableWrap}>
+                    <Box className={cls.table}>
+                        <TableHeader<UsersTableInfo>
+                            headerGroups={table.getHeaderGroups()}
+                            setColumnFilters={setColumnFilters}
+                            headerOptionsMapping={headerOptionsMapping}
+                            columnFilters={columnFilters}
+                            withResizer
+                        />
 
-            <VStack gap="16" className={cls.tableWrap}>
-                <Box
-                    className={cls.table}
-                    // width={`${table.getTotalSize() + 5}px`}
-                >
-                    <TableHeader<UsersTableInfo>
-                        headerGroups={table.getHeaderGroups()}
-                        setColumnFilters={setColumnFilters}
-                        headerOptionsMapping={headerOptionsMapping}
-                        columnFilters={columnFilters}
-                        withResizer
-                    />
-
-                    <Each
-                        of={table.getRowModel().rows}
-                        render={(row) => <TableRow key={row.id} row={row} />}
-                    />
-                </Box>
-                <TablePagination table={table} />
-            </VStack>
+                        <Each
+                            of={table.getRowModel().rows}
+                            render={(row) => (
+                                <TableRow key={row.id} row={row} />
+                            )}
+                        />
+                    </Box>
+                    <TablePagination table={table} />
+                </VStack>
+            )}
         </VStack>
     );
 });

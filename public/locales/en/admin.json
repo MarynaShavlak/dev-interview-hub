@@ -53,5 +53,7 @@
   "Назва статті": "Article title",
   "користувача": "user",
   "Редагувати ролі користувачів": "Edit users roles",
-  "Перейти в режим читання": "Back to read mode"
+  "Перейти в режим читання": "Back to read mode",
+  "Не зареєстровано жодного користувача": "No users have been registered",
+  "Не знайдено користувачів за Вашим запитом": "No users found matching your search"
 }

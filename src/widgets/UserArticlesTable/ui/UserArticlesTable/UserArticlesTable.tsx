@@ -16,11 +16,11 @@ import { useUserArticlesTableData } from '../../lib/hooks/useUserArticlesTableDa
 import { ConfirmDeleteModal } from '@/features/ConfirmDeleteModal';
 import { LoadingTableSkeleton } from '../LoadingTableSkeleton/LoadingTableSkeleton';
 import { EmptyTableState } from '../EmptyTableState/EmptyTableState';
-import { TableActionBar } from '../TableActionBar/TableActionBar';
 
 import { useManageUserArticlesTableRow } from '../../lib/hooks/useManageUserArticlesTableRow/useManageUserArticlesTableRow';
 import { DEFAULT_PAGE_SIZE } from '../../model/consts/pagination';
 import { Each } from '@/shared/lib/components/Each/Each';
+import { TableActionBar } from '../TableActionBar/TableActionBar';
 
 interface UserArticlesTableProps {
     onDeleteArticle: (articleId: string) => Promise<string | null>;
