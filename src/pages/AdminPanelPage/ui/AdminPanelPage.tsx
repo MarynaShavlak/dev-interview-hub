@@ -1,14 +1,11 @@
 import React from 'react';
-import { UsersFullInfoTable } from '@/widgets/UsersFullInfoTable';
-import { Page } from '@/widgets/Page';
-import { StatisticsCharts } from '@/widgets/StatisticsCharts';
 
-import { ToggleFeaturesComponent } from '@/shared/lib/features';
 import {
     DynamicModuleLoader,
     ReducersList,
 } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { articleReducer } from '@/entities/Article';
+import { AdminPanelPageContent } from './AdminPanelPageContent/AdminPanelPageContent';
 
 const reducers: ReducersList = {
     articles: articleReducer,
@@ -17,24 +14,7 @@ const reducers: ReducersList = {
 const AdminPanelPage = () => {
     return (
         <DynamicModuleLoader reducers={reducers} removeAfterUnmount={false}>
-            <ToggleFeaturesComponent
-                feature="isAppRedesigned"
-                on={
-                    <main data-testid="AdminPanelPage">
-                        {/* <StatisticsCharts /> */}
-
-                        <UsersFullInfoTable />
-
-                        {/* <UsersInfoTable /> */}
-                    </main>
-                }
-                off={
-                    <Page data-testid="AdminPanelPage">
-                        <StatisticsCharts />
-                        {/* <UsersInfoTable /> */}
-                    </Page>
-                }
-            />
+            <AdminPanelPageContent />
         </DynamicModuleLoader>
     );
 };

@@ -30,13 +30,6 @@ export const Tabs = memo((props: TabsProps) => {
         multiselect = false,
     } = props;
 
-    // const clickHandle = useCallback(
-    //     (tab: TabItem) => () => {
-    //         onTabClick(tab);
-    //     },
-    //     [onTabClick],
-    // );
-
     const clickHandle = useCallback(
         (tab: TabItem) => () => {
             if (multiselect) {
@@ -67,13 +60,10 @@ export const Tabs = memo((props: TabsProps) => {
             <Each
                 of={tabs}
                 render={(tab) => {
-                    // const isSelected = tab.value === value;
                     const isSelected = Array.isArray(value)
                         ? value.includes(tab.value)
                         : tab.value === value;
 
-                    // console.log('value:', value, tab.value, isSelected);
-                    // console.log('tab value:', tab.value);
                     return (
                         <Card
                             variant={isSelected ? 'light' : 'normal'}
