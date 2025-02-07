@@ -1,11 +1,5 @@
 import React, { memo } from 'react';
-import {
-    getCoreRowModel,
-    getFilteredRowModel,
-    getPaginationRowModel,
-    getSortedRowModel,
-    useReactTable,
-} from '@tanstack/react-table';
+
 import { useTranslation } from 'react-i18next';
 import { Box } from '@/shared/ui/common/Box';
 import cls from './UserArticlesTable.module.scss';
@@ -22,10 +16,10 @@ import { ConfirmDeleteModal } from '@/features/ConfirmDeleteModal';
 import { LoadingTableSkeleton } from '../LoadingTableSkeleton/LoadingTableSkeleton';
 
 import { useManageUserArticlesTableRow } from '../../lib/hooks/useManageUserArticlesTableRow/useManageUserArticlesTableRow';
-import { DEFAULT_PAGE_SIZE } from '../../model/consts/pagination';
 import { Each } from '@/shared/lib/components/Each/Each';
 import { TableActionBar } from '../TableActionBar/TableActionBar';
 import { ArticleCreateNavigationButton } from '@/features/ArticleCreateNavigationButton';
+import { useUserArticlesTableConfig } from '../../lib/hooks/useUserArticlesTableConfig/useUserArticlesTableConfig';
 
 interface UserArticlesTableProps {
     onDeleteArticle: (articleId: string) => Promise<string | null>;
@@ -58,25 +52,11 @@ export const UserArticlesTable = memo(
             editRow: handleEditClick,
         });
 
-        const table = useReactTable<UserArticlesTableInfo>({
+        const table = useUserArticlesTableConfig({
             data,
             columns,
-            state: {
-                columnFilters,
-                globalFilter,
-            },
-            initialState: {
-                pagination: {
-                    pageSize: DEFAULT_PAGE_SIZE,
-                },
-            },
-
-            getCoreRowModel: getCoreRowModel(),
-            getFilteredRowModel: getFilteredRowModel(),
-            getSortedRowModel: getSortedRowModel(),
-            getPaginationRowModel: getPaginationRowModel(),
-            globalFilterFn: 'includesString',
-            columnResizeMode: 'onChange',
+            globalFilter,
+            columnFilters,
         });
 
         const isFilteredEmpty = table.getRowModel().rows.length === 0;
