@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import { useGetHeaderOptionsWithTranslation } from '../useGetHeaderOptionsWithTranslation/useGetHeaderOptionsWithTranslation';
-import { useTableColumns } from '../useTableColumns/useTableColumns';
+import { useUserArticlesTableColumns } from '../useUserArticlesTableColumns/useUserArticlesTableColumns';
 import { UserArticlesTableInfo } from '../../../model/types/userArticlesTableInfo';
 import { CommonFilterType } from '@/features/Table';
 
@@ -17,7 +17,7 @@ export const useUserArticlesTableData = (props: UserArticlesTableDataProps) => {
     const [columnFilters, setColumnFilters] = useState<CommonFilterType>([]);
     const [globalFilter, setGlobalFilter] = useState<string>('');
     const headerOptionsMapping = useGetHeaderOptionsWithTranslation(data);
-    const columns = useTableColumns({ deleteRow, editRow });
+    const columns = useUserArticlesTableColumns({ deleteRow, editRow });
 
     return {
         columns,

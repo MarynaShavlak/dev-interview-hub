@@ -17,7 +17,7 @@ interface useTableColumnProps {
     editRow: (rowIndex: string) => void;
 }
 
-export const useTableColumns = (props: useTableColumnProps) => {
+export const useUserArticlesTableColumns = (props: useTableColumnProps) => {
     const { t } = useTranslation('articleDetails');
     const { deleteRow, editRow } = props;
     const createUserTextCol = createStaticTextColumn<UserArticlesTableInfo>();

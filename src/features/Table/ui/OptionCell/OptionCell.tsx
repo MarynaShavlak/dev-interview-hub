@@ -39,22 +39,27 @@ export const OptionCell = <TData,>({
     const value = getValue();
 
     const meta = table.options.meta as TableMetaCustom<TData>;
+    const { updateData } = meta;
+
     const currentValue = extractOptionValueName(value);
     const listBoxOptions = options.map(createListBoxOption);
 
     const onCellClick = useCallback(
         (selectedValue: string | null) => {
             const newValue = findNewOptionValue(options, selectedValue);
-            if (meta?.updateData) {
+
+            if (updateData) {
                 const newValueName = isColorOption(newValue)
                     ? newValue.name
                     : newValue;
+
+                console.log('newValueName', newValueName);
                 if (newValueName !== currentValue) {
-                    meta.updateData(row.index, column.id, newValue);
+                    updateData(row.index, column.id, newValueName);
                 }
             }
         },
-        [column.id, currentValue, meta, options, row.index],
+        [column.id, currentValue, options, row.index, updateData],
     );
 
     const isAdmin = useSelector(isUserAdmin);

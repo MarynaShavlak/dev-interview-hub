@@ -15,12 +15,20 @@ interface UseTableConfigParams {
     columns: ReturnType<typeof useUsersFullInfoTableColumns>;
     globalFilter: string;
     columnFilters: CommonFilterType;
+    updateTableRow: (rowIndex: number, columnId: string, value: any) => void;
 }
 
-export const useTableConfig = (
+export const useUsersFullInfoTableConfig = (
     params: UseTableConfigParams,
 ): Table<UsersTableInfo> => {
-    const { data, columns, globalFilter, columnFilters } = params;
+    const {
+        data,
+        columns,
+        globalFilter,
+        columnFilters,
+        updateTableRow: updateData,
+    } = params;
+
     const table = useReactTable<UsersTableInfo>({
         data,
         columns,
@@ -34,6 +42,7 @@ export const useTableConfig = (
         getPaginationRowModel: getPaginationRowModel(),
         globalFilterFn: 'includesString',
         columnResizeMode: 'onChange',
+        meta: { updateData },
     });
 
     return table;

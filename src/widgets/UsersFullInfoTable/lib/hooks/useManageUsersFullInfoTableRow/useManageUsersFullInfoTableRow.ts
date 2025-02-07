@@ -1,7 +1,10 @@
 import { useCallback, useEffect, useState } from 'react';
 import { UsersTableInfo } from '../../../model/types/usersTableInfo';
-import { useUserProfileNavigation } from '@/entities/User';
+import { UserRole, useUserProfileNavigation } from '@/entities/User';
 import { useUsersTableData } from '../useUsersTableData';
+
+import { updateUserRoleThunk } from '../../../model/services/updateUserRoleThunk/updateUserRoleThunk';
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 
 interface SelectedUser {
     id: string;
@@ -15,6 +18,7 @@ interface UseManageUsersFullInfoTableRowReturnType {
     selectedUser: SelectedUser | null;
     isLoading: boolean;
     data: UsersTableInfo[];
+    updateTableRow: (rowIndex: number, columnId: string, value: any) => void;
     // deleteUserModal: UseToggleVisibilityReturnType;
 }
 
@@ -22,6 +26,7 @@ export const useManageUsersFullInfoTableRow =
     (): UseManageUsersFullInfoTableRowReturnType => {
         const { users, isLoading } = useUsersTableData();
         const [data, setData] = useState<UsersTableInfo[]>([]);
+        const dispatch = useAppDispatch();
 
         useEffect(() => {
             if (
@@ -37,6 +42,41 @@ export const useManageUsersFullInfoTableRow =
         // const deleteUserModal = useToggleVisibility();
         const [selectedUser, setSelectedUser] = useState<SelectedUser | null>(
             null,
+        );
+
+        const updateTableRow = useCallback(
+            async (rowIndex: number, columnId: string, value: UserRole) => {
+                if (!value) {
+                    console.error('New value is required to update user data.');
+                    return null;
+                }
+
+                try {
+                    const user = await dispatch(updateUserRoleThunk([value]));
+                    console.log('user', user);
+                    // const deletedArticleId = await onDeleteArticle(articleId);
+                    setData((prevData) => {
+                        console.log('prevData', prevData);
+                        return prevData.map((row, index) => {
+                            if (index === rowIndex) {
+                                console.log('rowIndex', rowIndex);
+                                console.log('columnId', columnId);
+                                console.log('value', value);
+                            }
+
+                            return index === rowIndex
+                                ? { ...row, [columnId]: value }
+                                : row;
+                        });
+                    });
+                } catch (error: any) {
+                    console.error('Error deleting article:', error);
+                }
+                // console.log('update data');
+
+                console.log('data after update: ', data);
+            },
+            [data, dispatch],
         );
 
         // const deleteTableRow = useCallback(
@@ -102,6 +142,7 @@ export const useManageUsersFullInfoTableRow =
             selectedUser,
             isLoading,
             data,
+            updateTableRow,
             // deleteUserModal,
         };
     };

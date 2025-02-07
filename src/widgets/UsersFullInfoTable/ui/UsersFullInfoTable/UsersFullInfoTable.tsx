@@ -18,7 +18,7 @@ import { Each } from '@/shared/lib/components/Each/Each';
 import { useManageUsersFullInfoTableRow } from '../../lib/hooks/useManageUsersFullInfoTableRow/useManageUsersFullInfoTableRow';
 import { LoadingTableSkeleton } from '../LoadingTableSkeleton/LoadingTableSkeleton';
 import { TableActionBar } from '../TableActionBar/TableActionBar';
-import { useTableConfig } from '../../lib/hooks/useTableConfig/useTableConfig';
+import { useUsersFullInfoTableConfig } from '../../lib/hooks/useUsersFullInfoTableConfig/useUsersFullInfoTableConfig';
 
 export const UsersFullInfoTable = memo(() => {
     const { t } = useTranslation('admin');
@@ -28,7 +28,7 @@ export const UsersFullInfoTable = memo(() => {
         setIsEditRoleMode((prev) => !prev);
     }, []);
 
-    const { handleEditClick, isLoading, data } =
+    const { handleEditClick, isLoading, data, updateTableRow } =
         useManageUsersFullInfoTableRow();
 
     const {
@@ -44,11 +44,12 @@ export const UsersFullInfoTable = memo(() => {
         editRow: handleEditClick,
     });
 
-    const table = useTableConfig({
+    const table = useUsersFullInfoTableConfig({
         data,
         columns,
         globalFilter,
         columnFilters,
+        updateTableRow,
     });
     const isFilteredEmpty = table.getRowModel().rows.length === 0;
 

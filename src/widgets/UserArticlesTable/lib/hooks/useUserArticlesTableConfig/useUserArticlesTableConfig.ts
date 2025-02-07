@@ -9,11 +9,11 @@ import {
 import { CommonFilterType } from '@/features/Table';
 import { UserArticlesTableInfo } from '../../../model/types/userArticlesTableInfo';
 import { DEFAULT_PAGE_SIZE } from '../../../model/consts/pagination';
-import { useTableColumns } from '../useTableColumns/useTableColumns';
+import { useUserArticlesTableColumns } from '../useUserArticlesTableColumns/useUserArticlesTableColumns';
 
 interface UseUserArticlesTableConfigParams {
     data: UserArticlesTableInfo[];
-    columns: ReturnType<typeof useTableColumns>;
+    columns: ReturnType<typeof useUserArticlesTableColumns>;
     globalFilter: string;
     columnFilters: CommonFilterType;
 }
