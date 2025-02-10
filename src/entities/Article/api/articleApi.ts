@@ -1,7 +1,11 @@
-// __________________________
 import { EntityState } from '@reduxjs/toolkit';
-import { getDoc, getDocs, onSnapshot, updateDoc } from 'firebase/firestore';
-import firebase from 'firebase/compat';
+import {
+    getDoc,
+    getDocs,
+    onSnapshot,
+    updateDoc,
+    increment,
+} from 'firebase/firestore';
 import { firestoreApi } from '@/shared/api/rtkApi';
 import { Article } from '../model/types/article';
 import { dataPoint } from '@/shared/lib/firestore/firestore';
@@ -12,7 +16,6 @@ import { getDocRefByField } from '@/shared/lib/firestore/getDocRefByField/getDoc
 import { createArticlesByUserQuery } from '../lib/utilities/createArticlesByUserQuery/createArticlesByUserQuery';
 import { fetchQueryResults } from '@/shared/lib/firestore/fetchQueryResults/fetchQueryResults';
 import { deleteDocFromFirestore } from '@/shared/lib/firestore/deleteDocFromFirestore/deleteDocFromFirestore';
-import increment = firebase.database.ServerValue.increment;
 
 export const articleFirebaseApi = firestoreApi
     .enhanceEndpoints({

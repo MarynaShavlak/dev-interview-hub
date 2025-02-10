@@ -1,1 +1,1 @@
-export const VIEW_COOLDOWN_HOURS = -15;
+export const VIEW_COOLDOWN_HOURS = 12;

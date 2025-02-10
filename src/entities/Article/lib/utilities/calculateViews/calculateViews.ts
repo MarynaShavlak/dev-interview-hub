@@ -1,7 +1,7 @@
 import { VIEWS_STORAGE_KEY } from '@/shared/const/localstorage';
 import { VIEW_COOLDOWN_HOURS } from '../../../model/consts/viewsConts';
 
-interface ViewTrackingData {
+export interface ViewTrackingData {
     articleId: string;
     lastViewTimestamp: number;
 }
@@ -10,6 +10,7 @@ export const getArticleViewData = (
     articleId: string,
 ): ViewTrackingData | null => {
     const viewsData = localStorage.getItem(VIEWS_STORAGE_KEY);
+    console.log('viewsData', viewsData);
     if (!viewsData) return null;
 
     const parsedData = JSON.parse(viewsData);

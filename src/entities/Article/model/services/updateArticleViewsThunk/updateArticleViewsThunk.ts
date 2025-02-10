@@ -9,11 +9,11 @@ import {
 import { incrementArticleViewsMutation } from '../../../api/articleApi';
 import { VIEWS_STORAGE_KEY } from '@/shared/const/localstorage';
 
-// interface UpdateArticleViewsArgs {
-//     articleId: string;
-//     authorId: string;
-//     currentViews: number;
-// }
+interface UpdateArticleViewsArgs {
+    articleId: string;
+    authorId: string;
+    currentViews: number;
+}
 
 export const updateArticleViewsThunk = createAsyncThunk<
     Article,
@@ -47,12 +47,13 @@ export const updateArticleViewsThunk = createAsyncThunk<
         const viewsData = JSON.parse(
             localStorage.getItem(VIEWS_STORAGE_KEY) || '{}',
         );
+        console.log('viewsData', viewsData);
         viewsData[articleId] = {
             articleId,
             lastViewTimestamp: Date.now(),
         };
         localStorage.setItem(VIEWS_STORAGE_KEY, JSON.stringify(viewsData));
-
+        console.log('viewsData', viewsData);
         return updatedArticle;
     } catch (error) {
         console.error('Failed to update article views:', error);
