@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import defaultImage from '@/shared/assets/images/default-img-list.png';
 import { Skeleton } from '@/shared/ui/redesigned/Skeleton';
@@ -14,15 +14,38 @@ import { ArticleDetailsSkeleton } from '../ArticleDetailsSkeleton/ArticleDetails
 import { AppLink } from '@/shared/ui/redesigned/AppLink';
 import { ArticleDetailsProps } from '../ArticleDetails';
 import { useArticleDataById } from '../../../api/articleApi';
+import { useUserAuthData } from '@/entities/User';
+import {
+    getArticleViewData,
+    shouldCountView,
+} from '../../../lib/utilities/calculateViews/calculateViews';
+import { updateArticleViewsThunk } from '../../../model/services/updateArticleViewsThunk/updateArticleViewsThunk';
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 
 export const RedesignedArticleDetails = memo((props: ArticleDetailsProps) => {
     const { t } = useTranslation('articles');
     const { id } = props;
-    // const article = useArticleDetailsData();
-    // const isLoading = useArticleDetailsIsLoading();
-    // const error = useArticleDetailsError();
 
     const { data: article, isLoading, error } = useArticleDataById(id || '');
+    const currentUserdata = useUserAuthData();
+    const authorId = article?.user.id;
+    const currentUserId = currentUserdata?.id;
+    const views = article?.views;
+    const dispatch = useAppDispatch();
+
+    useEffect(() => {
+        const trackPageView = async () => {
+            if (!id || !article || !authorId || authorId === currentUserId)
+                return;
+
+            const viewData = getArticleViewData(id);
+            if (shouldCountView(viewData)) {
+                await dispatch(updateArticleViewsThunk(article));
+            }
+        };
+
+        trackPageView();
+    }, [id, article, authorId, currentUserId, dispatch]);
 
     if (isLoading) {
         return <ArticleDetailsSkeleton />;
