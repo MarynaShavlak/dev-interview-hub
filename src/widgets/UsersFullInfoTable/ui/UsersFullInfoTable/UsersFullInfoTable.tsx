@@ -50,7 +50,6 @@ export const UsersFullInfoTable = memo(() => {
         columns,
         globalFilter,
         columnFilters,
-        // updateTableRow,
     });
     const isFilteredEmpty = table.getRowModel().rows.length === 0;
 
@@ -103,16 +102,3 @@ export const UsersFullInfoTable = memo(() => {
         </VStack>
     );
 });
-
-// const updateData = useCallback(
-//     (rowIndex: number, columnId: string, value: any) => {
-//         console.log('update data');
-//         setData((prevData) =>
-//             prevData.map((row, index) =>
-//                 index === rowIndex ? { ...row, [columnId]: value } : row,
-//             ),
-//         );
-//         console.log('data after update: ', data);
-//     },
-//     [data],
-// );

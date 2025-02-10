@@ -61,13 +61,12 @@ export const OptionCell = <TData extends { id: string }>({
                 }
             }
         },
-        [currentValue, options, row.original.id, updateRow],
+        [column.id, currentValue, options, row.original.id, updateRow],
     );
 
     const isAdmin = useSelector(isUserAdmin);
     const isManager = useSelector(isUserManager);
-    // console.log('isAdmin', isAdmin);
-    // console.log('isManager', isManager);
+
     if (isAdmin && !isEditRoleMode) {
         return (
             <ColorIndicatorOptionItem

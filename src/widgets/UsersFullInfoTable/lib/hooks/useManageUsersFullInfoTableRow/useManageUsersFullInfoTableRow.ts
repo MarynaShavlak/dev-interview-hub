@@ -23,7 +23,7 @@ interface UseManageUsersFullInfoTableRowReturnType {
 export const useManageUsersFullInfoTableRow =
     (): UseManageUsersFullInfoTableRowReturnType => {
         const { users, isLoading } = useUsersTableData();
-        console.log('users', users);
+
         const [data, setData] = useState<UsersTableInfo[]>([]);
         const dispatch = useAppDispatch();
 

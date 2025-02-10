@@ -66,10 +66,10 @@ export const UserArticlesTable = memo(
         }
         if (data.length === 0) {
             return (
-                <>
+                <VStack gap="24" align="center">
                     <EmptyTableState message={t('Не створено жодної статті')} />
                     <ArticleCreateNavigationButton />
-                </>
+                </VStack>
             );
         }
 

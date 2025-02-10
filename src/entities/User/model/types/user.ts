@@ -39,7 +39,7 @@ export interface User {
  */
 export interface UserSchema {
     authData?: User;
-
+    userProfile?: User;
     _inited: boolean;
 }
 

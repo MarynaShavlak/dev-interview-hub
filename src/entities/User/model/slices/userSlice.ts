@@ -20,7 +20,7 @@ export const userSlice = buildSlice({
             state.authData = undefined;
         },
         setUser: (state, { payload }: PayloadAction<User>) => {
-            state.authData = payload;
+            state.userProfile = payload;
         },
         clearUserData: (state) => {
             state.authData = undefined;

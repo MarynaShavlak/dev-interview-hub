@@ -18,6 +18,7 @@ interface UseArticleStatsResult {
 
 export const useGetArticleStats = (): UseArticleStatsResult => {
     const currentUserdata = useUserAuthData();
+    console.log('currentUserdata', currentUserdata);
     const authedUserId = currentUserdata?.id || '';
 
     const {
