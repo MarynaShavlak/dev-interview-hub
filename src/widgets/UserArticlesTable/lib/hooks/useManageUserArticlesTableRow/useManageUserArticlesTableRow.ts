@@ -50,9 +50,9 @@ export const useManageUserArticlesTableRow = (
 
             try {
                 const deletedArticleId = await onDeleteArticle(articleId);
-                setData((prevData) =>
-                    prevData.filter((row) => row.id !== articleId),
-                );
+                // setData((prevData) =>
+                //     prevData.filter((row) => row.id !== articleId),
+                // );
 
                 return deletedArticleId;
             } catch (error: any) {

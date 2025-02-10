@@ -1,11 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig } from '@/app/providers/StoreProvider';
-import {
-    getUserAuthData,
-    updateUserDataMutation,
-    User,
-    UserRole,
-} from '@/entities/User';
+import { updateUserDataMutation, User, UserRole } from '@/entities/User';
 
 /**
  * Thunk to update user role.
@@ -18,23 +13,27 @@ import {
  * @returns {Promise<User>} The updated user object with new roles or an error message.
  */
 
+interface UpdateUserRoleParams {
+    userId: string;
+    newRoles: UserRole[];
+}
+
 export const updateUserRoleThunk = createAsyncThunk<
     User,
-    UserRole[],
+    UpdateUserRoleParams,
     ThunkConfig<string>
->('user/updateUserRole', async (newRoles, thunkApi) => {
-    const { rejectWithValue, getState, dispatch } = thunkApi;
+>('user/updateUserRole', async (params, thunkApi) => {
+    const { rejectWithValue, dispatch } = thunkApi;
+    const { userId, newRoles } = params;
 
-    const userData = getUserAuthData(getState());
-
-    if (!userData) {
-        return rejectWithValue('No user data found.');
+    if (!userId) {
+        return rejectWithValue('No user ID provided.');
     }
 
     try {
         const response = await dispatch(
             updateUserDataMutation({
-                userId: userData?.id,
+                userId,
                 updates: {
                     roles: newRoles,
                 },

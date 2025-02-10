@@ -28,7 +28,7 @@ export const UsersFullInfoTable = memo(() => {
         setIsEditRoleMode((prev) => !prev);
     }, []);
 
-    const { handleEditClick, isLoading, data, updateTableRow } =
+    const { handleEditRow, isLoading, data, handleUpdateRow } =
         useManageUsersFullInfoTableRow();
 
     const {
@@ -41,7 +41,8 @@ export const UsersFullInfoTable = memo(() => {
     } = useUsersFullInfoTableData({
         data,
         isEditRoleMode,
-        editRow: handleEditClick,
+        editRow: handleEditRow,
+        updateRow: handleUpdateRow,
     });
 
     const table = useUsersFullInfoTableConfig({
@@ -49,7 +50,7 @@ export const UsersFullInfoTable = memo(() => {
         columns,
         globalFilter,
         columnFilters,
-        updateTableRow,
+        // updateTableRow,
     });
     const isFilteredEmpty = table.getRowModel().rows.length === 0;
 

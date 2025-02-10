@@ -11,7 +11,10 @@ type OptionColumnConfig<T> = {
     options: (ColorOption | string)[];
 };
 
-export const createOptionColumn = <T>(isEditRoleMode: boolean) => {
+export const createOptionColumn = <T extends { id: string }>(
+    isEditRoleMode: boolean,
+    updateRow: (id: string, columnId: string, newValue: any) => void,
+) => {
     return ({
         id,
         size,
@@ -27,6 +30,7 @@ export const createOptionColumn = <T>(isEditRoleMode: boolean) => {
                     ...props,
                     options,
                     isEditRoleMode,
+                    updateRow,
                 }),
             size,
             enableColumnFilter: filterable,

@@ -20,10 +20,12 @@ import {
     MINIMUM_EMAIL_WIDTH,
 } from '../../../model/consts/fixedColumnsWidth';
 import { useSidebarCollapseState } from '../useSidebarCollapseState/useSidebarCollapseState';
+import { UserRole } from '@/entities/User';
 
 interface useUsersFullInfoTableColumnsProps {
     deleteRow?: (rowIndex: string) => void;
     editRow: (rowIndex: string) => void;
+    updateRow: (id: string, columnId: string, newValue: UserRole) => void;
     isEditRoleMode: boolean;
 }
 
@@ -31,7 +33,7 @@ export const useUsersFullInfoTableColumns = (
     props: useUsersFullInfoTableColumnsProps,
 ) => {
     const { t } = useTranslation('profile');
-    const { deleteRow, editRow, isEditRoleMode } = props;
+    const { deleteRow, editRow, updateRow, isEditRoleMode } = props;
     const isCollapsed = useSidebarCollapseState();
 
     const createUserTextCol = createStaticTextColumn<UsersTableInfo>();
@@ -39,8 +41,10 @@ export const useUsersFullInfoTableColumns = (
         MAX_COLUMN_CHARACTERS,
     );
     const createUserEditableCol = createEditableColumn<UsersTableInfo>();
-    const createUserOptionCol =
-        createOptionColumn<UsersTableInfo>(isEditRoleMode);
+    const createUserOptionCol = createOptionColumn<UsersTableInfo>(
+        isEditRoleMode,
+        updateRow,
+    );
     const createUserAvatarCol = createImageColumn<UsersTableInfo>();
 
     const columnHelper = createColumnHelper<UsersTableInfo>();
@@ -137,9 +141,10 @@ export const useUsersFullInfoTableColumns = (
         actionColumn,
         columnHelper,
         createUserAvatarCol,
-        createUserEditableCol,
         createUserOptionCol,
         createUserTextCol,
+        emailCol,
         t,
+        usernameCol,
     ]);
 };

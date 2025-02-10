@@ -15,7 +15,7 @@ interface UseTableConfigParams {
     columns: ReturnType<typeof useUsersFullInfoTableColumns>;
     globalFilter: string;
     columnFilters: CommonFilterType;
-    updateTableRow: (rowIndex: number, columnId: string, value: any) => void;
+    // updateTableRow: (rowIndex: number, columnId: string, value: any) => void;
 }
 
 export const useUsersFullInfoTableConfig = (
@@ -26,7 +26,7 @@ export const useUsersFullInfoTableConfig = (
         columns,
         globalFilter,
         columnFilters,
-        updateTableRow: updateData,
+        // updateTableRow: updateData,
     } = params;
 
     const table = useReactTable<UsersTableInfo>({
@@ -42,7 +42,7 @@ export const useUsersFullInfoTableConfig = (
         getPaginationRowModel: getPaginationRowModel(),
         globalFilterFn: 'includesString',
         columnResizeMode: 'onChange',
-        meta: { updateData },
+        // meta: { updateData },
     });
 
     return table;
