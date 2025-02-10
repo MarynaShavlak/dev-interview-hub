@@ -13,17 +13,36 @@ import { ArticleDetailsPageContainer } from '../ArticleDetailsPageContainer/Arti
 import { AdditionalInfoContainer } from '../../AdditionalInfoContainer/AdditionalInfoContainer';
 import { useArticleDataById } from '@/entities/Article';
 import { Skeleton } from '@/shared/ui/redesigned/Skeleton';
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 
 export const RedesignedArticleDetailsPage = memo(
     ({ className }: ArticleDetailsPageProps) => {
         const { id } = useParams<{ id: string }>();
         const { t } = useTranslation();
+        const dispatch = useAppDispatch();
         const errorText = t('Сторінку видалено');
         const {
             data: article,
             isLoading,
             error,
         } = useArticleDataById(id || '');
+
+        const views = article?.views;
+        console.log('views', views);
+
+        // const hasTrackedView = useRef(false);
+        //
+        // useEffect(() => {
+        //     if (!id || !article || isLoading || hasTrackedView.current) return;
+        //
+        //     const viewData = getArticleViewData(id);
+        //     const needUpdate = shouldCountView(viewData);
+        //
+        //     if (needUpdate) {
+        //         hasTrackedView.current = true;
+        //         dispatch(updateArticleViewsThunk(article));
+        //     }
+        // }, [id, article, dispatch, hasTrackedView.current]);
 
         if (isLoading) {
             return <Skeleton width="100%" height="100vh" border="40px" />;

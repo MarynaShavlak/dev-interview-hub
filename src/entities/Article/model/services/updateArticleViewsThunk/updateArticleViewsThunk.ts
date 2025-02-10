@@ -2,18 +2,9 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { Article } from '../../..';
 import { ThunkConfig } from '@/app/providers/StoreProvider';
 import { getUserAuthData } from '@/entities/User';
-import {
-    getArticleViewData,
-    shouldCountView,
-} from '../../../lib/utilities/calculateViews/calculateViews';
-import { incrementArticleViewsMutation } from '../../../api/articleApi';
-import { VIEWS_STORAGE_KEY } from '@/shared/const/localstorage';
 
-interface UpdateArticleViewsArgs {
-    articleId: string;
-    authorId: string;
-    currentViews: number;
-}
+import { incrementArticleViewsMutation } from '../../../api/articleApi';
+import { updateLocalStorageViews } from '../../../lib/utilities/updateLocalStorageViews/updateLocalStorageViews';
 
 export const updateArticleViewsThunk = createAsyncThunk<
     Article,
@@ -30,11 +21,6 @@ export const updateArticleViewsThunk = createAsyncThunk<
         return rejectWithValue("Author's views are not counted");
     }
 
-    const viewData = getArticleViewData(articleId);
-    if (!shouldCountView(viewData)) {
-        return rejectWithValue('View cooldown period has not elapsed');
-    }
-
     try {
         const updatedArticle = await dispatch(
             incrementArticleViewsMutation(articleId),
@@ -44,16 +30,8 @@ export const updateArticleViewsThunk = createAsyncThunk<
             return rejectWithValue('No data received from API.');
         }
 
-        const viewsData = JSON.parse(
-            localStorage.getItem(VIEWS_STORAGE_KEY) || '{}',
-        );
-        console.log('viewsData', viewsData);
-        viewsData[articleId] = {
-            articleId,
-            lastViewTimestamp: Date.now(),
-        };
-        localStorage.setItem(VIEWS_STORAGE_KEY, JSON.stringify(viewsData));
-        console.log('viewsData', viewsData);
+        updateLocalStorageViews(articleId);
+
         return updatedArticle;
     } catch (error) {
         console.error('Failed to update article views:', error);

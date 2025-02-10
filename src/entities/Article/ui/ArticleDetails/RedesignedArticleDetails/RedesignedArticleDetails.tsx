@@ -14,26 +14,14 @@ import { ArticleDetailsSkeleton } from '../ArticleDetailsSkeleton/ArticleDetails
 import { AppLink } from '@/shared/ui/redesigned/AppLink';
 import { ArticleDetailsProps } from '../ArticleDetails';
 import { useArticleDataById } from '../../../api/articleApi';
-import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { useUpdateArticleViews } from '../../../lib/hooks/useUpdateArticleViews/useUpdateArticleViews';
 
 export const RedesignedArticleDetails = memo((props: ArticleDetailsProps) => {
     const { t } = useTranslation('articles');
     const { id } = props;
-    const dispatch = useAppDispatch();
 
     const { data: article, isLoading, error } = useArticleDataById(id || '');
-
-    const views = article?.views;
-    console.log('views', views);
-
-    // useEffect(() => {
-    //     if (isLoading || !id || !article) return;
-    //
-    //     const viewData = getArticleViewData(id);
-    //     if (shouldCountView(viewData)) {
-    //         dispatch(updateArticleViewsThunk(article));
-    //     }
-    // }, [id, article, isLoading, dispatch]);
+    useUpdateArticleViews({ id, article, isLoading });
 
     if (isLoading) {
         return <ArticleDetailsSkeleton />;
@@ -85,17 +73,3 @@ export const RedesignedArticleDetails = memo((props: ArticleDetailsProps) => {
         </VStack>
     );
 });
-
-// useEffect(() => {
-//     const trackPageView = async () => {
-//         if (!id || !article || !authorId || authorId === currentUserId)
-//             return;
-//
-//         const viewData = getArticleViewData(id);
-//         if (shouldCountView(viewData)) {
-//             await dispatch(updateArticleViewsThunk(article));
-//         }
-//     };
-//
-//     trackPageView();
-// }, [id, article, authorId, currentUserId, dispatch]);

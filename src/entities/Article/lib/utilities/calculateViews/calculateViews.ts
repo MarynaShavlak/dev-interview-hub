@@ -10,7 +10,6 @@ export const getArticleViewData = (
     articleId: string,
 ): ViewTrackingData | null => {
     const viewsData = localStorage.getItem(VIEWS_STORAGE_KEY);
-    console.log('viewsData', viewsData);
     if (!viewsData) return null;
 
     const parsedData = JSON.parse(viewsData);

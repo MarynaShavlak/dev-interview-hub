@@ -1,3 +1,5 @@
+export { updateArticleViewsThunk } from './model/services/updateArticleViewsThunk/updateArticleViewsThunk';
+
 export { useArticleNavigation } from './lib/hooks/useArticleNavigation/useArticleNavigation';
 
 export { deleteArticleThunk } from './model/services/deleteArticleThunk/deleteArticleThunk';
