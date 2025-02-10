@@ -23,7 +23,7 @@ export const loginByEmailThunk = createAsyncThunk<
     ThunkConfig<string>
 >('auth/loginByEmail', async (authData, thunkAPI) => {
     const { extra, dispatch, rejectWithValue } = thunkAPI;
-    const { setUser } = userActions;
+    const { setUser, setAuthData } = userActions;
     const { auth } = extra;
     try {
         const { user: firebaseUser } = await signInWithEmailAndPassword(
@@ -44,6 +44,7 @@ export const loginByEmailThunk = createAsyncThunk<
 
         console.log('existingUser in login thunk', existingUser);
         dispatch(setUser(existingUser));
+        dispatch(setAuthData(existingUser));
         handleUserAuthentication(existingUser, firebaseUser.uid);
 
         return existingUser;

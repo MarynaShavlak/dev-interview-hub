@@ -15,7 +15,7 @@ export const authByGoogleThunk = createAsyncThunk<
     ThunkConfig<string>
 >('auth/authByGoogleProvider', async (_, thunkAPI) => {
     const { extra, dispatch, rejectWithValue } = thunkAPI;
-    const { setUser } = userActions;
+    const { setUser, setAuthData } = userActions;
     const { auth, firestore } = extra;
 
     try {
@@ -45,6 +45,7 @@ export const authByGoogleThunk = createAsyncThunk<
         console.log('by google data to set in slice', userData);
         // const customUser = mapFirebaseUserToCustomUser(firebaseUser);
         dispatch(setUser(userData));
+        dispatch(setAuthData(userData));
         handleUserAuthentication(userData, firebaseUser.uid);
 
         return data;

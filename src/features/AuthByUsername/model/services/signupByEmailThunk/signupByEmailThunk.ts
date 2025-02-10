@@ -47,7 +47,7 @@ export const signupByEmailThunk = createAsyncThunk<
     ThunkConfig<string>
 >('login/signupByEmail', async (signUpData, thunkAPI) => {
     const { extra, dispatch, rejectWithValue } = thunkAPI;
-    const { setUser } = userActions;
+    const { setUser, setAuthData } = userActions;
     const { auth, firestore } = extra;
     try {
         const { user: firebaseUser } = await createUserWithEmailAndPassword(
@@ -70,6 +70,7 @@ export const signupByEmailThunk = createAsyncThunk<
         // const customUser: User = mapFirebaseUserToCustomUser(firebaseUser);
 
         dispatch(setUser(data));
+        dispatch(setAuthData(data));
         handleUserAuthentication(data, userData?.id || '');
         return data;
     } catch (err) {

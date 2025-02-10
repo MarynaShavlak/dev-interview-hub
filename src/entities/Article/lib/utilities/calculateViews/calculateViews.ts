@@ -21,6 +21,6 @@ export const shouldCountView = (viewData: ViewTrackingData | null): boolean => {
 
     const hoursSinceLastView =
         (Date.now() - viewData.lastViewTimestamp) / (1000 * 60 * 60);
-    console.log('hoursSinceLastView', hoursSinceLastView);
+
     return hoursSinceLastView >= VIEW_COOLDOWN_HOURS;
 };

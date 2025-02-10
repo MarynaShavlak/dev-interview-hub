@@ -35,6 +35,7 @@ import { SidebarItemType } from '../../../model/types/sidebar';
 
 export const useSidebarItems = () => {
     const userData = useUserAuthData();
+
     const sidebarItemsList: SidebarItemType[] = [
         {
             path: getRouteMain(),
