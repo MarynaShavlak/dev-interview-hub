@@ -2,6 +2,7 @@ import { User as FirebaseUser } from '@firebase/auth';
 import { User } from '@/entities/User';
 import { getInitialUserData } from '../getInitialUserData/getInitialUserData';
 import { SignupCredentials } from '../../../model/services/signupByEmailThunk/signupByEmailThunk';
+import { truncateText } from '@/shared/lib/text/truncateText/truncateText';
 
 export const prepareUserData = (
     firebaseUser: FirebaseUser,
@@ -9,9 +10,10 @@ export const prepareUserData = (
 ): User => {
     if (signUpData) {
         const { username, lastname, firstname, email } = signUpData;
+
         return {
             id: firebaseUser.uid,
-            username,
+            username: truncateText(username, 20),
             lastname,
             firstname,
             email,

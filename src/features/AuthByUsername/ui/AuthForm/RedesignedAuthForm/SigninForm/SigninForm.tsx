@@ -78,8 +78,8 @@ export const SignInForm = memo((props: AuthFormProps) => {
                         <PasswordInput
                             password={password}
                             onChangePassword={onChangePassword}
-                            passwordErrors={passwordErrors}
-                            validConfig={validConfig}
+                            // passwordErrors={passwordErrors}
+                            // validConfig={validConfig}
                             withResetOption
                             onShowResetForm={toggleForm}
                         />

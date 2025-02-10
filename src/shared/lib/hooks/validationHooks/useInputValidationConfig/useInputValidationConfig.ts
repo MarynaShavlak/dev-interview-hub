@@ -23,7 +23,7 @@ export const useInputValidationConfig = (): InputErrorValidation => {
         password: {
             isEmpty: true,
             minLength: 3,
-            maxLength: 8,
+            maxLength: 20,
         },
         title: {
             isEmpty: true,

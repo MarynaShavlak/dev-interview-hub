@@ -15,8 +15,8 @@ import { InputErrorValidation } from '@/shared/lib/hooks/validationHooks/useInpu
 interface PasswordInputProps {
     password: string;
     onChangePassword: (value: string) => void;
-    passwordErrors: ValidationErrors;
-    validConfig: InputErrorValidation;
+    passwordErrors?: ValidationErrors;
+    validConfig?: InputErrorValidation;
     withResetOption?: boolean;
     onShowResetForm?: () => void;
 }
@@ -53,7 +53,7 @@ export const PasswordInput = memo((props: PasswordInputProps) => {
                     onClick={toggleVisibility}
                 />
             }
-            validations={validConfig.password}
+            validations={validConfig?.password}
             errors={passwordErrors}
         />
     );
