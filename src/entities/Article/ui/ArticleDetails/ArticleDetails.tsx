@@ -3,8 +3,6 @@ import { RedesignedArticleDetails } from './RedesignedArticleDetails/RedesignedA
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
 import { DeprecatedArticleDetails } from './DeprecatedArticleDetails/DeprecatedArticleDetails';
 
-import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
-
 export interface ArticleDetailsProps {
     id?: string;
 }
@@ -15,7 +13,7 @@ export interface ArticleDetailsProps {
 
 export const ArticleDetails = memo((props: ArticleDetailsProps) => {
     const { id } = props;
-    const dispatch = useAppDispatch();
+
     // useInitialEffect(() => {
     //     dispatch(fetchArticleByIdThunk(id));
     // });

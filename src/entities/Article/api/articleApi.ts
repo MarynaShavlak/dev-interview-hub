@@ -1,14 +1,13 @@
-import { EntityState } from '@reduxjs/toolkit';
 import {
     getDoc,
-    getDocs,
     onSnapshot,
     updateDoc,
     increment,
+    getDocs,
 } from 'firebase/firestore';
+import { EntityState } from '@reduxjs/toolkit';
 import { firestoreApi } from '@/shared/api/rtkApi';
 import { Article } from '../model/types/article';
-import { dataPoint } from '@/shared/lib/firestore/firestore';
 import { articlesAdapter, initialState } from '../model/slices/articleSlice';
 import { addDocToFirestore } from '@/shared/lib/firestore/addDocToFirestore/addDocToFirestore';
 import { fetchDocumentByRef } from '@/shared/lib/firestore/fetchDocumentByRef/fetchDocumentByRef';
@@ -16,6 +15,7 @@ import { getDocRefByField } from '@/shared/lib/firestore/getDocRefByField/getDoc
 import { createArticlesByUserQuery } from '../lib/utilities/createArticlesByUserQuery/createArticlesByUserQuery';
 import { fetchQueryResults } from '@/shared/lib/firestore/fetchQueryResults/fetchQueryResults';
 import { deleteDocFromFirestore } from '@/shared/lib/firestore/deleteDocFromFirestore/deleteDocFromFirestore';
+import { dataPoint } from '@/shared/lib/firestore/firestore';
 
 export const articleFirebaseApi = firestoreApi
     .enhanceEndpoints({
