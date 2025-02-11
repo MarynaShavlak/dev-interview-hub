@@ -4,11 +4,12 @@ import { UserCardErrorRedesigned } from './UserCardRedesigned/UserCardErrorRedes
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
 import { Currency } from '@/entities/Currency';
 import { Country } from '@/entities/Country';
-import { User } from '../../../../entities/User';
+
 import { UserCardSkeletonRedesigned } from './UserCardRedesigned/UserCardSkeletonRedesigned/UserCardSkeletonRedesigned';
 import { UserCardLoaderDeprecated } from './UserCardDeprecated/UserCardLoaderDeprecated/UserCardLoaderDeprecated';
 import { UserCardErrorDeprecated } from './UserCardDeprecated/UserCardErrorDeprecated/UserCardErrorDeprecated';
 import { UserCardDeprecated } from './UserCardDeprecated/UserCardDeprecated';
+import { User } from '@/entities/User';
 
 export interface UserCardProps {
     className?: string;
@@ -21,7 +22,6 @@ export interface UserCardProps {
     onChangeCity?: (value?: string) => void;
     onChangeAge?: (value?: string) => void;
     onChangeUsername?: (value?: string) => void;
-    onChangeAvatar?: (value?: string) => void;
     onChangeCurrency?: (currency: Currency) => void;
     onChangeCountry?: (country: Country) => void;
     onFileUpload: (file: File | null) => void;

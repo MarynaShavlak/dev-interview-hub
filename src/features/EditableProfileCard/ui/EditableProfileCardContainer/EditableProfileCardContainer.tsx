@@ -11,7 +11,6 @@ export const EditableProfileCardContainer = memo(() => {
         onChangeFirstname,
         onChangeLastname,
         onChangeUsername,
-        onChangeAvatar,
         onChangeCountry,
         onChangeCurrency,
         onChangeAge,
@@ -30,7 +29,6 @@ export const EditableProfileCardContainer = memo(() => {
             onChangeAge={onChangeAge}
             onChangeCity={onChangeCity}
             onChangeUsername={onChangeUsername}
-            onChangeAvatar={onChangeAvatar}
             onChangeCurrency={onChangeCurrency}
             onChangeCountry={onChangeCountry}
             onFileUpload={onFileUpload}

@@ -11,7 +11,6 @@ import { updateUserProfileThunk } from '../../model/services/updateUserProfileTh
 import { useProfile } from '../../lib/hooks/useProfile/useProfile';
 import { useUploadedProfilePhoto } from '../../model/selectors/getUploadedProfilePhoto/getUploadedProfilePhoto';
 import { uploadImageThunk } from '../../model/services/uploadImageThunk/uploadImageThunk';
-import { useProfileForm } from '../../model/selectors/getProfileForm/getProfileForm';
 
 interface EditableProfileCardHeaderProps {
     className?: string;
@@ -23,7 +22,7 @@ export const EditableProfileCardHeader = memo(
 
         const authData = useUserAuthData();
         const profileData = useProfileData();
-        const formData = useProfileForm();
+
         const canEdit = authData?.id === profileData?.id;
         const readonly = useProfileReadonly();
         const dispatch = useAppDispatch();

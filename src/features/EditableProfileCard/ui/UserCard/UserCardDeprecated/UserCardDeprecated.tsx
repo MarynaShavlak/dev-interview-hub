@@ -19,7 +19,7 @@ export const UserCardDeprecated = (props: UserCardProps) => {
         onChangeAge,
         onChangeCity,
         onChangeUsername,
-        onChangeAvatar,
+
         onChangeCurrency,
         onChangeCountry,
         onFileUpload,
