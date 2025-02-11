@@ -71,9 +71,9 @@ AuthByUsername/
   - [**AuthForm.tsx**](ui/AuthForm/README.md): Main login form component that handles user input and submission for authentication.
   - **AuthForm.module.scss**: Styles for the `AuthForm` component.
   - **`DeprecatedAuthForm/`**
-    - [**DeprecatedAuthForm.tsx**](ui/AuthForm/DeprecatedAuthForm/README.md): Legacy version of the login form used in the older UI design.
+    - [**DeprecatedAuthForm.tsx**](ui/AuthForm/AuthFormDeprecated/README.md): Legacy version of the login form used in the older UI design.
   - **`RedesignedAuthForm/`**
-    - [**RedesignedAuthForm.tsx**](ui/AuthForm/RedesignedAuthForm/README.md): Updated login form that aligns with the redesigned UI.
+    - [**RedesignedAuthForm.tsx**](ui/AuthForm/AuthFormRedesigned/README.md): Updated login form that aligns with the redesigned UI.
 
 - **`AuthModal/`**
   - [**AuthModal.tsx**](ui/AuthModal/README.md): Modal component that displays the `AuthForm` within a popup window for a focused user experience..

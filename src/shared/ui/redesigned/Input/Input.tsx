@@ -9,7 +9,7 @@ import {
     ValidationErrors,
 } from '@/shared/lib/hooks/validationHooks/useInputErrors/useInputErrors';
 import { FlexGap } from '@/shared/types/flexTypes';
-import { ValidationErrorMessages } from './ValidationErrorMessages/ValidationErrorMessages';
+import { ValidationErrorMessages } from '../../common/ValidationErrorMessages/ValidationErrorMessages';
 
 type HTMLInputProps = Omit<
     InputHTMLAttributes<HTMLInputElement>,
@@ -133,7 +133,7 @@ export const Input = memo((props: InputProps) => {
                         validations={validations}
                         errors={errors}
                     />
-                )}
+                )}{' '}
             </VStack>
         );
     }

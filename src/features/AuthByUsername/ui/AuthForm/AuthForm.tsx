@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import { RedesignedAuthForm } from './RedesignedAuthForm/RedesignedAuthForm';
+import { AuthFormRedesigned } from './AuthFormRedesigned/AuthFormRedesigned';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
 import {
     DynamicModuleLoader,
@@ -7,6 +7,7 @@ import {
 } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { loginReducer } from '../../model/slices/loginSlice/loginSlice';
 import { signupReducer } from '../../testing';
+import { AuthFormDeprecated } from './AuthFormDeprecated/AuthFormDeprecated';
 
 export interface AuthFormProps {
     className?: string;
@@ -23,9 +24,8 @@ const AuthForm = memo((props: AuthFormProps) => {
         <DynamicModuleLoader reducers={initialReducers} removeAfterUnmount>
             <ToggleFeaturesComponent
                 feature="isAppRedesigned"
-                on={<RedesignedAuthForm {...props} />}
-                off={<RedesignedAuthForm {...props} />}
-                // off={<DeprecatedAuthForm {...props} />}
+                on={<AuthFormRedesigned {...props} />}
+                off={<AuthFormDeprecated {...props} />}
             />
         </DynamicModuleLoader>
     );

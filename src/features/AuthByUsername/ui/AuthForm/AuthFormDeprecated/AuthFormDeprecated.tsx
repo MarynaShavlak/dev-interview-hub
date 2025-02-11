@@ -5,14 +5,16 @@ import { SignInForm } from './SigninForm/SigninForm';
 import { SignUpForm } from './SignupForm/SignupForm';
 import { HStack, VStack } from '@/shared/ui/common/Stack';
 import cls from '../AuthForm.module.scss';
-import { Text } from '@/shared/ui/redesigned/Text';
-import { Button } from '@/shared/ui/redesigned/Button';
-import { Icon } from '@/shared/ui/redesigned/Icon';
+import { Text } from '@/shared/ui/deprecated/Text';
+import { Button } from '@/shared/ui/deprecated/Button';
+import { Icon } from '@/shared/ui/deprecated/Icon';
 import GoogleIcon from '@/shared/assets/icons/google.svg';
 import { useToggleForm } from '../../../lib/hooks/useToggleForm/useToggleForm';
 import { useSignUpForm } from '../../../lib/hooks/useSignUpForm/useSignUpForm';
+import { getFlexClasses } from '@/shared/lib/classes/getFlexClasses/getFlexClasses';
+import { classNames } from '@/shared/lib/classes/classNames/classNames';
 
-export const RedesignedAuthForm = memo((props: AuthFormProps) => {
+export const AuthFormDeprecated = memo((props: AuthFormProps) => {
     const { t } = useTranslation('profile');
     const { onAuthByGoogleClick } = useSignUpForm(props.onSuccess);
     const { isLoginFormOpen, toggleForm } = useToggleForm();
@@ -25,6 +27,12 @@ export const RedesignedAuthForm = memo((props: AuthFormProps) => {
         ? t('Зареєструйтесь')
         : t('Увійти');
 
+    const btnClasses = getFlexClasses({
+        hStack: true,
+        gap: '8',
+        justify: 'center',
+        align: 'center',
+    });
     return (
         <VStack gap="16">
             {isLoginFormOpen ? (
@@ -33,7 +41,7 @@ export const RedesignedAuthForm = memo((props: AuthFormProps) => {
                 <SignUpForm {...props} />
             )}
             <HStack
-                className={cls.formDivider}
+                className={cls.formDividerDeprecated}
                 align="center"
                 justify="center"
                 max
@@ -42,12 +50,11 @@ export const RedesignedAuthForm = memo((props: AuthFormProps) => {
             </HStack>
             <Button
                 max
-                variant="outline"
-                addonLeft={<Icon Svg={GoogleIcon} width="25" height="25" />}
-                className={cls.authBtn}
+                className={classNames(cls.authBtn, {}, btnClasses)}
                 onClick={onAuthByGoogleClick}
                 data-testid="login-submit-btn"
             >
+                <Icon Svg={GoogleIcon} width="25" height="25" />
                 {buttonGoogleText}
             </Button>
             <HStack
@@ -56,9 +63,7 @@ export const RedesignedAuthForm = memo((props: AuthFormProps) => {
                 gap="8"
             >
                 <Text text={redirectText} />
-                <Button variant="link" onClick={toggleForm}>
-                    {redirectLinkText}
-                </Button>
+                <Button onClick={toggleForm}>{redirectLinkText}</Button>
             </HStack>
         </VStack>
     );

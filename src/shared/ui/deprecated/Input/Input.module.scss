@@ -1,9 +1,16 @@
+.wrap {
+    position:relative;
+}
 .InputWrapper {
     display: flex;
+    width:100%;
+
+
 }
 
 .placeholder {
     margin-right: 5px;
+
 }
 
 .input {
@@ -50,4 +57,29 @@
     100% {
         opacity: 1;
     }
+}
+
+
+.withError {
+    border-bottom: 2px solid var(--red-dark);
+    border-top: 2px solid var(--red-dark);
+}
+.withErrorPlaceholder {
+   color: var(--red-dark);
+}
+
+
+.isLimitExceeded {
+    color: var(--red-dark);
+}
+
+
+.InputLimit {
+    font-size: 12px;
+}
+
+
+.limitWrap {
+    position:absolute;
+    top:-16px;
 }
