@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import { VStack } from '@/shared/ui/common/Stack';
+import { HStack, VStack } from '@/shared/ui/common/Stack';
 import { ArticleEditorPageHeader } from '../ArticleEditorPageHeader/ArticleEditorPageHeader';
 import { useArticleEditor } from '../../lib/hooks/useArticleEditor/useArticleEditor';
 import { Skeleton } from '@/shared/ui/redesigned/Skeleton';
@@ -10,6 +10,9 @@ import {
 } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { createArticleReducer } from '../../model/slices/createArticleSlice';
 import { ArticleEditorPageContent } from '../ArticleEditorPageContent/ArticleEditorPageContent';
+import { Loader } from '@/shared/ui/deprecated/Loader';
+import { ToggleFeaturesComponent } from '@/shared/lib/features';
+import cls from './ArticleEditorPageContainer.module.scss';
 
 const reducers: ReducersList = {
     createArticle: createArticleReducer,
@@ -26,7 +29,17 @@ export const ArticleEditorPageContainer = memo(() => {
     const { isEditArticlePage, saveError, isLoading } = metadata;
 
     if (isLoading) {
-        return <Skeleton width="100%" height="100vh" border="40px" />;
+        return (
+            <ToggleFeaturesComponent
+                feature="isAppRedesigned"
+                on={<Skeleton width="100%" height="100vh" border="40px" />}
+                off={
+                    <HStack justify="center" max className={cls.loaderWrapper}>
+                        <Loader />
+                    </HStack>
+                }
+            />
+        );
     }
 
     return (

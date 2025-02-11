@@ -1,18 +1,18 @@
 import { useTranslation } from 'react-i18next';
-import React, { memo, useCallback } from 'react';
+import React, { memo } from 'react';
 import { HStack } from '@/shared/ui/common/Stack';
 
-import { useArticleFormState } from '../../lib/hooks/useArticleFormState/useArticleFormState';
 import { Button } from '@/shared/ui/redesigned/Button';
-import { useToggleVisibility } from '@/shared/lib/hooks/useToggleVisibility/useToggleVisibility';
 import { ConfirmDeleteModal } from '@/features/ConfirmDeleteModal';
 import { ConfirmCancelModal } from '@/features/ConfirmCancelModal';
-import { useArticleNavigation } from '@/entities/Article';
 import cls from './ArticleEditorPageHeader.module.scss';
 import { Text } from '@/shared/ui/redesigned/Text';
 import { Skeleton } from '@/shared/ui/redesigned/Skeleton';
+import { Loader } from '@/shared/ui/deprecated/Loader';
+import { ToggleFeaturesComponent } from '@/shared/lib/features';
+import { useArticleEditorPageHeader } from '../../lib/hooks/useArticleEditorPageHeader/useArticleEditorPageHeader';
 
-interface ArticleEditorPageHeaderProps {
+export interface ArticleEditorPageHeaderProps {
     className?: string;
     hasErrors: boolean;
     isEditArticlePage: boolean;
@@ -36,51 +36,34 @@ export const ArticleEditorPageHeader = memo(
             isLoading,
         } = props;
         const { t } = useTranslation('articleDetails');
-        const { formData } = useArticleFormState();
-        const { navigateToArticle } = useArticleNavigation();
-        const editedArticleId = formData?.id;
         const pageTitle = isEditArticlePage
             ? t('Редагування статті')
             : t('Створення нової статті');
 
-        const deleteArticleModal = useToggleVisibility();
-        const cancelArticleEditing = useToggleVisibility();
+        const {
+            deleteArticleModal,
+            cancelArticleEditing,
+            handleSave,
+            handleUpdate,
+            handleDelete,
+            handleCancel,
+            canSave,
 
-        const handleSave = useCallback(async () => {
-            const savedArticleId = await onActions.save();
-
-            if (savedArticleId) {
-                navigateToArticle(savedArticleId);
-            }
-        }, [navigateToArticle, onActions]);
-
-        const handleUpdate = useCallback(async () => {
-            const updatedArticleId = await onActions.update();
-
-            if (updatedArticleId) {
-                navigateToArticle(updatedArticleId);
-            }
-        }, [navigateToArticle, onActions]);
-
-        const handleDelete = useCallback(async () => {
-            const deletedArticleId = await onActions.delete();
-
-            if (deletedArticleId) {
-                navigateToArticle(`${deletedArticleId}-deleted`);
-            }
-        }, [navigateToArticle, onActions]);
-
-        const handleCancel = useCallback(() => {
-            if (editedArticleId) {
-                onActions.cancel();
-                navigateToArticle(editedArticleId);
-            }
-        }, [editedArticleId, navigateToArticle, onActions]);
-
-        const canSave = !hasErrors && (formData?.blocks?.length ?? 0) > 0;
+            articleTitle,
+        } = useArticleEditorPageHeader(onActions, hasErrors);
 
         if (isLoading) {
-            return <Skeleton width="100%" height="76px" border="16px" />;
+            return (
+                <ToggleFeaturesComponent
+                    feature="isAppRedesigned"
+                    on={<Skeleton width="100%" height="76px" border="16px" />}
+                    off={
+                        <HStack justify="center" max>
+                            <Loader />
+                        </HStack>
+                    }
+                />
+            );
         }
 
         return (
@@ -126,7 +109,7 @@ export const ArticleEditorPageHeader = memo(
                     <ConfirmDeleteModal
                         isOpen={deleteArticleModal.isVisible}
                         onCancel={deleteArticleModal.hide}
-                        text={`${t('статтю')} "${formData?.title}"`}
+                        text={`${t('статтю')} "${articleTitle}"`}
                         onConfirm={handleDelete}
                     />
                 )}
