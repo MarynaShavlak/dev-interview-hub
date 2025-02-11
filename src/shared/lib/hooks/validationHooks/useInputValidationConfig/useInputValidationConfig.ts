@@ -15,10 +15,12 @@ export const useInputValidationConfig = (): InputErrorValidation => {
         firstname: {
             isEmpty: true,
             minLength: 2,
+            maxLength: 30,
         },
         lastname: {
             isEmpty: true,
             minLength: 2,
+            maxLength: 30,
         },
         password: {
             isEmpty: true,

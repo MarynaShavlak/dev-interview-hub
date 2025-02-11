@@ -55,7 +55,6 @@ export const SignInForm = memo((props: AuthFormProps) => {
                         <Text
                             text={t('Ви ввели невірний логін або пароль')}
                             theme={TextTheme.ERROR}
-                            // variant="error"
                         />
                     )}
                     <Input
@@ -78,7 +77,6 @@ export const SignInForm = memo((props: AuthFormProps) => {
 
                     <Button
                         max
-                        // variant="accent"
                         className={cls.authBtn}
                         onClick={onLoginClick}
                         disabled={isLoading || hasInputErrors}

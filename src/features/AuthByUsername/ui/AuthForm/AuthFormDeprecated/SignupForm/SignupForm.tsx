@@ -3,9 +3,9 @@ import { useTranslation } from 'react-i18next';
 import { VStack } from '@/shared/ui/common/Stack';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import cls from '../../AuthForm.module.scss';
-import { Text } from '@/shared/ui/redesigned/Text';
-import { Input } from '@/shared/ui/redesigned/Input';
-import { Button } from '@/shared/ui/redesigned/Button';
+import { Text, TextTheme } from '@/shared/ui/deprecated/Text';
+import { Input } from '@/shared/ui/deprecated/Input';
+import { Button, ButtonTheme } from '@/shared/ui/deprecated/Button';
 import { AuthFormProps } from '../../AuthForm';
 
 import { useInputValidationConfig } from '@/shared/lib/hooks/validationHooks/useInputValidationConfig/useInputValidationConfig';
@@ -56,46 +56,49 @@ export const SignUpForm = memo((props: AuthFormProps) => {
             gap="16"
             className={classNames(cls.AuthForm, {}, [className])}
             data-testid="auth-form-sign-up"
+            align="center"
         >
             <Text title={t('Форма реєстрації')} />
-            {error && <Text text={errorText} variant="error" />}
+            {error && <Text text={errorText} theme={TextTheme.ERROR} />}
             <Input
                 type="text"
-                placeholder={t("Введіть ваше ім'я")}
+                placeholder={t("Ім'я")}
                 onChange={onChangeFirstname}
                 value={firstname}
                 data-testid="signup-firstname-input"
-                label={t("Ім'я")}
+                // label={t()}
                 validations={validConfig.firstname}
                 errors={firstnameErrors}
+                maxLengthIndicator
             />
             <Input
                 type="text"
-                placeholder={t('Введіть Ваше прізвище')}
+                placeholder={t('Прізвище')}
                 onChange={onChangeLastname}
                 value={lastname}
                 data-testid="signup-lastname-input"
-                label={t('Прізвище')}
+                // label={t('Прізвище')}
                 validations={validConfig.lastname}
                 errors={lastnameErrors}
+                maxLengthIndicator
             />
             <Input
                 type="text"
-                placeholder={t("Введіть ім'я користувача")}
+                placeholder={t("Ім'я користувача")}
                 onChange={onChangeUsername}
                 value={username}
                 data-testid="signup-username-input"
-                label={t("Ім'я користувача")}
+                // label={t("Ім'я користувача")}
                 validations={validConfig.username}
                 errors={usernameErrors}
             />
             <Input
                 type="text"
-                placeholder={t('Введіть email')}
+                placeholder={t('Email')}
                 onChange={onChangeEmail}
                 value={email}
                 data-testid="signup-email-input"
-                label={t('Email')}
+                // label={t('Email')}
                 validations={validConfig.email}
                 errors={emailErrors}
             />
@@ -105,11 +108,13 @@ export const SignUpForm = memo((props: AuthFormProps) => {
                 onChangePassword={onChangePassword}
                 passwordErrors={passwordErrors}
                 validConfig={validConfig}
+                label={t('Пароль')}
             />
 
             <Button
                 max
-                variant="accent"
+                // variant="accent"
+                theme={ButtonTheme.OUTLINE}
                 className={cls.authBtn}
                 onClick={onSignupClick}
                 disabled={isLoading || hasInputErrors}

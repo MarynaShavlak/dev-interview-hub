@@ -22,6 +22,7 @@ interface PasswordInputProps {
     validConfig?: InputErrorValidation;
     withResetOption?: boolean;
     onShowResetForm?: () => void;
+    label?: string;
 }
 
 export const PasswordInput = memo((props: PasswordInputProps) => {
@@ -32,6 +33,7 @@ export const PasswordInput = memo((props: PasswordInputProps) => {
         validConfig,
         withResetOption = false,
         onShowResetForm,
+        label,
     } = props;
     const { t } = useTranslation('profile');
 
@@ -42,12 +44,10 @@ export const PasswordInput = memo((props: PasswordInputProps) => {
         <Box className={classNames(cls.passwordInputWrapper, {}, wrappClasses)}>
             <Input
                 type={isVisible ? 'text' : 'password'}
-                placeholder={t('Введіть пароль')}
+                placeholder={label || t('Введіть пароль')}
                 onChange={onChangePassword}
                 value={password}
                 data-testid="login-password-input"
-                // label={t('Пароль')}
-
                 validations={validConfig?.password}
                 errors={passwordErrors}
             />
