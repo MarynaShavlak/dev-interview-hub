@@ -1,15 +1,15 @@
 import { useTranslation } from 'react-i18next';
 import { UserCardProps } from '../UserCard';
 import { classNames, Mods } from '@/shared/lib/classes/classNames/classNames';
-import { HStack, VStack } from '@/shared/ui/common/Stack';
+import { VStack } from '@/shared/ui/common/Stack';
 
 import { CurrencySelect } from '@/entities/Currency';
 import { CountrySelect } from '@/entities/Country';
 import { Input as InputDeprecated } from '@/shared/ui/deprecated/Input';
-import { Avatar as AvatarDeprecated } from '@/shared/ui/deprecated/Avatar';
-import cls from './DeprecatedUserCard.module.scss';
+import cls from './UserCardDeprecated.module.scss';
+import { AvatarUploader } from '../AvatarUploader/AvatarUploader';
 
-export const DeprecatedUserCard = (props: UserCardProps) => {
+export const UserCardDeprecated = (props: UserCardProps) => {
     const {
         className,
         data,
@@ -22,6 +22,7 @@ export const DeprecatedUserCard = (props: UserCardProps) => {
         onChangeAvatar,
         onChangeCurrency,
         onChangeCountry,
+        onFileUpload,
     } = props;
     const { t } = useTranslation('profile');
 
@@ -35,15 +36,11 @@ export const DeprecatedUserCard = (props: UserCardProps) => {
             max
             className={classNames(cls.UserCard, mods, [className])}
         >
-            {data?.avatar && (
-                <HStack justify="center" max>
-                    <AvatarDeprecated
-                        size={200}
-                        src={data?.avatar}
-                        alt={t('Аватар користувача')}
-                    />
-                </HStack>
-            )}
+            <AvatarUploader
+                avatar={data?.avatar || ''}
+                readonly={readonly}
+                onFileUpload={onFileUpload}
+            />
 
             <InputDeprecated
                 value={data?.username}
@@ -81,14 +78,7 @@ export const DeprecatedUserCard = (props: UserCardProps) => {
                 readonly={readonly}
                 data-testid="UserCard.city"
             />
-            <InputDeprecated
-                value={data?.avatar}
-                placeholder={t('Введіть посилання на аватар')}
-                className={cls.inputAvatar}
-                onChange={onChangeAvatar}
-                readonly={readonly}
-                data-testid="UserCard.avatar"
-            />
+
             <CurrencySelect
                 value={data?.currency}
                 onChange={onChangeCurrency}

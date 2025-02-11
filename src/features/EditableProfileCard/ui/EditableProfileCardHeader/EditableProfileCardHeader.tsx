@@ -1,6 +1,6 @@
 import { memo, useCallback } from 'react';
-import { RedesignedEditableProfileCardHeader } from './RedesignedEditableProfileCardHeader/RedesignedEditableProfileCardHeader';
-import { DeprecatedEditableProfileCardHeader } from './DeprecatedEditableProfileCardHeader/DeprecatedEditableProfileCardHeader';
+import { EditableProfileCardHeaderRedesigned } from './EditableProfileCardHeaderRedesigned/EditableProfileCardHeaderRedesigned';
+import { EditableProfileCardHeaderDeprecated } from './EditableProfileCardHeaderDeprecated/EditableProfileCardHeaderDeprecated';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
 import { useUserAuthData } from '@/entities/User';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
@@ -66,8 +66,8 @@ export const EditableProfileCardHeader = memo(
         return (
             <ToggleFeaturesComponent
                 feature="isAppRedesigned"
-                on={<RedesignedEditableProfileCardHeader {...commonProps} />}
-                off={<DeprecatedEditableProfileCardHeader {...commonProps} />}
+                on={<EditableProfileCardHeaderRedesigned {...commonProps} />}
+                off={<EditableProfileCardHeaderDeprecated {...commonProps} />}
             />
         );
     },

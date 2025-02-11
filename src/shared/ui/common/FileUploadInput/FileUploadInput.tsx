@@ -3,9 +3,12 @@ import { v4 } from 'uuid';
 import cls from './FileUploadInput.module.scss';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import EditIcon from '@/shared/assets/icons/edit.svg';
-import { Icon } from '../Icon';
-import { Box } from '../../common/Box';
+import { Icon } from '../../redesigned/Icon';
+import { Icon as IconDeprecated } from '../../deprecated/Icon';
+import { Box } from '../Box';
 import { getFlexClasses } from '@/shared/lib/classes/getFlexClasses/getFlexClasses';
+
+import { toggleFeatures, ToggleFeaturesComponent } from '@/shared/lib/features';
 
 interface FileUploadInputProps {
     onChange: (event: ChangeEvent<HTMLInputElement>) => void;
@@ -23,7 +26,19 @@ export const FileUploadInput = ({
         align: 'center',
         justify: 'center',
     });
-    const labelClass = AddFileElement ? '' : cls.uploadLabel;
+
+    const mainLabelClass = toggleFeatures({
+        name: 'isAppRedesigned',
+        on: () => cls.uploadLabel,
+        off: () => cls.uploadLabelRedesigned,
+    });
+
+    const iconClass = toggleFeatures({
+        name: 'isAppRedesigned',
+        on: () => cls.photoIcon,
+        off: () => cls.photoIconRedesigned,
+    });
+    const labelClass = AddFileElement ? '' : mainLabelClass;
     const boxClass = AddFileElement
         ? cls.uploadFileCenteredWrapper
         : cls.uploadFileAbsoluteWrapper;
@@ -35,11 +50,24 @@ export const FileUploadInput = ({
                 className={classNames(labelClass, {}, uploadLabelClasses)}
             >
                 {AddFileElement || (
-                    <Icon
-                        Svg={EditIcon}
-                        className={cls.photoIcon}
-                        width={18}
-                        height={18}
+                    <ToggleFeaturesComponent
+                        feature="isAppRedesigned"
+                        on={
+                            <Icon
+                                Svg={EditIcon}
+                                className={iconClass}
+                                width={18}
+                                height={18}
+                            />
+                        }
+                        off={
+                            <IconDeprecated
+                                Svg={EditIcon}
+                                className={iconClass}
+                                width={18}
+                                height={18}
+                            />
+                        }
                     />
                 )}
             </label>

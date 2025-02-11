@@ -17,7 +17,7 @@ interface RedesignedEditableProfileCardHeaderProps {
     hasInputErrors?: boolean;
 }
 
-export const RedesignedEditableProfileCardHeader = memo(
+export const EditableProfileCardHeaderRedesigned = memo(
     (props: RedesignedEditableProfileCardHeaderProps) => {
         const {
             className,

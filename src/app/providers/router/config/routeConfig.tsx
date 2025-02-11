@@ -32,7 +32,7 @@ import {
     ArticleEditorPage,
     ArticleEditorPageSkeleton,
 } from '@/pages/ArticleEditorPage';
-import { RedesignedUserCardSkeleton as ProfileSkeleton } from '@/features/EditableProfileCard';
+import { UserCardSkeletonRedesigned as ProfileSkeleton } from '@/features/EditableProfileCard';
 
 export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
     [AppRoutes.MAIN]: {

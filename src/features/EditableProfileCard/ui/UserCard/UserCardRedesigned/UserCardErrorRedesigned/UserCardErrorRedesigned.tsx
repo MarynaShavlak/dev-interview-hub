@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { HStack } from '@/shared/ui/common/Stack';
 import { Text } from '@/shared/ui/redesigned/Text';
 
-export const RedesignedUserCardError = () => {
+export const UserCardErrorRedesigned = () => {
     const { t } = useTranslation('profile');
 
     return (

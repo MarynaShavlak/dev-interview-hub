@@ -37,7 +37,30 @@
   }
 }
 
+.uploadLabelRedesigned {
+  position: relative;
+  background: var(--bg-color);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid var( --primary-color);
+  overflow: hidden;
+  cursor: pointer;
+  z-index: 2;
+  &:hover {
+    .photoIcon {
+      fill: var( --primary-color);
+    }
+  }
+}
+
 .photoIcon {
   fill: var(--icon-redesigned);
+  cursor: pointer;
+}
+
+
+.photoIconRedesigned  {
+  fill: var(--secondary-color);
   cursor: pointer;
 }

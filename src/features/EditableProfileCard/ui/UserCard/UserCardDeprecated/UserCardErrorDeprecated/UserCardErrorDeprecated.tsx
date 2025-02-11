@@ -6,9 +6,9 @@ import {
     TextAlign,
     TextTheme,
 } from '@/shared/ui/deprecated/Text';
-import cls from '../DeprecatedUserCard.module.scss';
+import cls from '../UserCardDeprecated.module.scss';
 
-export const DeprecatedUserCardError = () => {
+export const UserCardErrorDeprecated = () => {
     const { t } = useTranslation('profile');
     return (
         <HStack

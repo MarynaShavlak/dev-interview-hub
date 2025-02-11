@@ -1,11 +1,11 @@
-# DeprecatedUserCard
+# UserCardDeprecated
 
 ## Overview
-The **`DeprecatedUserCard`** component represents the legacy profile card interface, designed to handle user profile information with deprecated UI elements. This component provides a familiar interface for users during the transition to a redesigned profile card, allowing for profile data management including avatar, personal details, and selection of currency and country. It integrates deprecated UI components while maintaining essential functionality and visual consistency with the older design system.
+The **`UserCardDeprecated`** component represents the legacy profile card interface, designed to handle user profile information with deprecated UI elements. This component provides a familiar interface for users during the transition to a redesigned profile card, allowing for profile data management including avatar, personal details, and selection of currency and country. It integrates deprecated UI components while maintaining essential functionality and visual consistency with the older design system.
 
 ## Props
 
-The **`DeprecatedUserCard`** component accepts the following props:
+The **`UserCardDeprecated`** component accepts the following props:
 
 | Prop                | Type                           | Required / Optional | Description                                                                            |
 |---------------------|--------------------------------|----------------------|----------------------------------------------------------------------------------------|
@@ -28,7 +28,7 @@ The **`DeprecatedUserCard`** component accepts the following props:
 
 ## Usage Example
 ```typescript jsx
-import { DeprecatedUserCard } from '@/entities/Profile/DeprecatedUserCard';
+import { UserCardDeprecated } from '@/entities/Profile/UserCardDeprecated';
 
 const UserProfile = () => {
     const handleUsernameChange = (value: string) => {
@@ -38,7 +38,7 @@ const UserProfile = () => {
     // Define other handlers similarly...
 
     return (
-        <DeprecatedUserCard
+        <UserCardDeprecated
             className="profile-card"
             data={/* profile data */}
             readonly={false}
@@ -55,4 +55,4 @@ const UserProfile = () => {
 };
 ```
 ## Conclusion
-The **`DeprecatedUserCard`** component plays a critical role in maintaining legacy user interface consistency while transitioning to a redesigned profile management system. By leveraging outdated UI elements and providing essential profile data management functionalities, it ensures continuity in user experience during the design upgrade process.
+The **`UserCardDeprecated`** component plays a critical role in maintaining legacy user interface consistency while transitioning to a redesigned profile management system. By leveraging outdated UI elements and providing essential profile data management functionalities, it ensures continuity in user experience during the design upgrade process.

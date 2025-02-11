@@ -12,7 +12,7 @@ import { useInputValidationConfig } from '@/shared/lib/hooks/validationHooks/use
 import { useFormValidation } from '@/shared/lib/hooks/validationHooks/useFormValidation/useFormValidation';
 import { AvatarUploader } from '../AvatarUploader/AvatarUploader';
 
-export const RedesignedUserCard = memo((props: UserCardProps) => {
+export const UserCardRedesigned = memo((props: UserCardProps) => {
     const {
         className,
         data,

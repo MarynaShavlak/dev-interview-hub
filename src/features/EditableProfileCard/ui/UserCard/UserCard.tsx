@@ -1,14 +1,14 @@
-import { RedesignedUserCard } from './RedesignedUserCard/RedesignedUserCard';
-import { RedesignedUserCardError } from './RedesignedUserCard/RedesignedUserCardError/RedesignedUserCardError';
+import { UserCardRedesigned } from './UserCardRedesigned/UserCardRedesigned';
+import { UserCardErrorRedesigned } from './UserCardRedesigned/UserCardErrorRedesigned/UserCardErrorRedesigned';
 
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
 import { Currency } from '@/entities/Currency';
 import { Country } from '@/entities/Country';
 import { User } from '../../../../entities/User';
-import { RedesignedUserCardSkeleton } from './RedesignedUserCard/RedesignedUserCardSkeleton/RedesignedUserCardSkeleton';
-import { DeprecatedUserCardLoader } from './DeprecatedProfileCard/DeprecatedUserCardLoader/DeprecatedUserCardLoader';
-import { DeprecatedUserCardError } from './DeprecatedProfileCard/DeprecatedUserCardError/DeprecatedUserCardError';
-import { DeprecatedUserCard } from './DeprecatedProfileCard/DeprecatedProfileCard';
+import { UserCardSkeletonRedesigned } from './UserCardRedesigned/UserCardSkeletonRedesigned/UserCardSkeletonRedesigned';
+import { UserCardLoaderDeprecated } from './UserCardDeprecated/UserCardLoaderDeprecated/UserCardLoaderDeprecated';
+import { UserCardErrorDeprecated } from './UserCardDeprecated/UserCardErrorDeprecated/UserCardErrorDeprecated';
+import { UserCardDeprecated } from './UserCardDeprecated/UserCardDeprecated';
 
 export interface UserCardProps {
     className?: string;
@@ -34,8 +34,8 @@ export const UserCard = (props: UserCardProps) => {
         return (
             <ToggleFeaturesComponent
                 feature="isAppRedesigned"
-                on={<RedesignedUserCardSkeleton />}
-                off={<DeprecatedUserCardLoader />}
+                on={<UserCardSkeletonRedesigned />}
+                off={<UserCardLoaderDeprecated />}
             />
         );
     }
@@ -43,8 +43,8 @@ export const UserCard = (props: UserCardProps) => {
         return (
             <ToggleFeaturesComponent
                 feature="isAppRedesigned"
-                on={<RedesignedUserCardError />}
-                off={<DeprecatedUserCardError />}
+                on={<UserCardErrorRedesigned />}
+                off={<UserCardErrorDeprecated />}
             />
         );
     }
@@ -52,8 +52,8 @@ export const UserCard = (props: UserCardProps) => {
     return (
         <ToggleFeaturesComponent
             feature="isAppRedesigned"
-            on={<RedesignedUserCard {...props} />}
-            off={<DeprecatedUserCard {...props} />}
+            on={<UserCardRedesigned {...props} />}
+            off={<UserCardDeprecated {...props} />}
         />
     );
 };

@@ -15,7 +15,7 @@ interface DeprecatedEditableProfileCardHeaderProps {
     hasInputErrors: boolean;
 }
 
-export const DeprecatedEditableProfileCardHeader = memo(
+export const EditableProfileCardHeaderDeprecated = memo(
     (props: DeprecatedEditableProfileCardHeaderProps) => {
         const {
             className,

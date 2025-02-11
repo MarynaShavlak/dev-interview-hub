@@ -102,9 +102,9 @@ EditableProfileCard/
     - [**EditableProfileCardHeader.tsx**](./ui/EditableProfileCardHeader/README.md): Header component for the editable profile card
     - **EditableProfileCardHeader.module.scss**: Styles for the header.
     - **`DeprecatedEditableProfileCardHeader/`**:
-      - [**DeprecatedEditableProfileCardHeader.tsx**](./ui/EditableProfileCardHeader/DeprecatedEditableProfileCardHeader/README.md): Legacy header component.
+      - [**DeprecatedEditableProfileCardHeader.tsx**](ui/EditableProfileCardHeader/EditableProfileCardHeaderDeprecated/README.md): Legacy header component.
     - **`RedesignedEditableProfileCardHeader/`**:
-      -  [**RedesignedEditableProfileCardHeader.tsx**](./ui/EditableProfileCardHeader/RedesignedEditableProfileCardHeader/README.md): Updated header component for the redesigned UI.
+      -  [**RedesignedEditableProfileCardHeader.tsx**](ui/EditableProfileCardHeader/EditableProfileCardHeaderRedesigned/README.md): Updated header component for the redesigned UI.
 
 ### 3. `lib/`:  Utility functions and hooks.
 - **`hook/`**

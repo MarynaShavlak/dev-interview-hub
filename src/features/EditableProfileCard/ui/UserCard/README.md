@@ -2,7 +2,7 @@
 
 ## Overview
 The **`UserCard`** component provides a user interface for displaying and editing user profile information. 
-It adapts its rendering based on the `isAppRedesigned` feature flag, switching between the `RedesignedUserCard` and `DeprecatedUserCard` components to deliver either the latest design or the legacy version. 
+It adapts its rendering based on the `isAppRedesigned` feature flag, switching between the `RedesignedUserCard` and `UserCardDeprecated` components to deliver either the latest design or the legacy version. 
 The component handles different states including loading, error, and data display, ensuring a smooth user experience across various scenarios.
 
 ## Props

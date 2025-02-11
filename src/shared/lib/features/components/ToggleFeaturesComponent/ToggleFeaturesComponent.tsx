@@ -12,7 +12,7 @@ export const ToggleFeaturesComponent = (props: ToggleFeaturesProps) => {
     const { on, off, feature } = props;
 
     if (getFeatureFlag(feature)) {
-        return off;
+        return on;
     }
 
     return off;

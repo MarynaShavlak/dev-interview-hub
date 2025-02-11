@@ -4,7 +4,7 @@ import { Card } from '../Card';
 import cls from './FileUploadZone.module.scss';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { getFlexClasses } from '@/shared/lib/classes/getFlexClasses/getFlexClasses';
-import { FileUploadInput } from '../FileUploadInput/FileUploadInput';
+import { FileUploadInput } from '../../common/FileUploadInput/FileUploadInput';
 import { Icon } from '../Icon';
 import EditIcon from '@/shared/assets/icons/edit.svg';
 import UploadIcon from '@/shared/assets/icons/upload.svg';
