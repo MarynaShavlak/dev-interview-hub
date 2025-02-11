@@ -71,6 +71,7 @@ export const PasswordInput = memo((props: PasswordInputProps) => {
 
     return withResetOption ? (
         <VStack className={cls.passwordInputWrapper} max>
+            {InputElement}
             <Button
                 theme={ButtonTheme.LINK}
                 className={cls.passwordInputLinkDeprecated}
@@ -78,8 +79,6 @@ export const PasswordInput = memo((props: PasswordInputProps) => {
             >
                 {t('Забули пароль?')}
             </Button>
-
-            {InputElement}
         </VStack>
     ) : (
         InputElement

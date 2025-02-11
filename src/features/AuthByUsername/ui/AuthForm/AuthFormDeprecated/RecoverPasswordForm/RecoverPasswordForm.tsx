@@ -1,12 +1,12 @@
 import { memo, useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Text } from '@/shared/ui/redesigned/Text';
-import { Button } from '@/shared/ui/redesigned/Button';
+import { Text, TextTheme } from '@/shared/ui/deprecated/Text';
+import { Button, ButtonTheme } from '@/shared/ui/deprecated/Button';
 
 import { useSignInForm } from '../../../../lib/hooks/useSignInForm/useSignInForm';
 import { useInputValidationConfig } from '@/shared/lib/hooks/validationHooks/useInputValidationConfig/useInputValidationConfig';
 import { useFormValidation } from '@/shared/lib/hooks/validationHooks/useFormValidation/useFormValidation';
-import { Input } from '@/shared/ui/redesigned/Input';
+import { Input } from '@/shared/ui/deprecated/Input';
 import cls from '../../AuthForm.module.scss';
 
 interface RecoverPasswordFormProps {
@@ -40,7 +40,7 @@ export const RecoverPasswordForm = memo(
                 {error && (
                     <Text
                         text={t('Помилка відновлення паролю')}
-                        variant="error"
+                        theme={TextTheme.ERROR}
                     />
                 )}
                 {isEmailSent ? (
@@ -57,14 +57,13 @@ export const RecoverPasswordForm = memo(
                             onChange={onChangeEmail}
                             value={email}
                             data-testid="login-email-input"
-                            label={t('Email')}
                             validations={validConfig.email}
                             errors={emailErrors}
                         />
 
                         <Button
                             max
-                            variant="accent"
+                            theme={ButtonTheme.OUTLINE}
                             className={cls.authBtn}
                             onClick={onResetPasswordClick}
                             disabled={isLoading || hasInputErrors}
@@ -75,7 +74,11 @@ export const RecoverPasswordForm = memo(
                     </>
                 )}
 
-                <Button variant="link" onClick={toggleForm}>
+                <Button
+                    theme={ButtonTheme.LINK}
+                    className={cls.passwordInputLinkDeprecated}
+                    onClick={toggleForm}
+                >
                     {redirectLinkText}
                 </Button>
             </>
