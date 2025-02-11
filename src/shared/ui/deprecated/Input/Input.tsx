@@ -74,7 +74,7 @@ export const Input = memo((props: InputProps) => {
     const placeholderMods: Mods = {
         [cls.withErrorPlaceholder]: isLimitExceeded,
     };
-    const inputEl = document.querySelector('[data-testid="login-email-input"]');
+    const inputEl = ref.current;
     const inputWidth = inputEl?.getBoundingClientRect().width ?? 0;
 
     const finalPosition =

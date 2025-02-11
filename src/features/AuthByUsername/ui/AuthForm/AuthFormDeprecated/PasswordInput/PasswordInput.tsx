@@ -12,6 +12,8 @@ import EyeIconRedesigned from '@/shared/assets/icons/eye.svg';
 import EyeInvisibleIconRedesigned from '@/shared/assets/icons/eye-slash.svg';
 import { Icon } from '@/shared/ui/deprecated/Icon';
 import { Box } from '@/shared/ui/common/Box';
+import { getFlexClasses } from '@/shared/lib/classes/getFlexClasses/getFlexClasses';
+import { classNames } from '@/shared/lib/classes/classNames/classNames';
 
 interface PasswordInputProps {
     password: string;
@@ -34,9 +36,10 @@ export const PasswordInput = memo((props: PasswordInputProps) => {
     const { t } = useTranslation('profile');
 
     const { isVisible, toggleVisibility } = useToggleVisibility();
+    const wrappClasses = getFlexClasses({ hStack: true });
 
     const InputElement = (
-        <Box className={cls.passwordInputWrapper}>
+        <Box className={classNames(cls.passwordInputWrapper, {}, wrappClasses)}>
             <Input
                 type={isVisible ? 'text' : 'password'}
                 placeholder={t('Введіть пароль')}
@@ -49,11 +52,13 @@ export const PasswordInput = memo((props: PasswordInputProps) => {
                 errors={passwordErrors}
             />
             <Button
-                theme={ButtonTheme.LINK}
-                className={cls.passwordInputLinkDeprecated}
+                theme={ButtonTheme.CLEAR}
+                className={cls.btnIconPassword}
                 onClick={toggleVisibility}
             >
                 <Icon
+                    width={32}
+                    height={32}
                     Svg={
                         isVisible
                             ? EyeIconRedesigned
