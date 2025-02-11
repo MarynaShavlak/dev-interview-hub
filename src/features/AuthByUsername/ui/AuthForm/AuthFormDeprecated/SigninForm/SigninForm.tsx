@@ -64,18 +64,17 @@ export const SignInForm = memo((props: AuthFormProps) => {
                         onChange={onChangeEmail}
                         value={email}
                         data-testid="login-email-input"
-                        // label={t('Email')}
                         validations={validConfig.email}
                         errors={emailErrors}
                     />
                     <VStack className={cls.passwordInputWrapper} max>
-                        <Button
-                            // variant="link"
-                            className={cls.passwordInputLink}
-                            onClick={toggleForm}
-                        >
-                            {t('Забули пароль?')}
-                        </Button>
+                        {/* <Button */}
+                        {/*    // variant="link" */}
+                        {/*    className={cls.passwordInputLink} */}
+                        {/*    onClick={toggleForm} */}
+                        {/* > */}
+                        {/*    {t('Забули пароль?')} */}
+                        {/* </Button> */}
                         <PasswordInput
                             password={password}
                             onChangePassword={onChangePassword}

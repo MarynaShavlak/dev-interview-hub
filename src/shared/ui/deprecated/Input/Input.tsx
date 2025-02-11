@@ -74,6 +74,11 @@ export const Input = memo((props: InputProps) => {
     const placeholderMods: Mods = {
         [cls.withErrorPlaceholder]: isLimitExceeded,
     };
+    const inputEl = document.querySelector('[data-testid="login-email-input"]');
+    const inputWidth = inputEl?.getBoundingClientRect().width ?? 0;
+
+    const finalPosition =
+        caretPosition * 9 > inputWidth ? inputWidth - 9 : caretPosition * 9;
 
     const input = (
         <div className={cls.caretWrapper}>
@@ -92,7 +97,7 @@ export const Input = memo((props: InputProps) => {
             {isCaretVisible && (
                 <span
                     className={cls.caret}
-                    style={{ left: `${caretPosition * 9}px` }}
+                    style={{ left: `${finalPosition}px` }}
                 />
             )}
         </div>

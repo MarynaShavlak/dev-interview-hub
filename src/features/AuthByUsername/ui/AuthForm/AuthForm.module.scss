@@ -12,6 +12,8 @@
 
 .passwordInputWrapper {
     position: relative;
+    width:100%;
+
 }
 
 .passwordInputLink {
@@ -19,6 +21,13 @@
     top: 0;
     right: 0;
 }
+
+.passwordInputLinkDeprecated {
+    position: absolute;
+    top: -16px;
+    right: 0;
+}
+
 
 .formDivider {
 
