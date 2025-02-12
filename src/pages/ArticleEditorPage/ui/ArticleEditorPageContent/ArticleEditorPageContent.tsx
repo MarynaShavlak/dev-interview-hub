@@ -25,7 +25,7 @@ export const ArticleEditorPageContent = memo(
         } = heroImage;
         const { blocks, isLoading } = metadata;
 
-        if (!isLoading) {
+        if (isLoading) {
             return <ContentSkeleton />;
         }
 
