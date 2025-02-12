@@ -64,7 +64,7 @@ export const ArticleEditorPageContainer = memo(() => {
                     heroImage={heroImage}
                 />
 
-                {saveError && <SaveArticleError />}
+                {!saveError && <SaveArticleError />}
             </VStack>
         </DynamicModuleLoader>
     );
