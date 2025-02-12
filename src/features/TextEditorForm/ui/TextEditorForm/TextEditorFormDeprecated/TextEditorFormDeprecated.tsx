@@ -3,11 +3,11 @@ import { useTranslation } from 'react-i18next';
 import { MarkupHTMLCreator } from '@/shared/ui/common/MarkupHTMLCreator';
 import { HStack, VStack } from '@/shared/ui/common/Stack';
 import cls from '../TextEditorForm.module.scss';
-import { Input } from '@/shared/ui/redesigned/Input';
+import { Input } from '@/shared/ui/deprecated/Input';
 import { useFormValidation } from '@/shared/lib/hooks/validationHooks/useFormValidation/useFormValidation';
 import { useInputValidationConfig } from '@/shared/lib/hooks/validationHooks/useInputValidationConfig/useInputValidationConfig';
 import AddIcon from '@/shared/assets/icons/plus.svg';
-import { ActionButtonList } from '@/shared/ui/redesigned/ActionButtonList';
+import { ActionButtonList } from '@/shared/ui/deprecated/ActionButtonList';
 import { TextEditorFormProps } from '../TextEditorForm';
 
 export const TextEditorFormDeprecated = memo((props: TextEditorFormProps) => {
@@ -37,9 +37,9 @@ export const TextEditorFormDeprecated = memo((props: TextEditorFormProps) => {
         <VStack gap="16" max className={cls.blockWrap}>
             <Input
                 value={title}
-                label={t('Заголовок блоку')}
-                labelBold
-                gap="16"
+                // label={t('Заголовок блоку')}
+                // labelBold
+                // gap="16"
                 maxWidth={false}
                 className={cls.titleInput}
                 onChange={handleTitleChange}

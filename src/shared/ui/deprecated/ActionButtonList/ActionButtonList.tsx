@@ -2,8 +2,10 @@ import React from 'react';
 
 import cls from './ActionButtonList.module.scss';
 import { VStack } from '../../common/Stack';
-import { Button } from '../Button';
+import { Button, ButtonTheme } from '../Button';
 import { Icon } from '../Icon';
+import { getFlexClasses } from '@/shared/lib/classes/getFlexClasses/getFlexClasses';
+import { classNames } from '@/shared/lib/classes/classNames/classNames';
 
 type ActionButtonType = {
     label: string;
@@ -23,11 +25,21 @@ export const ActionButtonList = ({
     cancelAction,
     className,
 }: ActionButtonListProps) => {
+    const btnFlexClasses = getFlexClasses({
+        hStack: true,
+        gap: '16',
+        align: 'center',
+        justify: 'center',
+    });
+
     return (
         <VStack gap="16" className={className}>
             <Button
-                // variant="save"
-                className={cls.blockActionButton}
+                className={classNames(
+                    cls.blockActionButton,
+                    {},
+                    btnFlexClasses,
+                )}
                 onClick={successAction.onClick}
                 disabled={successAction.disabled}
             >
@@ -37,8 +49,12 @@ export const ActionButtonList = ({
                 {successAction.label}
             </Button>
             <Button
-                // variant="cancel"
-                className={cls.blockActionButton}
+                theme={ButtonTheme.OUTLINE_RED}
+                className={classNames(
+                    cls.blockActionButton,
+                    {},
+                    btnFlexClasses,
+                )}
                 onClick={cancelAction.onClick}
                 disabled={cancelAction.disabled}
             >
