@@ -9,6 +9,7 @@ import { useInputValidationConfig } from '@/shared/lib/hooks/validationHooks/use
 import AddIcon from '@/shared/assets/icons/plus.svg';
 import { ActionButtonList } from '@/shared/ui/deprecated/ActionButtonList';
 import { TextEditorFormProps } from '../TextEditorForm';
+import { Text, TextSize } from '@/shared/ui/deprecated/Text';
 
 export const TextEditorFormDeprecated = memo((props: TextEditorFormProps) => {
     const {
@@ -35,18 +36,20 @@ export const TextEditorFormDeprecated = memo((props: TextEditorFormProps) => {
 
     return (
         <VStack gap="16" max className={cls.blockWrap}>
-            <Input
-                value={title}
-                // label={t('Заголовок блоку')}
-                // labelBold
-                // gap="16"
-                maxWidth={false}
-                className={cls.titleInput}
-                onChange={handleTitleChange}
-                validations={validConfig.blockTitle}
-                maxLengthIndicator
-                errors={blockTitleErrors}
-            />
+            <VStack gap="8" max>
+                <Text title={t('Заголовок блоку')} size={TextSize.S} />
+                <Input
+                    value={title}
+                    maxWidth={false}
+                    className={cls.titleInput}
+                    onChange={handleTitleChange}
+                    validations={validConfig.blockTitle}
+                    maxLengthIndicator
+                    errors={blockTitleErrors}
+                    withBorder
+                />
+            </VStack>
+
             <HStack align="end" justify="between" max>
                 <MarkupHTMLCreator
                     editorState={editorState}
