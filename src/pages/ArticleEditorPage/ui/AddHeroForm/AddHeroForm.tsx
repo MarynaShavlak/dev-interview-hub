@@ -1,9 +1,9 @@
 import { useTranslation } from 'react-i18next';
 import React, { ChangeEvent, memo } from 'react';
+import { FileUploadZone } from '@/shared/ui/redesigned/FileUploadZone';
 import { Text } from '@/shared/ui/redesigned/Text';
 import { HStack, VStack } from '@/shared/ui/common/Stack';
 import { OrderCard } from '@/shared/ui/redesigned/OrderCard';
-import { FileUploadZone } from '@/shared/ui/redesigned/FileUploadZone';
 import { Box } from '@/shared/ui/common/Box';
 import cls from './AddHeroForm.module.scss';
 import { AppImage } from '@/shared/ui/common/AppImage';

@@ -1,10 +1,27 @@
-.uploadZone {border: 1px dashed var(--accent-redesigned);}
+.zoneDeprecated {border: 1px dashed var(--primary-color);}
+
+.zoneRedesigned {border: 1px dashed var(--accent-redesigned);}
 
 .uploadZoneBtn {
   border-radius: 34px;
   cursor: pointer;
   padding: 8px 16px;
-  transition: opacity 300ms ease-in, background 300ms ease, color 300ms ease-in;
+  transition:opacity 300ms ease-in, background 300ms ease, color 300ms ease-in;
+}
+
+
+.btnDeprecated {
+  font: var(--font-s);
+  border: 2px solid var(--primary-color);
+  color: var(--primary-color);
+  background: var(--bg-color);
+  &:hover {
+    background-color: var(--inverted-bg-color);
+    color: var(--bg-color);
+  }
+}
+
+.btnRedesigned {
   font: var(--font-s-redesigned);
   border: 2px solid var(--icon-redesigned);
   color: var(--text-redesigned);
@@ -20,10 +37,14 @@
   right: 0;
   opacity:0;
   transition:opacity 300ms ease-in;
-  fill: var(--cancel-redesigned);
 }
 
-
+.resetDeprecated{
+  fill: var(--red-dark);
+}
+.resetRedesigned {
+  fill: var(--cancel-redesigned);
+}
 
 .uploadZoneBtnWrap {
   width: 100%;

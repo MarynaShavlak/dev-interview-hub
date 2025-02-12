@@ -9,6 +9,7 @@ import { Icon } from '../Icon';
 import EditIcon from '@/shared/assets/icons/edit.svg';
 import UploadIcon from '@/shared/assets/icons/upload.svg';
 import CloseIcon from '@/shared/assets/icons/close.svg';
+import { toggleFeatures } from '@/shared/lib/features';
 
 interface FileUploadZoneProps {
     imagePreview: string | null;
@@ -20,6 +21,24 @@ interface FileUploadZoneProps {
 export const FileUploadZone = (props: FileUploadZoneProps) => {
     const { imagePreview, handleImageChange, resetImage, className } = props;
     const { t } = useTranslation('profile');
+    const btnDesignClass = toggleFeatures({
+        name: 'isAppRedesigned',
+        off: () => cls.btnDeprecated,
+        on: () => cls.btnRedesigned,
+    });
+
+    const zoneDesignClass = toggleFeatures({
+        name: 'isAppRedesigned',
+        off: () => cls.zoneDeprecated,
+        on: () => cls.zoneRedesigned,
+    });
+
+    const resetIconDesignClass = toggleFeatures({
+        name: 'isAppRedesigned',
+        off: () => cls.resetDeprecated,
+        on: () => cls.resetRedesigned,
+    });
+
     const uploadZoneClasses = getFlexClasses({
         vStack: true,
         align: 'center',
@@ -35,11 +54,10 @@ export const FileUploadZone = (props: FileUploadZoneProps) => {
 
     const renderUploadButton = (icon: ReactNode, text: string) => (
         <span
-            className={classNames(
-                cls.uploadZoneBtn,
-                {},
-                uploadButtonFlexClasses,
-            )}
+            className={classNames(cls.uploadZoneBtn, {}, [
+                ...uploadButtonFlexClasses,
+                btnDesignClass,
+            ])}
         >
             {icon}
             {text}
@@ -65,14 +83,16 @@ export const FileUploadZone = (props: FileUploadZoneProps) => {
                     />
                     <Icon
                         Svg={CloseIcon}
-                        className={cls.resetImageIcon}
+                        className={classNames(cls.resetImageIcon, {}, [
+                            resetIconDesignClass,
+                        ])}
                         clickable
                         onClick={resetImage}
                     />
                 </div>
             ) : (
                 <Card
-                    className={classNames(cls.uploadZone, {}, [
+                    className={classNames(zoneDesignClass, {}, [
                         ...uploadZoneClasses,
                         className,
                     ])}
