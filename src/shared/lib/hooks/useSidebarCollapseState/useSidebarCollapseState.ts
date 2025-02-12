@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
-import { SIDEBAR_COLLAPSED_WIDTH } from '../../../model/consts/fixedColumnsWidth';
 
+export const SIDEBAR_COLLAPSED_WIDTH = 115;
 export const useSidebarCollapseState = () => {
     const [isCollapsed, setIsCollapsed] = useState(false);
 

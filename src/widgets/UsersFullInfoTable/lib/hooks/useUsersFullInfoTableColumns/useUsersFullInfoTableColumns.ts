@@ -19,7 +19,7 @@ import {
     MAX_COLUMN_CHARACTERS,
     MINIMUM_EMAIL_WIDTH,
 } from '../../../model/consts/fixedColumnsWidth';
-import { useSidebarCollapseState } from '../useSidebarCollapseState/useSidebarCollapseState';
+import { useSidebarCollapseState } from '@/shared/lib/hooks/useSidebarCollapseState/useSidebarCollapseState';
 import { UserRole } from '@/entities/User';
 
 interface useUsersFullInfoTableColumnsProps {

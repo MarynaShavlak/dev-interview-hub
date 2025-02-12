@@ -1,10 +1,12 @@
 import React, { memo, ReactNode, useRef, useState } from 'react';
 import { Editor, OnMount } from '@monaco-editor/react';
 import * as monaco from 'monaco-editor';
-import { VStack } from '../../common/Stack';
-import { ListBox } from '../Popups';
+import { VStack } from '../Stack';
+import { ListBox as ListBoxRedesigned } from '../../redesigned/Popups';
+import { ListBox as ListBoxDeprecated } from '../../deprecated/Popups';
 import { useTheme } from '@/shared/lib/hooks/useTheme/useTheme';
 import { Theme } from '@/shared/const/theme';
+import { toggleFeatures } from '@/shared/lib/features';
 
 export interface CodeEditorProps {
     className?: string;
@@ -79,6 +81,11 @@ export const CodeEditor = memo((props: CodeEditorProps) => {
         value: key,
         label: key,
     }));
+    const ListBox = toggleFeatures({
+        name: 'isAppRedesigned',
+        on: () => ListBoxRedesigned,
+        off: () => ListBoxDeprecated,
+    });
 
     return (
         <VStack gap="16" className={className}>

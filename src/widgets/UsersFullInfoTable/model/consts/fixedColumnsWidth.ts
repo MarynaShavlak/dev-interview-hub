@@ -30,4 +30,3 @@ export const FIXED_COLUMNS_WIDTH = {
 
 export const MINIMUM_EMAIL_WIDTH = 130;
 export const MAX_COLUMN_CHARACTERS = 18;
-export const SIDEBAR_COLLAPSED_WIDTH = 115;
