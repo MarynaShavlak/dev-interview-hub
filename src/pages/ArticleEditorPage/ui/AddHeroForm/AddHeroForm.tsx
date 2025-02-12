@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import React, { ChangeEvent, memo } from 'react';
 import { FileUploadZone } from '@/shared/ui/redesigned/FileUploadZone';
+import { FileUploadZone as FileUploadZoneDeprecated } from '@/shared/ui/deprecated/FileUploadZone';
 import { Text } from '@/shared/ui/redesigned/Text';
 import { HStack, VStack } from '@/shared/ui/common/Stack';
 import { OrderCard } from '@/shared/ui/redesigned/OrderCard';
@@ -9,6 +10,8 @@ import cls from './AddHeroForm.module.scss';
 import { AppImage } from '@/shared/ui/common/AppImage';
 import defaultImage from '@/shared/assets/images/default-img-list.png';
 import { Skeleton } from '@/shared/ui/redesigned/Skeleton';
+
+import { ToggleFeaturesComponent } from '@/shared/lib/features';
 
 interface AddHeroFormProps {
     index: number;
@@ -57,11 +60,25 @@ export const AddHeroForm = memo((props: AddHeroFormProps) => {
                                     className={cls.img}
                                 />
                             )}
-                            <FileUploadZone
-                                imagePreview={imagePreview}
-                                handleImageChange={handleImageChange}
-                                resetImage={resetImage}
-                                className={cls.heroImageZone}
+
+                            <ToggleFeaturesComponent
+                                feature="isAppRedesigned"
+                                on={
+                                    <FileUploadZone
+                                        imagePreview={imagePreview}
+                                        handleImageChange={handleImageChange}
+                                        resetImage={resetImage}
+                                        className={cls.heroImageZone}
+                                    />
+                                }
+                                off={
+                                    <FileUploadZoneDeprecated
+                                        imagePreview={imagePreview}
+                                        handleImageChange={handleImageChange}
+                                        resetImage={resetImage}
+                                        className={cls.heroImageZone}
+                                    />
+                                }
                             />
                         </VStack>
                     </Box>

@@ -6,10 +6,8 @@ import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { getFlexClasses } from '@/shared/lib/classes/getFlexClasses/getFlexClasses';
 import { FileUploadInput } from '../../common/FileUploadInput/FileUploadInput';
 import { Icon } from '../Icon';
-import EditIcon from '@/shared/assets/icons/edit.svg';
-import UploadIcon from '@/shared/assets/icons/upload.svg';
 import CloseIcon from '@/shared/assets/icons/close.svg';
-import { toggleFeatures } from '@/shared/lib/features';
+import { Button, ButtonTheme } from '../Button';
 
 interface FileUploadZoneProps {
     imagePreview: string | null;
@@ -21,23 +19,6 @@ interface FileUploadZoneProps {
 export const FileUploadZone = (props: FileUploadZoneProps) => {
     const { imagePreview, handleImageChange, resetImage, className } = props;
     const { t } = useTranslation('profile');
-    const btnDesignClass = toggleFeatures({
-        name: 'isAppRedesigned',
-        off: () => cls.btnDeprecated,
-        on: () => cls.btnRedesigned,
-    });
-
-    const zoneDesignClass = toggleFeatures({
-        name: 'isAppRedesigned',
-        off: () => cls.zoneDeprecated,
-        on: () => cls.zoneRedesigned,
-    });
-
-    const resetIconDesignClass = toggleFeatures({
-        name: 'isAppRedesigned',
-        off: () => cls.resetDeprecated,
-        on: () => cls.resetRedesigned,
-    });
 
     const uploadZoneClasses = getFlexClasses({
         vStack: true,
@@ -52,23 +33,19 @@ export const FileUploadZone = (props: FileUploadZoneProps) => {
         gap: '4',
     });
 
-    const renderUploadButton = (icon: ReactNode, text: string) => (
+    const renderUploadButton = (text: string, icon?: ReactNode) => (
         <span
-            className={classNames(cls.uploadZoneBtn, {}, [
-                ...uploadButtonFlexClasses,
-                btnDesignClass,
-            ])}
+            className={classNames(
+                cls.uploadZoneBtn,
+                {},
+                uploadButtonFlexClasses,
+            )}
         >
             {icon}
             {text}
         </span>
     );
 
-    const icon = imagePreview ? (
-        <Icon Svg={EditIcon} width={16} height={16} />
-    ) : (
-        <Icon Svg={UploadIcon} width={16} height={16} />
-    );
     const text = imagePreview
         ? t('Змінити зображення')
         : t('Завантажити зображення');
@@ -79,20 +56,21 @@ export const FileUploadZone = (props: FileUploadZoneProps) => {
                 <div className={cls.uploadZoneBtnWrap}>
                     <FileUploadInput
                         onChange={handleImageChange}
-                        AddFileElement={renderUploadButton(icon, text)}
+                        AddFileElement={renderUploadButton(text)}
                     />
-                    <Icon
-                        Svg={CloseIcon}
-                        className={classNames(cls.resetImageIcon, {}, [
-                            resetIconDesignClass,
-                        ])}
-                        clickable
-                        onClick={resetImage}
-                    />
+
+                    <Button theme={ButtonTheme.CLEAR} onClick={resetImage}>
+                        <Icon
+                            Svg={CloseIcon}
+                            className={cls.resetImageIcon}
+                            width={32}
+                            height={32}
+                        />
+                    </Button>
                 </div>
             ) : (
                 <Card
-                    className={classNames(zoneDesignClass, {}, [
+                    className={classNames(cls.uploadZone, {}, [
                         ...uploadZoneClasses,
                         className,
                     ])}
@@ -100,7 +78,7 @@ export const FileUploadZone = (props: FileUploadZoneProps) => {
                 >
                     <FileUploadInput
                         onChange={handleImageChange}
-                        AddFileElement={renderUploadButton(icon, text)}
+                        AddFileElement={renderUploadButton(text)}
                     />
                 </Card>
             )}
