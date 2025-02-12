@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import { toggleFeatures } from '@/shared/lib/features';
+import { toggleFeatures, ToggleFeaturesComponent } from '@/shared/lib/features';
 import { useTheme } from '@/shared/lib/hooks/useTheme/useTheme';
 import { classNames, Mods } from '@/shared/lib/classes/classNames/classNames';
 import { useModal } from '@/shared/lib/hooks/useModal/useModal';
@@ -9,6 +9,8 @@ import cls from './Modal.module.scss';
 import { TestProps } from '@/shared/types/tests';
 import CloseIcon from '@/shared/assets/icons/close.svg';
 import { Icon } from '../../redesigned/Icon';
+import { Icon as IconDeprecated } from '../../deprecated/Icon';
+import { Button, ButtonTheme } from '../../deprecated/Button';
 
 interface ModalProps extends TestProps {
     className?: string;
@@ -55,6 +57,7 @@ export const Modal = (props: ModalProps) => {
             off: () => cls.modalDeprecated,
         }),
     ];
+
     return (
         <Portal element={document.getElementById('app') ?? document.body}>
             <div
@@ -64,12 +67,30 @@ export const Modal = (props: ModalProps) => {
                 <Overlay onClick={close} />
                 <div className={cls.content}>
                     {onClose && (
-                        <Icon
-                            variant="error"
-                            Svg={CloseIcon}
-                            className={cls.closeIcon}
-                            clickable
-                            onClick={onClose}
+                        <ToggleFeaturesComponent
+                            feature="isAppRedesigned"
+                            on={
+                                <Icon
+                                    variant="error"
+                                    Svg={CloseIcon}
+                                    className={cls.closeIconRedesigned}
+                                    clickable
+                                    onClick={onClose}
+                                />
+                            }
+                            off={
+                                <Button
+                                    theme={ButtonTheme.CLEAR}
+                                    onClick={onClose}
+                                >
+                                    <IconDeprecated
+                                        Svg={CloseIcon}
+                                        width={32}
+                                        height={32}
+                                        className={cls.closeIconDeprecated}
+                                    />
+                                </Button>
+                            }
                         />
                     )}
 

@@ -50,10 +50,19 @@
 }
 
 
-.closeIcon {
+.closeIconRedesigned {
     position: absolute;
     top: 0;
     right: 0;
     fill: var(--cancel-redesigned);
+
+}
+
+
+.closeIconDeprecated {
+    position: absolute;
+    top: 0;
+    right: 0;
+    fill: var(--red-dark);
 
 }
