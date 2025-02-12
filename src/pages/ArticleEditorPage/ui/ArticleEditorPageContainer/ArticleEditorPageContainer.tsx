@@ -45,6 +45,7 @@ export const ArticleEditorPageContainer = memo(() => {
     return (
         <DynamicModuleLoader reducers={reducers}>
             <VStack gap="24" max>
+                {saveError && <SaveArticleError />}
                 <ArticleEditorPageHeader
                     hasErrors={validation.hasInputErrors}
                     onActions={{
@@ -63,8 +64,6 @@ export const ArticleEditorPageContainer = memo(() => {
                     validation={validation}
                     heroImage={heroImage}
                 />
-
-                {!saveError && <SaveArticleError />}
             </VStack>
         </DynamicModuleLoader>
     );
