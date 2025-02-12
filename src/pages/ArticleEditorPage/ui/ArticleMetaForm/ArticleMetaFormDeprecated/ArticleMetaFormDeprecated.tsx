@@ -2,8 +2,9 @@ import React, { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Input } from '@/shared/ui/deprecated/Input';
 import { Button } from '@/shared/ui/deprecated/Button';
-// import { Icon } from '@/shared/ui/deprecated/Icon';
-// import AddIcon from '@/shared/assets/icons/plus.svg';
+import { Icon } from '@/shared/ui/deprecated/Icon';
+import { Text, TextSize } from '@/shared/ui/deprecated/Text';
+import AddIcon from '@/shared/assets/icons/plus.svg';
 
 import { HStack, VStack } from '@/shared/ui/common/Stack';
 import { OrderCard } from '@/shared/ui/deprecated/OrderCard';
@@ -12,6 +13,8 @@ import { useInputValidationConfig } from '@/shared/lib/hooks/validationHooks/use
 
 import { ArticleMetaFormProps } from '../ArticleMetaForm';
 import { useArticleMetaForm } from '../../../lib/hooks/useArticleMetaForm/useArticleMetaForm';
+import { getFlexClasses } from '@/shared/lib/classes/getFlexClasses/getFlexClasses';
+import { classNames } from '@/shared/lib/classes/classNames/classNames';
 
 export const ArticleMetaFormDeprecated = memo((props: ArticleMetaFormProps) => {
     const { titleIndex, subtitleIndex, errors } = props;
@@ -40,64 +43,70 @@ export const ArticleMetaFormDeprecated = memo((props: ArticleMetaFormProps) => {
         title,
         subtitle: { text, link },
     } = formData;
+
+    const btnClasses = getFlexClasses({
+        hStack: true,
+        gap: '8',
+        justify: 'center',
+        align: 'center',
+    });
     return (
         <VStack gap="24">
             <HStack gap="16" align="start" max>
                 <OrderCard index={titleIndex} />
-
-                <Input
-                    value={title || ''}
-                    // label={t('Заголовок статті')}
-                    // labelBold
-                    // gap="16"
-                    maxWidth
-                    onChange={onChangeTitle}
-                    validations={validConfig.title}
-                    maxLengthIndicator
-                    errors={errors.titleErrors}
-                />
+                <VStack gap="8" max>
+                    <Text title={t('Заголовок статті')} size={TextSize.M} />
+                    <Input
+                        value={title || ''}
+                        maxWidth
+                        onChange={onChangeTitle}
+                        validations={validConfig.title}
+                        maxLengthIndicator
+                        errors={errors.titleErrors}
+                        withBorder
+                    />
+                </VStack>
             </HStack>
             <HStack gap="16" align="start" max>
                 <OrderCard index={subtitleIndex} />
                 <VStack gap="16">
-                    <Input
-                        value={text || ''}
-                        // label={t('Підзаголовок статті')}
-                        // labelBold
-                        // gap="16"
-                        maxWidth={false}
-                        className={cls.titleInput}
-                        onChange={onChangeSubtitleText}
-                        validations={validConfig.subtitleText}
-                        errors={errors.subtitleTextErrors}
-                        maxLengthIndicator
-                    />
+                    <VStack gap="8" max className={cls.titleInputDeprecated}>
+                        <Text
+                            title={t('Підзаголовок статті')}
+                            size={TextSize.M}
+                        />
+                        <Input
+                            value={text || ''}
+                            maxWidth={false}
+                            className={cls.titleInputDeprecated}
+                            onChange={onChangeSubtitleText}
+                            validations={validConfig.subtitleText}
+                            errors={errors.subtitleTextErrors}
+                            maxLengthIndicator
+                            withBorder
+                        />
+                    </VStack>
 
                     {shouldRenderLinkInput && (
                         <Input
                             value={link || ''}
-                            // label={t('Посилання')}
-                            // labelBold
-                            // gap="16"
                             maxWidth={false}
                             className={cls.titleInput}
                             onChange={onChangeSubtitleLink}
                             validations={validConfig.subtitleLink}
                             errors={errors.subtitleLinkErrors}
+                            withBorder
                         />
                     )}
                 </VStack>
 
                 <Button
-                    // variant="filled"
-                    // addonLeft={
-                    //     shouldShowAddIcon && (
-                    //         <Icon Svg={AddIcon} width={16} height={16} />
-                    //     )
-                    // }
-                    className={cls.addLinkButton}
+                    className={classNames(cls.addLinkButton, {}, btnClasses)}
                     onClick={handleLinkButtonClick}
                 >
+                    {shouldShowAddIcon && (
+                        <Icon Svg={AddIcon} width={16} height={16} />
+                    )}
                     {linkButtonText}
                 </Button>
             </HStack>

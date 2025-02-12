@@ -5,9 +5,7 @@
 .InputWrapper {
     display: flex;
     width:100%;
-
-
-}
+  }
 
 .placeholder {
     margin-right: 5px;
@@ -82,5 +80,14 @@
 
 .limitWrap {
     position:absolute;
-    top:-16px;
+    top:-20px;
 }
+
+.withBorder {
+    border: 1px solid var(--primary-color);
+    padding:5px;
+
+
+
+}
+

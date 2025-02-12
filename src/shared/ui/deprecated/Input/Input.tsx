@@ -26,6 +26,7 @@ interface InputProps extends HTMLInputProps {
     errors?: ValidationErrors;
     maxWidth?: boolean;
     maxLengthIndicator?: boolean;
+    withBorder?: boolean;
 }
 
 /**
@@ -47,6 +48,7 @@ export const Input = memo((props: InputProps) => {
         errors,
         maxWidth = true,
         maxLengthIndicator = false,
+        withBorder = false,
         ...otherProps
     } = props;
 
@@ -69,6 +71,7 @@ export const Input = memo((props: InputProps) => {
     const mods: Mods = {
         [cls.readonly]: readonly,
         [cls.withError]: isLimitExceeded,
+        [cls.withBorder]: withBorder,
     };
 
     const placeholderMods: Mods = {
@@ -103,7 +106,11 @@ export const Input = memo((props: InputProps) => {
         </div>
     );
     return (
-        <VStack max={maxWidth} gap="4" className={cls.wrap}>
+        <VStack
+            max={maxWidth}
+            gap="4"
+            className={classNames(cls.wrap, {}, [className])}
+        >
             {maxLengthIndicator && (
                 <HStack max justify="end" className={cls.limitWrap}>
                     <span
@@ -118,7 +125,7 @@ export const Input = memo((props: InputProps) => {
                     </span>
                 </HStack>
             )}
-            <div className={classNames(cls.InputWrapper, mods, [className])}>
+            <div className={classNames(cls.InputWrapper, mods, [])}>
                 {placeholder && (
                     <div
                         className={classNames(
