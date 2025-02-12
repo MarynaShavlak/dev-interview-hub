@@ -1,11 +1,3 @@
-.Code {
-    border: 1px solid var(--primary-color);
-    padding: 20px;
-    position: relative;
-    background: var(--code-bg);
-    overflow: auto;
-}
-
 .codeWrap {
     position: relative;
     background: var(--light-bg-redesigned);
@@ -24,15 +16,10 @@ width: 100%;
     background: var(--light-bg-redesigned);
     overflow: auto;
     //border: 1px solid var(--accent-redesigned);
-
     font-size: var(--font-size-s);
  //width: 100%;
 
-
-
     max-height: 600px;
-
-
 }
 
 .copyBtn {
