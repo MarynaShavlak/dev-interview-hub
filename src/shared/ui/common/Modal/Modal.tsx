@@ -57,6 +57,11 @@ export const Modal = (props: ModalProps) => {
             off: () => cls.modalDeprecated,
         }),
     ];
+    const contentClass = toggleFeatures({
+        name: 'isAppRedesigned',
+        on: () => cls.contentRedesigned,
+        off: () => cls.contentDeprecated,
+    });
 
     return (
         <Portal element={document.getElementById('app') ?? document.body}>
@@ -65,7 +70,7 @@ export const Modal = (props: ModalProps) => {
                 data-testid={dataTestId}
             >
                 <Overlay onClick={close} />
-                <div className={cls.content}>
+                <div className={contentClass}>
                     {onClose && (
                         <ToggleFeaturesComponent
                             feature="isAppRedesigned"

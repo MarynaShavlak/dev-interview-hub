@@ -12,23 +12,27 @@
     align-items: center;
 }
 
-.content {
+.contentDeprecated, .contentRedesigned {
     padding: 20px;
-    border-radius: 12px;
     transition: 0.3s transform;
     transform: scale(0.5);
     max-width: 500px;
     z-index: var(--modal-z-index);
 }
 
+.contentRedesigned {
+    border-radius: 12px;
+}
+
+
 .modalRedesigned {
-    .content {
+    .contentRedesigned{
         background: var(--light-bg-redesigned);
     }
 }
 
 .modalDeprecated {
-    .content {
+    .contentDeprecated {
         background: var(--bg-color);
     }
 }
@@ -38,13 +42,13 @@
     opacity: 1;
     z-index: var(--modal-z-index);
 
-    .content {
+    .contentDeprecated, .contentRedesigned  {
         transform: scale(1);
     }
 }
 
 .isClosing {
-    .content {
+    .contentDeprecated, .contentRedesigned  {
         transform: scale(0.2);
     }
 }
