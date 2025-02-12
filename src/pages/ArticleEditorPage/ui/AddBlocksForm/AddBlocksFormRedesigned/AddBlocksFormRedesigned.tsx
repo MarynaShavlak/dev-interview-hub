@@ -27,7 +27,7 @@ export const AddBlocksFormRedesigned = memo((props: AddBlocksFormProps) => {
     const elementRef = useRef<HTMLDivElement>(null);
     const triggerRef = useRef<HTMLDivElement>(null);
     const topPosition = useTriggerTopScrollPosition(triggerRef);
-
+    console.log('topPosition', topPosition);
     const {
         handleAddArticleBlock,
         handleUpdateArticleBlock,

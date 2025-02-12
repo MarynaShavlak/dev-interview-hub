@@ -6,15 +6,15 @@ import { OrderCard } from '@/shared/ui/deprecated/OrderCard';
 import { Each } from '@/shared/lib/components/Each/Each';
 
 import cls from '../AddBlocksForm.module.scss';
-import { useTriggerTopScrollPosition } from '@/shared/lib/hooks/useTriggerTopScrollPosition/useTriggerTopScrollPosition';
 
 import { getFlexClasses } from '@/shared/lib/classes/getFlexClasses/getFlexClasses';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { AddBlocksFormProps } from '../AddBlocksForm';
-import { getBtnsListStyles } from '../../../lib/utils/getBtnsListStyles/getBtnsListStyles';
 import { AddArticleBlocksButtons } from '../../AddArticleBlocksButtons/AddArticleBlocksButtons';
 import { BlockRenderer } from '../BlockRenderer/BlockRenderer';
 import { useArticleBlocksActions } from '../../../lib/hooks/useArticleBlocksActions/useArticleBlocksActions';
+import { useTriggerTopScrollPosition } from '@/shared/lib/hooks/useTriggerTopScrollPosition/useTriggerTopScrollPosition';
+import { getBtnsListDeprecatedStyles } from '../../../lib/utils/getBtnsListStyles/getBtnsListStyles';
 
 export const AddBlocksFormDeprecated = memo((props: AddBlocksFormProps) => {
     const { index, blocks: allBlocks, blockActions } = props;
@@ -25,7 +25,13 @@ export const AddBlocksFormDeprecated = memo((props: AddBlocksFormProps) => {
     const isSomeBlockAdded = Number(allBlocks.length) > 0;
     const elementRef = useRef<HTMLDivElement>(null);
     const triggerRef = useRef<HTMLDivElement>(null);
-    const topPosition = useTriggerTopScrollPosition(triggerRef);
+    const scrollContainer = useRef<HTMLElement | null>(
+        document.querySelector('[data-testid="Page"]'),
+    );
+    const topPosition = useTriggerTopScrollPosition(
+        triggerRef,
+        scrollContainer,
+    );
 
     const {
         handleAddArticleBlock,
@@ -35,7 +41,7 @@ export const AddBlocksFormDeprecated = memo((props: AddBlocksFormProps) => {
 
     useEffect(() => {
         if (elementRef.current) {
-            const styles = getBtnsListStyles(topPosition);
+            const styles = getBtnsListDeprecatedStyles(topPosition);
             Object.assign(elementRef.current.style, styles);
         }
     }, [topPosition]);
