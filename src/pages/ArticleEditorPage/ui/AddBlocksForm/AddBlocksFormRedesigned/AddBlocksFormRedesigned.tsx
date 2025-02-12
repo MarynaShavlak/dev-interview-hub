@@ -57,7 +57,11 @@ export const AddBlocksFormRedesigned = memo((props: AddBlocksFormProps) => {
                 <div ref={triggerRef} />
                 <div
                     ref={elementRef}
-                    className={classNames(cls.btnList, {}, btnListFlexClasses)}
+                    className={classNames(
+                        cls.btnListRedesigned,
+                        {},
+                        btnListFlexClasses,
+                    )}
                 >
                     <AddArticleBlocksButtons
                         onAddTextBlockBtnClick={insertTextBlock}

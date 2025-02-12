@@ -3,9 +3,8 @@
   flex-grow: 1;
 }
 
-.btnList {
+.btnListRedesigned {
   flex-wrap: wrap;
-
  background-color: var(--dark-bg-redesigned);
   border-radius: 12px;
   z-index: 2;
@@ -14,3 +13,11 @@
 }
 
 
+.btnListDeprecated {
+  flex-wrap: wrap;
+  background-color: var(--card-bg);
+  z-index: 2;
+  padding: 16px;
+  border: 1px solid var(--primary-color);
+
+}
