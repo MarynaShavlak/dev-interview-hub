@@ -2,6 +2,7 @@ import React, { memo } from 'react';
 import { ContentState, EditorState, Modifier } from 'draft-js';
 import { Editor } from 'react-draft-wysiwyg';
 import cls from './MarkupHTMLCreator.module.scss';
+import { toggleFeatures } from '@/shared/lib/features';
 
 interface MarkupHTMLCreatorProps {
     editorState: EditorState;
@@ -10,6 +11,17 @@ interface MarkupHTMLCreatorProps {
 
 export const MarkupHTMLCreator = memo((props: MarkupHTMLCreatorProps) => {
     const { editorState, onEditorStateChange } = props;
+
+    const wrapperClass = toggleFeatures({
+        name: 'isAppRedesigned',
+        on: () => cls.editorWrapperRedesigned,
+        off: () => cls.editorWrapperDeprecated,
+    });
+    const toolbarClass = toggleFeatures({
+        name: 'isAppRedesigned',
+        on: () => cls.editorToolbarRedesigned,
+        off: () => cls.editorToolbarDeprecated,
+    });
 
     const handlePastedText = (
         text: string,
@@ -60,8 +72,8 @@ export const MarkupHTMLCreator = memo((props: MarkupHTMLCreatorProps) => {
                 },
             }}
             onEditorStateChange={onEditorStateChange}
-            toolbarClassName={cls.editorToolbar}
-            wrapperClassName={cls.editorWrapper}
+            toolbarClassName={toolbarClass}
+            wrapperClassName={wrapperClass}
             editorClassName={cls.editorTextArea}
         />
     );

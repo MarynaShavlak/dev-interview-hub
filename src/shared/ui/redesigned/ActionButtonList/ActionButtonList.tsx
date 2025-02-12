@@ -1,9 +1,9 @@
 import React from 'react';
 
 import cls from './ActionButtonList.module.scss';
-import { VStack } from '../../../common/Stack';
-import { Button } from '../../Button';
-import { Icon } from '../../Icon';
+import { VStack } from '../../common/Stack';
+import { Button } from '../Button';
+import { Icon } from '../Icon';
 
 type ActionButtonType = {
     label: string;
