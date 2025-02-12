@@ -89,6 +89,7 @@ export const Modal = (props: ModalProps) => {
                                     onClick={onClose}
                                 >
                                     <IconDeprecated
+                                        variant="error"
                                         Svg={CloseIcon}
                                         width={32}
                                         height={32}
