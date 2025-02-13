@@ -3,7 +3,7 @@
   grid-area: 1 / 1 / 4 / 3;
 }
 
-.parent {
+.chartsWrapRedesigned {
   display: grid;
   grid-template-columns: repeat(2, 192px) 428px;
   grid-template-rows: repeat(4, 105px) 195px 220px repeat(3, 316px);
@@ -25,3 +25,13 @@
 .commentsRatingChart { grid-area: 7 / 1 / 8 / 4; }
 .quarterlyChart { grid-area: 8 / 1 / 9 / 4; }
 .monthlyChart { grid-area: 9 / 1 / 10 / 4; }
+
+
+
+.chartsWrapDeprecated{
+  display: grid;
+  grid-template-columns: repeat(2, 192px) 412px;
+  grid-template-rows: repeat(4, 105px) 195px 220px repeat(3, 316px);
+  grid-column-gap: 16px;
+  grid-row-gap: 16px;
+}

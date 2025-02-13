@@ -1,4 +1,5 @@
 import { ChartDimensions } from '@/shared/ui/common/Charts/ui/types';
+import { toggleFeatures } from '@/shared/lib/features';
 
 export type ChartKeys =
     | 'activeUsersChart'
@@ -11,10 +12,19 @@ export type ChartKeys =
     | 'quarterlyCategoryChart'
     | 'monthlyCategoryChart';
 
+const byCategoriesChartsWidth = toggleFeatures({
+    name: 'isAppRedesigned',
+    off: () => '382',
+    on: () => '412',
+});
+
 export const CHARTS_RECTS: Record<ChartKeys, ChartDimensions> = {
     activeUsersChart: { width: '412', height: '200' },
-    articlesByCategoriesChart: { width: '412', height: '150' },
-    viewsByCategoriesChart: { width: '412', height: '140' },
+    articlesByCategoriesChart: {
+        width: byCategoriesChartsWidth,
+        height: '150',
+    },
+    viewsByCategoriesChart: { width: byCategoriesChartsWidth, height: '140' },
     ratingsByUsersChart: { width: '384', height: '300' },
     articleRatingDistributionChart: { width: '220', height: '200' },
     commentsByArticlesChart: { width: '828', height: '300' }, // 828

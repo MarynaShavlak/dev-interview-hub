@@ -6,7 +6,7 @@ import { ArticleCategoriesChartsProps } from '../../../model/types/types';
 import { useArticleCategoriesChartData } from '../../../lib/hooks/useArticleCategoriesChartData';
 import { VStack } from '@/shared/ui/common/Stack';
 
-export const RedesignedArticleCategoriesCharts = memo(
+export const ArticleCategoriesChartsRedesigned = memo(
     (props: ArticleCategoriesChartsProps) => {
         const { t } = useTranslation('admin');
 

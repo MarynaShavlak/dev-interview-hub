@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
-import { DeprecatedArticleCategoriesCharts } from './DeprecatedArticleCategoriesCharts/DeprecatedArticleCategoriesCharts';
-import { RedesignedArticleCategoriesCharts } from './RedesignedArticleCategoriesCharts/RedesignedArticleCategoriesCharts';
+import { ArticleCategoriesChartsDeprecated } from './ArticleCategoriesChartsDeprecated/ArticleCategoriesChartsDeprecated';
+import { ArticleCategoriesChartsRedesigned } from './ArticleCategoriesChartsRedesigned/ArticleCategoriesChartsRedesigned';
 import { ArticleCategoriesChartsProps } from '../../model/types/types';
 
 export const ArticleCategoriesCharts = memo(
@@ -9,8 +9,8 @@ export const ArticleCategoriesCharts = memo(
         return (
             <ToggleFeaturesComponent
                 feature="isAppRedesigned"
-                on={<RedesignedArticleCategoriesCharts {...props} />}
-                off={<DeprecatedArticleCategoriesCharts {...props} />}
+                on={<ArticleCategoriesChartsRedesigned {...props} />}
+                off={<ArticleCategoriesChartsDeprecated {...props} />}
             />
         );
     },

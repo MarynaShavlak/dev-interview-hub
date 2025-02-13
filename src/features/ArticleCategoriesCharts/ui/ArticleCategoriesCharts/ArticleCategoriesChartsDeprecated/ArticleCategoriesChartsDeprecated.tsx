@@ -1,38 +1,47 @@
 import React, { memo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { HStack } from '@/shared/ui/common/Stack';
 import { DonutChart } from '@/shared/ui/common/Charts/ui/DonutChart/DonutChart';
-import { Card as CardDeprecated } from '@/shared/ui/deprecated/Card';
+import { Card } from '@/shared/ui/deprecated/Card';
 import { ArticleCategoriesChartsProps } from '../../../model/types/types';
 import { useArticleCategoriesChartData } from '../../../lib/hooks/useArticleCategoriesChartData';
+import { VStack } from '@/shared/ui/common/Stack';
 
-export const DeprecatedArticleCategoriesCharts = memo(
+export const ArticleCategoriesChartsDeprecated = memo(
     (props: ArticleCategoriesChartsProps) => {
         const { t } = useTranslation('admin');
 
-        const { data, className } = props;
+        const {
+            data,
+            className,
+            articlesByCategoriesDimensions,
+            viewsByCategoriesDimensions,
+        } = props;
         const { labels, viewsByCategories, articlesByCategories } =
             useArticleCategoriesChartData(data);
         return (
-            <HStack gap="16" max className={className}>
-                <CardDeprecated>
+            <VStack gap="16" max className={className}>
+                <Card>
                     <DonutChart
                         data={articlesByCategories}
                         labels={labels}
                         title={t('Cтатті за категоріями, %')}
                         legendPosition="bottom"
+                        width={articlesByCategoriesDimensions.width}
+                        height={articlesByCategoriesDimensions.height}
                     />
-                </CardDeprecated>
+                </Card>
 
-                <CardDeprecated>
+                <Card>
                     <DonutChart
                         data={viewsByCategories}
                         labels={labels}
                         title={t('Перегляди статей за категоріями, %')}
                         legendPosition="bottom"
+                        width={viewsByCategoriesDimensions.width}
+                        height={viewsByCategoriesDimensions.height}
                     />
-                </CardDeprecated>
-            </HStack>
+                </Card>
+            </VStack>
         );
     },
 );
