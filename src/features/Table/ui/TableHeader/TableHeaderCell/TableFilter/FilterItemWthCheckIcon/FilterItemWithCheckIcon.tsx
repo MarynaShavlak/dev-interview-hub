@@ -1,14 +1,17 @@
-import { useCallback } from 'react';
+import React, { useCallback } from 'react';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import cls from './FilterItemWithCheckIcon.module.scss';
 
 import { Icon } from '@/shared/ui/redesigned/Icon';
+import { Icon as IconDeprecated } from '@/shared/ui/deprecated/Icon';
 import EmptyCheckIcon from '@/shared/assets/icons/checkbox-empty.svg';
 import CheckedIcon from '@/shared/assets/icons/checkbox-check.svg';
 import { HStack } from '@/shared/ui/common/Stack';
-import { ColumnFilterHandlerProps } from '../../../../..';
+import { ColumnFilterHandlerProps } from '../../../../../model/types/tableTypes';
 import { getStringOptions } from '../../../../../lib/utilities/getStringOptions/getStringOptions';
 import { useStringOptionsFilterOperations } from '../../../../../lib/hooks/useStringOptionsFilterOperations/useStringOptionsFilterOperations';
+
+import { ToggleFeaturesComponent } from '@/shared/lib/features';
 
 interface FilterItemProps extends ColumnFilterHandlerProps {
     option: string;
@@ -50,6 +53,22 @@ export const FilterItemWithCheckIcon = (props: FilterItemProps) => {
             updateExistingFilter,
         ],
     );
+
+    const NotSelectedIcon = (
+        <ToggleFeaturesComponent
+            feature="isAppRedesigned"
+            on={<Icon Svg={EmptyCheckIcon} width={15} height={15} />}
+            off={<IconDeprecated Svg={EmptyCheckIcon} width={15} height={15} />}
+        />
+    );
+    const SelectedIcon = (
+        <ToggleFeaturesComponent
+            feature="isAppRedesigned"
+            on={<Icon Svg={CheckedIcon} width={15} height={15} />}
+            off={<IconDeprecated Svg={CheckedIcon} width={15} height={15} />}
+        />
+    );
+
     return (
         <HStack
             max
@@ -61,8 +80,8 @@ export const FilterItemWithCheckIcon = (props: FilterItemProps) => {
             gap="8"
             onClick={onClickHandler}
         >
-            {!isActive && <Icon Svg={EmptyCheckIcon} width={15} height={15} />}
-            {isActive && <Icon Svg={CheckedIcon} width={15} height={15} />}
+            {!isActive && NotSelectedIcon}
+            {isActive && SelectedIcon}
             {option || '-'}
         </HStack>
     );
