@@ -1,11 +1,11 @@
 import { useTranslation } from 'react-i18next';
 import React, { memo } from 'react';
-import { Card } from '@/shared/ui/redesigned/Card';
+import { Card } from '@/shared/ui/deprecated/Card';
 import { RadialbarChart } from '@/shared/ui/common/Charts/ui/RadialbarChart';
 import { ArticleRatingDistributionChartProps } from '../../../model/types/types';
 import { useRatingsDistributionChartData } from '../../../lib/hooks/useRatingsDistributionChartData';
 
-export const RedesignedArticleRatingDistributionChart = memo(
+export const ArticleRatingDistributionChartDeprecated = memo(
     (props: ArticleRatingDistributionChartProps) => {
         const { t } = useTranslation('admin');
         const {

@@ -15,7 +15,10 @@
 .articleCategoriesChart {  grid-area: 3 / 3 / 6 / 4; }
 .bubbleChart{ grid-area: 4 / 1 / 6 / 3;}
 
-.articleRateDistributionChart{ grid-area: 6 / 1 / 7 / 2; }
+.articleRateDistributionChart{
+  width:236px;
+  //grid-area: 6 / 1 / 7 / 2;
+}
 .commentsDistributionChart{
   grid-area: 6 / 2 / 7 / 4;
   margin-left: 44px;
