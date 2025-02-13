@@ -19,6 +19,7 @@ import { useManageUsersFullInfoTableRow } from '../../lib/hooks/useManageUsersFu
 import { LoadingTableSkeleton } from '../LoadingTableSkeleton/LoadingTableSkeleton';
 import { TableActionBar } from '../TableActionBar/TableActionBar';
 import { useUsersFullInfoTableConfig } from '../../lib/hooks/useUsersFullInfoTableConfig/useUsersFullInfoTableConfig';
+import { toggleFeatures } from '@/shared/lib/features';
 
 export const UsersFullInfoTable = memo(() => {
     const { t } = useTranslation('admin');
@@ -64,6 +65,12 @@ export const UsersFullInfoTable = memo(() => {
         );
     }
 
+    const tableClass = toggleFeatures({
+        name: 'isAppRedesigned',
+        on: () => cls.tableRedesigned,
+        off: () => cls.tableDeprecated,
+    });
+
     return (
         <VStack gap="16">
             <TableActionBar
@@ -80,7 +87,7 @@ export const UsersFullInfoTable = memo(() => {
                 />
             ) : (
                 <VStack gap="16" className={cls.tableWrap}>
-                    <Box className={cls.table}>
+                    <Box className={tableClass}>
                         <TableHeader<UsersTableInfo>
                             headerGroups={table.getHeaderGroups()}
                             setColumnFilters={setColumnFilters}
