@@ -5,9 +5,13 @@
 
 }
 
- .td {
+ .tdRedesigned {
    border: 1px solid var(--icon-redesigned);
    font: var(--font-s-redesigned);
-   //padding: 8px;
-}
+   }
 
+
+.tdDeprecated {
+  border: 1px solid var(--primary-color);
+  font: var(--font-s);
+}
