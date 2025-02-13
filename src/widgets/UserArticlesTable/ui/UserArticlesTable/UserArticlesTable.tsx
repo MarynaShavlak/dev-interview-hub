@@ -20,6 +20,7 @@ import { Each } from '@/shared/lib/components/Each/Each';
 import { TableActionBar } from '../TableActionBar/TableActionBar';
 import { ArticleCreateNavigationButton } from '@/features/ArticleCreateNavigationButton';
 import { useUserArticlesTableConfig } from '../../lib/hooks/useUserArticlesTableConfig/useUserArticlesTableConfig';
+import { toggleFeatures } from '@/shared/lib/features';
 
 interface UserArticlesTableProps {
     onDeleteArticle: (articleId: string) => Promise<string | null>;
@@ -73,6 +74,12 @@ export const UserArticlesTable = memo(
             );
         }
 
+        const tableClass = toggleFeatures({
+            name: 'isAppRedesigned',
+            on: () => cls.tableRedesigned,
+            off: () => cls.tableDeprecated,
+        });
+
         return (
             <VStack gap="16" max>
                 <TableActionBar
@@ -89,7 +96,7 @@ export const UserArticlesTable = memo(
                         className={cls.tableWrap}
                         data-testid="table"
                     >
-                        <Box className={cls.table}>
+                        <Box className={tableClass}>
                             <TableHeader<UserArticlesTableInfo>
                                 headerGroups={table.getHeaderGroups()}
                                 setColumnFilters={setColumnFilters}

@@ -1,9 +1,6 @@
 import { useTranslation } from 'react-i18next';
-import { createColumnHelper } from '@tanstack/react-table';
-import { HStack } from '@/shared/ui/common/Stack';
-import DeleteIcon from '@/shared/assets/icons/delete.svg';
-import EditIcon from '@/shared/assets/icons/edit.svg';
-import { Icon } from '@/shared/ui/redesigned/Icon';
+import { CellContext, createColumnHelper } from '@tanstack/react-table';
+import { ActionCellsList } from '../../../ui/ActionCellsList/ActionCellsList';
 
 interface UseCreateActionColumnParams {
     editRow: (id: string) => void;
@@ -21,24 +18,11 @@ export const useCreateActionColumn = <T extends { id: string }>(
         id: 'action',
         header: () => t('Дія'),
         size: width || 50,
-        cell: ({ row }) => (
-            <HStack justify="center" gap="8">
-                {deleteRow && (
-                    <Icon
-                        Svg={DeleteIcon}
-                        width={18}
-                        variant="error"
-                        clickable
-                        onClick={() => deleteRow(row.original.id)}
-                    />
-                )}
-                <Icon
-                    Svg={EditIcon}
-                    width={18}
-                    clickable
-                    onClick={() => editRow(row.original.id)}
-                />
-            </HStack>
-        ),
+        cell: (props: CellContext<T, any>) =>
+            ActionCellsList({
+                ...props,
+                editRow,
+                deleteRow,
+            }),
     });
 };
