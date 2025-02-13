@@ -93,7 +93,6 @@ export const UsersFullInfoTable = memo(() => {
                             setColumnFilters={setColumnFilters}
                             headerOptionsMapping={headerOptionsMapping}
                             columnFilters={columnFilters}
-                            withResizer
                         />
 
                         <Each
