@@ -8,6 +8,7 @@ import { TablePaginationProps } from '../TablePagination';
 
 export const TablePaginationRedesigned = <T,>({
     table,
+    className,
 }: TablePaginationProps<T>) => {
     const {
         isDisabledNextBtn,
@@ -18,7 +19,7 @@ export const TablePaginationRedesigned = <T,>({
     } = useTablePagination(table);
 
     return (
-        <HStack>
+        <HStack className={className}>
             <Text text={paginationText} />
             <HStack>
                 <Icon

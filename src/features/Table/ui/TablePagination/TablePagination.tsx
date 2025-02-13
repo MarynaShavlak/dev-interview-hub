@@ -7,6 +7,7 @@ import { TablePaginationDeprecated } from './TablePaginationDeprecated/TablePagi
 
 export interface TablePaginationProps<T> {
     table: Table<T>;
+    className?: string;
 }
 
 export const TablePagination = <T,>(props: TablePaginationProps<T>) => {

@@ -86,7 +86,7 @@ export const UsersFullInfoTable = memo(() => {
                     message={t('Не знайдено користувачів за Вашим запитом')}
                 />
             ) : (
-                <VStack gap="16" className={cls.tableWrap}>
+                <VStack gap="16" className={cls.tableWrap} justify="between">
                     <Box className={tableClass}>
                         <TableHeader<UsersTableInfo>
                             headerGroups={table.getHeaderGroups()}
@@ -102,7 +102,7 @@ export const UsersFullInfoTable = memo(() => {
                             )}
                         />
                     </Box>
-                    <TablePagination table={table} />
+                    <TablePagination table={table} className={cls.pagination} />
                 </VStack>
             )}
         </VStack>
