@@ -1,9 +1,12 @@
+import React from 'react';
 import FilterIcon from '@/shared/assets/icons/filter.svg';
 
 import { Icon } from '@/shared/ui/redesigned/Icon';
+import { Icon as IconDeprecated } from '@/shared/ui/deprecated/Icon';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import cls from './FilterTrigger.module.scss';
 import { getFlexClasses } from '@/shared/lib/classes/getFlexClasses/getFlexClasses';
+import { ToggleFeaturesComponent } from '@/shared/lib/features';
 
 interface FilterTriggerProps {
     isFilterActive: boolean;
@@ -16,28 +19,32 @@ export const FilterTrigger = ({ isFilterActive }: FilterTriggerProps) => {
     });
 
     return (
-        <Icon
-            width="18"
-            height="18"
-            Svg={FilterIcon}
-            className={classNames(
-                cls.filterIcon,
-                { [cls.isFilterActive]: isFilterActive },
-                [...additionalClasses],
-            )}
+        <ToggleFeaturesComponent
+            feature="isAppRedesigned"
+            on={
+                <Icon
+                    width="18"
+                    height="18"
+                    Svg={FilterIcon}
+                    className={classNames(
+                        cls.filterIcon,
+                        { [cls.isFilterActive]: isFilterActive },
+                        [...additionalClasses],
+                    )}
+                />
+            }
+            off={
+                <IconDeprecated
+                    width="18"
+                    height="18"
+                    Svg={FilterIcon}
+                    className={classNames(
+                        cls.filterIcon,
+                        { [cls.isFilterActive]: isFilterActive },
+                        [...additionalClasses],
+                    )}
+                />
+            }
         />
     );
 };
-
-// <Button
-//     size="m"
-//     variant="clear"
-//     addonLeft={<IconCustom width="20" height="20" Svg={FilterIcon} />}
-//     className={classNames(
-//         cls.filterIcon,
-//         { [cls.isFilterActive]: isFilterActive },
-//         [],
-//     )}
-// >
-//     {t('Фільтр')}
-// </Button>
