@@ -1,14 +1,12 @@
-import { Column } from '@tanstack/react-table';
 import AscIcon from '@/shared/assets/icons/asc.svg';
 import DescIcon from '@/shared/assets/icons/desc.svg';
 import { Icon } from '@/shared/ui/redesigned/Icon';
-import cls from './SortingIcon.module.scss';
+import cls from '../SortingButton.module.scss';
+import { SortingButtonProps } from '../SortingButton';
 
-interface SortingIconProps<T> {
-    column: Column<T>;
-}
-
-export const SortingIcon = <T,>({ column }: SortingIconProps<T>) => {
+export const SortingButtonRedesigned = <T,>({
+    column,
+}: SortingButtonProps<T>) => {
     const isSorted = column.getIsSorted();
 
     if (!column.getCanSort()) return null;

@@ -4,7 +4,7 @@ import React from 'react';
 import { Box } from '@/shared/ui/common/Box';
 import cls from './TableHeaderCell.module.scss';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
-import { SortingIcon } from './SortingIcon/SortingIcon';
+import { SortingButton } from './SortingButton/SortingButton';
 import { TableFilter } from './TableFilter/TableFilter';
 
 import { VStack } from '@/shared/ui/common/Stack';
@@ -61,7 +61,7 @@ export const TableHeaderCell = <T,>(props: TableHeaderCellProps<T>) => {
 
                         {isSortAvailable && isFilterAvailable && (
                             <VStack className={cls.optionActionBlock}>
-                                <SortingIcon column={header.column} />
+                                <SortingButton column={header.column} />
                                 <TableFilter
                                     filterCategory={header.id}
                                     columnFilters={columnFilters}
@@ -78,7 +78,7 @@ export const TableHeaderCell = <T,>(props: TableHeaderCellProps<T>) => {
                                 gap="4"
                                 className={cls.optionSortActionBlock}
                             >
-                                <SortingIcon column={header.column} />
+                                <SortingButton column={header.column} />
                             </VStack>
                         )}
                         {!isSortAvailable && isFilterAvailable && (
