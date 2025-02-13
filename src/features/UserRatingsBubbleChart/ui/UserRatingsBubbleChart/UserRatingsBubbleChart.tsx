@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
-import { DeprecatedUserRatingsBubbleChart } from './DeprecatedUserRatingsBubbleChart/DeprecatedUserRatingsBubbleChart';
-import { RedesignedUserRatingsBubbleChart } from './RedesignedUserRatingsBubbleChart/RedesignedUserRatingsBubbleChart';
+import { UserRatingsBubbleChartDeprecated } from './UserRatingsBubbleChartDeprecated/UserRatingsBubbleChartDeprecated';
+import { UserRatingsBubbleChartRedesigned } from './UserRatingsBubbleChartRedesigned/UserRatingsBubbleChartRedesigned';
 import { UserRatingsBubbleChartProps } from '../../model/types/types';
 
 export const UserRatingsBubbleChart = memo(
@@ -9,8 +9,8 @@ export const UserRatingsBubbleChart = memo(
         return (
             <ToggleFeaturesComponent
                 feature="isAppRedesigned"
-                on={<RedesignedUserRatingsBubbleChart {...props} />}
-                off={<DeprecatedUserRatingsBubbleChart {...props} />}
+                on={<UserRatingsBubbleChartRedesigned {...props} />}
+                off={<UserRatingsBubbleChartDeprecated {...props} />}
             />
         );
     },

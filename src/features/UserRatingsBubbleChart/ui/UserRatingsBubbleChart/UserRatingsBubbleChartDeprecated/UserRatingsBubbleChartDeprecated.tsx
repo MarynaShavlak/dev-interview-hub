@@ -1,11 +1,11 @@
 import { useTranslation } from 'react-i18next';
 import React, { memo } from 'react';
 import { BubbleChart } from '@/shared/ui/common/Charts/ui/BubbleChart';
-import { Card } from '@/shared/ui/redesigned/Card';
-import { UserRatingsBubbleChartProps } from '../../../model/types/types';
+import { Card } from '@/shared/ui/deprecated/Card';
 import { useUserRatingsChartData } from '../../../lib/hooks/useUserRatingsChartData';
+import { UserRatingsBubbleChartProps } from '../../../model/types/types';
 
-export const RedesignedUserRatingsBubbleChart = memo(
+export const UserRatingsBubbleChartDeprecated = memo(
     (props: UserRatingsBubbleChartProps) => {
         const { t } = useTranslation('admin');
         const { data, totalArticles, className, width, height } = props;
