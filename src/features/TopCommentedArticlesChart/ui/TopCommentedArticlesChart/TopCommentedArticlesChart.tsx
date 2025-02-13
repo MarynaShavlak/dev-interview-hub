@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
-import { RedesignedTopCommentedArticlesChart } from './RedesignedTopCommentedArticlesChart/RedesignedTopCommentedArticlesChart';
-import { DeprecatedTopCommentedArticlesChart } from './DeprecatedTopCommentedArticlesChart/DeprecatedTopCommentedArticlesChart';
+import { TopCommentedArticlesChartRedesigned } from './TopCommentedArticlesChartRedesigned/TopCommentedArticlesChartRedesigned';
+import { TopCommentedArticlesChartDeprecated } from './TopCommentedArticlesChartDeprecated/TopCommentedArticlesChartDeprecated';
 import { TopCommentedArticlesChartProps } from '../../model/types/types';
 
 export const TopCommentedArticlesChart = memo(
@@ -9,8 +9,8 @@ export const TopCommentedArticlesChart = memo(
         return (
             <ToggleFeaturesComponent
                 feature="isAppRedesigned"
-                on={<RedesignedTopCommentedArticlesChart {...props} />}
-                off={<DeprecatedTopCommentedArticlesChart {...props} />}
+                on={<TopCommentedArticlesChartRedesigned {...props} />}
+                off={<TopCommentedArticlesChartDeprecated {...props} />}
             />
         );
     },

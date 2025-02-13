@@ -3,8 +3,8 @@ import { useTranslation } from 'react-i18next';
 import { useGetArticles } from '@/entities/Article';
 
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
-import { DeprecatedArticleMonthlyDataChart } from './DeprecatedArticleMonthlyDataChart/DeprecatedArticleMonthlyDataChart';
-import { RedesignedArticleMonthlyDataChart } from './RedesignedArticleMonthlyDataChart/RedesignedArticleMonthlyDataChart';
+import { ArticleMonthlyDataChartDeprecated } from './ArticleMonthlyDataChartDeprecated/ArticleMonthlyDataChartDeprecated';
+import { ArticleMonthlyDataChartRedesigned } from './ArticleMonthlyDataChartRedesigned/ArticleMonthlyDataChartRedesigned';
 
 import { ArticleMonthlyDataChartSkeleton } from './ArticleMonthlyDataChartSkeleton';
 import { ArticleMonthlyDataChartProps } from '../../model/types/types';
@@ -24,8 +24,8 @@ export const ArticleMonthlyDataChart = memo(
         return (
             <ToggleFeaturesComponent
                 feature="isAppRedesigned"
-                on={<RedesignedArticleMonthlyDataChart {...props} />}
-                off={<DeprecatedArticleMonthlyDataChart {...props} />}
+                on={<ArticleMonthlyDataChartRedesigned {...props} />}
+                off={<ArticleMonthlyDataChartDeprecated {...props} />}
             />
         );
     },

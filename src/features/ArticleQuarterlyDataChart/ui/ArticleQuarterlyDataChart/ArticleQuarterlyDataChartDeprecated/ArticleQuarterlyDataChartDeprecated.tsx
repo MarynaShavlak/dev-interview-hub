@@ -2,10 +2,10 @@ import React, { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { StackedColumnsChart } from '@/shared/ui/common/Charts/ui/StackedColumnsChart';
 import { useArticleQuarterlyData } from '../../../lib/hooks/useArticleQuarterlyData';
-import { Card } from '@/shared/ui/redesigned/Card';
+import { Card as CardDeprecated } from '@/shared/ui/deprecated/Card';
 import { ArticleQuarterlyDataChartProps } from '../../../model/types/types';
 
-export const RedesignedArticleQuarterlyDataChart = memo(
+export const ArticleQuarterlyDataChartDeprecated = memo(
     (props: ArticleQuarterlyDataChartProps) => {
         const { t } = useTranslation('admin');
         const { categories, data, className, chartDimensions } = props;
@@ -14,7 +14,7 @@ export const RedesignedArticleQuarterlyDataChart = memo(
             useArticleQuarterlyData(categories, data);
 
         return (
-            <Card className={className}>
+            <CardDeprecated className={className}>
                 <StackedColumnsChart
                     data={quarterlyCategoryData}
                     labels={quarterlyLabels}
@@ -27,7 +27,7 @@ export const RedesignedArticleQuarterlyDataChart = memo(
                     height={chartDimensions.height}
                     width={chartDimensions.width}
                 />
-            </Card>
+            </CardDeprecated>
         );
     },
 );

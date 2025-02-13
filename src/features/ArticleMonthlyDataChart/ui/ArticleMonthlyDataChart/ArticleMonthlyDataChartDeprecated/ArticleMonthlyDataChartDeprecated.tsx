@@ -1,11 +1,11 @@
 import React, { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useArticleMonthlyData } from '../../../lib/hooks/useArticleMonthlyData';
-import { Card as CardDeprecated } from '@/shared/ui/deprecated/Card';
+import { Card } from '@/shared/ui/deprecated/Card';
 import { LineChart } from '@/shared/ui/common/Charts/ui/LineChart';
 import { ArticleMonthlyDataChartProps } from '../../../model/types/types';
 
-export const DeprecatedArticleMonthlyDataChart = memo(
+export const ArticleMonthlyDataChartDeprecated = memo(
     (props: ArticleMonthlyDataChartProps) => {
         const { t } = useTranslation('admin');
         const { categories, data, className, chartDimensions } = props;
@@ -16,7 +16,7 @@ export const DeprecatedArticleMonthlyDataChart = memo(
         );
 
         return (
-            <CardDeprecated className={className}>
+            <Card className={className}>
                 <LineChart
                     data={monthlyCategoryData}
                     labels={monthlyLabels}
@@ -29,7 +29,7 @@ export const DeprecatedArticleMonthlyDataChart = memo(
                     height={chartDimensions.height}
                     width={chartDimensions.width}
                 />
-            </CardDeprecated>
+            </Card>
         );
     },
 );

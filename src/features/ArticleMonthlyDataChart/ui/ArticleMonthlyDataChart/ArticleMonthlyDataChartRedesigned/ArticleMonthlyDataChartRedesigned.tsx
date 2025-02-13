@@ -5,7 +5,7 @@ import { Card } from '@/shared/ui/redesigned/Card';
 import { ArticleMonthlyDataChartProps } from '../../../model/types/types';
 import { LineChart } from '@/shared/ui/common/Charts/ui/LineChart';
 
-export const RedesignedArticleMonthlyDataChart = memo(
+export const ArticleMonthlyDataChartRedesigned = memo(
     (props: ArticleMonthlyDataChartProps) => {
         const { t } = useTranslation('admin');
         const { categories, data, className, chartDimensions } = props;

@@ -36,6 +36,17 @@ const commentsByUsersChartWidth = toggleFeatures({
     on: () => '576',
 });
 
+const fullWidth = toggleFeatures({
+    name: 'isAppRedesigned',
+    off: () => '812',
+    on: () => '828',
+});
+const fullHeight = toggleFeatures({
+    name: 'isAppRedesigned',
+    off: () => '284',
+    on: () => '300',
+});
+
 export const CHARTS_RECTS: Record<ChartKeys, ChartDimensions> = {
     activeUsersChart: { width: '412', height: '200' },
     articlesByCategoriesChart: {
@@ -48,13 +59,13 @@ export const CHARTS_RECTS: Record<ChartKeys, ChartDimensions> = {
     },
     ratingsByUsersChart: { width: '384', height: '300' },
     articleRatingDistributionChart: { width: '220', height: '200' },
-    commentsByArticlesChart: { width: '828', height: '300' }, // 828
+    commentsByArticlesChart: { width: fullWidth, height: fullHeight }, // 828
     commentsByUsersChart: {
         width: commentsByUsersChartWidth,
         height: commentsByUsersChartHeight,
     },
-    quarterlyCategoryChart: { width: '828', height: '300' }, // 828
-    monthlyCategoryChart: { width: '828', height: '300' }, // 828
+    quarterlyCategoryChart: { width: fullWidth, height: fullHeight }, // 828
+    monthlyCategoryChart: { width: fullWidth, height: fullHeight }, // 828
 };
 
 export const CHART_GAP = '16';
