@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
-import { DeprecatedArticleCommentatorsDistributionChart } from './DeprecatedArticleCommentatorsDistributionChart/DeprecatedArticleCommentatorsDistributionChart';
-import { RedesignedArticleCommentatorsDistributionChart } from './RedesignedArticleCommentatorsDistributionChart/RedesignedArticleCommentatorsDistributionChart';
+import { ArticleCommentatorsDistributionChartDeprecated } from './ArticleCommentatorsDistributionChartDeprecated/ArticleCommentatorsDistributionChartDeprecated';
+import { ArticleCommentatorsDistributionChartRedesigned } from './ArticleCommentatorsDistributionChartRedesigned/ArticleCommentatorsDistributionChartRedesigned';
 import { ArticleCommentatorsDistributionChartProps } from '../../model/types/types';
 
 export const ArticleCommentatorsDistributionChart = memo(
@@ -10,12 +10,12 @@ export const ArticleCommentatorsDistributionChart = memo(
             <ToggleFeaturesComponent
                 feature="isAppRedesigned"
                 on={
-                    <RedesignedArticleCommentatorsDistributionChart
+                    <ArticleCommentatorsDistributionChartRedesigned
                         {...props}
                     />
                 }
                 off={
-                    <DeprecatedArticleCommentatorsDistributionChart
+                    <ArticleCommentatorsDistributionChartDeprecated
                         {...props}
                     />
                 }

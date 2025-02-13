@@ -1,12 +1,12 @@
 import React, { memo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Card } from '@/shared/ui/redesigned/Card';
+import { Card as CardDeprecated } from '@/shared/ui/deprecated/Card';
 
 import { TreemapChart } from '@/shared/ui/common/Charts/ui/TreemapChart';
 import { ArticleCommentatorsDistributionChartProps } from '../../../model/types/types';
 import { useCommentsByUsersChartData } from '../../../lib/hooks/useCommentsByUsersChartData';
 
-export const RedesignedArticleCommentatorsDistributionChart = memo(
+export const ArticleCommentatorsDistributionChartDeprecated = memo(
     (props: ArticleCommentatorsDistributionChartProps) => {
         const { t } = useTranslation('admin');
 
@@ -15,14 +15,14 @@ export const RedesignedArticleCommentatorsDistributionChart = memo(
             useCommentsByUsersChartData(commentCountsByUser);
 
         return (
-            <Card className={className}>
+            <CardDeprecated className={className}>
                 <TreemapChart
                     data={commentsByUsersData}
                     title={t('Розподіл користувачів за кількістю коментарів')}
                     height={chartDimensions.height}
                     width={chartDimensions.width}
                 />
-            </Card>
+            </CardDeprecated>
         );
     },
 );
