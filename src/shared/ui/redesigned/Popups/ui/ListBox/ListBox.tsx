@@ -1,7 +1,10 @@
 import { Listbox as HListBox } from '@headlessui/react';
 import { useCallback, useMemo, useState } from 'react';
 import { Each } from '@/shared/lib/components/Each/Each';
-import { ListBoxTrigger } from './ListBoxTrigger/ListBoxTrigger';
+import {
+    ListBoxTrigger,
+    ListBoxTriggerSize,
+} from './ListBoxTrigger/ListBoxTrigger';
 import { ListBoxItem, Option } from './Option/Option';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { DropdownDirection } from '@/shared/types/ui';
@@ -19,6 +22,7 @@ interface ListBoxProps<T extends string> {
     direction?: DropdownDirection;
     label?: string;
     className?: string;
+    size?: ListBoxTriggerSize;
 }
 
 export function ListBox<T extends string>(props: ListBoxProps<T>) {
@@ -31,6 +35,7 @@ export function ListBox<T extends string>(props: ListBoxProps<T>) {
         readonly,
         direction = 'bottom right',
         label,
+        size = 'm',
     } = props;
     const [isOpen, setIsOpen] = useState(false);
 
@@ -75,6 +80,7 @@ export function ListBox<T extends string>(props: ListBoxProps<T>) {
                     defaultValue={defaultValue}
                     readonly={readonly}
                     handleClick={() => setIsOpen((prev) => !prev)}
+                    size={size}
                 />
                 <HListBox.Options className={optionsClasses}>
                     <Each

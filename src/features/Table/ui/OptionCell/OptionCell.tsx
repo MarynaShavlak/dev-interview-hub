@@ -44,6 +44,7 @@ export const OptionCell = <TData extends { id: string }>({
     // const { updateData } = meta;
 
     const currentValue = extractOptionValueName(value);
+
     const listBoxOptions = options.map(createListBoxOption);
 
     const onCellClick = useCallback(
@@ -52,10 +53,9 @@ export const OptionCell = <TData extends { id: string }>({
 
             if (updateRow) {
                 const newValueName = isColorOption(newValue)
-                    ? newValue.name
+                    ? newValue.name.toUpperCase()
                     : newValue;
 
-                console.log('newValueName', newValueName);
                 if (newValueName !== currentValue) {
                     updateRow(row.original.id, column.id, newValueName);
                 }
@@ -84,6 +84,7 @@ export const OptionCell = <TData extends { id: string }>({
                 items={listBoxOptions}
                 onChange={onCellClick}
                 direction="bottom right"
+                size="s"
             />
         </HStack>
     );

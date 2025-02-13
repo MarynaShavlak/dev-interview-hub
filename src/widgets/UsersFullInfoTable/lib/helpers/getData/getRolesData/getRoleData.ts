@@ -1,12 +1,12 @@
 import { UserRole } from '@/entities/User';
 
-const ROLE_ADMIN = { id: '1', name: 'Admin', color: '#f77' };
+const ROLE_ADMIN = { id: '1', name: 'ADMIN', color: '#f77' };
 const ROLE_USER = {
     id: '2',
-    name: 'User',
+    name: 'USER',
     color: '#62de85',
 };
-const ROLE_MANAGER = { id: '3', name: 'Manager', color: '#5ed3f3' };
+const ROLE_MANAGER = { id: '3', name: 'MANAGER', color: '#5ed3f3' };
 
 const ROLE_MAP = {
     admin: ROLE_ADMIN,

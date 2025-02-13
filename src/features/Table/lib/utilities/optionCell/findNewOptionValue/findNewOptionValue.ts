@@ -1,4 +1,4 @@
-import { ColorOption } from '@/features/Table';
+import { ColorOption } from '../../../../model/types/tableTypes';
 
 export const findNewOptionValue = (
     options: (ColorOption | string)[],

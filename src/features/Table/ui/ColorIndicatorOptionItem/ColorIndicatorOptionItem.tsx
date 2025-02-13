@@ -2,6 +2,7 @@ import { Box } from '@/shared/ui/common/Box';
 import { HStack } from '@/shared/ui/common/Stack/HStack/HStack';
 import { ColorOption } from '../../model/types/tableTypes';
 import cls from './ColorIndicatorOptionItem.module.scss';
+import { capitalizeFirstLetter } from '@/shared/lib/text/capitalizeFirstLetter/capitalizeFirstLetter';
 
 export interface ColorIndicatorOptionItemProps {
     option: ColorOption;
@@ -30,7 +31,7 @@ export const ColorIndicatorOptionItem = ({
     return (
         <HStack gap="8" onClick={onClick} className={className}>
             <ColorIcon color={option.color} />
-            {option.name}
+            {capitalizeFirstLetter(option.name.toLowerCase())}
         </HStack>
     );
 };

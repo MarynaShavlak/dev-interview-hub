@@ -47,6 +47,7 @@ export const useManageUsersFullInfoTableRow =
                 }
 
                 try {
+                    console.log('value', value);
                     const updatedUser = await dispatch(
                         updateUserRoleThunk({
                             userId: rowId,
