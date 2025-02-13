@@ -14,6 +14,7 @@ export const useTextBlockState = ({
         useTextInput(initialTitle);
     const { editorState, paragraphs, onEditorStateChange, isEmptyContent } =
         useEditorState(initialParagraphs);
+    // console.log('isEmptyContent', isEmptyContent);
 
     return {
         title,

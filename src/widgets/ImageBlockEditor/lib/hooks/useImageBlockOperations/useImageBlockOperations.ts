@@ -92,17 +92,6 @@ export const useImageBlockOperations = ({
         }
     }, [uploadError]);
 
-    // const { saveImageBlock, deleteImageBlock, uploadError, resetUploadError } =
-    //     useImageBlockActions({
-    //         blockId,
-    //         title,
-    //         src,
-    //         addBlockInArticle,
-    //         onEditBlock,
-    //         deleteBlockFromArticle,
-    //         selectedImage,
-    //     });
-
     const handleSaveImageBlock = useCallback(async () => {
         await saveImageBlock();
         exitEditMode();

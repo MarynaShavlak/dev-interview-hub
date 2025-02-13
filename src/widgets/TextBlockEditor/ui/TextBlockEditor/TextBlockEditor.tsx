@@ -38,7 +38,7 @@ export const TextBlockEditor = memo((props: TextBlockEditorProps) => {
         handleDeleteTextBlock,
     } = useTextBlockOperations({
         blockId: block.id,
-        title,
+        title: title || '',
         paragraphs,
         addBlockInArticle,
         deleteBlockFromArticle,
@@ -53,7 +53,7 @@ export const TextBlockEditor = memo((props: TextBlockEditorProps) => {
                       id: block.id,
                       type: ArticleSection.TEXT,
                       paragraphs,
-                      title,
+                      title: title || '',
                   },
         [block, isEditArticlePage, paragraphs, title],
     );
@@ -66,6 +66,7 @@ export const TextBlockEditor = memo((props: TextBlockEditorProps) => {
         onEditorStateChange,
         onSave: handleSaveTextBlock,
     };
+    console.log('isEditMode____Editor', isEditModeActive);
 
     const viewerProps = {
         editBlock: isEditArticlePage ? enterEditMode : toggleEditMode,

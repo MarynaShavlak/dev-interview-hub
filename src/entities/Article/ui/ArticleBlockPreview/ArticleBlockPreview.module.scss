@@ -1,9 +1,10 @@
 .previewBlockWrapperRedesigned {
-   overflow: hidden;
+  overflow: hidden;
   padding-right: 50px;
   position: relative;
   transition: background 3000ms ease-in-out;
   background: transparent;
+  min-height: 100px;
 
   &:hover {
     background: linear-gradient(89.97deg, rgba(94, 211, 243, 0.3) 1.15%, rgba(94, 211, 243, 0) 99.97%);

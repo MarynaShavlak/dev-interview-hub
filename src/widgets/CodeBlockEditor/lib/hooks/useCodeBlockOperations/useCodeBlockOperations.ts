@@ -39,20 +39,22 @@ export const useCodeBlockOperations = ({
         } else {
             addBlockInArticle(updatedBlock);
         }
-        // onChangeBlocks(updatedBlock);
     }, [blockId, code, title, onEditBlock, addBlockInArticle]);
 
     const deleteCodeBlock = useCallback(() => {
         if (deleteBlockFromArticle) {
             deleteBlockFromArticle(blockId);
-            // onDeleteBlock(blockId);
         }
     }, [deleteBlockFromArticle, blockId]);
 
     const handleSaveCodeBlock = useCallback(() => {
         saveCodeBlock();
-        exitEditMode();
-    }, [exitEditMode, saveCodeBlock]);
+        if (title) {
+            exitEditMode();
+        } else {
+            enterEditMode();
+        }
+    }, [enterEditMode, saveCodeBlock]);
 
     return {
         isEditModeActive,

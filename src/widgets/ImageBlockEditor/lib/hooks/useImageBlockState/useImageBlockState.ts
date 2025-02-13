@@ -16,7 +16,6 @@ export const useImageBlockState = ({
     const { value: title, handleChange: handleTitleChange } =
         useTextInput(initialTitle);
     const dispatch = useAppDispatch();
-    console.log('initial avatar', initialAvatar);
 
     const deleteFromStorage = useCallback(async () => {
         if (initialAvatar) {

@@ -55,7 +55,7 @@ export const CodeBlockEditor = memo((props: CodeBlockEditorProps) => {
                       id: block.id,
                       type: ArticleSection.CODE,
                       code,
-                      title,
+                      title: title || '',
                   },
         [block, code, isEditArticlePage, title],
     );

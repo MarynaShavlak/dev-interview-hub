@@ -31,7 +31,7 @@ export const useTextBlockOperations = ({
             id: blockId,
             type: ArticleSection.TEXT,
             paragraphs,
-            title,
+            title: title || '',
         };
 
         if (onEditBlock) {
@@ -49,8 +49,12 @@ export const useTextBlockOperations = ({
 
     const handleSaveTextBlock = useCallback(() => {
         saveTextBlock();
-        exitEditMode();
-    }, [exitEditMode, saveTextBlock]);
+        if (title) {
+            exitEditMode();
+        } else {
+            enterEditMode();
+        }
+    }, [enterEditMode, exitEditMode, saveTextBlock, title]);
 
     return {
         isEditModeActive,
