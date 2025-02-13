@@ -34,8 +34,20 @@ export const AdminPanelPageContent = () => {
                 </main>
             }
             off={
-                <Page data-testid="AdminPanelPage">
-                    <StatisticsCharts />
+                <Page
+                    data-testid="AdminPanelPage"
+                    className={classNames('', {}, mainWrapperClasses)}
+                >
+                    <AdminTabsNavigation
+                        activeTab={activeTab}
+                        onTabChange={setActiveTab}
+                    />
+
+                    {activeTab === 'charts' ? (
+                        <StatisticsCharts />
+                    ) : (
+                        <UsersFullInfoTable />
+                    )}
                 </Page>
             }
         />
