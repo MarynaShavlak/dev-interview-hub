@@ -12,6 +12,7 @@ interface PopoverProps extends TestProps {
     direction?: DropdownDirection;
     trigger: ReactNode;
     children: ReactNode;
+    noPadding?: boolean;
 }
 /**
  * Deprecated, use new component from directory redesigned
@@ -24,6 +25,7 @@ export function Popover(props: PopoverProps) {
         direction = 'bottom right',
         children,
         'data-testid': dataTestId,
+        noPadding = false,
     } = props;
 
     const menuClasses = [mapDirectionClass[direction]];
@@ -37,7 +39,13 @@ export function Popover(props: PopoverProps) {
                 {trigger}
             </HPopover.Button>
 
-            <HPopover.Panel className={classNames(cls.panel, {}, menuClasses)}>
+            <HPopover.Panel
+                className={classNames(
+                    cls.panel,
+                    { [cls.noPadding]: noPadding },
+                    menuClasses,
+                )}
+            >
                 {children}
             </HPopover.Panel>
         </HPopover>

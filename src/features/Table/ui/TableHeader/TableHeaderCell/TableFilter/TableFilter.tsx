@@ -1,4 +1,6 @@
-import { Popover } from '@/shared/ui/redesigned/Popups';
+import React from 'react';
+import { Popover as PopoverRedesigned } from '@/shared/ui/redesigned/Popups';
+import { Popover as PopoverDeprecated } from '@/shared/ui/deprecated/Popups';
 import cls from './FilterPopover.module.scss';
 
 import { FilterMenuWithColorOptions } from './FilterMenuWithColorOptions/FilterMenuWithColorOptions';
@@ -10,6 +12,8 @@ import {
 } from '../../../../model/types/tableTypes';
 import { FilterMenuWithStringOptions } from './FilterMenuWithStringOptions/FilterMenuWithStringOptions';
 import { getFilterOptions } from '../../../../lib/utilities/getFilterOptions/getFilterOptions';
+
+import { toggleFeatures } from '@/shared/lib/features';
 
 export interface FilterPopoverProps extends ColumnFilterHandlerProps {
     filterCategory: string;
@@ -29,6 +33,11 @@ export const TableFilter = (props: FilterPopoverProps) => {
         allColorOptions,
         isStringOptions,
     } = getFilterOptions(filterCategory, columnFilters, allOptions);
+    const Popover = toggleFeatures({
+        name: 'isAppRedesigned',
+        on: () => PopoverRedesigned,
+        off: () => PopoverDeprecated,
+    });
 
     return (
         <Popover

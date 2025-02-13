@@ -1,12 +1,30 @@
 import { UserRole } from '@/entities/User';
+import { toggleFeatures } from '@/shared/lib/features';
 
-const ROLE_ADMIN = { id: '1', name: 'ADMIN', color: '#f77' };
+const adminColor = toggleFeatures({
+    name: 'isAppRedesigned',
+    on: () => '#f77',
+    off: () => '#ce0505',
+});
+
+const userColor = toggleFeatures({
+    name: 'isAppRedesigned',
+    on: () => '#62de85',
+    off: () => '#0232c2',
+});
+const managerColor = toggleFeatures({
+    name: 'isAppRedesigned',
+    on: () => '#5ed3f3',
+    off: () => '#049604',
+});
+
+const ROLE_ADMIN = { id: '1', name: 'ADMIN', color: adminColor };
 const ROLE_USER = {
     id: '2',
     name: 'USER',
-    color: '#62de85',
+    color: userColor,
 };
-const ROLE_MANAGER = { id: '3', name: 'MANAGER', color: '#5ed3f3' };
+const ROLE_MANAGER = { id: '3', name: 'MANAGER', color: managerColor };
 
 const ROLE_MAP = {
     admin: ROLE_ADMIN,

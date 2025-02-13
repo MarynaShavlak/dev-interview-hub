@@ -1,4 +1,4 @@
-.filterItem {
+.filterItemRedesigned {
   transition: background-color 300ms;
   padding: 5px 10px;
   &:hover {
@@ -6,6 +6,19 @@
   }
 }
 
-.active {
+.activeRedesigned {
   background: var(--light-bg-redesigned);
+}
+
+
+.filterItemDeprecated {
+  transition: background-color 300ms;
+  padding: 5px 10px;
+  &:hover {
+    background: var(--bg-color);
+  }
+}
+
+.activeDeprecated {
+  background: var(--bg-color);
 }

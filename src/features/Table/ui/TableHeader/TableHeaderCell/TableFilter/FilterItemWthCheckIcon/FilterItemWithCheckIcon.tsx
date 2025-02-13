@@ -11,7 +11,7 @@ import { ColumnFilterHandlerProps } from '../../../../../model/types/tableTypes'
 import { getStringOptions } from '../../../../../lib/utilities/getStringOptions/getStringOptions';
 import { useStringOptionsFilterOperations } from '../../../../../lib/hooks/useStringOptionsFilterOperations/useStringOptionsFilterOperations';
 
-import { ToggleFeaturesComponent } from '@/shared/lib/features';
+import { toggleFeatures, ToggleFeaturesComponent } from '@/shared/lib/features';
 
 interface FilterItemProps extends ColumnFilterHandlerProps {
     option: string;
@@ -69,12 +69,24 @@ export const FilterItemWithCheckIcon = (props: FilterItemProps) => {
         />
     );
 
+    const filterItemClass = toggleFeatures({
+        name: 'isAppRedesigned',
+        on: () => cls.filterItemRedesigned,
+        off: () => cls.filterItemDeprecated,
+    });
+
+    const activeClass = toggleFeatures({
+        name: 'isAppRedesigned',
+        on: () => cls.activeRedesigned,
+        off: () => cls.activeDeprecated,
+    });
+
     return (
         <HStack
             max
             className={classNames(
-                cls.filterItem,
-                { [cls.active]: isActive },
+                filterItemClass,
+                { [activeClass]: isActive },
                 [],
             )}
             gap="8"
