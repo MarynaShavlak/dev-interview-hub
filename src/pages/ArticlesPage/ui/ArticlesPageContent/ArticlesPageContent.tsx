@@ -18,7 +18,7 @@ export const ArticlesPageContent = () => {
 
     const { view } = useArticleFilters();
 
-    const { items, results } = useHits({});
+    const { items, results, hits } = useHits({});
     let page = 0;
     if (results) {
         page = results.page;

@@ -24,7 +24,19 @@ import { BaseCardProps } from '../../ArticleCard';
 export const ListViewCardDeprecated = memo((props: BaseCardProps) => {
     const { className, article, handleClick } = props;
     const { t } = useTranslation('articles');
-    const textBlock = article.blocks.find(
+
+    const {
+        createdAt,
+        title,
+        img,
+        id,
+        views,
+        user,
+        subtitle,
+        category,
+        blocks,
+    } = article;
+    const textBlock = blocks.find(
         (block) => block.type === ArticleSection.TEXT,
     ) as ArticleTextBlock;
 
@@ -40,15 +52,12 @@ export const ListViewCardDeprecated = memo((props: BaseCardProps) => {
             <Card className={classNames('', {}, additionalClasses)}>
                 <VStack gap="8" max>
                     <HStack gap="8" max>
-                        <Avatar size={30} src={article.user.avatar} />
-                        <Text text={article.user.username} />
+                        <Avatar size={30} src={user.avatar} />
+                        <Text text={user.username} />
                     </HStack>
-                    <Text text={article.createdAt} />
+                    <Text text={createdAt} />
                 </VStack>
-                <Text
-                    title={article.title}
-                    data-testid="ArticleListItem.Title"
-                />
+                <Text title={title} data-testid="ArticleListItem.Title" />
                 <ArticleCategories article={article} />
                 <AppImage
                     fallback={<Skeleton width="100%" height="250px" />}
@@ -61,15 +70,15 @@ export const ListViewCardDeprecated = memo((props: BaseCardProps) => {
                             alt={t('Дефолтне зображення картинки статті')}
                         />
                     }
-                    src={article.img}
+                    src={img}
                     className={cls.img}
-                    alt={article.title}
+                    alt={title}
                 />
                 {textBlock.paragraphs.slice(0, 1).join(' ') && (
                     <ArticleTextBlockComponent block={textBlock} />
                 )}
                 <HStack justify="between" max>
-                    <AppLink to={getRouteArticleDetails(article.id)}>
+                    <AppLink to={getRouteArticleDetails(id)}>
                         <Button
                             theme={ButtonTheme.OUTLINE}
                             onClick={handleClick}
@@ -77,7 +86,7 @@ export const ListViewCardDeprecated = memo((props: BaseCardProps) => {
                             {t('Читати більше')}
                         </Button>
                     </AppLink>
-                    <ArticleViews article={article} />
+                    <ArticleViews views={views} />
                 </HStack>
             </Card>
         </div>

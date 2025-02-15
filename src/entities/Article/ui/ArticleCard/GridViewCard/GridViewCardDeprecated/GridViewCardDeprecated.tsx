@@ -19,6 +19,18 @@ import { BaseCardProps } from '../../ArticleCard';
 export const GridViewCardDeprecated = memo((props: BaseCardProps) => {
     const { className, article, target, handleClick } = props;
     const { t } = useTranslation('articles');
+
+    const {
+        createdAt,
+        title,
+        img,
+        id,
+        views,
+        user,
+        subtitle,
+        category,
+        blocks,
+    } = article;
     const [isHover, bindHover] = useHover();
     const additionalCardClasses = getFlexClasses({ vStack: true, gap: '8' });
     const itemClasses = classNames(
@@ -32,7 +44,7 @@ export const GridViewCardDeprecated = memo((props: BaseCardProps) => {
             {...bindHover}
             data-testid="ArticleListItem"
             target={target}
-            to={getRouteArticleDetails(article.id)}
+            to={getRouteArticleDetails(id)}
             className={itemClasses}
             onClick={handleClick}
         >
@@ -49,18 +61,18 @@ export const GridViewCardDeprecated = memo((props: BaseCardProps) => {
                                 alt={t('Дефолтне зображення картинки статті')}
                             />
                         }
-                        alt={article.title}
-                        src={article.img}
+                        alt={title}
+                        src={img}
                         className={cls.img}
                     />
-                    <Text text={article.createdAt} className={cls.date} />
+                    <Text text={createdAt} className={cls.date} />
                 </div>
                 <HStack justify="between">
                     <ArticleCategories article={article} />
-                    <ArticleViews article={article} />
+                    <ArticleViews views={views} />
                 </HStack>
                 <Text
-                    text={article.title}
+                    text={title}
                     className={cls.title}
                     data-testid="ArticleListItem.Title"
                 />

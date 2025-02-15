@@ -19,17 +19,28 @@ import { formatDateString } from '@/shared/lib/text/formatDateString/formatDateS
 export const GridViewCardRedesigned = memo((props: BaseCardProps) => {
     const { className, article, target, handleClick } = props;
     const { t } = useTranslation('articles');
+    const {
+        createdAt,
+        title,
+        img,
+        id,
+        views,
+        user,
+        subtitle,
+        category,
+        blocks,
+    } = article;
     const additionalClasses = getFlexClasses({
         vStack: true,
         gap: '8',
     });
-    const convertedDate = formatDateString(article.createdAt);
+    const convertedDate = formatDateString(createdAt);
 
     return (
         <AppLink
             data-testid="ArticleListItem"
             target={target}
-            to={getRouteArticleDetails(article.id)}
+            to={getRouteArticleDetails(id)}
             className={classNames(cls.ArticleListItemRedesigned, {}, [
                 className,
                 cls.GRID,
@@ -52,13 +63,13 @@ export const GridViewCardRedesigned = memo((props: BaseCardProps) => {
                             alt={t('Дефолтне зображення картинки статті')}
                         />
                     }
-                    alt={article.title}
-                    src={article.img}
+                    alt={title}
+                    src={img}
                     className={cls.img}
                 />
                 <VStack className={cls.infoWrap} gap="4">
                     <Text
-                        title={article.title}
+                        title={title}
                         className={cls.title}
                         size="s"
                         data-testid="ArticleListItem.Title"
@@ -66,13 +77,13 @@ export const GridViewCardRedesigned = memo((props: BaseCardProps) => {
                     <VStack gap="4" className={cls.footer} max justify="end">
                         <HStack justify="between" max>
                             <Text text={convertedDate} className={cls.date} />
-                            <ArticleViews article={article} />
+                            <ArticleViews views={views} />
                         </HStack>
                         <Avatar
                             size={32}
-                            src={article.user?.avatar}
+                            src={user?.avatar}
                             className={cls.user}
-                            userName={article.user?.username}
+                            userName={user?.username}
                             textLength={20}
                         />
                     </VStack>
