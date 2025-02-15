@@ -18,10 +18,9 @@ export const calculateAvailableFlexColumnWidth = (
     });
 
     const toolbarWidth = toolbar?.getBoundingClientRect().width ?? 0;
-    console.log('toolbarWidth', toolbarWidth); // Ensures `0` is used when `toolbar` is `null`
+
     const sidebarWidth = sidebar?.getBoundingClientRect().width ?? 0;
-    console.log('sidebarWidth', sidebarWidth);
-    console.log('window.innerWidth', window.innerWidth);
+
     const availableWidth =
         window.innerWidth -
         sidebarWidth -
