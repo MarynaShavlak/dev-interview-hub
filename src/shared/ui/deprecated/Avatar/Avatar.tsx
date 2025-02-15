@@ -30,7 +30,14 @@ export const Avatar = memo(
             [size],
         );
 
-        const fallback = <Skeleton width={size} height={size} border="50%" />;
+        const fallback = (
+            <Skeleton
+                width={size}
+                height={size}
+                border="50%"
+                className={cls.AvatarSkeleton}
+            />
+        );
         const errorFallback = (
             <Icon
                 inverted={fallbackInverted}
