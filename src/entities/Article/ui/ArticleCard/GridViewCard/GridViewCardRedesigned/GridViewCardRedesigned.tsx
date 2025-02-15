@@ -16,7 +16,7 @@ import { Skeleton } from '@/shared/ui/redesigned/Skeleton';
 import { BaseCardProps } from '../../ArticleCard';
 import { formatDateString } from '@/shared/lib/text/formatDateString/formatDateString';
 
-export const RedesignedGridViewCard = memo((props: BaseCardProps) => {
+export const GridViewCardRedesigned = memo((props: BaseCardProps) => {
     const { className, article, target, handleClick } = props;
     const { t } = useTranslation('articles');
     const additionalClasses = getFlexClasses({

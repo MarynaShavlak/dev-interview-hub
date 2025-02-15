@@ -107,14 +107,14 @@ Article/
   - **ArticleCard.module.scss**: Styles for the `ArticleCard` component.
   - **`GridViewCard/`**
     - **`DeprecatedGridViewCard/`**
-      - [**DeprecatedGridViewCard.tsx**](./ui/ArticleCard/GridViewCard/DeprecatedGridViewCard/README.md): Legacy card component for grid view.
+      - [**DeprecatedGridViewCard.tsx**](ui/ArticleCard/GridViewCard/GridViewCardDeprecated/README.md): Legacy card component for grid view.
     - **`RedesignedGridViewCard/`**
-      - [**RedesignedGridViewCard.tsx**](./ui/ArticleCard/GridViewCard/RedesignedGridViewCard/README.md): Updated card component for grid view.
+      - [**RedesignedGridViewCard.tsx**](ui/ArticleCard/GridViewCard/GridViewCardRedesigned/README.md): Updated card component for grid view.
   - **`ListViewCard/`**
     - **`DeprecatedListViewCard/`**
-      - [**DeprecatedListViewCard.tsx**](./ui/ArticleCard/ListViewCard/DeprecatedListViewCard/README.md): Legacy card component for list view.
+      - [**DeprecatedListViewCard.tsx**](ui/ArticleCard/ListViewCard/ListViewCardDeprecated/README.md): Legacy card component for list view.
     - **`RedesignedListViewCard/`**
-      - [**RedesignedListViewCard.tsx**](./ui/ArticleCard/ListViewCard/RedesignedListViewCard/README.md): Updated card component for list view.
+      - [**RedesignedListViewCard.tsx**](ui/ArticleCard/ListViewCard/ListViewCardRedesigned/README.md): Updated card component for list view.
 
 - **`ArticleCardSkeleton/`**
   - [**ArticleCardSkeleton.tsx**](./ui/ArticleCardSkeleton/README.md): Skeleton component for the loading state of article cards.

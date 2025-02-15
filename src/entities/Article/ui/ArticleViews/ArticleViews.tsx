@@ -6,24 +6,23 @@ import { Icon } from '@/shared/ui/redesigned/Icon';
 import EyeIconDeprecated from '@/shared/assets/icons/eye-20-20.svg';
 import EyeIconRedesigned from '@/shared/assets/icons/eye.svg';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
-import { Article } from '../../model/types/article';
 
 interface ViewsProps {
-    article: Article;
+    views: number;
 }
 
-export const ArticleViews = ({ article }: ViewsProps) => (
+export const ArticleViews = ({ views }: ViewsProps) => (
     <ToggleFeaturesComponent
         feature="isAppRedesigned"
         on={
             <HStack gap="8">
                 <Icon Svg={EyeIconRedesigned} />
-                <Text text={String(article.views)} />
+                <Text text={String(views)} />
             </HStack>
         }
         off={
             <HStack gap="8">
-                <TextDeprecated text={String(article.views)} />
+                <TextDeprecated text={String(views)} />
                 <IconDeprecated
                     Svg={EyeIconDeprecated}
                     width={20}

@@ -21,7 +21,7 @@ import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import cls from '../../ArticleCard.module.scss';
 import { BaseCardProps } from '../../ArticleCard';
 
-export const DeprecatedListViewCard = memo((props: BaseCardProps) => {
+export const ListViewCardDeprecated = memo((props: BaseCardProps) => {
     const { className, article, handleClick } = props;
     const { t } = useTranslation('articles');
     const textBlock = article.blocks.find(

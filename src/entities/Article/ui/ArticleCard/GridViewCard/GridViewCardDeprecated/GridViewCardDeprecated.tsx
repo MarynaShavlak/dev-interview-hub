@@ -16,7 +16,7 @@ import { AppLink } from '@/shared/ui/deprecated/AppLink';
 import { useHover } from '@/shared/lib/hooks/useHover/useHover';
 import { BaseCardProps } from '../../ArticleCard';
 
-export const DeprecatedGridViewCard = memo((props: BaseCardProps) => {
+export const GridViewCardDeprecated = memo((props: BaseCardProps) => {
     const { className, article, target, handleClick } = props;
     const { t } = useTranslation('articles');
     const [isHover, bindHover] = useHover();

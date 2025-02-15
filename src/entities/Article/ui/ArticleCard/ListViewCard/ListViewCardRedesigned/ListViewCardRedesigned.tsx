@@ -18,17 +18,29 @@ import { BaseCardProps } from '../../ArticleCard';
 import { AppLink } from '@/shared/ui/redesigned/AppLink';
 import { getRouteArticleDetails } from '@/shared/const/router/router';
 import { truncateText } from '@/shared/lib/text/truncateText/truncateText';
+import { formatDateString } from '@/shared/lib/text/formatDateString/formatDateString';
 
-export const RedesignedListViewCard = memo((props: BaseCardProps) => {
+export const ListViewCardRedesigned = memo((props: BaseCardProps) => {
     const { className, article, handleClick } = props;
     const { t } = useTranslation('articles');
     console.log('article', article);
-    const textBlock = article.blocks.find(
+    const {
+        createdAt,
+        title,
+        img,
+        id,
+        views,
+        user,
+        subtitle,
+        category,
+        blocks,
+    } = article;
+    const textBlock = blocks.find(
         (block) => block.type === ArticleSection.TEXT,
     ) as ArticleTextBlock;
     const additionalClasses = getFlexClasses({ vStack: true, gap: '16' });
-    const subtitleText = article?.subtitle.text;
-    const subtitleLink = article?.subtitle.link;
+    const subtitleText = subtitle.text;
+    const subtitleLink = subtitle.link;
 
     const truncatedLink =
         // eslint-disable-next-line no-nested-ternary
@@ -52,17 +64,13 @@ export const RedesignedListViewCard = memo((props: BaseCardProps) => {
                     <HStack gap="8" max>
                         <Avatar
                             size={32}
-                            src={article.user.avatar}
-                            userName={article.user.username}
+                            src={user.avatar}
+                            userName={user.username}
                         />
-                        <Text text={article.createdAt} size="s" />
+                        <Text text={formatDateString(createdAt)} size="s" />
                     </HStack>
                 </VStack>
-                <Text
-                    title={article.title}
-                    bold
-                    data-testid="ArticleListItem.Title"
-                />
+                <Text title={title} bold data-testid="ArticleListItem.Title" />
 
                 {!subtitleLink && <Text title={subtitleText} />}
                 {subtitleLink && (
@@ -80,9 +88,9 @@ export const RedesignedListViewCard = memo((props: BaseCardProps) => {
                             className={cls.img}
                         />
                     }
-                    src={article.img}
+                    src={img}
                     className={cls.img}
-                    alt={article.title}
+                    alt={title}
                     errorFallback={
                         <AppImage
                             className={cls.img}
@@ -98,12 +106,12 @@ export const RedesignedListViewCard = memo((props: BaseCardProps) => {
                     />
                 )}
                 <HStack justify="between" max>
-                    <AppLink to={getRouteArticleDetails(article.id)}>
+                    <AppLink to={getRouteArticleDetails(id)}>
                         <Button variant="outline" onClick={handleClick}>
                             {t('Читати більше')}
                         </Button>
                     </AppLink>
-                    <ArticleViews article={article} />
+                    <ArticleViews views={views} />
                 </HStack>
             </Card>
         </div>
