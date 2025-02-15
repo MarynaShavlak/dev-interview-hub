@@ -15,12 +15,14 @@ import {
 } from '@/features/Table';
 
 import {
-    FIXED_COLUMNS_WIDTH,
+    FIXED_COLUMNS_WIDTH_DEPRECATED,
+    FIXED_COLUMNS_WIDTH_REDESIGNED,
     MAX_COLUMN_CHARACTERS,
     MINIMUM_EMAIL_WIDTH,
 } from '../../../model/consts/fixedColumnsWidth';
 import { useSidebarCollapseState } from '@/shared/lib/hooks/useSidebarCollapseState/useSidebarCollapseState';
 import { UserRole } from '@/entities/User';
+import { toggleFeatures } from '@/shared/lib/features';
 
 interface useUsersFullInfoTableColumnsProps {
     deleteRow?: (rowIndex: string) => void;
@@ -35,6 +37,12 @@ export const useUsersFullInfoTableColumns = (
     const { t } = useTranslation('profile');
     const { deleteRow, editRow, updateRow, isEditRoleMode } = props;
     const isCollapsed = useSidebarCollapseState();
+
+    const FIXED_COLUMNS_WIDTH = toggleFeatures({
+        name: 'isAppRedesigned',
+        on: () => FIXED_COLUMNS_WIDTH_REDESIGNED,
+        off: () => FIXED_COLUMNS_WIDTH_DEPRECATED,
+    });
 
     const createUserTextCol = createStaticTextColumn<UsersTableInfo>();
     const createUserTrimmedTextCol = createStaticTextColumn<UsersTableInfo>(
