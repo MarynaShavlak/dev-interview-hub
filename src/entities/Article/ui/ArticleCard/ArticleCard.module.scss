@@ -143,11 +143,13 @@
 
 
 .SEQUENCE {
-    width: 90%;
-    cursor:pointer;
-    transition: transform 300ms ease;
+       cursor:pointer;
+    border: 1px solid transparent;
+    transition: transform 300ms ease, border-color 300ms ease;
+    z-index:4;
     &:hover {
         transform: scale(1.1);
+        border: 1px solid var(--accent-redesigned)
     }
 }
 

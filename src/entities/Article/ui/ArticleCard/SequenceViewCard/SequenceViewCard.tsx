@@ -29,6 +29,7 @@ export const SequenceViewCard = memo((props: BaseCardProps) => {
                 ...additionalClasses,
                 className,
             ])}
+            max
         >
             <HStack justify="between" max>
                 <HStack gap="24">

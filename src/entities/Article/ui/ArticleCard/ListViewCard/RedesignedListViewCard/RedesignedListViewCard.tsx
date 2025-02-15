@@ -17,16 +17,26 @@ import cls from '../../ArticleCard.module.scss';
 import { BaseCardProps } from '../../ArticleCard';
 import { AppLink } from '@/shared/ui/redesigned/AppLink';
 import { getRouteArticleDetails } from '@/shared/const/router/router';
+import { truncateText } from '@/shared/lib/text/truncateText/truncateText';
 
 export const RedesignedListViewCard = memo((props: BaseCardProps) => {
     const { className, article, handleClick } = props;
     const { t } = useTranslation('articles');
+    console.log('article', article);
     const textBlock = article.blocks.find(
         (block) => block.type === ArticleSection.TEXT,
     ) as ArticleTextBlock;
     const additionalClasses = getFlexClasses({ vStack: true, gap: '16' });
     const subtitleText = article?.subtitle.text;
     const subtitleLink = article?.subtitle.link;
+
+    const truncatedLink =
+        // eslint-disable-next-line no-nested-ternary
+        subtitleLink && subtitleLink.length < 110
+            ? subtitleLink
+            : subtitleLink
+              ? truncateText(subtitleLink, 110)
+              : '';
     return (
         <div
             className={classNames(cls.ArticleListItemRedesigned, {}, [
@@ -36,8 +46,6 @@ export const RedesignedListViewCard = memo((props: BaseCardProps) => {
         >
             <Card
                 className={classNames('', {}, additionalClasses)}
-                // vStack
-                // gap="16"
                 padding="16"
             >
                 <VStack gap="8" max>
@@ -60,7 +68,7 @@ export const RedesignedListViewCard = memo((props: BaseCardProps) => {
                 {subtitleLink && (
                     <VStack gap="4">
                         <Text text={subtitleText} />
-                        <Text title={subtitleLink} size="s" />
+                        <Text text={truncatedLink} size="s" />
                     </VStack>
                 )}
 

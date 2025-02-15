@@ -38,11 +38,6 @@ export const ArticleList = memo((props: ArticleListProps) => {
         off: () => cls.ArticleList,
     });
     const classes = classNames(mainClass, {}, [className, cls[view]]);
-    // const { items, results } = useHits({});
-    // let page = 0;
-    // if (results) {
-    //     page = results.page;
-    // }
 
     const content = (
         <>
