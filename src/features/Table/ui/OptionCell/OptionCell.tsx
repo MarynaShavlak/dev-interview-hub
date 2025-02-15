@@ -1,7 +1,8 @@
 import { CellContext } from '@tanstack/react-table';
 import { useCallback } from 'react';
 import { useSelector } from 'react-redux';
-import { ListBox } from '@/shared/ui/redesigned/Popups';
+import { ListBox as ListBoxRedesigned } from '@/shared/ui/redesigned/Popups';
+import { ListBox as ListBoxDeprecated } from '@/shared/ui/deprecated/Popups';
 import { Text } from '@/shared/ui/redesigned/Text';
 import { ColorIndicatorOptionItem } from '../ColorIndicatorOptionItem/ColorIndicatorOptionItem';
 
@@ -12,6 +13,7 @@ import { isColorOption } from '../../lib/utilities/optionCell/isColorOption/isCo
 import { ColorOption } from '../../model/types/tableTypes';
 import { HStack } from '@/shared/ui/common/Stack';
 import { isUserAdmin, isUserManager } from '@/entities/User';
+import { toggleFeatures } from '@/shared/lib/features';
 
 interface OptionCellProps<TData> extends CellContext<TData, any> {
     options: (ColorOption | string)[];
@@ -33,18 +35,14 @@ export const OptionCell = <TData extends { id: string }>({
     getValue,
     row,
     column,
-    table,
+
     options,
     isEditRoleMode,
     updateRow,
 }: OptionCellProps<TData>) => {
     const value = getValue();
-    //
-    // const meta = table.options.meta as TableMetaCustom<TData>;
-    // const { updateData } = meta;
 
     const currentValue = extractOptionValueName(value);
-
     const listBoxOptions = options.map(createListBoxOption);
 
     const onCellClick = useCallback(
@@ -76,8 +74,14 @@ export const OptionCell = <TData extends { id: string }>({
         );
     }
 
+    const ListBox = toggleFeatures({
+        name: 'isAppRedesigned',
+        on: () => ListBoxRedesigned,
+        off: () => ListBoxDeprecated,
+    });
+
     return (
-        <HStack max>
+        <HStack max className={cls.optionCell}>
             <ListBox
                 value={currentValue}
                 defaultValue={currentValue}

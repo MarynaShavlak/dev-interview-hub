@@ -32,6 +32,8 @@ const ROLE_MAP = {
     manager: ROLE_MANAGER,
 } as const;
 
+export const USER_ROLE_OPTIONS = [ROLE_ADMIN, ROLE_USER, ROLE_MANAGER];
+
 type RoleKey = keyof typeof ROLE_MAP;
 export const getRoleData = (roles: UserRole[] | undefined) => {
     if (!roles) return null;

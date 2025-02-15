@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { createColumnHelper } from '@tanstack/react-table';
 import { useMemo } from 'react';
 import cls from '../../../ui/UsersFullInfoTable/UsersFullInfoTable.module.scss';
-import { USER_ROLE_OPTIONS } from '../../../ui/data';
+
 import { UsersTableInfo } from '../../../model/types/usersTableInfo';
 
 import {
@@ -23,6 +23,7 @@ import {
 import { useSidebarCollapseState } from '@/shared/lib/hooks/useSidebarCollapseState/useSidebarCollapseState';
 import { UserRole } from '@/entities/User';
 import { toggleFeatures } from '@/shared/lib/features';
+import { USER_ROLE_OPTIONS } from '../../helpers/getData/getRolesData/getRoleData';
 
 interface useUsersFullInfoTableColumnsProps {
     deleteRow?: (rowIndex: string) => void;
