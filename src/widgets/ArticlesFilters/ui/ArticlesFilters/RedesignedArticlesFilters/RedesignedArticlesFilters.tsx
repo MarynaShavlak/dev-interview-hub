@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import React from 'react';
-import { SearchBox, useSearchBox } from 'react-instantsearch';
+import { SearchBox } from 'react-instantsearch';
 // import { ArticleSortSelector } from '@/features/ArticleSortSelector';
 import { useInstantSearch } from 'react-instantsearch-core';
 import { ArticlesFiltersProps } from '../ArticlesFilters';
@@ -13,12 +13,6 @@ import SearchIcon from '@/shared/assets/icons/search.svg';
 import CloseIcon from '@/shared/assets/icons/close.svg';
 import { ArticleCategoryTabs } from '@/features/ArticleCategoryTabs';
 import { ArticleSortSelector } from '@/features/ArticleSortSelector';
-
-function VirtualSearchBox() {
-    useSearchBox();
-
-    return null;
-}
 
 export const RedesignedArticlesFilters = (props: ArticlesFiltersProps) => {
     const {
