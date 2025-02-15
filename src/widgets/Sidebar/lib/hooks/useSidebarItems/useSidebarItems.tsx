@@ -6,6 +6,7 @@ import ProfileIcon from '@/shared/assets/icons/avatar.svg';
 import MainIcon from '@/shared/assets/icons/home.svg';
 import AboutIcon from '@/shared/assets/icons/Info.svg';
 import LibIcon from '@/shared/assets/icons/lib.svg';
+import LibIconDeprecated from '@/shared/assets/icons/edit.svg';
 import MainIconDeprecated from '@/shared/assets/icons/main-20-20.svg';
 import ProfileIconDeprecated from '@/shared/assets/icons/profile-20-20.svg';
 import {
@@ -83,7 +84,7 @@ export const useSidebarItems = () => {
                 path: getRouteMyArticles(),
                 Icon: toggleFeatures({
                     name: 'isAppRedesigned',
-                    off: () => LibIcon,
+                    off: () => LibIconDeprecated,
                     on: () => LibIcon,
                 }),
                 text: 'Мої статті',

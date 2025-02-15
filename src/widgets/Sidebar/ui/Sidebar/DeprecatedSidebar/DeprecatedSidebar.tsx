@@ -33,7 +33,7 @@ export const DeprecatedSidebar = memo((props: DeprecatedSidebarProps) => {
             >
                 {collapsed ? '>' : '<'}
             </Button>
-            <VStack role="navigation" gap="8" className={cls.items}>
+            <VStack role="navigation" gap="16" className={cls.items}>
                 <Each
                     of={sidebarItemsList}
                     render={(item) => {

@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { memo } from 'react';
 import { Icon } from '@/shared/ui/redesigned/Icon';
+import { Icon as IconDeprecated } from '@/shared/ui/deprecated/Icon';
 import { AppLink } from '@/shared/ui/redesigned/AppLink';
 import {
     AppLink as AppLinkDeprecated,
@@ -29,7 +30,13 @@ const DeprecatedSidebarItem = ({ item, collapsed }: SidebarItemProps) => {
                 [cls.collapsed]: collapsed,
             })}
         >
-            <item.Icon className={cls.icon} />
+            <IconDeprecated
+                Svg={item.Icon}
+                className={cls.icon}
+                width={24}
+                height={24}
+            />
+
             <span className={cls.link}>{t(item.text)}</span>
         </AppLinkDeprecated>
     );
