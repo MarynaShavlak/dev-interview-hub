@@ -6,6 +6,8 @@ import { ToggleFeaturesComponent } from '@/shared/lib/features';
 import { ArticleCategory } from '@/entities/Article';
 import cls from './ArticleCategoryTabs.module.scss';
 import { VStack } from '@/shared/ui/common/Stack';
+import { classNames } from '@/shared/lib/classes/classNames/classNames';
+import { Tabs } from '@/shared/ui/deprecated/Tabs';
 
 interface ArticleCategoryTabsProps {
     className?: string;
@@ -66,33 +68,11 @@ export const ArticleCategoryTabs = memo((props: ArticleCategoryTabsProps) => {
             }
             off={
                 <VStack gap="8" className={className}>
-                    <RefinementList
-                        attribute="category"
-                        transformItems={(items) => {
-                            if (items.length === 0) return [];
-                            return [
-                                ...categoryTabs.map((category) => {
-                                    const matchingItem = items.find(
-                                        (item) => item.label === category.label,
-                                    );
-                                    return (
-                                        matchingItem || {
-                                            ...category,
-                                            count: 0,
-                                            isRefined: false,
-                                        }
-                                    );
-                                }),
-                            ];
-                        }}
-                        classNames={{
-                            count: cls.categoryCount,
-                            list: cls.MenuList,
-                            label: cls.MenuLabel,
-                            item: cls.MenuItem,
-                            selectedItem: cls.SelectedMenuItem,
-                            checkbox: cls.MenuCheckbox,
-                        }}
+                    <Tabs
+                        tabs={categoryTabs}
+                        value={value}
+                        onTabClick={() => console.log(value)}
+                        className={classNames('', {}, [className])}
                     />
                 </VStack>
             }

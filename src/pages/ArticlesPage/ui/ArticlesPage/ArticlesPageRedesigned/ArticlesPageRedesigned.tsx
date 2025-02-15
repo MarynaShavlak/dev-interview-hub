@@ -27,7 +27,7 @@ const reducers: ReducersList = {
     articlesPage: articlesPageReducer,
 };
 
-export const RedesignedArticlesPage = (props: ArticlesPageProps) => {
+export const ArticlesPageRedesigned = (props: ArticlesPageProps) => {
     const { className } = props;
     const dispatch = useAppDispatch();
     const [searchParams] = useSearchParams();

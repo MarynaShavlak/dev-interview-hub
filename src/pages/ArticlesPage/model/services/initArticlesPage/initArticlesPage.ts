@@ -10,6 +10,7 @@ import { getArticlesPageInited } from '../../selectors/articlesPageSelectors';
 import { articlesPageActions } from '../../slices/articlesPageSlice';
 // import { fetchArticlesList } from '../fetchArticlesList/fetchArticlesList';
 import { ARTICLES_VIEW_LOCALSTORAGE_KEY } from '@/shared/const/localstorage';
+import { fetchArticlesList } from '../fetchArticlesList/fetchArticlesList';
 
 /**
  * Object mapping search parameter keys to corresponding Redux actions.
@@ -70,6 +71,6 @@ export const initArticlesPage = createAsyncThunk<
         ) as ArticleView;
 
         dispatch(articlesPageActions.initState(view));
-        // dispatch(fetchArticlesList({}));
+        dispatch(fetchArticlesList({}));
     }
 });

@@ -4,7 +4,7 @@
 
 The `ArticlesPage` module is responsible for displaying a comprehensive list of articles within the application. 
 Following the Feature-Sliced Design (FSD) methodology, this module dynamically adapts its interface based on the application's design system. 
-It leverages feature flags to conditionally render either the [RedesignedArticlesPage](./ui/ArticlesPage/RedesignedArticlesPage/README.md) or the [DeprecatedArticlesPage](./ui/ArticlesPage/DeprecatedArticlesPage/README.md), ensuring that the user interface aligns with the current design configuration. The component is optimized to handle large lists of articles efficiently, employing virtualization techniques to enhance performance and ensure smooth scrolling.
+It leverages feature flags to conditionally render either the [RedesignedArticlesPage](ui/ArticlesPage/ArticlesPageRedesigned/README.md) or the [DeprecatedArticlesPage](ui/ArticlesPage/ArticlesPageDeprecated/README.md), ensuring that the user interface aligns with the current design configuration. The component is optimized to handle large lists of articles efficiently, employing virtualization techniques to enhance performance and ensure smooth scrolling.
 
 
 ## Module Structure

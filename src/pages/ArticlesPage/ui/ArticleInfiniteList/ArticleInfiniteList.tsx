@@ -1,9 +1,28 @@
-import React, { memo } from 'react';
+import React, { memo, useCallback } from 'react';
 import { useSelector } from 'react-redux';
-import { ToggleFeaturesComponent } from '@/shared/lib/features';
-import { DeprecatedArticleInfiniteList } from './DeprecatedArticleInfiniteList/DeprecatedArticleInfiniteList';
-import { getArticles } from '@/entities/Article';
-import { useArticleFilters } from '../../lib/hooks/useArticleFilters/useArticleFilters';
+import { Virtuoso, VirtuosoGrid } from 'react-virtuoso';
+import {
+    Article,
+    ArticleCard,
+    ArticleListSkeleton,
+    ArticleView,
+    NoArticlesFound,
+    selectAllArticles,
+    useGetArticles,
+} from '@/entities/Article';
+import {
+    useArticlesPageError,
+    useArticlesPageIsLoading,
+    useArticlesPageView,
+} from '../../model/selectors/articlesPageSelectors';
+import { useNoArticlesFound } from '../../lib/hooks/useNoArticlesFound/useNoArticlesFound';
+import { useArticlesScroll } from '../../lib/hooks/useArticlesScroll/useArticlesScroll';
+import { useGridSkeletonVisibility } from '../../lib/hooks/useGridSkeletonVisibility/useGridSkeletonVisibility';
+import { FiltersContainer } from '../FiltersContainer/FiltersContainer';
+import cls from './ArticleInfiniteList.module.scss';
+import { ViewSelectorContainer } from '../ViewSelectorContainer/ViewSelectorContainer';
+import { ArticleInfiniteListError } from './ArticleInfiniteListError/ArticleInfiniteListError';
+import { Page } from '@/widgets/Page';
 
 export interface ArticleInfiniteListProps {
     onInfiniteScroll: () => void;
@@ -11,28 +30,128 @@ export interface ArticleInfiniteListProps {
 
 export const ArticleInfiniteList = memo(
     ({ onInfiniteScroll }: ArticleInfiniteListProps) => {
-        const articles = useSelector(getArticles.selectAll);
-        const { view } = useArticleFilters();
-        if (!articles) return null;
+        const articles = useSelector(selectAllArticles);
+        console.log('articles', articles);
+        const { isLoading: isArticlesLoading, error: isArticlesError } =
+            useGetArticles();
+
+        const isLoading = useArticlesPageIsLoading();
+        const view = useArticlesPageView();
+        const error = useArticlesPageError();
+        const isNoArticlesFounded = useNoArticlesFound(isLoading, articles);
+        const {
+            listRef,
+            gridRef,
+            handleSaveArticlesPageScrollPosition,
+            scrollStopArticleIndex,
+        } = useArticlesScroll();
+
+        const shouldShowGridSkeleton = useGridSkeletonVisibility();
+
+        const renderArticle = useCallback(
+            (index: number, article: Article) => (
+                <ArticleCard
+                    article={article}
+                    view={view}
+                    key={article.id}
+                    handleClick={handleSaveArticlesPageScrollPosition(index)}
+                />
+            ),
+            [view, handleSaveArticlesPageScrollPosition],
+        );
+
+        const Footer = memo(() => {
+            if (isLoading) {
+                return <ArticleListSkeleton view={ArticleView.LIST} />;
+            }
+            return null;
+        });
+
+        const ScrollSeekPlaceholder = memo(() => (
+            <ArticleListSkeleton view={ArticleView.GRID} />
+        ));
+
+        const Header = memo(() => {
+            return (
+                <div className={cls.controlsWrap}>
+                    <FiltersContainer />
+                    <ViewSelectorContainer className={cls.viewSelector} />
+                </div>
+            );
+        });
+
+        if (error) {
+            return <ArticleInfiniteListError />;
+        }
+
+        if (isNoArticlesFounded) {
+            return <NoArticlesFound view={view} />;
+        }
+
+        const commonProps = {
+            data: articles,
+            endReached: onInfiniteScroll,
+            itemContent: renderArticle,
+        };
+
+        if (view === ArticleView.LIST) {
+            return (
+                <div
+                    className={cls.ArticlesPageDeprecated}
+                    data-testid="ArticleList"
+                >
+                    <Virtuoso
+                        {...commonProps}
+                        ref={listRef}
+                        style={{
+                            height: 'calc(100vh - 80px)',
+                        }}
+                        initialTopMostItemIndex={scrollStopArticleIndex}
+                        components={{
+                            Footer,
+                            Header,
+                        }}
+                    />
+                </div>
+            );
+        }
+
         return (
-            <ToggleFeaturesComponent
-                feature="isAppRedesigned"
-                // on={<ArticleList view={view} articles={articles} />}
-                on={
-                    <DeprecatedArticleInfiniteList
-                        onInfiniteScroll={onInfiniteScroll}
+            <div
+                className={cls.ArticlesPageDeprecated}
+                data-testid="ArticlesPage"
+            >
+                {shouldShowGridSkeleton ? (
+                    <Page>
+                        <div className={cls.controlsSkeletonWrap}>
+                            <FiltersContainer />
+                            <ViewSelectorContainer
+                                className={cls.viewSelector}
+                            />
+                        </div>
+                        <ArticleListSkeleton view={ArticleView.GRID} />
+                    </Page>
+                ) : (
+                    <VirtuosoGrid
+                        {...commonProps}
+                        ref={gridRef}
+                        components={{
+                            ScrollSeekPlaceholder,
+                            Header,
+                        }}
+                        style={{
+                            height: 'calc(100vh - 80px)',
+                        }}
+                        itemContent={renderArticle}
+                        listClassName={cls.itemsWrapper}
+                        scrollSeekConfiguration={{
+                            enter: (velocity) => Math.abs(velocity) > 200,
+                            exit: (velocity) => Math.abs(velocity) < 30,
+                        }}
+                        data-testid="ArticleList"
                     />
-                }
-                off={
-                    <DeprecatedArticleInfiniteList
-                        onInfiniteScroll={onInfiniteScroll}
-                    />
-                }
-            />
+                )}
+            </div>
         );
     },
 );
-
-// <RedesignedArticleInfiniteList
-//     onInfiniteScroll={onInfiniteScroll}
-// />

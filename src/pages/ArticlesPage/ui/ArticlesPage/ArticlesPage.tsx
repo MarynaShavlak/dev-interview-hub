@@ -1,6 +1,6 @@
 import { memo } from 'react';
-import { RedesignedArticlesPage } from './RedesignedArticlesPage/RedesignedArticlesPage';
-import { DeprecatedArticlesPage } from './DeprecatedArticlesPage/DeprecatedArticlesPage';
+import { ArticlesPageRedesigned } from './ArticlesPageRedesigned/ArticlesPageRedesigned';
+import { ArticlesPageDeprecated } from './ArticlesPageDeprecated/ArticlesPageDeprecated';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
 
 export interface ArticlesPageProps {
@@ -11,8 +11,8 @@ const ArticlesPage = ({ className }: ArticlesPageProps) => {
     return (
         <ToggleFeaturesComponent
             feature="isAppRedesigned"
-            on={<RedesignedArticlesPage className={className} />}
-            off={<DeprecatedArticlesPage />}
+            on={<ArticlesPageRedesigned className={className} />}
+            off={<ArticlesPageDeprecated />}
         />
     );
 };
