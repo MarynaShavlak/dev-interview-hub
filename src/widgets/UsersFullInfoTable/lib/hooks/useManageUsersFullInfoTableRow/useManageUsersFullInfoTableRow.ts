@@ -16,7 +16,7 @@ interface UseManageUsersFullInfoTableRowReturnType {
     handleEditRow: (userId: string) => void;
     selectedUser: SelectedUser | null;
     isLoading: boolean;
-    data: UsersTableInfo[];
+    data: UsersTableInfo[] | null;
     handleUpdateRow: (rowId: string, columnId: string, value: UserRole) => void;
 }
 
@@ -24,11 +24,15 @@ export const useManageUsersFullInfoTableRow =
     (): UseManageUsersFullInfoTableRowReturnType => {
         const { users, isLoading } = useUsersTableData();
 
-        const [data, setData] = useState<UsersTableInfo[]>([]);
+        const [data, setData] = useState<UsersTableInfo[] | null>(null);
         const dispatch = useAppDispatch();
 
         useEffect(() => {
-            if (!isLoading && users.length > 0 && !areUsersEqual(data, users)) {
+            if (
+                !isLoading &&
+                users.length > 0 &&
+                !areUsersEqual(data || [], users)
+            ) {
                 setData(users);
             }
         }, [users, isLoading, data]);

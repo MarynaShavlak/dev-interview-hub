@@ -48,13 +48,13 @@ export const UserArticlesTable = memo(
             columnFilters,
             setColumnFilters,
         } = useUserArticlesTableData({
-            data,
+            data: data || [],
             deleteRow: handleDeleteClick,
             editRow: handleEditClick,
         });
 
         const table = useUserArticlesTableConfig({
-            data,
+            data: data || [],
             columns,
             globalFilter,
             columnFilters,
@@ -65,7 +65,7 @@ export const UserArticlesTable = memo(
         if (isLoading) {
             return <LoadingTableSkeleton />;
         }
-        if (data.length === 0) {
+        if (data?.length === 0) {
             return (
                 <VStack gap="24" align="center">
                     <EmptyTableState message={t('Не створено жодної статті')} />

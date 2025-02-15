@@ -40,24 +40,25 @@ export const UsersFullInfoTable = memo(() => {
         columnFilters,
         setColumnFilters,
     } = useUsersFullInfoTableData({
-        data,
+        data: data || [],
         isEditRoleMode,
         editRow: handleEditRow,
         updateRow: handleUpdateRow,
     });
 
     const table = useUsersFullInfoTableConfig({
-        data,
+        data: data || [],
         columns,
         globalFilter,
         columnFilters,
     });
     const isFilteredEmpty = table.getRowModel().rows.length === 0;
+    console.log('data', data);
 
     if (isLoading) {
         return <LoadingTableSkeleton />;
     }
-    if (data.length === 0) {
+    if (data?.length === 0) {
         return (
             <EmptyTableState
                 message={t('Не зареєстровано жодного користувача')}

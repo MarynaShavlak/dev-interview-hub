@@ -18,7 +18,7 @@ interface UseManageUserArticlesTableRowReturnType {
     confirmDelete: () => Promise<void>;
     selectedArticle: SelectedArticle | null;
     isLoading: boolean;
-    data: UserArticlesTableInfo[];
+    data: UserArticlesTableInfo[] | null;
     deleteArticleModal: UseToggleVisibilityReturnType;
     articleTitle: string;
 }
@@ -28,13 +28,13 @@ export const useManageUserArticlesTableRow = (
 ): UseManageUserArticlesTableRowReturnType => {
     const { articles, isLoading } = useArticlesByUserData();
 
-    const [data, setData] = useState<UserArticlesTableInfo[]>([]);
+    const [data, setData] = useState<UserArticlesTableInfo[] | null>(null);
 
     useEffect(() => {
-        if (!isLoading && articles.length !== data.length) {
+        if (!isLoading && articles.length !== data?.length) {
             setData(articles);
         }
-    }, [articles, isLoading, data.length, setData]);
+    }, [articles, isLoading, data?.length, setData]);
 
     const { navigateToArticle } = useArticleNavigation();
     const deleteArticleModal = useToggleVisibility();
@@ -74,7 +74,7 @@ export const useManageUserArticlesTableRow = (
 
     const handleDeleteClick = useCallback(
         (articleId: string) => {
-            const article = data.find((item) => item.id === articleId);
+            const article = data?.find((item) => item.id === articleId);
             if (article) {
                 setSelectedArticle({
                     id: articleId,
