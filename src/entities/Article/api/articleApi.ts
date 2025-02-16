@@ -4,6 +4,10 @@ import {
     updateDoc,
     increment,
     getDocs,
+    QueryConstraint,
+    where,
+    orderBy,
+    query,
 } from 'firebase/firestore';
 import { EntityState } from '@reduxjs/toolkit';
 import { firestoreApi } from '@/shared/api/rtkApi';
@@ -16,6 +20,7 @@ import { createArticlesByUserQuery } from '../lib/utilities/createArticlesByUser
 import { fetchQueryResults } from '@/shared/lib/firestore/fetchQueryResults/fetchQueryResults';
 import { deleteDocFromFirestore } from '@/shared/lib/firestore/deleteDocFromFirestore/deleteDocFromFirestore';
 import { dataPoint } from '@/shared/lib/firestore/firestore';
+import { ArticleCategory } from '..';
 
 export const articleFirebaseApi = firestoreApi
     .enhanceEndpoints({
@@ -23,6 +28,61 @@ export const articleFirebaseApi = firestoreApi
     })
     .injectEndpoints({
         endpoints: (build) => ({
+            getFilteredArticles: build.query<
+                Article[],
+                {
+                    sort: keyof Article;
+                    order: 'asc' | 'desc';
+                    category: ArticleCategory[];
+                    limit: number;
+                    search: string;
+                }
+            >({
+                providesTags: ['Articles'],
+                async queryFn({ sort, order, category, limit, search }) {
+                    try {
+                        const collectionRef = dataPoint<Article>('articles');
+
+                        const constraints: QueryConstraint[] = [];
+
+                        if (category?.length) {
+                            constraints.push(
+                                where(
+                                    'category',
+                                    'array-contains-any',
+                                    category,
+                                ),
+                            );
+                        }
+
+                        constraints.push(orderBy(sort, order));
+
+                        const filteredQuery = query(
+                            collectionRef,
+                            ...constraints,
+                        );
+                        const snapshot = await getDocs(filteredQuery);
+
+                        const articles = snapshot.docs.map((doc) => ({
+                            ...doc.data(),
+                            id: doc.id,
+                        })) as Article[];
+
+                        const articlesWithSearch = articles.filter((article) =>
+                            article.title.includes(search),
+                        );
+                        console.log('articlesWithSearch', articlesWithSearch);
+
+                        return { data: articles };
+                    } catch (error) {
+                        console.error(
+                            'Error fetching filtered articles:',
+                            error,
+                        );
+                        return { error: 'Error fetching filtered articles' };
+                    }
+                },
+            }),
             getArticles: build.query<EntityState<Article>, void>({
                 providesTags: ['Articles'],
                 async queryFn() {
@@ -300,3 +360,6 @@ const entrySelectors = articlesAdapter.getSelectors(
     (state: RootState) => selectEntryResult(state) ?? initialState,
 );
 export const selectAllArticles = entrySelectors.selectAll;
+
+export const useGetFilteredArticles =
+    articleFirebaseApi.useGetFilteredArticlesQuery;

@@ -1,3 +1,5 @@
+export { useGetFilteredArticles } from './api/articleApi';
+
 export { updateArticleViewsThunk } from './model/services/updateArticleViewsThunk/updateArticleViewsThunk';
 
 export { useArticleNavigation } from './lib/hooks/useArticleNavigation/useArticleNavigation';

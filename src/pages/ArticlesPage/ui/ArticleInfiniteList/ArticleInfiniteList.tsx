@@ -4,11 +4,13 @@ import { Virtuoso, VirtuosoGrid } from 'react-virtuoso';
 import {
     Article,
     ArticleCard,
+    ArticleCategory,
     ArticleListSkeleton,
     ArticleView,
     NoArticlesFound,
     selectAllArticles,
     useGetArticles,
+    useGetFilteredArticles,
 } from '@/entities/Article';
 import {
     useArticlesPageError,
@@ -45,6 +47,15 @@ export const ArticleInfiniteList = memo(
             handleSaveArticlesPageScrollPosition,
             scrollStopArticleIndex,
         } = useArticlesScroll();
+
+        const { data } = useGetFilteredArticles({
+            order: 'asc',
+            sort: 'title',
+            limit: 10,
+            category: [ArticleCategory.CSS],
+            search: 'таке',
+        });
+        console.log('__data', data);
 
         const shouldShowGridSkeleton = useGridSkeletonVisibility();
 
