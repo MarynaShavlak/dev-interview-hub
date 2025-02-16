@@ -11,7 +11,7 @@ import { Text } from '@/shared/ui/redesigned/Text';
 import { Box } from '@/shared/ui/common/Box';
 import { getFlexClasses } from '@/shared/lib/classes/getFlexClasses/getFlexClasses';
 
-export const RedesignedArticleSortSelector = memo(
+export const ArticleSortSelectorRedesigned = memo(
     (props: ArticleSortSelectorProps) => {
         const { className, onChangeSort, sort } = props;
         const { t } = useTranslation('articles');

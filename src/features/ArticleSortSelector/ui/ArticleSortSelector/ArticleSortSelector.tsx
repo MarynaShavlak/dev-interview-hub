@@ -1,10 +1,11 @@
 import { memo } from 'react';
-import { DeprecatedArticleSortSelector } from './DeprecatedArticleSortSelector/DeprecatedArticleSortSelector';
-import { RedesignedArticleSortSelector } from './RedesignedArticleSortSelector/RedesignedArticleSortSelector';
+import { ArticleSortSelectorDeprecated } from './ArticleSortSelectorDeprecated/ArticleSortSelectorDeprecated';
+
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
 
 import { ArticleSortField } from '@/entities/Article';
 import { SortOrder } from '@/shared/types/sortOrder';
+import { ArticleSortSelectorRedesigned } from './ArticleSortSelectorRedesigned/ArticleSortSelectorRedesigned';
 
 export interface ArticleSortSelectorProps {
     className?: string;
@@ -18,8 +19,8 @@ export const ArticleSortSelector = memo((props: ArticleSortSelectorProps) => {
     return (
         <ToggleFeaturesComponent
             feature="isAppRedesigned"
-            on={<RedesignedArticleSortSelector {...props} />}
-            off={<DeprecatedArticleSortSelector {...props} />}
+            on={<ArticleSortSelectorRedesigned {...props} />}
+            off={<ArticleSortSelectorDeprecated {...props} />}
         />
     );
 });

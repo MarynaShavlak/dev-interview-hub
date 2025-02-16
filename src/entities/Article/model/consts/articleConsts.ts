@@ -7,11 +7,11 @@ export enum ArticleSortField {
     CREATED_DESC = 'articles_createdAt_desc',
 }
 
-// export enum ArticleSortField {
-//     VIEWS = 'views',
-//     TITLE = 'title',
-//     CREATED = 'createdAt',
-// }
+export enum ArticleSortFieldDeprecated {
+    VIEWS = 'views',
+    TITLE = 'title',
+    CREATED = 'createdAt',
+}
 
 // export enum ArticleSortField {
 //     VIEWS = 'articles_views',

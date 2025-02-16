@@ -34,9 +34,9 @@ ArticleSortSelector/
     - [**ArticleSortSelector.tsx**](./ui/ArticleSortSelector/README.md): The main component that renders the sort selector interface, allowing users  to sort articles by different fields and order
     - **ArticleSortSelector.module.scss**: Styles for the `ArticleSortSelector` component.
     - **`DeprecatedArticleSortSelector/`**:
-        - [**DeprecatedArticleSortSelector.tsx**](./ui/ArticleSortSelector/DeprecatedArticleSortSelector/README.md): A legacy version of the article sort selector for backward compatibility.
+        - [**DeprecatedArticleSortSelector.tsx**](ui/ArticleSortSelector/ArticleSortSelectorDeprecated/README.md): A legacy version of the article sort selector for backward compatibility.
     - **`RedesignedArticleSortSelectorHeader/`**:
-        -  [**RedesignedArticleSortSelector.tsx**](./ui/ArticleSortSelector/RedesignedArticleSortSelector/README.md): A modernized version of the selector, featuring updated designs and improved functionality.
+        -  [**RedesignedArticleSortSelector.tsx**](ui/ArticleSortSelector/ArticleSortSelectorRedesigned/README.md): A modernized version of the selector, featuring updated designs and improved functionality.
 
 ### 3. `index.ts`
 - Entry point for the `ArticleSortSelector` module, exporting components, functions, and types.

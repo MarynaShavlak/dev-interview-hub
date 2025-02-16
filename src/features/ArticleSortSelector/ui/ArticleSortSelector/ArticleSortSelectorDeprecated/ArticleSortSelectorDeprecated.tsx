@@ -10,9 +10,10 @@ import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { Select } from '@/shared/ui/deprecated/Select';
 import cls from '../ArticleSortSelector.module.scss';
 
-export const DeprecatedArticleSortSelector = memo(
+export const ArticleSortSelectorDeprecated = memo(
     (props: ArticleSortSelectorProps) => {
         const { className, onChangeOrder, onChangeSort, order, sort } = props;
+        console.log('_sort', sort);
         const { t } = useTranslation('articles');
 
         const rawOrderOptions = useOrderOptions();
