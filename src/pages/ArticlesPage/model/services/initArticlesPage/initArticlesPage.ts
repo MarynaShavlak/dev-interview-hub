@@ -4,12 +4,14 @@ import {
     ArticleSortField,
     ArticleCategory,
     ArticleView,
+    Article,
 } from '@/entities/Article';
 import { SortOrder } from '@/shared/types/sortOrder';
 import { getArticlesPageInited } from '../../selectors/articlesPageSelectors';
 import { articlesPageActions } from '../../slices/articlesPageSlice';
 // import { fetchArticlesList } from '../fetchArticlesList/fetchArticlesList';
 import { ARTICLES_VIEW_LOCALSTORAGE_KEY } from '@/shared/const/localstorage';
+import { fetchArticlesList } from '../fetchArticlesList/fetchArticlesList';
 
 /**
  * Object mapping search parameter keys to corresponding Redux actions.
@@ -51,7 +53,7 @@ const searchParamActions: { [key: string]: (value: string) => any } = {
  */
 
 export const initArticlesPage = createAsyncThunk<
-    void,
+    Article[] | null,
     URLSearchParams,
     ThunkConfig<string>
 >('articlesPage/initArticlesPage', async (searchParams, thunkApi) => {
@@ -70,6 +72,9 @@ export const initArticlesPage = createAsyncThunk<
         ) as ArticleView;
 
         dispatch(articlesPageActions.initState(view));
-        // dispatch(fetchArticlesList({}));
+        const articles = await dispatch(fetchArticlesList()).unwrap();
+        console.log('articles', articles);
+        return articles;
     }
+    return null;
 });

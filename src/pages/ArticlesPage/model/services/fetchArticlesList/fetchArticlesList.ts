@@ -1,4 +1,78 @@
-export {};
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import { ThunkConfig } from '@/app/providers/StoreProvider';
+import {
+    Article,
+    ArticleCategory,
+    getFilteredArticlesQuery,
+} from '@/entities/Article';
+import {
+    getArticlesPageLimit,
+    getArticlesPageNum,
+    getArticlesPageOrder,
+    getArticlesPageSearch,
+    getArticlesPageSort,
+    getArticlesPageCategory,
+} from '../../selectors/articlesPageSelectors';
+import { addQueryParams } from '@/shared/lib/url/addQueryParams/addQueryParams';
+
+export const fetchArticlesList = createAsyncThunk<
+    Article[],
+    void,
+    ThunkConfig<string>
+>('articlesPage/fetchArticlesList', async (_, thunkApi) => {
+    const { extra, rejectWithValue, getState, dispatch } = thunkApi;
+    const limit = getArticlesPageLimit(getState());
+    console.log('Articles Page Limit:', limit);
+
+    const sort = getArticlesPageSort(getState());
+    console.log('Articles Page Sort:', sort);
+
+    const order = getArticlesPageOrder(getState());
+    console.log('Articles Page Order:', order);
+
+    const search = getArticlesPageSearch(getState());
+    console.log('Articles Page Search:', search);
+
+    const page = getArticlesPageNum(getState());
+    console.log('Articles Page Number:', page);
+
+    const category = getArticlesPageCategory(getState());
+    console.log('Articles Page Category:', category);
+
+    try {
+        addQueryParams({
+            sort,
+            order,
+            search,
+            category,
+        });
+        const objectsLimit =
+            category === ArticleCategory.ALL ? limit : undefined;
+        const pageLimit = category === ArticleCategory.ALL ? page : undefined;
+        // console.log('objectsLimit', objectsLimit);
+        // console.log('page', page);
+        // console.log('pageLimit', pageLimit);
+
+        const articlesResponse = await dispatch(
+            getFilteredArticlesQuery({
+                order: 'asc',
+                sort: 'title',
+                limit: 10,
+                category: [ArticleCategory.HTML, ArticleCategory.CSS] || [],
+                search: 'ТАКЕ',
+                // search: '',
+                page: 1,
+            }),
+        ).unwrap();
+
+        console.log('firebase articles response', articlesResponse);
+
+        return articlesResponse;
+    } catch (error) {
+        console.error('Error fetching articles list:', error);
+        return rejectWithValue('Failed to fetch articles.');
+    }
+});
 
 // import { createAsyncThunk, EntityState } from '@reduxjs/toolkit';
 // import { ThunkConfig } from '@/app/providers/StoreProvider';

@@ -1,5 +1,4 @@
 import { ArticlesPageProps } from '../ArticlesPage';
-import { useArticleListFetcher } from '../../../lib/hooks/useArticlesPage/useArticleListFetcher';
 import {
     DynamicModuleLoader,
     ReducersList,
@@ -12,10 +11,12 @@ const reducers: ReducersList = {
     articlesPage: articlesPageReducer,
 };
 export const ArticlesPageDeprecated = (props: ArticlesPageProps) => {
-    const { onLoadNextPart } = useArticleListFetcher();
+    // const { onLoadNextPart } = useArticleListFetcher();
     return (
         <DynamicModuleLoader reducers={reducers} removeAfterUnmount={false}>
-            <ArticleInfiniteList onInfiniteScroll={onLoadNextPart} />
+            <ArticleInfiniteList
+            // onInfiniteScroll={onLoadNextPart}
+            />
             <ArticlePageGreeting />
         </DynamicModuleLoader>
     );

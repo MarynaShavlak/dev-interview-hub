@@ -16,6 +16,8 @@ import { useArticlesPageActions } from '../../../model/slices/articlesPageSlice'
 import { SortOrder } from '@/shared/types/sortOrder';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { ARTICLES_VIEW_LOCALSTORAGE_KEY } from '@/shared/const/localstorage';
+import { fetchArticlesList } from '../../../model/services/fetchArticlesList/fetchArticlesList';
+import { useDebounce } from '@/shared/lib/hooks/useDebounce/useDebounce';
 
 /**
  * Custom hook for managing article filters and triggering data fetches.
@@ -65,16 +67,16 @@ export const useArticleFilters = () => {
 
     const dispatch = useAppDispatch();
 
-    // const fetchData = useCallback(() => {
-    //     dispatch(fetchArticlesList({ replace: true }));
-    // }, [dispatch]);
-    //
-    // const debouncedFetchData = useDebounce(fetchData, 500);
+    const fetchData = useCallback(() => {
+        dispatch(fetchArticlesList());
+    }, [dispatch]);
 
-    // const resetPageAndFetchData = useCallback(() => {
-    //     setPage(1);
-    //     fetchData();
-    // }, [fetchData, setPage]);
+    const debouncedFetchData = useDebounce(fetchData, 500);
+
+    const resetPageAndFetchData = useCallback(() => {
+        setPage(1);
+        fetchData();
+    }, [fetchData, setPage]);
 
     const onChangeView = useCallback(
         (view: ArticleView) => {
@@ -88,17 +90,17 @@ export const useArticleFilters = () => {
             }
 
             setLimit(limit);
-            // resetPageAndFetchData();
+            resetPageAndFetchData();
         },
-        [setLimit, setView],
+        [resetPageAndFetchData, setLimit, setView],
     );
 
     const onChangeSort = useCallback(
         (newSort: ArticleSortField) => {
             setSort(newSort);
-            // resetPageAndFetchData();
+            resetPageAndFetchData();
         },
-        [setSort],
+        [resetPageAndFetchData, setSort],
     );
 
     const onChangeOrder = useCallback(
@@ -111,31 +113,27 @@ export const useArticleFilters = () => {
             setOrder(newOrder);
             setSort(updatedSort);
             // console.log('neworder', newOrder);
-            // resetPageAndFetchData();
+            resetPageAndFetchData();
         },
-        [sort, setOrder, setSort],
+        [sort, setOrder, setSort, resetPageAndFetchData],
     );
 
     const onChangeSearch = useCallback(
         (search: string) => {
             setSearch(search);
             setPage(1);
-            // debouncedFetchData();
+            debouncedFetchData();
         },
-        [
-            setPage,
-            setSearch,
-            // debouncedFetchData
-        ],
+        [setPage, setSearch, debouncedFetchData],
     );
 
     const onChangeCategory = useCallback(
         (value: ArticleCategory) => {
             console.log('valueeee', value);
             setCategory(value);
-            // resetPageAndFetchData();
+            resetPageAndFetchData();
         },
-        [setCategory],
+        [resetPageAndFetchData, setCategory],
     );
 
     return {

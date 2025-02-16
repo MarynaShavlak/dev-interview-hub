@@ -1,4 +1,4 @@
-import React, { memo, useMemo } from 'react';
+import React, { memo, useCallback, useMemo } from 'react';
 import { ClearRefinements, RefinementList } from 'react-instantsearch';
 import { useTranslation } from 'react-i18next';
 import { useCategoryTabs } from '../../lib/hooks/useCategoryTabs';
@@ -7,7 +7,7 @@ import { ArticleCategory } from '@/entities/Article';
 import cls from './ArticleCategoryTabs.module.scss';
 import { VStack } from '@/shared/ui/common/Stack';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
-import { Tabs } from '@/shared/ui/deprecated/Tabs';
+import { TabItem, Tabs } from '@/shared/ui/deprecated/Tabs';
 
 interface ArticleCategoryTabsProps {
     className?: string;
@@ -21,6 +21,12 @@ export const ArticleCategoryTabs = memo((props: ArticleCategoryTabsProps) => {
     const rawCategoryTabs = useCategoryTabs();
     const categoryTabs = useMemo(() => rawCategoryTabs, [rawCategoryTabs]);
 
+    const onTabClick = useCallback(
+        (tab: TabItem) => {
+            onChangeCategory(tab.value as ArticleCategory);
+        },
+        [onChangeCategory],
+    );
     return (
         <ToggleFeaturesComponent
             feature="isAppRedesigned"
@@ -71,7 +77,7 @@ export const ArticleCategoryTabs = memo((props: ArticleCategoryTabsProps) => {
                     <Tabs
                         tabs={categoryTabs}
                         value={value}
-                        onTabClick={() => console.log(value)}
+                        onTabClick={onTabClick}
                         className={classNames('', {}, [className])}
                     />
                 </VStack>
