@@ -36,16 +36,17 @@ export const articleFirebaseApi = firestoreApi
                     category: ArticleCategory[];
                     limit: number;
                     search: string;
+                    page: number;
                 }
             >({
                 providesTags: ['Articles'],
-                async queryFn({ sort, order, category, limit, search }) {
+                async queryFn({ sort, order, category, limit, search, page }) {
                     try {
                         const collectionRef = dataPoint<Article>('articles');
 
                         const constraints: QueryConstraint[] = [];
 
-                        if (category?.length) {
+                        if (category) {
                             constraints.push(
                                 where(
                                     'category',
@@ -61,17 +62,29 @@ export const articleFirebaseApi = firestoreApi
                             collectionRef,
                             ...constraints,
                         );
-                        const snapshot = await getDocs(filteredQuery);
 
-                        const articles = snapshot.docs.map((doc) => ({
-                            ...doc.data(),
-                            id: doc.id,
-                        })) as Article[];
+                        let articles: Article[];
 
-                        const articlesWithSearch = articles.filter((article) =>
-                            article.title.includes(search),
-                        );
-                        console.log('articlesWithSearch', articlesWithSearch);
+                        if (search.trim()) {
+                            console.log('search is not empty');
+
+                            const snapshot = await getDocs(filteredQuery);
+                            articles = snapshot.docs.map((doc) => ({
+                                ...doc.data(),
+                                id: doc.id,
+                            })) as Article[];
+                        } else {
+                            const startIndex = (page - 1) * limit;
+                            const endIndex = startIndex + limit;
+                            console.log('Index', startIndex, endIndex);
+                            const snapshot = await getDocs(filteredQuery);
+                            const allArticles = snapshot.docs.map((doc) => ({
+                                ...doc.data(),
+                                id: doc.id,
+                            })) as Article[];
+
+                            articles = allArticles.slice(startIndex, endIndex);
+                        }
 
                         return { data: articles };
                     } catch (error) {
@@ -363,3 +376,8 @@ export const selectAllArticles = entrySelectors.selectAll;
 
 export const useGetFilteredArticles =
     articleFirebaseApi.useGetFilteredArticlesQuery;
+
+// const articlesWithSearch = articles.filter((article) =>
+//     article.title.includes(search),
+// );
+// console.log('articlesWithSearch', articlesWithSearch);

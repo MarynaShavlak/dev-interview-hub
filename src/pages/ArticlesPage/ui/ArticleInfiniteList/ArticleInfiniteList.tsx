@@ -1,5 +1,4 @@
 import React, { memo, useCallback } from 'react';
-import { useSelector } from 'react-redux';
 import { Virtuoso, VirtuosoGrid } from 'react-virtuoso';
 import {
     Article,
@@ -8,8 +7,6 @@ import {
     ArticleListSkeleton,
     ArticleView,
     NoArticlesFound,
-    selectAllArticles,
-    useGetArticles,
     useGetFilteredArticles,
 } from '@/entities/Article';
 import {
@@ -32,10 +29,22 @@ export interface ArticleInfiniteListProps {
 
 export const ArticleInfiniteList = memo(
     ({ onInfiniteScroll }: ArticleInfiniteListProps) => {
-        const articles = useSelector(selectAllArticles);
-        console.log('articles', articles);
-        const { isLoading: isArticlesLoading, error: isArticlesError } =
-            useGetArticles();
+        // const articles = useSelector(selectAllArticles);
+        // console.log('articles', articles);
+
+        const {
+            data: articles,
+            isLoading: isArticlesLoading,
+            error: isArticlesError,
+        } = useGetFilteredArticles({
+            order: 'asc',
+            sort: 'title',
+            limit: 10,
+            category: [ArticleCategory.CSS] || [],
+            // search: 'таке',
+            search: '',
+            page: 3,
+        });
 
         const isLoading = useArticlesPageIsLoading();
         const view = useArticlesPageView();
@@ -48,14 +57,7 @@ export const ArticleInfiniteList = memo(
             scrollStopArticleIndex,
         } = useArticlesScroll();
 
-        const { data } = useGetFilteredArticles({
-            order: 'asc',
-            sort: 'title',
-            limit: 10,
-            category: [ArticleCategory.CSS],
-            search: 'таке',
-        });
-        console.log('__data', data);
+        console.log('__data', articles);
 
         const shouldShowGridSkeleton = useGridSkeletonVisibility();
 
@@ -104,6 +106,8 @@ export const ArticleInfiniteList = memo(
             endReached: onInfiniteScroll,
             itemContent: renderArticle,
         };
+
+        if (!articles) return null;
 
         if (view === ArticleView.LIST) {
             return (

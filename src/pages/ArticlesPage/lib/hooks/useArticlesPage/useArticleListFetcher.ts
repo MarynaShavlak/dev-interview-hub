@@ -26,6 +26,7 @@ export const useArticleListFetcher = () => {
     });
 
     const onLoadNextPart = useCallback(() => {
+        console.log('load next part');
         dispatch(fetchNextArticlesPage());
     }, [dispatch]);
 
