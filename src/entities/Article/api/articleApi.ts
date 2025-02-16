@@ -4,9 +4,6 @@ import {
     updateDoc,
     increment,
     getDocs,
-    QueryConstraint,
-    where,
-    orderBy,
     query,
 } from 'firebase/firestore';
 import { EntityState } from '@reduxjs/toolkit';
@@ -21,6 +18,8 @@ import { fetchQueryResults } from '@/shared/lib/firestore/fetchQueryResults/fetc
 import { deleteDocFromFirestore } from '@/shared/lib/firestore/deleteDocFromFirestore/deleteDocFromFirestore';
 import { dataPoint } from '@/shared/lib/firestore/firestore';
 import { ArticleCategory } from '..';
+import { createQueryConstraints } from '../lib/utilities/createQueryConstraints/createQueryConstraints';
+import { fetchArticles } from '../lib/utilities/fetchArticles/fetchArticles';
 
 export const articleFirebaseApi = firestoreApi
     .enhanceEndpoints({
@@ -43,25 +42,21 @@ export const articleFirebaseApi = firestoreApi
                 async queryFn({ sort, order, category, limit, search, page }) {
                     try {
                         const collectionRef = dataPoint<Article>('articles');
-
-                        const constraints: QueryConstraint[] = [];
-
-                        if (category) {
-                            constraints.push(
-                                where(
-                                    'category',
-                                    'array-contains-any',
-                                    category,
-                                ),
-                            );
-                        }
-
-                        constraints.push(orderBy(sort, order));
+                        const constraints = createQueryConstraints({
+                            sort,
+                            order,
+                            category,
+                        });
 
                         const filteredQuery = query(
                             collectionRef,
                             ...constraints,
                         );
+                        const startIndex = (page - 1) * limit;
+                        const endIndex = startIndex + limit;
+
+                        const allArticles = await fetchArticles(filteredQuery);
+                        console.log('Index', startIndex, endIndex);
 
                         let articles: Article[];
 
@@ -69,14 +64,22 @@ export const articleFirebaseApi = firestoreApi
                             console.log('search is not empty');
 
                             const snapshot = await getDocs(filteredQuery);
-                            articles = snapshot.docs.map((doc) => ({
+                            const allArticles = snapshot.docs.map((doc) => ({
                                 ...doc.data(),
                                 id: doc.id,
                             })) as Article[];
+                            articles = allArticles
+                                .filter(
+                                    (article) =>
+                                        article.title
+                                            .toLowerCase()
+                                            .includes(search.toLowerCase()) ||
+                                        article.subtitle.text
+                                            .toLowerCase()
+                                            .includes(search.toLowerCase()),
+                                )
+                                .slice(startIndex, endIndex);
                         } else {
-                            const startIndex = (page - 1) * limit;
-                            const endIndex = startIndex + limit;
-                            console.log('Index', startIndex, endIndex);
                             const snapshot = await getDocs(filteredQuery);
                             const allArticles = snapshot.docs.map((doc) => ({
                                 ...doc.data(),

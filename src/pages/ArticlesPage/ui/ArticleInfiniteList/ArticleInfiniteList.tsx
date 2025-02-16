@@ -40,10 +40,10 @@ export const ArticleInfiniteList = memo(
             order: 'asc',
             sort: 'title',
             limit: 10,
-            category: [ArticleCategory.CSS] || [],
-            // search: 'таке',
-            search: '',
-            page: 3,
+            category: [ArticleCategory.CSS, ArticleCategory.REACT] || [],
+            search: 'що',
+            // search: '',
+            page: 1,
         });
 
         const isLoading = useArticlesPageIsLoading();
