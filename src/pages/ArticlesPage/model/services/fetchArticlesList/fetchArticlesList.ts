@@ -57,7 +57,7 @@ export const fetchArticlesList = createAsyncThunk<
             getFilteredArticlesQuery({
                 order: 'asc',
                 sort: 'title',
-                limit: 10,
+                limit: 20,
                 category: [ArticleCategory.HTML, ArticleCategory.CSS] || [],
                 search: 'ТАКЕ',
                 // search: '',
