@@ -4,7 +4,6 @@ import {
     ArticleSortField,
     ArticleCategory,
     ArticleView,
-    Article,
 } from '@/entities/Article';
 import { SortOrder } from '@/shared/types/sortOrder';
 import { getArticlesPageInited } from '../../selectors/articlesPageSelectors';
@@ -53,7 +52,7 @@ const searchParamActions: { [key: string]: (value: string) => any } = {
  */
 
 export const initArticlesPage = createAsyncThunk<
-    Article[] | null,
+    void,
     URLSearchParams,
     ThunkConfig<string>
 >('articlesPage/initArticlesPage', async (searchParams, thunkApi) => {
@@ -72,9 +71,6 @@ export const initArticlesPage = createAsyncThunk<
         ) as ArticleView;
 
         dispatch(articlesPageActions.initState(view));
-        const articles = await dispatch(fetchArticlesList({})).unwrap();
-        console.log('articles', articles);
-        return articles;
+        dispatch(fetchArticlesList({}));
     }
-    return null;
 });

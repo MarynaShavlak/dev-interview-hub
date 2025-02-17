@@ -25,26 +25,14 @@ export const fetchArticlesList = createAsyncThunk<
     FetchArticlesListProps,
     ThunkConfig<string>
 >('articlesPage/fetchArticlesList', async (props, thunkApi) => {
-    const { extra, rejectWithValue, getState, dispatch } = thunkApi;
+    const { rejectWithValue, getState, dispatch } = thunkApi;
     const limit = getArticlesPageLimit(getState());
-    console.log('Articles Page Limit:', limit);
-
     const sort = getArticlesPageSort(getState());
-    // console.log('Articles Page Sort:', sort);
-
     const order = getArticlesPageOrder(getState());
-    console.log('Articles Page Order:', order);
-
     const search = getArticlesPageSearch(getState());
-    console.log('Articles Page Search:', search);
-
     const page = getArticlesPageNum(getState());
-    console.log('Articles Page Number:', page);
-
     const category = getArticlesPageCategory(getState());
-    console.log('Articles Page Category:', category);
     const modifiedSort = sort.split('_')[1] as ArticleSort;
-    console.log('Modified Sort:', modifiedSort);
 
     try {
         addQueryParams({
@@ -56,7 +44,7 @@ export const fetchArticlesList = createAsyncThunk<
 
         const modifiedCategory =
             category !== ArticleCategory.ALL ? category : undefined;
-        console.log('modified category:', modifiedCategory);
+
         const articlesResponse = await dispatch(
             getFilteredArticlesQuery({
                 order,
@@ -68,8 +56,6 @@ export const fetchArticlesList = createAsyncThunk<
                 page,
             }),
         ).unwrap();
-
-        console.log('firebase articles response', articlesResponse);
 
         return articlesResponse;
     } catch (error) {
