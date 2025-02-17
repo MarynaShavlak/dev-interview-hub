@@ -31,6 +31,7 @@ export const ArticleCreateNavigationButton = memo(() => {
                     onClick={onCreateArticle}
                     className={cls.addButton}
                     variant="save"
+                    max
                 >
                     {buttonText}
                 </Button>

@@ -12,15 +12,17 @@ import { toggleFeatures } from '@/shared/lib/features';
  * based on the `isAppRedesigned` feature flag.
  */
 
-export const commonViewTypes = [
-    {
-        view: ArticleView.GRID,
-        icon: toggleFeatures({
-            name: 'isAppRedesigned',
-            on: () => TiledIcon,
-            off: () => TiledIconDeprecated,
-        }),
-    },
+const gridType = {
+    view: ArticleView.GRID,
+    icon: toggleFeatures({
+        name: 'isAppRedesigned',
+        on: () => TiledIcon,
+        off: () => TiledIconDeprecated,
+    }),
+};
+
+export const deprecatedViewTypes = [
+    gridType,
     {
         view: ArticleView.LIST,
         icon: toggleFeatures({
@@ -31,7 +33,7 @@ export const commonViewTypes = [
     },
 ];
 
-export const viewTypes = [
+export const redesignedViewTypes = [
     {
         view: ArticleView.SEQUENCE,
         icon: toggleFeatures({
@@ -40,5 +42,5 @@ export const viewTypes = [
             off: () => SequenceIcon,
         }),
     },
-    ...commonViewTypes,
+    gridType,
 ];

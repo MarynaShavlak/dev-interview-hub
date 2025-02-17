@@ -64,10 +64,14 @@ export const ArticlesPageRedesigned = (props: ArticlesPageProps) => {
                         left={
                             <VStack gap="24">
                                 <ViewSelectorContainer />
-                                <ArticleCreateNavigationButton />
                             </VStack>
                         }
-                        right={<FiltersContainer />}
+                        right={
+                            <VStack gap="24">
+                                <ArticleCreateNavigationButton />
+                                <FiltersContainer />
+                            </VStack>
+                        }
                         content={<ArticlesPageContent />}
                     />
                 </InstantSearch>

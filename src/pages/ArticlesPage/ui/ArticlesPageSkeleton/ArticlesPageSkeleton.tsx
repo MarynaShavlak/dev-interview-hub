@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import React, { memo } from 'react';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { getFlexClasses } from '@/shared/lib/classes/getFlexClasses/getFlexClasses';
 import { Card } from '@/shared/ui/redesigned/Card';
@@ -27,28 +27,35 @@ export const ArticlesPageSkeleton = memo(() => {
                     )}
                 >
                     <Skeleton width="18px" height="18px" />
-                    <Skeleton width="18px" height="18px" />
+                    {/* <Skeleton width="18px" height="18px" /> */}
                     <Skeleton width="18px" height="18px" />
                 </Card>
             }
             right={
-                <Card className={cls.FiltersSkeletonContainer} padding="24">
-                    <VStack gap="32" max>
-                        <Skeleton width="100%" height="38px" border="48px" />
-                        <VStack gap="8">
-                            <Skeleton width="120px" height="36px" />
-                            <Skeleton width="120px" height="36px" />
-                            <Skeleton width="120px" height="36px" />
-                            <Skeleton width="120px" height="36px" />
-                            <Skeleton width="120px" height="36px" />
-                            <Skeleton width="120px" height="36px" />
+                <VStack gap="24">
+                    <Skeleton width="100%" height="38px" border="48px" />
+                    <Card className={cls.FiltersSkeletonContainer} padding="24">
+                        <VStack gap="32" max>
+                            <Skeleton
+                                width="100%"
+                                height="38px"
+                                border="48px"
+                            />
+                            <VStack gap="8">
+                                <Skeleton width="120px" height="36px" />
+                                <Skeleton width="120px" height="36px" />
+                                <Skeleton width="120px" height="36px" />
+                                <Skeleton width="120px" height="36px" />
+                                <Skeleton width="120px" height="36px" />
+                                <Skeleton width="120px" height="36px" />
+                            </VStack>
+                            <VStack gap="8">
+                                <Skeleton width="120px" height="20px" />
+                                <Skeleton width="60px" height="32px" />
+                            </VStack>
                         </VStack>
-                        <VStack gap="8">
-                            <Skeleton width="120px" height="20px" />
-                            <Skeleton width="60px" height="32px" />
-                        </VStack>
-                    </VStack>
-                </Card>
+                    </Card>
+                </VStack>
             }
             content={<Skeleton width="100%" height="100vh" border="12px" />}
         />

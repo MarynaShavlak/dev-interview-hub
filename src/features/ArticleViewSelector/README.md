@@ -34,9 +34,9 @@ ArticleViewSelector/
     - [**ArticleViewSelector.tsx**](./ui/ArticleViewSelector/README.md): The main component that renders the view selector interface, allowing users to switch between different article layouts.
     - **ArticleViewSelector.module.scss**: Styles for the `ArticleViewSelector` component.
     - **`DeprecatedArticleViewSelector/`**:
-        - [**DeprecatedArticleViewSelector.tsx**](./ui/ArticleViewSelector/DeprecatedArticleViewSelector/README.md): A legacy version of the article view selector for backward compatibility.
+        - [**DeprecatedArticleViewSelector.tsx**](ui/ArticleViewSelector/ArticleViewSelectorDeprecated/README.md): A legacy version of the article view selector for backward compatibility.
     - **`RedesignedArticleViewSelectorHeader/`**:
-        -  [**RedesignedArticleViewSelector.tsx**](./ui/ArticleViewSelector/RedesignedArticleViewSelector/README.md): A modernized version of the selector, featuring updated designs and improved functionality.
+        -  [**RedesignedArticleViewSelector.tsx**](ui/ArticleViewSelector/ArticleViewSelectorRedesigned/README.md): A modernized version of the selector, featuring updated designs and improved functionality.
 
 ### 3. `index.ts`
 - Entry point for the `ArticleViewSelector` module, exporting components, functions, and types.
