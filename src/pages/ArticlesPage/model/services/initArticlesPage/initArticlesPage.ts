@@ -72,7 +72,7 @@ export const initArticlesPage = createAsyncThunk<
         ) as ArticleView;
 
         dispatch(articlesPageActions.initState(view));
-        const articles = await dispatch(fetchArticlesList()).unwrap();
+        const articles = await dispatch(fetchArticlesList({})).unwrap();
         console.log('articles', articles);
         return articles;
     }

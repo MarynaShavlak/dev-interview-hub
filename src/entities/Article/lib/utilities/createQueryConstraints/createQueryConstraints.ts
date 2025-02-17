@@ -14,6 +14,9 @@ export const createQueryConstraints = ({
     order,
     sort,
 }: CreateQueryConstraintArgs): QueryConstraint[] => {
+    console.log('category: ', category);
+    console.log('order: ', order);
+    console.log('sort: ', sort);
     const constraints: QueryConstraint[] = [];
     if (category.length > 0) {
         constraints.push(where('category', 'array-contains-any', category));

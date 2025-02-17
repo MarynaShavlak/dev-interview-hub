@@ -1,27 +1,42 @@
-import { PayloadAction } from '@reduxjs/toolkit';
+import { createEntityAdapter, PayloadAction } from '@reduxjs/toolkit';
 import { buildSlice } from '@/shared/lib/store';
 import {
+    Article,
     ArticleCategory,
     ArticleSortField,
     ArticleView,
 } from '@/entities/Article';
 import { SortOrder } from '@/shared/types/sortOrder';
 import { ArticlesPageSchema } from '../..';
+import { fetchArticlesList } from '../services/fetchArticlesList/fetchArticlesList';
+import { StateSchema } from '@/app/providers/StoreProvider';
 
-const initialState: ArticlesPageSchema = {
-    isLoading: false,
-    error: undefined,
-    view: ArticleView.GRID,
-    page: 1,
-    hasMore: true,
-    _inited: false,
-    limit: 9,
-    sort: ArticleSortField.CREATED_ASC,
-    search: '',
-    order: 'asc',
-    category: ArticleCategory.ALL,
-    scrollStopArticleIndex: 0,
-};
+const articlesAdapter = createEntityAdapter<Article>({
+    selectId: (article) => article.id,
+});
+
+export const getArticles = articlesAdapter.getSelectors<StateSchema>(
+    (state) => state.articlesPage || articlesAdapter.getInitialState(),
+);
+
+const initialState: ArticlesPageSchema =
+    articlesAdapter.getInitialState<ArticlesPageSchema>({
+        isLoading: false,
+        error: undefined,
+        view: ArticleView.GRID,
+        page: 1,
+        hasMore: true,
+        _inited: false,
+        limit: 9,
+        sort: ArticleSortField.CREATED_ASC,
+        search: '',
+        order: 'asc',
+        category: ArticleCategory.ALL,
+        scrollStopArticleIndex: 0,
+        //
+        ids: [],
+        entities: {},
+    });
 
 const articlesPageSlice = buildSlice({
     name: 'articlesPageSlice',
@@ -63,6 +78,30 @@ const articlesPageSlice = buildSlice({
                       : 20;
             state._inited = true;
         },
+    },
+    extraReducers: (builder) => {
+        builder
+            .addCase(fetchArticlesList.pending, (state, action) => {
+                state.error = undefined;
+                state.isLoading = true;
+                if (action.meta.arg.replace) {
+                    articlesAdapter.removeAll(state);
+                }
+            })
+            .addCase(fetchArticlesList.fulfilled, (state, action) => {
+                state.isLoading = false;
+
+                state.hasMore = action.payload.length >= state.limit;
+                if (action.meta.arg.replace) {
+                    articlesAdapter.setAll(state, action.payload);
+                } else {
+                    articlesAdapter.addMany(state, action.payload);
+                }
+            })
+            .addCase(fetchArticlesList.rejected, (state, action) => {
+                state.isLoading = false;
+                state.error = action.payload;
+            });
     },
 });
 

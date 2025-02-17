@@ -1,7 +1,9 @@
+import { EntityState } from '@reduxjs/toolkit';
 import {
     ArticleSortField,
     ArticleCategory,
     ArticleView,
+    Article,
 } from '@/entities/Article';
 import { SortOrder } from '@/shared/types/sortOrder';
 
@@ -40,7 +42,7 @@ import { SortOrder } from '@/shared/types/sortOrder';
  * @property {boolean} _inited - Indicates whether the schema has been initialized. This value is optional.
  */
 
-export interface ArticlesPageSchema {
+export interface ArticlesPageSchema extends EntityState<Article> {
     isLoading?: boolean;
     error?: string;
 

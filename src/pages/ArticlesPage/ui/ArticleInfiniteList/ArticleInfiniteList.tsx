@@ -1,5 +1,6 @@
 import React, { memo, useCallback } from 'react';
 import { Virtuoso, VirtuosoGrid } from 'react-virtuoso';
+import { useSelector } from 'react-redux';
 import {
     Article,
     ArticleCard,
@@ -21,30 +22,17 @@ import { ViewSelectorContainer } from '../ViewSelectorContainer/ViewSelectorCont
 import { ArticleInfiniteListError } from './ArticleInfiniteListError/ArticleInfiniteListError';
 import { Page } from '@/widgets/Page';
 import { useArticleListFetcher } from '../../lib/hooks/useArticlesPage/useArticleListFetcher';
+import { getArticles } from '../../model/slices/articlesPageSlice';
 
 // export interface ArticleInfiniteListProps {
 //     onInfiniteScroll: () => void;
 // }
 
 export const ArticleInfiniteList = memo(() => {
-    // { onInfiniteScroll }: ArticleInfiniteListProps
-    // const articles = useSelector(selectAllArticles);
-    // console.log('articles', articles);
-    const { onLoadNextPart, articles } = useArticleListFetcher();
-    // const {
-    //     data: articles,
-    //     isLoading: isArticlesLoading,
-    //     error: isArticlesError,
-    // } = useGetFilteredArticles({
-    //     order: 'asc',
-    //     sort: 'title',
-    //     limit: 10,
-    //     category: [ArticleCategory.HTML] || [],
-    //     search: 'ТАКЕ',
-    //     // search: '',
-    //     page: 1,
-    // });
+    const { onLoadNextPart } = useArticleListFetcher();
 
+    const articles = useSelector(getArticles.selectAll);
+    console.log('!!!!articles', articles);
     const isLoading = useArticlesPageIsLoading();
     const view = useArticlesPageView();
     const error = useArticlesPageError();
@@ -55,8 +43,6 @@ export const ArticleInfiniteList = memo(() => {
         handleSaveArticlesPageScrollPosition,
         scrollStopArticleIndex,
     } = useArticlesScroll();
-
-    console.log('__data', articles);
 
     const shouldShowGridSkeleton = useGridSkeletonVisibility();
 
@@ -163,3 +149,5 @@ export const ArticleInfiniteList = memo(() => {
         </div>
     );
 });
+
+// const articles = useSelector(selectAllArticles);

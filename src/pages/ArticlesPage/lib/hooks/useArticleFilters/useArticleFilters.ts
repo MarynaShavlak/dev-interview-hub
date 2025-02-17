@@ -68,12 +68,13 @@ export const useArticleFilters = () => {
     const dispatch = useAppDispatch();
 
     const fetchData = useCallback(() => {
-        dispatch(fetchArticlesList());
+        dispatch(fetchArticlesList({ replace: true }));
     }, [dispatch]);
 
     const debouncedFetchData = useDebounce(fetchData, 500);
 
     const resetPageAndFetchData = useCallback(() => {
+        console.log('resetPage when parameters change');
         setPage(1);
         fetchData();
     }, [fetchData, setPage]);
@@ -105,14 +106,13 @@ export const useArticleFilters = () => {
 
     const onChangeOrder = useCallback(
         (newOrder: SortOrder) => {
-            // console.log('old order', order);
             const sortField = sort?.split('_')[1];
             const updatedSort =
                 `articles_${sortField}_${newOrder}` as ArticleSortField;
-            // console.log('updatedSort', updatedSort);
+
             setOrder(newOrder);
             setSort(updatedSort);
-            // console.log('neworder', newOrder);
+
             resetPageAndFetchData();
         },
         [sort, setOrder, setSort, resetPageAndFetchData],
@@ -129,7 +129,6 @@ export const useArticleFilters = () => {
 
     const onChangeCategory = useCallback(
         (value: ArticleCategory) => {
-            console.log('valueeee', value);
             setCategory(value);
             resetPageAndFetchData();
         },
