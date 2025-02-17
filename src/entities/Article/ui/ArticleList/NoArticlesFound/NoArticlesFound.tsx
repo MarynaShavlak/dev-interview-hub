@@ -10,7 +10,7 @@ import cls from '../ArticleList.module.scss';
 
 interface NoArticlesFoundProps {
     className?: string;
-    view: ArticleView;
+    view?: ArticleView;
 }
 
 export const NoArticlesFound = memo((props: NoArticlesFoundProps) => {
@@ -27,7 +27,10 @@ export const NoArticlesFound = memo((props: NoArticlesFoundProps) => {
     return (
         <HStack
             gap="16"
-            className={classNames(mainClass, {}, [className, cls[view]])}
+            className={classNames(mainClass, {}, [
+                className,
+                view ? cls[view] : '',
+            ])}
             justify="center"
         >
             <ToggleFeaturesComponent

@@ -6,7 +6,6 @@ import {
     ArticleCard,
     ArticleListSkeleton,
     ArticleView,
-    NoArticlesFound,
 } from '@/entities/Article';
 import {
     useArticlesPageError,
@@ -16,17 +15,24 @@ import {
 import { useNoArticlesFound } from '../../lib/hooks/useNoArticlesFound/useNoArticlesFound';
 import { useArticlesScroll } from '../../lib/hooks/useArticlesScroll/useArticlesScroll';
 import { useGridSkeletonVisibility } from '../../lib/hooks/useGridSkeletonVisibility/useGridSkeletonVisibility';
-import { FiltersContainer } from '../FiltersContainer/FiltersContainer';
 import cls from './ArticleInfiniteList.module.scss';
-import { ViewSelectorContainer } from '../ViewSelectorContainer/ViewSelectorContainer';
 import { ArticleInfiniteListError } from './ArticleInfiniteListError/ArticleInfiniteListError';
-import { Page } from '@/widgets/Page';
 import { useArticleListFetcher } from '../../lib/hooks/useArticlesPage/useArticleListFetcher';
 import { getArticles } from '../../model/slices/articlesPageSlice';
+import { ArticlesInfiniteListHeader } from './ArticlesInfiniteListHeader/ArticlesInfiniteListHeader';
+import { EmptyArticleInfiniteList } from './EmptyArticleInfiniteList/EmptyArticleInfiniteList';
+import { LoadingView } from './LoadingView/LoadingView';
+import { ArticleGridView } from './ArticleGridView/ArticleGridView';
 
 // export interface ArticleInfiniteListProps {
 //     onInfiniteScroll: () => void;
 // }
+
+export interface CommonPropsType {
+    data: Article[];
+    endReached: () => void;
+    itemContent: (index: number, article: Article) => JSX.Element;
+}
 
 export const ArticleInfiniteList = memo(() => {
     const { onLoadNextPart } = useArticleListFetcher();
@@ -69,24 +75,11 @@ export const ArticleInfiniteList = memo(() => {
         <ArticleListSkeleton view={ArticleView.GRID} />
     ));
 
-    const Header = memo(() => {
-        return (
-            <div className={cls.controlsWrap}>
-                <FiltersContainer />
-                <ViewSelectorContainer className={cls.viewSelector} />
-            </div>
-        );
-    });
-
     if (error) {
         return <ArticleInfiniteListError />;
     }
 
-    if (isNoArticlesFounded) {
-        return <NoArticlesFound view={view} />;
-    }
-
-    const commonProps = {
+    const commonProps: CommonPropsType = {
         data: articles,
         endReached: onLoadNextPart,
         itemContent: renderArticle,
@@ -94,8 +87,31 @@ export const ArticleInfiniteList = memo(() => {
 
     if (!articles) return null;
 
+    const ArticlesGridLayout = (
+        <VirtuosoGrid
+            {...commonProps}
+            ref={gridRef}
+            components={{
+                ScrollSeekPlaceholder,
+                Header: ArticlesInfiniteListHeader,
+            }}
+            style={{
+                height: 'calc(100vh - 80px)',
+            }}
+            itemContent={renderArticle}
+            listClassName={cls.itemsWrapper}
+            scrollSeekConfiguration={{
+                enter: (velocity) => Math.abs(velocity) > 200,
+                exit: (velocity) => Math.abs(velocity) < 30,
+            }}
+            data-testid="ArticleList"
+        />
+    );
+
     if (view === ArticleView.LIST) {
-        return (
+        return isNoArticlesFounded ? (
+            <EmptyArticleInfiniteList />
+        ) : (
             <div
                 className={cls.ArticlesPageDeprecated}
                 data-testid="ArticleList"
@@ -109,7 +125,7 @@ export const ArticleInfiniteList = memo(() => {
                     initialTopMostItemIndex={scrollStopArticleIndex}
                     components={{
                         Footer,
-                        Header,
+                        Header: ArticlesInfiniteListHeader,
                     }}
                 />
             </div>
@@ -119,35 +135,12 @@ export const ArticleInfiniteList = memo(() => {
     return (
         <div className={cls.ArticlesPageDeprecated} data-testid="ArticlesPage">
             {shouldShowGridSkeleton ? (
-                <Page>
-                    <div className={cls.controlsSkeletonWrap}>
-                        <FiltersContainer />
-                        <ViewSelectorContainer className={cls.viewSelector} />
-                    </div>
-                    <ArticleListSkeleton view={ArticleView.GRID} />
-                </Page>
+                <LoadingView />
+            ) : isNoArticlesFounded ? (
+                <EmptyArticleInfiniteList />
             ) : (
-                <VirtuosoGrid
-                    {...commonProps}
-                    ref={gridRef}
-                    components={{
-                        ScrollSeekPlaceholder,
-                        Header,
-                    }}
-                    style={{
-                        height: 'calc(100vh - 80px)',
-                    }}
-                    itemContent={renderArticle}
-                    listClassName={cls.itemsWrapper}
-                    scrollSeekConfiguration={{
-                        enter: (velocity) => Math.abs(velocity) > 200,
-                        exit: (velocity) => Math.abs(velocity) < 30,
-                    }}
-                    data-testid="ArticleList"
-                />
+                <ArticleGridView {...commonProps} gridRef={gridRef} />
             )}
         </div>
     );
 });
-
-// const articles = useSelector(selectAllArticles);
