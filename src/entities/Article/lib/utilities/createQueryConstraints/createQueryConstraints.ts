@@ -18,6 +18,9 @@ export const createQueryConstraints = ({
     if (category.length > 0) {
         constraints.push(where('category', 'array-contains-any', category));
     }
-    constraints.push(orderBy(sort, order));
+    if (sort && order) {
+        constraints.push(orderBy(sort, order));
+    }
+
     return constraints;
 };

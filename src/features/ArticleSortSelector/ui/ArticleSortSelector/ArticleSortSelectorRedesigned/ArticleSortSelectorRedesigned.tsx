@@ -15,6 +15,7 @@ export const ArticleSortSelectorRedesigned = memo(
     (props: ArticleSortSelectorProps) => {
         const { className, onChangeSort, sort } = props;
         const { t } = useTranslation('articles');
+        console.log('_ArticleSortSelectorRedesigned', sort);
 
         const rawSortFieldOptions = useSortFieldOptions();
         const sortFieldOptions = useMemo(

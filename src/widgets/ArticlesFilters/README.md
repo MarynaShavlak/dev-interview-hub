@@ -26,9 +26,9 @@ ArticlesFilters/
 - **`ArticlesFilters/`**:
     - [**ArticlesFilters.tsx**](./ui/ArticlesFilters/README.md): The main component that dynamically switches between the `RedesignedArticlesFilters` and `DeprecatedArticlesFilters` based on the `isAppRedesigned` feature flag. It ensures that the appropriate filtering interface is presented to users depending on the feature configuration.
 - **`DeprecatedArticlesFilters/`**:
-  -  [DeprecatedArticlesFilters.tsx:](./ui/ArticlesFilters/DeprecatedArticlesFilters/README.md) A legacy filtering interface that provides users with basic filtering functionalities, such as sorting options, search input, and category tabs. It serves as a transitional component for users still interacting with the legacy version of the application.
+  -  [DeprecatedArticlesFilters.tsx:](ui/ArticlesFilters/ArticlesFiltersDeprecated/README.md) A legacy filtering interface that provides users with basic filtering functionalities, such as sorting options, search input, and category tabs. It serves as a transitional component for users still interacting with the legacy version of the application.
 - **`RedesignedArticlesFilters/`**:
-  - [RedesignedArticlesFilters.tsx](./ui/ArticlesFilters/RedesignedArticlesFilters/README.md): A modernized filtering interface offering enhanced user experience and updated UI elements for sorting, searching, and category filtering. This component represents a significant upgrade in both design and functionality compared to the deprecated version.
+  - [RedesignedArticlesFilters.tsx](ui/ArticlesFilters/ArticlesFiltersRedesigned/README.md): A modernized filtering interface offering enhanced user experience and updated UI elements for sorting, searching, and category filtering. This component represents a significant upgrade in both design and functionality compared to the deprecated version.
 
 ### 2. `index.ts`
 - Entry point for the `ArticlesFilters` module, exporting the  component for easy use throughout the application.

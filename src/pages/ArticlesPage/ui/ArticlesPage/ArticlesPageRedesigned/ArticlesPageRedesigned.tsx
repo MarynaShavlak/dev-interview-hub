@@ -16,12 +16,12 @@ import { useArticleFilters } from '../../../lib/hooks/useArticleFilters/useArtic
 import { createRoutingConfig } from '@/widgets/ArticlesFilters';
 import { ArticleSortField } from '@/entities/Article';
 import { ArticlesPageContent } from '../../ArticlesPageContent/ArticlesPageContent';
-import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect/useInitialEffect';
-import { initArticlesPage } from '../../../model/services/initArticlesPage/initArticlesPage';
 import { VStack } from '@/shared/ui/common/Stack';
 import { ArticleCreateNavigationButton } from '@/features/ArticleCreateNavigationButton';
 import { searchClient } from '@/shared/config/firebase/searchClient';
+import { initArticlesPage } from '../../../model/services/initArticlesPage/initArticlesPage';
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect/useInitialEffect';
 
 const reducers: ReducersList = {
     articlesPage: articlesPageReducer,
@@ -31,11 +31,13 @@ export const ArticlesPageRedesigned = (props: ArticlesPageProps) => {
     const { className } = props;
     const dispatch = useAppDispatch();
     const [searchParams] = useSearchParams();
-
+    //
     useInitialEffect(() => {
         dispatch(initArticlesPage(searchParams));
     });
     const { sort, limit } = useArticleFilters();
+
+    console.log('in redesigbed', sort);
     const [indexName, setIndexName] = useState<ArticleSortField>(sort);
 
     const routing = createRoutingConfig(indexName);

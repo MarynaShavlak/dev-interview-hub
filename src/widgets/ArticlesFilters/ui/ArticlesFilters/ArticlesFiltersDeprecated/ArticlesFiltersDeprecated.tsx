@@ -9,7 +9,7 @@ import { Card } from '@/shared/ui/deprecated/Card';
 import { ArticleSortSelector } from '@/features/ArticleSortSelector';
 import { ArticleCategoryTabs } from '@/features/ArticleCategoryTabs';
 
-export const DeprecatedArticlesFilters = memo((props: ArticlesFiltersProps) => {
+export const ArticlesFiltersDeprecated = memo((props: ArticlesFiltersProps) => {
     const {
         className,
         onChangeCategory,

@@ -14,7 +14,7 @@ import CloseIcon from '@/shared/assets/icons/close.svg';
 import { ArticleCategoryTabs } from '@/features/ArticleCategoryTabs';
 import { ArticleSortSelector } from '@/features/ArticleSortSelector';
 
-export const RedesignedArticlesFilters = (props: ArticlesFiltersProps) => {
+export const ArticlesFiltersRedesigned = (props: ArticlesFiltersProps) => {
     const {
         className,
         onChangeCategory,

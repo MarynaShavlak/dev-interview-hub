@@ -35,6 +35,7 @@ export const Select = <T extends string>(props: SelectProps<T>) => {
             <Each
                 of={options}
                 render={(opt) => {
+                    console.log('opt', opt);
                     return (
                         <option
                             className={cls.option}

@@ -18,6 +18,7 @@ import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch
 import { ARTICLES_VIEW_LOCALSTORAGE_KEY } from '@/shared/const/localstorage';
 import { fetchArticlesList } from '../../../model/services/fetchArticlesList/fetchArticlesList';
 import { useDebounce } from '@/shared/lib/hooks/useDebounce/useDebounce';
+import { toggleFeatures } from '@/shared/lib/features';
 
 /**
  * Custom hook for managing article filters and triggering data fetches.
@@ -51,6 +52,7 @@ import { useDebounce } from '@/shared/lib/hooks/useDebounce/useDebounce';
 export const useArticleFilters = () => {
     const view = useArticlesPageView();
     const sort = useArticlesPageSort();
+    console.log('+++sort', sort);
     const order = useArticlesPageOrder();
     const search = useArticlesPageSearch();
     const category = useArticlesPageCategory();
@@ -66,10 +68,17 @@ export const useArticleFilters = () => {
     } = useArticlesPageActions();
 
     const dispatch = useAppDispatch();
+    const shouldFetchData = toggleFeatures({
+        name: 'isAppRedesigned',
+        on: () => false,
+        off: () => true,
+    });
 
     const fetchData = useCallback(() => {
-        dispatch(fetchArticlesList({ replace: true }));
-    }, [dispatch]);
+        if (shouldFetchData) {
+            dispatch(fetchArticlesList({ replace: true }));
+        }
+    }, [dispatch, shouldFetchData]);
 
     const debouncedFetchData = useDebounce(fetchData, 500);
 
@@ -98,6 +107,7 @@ export const useArticleFilters = () => {
 
     const onChangeSort = useCallback(
         (newSort: ArticleSortField) => {
+            console.log('newSort', newSort);
             setSort(newSort);
             resetPageAndFetchData();
         },
@@ -106,16 +116,20 @@ export const useArticleFilters = () => {
 
     const onChangeOrder = useCallback(
         (newOrder: SortOrder) => {
-            const sortField = sort?.split('_')[1];
-            const updatedSort =
-                `articles_${sortField}_${newOrder}` as ArticleSortField;
-
             setOrder(newOrder);
-            setSort(updatedSort);
+            if (!shouldFetchData) {
+                const sortField = sort?.split('_')[1];
+                console.log('sort', sort);
+                console.log('sortField', sortField);
+                const updatedSort =
+                    `articles_${sortField}_${newOrder}` as ArticleSortField;
+                console.log('updatedSort', updatedSort);
+                setSort(updatedSort);
+            }
 
             resetPageAndFetchData();
         },
-        [sort, setOrder, setSort, resetPageAndFetchData],
+        [setOrder, shouldFetchData, resetPageAndFetchData, sort, setSort],
     );
 
     const onChangeSearch = useCallback(

@@ -50,7 +50,7 @@ export const useSortFieldOptions = () => {
             value: 'articles_createdAt_asc',
         },
         {
-            label: `${t('назві')}  ↑`,
+            label: `${t('назві')}   ↑`,
             value: 'articles_title_asc',
         },
         {

@@ -11,6 +11,7 @@ import { articlesPageActions } from '../../slices/articlesPageSlice';
 // import { fetchArticlesList } from '../fetchArticlesList/fetchArticlesList';
 import { ARTICLES_VIEW_LOCALSTORAGE_KEY } from '@/shared/const/localstorage';
 import { fetchArticlesList } from '../fetchArticlesList/fetchArticlesList';
+import { toggleFeatures } from '@/shared/lib/features';
 
 /**
  * Object mapping search parameter keys to corresponding Redux actions.
@@ -58,6 +59,7 @@ export const initArticlesPage = createAsyncThunk<
 >('articlesPage/initArticlesPage', async (searchParams, thunkApi) => {
     const { getState, dispatch } = thunkApi;
     const inited = getArticlesPageInited(getState());
+    console.log('inited', inited);
 
     if (!inited) {
         Object.keys(searchParamActions).forEach((param) => {
@@ -66,11 +68,37 @@ export const initArticlesPage = createAsyncThunk<
                 dispatch(searchParamActions[param](value));
             }
         });
+
+        // const orderFromUrl = searchParams.get('order') as SortOrder;
+        // const sortFromUrl = searchParams.get('sort') as ArticleSortField;
+        // const searchFromUrl = searchParams.get('search');
+        // const typeFromUrl = searchParams.get('category') as ArticleCategory;
+        //
+        // if (orderFromUrl) {
+        //     dispatch(articlesPageActions.setOrder(orderFromUrl));
+        // }
+        // if (sortFromUrl) {
+        //     dispatch(articlesPageActions.setSort(sortFromUrl));
+        // }
+        // if (searchFromUrl) {
+        //     dispatch(articlesPageActions.setSearch(searchFromUrl));
+        // }
+        // if (typeFromUrl) {
+        //     dispatch(articlesPageActions.setCategory(typeFromUrl));
+        // }
         const view = localStorage.getItem(
             ARTICLES_VIEW_LOCALSTORAGE_KEY,
         ) as ArticleView;
 
         dispatch(articlesPageActions.initState(view));
-        dispatch(fetchArticlesList({}));
+
+        const shouldFetchData = toggleFeatures({
+            name: 'isAppRedesigned',
+            on: () => false,
+            off: () => true,
+        });
+        if (shouldFetchData) {
+            dispatch(fetchArticlesList({}));
+        }
     }
 });

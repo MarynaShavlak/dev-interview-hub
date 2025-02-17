@@ -1,7 +1,7 @@
 import { memo } from 'react';
-import { DeprecatedArticlesFilters } from './DeprecatedArticlesFilters/DeprecatedArticlesFilters';
+import { ArticlesFiltersDeprecated } from './ArticlesFiltersDeprecated/ArticlesFiltersDeprecated';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
-import { RedesignedArticlesFilters } from './RedesignedArticlesFilters/RedesignedArticlesFilters';
+import { ArticlesFiltersRedesigned } from './ArticlesFiltersRedesigned/ArticlesFiltersRedesigned';
 import { ArticleSortField, ArticleCategory } from '@/entities/Article';
 import { SortOrder } from '@/shared/types/sortOrder';
 
@@ -22,8 +22,8 @@ export const ArticlesFilters = memo((props: ArticlesFiltersProps) => {
     return (
         <ToggleFeaturesComponent
             feature="isAppRedesigned"
-            on={<RedesignedArticlesFilters {...props} />}
-            off={<DeprecatedArticlesFilters {...props} />}
+            on={<ArticlesFiltersRedesigned {...props} />}
+            off={<ArticlesFiltersDeprecated {...props} />}
         />
     );
 });

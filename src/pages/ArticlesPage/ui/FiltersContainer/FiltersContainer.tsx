@@ -21,9 +21,9 @@ export const FiltersContainer = memo((props: FiltersContainerProps) => {
     } = useArticleFilters();
     // console.log('sort when first hook usage', sort);
 
-    // if (!sort || !order) {
-    //     return null;
-    // }
+    if (!sort || !order) {
+        return null;
+    }
 
     // const { status, results } = useInstantSearch();
     // const isLoading = status === 'loading';

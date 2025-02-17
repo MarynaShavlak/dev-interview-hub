@@ -28,15 +28,17 @@ export const fetchArticlesList = createAsyncThunk<
     const { rejectWithValue, getState, dispatch } = thunkApi;
     const limit = getArticlesPageLimit(getState());
     const sort = getArticlesPageSort(getState());
+    console.log('__sort in fetchArticlesList', sort);
     const order = getArticlesPageOrder(getState());
     const search = getArticlesPageSearch(getState());
     const page = getArticlesPageNum(getState());
     const category = getArticlesPageCategory(getState());
-    const modifiedSort = sort.split('_')[1] as ArticleSort;
+    const modifiedSort = sort?.split('_')[1] as ArticleSort;
+    console.log('modifiedSort', modifiedSort);
 
     try {
         addQueryParams({
-            sort: modifiedSort,
+            sort: modifiedSort || sort,
             order,
             search,
             category,

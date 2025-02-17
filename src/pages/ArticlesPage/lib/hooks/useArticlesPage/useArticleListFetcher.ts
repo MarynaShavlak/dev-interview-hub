@@ -20,6 +20,7 @@ import { fetchNextArticlesPage } from '../../../model/services/fetchNextArticles
 export const useArticleListFetcher = () => {
     const dispatch = useAppDispatch();
     const [searchParams] = useSearchParams();
+    console.log('searchParams', searchParams);
 
     useInitialEffect(() => {
         dispatch(initArticlesPage(searchParams));
