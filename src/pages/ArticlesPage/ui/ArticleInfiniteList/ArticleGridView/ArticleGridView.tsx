@@ -1,9 +1,9 @@
 import React, { memo, RefObject } from 'react';
 import { VirtuosoGrid, VirtuosoGridHandle } from 'react-virtuoso';
-import { ArticlesInfiniteListHeader } from '../ArticlesInfiniteListHeader/ArticlesInfiniteListHeader';
 import cls from '../ArticleInfiniteList.module.scss';
 import { ArticleListSkeleton, ArticleView } from '@/entities/Article';
 import { CommonPropsType } from '../ArticleInfiniteList';
+import { ArticlesInfiniteListHeader } from '../ArticlesInfiniteListHeader/ArticlesInfiniteListHeader';
 
 interface ArticleGridViewProps extends CommonPropsType {
     gridRef: RefObject<VirtuosoGridHandle>;

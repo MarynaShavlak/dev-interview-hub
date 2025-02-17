@@ -11,17 +11,23 @@
     display: flex;
     flex-wrap: wrap;
     gap: 30px;
+
 }
 
 .ArticlesPageDeprecated {
     width: 100%;
+    position:relative;
 
     .controlsWrap {
         position: relative;
+
         margin-bottom: 30px;
         padding-left: 40px;
         padding-top: 20px;
+
         width: calc(100% - 40px);
+        //border: 1px solid red;
+
 
         .viewSelector {
             position: absolute;
@@ -36,6 +42,7 @@
         flex-wrap: wrap;
         gap: 30px;
         height: calc(100vh - 290px);
+
     }
 
     .controlsSkeletonWrap {
