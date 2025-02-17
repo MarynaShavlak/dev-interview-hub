@@ -8,7 +8,11 @@ import cls from '../ArticlesPage/ArticlesPage.module.scss';
 
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { VStack } from '@/shared/ui/common/Stack';
-import { ArticleList, useGetArticles } from '@/entities/Article';
+import {
+    ArticleList,
+    NoArticlesFound,
+    useGetArticles,
+} from '@/entities/Article';
 import { useArticleFilters } from '../../lib/hooks/useArticleFilters/useArticleFilters';
 import { transformItems } from '../../lib/utilities/transformItems/transformItems';
 
@@ -25,6 +29,9 @@ export const ArticlesPageContent = () => {
     }
 
     const articlesToRender = transformItems(items);
+    if (articlesToRender.length === 0) {
+        return <NoArticlesFound />;
+    }
 
     return (
         <VStack
