@@ -1,12 +1,6 @@
 import React, { memo, useCallback } from 'react';
-import { Virtuoso, VirtuosoGrid } from 'react-virtuoso';
 import { useSelector } from 'react-redux';
-import {
-    Article,
-    ArticleCard,
-    ArticleListSkeleton,
-    ArticleView,
-} from '@/entities/Article';
+import { Article, ArticleCard, ArticleView } from '@/entities/Article';
 import {
     useArticlesPageError,
     useArticlesPageIsLoading,
@@ -19,14 +13,10 @@ import cls from './ArticleInfiniteList.module.scss';
 import { ArticleInfiniteListError } from './ArticleInfiniteListError/ArticleInfiniteListError';
 import { useArticleListFetcher } from '../../lib/hooks/useArticlesPage/useArticleListFetcher';
 import { getArticles } from '../../model/slices/articlesPageSlice';
-import { ArticlesInfiniteListHeader } from './ArticlesInfiniteListHeader/ArticlesInfiniteListHeader';
 import { EmptyArticleInfiniteList } from './EmptyArticleInfiniteList/EmptyArticleInfiniteList';
 import { LoadingView } from './LoadingView/LoadingView';
 import { ArticleGridView } from './ArticleGridView/ArticleGridView';
-
-// export interface ArticleInfiniteListProps {
-//     onInfiniteScroll: () => void;
-// }
+import { ArticleListView } from './ArticleListView/ArticleListView';
 
 export interface CommonPropsType {
     data: Article[];
@@ -64,17 +54,6 @@ export const ArticleInfiniteList = memo(() => {
         [view, handleSaveArticlesPageScrollPosition],
     );
 
-    const Footer = memo(() => {
-        if (isLoading) {
-            return <ArticleListSkeleton view={ArticleView.LIST} />;
-        }
-        return null;
-    });
-
-    const ScrollSeekPlaceholder = memo(() => (
-        <ArticleListSkeleton view={ArticleView.GRID} />
-    ));
-
     if (error) {
         return <ArticleInfiniteListError />;
     }
@@ -84,51 +63,19 @@ export const ArticleInfiniteList = memo(() => {
         endReached: onLoadNextPart,
         itemContent: renderArticle,
     };
-
+    if (isNoArticlesFounded) {
+        return <EmptyArticleInfiniteList />;
+    }
     if (!articles) return null;
 
-    const ArticlesGridLayout = (
-        <VirtuosoGrid
-            {...commonProps}
-            ref={gridRef}
-            components={{
-                ScrollSeekPlaceholder,
-                Header: ArticlesInfiniteListHeader,
-            }}
-            style={{
-                height: 'calc(100vh - 80px)',
-            }}
-            itemContent={renderArticle}
-            listClassName={cls.itemsWrapper}
-            scrollSeekConfiguration={{
-                enter: (velocity) => Math.abs(velocity) > 200,
-                exit: (velocity) => Math.abs(velocity) < 30,
-            }}
-            data-testid="ArticleList"
-        />
-    );
-
     if (view === ArticleView.LIST) {
-        return isNoArticlesFounded ? (
-            <EmptyArticleInfiniteList />
-        ) : (
-            <div
-                className={cls.ArticlesPageDeprecated}
-                data-testid="ArticleList"
-            >
-                <Virtuoso
-                    {...commonProps}
-                    ref={listRef}
-                    style={{
-                        height: 'calc(100vh - 80px)',
-                    }}
-                    initialTopMostItemIndex={scrollStopArticleIndex}
-                    components={{
-                        Footer,
-                        Header: ArticlesInfiniteListHeader,
-                    }}
-                />
-            </div>
+        return (
+            <ArticleListView
+                {...commonProps}
+                listRef={listRef}
+                isLoading={isLoading}
+                scrollStopArticleIndex={scrollStopArticleIndex}
+            />
         );
     }
 
@@ -136,8 +83,6 @@ export const ArticleInfiniteList = memo(() => {
         <div className={cls.ArticlesPageDeprecated} data-testid="ArticlesPage">
             {shouldShowGridSkeleton ? (
                 <LoadingView />
-            ) : isNoArticlesFounded ? (
-                <EmptyArticleInfiniteList />
             ) : (
                 <ArticleGridView {...commonProps} gridRef={gridRef} />
             )}
