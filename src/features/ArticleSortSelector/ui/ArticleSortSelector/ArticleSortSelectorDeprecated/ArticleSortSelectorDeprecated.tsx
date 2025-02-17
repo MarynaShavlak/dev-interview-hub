@@ -13,7 +13,7 @@ import cls from '../ArticleSortSelector.module.scss';
 export const ArticleSortSelectorDeprecated = memo(
     (props: ArticleSortSelectorProps) => {
         const { className, onChangeOrder, onChangeSort, order, sort } = props;
-        console.log('_sort', sort);
+        // console.log('_sort', sort);
         const { t } = useTranslation('articles');
 
         const rawOrderOptions = useOrderOptions();
@@ -25,12 +25,20 @@ export const ArticleSortSelectorDeprecated = memo(
             [rawSortFieldOptions],
         );
 
+        // console.log('sortFieldOptions', sortFieldOptions);
+        const modifiedSortFieldOptions = sortFieldOptions
+            .slice(0, 3)
+            .map((option) => ({
+                value: option.value,
+                label: option.label.split(' ')[0],
+            }));
+        // console.log('modifiedSortFieldOptions', modifiedSortFieldOptions);
         return (
             <div
                 className={classNames(cls.ArticleSortSelector, {}, [className])}
             >
                 <Select<ArticleSortField>
-                    options={sortFieldOptions}
+                    options={modifiedSortFieldOptions}
                     label={t('Сортувати ПО')}
                     value={sort || ArticleSortField.CREATED_ASC}
                     onChange={onChangeSort}

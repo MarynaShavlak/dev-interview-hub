@@ -36,7 +36,7 @@ export { getArticles } from './model/slices/articleSlice';
 
 export { ArticleSection } from './model/consts/articleConsts';
 
-export type { Article } from './model/types/article';
+export type { Article, ArticleSort } from './model/types/article';
 export type { ArticleDetailsSchema } from './model/types/articleDetailsSchema';
 export {
     ArticleView,

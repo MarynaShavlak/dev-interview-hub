@@ -92,6 +92,7 @@ export interface Article {
     blocks: ArticleBlock[];
 }
 
+export type ArticleSort = 'title' | 'createdAt' | 'views';
 // const articles: Article[] = [
 //     {
 //         id: '1',

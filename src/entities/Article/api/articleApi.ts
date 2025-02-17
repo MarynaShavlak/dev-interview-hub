@@ -8,7 +8,7 @@ import {
 } from 'firebase/firestore';
 import { EntityState } from '@reduxjs/toolkit';
 import { firestoreApi } from '@/shared/api/rtkApi';
-import { Article } from '../model/types/article';
+import { Article, ArticleSort } from '../model/types/article';
 import { articlesAdapter, initialState } from '../model/slices/articleSlice';
 import { addDocToFirestore } from '@/shared/lib/firestore/addDocToFirestore/addDocToFirestore';
 import { fetchDocumentByRef } from '@/shared/lib/firestore/fetchDocumentByRef/fetchDocumentByRef';
@@ -17,10 +17,11 @@ import { createArticlesByUserQuery } from '../lib/utilities/createArticlesByUser
 import { fetchQueryResults } from '@/shared/lib/firestore/fetchQueryResults/fetchQueryResults';
 import { deleteDocFromFirestore } from '@/shared/lib/firestore/deleteDocFromFirestore/deleteDocFromFirestore';
 import { dataPoint } from '@/shared/lib/firestore/firestore';
-import { ArticleCategory } from '..';
+import { ArticleCategory } from '../model/consts/articleConsts';
 import { createQueryConstraints } from '../lib/utilities/createQueryConstraints/createQueryConstraints';
 import { fetchArticles } from '../lib/utilities/fetchArticles/fetchArticles';
 import { filterAndPaginateArticles } from '../lib/utilities/filterAndPaginateArticles/filterAndPaginateArticles';
+import { SortOrder } from '@/shared/types/sortOrder';
 
 export const articleFirebaseApi = firestoreApi
     .enhanceEndpoints({
@@ -31,8 +32,8 @@ export const articleFirebaseApi = firestoreApi
             getFilteredArticles: build.query<
                 Article[],
                 {
-                    sort: keyof Article;
-                    order: 'asc' | 'desc';
+                    sort: ArticleSort;
+                    order: SortOrder;
                     category: ArticleCategory[];
                     limit: number;
                     search: string;

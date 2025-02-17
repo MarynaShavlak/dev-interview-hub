@@ -82,9 +82,9 @@ export const useArticleFilters = () => {
         (view: ArticleView) => {
             setView(view);
             localStorage.setItem(ARTICLES_VIEW_LOCALSTORAGE_KEY, view);
-            let limit = 20;
-            if (view === ArticleView.GRID) {
-                limit = 10;
+            let limit = 9;
+            if (view === ArticleView.SEQUENCE) {
+                limit = 20;
             } else if (view === ArticleView.LIST) {
                 limit = 4;
             }

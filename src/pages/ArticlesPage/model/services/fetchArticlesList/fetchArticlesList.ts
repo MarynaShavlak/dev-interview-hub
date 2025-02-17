@@ -3,6 +3,7 @@ import { ThunkConfig } from '@/app/providers/StoreProvider';
 import {
     Article,
     ArticleCategory,
+    ArticleSort,
     getFilteredArticlesQuery,
 } from '@/entities/Article';
 import {
@@ -25,7 +26,7 @@ export const fetchArticlesList = createAsyncThunk<
     console.log('Articles Page Limit:', limit);
 
     const sort = getArticlesPageSort(getState());
-    console.log('Articles Page Sort:', sort);
+    // console.log('Articles Page Sort:', sort);
 
     const order = getArticlesPageOrder(getState());
     console.log('Articles Page Order:', order);
@@ -38,10 +39,12 @@ export const fetchArticlesList = createAsyncThunk<
 
     const category = getArticlesPageCategory(getState());
     console.log('Articles Page Category:', category);
+    const modifiedSort = sort.split('_')[1] as ArticleSort;
+    console.log('Modified Sort:', modifiedSort);
 
     try {
         addQueryParams({
-            sort,
+            sort: modifiedSort,
             order,
             search,
             category,
@@ -52,16 +55,18 @@ export const fetchArticlesList = createAsyncThunk<
         // console.log('objectsLimit', objectsLimit);
         // console.log('page', page);
         // console.log('pageLimit', pageLimit);
-
+        const modifiedCategory =
+            category !== ArticleCategory.ALL ? category : undefined;
+        console.log('modified category:', modifiedCategory);
         const articlesResponse = await dispatch(
             getFilteredArticlesQuery({
-                order: 'asc',
-                sort: 'title',
-                limit: 20,
-                category: [ArticleCategory.HTML, ArticleCategory.CSS] || [],
-                search: 'ТАКЕ',
+                order,
+                sort: modifiedSort,
+                limit,
+                category: modifiedCategory ? [modifiedCategory] : [],
+                search,
                 // search: '',
-                page: 1,
+                page,
             }),
         ).unwrap();
 

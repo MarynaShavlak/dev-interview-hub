@@ -1,9 +1,11 @@
 import { QueryConstraint, where, orderBy } from 'firebase/firestore';
-import { Article, ArticleCategory } from '../../..';
+import { ArticleSort } from '../../../model/types/article';
+import { ArticleCategory } from '../../../model/consts/articleConsts';
+import { SortOrder } from '@/shared/types/sortOrder';
 
 interface CreateQueryConstraintArgs {
-    sort: keyof Article;
-    order: 'asc' | 'desc';
+    sort: ArticleSort;
+    order: SortOrder;
     category: ArticleCategory[];
 }
 
@@ -13,7 +15,7 @@ export const createQueryConstraints = ({
     sort,
 }: CreateQueryConstraintArgs): QueryConstraint[] => {
     const constraints: QueryConstraint[] = [];
-    if (category) {
+    if (category.length > 0) {
         constraints.push(where('category', 'array-contains-any', category));
     }
     constraints.push(orderBy(sort, order));
