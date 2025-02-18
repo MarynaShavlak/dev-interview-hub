@@ -1,5 +1,9 @@
 import type { User } from '@/entities/User';
-import { ArticleSection, ArticleCategory } from '../consts/articleConsts';
+import {
+    ArticleSection,
+    ArticleCategory,
+    ArticleSortField,
+} from '../consts/articleConsts';
 
 /**
  * Base interface for different types of article blocks.
@@ -93,6 +97,7 @@ export interface Article {
 }
 
 export type ArticleSort = 'title' | 'createdAt' | 'views';
+export type ArticleSortType = ArticleSortField | ArticleSort;
 // const articles: Article[] = [
 //     {
 //         id: '1',
