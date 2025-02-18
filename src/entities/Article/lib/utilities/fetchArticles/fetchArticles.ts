@@ -7,6 +7,6 @@ export const fetchArticles = async (
     const snapshot = await getDocs(filteredQuery);
     return snapshot.docs.map((doc) => ({
         ...doc.data(),
-        id: doc.id,
+        // id: doc.id,
     })) as Article[];
 };
