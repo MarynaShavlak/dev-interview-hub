@@ -14,16 +14,21 @@ import { ArticleDetailsError } from '../ArticleDetailsError/ArticleDetailsError'
 import { AppLink } from '@/shared/ui/deprecated/AppLink';
 import { ArticleDetailsProps } from '../ArticleDetails';
 import { useArticleDataById } from '../../../api/articleApi';
+import { formatDateString } from '@/shared/lib/text/formatDateString/formatDateString';
 
-export const DeprecatedArticleDetails = memo((props: ArticleDetailsProps) => {
+export const ArticleDetailsDeprecated = memo((props: ArticleDetailsProps) => {
     const { id } = props;
     const { data: article, isLoading, error } = useArticleDataById(id || '');
+    if (!article) {
+        return null;
+    }
 
     // const article = useArticleDetailsData();
     // const isLoading = useArticleDetailsIsLoading();
     // const error = useArticleDetailsError();
-    const subtitleText = article?.subtitle.text;
-    const subtitleLink = article?.subtitle.link;
+    const { title, blocks, createdAt, views, subtitle, img } = article;
+    const subtitleText = subtitle.text;
+    const subtitleLink = subtitle.link;
 
     if (isLoading) {
         return <ArticleDetailsSkeleton />;
@@ -41,7 +46,7 @@ export const DeprecatedArticleDetails = memo((props: ArticleDetailsProps) => {
             <HStack justify="center" max>
                 <Avatar
                     size={200}
-                    src={article?.img}
+                    src={img}
                     className={cls.avatar}
                     data-testid="ArticleDetails.ArticleImage"
                 />
@@ -49,7 +54,7 @@ export const DeprecatedArticleDetails = memo((props: ArticleDetailsProps) => {
             <VStack gap="4" max>
                 {!subtitleLink && (
                     <Text
-                        title={article?.title}
+                        title={title}
                         text={subtitleText}
                         size={TextSize.L}
                         data-testid="ArticleDetails.Title"
@@ -58,7 +63,7 @@ export const DeprecatedArticleDetails = memo((props: ArticleDetailsProps) => {
                 {subtitleLink && (
                     <VStack gap="4">
                         <Text
-                            title={article?.title}
+                            title={title}
                             size={TextSize.L}
                             data-testid="ArticleDetails.Title"
                         />
@@ -72,19 +77,19 @@ export const DeprecatedArticleDetails = memo((props: ArticleDetailsProps) => {
                 <HStack gap="8">
                     <Icon Svg={EyeIcon} width={20} height={20} />
                     <Text
-                        text={String(article?.views)}
+                        text={String(views)}
                         data-testid="ArticleDetails.Views"
                     />
                 </HStack>
                 <HStack gap="8">
                     <Icon Svg={CalendarIcon} width={20} height={20} />
                     <Text
-                        text={article?.createdAt}
+                        text={formatDateString(createdAt)}
                         data-testid="ArticleDetails.CreatedAt"
                     />
                 </HStack>
             </VStack>
-            {article?.blocks.map(renderArticleBlock)}
+            {blocks.map(renderArticleBlock)}
         </VStack>
     );
 });

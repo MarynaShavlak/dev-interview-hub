@@ -150,9 +150,9 @@ Article/
   - **`ArticleDetailsSkeleton/`**
     - [**ArticleDetailsSkeleton.tsx**](./ui/ArticleDetails/ArticleDetailsSkeleton/README.md): Skeleton component for loading states in article details.
   - **`DeprecatedArticleDetails/`**
-    - [**DeprecatedArticleDetails.tsx**](./ui/ArticleDetails/DeprecatedArticleDetails/README.md): Legacy component for displaying article details.
+    - [**DeprecatedArticleDetails.tsx**](ui/ArticleDetails/ArticleDetailsDeprecated/README.md): Legacy component for displaying article details.
   - **`RedesignedArticleDetails/`**
-    - [**RedesignedArticleDetails.tsx**](./ui/ArticleDetails/RedesignedArticleDetails/README.md): Updated component for displaying article details.
+    - [**RedesignedArticleDetails.tsx**](ui/ArticleDetails/ArticleDetailsRedesigned/README.md): Updated component for displaying article details.
   - [**renderArticleBlock.tsx**](./ui/ArticleDetails/renderArticleBlock.tsx): Utility component for rendering different blocks within article details.
 
 - **`ArticleList/`**

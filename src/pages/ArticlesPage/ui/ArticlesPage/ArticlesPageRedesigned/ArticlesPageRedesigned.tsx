@@ -36,11 +36,10 @@ export const ArticlesPageRedesigned = (props: ArticlesPageProps) => {
         dispatch(initArticlesPage(searchParams));
     });
     const { sort, limit, order } = useArticleFilters();
-    const sortType = sort as ArticleSortField;
+
     const index = sort.includes('_')
         ? (sort as ArticleSortField)
         : (`articles_${sort}_${order}` as ArticleSortField);
-    console.log('index', index);
 
     const [indexName, setIndexName] = useState<ArticleSortField>(index);
 

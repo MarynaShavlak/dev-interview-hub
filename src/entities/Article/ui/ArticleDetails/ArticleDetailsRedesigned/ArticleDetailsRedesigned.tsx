@@ -16,12 +16,16 @@ import { ArticleDetailsProps } from '../ArticleDetails';
 import { useArticleDataById } from '../../../api/articleApi';
 import { useUpdateArticleViews } from '../../../lib/hooks/useUpdateArticleViews/useUpdateArticleViews';
 
-export const RedesignedArticleDetails = memo((props: ArticleDetailsProps) => {
+export const ArticleDetailsRedesigned = memo((props: ArticleDetailsProps) => {
     const { t } = useTranslation('articles');
     const { id } = props;
 
     const { data: article, isLoading, error } = useArticleDataById(id || '');
     useUpdateArticleViews({ id, article, isLoading });
+    if (!article) {
+        return null;
+    }
+    const { title, blocks, createdAt, views, subtitle, img } = article;
 
     if (isLoading) {
         return <ArticleDetailsSkeleton />;
@@ -31,8 +35,8 @@ export const RedesignedArticleDetails = memo((props: ArticleDetailsProps) => {
         return <ArticleDetailsError />;
     }
 
-    const subtitleText = article?.subtitle.text;
-    const subtitleLink = article?.subtitle.link;
+    const subtitleText = subtitle.text;
+    const subtitleLink = subtitle.link;
 
     return (
         <VStack
@@ -42,7 +46,7 @@ export const RedesignedArticleDetails = memo((props: ArticleDetailsProps) => {
             data-testid="ArticleDetails.Info"
         >
             <Text
-                title={article?.title}
+                title={title}
                 size="l"
                 bold
                 data-testid="ArticleDetails.Title"
@@ -65,11 +69,11 @@ export const RedesignedArticleDetails = memo((props: ArticleDetailsProps) => {
                         alt={t('Дефолтне зображення картинки статті')}
                     />
                 }
-                src={article?.img}
+                src={img}
                 className={cls.img}
                 data-testid="ArticleDetails.ArticleImage"
             />
-            {article?.blocks.map(renderArticleBlock)}
+            {blocks.map(renderArticleBlock)}
         </VStack>
     );
 });

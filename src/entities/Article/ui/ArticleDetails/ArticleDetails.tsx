@@ -1,7 +1,7 @@
 import { memo } from 'react';
-import { RedesignedArticleDetails } from './RedesignedArticleDetails/RedesignedArticleDetails';
+import { ArticleDetailsRedesigned } from './ArticleDetailsRedesigned/ArticleDetailsRedesigned';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
-import { DeprecatedArticleDetails } from './DeprecatedArticleDetails/DeprecatedArticleDetails';
+import { ArticleDetailsDeprecated } from './ArticleDetailsDeprecated/ArticleDetailsDeprecated';
 
 export interface ArticleDetailsProps {
     id?: string;
@@ -35,8 +35,8 @@ export const ArticleDetails = memo((props: ArticleDetailsProps) => {
         // <DynamicModuleLoader reducers={reducers}>
         <ToggleFeaturesComponent
             feature="isAppRedesigned"
-            on={<RedesignedArticleDetails id={id} />}
-            off={<DeprecatedArticleDetails id={id} />}
+            on={<ArticleDetailsRedesigned id={id} />}
+            off={<ArticleDetailsDeprecated id={id} />}
         />
         // </DynamicModuleLoader>
     );
