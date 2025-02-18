@@ -3,7 +3,6 @@ import { buildSlice } from '@/shared/lib/store';
 import {
     Article,
     ArticleCategory,
-    ArticleSortField,
     ArticleSortType,
     ArticleView,
 } from '@/entities/Article';
@@ -11,6 +10,7 @@ import { SortOrder } from '@/shared/types/sortOrder';
 import { ArticlesPageSchema } from '../..';
 import { fetchArticlesList } from '../services/fetchArticlesList/fetchArticlesList';
 import { StateSchema } from '@/app/providers/StoreProvider';
+import { defaultSort } from '../consts/defaultValues';
 
 const articlesAdapter = createEntityAdapter<Article>({
     selectId: (article) => article.id,
@@ -29,7 +29,7 @@ const initialState: ArticlesPageSchema =
         hasMore: true,
         _inited: false,
         limit: 9,
-        sort: ArticleSortField.CREATED_ASC,
+        sort: defaultSort,
         search: '',
         order: 'asc',
         category: ArticleCategory.ALL,
