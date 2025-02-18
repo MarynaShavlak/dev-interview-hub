@@ -40,7 +40,7 @@ export const fetchArticlesList = createAsyncThunk<
         addQueryParams({
             sort,
             order,
-            search,
+            query: search,
             category,
         });
 
