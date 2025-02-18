@@ -19,7 +19,6 @@ import { addQueryParams } from '@/shared/lib/url/addQueryParams/addQueryParams';
 interface FetchArticlesListProps {
     replace?: boolean;
 }
-
 export const fetchArticlesList = createAsyncThunk<
     Article[],
     FetchArticlesListProps,
@@ -28,17 +27,17 @@ export const fetchArticlesList = createAsyncThunk<
     const { rejectWithValue, getState, dispatch } = thunkApi;
     const limit = getArticlesPageLimit(getState());
     const sort = getArticlesPageSort(getState());
-    console.log('__sort in fetchArticlesList', sort);
+    console.log('sort', sort);
+    // const modifiedSort = sort?.split('_')[1] as ArticleSort;
+    // console.log('modifiedSort_fetchArticlesList', modifiedSort);
     const order = getArticlesPageOrder(getState());
     const search = getArticlesPageSearch(getState());
     const page = getArticlesPageNum(getState());
     const category = getArticlesPageCategory(getState());
-    const modifiedSort = sort?.split('_')[1] as ArticleSort;
-    console.log('modifiedSort', modifiedSort);
-
+    const modifiedSort = sort as ArticleSort;
     try {
         addQueryParams({
-            sort: modifiedSort || sort,
+            sort,
             order,
             search,
             category,
@@ -65,6 +64,53 @@ export const fetchArticlesList = createAsyncThunk<
         return rejectWithValue('Failed to fetch articles.');
     }
 });
+
+/// //////////////////////////////
+// export const fetchArticlesList = createAsyncThunk<
+//     Article[],
+//     FetchArticlesListProps,
+//     ThunkConfig<string>
+// >('articlesPage/fetchArticlesList', async (props, thunkApi) => {
+//     const { rejectWithValue, getState, dispatch } = thunkApi;
+//     const limit = getArticlesPageLimit(getState());
+//     const sort = getArticlesPageSort(getState());
+//     console.log('__sort in fetchArticlesList', sort);
+//     const order = getArticlesPageOrder(getState());
+//     const search = getArticlesPageSearch(getState());
+//     const page = getArticlesPageNum(getState());
+//     const category = getArticlesPageCategory(getState());
+//     const modifiedSort = sort?.split('_')[1] as ArticleSort;
+//     console.log('modifiedSort', modifiedSort);
+//
+//     try {
+//         addQueryParams({
+//             sort: modifiedSort || sort,
+//             order,
+//             search,
+//             category,
+//         });
+//
+//         const modifiedCategory =
+//             category !== ArticleCategory.ALL ? category : undefined;
+//
+//         const articlesResponse = await dispatch(
+//             getFilteredArticlesQuery({
+//                 order,
+//                 sort: modifiedSort,
+//                 limit,
+//                 category: modifiedCategory ? [modifiedCategory] : [],
+//                 search,
+//                 // search: '',
+//                 page,
+//             }),
+//         ).unwrap();
+//
+//         return articlesResponse;
+//     } catch (error) {
+//         console.error('Error fetching articles list:', error);
+//         return rejectWithValue('Failed to fetch articles.');
+//     }
+// });
 
 // import { createAsyncThunk } from '@reduxjs/toolkit';
 // import { ThunkConfig } from '@/app/providers/StoreProvider';

@@ -16,7 +16,7 @@ export const ArticleSortSelectorDeprecated = memo(
         const { className, onChangeOrder, onChangeSort, order, sort } = props;
         // console.log('_sort', sort);
         const { t } = useTranslation('articles');
-        console.log('_ArticleSortSelectorDeprecated', sort);
+        console.log('sort_ArticleSortSelectorDeprecated', sort);
         const rawOrderOptions = useOrderOptions();
         const orderOptions = useMemo(() => rawOrderOptions, [rawOrderOptions]);
 
@@ -31,11 +31,13 @@ export const ArticleSortSelectorDeprecated = memo(
             .slice(0, 3)
             .map((option) => {
                 return {
+                    // value: option.value,
                     value: option.value.split('_')[1],
                     label: option.label.split('   ↑')[0],
                 };
             }) as ListBoxItem<ArticleSortField>[];
-        console.log('modifiedSortFieldOptions', modifiedSortFieldOptions);
+
+        // console.log('modifiedSortFieldOptions', modifiedSortFieldOptions);
         // const defaultLabel = useGetDefaultSortLabel(sort);
 
         const flexClasses = getFlexClasses({
@@ -53,6 +55,7 @@ export const ArticleSortSelectorDeprecated = memo(
                 <ListBox
                     items={modifiedSortFieldOptions}
                     value={sort}
+                    // defaultValue={defaultLabel}
                     onChange={onChangeSort}
                     label={t('Сортувати ПО')}
                     withBorder

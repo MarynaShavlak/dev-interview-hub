@@ -52,7 +52,6 @@ import { toggleFeatures } from '@/shared/lib/features';
 export const useArticleFilters = () => {
     const view = useArticlesPageView();
     const sort = useArticlesPageSort();
-    console.log('+++sort', sort);
     const order = useArticlesPageOrder();
     const search = useArticlesPageSearch();
     const category = useArticlesPageCategory();
@@ -74,22 +73,23 @@ export const useArticleFilters = () => {
         off: () => true,
     });
 
-    const fetchData = useCallback(() => {
+    const fetchData = useCallback(async () => {
         if (shouldFetchData) {
-            dispatch(fetchArticlesList({ replace: true }));
+            console.log('!!!!! fetch new data');
+            await dispatch(fetchArticlesList({ replace: true }));
         }
     }, [dispatch, shouldFetchData]);
 
     const debouncedFetchData = useDebounce(fetchData, 500);
 
-    const resetPageAndFetchData = useCallback(() => {
+    const resetPageAndFetchData = useCallback(async () => {
         console.log('resetPage when parameters change');
         setPage(1);
-        fetchData();
+        await fetchData();
     }, [fetchData, setPage]);
 
     const onChangeView = useCallback(
-        (view: ArticleView) => {
+        async (view: ArticleView) => {
             setView(view);
             localStorage.setItem(ARTICLES_VIEW_LOCALSTORAGE_KEY, view);
             let limit = 9;
@@ -100,22 +100,22 @@ export const useArticleFilters = () => {
             }
 
             setLimit(limit);
-            resetPageAndFetchData();
+            await resetPageAndFetchData();
         },
         [resetPageAndFetchData, setLimit, setView],
     );
 
     const onChangeSort = useCallback(
-        (newSort: ArticleSortField) => {
+        async (newSort: ArticleSortField) => {
             console.log('newSort', newSort);
             setSort(newSort);
-            resetPageAndFetchData();
+            await resetPageAndFetchData();
         },
         [resetPageAndFetchData, setSort],
     );
 
     const onChangeOrder = useCallback(
-        (newOrder: SortOrder) => {
+        async (newOrder: SortOrder) => {
             setOrder(newOrder);
             if (!shouldFetchData) {
                 const sortField = sort?.split('_')[1];
@@ -127,13 +127,13 @@ export const useArticleFilters = () => {
                 setSort(updatedSort);
             }
 
-            resetPageAndFetchData();
+            await resetPageAndFetchData();
         },
         [setOrder, shouldFetchData, resetPageAndFetchData, sort, setSort],
     );
 
     const onChangeSearch = useCallback(
-        (search: string) => {
+        async (search: string) => {
             setSearch(search);
             setPage(1);
             debouncedFetchData();
@@ -142,9 +142,9 @@ export const useArticleFilters = () => {
     );
 
     const onChangeCategory = useCallback(
-        (value: ArticleCategory) => {
+        async (value: ArticleCategory) => {
             setCategory(value);
-            resetPageAndFetchData();
+            await resetPageAndFetchData();
         },
         [resetPageAndFetchData, setCategory],
     );

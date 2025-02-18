@@ -44,6 +44,13 @@ export const articleFirebaseApi = firestoreApi
                 async queryFn({ sort, order, category, limit, search, page }) {
                     try {
                         const collectionRef = dataPoint<Article>('articles');
+                        console.log(
+                            'in endpoint to fetch artiles:',
+                            sort,
+                            order,
+                            category,
+                            limit,
+                        );
                         const constraints = createQueryConstraints({
                             sort,
                             order,

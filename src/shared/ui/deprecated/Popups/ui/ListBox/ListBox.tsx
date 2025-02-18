@@ -47,7 +47,7 @@ export function ListBox<T extends string>(props: ListBoxProps<T>) {
         { [cls.withBorder]: withBorder },
         [className, popupCls.popup],
     );
-    console.log('items', items, value);
+    // console.log('items', items, value);
     const selectedItem = useMemo(() => {
         return items?.find((item) => item.value === value);
     }, [items, value]);

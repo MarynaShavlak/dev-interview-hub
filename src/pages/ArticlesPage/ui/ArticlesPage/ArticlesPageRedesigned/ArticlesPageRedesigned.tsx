@@ -37,7 +37,6 @@ export const ArticlesPageRedesigned = (props: ArticlesPageProps) => {
     });
     const { sort, limit } = useArticleFilters();
 
-    console.log('in redesigbed', sort);
     const [indexName, setIndexName] = useState<ArticleSortField>(sort);
 
     const routing = createRoutingConfig(indexName);

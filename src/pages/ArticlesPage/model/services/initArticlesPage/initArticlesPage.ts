@@ -64,6 +64,7 @@ export const initArticlesPage = createAsyncThunk<
     if (!inited) {
         Object.keys(searchParamActions).forEach((param) => {
             const value = searchParams.get(param);
+            console.log('param', param, value);
             if (value !== null) {
                 dispatch(searchParamActions[param](value));
             }
