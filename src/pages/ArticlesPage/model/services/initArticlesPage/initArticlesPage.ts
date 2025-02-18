@@ -33,7 +33,7 @@ import { toggleFeatures } from '@/shared/lib/features';
 const searchParamActions: { [key: string]: (value: string) => any } = {
     order: (value) => articlesPageActions.setOrder(value as SortOrder),
     sort: (value) => articlesPageActions.setSort(value as ArticleSortField),
-    search: articlesPageActions.setSearch,
+    query: articlesPageActions.setSearch,
     category: (value) =>
         articlesPageActions.setCategory(value as ArticleCategory),
 };

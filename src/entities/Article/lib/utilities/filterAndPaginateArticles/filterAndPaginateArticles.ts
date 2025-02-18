@@ -1,32 +1,30 @@
 import { getPaginationIndices } from '../getPaginationIndices/getPaginationIndices';
-import { Article } from '../../..';
+import { Article } from '../../../model/types/article';
 
 interface FilterAndPaginateArticlesArgs {
     page: number;
     limit: number;
     articles: Article[];
-    search: string;
+    query: string;
 }
 
 export const filterAndPaginateArticles = ({
     page,
     limit,
     articles,
-    search,
+    query,
 }: FilterAndPaginateArticlesArgs): Article[] => {
     const { startIndex, endIndex } = getPaginationIndices({ page, limit });
 
-    if (search.trim()) {
+    if (query.trim()) {
         return articles
             .filter(
                 (article) =>
-                    article.title
-                        .toLowerCase()
-                        .includes(search.toLowerCase()) ||
+                    article.title.toLowerCase().includes(query.toLowerCase()) ||
                     (article.subtitle &&
                         article.subtitle.text
                             .toLowerCase()
-                            .includes(search.toLowerCase())),
+                            .includes(query.toLowerCase())),
             )
             .slice(startIndex, endIndex);
     }

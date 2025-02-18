@@ -4,7 +4,7 @@ import {
     updateDoc,
     increment,
     getDocs,
-    query,
+    query as firebaseQuery,
 } from 'firebase/firestore';
 import { EntityState } from '@reduxjs/toolkit';
 import { firestoreApi } from '@/shared/api/rtkApi';
@@ -36,12 +36,12 @@ export const articleFirebaseApi = firestoreApi
                     order: SortOrder;
                     category: ArticleCategory[];
                     limit: number;
-                    search: string;
+                    query: string;
                     page: number;
                 }
             >({
                 providesTags: ['Articles'],
-                async queryFn({ sort, order, category, limit, search, page }) {
+                async queryFn({ sort, order, category, limit, query, page }) {
                     try {
                         const collectionRef = dataPoint<Article>('articles');
                         console.log(
@@ -57,14 +57,14 @@ export const articleFirebaseApi = firestoreApi
                             category,
                         });
 
-                        const filteredQuery = query(
+                        const filteredQuery = firebaseQuery(
                             collectionRef,
                             ...constraints,
                         );
                         const allArticles = await fetchArticles(filteredQuery);
                         const articles = filterAndPaginateArticles({
                             articles: allArticles,
-                            search,
+                            query,
                             page,
                             limit,
                         });
