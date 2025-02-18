@@ -15,6 +15,7 @@ import defaultImage from '@/shared/assets/images/default-img.png';
 import { AppLink } from '@/shared/ui/deprecated/AppLink';
 import { useHover } from '@/shared/lib/hooks/useHover/useHover';
 import { BaseCardProps } from '../../ArticleCard';
+import { formatDateString } from '@/shared/lib/text/formatDateString/formatDateString';
 
 export const GridViewCardDeprecated = memo((props: BaseCardProps) => {
     const { className, article, target, handleClick } = props;
@@ -65,7 +66,10 @@ export const GridViewCardDeprecated = memo((props: BaseCardProps) => {
                         src={img}
                         className={cls.img}
                     />
-                    <Text text={createdAt} className={cls.date} />
+                    <Text
+                        text={formatDateString(createdAt)}
+                        className={cls.date}
+                    />
                 </div>
                 <HStack justify="between">
                     <ArticleCategories article={article} />

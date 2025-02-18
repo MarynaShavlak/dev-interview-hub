@@ -34,7 +34,6 @@ export const GridViewCardRedesigned = memo((props: BaseCardProps) => {
         vStack: true,
         gap: '8',
     });
-    const convertedDate = formatDateString(createdAt);
 
     return (
         <AppLink
@@ -76,7 +75,10 @@ export const GridViewCardRedesigned = memo((props: BaseCardProps) => {
                     />
                     <VStack gap="4" className={cls.footer} max justify="end">
                         <HStack justify="between" max>
-                            <Text text={convertedDate} className={cls.date} />
+                            <Text
+                                text={formatDateString(createdAt)}
+                                className={cls.date}
+                            />
                             <ArticleViews views={views} />
                         </HStack>
                         <Avatar
