@@ -19,6 +19,7 @@ interface ListBoxProps<T extends string> {
     direction?: DropdownDirection;
     label?: string;
     className?: string;
+    withBorder?: boolean;
 }
 
 /**
@@ -34,16 +35,18 @@ export function ListBox<T extends string>(props: ListBoxProps<T>) {
         onChange,
         readonly,
         direction = 'bottom right',
+        withBorder = false,
         label,
     } = props;
 
     const optionsClasses = classNames(cls.options, {}, [
         mapDirectionClass[direction],
     ]);
-    const listBoxClasses = classNames(cls.ListBox, {}, [
-        className,
-        popupCls.popup,
-    ]);
+    const listBoxClasses = classNames(
+        cls.ListBox,
+        { [cls.withBorder]: withBorder },
+        [className, popupCls.popup],
+    );
     console.log('items', items, value);
     const selectedItem = useMemo(() => {
         return items?.find((item) => item.value === value);

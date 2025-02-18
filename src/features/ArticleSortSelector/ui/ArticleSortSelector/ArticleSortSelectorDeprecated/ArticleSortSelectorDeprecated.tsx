@@ -6,11 +6,10 @@ import {
 } from '../../../lib/hooks/useOptions';
 import { ArticleSortSelectorProps } from '../ArticleSortSelector';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
-import { Select } from '@/shared/ui/deprecated/Select';
-import cls from '../ArticleSortSelector.module.scss';
 import { ListBox } from '@/shared/ui/deprecated/Popups';
 import { ArticleSortField } from '@/entities/Article';
 import { ListBoxItem } from '@/shared/ui/deprecated/Popups/ui/ListBox/Option/Option';
+import { getFlexClasses } from '@/shared/lib/classes/getFlexClasses/getFlexClasses';
 
 export const ArticleSortSelectorDeprecated = memo(
     (props: ArticleSortSelectorProps) => {
@@ -39,15 +38,31 @@ export const ArticleSortSelectorDeprecated = memo(
         console.log('modifiedSortFieldOptions', modifiedSortFieldOptions);
         // const defaultLabel = useGetDefaultSortLabel(sort);
 
+        const flexClasses = getFlexClasses({
+            hStack: true,
+            align: 'center',
+            gap: '8',
+        });
         return (
             <div
-                className={classNames(cls.ArticleSortSelector, {}, [className])}
+                className={classNames('', {}, [
+                    ...flexClasses,
+                    className || '',
+                ])}
             >
                 <ListBox
                     items={modifiedSortFieldOptions}
                     value={sort}
                     onChange={onChangeSort}
                     label={t('Сортувати ПО')}
+                    withBorder
+                />
+                <ListBox
+                    items={orderOptions}
+                    value={order}
+                    onChange={onChangeOrder}
+                    label={t('по')}
+                    withBorder
                 />
 
                 {/* <Select<ArticleSortField> */}
@@ -56,13 +71,13 @@ export const ArticleSortSelectorDeprecated = memo(
                 {/*    value={sort} */}
                 {/*    onChange={onChangeSort} */}
                 {/* /> */}
-                <Select
-                    options={orderOptions}
-                    label={t('по')}
-                    value={order}
-                    onChange={onChangeOrder}
-                    className={cls.order}
-                />
+                {/* <Select */}
+                {/*    options={orderOptions} */}
+                {/*    label={t('по')} */}
+                {/*    value={order} */}
+                {/*    onChange={onChangeOrder} */}
+                {/*    className={cls.order} */}
+                {/* /> */}
             </div>
         );
     },
