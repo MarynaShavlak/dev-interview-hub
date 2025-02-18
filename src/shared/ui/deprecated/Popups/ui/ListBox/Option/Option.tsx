@@ -46,7 +46,9 @@ export function Option<T extends string>({ item }: OptionItemProps<T>) {
                 >
                     <HStack gap="8">
                         {item.label}
-                        {selected && <Icon Svg={CheckedIcon} />}
+                        {selected && (
+                            <Icon Svg={CheckedIcon} width={15} height={15} />
+                        )}
                     </HStack>
                 </li>
             )}

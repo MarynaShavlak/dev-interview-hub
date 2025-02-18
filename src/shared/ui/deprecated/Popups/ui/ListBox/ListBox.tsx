@@ -42,11 +42,10 @@ export function ListBox<T extends string>(props: ListBoxProps<T>) {
     const optionsClasses = classNames(cls.options, {}, [
         mapDirectionClass[direction],
     ]);
-    const listBoxClasses = classNames(
-        cls.ListBox,
-        { [cls.withBorder]: withBorder },
-        [className, popupCls.popup],
-    );
+    const listBoxClasses = classNames('', { [cls.withBorder]: withBorder }, [
+        className,
+        popupCls.popup,
+    ]);
     // console.log('items', items, value);
     const selectedItem = useMemo(() => {
         return items?.find((item) => item.value === value);

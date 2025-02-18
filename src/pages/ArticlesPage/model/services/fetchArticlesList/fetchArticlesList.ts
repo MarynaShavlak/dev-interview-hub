@@ -28,13 +28,14 @@ export const fetchArticlesList = createAsyncThunk<
     const limit = getArticlesPageLimit(getState());
     const sort = getArticlesPageSort(getState());
     console.log('sort', sort);
-    // const modifiedSort = sort?.split('_')[1] as ArticleSort;
+    const modifiedSort = sort?.split('_')[1] as ArticleSort;
     // console.log('modifiedSort_fetchArticlesList', modifiedSort);
     const order = getArticlesPageOrder(getState());
     const search = getArticlesPageSearch(getState());
     const page = getArticlesPageNum(getState());
     const category = getArticlesPageCategory(getState());
-    const modifiedSort = sort as ArticleSort;
+    const sortOption = modifiedSort || (sort as ArticleSort);
+
     try {
         addQueryParams({
             sort,
@@ -49,7 +50,7 @@ export const fetchArticlesList = createAsyncThunk<
         const articlesResponse = await dispatch(
             getFilteredArticlesQuery({
                 order,
-                sort: modifiedSort,
+                sort: sortOption,
                 limit,
                 category: modifiedCategory ? [modifiedCategory] : [],
                 search,

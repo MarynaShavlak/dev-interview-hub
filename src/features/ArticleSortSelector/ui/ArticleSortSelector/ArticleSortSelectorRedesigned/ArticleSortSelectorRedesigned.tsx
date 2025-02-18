@@ -48,7 +48,7 @@ export const ArticleSortSelectorRedesigned = memo(
 
                     <ListBox
                         items={options}
-                        value={sort}
+                        value={sort as ArticleSortField}
                         onChange={handleSortOptionChange}
                     />
                 </VStack>

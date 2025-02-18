@@ -4,6 +4,7 @@ import {
     ArticleCategory,
     ArticleView,
     Article,
+    ArticleSort,
 } from '@/entities/Article';
 import { SortOrder } from '@/shared/types/sortOrder';
 
@@ -53,7 +54,7 @@ export interface ArticlesPageSchema extends EntityState<Article> {
     // filters
     view: ArticleView;
     order: SortOrder;
-    sort: ArticleSortField;
+    sort: ArticleSortField | ArticleSort;
     search: string;
     category: ArticleCategory;
 

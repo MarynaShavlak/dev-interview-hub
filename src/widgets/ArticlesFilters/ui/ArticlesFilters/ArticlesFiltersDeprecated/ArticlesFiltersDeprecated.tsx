@@ -8,6 +8,7 @@ import cls from '../ArticlesFilters.module.scss';
 import { Card } from '@/shared/ui/deprecated/Card';
 import { ArticleSortSelector } from '@/features/ArticleSortSelector';
 import { ArticleCategoryTabs } from '@/features/ArticleCategoryTabs';
+import { ArticleSort } from '@/entities/Article';
 
 export const ArticlesFiltersDeprecated = memo((props: ArticlesFiltersProps) => {
     const {
@@ -30,7 +31,7 @@ export const ArticlesFiltersDeprecated = memo((props: ArticlesFiltersProps) => {
         >
             <ArticleSortSelector
                 order={order}
-                sort={sort}
+                sort={sort as ArticleSort}
                 onChangeOrder={onChangeOrder}
                 onChangeSort={onChangeSort}
             />

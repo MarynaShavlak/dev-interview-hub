@@ -11,6 +11,7 @@ import {
     ArticleSortField,
     ArticleCategory,
     ArticleView,
+    ArticleSort,
 } from '@/entities/Article';
 import { useArticlesPageActions } from '../../../model/slices/articlesPageSlice';
 import { SortOrder } from '@/shared/types/sortOrder';
@@ -106,7 +107,7 @@ export const useArticleFilters = () => {
     );
 
     const onChangeSort = useCallback(
-        async (newSort: ArticleSortField) => {
+        async (newSort: ArticleSortField | ArticleSort) => {
             console.log('newSort', newSort);
             setSort(newSort);
             await resetPageAndFetchData();

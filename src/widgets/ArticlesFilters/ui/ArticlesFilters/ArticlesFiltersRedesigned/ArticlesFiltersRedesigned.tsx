@@ -13,6 +13,7 @@ import SearchIcon from '@/shared/assets/icons/search.svg';
 import CloseIcon from '@/shared/assets/icons/close.svg';
 import { ArticleCategoryTabs } from '@/features/ArticleCategoryTabs';
 import { ArticleSortSelector } from '@/features/ArticleSortSelector';
+import { ArticleSortField } from '@/entities/Article';
 
 export const ArticlesFiltersRedesigned = (props: ArticlesFiltersProps) => {
     const {
@@ -68,7 +69,7 @@ export const ArticlesFiltersRedesigned = (props: ArticlesFiltersProps) => {
                 />
                 <ArticleSortSelector
                     order={order}
-                    sort={sort}
+                    sort={sort as ArticleSortField}
                     onChangeOrder={onChangeOrder}
                     onChangeSort={onChangeSort}
                 />

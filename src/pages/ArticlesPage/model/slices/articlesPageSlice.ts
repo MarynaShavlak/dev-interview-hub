@@ -3,6 +3,7 @@ import { buildSlice } from '@/shared/lib/store';
 import {
     Article,
     ArticleCategory,
+    ArticleSort,
     ArticleSortField,
     ArticleView,
 } from '@/entities/Article';
@@ -51,7 +52,10 @@ const articlesPageSlice = buildSlice({
         setOrder: (state, action: PayloadAction<SortOrder>) => {
             state.order = action.payload;
         },
-        setSort: (state, action: PayloadAction<ArticleSortField>) => {
+        setSort: (
+            state,
+            action: PayloadAction<ArticleSortField | ArticleSort>,
+        ) => {
             state.sort = action.payload;
         },
         setCategory: (state, action: PayloadAction<ArticleCategory>) => {

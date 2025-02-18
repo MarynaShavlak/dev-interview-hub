@@ -2,19 +2,23 @@ import { memo } from 'react';
 import { ArticlesFiltersDeprecated } from './ArticlesFiltersDeprecated/ArticlesFiltersDeprecated';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
 import { ArticlesFiltersRedesigned } from './ArticlesFiltersRedesigned/ArticlesFiltersRedesigned';
-import { ArticleSortField, ArticleCategory } from '@/entities/Article';
+import {
+    ArticleSortField,
+    ArticleCategory,
+    ArticleSort,
+} from '@/entities/Article';
 import { SortOrder } from '@/shared/types/sortOrder';
 
 export interface ArticlesFiltersProps {
     className?: string;
-    sort: ArticleSortField;
+    sort: ArticleSortField | ArticleSort;
     order: SortOrder;
     category: ArticleCategory;
     search: string;
     limit: number;
     onChangeSearch: (value: string) => void;
     onChangeOrder: (newOrder: SortOrder) => void;
-    onChangeSort: (newSort: ArticleSortField) => void;
+    onChangeSort: (newSort: ArticleSortField | ArticleSort) => void;
     onChangeCategory: (category: ArticleCategory) => void;
 }
 

@@ -36,17 +36,18 @@ export const ArticlesPageRedesigned = (props: ArticlesPageProps) => {
         dispatch(initArticlesPage(searchParams));
     });
     const { sort, limit } = useArticleFilters();
+    const sortType = sort as ArticleSortField;
 
-    const [indexName, setIndexName] = useState<ArticleSortField>(sort);
+    const [indexName, setIndexName] = useState<ArticleSortField>(sortType);
 
     const routing = createRoutingConfig(indexName);
     // searchClient.clearCache();
 
     useEffect(() => {
-        if (sort) {
-            setIndexName(sort);
+        if (sortType) {
+            setIndexName(sortType);
         }
-    }, [sort]);
+    }, [sortType]);
 
     return (
         <DynamicModuleLoader reducers={reducers} removeAfterUnmount={false}>

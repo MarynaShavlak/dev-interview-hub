@@ -3,16 +3,16 @@ import { ArticleSortSelectorDeprecated } from './ArticleSortSelectorDeprecated/A
 
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
 
-import { ArticleSortField } from '@/entities/Article';
+import { ArticleSort, ArticleSortField } from '@/entities/Article';
 import { SortOrder } from '@/shared/types/sortOrder';
 import { ArticleSortSelectorRedesigned } from './ArticleSortSelectorRedesigned/ArticleSortSelectorRedesigned';
 
 export interface ArticleSortSelectorProps {
     className?: string;
-    sort: ArticleSortField;
+    sort: ArticleSortField | ArticleSort;
     order: SortOrder;
     onChangeOrder: (newOrder: SortOrder) => void;
-    onChangeSort: (newSort: ArticleSortField) => void;
+    onChangeSort: (newSort: ArticleSortField | ArticleSort) => void;
 }
 
 export const ArticleSortSelector = memo((props: ArticleSortSelectorProps) => {
