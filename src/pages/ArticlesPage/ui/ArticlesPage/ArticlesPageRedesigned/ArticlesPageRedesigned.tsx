@@ -36,7 +36,7 @@ export const ArticlesPageRedesigned = () => {
                         right={
                             <VStack gap="24">
                                 <FiltersContainer />
-                                <ArticleCreateNavigationButton />
+                                <ArticleCreateNavigationButton max />
                             </VStack>
                         }
                         content={<ArticlesPageContent />}

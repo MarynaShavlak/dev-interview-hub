@@ -42,7 +42,7 @@ export const ArticleControls = memo((props: ArticleControlsProps) => {
                         />
                         <Text text={convertedDate} />
                     </VStack>
-                    {canEdit && <ArticleEditNavigationButton id={id} />}
+                    {canEdit && <ArticleEditNavigationButton id={id} max />}
                     <Text
                         text={t('{{count}} переглядів', { count: views })}
                         data-testid="ArticleDetails.Views"

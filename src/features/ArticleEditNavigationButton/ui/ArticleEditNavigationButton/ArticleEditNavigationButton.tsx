@@ -13,10 +13,11 @@ import { useArticleDataById } from '@/entities/Article';
 
 interface ArticleEditNavigationButtonProps {
     id: string;
+    max?: boolean;
 }
 
 export const ArticleEditNavigationButton = memo(
-    ({ id }: ArticleEditNavigationButtonProps) => {
+    ({ id, max = false }: ArticleEditNavigationButtonProps) => {
         const { t } = useTranslation('articleDetails');
         const { data: article, isLoading, error } = useArticleDataById(id);
 
@@ -32,7 +33,7 @@ export const ArticleEditNavigationButton = memo(
             <ToggleFeaturesComponent
                 feature="isAppRedesigned"
                 on={
-                    <Button onClick={onEditArticle} max>
+                    <Button onClick={onEditArticle} max={max}>
                         {t('Редагувати')}
                     </Button>
                 }

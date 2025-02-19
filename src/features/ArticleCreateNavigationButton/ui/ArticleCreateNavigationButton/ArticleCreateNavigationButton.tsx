@@ -12,38 +12,44 @@ import {
 
 import cls from './ArticleCreateNavigationButton.module.scss';
 
-export const ArticleCreateNavigationButton = memo(() => {
-    const { t } = useTranslation('articles');
+interface ArticleCreateNavigationButtonProps {
+    max?: boolean;
+}
 
-    const navigate = useNavigate();
+export const ArticleCreateNavigationButton = memo(
+    ({ max = false }: ArticleCreateNavigationButtonProps) => {
+        const { t } = useTranslation('articles');
 
-    const onCreateArticle = useCallback(() => {
-        navigate(getRouteArticleCreate());
-    }, [navigate]);
-    const buttonText = t('Створити статтю');
+        const navigate = useNavigate();
 
-    return (
-        <ToggleFeaturesComponent
-            feature="isAppRedesigned"
-            on={
-                <Button
-                    size="m"
-                    onClick={onCreateArticle}
-                    className={cls.addButton}
-                    variant="save"
-                    max
-                >
-                    {buttonText}
-                </Button>
-            }
-            off={
-                <ButtonDeprecated
-                    theme={ButtonTheme.OUTLINE}
-                    onClick={onCreateArticle}
-                >
-                    {buttonText}
-                </ButtonDeprecated>
-            }
-        />
-    );
-});
+        const onCreateArticle = useCallback(() => {
+            navigate(getRouteArticleCreate());
+        }, [navigate]);
+        const buttonText = t('Створити статтю');
+
+        return (
+            <ToggleFeaturesComponent
+                feature="isAppRedesigned"
+                on={
+                    <Button
+                        size="m"
+                        onClick={onCreateArticle}
+                        className={cls.addButton}
+                        variant="save"
+                        max={max}
+                    >
+                        {buttonText}
+                    </Button>
+                }
+                off={
+                    <ButtonDeprecated
+                        theme={ButtonTheme.OUTLINE}
+                        onClick={onCreateArticle}
+                    >
+                        {buttonText}
+                    </ButtonDeprecated>
+                }
+            />
+        );
+    },
+);
