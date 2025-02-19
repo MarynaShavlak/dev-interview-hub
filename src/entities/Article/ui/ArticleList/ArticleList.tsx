@@ -19,8 +19,6 @@ export interface ArticleListProps {
     articlesToRender: Article[];
 }
 
-type ArticleWithoutBlocks = Omit<Article, 'blocks'>;
-
 export const ArticleList = memo((props: ArticleListProps) => {
     const {
         className,
@@ -34,7 +32,7 @@ export const ArticleList = memo((props: ArticleListProps) => {
 
     const mainClass = toggleFeatures({
         name: 'isAppRedesigned',
-        on: () => cls.ArticleListRedesigned,
+        on: () => '',
         off: () => cls.ArticleList,
     });
     const classes = classNames(mainClass, {}, [className, cls[view]]);
@@ -69,7 +67,13 @@ export const ArticleList = memo((props: ArticleListProps) => {
     }
 
     return (
-        <HStack wrap="wrap" gap="16" className={classes}>
+        <HStack
+            wrap="wrap"
+            gap="24"
+            className={classes}
+            align="center"
+            justify="center"
+        >
             {content}
         </HStack>
     );
