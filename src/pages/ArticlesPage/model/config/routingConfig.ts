@@ -9,7 +9,6 @@ import {
     ArticlesUiState,
     RouterProps,
 } from '../types/articlesFiltersTypes';
-import { ArticleSortField } from '@/entities/Article';
 
 export const createRoutingConfig = (
     indexName: string,
@@ -17,6 +16,24 @@ export const createRoutingConfig = (
     return {
         router: history({
             cleanUrlOnDispose: true,
+            // writeDelay: 400,
+            // windowTitle(routeState) {
+            //     const { query, category, sort } = routeState;
+            //
+            //     if (!query && !category && !sort) {
+            //         return 'Articles';
+            //     }
+            //
+            //     const filters = [
+            //         query,
+            //         category,
+            //         extractSortType((sort as ArticleSortType) || ''),
+            //         extractSortOrder((sort as ArticleSortType) || ''),
+            //     ]
+            //         .filter(Boolean)
+            //         .join(', ');
+            //
+            // },
         }),
         stateMapping: {
             stateToRoute(uiState: ArticlesUiState): ArticlesRouteState {
@@ -27,7 +44,8 @@ export const createRoutingConfig = (
                     category: indexUiState.refinementList?.category
                         ?.map(getCategorySlug)
                         .join('-'),
-                    sort: indexUiState.sortBy || ArticleSortField.CREATED_ASC,
+                    sort: indexUiState.sortBy,
+                    // || ArticleSortField.CREATED_ASC
                     page: indexUiState.page,
                 };
             },
@@ -38,7 +56,8 @@ export const createRoutingConfig = (
                         refinementList: {
                             category: getCategoryFromUrl(routeState),
                         },
-                        sortBy: routeState.sort || ArticleSortField.CREATED_ASC,
+                        sortBy: routeState.sort,
+                        // || ArticleSortField.CREATED_ASC
                         page: routeState.page,
                     },
                 };

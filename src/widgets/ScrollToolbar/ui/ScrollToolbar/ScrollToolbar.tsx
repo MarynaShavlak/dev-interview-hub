@@ -17,7 +17,7 @@ export const ScrollToolbar = memo((props: ScrollToolbarProps) => {
 
     return (
         <VStack
-            justify="center"
+            justify="end"
             align="center"
             max
             className={classNames(cls.ScrollToolbar, {}, [className])}

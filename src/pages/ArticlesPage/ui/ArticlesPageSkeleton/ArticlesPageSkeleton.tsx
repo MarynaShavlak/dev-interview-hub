@@ -33,15 +33,15 @@ export const ArticlesPageSkeleton = memo(() => {
             }
             right={
                 <VStack gap="24">
-                    <Skeleton width="100%" height="38px" border="48px" />
                     <Card className={cls.FiltersSkeletonContainer} padding="24">
-                        <VStack gap="32" max>
+                        <VStack gap="32" max justify="between">
                             <Skeleton
                                 width="100%"
                                 height="38px"
                                 border="48px"
                             />
                             <VStack gap="8">
+                                <Skeleton width="120px" height="36px" />
                                 <Skeleton width="120px" height="36px" />
                                 <Skeleton width="120px" height="36px" />
                                 <Skeleton width="120px" height="36px" />
@@ -55,6 +55,7 @@ export const ArticlesPageSkeleton = memo(() => {
                             </VStack>
                         </VStack>
                     </Card>
+                    <Skeleton width="100%" height="44px" border="48px" />
                 </VStack>
             }
             content={<Skeleton width="100%" height="100vh" border="12px" />}

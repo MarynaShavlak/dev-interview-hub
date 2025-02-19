@@ -53,7 +53,7 @@ export function ListBox<T extends string>(props: ListBoxProps<T>) {
         // @ts-ignore
         return items?.find((item) => item.value === value);
     }, [items, value]);
-    console.log('value', value, items);
+    // console.log('value', value, items);
 
     const onChangeOption = useCallback(
         (val: T) => {
