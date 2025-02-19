@@ -4,7 +4,6 @@ import {
     ArticleSortField,
     ArticleCategory,
     ArticleView,
-    ArticleSortType,
 } from '@/entities/Article';
 import { SortOrder } from '@/shared/types/sortOrder';
 import { getArticlesPageInited } from '../../selectors/articlesPageSelectors';
@@ -13,6 +12,7 @@ import { articlesPageActions } from '../../slices/articlesPageSlice';
 import { ARTICLES_VIEW_LOCALSTORAGE_KEY } from '@/shared/const/localstorage';
 import { fetchArticlesList } from '../fetchArticlesList/fetchArticlesList';
 import { toggleFeatures } from '@/shared/lib/features';
+import { parseSearchParams } from '../../../lib/utilities/parseSearchParams/parseSearchParams';
 
 /**
  * Object mapping search parameter keys to corresponding Redux actions.
@@ -63,39 +63,44 @@ export const initArticlesPage = createAsyncThunk<
     console.log('inited', inited);
 
     if (!inited) {
-        const orderFromUrl = searchParams.get('order') as SortOrder;
+        const parsedParams = parseSearchParams(searchParams);
+        const { order, sort, search, category } = parsedParams;
+        // const orderFromUrl = searchParams.get('order') as SortOrder;
+        // const sortFromUrl = searchParams.get('sort') as ArticleSortType;
+        // const searchFromUrl = searchParams.get('query');
+        // const categoryFromUrl = searchParams.get('category') as ArticleCategory;
 
-        const sortFromUrl = searchParams.get('sort') as ArticleSortType;
+        if (order) dispatch(articlesPageActions.setOrder(order));
+        if (sort) dispatch(articlesPageActions.setSort(sort));
+        if (search) dispatch(articlesPageActions.setSearch(search));
+        if (category) dispatch(articlesPageActions.setCategory(category));
 
-        const searchFromUrl = searchParams.get('query');
-        const categoryFromUrl = searchParams.get('category') as ArticleCategory;
-
-        if (orderFromUrl) {
-            dispatch(articlesPageActions.setOrder(orderFromUrl));
-        } else if (!orderFromUrl && sortFromUrl) {
-            const order = sortFromUrl.split('_')[2] as SortOrder;
-
-            dispatch(articlesPageActions.setOrder(order));
-        }
-        if (sortFromUrl.includes('_')) {
-            const sort = sortFromUrl.split('_')[1] as ArticleSortType;
-            dispatch(articlesPageActions.setSort(sort));
-        }
-
-        if (sortFromUrl && !sortFromUrl.includes('_')) {
-            dispatch(articlesPageActions.setSort(sortFromUrl));
-        }
-
-        if (searchFromUrl) {
-            dispatch(articlesPageActions.setSearch(searchFromUrl));
-        }
-        if (categoryFromUrl.includes('-')) {
-            const category = categoryFromUrl.split('-')[0] as ArticleCategory;
-            dispatch(articlesPageActions.setCategory(category));
-        }
-        if (categoryFromUrl && !categoryFromUrl.includes('-')) {
-            dispatch(articlesPageActions.setCategory(categoryFromUrl));
-        }
+        // if (orderFromUrl) {
+        //     dispatch(articlesPageActions.setOrder(orderFromUrl));
+        // } else if (!orderFromUrl && sortFromUrl) {
+        //     const order = sortFromUrl.split('_')[2] as SortOrder;
+        //
+        //     dispatch(articlesPageActions.setOrder(order));
+        // }
+        // if (sortFromUrl.includes('_')) {
+        //     const sort = sortFromUrl.split('_')[1] as ArticleSortType;
+        //     dispatch(articlesPageActions.setSort(sort));
+        // }
+        //
+        // if (sortFromUrl && !sortFromUrl.includes('_')) {
+        //     dispatch(articlesPageActions.setSort(sortFromUrl));
+        // }
+        //
+        // if (searchFromUrl) {
+        //     dispatch(articlesPageActions.setSearch(searchFromUrl));
+        // }
+        // if (categoryFromUrl.includes('-')) {
+        //     const category = categoryFromUrl.split('-')[0] as ArticleCategory;
+        //     dispatch(articlesPageActions.setCategory(category));
+        // }
+        // if (categoryFromUrl && !categoryFromUrl.includes('-')) {
+        //     dispatch(articlesPageActions.setCategory(categoryFromUrl));
+        // }
         const view = localStorage.getItem(
             ARTICLES_VIEW_LOCALSTORAGE_KEY,
         ) as ArticleView;

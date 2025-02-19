@@ -17,6 +17,16 @@ export const useLocalStorage = <T>(key: string, initialValue: T) => {
         }
     });
 
+    const getItem = (): T => {
+        try {
+            const item = localStorage.getItem(key);
+            return item ? JSON.parse(item) : initialValue;
+        } catch (error) {
+            console.warn('Error reading localStorage key', key, error);
+            return initialValue;
+        }
+    };
+
     useEffect(() => {
         try {
             localStorage.setItem(key, JSON.stringify(storedValue));
@@ -25,5 +35,5 @@ export const useLocalStorage = <T>(key: string, initialValue: T) => {
         }
     }, [key, storedValue]);
 
-    return [storedValue, setStoredValue] as const;
+    return [storedValue, setStoredValue, getItem] as const;
 };
