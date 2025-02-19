@@ -27,16 +27,16 @@ export const fetchArticlesList = createAsyncThunk<
     const { rejectWithValue, getState, dispatch } = thunkApi;
     const limit = getArticlesPageLimit(getState());
     const sort = getArticlesPageSort(getState());
-    console.log('fetchArticlesList__sort', sort);
+
     const modifiedSort = sort?.split('_')[1] as ArticleSort;
-    // console.log('modifiedSort_fetchArticlesList', modifiedSort);
+
     const order = getArticlesPageOrder(getState());
-    console.log('fetchArticlesList__order', order);
+
     const search = getArticlesPageSearch(getState());
     const page = getArticlesPageNum(getState());
     const category = getArticlesPageCategory(getState());
     const sortOption = modifiedSort || (sort as ArticleSort);
-    console.log('fetchArticlesList__sortOption', sortOption);
+
     try {
         addQueryParams({
             sort,
@@ -59,7 +59,6 @@ export const fetchArticlesList = createAsyncThunk<
                 page,
             }),
         ).unwrap();
-        console.log('articlesResponse', articlesResponse);
 
         return articlesResponse;
     } catch (error) {

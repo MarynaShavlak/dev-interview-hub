@@ -1,17 +1,20 @@
 import React, { useEffect, useState } from 'react';
-import { Configure, InstantSearch } from 'react-instantsearch-core';
+import {
+    Configure,
+    InstantSearch,
+    usePagination,
+} from 'react-instantsearch-core';
 import { useSearchParams } from 'react-router-dom';
+
 import { StickyContentLayout } from '@/shared/layouts/StickyContentLayout';
 import { ViewSelectorContainer } from '../../ViewSelectorContainer/ViewSelectorContainer';
 import { ArticlesPageProps } from '../ArticlesPage';
 import { FiltersContainer } from '../../FiltersContainer/FiltersContainer';
-
 import {
     DynamicModuleLoader,
     ReducersList,
 } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { articlesPageReducer } from '../../../model/slices/articlesPageSlice';
-
 import { useArticleFilters } from '../../../lib/hooks/useArticleFilters/useArticleFilters';
 import { createRoutingConfig } from '@/widgets/ArticlesFilters';
 import { ArticleSortField } from '@/entities/Article';
@@ -26,6 +29,11 @@ import { createAlgoliaIndexNameFromUrl } from '../../../lib/utilities/createAlgo
 
 const reducers: ReducersList = {
     articlesPage: articlesPageReducer,
+};
+
+const VirtualPagination = () => {
+    usePagination();
+    return null; // This ensures `page` state is recognized but does not render anything
 };
 
 export const ArticlesPageRedesigned = (props: ArticlesPageProps) => {
@@ -65,7 +73,7 @@ export const ArticlesPageRedesigned = (props: ArticlesPageProps) => {
                     }}
                 >
                     <Configure hitsPerPage={limit} />
-                    {/* <VirtualPagination /> */}
+                    <VirtualPagination />
                     <StickyContentLayout
                         left={
                             <VStack gap="24">
