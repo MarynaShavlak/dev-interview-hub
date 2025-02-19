@@ -31,7 +31,11 @@ export const ArticleEditNavigationButton = memo(
         return (
             <ToggleFeaturesComponent
                 feature="isAppRedesigned"
-                on={<Button onClick={onEditArticle}>{t('Редагувати')}</Button>}
+                on={
+                    <Button onClick={onEditArticle} max>
+                        {t('Редагувати')}
+                    </Button>
+                }
                 off={
                     <ButtonDeprecated
                         theme={ButtonTheme.OUTLINE}

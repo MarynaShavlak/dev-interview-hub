@@ -10,9 +10,9 @@ export const AdditionalInfoContainerSkeleton = memo(() => {
             <VStack gap="32">
                 <HStack gap="8">
                     <Skeleton width={32} height={32} border="50%" />
-                    <Skeleton width={160} height={24} />
+                    <Skeleton width={125} height={32} />
                 </HStack>
-                <Skeleton width={120} height={42} border="40px" />
+                <Skeleton width="100%" height={42} border="40px" />
                 <Skeleton width={100} height={24} />
             </VStack>
         </Card>
