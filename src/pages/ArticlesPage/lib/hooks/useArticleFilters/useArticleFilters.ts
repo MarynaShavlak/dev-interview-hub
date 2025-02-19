@@ -19,6 +19,7 @@ import { getLimitByView } from '../../utilities/getLimitByView/getLimitByView';
 import { useArticleDataFetching } from '../useArticleDataFetching/useArticleDataFetching';
 import { createAlgoliaIndexNameFromUrl } from '../../utilities/createAlgoliaIndexNameFromUrl/createAlgoliaIndexNameFromUrl';
 import { extractSortType } from '../../utilities/extractSortType/extractSortType';
+import { getModifiedSort } from '../../utilities/getModifiedSort/getModifiedSort';
 
 /**
  * Custom hook for managing article filters and triggering data fetches.
@@ -131,13 +132,7 @@ export const useArticleFilters = () => {
         [resetPageAndFetchData, setCategory],
     );
 
-    const modifiedSort = !shouldFetchData
-        ? sort.includes('_')
-            ? sort
-            : createAlgoliaIndexNameFromUrl(sort, order)
-        : sort;
-
-    console.log('modifiedSort', modifiedSort);
+    const modifiedSort = getModifiedSort(sort, order, shouldFetchData);
 
     return {
         view,
