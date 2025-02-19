@@ -17,7 +17,7 @@ import { fetchNextArticlesPage } from '../../../model/services/fetchNextArticles
  *
  */
 
-export const useArticleListFetcher = () => {
+export const useArticlesPageInit = () => {
     const dispatch = useAppDispatch();
     const [searchParams] = useSearchParams();
 

@@ -3,15 +3,11 @@ import { ArticlesPageRedesigned } from './ArticlesPageRedesigned/ArticlesPageRed
 import { ArticlesPageDeprecated } from './ArticlesPageDeprecated/ArticlesPageDeprecated';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
 
-export interface ArticlesPageProps {
-    className?: string;
-}
-
-const ArticlesPage = ({ className }: ArticlesPageProps) => {
+const ArticlesPage = () => {
     return (
         <ToggleFeaturesComponent
             feature="isAppRedesigned"
-            on={<ArticlesPageRedesigned className={className} />}
+            on={<ArticlesPageRedesigned />}
             off={<ArticlesPageDeprecated />}
         />
     );

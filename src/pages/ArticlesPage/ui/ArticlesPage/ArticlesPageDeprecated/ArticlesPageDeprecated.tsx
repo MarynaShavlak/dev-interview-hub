@@ -1,4 +1,3 @@
-import { ArticlesPageProps } from '../ArticlesPage';
 import {
     DynamicModuleLoader,
     ReducersList,
@@ -6,13 +5,13 @@ import {
 import { articlesPageReducer } from '../../../model/slices/articlesPageSlice';
 import { ArticlePageGreeting } from '@/features/ArticlePageGreeting';
 import { ArticleInfiniteList } from '../../ArticleInfiniteList/ArticleInfiniteList';
-import { useArticleListFetcher } from '../../../lib/hooks/useArticlesPage/useArticleListFetcher';
+import { useArticlesPageInit } from '../../../lib/hooks/useArticlesPageInit/useArticlesPageInit';
 
 const reducers: ReducersList = {
     articlesPage: articlesPageReducer,
 };
-export const ArticlesPageDeprecated = (props: ArticlesPageProps) => {
-    const { onLoadNextPart } = useArticleListFetcher();
+export const ArticlesPageDeprecated = () => {
+    const { onLoadNextPart } = useArticlesPageInit();
     return (
         <DynamicModuleLoader reducers={reducers} removeAfterUnmount={false}>
             <ArticleInfiniteList onInfiniteScroll={onLoadNextPart} />

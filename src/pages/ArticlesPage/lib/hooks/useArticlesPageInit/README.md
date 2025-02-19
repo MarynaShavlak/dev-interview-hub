@@ -1,6 +1,6 @@
-## `useArticleListFetcher` Hook
+## `useArticlesPageInit` Hook
 
-The `useArticleListFetcher` hook is a custom React hook designed to manage and encapsulate the logic for initializing and loading articles on a page. It abstracts the data fetching and state management logic related to the articles page, allowing components to focus on rendering and user interactions.
+The `useArticlesPageInit` hook is a custom React hook designed to manage and encapsulate the logic for initializing and loading articles on a page. It abstracts the data fetching and state management logic related to the articles page, allowing components to focus on rendering and user interactions.
 
 ### Parameters
 
@@ -35,7 +35,7 @@ An object with the following properties:
 
 ```typescript jsx
 export const ArticlesPage = ({ className }: ArticlesPageProps) => {
-   const { onLoadNextPart } = useArticleListFetcher();
+   const { onLoadNextPart } = useArticlesPageInit();
    return (
            <StickyContentLayout
                    left={<ViewSelectorContainer />}
@@ -56,4 +56,4 @@ export const ArticlesPage = ({ className }: ArticlesPageProps) => {
 ```
 
 ## Conclusion 
-The `useArticleListFetcher` hook simplifies the management of article data fetching and initialization by encapsulating the related logic. It provides a clean API for components to load more articles and handle page initialization, ensuring a consistent and maintainable approach to managing article pages. By abstracting these details into a hook, the code remains organized and focused, improving both readability and maintainability.
+The `useArticlesPageInit` hook simplifies the management of article data fetching and initialization by encapsulating the related logic. It provides a clean API for components to load more articles and handle page initialization, ensuring a consistent and maintainable approach to managing article pages. By abstracting these details into a hook, the code remains organized and focused, improving both readability and maintainability.
