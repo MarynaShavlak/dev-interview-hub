@@ -27,7 +27,7 @@ export const ArticleCreateNavigationButton = memo(() => {
             feature="isAppRedesigned"
             on={
                 <Button
-                    size="s"
+                    size="m"
                     onClick={onCreateArticle}
                     className={cls.addButton}
                     variant="save"

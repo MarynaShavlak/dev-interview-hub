@@ -4,6 +4,7 @@ import {
     ArticleSortField,
     ArticleCategory,
     ArticleView,
+    ArticleSortType,
 } from '@/entities/Article';
 import { SortOrder } from '@/shared/types/sortOrder';
 import { getArticlesPageInited } from '../../selectors/articlesPageSelectors';
@@ -62,31 +63,39 @@ export const initArticlesPage = createAsyncThunk<
     console.log('inited', inited);
 
     if (!inited) {
-        Object.keys(searchParamActions).forEach((param) => {
-            const value = searchParams.get(param);
-            console.log('param', param, value);
-            if (value !== null) {
-                dispatch(searchParamActions[param](value));
-            }
-        });
+        const orderFromUrl = searchParams.get('order') as SortOrder;
 
-        // const orderFromUrl = searchParams.get('order') as SortOrder;
-        // const sortFromUrl = searchParams.get('sort') as ArticleSortField;
-        // const searchFromUrl = searchParams.get('search');
-        // const typeFromUrl = searchParams.get('category') as ArticleCategory;
-        //
-        // if (orderFromUrl) {
-        //     dispatch(articlesPageActions.setOrder(orderFromUrl));
-        // }
-        // if (sortFromUrl) {
-        //     dispatch(articlesPageActions.setSort(sortFromUrl));
-        // }
-        // if (searchFromUrl) {
-        //     dispatch(articlesPageActions.setSearch(searchFromUrl));
-        // }
-        // if (typeFromUrl) {
-        //     dispatch(articlesPageActions.setCategory(typeFromUrl));
-        // }
+        const sortFromUrl = searchParams.get('sort') as ArticleSortType;
+
+        const searchFromUrl = searchParams.get('query');
+        const categoryFromUrl = searchParams.get('category') as ArticleCategory;
+
+        if (orderFromUrl) {
+            dispatch(articlesPageActions.setOrder(orderFromUrl));
+        } else if (!orderFromUrl && sortFromUrl) {
+            const order = sortFromUrl.split('_')[2] as SortOrder;
+
+            dispatch(articlesPageActions.setOrder(order));
+        }
+        if (sortFromUrl.includes('_')) {
+            const sort = sortFromUrl.split('_')[1] as ArticleSortType;
+            dispatch(articlesPageActions.setSort(sort));
+        }
+
+        if (sortFromUrl && !sortFromUrl.includes('_')) {
+            dispatch(articlesPageActions.setSort(sortFromUrl));
+        }
+
+        if (searchFromUrl) {
+            dispatch(articlesPageActions.setSearch(searchFromUrl));
+        }
+        if (categoryFromUrl.includes('-')) {
+            const category = categoryFromUrl.split('-')[0] as ArticleCategory;
+            dispatch(articlesPageActions.setCategory(category));
+        }
+        if (categoryFromUrl && !categoryFromUrl.includes('-')) {
+            dispatch(articlesPageActions.setCategory(categoryFromUrl));
+        }
         const view = localStorage.getItem(
             ARTICLES_VIEW_LOCALSTORAGE_KEY,
         ) as ArticleView;
@@ -103,3 +112,11 @@ export const initArticlesPage = createAsyncThunk<
         }
     }
 });
+
+// Object.keys(searchParamActions).forEach((param) => {
+//     const value = searchParams.get(param);
+//     console.log('param', param, value);
+//     if (value !== null) {
+//         dispatch(searchParamActions[param](value));
+//     }
+// });

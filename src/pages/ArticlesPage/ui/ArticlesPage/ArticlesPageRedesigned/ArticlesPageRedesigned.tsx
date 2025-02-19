@@ -43,7 +43,7 @@ export const ArticlesPageRedesigned = (props: ArticlesPageProps) => {
 
     const [indexName, setIndexName] = useState<ArticleSortField>(index);
 
-    const routing = createRoutingConfig(indexName, order);
+    const routing = createRoutingConfig(indexName);
     // searchClient.clearCache();
 
     useEffect(() => {
@@ -73,8 +73,8 @@ export const ArticlesPageRedesigned = (props: ArticlesPageProps) => {
                         }
                         right={
                             <VStack gap="24">
-                                <ArticleCreateNavigationButton />
                                 <FiltersContainer />
+                                <ArticleCreateNavigationButton />
                             </VStack>
                         }
                         content={<ArticlesPageContent />}
