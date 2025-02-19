@@ -1,43 +1,12 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig } from '@/app/providers/StoreProvider';
-import {
-    ArticleSortField,
-    ArticleCategory,
-    ArticleView,
-} from '@/entities/Article';
-import { SortOrder } from '@/shared/types/sortOrder';
+import { ArticleView } from '@/entities/Article';
 import { getArticlesPageInited } from '../../selectors/articlesPageSelectors';
 import { articlesPageActions } from '../../slices/articlesPageSlice';
-// import { fetchArticlesList } from '../fetchArticlesList/fetchArticlesList';
 import { ARTICLES_VIEW_LOCALSTORAGE_KEY } from '@/shared/const/localstorage';
 import { fetchArticlesList } from '../fetchArticlesList/fetchArticlesList';
-import { toggleFeatures } from '@/shared/lib/features';
+import { shouldDoActionForRedesignUi } from '@/shared/lib/features';
 import { parseSearchParams } from '../../../lib/utilities/parseSearchParams/parseSearchParams';
-
-/**
- * Object mapping search parameter keys to corresponding Redux actions.
- *
- * This object defines a mapping from URL search parameter keys to Redux actions used to
- * update the articles page state. Each key corresponds to a specific action creator that
- * processes the associated search parameter value.
- *
- * @type {Object}
- * @property {Function} order - Action creator to set the sorting order. Converts the value
- *        to `SortOrder`.
- * @property {Function} sort - Action creator to set the sorting field. Converts the value
- *        to `ArticleSortField`.
- * @property {Function} search - Action creator to set the search term.
- * @property {Function} category - Action creator to set the article category. Converts the
- *        value to `ArticleCategory`.
- */
-
-const searchParamActions: { [key: string]: (value: string) => any } = {
-    order: (value) => articlesPageActions.setOrder(value as SortOrder),
-    sort: (value) => articlesPageActions.setSort(value as ArticleSortField),
-    query: articlesPageActions.setSearch,
-    category: (value) =>
-        articlesPageActions.setCategory(value as ArticleCategory),
-};
 
 /**
  * Thunk to initialize the articles page with settings based on URL search parameters.
@@ -65,63 +34,21 @@ export const initArticlesPage = createAsyncThunk<
     if (!inited) {
         const parsedParams = parseSearchParams(searchParams);
         const { order, sort, search, category } = parsedParams;
-        // const orderFromUrl = searchParams.get('order') as SortOrder;
-        // const sortFromUrl = searchParams.get('sort') as ArticleSortType;
-        // const searchFromUrl = searchParams.get('query');
-        // const categoryFromUrl = searchParams.get('category') as ArticleCategory;
 
         if (order) dispatch(articlesPageActions.setOrder(order));
         if (sort) dispatch(articlesPageActions.setSort(sort));
         if (search) dispatch(articlesPageActions.setSearch(search));
         if (category) dispatch(articlesPageActions.setCategory(category));
 
-        // if (orderFromUrl) {
-        //     dispatch(articlesPageActions.setOrder(orderFromUrl));
-        // } else if (!orderFromUrl && sortFromUrl) {
-        //     const order = sortFromUrl.split('_')[2] as SortOrder;
-        //
-        //     dispatch(articlesPageActions.setOrder(order));
-        // }
-        // if (sortFromUrl.includes('_')) {
-        //     const sort = sortFromUrl.split('_')[1] as ArticleSortType;
-        //     dispatch(articlesPageActions.setSort(sort));
-        // }
-        //
-        // if (sortFromUrl && !sortFromUrl.includes('_')) {
-        //     dispatch(articlesPageActions.setSort(sortFromUrl));
-        // }
-        //
-        // if (searchFromUrl) {
-        //     dispatch(articlesPageActions.setSearch(searchFromUrl));
-        // }
-        // if (categoryFromUrl.includes('-')) {
-        //     const category = categoryFromUrl.split('-')[0] as ArticleCategory;
-        //     dispatch(articlesPageActions.setCategory(category));
-        // }
-        // if (categoryFromUrl && !categoryFromUrl.includes('-')) {
-        //     dispatch(articlesPageActions.setCategory(categoryFromUrl));
-        // }
         const view = localStorage.getItem(
             ARTICLES_VIEW_LOCALSTORAGE_KEY,
         ) as ArticleView;
 
         dispatch(articlesPageActions.initState(view));
 
-        const shouldFetchData = toggleFeatures({
-            name: 'isAppRedesigned',
-            on: () => false,
-            off: () => true,
-        });
+        const shouldFetchData = shouldDoActionForRedesignUi();
         if (shouldFetchData) {
             dispatch(fetchArticlesList({}));
         }
     }
 });
-
-// Object.keys(searchParamActions).forEach((param) => {
-//     const value = searchParams.get(param);
-//     console.log('param', param, value);
-//     if (value !== null) {
-//         dispatch(searchParamActions[param](value));
-//     }
-// });

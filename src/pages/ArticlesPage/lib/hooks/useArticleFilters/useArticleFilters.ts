@@ -19,7 +19,7 @@ import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch
 import { ARTICLES_VIEW_LOCALSTORAGE_KEY } from '@/shared/const/localstorage';
 import { fetchArticlesList } from '../../../model/services/fetchArticlesList/fetchArticlesList';
 import { useDebounce } from '@/shared/lib/hooks/useDebounce/useDebounce';
-import { toggleFeatures } from '@/shared/lib/features';
+import { shouldDoActionForRedesignUi } from '@/shared/lib/features';
 
 /**
  * Custom hook for managing article filters and triggering data fetches.
@@ -68,11 +68,7 @@ export const useArticleFilters = () => {
     } = useArticlesPageActions();
 
     const dispatch = useAppDispatch();
-    const shouldFetchData = toggleFeatures({
-        name: 'isAppRedesigned',
-        on: () => false,
-        off: () => true,
-    });
+    const shouldFetchData = shouldDoActionForRedesignUi();
 
     const fetchData = useCallback(async () => {
         if (shouldFetchData) {
