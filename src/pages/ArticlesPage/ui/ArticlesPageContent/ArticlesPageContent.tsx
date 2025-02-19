@@ -15,14 +15,13 @@ import { Skeleton } from '@/shared/ui/redesigned/Skeleton';
 
 export const ArticlesPageContent = () => {
     const { view } = useArticleFilters();
+    const [isLoading, setIsLoading] = useState(true);
     const { items, results, hits } = useHits({});
 
     let page = 0;
     if (results) {
         page = results.page;
     }
-
-    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         if (hits && hits.length > 0) {

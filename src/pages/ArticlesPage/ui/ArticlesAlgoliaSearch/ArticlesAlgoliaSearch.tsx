@@ -7,10 +7,9 @@ import { ReactNode } from 'react';
 import { createRoutingConfig } from '../../model/config/routingConfig';
 import { searchClient } from '@/shared/config/firebase/searchClient';
 import { useArticleFilters } from '../../lib/hooks/useArticleFilters/useArticleFilters';
+import { useAlgoliaIndex } from '../../lib/hooks/useAlgoliaIndex/useAlgoliaIndex';
 
 interface ArticlesSearchProps {
-    indexName: string;
-
     children: ReactNode;
 }
 
@@ -18,12 +17,9 @@ const VirtualPagination = () => {
     usePagination();
     return null;
 };
-export const ArticlesAlgoliaSearch = ({
-    indexName,
-
-    children,
-}: ArticlesSearchProps) => {
+export const ArticlesAlgoliaSearch = ({ children }: ArticlesSearchProps) => {
     const { limit } = useArticleFilters();
+    const indexName = useAlgoliaIndex();
     const routing = createRoutingConfig(indexName);
 
     return (

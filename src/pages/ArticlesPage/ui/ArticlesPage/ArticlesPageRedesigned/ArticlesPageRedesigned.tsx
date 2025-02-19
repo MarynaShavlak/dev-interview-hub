@@ -6,7 +6,6 @@ import {
 } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { articlesPageReducer } from '../../../model/slices/articlesPageSlice';
 
-import { useAlgoliaIndex } from '../../../lib/hooks/useAlgoliaIndex/useAlgoliaIndex';
 import { searchClient } from '@/shared/config/firebase/searchClient';
 import { StickyContentLayout } from '@/shared/layouts/StickyContentLayout';
 import { ArticlesAlgoliaSearch } from '../../ArticlesAlgoliaSearch/ArticlesAlgoliaSearch';
@@ -24,12 +23,10 @@ const reducers: ReducersList = {
 export const ArticlesPageRedesigned = () => {
     useArticlesPageInit();
 
-    const indexName = useAlgoliaIndex();
-
     return (
         <DynamicModuleLoader reducers={reducers} removeAfterUnmount={false}>
             {searchClient && (
-                <ArticlesAlgoliaSearch indexName={indexName}>
+                <ArticlesAlgoliaSearch>
                     <StickyContentLayout
                         left={
                             <VStack gap="24">
