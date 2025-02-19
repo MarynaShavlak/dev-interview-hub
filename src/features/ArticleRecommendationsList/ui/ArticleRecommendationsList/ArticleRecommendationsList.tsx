@@ -149,7 +149,7 @@ const ArticleRecommendationsList = memo(
                     on={<Text size="l" title={title} />}
                     off={<TextDeprecated size={TextSize.L} title={title} />}
                 />
-                <HStack wrap="wrap" gap="24" justify="between" max>
+                <HStack wrap="wrap" gap="24" justify="center" max>
                     <Each
                         of={articles}
                         render={(item, index) => {
