@@ -43,16 +43,6 @@ const ArticleRecommendationsList = memo(
             'Наразі немає доступних рекомендацій. Будь ласка, перевірте пізніше.',
         );
 
-        // const {
-        //     isLoading,
-        //     data: articles,
-        //     error,
-        // } = useArticleRecommendationsList({
-        //     limit: 3,
-        //     category: articleCategory,
-        //     exceptArticleId: article?.id || '0',
-        // });
-
         const {
             isLoading,
             data: articles,
@@ -62,12 +52,6 @@ const ArticleRecommendationsList = memo(
             category: articleCategory || [],
             exceptArticleId: article?.id || '0',
         });
-        // const mainClass = toggleFeatures({
-        //     name: 'isAppRedesigned',
-        //     on: () => cls.ArticleListRedesigned,
-        //     off: () => cls.ArticleList,
-        // });
-        // const classes = classNames(mainClass, {}, [className, cls[view]]);
 
         if (isLoading) {
             return (
@@ -165,12 +149,6 @@ const ArticleRecommendationsList = memo(
                         }}
                     />
                 </HStack>
-
-                {/* <ArticleList */}
-                {/*    articles={articles} */}
-                {/*    target="_blank" */}
-                {/*    view={ArticleView.GRID} */}
-                {/* /> */}
             </VStack>
         );
     },

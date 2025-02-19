@@ -11,7 +11,6 @@ import { ArticleCard } from '../../ui/ArticleCard/ArticleCard';
 
 export interface ArticleListProps {
     className?: string;
-    articles?: Article[];
     isLoading?: boolean;
     target?: HTMLAttributeAnchorTarget;
     view: ArticleView;
@@ -22,7 +21,7 @@ export interface ArticleListProps {
 export const ArticleList = memo((props: ArticleListProps) => {
     const {
         className,
-        articles,
+
         view = ArticleView.GRID,
         isLoading,
         target,

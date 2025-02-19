@@ -19,17 +19,7 @@ import { formatDateString } from '@/shared/lib/text/formatDateString/formatDateS
 export const GridViewCardRedesigned = memo((props: BaseCardProps) => {
     const { className, article, target, handleClick } = props;
     const { t } = useTranslation('articles');
-    const {
-        createdAt,
-        title,
-        img,
-        id,
-        views,
-        user,
-        subtitle,
-        category,
-        blocks,
-    } = article;
+    const { createdAt, title, img, id, views, user } = article;
     const additionalClasses = getFlexClasses({
         vStack: true,
         gap: '8',
