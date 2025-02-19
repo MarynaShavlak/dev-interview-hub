@@ -22,6 +22,7 @@ import { searchClient } from '@/shared/config/firebase/searchClient';
 import { initArticlesPage } from '../../../model/services/initArticlesPage/initArticlesPage';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect/useInitialEffect';
+import { createAlgoliaIndexNameFromUrl } from '../../../lib/utilities/createAlgoliaIndexNameFromUrl/createAlgoliaIndexNameFromUrl';
 
 const reducers: ReducersList = {
     articlesPage: articlesPageReducer,
@@ -39,7 +40,7 @@ export const ArticlesPageRedesigned = (props: ArticlesPageProps) => {
 
     const index = sort.includes('_')
         ? (sort as ArticleSortField)
-        : (`articles_${sort}_${order}` as ArticleSortField);
+        : createAlgoliaIndexNameFromUrl(sort, order);
 
     const [indexName, setIndexName] = useState<ArticleSortField>(index);
 

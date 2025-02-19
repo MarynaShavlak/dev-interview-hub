@@ -6,7 +6,6 @@ import { extractSortType } from '../extractSortType/extractSortType';
 
 export const parseSearchParams = (searchParams: URLSearchParams) => {
     const order = searchParams.get('order') as SortOrder;
-    console.log('parseSearchParams___order', order);
     const sort = searchParams.get('sort') as ArticleSortType;
     const search = searchParams.get('query') || '';
     const category = searchParams.get('category') as ArticleCategory;

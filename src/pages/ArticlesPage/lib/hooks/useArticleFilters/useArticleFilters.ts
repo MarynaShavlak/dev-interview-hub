@@ -8,7 +8,6 @@ import {
     useArticlesPageLimit,
 } from '../../../model/selectors/articlesPageSelectors';
 import {
-    ArticleSortField,
     ArticleCategory,
     ArticleView,
     ArticleSortType,
@@ -17,10 +16,8 @@ import { useArticlesPageActions } from '../../../model/slices/articlesPageSlice'
 import { SortOrder } from '@/shared/types/sortOrder';
 import { ARTICLES_VIEW_LOCALSTORAGE_KEY } from '@/shared/const/localstorage';
 import { getLimitByView } from '../../utilities/getLimitByView/getLimitByView';
-import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { shouldDoActionForRedesignUi } from '@/shared/lib/features';
-import { fetchArticlesList } from '../../../model/services/fetchArticlesList/fetchArticlesList';
-import { useDebounce } from '@/shared/lib/hooks/useDebounce/useDebounce';
+import { useArticleDataFetching } from '../useArticleDataFetching/useArticleDataFetching';
+import { createAlgoliaIndexNameFromUrl } from '../../utilities/createAlgoliaIndexNameFromUrl/createAlgoliaIndexNameFromUrl';
 
 /**
  * Custom hook for managing article filters and triggering data fetches.
@@ -68,18 +65,8 @@ export const useArticleFilters = () => {
         setLimit,
     } = useArticlesPageActions();
 
-    // const { fetchData, debouncedFetchData, shouldFetchData } =
-    //     useArticleDataFetching();
-    const dispatch = useAppDispatch();
-    const shouldFetchData = shouldDoActionForRedesignUi();
-
-    const fetchData = useCallback(async () => {
-        if (shouldFetchData) {
-            await dispatch(fetchArticlesList({ replace: true }));
-        }
-    }, [dispatch, shouldFetchData]);
-
-    const debouncedFetchData = useDebounce(fetchData, 500);
+    const { fetchData, debouncedFetchData, shouldFetchData } =
+        useArticleDataFetching();
 
     const resetPageAndFetchData = useCallback(async () => {
         console.log('resetPage when parameters change');
@@ -109,11 +96,13 @@ export const useArticleFilters = () => {
         async (newOrder: SortOrder) => {
             setOrder(newOrder);
             if (!shouldFetchData) {
-                const sortField = sort?.split('_')[1];
-                const updatedSort =
-                    `articles_${sortField}_${newOrder}` as ArticleSortField;
+                const sortField = sort?.split('_')[1] as ArticleSortType;
+                const newSort = createAlgoliaIndexNameFromUrl(
+                    sortField,
+                    newOrder,
+                );
 
-                setSort(updatedSort);
+                setSort(newSort);
             }
 
             await resetPageAndFetchData();
