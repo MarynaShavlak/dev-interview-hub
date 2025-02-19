@@ -1,8 +1,10 @@
 import { SortOrder } from '@/shared/types/sortOrder';
 import { ArticleCategory, ArticleSortType } from '@/entities/Article';
+import { extractCategory } from '../extractCategory/extractCategory';
 
 export const parseSearchParams = (searchParams: URLSearchParams) => {
     const order = searchParams.get('order') as SortOrder;
+    console.log('parseSearchParams___order', order);
     const sort = searchParams.get('sort') as ArticleSortType;
     const search = searchParams.get('query') || '';
     const category = searchParams.get('category') as ArticleCategory;
@@ -17,8 +19,6 @@ export const parseSearchParams = (searchParams: URLSearchParams) => {
             ? (sort.split('_')[1] as ArticleSortType)
             : sort,
         search,
-        category: category?.includes('-')
-            ? (category.split('-')[0] as ArticleCategory)
-            : category,
+        category: extractCategory(category),
     };
 };

@@ -15,11 +15,12 @@ import {
 } from '@/entities/Article';
 import { useArticlesPageActions } from '../../../model/slices/articlesPageSlice';
 import { SortOrder } from '@/shared/types/sortOrder';
-import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { ARTICLES_VIEW_LOCALSTORAGE_KEY } from '@/shared/const/localstorage';
+import { getLimitByView } from '../../utilities/getLimitByView/getLimitByView';
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { shouldDoActionForRedesignUi } from '@/shared/lib/features';
 import { fetchArticlesList } from '../../../model/services/fetchArticlesList/fetchArticlesList';
 import { useDebounce } from '@/shared/lib/hooks/useDebounce/useDebounce';
-import { shouldDoActionForRedesignUi } from '@/shared/lib/features';
 
 /**
  * Custom hook for managing article filters and triggering data fetches.
@@ -67,12 +68,13 @@ export const useArticleFilters = () => {
         setLimit,
     } = useArticlesPageActions();
 
+    // const { fetchData, debouncedFetchData, shouldFetchData } =
+    //     useArticleDataFetching();
     const dispatch = useAppDispatch();
     const shouldFetchData = shouldDoActionForRedesignUi();
 
     const fetchData = useCallback(async () => {
         if (shouldFetchData) {
-            console.log('!!!!! fetch new data');
             await dispatch(fetchArticlesList({ replace: true }));
         }
     }, [dispatch, shouldFetchData]);
@@ -89,14 +91,7 @@ export const useArticleFilters = () => {
         async (view: ArticleView) => {
             setView(view);
             localStorage.setItem(ARTICLES_VIEW_LOCALSTORAGE_KEY, view);
-            let limit = 9;
-            if (view === ArticleView.SEQUENCE) {
-                limit = 20;
-            } else if (view === ArticleView.LIST) {
-                limit = 4;
-            }
-
-            setLimit(limit);
+            setLimit(getLimitByView(view));
             await resetPageAndFetchData();
         },
         [resetPageAndFetchData, setLimit, setView],
@@ -104,7 +99,6 @@ export const useArticleFilters = () => {
 
     const onChangeSort = useCallback(
         async (newSort: ArticleSortType) => {
-            console.log('newSort', newSort);
             setSort(newSort);
             await resetPageAndFetchData();
         },
@@ -116,11 +110,9 @@ export const useArticleFilters = () => {
             setOrder(newOrder);
             if (!shouldFetchData) {
                 const sortField = sort?.split('_')[1];
-                console.log('sort', sort);
-                console.log('sortField', sortField);
                 const updatedSort =
                     `articles_${sortField}_${newOrder}` as ArticleSortField;
-                console.log('updatedSort', updatedSort);
+
                 setSort(updatedSort);
             }
 
