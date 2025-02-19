@@ -3,7 +3,7 @@ import { history } from 'instantsearch.js/es/lib/routers';
 import {
     getCategoryFromUrl,
     getCategorySlug,
-} from '../../lib/utils/categoryUtils/categoryUtils';
+} from '../../lib/utilities/categoryUtils/categoryUtils';
 import {
     ArticlesRouteState,
     ArticlesUiState,

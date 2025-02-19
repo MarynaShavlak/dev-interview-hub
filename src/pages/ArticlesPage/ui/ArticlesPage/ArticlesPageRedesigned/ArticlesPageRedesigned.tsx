@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import {
     Configure,
     InstantSearch,
@@ -23,9 +23,9 @@ import { searchClient } from '@/shared/config/firebase/searchClient';
 import { initArticlesPage } from '../../../model/services/initArticlesPage/initArticlesPage';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect/useInitialEffect';
-import { createRoutingConfig } from '@/widgets/ArticlesFilters';
-import { ArticleSortField } from '@/entities/Article';
-import { createAlgoliaIndexNameFromUrl } from '../../../lib/utilities/createAlgoliaIndexNameFromUrl/createAlgoliaIndexNameFromUrl';
+
+import { useAlgoliaIndex } from '../../../lib/hooks/useAlgoliaIndex/useAlgoliaIndex';
+import { createRoutingConfig } from '../../../model/config/routingConfig';
 
 const reducers: ReducersList = {
     articlesPage: articlesPageReducer,
@@ -44,23 +44,12 @@ export const ArticlesPageRedesigned = (props: ArticlesPageProps) => {
     useInitialEffect(() => {
         dispatch(initArticlesPage(searchParams));
     });
-    const { sort, limit, order } = useArticleFilters();
-    // const indexName = useAlgoliaIndex();
+    const { limit } = useArticleFilters();
+    const indexName = useAlgoliaIndex();
 
-    const index = sort.includes('_')
-        ? (sort as ArticleSortField)
-        : createAlgoliaIndexNameFromUrl(sort, order);
-
-    const [indexName, setIndexName] = useState<ArticleSortField>(index);
     //
     const routing = createRoutingConfig(indexName);
     // searchClient.clearCache();
-
-    useEffect(() => {
-        if (index && index.includes('_')) {
-            setIndexName(index);
-        }
-    }, [index]);
 
     return (
         <DynamicModuleLoader reducers={reducers} removeAfterUnmount={false}>

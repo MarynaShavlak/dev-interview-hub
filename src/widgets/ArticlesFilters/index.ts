@@ -1,5 +1,5 @@
-export { getCategoryFromUrl } from './lib/utils/categoryUtils/categoryUtils';
+export { getCategoryFromUrl } from '@/pages/ArticlesPage/lib/utilities/categoryUtils/categoryUtils';
 
-export { createRoutingConfig } from './model/config/routingConfig';
+// export { createRoutingConfig } from '@/pages/ArticlesPage/model/config/routingConfig';
 
 export { ArticlesFilters } from './ui/ArticlesFilters/ArticlesFilters';
