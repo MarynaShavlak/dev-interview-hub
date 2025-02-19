@@ -20,7 +20,7 @@ export const ArticleListSkeleton = memo(
     ({ view, skeletonCount }: ArticleListSkeletonProps) => {
         const mainClass = toggleFeatures({
             name: 'isAppRedesigned',
-            on: () => cls.ArticleListRedesigned,
+            on: () => '',
             off: () => cls.ArticleList,
         });
 
@@ -36,7 +36,13 @@ export const ArticleListSkeleton = memo(
             );
         }
         return (
-            <HStack wrap="wrap" gap="16" className={classes}>
+            <HStack
+                wrap="wrap"
+                gap="24"
+                className={classes}
+                justify="center"
+                align="center"
+            >
                 {getSkeletons(view, count)}
             </HStack>
         );

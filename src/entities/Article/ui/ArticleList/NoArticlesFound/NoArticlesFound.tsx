@@ -20,7 +20,7 @@ export const NoArticlesFound = memo((props: NoArticlesFoundProps) => {
 
     const mainClass = toggleFeatures({
         name: 'isAppRedesigned',
-        on: () => cls.ArticleListRedesigned,
+        on: () => '',
         off: () => cls.ArticleList,
     });
 
@@ -32,6 +32,7 @@ export const NoArticlesFound = memo((props: NoArticlesFoundProps) => {
                 view ? cls[view] : '',
             ])}
             justify="center"
+            align="center"
         >
             <ToggleFeaturesComponent
                 feature="isAppRedesigned"
