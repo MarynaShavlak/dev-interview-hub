@@ -31,6 +31,8 @@ export function ListBoxTrigger<T extends string>(
 
     const showText =
         defaultValue && capitalizeFirstLetter(defaultValue.toLowerCase());
+    // console.log('showText', showText);
+    // console.log('selectedItem', selectedItem);
     return (
         <HListBox.Button
             className={classNames(cls.trigger, {}, [className])}

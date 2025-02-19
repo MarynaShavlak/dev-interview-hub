@@ -1,7 +1,6 @@
 import { useTranslation } from 'react-i18next';
-import React, { memo, useMemo } from 'react';
+import React, { memo } from 'react';
 import { useSortBy } from 'react-instantsearch-core';
-import { useSortFieldOptions } from '../../../lib/hooks/useOptions';
 import { ListBox } from '@/shared/ui/redesigned/Popups';
 import { ArticleSortSelectorProps } from '../ArticleSortSelector';
 import { ArticleSortField } from '@/entities/Article';
@@ -10,21 +9,16 @@ import { VStack } from '@/shared/ui/common/Stack';
 import { Text } from '@/shared/ui/redesigned/Text';
 import { Box } from '@/shared/ui/common/Box';
 import { getFlexClasses } from '@/shared/lib/classes/getFlexClasses/getFlexClasses';
+import { useArticleSortSelector } from '../../../lib/hooks/useArticleSortSelector/useArticleSortSelector';
 
 export const ArticleSortSelectorRedesigned = memo(
     (props: ArticleSortSelectorProps) => {
         const { className, onChangeSort, sort } = props;
         const { t } = useTranslation('articles');
-        console.log('_ArticleSortSelectorRedesigned', sort);
-
-        const rawSortFieldOptions = useSortFieldOptions();
-        const sortFieldOptions = useMemo(
-            () => rawSortFieldOptions,
-            [rawSortFieldOptions],
-        );
+        const { sortTypeOptionsWithOrderValue } = useArticleSortSelector();
 
         const { refine, options } = useSortBy({
-            items: sortFieldOptions,
+            items: sortTypeOptionsWithOrderValue,
         });
 
         const handleSortOptionChange = (newSort: ArticleSortField) => {

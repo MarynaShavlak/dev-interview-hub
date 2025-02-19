@@ -27,7 +27,7 @@ ArticleSortSelector/
 
 ### 1. `lib/`: Utility functions and hooks.
 - **`hooks/`**
-    - [**useOptions.ts**](./lib/hooks/useOptions.ts): Retrieves sorting order options for articles.
+    - [**useOptions.ts**](lib/hooks/useOptions/useOptions.ts): Retrieves sorting order options for articles.
 ### 2. `ui/`: UI components
 
 - **`ArticleSortSelector/`**

@@ -18,6 +18,7 @@ import { ARTICLES_VIEW_LOCALSTORAGE_KEY } from '@/shared/const/localstorage';
 import { getLimitByView } from '../../utilities/getLimitByView/getLimitByView';
 import { useArticleDataFetching } from '../useArticleDataFetching/useArticleDataFetching';
 import { createAlgoliaIndexNameFromUrl } from '../../utilities/createAlgoliaIndexNameFromUrl/createAlgoliaIndexNameFromUrl';
+import { extractSortType } from '../../utilities/extractSortType/extractSortType';
 
 /**
  * Custom hook for managing article filters and triggering data fetches.
@@ -51,6 +52,7 @@ import { createAlgoliaIndexNameFromUrl } from '../../utilities/createAlgoliaInde
 export const useArticleFilters = () => {
     const view = useArticlesPageView();
     const sort = useArticlesPageSort();
+    console.log('useArticleFilters__sort', sort);
     const order = useArticlesPageOrder();
     const search = useArticlesPageSearch();
     const category = useArticlesPageCategory();
@@ -96,13 +98,15 @@ export const useArticleFilters = () => {
         async (newOrder: SortOrder) => {
             setOrder(newOrder);
             if (!shouldFetchData) {
-                const sortField = sort?.split('_')[1] as ArticleSortType;
-                const newSort = createAlgoliaIndexNameFromUrl(
-                    sortField,
-                    newOrder,
-                );
+                const parsedSortType = extractSortType(sort);
+                if (parsedSortType) {
+                    const newSort = createAlgoliaIndexNameFromUrl(
+                        parsedSortType,
+                        newOrder,
+                    );
 
-                setSort(newSort);
+                    setSort(newSort);
+                }
             }
 
             await resetPageAndFetchData();
@@ -127,10 +131,14 @@ export const useArticleFilters = () => {
         [resetPageAndFetchData, setCategory],
     );
 
+    const modifiedSort = !shouldFetchData
+        ? createAlgoliaIndexNameFromUrl(sort, order)
+        : sort;
+
     return {
         view,
         limit,
-        sort,
+        sort: modifiedSort,
         order,
         search,
         category,
