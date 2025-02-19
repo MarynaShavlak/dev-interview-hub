@@ -52,7 +52,7 @@ import { extractSortType } from '../../utilities/extractSortType/extractSortType
 export const useArticleFilters = () => {
     const view = useArticlesPageView();
     const sort = useArticlesPageSort();
-    console.log('useArticleFilters__sort', sort);
+
     const order = useArticlesPageOrder();
     const search = useArticlesPageSearch();
     const category = useArticlesPageCategory();
@@ -132,8 +132,12 @@ export const useArticleFilters = () => {
     );
 
     const modifiedSort = !shouldFetchData
-        ? createAlgoliaIndexNameFromUrl(sort, order)
+        ? sort.includes('_')
+            ? sort
+            : createAlgoliaIndexNameFromUrl(sort, order)
         : sort;
+
+    console.log('modifiedSort', modifiedSort);
 
     return {
         view,

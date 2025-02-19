@@ -33,7 +33,7 @@ export const initArticlesPage = createAsyncThunk<
     try {
         const { getState, dispatch } = thunkApi;
         const inited = getArticlesPageInited(getState());
-        console.log('inited', inited);
+        // console.log('inited', inited);
 
         if (!inited) {
             const parsedParams = parseSearchParams(searchParams);
