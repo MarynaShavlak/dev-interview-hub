@@ -34,7 +34,6 @@ export const ArticleEditorPageHeaderRedesigned = memo(
             handleDelete,
             handleCancel,
             canSave,
-
             articleTitle,
         } = useArticleEditorPageHeader(onActions, hasErrors);
 

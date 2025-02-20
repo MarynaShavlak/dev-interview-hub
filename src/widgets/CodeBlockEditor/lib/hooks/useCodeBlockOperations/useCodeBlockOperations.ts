@@ -50,11 +50,13 @@ export const useCodeBlockOperations = ({
     const handleSaveCodeBlock = useCallback(() => {
         saveCodeBlock();
         if (title) {
-            exitEditMode();
+            // exitEditMode();
+            toggleEditMode();
         } else {
-            enterEditMode();
+            toggleEditMode();
+            // enterEditMode();
         }
-    }, [enterEditMode, saveCodeBlock]);
+    }, [saveCodeBlock, title, toggleEditMode]);
 
     return {
         isEditModeActive,

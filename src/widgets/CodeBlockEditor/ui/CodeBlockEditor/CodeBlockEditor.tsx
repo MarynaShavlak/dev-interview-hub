@@ -5,6 +5,7 @@ import { useCodeBlockState } from '../../lib/hooks/useCodeBlockState/useCodeBloc
 
 import { useCodeBlockOperations } from '../../lib/hooks/useCodeBlockOperations/useCodeBlockOperations';
 import { CodeBlockDisplay } from '../CodeBlockDisplay/CodeBlockDisplay';
+import { useIsEditArticlePage } from '@/shared/lib/hooks/useIsEditArticlePage/useIsEditArticlePage';
 
 export interface CodeBlockEditorProps {
     block: ArticleCodeBlock;
@@ -19,8 +20,8 @@ export const CodeBlockEditor = memo((props: CodeBlockEditorProps) => {
 
     const initialTitle = block.title || '';
     const initialCode = block.code || '';
-    const isEditArticlePage = Boolean(initialTitle && initialCode);
-
+    const isEditArticlePage = useIsEditArticlePage();
+    const isEmptyInfo = !initialTitle && !initialCode;
     const {
         title,
         handleTitleChange,
@@ -69,6 +70,8 @@ export const CodeBlockEditor = memo((props: CodeBlockEditorProps) => {
         onSave: handleSaveCodeBlock,
     };
 
+    console.log('isEditMode____Code Editor', isEditModeActive);
+
     const viewerProps = {
         editBlock: isEditArticlePage ? enterEditMode : toggleEditMode,
         block: currentBlockData,
@@ -81,6 +84,7 @@ export const CodeBlockEditor = memo((props: CodeBlockEditorProps) => {
             formProps={formProps}
             onDelete={handleDeleteCodeBlock}
             viewerProps={viewerProps}
+            isEmptyInfo={isEmptyInfo}
         />
     );
 });

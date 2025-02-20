@@ -16,11 +16,21 @@ interface TextBlockDisplayProps {
     formProps: Omit<TextEditorFormProps, 'onDelete'>;
     viewerProps: ViewerProps;
     onDelete: () => void;
+    isEmptyInfo: boolean;
 }
 
 export const TextBlockDisplay = (props: TextBlockDisplayProps) => {
-    const { isEditing, onDelete, isEditArticlePage, formProps, viewerProps } =
-        props;
+    const {
+        isEditing,
+        onDelete,
+        isEditArticlePage,
+        formProps,
+        viewerProps,
+        isEmptyInfo,
+    } = props;
+
+    const isFormShown =
+        (isEditing && !isEmptyInfo) || (!isEditing && isEmptyInfo);
 
     const renderContent = (shouldShowForm: boolean) =>
         shouldShowForm ? (
@@ -34,7 +44,7 @@ export const TextBlockDisplay = (props: TextBlockDisplayProps) => {
         );
 
     if (isEditArticlePage) {
-        return renderContent(isEditing);
+        return renderContent(isFormShown);
     }
 
     return renderContent(!isEditing);

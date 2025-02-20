@@ -24,6 +24,7 @@ export const useArticleEditorPageHeader = (
     hasErrors: boolean,
 ): UseArticleEditorPageHeaderReturn => {
     const { formData } = useArticleFormState();
+    console.log('formData', formData);
     const { navigateToArticle } = useArticleNavigation();
     const deleteArticleModal = useToggleVisibility();
     const cancelArticleEditing = useToggleVisibility();

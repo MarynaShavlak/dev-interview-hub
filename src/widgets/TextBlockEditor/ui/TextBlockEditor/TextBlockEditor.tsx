@@ -3,6 +3,7 @@ import { ArticleSection, ArticleTextBlock } from '@/entities/Article';
 import { useTextBlockState } from '../../lib/hooks/useTextBlockState/useTextBlockState';
 import { useTextBlockOperations } from '../../lib/hooks/useTextBlockOperations/useTextBlockOperations';
 import { TextBlockDisplay } from '../TextBlockDisplay/TextBlockDisplay';
+import { useIsEditArticlePage } from '@/shared/lib/hooks/useIsEditArticlePage/useIsEditArticlePage';
 
 interface TextBlockEditorProps {
     block: ArticleTextBlock;
@@ -16,7 +17,8 @@ export const TextBlockEditor = memo((props: TextBlockEditorProps) => {
         props;
     const initialTitle = block.title || '';
     const initialParagraphs = block.paragraphs || [];
-    const isEditArticlePage = Boolean(initialTitle && initialParagraphs);
+    const isEmptyInfo = !initialTitle && initialParagraphs.length === 0;
+    const isEditArticlePage = useIsEditArticlePage();
 
     const {
         title,
@@ -34,6 +36,7 @@ export const TextBlockEditor = memo((props: TextBlockEditorProps) => {
         isEditModeActive,
         toggleEditMode,
         enterEditMode,
+
         handleSaveTextBlock,
         handleDeleteTextBlock,
     } = useTextBlockOperations({
@@ -66,7 +69,6 @@ export const TextBlockEditor = memo((props: TextBlockEditorProps) => {
         onEditorStateChange,
         onSave: handleSaveTextBlock,
     };
-    console.log('isEditMode____Editor', isEditModeActive);
 
     const viewerProps = {
         editBlock: isEditArticlePage ? enterEditMode : toggleEditMode,
@@ -80,6 +82,7 @@ export const TextBlockEditor = memo((props: TextBlockEditorProps) => {
             formProps={formProps}
             onDelete={handleDeleteTextBlock}
             viewerProps={viewerProps}
+            isEmptyInfo={isEmptyInfo}
         />
     );
 });

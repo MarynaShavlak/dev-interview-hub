@@ -16,11 +16,21 @@ interface CodeBlockDisplayProps {
     formProps: Omit<CodeEditorFormProps, 'onDelete'>;
     viewerProps: ViewerProps;
     onDelete: () => void;
+    isEmptyInfo: boolean;
 }
 
 export const CodeBlockDisplay = (props: CodeBlockDisplayProps) => {
-    const { isEditing, onDelete, isEditArticlePage, formProps, viewerProps } =
-        props;
+    const {
+        isEditing,
+        onDelete,
+        isEditArticlePage,
+        formProps,
+        viewerProps,
+        isEmptyInfo,
+    } = props;
+
+    const isFormShown =
+        (isEditing && !isEmptyInfo) || (!isEditing && isEmptyInfo);
 
     const renderContent = (shouldShowForm: boolean) =>
         shouldShowForm ? (
@@ -34,7 +44,7 @@ export const CodeBlockDisplay = (props: CodeBlockDisplayProps) => {
         );
 
     if (isEditArticlePage) {
-        return renderContent(isEditing);
+        return renderContent(isFormShown);
     }
 
     return renderContent(!isEditing);
