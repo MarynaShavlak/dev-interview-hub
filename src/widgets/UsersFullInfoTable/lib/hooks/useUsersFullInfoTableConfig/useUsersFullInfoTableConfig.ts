@@ -9,6 +9,7 @@ import {
 import { UsersTableInfo } from '../../../model/types/usersTableInfo';
 import { useUsersFullInfoTableColumns } from '../useUsersFullInfoTableColumns/useUsersFullInfoTableColumns';
 import { CommonFilterType } from '@/features/Table';
+import { DEFAULT_PAGE_SIZE } from '../../../model/consts/pagination';
 
 interface UseTableConfigParams {
     data: UsersTableInfo[];
@@ -35,6 +36,11 @@ export const useUsersFullInfoTableConfig = (
         state: {
             columnFilters,
             globalFilter,
+        },
+        initialState: {
+            pagination: {
+                pageSize: DEFAULT_PAGE_SIZE,
+            },
         },
         getCoreRowModel: getCoreRowModel(),
         getFilteredRowModel: getFilteredRowModel(),

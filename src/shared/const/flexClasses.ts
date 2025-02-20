@@ -29,4 +29,5 @@ export const mapGapToClass: Record<FlexGap, string> = {
     16: cls.gap16,
     24: cls.gap24,
     32: cls.gap32,
+    40: cls.gap40,
 };
