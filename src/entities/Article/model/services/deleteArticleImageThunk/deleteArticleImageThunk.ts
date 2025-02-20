@@ -20,6 +20,14 @@ export const deleteArticleImageThunk = createAsyncThunk<
         const imageRef = ref(firebaseStorage, decodedPath);
         await deleteObject(imageRef);
     } catch (error) {
+        if (
+            error instanceof Error &&
+            (error as any).code === 'storage/object-not-found'
+        ) {
+            console.warn(`Image not found: ${imagePath}`);
+            return undefined;
+        }
+
         const errorMessage =
             error instanceof Error ? error.message : 'Failed to delete image';
         return rejectWithValue(errorMessage);

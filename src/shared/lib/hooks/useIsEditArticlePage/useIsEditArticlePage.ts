@@ -6,7 +6,5 @@ export const useIsEditArticlePage = (): boolean => {
         location.pathname,
     );
 
-    console.log('text___isEditArticlePage', isEditArticlePage);
-
     return isEditArticlePage;
 };

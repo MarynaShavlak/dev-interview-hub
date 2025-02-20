@@ -70,8 +70,6 @@ export const CodeBlockEditor = memo((props: CodeBlockEditorProps) => {
         onSave: handleSaveCodeBlock,
     };
 
-    console.log('isEditMode____Code Editor', isEditModeActive);
-
     const viewerProps = {
         editBlock: isEditArticlePage ? enterEditMode : toggleEditMode,
         block: currentBlockData,
