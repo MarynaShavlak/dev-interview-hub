@@ -21,7 +21,7 @@ export const useTextBlockOperations = ({
     onEditBlock,
 }: UseTextBlockOperationsProps) => {
     const isEditArticlePage = useIsEditArticlePage();
-    console.log('_____edit page', isEditArticlePage);
+
     const {
         isVisible: isEditModeActive,
         toggleVisibility: toggleEditMode,
@@ -57,9 +57,6 @@ export const useTextBlockOperations = ({
         } else {
             exitEditMode();
         }
-
-        // enterEditMode();
-        // }
     }, [enterEditMode, exitEditMode, isEditArticlePage, saveTextBlock]);
 
     return {

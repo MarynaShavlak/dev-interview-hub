@@ -1,6 +1,7 @@
 import { useCallback } from 'react';
 import { ArticleCodeBlock, ArticleSection } from '@/entities/Article';
 import { useToggleVisibility } from '@/shared/lib/hooks/useToggleVisibility/useToggleVisibility';
+import { useIsEditArticlePage } from '@/shared/lib/hooks/useIsEditArticlePage/useIsEditArticlePage';
 
 interface UseCodeBlockOperationsProps {
     blockId: string;
@@ -19,6 +20,7 @@ export const useCodeBlockOperations = ({
     deleteBlockFromArticle,
     onEditBlock,
 }: UseCodeBlockOperationsProps) => {
+    const isEditArticlePage = useIsEditArticlePage();
     const {
         isVisible: isEditModeActive,
         toggleVisibility: toggleEditMode,
@@ -49,14 +51,12 @@ export const useCodeBlockOperations = ({
 
     const handleSaveCodeBlock = useCallback(() => {
         saveCodeBlock();
-        if (title) {
-            // exitEditMode();
-            toggleEditMode();
+        if (!isEditArticlePage) {
+            enterEditMode();
         } else {
-            toggleEditMode();
-            // enterEditMode();
+            exitEditMode();
         }
-    }, [saveCodeBlock, title, toggleEditMode]);
+    }, [enterEditMode, exitEditMode, isEditArticlePage, saveCodeBlock]);
 
     return {
         isEditModeActive,
