@@ -3,38 +3,35 @@ import {
     PAGE_PADDINGS_WIDTH,
     TABLE_BORDER_WIDTH,
 } from '../../../model/consts/tableConsts';
-import { toggleFeatures } from '@/shared/lib/features';
+import { getSidebarElement } from '@/shared/lib/getDOMElements/getSidebarElement';
+import { getToolbarElement } from '@/shared/lib/getDOMElements/getToolbarElement';
+
+/**
+ * Calculates the available width for flexible columns in the table layout.
+ *
+ * @param columnWidths - Object containing widths of fixed columns.
+ * @param minColumnWidth - Minimum allowed width for flexible columns.
+ * @returns Computed available width for flexible columns.
+ */
 
 export const calculateAvailableFlexColumnWidth = (
-    widthParams: Record<string, number>,
+    columnWidths: Record<string, number>,
     minColumnWidth: number,
 ): number => {
-    let availableWidth = 0;
-    const toolbar = document.querySelector('[data-testid="toolbar"]');
-
-    const sidebar = toggleFeatures({
-        name: 'isAppRedesigned',
-        on: () => document.querySelector('[data-testid="sidebar-wrap"]'),
-        off: () => document.querySelector('[data-testid="sidebar"]'),
-    });
+    const toolbar = getToolbarElement();
+    const sidebar = getSidebarElement();
 
     const toolbarWidth = toolbar?.getBoundingClientRect().width ?? 0;
-
     const sidebarWidth = sidebar?.getBoundingClientRect().width ?? 0;
-
-    const fixedColumnsWidthSum = calculateTotalFixedColumnsWidth(widthParams);
-
-    const stableWidthValue =
+    const fixedColumnsWidth = calculateTotalFixedColumnsWidth(columnWidths);
+    const nonAdjustableWidth =
         sidebarWidth + toolbarWidth + TABLE_BORDER_WIDTH + PAGE_PADDINGS_WIDTH;
 
-    availableWidth =
-        window.innerWidth - fixedColumnsWidthSum - stableWidthValue;
+    const availableWidth =
+        window.innerWidth - fixedColumnsWidth - nonAdjustableWidth;
 
-    const sum = availableWidth + fixedColumnsWidthSum;
-
-    if (sum > 1200) {
-        availableWidth = 1200 - fixedColumnsWidthSum;
-    }
-
-    return Math.max(availableWidth, minColumnWidth);
+    return Math.max(
+        Math.min(availableWidth, 1200 - fixedColumnsWidth),
+        minColumnWidth,
+    );
 };

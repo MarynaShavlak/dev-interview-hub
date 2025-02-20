@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import { toggleFeatures } from '../../features';
+import { getSidebarElement } from '../../getDOMElements/getSidebarElement';
 
 export const SIDEBAR_COLLAPSED_WIDTH = 115;
 export const useSidebarCollapseState = () => {
@@ -10,11 +10,7 @@ export const useSidebarCollapseState = () => {
     }, []);
 
     useEffect(() => {
-        const sidebar = toggleFeatures({
-            name: 'isAppRedesigned',
-            on: () => document.querySelector('[data-testid="sidebar-wrap"]'),
-            off: () => document.querySelector('[data-testid="sidebar"]'),
-        });
+        const sidebar = getSidebarElement();
 
         if (!sidebar) {
             return undefined;
