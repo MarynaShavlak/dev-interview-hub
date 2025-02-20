@@ -86,6 +86,7 @@ export const ArticleRecommendationsListRedesigned = memo(
                                         <OrderCard index={index + 1} />
                                         <AppLink
                                             to={getRouteArticleDetails(item.id)}
+                                            target="_blank"
                                         >
                                             <Text size="m" text={item.title} />
                                         </AppLink>

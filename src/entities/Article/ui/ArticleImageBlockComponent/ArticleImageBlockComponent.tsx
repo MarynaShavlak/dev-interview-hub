@@ -1,14 +1,19 @@
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
-import { Text as TextDeprecated, TextAlign } from '@/shared/ui/deprecated/Text';
+import {
+    Text as TextDeprecated,
+    TextAlign,
+    TextTheme,
+} from '@/shared/ui/deprecated/Text';
 import { Text } from '@/shared/ui/redesigned/Text';
 import cls from './ArticleImageBlockComponent.module.scss';
 import { ArticleImageBlock } from '../../model/types/article';
 import { VStack } from '@/shared/ui/common/Stack';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { useImageLoader } from '@/shared/lib/hooks/useImageLoader/useImageLoader';
-import { Skeleton } from '@/shared/ui/deprecated/Skeleton';
+import { Skeleton as SkeletonDeprecated } from '@/shared/ui/deprecated/Skeleton';
+import { Skeleton } from '@/shared/ui/redesigned/Skeleton';
 
 interface ArticleImageBlockComponentProps {
     className?: string;
@@ -30,7 +35,11 @@ export const ArticleImageBlockComponent = memo(
                     align="center"
                     gap="8"
                 >
-                    <Skeleton width="100%" height="100px" />
+                    <ToggleFeaturesComponent
+                        feature="isAppRedesigned"
+                        on={<Skeleton width="100%" height="100px" />}
+                        off={<SkeletonDeprecated width="100%" height="100px" />}
+                    />
                 </VStack>
             );
         }
@@ -42,9 +51,22 @@ export const ArticleImageBlockComponent = memo(
                     align="center"
                     gap="8"
                 >
-                    <Text
-                        text={t('Не вдалося завантажити зображення')}
-                        align="center"
+                    <ToggleFeaturesComponent
+                        feature="isAppRedesigned"
+                        on={
+                            <Text
+                                variant="error"
+                                text={t('Не вдалося завантажити зображення')}
+                                align="center"
+                            />
+                        }
+                        off={
+                            <TextDeprecated
+                                theme={TextTheme.ERROR}
+                                text={t('Не вдалося завантажити зображення')}
+                                align={TextAlign.CENTER}
+                            />
+                        }
                     />
                 </VStack>
             );
