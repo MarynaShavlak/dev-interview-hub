@@ -30,24 +30,41 @@ export const Tabs = memo((props: TabsProps) => {
         multiselect = false,
     } = props;
 
+    const handleMultiSelect = useCallback(
+        (tab: TabItem) => {
+            let newValue = [];
+            if (Array.isArray(value)) {
+                if (value.includes(tab.value)) {
+                    newValue = value.filter((v) => v !== tab.value);
+                } else {
+                    newValue = [...value, tab.value];
+                }
+            } else {
+                newValue = [tab.value];
+            }
+            return newValue.join(',');
+        },
+        [value],
+    );
+
+    const handleSingleSelect = useCallback(
+        (tab: TabItem) => {
+            return tab.value === value ? '' : tab.value;
+        },
+        [value],
+    );
+
     const clickHandle = useCallback(
         (tab: TabItem) => () => {
-            if (multiselect) {
-                // For multi-select, update value as array of strings
-                const newValue = Array.isArray(value)
-                    ? value.includes(tab.value)
-                        ? value.filter((v) => v !== tab.value)
-                        : [...value, tab.value]
-                    : [tab.value]; // Convert single value to array if needed
-                onTabClick({
-                    value: newValue.join(','),
-                    label: tab.label,
-                }); // Pass as string joined by comma
-            } else {
-                onTabClick(tab); // For single select, just pass the tab
-            }
+            const newValue = multiselect
+                ? handleMultiSelect(tab)
+                : handleSingleSelect(tab);
+            onTabClick({
+                value: newValue,
+                label: tab.label,
+            });
         },
-        [onTabClick, value, multiselect],
+        [multiselect, handleMultiSelect, handleSingleSelect, onTabClick],
     );
 
     return (
