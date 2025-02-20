@@ -1,4 +1,4 @@
-import { memo, useEffect, useState } from 'react';
+import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
 import { Text as TextDeprecated, TextAlign } from '@/shared/ui/deprecated/Text';
@@ -7,6 +7,7 @@ import cls from './ArticleImageBlockComponent.module.scss';
 import { ArticleImageBlock } from '../../model/types/article';
 import { VStack } from '@/shared/ui/common/Stack';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
+import { useImageLoader } from '@/shared/lib/hooks/useImageLoader/useImageLoader';
 
 interface ArticleImageBlockComponentProps {
     className?: string;
@@ -16,35 +17,10 @@ interface ArticleImageBlockComponentProps {
 export const ArticleImageBlockComponent = memo(
     (props: ArticleImageBlockComponentProps) => {
         const { className, block } = props;
-        const [imageError, setImageError] = useState<boolean>(false);
-        const [isLoading, setIsLoading] = useState<boolean>(true);
         const { t } = useTranslation();
-        useEffect(() => {
-            const checkImage = async (url: string) => {
-                try {
-                    const img = new Image();
-                    img.onload = () => {
-                        setIsLoading(false);
-                        setImageError(false);
-                    };
-                    img.onerror = () => {
-                        setIsLoading(false);
-                        setImageError(true);
-                    };
-                    img.src = url;
-                } catch (error) {
-                    setIsLoading(false);
-                    setImageError(true);
-                }
-            };
-
-            if (block.src) {
-                checkImage(block.src);
-            } else {
-                setIsLoading(false);
-                setImageError(true);
-            }
-        }, [block.src]);
+        const { isLoading, imageError, setImageError } = useImageLoader(
+            block.src,
+        );
 
         if (isLoading) {
             return (
