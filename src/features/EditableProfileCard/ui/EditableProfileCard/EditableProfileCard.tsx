@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo, useEffect } from 'react';
 import { EditableProfileCardContainer } from '../EditableProfileCardContainer/EditableProfileCardContainer';
 import { useProfile } from '../../lib/hooks/useProfile/useProfile';
 import { EditableProfileCardError } from '../EditableProfileCardError/EditableProfileCardError';
@@ -13,7 +13,6 @@ import { VStack } from '@/shared/ui/common/Stack';
 import { profileReducer } from '../../model/slices/profileSlice';
 import { EditableProfileCardHeader } from '../EditableProfileCardHeader/EditableProfileCardHeader';
 import cls from './EditableProfileCard.module.scss';
-import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect/useInitialEffect';
 import { getUserProfileThunk } from '../../model/services/getUserProfileThunk/getUserProfileThunk';
 
 interface EditableProfileCardProps {
@@ -30,11 +29,11 @@ export const EditableProfileCard = memo((props: EditableProfileCardProps) => {
     const { validateErrors } = useProfile();
     const dispatch = useAppDispatch();
 
-    useInitialEffect(() => {
-        if (id) {
+    useEffect(() => {
+        if (__PROJECT__ !== 'storybook' && __PROJECT__ !== 'jest' && id) {
             dispatch(getUserProfileThunk(id));
         }
-    });
+    }, [id, dispatch]);
 
     const mainClass = toggleFeatures({
         name: 'isAppRedesigned',
