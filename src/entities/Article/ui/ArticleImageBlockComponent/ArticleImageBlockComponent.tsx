@@ -8,6 +8,7 @@ import { ArticleImageBlock } from '../../model/types/article';
 import { VStack } from '@/shared/ui/common/Stack';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { useImageLoader } from '@/shared/lib/hooks/useImageLoader/useImageLoader';
+import { Skeleton } from '@/shared/ui/deprecated/Skeleton';
 
 interface ArticleImageBlockComponentProps {
     className?: string;
@@ -29,7 +30,7 @@ export const ArticleImageBlockComponent = memo(
                     align="center"
                     gap="8"
                 >
-                    <Text text="Loading..." align="center" />
+                    <Skeleton width="100%" height="100px" />
                 </VStack>
             );
         }
