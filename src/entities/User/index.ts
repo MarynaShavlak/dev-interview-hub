@@ -1,3 +1,5 @@
+export { useGetUserRoles } from '@/entities/User/lib/hooks/useGetUserRoles/useGetUserRoles';
+
 export { deleteUserThunk } from './model/services/deleteUserThunk/deleteUserThunk';
 
 export { useUserProfileNavigation } from './lib/hooks/useUserProfileNavigation/useUserProfileNavigation';
@@ -12,8 +14,8 @@ export {
     getUserInited,
     useUserInited,
     useUserRoles,
-    isUserAdmin,
-    isUserManager,
+    // isUserAdmin,
+    // isUserManager,
     useJsonSettings,
 } from './model/selectors';
 export {

@@ -2,7 +2,7 @@ import { memo, useCallback } from 'react';
 import { EditableProfileCardHeaderRedesigned } from './EditableProfileCardHeaderRedesigned/EditableProfileCardHeaderRedesigned';
 import { EditableProfileCardHeaderDeprecated } from './EditableProfileCardHeaderDeprecated/EditableProfileCardHeaderDeprecated';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
-import { useUserAuthData } from '@/entities/User';
+import { useGetUserRoles, useUserAuthData } from '@/entities/User';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useProfileActions } from '../../model/slices/profileSlice';
 import { useProfileReadonly } from '../../model/selectors/getProfileReadonly/getProfileReadonly';
@@ -23,7 +23,9 @@ export const EditableProfileCardHeader = memo(
         const authData = useUserAuthData();
         const profileData = useProfileData();
 
-        const canEdit = authData?.id === profileData?.id;
+        const { isAdmin } = useGetUserRoles();
+        const canEdit = authData?.id === profileData?.id || isAdmin;
+
         const readonly = useProfileReadonly();
         const dispatch = useAppDispatch();
         const { hasInputErrors, onChangeAvatar } = useProfile();
@@ -37,12 +39,12 @@ export const EditableProfileCardHeader = memo(
                 ).unwrap();
                 onChangeAvatar(url);
             }
-            if (uploadedProfilePhoto == null) {
+            if (uploadedProfilePhoto == null && !profileData?.avatar) {
                 onChangeAvatar('');
             }
 
             dispatch(updateUserProfileThunk());
-        }, [dispatch, onChangeAvatar, uploadedProfilePhoto]);
+        }, [dispatch, onChangeAvatar, profileData, uploadedProfilePhoto]);
 
         const onEdit = useCallback(() => {
             setReadonly(false);

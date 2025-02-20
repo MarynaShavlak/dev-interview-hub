@@ -1,6 +1,5 @@
 import { useTranslation } from 'react-i18next';
 import React, { memo, useCallback } from 'react';
-import { useSelector } from 'react-redux';
 import { Dropdown as DropdownDeprecated } from '@/shared/ui/deprecated/Popups';
 import { Dropdown } from '@/shared/ui/redesigned/Popups';
 import { Avatar as AvatarDeprecated } from '@/shared/ui/deprecated/Avatar';
@@ -11,12 +10,7 @@ import {
     getRouteProfile,
     getRouteSettings,
 } from '@/shared/const/router/router';
-import {
-    isUserAdmin,
-    isUserManager,
-    logoutUser,
-    useUserAuthData,
-} from '@/entities/User';
+import { logoutUser, useGetUserRoles, useUserAuthData } from '@/entities/User';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import cls from './AvatarDropdown.module.scss';
 
@@ -27,8 +21,7 @@ interface AvatarDropdownProps {
 export const AvatarDropdown = memo(({ className }: AvatarDropdownProps) => {
     const dispatch = useAppDispatch();
     const { t } = useTranslation();
-    const isAdmin = useSelector(isUserAdmin);
-    const isManager = useSelector(isUserManager);
+    const { isAdmin, isManager } = useGetUserRoles();
     const authData = useUserAuthData();
 
     const onLogout = useCallback(async () => {
@@ -72,6 +65,7 @@ export const AvatarDropdown = memo(({ className }: AvatarDropdownProps) => {
             feature="isAppRedesigned"
             on={
                 <Dropdown
+                    className={className}
                     direction="bottom left"
                     items={items}
                     trigger={<Avatar size={40} src={authData.avatar} />}
