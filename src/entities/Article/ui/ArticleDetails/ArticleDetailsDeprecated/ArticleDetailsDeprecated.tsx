@@ -15,17 +15,16 @@ import { AppLink } from '@/shared/ui/deprecated/AppLink';
 import { ArticleDetailsProps } from '../ArticleDetails';
 import { useArticleDataById } from '../../../api/articleApi';
 import { formatDateString } from '@/shared/lib/text/formatDateString/formatDateString';
+import { useUpdateArticleViews } from '../../../lib/hooks/useUpdateArticleViews/useUpdateArticleViews';
 
 export const ArticleDetailsDeprecated = memo((props: ArticleDetailsProps) => {
     const { id } = props;
     const { data: article, isLoading, error } = useArticleDataById(id || '');
+    useUpdateArticleViews({ id, article, isLoading });
     if (!article) {
         return null;
     }
 
-    // const article = useArticleDetailsData();
-    // const isLoading = useArticleDetailsIsLoading();
-    // const error = useArticleDetailsError();
     const { title, blocks, createdAt, views, subtitle, img } = article;
     const subtitleText = subtitle.text;
     const subtitleLink = subtitle.link;
