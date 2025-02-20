@@ -2,6 +2,7 @@ import { useCallback, useEffect } from 'react';
 import {
     useArticleFormData,
     useArticleUploadPreview,
+    useHasArticleChanges,
 } from '../../../model/selectors/getCreateArticleSelectors';
 import { useCreateArticleActions } from '../../../model/slices/createArticleSlice';
 import { Article, ArticleBlock } from '@/entities/Article';
@@ -11,6 +12,7 @@ export const useArticleFormState = (
     isEditMode: boolean = false,
 ) => {
     const formData = useArticleFormData();
+    const hasChanges = useHasArticleChanges();
     const uploadedArticleImage = useArticleUploadPreview();
     const {
         updateCreateArticleForm,
@@ -90,6 +92,7 @@ export const useArticleFormState = (
     }, [resetArticle]);
 
     return {
+        hasChanges,
         formData,
         uploadedArticleImage,
         onChangeTitle,

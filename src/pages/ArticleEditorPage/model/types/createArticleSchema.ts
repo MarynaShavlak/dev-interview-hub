@@ -4,4 +4,5 @@ export interface CreateArticleSchema {
     form: Article;
     uploadedArticleImage?: null | File;
     isEdit: boolean;
+    hasChanges: boolean;
 }

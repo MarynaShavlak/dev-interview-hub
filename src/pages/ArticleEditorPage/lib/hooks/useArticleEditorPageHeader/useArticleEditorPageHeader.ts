@@ -15,6 +15,7 @@ interface UseArticleEditorPageHeaderReturn {
     handleUpdate: () => Promise<void>;
     handleDelete: () => Promise<void>;
     handleCancel: () => void;
+    cancelEdit: () => void;
     canSave: boolean;
     articleTitle?: string;
 }
@@ -23,8 +24,8 @@ export const useArticleEditorPageHeader = (
     onActions: ArticleEditorPageHeaderProps['onActions'],
     hasErrors: boolean,
 ): UseArticleEditorPageHeaderReturn => {
-    const { formData } = useArticleFormState();
-    console.log('formData', formData);
+    const { formData, hasChanges } = useArticleFormState();
+
     const { navigateToArticle } = useArticleNavigation();
     const deleteArticleModal = useToggleVisibility();
     const cancelArticleEditing = useToggleVisibility();
@@ -46,11 +47,27 @@ export const useArticleEditorPageHeader = (
     }, [navigateToArticle, onActions]);
 
     const handleCancel = useCallback(() => {
-        if (editedArticleId) {
+        if (!hasChanges && editedArticleId) {
             onActions.cancel();
             navigateToArticle(editedArticleId);
+        } else if (editedArticleId) {
+            cancelArticleEditing.show();
         }
-    }, [editedArticleId, navigateToArticle, onActions]);
+    }, [
+        hasChanges,
+        editedArticleId,
+        navigateToArticle,
+        onActions,
+        cancelArticleEditing,
+    ]);
+
+    const cancelEdit = useCallback(() => {
+        if (hasChanges) {
+            cancelArticleEditing.show();
+        } else {
+            handleCancel();
+        }
+    }, [hasChanges, cancelArticleEditing.show, handleCancel]);
 
     const canSave = !hasErrors && (formData?.blocks?.length ?? 0) > 0;
 
@@ -63,5 +80,13 @@ export const useArticleEditorPageHeader = (
         handleCancel,
         canSave,
         articleTitle: formData?.title,
+        cancelEdit,
     };
 };
+
+// const handleCancel = useCallback(() => {
+//     if (editedArticleId) {
+//         onActions.cancel();
+//         navigateToArticle(editedArticleId);
+//     }
+// }, [editedArticleId, navigateToArticle, onActions]);

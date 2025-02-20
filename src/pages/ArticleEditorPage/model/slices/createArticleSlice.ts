@@ -18,6 +18,7 @@ const initialState: CreateArticleSchema = {
         blocks: [],
     },
     isEdit: false,
+    hasChanges: false,
 };
 
 export const createArticleSlice = buildSlice({
@@ -33,12 +34,15 @@ export const createArticleSlice = buildSlice({
                 ...action.payload,
             };
             state.form = data as Article;
+            state.hasChanges = true;
         },
         updateSubtitleLink(state, action) {
             state.form.subtitle.link = action.payload;
+            state.hasChanges = true;
         },
         updateSubtitleText(state, action) {
             state.form.subtitle.text = action.payload;
+            state.hasChanges = true;
         },
         updateCategory(state, action) {
             const categoryToAdd = action.payload;
@@ -52,6 +56,7 @@ export const createArticleSlice = buildSlice({
                     state.form.category.splice(index, 1);
                 }
             }
+            state.hasChanges = true;
         },
         updateBlocks(state, action: PayloadAction<ArticleBlock>) {
             const incomingBlock = action.payload;
@@ -67,12 +72,14 @@ export const createArticleSlice = buildSlice({
             } else {
                 state.form.blocks.push(incomingBlock);
             }
+            state.hasChanges = true;
         },
 
         deleteBlock(state, action: PayloadAction<string>) {
             state.form.blocks = state.form.blocks.filter(
                 (block) => block.id !== action.payload,
             );
+            state.hasChanges = true;
         },
 
         setUploadedArticleImage: (
@@ -80,10 +87,12 @@ export const createArticleSlice = buildSlice({
             action: PayloadAction<File | null>,
         ) => {
             state.uploadedArticleImage = action.payload;
+            state.hasChanges = true;
         },
         resetArticle: (state) => {
             state.uploadedArticleImage = initialState.uploadedArticleImage;
             state.form = initialState.form;
+            state.hasChanges = false;
         },
         setEditMode: (state, action: PayloadAction<boolean>) => {
             state.isEdit = action.payload;

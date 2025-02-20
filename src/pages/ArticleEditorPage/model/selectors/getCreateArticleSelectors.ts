@@ -8,3 +8,7 @@ export const [useArticleFormData, getArticleFormData] = buildSelector(
 export const [useArticleUploadPreview, getArticleUploadPreview] = buildSelector(
     (state: StateSchema) => state.createArticle?.uploadedArticleImage,
 );
+
+export const [useHasArticleChanges, getHasArticleChanges] = buildSelector(
+    (state: StateSchema) => state.createArticle?.hasChanges ?? false,
+);

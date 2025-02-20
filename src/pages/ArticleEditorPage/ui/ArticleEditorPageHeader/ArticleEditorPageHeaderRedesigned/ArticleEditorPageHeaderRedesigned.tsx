@@ -35,6 +35,7 @@ export const ArticleEditorPageHeaderRedesigned = memo(
             handleCancel,
             canSave,
             articleTitle,
+            cancelEdit,
         } = useArticleEditorPageHeader(onActions, hasErrors);
 
         if (isLoading) {
@@ -57,7 +58,7 @@ export const ArticleEditorPageHeaderRedesigned = memo(
                             >
                                 {t('Видалити')}
                             </Button>
-                            <Button onClick={cancelArticleEditing.show}>
+                            <Button onClick={cancelEdit}>
                                 {t('Відмінити')}
                             </Button>
                             <Button
