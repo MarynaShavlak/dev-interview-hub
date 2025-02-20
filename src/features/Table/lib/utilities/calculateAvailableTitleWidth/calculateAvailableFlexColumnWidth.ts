@@ -1,11 +1,3 @@
-import { calculateTotalFixedColumnsWidth } from '../calculateTotalFixedColumnsWidth/calculateTotalFixedColumnsWidth';
-import {
-    PAGE_PADDINGS_WIDTH,
-    TABLE_BORDER_WIDTH,
-} from '../../../model/consts/tableConsts';
-import { getSidebarElement } from '@/shared/lib/getDOMElements/getSidebarElement';
-import { getToolbarElement } from '@/shared/lib/getDOMElements/getToolbarElement';
-
 /**
  * Calculates the available width for flexible columns in the table layout.
  *
@@ -13,6 +5,14 @@ import { getToolbarElement } from '@/shared/lib/getDOMElements/getToolbarElement
  * @param minColumnWidth - Minimum allowed width for flexible columns.
  * @returns Computed available width for flexible columns.
  */
+import { getToolbarElement } from '@/shared/lib/getDOMElements/getToolbarElement';
+import { getSidebarElement } from '@/shared/lib/getDOMElements/getSidebarElement';
+import { calculateTotalFixedColumnsWidth } from '../calculateTotalFixedColumnsWidth/calculateTotalFixedColumnsWidth';
+import {
+    MAX_TABLE_WIDTH,
+    PAGE_PADDINGS_WIDTH,
+    TABLE_BORDER_WIDTH,
+} from '../../../model/consts/tableConsts';
 
 export const calculateAvailableFlexColumnWidth = (
     columnWidths: Record<string, number>,
@@ -31,7 +31,7 @@ export const calculateAvailableFlexColumnWidth = (
         window.innerWidth - fixedColumnsWidth - nonAdjustableWidth;
 
     return Math.max(
-        Math.min(availableWidth, 1200 - fixedColumnsWidth),
+        Math.min(availableWidth, MAX_TABLE_WIDTH - fixedColumnsWidth),
         minColumnWidth,
     );
 };

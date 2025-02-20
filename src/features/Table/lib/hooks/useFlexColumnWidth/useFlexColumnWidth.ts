@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { calculateAvailableFlexColumnWidth } from '../../utilities/calculateAvailableTitleWidth/calculateAvailableFlexColumnWidth';
+import { getSidebarElement } from '@/shared/lib/getDOMElements/getSidebarElement';
 
 export const useFlexColumnWidth = (
     widthParams: Record<string, number>,
@@ -17,14 +18,20 @@ export const useFlexColumnWidth = (
         };
 
         const resizeObserver = new ResizeObserver(calculateColumnWidth);
-        const sidebar = document.querySelector('[data-testid="sidebar"]');
+        const sidebar = getSidebarElement();
 
         if (sidebar) {
             resizeObserver.observe(sidebar);
             calculateColumnWidth();
         }
 
-        return () => resizeObserver.disconnect();
+        window.addEventListener('resize', calculateColumnWidth);
+        calculateColumnWidth();
+
+        return () => {
+            resizeObserver.disconnect();
+            window.removeEventListener('resize', calculateColumnWidth);
+        };
     }, [minColumnWidth, widthParams]);
 
     return flexColumnWidth;

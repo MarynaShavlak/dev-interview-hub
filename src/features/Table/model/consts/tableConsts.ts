@@ -7,3 +7,5 @@ export const PAGE_PADDINGS_WIDTH = toggleFeatures({
     on: () => 0,
     off: () => 60,
 });
+
+export const MAX_TABLE_WIDTH = 1200;
