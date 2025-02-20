@@ -1,4 +1,3 @@
-import { useTranslation } from 'react-i18next';
 import { memo } from 'react';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
 import {
@@ -11,14 +10,13 @@ import {
     ArticleCard,
     ArticleListSkeleton,
     ArticleView,
-    useArticleDataById,
     // useArticleDetailsData,
 } from '@/entities/Article';
 import { HStack, VStack } from '@/shared/ui/common/Stack';
-import { useArticlesRecomendations } from '../../api/articleRecommendationsApi';
 import { Skeleton } from '@/shared/ui/redesigned/Skeleton';
 import { Skeleton as SkeletonDeprecated } from '@/shared/ui/deprecated/Skeleton';
 import { Each } from '@/shared/lib/components/Each/Each';
+import { useArticleRecommendations } from '../../lib/hooks/useArticleRecommendations/useArticleRecommendations';
 
 export interface ArticleRecommendationsListProps {
     className?: string;
@@ -28,30 +26,17 @@ export interface ArticleRecommendationsListProps {
 const ArticleRecommendationsList = memo(
     (props: ArticleRecommendationsListProps) => {
         const { className, id } = props;
-        const { t } = useTranslation('articleDetails');
-        const { data: article } = useArticleDataById(id);
-        // console.log('aaaaa', article);
-        const title = t('Рекомендуємо');
-        const articleCategory = article?.category;
-        const errorTitle = t('Помилка завантаження рекомендацій');
-
-        const errorText = t(
-            'На жаль, не вдалося завантажити рекомендації. Спробуйте пізніше.',
-        );
-        const noRecommendsTitle = t('Немає доступних рекомендацій');
-        const noRecommendsText = t(
-            'Наразі немає доступних рекомендацій. Будь ласка, перевірте пізніше.',
-        );
 
         const {
             isLoading,
-            data: articles,
+            articles,
             error,
-        } = useArticlesRecomendations({
-            limit: 3,
-            category: articleCategory || [],
-            exceptArticleId: article?.id || '0',
-        });
+            title,
+            errorTitle,
+            errorText,
+            noRecommendsTitle,
+            noRecommendsText,
+        } = useArticleRecommendations(id);
 
         if (isLoading) {
             return (
@@ -133,22 +118,45 @@ const ArticleRecommendationsList = memo(
                     on={<Text size="l" title={title} />}
                     off={<TextDeprecated size={TextSize.L} title={title} />}
                 />
-                <HStack wrap="wrap" gap="24" justify="center" max>
-                    <Each
-                        of={articles}
-                        render={(item, index) => {
-                            return (
-                                <ArticleCard
-                                    article={item}
-                                    view={ArticleView.GRID}
-                                    target="_blank"
-                                    key={item.id}
-                                    index={index}
-                                />
-                            );
-                        }}
-                    />
-                </HStack>
+                <ToggleFeaturesComponent
+                    feature="isAppRedesigned"
+                    on={
+                        <HStack wrap="wrap" gap="24" justify="center" max>
+                            <Each
+                                of={articles}
+                                render={(item, index) => {
+                                    return (
+                                        <ArticleCard
+                                            article={item}
+                                            view={ArticleView.GRID}
+                                            target="_blank"
+                                            key={item.id}
+                                            index={index}
+                                        />
+                                    );
+                                }}
+                            />
+                        </HStack>
+                    }
+                    off={
+                        <HStack wrap="wrap" gap="24" justify="center" max>
+                            <Each
+                                of={articles}
+                                render={(item, index) => {
+                                    return (
+                                        <ArticleCard
+                                            article={item}
+                                            view={ArticleView.GRID}
+                                            target="_blank"
+                                            key={item.id}
+                                            index={index}
+                                        />
+                                    );
+                                }}
+                            />
+                        </HStack>
+                    }
+                />
             </VStack>
         );
     },
