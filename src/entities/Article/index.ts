@@ -45,3 +45,4 @@ export { ArticleBlockPreview } from './ui/ArticleBlockPreview/ArticleBlockPrevie
 export { ArticleTextBlockComponent } from './ui/ArticleTextBlockComponent/ArticleTextBlockComponent';
 export { ArticleCodeBlockComponent } from './ui/ArticleCodeBlockComponent/ArticleCodeBlockComponent';
 export { ArticleImageBlockComponent } from './ui/ArticleImageBlockComponent/ArticleImageBlockComponent';
+export { ArticleViews } from './ui/ArticleViews/ArticleViews';

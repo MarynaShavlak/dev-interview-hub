@@ -1,12 +1,12 @@
-import { memo } from 'react';
+import React, { memo } from 'react';
 
 import { Text } from '@/shared/ui/redesigned/Text';
 import {
     ArticleListSkeleton,
     ArticleView,
-    // useArticleDetailsData,
+    ArticleViews,
 } from '@/entities/Article';
-import { VStack } from '@/shared/ui/common/Stack';
+import { HStack, VStack } from '@/shared/ui/common/Stack';
 import { Skeleton } from '@/shared/ui/redesigned/Skeleton';
 import { Each } from '@/shared/lib/components/Each/Each';
 
@@ -14,6 +14,7 @@ import { ArticleRecommendationsListProps } from '../ArticleRecommendationsList';
 import { useArticleRecommendations } from '../../../lib/hooks/useArticleRecommendations/useArticleRecommendations';
 import { AppLink } from '@/shared/ui/deprecated/AppLink';
 import { getRouteArticleDetails } from '@/shared/const/router/router';
+import { OrderCard } from '@/shared/ui/redesigned/OrderCard';
 
 export const ArticleRecommendationsListRedesigned = memo(
     (props: ArticleRecommendationsListProps) => {
@@ -75,17 +76,22 @@ export const ArticleRecommendationsListRedesigned = memo(
                         of={articles}
                         render={(item, index) => {
                             return (
-                                <AppLink to={getRouteArticleDetails(item.id)}>
-                                    <Text size="l" text={item.title} />
-                                </AppLink>
-
-                                // <ArticleCard
-                                //     article={item}
-                                //     view={ArticleView.GRID}
-                                //     target="_blank"
-                                //     key={item.id}
-                                //     index={index}
-                                // />
+                                <HStack
+                                    gap="16"
+                                    align="center"
+                                    max
+                                    justify="between"
+                                >
+                                    <HStack gap="16" align="center">
+                                        <OrderCard index={index + 1} />
+                                        <AppLink
+                                            to={getRouteArticleDetails(item.id)}
+                                        >
+                                            <Text size="m" text={item.title} />
+                                        </AppLink>
+                                    </HStack>
+                                    <ArticleViews views={item.views} />
+                                </HStack>
                             );
                         }}
                     />
