@@ -9,6 +9,7 @@ export const calculateAvailableFlexColumnWidth = (
     widthParams: Record<string, number>,
     minColumnWidth: number,
 ): number => {
+    let availableWidth = 0;
     const toolbar = document.querySelector('[data-testid="toolbar"]');
 
     const sidebar = toggleFeatures({
@@ -21,13 +22,19 @@ export const calculateAvailableFlexColumnWidth = (
 
     const sidebarWidth = sidebar?.getBoundingClientRect().width ?? 0;
 
-    const availableWidth =
-        window.innerWidth -
-        sidebarWidth -
-        calculateTotalFixedColumnsWidth(widthParams) -
-        toolbarWidth -
-        TABLE_BORDER_WIDTH -
-        PAGE_PADDINGS_WIDTH;
+    const fixedColumnsWidthSum = calculateTotalFixedColumnsWidth(widthParams);
+
+    const stableWidthValue =
+        sidebarWidth + toolbarWidth + TABLE_BORDER_WIDTH + PAGE_PADDINGS_WIDTH;
+
+    availableWidth =
+        window.innerWidth - fixedColumnsWidthSum - stableWidthValue;
+
+    const sum = availableWidth + fixedColumnsWidthSum;
+
+    if (sum > 1200) {
+        availableWidth = 1200 - fixedColumnsWidthSum;
+    }
 
     return Math.max(availableWidth, minColumnWidth);
 };
