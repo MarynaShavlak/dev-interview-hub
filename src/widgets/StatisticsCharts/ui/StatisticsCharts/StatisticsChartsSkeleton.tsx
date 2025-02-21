@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import { HStack, VStack } from '@/shared/ui/common/Stack';
+import { HStack } from '@/shared/ui/common/Stack';
 import { toggleFeatures } from '@/shared/lib/features';
 import { Skeleton as SkeletonRedesigned } from '@/shared/ui/redesigned/Skeleton';
 import { Skeleton as SkeletonDeprecated } from '@/shared/ui/deprecated/Skeleton';
@@ -11,6 +11,7 @@ import {
 } from '../../model/consts/chartsRects';
 import { getSkeletonDimensions } from '../../lib/utilities/getSkeletonDimensions/getSkeletonDimensions';
 import { Each } from '@/shared/lib/components/Each/Each';
+import { chartsWrap } from '../../model/consts/classes';
 
 export const StatisticsChartsSkeleton = memo(() => {
     const Skeleton = toggleFeatures({
@@ -31,7 +32,7 @@ export const StatisticsChartsSkeleton = memo(() => {
     } = getSkeletonDimensions();
 
     return (
-        <VStack gap={CHART_GAP} className={cls.parent}>
+        <div className={chartsWrap}>
             <HStack gap={CHART_GAP} wrap="wrap" className={cls.dashboard}>
                 <Each
                     of={Array.from({ length: 6 })}
@@ -97,6 +98,6 @@ export const StatisticsChartsSkeleton = memo(() => {
                 width={quarterlyCategoryChart.width}
                 height={quarterlyCategoryChart.height}
             />
-        </VStack>
+        </div>
     );
 });

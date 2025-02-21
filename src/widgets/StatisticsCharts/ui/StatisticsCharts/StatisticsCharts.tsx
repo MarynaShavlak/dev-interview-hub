@@ -18,7 +18,7 @@ import { ArticleRatingDistributionChart } from '@/features/ArticleRatingDistribu
 import { CHARTS_RECTS } from '../../model/consts/chartsRects';
 import { TopCommentedArticlesChart } from '@/features/TopCommentedArticlesChart';
 import { ArticleMonthlyDataChart } from '@/features/ArticleMonthlyDataChart';
-import { toggleFeatures } from '@/shared/lib/features';
+import { chartsWrap } from '../../model/consts/classes';
 
 export const StatisticsCharts = () => {
     const { users, articles, ratings, comments, isLoading, isError } =
@@ -61,12 +61,6 @@ export const StatisticsCharts = () => {
 
     if (isLoading) return <StatisticsChartsSkeleton />;
     if (isError) return <StatisticsChartsError />;
-
-    const chartsWrap = toggleFeatures({
-        name: 'isAppRedesigned',
-        off: () => cls.chartsWrapDeprecated,
-        on: () => cls.chartsWrapRedesigned,
-    });
 
     return (
         <div className={chartsWrap}>
