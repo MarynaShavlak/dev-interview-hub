@@ -1,13 +1,13 @@
-# RedesignedEditableProfileCardHeader
+# EditableProfileCardHeaderRedesigned
 
 ## Overview
-The **`RedesignedEditableProfileCardHeader`**  component is part of the updated profile management interface, providing users with a modern and intuitive header for editing profile details. 
+The **`EditableProfileCardHeaderRedesigned`**  component is part of the updated profile management interface, providing users with a modern and intuitive header for editing profile details. 
 Rendered when the feature flag `isAppRedesigned` is `true`, it replaces the deprecated header component with an improved UI. 
 This component integrates the latest design elements to enhance user interaction and maintain a cohesive look across the application.
 
 ## Type Definition 
 ```typescript
-interface RedesignedEditableProfileCardHeaderProps {
+interface EditableProfileCardHeaderRedesignedProps {
     onEdit: () => void;
     onCancelEdit: () => void;
     onSave: () => void;
@@ -18,7 +18,7 @@ interface RedesignedEditableProfileCardHeaderProps {
 ```
 
 ## Props
-The **`RedesignedEditableProfileCardHeader`** component accepts the following props:
+The **`EditableProfileCardHeaderRedesigned`** component accepts the following props:
 
 | Prop          | Type                    | Required / Optional | Description                                                                |
 |---------------|-------------------------|----------------------|----------------------------------------------------------------------------|
@@ -39,7 +39,7 @@ The **`RedesignedEditableProfileCardHeader`** component accepts the following pr
 
 ## Usage Example
 ```typescript jsx
-import { RedesignedEditableProfileCardHeader } from '@/features/EditableProfileCardHeader/RedesignedEditableProfileCardHeader';
+import { EditableProfileCardHeaderRedesigned } from '@/features/EditableProfileCardHeader/EditableProfileCardHeaderRedesigned';
 
 const ProfileHeader = () => {
     const handleEdit = () => {
@@ -55,7 +55,7 @@ const ProfileHeader = () => {
     };
 
     return (
-        <RedesignedEditableProfileCardHeader
+        <EditableProfileCardHeaderRedesigned
             className="profile-header"
             onEdit={handleEdit}
             onCancelEdit={handleCancelEdit}
@@ -67,4 +67,4 @@ const ProfileHeader = () => {
 };
 ```
 ## Conclusion
-The **`RedesignedEditableProfileCardHeader`** component is an integral part of the revamped profile management interface, offering users a modern and efficient way to manage profile information. By replacing outdated UI elements with a fresh design, it aligns with the latest application standards and enhances the overall user experience.
+The **`EditableProfileCardHeaderRedesigned`** component is an integral part of the revamped profile management interface, offering users a modern and efficient way to manage profile information. By replacing outdated UI elements with a fresh design, it aligns with the latest application standards and enhances the overall user experience.

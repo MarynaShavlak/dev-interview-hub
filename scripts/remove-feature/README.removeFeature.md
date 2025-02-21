@@ -113,7 +113,7 @@ const result = toggleFeatures({
 
 <ToggleFeaturesComponent
     feature="isAppRedesigned"
-    on={<RedesignedGridViewSkeleton />}
+    on={<GridViewSkeletonRedesigned />}
     off={<DeprecatedGridViewSkeleton />}
 />
 ```
@@ -126,7 +126,7 @@ const result = toggleFeatures({
     off: () => 'disabled',
 });
 
-<RedesignedGridViewSkeleton />
+<GridViewSkeletonRedesigned />
 ```
 
 After Running the Script `npm run remove-feature isArticleEnabed off`:
@@ -135,7 +135,7 @@ const result = 'disabled';
 
 <ToggleFeaturesComponent
     feature="isAppRedesigned"
-    on={<RedesignedGridViewSkeleton />}
+    on={<GridViewSkeletonRedesigned />}
     off={<DeprecatedGridViewSkeleton />}
 />
 ```

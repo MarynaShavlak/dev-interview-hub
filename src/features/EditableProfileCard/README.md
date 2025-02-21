@@ -50,8 +50,8 @@ EditableProfileCard/
 │   │   ├── EditableProfileCardHeader.module.scss
 │   │   ├── DeprecatedEditableProfileCardHeader/
 │   │   │   └── DeprecatedEditableProfileCardHeader.tsx
-│   │   └── RedesignedEditableProfileCardHeader/
-│   │       └── RedesignedEditableProfileCardHeader.tsx
+│   │   └── EditableProfileCardHeaderRedesigned/
+│   │       └── EditableProfileCardHeaderRedesigned.tsx
 ├── lib/
 │   └── hooks/
 │       └── useProfile.ts
@@ -103,8 +103,8 @@ EditableProfileCard/
     - **EditableProfileCardHeader.module.scss**: Styles for the header.
     - **`DeprecatedEditableProfileCardHeader/`**:
       - [**DeprecatedEditableProfileCardHeader.tsx**](ui/EditableProfileCardHeader/EditableProfileCardHeaderDeprecated/README.md): Legacy header component.
-    - **`RedesignedEditableProfileCardHeader/`**:
-      -  [**RedesignedEditableProfileCardHeader.tsx**](ui/EditableProfileCardHeader/EditableProfileCardHeaderRedesigned/README.md): Updated header component for the redesigned UI.
+    - **`EditableProfileCardHeaderRedesigned/`**:
+      -  [**EditableProfileCardHeaderRedesigned.tsx**](ui/EditableProfileCardHeader/EditableProfileCardHeaderRedesigned/README.md): Updated header component for the redesigned UI.
 
 ### 3. `lib/`:  Utility functions and hooks.
 - **`hook/`**

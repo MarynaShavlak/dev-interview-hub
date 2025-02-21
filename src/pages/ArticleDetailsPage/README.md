@@ -24,12 +24,12 @@ ArticleDetailsPage/
 │   │   ├── ArticleDetailsPage.module.scss         # Styling for the article details page.
 │   │   ├── ArticleDetailsPageContainer/           # Container component for wrapping the article details logic.
 │   │   │   └── ArticleDetailsPageContainer.tsx
-│   │   ├── DeprecatedArticleDetailsPage/          # Legacy version of the article details page.
+│   │   ├── ArticleDetailsDeprecatedPage/          # Legacy version of the article details page.
 │   │   │   └── ArticleDetailsPageHeader/          # Header component for the deprecated version.
 │   │   │       └── ArticleDetailsPageHeader.tsx
-│   │   │   └── DeprecatedArticleDetailsPage.tsx   # Main file for the deprecated page.
-│   │   └── RedesignedArticleDetailsPage/          # Updated, redesigned version of the article details page.
-│   │       └── RedesignedArticleDetailsPage.tsx
+│   │   │   └── ArticleDetailsDeprecatedPage.tsx   # Main file for the deprecated page.
+│   │   └── ArticleDetailsRedesignedPage/          # Updated, redesigned version of the article details page.
+│   │       └── ArticleDetailsRedesignedPage.tsx
 ├── index.ts                                       # Entry point of the module.
 ```
 ## Public API

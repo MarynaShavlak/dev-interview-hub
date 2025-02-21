@@ -6,7 +6,7 @@ import { RatingRedesigned } from './RatingRedesigned/RatingRedesigned';
 import { setFeatureFlags } from '@/shared/lib/features';
 
 describe('Rating Component', () => {
-    const renderRedesignedRating = (starsCount: number) => {
+    const renderRatingRedesigned = (starsCount: number) => {
         componentRender(
             <RatingRedesigned
                 starsCount={starsCount}
@@ -27,12 +27,12 @@ describe('Rating Component', () => {
     });
 
     test('should display "Дякуємо за оцінку!" when starsCount is greater than zero', () => {
-        renderRedesignedRating(3);
+        renderRatingRedesigned(3);
         expect(screen.getByText('Дякуємо за оцінку!')).toBeInTheDocument();
     });
 
     test('should display the title when starsCount is zero', () => {
-        renderRedesignedRating(0);
+        renderRatingRedesigned(0);
         expect(
             screen.queryByText('Дякуємо за оцінку!'),
         ).not.toBeInTheDocument();

@@ -6,7 +6,7 @@ import { HStack } from '@/shared/ui/common/Stack';
 import { Button } from '@/shared/ui/redesigned/Button';
 import cls from '../EditableProfileCardHeader.module.scss';
 
-interface RedesignedEditableProfileCardHeaderProps {
+interface EditableProfileCardHeaderRedesignedProps {
     onEdit: () => void;
     onCancelEdit: () => void;
     onSave: () => void;
@@ -18,7 +18,7 @@ interface RedesignedEditableProfileCardHeaderProps {
 }
 
 export const EditableProfileCardHeaderRedesigned = memo(
-    (props: RedesignedEditableProfileCardHeaderProps) => {
+    (props: EditableProfileCardHeaderRedesignedProps) => {
         const {
             className,
             onEdit,

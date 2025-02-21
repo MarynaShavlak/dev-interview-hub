@@ -1,13 +1,13 @@
 # DeprecatedRating
 
 ## Overview
-The **`RedesignedRating`** component is rendered when the feature flag `isAppRedesigned` is `true`, providing users with an updated and modern interface for giving star ratings and feedback. 
+The **`RatingRedesigned`** component is rendered when the feature flag `isAppRedesigned` is `true`, providing users with an updated and modern interface for giving star ratings and feedback. 
 If this feature flag is not active, the `DeprecatedRating` component is rendered instead. 
 This component leverages contemporary UI elements to enhance the user experience and ensure a seamless interaction with the rating system.
 
 ## Type Definition 
 ```typescript
-interface RedesignedRatingProps {
+interface RatingRedesignedProps {
     feedbackContainer: ReactElement;
     starsCount: number;
     className?: string;
@@ -18,7 +18,7 @@ interface RedesignedRatingProps {
 
 ## Props
 
-The **`RedesignedRating`** component accepts the following props:
+The **`RatingRedesigned`** component accepts the following props:
 
 | Prop               | Type                                       | Required / Optional | Description                                                  |
 |--------------------|--------------------------------------------|---------------------|--------------------------------------------------------------|
@@ -36,7 +36,7 @@ The **`RedesignedRating`** component accepts the following props:
 
 ## Usage Example
 ```typescript jsx
-import { RedesignedRating } from '@/entities/Rating/RedesignedRating';
+import { RatingRedesigned } from '@/entities/Rating/RatingRedesigned';
 
 const App = () => {
     const handleSelect = (starsCount: number) => {
@@ -45,18 +45,18 @@ const App = () => {
 
     return (
         <div>
-            <RedesignedRating
+            <RatingRedesigned
                 className="my-custom-class"
                 starsCount={0}
                 feedbackContainer={<div>Feedback Form</div>}
                 onSelect={handleSelect}
                 title="Please rate this article"
             />
-            {/* The RedesignedRating component allows users to rate items and provide feedback */}
+            {/* The RatingRedesigned component allows users to rate items and provide feedback */}
         </div>
     );
 };
 ```
 
 ## Conclusion
-The **`RedesignedRating`** component is a key part of applications that embrace the latest design standards. By offering an intuitive and modern interface for star ratings and feedback, it enhances user interaction while aligning with contemporary design practices.
+The **`RatingRedesigned`** component is a key part of applications that embrace the latest design standards. By offering an intuitive and modern interface for star ratings and feedback, it enhances user interaction while aligning with contemporary design practices.

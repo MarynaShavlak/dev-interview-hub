@@ -2,7 +2,7 @@
 
 ## Overview
 The **`ArticleDetails`** component is a dynamic interface for displaying article details, adapting to the application's design configuration. 
-It leverages the `isAppRedesigned` feature flag to render either the `RedesignedArticleDetails` or the `DeprecatedArticleDetails`, ensuring the UI aligns with the current design standards. The component integrates `DynamicModuleLoader` to manage the `articleDetailsReducer`, optimizing state handling and modularity. By dynamically loading the reducer, it enhances performance and maintains efficient state management throughout the article's lifecycle.
+It leverages the `isAppRedesigned` feature flag to render either the `ArticleDetailsRedesigned` or the `ArticleDetailsDeprecated`, ensuring the UI aligns with the current design standards. The component integrates `DynamicModuleLoader` to manage the `articleDetailsReducer`, optimizing state handling and modularity. By dynamically loading the reducer, it enhances performance and maintains efficient state management throughout the article's lifecycle.
 
 ## Type Definition
 ```typescript
@@ -19,7 +19,7 @@ The **`ArticleDetails`** component accepts the following props:
 
 ## Features
 
-1. **Feature Flag Adaptation**: Utilizes the `isAppRedesigned` feature flag to dynamically switch between `RedesignedArticleDetails` and `DeprecatedArticleDetails`. This ensures that the article details are presented in line with the current design system, providing a consistent user experience.
+1. **Feature Flag Adaptation**: Utilizes the `isAppRedesigned` feature flag to dynamically switch between `ArticleDetailsRedesigned` and `ArticleDetailsDeprecated`. This ensures that the article details are presented in line with the current design system, providing a consistent user experience.
 
 2. **Dynamic Reducer Management**: Incorporates `DynamicModuleLoader` to manage the `articleDetailsReducer`. This approach dynamically loads the reducer only when needed, which helps in optimizing application performance by reducing the initial bundle size and efficiently handling state.
 
@@ -39,7 +39,7 @@ import { ArticleRecommendationsList } from '@/features/articleRecommendationsLis
 import { ArticleComments } from '@/widgets/ArticleComments';
 import { ArticleRating } from '@/features/ArticleRating';
 import { Card } from '@/shared/ui/redesigned/Card';
-import { ArticleDetailsPageHeader } from '../DeprecatedArticleDetailsPage/ArticleDetailsPageHeader/ArticleDetailsPageHeader';
+import { ArticleDetailsPageHeader } from '../ArticleDetailsDeprecatedPage/ArticleDetailsPageHeader/ArticleDetailsPageHeader';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
 
 export const ArticleDetailsPageContainer = memo(() => {

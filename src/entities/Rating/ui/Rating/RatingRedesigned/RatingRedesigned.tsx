@@ -5,7 +5,7 @@ import { VStack } from '@/shared/ui/common/Stack';
 import { Text } from '@/shared/ui/redesigned/Text';
 import { StarRating } from '@/shared/ui/common/StarRating';
 
-interface RedesignedRatingProps {
+interface RatingRedesignedProps {
     feedbackContainer: ReactElement;
     starsCount: number;
     className?: string;
@@ -13,7 +13,7 @@ interface RedesignedRatingProps {
     title?: string;
 }
 
-export const RatingRedesigned = memo((props: RedesignedRatingProps) => {
+export const RatingRedesigned = memo((props: RatingRedesignedProps) => {
     const { className, starsCount, feedbackContainer, title, onSelect } = props;
     const { t } = useTranslation();
 

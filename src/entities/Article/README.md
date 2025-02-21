@@ -27,8 +27,8 @@ Article/
 │   │   ├── GridViewCard/
 │   │   │   ├── DeprecatedGridViewCard/
 │   │   │   │   └── DeprecatedGridViewCard.tsx
-│   │   │   └── RedesignedGridViewCard/
-│   │   │       └── RedesignedGridViewCard.tsx
+│   │   │   └── GridViewCardRedesigned/
+│   │   │       └── GridViewCardRedesigned.tsx
 │   │   ├── ListViewCard/
 │   │   │   ├── DeprecatedListViewCard/
 │   │   │   │   └── DeprecatedListViewCard.tsx
@@ -61,10 +61,10 @@ Article/
 │   │   │   └── ArticleDetailsError.tsx
 │   │   ├── ArticleDetailsSkeleton/
 │   │   │   └── ArticleDetailsSkeleton.tsx
-│   │   ├── DeprecatedArticleDetails/
-│   │   │   └── DeprecatedArticleDetails.tsx
-│   │   ├── RedesignedArticleDetails/
-│   │   │   └── RedesignedArticleDetails.tsx
+│   │   ├── ArticleDetailsDeprecated/
+│   │   │   └── ArticleDetailsDeprecated.tsx
+│   │   ├── ArticleDetailsRedesigned/
+│   │   │   └── ArticleDetailsRedesigned.tsx
 │   │   ├── ArticleDetails.tsx
 │   │   ├── ArticleDetails.module.scss
 │   │   └── renderArticleBlock.tsx
@@ -108,8 +108,8 @@ Article/
   - **`GridViewCard/`**
     - **`DeprecatedGridViewCard/`**
       - [**DeprecatedGridViewCard.tsx**](ui/ArticleCard/GridViewCard/GridViewCardDeprecated/README.md): Legacy card component for grid view.
-    - **`RedesignedGridViewCard/`**
-      - [**RedesignedGridViewCard.tsx**](ui/ArticleCard/GridViewCard/GridViewCardRedesigned/README.md): Updated card component for grid view.
+    - **`GridViewCardRedesigned/`**
+      - [**GridViewCardRedesigned.tsx**](ui/ArticleCard/GridViewCard/GridViewCardRedesigned/README.md): Updated card component for grid view.
   - **`ListViewCard/`**
     - **`DeprecatedListViewCard/`**
       - [**DeprecatedListViewCard.tsx**](ui/ArticleCard/ListViewCard/ListViewCardDeprecated/README.md): Legacy card component for list view.
@@ -149,10 +149,10 @@ Article/
     - [**ArticleDetailsError.tsx**](./ui/ArticleDetails/ArticleDetailsError/ArticleDetailsError.tsx): Component for displaying error states in article details.
   - **`ArticleDetailsSkeleton/`**
     - [**ArticleDetailsSkeleton.tsx**](./ui/ArticleDetails/ArticleDetailsSkeleton/README.md): Skeleton component for loading states in article details.
-  - **`DeprecatedArticleDetails/`**
-    - [**DeprecatedArticleDetails.tsx**](ui/ArticleDetails/ArticleDetailsDeprecated/README.md): Legacy component for displaying article details.
-  - **`RedesignedArticleDetails/`**
-    - [**RedesignedArticleDetails.tsx**](ui/ArticleDetails/ArticleDetailsRedesigned/README.md): Updated component for displaying article details.
+  - **`ArticleDetailsDeprecated/`**
+    - [**ArticleDetailsDeprecated.tsx**](ui/ArticleDetails/ArticleDetailsDeprecated/README.md): Legacy component for displaying article details.
+  - **`ArticleDetailsRedesigned/`**
+    - [**ArticleDetailsRedesigned.tsx**](ui/ArticleDetails/ArticleDetailsRedesigned/README.md): Updated component for displaying article details.
   - [**renderArticleBlock.tsx**](./ui/ArticleDetails/renderArticleBlock.tsx): Utility component for rendering different blocks within article details.
 
 - **`ArticleList/`**

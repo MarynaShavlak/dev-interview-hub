@@ -1,7 +1,7 @@
-# DeprecatedArticleDetails
+# ArticleDetailsDeprecated
 
 ## Overview
-The **`DeprecatedArticleDetails`** component provides a detailed view of an article using deprecated UI elements. It displays the article's avatar, title, subtitle, view count, creation date, and content blocks. This component is designed to deliver a consistent presentation of article details using legacy design elements while the new design system is being integrated.
+The **`ArticleDetailsDeprecated`** component provides a detailed view of an article using deprecated UI elements. It displays the article's avatar, title, subtitle, view count, creation date, and content blocks. This component is designed to deliver a consistent presentation of article details using legacy design elements while the new design system is being integrated.
 
 Additionally, the component handles different states of data fetching:
 - **Loading State**: Displays the `ArticleDetailsSkeleton` component while article data is being fetched, offering a placeholder UI to improve user experience during loading.
@@ -17,14 +17,14 @@ Additionally, the component handles different states of data fetching:
 
 ## Usage Example
 ```typescript jsx
-import { DeprecatedArticleDetails } from '@/entities/Article';
+import { ArticleDetailsDeprecated } from '@/entities/Article';
 
 const App = () => (
     <div className="article-details">
-        <DeprecatedArticleDetails />
+        <ArticleDetailsDeprecated />
     </div>
 );
 ```
 
 ## Conclusion
-The `DeprecatedArticleDetails` component is essential for presenting detailed article information using legacy design elements. By integrating deprecated UI components and handling different data states with `ArticleDetailsSkeleton` and `ArticleDetailsError`, it ensures a consistent user experience with older design standards while the transition to new design paradigms is underway. This approach supports the application's gradual evolution, maintaining user engagement and visual coherence during the design transition, and effectively addresses loading and error scenarios for a smoother user experience.
+The `ArticleDetailsDeprecated` component is essential for presenting detailed article information using legacy design elements. By integrating deprecated UI components and handling different data states with `ArticleDetailsSkeleton` and `ArticleDetailsError`, it ensures a consistent user experience with older design standards while the transition to new design paradigms is underway. This approach supports the application's gradual evolution, maintaining user engagement and visual coherence during the design transition, and effectively addresses loading and error scenarios for a smoother user experience.

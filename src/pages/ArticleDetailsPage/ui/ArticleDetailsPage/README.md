@@ -1,7 +1,7 @@
 # ArticleDetailsPage
 
 ## Overview
-The **`ArticleDetailsPage`** module is responsible for presenting a detailed view of an article within the application. Leveraging the Feature-Sliced Design (FSD) methodology, this page module dynamically adapts its interface based on the application’s design system. It utilizes feature flags to conditionally render either the [RedesignedArticleDetailsPage](ArticleDetailsPageRedesigned/README.md) or the [DeprecatedArticleDetailsPage](ArticleDetailsPageDeprecated/README.md), ensuring that users receive a consistent and coherent experience depending on the active design configuration.
+The **`ArticleDetailsPage`** module is responsible for presenting a detailed view of an article within the application. Leveraging the Feature-Sliced Design (FSD) methodology, this page module dynamically adapts its interface based on the application’s design system. It utilizes feature flags to conditionally render either the [ArticleDetailsRedesignedPage](ArticleDetailsPageRedesigned/README.md) or the [ArticleDetailsDeprecatedPage](ArticleDetailsPageDeprecated/README.md), ensuring that users receive a consistent and coherent experience depending on the active design configuration.
 
 ## Type Definition
 ```typescript
@@ -19,7 +19,7 @@ The **`ArticleDetailsPage`** component accepts the following props:
 
 ## Features
 
-1. **Dynamic Rendering**: Utilizes the `ToggleFeaturesComponent` to render either `RedesignedArticleDetailsPage` or `DeprecatedArticleDetailsPage` based on the `isAppRedesigned` feature flag, ensuring that the page adapts to the current design system.
+1. **Dynamic Rendering**: Utilizes the `ToggleFeaturesComponent` to render either `ArticleDetailsRedesignedPage` or `ArticleDetailsDeprecatedPage` based on the `isAppRedesigned` feature flag, ensuring that the page adapts to the current design system.
 2. **Dynamic Reducer Management**: Integrates `DynamicModuleLoader` to manage the `articleDetailsPageReducer` dynamically, optimizing state management and reducing unnecessary bundle size by loading reducers only when required.
 3. **Component Memoization**: The `ArticleDetailsPage` is memoized using `React.memo` to optimize rendering performance by preventing unnecessary re-renders.
 4. **Lazy Loading**: The `ArticleDetailsPageAsync` component is lazy-loaded to optimize the initial load time of the application, improving performance and user experience.

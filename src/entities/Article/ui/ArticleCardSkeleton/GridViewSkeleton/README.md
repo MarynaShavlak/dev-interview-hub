@@ -25,6 +25,6 @@ const App = () => (
 
 ## Conclusion
 The `GridViewSkeleton` component is essential for rendering placeholder skeletons in a grid layout, providing a flexible and adaptive interface that caters to both legacy and modern design systems.
-By leveraging the `isAppRedesigned` feature flag, the component seamlessly transitions between the `RedesignedGridViewSkeleton` and `DeprecatedGridViewSkeleton` components, ensuring users receive a consistent and visually appealing loading experience irrespective of the application's design state. 
+By leveraging the `isAppRedesigned` feature flag, the component seamlessly transitions between the `GridViewSkeletonRedesigned` and `DeprecatedGridViewSkeleton` components, ensuring users receive a consistent and visually appealing loading experience irrespective of the application's design state. 
 This adaptability not only enhances user experience during loading phases but also supports the application's evolution, allowing for smooth upgrades and interface changes without disrupting the user interface. 
 The `GridViewSkeleton` component thus plays a crucial role in maintaining engagement and visual consistency, supporting both current and future design paradigms.

@@ -2,7 +2,7 @@
 
 ## Overview
 The **`DeprecatedCommentCard`** component is used to render individual comments in a deprecated interface. It offers users a way to view comment details using legacy UI elements. This component is particularly useful during the transition period when the application is shifting to newer UI components. 
-When the feature flag `isAppRedesigned` is activated, the `RedesignedCommentCard` will be used instead, offering an updated interface.
+When the feature flag `isAppRedesigned` is activated, the `CommentCardRedesigned` will be used instead, offering an updated interface.
 
 ## Type Definition 
 ```typescript

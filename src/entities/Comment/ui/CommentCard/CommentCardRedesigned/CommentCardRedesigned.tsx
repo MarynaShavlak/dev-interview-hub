@@ -9,13 +9,13 @@ import cls from '../CommentCard.module.scss';
 import { Comment } from '../../../model/types/comment';
 import { Card } from '@/shared/ui/redesigned/Card';
 
-interface RedesignedCommentCardProps {
+interface CommentCardRedesignedProps {
     className?: string;
     comment: Comment;
 }
 
 export const CommentCardRedesigned = memo(
-    (props: RedesignedCommentCardProps) => {
+    (props: CommentCardRedesignedProps) => {
         const { className, comment } = props;
 
         return (

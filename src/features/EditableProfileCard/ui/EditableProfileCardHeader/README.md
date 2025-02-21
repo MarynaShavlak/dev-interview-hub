@@ -1,7 +1,7 @@
 # EditableProfileCardHeader
 
 ## Overview
-The **`EditableProfileCardHeader`**  component dynamically switches between the `RedesignedEditableProfileCardHeader` and `DeprecatedEditableProfileCardHeader` components based on the `isAppRedesigned` feature flag. 
+The **`EditableProfileCardHeader`**  component dynamically switches between the `EditableProfileCardHeaderRedesigned` and `DeprecatedEditableProfileCardHeader` components based on the `isAppRedesigned` feature flag. 
 This approach ensures that users interact with either the updated or legacy interface depending on the application's current configuration. 
 It facilitates profile management by providing options to edit, save, or cancel changes in the profile header.
 

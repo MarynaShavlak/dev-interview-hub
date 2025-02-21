@@ -21,8 +21,8 @@ Comment/
 │   │   │   └── CommentCardSkeleton.tsx
 │   │   ├── DeprecatedCommentCard/
 │   │   │   └── DeprecatedCommentCard.tsx
-│   │   ├── RedesignedCommentCard/
-│   │   │   └── RedesignedCommentCard.tsx
+│   │   ├── CommentCardRedesigned/
+│   │   │   └── CommentCardRedesigned.tsx
 │   │   ├── CommentCard.module.scss
 │   │   └── CommentCard.tsx
 │   ├── CommentList/
@@ -63,8 +63,8 @@ Comment/
 - **`DeprecatedCommentCard/`**
   - [**DeprecatedCommentCard.tsx**](ui/CommentCard/CommentCardDeprecated/README.md): The deprecated version of the `CommentCard` component.
 
-- **`RedesignedCommentCard/`**
-  - [**RedesignedCommentCard.tsx**](ui/CommentCard/CommentCardRedesigned/README.md): The redesigned version of the `CommentCard` component.
+- **`CommentCardRedesigned/`**
+  - [**CommentCardRedesigned.tsx**](ui/CommentCard/CommentCardRedesigned/README.md): The redesigned version of the `CommentCard` component.
 
 - **`CommentCardSkeleton/`**
   - [**CommentCardSkeleton.tsx**](./ui/CommentCard/CommentCardSkeleton/README.md): A skeleton component used for loading states of the `CommentCard`.
@@ -79,7 +79,7 @@ Comment/
 - **`DeprecatedCommentCard/`**
   - [**DeprecatedAddCommentForm.tsx**](ui/AddCommentForm/AddCommentFormDeprecated/README.md): The deprecated version of the `AddCommentForm` component.
 
-- **`RedesignedCommentCard/`**
+- **`CommentCardRedesigned/`**
   - [**RedesignedAddCommentForm.tsx**](ui/AddCommentForm/AddCommentFormRedesigned/README.md): The redesigned version of the `AddCommentForm` component.
 
 

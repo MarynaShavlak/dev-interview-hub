@@ -1,7 +1,7 @@
-# RedesignedArticleDetails
+# ArticleDetailsRedesigned
 
 ## Overview
-The **`RedesignedArticleDetails`** component provides an updated and visually enhanced view of an article using the redesigned UI elements. It presents the article's title, subtitle, main image, and content blocks in a modern design format. The component integrates features such as fallback images and loading skeletons to ensure a smooth user experience during data loading and image retrieval.
+The **`ArticleDetailsRedesigned`** component provides an updated and visually enhanced view of an article using the redesigned UI elements. It presents the article's title, subtitle, main image, and content blocks in a modern design format. The component integrates features such as fallback images and loading skeletons to ensure a smooth user experience during data loading and image retrieval.
 
 Additionally, the component handles different states of data fetching:
 - **Loading State**: Displays the `ArticleDetailsSkeleton` component while article data is being fetched, offering a placeholder UI to improve user experience during loading.
@@ -17,14 +17,14 @@ Additionally, the component handles different states of data fetching:
 
 ## Usage Example
 ```typescript jsx
-import { RedesignedArticleDetails } from '@/entities/Article';
+import { ArticleDetailsRedesigned } from '@/entities/Article';
 
 const App = () => (
     <div className="article-details">
-        <RedesignedArticleDetails />
+        <ArticleDetailsRedesigned />
     </div>
 );
 ```
 
 ## Conclusion
-The `RedesignedArticleDetails` component plays a crucial role in presenting detailed article information with a modern design approach. By leveraging updated UI components and incorporating fallback mechanisms for images, it provides a visually appealing and user-friendly experience. The component effectively displays article details and dynamically renders content blocks, enhancing the overall user experience and aligning with the latest design standards. This ensures a consistent and engaging presentation of article content, supporting both current and future design paradigms.
+The `ArticleDetailsRedesigned` component plays a crucial role in presenting detailed article information with a modern design approach. By leveraging updated UI components and incorporating fallback mechanisms for images, it provides a visually appealing and user-friendly experience. The component effectively displays article details and dynamically renders content blocks, enhancing the overall user experience and aligning with the latest design standards. This ensures a consistent and engaging presentation of article content, supporting both current and future design paradigms.

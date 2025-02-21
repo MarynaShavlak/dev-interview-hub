@@ -29,14 +29,14 @@ The `ToggleFeaturesComponent` plays a critical role in feature flag management b
 
 ```typescript jsx
 import { ToggleFeaturesComponent } from '@/shared/components/ToggleFeaturesComponent';
-import { RedesignedArticleDetails } from '@/features/redesigned/RedesignedArticleDetails';
-import { DeprecatedArticleDetails } from '@/features/deprecated/DeprecatedArticleDetails';
+import { ArticleDetailsRedesigned } from '@/features/redesigned/ArticleDetailsRedesigned';
+import { ArticleDetailsDeprecated } from '@/features/deprecated/ArticleDetailsDeprecated';
 
 export const ArticleDetailsWrapper = () => (
     <ToggleFeaturesComponent
         feature="isAppRedesigned"
-        on={<RedesignedArticleDetails />}
-        off={<DeprecatedArticleDetails />}
+        on={<ArticleDetailsRedesigned />}
+        off={<ArticleDetailsDeprecated />}
     />
 );
 ```
