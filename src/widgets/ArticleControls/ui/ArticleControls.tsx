@@ -11,6 +11,7 @@ import { ArticleEditNavigationButton } from '@/features/ArticleEditNavigationBut
 import { ArticleListNavigationButton } from '@/features/ArticleListNavigationButton';
 import { Article } from '@/entities/Article';
 import { formatDateString } from '@/shared/lib/text/formatDateString/formatDateString';
+import { useGetUserRoles } from '@/entities/User';
 
 interface ArticleControlsProps {
     className?: string;
@@ -21,7 +22,8 @@ export const ArticleControls = memo((props: ArticleControlsProps) => {
     const { className, article } = props;
     const { user: author, createdAt, views, id } = article;
     const { t } = useTranslation('articleDetails');
-    const canEdit = useSelector(getCanEditArticle(id));
+    const { isAdmin } = useGetUserRoles();
+    const canEdit = useSelector(getCanEditArticle(id)) || isAdmin;
     const convertedDate = formatDateString(createdAt);
 
     return (
