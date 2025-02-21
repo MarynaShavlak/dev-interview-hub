@@ -5,11 +5,17 @@ import cls from './ContentSkeleton.module.scss';
 import { Loader } from '@/shared/ui/deprecated/Loader';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
 
-export const ContentSkeleton = memo(() => {
+interface ContentSkeletonProps {
+    width?: string;
+    height?: string;
+}
+
+export const ContentSkeleton = memo((props: ContentSkeletonProps) => {
+    const { width = '100%', height = '560px' } = props;
     return (
         <ToggleFeaturesComponent
             feature="isAppRedesigned"
-            on={<Skeleton width="100%" height="560px" border="40px" />}
+            on={<Skeleton width={width} height={height} border="40px" />}
             off={
                 <HStack justify="center" max className={cls.loaderWrapper}>
                     <Loader />
