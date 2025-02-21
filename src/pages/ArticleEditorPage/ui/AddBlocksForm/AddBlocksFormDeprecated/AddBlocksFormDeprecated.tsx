@@ -40,7 +40,7 @@ export const AddBlocksFormDeprecated = memo((props: AddBlocksFormProps) => {
     } = useArticleBlocksActions(blockActions);
 
     useEffect(() => {
-        if (elementRef.current) {
+        if (elementRef.current && topPosition !== 0) {
             const styles = getBtnsListDeprecatedStyles(topPosition);
             Object.assign(elementRef.current.style, styles);
         }

@@ -35,7 +35,7 @@ export const AddBlocksFormRedesigned = memo((props: AddBlocksFormProps) => {
     } = useArticleBlocksActions(blockActions);
 
     useEffect(() => {
-        if (elementRef.current) {
+        if (elementRef.current && topPosition !== 0) {
             const styles = getBtnsListStyles(topPosition);
             Object.assign(elementRef.current.style, styles);
         }
