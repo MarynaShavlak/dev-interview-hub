@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import { getSidebarElement } from '../../getDOMElements/getSidebarElement';
+import { getSidebarElement } from '../../getDOMElements/getDOMElement';
 
 export const SIDEBAR_COLLAPSED_WIDTH = 115;
 export const useSidebarCollapseState = () => {

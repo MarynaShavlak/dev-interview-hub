@@ -5,8 +5,11 @@
  * @param minColumnWidth - Minimum allowed width for flexible columns.
  * @returns Computed available width for flexible columns.
  */
-import { getToolbarElement } from '@/shared/lib/getDOMElements/getToolbarElement';
-import { getSidebarElement } from '@/shared/lib/getDOMElements/getSidebarElement';
+
+import {
+    getSidebarElement,
+    getToolbarElement,
+} from '@/shared/lib/getDOMElements/getDOMElement';
 import { calculateTotalFixedColumnsWidth } from '../calculateTotalFixedColumnsWidth/calculateTotalFixedColumnsWidth';
 import {
     MAX_TABLE_WIDTH,

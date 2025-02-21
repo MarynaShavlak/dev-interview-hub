@@ -10,4 +10,11 @@ export const getSidebarElement = (): HTMLElement | null =>
         off: () => document.querySelector('[data-testid="sidebar"]'),
     });
 
+/**
+ * Retrieves the sidebar element based on feature flag.
+ */
+export const getToolbarElement = (): HTMLElement | null =>
+    document.querySelector('[data-testid="toolbar"]');
 
+export const getPageElement = (): HTMLElement | null =>
+    document.querySelector('[data-testid="Page"]');

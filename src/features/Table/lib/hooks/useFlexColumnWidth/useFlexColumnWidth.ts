@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { calculateAvailableFlexColumnWidth } from '../../utilities/calculateAvailableTitleWidth/calculateAvailableFlexColumnWidth';
-import { getSidebarElement } from '@/shared/lib/getDOMElements/getSidebarElement';
+import { getSidebarElement } from '@/shared/lib/getDOMElements/getDOMElement';
 
 export const useFlexColumnWidth = (
     widthParams: Record<string, number>,

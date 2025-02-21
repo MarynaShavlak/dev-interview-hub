@@ -15,6 +15,7 @@ import { BlockRenderer } from '../BlockRenderer/BlockRenderer';
 import { useArticleBlocksActions } from '../../../lib/hooks/useArticleBlocksActions/useArticleBlocksActions';
 import { useTriggerTopScrollPosition } from '@/shared/lib/hooks/useTriggerTopScrollPosition/useTriggerTopScrollPosition';
 import { getBtnsListDeprecatedStyles } from '../../../lib/utils/getBtnsListStyles/getBtnsListStyles';
+import { getPageElement } from '@/shared/lib/getDOMElements/getDOMElement';
 
 export const AddBlocksFormDeprecated = memo((props: AddBlocksFormProps) => {
     const { index, blocks: allBlocks, blockActions } = props;
@@ -25,9 +26,7 @@ export const AddBlocksFormDeprecated = memo((props: AddBlocksFormProps) => {
     const isSomeBlockAdded = Number(allBlocks.length) > 0;
     const elementRef = useRef<HTMLDivElement>(null);
     const triggerRef = useRef<HTMLDivElement>(null);
-    const scrollContainer = useRef<HTMLElement | null>(
-        document.querySelector('[data-testid="Page"]'),
-    );
+    const scrollContainer = useRef<HTMLElement | null>(getPageElement());
     const topPosition = useTriggerTopScrollPosition(
         triggerRef,
         scrollContainer,
