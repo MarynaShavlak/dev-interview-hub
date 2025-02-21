@@ -14,7 +14,7 @@ interface DeprecatedCommentCardProps {
     comment: Comment;
 }
 
-export const DeprecatedCommentCard = memo(
+export const CommentCardDeprecated = memo(
     (props: DeprecatedCommentCardProps) => {
         const { className, comment } = props;
         const additionalClasses = getFlexClasses({ hStack: true, gap: '8' });

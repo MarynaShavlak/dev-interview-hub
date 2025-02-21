@@ -13,7 +13,7 @@ interface RedesignedRatingProps {
     title?: string;
 }
 
-export const RedesignedRating = memo((props: RedesignedRatingProps) => {
+export const RatingRedesigned = memo((props: RedesignedRatingProps) => {
     const { className, starsCount, feedbackContainer, title, onSelect } = props;
     const { t } = useTranslation();
 

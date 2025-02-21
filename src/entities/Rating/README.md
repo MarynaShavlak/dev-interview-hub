@@ -42,8 +42,8 @@ Rating/
 
 #### 2.4. `Rating/`: 
 - [**Rating.tsx**](./ui/Rating/README.md): The main `Rating` component implementation.
-- [**DeprecatedRating**](./ui/Rating/DeprecatedRating/README.md): Contains the legacy or deprecated rating component implementations.
-- [**RedesignedRating**](./ui/Rating/RedesignedRating/README.md):: Contains the updated or redesigned rating components.
+- [**DeprecatedRating**](ui/Rating/RatingDeprecated/README.md): Contains the legacy or deprecated rating component implementations.
+- [**RedesignedRating**](ui/Rating/RatingRedesigned/README.md):: Contains the updated or redesigned rating components.
 
 
 ### 3. `index.ts`

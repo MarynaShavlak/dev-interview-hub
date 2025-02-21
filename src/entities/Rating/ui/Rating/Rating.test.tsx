@@ -2,13 +2,13 @@ import { fireEvent, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Rating } from './Rating';
 import { componentRender } from '@/shared/lib/tests/componentRender/componentRender';
-import { RedesignedRating } from './RedesignedRating/RedesignedRating';
+import { RatingRedesigned } from './RatingRedesigned/RatingRedesigned';
 import { setFeatureFlags } from '@/shared/lib/features';
 
 describe('Rating Component', () => {
     const renderRedesignedRating = (starsCount: number) => {
         componentRender(
-            <RedesignedRating
+            <RatingRedesigned
                 starsCount={starsCount}
                 feedbackContainer={<div />}
                 onSelect={jest.fn()}

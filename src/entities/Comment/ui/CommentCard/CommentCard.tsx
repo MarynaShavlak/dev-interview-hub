@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import { CommentCardSkeleton } from './CommentCardSkeleton/CommentCardSkeleton';
-import { RedesignedCommentCard } from './RedesignedCommentCard/RedesignedCommentCard';
-import { DeprecatedCommentCard } from './DeprecatedCommentCard/DeprecatedCommentCard';
+import { CommentCardRedesigned } from './CommentCardRedesigned/CommentCardRedesigned';
+import { CommentCardDeprecated } from './CommentCardDeprecated/CommentCardDeprecated';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
 import { Comment } from '../../model/types/comment';
 
@@ -26,13 +26,13 @@ export const CommentCard = memo((props: CommentCardProps) => {
         <ToggleFeaturesComponent
             feature="isAppRedesigned"
             on={
-                <RedesignedCommentCard
+                <CommentCardRedesigned
                     comment={comment}
                     className={className}
                 />
             }
             off={
-                <DeprecatedCommentCard
+                <CommentCardDeprecated
                     comment={comment}
                     className={className}
                 />

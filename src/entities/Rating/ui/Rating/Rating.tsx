@@ -1,7 +1,7 @@
 import { memo, useCallback, useState } from 'react';
-import { RedesignedRating } from './RedesignedRating/RedesignedRating';
+import { RatingRedesigned } from './RatingRedesigned/RatingRedesigned';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
-import { DeprecatedRating } from './DeprecatedRating/DeprecatedRating';
+import { RatingDeprecated } from './RatingDeprecated/RatingDeprecated';
 import { FeedbackContainer } from '../FeedbackContainer/FeedbackContainer';
 
 interface RatingCardProps {
@@ -70,8 +70,8 @@ export const Rating = memo((props: RatingCardProps) => {
     return (
         <ToggleFeaturesComponent
             feature="isAppRedesigned"
-            on={<RedesignedRating {...commonProps} />}
-            off={<DeprecatedRating {...commonProps} />}
+            on={<RatingRedesigned {...commonProps} />}
+            off={<RatingDeprecated {...commonProps} />}
         />
     );
 });

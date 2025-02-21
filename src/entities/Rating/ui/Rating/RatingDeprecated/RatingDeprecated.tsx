@@ -13,7 +13,7 @@ interface DeprecatedRatingProps {
     title?: string;
 }
 
-export const DeprecatedRating = memo((props: DeprecatedRatingProps) => {
+export const RatingDeprecated = memo((props: DeprecatedRatingProps) => {
     const { className, starsCount, feedbackContainer, title, onSelect } = props;
     const { t } = useTranslation();
 

@@ -61,10 +61,10 @@ Comment/
 - [**CommentCard.tsx**](./ui/CommentCard/README.md): The main `CommentCard` component.
 
 - **`DeprecatedCommentCard/`**
-  - [**DeprecatedCommentCard.tsx**](./ui/CommentCard/DeprecatedCommentCard/README.md): The deprecated version of the `CommentCard` component.
+  - [**DeprecatedCommentCard.tsx**](ui/CommentCard/CommentCardDeprecated/README.md): The deprecated version of the `CommentCard` component.
 
 - **`RedesignedCommentCard/`**
-  - [**RedesignedCommentCard.tsx**](./ui/CommentCard/RedesignedCommentCard/README.md): The redesigned version of the `CommentCard` component.
+  - [**RedesignedCommentCard.tsx**](ui/CommentCard/CommentCardRedesigned/README.md): The redesigned version of the `CommentCard` component.
 
 - **`CommentCardSkeleton/`**
   - [**CommentCardSkeleton.tsx**](./ui/CommentCard/CommentCardSkeleton/README.md): A skeleton component used for loading states of the `CommentCard`.

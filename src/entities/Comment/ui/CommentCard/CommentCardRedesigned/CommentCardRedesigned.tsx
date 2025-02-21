@@ -14,7 +14,7 @@ interface RedesignedCommentCardProps {
     comment: Comment;
 }
 
-export const RedesignedCommentCard = memo(
+export const CommentCardRedesigned = memo(
     (props: RedesignedCommentCardProps) => {
         const { className, comment } = props;
 
