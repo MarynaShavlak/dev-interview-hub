@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import { useArticleNavigation } from '@/entities/Article';
+import { useEditArticleNavigation } from '@/entities/Article';
 import { UserArticlesTableInfo } from '../../../model/types/userArticlesTableInfo';
 import {
     useToggleVisibility,
@@ -27,7 +27,6 @@ export const useManageUserArticlesTableRow = (
     onDeleteArticle: (articleId: string) => Promise<string | null>,
 ): UseManageUserArticlesTableRowReturnType => {
     const { articles, isLoading } = useArticlesByUserData();
-
     const [data, setData] = useState<UserArticlesTableInfo[] | null>(null);
 
     useEffect(() => {
@@ -36,8 +35,8 @@ export const useManageUserArticlesTableRow = (
         }
     }, [articles, isLoading, data?.length, setData]);
 
-    const { navigateToArticle } = useArticleNavigation();
     const deleteArticleModal = useToggleVisibility();
+    const { navigateToEditArticle } = useEditArticleNavigation();
     const [selectedArticle, setSelectedArticle] =
         useState<SelectedArticle | null>(null);
 
@@ -90,10 +89,10 @@ export const useManageUserArticlesTableRow = (
     const handleEditClick = useCallback(
         (articleId: string) => {
             if (articleId) {
-                navigateToArticle(articleId);
+                navigateToEditArticle(articleId);
             }
         },
-        [navigateToArticle],
+        [navigateToEditArticle],
     );
 
     const articleTitle = selectedArticle?.title
