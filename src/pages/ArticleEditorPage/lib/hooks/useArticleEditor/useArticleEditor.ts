@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import {
     useFormValidation,
@@ -17,15 +17,14 @@ import {
     UseArticleBlocksDisplayReturnType,
 } from '../useArticleBlocksDisplay/useArticleBlocksDisplay';
 import {
-    Article,
     deleteArticleImageThunk,
-    getArticleDataByIdQuery,
     uploadArticleImageThunk,
 } from '@/entities/Article';
 import { createArticleThunk } from '../../../model/services/createArticleThunk/createArticleThunk';
 import { searchClient } from '@/shared/config/firebase/searchClient';
 import { updateArticleThunk } from '../../../model/services/updateArticleThunk/updateArticleThunk';
 import { deleteArticleWithRelationsThunk } from '@/widgets/ArticleManagement';
+import { useArticleData } from '../useArticleData/useArticleData';
 
 interface Metadata {
     isEditArticlePage: boolean;
@@ -69,25 +68,10 @@ export const useArticleEditor = (): UseArticleEditorReturn => {
     const [saveError, setSaveError] = useState<string | null>(null);
 
     const { id } = useParams<{ id: string }>();
+    const { article, isLoading } = useArticleData(id);
     const isEditArticlePage = Boolean(id);
 
-    const [editedArticle, setEditedArticle] = useState<Article | undefined>(
-        undefined,
-    );
-    const [isArticleLoading, setIsArticleLoading] = useState<boolean>(false);
-
-    useEffect(() => {
-        if (isEditArticlePage) {
-            setIsArticleLoading(true);
-            dispatch(getArticleDataByIdQuery(id!))
-                .unwrap()
-                .then((data) => setEditedArticle(data))
-                .catch(() => setEditedArticle(undefined))
-                .finally(() => setIsArticleLoading(false));
-        }
-    }, [id, isEditArticlePage, dispatch]);
-
-    const initialAvatar = isEditArticlePage ? editedArticle?.img : '';
+    const initialAvatar = isEditArticlePage ? article?.img : '';
 
     const {
         formData,
@@ -95,7 +79,7 @@ export const useArticleEditor = (): UseArticleEditorReturn => {
         onFileUpload,
         onResetArticle,
         onChangeHeroImage,
-    } = useArticleFormState(editedArticle, isEditArticlePage);
+    } = useArticleFormState(article, isEditArticlePage);
 
     const {
         hasInputErrors,
@@ -242,7 +226,7 @@ export const useArticleEditor = (): UseArticleEditorReturn => {
             isEditArticlePage,
             blocks: blockOperations.blocks,
             saveError,
-            isLoading: isArticleLoading,
+            isLoading,
         },
 
         validation: {
