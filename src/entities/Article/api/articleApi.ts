@@ -156,6 +156,7 @@ export const articleFirebaseApi = firestoreApi
                 //     { type: 'Articles', id: articleId },
                 // ],
                 async queryFn(articleId) {
+                    console.log('____articleId', articleId);
                     try {
                         const articleDocRef = await getDocRefByField<Article>(
                             'articles',

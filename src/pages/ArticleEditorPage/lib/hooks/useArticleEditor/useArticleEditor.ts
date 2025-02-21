@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import {
     useFormValidation,
@@ -17,9 +17,10 @@ import {
     UseArticleBlocksDisplayReturnType,
 } from '../useArticleBlocksDisplay/useArticleBlocksDisplay';
 import {
+    Article,
     deleteArticleImageThunk,
+    getArticleDataByIdQuery,
     uploadArticleImageThunk,
-    useArticleDataById,
 } from '@/entities/Article';
 import { createArticleThunk } from '../../../model/services/createArticleThunk/createArticleThunk';
 import { searchClient } from '@/shared/config/firebase/searchClient';
@@ -69,8 +70,23 @@ export const useArticleEditor = (): UseArticleEditorReturn => {
 
     const { id } = useParams<{ id: string }>();
     const isEditArticlePage = Boolean(id);
-    const { data: editedArticle, isLoading: isArticleLoading } =
-        useArticleDataById(id || '');
+
+    const [editedArticle, setEditedArticle] = useState<Article | undefined>(
+        undefined,
+    );
+    const [isArticleLoading, setIsArticleLoading] = useState<boolean>(false);
+
+    useEffect(() => {
+        if (isEditArticlePage) {
+            setIsArticleLoading(true);
+            dispatch(getArticleDataByIdQuery(id!))
+                .unwrap()
+                .then((data) => setEditedArticle(data))
+                .catch(() => setEditedArticle(undefined))
+                .finally(() => setIsArticleLoading(false));
+        }
+    }, [id, isEditArticlePage, dispatch]);
+
     const initialAvatar = isEditArticlePage ? editedArticle?.img : '';
 
     const {
