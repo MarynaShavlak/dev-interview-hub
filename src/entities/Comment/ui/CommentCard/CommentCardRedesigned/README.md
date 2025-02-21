@@ -3,7 +3,7 @@
 ## Overview
 The **`CommentCardRedesigned`** component is introduced as part of the updated user interface, providing a modern and visually appealing way to display individual comments. 
 This component is rendered when the feature flag `isAppRedesigned` is set to true, showcasing the latest design elements and improved user experience. 
-If the feature flag is not active, the `DeprecatedCommentCard` will be used instead, maintaining consistency for users not yet transitioned to the new interface.
+If the feature flag is not active, the `CommentCardDeprecated` will be used instead, maintaining consistency for users not yet transitioned to the new interface.
 
 ## Type Definition 
 ```typescript

@@ -48,8 +48,8 @@ EditableProfileCard/
 │   ├── EditableProfileCardHeader/
 │   │   ├── EditableProfileCardHeader.tsx
 │   │   ├── EditableProfileCardHeader.module.scss
-│   │   ├── DeprecatedEditableProfileCardHeader/
-│   │   │   └── DeprecatedEditableProfileCardHeader.tsx
+│   │   ├── EditableProfileCardHeaderDeprecated/
+│   │   │   └── EditableProfileCardHeaderDeprecated.tsx
 │   │   └── EditableProfileCardHeaderRedesigned/
 │   │       └── EditableProfileCardHeaderRedesigned.tsx
 ├── lib/
@@ -101,8 +101,8 @@ EditableProfileCard/
 - **`EditableProfileCardHeader/`**:
     - [**EditableProfileCardHeader.tsx**](./ui/EditableProfileCardHeader/README.md): Header component for the editable profile card
     - **EditableProfileCardHeader.module.scss**: Styles for the header.
-    - **`DeprecatedEditableProfileCardHeader/`**:
-      - [**DeprecatedEditableProfileCardHeader.tsx**](ui/EditableProfileCardHeader/EditableProfileCardHeaderDeprecated/README.md): Legacy header component.
+    - **`EditableProfileCardHeaderDeprecated/`**:
+      - [**EditableProfileCardHeaderDeprecated.tsx**](ui/EditableProfileCardHeader/EditableProfileCardHeaderDeprecated/README.md): Legacy header component.
     - **`EditableProfileCardHeaderRedesigned/`**:
       -  [**EditableProfileCardHeaderRedesigned.tsx**](ui/EditableProfileCardHeader/EditableProfileCardHeaderRedesigned/README.md): Updated header component for the redesigned UI.
 

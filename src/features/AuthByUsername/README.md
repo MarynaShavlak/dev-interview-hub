@@ -27,8 +27,8 @@ AuthByUsername/
 │       └── loginSlice.ts
 ├── ui/
 │   ├── AuthForm/
-│   │   ├── DeprecatedAuthForm/
-│   │   │   └── DeprecatedAuthForm.tsx
+│   │   ├── AuthFormDeprecated/
+│   │   │   └── AuthFormDeprecated.tsx
 │   │   ├── AuthFormRedesigned/
 │   │   │   └── AuthFormRedesigned.tsx
 │   │   ├── AuthForm.module.scss
@@ -70,8 +70,8 @@ AuthByUsername/
 - **`AuthForm/`**
   - [**AuthForm.tsx**](ui/AuthForm/README.md): Main login form component that handles user input and submission for authentication.
   - **AuthForm.module.scss**: Styles for the `AuthForm` component.
-  - **`DeprecatedAuthForm/`**
-    - [**DeprecatedAuthForm.tsx**](ui/AuthForm/AuthFormDeprecated/README.md): Legacy version of the login form used in the older UI design.
+  - **`AuthFormDeprecated/`**
+    - [**AuthFormDeprecated.tsx**](ui/AuthForm/AuthFormDeprecated/README.md): Legacy version of the login form used in the older UI design.
   - **`AuthFormRedesigned/`**
     - [**AuthFormRedesigned.tsx**](ui/AuthForm/AuthFormRedesigned/README.md): Updated login form that aligns with the redesigned UI.
 

@@ -1,8 +1,8 @@
-# DeprecatedRating
+# RatingDeprecated
 
 ## Overview
 The **`RatingRedesigned`** component is rendered when the feature flag `isAppRedesigned` is `true`, providing users with an updated and modern interface for giving star ratings and feedback. 
-If this feature flag is not active, the `DeprecatedRating` component is rendered instead. 
+If this feature flag is not active, the `RatingDeprecated` component is rendered instead. 
 This component leverages contemporary UI elements to enhance the user experience and ensure a seamless interaction with the rating system.
 
 ## Type Definition 

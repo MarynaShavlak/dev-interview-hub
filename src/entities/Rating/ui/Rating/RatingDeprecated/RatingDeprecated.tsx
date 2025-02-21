@@ -5,7 +5,7 @@ import { VStack } from '@/shared/ui/common/Stack';
 import { Text as TextDeprecated } from '@/shared/ui/deprecated/Text';
 import { StarRating } from '@/shared/ui/common/StarRating';
 
-interface DeprecatedRatingProps {
+interface RatingDeprecatedProps {
     feedbackContainer: ReactElement;
     starsCount: number;
     className?: string;
@@ -13,7 +13,7 @@ interface DeprecatedRatingProps {
     title?: string;
 }
 
-export const RatingDeprecated = memo((props: DeprecatedRatingProps) => {
+export const RatingDeprecated = memo((props: RatingDeprecatedProps) => {
     const { className, starsCount, feedbackContainer, title, onSelect } = props;
     const { t } = useTranslation();
 

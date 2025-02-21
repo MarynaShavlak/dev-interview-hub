@@ -1,7 +1,7 @@
-# DeprecatedAddCommentForm
+# AddCommentFormDeprecated
 
 ## Overview
-The **`DeprecatedAddCommentForm`**  component provides a deprecated interface for adding comments to articles. 
+The **`AddCommentFormDeprecated`**  component provides a deprecated interface for adding comments to articles. 
 This component is used when the feature flag `isAppRedesigned` is `false`, ensuring users can continue to add comments using the familiar, older UI elements. 
 This approach helps maintain a consistent user experience during the transition to a new design system.
 
@@ -14,7 +14,7 @@ export interface AddCommentFormProps {
 ```
 
 ## Props
-The **`DeprecatedAddCommentForm`** component accepts the following props:
+The **`AddCommentFormDeprecated`** component accepts the following props:
 
 | Prop       | Type                               | Required / Optional | Description                                                              |
 |------------|------------------------------------|----------------------|--------------------------------------------------------------------------|
@@ -36,7 +36,7 @@ The **`DeprecatedAddCommentForm`** component accepts the following props:
 
 ## Usage Example
 ```typescript jsx
-import { DeprecatedAddCommentForm } from '@/features/addCommentForm/DeprecatedAddCommentForm';
+import { AddCommentFormDeprecated } from '@/features/addCommentForm/AddCommentFormDeprecated';
 
 const App = () => {
        const handleSendComment = () => {
@@ -45,15 +45,15 @@ const App = () => {
 
     return (
         <div>
-            <DeprecatedAddCommentForm
+            <AddCommentFormDeprecated
                 className="my-custom-class"
                 onSendComment={handleSendComment}
             />
-            {/* The DeprecatedAddCommentForm component allows users to add comments using deprecated UI elements */}
+            {/* The AddCommentFormDeprecated component allows users to add comments using deprecated UI elements */}
         </div>
     );
 };
 
 ```
 ## Conclusion
-The **`DeprecatedAddCommentForm`** component is essential for maintaining backward compatibility within applications that are transitioning to a new design system. By providing users with a familiar and intuitive interface for adding comments, it ensures a seamless and user-friendly experience while leveraging deprecated UI components. The inclusion of the `useAddCommentForm` hook for state management and event handling further enhances the component's functionality and maintainability.
+The **`AddCommentFormDeprecated`** component is essential for maintaining backward compatibility within applications that are transitioning to a new design system. By providing users with a familiar and intuitive interface for adding comments, it ensures a seamless and user-friendly experience while leveraging deprecated UI components. The inclusion of the `useAddCommentForm` hook for state management and event handling further enhances the component's functionality and maintainability.

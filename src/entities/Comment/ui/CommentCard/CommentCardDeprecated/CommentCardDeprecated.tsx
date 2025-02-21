@@ -9,13 +9,13 @@ import cls from '../CommentCard.module.scss';
 import { Comment } from '../../../model/types/comment';
 import { getFlexClasses } from '@/shared/lib/classes/getFlexClasses/getFlexClasses';
 
-interface DeprecatedCommentCardProps {
+interface CommentCardDeprecatedProps {
     className?: string;
     comment: Comment;
 }
 
 export const CommentCardDeprecated = memo(
-    (props: DeprecatedCommentCardProps) => {
+    (props: CommentCardDeprecatedProps) => {
         const { className, comment } = props;
         const additionalClasses = getFlexClasses({ hStack: true, gap: '8' });
 

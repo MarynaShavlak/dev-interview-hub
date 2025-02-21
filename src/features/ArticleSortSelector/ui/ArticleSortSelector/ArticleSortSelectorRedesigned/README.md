@@ -2,7 +2,7 @@
 
 ## Overview
 The **`ArticleSortSelectorRedesigned`** component is rendered when the feature flag `isAppRedesigned` is `true`, providing users with an enhanced and modern interface for sorting articles.
-If this feature flag is not active,  the `DeprecatedArticleSortSelector` is rendered instead. 
+If this feature flag is not active,  the `ArticleSortSelectorDeprecated` is rendered instead. 
 This component utilizes the latest UI elements to ensure a seamless and intuitive user experience.
 
 ## Type Definition

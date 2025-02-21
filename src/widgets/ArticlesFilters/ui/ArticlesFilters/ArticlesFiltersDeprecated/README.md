@@ -1,7 +1,7 @@
-# DeprecatedArticlesFilters
+# ArticlesFiltersDeprecated
 
 ## Overview
-The `DeprecatedArticlesFilters` component provides a user interface for filtering articles in a React application. It integrates several UI elements to allow users to sort articles, search by keywords, and filter by categories. This component is designed using deprecated UI components and styles, and it serves as a transitional solution before moving to a redesigned version.
+The `ArticlesFiltersDeprecated` component provides a user interface for filtering articles in a React application. It integrates several UI elements to allow users to sort articles, search by keywords, and filter by categories. This component is designed using deprecated UI components and styles, and it serves as a transitional solution before moving to a redesigned version.
 
 ##  Type Definition
 ```typescript
@@ -20,7 +20,7 @@ export interface ArticlesFiltersProps {
 
 ## Props
 
-The **`DeprecatedArticlesFilters`** component accepts the following props:
+The **`ArticlesFiltersDeprecated`** component accepts the following props:
 
 | Prop              | Type                                  | Required / Optional | Description                                                  |
 |-------------------|---------------------------------------|----------------------|--------------------------------------------------------------|
@@ -43,7 +43,7 @@ The **`DeprecatedArticlesFilters`** component accepts the following props:
 ## Usage Example
 ```typescript jsx
 import { useState } from 'react';
-import { DeprecatedArticlesFilters } from '@/widgets/ArticlesFilters';
+import { ArticlesFiltersDeprecated } from '@/widgets/ArticlesFilters';
 import { ArticleSortField, SortOrder, ArticleCategory } from '@/entities/Article';
 
 const ExampleComponent = () => {
@@ -59,7 +59,7 @@ const ExampleComponent = () => {
     } = useArticleFilters();
 
     return (
-        <DeprecatedArticlesFilters
+        <ArticlesFiltersDeprecated
             className="customFilters"
             search={search}
             sort={sort}
@@ -75,4 +75,4 @@ const ExampleComponent = () => {
 ```
 
 ## Conclusion
-The `DeprecatedArticlesFilters` component offers a comprehensive filtering solution for articles, leveraging legacy UI components to provide sorting, searching, and category filtering functionalities. It serves as an interim component while transitioning to a redesigned version, ensuring continuity and usability in the article filtering process.
+The `ArticlesFiltersDeprecated` component offers a comprehensive filtering solution for articles, leveraging legacy UI components to provide sorting, searching, and category filtering functionalities. It serves as an interim component while transitioning to a redesigned version, ensuring continuity and usability in the article filtering process.

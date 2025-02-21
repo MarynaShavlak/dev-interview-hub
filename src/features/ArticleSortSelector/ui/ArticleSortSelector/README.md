@@ -1,7 +1,7 @@
 # ArticleSortSelector
 
 ## Overview
-The **`ArticleSortSelector`** component dynamically switches between the  `ArticleSortSelectorRedesigned` or the `DeprecatedArticleSortSelector` based on the `isAppRedesigned` feature flag.
+The **`ArticleSortSelector`** component dynamically switches between the  `ArticleSortSelectorRedesigned` or the `ArticleSortSelectorDeprecated` based on the `isAppRedesigned` feature flag.
 This ensures users interact with either the modern or legacy interface depending on the application's current configuration. 
 The component provides sorting functionality for articles, allowing users to sort articles by different fields and order, thus enhancing the user's control over content organization.
 

@@ -25,13 +25,13 @@ Article/
 ├── ui/
 │   ├── ArticleCard/
 │   │   ├── GridViewCard/
-│   │   │   ├── DeprecatedGridViewCard/
-│   │   │   │   └── DeprecatedGridViewCard.tsx
+│   │   │   ├── GridViewCardDeprecated/
+│   │   │   │   └── GridViewCardDeprecated.tsx
 │   │   │   └── GridViewCardRedesigned/
 │   │   │       └── GridViewCardRedesigned.tsx
 │   │   ├── ListViewCard/
-│   │   │   ├── DeprecatedListViewCard/
-│   │   │   │   └── DeprecatedListViewCard.tsx
+│   │   │   ├── ListViewCardDeprecated/
+│   │   │   │   └── ListViewCardDeprecated.tsx
 │   │   │   └── ListViewCardRedesigned/
 │   │   │       └── ListViewCardRedesigned.tsx
 │   │   ├── ArticleCard.tsx
@@ -106,13 +106,13 @@ Article/
   - [**ArticleCard.tsx**](./ui/ArticleCard/README.md): Main component for displaying an article in card format.
   - **ArticleCard.module.scss**: Styles for the `ArticleCard` component.
   - **`GridViewCard/`**
-    - **`DeprecatedGridViewCard/`**
-      - [**DeprecatedGridViewCard.tsx**](ui/ArticleCard/GridViewCard/GridViewCardDeprecated/README.md): Legacy card component for grid view.
+    - **`GridViewCardDeprecated/`**
+      - [**GridViewCardDeprecated.tsx**](ui/ArticleCard/GridViewCard/GridViewCardDeprecated/README.md): Legacy card component for grid view.
     - **`GridViewCardRedesigned/`**
       - [**GridViewCardRedesigned.tsx**](ui/ArticleCard/GridViewCard/GridViewCardRedesigned/README.md): Updated card component for grid view.
   - **`ListViewCard/`**
-    - **`DeprecatedListViewCard/`**
-      - [**DeprecatedListViewCard.tsx**](ui/ArticleCard/ListViewCard/ListViewCardDeprecated/README.md): Legacy card component for list view.
+    - **`ListViewCardDeprecated/`**
+      - [**ListViewCardDeprecated.tsx**](ui/ArticleCard/ListViewCard/ListViewCardDeprecated/README.md): Legacy card component for list view.
     - **`ListViewCardRedesigned/`**
       - [**ListViewCardRedesigned.tsx**](ui/ArticleCard/ListViewCard/ListViewCardRedesigned/README.md): Updated card component for list view.
 

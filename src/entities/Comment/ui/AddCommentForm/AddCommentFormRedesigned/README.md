@@ -2,7 +2,7 @@
 
 ## Overview
 The **`AddCommentFormRedesigned`**  component is rendered when the feature flag `isAppRedesigned` is `true`, offering users an enhanced and modern interface for adding comments. 
-When this feature flag is not active, the `DeprecatedAddCommentForm` is rendered instead. This component leverages updated UI elements to ensure a seamless, intuitive, and visually appealing user experience.
+When this feature flag is not active, the `AddCommentFormDeprecated` is rendered instead. This component leverages updated UI elements to ensure a seamless, intuitive, and visually appealing user experience.
 
 ## Type Definition
 ```typescript

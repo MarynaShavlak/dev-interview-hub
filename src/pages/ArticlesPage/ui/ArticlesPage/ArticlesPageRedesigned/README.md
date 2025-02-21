@@ -2,7 +2,7 @@
 
 ## Overview
 
-The **`ArticlesPageRedesigned`** component presents a modernized interface for viewing articles, utilizing updated UI components and styling. It is designed for applications that have adopted the new design standards, offering an enhanced user experience with a fresh layout and improved functionality. This component will replace the `DeprecatedArticlesPage` when the feature flag `isAppRedesigned` is active.
+The **`ArticlesPageRedesigned`** component presents a modernized interface for viewing articles, utilizing updated UI components and styling. It is designed for applications that have adopted the new design standards, offering an enhanced user experience with a fresh layout and improved functionality. This component will replace the `ArticlesPageDeprecated` when the feature flag `isAppRedesigned` is active.
 
 ## Type Definition
 

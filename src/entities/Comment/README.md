@@ -19,8 +19,8 @@ Comment/
 │   ├── CommentCard/
 │   │   ├── CommentCardSkeleton/
 │   │   │   └── CommentCardSkeleton.tsx
-│   │   ├── DeprecatedCommentCard/
-│   │   │   └── DeprecatedCommentCard.tsx
+│   │   ├── CommentCardDeprecated/
+│   │   │   └── CommentCardDeprecated.tsx
 │   │   ├── CommentCardRedesigned/
 │   │   │   └── CommentCardRedesigned.tsx
 │   │   ├── CommentCard.module.scss
@@ -29,8 +29,8 @@ Comment/
 │   │   └── CommentList.tsx
 │   ├── AddCommentForm/
 │   │   ├── AddCommentForm.tsx
-│   │   ├── DeprecatedAddCommentForm/
-│   │   │   └── DeprecatedAddCommentForm.tsx
+│   │   ├── AddCommentFormDeprecated/
+│   │   │   └── AddCommentFormDeprecated.tsx
 │   │   └── AddCommentFormRedesigned/
 │   │       └── AddCommentFormRedesigned.tsx
 ├── lib/
@@ -60,8 +60,8 @@ Comment/
 #### 2.1. `CommentCard/`: Manages the display of individual comments.
 - [**CommentCard.tsx**](./ui/CommentCard/README.md): The main `CommentCard` component.
 
-- **`DeprecatedCommentCard/`**
-  - [**DeprecatedCommentCard.tsx**](ui/CommentCard/CommentCardDeprecated/README.md): The deprecated version of the `CommentCard` component.
+- **`CommentCardDeprecated/`**
+  - [**CommentCardDeprecated.tsx**](ui/CommentCard/CommentCardDeprecated/README.md): The deprecated version of the `CommentCard` component.
 
 - **`CommentCardRedesigned/`**
   - [**CommentCardRedesigned.tsx**](ui/CommentCard/CommentCardRedesigned/README.md): The redesigned version of the `CommentCard` component.
@@ -76,8 +76,8 @@ Comment/
 
 #### 2.3. `AddCommentForm/`: Manages the display of form for adding new comments.
 - [**AddCommentForm.tsx**](./ui/AddCommentForm/README.md): The main `AddCommentForm` component.
-- **`DeprecatedCommentCard/`**
-  - [**DeprecatedAddCommentForm.tsx**](ui/AddCommentForm/AddCommentFormDeprecated/README.md): The deprecated version of the `AddCommentForm` component.
+- **`CommentCardDeprecated/`**
+  - [**AddCommentFormDeprecated.tsx**](ui/AddCommentForm/AddCommentFormDeprecated/README.md): The deprecated version of the `AddCommentForm` component.
 
 - **`CommentCardRedesigned/`**
   - [**AddCommentFormRedesigned.tsx**](ui/AddCommentForm/AddCommentFormRedesigned/README.md): The redesigned version of the `AddCommentForm` component.

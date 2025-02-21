@@ -16,7 +16,7 @@ Rating/
 │   ├── FeedbackDrawer/
 │   ├── FeedbackModal/
 │   └── Rating/
-│       ├── DeprecatedRating/
+│       ├── RatingDeprecated/
 │       ├── RatingRedesigned/
 │       ├── Rating.tsx
 ├── index.ts
@@ -42,7 +42,7 @@ Rating/
 
 #### 2.4. `Rating/`: 
 - [**Rating.tsx**](./ui/Rating/README.md): The main `Rating` component implementation.
-- [**DeprecatedRating**](ui/Rating/RatingDeprecated/README.md): Contains the legacy or deprecated rating component implementations.
+- [**RatingDeprecated**](ui/Rating/RatingDeprecated/README.md): Contains the legacy or deprecated rating component implementations.
 - [**RatingRedesigned**](ui/Rating/RatingRedesigned/README.md):: Contains the updated or redesigned rating components.
 
 

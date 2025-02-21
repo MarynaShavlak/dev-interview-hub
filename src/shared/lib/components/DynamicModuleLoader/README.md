@@ -39,7 +39,7 @@ The component enables the dynamic addition of reducers to the Redux store, ensur
 ```typescript jsx
 import { memo } from 'react';
 import { ArticlesPageRedesigned } from './ArticlesPageRedesigned/ArticlesPageRedesigned';
-import { DeprecatedArticlesPage } from './DeprecatedArticlesPage/DeprecatedArticlesPage';
+import { ArticlesPageDeprecated } from './ArticlesPageDeprecated/ArticlesPageDeprecated';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
 import { DynamicModuleLoader, ReducersList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { articlesPageReducer } from '../../model/slices/articlesPageSlice';
@@ -58,7 +58,7 @@ const ArticlesPage = ({ className }: ArticlesPageProps) => {
             <ToggleFeaturesComponent
                 feature="isAppRedesigned"
                 on={<ArticlesPageRedesigned className={className} />}
-                off={<DeprecatedArticlesPage className={className} />}
+                off={<ArticlesPageDeprecated className={className} />}
             />
         </DynamicModuleLoader>
     );

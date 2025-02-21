@@ -1,7 +1,7 @@
-# DeprecatedListViewCard
+# ListViewCardDeprecated
 
 ## Overview
-The **`DeprecatedListViewCard`** component is designed to render articles in a list layout using deprecated styling and components. This component is essential for applications that have not yet transitioned to newer UI components, ensuring users can still access article details through a consistent, although outdated, interface. This component is scheduled for replacement by a redesigned version when the feature flag `isAppRedesigned` is active.
+The **`ListViewCardDeprecated`** component is designed to render articles in a list layout using deprecated styling and components. This component is essential for applications that have not yet transitioned to newer UI components, ensuring users can still access article details through a consistent, although outdated, interface. This component is scheduled for replacement by a redesigned version when the feature flag `isAppRedesigned` is active.
 
 ## Type Definition 
 ```typescript
@@ -12,7 +12,7 @@ interface ListViewCardProps {
 ```
 
 ## Props
-The **`DeprecatedListViewCard`** component accepts the following props:
+The **`ListViewCardDeprecated`** component accepts the following props:
 
 | Prop       | Type       | Required / Optional | Description                                                               |
 |------------|------------|----------------------|---------------------------------------------------------------------------|
@@ -36,7 +36,7 @@ The **`DeprecatedListViewCard`** component accepts the following props:
 ## Usage Example
 
 ```typescript jsx
-import { DeprecatedListViewCard } from '@/entities/Article';
+import { ListViewCardDeprecated } from '@/entities/Article';
 import { ArticleCategories } from '@/entities/Article';
 import { Article } from '../../../../model/types/article';
 import { ArticleCategory, ArticleSection } from '../../../../model/consts/articleConsts';
@@ -44,7 +44,7 @@ import { testArticleData } from './testing';
 
 
 const App = () => (
-    <DeprecatedListViewCard
+    <ListViewCardDeprecated
         article={testArticleData}
         className="custom-item"
         target="_blank"
@@ -52,4 +52,4 @@ const App = () => (
 );
 ```
 ## Conclusion
-The **`DeprecatedListViewCard`** component is crucial for displaying articles in a list layout using outdated styling. It offers a comprehensive view of each article, including the author's information, title, creation date, categories, a brief text snippet, and view count. The component ensures a consistent and engaging browsing experience by handling image fallbacks with a default image and skeleton loader. Overall, this component is vital for maintaining access to article content during the transition to newer UI components.
+The **`ListViewCardDeprecated`** component is crucial for displaying articles in a list layout using outdated styling. It offers a comprehensive view of each article, including the author's information, title, creation date, categories, a brief text snippet, and view count. The component ensures a consistent and engaging browsing experience by handling image fallbacks with a default image and skeleton loader. Overall, this component is vital for maintaining access to article content during the transition to newer UI components.

@@ -1,11 +1,11 @@
-# DeprecatedEditableProfileCardHeader
+# EditableProfileCardHeaderDeprecated
 
 ## Overview
-The **`DeprecatedEditableProfileCardHeader`** component is used to display the header section of a profile card with editing capabilities. It is designed to offer a familiar interface for profile management during a transition phase when the redesigned profile components are not yet fully implemented. This component provides users with options to edit, cancel edits, and save changes, leveraging deprecated UI elements for compatibility with older application design versions.
+The **`EditableProfileCardHeaderDeprecated`** component is used to display the header section of a profile card with editing capabilities. It is designed to offer a familiar interface for profile management during a transition phase when the redesigned profile components are not yet fully implemented. This component provides users with options to edit, cancel edits, and save changes, leveraging deprecated UI elements for compatibility with older application design versions.
 
 ## Type Definition 
 ```typescript
-interface DeprecatedEditableProfileCardHeaderProps {
+interface EditableProfileCardHeaderDeprecatedProps {
     onEdit: () => void;
     onCancelEdit: () => void;
     onSave: () => void;
@@ -16,7 +16,7 @@ interface DeprecatedEditableProfileCardHeaderProps {
 ```
 
 ## Props
-The **`DeprecatedEditableProfileCardHeader`** component accepts the following props:
+The **`EditableProfileCardHeaderDeprecated`** component accepts the following props:
 
 | Prop          | Type                    | Required / Optional | Description                                                                |
 |---------------|-------------------------|----------------------|----------------------------------------------------------------------------|
@@ -35,7 +35,7 @@ The **`DeprecatedEditableProfileCardHeader`** component accepts the following pr
 
 ## Usage Example
 ```typescript jsx
-import { DeprecatedEditableProfileCardHeader } from '@/features/EditableProfileCard/DeprecatedEditableProfileCardHeader';
+import { EditableProfileCardHeaderDeprecated } from '@/features/EditableProfileCard/EditableProfileCardHeaderDeprecated';
 
 const ProfileHeader = () => {
     const handleEdit = () => {
@@ -51,7 +51,7 @@ const ProfileHeader = () => {
     };
 
     return (
-        <DeprecatedEditableProfileCardHeader
+        <EditableProfileCardHeaderDeprecated
             className="profile-header"
             onEdit={handleEdit}
             onCancelEdit={handleCancelEdit}
@@ -64,4 +64,4 @@ const ProfileHeader = () => {
 
 ```
 ## Conclusion
-The **`DeprecatedEditableProfileCardHeader`**  component plays a crucial role in maintaining user interface consistency during the transition to new profile management components. By utilizing deprecated UI elements, it ensures that users continue to have access to essential profile management functionalities while the application updates its design system.
+The **`EditableProfileCardHeaderDeprecated`**  component plays a crucial role in maintaining user interface consistency during the transition to new profile management components. By utilizing deprecated UI elements, it ensures that users continue to have access to essential profile management functionalities while the application updates its design system.

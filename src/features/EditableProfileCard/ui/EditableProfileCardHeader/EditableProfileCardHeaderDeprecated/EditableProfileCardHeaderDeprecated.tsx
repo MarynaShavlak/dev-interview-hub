@@ -5,7 +5,7 @@ import { HStack } from '@/shared/ui/common/Stack';
 import { Text } from '@/shared/ui/deprecated/Text';
 import { Button, ButtonTheme } from '@/shared/ui/deprecated/Button';
 
-interface DeprecatedEditableProfileCardHeaderProps {
+interface EditableProfileCardHeaderDeprecatedProps {
     onEdit: () => void;
     onCancelEdit: () => void;
     onSave: () => void;
@@ -16,7 +16,7 @@ interface DeprecatedEditableProfileCardHeaderProps {
 }
 
 export const EditableProfileCardHeaderDeprecated = memo(
-    (props: DeprecatedEditableProfileCardHeaderProps) => {
+    (props: EditableProfileCardHeaderDeprecatedProps) => {
         const {
             className,
             onEdit,

@@ -1,7 +1,7 @@
-# DeprecatedArticleViewSelector
+# ArticleViewSelectorDeprecated
 
 ## Overview
-The **`DeprecatedArticleViewSelector`** component is rendered when the feature flag `isAppRedesigned` is `false`, providing users with deprecated interface for selecting article view modes. When this flag is active feature flag, the `ArticleViewSelectorRedesigned` is rendered instead.
+The **`ArticleViewSelectorDeprecated`** component is rendered when the feature flag `isAppRedesigned` is `false`, providing users with deprecated interface for selecting article view modes. When this flag is active feature flag, the `ArticleViewSelectorRedesigned` is rendered instead.
 This component utilizes the deprecated UI elements to ensure a seamless and intuitive user experience.
 
 ## Type Definition 
@@ -14,7 +14,7 @@ interface ArticleViewSelectorProps {
 ```
 
 ## Props
-The **`DeprecatedArticleViewSelector`** component accepts the following props:
+The **`ArticleViewSelectorDeprecated`** component accepts the following props:
 
 | Prop       | Type       | Required / Optional | Description                                          |
 |------------|------------|----------------------|------------------------------------------------------|
@@ -30,7 +30,7 @@ The **`DeprecatedArticleViewSelector`** component accepts the following props:
 
 ## Usage Example
 ```typescript jsx
-import { DeprecatedArticleViewSelector } from '@/features/ArticleViewSelector/DeprecatedArticleViewSelector';
+import { ArticleViewSelectorDeprecated } from '@/features/ArticleViewSelector/ArticleViewSelectorDeprecated';
 import { ArticleView } from '@/entities/Article';
 
 const App = () => {
@@ -40,15 +40,15 @@ const App = () => {
 
     return (
         <div>
-            <DeprecatedArticleViewSelector
+            <ArticleViewSelectorDeprecated
                 className="my-custom-class"
                 view={ArticleView.LIST}
                 onViewClick={handleViewClick}
             />
-            {/* The DeprecatedArticleViewSelector component allows users to switch between different article views */}
+            {/* The ArticleViewSelectorDeprecated component allows users to switch between different article views */}
         </div>
     );
 };
 ```
 ## Conclusion
-The **`DeprecatedArticleViewSelector`** component is essential for applications needing backward compatibility with deprecated design system. By offering a simple yet effective way for users to toggle between grid and list views, it enhances usability while facilitating smooth transition in deprecated design system.
+The **`ArticleViewSelectorDeprecated`** component is essential for applications needing backward compatibility with deprecated design system. By offering a simple yet effective way for users to toggle between grid and list views, it enhances usability while facilitating smooth transition in deprecated design system.

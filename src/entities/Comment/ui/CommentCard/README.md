@@ -2,7 +2,7 @@
 
 ## Overview
 The **`CommentCard`** component is designed to display user comments in a React application, handling different UI states based on feature flags and loading conditions. 
-It integrates with the `DeprecatedCommentCard` and `CommentCardRedesigned` components to offer backward compatibility and modern UI options, depending on the current feature settings. 
+It integrates with the `CommentCardDeprecated` and `CommentCardRedesigned` components to offer backward compatibility and modern UI options, depending on the current feature settings. 
 The component also includes a loading state using `CommentCardSkeleton`, ensuring a seamless user experience.
 
 ## Type Definition 
@@ -27,7 +27,7 @@ The **`CommentCard`** component accepts the following props:
 ## Features
 1. **Conditional Rendering**:
    - **Loading State**: Displays a `CommentCardSkeleton` component when `isLoading` is `true`, providing a placeholder while data is being fetched.
-   - **Feature Toggling**: Utilizes `ToggleFeaturesComponent` to conditionally render either the `CommentCardRedesigned` or `DeprecatedCommentCard`, based on the `isAppRedesigned` feature flag. This allows the component to adapt to different UI designs seamlessly.
+   - **Feature Toggling**: Utilizes `ToggleFeaturesComponent` to conditionally render either the `CommentCardRedesigned` or `CommentCardDeprecated`, based on the `isAppRedesigned` feature flag. This allows the component to adapt to different UI designs seamlessly.
 
 2. **User Information Display**: Provides an interface to display the avatar and username of the comment's author, as well as the comment text, ensuring that all relevant information is accessible.
 
@@ -64,5 +64,5 @@ const ExampleComponent = () => {
 ```
 ## Conclusion
 The **`CommentCard`** component serves as a versatile and adaptive solution for rendering user comments within a React application. Its primary purpose is to manage and display comments efficiently while handling various states and feature configurations.
-By integrating with `DeprecatedCommentCard` and `CommentCardRedesigned`, it ensures compatibility with both legacy and modern UI designs, delivering a consistent and user-friendly experience. 
+By integrating with `CommentCardDeprecated` and `CommentCardRedesigned`, it ensures compatibility with both legacy and modern UI designs, delivering a consistent and user-friendly experience. 
 This component is essential for applications transitioning between design systems, maintaining functionality and aesthetics across different versions.

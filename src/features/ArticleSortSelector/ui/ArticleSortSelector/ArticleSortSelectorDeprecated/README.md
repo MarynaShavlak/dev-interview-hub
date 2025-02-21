@@ -1,7 +1,7 @@
-# DeprecatedArticleSortSelector
+# ArticleSortSelectorDeprecated
 
 ## Overview
-The **`DeprecatedArticleSortSelector`** component is rendered when the feature flag `isAppRedesigned` is `false`, providing users with deprecated interface for sorting articles. When this flag is active feature flag, the `ArticleSortSelectorRedesigned` is rendered instead.
+The **`ArticleSortSelectorDeprecated`** component is rendered when the feature flag `isAppRedesigned` is `false`, providing users with deprecated interface for sorting articles. When this flag is active feature flag, the `ArticleSortSelectorRedesigned` is rendered instead.
 This component ensures that users still have access to sorting functionalities using deprecated UI elements, maintaining a consistent and familiar user experience during the transition phase.
 
 ## Type Definition 
@@ -16,7 +16,7 @@ interface ArticleSortSelectorProps {
 ```
 
 ## Props
-The **`DeprecatedArticleSortSelector`** component accepts the following props:
+The **`ArticleSortSelectorDeprecated`** component accepts the following props:
 
 | Prop       | Type       | Required / Optional | Description                                                               |
 |------------|------------|----------------------|---------------------------------------------------------------------------|
@@ -34,7 +34,7 @@ The **`DeprecatedArticleSortSelector`** component accepts the following props:
 
 ## Usage Example
 ```typescript jsx
-import { DeprecatedArticleSortSelector } from '@/features/ArticleSortSelector/DeprecatedArticleSortSelector';
+import { ArticleSortSelectorDeprecated } from '@/features/ArticleSortSelector/ArticleSortSelectorDeprecated';
 import { ArticleSortField } from '@/entities/Article';
 import { SortOrder } from '@/shared/types/sortOrder';
 
@@ -49,17 +49,17 @@ const App = () => {
 
     return (
         <div>
-            <DeprecatedArticleSortSelector
+            <ArticleSortSelectorDeprecated
                 className="my-custom-class"
                 order="asc"
                 sort={ArticleSortField.DATE}
                 onChangeOrder={handleOrderChange}
                 onChangeSort={handleSortChange}
             />
-            {/* The DeprecatedArticleSortSelector component allows users to sort articles by various fields and order */}
+            {/* The ArticleSortSelectorDeprecated component allows users to sort articles by various fields and order */}
         </div>
     );
 };
 ```
 ## Conclusion
-The **`DeprecatedArticleSortSelector`** component is essential for maintaining backward compatibility within applications that are transitioning to a new design system. By providing users with a familiar and intuitive interface for sorting articles, it ensures a seamless and user-friendly experience while leveraging deprecated UI components.
+The **`ArticleSortSelectorDeprecated`** component is essential for maintaining backward compatibility within applications that are transitioning to a new design system. By providing users with a familiar and intuitive interface for sorting articles, it ensures a seamless and user-friendly experience while leveraging deprecated UI components.

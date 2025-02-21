@@ -1,19 +1,19 @@
-# DeprecatedCommentCard
+# CommentCardDeprecated
 
 ## Overview
-The **`DeprecatedCommentCard`** component is used to render individual comments in a deprecated interface. It offers users a way to view comment details using legacy UI elements. This component is particularly useful during the transition period when the application is shifting to newer UI components. 
+The **`CommentCardDeprecated`** component is used to render individual comments in a deprecated interface. It offers users a way to view comment details using legacy UI elements. This component is particularly useful during the transition period when the application is shifting to newer UI components. 
 When the feature flag `isAppRedesigned` is activated, the `CommentCardRedesigned` will be used instead, offering an updated interface.
 
 ## Type Definition 
 ```typescript
-interface DeprecatedCommentCardProps {
+interface CommentCardDeprecatedProps {
     className?: string;
     comment: Comment;
 }
 ```
 
 ## Props
-The **`DeprecatedCommentCard`** component accepts the following props:
+The **`CommentCardDeprecated`** component accepts the following props:
 
 | Prop       | Type       | Required / Optional | Description                                                               |
 |------------|------------|----------------------|---------------------------------------------------------------------------|
@@ -28,7 +28,7 @@ The **`DeprecatedCommentCard`** component accepts the following props:
 
 ## Usage Example
 ```typescript jsx
-import { DeprecatedCommentCard } from '@/entities/Comment';
+import { CommentCardDeprecated } from '@/entities/Comment';
 import { Comment } from '@/entities/Comment';
 
 const sampleComment: Comment = {
@@ -44,15 +44,15 @@ const sampleComment: Comment = {
 const App = () => {
     return (
         <div>
-            <DeprecatedCommentCard
+            <CommentCardDeprecated
                 className="my-custom-class"
                 comment={sampleComment}
             />
-            {/* The DeprecatedCommentCard component displays user comments with legacy styling */}
+            {/* The CommentCardDeprecated component displays user comments with legacy styling */}
         </div>
     );
 };
 
 ```
 ## Conclusion
-The **`DeprecatedCommentCard`** component is crucial for maintaining consistency in user experience while transitioning to a new design system. By leveraging deprecated UI components, it ensures that comments are displayed in a familiar format, providing users with a smooth and uninterrupted interaction with the comment section.
+The **`CommentCardDeprecated`** component is crucial for maintaining consistency in user experience while transitioning to a new design system. By leveraging deprecated UI components, it ensures that comments are displayed in a familiar format, providing users with a smooth and uninterrupted interaction with the comment section.

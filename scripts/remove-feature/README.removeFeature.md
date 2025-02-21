@@ -114,7 +114,7 @@ const result = toggleFeatures({
 <ToggleFeaturesComponent
     feature="isAppRedesigned"
     on={<GridViewSkeletonRedesigned />}
-    off={<DeprecatedGridViewSkeleton />}
+    off={<GridViewSkeletonDeprecated />}
 />
 ```
 
@@ -136,7 +136,7 @@ const result = 'disabled';
 <ToggleFeaturesComponent
     feature="isAppRedesigned"
     on={<GridViewSkeletonRedesigned />}
-    off={<DeprecatedGridViewSkeleton />}
+    off={<GridViewSkeletonDeprecated />}
 />
 ```
 

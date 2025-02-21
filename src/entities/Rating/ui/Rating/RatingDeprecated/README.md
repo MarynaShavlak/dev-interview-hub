@@ -1,13 +1,13 @@
-# DeprecatedRating
+# RatingDeprecated
 
 ## Overview
-The **`DeprecatedRating`** component renders a deprecated interface for providing star ratings and feedback. 
+The **`RatingDeprecated`** component renders a deprecated interface for providing star ratings and feedback. 
 This component is part of the deprecated UI and is used when the feature flag `isAppRedesigned` is `false`. 
 It allows users to rate items and provide feedback while maintaining backward compatibility with the older version of the application interface.
 
 ## Type Definition 
 ```typescript
-interface DeprecatedRatingProps {
+interface RatingDeprecatedProps {
     feedbackContainer: ReactElement;
     starsCount: number;
     className?: string;
@@ -18,7 +18,7 @@ interface DeprecatedRatingProps {
 
 ## Props
 
-The **`DeprecatedRating`** component accepts the following props:
+The **`RatingDeprecated`** component accepts the following props:
 
 | Prop               | Type                                       | Required / Optional | Description                                                  |
 |--------------------|--------------------------------------------|---------------------|--------------------------------------------------------------|
@@ -36,7 +36,7 @@ The **`DeprecatedRating`** component accepts the following props:
 
 ## Usage Example
 ```typescript jsx
-import { DeprecatedRating } from '@/entities/Rating/DeprecatedRating';
+import { RatingDeprecated } from '@/entities/Rating/RatingDeprecated';
 
 const App = () => {
     const handleSelect = (starsCount: number) => {
@@ -45,18 +45,18 @@ const App = () => {
 
     return (
         <div>
-            <DeprecatedRating
+            <RatingDeprecated
                 className="my-custom-class"
                 starsCount={0}
                 feedbackContainer={<div>Feedback Form</div>}
                 onSelect={handleSelect}
                 title="Please rate this article"
             />
-            {/* The DeprecatedRating component allows users to rate items and provide feedback */}
+            {/* The RatingDeprecated component allows users to rate items and provide feedback */}
         </div>
     );
 };
 
 ```
 ## Conclusion
-The **`DeprecatedRating`** component is crucial for maintaining backward compatibility within applications transitioning to a new design system. By offering a familiar and intuitive interface for star ratings and feedback, it ensures a seamless and user-friendly experience while leveraging deprecated UI components.
+The **`RatingDeprecated`** component is crucial for maintaining backward compatibility within applications transitioning to a new design system. By offering a familiar and intuitive interface for star ratings and feedback, it ensures a seamless and user-friendly experience while leveraging deprecated UI components.

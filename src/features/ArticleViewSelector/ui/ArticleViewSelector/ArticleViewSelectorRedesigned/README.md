@@ -2,7 +2,7 @@
 
 ## Overview
 The **`ArticleViewSelectorRedesigned`** component is rendered when the feature flag `isAppRedesigned` is `true`, providing users with an enhanced and modern interface for selecting article view modes.
-If this feature flag is not active, the `DeprecatedArticleViewSelector` is rendered instead. 
+If this feature flag is not active, the `ArticleViewSelectorDeprecated` is rendered instead. 
 This component utilizes the latest UI elements to ensure a seamless and intuitive user experience.
 
 ## Type Definition 

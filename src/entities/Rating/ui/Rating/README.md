@@ -32,7 +32,7 @@ The **`Rating`** component accepts the following props:
 
 
 ## Features
-1.**Feature Toggling**: Uses the `ToggleFeaturesComponent` to conditionally render either the `RatingRedesigned` or `DeprecatedRating` components based on the `isAppRedesigned` feature flag.
+1.**Feature Toggling**: Uses the `ToggleFeaturesComponent` to conditionally render either the `RatingRedesigned` or `RatingDeprecated` components based on the `isAppRedesigned` feature flag.
 
 2.**State Management**: Manages the state for the current star rating, feedback text, and modal visibility.
 
