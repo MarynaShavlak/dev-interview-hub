@@ -77,10 +77,10 @@ Comment/
 #### 2.3. `AddCommentForm/`: Manages the display of form for adding new comments.
 - [**AddCommentForm.tsx**](./ui/AddCommentForm/README.md): The main `AddCommentForm` component.
 - **`DeprecatedCommentCard/`**
-  - [**DeprecatedAddCommentForm.tsx**](./ui/AddCommentForm/DeprecatedAddCommentForm/README.md): The deprecated version of the `AddCommentForm` component.
+  - [**DeprecatedAddCommentForm.tsx**](ui/AddCommentForm/AddCommentFormDeprecated/README.md): The deprecated version of the `AddCommentForm` component.
 
 - **`RedesignedCommentCard/`**
-  - [**RedesignedAddCommentForm.tsx**](./ui/AddCommentForm/RedesignedAddCommentForm/README.md): The redesigned version of the `AddCommentForm` component.
+  - [**RedesignedAddCommentForm.tsx**](ui/AddCommentForm/AddCommentFormRedesigned/README.md): The redesigned version of the `AddCommentForm` component.
 
 
 ### 3. `lib/`: Utility functions and hooks.

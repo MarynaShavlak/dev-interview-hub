@@ -1,7 +1,7 @@
 # ArticleDetailsPage
 
 ## Overview
-The **`ArticleDetailsPage`** module is responsible for presenting a detailed view of an article within the application. Leveraging the Feature-Sliced Design (FSD) methodology, this page module dynamically adapts its interface based on the application’s design system. It utilizes feature flags to conditionally render either the [RedesignedArticleDetailsPage](RedesignedArticleDetailsPage/README.md) or the [DeprecatedArticleDetailsPage](DeprecatedArticleDetailsPage/README.md), ensuring that users receive a consistent and coherent experience depending on the active design configuration.
+The **`ArticleDetailsPage`** module is responsible for presenting a detailed view of an article within the application. Leveraging the Feature-Sliced Design (FSD) methodology, this page module dynamically adapts its interface based on the application’s design system. It utilizes feature flags to conditionally render either the [RedesignedArticleDetailsPage](ArticleDetailsPageRedesigned/README.md) or the [DeprecatedArticleDetailsPage](ArticleDetailsPageDeprecated/README.md), ensuring that users receive a consistent and coherent experience depending on the active design configuration.
 
 ## Type Definition
 ```typescript

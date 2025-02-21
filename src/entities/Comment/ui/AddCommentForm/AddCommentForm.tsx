@@ -1,7 +1,7 @@
 import { memo } from 'react';
-import { RedesignedAddCommentForm } from './RedesignedAddCommentForm/RedesignedAddCommentForm';
+import { AddCommentFormRedesigned } from './AddCommentFormRedesigned/AddCommentFormRedesigned';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
-import { DeprecatedAddCommentForm } from './DeprecatedAddCommentForm/DeprecatedAddCommentForm';
+import { AddCommentFormDeprecated } from './AddCommentFormDeprecated/AddCommentFormDeprecated';
 
 import {
     DynamicModuleLoader,
@@ -23,8 +23,8 @@ const AddCommentForm = memo((props: AddCommentFormProps) => {
         <DynamicModuleLoader reducers={reducers}>
             <ToggleFeaturesComponent
                 feature="isAppRedesigned"
-                on={<RedesignedAddCommentForm {...props} />}
-                off={<DeprecatedAddCommentForm {...props} />}
+                on={<AddCommentFormRedesigned {...props} />}
+                off={<AddCommentFormDeprecated {...props} />}
             />
         </DynamicModuleLoader>
     );

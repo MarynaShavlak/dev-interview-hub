@@ -14,7 +14,7 @@ import { AdditionalInfoContainer } from '../../AdditionalInfoContainer/Additiona
 import { useArticleDataById } from '@/entities/Article';
 import { Skeleton } from '@/shared/ui/redesigned/Skeleton';
 
-export const RedesignedArticleDetailsPage = memo(
+export const ArticleDetailsPageRedesigned = memo(
     ({ className }: ArticleDetailsPageProps) => {
         const { id } = useParams<{ id: string }>();
         const { t } = useTranslation();

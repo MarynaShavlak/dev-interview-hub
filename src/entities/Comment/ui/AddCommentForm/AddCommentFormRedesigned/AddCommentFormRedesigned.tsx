@@ -10,7 +10,7 @@ import cls from '../AddCommentForm.module.scss';
 import { AddCommentFormProps } from '../AddCommentForm';
 import { useAddCommentForm } from '../../../lib/hook/useAddCommentForm';
 
-export const RedesignedAddCommentForm = memo((props: AddCommentFormProps) => {
+export const AddCommentFormRedesigned = memo((props: AddCommentFormProps) => {
     const { className, onSendComment } = props;
     const { t } = useTranslation('articleDetails');
     const { text, error, onCommentTextChange, onSendHandler } =
