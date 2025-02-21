@@ -4,7 +4,7 @@ import { ThemeSwitcher } from '@/features/ThemeSwitcher';
 import { VStack } from '@/shared/ui/common/Stack';
 import { AppLogo } from '@/shared/ui/common/AppLogo';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
-import cls from './RedesignedSidebar.module.scss';
+import cls from './SidebarRedesigned.module.scss';
 import { Icon } from '@/shared/ui/redesigned/Icon';
 import ArrowLeftIcon from '@/shared/assets/icons/arrow-left.svg';
 import ArrowRightIcon from '@/shared/assets/icons/arrow-right.svg';
@@ -17,7 +17,7 @@ interface RedesignedSidebarProps {
     className?: string;
 }
 
-export const RedesignedSidebar = memo((props: RedesignedSidebarProps) => {
+export const SidebarRedesigned = memo((props: RedesignedSidebarProps) => {
     const { className } = props;
     const { collapsed, toggleCollapse } = useSidebarCollapse();
     const sidebarItemsList = useSidebarItems();

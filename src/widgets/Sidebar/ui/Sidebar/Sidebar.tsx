@@ -1,6 +1,6 @@
 import { memo } from 'react';
-import { RedesignedSidebar } from './RedesignedSidebar/RedesignedSidebar';
-import { DeprecatedSidebar } from './DeprecatedSidebar/DeprecatedSidebar';
+import { SidebarRedesigned } from './SidebarRedesigned/SidebarRedesigned';
+import { SidebarDeprecated } from './SidebarDeprecated/SidebarDeprecated';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
 
 interface SidebarProps {
@@ -11,8 +11,8 @@ export const Sidebar = memo(({ className }: SidebarProps) => {
     return (
         <ToggleFeaturesComponent
             feature="isAppRedesigned"
-            on={<RedesignedSidebar className={className} />}
-            off={<DeprecatedSidebar className={className} />}
+            on={<SidebarRedesigned className={className} />}
+            off={<SidebarDeprecated className={className} />}
         />
     );
 });

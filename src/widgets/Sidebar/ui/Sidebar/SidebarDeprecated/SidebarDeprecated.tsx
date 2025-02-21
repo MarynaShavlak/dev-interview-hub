@@ -4,7 +4,7 @@ import { ThemeSwitcher } from '@/features/ThemeSwitcher';
 import { LangSwitcher } from '@/features/LangSwitcher';
 import { Button, ButtonSize, ButtonTheme } from '@/shared/ui/deprecated/Button';
 import { VStack } from '@/shared/ui/common/Stack';
-import cls from './DeprecatedSidebar.module.scss';
+import cls from './SidebarDeprecated.module.scss';
 import { useSidebarItems } from '../../../lib/hooks/useSidebarItems/useSidebarItems';
 import { SidebarItem } from '../../SidebarItem/SidebarItem';
 import { Each } from '@/shared/lib/components/Each/Each';
@@ -14,7 +14,7 @@ interface DeprecatedSidebarProps {
     className?: string;
 }
 
-export const DeprecatedSidebar = memo((props: DeprecatedSidebarProps) => {
+export const SidebarDeprecated = memo((props: DeprecatedSidebarProps) => {
     const { className } = props;
     const sidebarItemsList = useSidebarItems();
     const { collapsed, toggleCollapse } = useSidebarCollapse();

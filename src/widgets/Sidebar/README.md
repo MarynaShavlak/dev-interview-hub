@@ -44,9 +44,9 @@ Sidebar/
 - **`Sidebar/`**
     - [**Sidebar.tsx**](./ui/Sidebar/README.md): Main component that dynamically switches between the `RedesignedSidebar` and `DeprecatedSidebar` based on the `isAppRedesigned` feature flag, enhancing the navigation experience according to the application's design preferences.
     - **`DeprecatedSidebar/`**:
-      - [**DeprecatedSidebar.tsx**](./ui/Sidebar/DeprecatedSidebar/README.md): Legacy sidebar component.
+      - [**DeprecatedSidebar.tsx**](ui/Sidebar/SidebarDeprecated/README.md): Legacy sidebar component.
     - **`RedesignedSidebar/`**:
-      -  [**RedesignedSidebar.tsx**](./ui/Sidebar/RedesignedSidebar/README.md): Updated sidebar component for the redesigned UI.
+      -  [**RedesignedSidebar.tsx**](ui/Sidebar/SidebarRedesigned/README.md): Updated sidebar component for the redesigned UI.
 
 - **`SidebarItem`**:
     - [**SidebarItem.tsx**](./ui/SidebarHeader/README.md): Component representing individual items within the sidebar, ensuring consistency and ease of navigation.
