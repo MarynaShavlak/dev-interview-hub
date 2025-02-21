@@ -67,7 +67,7 @@ export const useArticleEditorPageHeader = (
         } else {
             handleCancel();
         }
-    }, [hasChanges, cancelArticleEditing.show, handleCancel]);
+    }, [hasChanges, cancelArticleEditing, handleCancel]);
 
     const canSave = !hasErrors && (formData?.blocks?.length ?? 0) > 0;
 
@@ -83,10 +83,3 @@ export const useArticleEditorPageHeader = (
         cancelEdit,
     };
 };
-
-// const handleCancel = useCallback(() => {
-//     if (editedArticleId) {
-//         onActions.cancel();
-//         navigateToArticle(editedArticleId);
-//     }
-// }, [editedArticleId, navigateToArticle, onActions]);

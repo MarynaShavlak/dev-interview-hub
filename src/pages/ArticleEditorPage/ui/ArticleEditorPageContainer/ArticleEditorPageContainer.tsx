@@ -25,7 +25,7 @@ export const ArticleEditorPageContainer = memo(() => {
     } = useArticleEditor();
     const { isEditArticlePage, saveError, isLoading } = metadata;
 
-    if (!isLoading) {
+    if (isLoading) {
         return <ContentSkeleton height="100%" />;
     }
 

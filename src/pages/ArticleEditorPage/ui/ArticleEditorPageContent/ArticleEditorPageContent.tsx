@@ -4,7 +4,6 @@ import { AddCategoryForm } from '../AddCategoryForm/AddCategoryForm';
 import { AddBlocksForm } from '../AddBlocksForm/AddBlocksForm';
 import { AddHeroForm } from '../AddHeroForm/AddHeroForm';
 import { UseArticleEditorReturn } from '../../lib/hooks/useArticleEditor/useArticleEditor';
-import { ContentSkeleton } from './ContentSkeleton/ContentSkeleton';
 
 interface ArticleEditorPageProps {
     metadata: UseArticleEditorReturn['metadata'];
@@ -25,9 +24,9 @@ export const ArticleEditorPageContent = memo(
         } = heroImage;
         const { blocks, isLoading } = metadata;
 
-        if (isLoading) {
-            return <ContentSkeleton />;
-        }
+        // if (isLoading) {
+        //     return <ContentSkeleton />;
+        // }
 
         return (
             <>

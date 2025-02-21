@@ -7,7 +7,6 @@ import { ConfirmDeleteModal } from '@/features/ConfirmDeleteModal';
 import { ConfirmCancelModal } from '@/features/ConfirmCancelModal';
 import cls from '../ArticleEditorPageHeader.module.scss';
 import { Text } from '@/shared/ui/redesigned/Text';
-import { Skeleton } from '@/shared/ui/redesigned/Skeleton';
 
 import { ArticleEditorPageHeaderProps } from '../ArticleEditorPageHeader';
 import { useArticleEditorPageHeader } from '../../../lib/hooks/useArticleEditorPageHeader/useArticleEditorPageHeader';
@@ -38,9 +37,9 @@ export const ArticleEditorPageHeaderRedesigned = memo(
             cancelEdit,
         } = useArticleEditorPageHeader(onActions, hasErrors);
 
-        if (isLoading) {
-            return <Skeleton width="100%" height="76px" border="16px" />;
-        }
+        // if (isLoading) {
+        //     return <Skeleton width="100%" height="76px" border="16px" />;
+        // }
 
         return (
             <HStack
