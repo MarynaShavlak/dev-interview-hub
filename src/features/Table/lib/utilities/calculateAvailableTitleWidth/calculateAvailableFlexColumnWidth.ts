@@ -31,7 +31,10 @@ export const calculateAvailableFlexColumnWidth = (
         window.innerWidth - fixedColumnsWidth - nonAdjustableWidth;
 
     return Math.max(
-        Math.min(availableWidth, MAX_TABLE_WIDTH - fixedColumnsWidth),
+        Math.min(
+            availableWidth,
+            MAX_TABLE_WIDTH - fixedColumnsWidth - TABLE_BORDER_WIDTH / 2,
+        ),
         minColumnWidth,
     );
 };
