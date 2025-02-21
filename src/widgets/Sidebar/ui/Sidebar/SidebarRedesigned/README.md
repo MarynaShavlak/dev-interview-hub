@@ -1,17 +1,17 @@
-# RedesignedSidebar
+# SidebarRedesigned
 
 ## Overview
-The `RedesignedSidebar` component provides a modern sidebar navigation with a redesigned layout. It supports collapsible functionality and includes enhanced visual elements such as a customizable logo and a responsive collapse button. The component also integrates essential features like theme and language switchers to improve user experience.
+The `SidebarRedesigned` component provides a modern sidebar navigation with a redesigned layout. It supports collapsible functionality and includes enhanced visual elements such as a customizable logo and a responsive collapse button. The component also integrates essential features like theme and language switchers to improve user experience.
 
 ## Type Definition
 ```typescript
-interface RedesignedSidebarProps{
+interface SidebarRedesignedProps{
     className?: string;
 }
 ```
 
 ## Props
-The **`RedesignedSidebar`** component accepts the following props:
+The **`SidebarRedesigned`** component accepts the following props:
 
 | Prop       | Type       | Required / Optional | Description                                                               |
 |------------|------------|----------------------|---------------------------------------------------------------------------|
@@ -27,8 +27,8 @@ The **`RedesignedSidebar`** component accepts the following props:
 ## Usage Example
 ```typescript jsx
 import { memo } from 'react';
-import { RedesignedSidebar } from './RedesignedSidebar/RedesignedSidebar';
-import { RedesignedSidebar } from './RedesignedSidebar/RedesignedSidebar';
+import { SidebarRedesigned } from './SidebarRedesigned/SidebarRedesigned';
+import { SidebarDeprecated} from './SidebarDeprecated/SidebarDeprecated';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
 
 interface SidebarProps {
@@ -39,11 +39,11 @@ export const Sidebar = memo(({ className }: SidebarProps) => {
     return (
         <ToggleFeaturesComponent
             feature="isAppRedesigned"
-            on={<RedesignedSidebar className={className} />}
-            off={<DeprecatedSidebar className={className} />}
+            on={<SidebarRedesigned className={className} />}
+            off={<SidebarDeprecated className={className} />}
         />
     );
 });
 ```
 ## Conclusion
-The `RedesignedSidebar` component offers an updated and flexible navigation solution with modern design elements. Its collapsible functionality, dynamic content rendering, and integrated switchers provide a user-friendly and adaptable sidebar experience. The component’s customizable styling options ensure seamless integration into diverse design frameworks.
+The `SidebarRedesigned` component offers an updated and flexible navigation solution with modern design elements. Its collapsible functionality, dynamic content rendering, and integrated switchers provide a user-friendly and adaptable sidebar experience. The component’s customizable styling options ensure seamless integration into diverse design frameworks.

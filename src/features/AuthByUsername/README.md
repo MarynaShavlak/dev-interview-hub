@@ -29,8 +29,8 @@ AuthByUsername/
 │   ├── AuthForm/
 │   │   ├── DeprecatedAuthForm/
 │   │   │   └── DeprecatedAuthForm.tsx
-│   │   ├── RedesignedAuthForm/
-│   │   │   └── RedesignedAuthForm.tsx
+│   │   ├── AuthFormRedesigned/
+│   │   │   └── AuthFormRedesigned.tsx
 │   │   ├── AuthForm.module.scss
 │   │   └── AuthForm.tsx
 │   └── AuthModal/
@@ -72,8 +72,8 @@ AuthByUsername/
   - **AuthForm.module.scss**: Styles for the `AuthForm` component.
   - **`DeprecatedAuthForm/`**
     - [**DeprecatedAuthForm.tsx**](ui/AuthForm/AuthFormDeprecated/README.md): Legacy version of the login form used in the older UI design.
-  - **`RedesignedAuthForm/`**
-    - [**RedesignedAuthForm.tsx**](ui/AuthForm/AuthFormRedesigned/README.md): Updated login form that aligns with the redesigned UI.
+  - **`AuthFormRedesigned/`**
+    - [**AuthFormRedesigned.tsx**](ui/AuthForm/AuthFormRedesigned/README.md): Updated login form that aligns with the redesigned UI.
 
 - **`AuthModal/`**
   - [**AuthModal.tsx**](ui/AuthModal/README.md): Modal component that displays the `AuthForm` within a popup window for a focused user experience..

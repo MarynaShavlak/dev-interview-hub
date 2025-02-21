@@ -2,7 +2,7 @@
 
 ## Overview
 
-The **`DeprecatedArticlesPage`** component displays a list of articles using legacy UI components and styling. It is designed for applications that are yet to transition to the updated design provided by the `RedesignedArticlesPage`. This component ensures a consistent user experience with the old design until the feature flag `isAppRedesigned` is activated, at which point users will be seamlessly transitioned to the newer design.
+The **`DeprecatedArticlesPage`** component displays a list of articles using legacy UI components and styling. It is designed for applications that are yet to transition to the updated design provided by the `ArticlesPageRedesigned`. This component ensures a consistent user experience with the old design until the feature flag `isAppRedesigned` is activated, at which point users will be seamlessly transitioned to the newer design.
 
 ## Type Definition
 
@@ -28,4 +28,4 @@ The **`DeprecatedArticlesPage`** component accepts the following props:
 
 
 ## Conclusion
-The `DeprecatedArticlesPage` serves as an interim solution for applications that have not yet adopted the modern UI components. It ensures that article viewing remains functional and consistent with the old design. As the `isAppRedesigned` feature flag becomes active, this component will be phased out in favor of the `RedesignedArticlesPage`, which will offer enhanced features, modern styling, and an improved user experience.
+The `DeprecatedArticlesPage` serves as an interim solution for applications that have not yet adopted the modern UI components. It ensures that article viewing remains functional and consistent with the old design. As the `isAppRedesigned` feature flag becomes active, this component will be phased out in favor of the `ArticlesPageRedesigned`, which will offer enhanced features, modern styling, and an improved user experience.

@@ -1,7 +1,7 @@
 # DeprecatedArticleSortSelector
 
 ## Overview
-The **`DeprecatedArticleSortSelector`** component is rendered when the feature flag `isAppRedesigned` is `false`, providing users with deprecated interface for sorting articles. When this flag is active feature flag, the `RedesignedArticleSortSelector` is rendered instead.
+The **`DeprecatedArticleSortSelector`** component is rendered when the feature flag `isAppRedesigned` is `false`, providing users with deprecated interface for sorting articles. When this flag is active feature flag, the `ArticleSortSelectorRedesigned` is rendered instead.
 This component ensures that users still have access to sorting functionalities using deprecated UI elements, maintaining a consistent and familiar user experience during the transition phase.
 
 ## Type Definition 

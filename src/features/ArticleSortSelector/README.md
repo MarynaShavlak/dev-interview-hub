@@ -19,8 +19,8 @@ ArticleSortSelector/
 │   │   ├── ArticleSortSelector.module.scss
 │   │   ├── DeprecatedArticleSortSelector/
 │   │   │   └── DeprecatedArticleSortSelector.tsx
-│   │   └── RedesignedArticleSortSelector/
-│   │       └── RedesignedArticleSortSelector.tsx
+│   │   └── ArticleSortSelectorRedesigned/
+│   │       └── ArticleSortSelectorRedesigned.tsx
 └── index.ts
 ```
 ## Detailed Description
@@ -35,8 +35,8 @@ ArticleSortSelector/
     - **ArticleSortSelector.module.scss**: Styles for the `ArticleSortSelector` component.
     - **`DeprecatedArticleSortSelector/`**:
         - [**DeprecatedArticleSortSelector.tsx**](ui/ArticleSortSelector/ArticleSortSelectorDeprecated/README.md): A legacy version of the article sort selector for backward compatibility.
-    - **`RedesignedArticleSortSelectorHeader/`**:
-        -  [**RedesignedArticleSortSelector.tsx**](ui/ArticleSortSelector/ArticleSortSelectorRedesigned/README.md): A modernized version of the selector, featuring updated designs and improved functionality.
+    - **`ArticleSortSelectorRedesignedHeader/`**:
+        -  [**ArticleSortSelectorRedesigned.tsx**](ui/ArticleSortSelector/ArticleSortSelectorRedesigned/README.md): A modernized version of the selector, featuring updated designs and improved functionality.
 
 ### 3. `index.ts`
 - Entry point for the `ArticleSortSelector` module, exporting components, functions, and types.

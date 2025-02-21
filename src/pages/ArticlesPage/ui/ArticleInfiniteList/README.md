@@ -1,7 +1,7 @@
 # ArticleInfiniteList
 
 ## Overview
-The **`ArticleInfiniteList`** component is a versatile container that dynamically renders either the `RedesignedArticleInfiniteList` or the `DeprecatedArticleInfiniteList` based on the `isAppRedesigned` feature flag. This setup ensures that users interact with the most appropriate version of the article list component according to the application's configuration. By leveraging feature flags, the component provides a seamless transition between the legacy and modern interfaces, allowing for a consistent user experience regardless of the underlying design.
+The **`ArticleInfiniteList`** component is a versatile container that dynamically renders either the `ArticleInfiniteListRedesigned` or the `DeprecatedArticleInfiniteList` based on the `isAppRedesigned` feature flag. This setup ensures that users interact with the most appropriate version of the article list component according to the application's configuration. By leveraging feature flags, the component provides a seamless transition between the legacy and modern interfaces, allowing for a consistent user experience regardless of the underlying design.
 
 The component is responsible for managing infinite scrolling and rendering a list or grid of articles efficiently. It handles different states such as loading, error conditions, and no articles found, ensuring users receive relevant feedback and a smooth interaction.
 
@@ -38,6 +38,6 @@ const App = () => {
 ```
 
 ## Conclusion
-The `ArticleInfiniteList` component is essential for managing and displaying a list of articles in a manner that adapts to both modern and legacy interfaces. By using feature flags to conditionally render the `RedesignedArticleInfiniteList` or `DeprecatedArticleInfiniteList`, it ensures that users have a consistent and optimized experience based on the application's design configuration.
+The `ArticleInfiniteList` component is essential for managing and displaying a list of articles in a manner that adapts to both modern and legacy interfaces. By using feature flags to conditionally render the `ArticleInfiniteListRedesigned` or `DeprecatedArticleInfiniteList`, it ensures that users have a consistent and optimized experience based on the application's design configuration.
 
 This component efficiently handles infinite scrolling, loading states, error conditions, and no articles scenarios, providing a robust solution for displaying articles. Its ability to toggle between different UI versions facilitates a smooth transition to newer designs while maintaining compatibility with older interfaces, ultimately enhancing user experience and performance.

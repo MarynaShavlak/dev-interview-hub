@@ -32,8 +32,8 @@ Article/
 │   │   ├── ListViewCard/
 │   │   │   ├── DeprecatedListViewCard/
 │   │   │   │   └── DeprecatedListViewCard.tsx
-│   │   │   └── RedesignedListViewCard/
-│   │   │       └── RedesignedListViewCard.tsx
+│   │   │   └── ListViewCardRedesigned/
+│   │   │       └── ListViewCardRedesigned.tsx
 │   │   ├── ArticleCard.tsx
 │   │   └── ArticleCard.module.scss
 │   ├── ArticleCardSkeleton/
@@ -113,8 +113,8 @@ Article/
   - **`ListViewCard/`**
     - **`DeprecatedListViewCard/`**
       - [**DeprecatedListViewCard.tsx**](ui/ArticleCard/ListViewCard/ListViewCardDeprecated/README.md): Legacy card component for list view.
-    - **`RedesignedListViewCard/`**
-      - [**RedesignedListViewCard.tsx**](ui/ArticleCard/ListViewCard/ListViewCardRedesigned/README.md): Updated card component for list view.
+    - **`ListViewCardRedesigned/`**
+      - [**ListViewCardRedesigned.tsx**](ui/ArticleCard/ListViewCard/ListViewCardRedesigned/README.md): Updated card component for list view.
 
 - **`ArticleCardSkeleton/`**
   - [**ArticleCardSkeleton.tsx**](./ui/ArticleCardSkeleton/README.md): Skeleton component for the loading state of article cards.

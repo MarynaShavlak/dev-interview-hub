@@ -26,8 +26,8 @@ An object with the following properties:
 import React from 'react';
 import { useSidebarCollapse } from './useSidebarCollapse';
 import { SidebarItem } from '../SidebarItem/SidebarItem';
-import { RedesignedSidebar } from './RedesignedSidebar/RedesignedSidebar';
-import { DeprecatedSidebar } from './DeprecatedSidebar/DeprecatedSidebar';
+import { SidebarRedesigned } from './SidebarRedesigned/SidebarRedesigned';
+import { SidebarDeprecated } from './SidebarDeprecated/SidebarDeprecated';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
 
 interface SidebarProps {
@@ -52,8 +52,8 @@ const Sidebar = ({ className }: SidebarProps) => {
     return (
         <ToggleFeaturesComponent
             feature="isAppRedesigned"
-            on={<RedesignedSidebar {...commonProps} />}
-            off={<DeprecatedSidebar {...commonProps} />}
+            on={<SidebarRedesigned {...commonProps} />}
+            off={<SidebarDeprecated {...commonProps} />}
         />
     );
 };

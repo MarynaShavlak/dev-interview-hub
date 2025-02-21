@@ -1,7 +1,7 @@
 # DeprecatedArticleViewSelector
 
 ## Overview
-The **`DeprecatedArticleViewSelector`** component is rendered when the feature flag `isAppRedesigned` is `false`, providing users with deprecated interface for selecting article view modes. When this flag is active feature flag, the `RedesignedArticleViewSelector` is rendered instead.
+The **`DeprecatedArticleViewSelector`** component is rendered when the feature flag `isAppRedesigned` is `false`, providing users with deprecated interface for selecting article view modes. When this flag is active feature flag, the `ArticleViewSelectorRedesigned` is rendered instead.
 This component utilizes the deprecated UI elements to ensure a seamless and intuitive user experience.
 
 ## Type Definition 

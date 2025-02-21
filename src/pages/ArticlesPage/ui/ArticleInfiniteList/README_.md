@@ -1,11 +1,11 @@
-# RedesignedArticleInfiniteList
+# ArticleInfiniteListRedesigned
 
 ## Overview
-The **`RedesignedArticleInfiniteList`** component is designed to present a modern and efficient way of displaying articles with support for infinite scrolling and dynamic layout adjustments. It utilizes the Virtuoso library to implement virtualization, which allows rendering only the elements currently in the viewport rather than all DOM elements at once. This approach optimizes performance and reduces memory usage, especially in long lists or grids. The component adapts its presentation based on feature flags and user interactions, ensuring a seamless experience during the transition to newer UI components. When the `isAppRedesigned` feature flag is activated, it switches to using updated UI elements, providing a more contemporary interface while maintaining support for legacy designs.
+The **`ArticleInfiniteListRedesigned`** component is designed to present a modern and efficient way of displaying articles with support for infinite scrolling and dynamic layout adjustments. It utilizes the Virtuoso library to implement virtualization, which allows rendering only the elements currently in the viewport rather than all DOM elements at once. This approach optimizes performance and reduces memory usage, especially in long lists or grids. The component adapts its presentation based on feature flags and user interactions, ensuring a seamless experience during the transition to newer UI components. When the `isAppRedesigned` feature flag is activated, it switches to using updated UI elements, providing a more contemporary interface while maintaining support for legacy designs.
 Additionally, the component includes a **ScrollToTopButton**, which allows users to smoothly scroll to the top of the page with a single click. This feature enhances navigation by providing an easy way to return to the top, particularly useful for lengthy lists or grids.
 
 ## Props
-The **`RedesignedArticleInfiniteList`** component accepts the following props:
+The **`ArticleInfiniteListRedesigned`** component accepts the following props:
 
 | Prop               | Type                  | Required / Optional | Description                                             |
 |--------------------|-----------------------|----------------------|---------------------------------------------------------|
@@ -32,7 +32,7 @@ The **`RedesignedArticleInfiniteList`** component accepts the following props:
 
 ## Usage Example
 ```typescript jsx
-import { RedesignedArticleInfiniteList } from '@/components/RedesignedArticleInfiniteList';
+import { ArticleInfiniteListRedesigned } from '@/components/ArticleInfiniteListRedesigned';
 
 const App = () => {
     const handleInfiniteScroll = () => {
@@ -41,14 +41,14 @@ const App = () => {
 
     return (
         <div className="article-list">
-            <RedesignedArticleInfiniteList onInfiniteScroll={handleInfiniteScroll} />
-            {/* The RedesignedArticleInfiniteList component handles displaying and scrolling through a list of articles */}
+            <ArticleInfiniteListRedesigned onInfiniteScroll={handleInfiniteScroll} />
+            {/* The ArticleInfiniteListRedesigned component handles displaying and scrolling through a list of articles */}
         </div>
     );
 };
 
 ```
  ## Conclusion 
-The `RedesignedArticleInfiniteList` component is crucial for efficiently managing and displaying a large number of articles. By implementing virtualization through Virtuoso, it ensures that only the elements visible in the viewport are rendered, which significantly enhances performance and reduces memory usage. The component adeptly handles various states such as loading and errors, and adapts its layout based on feature flags, providing a smooth and responsive user experience.
+The `ArticleInfiniteListRedesigned` component is crucial for efficiently managing and displaying a large number of articles. By implementing virtualization through Virtuoso, it ensures that only the elements visible in the viewport are rendered, which significantly enhances performance and reduces memory usage. The component adeptly handles various states such as loading and errors, and adapts its layout based on feature flags, providing a smooth and responsive user experience.
 
 Its virtualization approach plays a key role in optimizing the handling of extensive article lists or grids, while the inclusion of the `ScrollToTopButton` feature enhances navigation by allowing users to quickly return to the top of the page. This combination of features supports a seamless transition to newer UI components and ensures both performance and user engagement remain high throughout the application.

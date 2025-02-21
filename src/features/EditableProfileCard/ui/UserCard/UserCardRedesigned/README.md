@@ -1,10 +1,10 @@
-# RedesignedUserCard
+# UserCardRedesigned
 
 ## Overview
-The **`RedesignedUserCard`** component is a modern user profile interface designed to provide a visually appealing and functional experience for managing user details. It replaces older profile card implementations with an updated design that enhances usability and aligns with current UI trends. This component is equipped with various input fields and selectors to edit profile information, including avatar, personal details, and preferences.
+The **`UserCardRedesigned`** component is a modern user profile interface designed to provide a visually appealing and functional experience for managing user details. It replaces older profile card implementations with an updated design that enhances usability and aligns with current UI trends. This component is equipped with various input fields and selectors to edit profile information, including avatar, personal details, and preferences.
 
 ## Props
-The **`RedesignedUserCard`** component accepts the following props:
+The **`UserCardRedesigned`** component accepts the following props:
 
 | Prop                | Type                           | Required / Optional | Description                                                                            |
 |---------------------|--------------------------------|----------------------|----------------------------------------------------------------------------------------|
@@ -26,7 +26,7 @@ The **`RedesignedUserCard`** component accepts the following props:
 
 ## Usage Example
 ```typescript jsx
-import { RedesignedUserCard } from '@/entities/UserCard/RedesignedUserCard';
+import { UserCardRedesigned } from '@/entities/UserCard/UserCardRedesigned';
 
 const UserProfile = () => {
     const handleUsernameChange = (value: string) => {
@@ -36,7 +36,7 @@ const UserProfile = () => {
     // Define other handlers similarly...
 
     return (
-        <RedesignedUserCard
+        <UserCardRedesigned
             className="profile-card"
             data={/* profile data */}
             readonly={false}
@@ -53,4 +53,4 @@ const UserProfile = () => {
 };
 ```
 ## Conclusion
-The **`RedesignedUserCard`** component is a comprehensive solution for modern profile management. It offers a well-designed interface for viewing and editing user information, incorporating both flexibility and enhanced usability. By replacing outdated components with this new design, it aligns with contemporary standards and provides a seamless experience for users.
+The **`UserCardRedesigned`** component is a comprehensive solution for modern profile management. It offers a well-designed interface for viewing and editing user information, incorporating both flexibility and enhanced usability. By replacing outdated components with this new design, it aligns with contemporary standards and provides a seamless experience for users.

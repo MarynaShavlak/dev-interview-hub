@@ -10,11 +10,11 @@ import { SidebarItem } from '../../SidebarItem/SidebarItem';
 import { Each } from '@/shared/lib/components/Each/Each';
 import { useSidebarCollapse } from '../../../lib/hooks/useSidebarCollapse/useSidebarCollapse';
 
-interface DeprecatedSidebarProps {
+interface SidebarDeprecatedProps {
     className?: string;
 }
 
-export const SidebarDeprecated = memo((props: DeprecatedSidebarProps) => {
+export const SidebarDeprecated = memo((props: SidebarDeprecatedProps) => {
     const { className } = props;
     const sidebarItemsList = useSidebarItems();
     const { collapsed, toggleCollapse } = useSidebarCollapse();

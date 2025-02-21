@@ -1,7 +1,7 @@
-# RedesignedArticleViewSelector
+# ArticleViewSelectorRedesigned
 
 ## Overview
-The **`RedesignedArticleViewSelector`** component is rendered when the feature flag `isAppRedesigned` is `true`, providing users with an enhanced and modern interface for selecting article view modes.
+The **`ArticleViewSelectorRedesigned`** component is rendered when the feature flag `isAppRedesigned` is `true`, providing users with an enhanced and modern interface for selecting article view modes.
 If this feature flag is not active, the `DeprecatedArticleViewSelector` is rendered instead. 
 This component utilizes the latest UI elements to ensure a seamless and intuitive user experience.
 
@@ -15,7 +15,7 @@ interface ArticleViewSelectorProps {
 ```
 
 ## Props
-The **`RedesignedArticleViewSelector`** component accepts the following props:
+The **`ArticleViewSelectorRedesigned`** component accepts the following props:
 
 | Prop       | Type       | Required / Optional | Description                                          |
 |------------|------------|----------------------|------------------------------------------------------|
@@ -33,7 +33,7 @@ The **`RedesignedArticleViewSelector`** component accepts the following props:
 
 ## Usage Example
 ```typescript jsx
-import { RedesignedArticleViewSelector } from '@/features/ArticleViewSelector/RedesignedArticleViewSelector';
+import { ArticleViewSelectorRedesigned } from '@/features/ArticleViewSelector/ArticleViewSelectorRedesigned';
 import { ArticleView } from '@/entities/Article';
 
 const App = () => {
@@ -43,15 +43,15 @@ const App = () => {
 
     return (
         <div>
-            <RedesignedArticleViewSelector
+            <ArticleViewSelectorRedesigned
                 className="my-custom-class"
                 view={ArticleView.GRID}
                 onViewClick={handleViewClick}
             />
-            {/* The RedesignedArticleViewSelector component allows users to switch between different article views */}
+            {/* The ArticleViewSelectorRedesigned component allows users to switch between different article views */}
         </div>
     );
 };
 ```
 ## Conclusion
-The **`RedesignedArticleViewSelector`** component is a crucial element for applications utilizing the latest design system. By offering an intuitive and modern interface for toggling between grid and list views, it significantly enhances the user experience while aligning with contemporary design standards.
+The **`ArticleViewSelectorRedesigned`** component is a crucial element for applications utilizing the latest design system. By offering an intuitive and modern interface for toggling between grid and list views, it significantly enhances the user experience while aligning with contemporary design standards.

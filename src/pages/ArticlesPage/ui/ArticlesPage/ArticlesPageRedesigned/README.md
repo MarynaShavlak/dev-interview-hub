@@ -1,8 +1,8 @@
-# RedesignedArticlesPage
+# ArticlesPageRedesigned
 
 ## Overview
 
-The **`RedesignedArticlesPage`** component presents a modernized interface for viewing articles, utilizing updated UI components and styling. It is designed for applications that have adopted the new design standards, offering an enhanced user experience with a fresh layout and improved functionality. This component will replace the `DeprecatedArticlesPage` when the feature flag `isAppRedesigned` is active.
+The **`ArticlesPageRedesigned`** component presents a modernized interface for viewing articles, utilizing updated UI components and styling. It is designed for applications that have adopted the new design standards, offering an enhanced user experience with a fresh layout and improved functionality. This component will replace the `DeprecatedArticlesPage` when the feature flag `isAppRedesigned` is active.
 
 ## Type Definition
 
@@ -12,7 +12,7 @@ interface ArticlesPageProps {
 }
 ```
 ## Props
-The **`RedesignedArticlesPage`** component accepts the following props:
+The **`ArticlesPageRedesigned`** component accepts the following props:
 
 | Prop        | Type     | Required / Optional | Description                             |
 |-------------|----------|---------------------|-----------------------------------------|
@@ -30,5 +30,5 @@ The **`RedesignedArticlesPage`** component accepts the following props:
 
 ## Conclusion
 
-The `RedesignedArticlesPage` is a significant upgrade to the application's article viewing interface, offering a refined and user-centric experience. 
+The `ArticlesPageRedesigned` is a significant upgrade to the application's article viewing interface, offering a refined and user-centric experience. 
 It incorporates modern design principles, advanced UI components, and performance optimizations, including the efficient data-fetching mechanism provided by the `useArticlesPageInit` hook. This component represents the future of the application's user interface, ensuring that users have access to a cutting-edge platform for consuming content.

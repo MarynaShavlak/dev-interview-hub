@@ -4,7 +4,7 @@
 
 The `ArticlesPage` module is responsible for displaying a comprehensive list of articles within the application. 
 Following the Feature-Sliced Design (FSD) methodology, this module dynamically adapts its interface based on the application's design system. 
-It leverages feature flags to conditionally render either the [RedesignedArticlesPage](ui/ArticlesPage/ArticlesPageRedesigned/README.md) or the [DeprecatedArticlesPage](ui/ArticlesPage/ArticlesPageDeprecated/README.md), ensuring that the user interface aligns with the current design configuration. The component is optimized to handle large lists of articles efficiently, employing virtualization techniques to enhance performance and ensure smooth scrolling.
+It leverages feature flags to conditionally render either the [ArticlesPageRedesigned](ui/ArticlesPage/ArticlesPageRedesigned/README.md) or the [DeprecatedArticlesPage](ui/ArticlesPage/ArticlesPageDeprecated/README.md), ensuring that the user interface aligns with the current design configuration. The component is optimized to handle large lists of articles efficiently, employing virtualization techniques to enhance performance and ensure smooth scrolling.
 
 
 ## Module Structure
@@ -46,15 +46,15 @@ ArticlesPage/
 │   │   │   ├── ArticleInfiniteListError.tsx
 │   │   ├── DeprecatedArticleInfiniteList/   # Legacy version of the article infinite list component.
 │   │   │   ├── DeprecatedArticleInfiniteList.tsx
-│   │   ├── RedesignedArticleInfiniteList/   # Redesigned version of the article infinite list component.
-│   │   │   ├── RedesignedArticleInfiniteList.tsx
+│   │   ├── ArticleInfiniteListRedesigned/   # Redesigned version of the article infinite list component.
+│   │   │   ├── ArticleInfiniteListRedesigned.tsx
 │   │   ├── ArticleInfiniteList.tsx          # Main component for the infinite article list.
 │   │   └── ArticleInfiniteList.module.scss  # Styles for the infinite list component.
 │   ├── ArticlesPage/                        # Main articles page layout and logic.
 │   │   ├── DeprecatedArticlesPage/          # Legacy version of the articles page.
 │   │   │   ├── DeprecatedArticlesPage.tsx
-│   │   ├── RedesignedArticlesPage/          # Redesigned version of the articles page.
-│   │   │   ├── RedesignedArticlesPage.tsx
+│   │   ├── ArticlesPageRedesigned/          # Redesigned version of the articles page.
+│   │   │   ├── ArticlesPageRedesigned.tsx
 │   │   ├── ArticlesPage.tsx                 # Core articles page component.
 │   │   └── ArticlesPage.module.scss         # Styles for the articles page.
 │   ├── ArticlesPageSkeleton/                # Skeleton component for loading state of the articles page.

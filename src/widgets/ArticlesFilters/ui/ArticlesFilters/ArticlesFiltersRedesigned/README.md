@@ -1,7 +1,7 @@
-# RedesignedArticlesFilters
+# ArticlesFiltersRedesigned
 
 ## Overview
-The `RedesignedArticlesFilters` component offers a modern user interface for filtering articles in a React application. It integrates updated UI elements to enable users to sort articles, search by keywords, and filter by categories. This component uses redesigned UI components and styles, providing an enhanced user experience compared to the previous version.
+The `ArticlesFiltersRedesigned` component offers a modern user interface for filtering articles in a React application. It integrates updated UI elements to enable users to sort articles, search by keywords, and filter by categories. This component uses redesigned UI components and styles, providing an enhanced user experience compared to the previous version.
 
 ##  Type Definition
 ```typescript
@@ -20,7 +20,7 @@ export interface ArticlesFiltersProps {
 
 ## Props
 
-The **`RedesignedArticlesFilters`** component accepts the following props:
+The **`ArticlesFiltersRedesigned`** component accepts the following props:
 
 | Prop              | Type                                  | Required / Optional | Description                                                  |
 |-------------------|---------------------------------------|----------------------|--------------------------------------------------------------|
@@ -43,7 +43,7 @@ The **`RedesignedArticlesFilters`** component accepts the following props:
 ## Usage Example
 ```typescript jsx
 import { useState } from 'react';
-import { RedesignedArticlesFilters } from '@/widgets/ArticlesFilters';
+import { ArticlesFiltersRedesigned } from '@/widgets/ArticlesFilters';
 import { ArticleSortField, SortOrder, ArticleCategory } from '@/entities/Article';
 
 const ExampleComponent = () => {
@@ -59,7 +59,7 @@ const ExampleComponent = () => {
     } = useArticleFilters();
 
     return (
-        <RedesignedArticlesFilters
+        <ArticlesFiltersRedesigned
             className="customFilters"
             search={search}
             sort={sort}
@@ -75,4 +75,4 @@ const ExampleComponent = () => {
 ```
 
 ## Conclusion
-The `RedesignedArticlesFilters` component provides an updated and improved filtering solution for articles, leveraging modern UI components to enhance sorting, searching, and category filtering functionalities. It represents a significant upgrade from the previous version, delivering a more refined user experience and streamlined design.
+The `ArticlesFiltersRedesigned` component provides an updated and improved filtering solution for articles, leveraging modern UI components to enhance sorting, searching, and category filtering functionalities. It represents a significant upgrade from the previous version, delivering a more refined user experience and streamlined design.

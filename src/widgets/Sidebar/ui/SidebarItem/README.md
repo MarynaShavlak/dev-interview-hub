@@ -25,7 +25,7 @@ The **`SidebarItem`** component accepts the following props:
 ## Functionality
 
 1. **Feature Flag Driven**:
-    - The component adapts between the `SidebarItemRedesigned` and `DeprecatedSidebarItem` interfaces based on the `isAppRedesigned` feature flag. This allows the sidebar to provide either a modern or legacy UI, depending on the application's configuration.
+    - The component adapts between the `SidebarItemRedesigned` and `SidebarDeprecatedItem` interfaces based on the `isAppRedesigned` feature flag. This allows the sidebar to provide either a modern or legacy UI, depending on the application's configuration.
 
 2. **Conditional Rendering**:
     - Sidebar items with the `authOnly` flag are rendered only if the user is authenticated. This ensures that items requiring authentication are hidden from unauthenticated users, maintaining security and relevance.

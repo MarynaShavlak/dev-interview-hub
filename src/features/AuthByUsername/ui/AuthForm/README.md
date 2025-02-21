@@ -1,7 +1,7 @@
 # LoginForm 
 
 ## Overview
-The **`AuthForm`** component is designed to provide a flexible login interface that adapts based on the application's design configuration. Utilizing the `isAppRedesigned` feature flag, it renders either the `RedesignedAuthForm` or the `DeprecatedAuthForm`, ensuring alignment with the current design standards. The component employs lazy loading and dynamic reducer management to optimize performance and reduce the initial bundle size. By leveraging `DynamicModuleLoader`, it ensures that the `loginReducer` is only loaded when necessary, which is particularly beneficial for scenarios where the login form is not needed (e.g., for already authenticated users). This approach helps keep the main bundle smaller and improves overall application efficiency.
+The **`AuthForm`** component is designed to provide a flexible login interface that adapts based on the application's design configuration. Utilizing the `isAppRedesigned` feature flag, it renders either the `AuthFormRedesigned` or the `DeprecatedAuthForm`, ensuring alignment with the current design standards. The component employs lazy loading and dynamic reducer management to optimize performance and reduce the initial bundle size. By leveraging `DynamicModuleLoader`, it ensures that the `loginReducer` is only loaded when necessary, which is particularly beneficial for scenarios where the login form is not needed (e.g., for already authenticated users). This approach helps keep the main bundle smaller and improves overall application efficiency.
 
 ## Type Definition
 ```typescript
@@ -22,7 +22,7 @@ The **`AuthForm`** component accepts the following props:
 
 ### Features
 
-1. **Feature Flag Driven**: The component adapts its UI between `RedesignedAuthForm` and `DeprecatedAuthForm` based on the `isAppRedesigned` feature flag, ensuring the login interface matches the current application design.
+1. **Feature Flag Driven**: The component adapts its UI between `AuthFormRedesigned` and `DeprecatedAuthForm` based on the `isAppRedesigned` feature flag, ensuring the login interface matches the current application design.
 
 2. **Dynamic Reducer Management**: Utilizes `DynamicModuleLoader` to dynamically manage the `loginReducer`. This feature is particularly advantageous for keeping the main bundle size minimal. For instance, the `loginReducer` is only loaded when the login form is needed, such as for users who are not yet authenticated. This approach helps avoid unnecessary code loading, enhancing the application's performance.
 

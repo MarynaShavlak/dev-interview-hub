@@ -1,7 +1,7 @@
 # AddCommentForm
 
 ## Overview
-The **`AddCommentForm`** component is designed to provide a flexible comment submission interface that adapts based on the application's design configuration. Utilizing the `isAppRedesigned` feature flag, it dynamically renders either the `RedesignedAddCommentForm` or the `DeprecatedAddCommentForm`, ensuring that the user interface aligns with the current design standards. The component leverages dynamic reducer management to optimize state handling and modularity. By employing `DynamicModuleLoader`, the `addCommentFormReducer` is only loaded when necessary, which is particularly advantageous in managing application performance and ensuring that the state is efficiently handled during the user's comment interaction.
+The **`AddCommentForm`** component is designed to provide a flexible comment submission interface that adapts based on the application's design configuration. Utilizing the `isAppRedesigned` feature flag, it dynamically renders either the `AddCommentFormRedesigned` or the `DeprecatedAddCommentForm`, ensuring that the user interface aligns with the current design standards. The component leverages dynamic reducer management to optimize state handling and modularity. By employing `DynamicModuleLoader`, the `addCommentFormReducer` is only loaded when necessary, which is particularly advantageous in managing application performance and ensuring that the state is efficiently handled during the user's comment interaction.
 
 ## Type Definition
 ```typescript
@@ -21,7 +21,7 @@ The **`AddCommentForm`** component accepts the following props:
 
 ### Features
 
-1. **Feature Flag Driven**: The component adapts its UI between `RedesignedAddCommentForm` and `DeprecatedAddCommentForm` based on the `isAppRedesigned` feature flag. This ensures the comment form interface is consistent with the current application design.
+1. **Feature Flag Driven**: The component adapts its UI between `AddCommentFormRedesigned` and `DeprecatedAddCommentForm` based on the `isAppRedesigned` feature flag. This ensures the comment form interface is consistent with the current application design.
 
 2. **Dynamic Reducer Management**: Utilizes `DynamicModuleLoader` to dynamically manage the `addCommentFormReducer`. This approach helps in optimizing the state management by only loading the reducer when the comment form is required, thus reducing the overall application bundle size and improving performance.
 

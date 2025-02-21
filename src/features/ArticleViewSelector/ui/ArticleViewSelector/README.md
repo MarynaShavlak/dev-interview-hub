@@ -1,7 +1,7 @@
 # ArticleViewSelector
 
 ## Overview
-The **`ArticleViewSelector`** component dynamically renders either the `RedesignedArticleViewSelector` or the `DeprecatedArticleViewSelector` based on the `isAppRedesigned` feature flag. 
+The **`ArticleViewSelector`** component dynamically renders either the `ArticleViewSelectorRedesigned` or the `DeprecatedArticleViewSelector` based on the `isAppRedesigned` feature flag. 
 This ensures that users experience either the new and improved interface or the legacy version, depending on the application's configuration. It includes buttons that allow users to choose between viewing articles as a grid of elements or as a list, enhancing the user's control over content presentation.
 
 ## Type Definition 

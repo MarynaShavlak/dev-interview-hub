@@ -31,8 +31,8 @@ Comment/
 │   │   ├── AddCommentForm.tsx
 │   │   ├── DeprecatedAddCommentForm/
 │   │   │   └── DeprecatedAddCommentForm.tsx
-│   │   └── RedesignedAddCommentForm/
-│   │       └── RedesignedAddCommentForm.tsx
+│   │   └── AddCommentFormRedesigned/
+│   │       └── AddCommentFormRedesigned.tsx
 ├── lib/
 │   ├── hook/
 │   │   └── useAddCommentForm.ts
@@ -80,7 +80,7 @@ Comment/
   - [**DeprecatedAddCommentForm.tsx**](ui/AddCommentForm/AddCommentFormDeprecated/README.md): The deprecated version of the `AddCommentForm` component.
 
 - **`CommentCardRedesigned/`**
-  - [**RedesignedAddCommentForm.tsx**](ui/AddCommentForm/AddCommentFormRedesigned/README.md): The redesigned version of the `AddCommentForm` component.
+  - [**AddCommentFormRedesigned.tsx**](ui/AddCommentForm/AddCommentFormRedesigned/README.md): The redesigned version of the `AddCommentForm` component.
 
 
 ### 3. `lib/`: Utility functions and hooks.

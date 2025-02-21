@@ -123,7 +123,7 @@ export {};
 // import { Page } from '@/widgets/Page';
 // import { useGridSkeletonVisibility } from '../../../lib/hooks/useGridSkeletonVisibility/useGridSkeletonVisibility';
 //
-// export const RedesignedArticleInfiniteList = ({
+// export const ArticleInfiniteListRedesigned = ({
 //     onInfiniteScroll,
 // }: ArticleInfiniteListProps) => {
 //     const articles = useSelector(getArticles.selectAll);

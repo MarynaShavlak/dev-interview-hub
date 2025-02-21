@@ -1,7 +1,7 @@
-# RedesignedAddCommentForm
+# AddCommentFormRedesigned
 
 ## Overview
-The **`RedesignedAddCommentForm`**  component is rendered when the feature flag `isAppRedesigned` is `true`, offering users an enhanced and modern interface for adding comments. 
+The **`AddCommentFormRedesigned`**  component is rendered when the feature flag `isAppRedesigned` is `true`, offering users an enhanced and modern interface for adding comments. 
 When this feature flag is not active, the `DeprecatedAddCommentForm` is rendered instead. This component leverages updated UI elements to ensure a seamless, intuitive, and visually appealing user experience.
 
 ## Type Definition
@@ -13,7 +13,7 @@ export interface AddCommentFormProps {
 ```
 
 ## Props
-The **`RedesignedAddCommentForm`** component accepts the following props:
+The **`AddCommentFormRedesigned`** component accepts the following props:
 
 | Prop       | Type                               | Required / Optional | Description                                                              |
 |------------|------------------------------------|----------------------|--------------------------------------------------------------------------|
@@ -32,7 +32,7 @@ The **`RedesignedAddCommentForm`** component accepts the following props:
 
 ## Usage Example
 ```typescript jsx
-import { RedesignedAddCommentForm } from '@/features/addCommentForm/RedesignedAddCommentForm';
+import { AddCommentFormRedesigned } from '@/features/addCommentForm/AddCommentFormRedesigned';
 
 const App = () => {
     const handleSendComment = () => {
@@ -41,11 +41,11 @@ const App = () => {
 
     return (
         <div>
-            <RedesignedAddCommentForm
+            <AddCommentFormRedesigned
                 className="my-custom-class"
                 onSendComment={handleSendComment}
             />
-            {/* The RedesignedAddCommentForm component allows users to add comments using modern UI elements */}
+            {/* The AddCommentFormRedesigned component allows users to add comments using modern UI elements */}
         </div>
     );
 };
@@ -53,4 +53,4 @@ const App = () => {
 ```
 ## Conclusion
 
-The **`RedesignedAddCommentForm`** component is essential for applications that embrace the latest design system, delivering a sleek, modern interface for users to add comments. This component not only enhances the overall user experience through updated UI elements but also ensures consistency with contemporary design standards. By leveraging the `useAddCommentForm` hook for efficient state management and event handling, the component remains both functional and easy to maintain, making it a valuable asset during the transition to a more refined user interface.
+The **`AddCommentFormRedesigned`** component is essential for applications that embrace the latest design system, delivering a sleek, modern interface for users to add comments. This component not only enhances the overall user experience through updated UI elements but also ensures consistency with contemporary design standards. By leveraging the `useAddCommentForm` hook for efficient state management and event handling, the component remains both functional and easy to maintain, making it a valuable asset during the transition to a more refined user interface.

@@ -13,11 +13,11 @@ import { SidebarItem } from '../../SidebarItem/SidebarItem';
 import { useSidebarItems } from '../../../lib/hooks/useSidebarItems/useSidebarItems';
 import { useSidebarCollapse } from '../../../lib/hooks/useSidebarCollapse/useSidebarCollapse';
 
-interface RedesignedSidebarProps {
+interface SidebarRedesignedProps {
     className?: string;
 }
 
-export const SidebarRedesigned = memo((props: RedesignedSidebarProps) => {
+export const SidebarRedesigned = memo((props: SidebarRedesignedProps) => {
     const { className } = props;
     const { collapsed, toggleCollapse } = useSidebarCollapse();
     const sidebarItemsList = useSidebarItems();

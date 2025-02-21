@@ -1,17 +1,17 @@
-# DeprecatedSidebar
+# SidebarDeprecated
 
 ## Overview
-The `DeprecatedSidebar` component provides a sidebar navigation for applications with a deprecated design system. It supports collapsible functionality and includes essential elements such as theme and language switchers. The sidebar also dynamically renders a list of navigation items using hooks for managing items and collapse state.
+The `SidebarDeprecated` component provides a sidebar navigation for applications with a deprecated design system. It supports collapsible functionality and includes essential elements such as theme and language switchers. The sidebar also dynamically renders a list of navigation items using hooks for managing items and collapse state.
 
 ## Type Definition
 ```typescript
-interface DeprecatedSidebarProps{
+interface SidebarDeprecatedProps{
     className?: string;
 }
 ```
 
 ## Props
-The **`DeprecatedSidebar`** component accepts the following props:
+The **`SidebarDeprecated`** component accepts the following props:
 
 | Prop       | Type       | Required / Optional | Description                                                               |
 |------------|------------|----------------------|---------------------------------------------------------------------------|
@@ -27,8 +27,8 @@ The **`DeprecatedSidebar`** component accepts the following props:
 ## Usage Example
 ```typescript jsx
 import { memo } from 'react';
-import { RedesignedSidebar } from './RedesignedSidebar/RedesignedSidebar';
-import { DeprecatedSidebar } from './DeprecatedSidebar/DeprecatedSidebar';
+import { SidebarRedesigned } from './SidebarRedesigned/SidebarRedesigned';
+import { SidebarDeprecated } from './SidebarDeprecated/SidebarDeprecated';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
 
 interface SidebarProps {
@@ -39,12 +39,12 @@ export const Sidebar = memo(({ className }: SidebarProps) => {
     return (
         <ToggleFeaturesComponent
             feature="isAppRedesigned"
-            on={<RedesignedSidebar className={className} />}
-            off={<DeprecatedSidebar className={className} />}
+            on={<SidebarRedesigned className={className} />}
+            off={<SidebarDeprecated className={className} />}
         />
     );
 });
 ```
 ## Conclusion
-The `DeprecatedSidebar` component serves as a navigation aid for applications using an older design system. By incorporating collapsible functionality, dynamic navigation items, and integrated theme and language switchers, it ensures that users have an efficient and customizable navigation experience. The component’s flexibility and ease of integration make it a valuable part of the application's UI framework.
+The `SidebarDeprecated` component serves as a navigation aid for applications using an older design system. By incorporating collapsible functionality, dynamic navigation items, and integrated theme and language switchers, it ensures that users have an efficient and customizable navigation experience. The component’s flexibility and ease of integration make it a valuable part of the application's UI framework.
 

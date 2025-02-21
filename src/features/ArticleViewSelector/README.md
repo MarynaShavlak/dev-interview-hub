@@ -19,8 +19,8 @@ ArticleViewSelector/
 │   │   ├── ArticleViewSelector.module.scss
 │   │   ├── DeprecatedArticleViewSelector/
 │   │   │   └── DeprecatedArticleViewSelector.tsx
-│   │   └── RedesignedArticleViewSelector/
-│   │       └── RedesignedArticleViewSelector.tsx
+│   │   └── ArticleViewSelectorRedesigned/
+│   │       └── ArticleViewSelectorRedesigned.tsx
 └── index.ts
 ```
 ## Detailed Description
@@ -35,8 +35,8 @@ ArticleViewSelector/
     - **ArticleViewSelector.module.scss**: Styles for the `ArticleViewSelector` component.
     - **`DeprecatedArticleViewSelector/`**:
         - [**DeprecatedArticleViewSelector.tsx**](ui/ArticleViewSelector/ArticleViewSelectorDeprecated/README.md): A legacy version of the article view selector for backward compatibility.
-    - **`RedesignedArticleViewSelectorHeader/`**:
-        -  [**RedesignedArticleViewSelector.tsx**](ui/ArticleViewSelector/ArticleViewSelectorRedesigned/README.md): A modernized version of the selector, featuring updated designs and improved functionality.
+    - **`ArticleViewSelectorRedesignedHeader/`**:
+        -  [**ArticleViewSelectorRedesigned.tsx**](ui/ArticleViewSelector/ArticleViewSelectorRedesigned/README.md): A modernized version of the selector, featuring updated designs and improved functionality.
 
 ### 3. `index.ts`
 - Entry point for the `ArticleViewSelector` module, exporting components, functions, and types.

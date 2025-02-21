@@ -1,7 +1,7 @@
-# RedesignedArticleSortSelector
+# ArticleSortSelectorRedesigned
 
 ## Overview
-The **`RedesignedArticleSortSelector`** component is rendered when the feature flag `isAppRedesigned` is `true`, providing users with an enhanced and modern interface for sorting articles.
+The **`ArticleSortSelectorRedesigned`** component is rendered when the feature flag `isAppRedesigned` is `true`, providing users with an enhanced and modern interface for sorting articles.
 If this feature flag is not active,  the `DeprecatedArticleSortSelector` is rendered instead. 
 This component utilizes the latest UI elements to ensure a seamless and intuitive user experience.
 
@@ -17,7 +17,7 @@ interface ArticleSortSelectorProps {
 ```
 
 ## Props
-The **`RedesignedArticleSortSelector`** component accepts the following props:
+The **`ArticleSortSelectorRedesigned`** component accepts the following props:
 
 | Prop       | Type       | Required / Optional | Description                                                               |
 |------------|------------|----------------------|---------------------------------------------------------------------------|
@@ -37,7 +37,7 @@ The **`RedesignedArticleSortSelector`** component accepts the following props:
 
 ## Usage Example
 ```typescript jsx
-import { RedesignedArticleSortSelector } from '@/features/ArticleSortSelector/RedesignedArticleSortSelector';
+import { ArticleSortSelectorRedesigned } from '@/features/ArticleSortSelector/ArticleSortSelectorRedesigned';
 import { ArticleSortField } from '@/entities/Article';
 import { SortOrder } from '@/shared/types/sortOrder';
 
@@ -52,17 +52,17 @@ const App = () => {
 
     return (
         <div>
-            <RedesignedArticleSortSelector
+            <ArticleSortSelectorRedesigned
                 className="my-custom-class"
                 order="asc"
                 sort={ArticleSortField.DATE}
                 onChangeOrder={handleOrderChange}
                 onChangeSort={handleSortChange}
             />
-            {/* The RedesignedArticleSortSelector component allows users to sort articles by various fields and order */}
+            {/* The ArticleSortSelectorRedesigned component allows users to sort articles by various fields and order */}
         </div>
     );
 };
 ```
 ## Conclusion
-The **`RedesignedArticleSortSelector`** component is a vital element for applications utilizing the latest design system. By offering an intuitive and modern interface for sorting articles, it significantly enhances the user experience while aligning with contemporary design standards.
+The **`ArticleSortSelectorRedesigned`** component is a vital element for applications utilizing the latest design system. By offering an intuitive and modern interface for sorting articles, it significantly enhances the user experience while aligning with contemporary design standards.
