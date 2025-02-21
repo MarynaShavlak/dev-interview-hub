@@ -18,7 +18,7 @@ const AppRouter = () => {
             />
         );
         const element = (
-            <Suspense fallback={fallback}>{route.element}</Suspense>
+            <Suspense fallback={fallback}>{route.skeleton}</Suspense>
         );
         return (
             <Route
