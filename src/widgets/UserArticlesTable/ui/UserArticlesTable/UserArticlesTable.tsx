@@ -81,7 +81,7 @@ export const UserArticlesTable = memo(
         });
 
         return (
-            <VStack gap="16" max>
+            <VStack gap="24" max>
                 <TableActionBar
                     globalFilter={globalFilter}
                     setGlobalFilter={setGlobalFilter}
