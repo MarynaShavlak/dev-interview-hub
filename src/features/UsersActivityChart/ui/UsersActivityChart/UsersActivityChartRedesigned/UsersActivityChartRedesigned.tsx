@@ -5,7 +5,7 @@ import { RadialbarChart } from '@/shared/ui/common/Charts/ui/RadialbarChart';
 import { UsersActivityChartProps } from '../../../model/types/types';
 import { useActiveUsersChartData } from '../../../lib/hooks/useActiveUsersChartData';
 
-export const RedesignedUsersActivityChart = memo(
+export const UsersActivityChartRedesigned = memo(
     (props: UsersActivityChartProps) => {
         const { t } = useTranslation('admin');
         const { activeUsersList, totalUsers, className, width, height } = props;

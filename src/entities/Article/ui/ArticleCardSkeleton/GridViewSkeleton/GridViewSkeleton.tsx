@@ -11,7 +11,7 @@ import cls from '../../ArticleCard/ArticleCard.module.scss';
 
 const additionalClasses = getFlexClasses({ vStack: true, gap: '8' });
 
-const DeprecatedGridViewSkeleton = () => {
+const GridViewSkeletonDeprecated = () => {
     return (
         <CardDeprecated className={classNames(cls.card, {}, additionalClasses)}>
             <SkeletonDeprecated width={200} height={200} />
@@ -21,7 +21,7 @@ const DeprecatedGridViewSkeleton = () => {
     );
 };
 
-const RedesignedGridViewSkeleton = () => {
+const GridViewSkeletonRedesigned = () => {
     return (
         <Card
             className={classNames(cls.card, {}, additionalClasses)}
@@ -54,8 +54,8 @@ export const GridViewSkeleton = memo(() => {
         <div className={classNames(mainClass, {}, [cls.GRID])}>
             <ToggleFeaturesComponent
                 feature="isAppRedesigned"
-                on={<RedesignedGridViewSkeleton />}
-                off={<DeprecatedGridViewSkeleton />}
+                on={<GridViewSkeletonRedesigned />}
+                off={<GridViewSkeletonDeprecated />}
             />
         </div>
     );

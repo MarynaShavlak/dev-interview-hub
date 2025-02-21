@@ -6,7 +6,7 @@ import { Skeleton } from '@/shared/ui/redesigned/Skeleton';
 import cls from '../ArticleDetails.module.scss';
 import { VStack } from '@/shared/ui/common/Stack';
 
-const DeprecatedArticleDetailsSkeleton = memo(() => {
+const ArticleDetailsSkeletonDeprecated = memo(() => {
     return (
         <VStack gap="16" max className={cls.ArticleDetails}>
             <SkeletonDeprecated
@@ -23,7 +23,7 @@ const DeprecatedArticleDetailsSkeleton = memo(() => {
     );
 });
 
-const RedesignedArticleDetailsSkeleton = memo(() => {
+const ArticleDetailsSkeletonRedesigned = memo(() => {
     return (
         <VStack gap="16" max className={cls.ArticleDetails}>
             <Skeleton width="90%" height={24} />
@@ -39,8 +39,8 @@ export const ArticleDetailsSkeleton = memo(() => {
     return (
         <ToggleFeaturesComponent
             feature="isAppRedesigned"
-            on={<RedesignedArticleDetailsSkeleton />}
-            off={<DeprecatedArticleDetailsSkeleton />}
+            on={<ArticleDetailsSkeletonRedesigned />}
+            off={<ArticleDetailsSkeletonDeprecated />}
         />
     );
 });

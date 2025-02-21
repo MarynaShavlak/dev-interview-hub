@@ -19,7 +19,7 @@ interface SidebarItemProps {
     collapsed?: boolean;
 }
 
-const DeprecatedSidebarItem = ({ item, collapsed }: SidebarItemProps) => {
+const SidebarItemDeprecated = ({ item, collapsed }: SidebarItemProps) => {
     const { t } = useTranslation();
 
     return (
@@ -42,7 +42,7 @@ const DeprecatedSidebarItem = ({ item, collapsed }: SidebarItemProps) => {
     );
 };
 
-const RedesignedSidebarItem = ({ item, collapsed }: SidebarItemProps) => {
+const SidebarItemRedesigned = ({ item, collapsed }: SidebarItemProps) => {
     const { t } = useTranslation();
 
     return (
@@ -68,8 +68,8 @@ export const SidebarItem = memo(({ item, collapsed }: SidebarItemProps) => {
     return (
         <ToggleFeaturesComponent
             feature="isAppRedesigned"
-            on={<RedesignedSidebarItem item={item} collapsed={collapsed} />}
-            off={<DeprecatedSidebarItem item={item} collapsed={collapsed} />}
+            on={<SidebarItemRedesigned item={item} collapsed={collapsed} />}
+            off={<SidebarItemDeprecated item={item} collapsed={collapsed} />}
         />
     );
 });
