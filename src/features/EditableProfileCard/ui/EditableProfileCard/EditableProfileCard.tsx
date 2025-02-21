@@ -38,7 +38,7 @@ export const EditableProfileCard = memo((props: EditableProfileCardProps) => {
     const mainClass = toggleFeatures({
         name: 'isAppRedesigned',
         on: () => cls.UserCardRedesigned,
-        off: () => cls.DeprecatedUserCard,
+        off: () => '',
     });
 
     return (
