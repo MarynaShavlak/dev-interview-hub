@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo, useEffect, useState } from 'react';
 import { toggleFeatures } from '@/shared/lib/features';
 import { Each } from '@/shared/lib/components/Each/Each';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
@@ -16,9 +16,20 @@ interface NotificationListProps {
 export const NotificationList = memo((props: NotificationListProps) => {
     const { className } = props;
     const listClass = classNames(cls.NotificationList, {}, [className]);
-    const { data, isLoading } = useNotifications(null, {
-        pollingInterval: 10000,
-    });
+    const { data, error, isLoading, isSuccess, refetch } = useNotifications();
+
+    const [pollingInterval] = useState(5000); // Set the polling interval (5 seconds)
+
+    useEffect(() => {
+        // Set up polling interval to refetch notifications
+        const interval = setInterval(() => {
+            refetch();
+        }, pollingInterval);
+
+        // Clear the interval when the component unmounts
+        return () => clearInterval(interval);
+    }, [refetch, pollingInterval]);
+    console.log('data', data);
 
     const Skeleton = toggleFeatures({
         name: 'isAppRedesigned',

@@ -1,7 +1,6 @@
 export const FIXED_COLUMNS_WIDTH_REDESIGNED = {
     avatar: 50,
     username: 150,
-
     firstname: 60,
     lastname: 80,
 
