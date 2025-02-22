@@ -46,15 +46,15 @@ export const buildPlugins = ({
             openAnalyzer: false,
         }));
         //  delete this  from dev
-        plugins.push(new CopyPlugin({
-            patterns: [
-
-                { from: `${paths.src}/favicon.ico`, to: paths.build },
-                { from: `${paths.src}/manifest.json`, to: paths.build  },
-                { from: `${paths.src}/logo192.png`, to: paths.build  },
-                { from: `${paths.src}/logo512.png`, to: paths.build  },
-            ],
-        }));
+        // plugins.push(new CopyPlugin({
+        //     patterns: [
+        //
+        //         { from: `${paths.src}/favicon.ico`, to: paths.build },
+        //         { from: `${paths.src}/manifest.json`, to: paths.build  },
+        //         { from: `${paths.src}/logo192.png`, to: paths.build  },
+        //         { from: `${paths.src}/logo512.png`, to: paths.build  },
+        //     ],
+        // }));
         // new InjectManifest( {
         //     swSrc: './config/serviceWorker/config-sw.js',
         //     swDest: 'sw.js',
