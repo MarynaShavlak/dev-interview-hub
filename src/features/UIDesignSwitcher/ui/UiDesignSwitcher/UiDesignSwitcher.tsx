@@ -23,6 +23,7 @@ export const UiDesignSwitcher = memo((props: UiDesignSwitcherProps) => {
     const { className } = props;
     const { t } = useTranslation();
     const isAppRedesigned = getFeatureFlag('isAppRedesigned');
+    console.log('isAppRedesigned', isAppRedesigned);
     const dispatch = useAppDispatch();
     const authData = useUserAuthData();
     const [isLoading, setIsLoading] = useState(false);
