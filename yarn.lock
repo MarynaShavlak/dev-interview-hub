@@ -18567,7 +18567,7 @@
   dependencies:
     "workbox-core" "7.3.0"
 
-"workbox-core@7.3.0":
+"workbox-core@^7.3.0", "workbox-core@7.3.0":
   "integrity" "sha512-Z+mYrErfh4t3zi7NVTvOuACB0A/jA3bgxUN3PwtAVHvfEsZxV9Iju580VEETug3zYJRc0Dmii/aixI/Uxj8fmw=="
   "resolved" "https://registry.npmjs.org/workbox-core/-/workbox-core-7.3.0.tgz"
   "version" "7.3.0"
@@ -18597,7 +18597,7 @@
   dependencies:
     "workbox-core" "7.3.0"
 
-"workbox-precaching@7.3.0":
+"workbox-precaching@^7.3.0", "workbox-precaching@7.3.0":
   "integrity" "sha512-ckp/3t0msgXclVAYaNndAGeAoWQUv7Rwc4fdhWL69CCAb2UHo3Cef0KIUctqfQj1p8h6aGyz3w8Cy3Ihq9OmIw=="
   "resolved" "https://registry.npmjs.org/workbox-precaching/-/workbox-precaching-7.3.0.tgz"
   "version" "7.3.0"
@@ -18663,7 +18663,7 @@
     "webpack-sources" "^1.4.3"
     "workbox-build" "7.3.0"
 
-"workbox-window@7.3.0":
+"workbox-window@^7.3.0", "workbox-window@7.3.0":
   "integrity" "sha512-qW8PDy16OV1UBaUNGlTVcepzrlzyzNW/ZJvFQQs2j2TzGsg6IKjcpZC1RSquqQnTOafl5pCj5bGfAHlCjOOjdA=="
   "resolved" "https://registry.npmjs.org/workbox-window/-/workbox-window-7.3.0.tgz"
   "version" "7.3.0"
