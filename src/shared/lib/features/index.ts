@@ -6,4 +6,3 @@ export {
     setFeatureFlags,
     getFeatureFlag,
 } from './lib/setGetFeatures/setGetFeatures';
-export { updateFeatureFlag } from './services/updateFeatureFlags';

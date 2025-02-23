@@ -85,7 +85,7 @@ import { memo, useState } from 'react';
 import { useForceUpdate } from '@/shared/lib/render/forceUpdate';
 import { ListBox } from '@/shared/ui/redesigned/Popups';
 import { Text } from '@/shared/ui/redesigned/Text';
-import { getFeatureFlag, updateFeatureFlag } from '@/shared/lib/features';
+import { getFeatureFlag, updateFeatureFlagsThunk } from '@/shared/lib/features';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { HStack } from '@/shared/ui/redesigned/Stack';
 import { Skeleton } from '@/shared/ui/redesigned/Skeleton';
@@ -116,7 +116,7 @@ export const UiDesignSwitcher = memo((props: UiDesignSwitcherProps) => {
         if (authData) {
             setIsLoading(true);
             await dispatch(
-                updateFeatureFlag({
+                updateFeatureFlagsThunk({
                     userId: authData.id,
                     newFeatures: {
                         isAppRedesigned: value === 'new',

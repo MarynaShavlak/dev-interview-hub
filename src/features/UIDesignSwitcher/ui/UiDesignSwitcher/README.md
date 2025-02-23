@@ -24,7 +24,7 @@ The **`UiDesignSwitcher`** component accepts the following props:
 
 2.**Loading State**: While switching between designs, the component displays a loading state using `Skeleton` components to indicate that a transition is in progress. This ensures a smooth user experience by providing visual feedback during asynchronous operations.
 
-3.**Feature Flag Integration**: The component uses `getFeatureFlag` to determine the current design state and `updateFeatureFlag` to save user preferences. This integration ensures that design changes are consistent with the application's feature flag system and persist across sessions.
+3.**Feature Flag Integration**: The component uses `getFeatureFlag` to determine the current design state and `updateFeatureFlagsThunk` to save user preferences. This integration ensures that design changes are consistent with the application's feature flag system and persist across sessions.
 
 4.**Design Adaptation**: The component renders different UI elements based on whether the redesigned interface is enabled or not.
 

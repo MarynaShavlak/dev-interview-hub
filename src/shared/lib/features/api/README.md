@@ -52,11 +52,11 @@ interface UpdateFeatureFlagOptions {
     newFeatures: Partial<FeatureFlags>;
 }
 
-export const updateFeatureFlag = createAsyncThunk<
+export const updateFeatureFlagsThunk = createAsyncThunk<
     void,
     UpdateFeatureFlagOptions,
     ThunkConfig<string>
->('features/updateFeatureFlag', async ({ userId, newFeatures }, thunkApi) => {
+>('features/updateFeatureFlagsThunk', async ({ userId, newFeatures }, thunkApi) => {
     const { rejectWithValue, dispatch } = thunkApi;
     const allFeatures = {
         ...getAllFeatureFlags(),

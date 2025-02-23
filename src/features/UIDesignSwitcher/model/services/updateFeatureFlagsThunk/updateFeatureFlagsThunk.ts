@@ -19,7 +19,7 @@ interface UpdateFeatureFlagOptions {
  * @returns A thunk action that resolves to void.
  */
 
-export const updateFeatureFlag = createAsyncThunk<
+export const updateFeatureFlagsThunk = createAsyncThunk<
     void,
     UpdateFeatureFlagOptions,
     ThunkConfig<string>

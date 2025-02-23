@@ -5,15 +5,12 @@ import { useUserAuthData } from '@/entities/User';
 import { ListBox } from '@/shared/ui/redesigned/Popups';
 import { Text, Text as TextDeprecated } from '@/shared/ui/redesigned/Text';
 import { ListBox as ListBoxDeprecated } from '@/shared/ui/deprecated/Popups';
-import {
-    getFeatureFlag,
-    ToggleFeaturesComponent,
-    updateFeatureFlag,
-} from '@/shared/lib/features';
+import { getFeatureFlag, ToggleFeaturesComponent } from '@/shared/lib/features';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { HStack } from '@/shared/ui/common/Stack';
 import { Skeleton } from '@/shared/ui/redesigned/Skeleton';
 import { Skeleton as SkeletonDeprecated } from '@/shared/ui/deprecated/Skeleton';
+import { updateFeatureFlagsThunk } from '../../model/services/updateFeatureFlagsThunk/updateFeatureFlagsThunk';
 
 interface UiDesignSwitcherProps {
     className?: string;
@@ -45,7 +42,7 @@ export const UiDesignSwitcher = memo((props: UiDesignSwitcherProps) => {
             setIsLoading(true);
             console.log('change interface design');
             await dispatch(
-                updateFeatureFlag({
+                updateFeatureFlagsThunk({
                     userId: authData.id,
                     newFeatures: {
                         isAppRedesigned: value === 'new',
@@ -53,7 +50,7 @@ export const UiDesignSwitcher = memo((props: UiDesignSwitcherProps) => {
                 }),
             ).unwrap();
             setIsLoading(false);
-            // forceUpdate();
+            forceUpdate();
         }
     };
 

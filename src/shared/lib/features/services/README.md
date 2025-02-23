@@ -1,6 +1,6 @@
-#  `updateFeatureFlag` Thunk Documentation
+#  `updateFeatureFlagsThunk` Thunk Documentation
 
-The `updateFeatureFlag` thunk is an asynchronous action that updates feature flags for a specific user, merges new flags with existing ones, communicates the changes to the backend, and refreshes the application to ensure consistent application of the updated flags.
+The `updateFeatureFlagsThunk` thunk is an asynchronous action that updates feature flags for a specific user, merges new flags with existing ones, communicates the changes to the backend, and refreshes the application to ensure consistent application of the updated flags.
 
 ## Parameters
 
@@ -40,7 +40,7 @@ import { memo } from 'react';
 import { useForceUpdate } from '@/shared/lib/render/forceUpdate';
 import { useUserAuthData } from '@/entities/User';
 import { ListBox } from '@/shared/ui/redesigned/Popups';
-import { getFeatureFlag, updateFeatureFlag } from '@/shared/lib/features';
+import { getFeatureFlag, updateFeatureFlagsThunk } from '@/shared/lib/features';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 
 export const UiDesignSwitcher = memo(() => {
@@ -58,7 +58,7 @@ export const UiDesignSwitcher = memo(() => {
     const onChange = async (value: string) => {
         if (authData) {
             await dispatch(
-                updateFeatureFlag({
+                updateFeatureFlagsThunk({
                     userId: authData.id,
                     newFeatures: {
                         isAppRedesigned: value === 'new',
@@ -81,6 +81,6 @@ export const UiDesignSwitcher = memo(() => {
 ```
 
 ## Conclusion 
-The `updateFeatureFlag` hunk provides a robust mechanism for updating feature flags on a per-user basis
+The `updateFeatureFlagsThunk` hunk provides a robust mechanism for updating feature flags on a per-user basis
 It efficiently merges new flags with existing ones, communicates changes to the backend, and ensures that updates are reflected across the application by reloading the page. 
 Error handling is implemented to capture and report any issues during the update process, contributing to a reliable and consistent user experience.
