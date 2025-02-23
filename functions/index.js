@@ -18,10 +18,6 @@
 //     response.send('Hello from Firebase!');
 // });
 
-const functions = require('firebase-functions');
-const admin = require('firebase-admin');
-const { onDocumentCreated } = require('firebase-functions/v2/firestore');
-const { getFirestore, FieldValue } = require('firebase-admin/firestore');
 //
 // admin.initializeApp(functions.config().firebase);
 
@@ -32,10 +28,6 @@ const { getFirestore, FieldValue } = require('firebase-admin/firestore');
 //         .add(notification)
 //         .then((doc) => console.log('notification added', doc));
 // };
-
-exports.helloWorld = functions.https.onRequest((request, response) => {
-    response.send('Hello, ninjas!');
-});
 
 // exports.articleCreated = functions.firestore
 //     .document('articles/{articleId}')
@@ -49,6 +41,16 @@ exports.helloWorld = functions.https.onRequest((request, response) => {
 //
 //         return createNotification(notification);
 //     });
+
+const { v4 } = require('uuid');
+const functions = require('firebase-functions');
+const admin = require('firebase-admin');
+const { onDocumentCreated } = require('firebase-functions/v2/firestore');
+const { getFirestore, FieldValue } = require('firebase-admin/firestore');
+
+exports.helloWorld = functions.https.onRequest((request, response) => {
+    response.send('Hello, ninjas!');
+});
 
 admin.initializeApp();
 const db = getFirestore();
@@ -69,9 +71,16 @@ exports.articleCreated = onDocumentCreated(
         if (!doc) return null; // Ensure the document exists
 
         const article = doc.data();
+        const { category } = article;
+        const categoryText =
+            category.length > 1
+                ? `categories ${category.join(', ')}`
+                : `category ${category}`;
         const notification = {
-            content: 'Added a new article',
-            user: `${article.user.firstname} ${article.user.lastname}`,
+            id: v4(),
+            title: 'Added a new article',
+            description: `Article "${article.title}" was added in ${categoryText}`,
+            href: null,
             time: FieldValue.serverTimestamp(),
         };
 
