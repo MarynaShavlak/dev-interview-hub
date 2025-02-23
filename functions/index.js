@@ -20,20 +20,61 @@
 
 const functions = require('firebase-functions');
 const admin = require('firebase-admin');
+const { onDocumentCreated } = require('firebase-functions/v2/firestore');
+const { getFirestore, FieldValue } = require('firebase-admin/firestore');
+//
+// admin.initializeApp(functions.config().firebase);
 
-admin.initializeApp(functions.config().firebase);
+// const createNotification = (notification) => {
+//     return admin
+//         .firestore()
+//         .collection('notifications')
+//         .add(notification)
+//         .then((doc) => console.log('notification added', doc));
+// };
 
 exports.helloWorld = functions.https.onRequest((request, response) => {
     response.send('Hello, ninjas!');
 });
 
-exports.articleCreated = functions.firestore
-    .document('articles/{articleId}')
-    .onCreate((doc) => {
+// exports.articleCreated = functions.firestore
+//     .document('articles/{articleId}')
+//     .onCreate((doc) => {
+//         const article = doc.data();
+//         const notification = {
+//             content: 'Added a new article',
+//             user: `${article.user.firstName} ${article.user.lastName}`,
+//             time: admin.firestore.FieldValue.serverTimestamp(),
+//         };
+//
+//         return createNotification(notification);
+//     });
+
+admin.initializeApp();
+const db = getFirestore();
+
+async function createNotification(notification) {
+    try {
+        await db.collection('notifications').add(notification);
+        console.log('Notification created:', notification);
+    } catch (error) {
+        console.error('Error creating notification:', error);
+    }
+}
+
+exports.articleCreated = onDocumentCreated(
+    'articles/{articleId}',
+    async (event) => {
+        const doc = event.data;
+        if (!doc) return null; // Ensure the document exists
+
         const article = doc.data();
         const notification = {
             content: 'Added a new article',
-            user: `${article.user.firstName} ${article.user.lastName}`,
-            time: admin.firestore.FieldValue.serverTimestamp(),
+            user: `${article.user.firstname} ${article.user.lastname}`,
+            time: FieldValue.serverTimestamp(),
         };
-    });
+
+        return createNotification(notification);
+    },
+);
