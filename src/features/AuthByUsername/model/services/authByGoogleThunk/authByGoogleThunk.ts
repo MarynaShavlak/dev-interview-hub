@@ -41,7 +41,7 @@ export const authByGoogleThunk = createAsyncThunk<
             userData = existingUser;
         }
 
-        console.log('by google data to set in slice', userData);
+        // console.log('by google data to set in slice', userData);
         // const customUser = mapFirebaseUserToCustomUser(firebaseUser);
         dispatch(setUser(userData));
         dispatch(setAuthData(userData));
