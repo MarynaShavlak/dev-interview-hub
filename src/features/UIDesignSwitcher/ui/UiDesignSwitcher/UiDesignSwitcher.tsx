@@ -43,6 +43,7 @@ export const UiDesignSwitcher = memo((props: UiDesignSwitcherProps) => {
     const onChange = async (value: string) => {
         if (authData) {
             setIsLoading(true);
+            console.log('change interface design');
             await dispatch(
                 updateFeatureFlag({
                     userId: authData.id,
@@ -52,7 +53,7 @@ export const UiDesignSwitcher = memo((props: UiDesignSwitcherProps) => {
                 }),
             ).unwrap();
             setIsLoading(false);
-            forceUpdate();
+            // forceUpdate();
         }
     };
 
