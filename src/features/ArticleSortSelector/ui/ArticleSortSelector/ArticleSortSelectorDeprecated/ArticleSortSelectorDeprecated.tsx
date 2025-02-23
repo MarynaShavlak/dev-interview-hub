@@ -18,6 +18,7 @@ export const ArticleSortSelectorDeprecated = memo(
             align: 'center',
             gap: '8',
         });
+        console.log('value', sort);
         return (
             <div
                 className={classNames('', {}, [

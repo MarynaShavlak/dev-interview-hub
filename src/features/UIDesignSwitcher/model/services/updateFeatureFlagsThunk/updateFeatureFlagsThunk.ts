@@ -35,10 +35,6 @@ export const updateFeatureFlagsThunk = createAsyncThunk<
 
         try {
             await dispatch(
-                // updateFeatureFlagsMutation({
-                //     userId,
-                //     features: allFeatures,
-                // }),
                 updateUserDataMutation({
                     userId,
                     updates: {
@@ -48,7 +44,7 @@ export const updateFeatureFlagsThunk = createAsyncThunk<
             );
             setFeatureFlags(allFeatures);
 
-            // window.location.reload();
+            window.location.reload();
             return undefined;
         } catch (error) {
             console.error('Failed to update feature flags:', error);
