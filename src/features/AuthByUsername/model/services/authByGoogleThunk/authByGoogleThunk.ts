@@ -39,7 +39,6 @@ export const authByGoogleThunk = createAsyncThunk<
                 throw new Error('Existing user not found in Firestore');
             }
             userData = existingUser;
-            console.log('existingUser from google', existingUser);
         }
 
         console.log('by google data to set in slice', userData);
