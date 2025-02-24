@@ -79,9 +79,10 @@ exports.articleCreated = onDocumentCreated(
         const notification = {
             id: v4(),
             title: 'Added a new article',
-            description: `Article "${article.title}" was added in ${categoryText}`,
+            message: `Article "${article.title}" was added in ${categoryText}`,
             href: null,
-            time: FieldValue.serverTimestamp(),
+            timestamp: new Date().toISOString(),
+            type: 'general',
         };
 
         return createNotification(notification);

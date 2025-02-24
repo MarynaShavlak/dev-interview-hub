@@ -10,6 +10,8 @@
 export interface Notification {
     id: string;
     title: string;
-    description: string;
+    message: string;
     href: string | null;
+    timestamp: string;
+    type: 'general' | 'personal';
 }
