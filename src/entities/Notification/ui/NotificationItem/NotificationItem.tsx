@@ -26,7 +26,7 @@ const NotificationContent = ({ item, className }: NotificationItemProps) => {
             on={
                 <Card className={cardClass}>
                     <Text title={title} text={message} />
-                    <Text text={timeSpent} size="s" />
+                    <Text text={timeSpent} size="m" />
                 </Card>
             }
             off={
