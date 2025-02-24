@@ -25,8 +25,8 @@ const NotificationContent = ({ item, className }: NotificationItemProps) => {
             feature="isAppRedesigned"
             on={
                 <Card className={cardClass}>
-                    <Text title={title} text={message} />
-                    <Text text={timeSpent} size="m" />
+                    <Text title={title} text={message} bold />
+                    <Text text={timeSpent} size="m" variant="secondary" />
                 </Card>
             }
             off={

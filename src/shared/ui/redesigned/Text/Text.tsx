@@ -4,7 +4,7 @@ import { TestProps } from '@/shared/types/tests';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import cls from './Text.module.scss';
 
-export type TextVariant = 'primary' | 'error' | 'accent';
+export type TextVariant = 'primary' | 'error' | 'accent' | 'secondary';
 export type TextAlign = 'right' | 'left' | 'center';
 export type TextSize = 's' | 'm' | 'l';
 
@@ -57,31 +57,38 @@ export const Text = memo((props: TextProps) => {
     ].filter(Boolean);
 
     const sanitizedText = text ? DOMPurify.sanitize(text) : '';
+    const isOnlyTitleOrText = Boolean(title && !text) || (!title && text);
+
+    let bothTextAndTitleStyles;
+    let onlyTextOrTitleStyles;
+    if (isOnlyTitleOrText) {
+        bothTextAndTitleStyles = { [cls.bold]: bold, [cls.italic]: italic };
+        onlyTextOrTitleStyles = {};
+    } else {
+        bothTextAndTitleStyles = {};
+        onlyTextOrTitleStyles = { [cls.bold]: bold, [cls.italic]: italic };
+    }
 
     return (
         <div
             className={classNames(
                 cls.Text,
-                { [cls.bold]: bold, [cls.italic]: italic },
+                bothTextAndTitleStyles,
                 additionalClasses,
             )}
         >
             {title && (
                 <HeaderTag
-                    className={cls.title}
+                    className={classNames(cls.title, onlyTextOrTitleStyles, [])}
                     data-testid={`${dataTestId}.Header`}
                 >
                     {title}
                 </HeaderTag>
             )}
-            {/* {text && ( */}
-            {/*    <p className={cls.text} data-testid={`${dataTestId}.Paragraph`}> */}
-            {/*        {text} */}
-            {/*    </p> */}
-            {/* )} */}
+
             {sanitizedText && (
                 <p
-                    className={cls.text}
+                    className={classNames(cls.text, onlyTextOrTitleStyles, [])}
                     data-testid={`${dataTestId}.Paragraph`}
                     dangerouslySetInnerHTML={{ __html: sanitizedText }}
                 />

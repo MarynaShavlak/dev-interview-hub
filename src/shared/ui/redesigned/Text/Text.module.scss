@@ -32,6 +32,17 @@
 }
 
 
+.secondary {
+    .title {
+        color: var(--hint-redesigned);
+    }
+
+    .text {
+        color: var(--hint-redesigned);
+    }
+}
+
+
 
 
 .left {
@@ -88,4 +99,14 @@
     .text {
         font-style: italic;
     }
+}
+
+
+.bold.title {
+    font-weight: 700;
+}
+
+
+.bold.text{
+    font-weight: 700;
 }
