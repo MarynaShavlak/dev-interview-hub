@@ -71,7 +71,7 @@ exports.articleCreated = onDocumentCreated(
         if (!doc) return null; // Ensure the document exists
 
         const article = doc.data();
-        const { category } = article;
+        const { category, userId } = article;
         const categoryText =
             category.length > 1
                 ? `categories ${category.join(', ')}`
@@ -83,6 +83,7 @@ exports.articleCreated = onDocumentCreated(
             href: `/article/${article.id}`,
             timestamp: new Date().toISOString(),
             type: 'general',
+            authorId: userId,
         };
 
         return createNotification(notification);

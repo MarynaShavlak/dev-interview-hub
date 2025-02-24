@@ -1,0 +1,22 @@
+[debug] [2025-02-24T17:30:58.664Z] ----------------------------------------------------------------------
+[debug] [2025-02-24T17:30:58.666Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Eldo\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy --only functions
+[debug] [2025-02-24T17:30:58.666Z] CLI Version:   13.31.2
+[debug] [2025-02-24T17:30:58.667Z] Platform:      win32
+[debug] [2025-02-24T17:30:58.667Z] Node Version:  v18.12.1
+[debug] [2025-02-24T17:30:58.668Z] Time:          Mon Feb 24 2025 19:30:58 GMT+0200 (за східноєвропейським стандартним часом)
+[debug] [2025-02-24T17:30:58.668Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-02-24T17:30:58.905Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-02-24T17:30:58.906Z] > authorizing via signed-in user (shavlakmaryna@gmail.com)
+[debug] [2025-02-24T17:30:58.906Z] [iam] checking project dev-interview-hub for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]
+[debug] [2025-02-24T17:30:58.908Z] Checked if tokens are valid: true, expires at: 1740419780506
+[debug] [2025-02-24T17:30:58.908Z] Checked if tokens are valid: true, expires at: 1740419780506
+[debug] [2025-02-24T17:30:58.909Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/dev-interview-hub:testIamPermissions [none]
+[debug] [2025-02-24T17:30:58.909Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/dev-interview-hub:testIamPermissions x-goog-quota-user=projects/dev-interview-hub
+[debug] [2025-02-24T17:30:58.909Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/dev-interview-hub:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2025-02-24T17:30:59.803Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/dev-interview-hub:testIamPermissions 200
+[debug] [2025-02-24T17:30:59.804Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/dev-interview-hub:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2025-02-24T17:30:59.804Z] Checked if tokens are valid: true, expires at: 1740419780506
+[debug] [2025-02-24T17:30:59.804Z] Checked if tokens are valid: true, expires at: 1740419780506
+[debug] [2025-02-24T17:30:59.804Z] >>> [apiv2][query] POST https://iam.googleapis.com/v1/projects/dev-interview-hub/serviceAccounts/dev-interview-hub@appspot.gserviceaccount.com:testIamPermissions [none]
+[debug] [2025-02-24T17:30:59.804Z] >>> [apiv2][body] POST https://iam.googleapis.com/v1/projects/dev-interview-hub/serviceAccounts/dev-interview-hub@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
