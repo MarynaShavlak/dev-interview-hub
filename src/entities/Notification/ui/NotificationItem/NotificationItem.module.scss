@@ -1,7 +1,14 @@
 .NotificationItem,
 .link {
     width: 100%;
+    transition: background-color 300ms ease-in-out;
 }
+
+.link .NotificationItem:hover {
+background: linear-gradient(89.97deg, rgba(94, 211, 243, 0.3) 1.15%, rgba(94, 211, 243, 0) 99.97%);
+
+}
+
 
 
 .notificationItemIcon {
