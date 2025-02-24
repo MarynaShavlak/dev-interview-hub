@@ -1,0 +1,30 @@
+[debug] [2025-02-24T17:18:18.648Z] ----------------------------------------------------------------------
+[debug] [2025-02-24T17:18:18.650Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Eldo\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy --only functions
+[debug] [2025-02-24T17:18:18.650Z] CLI Version:   13.31.2
+[debug] [2025-02-24T17:18:18.651Z] Platform:      win32
+[debug] [2025-02-24T17:18:18.651Z] Node Version:  v18.12.1
+[debug] [2025-02-24T17:18:18.652Z] Time:          Mon Feb 24 2025 19:18:18 GMT+0200 (за східноєвропейським стандартним часом)
+[debug] [2025-02-24T17:18:18.652Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-02-24T17:18:18.889Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-02-24T17:18:18.890Z] > authorizing via signed-in user (shavlakmaryna@gmail.com)
+[debug] [2025-02-24T17:18:18.890Z] [iam] checking project dev-interview-hub for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]
+[debug] [2025-02-24T17:18:18.891Z] Checked if tokens are valid: true, expires at: 1740419780506
+[debug] [2025-02-24T17:18:18.892Z] Checked if tokens are valid: true, expires at: 1740419780506
+[debug] [2025-02-24T17:18:18.893Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/dev-interview-hub:testIamPermissions [none]
+[debug] [2025-02-24T17:18:18.893Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/dev-interview-hub:testIamPermissions x-goog-quota-user=projects/dev-interview-hub
+[debug] [2025-02-24T17:18:18.893Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/dev-interview-hub:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2025-02-24T17:18:19.782Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/dev-interview-hub:testIamPermissions 200
+[debug] [2025-02-24T17:18:19.782Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/dev-interview-hub:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2025-02-24T17:18:19.783Z] Checked if tokens are valid: true, expires at: 1740419780506
+[debug] [2025-02-24T17:18:19.783Z] Checked if tokens are valid: true, expires at: 1740419780506
+[debug] [2025-02-24T17:18:19.783Z] >>> [apiv2][query] POST https://iam.googleapis.com/v1/projects/dev-interview-hub/serviceAccounts/dev-interview-hub@appspot.gserviceaccount.com:testIamPermissions [none]
+[debug] [2025-02-24T17:18:19.783Z] >>> [apiv2][body] POST https://iam.googleapis.com/v1/projects/dev-interview-hub/serviceAccounts/dev-interview-hub@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2025-02-24T17:18:20.654Z] <<< [apiv2][status] POST https://iam.googleapis.com/v1/projects/dev-interview-hub/serviceAccounts/dev-interview-hub@appspot.gserviceaccount.com:testIamPermissions 404
+[debug] [2025-02-24T17:18:20.655Z] <<< [apiv2][body] POST https://iam.googleapis.com/v1/projects/dev-interview-hub/serviceAccounts/dev-interview-hub@appspot.gserviceaccount.com:testIamPermissions {"error":{"code":404,"message":"Unknown service account","status":"NOT_FOUND"}}
+[debug] [2025-02-24T17:18:20.655Z] [functions] service account IAM check errored, deploy may fail: Request to https://iam.googleapis.com/v1/projects/dev-interview-hub/serviceAccounts/dev-interview-hub@appspot.gserviceaccount.com:testIamPermissions had HTTP Error: 404, Unknown service account {"name":"FirebaseError","children":[],"context":{"body":{"error":{"code":404,"message":"Unknown service account","status":"NOT_FOUND"}},"response":{"statusCode":404}},"exit":1,"message":"Request to https://iam.googleapis.com/v1/projects/dev-interview-hub/serviceAccounts/dev-interview-hub@appspot.gserviceaccount.com:testIamPermissions had HTTP Error: 404, Unknown service account","status":404}
+[info] 
+[info] === Deploying to 'dev-interview-hub'...
+[info] 
+[info] i  deploying functions 
+[info] Running command: npm --prefix "$RESOURCE_DIR" run lint

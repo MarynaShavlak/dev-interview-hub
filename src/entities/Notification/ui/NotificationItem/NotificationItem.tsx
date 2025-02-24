@@ -20,7 +20,8 @@ interface NotificationItemProps {
 }
 
 const NotificationContent = ({ item, className }: NotificationItemProps) => {
-    const { title, message, timestamp } = item;
+    const { title, message, timestamp, href } = item;
+    console.log('href', href);
     const cardClass = classNames(cls.NotificationItem, {}, [className]);
     dayjs.extend(relativeTime);
     const timeSpent = dayjs(timestamp).fromNow();
@@ -37,6 +38,17 @@ const NotificationContent = ({ item, className }: NotificationItemProps) => {
                         className={cls.notificationItemIcon}
                     />
                     <VStack gap="4">
+                        {/* {href ? ( */}
+                        {/*    <AppLink */}
+                        {/*        data-testid="ArticleListItem" */}
+                        {/*        target="_blank" */}
+                        {/*        to={getRouteArticleDetails(href)} */}
+                        {/*    > */}
+                        {/*        <Text title={title} text={message} bold /> */}
+                        {/*    </AppLink> */}
+                        {/* ) : ( */}
+                        {/*    <Text title={title} text={message} bold /> */}
+                        {/* )} */}
                         <Text title={title} text={message} bold />
                         <Text text={timeSpent} size="m" variant="secondary" />
                     </VStack>

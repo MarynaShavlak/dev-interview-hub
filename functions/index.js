@@ -80,7 +80,7 @@ exports.articleCreated = onDocumentCreated(
             id: v4(),
             title: 'New Article Published!',
             message: `A new article titled "${article.title}" has been added to ${categoryText}. Check it out!`,
-            href: article.id,
+            href: `/article/${article.id}`,
             timestamp: new Date().toISOString(),
             type: 'general',
         };
