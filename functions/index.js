@@ -71,7 +71,8 @@ exports.articleCreated = onDocumentCreated(
         if (!doc) return null; // Ensure the document exists
 
         const article = doc.data();
-        const { category, userId } = article;
+        const { category, user } = article;
+        const { id: userId } = article;
         const categoryText =
             category.length > 1
                 ? `categories ${category.join(', ')}`
