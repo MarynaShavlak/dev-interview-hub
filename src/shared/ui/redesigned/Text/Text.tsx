@@ -3,6 +3,7 @@ import DOMPurify from 'dompurify';
 import { TestProps } from '@/shared/types/tests';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import cls from './Text.module.scss';
+import { getStyleConfig } from './getStyleConfig';
 
 export type TextVariant = 'primary' | 'error' | 'accent' | 'secondary';
 export type TextAlign = 'right' | 'left' | 'center';
@@ -57,29 +58,31 @@ export const Text = memo((props: TextProps) => {
     ].filter(Boolean);
 
     const sanitizedText = text ? DOMPurify.sanitize(text) : '';
-    const isOnlyTitleOrText = Boolean(title && !text) || (!title && text);
+    const isOnlyTitleOrText = Boolean((title && !text) || (!title && text));
+    //
+    // let bothTextAndTitleStyles;
+    // let onlyTextOrTitleStyles;
+    // if (isOnlyTitleOrText) {
+    //     bothTextAndTitleStyles = { [cls.bold]: bold, [cls.italic]: italic };
+    //     onlyTextOrTitleStyles = {};
+    // } else {
+    //     bothTextAndTitleStyles = {};
+    //     onlyTextOrTitleStyles = { [cls.bold]: bold, [cls.italic]: italic };
+    // }
 
-    let bothTextAndTitleStyles;
-    let onlyTextOrTitleStyles;
-    if (isOnlyTitleOrText) {
-        bothTextAndTitleStyles = { [cls.bold]: bold, [cls.italic]: italic };
-        onlyTextOrTitleStyles = {};
-    } else {
-        bothTextAndTitleStyles = {};
-        onlyTextOrTitleStyles = { [cls.bold]: bold, [cls.italic]: italic };
-    }
+    const { bothStyles, singleElementStyles } = getStyleConfig(
+        bold,
+        italic,
+        isOnlyTitleOrText,
+    );
+    console.log('bothStyles', bothStyles);
+    const textStyles = title ? {} : singleElementStyles;
 
     return (
-        <div
-            className={classNames(
-                cls.Text,
-                bothTextAndTitleStyles,
-                additionalClasses,
-            )}
-        >
+        <div className={classNames(cls.Text, bothStyles, additionalClasses)}>
             {title && (
                 <HeaderTag
-                    className={classNames(cls.title, onlyTextOrTitleStyles, [])}
+                    className={classNames(cls.title, singleElementStyles, [])}
                     data-testid={`${dataTestId}.Header`}
                 >
                     {title}
@@ -88,7 +91,7 @@ export const Text = memo((props: TextProps) => {
 
             {sanitizedText && (
                 <p
-                    className={classNames(cls.text, onlyTextOrTitleStyles, [])}
+                    className={classNames(cls.text, textStyles, [])}
                     data-testid={`${dataTestId}.Paragraph`}
                     dangerouslySetInnerHTML={{ __html: sanitizedText }}
                 />
