@@ -30,7 +30,12 @@ const NotificationContent = ({ item, className }: NotificationItemProps) => {
             feature="isAppRedesigned"
             on={
                 <Card className={classNames(cardClass, {}, flexClasses)}>
-                    <Icon Svg={NotificationIcon} width={40} height={40} />
+                    <Icon
+                        Svg={NotificationIcon}
+                        width={40}
+                        height={40}
+                        className={cls.notificationItemIcon}
+                    />
                     <VStack gap="4">
                         <Text title={title} text={message} bold />
                         <Text text={timeSpent} size="m" variant="secondary" />
