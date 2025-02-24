@@ -1,4 +1,6 @@
 import { memo } from 'react';
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { Card as CardDeprecated, CardTheme } from '@/shared/ui/deprecated/Card';
 import { Text as TextDeprecated } from '@/shared/ui/deprecated/Text';
@@ -14,14 +16,17 @@ interface NotificationItemProps {
 }
 
 const NotificationContent = ({ item, className }: NotificationItemProps) => {
-    const { title, description } = item;
+    const { title, message, timestamp } = item;
     const cardClass = classNames(cls.NotificationItem, {}, [className]);
+    dayjs.extend(relativeTime);
+    const timeSpent = dayjs(timestamp).fromNow();
     return (
         <ToggleFeaturesComponent
             feature="isAppRedesigned"
             on={
                 <Card className={cardClass}>
-                    <Text title={title} text={description} />
+                    <Text title={title} text={message} />
+                    <Text text={timeSpent} size="s" />
                 </Card>
             }
             off={
@@ -29,7 +34,7 @@ const NotificationContent = ({ item, className }: NotificationItemProps) => {
                     theme={CardTheme.OUTLINED}
                     className={cardClass}
                 >
-                    <TextDeprecated title={title} text={description} />
+                    <TextDeprecated title={title} text={message} />
                 </CardDeprecated>
             }
         />
