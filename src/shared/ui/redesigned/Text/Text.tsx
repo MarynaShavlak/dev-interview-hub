@@ -59,23 +59,12 @@ export const Text = memo((props: TextProps) => {
 
     const sanitizedText = text ? DOMPurify.sanitize(text) : '';
     const isOnlyTitleOrText = Boolean((title && !text) || (!title && text));
-    //
-    // let bothTextAndTitleStyles;
-    // let onlyTextOrTitleStyles;
-    // if (isOnlyTitleOrText) {
-    //     bothTextAndTitleStyles = { [cls.bold]: bold, [cls.italic]: italic };
-    //     onlyTextOrTitleStyles = {};
-    // } else {
-    //     bothTextAndTitleStyles = {};
-    //     onlyTextOrTitleStyles = { [cls.bold]: bold, [cls.italic]: italic };
-    // }
-
     const { bothStyles, singleElementStyles } = getStyleConfig(
         bold,
         italic,
         isOnlyTitleOrText,
     );
-    console.log('bothStyles', bothStyles);
+
     const textStyles = title ? {} : singleElementStyles;
 
     return (

@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import React, { memo } from 'react';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
@@ -9,6 +9,10 @@ import cls from './NotificationItem.module.scss';
 import { Notification } from '../../model/types/notification';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
 import { Card } from '@/shared/ui/redesigned/Card';
+import NotificationIcon from '@/shared/assets/icons/notification.svg';
+import { Icon } from '@/shared/ui/redesigned/Icon';
+import { getFlexClasses } from '@/shared/lib/classes/getFlexClasses/getFlexClasses';
+import { VStack } from '@/shared/ui/common/Stack';
 
 interface NotificationItemProps {
     className?: string;
@@ -20,13 +24,17 @@ const NotificationContent = ({ item, className }: NotificationItemProps) => {
     const cardClass = classNames(cls.NotificationItem, {}, [className]);
     dayjs.extend(relativeTime);
     const timeSpent = dayjs(timestamp).fromNow();
+    const flexClasses = getFlexClasses({ hStack: true, gap: '16' });
     return (
         <ToggleFeaturesComponent
             feature="isAppRedesigned"
             on={
-                <Card className={cardClass}>
-                    <Text title={title} text={message} bold />
-                    {/* <Text text={timeSpent} size="m" variant="secondary" /> */}
+                <Card className={classNames(cardClass, {}, flexClasses)}>
+                    <Icon Svg={NotificationIcon} width={40} height={40} />
+                    <VStack gap="4">
+                        <Text title={title} text={message} bold />
+                        <Text text={timeSpent} size="m" variant="secondary" />
+                    </VStack>
                 </Card>
             }
             off={
