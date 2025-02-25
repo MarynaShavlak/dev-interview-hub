@@ -38,17 +38,6 @@ const NotificationContent = ({ item, className }: NotificationItemProps) => {
                         className={cls.notificationItemIcon}
                     />
                     <VStack gap="4">
-                        {/* {href ? ( */}
-                        {/*    <AppLink */}
-                        {/*        data-testid="ArticleListItem" */}
-                        {/*        target="_blank" */}
-                        {/*        to={getRouteArticleDetails(href)} */}
-                        {/*    > */}
-                        {/*        <Text title={title} text={message} bold /> */}
-                        {/*    </AppLink> */}
-                        {/* ) : ( */}
-                        {/*    <Text title={title} text={message} bold /> */}
-                        {/* )} */}
                         <Text title={title} text={message} bold />
                         <Text text={timeSpent} size="m" variant="secondary" />
                     </VStack>

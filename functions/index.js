@@ -7,46 +7,11 @@
  * See a full list of supported triggers at https://firebase.google.com/docs/functions
  */
 
-// const { onRequest } = require('firebase-functions/v2/https');
-// const logger = require('firebase-functions');
-//
-// // Create and deploy your first functions
-// // https://firebase.google.com/docs/functions/get-started
-//
-// exports.helloWorld = onRequest((request, response) => {
-//     logger.info('Hello logs!', { structuredData: true });
-//     response.send('Hello from Firebase!');
-// });
-
-//
-// admin.initializeApp(functions.config().firebase);
-
-// const createNotification = (notification) => {
-//     return admin
-//         .firestore()
-//         .collection('notifications')
-//         .add(notification)
-//         .then((doc) => console.log('notification added', doc));
-// };
-
-// exports.articleCreated = functions.firestore
-//     .document('articles/{articleId}')
-//     .onCreate((doc) => {
-//         const article = doc.data();
-//         const notification = {
-//             content: 'Added a new article',
-//             user: `${article.user.firstName} ${article.user.lastName}`,
-//             time: admin.firestore.FieldValue.serverTimestamp(),
-//         };
-//
-//         return createNotification(notification);
-//     });
-
 const { v4 } = require('uuid');
 const functions = require('firebase-functions');
 const admin = require('firebase-admin');
 const { onDocumentCreated } = require('firebase-functions/v2/firestore');
-const { getFirestore, FieldValue } = require('firebase-admin/firestore');
+const { getFirestore } = require('firebase-admin/firestore');
 
 exports.helloWorld = functions.https.onRequest((request, response) => {
     response.send('Hello, ninjas!');
@@ -85,8 +50,44 @@ exports.articleCreated = onDocumentCreated(
             timestamp: new Date().toISOString(),
             type: 'general',
             authorId: userId,
+            dismissedBy: [userId],
         };
 
         return createNotification(notification);
     },
 );
+
+// const { onRequest } = require('firebase-functions/v2/https');
+// const logger = require('firebase-functions');
+//
+// // Create and deploy your first functions
+// // https://firebase.google.com/docs/functions/get-started
+//
+// exports.helloWorld = onRequest((request, response) => {
+//     logger.info('Hello logs!', { structuredData: true });
+//     response.send('Hello from Firebase!');
+// });
+
+//
+// admin.initializeApp(functions.config().firebase);
+
+// const createNotification = (notification) => {
+//     return admin
+//         .firestore()
+//         .collection('notifications')
+//         .add(notification)
+//         .then((doc) => console.log('notification added', doc));
+// };
+
+// exports.articleCreated = functions.firestore
+//     .document('articles/{articleId}')
+//     .onCreate((doc) => {
+//         const article = doc.data();
+//         const notification = {
+//             content: 'Added a new article',
+//             user: `${article.user.firstName} ${article.user.lastName}`,
+//             time: admin.firestore.FieldValue.serverTimestamp(),
+//         };
+//
+//         return createNotification(notification);
+//     });
