@@ -117,7 +117,7 @@ exports.notifyArticleCommented = onDocumentCreated(
                 en: `User <b>${username}</b> commented your article "${articleData.title.slice(0, 30)}" with comment "${text.slice(0, 20)}"`,
                 uk: `Користувач <b>${username}</b> додав до Вашої статті  "${articleData.title.slice(0, 30)}" коментар "${text.slice(0, 20)}"`,
             },
-            href: `/article/${article.id}`,
+            href: `/article/${articleData.id}`,
             timestamp: new Date().toISOString(),
             type: 'personal',
             authorId: userId,
