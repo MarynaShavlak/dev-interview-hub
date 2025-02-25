@@ -14,4 +14,5 @@ export interface Notification {
     href: string | null;
     timestamp: string;
     type: 'general' | 'personal';
+    dismissedBy: string[];
 }

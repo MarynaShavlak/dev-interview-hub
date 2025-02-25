@@ -20,8 +20,9 @@ interface NotificationItemProps {
 }
 
 const NotificationContent = ({ item, className }: NotificationItemProps) => {
-    const { title, message, timestamp, href } = item;
+    const { title, message, timestamp, href, dismissedBy } = item;
     console.log('href', href);
+    console.log('dismissedBy', dismissedBy);
     const cardClass = classNames(cls.NotificationItem, {}, [className]);
     dayjs.extend(relativeTime);
     const timeSpent = dayjs(timestamp).fromNow();

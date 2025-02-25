@@ -37,7 +37,7 @@ exports.articleCreated = onDocumentCreated(
 
         const article = doc.data();
         const { category, user } = article;
-        const { id: userId } = article;
+        const { id: userId } = user;
         const categoryText =
             category.length > 1
                 ? `categories ${category.join(', ')}`
