@@ -17,7 +17,7 @@ export const createUserNotificationQuery = (): Query<Notification> => {
     return query(
         notificationsCollection,
         where('authorId', '!=', user.uid),
-        where(`dismissedBy.${user.uid}`, '==', null),
-        orderBy('timestamp', 'desc'),
+        where(`dismissedBy.${user.uid}`, '==', true),
+        // orderBy('timestamp', 'desc'),
     );
 };

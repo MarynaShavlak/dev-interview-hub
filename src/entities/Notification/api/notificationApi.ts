@@ -1,9 +1,10 @@
-import { onSnapshot } from 'firebase/firestore';
+import { onSnapshot, updateDoc } from 'firebase/firestore';
 import { firestoreApi } from '@/shared/api/rtkApi';
 import { Notification } from '../model/types/notification';
 
 import { fetchQueryResults } from '@/shared/lib/firestore/fetchQueryResults/fetchQueryResults';
 import { createUserNotificationQuery } from '../lib/utilities/createUserNotificationsQuery/createUserNotificationsQuery';
+import { getDocRefByField } from '@/shared/lib/firestore/getDocRefByField/getDocRefByField';
 
 const notificationApi = firestoreApi
     .enhanceEndpoints({ addTagTypes: ['Notifications'] })
@@ -65,6 +66,40 @@ const notificationApi = firestoreApi
                         unsubscribe();
                     }
                 },
+            }),
+            dismissNotification: build.mutation<
+                void,
+                { notificationId: string; updates: Partial<Notification> }
+            >({
+                async queryFn({ notificationId, updates }) {
+                    try {
+                        // const user = auth.currentUser;
+                        // if (!user) return { data: undefined };
+                        // const userId = user.uid;
+                        const notificationDocRef =
+                            await getDocRefByField<Notification>(
+                                'notifications',
+                                'id',
+                                notificationId,
+                            );
+
+                        if (!notificationDocRef) {
+                            return { error: 'Notification not found' };
+                        }
+
+                        // [`dismissedBy.${userId}`]: true,
+
+                        if (notificationDocRef) {
+                            await updateDoc(notificationDocRef, updates);
+                        }
+
+                        return { data: undefined };
+                    } catch (error) {
+                        console.error('Error dismissing notification:', error);
+                        return { error };
+                    }
+                },
+                invalidatesTags: ['Notifications'],
             }),
         }),
     });

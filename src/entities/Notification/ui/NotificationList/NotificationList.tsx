@@ -19,6 +19,7 @@ export const NotificationList = memo((props: NotificationListProps) => {
     const { data, isLoading } = useNotifications(undefined, {
         refetchOnReconnect: true,
     });
+    console.log('data', data);
 
     const Skeleton = toggleFeatures({
         name: 'isAppRedesigned',
