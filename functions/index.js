@@ -43,6 +43,20 @@ async function createNotification(notification) {
     }
 }
 
+async function createPersonalNotification(notification, userId) {
+    try {
+        await db
+            .collection('notifications')
+            .doc('personal')
+            .collection(userId)
+            .doc(notification.id) // Store using a unique ID
+            .set(notification);
+        console.log('Notification created:', notification);
+    } catch (error) {
+        console.error('Error creating personal notification:', error);
+    }
+}
+
 exports.articleCreated = onDocumentCreated(
     'articles/{articleId}',
     async (event) => {
@@ -68,6 +82,49 @@ exports.articleCreated = onDocumentCreated(
         };
 
         return createNotification(notification);
+    },
+);
+
+exports.notifyArticleCommented = onDocumentCreated(
+    'comments/{commentId}',
+    async (event) => {
+        const doc = event.data;
+        if (!doc) return null;
+
+        const comment = doc.data();
+        const { articleId, user, text } = comment;
+        const { id: userId, username } = user;
+
+        const articleQuerySnapshot = await db
+            .collection('articles')
+            .where('id', '==', articleId)
+            .limit(1)
+            .get();
+
+        if (articleQuerySnapshot.empty) {
+            console.log(`No article found with id: ${articleId}`);
+            return null;
+        }
+
+        // Get the first matching article
+        const articleDoc = articleQuerySnapshot.docs[0];
+        const articleData = articleDoc.data();
+
+        const notification = {
+            id: v4(),
+            title: 'New comment on your article!',
+            localizationMessage: {
+                en: `User <b>${username}</b> commented your article "${articleData.title.slice(0, 30)}" with comment "${text.slice(0, 20)}"`,
+                uk: `Користувач <b>${username}</b> додав до Вашої статті  "${articleData.title.slice(0, 30)}" коментар "${text.slice(0, 20)}"`,
+            },
+            href: `/article/${article.id}`,
+            timestamp: new Date().toISOString(),
+            type: 'personal',
+            authorId: userId,
+            dismissedBy: [userId],
+        };
+
+        return createPersonalNotification(notification, articleData.user.id);
     },
 );
 
