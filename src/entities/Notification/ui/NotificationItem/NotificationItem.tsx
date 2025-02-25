@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React, { memo, useCallback } from 'react';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
@@ -15,30 +15,32 @@ import { getFlexClasses } from '@/shared/lib/classes/getFlexClasses/getFlexClass
 import { VStack } from '@/shared/ui/common/Stack';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { deleteNotificationThunk } from '../../model/services/deleteNotificationThunk/deleteNotificationThunk';
+import CloseIcon from '@/shared/assets/icons/close.svg';
 
 interface NotificationItemProps {
     className?: string;
     item: Notification;
 }
 
-const NotificationContent = ({ item, className }: NotificationItemProps) => {
+export const NotificationItem = memo((props: NotificationItemProps) => {
+    const { className, item } = props;
     const { title, message, timestamp, href, dismissedBy, id } = item;
 
     console.log('dismissedBy', dismissedBy);
     const cardClass = classNames(cls.NotificationItem, {}, [className]);
     dayjs.extend(relativeTime);
     const timeSpent = dayjs(timestamp).fromNow();
-    const flexClasses = getFlexClasses({ hStack: true, gap: '16' });
+    const flexClasses = getFlexClasses({ hStack: true, gap: '8' });
     const dispatch = useAppDispatch();
 
-    const handleDeleteNotification = async () => {
+    const handleDeleteNotification = useCallback(async () => {
         try {
             await dispatch(deleteNotificationThunk(id));
             console.log('delete notification');
         } catch (error) {
             console.error('Failed to dismiss notification:', error);
         }
-    };
+    }, [dispatch, id]);
 
     return (
         <ToggleFeaturesComponent
@@ -52,11 +54,26 @@ const NotificationContent = ({ item, className }: NotificationItemProps) => {
                         className={cls.notificationItemIcon}
                     />
                     <VStack gap="4">
-                        <Text title={title} text={message} bold />
+                        {href ? (
+                            <a
+                                className={cls.link}
+                                target="_blank"
+                                href={href}
+                                rel="noreferrer"
+                            >
+                                <Text title={title} text={message} bold />
+                            </a>
+                        ) : (
+                            <Text title={title} text={message} bold />
+                        )}
                         <Text text={timeSpent} size="m" variant="secondary" />
-                        <button onClick={handleDeleteNotification}>
-                            Dismiss
-                        </button>
+                        <Icon
+                            variant="error"
+                            Svg={CloseIcon}
+                            className={cls.closeIconRedesigned}
+                            clickable
+                            onClick={handleDeleteNotification}
+                        />
                     </VStack>
                 </Card>
             }
@@ -70,25 +87,4 @@ const NotificationContent = ({ item, className }: NotificationItemProps) => {
             }
         />
     );
-};
-
-export const NotificationItem = memo((props: NotificationItemProps) => {
-    const { className, item } = props;
-
-    const content = <NotificationContent item={item} className={className} />;
-
-    if (item.href) {
-        return (
-            <a
-                className={cls.link}
-                target="_blank"
-                href={item.href}
-                rel="noreferrer"
-            >
-                {content}
-            </a>
-        );
-    }
-
-    return content;
 });

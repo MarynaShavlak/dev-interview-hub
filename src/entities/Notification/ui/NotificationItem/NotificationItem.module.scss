@@ -4,7 +4,12 @@
     transition: background-color 300ms ease-in-out;
 }
 
-.link .NotificationItem:hover {
+.NotificationItem {
+    position:relative;
+}
+
+
+.link:hover {
 background: linear-gradient(89.97deg, rgba(94, 211, 243, 0.3) 1.15%, rgba(94, 211, 243, 0) 99.97%);
 
 }
@@ -14,4 +19,21 @@ background: linear-gradient(89.97deg, rgba(94, 211, 243, 0.3) 1.15%, rgba(94, 21
 .notificationItemIcon {
     min-width: 40px;
     min-height: 40px;
+}
+
+
+.closeIconRedesigned {
+    position: absolute;
+    top: 0;
+    right: 0;
+    fill: var(--cancel-redesigned);
+
+}
+
+
+.closeIconDeprecated {
+    position: absolute;
+    top: 0;
+    right: 0;
+    fill: var(--red-dark);
 }
