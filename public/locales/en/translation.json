@@ -65,5 +65,6 @@
   "Видалити": "Delete",
   "Незбережені зміни": "You have unsaved changes",
   "Текст відміни": "Are you sure you want to cancel",
-  "Не вдалося завантажити зображення": "Failed to load the image, or it has been deleted."
+  "Не вдалося завантажити зображення": "Failed to load the image, or it has been deleted.",
+  "Немає сповіщень": "You're all caught up! No new notifications"
 }

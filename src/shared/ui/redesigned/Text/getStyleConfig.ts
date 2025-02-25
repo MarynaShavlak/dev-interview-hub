@@ -5,7 +5,6 @@ export const getStyleConfig = (
     italic?: boolean,
     isOnlyTitleOrText?: boolean,
 ) => {
-    console.log('isOnlyTitleOrText', isOnlyTitleOrText);
     if (isOnlyTitleOrText) {
         return {
             bothStyles: { [cls.bold]: bold, [cls.italic]: italic },
