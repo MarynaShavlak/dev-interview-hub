@@ -5,7 +5,10 @@ import { Notification } from '../../../model/types/notification';
 
 export const createUserNotificationQuery = (): Query<Notification> => {
     const user = auth.currentUser;
-    const notificationsCollection = dataPoint<Notification>('notifications');
+    // const notificationsCollection = dataPoint<Notification>('notifications');
+    const notificationsCollection = dataPoint<Notification>(
+        'notifications/general/messages',
+    );
     if (!user) {
         return query(notificationsCollection, where('authorId', '!=', ''));
     }

@@ -84,7 +84,8 @@ const notificationApi = firestoreApi
                     try {
                         const notificationDocRef =
                             await getDocRefByField<Notification>(
-                                'notifications',
+                                // 'notifications',
+                                'notifications/general/messages',
                                 'id',
                                 notificationId,
                             );

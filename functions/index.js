@@ -20,9 +20,23 @@ exports.helloWorld = functions.https.onRequest((request, response) => {
 admin.initializeApp();
 const db = getFirestore();
 
+// async function createNotification(notification) {
+//     try {
+//         await db.collection('notifications').add(notification);
+//         console.log('Notification created:', notification);
+//     } catch (error) {
+//         console.error('Error creating notification:', error);
+//     }
+// }
+
 async function createNotification(notification) {
     try {
-        await db.collection('notifications').add(notification);
+        await db
+            .collection('notifications')
+            .doc('general')
+            .collection('messages')
+            .doc(notification.id) // Store using a unique ID
+            .set(notification);
         console.log('Notification created:', notification);
     } catch (error) {
         console.error('Error creating notification:', error);
