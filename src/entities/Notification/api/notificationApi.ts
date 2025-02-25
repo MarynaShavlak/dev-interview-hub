@@ -1,4 +1,4 @@
-import { onSnapshot, updateDoc } from 'firebase/firestore';
+import { arrayUnion, onSnapshot, updateDoc } from 'firebase/firestore';
 import { firestoreApi } from '@/shared/api/rtkApi';
 import { Notification } from '../model/types/notification';
 
@@ -10,11 +10,11 @@ const notificationApi = firestoreApi
     .enhanceEndpoints({ addTagTypes: ['Notifications'] })
     .injectEndpoints({
         endpoints: (build) => ({
-            getNotifications: build.query<Notification[], void>({
+            getNotifications: build.query<Notification[], string>({
                 providesTags: ['Notifications'],
                 keepUnusedDataFor: 3600,
 
-                async queryFn() {
+                async queryFn(userId) {
                     try {
                         const notificationsQuery =
                             createUserNotificationQuery();
@@ -23,8 +23,12 @@ const notificationApi = firestoreApi
                             await fetchQueryResults<Notification>(
                                 notificationsQuery,
                             );
+                        const filteredNotifications = notifications.filter(
+                            (notification) =>
+                                !notification.dismissedBy?.includes(userId),
+                        );
 
-                        return { data: notifications };
+                        return { data: filteredNotifications };
                     } catch (error) {
                         console.error('Error fetching notifications:', error);
                         return { error };
@@ -32,7 +36,7 @@ const notificationApi = firestoreApi
                 },
 
                 async onCacheEntryAdded(
-                    _,
+                    userId,
                     { updateCachedData, cacheDataLoaded, cacheEntryRemoved },
                 ) {
                     await cacheDataLoaded;
@@ -50,7 +54,12 @@ const notificationApi = firestoreApi
                                         (doc) => doc.data(),
                                     ) as Notification[];
 
-                                    return notifications;
+                                    return notifications.filter(
+                                        (notification) =>
+                                            !notification.dismissedBy?.includes(
+                                                userId,
+                                            ),
+                                    );
                                 });
                             },
                         );
@@ -69,13 +78,10 @@ const notificationApi = firestoreApi
             }),
             dismissNotification: build.mutation<
                 void,
-                { notificationId: string; updates: Partial<Notification> }
+                { notificationId: string; userId: string }
             >({
-                async queryFn({ notificationId, updates }) {
+                async queryFn({ notificationId, userId }) {
                     try {
-                        // const user = auth.currentUser;
-                        // if (!user) return { data: undefined };
-                        // const userId = user.uid;
                         const notificationDocRef =
                             await getDocRefByField<Notification>(
                                 'notifications',
@@ -87,10 +93,10 @@ const notificationApi = firestoreApi
                             return { error: 'Notification not found' };
                         }
 
-                        // [`dismissedBy.${userId}`]: true,
-
                         if (notificationDocRef) {
-                            await updateDoc(notificationDocRef, updates);
+                            await updateDoc(notificationDocRef, {
+                                dismissedBy: arrayUnion(userId),
+                            });
                         }
 
                         return { data: undefined };

@@ -8,6 +8,7 @@ import { Skeleton as SkeletonRedesigned } from '@/shared/ui/redesigned/Skeleton'
 import { useNotifications } from '../../api/notificationApi';
 import cls from './NotificationList.module.scss';
 import { NotificationItem } from '../NotificationItem/NotificationItem';
+import { useUserAuthData } from '@/entities/User';
 
 interface NotificationListProps {
     className?: string;
@@ -16,7 +17,9 @@ interface NotificationListProps {
 export const NotificationList = memo((props: NotificationListProps) => {
     const { className } = props;
     const listClass = classNames(cls.NotificationList, {}, [className]);
-    const { data, isLoading } = useNotifications(undefined, {
+    const currentUserdata = useUserAuthData();
+    const authedUserId = currentUserdata?.id || '';
+    const { data, isLoading } = useNotifications(authedUserId, {
         refetchOnReconnect: true,
     });
     console.log('data', data);
