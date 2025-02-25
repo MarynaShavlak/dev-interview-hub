@@ -5,14 +5,29 @@ import { getFlexClasses } from '@/shared/lib/classes/getFlexClasses/getFlexClass
 import { useNotificationLogic } from '../../../lib/hooks/useNotificationLogic/useNotificationLogic';
 import { NotificationItemProps } from '../NotificationItem';
 import { Card as CardDeprecated, CardTheme } from '@/shared/ui/deprecated/Card';
-import { Text as TextDeprecated } from '@/shared/ui/deprecated/Text';
+import {
+    Text as TextDeprecated,
+    TextSize,
+    TextTheme,
+} from '@/shared/ui/deprecated/Text';
+import { Icon, Icon as IconDeprecated } from '@/shared/ui/deprecated/Icon';
+import NotificationIcon from '@/shared/assets/icons/notification.svg';
+import { VStack } from '@/shared/ui/common/Stack';
+import CloseIcon from '@/shared/assets/icons/close.svg';
+import {
+    Button as ButtonDeprecated,
+    ButtonTheme,
+} from '@/shared/ui/deprecated/Button';
 
 export const NotificationItemDeprecated = memo(
     (props: NotificationItemProps) => {
         const { className, item } = props;
         const { title, message, timestamp, href, dismissedBy, id } = item;
         const cardClass = classNames(cls.NotificationItem, {}, [className]);
-        const flexClasses = getFlexClasses({ hStack: true, gap: '8' });
+        const flexClasses = getFlexClasses({
+            hStack: true,
+            gap: '8',
+        });
 
         const { timeSpent, handleDeleteNotification } = useNotificationLogic(
             id,
@@ -20,8 +35,48 @@ export const NotificationItemDeprecated = memo(
         );
 
         return (
-            <CardDeprecated theme={CardTheme.OUTLINED} className={cardClass}>
-                <TextDeprecated title={title} text={message} />
+            <CardDeprecated
+                className={classNames(cardClass, {}, flexClasses)}
+                theme={CardTheme.OUTLINED}
+            >
+                <IconDeprecated
+                    Svg={NotificationIcon}
+                    width={40}
+                    height={40}
+                    className={cls.notificationItemIcon}
+                />
+                <VStack gap="4">
+                    {href ? (
+                        <a
+                            className={classNames(cls.link, {}, [
+                                cls.linkDeprecated,
+                            ])}
+                            target="_blank"
+                            href={href}
+                            rel="noreferrer"
+                        >
+                            <TextDeprecated title={title} text={message} />
+                        </a>
+                    ) : (
+                        <TextDeprecated title={title} text={message} />
+                    )}
+                    <TextDeprecated
+                        text={timeSpent}
+                        size={TextSize.M}
+                        theme={TextTheme.INVERTED}
+                    />
+                    <ButtonDeprecated
+                        theme={ButtonTheme.CLEAR}
+                        onClick={handleDeleteNotification}
+                    >
+                        <Icon
+                            Svg={CloseIcon}
+                            className={cls.closeIconDeprecated}
+                            width={32}
+                            height={32}
+                        />
+                    </ButtonDeprecated>
+                </VStack>
             </CardDeprecated>
         );
     },

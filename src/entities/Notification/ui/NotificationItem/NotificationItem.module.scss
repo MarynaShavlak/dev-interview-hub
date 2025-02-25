@@ -1,7 +1,7 @@
 .NotificationItem,
 .link {
     width: 100%;
-    transition: background-color 300ms ease-in-out;
+    transition: background-color 300ms ease-in-out, color 300ms ease-in-out;
 }
 
 .NotificationItem {
@@ -9,8 +9,15 @@
 }
 
 
-.link:hover {
+.linkRedesigned:hover {
 background: linear-gradient(89.97deg, rgba(94, 211, 243, 0.3) 1.15%, rgba(94, 211, 243, 0) 99.97%);
+}
+
+.linkDeprecated:hover {
+   p {
+        color: var(--inverted-secondary-color);
+    }
+
 
 }
 
@@ -30,10 +37,10 @@ background: linear-gradient(89.97deg, rgba(94, 211, 243, 0.3) 1.15%, rgba(94, 21
 
 }
 
-
 .closeIconDeprecated {
     position: absolute;
     top: 0;
     right: 0;
     fill: var(--red-dark);
+
 }

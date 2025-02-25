@@ -17,7 +17,11 @@ export const NotificationItemRedesigned = memo(
         const { className, item } = props;
         const { title, message, timestamp, href, dismissedBy, id } = item;
         const cardClass = classNames(cls.NotificationItem, {}, [className]);
-        const flexClasses = getFlexClasses({ hStack: true, gap: '8' });
+        const flexClasses = getFlexClasses({
+            hStack: true,
+            gap: '8',
+            align: 'start',
+        });
 
         const { timeSpent, handleDeleteNotification } = useNotificationLogic(
             id,
@@ -35,7 +39,9 @@ export const NotificationItemRedesigned = memo(
                 <VStack gap="4">
                     {href ? (
                         <a
-                            className={cls.link}
+                            className={classNames(cls.link, {}, [
+                                cls.linkRedesigned,
+                            ])}
                             target="_blank"
                             href={href}
                             rel="noreferrer"
