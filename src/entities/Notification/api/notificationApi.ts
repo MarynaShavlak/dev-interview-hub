@@ -113,6 +113,7 @@ const notificationApi = firestoreApi
 export const useNotifications = notificationApi.useGetNotificationsQuery;
 export const dismissNotificationMutation =
     notificationApi.endpoints.dismissNotification.initiate;
+
 // async queryFn() {
 //     try {
 //         const notifications =
