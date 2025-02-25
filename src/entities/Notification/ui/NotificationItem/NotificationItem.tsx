@@ -13,6 +13,9 @@ import NotificationIcon from '@/shared/assets/icons/notification.svg';
 import { Icon } from '@/shared/ui/redesigned/Icon';
 import { getFlexClasses } from '@/shared/lib/classes/getFlexClasses/getFlexClasses';
 import { VStack } from '@/shared/ui/common/Stack';
+import { dismissNotificationMutation } from '../../api/notificationApi';
+import { useUserAuthData } from '@/entities/User';
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 
 interface NotificationItemProps {
     className?: string;
@@ -20,16 +23,30 @@ interface NotificationItemProps {
 }
 
 const NotificationContent = ({ item, className }: NotificationItemProps) => {
-    const { title, message, timestamp, href, dismissedBy } = item;
+    const { title, message, timestamp, href, dismissedBy, id } = item;
 
     console.log('dismissedBy', dismissedBy);
     const cardClass = classNames(cls.NotificationItem, {}, [className]);
     dayjs.extend(relativeTime);
     const timeSpent = dayjs(timestamp).fromNow();
     const flexClasses = getFlexClasses({ hStack: true, gap: '16' });
+    const currentUserdata = useUserAuthData();
+    const authedUserId = currentUserdata?.id;
+    const dispatch = useAppDispatch();
+    if (!authedUserId) return null;
 
-    const handleDismiss = () => {
-        console.log('dismissedBy', dismissedBy);
+    const handleDeleteNotification = async () => {
+        try {
+            await dispatch(
+                dismissNotificationMutation({
+                    notificationId: id,
+                    userId: authedUserId,
+                }),
+            );
+            console.log('delete notification');
+        } catch (error) {
+            console.error('Failed to dismiss notification:', error);
+        }
     };
 
     return (
@@ -46,7 +63,9 @@ const NotificationContent = ({ item, className }: NotificationItemProps) => {
                     <VStack gap="4">
                         <Text title={title} text={message} bold />
                         <Text text={timeSpent} size="m" variant="secondary" />
-                        <button onClick={handleDismiss}>Dismiss</button>
+                        <button onClick={handleDeleteNotification}>
+                            Dismiss
+                        </button>
                     </VStack>
                 </Card>
             }

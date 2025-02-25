@@ -13,6 +13,6 @@ export const createUserNotificationQuery = (): Query<Notification> => {
     return query(
         notificationsCollection,
         where('authorId', '!=', user.uid),
-        orderBy('timeStamp', 'desc'),
+        orderBy('timestamp', 'desc'),
     );
 };
