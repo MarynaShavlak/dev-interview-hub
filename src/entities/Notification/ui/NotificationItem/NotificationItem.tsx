@@ -21,12 +21,17 @@ interface NotificationItemProps {
 
 const NotificationContent = ({ item, className }: NotificationItemProps) => {
     const { title, message, timestamp, href, dismissedBy } = item;
-    console.log('href', href);
+
     console.log('dismissedBy', dismissedBy);
     const cardClass = classNames(cls.NotificationItem, {}, [className]);
     dayjs.extend(relativeTime);
     const timeSpent = dayjs(timestamp).fromNow();
     const flexClasses = getFlexClasses({ hStack: true, gap: '16' });
+
+    const handleDismiss = () => {
+        console.log('dismissedBy', dismissedBy);
+    };
+
     return (
         <ToggleFeaturesComponent
             feature="isAppRedesigned"
@@ -41,6 +46,7 @@ const NotificationContent = ({ item, className }: NotificationItemProps) => {
                     <VStack gap="4">
                         <Text title={title} text={message} bold />
                         <Text text={timeSpent} size="m" variant="secondary" />
+                        <button onClick={handleDismiss}>Dismiss</button>
                     </VStack>
                 </Card>
             }

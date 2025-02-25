@@ -50,7 +50,9 @@ exports.articleCreated = onDocumentCreated(
             timestamp: new Date().toISOString(),
             type: 'general',
             authorId: userId,
-            dismissedBy: [userId],
+            dismissedBy: {
+                [userId]: true,
+            },
         };
 
         return createNotification(notification);
