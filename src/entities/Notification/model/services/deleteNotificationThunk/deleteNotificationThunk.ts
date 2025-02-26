@@ -2,10 +2,11 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig } from '@/app/providers/StoreProvider';
 import { dismissNotificationMutation } from '../../../api/notificationApi';
 import { auth } from '../../../../../../json-server/firebase';
+import { NotificationType } from '../../types/notification';
 
 type DeleteNotificationArgs = {
     notificationId: string;
-    type: 'general' | 'personal_comment';
+    type: NotificationType;
 };
 
 export const deleteNotificationThunk = createAsyncThunk<

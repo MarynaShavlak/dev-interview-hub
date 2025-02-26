@@ -67,13 +67,17 @@ exports.articleCreated = onDocumentCreated(
         const { category, user } = article;
         const { id: userId } = user;
         const categoryText =
-            category.length > 1
-                ? `categories ${category.join(', ')}`
-                : `category ${category}`;
+            category.length > 1 ? `${category.join(', ')}` : `${category}`;
         const notification = {
             id: v4(),
-            title: 'New Article Published!',
-            message: `A new article titled "${article.title}" has been added to ${categoryText}. Check it out!`,
+            localizationTitle: {
+                en: 'New Article Published!',
+                uk: 'Опубліковано нову статтю!',
+            },
+            localizationMessage: {
+                en: `A new article, "${article.title}",  has been added to the following categories: ${categoryText}. Check it out!`,
+                uk: `Нова стаття "${article.title}" була додана до таких рубрик: ${categoryText}. Скоріше перегляньте!`,
+            },
             href: `/article/${article.id}`,
             timestamp: new Date().toISOString(),
             type: 'general',
