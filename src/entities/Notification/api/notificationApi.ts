@@ -19,6 +19,8 @@ import { fetchGeneralNotifications } from '../lib/utilities/fetchGeneralNotifica
 import { filterDismissedNotifications } from '../lib/utilities/filterDismissedNotifications/filterDismissedNotifications';
 import { sortNotificationsByTimestamp } from '../lib/utilities/sortNotificationsByTimestamp/sortNotificationsByTimestamp';
 import { mergeNotifications } from '../lib/utilities/mergeNotifications/mergeNotifications';
+import { getPreviousPersonalNotifications } from '../lib/utilities/getPreviousPersonalNotifications/getPreviousPersonalNotifications';
+import { getPreviousGeneralNotifications } from '../lib/utilities/getPreviousGeneralNotifications/getPreviousGeneralNotifications';
 
 const notificationApi = firestoreApi
     .enhanceEndpoints({
@@ -281,13 +283,12 @@ const notificationApi = firestoreApi
                                         );
 
                                     // Merge general notifications with existing personal notifications
-                                    const personal = draft.filter(
-                                        (n) => n.type !== 'general',
-                                    ) as PersonalNotification[]; // Personal notifications from the cache
+                                    const previousPersonal =
+                                        getPreviousPersonalNotifications(draft); // Personal notifications from the cache
 
                                     const allNotifications = mergeNotifications(
                                         filteredGeneral,
-                                        personal,
+                                        previousPersonal,
                                     );
 
                                     // De-duplicate based on `id`
@@ -319,13 +320,11 @@ const notificationApi = firestoreApi
                                         doc.data(),
                                     ) as PersonalNotification[];
 
-                                    // Merge personal notifications with existing general notifications
-                                    const general = draft.filter(
-                                        (n) => n.type === 'general',
-                                    ) as GeneralNotification[];
+                                    const previousGeneral =
+                                        getPreviousGeneralNotifications(draft);
 
                                     const allNotifications = mergeNotifications(
-                                        general,
+                                        previousGeneral,
                                         personal,
                                     );
 
