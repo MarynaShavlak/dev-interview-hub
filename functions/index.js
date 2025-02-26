@@ -112,16 +112,19 @@ exports.notifyArticleCommented = onDocumentCreated(
 
         const notification = {
             id: v4(),
-            title: 'New comment on your article!',
+            localizationTitle: {
+                en: 'New comment on your article!',
+                uk: 'Новий коментар до Вашої статті!',
+            },
             localizationMessage: {
                 en: `User <b>${username}</b> commented your article "${articleData.title.slice(0, 30)}" with comment "${text.slice(0, 20)}"`,
                 uk: `Користувач <b>${username}</b> додав до Вашої статті  "${articleData.title.slice(0, 30)}" коментар "${text.slice(0, 20)}"`,
             },
             href: `/article/${articleData.id}`,
             timestamp: new Date().toISOString(),
-            type: 'personal',
-            authorId: userId,
-            dismissedBy: [userId],
+            type: 'personal_comment',
+            // authorId: userId,
+            // dismissedBy: [userId],
         };
 
         return createPersonalNotification(notification, articleData.user.id);

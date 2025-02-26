@@ -13,6 +13,6 @@ export interface Notification {
     message: string;
     href: string | null;
     timestamp: string;
-    type: 'general' | 'personal';
+    type: 'general' | 'personal_comment';
     dismissedBy: string[];
 }
