@@ -5,7 +5,7 @@ import { GeneralNotification } from '../../../model/types/notification';
 
 export const createUserNotificationQuery = (): Query<GeneralNotification> => {
     const user = auth.currentUser;
-    // const notificationsCollection = dataPoint<GeneralNotification>('notifications');
+
     const notificationsCollection = dataPoint<GeneralNotification>(
         'notifications/general/messages',
     );
@@ -14,7 +14,6 @@ export const createUserNotificationQuery = (): Query<GeneralNotification> => {
         return query(notificationsCollection, where('authorId', '!=', ''));
     }
     const userCreationISO = new Date(user.metadata.creationTime).toISOString();
-    console.log('tim', userCreationISO);
 
     return query(
         notificationsCollection,

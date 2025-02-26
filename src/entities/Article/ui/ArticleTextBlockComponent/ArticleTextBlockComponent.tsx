@@ -18,7 +18,6 @@ interface ArticleTextBlockComponentProps {
 
 const renderText = (text: string, withTags: boolean) => {
     const result = getTagContent(text);
-    console.log('result', result);
 
     if (typeof result === 'string') {
         return (

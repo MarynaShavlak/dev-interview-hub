@@ -22,7 +22,7 @@ export const NotificationList = memo((props: NotificationListProps) => {
 
     const { t } = useTranslation();
     const { data: allNotifications, isLoading } = useAllNotifications();
-    console.log('all', allNotifications);
+
     const noNotificationsMessage = t('Немає сповіщень');
 
     const Skeleton = toggleFeatures({
@@ -65,16 +65,3 @@ export const NotificationList = memo((props: NotificationListProps) => {
         </VStack>
     );
 });
-
-// const [pollingInterval] = useState(5000); // Set the polling interval (5 seconds)
-
-// useEffect(() => {
-//     // Set up polling interval to refetch notifications
-//     const interval = setInterval(() => {
-//         refetch();
-//     }, pollingInterval);
-//
-//     // Clear the interval when the component unmounts
-//     return () => clearInterval(interval);
-// }, [refetch, pollingInterval]);
-// console.log('data', data);
