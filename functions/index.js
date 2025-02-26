@@ -165,7 +165,7 @@ exports.notifyArticleRated = onDocumentCreated(
                 ? `${articleData.title.slice(0, 30)}...`
                 : articleData.title;
         const feedbackText =
-            feedback.length > 20 ? `${feedback.slice(0, 20)}...` : feedback;
+            feedback?.length > 20 ? `${feedback?.slice(0, 20)}...` : feedback;
         const stars = '⭐'.repeat(rate);
 
         const enMessage = `User <b>${username}</b> rated your article "${title}" with ${stars} ${
