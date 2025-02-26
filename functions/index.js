@@ -98,7 +98,7 @@ exports.notifyArticleCommented = onDocumentCreated(
 
         const comment = doc.data();
         const { articleId, user, text } = comment;
-        const { id: userId, username } = user;
+        const { username } = user;
 
         const articleQuerySnapshot = await db
             .collection('articles')
@@ -113,7 +113,11 @@ exports.notifyArticleCommented = onDocumentCreated(
 
         const articleDoc = articleQuerySnapshot.docs[0];
         const articleData = articleDoc.data();
-
+        const title =
+            articleData.title.length > 30
+                ? `${articleData.title.slice(0, 30)}...`
+                : articleData.title;
+        const commentText = text.length > 20 ? `${text.slice(0, 30)}...` : text;
         const notification = {
             id: v4(),
             localizationTitle: {
@@ -121,12 +125,63 @@ exports.notifyArticleCommented = onDocumentCreated(
                 uk: 'Новий коментар до Вашої статті!',
             },
             localizationMessage: {
-                en: `User <b>${username}</b> commented your article "${articleData.title.slice(0, 30)}" with comment "${text.slice(0, 20)}"`,
-                uk: `Користувач <b>${username}</b> додав до Вашої статті  "${articleData.title.slice(0, 30)}" коментар "${text.slice(0, 20)}"`,
+                en: `User <b>${username}</b> commented your article "${title}" with comment "${commentText}"`,
+                uk: `Користувач <b>${username}</b> додав до Вашої статті  "${title}" коментар "${commentText}"`,
             },
             href: `/article/${articleData.id}`,
             timestamp: new Date().toISOString(),
             type: 'personal_comment',
+        };
+
+        return createPersonalNotification(notification, articleData.user.id);
+    },
+);
+
+exports.notifyArticleRated = onDocumentCreated(
+    'ratings/{ratingId}',
+    async (event) => {
+        const doc = event.data;
+        if (!doc) return null;
+
+        const rating = doc.data();
+        const { articleId, user, rate, feedback } = rating;
+        const { username } = user;
+
+        const articleQuerySnapshot = await db
+            .collection('articles')
+            .where('id', '==', articleId)
+            .limit(1)
+            .get();
+
+        if (articleQuerySnapshot.empty) {
+            console.log(`No article found with id: ${articleId}`);
+            return null;
+        }
+
+        const articleDoc = articleQuerySnapshot.docs[0];
+        const articleData = articleDoc.data();
+        const title =
+            articleData.title.length > 30
+                ? `${articleData.title.slice(0, 30)}...`
+                : articleData.title;
+        const feedbackText =
+            feedback.length > 20 ? `${feedback.slice(0, 20)}...` : feedback;
+
+        const enMessage = `User <b>${username}</b> rated your article "${title}" with ${rate} ⭐ ${feedback ? ` and left feedback: "${feedbackText}"` : ''}.`;
+        const ukMessage = `Користувач <b>${username}</b> оцінив Вашу статтю "${title}" на ${rate} ⭐${feedback ? ` і залишив відгук: "${feedbackText}"` : ''}.`;
+        const notification = {
+            id: v4(),
+            localizationTitle: {
+                en: 'Your article has been rated!',
+                uk: 'Вашу статтю було оцінено!',
+            },
+            localizationMessage: {
+                en: enMessage,
+                uk: ukMessage,
+            },
+            href: `/article/${articleData.id}`,
+            timestamp: new Date().toISOString(),
+            type: 'personal_rating',
         };
 
         return createPersonalNotification(notification, articleData.user.id);

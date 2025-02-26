@@ -17,7 +17,6 @@ export const useNotificationLogic = (notification: Notification) => {
     dayjs.extend(relativeTime);
     const [timeSpent, setTimeSpent] = useState('');
 
-    // Effect to update timeSpent when language changes
     useEffect(() => {
         dayjs.locale(i18n.language === 'uk' ? 'uk' : 'en');
         setTimeSpent(dayjs(timestamp).fromNow());

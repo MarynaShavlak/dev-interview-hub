@@ -7,7 +7,10 @@
  * @property {string} [href] - An optional URL that the notification can link to. If provided, the notification may include a link for additional actions.
  */
 
-export type NotificationType = 'general' | 'personal_comment';
+export type NotificationType =
+    | 'general'
+    | 'personal_comment'
+    | 'personal_rating';
 
 export interface PersonalNotification {
     id: string;
