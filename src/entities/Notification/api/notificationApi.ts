@@ -1,4 +1,10 @@
-import { arrayUnion, deleteDoc, updateDoc } from 'firebase/firestore';
+import {
+    arrayUnion,
+    collection,
+    deleteDoc,
+    getDocs,
+    updateDoc,
+} from 'firebase/firestore';
 import { firestoreApi } from '@/shared/api/rtkApi';
 import {
     GeneralNotification,
@@ -6,7 +12,7 @@ import {
 } from '../model/types/notification';
 
 import { getDocRefByField } from '@/shared/lib/firestore/getDocRefByField/getDocRefByField';
-import { auth } from '../../../../json-server/firebase';
+import { auth, firestore } from '../../../../json-server/firebase';
 import { fetchAllNotifications } from '../lib/utilities/fetchAllNotifications/fetchAllNotifications';
 import { subscribeToNotifications } from '../lib/utilities/subscribeToNotifications/subscribeToNotifications';
 
@@ -68,7 +74,6 @@ const notificationApi = firestoreApi
                     try {
                         const notificationDocRef =
                             await getDocRefByField<GeneralNotification>(
-                                // 'notifications',
                                 'notifications/general/messages',
                                 'id',
                                 notificationId,
@@ -125,6 +130,50 @@ const notificationApi = firestoreApi
                 },
                 invalidatesTags: ['PersonalNotifications'],
             }),
+            deleteAllPersonalNotifications: build.mutation<
+                void,
+                { userId: string }
+            >({
+                async queryFn({ userId }) {
+                    try {
+                        const userNotificationsRef = collection(
+                            firestore,
+                            'notifications',
+                            'personal',
+                            userId,
+                        );
+
+                        // Loop through and delete each notification
+                        const querySnapshot =
+                            await getDocs(userNotificationsRef);
+
+                        if (querySnapshot.empty) {
+                            return {
+                                error: 'No personal notifications found for the user.',
+                            };
+                        }
+
+                        // Create an array of delete promises for each notification
+                        const deletePromises = querySnapshot.docs.map((doc) =>
+                            deleteDoc(doc.ref),
+                        );
+
+                        // Wait for all deletions to complete
+                        await Promise.all(deletePromises);
+
+                        return { data: undefined };
+                    } catch (error) {
+                        console.error(
+                            'Error deleting personal notifications:',
+                            error,
+                        );
+                        return {
+                            error: 'Failed to delete all personal notifications.',
+                        };
+                    }
+                },
+                invalidatesTags: ['PersonalNotifications'],
+            }),
         }),
     });
 
@@ -134,3 +183,6 @@ export const dismissGeneralNotificationMutation =
 
 export const dismissPersonalNotificationMutation =
     notificationApi.endpoints.dismissPersonalNotification.initiate;
+
+export const deleteAllPersonalNotificationsMutation =
+    notificationApi.endpoints.deleteAllPersonalNotifications.initiate;
