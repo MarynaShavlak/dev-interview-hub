@@ -51,7 +51,8 @@ export const useArticleEditorPageHeader = (
             onActions.cancel();
             navigateToArticle(editedArticleId);
         } else if (editedArticleId) {
-            cancelArticleEditing.show();
+            cancelArticleEditing.hide();
+            navigateToArticle(editedArticleId);
         }
     }, [
         hasChanges,

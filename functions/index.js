@@ -20,15 +20,6 @@ exports.helloWorld = functions.https.onRequest((request, response) => {
 admin.initializeApp();
 const db = getFirestore();
 
-// async function createNotification(notification) {
-//     try {
-//         await db.collection('notifications').add(notification);
-//         console.log('Notification created:', notification);
-//     } catch (error) {
-//         console.error('Error creating notification:', error);
-//     }
-// }
-
 async function createNotification(notification) {
     try {
         await db
