@@ -15,7 +15,9 @@ import { Button as ButtonDeprecated } from '@/shared/ui/deprecated/Button';
 export const NotificationListDeprecated = memo(
     (props: NotificationListProps) => {
         const { className } = props;
-        const listClass = classNames(cls.NotificationList, {}, [className]);
+        const listClass = classNames(cls.NotificationListDeprecated, {}, [
+            className,
+        ]);
 
         const { t } = useTranslation();
         const { data: allNotifications, isLoading } = useAllNotifications();
@@ -30,8 +32,19 @@ export const NotificationListDeprecated = memo(
 
         return (
             <VStack gap="16" max className={listClass}>
-                <HStack gap="16" max justify="between">
-                    <TextDeprecated text={titleText} size={TextSize.L} />
+                <HStack
+                    gap="16"
+                    max
+                    justify="between"
+                    className={cls.headerDeprecated}
+                >
+                    <HStack gap="16">
+                        <TextDeprecated text={titleText} size={TextSize.L} />
+                        <span className={cls.notificationsCountDeprecated}>
+                            {allNotifications?.length}
+                        </span>
+                    </HStack>
+
                     <ButtonDeprecated onClick={() => console.log('delete all')}>
                         {t('Видалити всі')}
                     </ButtonDeprecated>

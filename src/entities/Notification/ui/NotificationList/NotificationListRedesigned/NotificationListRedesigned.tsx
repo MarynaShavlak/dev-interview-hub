@@ -30,8 +30,18 @@ export const NotificationListRedesigned = memo(
 
         return (
             <VStack gap="16" max className={listClass}>
-                <HStack gap="16" max justify="between">
-                    <Text text={titleText} size="l" />
+                <HStack
+                    gap="16"
+                    max
+                    justify="between"
+                    className={cls.headerRedesigned}
+                >
+                    <HStack gap="16">
+                        <Text text={titleText} size="l" />
+                        <span className={cls.notificationsCountRedesigned}>
+                            {allNotifications?.length}
+                        </span>
+                    </HStack>
                     <Button
                         variant="cancel"
                         size="s"
