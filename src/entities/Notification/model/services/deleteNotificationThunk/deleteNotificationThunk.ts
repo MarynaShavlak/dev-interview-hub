@@ -1,37 +1,45 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig } from '@/app/providers/StoreProvider';
-import { getUserAuthData } from '@/entities/User';
 import { dismissNotificationMutation } from '../../../api/notificationApi';
+import { auth } from '../../../../../../json-server/firebase';
 
-// Create async thunk for deleting notifications
+type DeleteNotificationArgs = {
+    notificationId: string;
+    type: 'general' | 'personal_comment';
+};
+
 export const deleteNotificationThunk = createAsyncThunk<
     string, // Return type: deleted notification ID
-    string, // First argument type: notification ID
+    DeleteNotificationArgs,
     ThunkConfig<string> // Thunk configuration type
->('notification/deleteNotification', async (notificationId, thunkApi) => {
-    const { rejectWithValue, dispatch, getState } = thunkApi;
-    const authData = getUserAuthData(getState());
-    if (!authData) {
-        return rejectWithValue('No user data found.');
-    }
-    const userId = authData.id;
+>(
+    'notification/deleteNotification',
+    async ({ notificationId, type }, thunkApi) => {
+        const { rejectWithValue, dispatch } = thunkApi;
+        const user = auth.currentUser;
+        // const authData = getUserAuthData(getState());
+        if (!user) {
+            return rejectWithValue('No user data found.');
+        }
+        // const userId = authData.id;
 
-    if (!notificationId) {
-        return rejectWithValue('Notification ID is required.');
-    }
+        if (!notificationId) {
+            return rejectWithValue('Notification ID is required.');
+        }
 
-    try {
-        await dispatch(
-            dismissNotificationMutation({
-                notificationId,
-                userId,
-            }),
-        );
+        try {
+            await dispatch(
+                dismissNotificationMutation({
+                    notificationId,
+                    userId: user.uid,
+                }),
+            );
 
-        return notificationId;
-    } catch (error) {
-        return rejectWithValue(
-            `Failed to dismiss for current user notification with id ${notificationId}`,
-        );
-    }
-});
+            return notificationId;
+        } catch (error) {
+            return rejectWithValue(
+                `Failed to dismiss for current user notification with id ${notificationId}`,
+            );
+        }
+    },
+);

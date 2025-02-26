@@ -6,10 +6,12 @@ import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { VStack } from '@/shared/ui/common/Stack';
 import { Skeleton as SkeletonDeprecated } from '@/shared/ui/deprecated/Skeleton';
 import { Skeleton as SkeletonRedesigned } from '@/shared/ui/redesigned/Skeleton';
-import { useNotifications } from '../../api/notificationApi';
+import {
+    useNotifications,
+    usePersonalNotifications,
+} from '../../api/notificationApi';
 import cls from './NotificationList.module.scss';
 import { NotificationItem } from '../NotificationItem/NotificationItem';
-import { useUserAuthData } from '@/entities/User';
 import { Text } from '@/shared/ui/redesigned/Text';
 import { Text as TextDeprecated } from '@/shared/ui/deprecated/Text';
 
@@ -20,13 +22,11 @@ interface NotificationListProps {
 export const NotificationList = memo((props: NotificationListProps) => {
     const { className } = props;
     const listClass = classNames(cls.NotificationList, {}, [className]);
-    const currentUserdata = useUserAuthData();
-    const authedUserId = currentUserdata?.id || '';
-    const { data, isLoading } = useNotifications(authedUserId, {
-        refetchOnReconnect: true,
-    });
-    const { t } = useTranslation();
 
+    const { data, isLoading } = useNotifications();
+    const { t } = useTranslation();
+    const { data: personalNotifications } = usePersonalNotifications();
+    console.log('personalNotifications', personalNotifications);
     const noNotificationsMessage = t('Немає сповіщень');
 
     const Skeleton = toggleFeatures({

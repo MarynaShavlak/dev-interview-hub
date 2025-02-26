@@ -22,17 +22,15 @@ import {
 export const NotificationItemDeprecated = memo(
     (props: NotificationItemProps) => {
         const { className, item } = props;
-        const { title, message, timestamp, href, dismissedBy, id } = item;
+        const { title, message, href } = item;
         const cardClass = classNames(cls.NotificationItem, {}, [className]);
         const flexClasses = getFlexClasses({
             hStack: true,
             gap: '8',
         });
 
-        const { timeSpent, handleDeleteNotification } = useNotificationLogic(
-            id,
-            timestamp,
-        );
+        const { timeSpent, handleDeleteNotification } =
+            useNotificationLogic(item);
 
         return (
             <CardDeprecated

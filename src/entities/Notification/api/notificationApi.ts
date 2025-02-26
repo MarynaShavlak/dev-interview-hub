@@ -1,21 +1,32 @@
-import { arrayUnion, onSnapshot, updateDoc } from 'firebase/firestore';
+import {
+    arrayUnion,
+    deleteDoc,
+    onSnapshot,
+    updateDoc,
+} from 'firebase/firestore';
 import { firestoreApi } from '@/shared/api/rtkApi';
 import { Notification } from '../model/types/notification';
 
 import { fetchQueryResults } from '@/shared/lib/firestore/fetchQueryResults/fetchQueryResults';
 import { createUserNotificationQuery } from '../lib/utilities/createUserNotificationsQuery/createUserNotificationsQuery';
 import { getDocRefByField } from '@/shared/lib/firestore/getDocRefByField/getDocRefByField';
+import { createUserPersonalNotificationQuery } from '../lib/utilities/createUserPersonalNotificationQuery/createUserPersonalNotificationQuery';
+import { auth } from '../../../../json-server/firebase';
 
 const notificationApi = firestoreApi
-    .enhanceEndpoints({ addTagTypes: ['Notifications'] })
+    .enhanceEndpoints({
+        addTagTypes: ['Notifications', 'PersonalNotifications'],
+    })
     .injectEndpoints({
         endpoints: (build) => ({
-            getNotifications: build.query<Notification[], string>({
+            getNotifications: build.query<Notification[], void>({
                 providesTags: ['Notifications'],
                 keepUnusedDataFor: 3600,
 
-                async queryFn(userId) {
+                async queryFn() {
                     try {
+                        const user = auth.currentUser;
+                        if (!user) return { data: undefined };
                         const notificationsQuery =
                             createUserNotificationQuery();
 
@@ -25,7 +36,7 @@ const notificationApi = firestoreApi
                             );
                         const filteredNotifications = notifications.filter(
                             (notification) =>
-                                !notification.dismissedBy?.includes(userId),
+                                !notification.dismissedBy?.includes(user.uid),
                         );
 
                         return { data: filteredNotifications };
@@ -36,13 +47,14 @@ const notificationApi = firestoreApi
                 },
 
                 async onCacheEntryAdded(
-                    userId,
+                    _,
                     { updateCachedData, cacheDataLoaded, cacheEntryRemoved },
                 ) {
                     await cacheDataLoaded;
                     let unsubscribe;
 
                     try {
+                        const user = auth.currentUser;
                         const notificationsQuery =
                             createUserNotificationQuery();
 
@@ -57,7 +69,7 @@ const notificationApi = firestoreApi
                                     return notifications.filter(
                                         (notification) =>
                                             !notification.dismissedBy?.includes(
-                                                userId,
+                                                user?.uid || '',
                                             ),
                                     );
                                 });
@@ -108,13 +120,107 @@ const notificationApi = firestoreApi
                 },
                 invalidatesTags: ['Notifications'],
             }),
+            getPersonalNotifications: build.query<Notification[], void>({
+                providesTags: ['PersonalNotifications'],
+                keepUnusedDataFor: 3600,
+
+                async queryFn() {
+                    try {
+                        const personalNotificationsQuery =
+                            createUserPersonalNotificationQuery();
+
+                        const notifications =
+                            await fetchQueryResults<Notification>(
+                                personalNotificationsQuery,
+                            );
+
+                        return { data: notifications };
+                    } catch (error) {
+                        console.error(
+                            'Error fetching personal notifications:',
+                            error,
+                        );
+                        return { error };
+                    }
+                },
+
+                async onCacheEntryAdded(
+                    _,
+                    { updateCachedData, cacheDataLoaded, cacheEntryRemoved },
+                ) {
+                    await cacheDataLoaded;
+                    let unsubscribe;
+
+                    try {
+                        const personalNotificationsQuery =
+                            createUserPersonalNotificationQuery();
+
+                        unsubscribe = onSnapshot(
+                            personalNotificationsQuery,
+                            (snapshot) => {
+                                updateCachedData((draft) => {
+                                    return snapshot?.docs?.map((doc) =>
+                                        doc.data(),
+                                    ) as Notification[];
+                                });
+                            },
+                        );
+                    } catch (error) {
+                        console.error(
+                            'Error in personal notifications subscription:',
+                            error,
+                        );
+                    }
+
+                    await cacheEntryRemoved;
+                    if (unsubscribe) {
+                        unsubscribe();
+                    }
+                },
+            }),
+            dismissPersonalNotification: build.mutation<
+                void,
+                { notificationId: string; userId: string }
+            >({
+                async queryFn({ notificationId, userId }) {
+                    try {
+                        const notificationDocRef =
+                            await getDocRefByField<Notification>(
+                                `notifications/personal/${userId}`,
+                                'id',
+                                notificationId,
+                            );
+
+                        if (!notificationDocRef) {
+                            return { error: 'Personal notification not found' };
+                        }
+
+                        if (notificationDocRef) {
+                            await deleteDoc(notificationDocRef);
+                        }
+
+                        return { data: undefined };
+                    } catch (error) {
+                        console.error(
+                            'Error dismissing personal notification:',
+                            error,
+                        );
+                        return { error };
+                    }
+                },
+                invalidatesTags: ['PersonalNotifications'],
+            }),
         }),
     });
 
 export const useNotifications = notificationApi.useGetNotificationsQuery;
 export const dismissNotificationMutation =
     notificationApi.endpoints.dismissNotification.initiate;
+export const usePersonalNotifications =
+    notificationApi.useGetPersonalNotificationsQuery;
 
+export const dismissPersonalNotificationMutation =
+    notificationApi.endpoints.dismissPersonalNotification.initiate;
 // async queryFn() {
 //     try {
 //         const notifications =

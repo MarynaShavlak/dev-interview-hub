@@ -15,7 +15,7 @@ import { NotificationItemProps } from '../NotificationItem';
 export const NotificationItemRedesigned = memo(
     (props: NotificationItemProps) => {
         const { className, item } = props;
-        const { title, message, timestamp, href, dismissedBy, id } = item;
+        const { title, message, href } = item;
         const cardClass = classNames(cls.NotificationItem, {}, [className]);
         const flexClasses = getFlexClasses({
             hStack: true,
@@ -23,10 +23,8 @@ export const NotificationItemRedesigned = memo(
             align: 'start',
         });
 
-        const { timeSpent, handleDeleteNotification } = useNotificationLogic(
-            id,
-            timestamp,
-        );
+        const { timeSpent, handleDeleteNotification } =
+            useNotificationLogic(item);
 
         return (
             <Card className={classNames(cardClass, {}, flexClasses)}>

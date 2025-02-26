@@ -106,7 +106,6 @@ exports.notifyArticleCommented = onDocumentCreated(
             return null;
         }
 
-        // Get the first matching article
         const articleDoc = articleQuerySnapshot.docs[0];
         const articleData = articleDoc.data();
 
@@ -123,45 +122,8 @@ exports.notifyArticleCommented = onDocumentCreated(
             href: `/article/${articleData.id}`,
             timestamp: new Date().toISOString(),
             type: 'personal_comment',
-            // authorId: userId,
-            // dismissedBy: [userId],
         };
 
         return createPersonalNotification(notification, articleData.user.id);
     },
 );
-
-// const { onRequest } = require('firebase-functions/v2/https');
-// const logger = require('firebase-functions');
-//
-// // Create and deploy your first functions
-// // https://firebase.google.com/docs/functions/get-started
-//
-// exports.helloWorld = onRequest((request, response) => {
-//     logger.info('Hello logs!', { structuredData: true });
-//     response.send('Hello from Firebase!');
-// });
-
-//
-// admin.initializeApp(functions.config().firebase);
-
-// const createNotification = (notification) => {
-//     return admin
-//         .firestore()
-//         .collection('notifications')
-//         .add(notification)
-//         .then((doc) => console.log('notification added', doc));
-// };
-
-// exports.articleCreated = functions.firestore
-//     .document('articles/{articleId}')
-//     .onCreate((doc) => {
-//         const article = doc.data();
-//         const notification = {
-//             content: 'Added a new article',
-//             user: `${article.user.firstName} ${article.user.lastName}`,
-//             time: admin.firestore.FieldValue.serverTimestamp(),
-//         };
-//
-//         return createNotification(notification);
-//     });
