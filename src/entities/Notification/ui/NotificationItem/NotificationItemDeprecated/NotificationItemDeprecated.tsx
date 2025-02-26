@@ -11,18 +11,18 @@ import {
     TextTheme,
 } from '@/shared/ui/deprecated/Text';
 import { Icon, Icon as IconDeprecated } from '@/shared/ui/deprecated/Icon';
-import NotificationIcon from '@/shared/assets/icons/notification.svg';
 import { VStack } from '@/shared/ui/common/Stack';
 import CloseIcon from '@/shared/assets/icons/close.svg';
 import {
     Button as ButtonDeprecated,
     ButtonTheme,
 } from '@/shared/ui/deprecated/Button';
+import { getNotificationItemIcon } from '../../../lib/utilities/getNotificationItemIcon/getNotificationItemIcon';
 
 export const NotificationItemDeprecated = memo(
     (props: NotificationItemProps) => {
         const { className, item } = props;
-        const { href } = item;
+        const { href, type } = item;
         const cardClass = classNames(cls.NotificationItem, {}, [className]);
         const flexClasses = getFlexClasses({
             hStack: true,
@@ -38,7 +38,7 @@ export const NotificationItemDeprecated = memo(
                 theme={CardTheme.OUTLINED}
             >
                 <IconDeprecated
-                    Svg={NotificationIcon}
+                    Svg={getNotificationItemIcon(type)}
                     width={40}
                     height={40}
                     className={cls.notificationItemIcon}

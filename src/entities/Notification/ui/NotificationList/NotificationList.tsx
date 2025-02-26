@@ -6,11 +6,7 @@ import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { VStack } from '@/shared/ui/common/Stack';
 import { Skeleton as SkeletonDeprecated } from '@/shared/ui/deprecated/Skeleton';
 import { Skeleton as SkeletonRedesigned } from '@/shared/ui/redesigned/Skeleton';
-import {
-    useAllNotifications,
-    useNotifications,
-    usePersonalNotifications,
-} from '../../api/notificationApi';
+import { useAllNotifications } from '../../api/notificationApi';
 import cls from './NotificationList.module.scss';
 import { NotificationItem } from '../NotificationItem/NotificationItem';
 import { Text } from '@/shared/ui/redesigned/Text';
@@ -24,13 +20,9 @@ export const NotificationList = memo((props: NotificationListProps) => {
     const { className } = props;
     const listClass = classNames(cls.NotificationList, {}, [className]);
 
-    const { data } = useNotifications();
     const { t } = useTranslation();
-    const { data: personalNotifications } = usePersonalNotifications();
-    console.log('personalNotifications', personalNotifications);
-
-    const { data: all, isLoading } = useAllNotifications();
-    console.log('all', all);
+    const { data: allNotifications, isLoading } = useAllNotifications();
+    console.log('all', allNotifications);
     const noNotificationsMessage = t('Немає сповіщень');
 
     const Skeleton = toggleFeatures({
@@ -48,7 +40,7 @@ export const NotificationList = memo((props: NotificationListProps) => {
             </VStack>
         );
     }
-    if (data?.length === 0 || all?.length === 0) {
+    if (allNotifications?.length === 0) {
         return (
             <VStack gap="16" max className={listClass} align="center">
                 <ToggleFeaturesComponent
@@ -62,9 +54,9 @@ export const NotificationList = memo((props: NotificationListProps) => {
 
     return (
         <VStack gap="16" max className={listClass}>
-            {data && all && (
+            {allNotifications && (
                 <Each
-                    of={all}
+                    of={allNotifications}
                     render={(item) => (
                         <NotificationItem key={item.id} item={item} />
                     )}

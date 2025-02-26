@@ -72,11 +72,11 @@ export const ListViewCardRedesigned = memo((props: BaseCardProps) => {
                 </VStack>
                 <Text title={title} bold data-testid="ArticleListItem.Title" />
 
-                {!subtitleLink && <Text title={subtitleText} />}
+                {!subtitleLink && <Text title={subtitleText} withTags />}
                 {subtitleLink && (
                     <VStack gap="4">
-                        <Text text={subtitleText} />
-                        <Text text={truncatedLink} size="s" />
+                        <Text text={subtitleText} withTags />
+                        <Text text={truncatedLink} size="s" withTags />
                     </VStack>
                 )}
 

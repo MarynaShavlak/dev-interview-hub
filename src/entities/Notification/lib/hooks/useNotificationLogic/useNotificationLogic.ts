@@ -22,11 +22,10 @@ export const useNotificationLogic = (notification: Notification) => {
             await dispatch(
                 deleteNotificationThunk({ notificationId: id, type }),
             );
-            console.log('delete notification');
         } catch (error) {
             console.error('Failed to dismiss notification:', error);
         }
-    }, [dispatch, id]);
+    }, [dispatch, id, type]);
 
     return { timeSpent, handleDeleteNotification, title, message };
 };

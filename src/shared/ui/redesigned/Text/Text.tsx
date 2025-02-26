@@ -18,6 +18,7 @@ interface TextProps extends TestProps {
     size?: TextSize;
     bold?: boolean;
     italic?: boolean;
+    withTags?: boolean;
 }
 
 type HeaderTagType = 'h1' | 'h2' | 'h3';
@@ -43,6 +44,7 @@ export const Text = memo((props: TextProps) => {
         italic,
         variant = 'primary',
         align = 'left',
+        withTags = false,
         size = 'm',
         'data-testid': dataTestId = 'Text',
     } = props;
@@ -77,13 +79,20 @@ export const Text = memo((props: TextProps) => {
                     {title}
                 </HeaderTag>
             )}
-
-            {sanitizedText && (
+            {!withTags && sanitizedText && (
                 <p
                     className={classNames(cls.text, textStyles, [])}
                     data-testid={`${dataTestId}.Paragraph`}
                     dangerouslySetInnerHTML={{ __html: sanitizedText }}
                 />
+            )}
+            {withTags && (
+                <p
+                    className={classNames(cls.text, textStyles, [])}
+                    data-testid={`${dataTestId}.Paragraph`}
+                >
+                    {text}
+                </p>
             )}
         </div>
     );

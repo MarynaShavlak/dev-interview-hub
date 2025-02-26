@@ -22,8 +22,14 @@ const renderText = (text: string) => {
         return (
             <ToggleFeaturesComponent
                 feature="isAppRedesigned"
-                on={<Text text={result} className={cls.paragraph} />}
-                off={<TextDeprecated text={result} className={cls.paragraph} />}
+                on={<Text text={result} className={cls.paragraph} withTags />}
+                off={
+                    <TextDeprecated
+                        text={result}
+                        className={cls.paragraph}
+                        withTags
+                    />
+                }
             />
         );
     }

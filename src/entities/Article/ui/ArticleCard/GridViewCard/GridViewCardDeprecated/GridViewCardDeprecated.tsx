@@ -77,6 +77,7 @@ export const GridViewCardDeprecated = memo((props: BaseCardProps) => {
                 </HStack>
                 <Text
                     text={title}
+                    withTags
                     className={cls.title}
                     data-testid="ArticleListItem.Title"
                 />

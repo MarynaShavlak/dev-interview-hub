@@ -4,18 +4,18 @@ import { Text } from '@/shared/ui/redesigned/Text';
 import cls from '../NotificationItem.module.scss';
 
 import { Card } from '@/shared/ui/redesigned/Card';
-import NotificationIcon from '@/shared/assets/icons/notification.svg';
 import { Icon } from '@/shared/ui/redesigned/Icon';
 import { getFlexClasses } from '@/shared/lib/classes/getFlexClasses/getFlexClasses';
 import { VStack } from '@/shared/ui/common/Stack';
 import CloseIcon from '@/shared/assets/icons/close.svg';
 import { useNotificationLogic } from '../../../lib/hooks/useNotificationLogic/useNotificationLogic';
 import { NotificationItemProps } from '../NotificationItem';
+import { getNotificationItemIcon } from '../../../lib/utilities/getNotificationItemIcon/getNotificationItemIcon';
 
 export const NotificationItemRedesigned = memo(
     (props: NotificationItemProps) => {
         const { className, item } = props;
-        const { href } = item;
+        const { href, type } = item;
         const cardClass = classNames(cls.NotificationItem, {}, [className]);
         const flexClasses = getFlexClasses({
             hStack: true,
@@ -29,7 +29,7 @@ export const NotificationItemRedesigned = memo(
         return (
             <Card className={classNames(cardClass, {}, flexClasses)}>
                 <Icon
-                    Svg={NotificationIcon}
+                    Svg={getNotificationItemIcon(type)}
                     width={40}
                     height={40}
                     className={cls.notificationItemIcon}

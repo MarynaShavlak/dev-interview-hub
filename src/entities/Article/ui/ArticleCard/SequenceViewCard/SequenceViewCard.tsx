@@ -44,6 +44,7 @@ export const SequenceViewCard = memo((props: BaseCardProps) => {
                             text={article.title}
                             className={cls.title}
                             size="m"
+                            withTags
                         />
                     </AppLink>
                 </HStack>
