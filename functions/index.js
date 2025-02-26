@@ -70,6 +70,7 @@ exports.articleCreated = onDocumentCreated(
             category.length > 1 ? `${category.join(', ')}` : `${category}`;
         const notification = {
             id: v4(),
+
             localizationTitle: {
                 en: 'New Article Published!',
                 uk: 'Опубліковано нову статтю!',

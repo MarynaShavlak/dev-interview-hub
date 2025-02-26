@@ -292,6 +292,7 @@ const notificationApi = firestoreApi
                         const personalNotificationsQuery =
                             createUserPersonalNotificationQuery();
 
+                        // Subscribe to general notifications
                         unsubscribeGeneral = onSnapshot(
                             generalNotificationsQuery,
                             (snapshot) => {
@@ -307,14 +308,30 @@ const notificationApi = firestoreApi
                                             ),
                                     );
 
+                                    // Merge general notifications with existing personal notifications
                                     const personal = draft.filter(
-                                        (n) => 'userId' in n,
-                                    ); // Keep personal notifications
-
-                                    return [
+                                        (n) => n.type !== 'general',
+                                    ); // Personal notifications from the cache
+                                    console.log('personal', personal);
+                                    const allNotifications = [
                                         ...filteredGeneral,
                                         ...personal,
-                                    ].sort((a, b) => {
+                                    ];
+
+                                    // De-duplicate based on `id`
+                                    const uniqueNotifications =
+                                        allNotifications.filter(
+                                            (notification, index, self) =>
+                                                index ===
+                                                self.findIndex(
+                                                    (n) =>
+                                                        n.id ===
+                                                        notification.id,
+                                                ),
+                                        );
+
+                                    // Sort the notifications by timestamp (descending)
+                                    return uniqueNotifications.sort((a, b) => {
                                         const timestampA = getTimestampMillis(
                                             a.timestamp,
                                         );
@@ -327,6 +344,7 @@ const notificationApi = firestoreApi
                             },
                         );
 
+                        // Subscribe to personal notifications
                         unsubscribePersonal = onSnapshot(
                             personalNotificationsQuery,
                             (snapshot) => {
@@ -335,19 +353,38 @@ const notificationApi = firestoreApi
                                         doc.data(),
                                     ) as PersonalNotification[];
 
+                                    // Merge personal notifications with existing general notifications
                                     const general = draft.filter(
-                                        (n) => !('userId' in n),
-                                    ); // Keep general notifications
+                                        (n) => n.type === 'general',
+                                    ); // General notifications from the cache
 
-                                    return [...general, ...personal].sort(
-                                        (a, b) => {
-                                            const timestampA =
-                                                getTimestampMillis(a.timestamp);
-                                            const timestampB =
-                                                getTimestampMillis(b.timestamp);
-                                            return timestampB - timestampA; // Descending order
-                                        },
-                                    );
+                                    const allNotifications = [
+                                        ...general,
+                                        ...personal,
+                                    ];
+
+                                    // De-duplicate based on `id`
+                                    const uniqueNotifications =
+                                        allNotifications.filter(
+                                            (notification, index, self) =>
+                                                index ===
+                                                self.findIndex(
+                                                    (n) =>
+                                                        n.id ===
+                                                        notification.id,
+                                                ),
+                                        );
+
+                                    // Sort the notifications by timestamp (descending)
+                                    return uniqueNotifications.sort((a, b) => {
+                                        const timestampA = getTimestampMillis(
+                                            a.timestamp,
+                                        );
+                                        const timestampB = getTimestampMillis(
+                                            b.timestamp,
+                                        );
+                                        return timestampB - timestampA; // Descending order
+                                    });
                                 });
                             },
                         );
@@ -376,49 +413,3 @@ export const dismissPersonalNotificationMutation =
     notificationApi.endpoints.dismissPersonalNotification.initiate;
 
 export const useAllNotifications = notificationApi.useGetAllNotificationsQuery;
-// async queryFn() {
-//     try {
-//         const notifications =
-//             await fetchCollection<Notification>(
-//                 'notifications',
-//             );
-//         return { data: notifications };
-//     } catch (error) {
-//         console.error('Error fetching notifications:', error);
-//         return { error };
-//     }
-// },
-//
-// async onCacheEntryAdded(
-//     _,
-//     { updateCachedData, cacheDataLoaded, cacheEntryRemoved },
-// ) {
-//     await cacheDataLoaded;
-//     let unsubscribe;
-//
-//     try {
-//         const collectionRef =
-//             dataPoint<Notification>('notifications');
-//         const queryRef = query(collectionRef);
-//
-//         unsubscribe = onSnapshot(queryRef, (snapshot) => {
-//             updateCachedData((draft) => {
-//                 const notifications = snapshot.docs.map((doc) =>
-//                     doc.data(),
-//                 ) as Notification[];
-//
-//                 return notifications;
-//             });
-//         });
-//     } catch (error) {
-//         console.error(
-//             'Error in notifications subscription:',
-//             error,
-//         );
-//     }
-//
-//     await cacheEntryRemoved;
-//     if (unsubscribe) {
-//         unsubscribe();
-//     }
-// },

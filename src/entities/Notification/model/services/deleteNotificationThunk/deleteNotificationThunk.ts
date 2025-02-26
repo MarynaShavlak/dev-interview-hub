@@ -1,6 +1,9 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig } from '@/app/providers/StoreProvider';
-import { dismissNotificationMutation } from '../../../api/notificationApi';
+import {
+    dismissNotificationMutation,
+    dismissPersonalNotificationMutation,
+} from '../../../api/notificationApi';
 import { auth } from '../../../../../../json-server/firebase';
 import { NotificationType } from '../../types/notification';
 
@@ -29,12 +32,21 @@ export const deleteNotificationThunk = createAsyncThunk<
         }
 
         try {
-            await dispatch(
-                dismissNotificationMutation({
-                    notificationId,
-                    userId: user.uid,
-                }),
-            );
+            if (type === 'general') {
+                await dispatch(
+                    dismissNotificationMutation({
+                        notificationId,
+                        userId: user.uid,
+                    }),
+                );
+            } else {
+                await dispatch(
+                    dismissPersonalNotificationMutation({
+                        notificationId,
+                        userId: user.uid,
+                    }),
+                );
+            }
 
             return notificationId;
         } catch (error) {
