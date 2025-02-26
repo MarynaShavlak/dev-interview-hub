@@ -17,6 +17,7 @@ const ArticleRating = memo((props: ArticleRatingProps) => {
     const { rating, isLoading, error, onSubmitFeedback, onSubmitRating } =
         useArticleRating(articleId || '');
     const { t } = useTranslation();
+    console.log('error', error);
 
     const Skeleton = toggleFeatures({
         name: 'isAppRedesigned',

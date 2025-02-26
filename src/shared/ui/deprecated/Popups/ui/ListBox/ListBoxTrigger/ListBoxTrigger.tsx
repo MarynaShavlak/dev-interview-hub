@@ -22,7 +22,7 @@ export function ListBoxTrigger<T extends string>(
         gap: '8',
         align: 'center',
     });
-    console.log('selectedItem', selectedItem);
+
     return (
         <HListBox.Button
             className={classNames(cls.trigger, {}, btnFlexClasses)}

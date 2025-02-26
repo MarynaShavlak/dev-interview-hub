@@ -166,14 +166,15 @@ exports.notifyArticleRated = onDocumentCreated(
                 : articleData.title;
         const feedbackText =
             feedback.length > 20 ? `${feedback.slice(0, 20)}...` : feedback;
+        const stars = '⭐'.repeat(rate);
 
-        const enMessage = `User <b>${username}</b> rated your article "${title}" with ${rate} ⭐ ${
+        const enMessage = `User <b>${username}</b> rated your article "${title}" with ${stars} ${
             feedback
                 ? ` 
         and left feedback: "${feedbackText}"`
                 : ''
         }.`;
-        const ukMessage = `Користувач <b>${username}</b> оцінив Вашу статтю "${title}" на ${rate} ⭐
+        const ukMessage = `Користувач <b>${username}</b> оцінив Вашу статтю "${title}" на ${stars}
 ${feedback ? ` і залишив відгук: "${feedbackText}"` : ''}.`;
         const notification = {
             id: v4(),
