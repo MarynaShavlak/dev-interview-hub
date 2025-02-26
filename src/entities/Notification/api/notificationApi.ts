@@ -10,12 +10,15 @@ import {
     PersonalNotification,
 } from '../model/types/notification';
 
-import { fetchQueryResults } from '@/shared/lib/firestore/fetchQueryResults/fetchQueryResults';
 import { createUserNotificationQuery } from '../lib/utilities/createUserNotificationsQuery/createUserNotificationsQuery';
 import { getDocRefByField } from '@/shared/lib/firestore/getDocRefByField/getDocRefByField';
 import { createUserPersonalNotificationQuery } from '../lib/utilities/createUserPersonalNotificationQuery/createUserPersonalNotificationQuery';
 import { auth } from '../../../../json-server/firebase';
-import { getTimestampMillis } from '../lib/utilities/getTimestampMillis/getTimestampMillis';
+import { fetchPersonalNotifications } from '../lib/utilities/fetchPersonalNotifications/fetchPersonalNotifications';
+import { fetchGeneralNotifications } from '../lib/utilities/fetchGeneralNotifications/fetchGeneralNotifications';
+import { filterDismissedNotifications } from '../lib/utilities/filterDismissedNotifications/filterDismissedNotifications';
+import { sortNotificationsByTimestamp } from '../lib/utilities/sortNotificationsByTimestamp/sortNotificationsByTimestamp';
+import { mergeNotifications } from '../lib/utilities/mergeNotifications/mergeNotifications';
 
 const notificationApi = firestoreApi
     .enhanceEndpoints({
@@ -31,19 +34,12 @@ const notificationApi = firestoreApi
                     try {
                         const user = auth.currentUser;
                         if (!user) return { data: undefined };
-                        const notificationsQuery =
-                            createUserNotificationQuery();
 
-                        const notifications =
-                            await fetchQueryResults<GeneralNotification>(
-                                notificationsQuery,
-                            );
-                        const filteredNotifications = notifications.filter(
-                            (notification) =>
-                                !notification.dismissedBy?.includes(user.uid),
+                        const notifications = await fetchGeneralNotifications(
+                            user.uid,
                         );
 
-                        return { data: filteredNotifications };
+                        return { data: notifications };
                     } catch (error) {
                         console.error('Error fetching notifications:', error);
                         return { error };
@@ -70,11 +66,9 @@ const notificationApi = firestoreApi
                                         (doc) => doc.data(),
                                     ) as GeneralNotification[];
 
-                                    return notifications.filter(
-                                        (notification) =>
-                                            !notification.dismissedBy?.includes(
-                                                user?.uid || '',
-                                            ),
+                                    return filterDismissedNotifications(
+                                        notifications,
+                                        user?.uid || '',
                                     );
                                 });
                             },
@@ -131,13 +125,8 @@ const notificationApi = firestoreApi
 
                     async queryFn() {
                         try {
-                            const personalNotificationsQuery =
-                                createUserPersonalNotificationQuery();
-
                             const notifications =
-                                await fetchQueryResults<PersonalNotification>(
-                                    personalNotificationsQuery,
-                                );
+                                await fetchPersonalNotifications();
 
                             return { data: notifications };
                         } catch (error) {
@@ -231,39 +220,23 @@ const notificationApi = firestoreApi
                         const user = auth.currentUser;
                         if (!user) return { data: undefined };
 
-                        const generalNotificationsQuery =
-                            createUserNotificationQuery();
                         const generalNotifications =
-                            await fetchQueryResults<GeneralNotification>(
-                                generalNotificationsQuery,
-                            );
-                        const filteredGeneral = generalNotifications.filter(
-                            (notification) =>
-                                !notification.dismissedBy?.includes(user.uid),
-                        );
+                            await fetchGeneralNotifications(user.uid);
 
                         // Fetch personal notifications
-                        const personalNotificationsQuery =
-                            createUserPersonalNotificationQuery();
                         const personalNotifications =
-                            await fetchQueryResults<PersonalNotification>(
-                                personalNotificationsQuery,
-                            );
+                            await fetchPersonalNotifications();
 
                         // Merge and sort by timestamp (descending)
-                        const allNotifications: (
-                            | GeneralNotification
-                            | PersonalNotification
-                        )[] = [...filteredGeneral, ...personalNotifications];
+                        const allNotifications = mergeNotifications(
+                            generalNotifications,
+                            personalNotifications,
+                        );
 
                         const sortedNotifications: (
                             | GeneralNotification
                             | PersonalNotification
-                        )[] = allNotifications.sort((a, b) => {
-                            const timestampA = getTimestampMillis(a.timestamp);
-                            const timestampB = getTimestampMillis(b.timestamp);
-                            return timestampB - timestampA; // Descending order
-                        });
+                        )[] = sortNotificationsByTimestamp(allNotifications);
 
                         return { data: sortedNotifications };
                     } catch (error) {
@@ -301,22 +274,21 @@ const notificationApi = firestoreApi
                                         doc.data(),
                                     ) as GeneralNotification[];
 
-                                    const filteredGeneral = general.filter(
-                                        (notification) =>
-                                            !notification.dismissedBy?.includes(
-                                                user.uid,
-                                            ),
-                                    );
+                                    const filteredGeneral =
+                                        filterDismissedNotifications(
+                                            general,
+                                            user.uid,
+                                        );
 
                                     // Merge general notifications with existing personal notifications
                                     const personal = draft.filter(
                                         (n) => n.type !== 'general',
-                                    ); // Personal notifications from the cache
-                                    console.log('personal', personal);
-                                    const allNotifications = [
-                                        ...filteredGeneral,
-                                        ...personal,
-                                    ];
+                                    ) as PersonalNotification[]; // Personal notifications from the cache
+
+                                    const allNotifications = mergeNotifications(
+                                        filteredGeneral,
+                                        personal,
+                                    );
 
                                     // De-duplicate based on `id`
                                     const uniqueNotifications =
@@ -331,15 +303,9 @@ const notificationApi = firestoreApi
                                         );
 
                                     // Sort the notifications by timestamp (descending)
-                                    return uniqueNotifications.sort((a, b) => {
-                                        const timestampA = getTimestampMillis(
-                                            a.timestamp,
-                                        );
-                                        const timestampB = getTimestampMillis(
-                                            b.timestamp,
-                                        );
-                                        return timestampB - timestampA; // Descending order
-                                    });
+                                    return sortNotificationsByTimestamp(
+                                        uniqueNotifications,
+                                    );
                                 });
                             },
                         );
@@ -356,12 +322,12 @@ const notificationApi = firestoreApi
                                     // Merge personal notifications with existing general notifications
                                     const general = draft.filter(
                                         (n) => n.type === 'general',
-                                    ); // General notifications from the cache
+                                    ) as GeneralNotification[];
 
-                                    const allNotifications = [
-                                        ...general,
-                                        ...personal,
-                                    ];
+                                    const allNotifications = mergeNotifications(
+                                        general,
+                                        personal,
+                                    );
 
                                     // De-duplicate based on `id`
                                     const uniqueNotifications =
@@ -375,16 +341,9 @@ const notificationApi = firestoreApi
                                                 ),
                                         );
 
-                                    // Sort the notifications by timestamp (descending)
-                                    return uniqueNotifications.sort((a, b) => {
-                                        const timestampA = getTimestampMillis(
-                                            a.timestamp,
-                                        );
-                                        const timestampB = getTimestampMillis(
-                                            b.timestamp,
-                                        );
-                                        return timestampB - timestampA; // Descending order
-                                    });
+                                    return sortNotificationsByTimestamp(
+                                        uniqueNotifications,
+                                    );
                                 });
                             },
                         );
