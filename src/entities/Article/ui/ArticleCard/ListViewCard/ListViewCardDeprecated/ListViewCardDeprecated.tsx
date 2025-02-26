@@ -75,7 +75,7 @@ export const ListViewCardDeprecated = memo((props: BaseCardProps) => {
                     alt={title}
                 />
                 {textBlock.paragraphs.slice(0, 1).join(' ') && (
-                    <ArticleTextBlockComponent block={textBlock} />
+                    <ArticleTextBlockComponent block={textBlock} withTags />
                 )}
                 <HStack justify="between" max>
                     <AppLink to={getRouteArticleDetails(id)}>

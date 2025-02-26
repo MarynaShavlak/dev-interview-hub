@@ -39,7 +39,9 @@ export const TextBlockDisplay = (props: TextBlockDisplayProps) => {
             <ArticleBlockPreview
                 {...viewerProps}
                 deleteBlock={onDelete}
-                BlockComponent={ArticleTextBlockComponent}
+                BlockComponent={(props) => (
+                    <ArticleTextBlockComponent {...props} withTags={false} /> // Pass withTags={false}
+                )}
             />
         );
 

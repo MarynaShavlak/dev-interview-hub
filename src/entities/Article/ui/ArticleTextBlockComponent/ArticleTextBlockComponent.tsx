@@ -13,21 +13,29 @@ import { VStack } from '@/shared/ui/common/Stack';
 interface ArticleTextBlockComponentProps {
     className?: string;
     block: ArticleTextBlock;
+    withTags: boolean;
 }
 
-const renderText = (text: string) => {
+const renderText = (text: string, withTags: boolean) => {
     const result = getTagContent(text);
+    console.log('result', result);
 
     if (typeof result === 'string') {
         return (
             <ToggleFeaturesComponent
                 feature="isAppRedesigned"
-                on={<Text text={result} className={cls.paragraph} withTags />}
+                on={
+                    <Text
+                        text={result}
+                        className={cls.paragraph}
+                        withTags={withTags}
+                    />
+                }
                 off={
                     <TextDeprecated
                         text={result}
                         className={cls.paragraph}
-                        withTags
+                        withTags={withTags}
                     />
                 }
             />
@@ -47,7 +55,7 @@ const renderText = (text: string) => {
 
 export const ArticleTextBlockComponent = memo(
     (props: ArticleTextBlockComponentProps) => {
-        const { className, block } = props;
+        const { className, block, withTags } = props;
 
         return (
             <div
@@ -68,7 +76,10 @@ export const ArticleTextBlockComponent = memo(
                     />
                 )}
                 <VStack gap="8">
-                    <Each of={block.paragraphs} render={renderText} />
+                    <Each
+                        of={block.paragraphs}
+                        render={(text) => renderText(text, withTags)}
+                    />
                 </VStack>
             </div>
         );

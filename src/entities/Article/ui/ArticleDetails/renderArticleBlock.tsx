@@ -40,6 +40,7 @@ export const renderArticleBlock = (block: ArticleBlock) => {
                     key={block.id}
                     className={cls.block}
                     block={block}
+                    withTags={false}
                 />
             );
         default:

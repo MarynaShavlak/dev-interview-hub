@@ -86,6 +86,7 @@ export const Text = memo((props: TextProps) => {
                     dangerouslySetInnerHTML={{ __html: sanitizedText }}
                 />
             )}
+
             {withTags && (
                 <p
                     className={classNames(cls.text, textStyles, [])}
