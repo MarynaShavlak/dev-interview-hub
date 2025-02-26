@@ -167,8 +167,14 @@ exports.notifyArticleRated = onDocumentCreated(
         const feedbackText =
             feedback.length > 20 ? `${feedback.slice(0, 20)}...` : feedback;
 
-        const enMessage = `User <b>${username}</b> rated your article "${title}" with ${rate} ⭐ ${feedback ? ` and left feedback: "${feedbackText}"` : ''}.`;
-        const ukMessage = `Користувач <b>${username}</b> оцінив Вашу статтю "${title}" на ${rate} ⭐${feedback ? ` і залишив відгук: "${feedbackText}"` : ''}.`;
+        const enMessage = `User <b>${username}</b> rated your article "${title}" with ${rate} ⭐ ${
+            feedback
+                ? ` 
+        and left feedback: "${feedbackText}"`
+                : ''
+        }.`;
+        const ukMessage = `Користувач <b>${username}</b> оцінив Вашу статтю "${title}" на ${rate} ⭐
+${feedback ? ` і залишив відгук: "${feedbackText}"` : ''}.`;
         const notification = {
             id: v4(),
             localizationTitle: {
