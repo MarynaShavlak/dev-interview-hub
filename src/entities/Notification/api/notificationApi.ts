@@ -5,7 +5,10 @@ import {
     updateDoc,
 } from 'firebase/firestore';
 import { firestoreApi } from '@/shared/api/rtkApi';
-import { Notification } from '../model/types/notification';
+import {
+    GeneralNotification,
+    PersonalNotification,
+} from '../model/types/notification';
 
 import { fetchQueryResults } from '@/shared/lib/firestore/fetchQueryResults/fetchQueryResults';
 import { createUserNotificationQuery } from '../lib/utilities/createUserNotificationsQuery/createUserNotificationsQuery';
@@ -19,7 +22,7 @@ const notificationApi = firestoreApi
     })
     .injectEndpoints({
         endpoints: (build) => ({
-            getNotifications: build.query<Notification[], void>({
+            getNotifications: build.query<GeneralNotification[], void>({
                 providesTags: ['Notifications'],
                 keepUnusedDataFor: 3600,
 
@@ -31,7 +34,7 @@ const notificationApi = firestoreApi
                             createUserNotificationQuery();
 
                         const notifications =
-                            await fetchQueryResults<Notification>(
+                            await fetchQueryResults<GeneralNotification>(
                                 notificationsQuery,
                             );
                         const filteredNotifications = notifications.filter(
@@ -64,7 +67,7 @@ const notificationApi = firestoreApi
                                 updateCachedData((draft) => {
                                     const notifications = snapshot?.docs?.map(
                                         (doc) => doc.data(),
-                                    ) as Notification[];
+                                    ) as GeneralNotification[];
 
                                     return notifications.filter(
                                         (notification) =>
@@ -95,7 +98,7 @@ const notificationApi = firestoreApi
                 async queryFn({ notificationId, userId }) {
                     try {
                         const notificationDocRef =
-                            await getDocRefByField<Notification>(
+                            await getDocRefByField<GeneralNotification>(
                                 // 'notifications',
                                 'notifications/general/messages',
                                 'id',
@@ -120,64 +123,70 @@ const notificationApi = firestoreApi
                 },
                 invalidatesTags: ['Notifications'],
             }),
-            getPersonalNotifications: build.query<Notification[], void>({
-                providesTags: ['PersonalNotifications'],
-                keepUnusedDataFor: 3600,
+            getPersonalNotifications: build.query<PersonalNotification[], void>(
+                {
+                    providesTags: ['PersonalNotifications'],
+                    keepUnusedDataFor: 3600,
 
-                async queryFn() {
-                    try {
-                        const personalNotificationsQuery =
-                            createUserPersonalNotificationQuery();
+                    async queryFn() {
+                        try {
+                            const personalNotificationsQuery =
+                                createUserPersonalNotificationQuery();
 
-                        const notifications =
-                            await fetchQueryResults<Notification>(
-                                personalNotificationsQuery,
+                            const notifications =
+                                await fetchQueryResults<PersonalNotification>(
+                                    personalNotificationsQuery,
+                                );
+
+                            return { data: notifications };
+                        } catch (error) {
+                            console.error(
+                                'Error fetching personal notifications:',
+                                error,
                             );
+                            return { error };
+                        }
+                    },
 
-                        return { data: notifications };
-                    } catch (error) {
-                        console.error(
-                            'Error fetching personal notifications:',
-                            error,
-                        );
-                        return { error };
-                    }
+                    async onCacheEntryAdded(
+                        _,
+                        {
+                            updateCachedData,
+                            cacheDataLoaded,
+                            cacheEntryRemoved,
+                        },
+                    ) {
+                        await cacheDataLoaded;
+                        let unsubscribe;
+
+                        try {
+                            const personalNotificationsQuery =
+                                createUserPersonalNotificationQuery();
+
+                            unsubscribe = onSnapshot(
+                                personalNotificationsQuery,
+                                (snapshot) => {
+                                    updateCachedData((draft) => {
+                                        return snapshot?.docs?.map((doc) =>
+                                            doc.data(),
+                                        ) as PersonalNotification[];
+                                    });
+                                },
+                            );
+                        } catch (error) {
+                            console.error(
+                                'Error in personal notifications subscription:',
+                                error,
+                            );
+                        }
+
+                        await cacheEntryRemoved;
+                        if (unsubscribe) {
+                            unsubscribe();
+                        }
+                    },
                 },
-
-                async onCacheEntryAdded(
-                    _,
-                    { updateCachedData, cacheDataLoaded, cacheEntryRemoved },
-                ) {
-                    await cacheDataLoaded;
-                    let unsubscribe;
-
-                    try {
-                        const personalNotificationsQuery =
-                            createUserPersonalNotificationQuery();
-
-                        unsubscribe = onSnapshot(
-                            personalNotificationsQuery,
-                            (snapshot) => {
-                                updateCachedData((draft) => {
-                                    return snapshot?.docs?.map((doc) =>
-                                        doc.data(),
-                                    ) as Notification[];
-                                });
-                            },
-                        );
-                    } catch (error) {
-                        console.error(
-                            'Error in personal notifications subscription:',
-                            error,
-                        );
-                    }
-
-                    await cacheEntryRemoved;
-                    if (unsubscribe) {
-                        unsubscribe();
-                    }
-                },
-            }),
+            ),
             dismissPersonalNotification: build.mutation<
                 void,
                 { notificationId: string; userId: string }
@@ -185,7 +194,7 @@ const notificationApi = firestoreApi
                 async queryFn({ notificationId, userId }) {
                     try {
                         const notificationDocRef =
-                            await getDocRefByField<Notification>(
+                            await getDocRefByField<PersonalNotification>(
                                 `notifications/personal/${userId}`,
                                 'id',
                                 notificationId,

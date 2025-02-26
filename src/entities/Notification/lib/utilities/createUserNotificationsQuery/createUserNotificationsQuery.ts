@@ -1,12 +1,12 @@
 import { orderBy, query, Query, where } from 'firebase/firestore';
 import { dataPoint } from '@/shared/lib/firestore/firestore';
 import { auth } from '../../../../../../json-server/firebase';
-import { Notification } from '../../../model/types/notification';
+import { GeneralNotification } from '../../../model/types/notification';
 
-export const createUserNotificationQuery = (): Query<Notification> => {
+export const createUserNotificationQuery = (): Query<GeneralNotification> => {
     const user = auth.currentUser;
-    // const notificationsCollection = dataPoint<Notification>('notifications');
-    const notificationsCollection = dataPoint<Notification>(
+    // const notificationsCollection = dataPoint<GeneralNotification>('notifications');
+    const notificationsCollection = dataPoint<GeneralNotification>(
         'notifications/general/messages',
     );
     if (!user) {

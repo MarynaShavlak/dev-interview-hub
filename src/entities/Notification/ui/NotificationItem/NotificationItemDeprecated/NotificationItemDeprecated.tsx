@@ -22,14 +22,14 @@ import {
 export const NotificationItemDeprecated = memo(
     (props: NotificationItemProps) => {
         const { className, item } = props;
-        const { title, message, href } = item;
+        const { href } = item;
         const cardClass = classNames(cls.NotificationItem, {}, [className]);
         const flexClasses = getFlexClasses({
             hStack: true,
             gap: '8',
         });
 
-        const { timeSpent, handleDeleteNotification } =
+        const { timeSpent, handleDeleteNotification, title, message } =
             useNotificationLogic(item);
 
         return (

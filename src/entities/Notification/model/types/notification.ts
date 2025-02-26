@@ -9,7 +9,7 @@
 
 export type NotificationType = 'general' | 'personal_comment';
 
-interface PersonalNotification {
+export interface PersonalNotification {
     id: string;
     localizationTitle: {
         en: string;
@@ -24,7 +24,7 @@ interface PersonalNotification {
     type: NotificationType;
 }
 
-interface GeneralNotification extends PersonalNotification {
+export interface GeneralNotification extends PersonalNotification {
     dismissedBy: string[];
 }
 
