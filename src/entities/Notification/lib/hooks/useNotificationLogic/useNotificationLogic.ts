@@ -10,13 +10,19 @@ export const useNotificationLogic = (notification: Notification) => {
     const { id, timestamp, type, localizationMessage, localizationTitle } =
         notification;
     dayjs.extend(relativeTime);
+    console.log('localizationMessage', localizationMessage);
     const timeSpent = dayjs(timestamp).fromNow();
     const dispatch = useAppDispatch();
-    const { t, i18n } = useTranslation();
+    const { i18n } = useTranslation();
+    console.log('i18n', i18n.language);
     const title =
-        localizationTitle[i18n.language as keyof typeof localizationTitle];
+        localizationTitle[i18n.language as keyof typeof localizationTitle] ||
+        localizationTitle.en;
     const message =
-        localizationMessage[i18n.language as keyof typeof localizationMessage];
+        localizationMessage[
+            i18n.language as keyof typeof localizationMessage
+        ] || localizationMessage.en;
+
     const handleDeleteNotification = useCallback(async () => {
         try {
             await dispatch(

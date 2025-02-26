@@ -9,13 +9,17 @@ export const createUserNotificationQuery = (): Query<GeneralNotification> => {
     const notificationsCollection = dataPoint<GeneralNotification>(
         'notifications/general/messages',
     );
-    if (!user) {
+
+    if (!user || !user.metadata.creationTime) {
         return query(notificationsCollection, where('authorId', '!=', ''));
     }
+    const userCreationISO = new Date(user.metadata.creationTime).toISOString();
+    console.log('tim', userCreationISO);
 
     return query(
         notificationsCollection,
         where('authorId', '!=', user.uid),
+        where('timestamp', '>', userCreationISO),
         orderBy('timestamp', 'desc'),
     );
 };

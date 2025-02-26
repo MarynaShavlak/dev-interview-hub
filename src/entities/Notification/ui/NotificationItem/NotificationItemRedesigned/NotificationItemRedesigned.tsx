@@ -15,6 +15,7 @@ import { getNotificationItemIcon } from '../../../lib/utilities/getNotificationI
 export const NotificationItemRedesigned = memo(
     (props: NotificationItemProps) => {
         const { className, item } = props;
+        console.log('item', item);
         const { href, type } = item;
         const cardClass = classNames(cls.NotificationItem, {}, [className]);
         const flexClasses = getFlexClasses({
@@ -25,7 +26,7 @@ export const NotificationItemRedesigned = memo(
 
         const { timeSpent, handleDeleteNotification, title, message } =
             useNotificationLogic(item);
-
+        console.log('title', title, message);
         return (
             <Card className={classNames(cardClass, {}, flexClasses)}>
                 <Icon

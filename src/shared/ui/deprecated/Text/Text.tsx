@@ -66,7 +66,8 @@ export const Text = memo((props: TextProps) => {
     };
     const additionalClasses = [className].filter(Boolean);
     const sanitizedText = text ? DOMPurify.sanitize(text) : '';
-
+    console.log('withTags', withTags);
+    console.log('sanitizedText', sanitizedText);
     return (
         <VStack className={classNames('', mods, additionalClasses)} gap="8">
             {title && (
