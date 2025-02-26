@@ -15,6 +15,7 @@ import { createUserNotificationQuery } from '../lib/utilities/createUserNotifica
 import { getDocRefByField } from '@/shared/lib/firestore/getDocRefByField/getDocRefByField';
 import { createUserPersonalNotificationQuery } from '../lib/utilities/createUserPersonalNotificationQuery/createUserPersonalNotificationQuery';
 import { auth } from '../../../../json-server/firebase';
+import { getTimestampMillis } from '../lib/utilities/getTimestampMillis/getTimestampMillis';
 
 const notificationApi = firestoreApi
     .enhanceEndpoints({
@@ -219,6 +220,149 @@ const notificationApi = firestoreApi
                 },
                 invalidatesTags: ['PersonalNotifications'],
             }),
+            getAllNotifications: build.query<
+                (GeneralNotification | PersonalNotification)[],
+                void
+            >({
+                providesTags: ['Notifications', 'PersonalNotifications'],
+                keepUnusedDataFor: 3600,
+                async queryFn() {
+                    try {
+                        const user = auth.currentUser;
+                        if (!user) return { data: undefined };
+
+                        const generalNotificationsQuery =
+                            createUserNotificationQuery();
+                        const generalNotifications =
+                            await fetchQueryResults<GeneralNotification>(
+                                generalNotificationsQuery,
+                            );
+                        const filteredGeneral = generalNotifications.filter(
+                            (notification) =>
+                                !notification.dismissedBy?.includes(user.uid),
+                        );
+
+                        // Fetch personal notifications
+                        const personalNotificationsQuery =
+                            createUserPersonalNotificationQuery();
+                        const personalNotifications =
+                            await fetchQueryResults<PersonalNotification>(
+                                personalNotificationsQuery,
+                            );
+
+                        // Merge and sort by timestamp (descending)
+                        const allNotifications: (
+                            | GeneralNotification
+                            | PersonalNotification
+                        )[] = [...filteredGeneral, ...personalNotifications];
+
+                        const sortedNotifications: (
+                            | GeneralNotification
+                            | PersonalNotification
+                        )[] = allNotifications.sort((a, b) => {
+                            const timestampA = getTimestampMillis(a.timestamp);
+                            const timestampB = getTimestampMillis(b.timestamp);
+                            return timestampB - timestampA; // Descending order
+                        });
+
+                        return { data: sortedNotifications };
+                    } catch (error) {
+                        console.error(
+                            'Error fetching all notifications:',
+                            error,
+                        );
+                        return { error };
+                    }
+                },
+
+                async onCacheEntryAdded(
+                    _,
+                    { updateCachedData, cacheDataLoaded, cacheEntryRemoved },
+                ) {
+                    await cacheDataLoaded;
+                    let unsubscribeGeneral;
+                    let unsubscribePersonal;
+
+                    try {
+                        const user = auth.currentUser;
+                        if (!user) return;
+
+                        const generalNotificationsQuery =
+                            createUserNotificationQuery();
+                        const personalNotificationsQuery =
+                            createUserPersonalNotificationQuery();
+
+                        unsubscribeGeneral = onSnapshot(
+                            generalNotificationsQuery,
+                            (snapshot) => {
+                                updateCachedData((draft) => {
+                                    const general = snapshot.docs.map((doc) =>
+                                        doc.data(),
+                                    ) as GeneralNotification[];
+
+                                    const filteredGeneral = general.filter(
+                                        (notification) =>
+                                            !notification.dismissedBy?.includes(
+                                                user.uid,
+                                            ),
+                                    );
+
+                                    const personal = draft.filter(
+                                        (n) => 'userId' in n,
+                                    ); // Keep personal notifications
+
+                                    return [
+                                        ...filteredGeneral,
+                                        ...personal,
+                                    ].sort((a, b) => {
+                                        const timestampA = getTimestampMillis(
+                                            a.timestamp,
+                                        );
+                                        const timestampB = getTimestampMillis(
+                                            b.timestamp,
+                                        );
+                                        return timestampB - timestampA; // Descending order
+                                    });
+                                });
+                            },
+                        );
+
+                        unsubscribePersonal = onSnapshot(
+                            personalNotificationsQuery,
+                            (snapshot) => {
+                                updateCachedData((draft) => {
+                                    const personal = snapshot.docs.map((doc) =>
+                                        doc.data(),
+                                    ) as PersonalNotification[];
+
+                                    const general = draft.filter(
+                                        (n) => !('userId' in n),
+                                    ); // Keep general notifications
+
+                                    return [...general, ...personal].sort(
+                                        (a, b) => {
+                                            const timestampA =
+                                                getTimestampMillis(a.timestamp);
+                                            const timestampB =
+                                                getTimestampMillis(b.timestamp);
+                                            return timestampB - timestampA; // Descending order
+                                        },
+                                    );
+                                });
+                            },
+                        );
+                    } catch (error) {
+                        console.error(
+                            'Error in all notifications subscription:',
+                            error,
+                        );
+                    }
+
+                    await cacheEntryRemoved;
+                    if (unsubscribeGeneral) unsubscribeGeneral();
+                    if (unsubscribePersonal) unsubscribePersonal();
+                },
+            }),
         }),
     });
 
@@ -230,6 +374,8 @@ export const usePersonalNotifications =
 
 export const dismissPersonalNotificationMutation =
     notificationApi.endpoints.dismissPersonalNotification.initiate;
+
+export const useAllNotifications = notificationApi.useGetAllNotificationsQuery;
 // async queryFn() {
 //     try {
 //         const notifications =

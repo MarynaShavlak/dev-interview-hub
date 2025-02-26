@@ -7,6 +7,7 @@ import { VStack } from '@/shared/ui/common/Stack';
 import { Skeleton as SkeletonDeprecated } from '@/shared/ui/deprecated/Skeleton';
 import { Skeleton as SkeletonRedesigned } from '@/shared/ui/redesigned/Skeleton';
 import {
+    useAllNotifications,
     useNotifications,
     usePersonalNotifications,
 } from '../../api/notificationApi';
@@ -23,10 +24,13 @@ export const NotificationList = memo((props: NotificationListProps) => {
     const { className } = props;
     const listClass = classNames(cls.NotificationList, {}, [className]);
 
-    const { data, isLoading } = useNotifications();
+    const { data } = useNotifications();
     const { t } = useTranslation();
     const { data: personalNotifications } = usePersonalNotifications();
     console.log('personalNotifications', personalNotifications);
+
+    const { data: all, isLoading } = useAllNotifications();
+    console.log('all', all);
     const noNotificationsMessage = t('Немає сповіщень');
 
     const Skeleton = toggleFeatures({
@@ -44,7 +48,7 @@ export const NotificationList = memo((props: NotificationListProps) => {
             </VStack>
         );
     }
-    if (data?.length === 0) {
+    if (data?.length === 0 || all?.length === 0) {
         return (
             <VStack gap="16" max className={listClass} align="center">
                 <ToggleFeaturesComponent
@@ -58,9 +62,9 @@ export const NotificationList = memo((props: NotificationListProps) => {
 
     return (
         <VStack gap="16" max className={listClass}>
-            {data && (
+            {data && all && (
                 <Each
-                    of={data}
+                    of={all}
                     render={(item) => (
                         <NotificationItem key={item.id} item={item} />
                     )}
