@@ -13,20 +13,25 @@ export const deleteAllNotificationsThunk = createAsyncThunk<
 >('notification/deleteNotification', async (_, thunkApi) => {
     const { rejectWithValue, dispatch } = thunkApi;
     const user = auth.currentUser;
-    // const authData = getUserAuthData(getState());
+
     if (!user) {
         return rejectWithValue('No user data found.');
     }
 
     try {
-        await dispatch(
-            deleteAllPersonalNotificationsMutation({
-                userId: user.uid,
-            }),
-        );
-        await dispatch(
-            deleteAllGeneralNotificationsForUserMutation({ userId: user.uid }),
-        );
+        const [personalResult, generalResult] = await Promise.allSettled([
+            dispatch(
+                deleteAllPersonalNotificationsMutation({
+                    userId: user.uid,
+                }),
+            ).unwrap(),
+            dispatch(
+                deleteAllGeneralNotificationsForUserMutation({
+                    userId: user.uid,
+                }),
+            ).unwrap(),
+        ]);
+
         return undefined;
     } catch (error) {
         return rejectWithValue(

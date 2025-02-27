@@ -27,7 +27,6 @@ export const NotificationListRedesigned = memo(
         const handleDeleteAllNotifications = useCallback(async () => {
             try {
                 await dispatch(deleteAllNotificationsThunk());
-                console.log('deleteAllNotifications');
             } catch (error) {
                 console.error('Failed to dismiss notification:', error);
             }

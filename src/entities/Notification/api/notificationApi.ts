@@ -105,56 +105,44 @@ const notificationApi = firestoreApi
             >({
                 async queryFn({ userId }) {
                     try {
-                        // Get all general notifications
-                        // const generalNotificationsRef = collection(
-                        //     firestore,
-                        //     'notifications',
-                        //     'general',
-                        //     'messages',
-                        // );
-                        //
-                        // const querySnapshot = await getDocs(
-                        //     generalNotificationsRef,
-                        // );
-                        //
-                        // if (querySnapshot.empty) {
-                        //     return {
-                        //         error: 'No general notifications found to dismiss',
-                        //     };
-                        // }
                         const allGeneralNotifications =
                             await fetchCollection<GeneralNotification>(
                                 'notifications/general/messages',
                             );
-                        console.log(
-                            ' allGeneralNotifications',
-                            allGeneralNotifications,
-                        );
-                        // return { data:  allGeneralNotifications };
-                        // Filter notifications that don't already have this userId in dismissedBy
-                        // const pendingUpdates = querySnapshot.docs.filter(
-                        //     (doc) => {
-                        //         const data = doc.data() as GeneralNotification;
-                        //         // Check if dismissedBy exists and if userId is not already in the array
-                        //         return (
-                        //             !data.dismissedBy ||
-                        //             !data.dismissedBy.includes(userId)
-                        //         );
-                        //     },
-                        // );
-                        //
-                        // if (pendingUpdates.length === 0) {
-                        //     return { data: undefined }; // All notifications already dismissed by this user
-                        // }
-                        //
-                        // // Update each notification to include the user in dismissedBy array
-                        // const updatePromises = pendingUpdates.map((doc) => {
-                        //     return updateDoc(doc.ref, {
-                        //         dismissedBy: arrayUnion(userId),
-                        //     });
-                        // });
-                        //
-                        // await Promise.allSettled(updatePromises);
+
+                        // Filter notifications that don't have userId in dismissedBy array
+                        const notificationsToUpdate =
+                            allGeneralNotifications.filter(
+                                (notification) =>
+                                    !notification.dismissedBy ||
+                                    !notification.dismissedBy.includes(userId),
+                            );
+
+                        if (notificationsToUpdate.length === 0) {
+                            return { data: undefined }; // All notifications already dismissed
+                        }
+
+                        // Update each notification to include userId in dismissedBy
+                        const updatePromises = notificationsToUpdate
+                            .map(async (notification) => {
+                                const docRef =
+                                    await getDocRefByField<GeneralNotification>(
+                                        'notifications/general/messages',
+                                        'id',
+                                        notification.id,
+                                    );
+
+                                if (docRef) {
+                                    return updateDoc(docRef, {
+                                        dismissedBy: arrayUnion(userId),
+                                    });
+                                }
+                                return null;
+                            })
+                            .filter(Boolean); // Filter out null promises
+
+                        // Execute all updates and wait for them to complete
+                        await Promise.allSettled(updatePromises);
 
                         return { data: undefined };
                     } catch (error) {
@@ -257,4 +245,4 @@ export const deleteAllPersonalNotificationsMutation =
     notificationApi.endpoints.deleteAllPersonalNotifications.initiate;
 
 export const deleteAllGeneralNotificationsForUserMutation =
-    notificationApi.endpoints.deleteAllPersonalNotifications.initiate;
+    notificationApi.endpoints.deleteAllGeneralNotificationsForUser.initiate;
