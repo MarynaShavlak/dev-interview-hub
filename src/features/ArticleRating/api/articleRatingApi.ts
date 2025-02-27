@@ -5,7 +5,7 @@ import { createArticleRatingQuery } from '../lib/utilities/createArticleRatingQu
 import { fetchQueryResults } from '@/shared/lib/firestore/fetchQueryResults/fetchQueryResults';
 import { User } from '@/entities/User';
 import { addDocToFirestore } from '@/shared/lib/firestore/addDocToFirestore/addDocToFirestore';
-import { fetchCollection } from '@/shared/lib/firestore/fetchCollection/fetchCollection';
+import { fetchCollectionDocsData } from '@/shared/lib/firestore/fetchCollectionDocsData/fetchCollectionDocsData';
 import { createRatingsByArticleIdsQuery } from '../lib/utilities/createRatingsByArticleIdsQuery/createRatingsByArticleIdsQuery';
 import { deleteDocFromFirestore } from '@/shared/lib/firestore/deleteDocFromFirestore/deleteDocFromFirestore';
 
@@ -30,7 +30,9 @@ export const articleRatingFirebaseApi = firestoreApi
                 async queryFn() {
                     try {
                         const ratings =
-                            await fetchCollection<ArticleRatingData>('ratings');
+                            await fetchCollectionDocsData<ArticleRatingData>(
+                                'ratings',
+                            );
                         return { data: ratings };
                     } catch (error) {
                         console.error('Error fetching ratings:', error);

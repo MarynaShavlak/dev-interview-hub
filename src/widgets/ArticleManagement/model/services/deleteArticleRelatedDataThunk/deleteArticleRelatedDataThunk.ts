@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ERROR_MESSAGES } from '../../consts/errorMessages';
 import { ThunkConfig } from '@/app/providers/StoreProvider';
 import { deleteCommentsByArticleId } from '@/features/ArticleComments';
-import { handleThunkError } from '../../../lib/utilities/handleThunkError/handleThunkError';
+import { handleThunkErrorMessage } from '@/shared/lib/firestore/handleThunkErrorMessage/handleThunkErrorMessage';
 import { deleteRatingsByArticleId } from '@/features/ArticleRating';
 
 export const deleteArticleRelatedDataThunk = createAsyncThunk<
@@ -21,7 +21,7 @@ export const deleteArticleRelatedDataThunk = createAsyncThunk<
             await dispatch(deleteCommentsByArticleId(articleId)).unwrap();
         } catch (error) {
             return rejectWithValue(
-                handleThunkError(error, ERROR_MESSAGES.DELETE_COMMENTS),
+                handleThunkErrorMessage(error, ERROR_MESSAGES.DELETE_COMMENTS),
             );
         }
 
@@ -29,12 +29,12 @@ export const deleteArticleRelatedDataThunk = createAsyncThunk<
             await dispatch(deleteRatingsByArticleId(articleId)).unwrap();
         } catch (error) {
             return rejectWithValue(
-                handleThunkError(error, ERROR_MESSAGES.DELETE_RATINGS),
+                handleThunkErrorMessage(error, ERROR_MESSAGES.DELETE_RATINGS),
             );
         }
     } catch (error) {
         return rejectWithValue(
-            handleThunkError(
+            handleThunkErrorMessage(
                 error,
                 ERROR_MESSAGES.DELETE_RELATED_DATA(articleId),
             ),

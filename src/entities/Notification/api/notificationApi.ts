@@ -1,4 +1,4 @@
-import { collection, deleteDoc, getDocs } from 'firebase/firestore';
+import { deleteDoc } from 'firebase/firestore';
 import { firestoreApi } from '@/shared/api/rtkApi';
 import {
     GeneralNotification,
@@ -6,13 +6,17 @@ import {
 } from '../model/types/notification';
 
 import { getDocRefByField } from '@/shared/lib/firestore/getDocRefByField/getDocRefByField';
-import { auth, firestore } from '../../../../json-server/firebase';
+import { auth } from '../../../../json-server/firebase';
 import { fetchAllNotifications } from '../lib/utilities/fetchAllNotifications/fetchAllNotifications';
 import { subscribeToNotifications } from '../lib/utilities/subscribeToNotifications/subscribeToNotifications';
-import { fetchCollection } from '@/shared/lib/firestore/fetchCollection/fetchCollection';
+import { fetchCollectionDocsData } from '@/shared/lib/firestore/fetchCollectionDocsData/fetchCollectionDocsData';
 import { filterDismissedNotifications } from '../lib/utilities/filterDismissedNotifications/filterDismissedNotifications';
 import { deleteOneGeneralNotificationForUser } from '../lib/utilities/deleteOneGeneralNotificationForUser/deleteOneGeneralNotificationForUser';
 import { updateNotificationsDismissedByUser } from '../lib/utilities/updateNotificationsDismissedByUser/updateNotificationsDismissedByUser';
+import { ERROR_MESSAGES } from '../model/consts/errorMessages';
+import { handleRequestErrorMessage } from '@/shared/lib/firestore/handleRequestErrorMessage/handleRequestErrorMessage';
+import { fetchCollectionDocs } from '@/shared/lib/firestore/fetchCollectionDocs/fetchCollectionDocs';
+import { deleteAllPersonalNotificationDocsForUser } from '../lib/utilities/deleteAllPersonalNotificationDocsForUser/deleteAllPersonalNotificationDocsForUser';
 
 const notificationApi = firestoreApi
     .enhanceEndpoints({
@@ -29,15 +33,19 @@ const notificationApi = firestoreApi
                 async queryFn() {
                     try {
                         const user = auth.currentUser;
-                        if (!user) return { data: undefined };
+                        if (!user) {
+                            const error = new Error(
+                                ERROR_MESSAGES.USER_NOT_AUTHORIZED,
+                            );
+                            return { error };
+                        }
                         const data = await fetchAllNotifications(user.uid);
                         return { data };
                     } catch (error) {
-                        console.error(
-                            'Error fetching all notifications:',
+                        return handleRequestErrorMessage(
+                            ERROR_MESSAGES.NOTIFICATIONS_FETCH_FAIL,
                             error,
                         );
-                        return { error };
                     }
                 },
 
@@ -90,8 +98,10 @@ const notificationApi = firestoreApi
 
                         return { data: undefined };
                     } catch (error) {
-                        console.error('Error dismissing notification:', error);
-                        return { error };
+                        return handleRequestErrorMessage(
+                            ERROR_MESSAGES.DISMISS_GENERAL_FAIL(userId),
+                            error,
+                        );
                     }
                 },
                 invalidatesTags: ['Notifications'],
@@ -104,7 +114,7 @@ const notificationApi = firestoreApi
                 async queryFn({ userId }) {
                     try {
                         const allGeneralNotifications =
-                            await fetchCollection<GeneralNotification>(
+                            await fetchCollectionDocsData<GeneralNotification>(
                                 'notifications/general/messages',
                             );
 
@@ -125,13 +135,10 @@ const notificationApi = firestoreApi
 
                         return { data: undefined };
                     } catch (error) {
-                        console.error(
-                            'Error dismissing all general notifications:',
+                        return handleRequestErrorMessage(
+                            ERROR_MESSAGES.DELETE_ALL_GENERAL_FAIL,
                             error,
                         );
-                        return {
-                            error: 'Failed to dismiss all general notifications',
-                        };
                     }
                 },
                 invalidatesTags: ['Notifications'],
@@ -151,7 +158,9 @@ const notificationApi = firestoreApi
                             );
 
                         if (!notificationDocRef) {
-                            return { error: 'Personal notification not found' };
+                            return handleRequestErrorMessage(
+                                ERROR_MESSAGES.PERSONAL_NOTIFICATION_NOT_FOUND,
+                            );
                         }
 
                         if (notificationDocRef) {
@@ -160,11 +169,10 @@ const notificationApi = firestoreApi
 
                         return { data: undefined };
                     } catch (error) {
-                        console.error(
-                            'Error dismissing personal notification:',
+                        return handleRequestErrorMessage(
+                            ERROR_MESSAGES.DISMISS_PERSONAL_FAIL(userId),
                             error,
                         );
-                        return { error };
                     }
                 },
                 invalidatesTags: ['PersonalNotifications'],
@@ -175,37 +183,27 @@ const notificationApi = firestoreApi
             >({
                 async queryFn({ userId }) {
                     try {
-                        const userNotificationsRef = collection(
-                            firestore,
-                            'notifications',
-                            'personal',
-                            userId,
-                        );
+                        const notificationDocs =
+                            await fetchCollectionDocs<PersonalNotification>(
+                                `notifications/personal/${userId}`,
+                            );
 
-                        const querySnapshot =
-                            await getDocs(userNotificationsRef);
-
-                        if (querySnapshot.empty) {
+                        if (notificationDocs.empty) {
                             return {
                                 error: 'No personal notifications found for the user.',
                             };
                         }
 
-                        const deletePromises = querySnapshot.docs.map((doc) =>
-                            deleteDoc(doc.ref),
+                        await deleteAllPersonalNotificationDocsForUser(
+                            notificationDocs,
                         );
-
-                        await Promise.allSettled(deletePromises);
 
                         return { data: undefined };
                     } catch (error) {
-                        console.error(
-                            'Error deleting personal notifications:',
+                        return handleRequestErrorMessage(
+                            ERROR_MESSAGES.DELETE_ALL_PERSONAL_FAIL,
                             error,
                         );
-                        return {
-                            error: 'Failed to delete all personal notifications.',
-                        };
                     }
                 },
                 invalidatesTags: ['PersonalNotifications'],

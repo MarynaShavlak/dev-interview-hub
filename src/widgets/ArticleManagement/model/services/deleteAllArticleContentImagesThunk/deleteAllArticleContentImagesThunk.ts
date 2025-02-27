@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { Article, deleteArticleImageThunk } from '@/entities/Article';
 import { ThunkConfig } from '@/app/providers/StoreProvider';
 import { getBlockImageUrls } from '../../../lib/utilities/getBlockImageUrls/getBlockImageUrls';
-import { handleThunkError } from '../../../lib/utilities/handleThunkError/handleThunkError';
+import { handleThunkErrorMessage } from '@/shared/lib/firestore/handleThunkErrorMessage/handleThunkErrorMessage';
 import { ERROR_MESSAGES } from '../../consts/errorMessages';
 
 export const deleteAllArticleContentImagesThunk = createAsyncThunk<
@@ -30,7 +30,7 @@ export const deleteAllArticleContentImagesThunk = createAsyncThunk<
                             ).unwrap();
                         } catch (error) {
                             return rejectWithValue(
-                                handleThunkError(
+                                handleThunkErrorMessage(
                                     error,
                                     ERROR_MESSAGES.DELETE_BLOCK_IMAGES,
                                 ),
@@ -42,7 +42,10 @@ export const deleteAllArticleContentImagesThunk = createAsyncThunk<
                 await Promise.allSettled(deletePromises);
             } catch (error) {
                 return rejectWithValue(
-                    handleThunkError(error, ERROR_MESSAGES.DELETE_BLOCK_IMAGES),
+                    handleThunkErrorMessage(
+                        error,
+                        ERROR_MESSAGES.DELETE_BLOCK_IMAGES,
+                    ),
                 );
             }
         }
@@ -52,13 +55,16 @@ export const deleteAllArticleContentImagesThunk = createAsyncThunk<
                 await dispatch(deleteArticleImageThunk(article.img)).unwrap();
             } catch (error) {
                 return rejectWithValue(
-                    handleThunkError(error, ERROR_MESSAGES.DELETE_MAIN_IMAGE),
+                    handleThunkErrorMessage(
+                        error,
+                        ERROR_MESSAGES.DELETE_MAIN_IMAGE,
+                    ),
                 );
             }
         }
     } catch (error) {
         return rejectWithValue(
-            handleThunkError(error, ERROR_MESSAGES.DELETE_ERROR),
+            handleThunkErrorMessage(error, ERROR_MESSAGES.DELETE_ERROR),
         );
     }
 });

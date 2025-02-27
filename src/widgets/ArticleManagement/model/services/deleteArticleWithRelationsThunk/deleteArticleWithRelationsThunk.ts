@@ -4,7 +4,7 @@ import {
     getArticleDataByIdQuery,
 } from '@/entities/Article';
 import { ThunkConfig } from '@/app/providers/StoreProvider';
-import { handleThunkError } from '../../../lib/utilities/handleThunkError/handleThunkError';
+import { handleThunkErrorMessage } from '@/shared/lib/firestore/handleThunkErrorMessage/handleThunkErrorMessage';
 import { ERROR_MESSAGES } from '../../consts/errorMessages';
 import { deleteArticleRelatedDataThunk } from '../deleteArticleRelatedDataThunk/deleteArticleRelatedDataThunk';
 import { deleteAllArticleContentImagesThunk } from '../deleteAllArticleContentImagesThunk/deleteAllArticleContentImagesThunk';
@@ -43,7 +43,10 @@ export const deleteArticleWithRelationsThunk = createAsyncThunk<
         return deletedArticleId;
     } catch (error) {
         return rejectWithValue(
-            handleThunkError(error, ERROR_MESSAGES.DELETE_FAIL(articleId)),
+            handleThunkErrorMessage(
+                error,
+                ERROR_MESSAGES.DELETE_FAIL(articleId),
+            ),
         );
     }
 });

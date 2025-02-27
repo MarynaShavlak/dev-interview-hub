@@ -1,7 +1,7 @@
 import { getDoc, onSnapshot, query } from 'firebase/firestore';
 import { firestoreApi } from '@/shared/api/rtkApi';
 
-import { fetchCollection } from '@/shared/lib/firestore/fetchCollection/fetchCollection';
+import { fetchCollectionDocsData } from '@/shared/lib/firestore/fetchCollectionDocsData/fetchCollectionDocsData';
 import { ArticleComment } from '../model/types/articleComment';
 import { User } from '@/entities/User';
 import { addDocToFirestore } from '@/shared/lib/firestore/addDocToFirestore/addDocToFirestore';
@@ -21,7 +21,9 @@ export const articlesCommentsFirebaseApi = firestoreApi
                 async queryFn() {
                     try {
                         const comments =
-                            await fetchCollection<ArticleComment>('comments');
+                            await fetchCollectionDocsData<ArticleComment>(
+                                'comments',
+                            );
                         return { data: comments };
                     } catch (error) {
                         console.error('Error fetching comments:', error);
