@@ -9,6 +9,7 @@
 
 const { v4 } = require('uuid');
 const functions = require('firebase-functions');
+const { onSchedule } = require('firebase-functions/v2/scheduler');
 // const admin = require('firebase-admin');
 const { onDocumentCreated } = require('firebase-functions/v2/firestore');
 // const { getFirestore } = require('firebase-admin/firestore');
@@ -16,7 +17,13 @@ const {
     createGeneralNotification,
     createPersonalNotification,
     getArticleById,
+    db,
 } = require('./src/utils/notificationHelpers/notificationHelpers');
+
+const {
+    cleanupGeneralNotifications,
+    cleanupPersonalNotifications,
+} = require('./src/utils/cleanNotifications/cleanNotifivations');
 
 const {
     createCommentNotification,
@@ -91,6 +98,37 @@ exports.notifyArticleRated = onDocumentCreated(
     },
 );
 
-// exports.helloWorld = functions.https.onRequest((request, response) => {
-//     response.send('Hello, ninjas!');
-// });
+exports.cleanupOldNotifications = onSchedule(
+    {
+        schedule: '0 0 * * *', // Runs at midnight every day
+        timeZone: 'UTC',
+        retryCount: 3,
+        // Optional parameters if needed:
+        memory: '256MiB',
+        region: 'us-central1', // Change to your preferred region
+    },
+    async (event) => {
+        try {
+            // Calculate the cutoff date (30 days ago)
+            const thirtyDaysAgo = new Date();
+            thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+            const cutoffTimestamp = thirtyDaysAgo.toISOString();
+
+            console.log(
+                `Deleting notifications older than: ${cutoffTimestamp}`,
+            );
+
+            // Clean up general notifications
+            await cleanupGeneralNotifications(cutoffTimestamp);
+
+            // Clean up personal notifications
+            await cleanupPersonalNotifications(cutoffTimestamp);
+
+            console.log('Notification cleanup completed successfully');
+            return null;
+        } catch (error) {
+            console.error('Error during notification cleanup:', error);
+            return null;
+        }
+    },
+);
