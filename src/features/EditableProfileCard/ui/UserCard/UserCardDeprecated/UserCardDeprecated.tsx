@@ -8,6 +8,8 @@ import { CountrySelect } from '@/entities/Country';
 import { Input as InputDeprecated } from '@/shared/ui/deprecated/Input';
 import cls from './UserCardDeprecated.module.scss';
 import { AvatarUploader } from '../AvatarUploader/AvatarUploader';
+import { useInputValidationConfig } from '@/shared/lib/hooks/validationHooks/useInputValidationConfig/useInputValidationConfig';
+import { useFormValidation } from '@/shared/lib/hooks/validationHooks/useFormValidation/useFormValidation';
 
 export const UserCardDeprecated = (props: UserCardProps) => {
     const {
@@ -19,7 +21,6 @@ export const UserCardDeprecated = (props: UserCardProps) => {
         onChangeAge,
         onChangeCity,
         onChangeUsername,
-
         onChangeCurrency,
         onChangeCountry,
         onFileUpload,
@@ -29,6 +30,16 @@ export const UserCardDeprecated = (props: UserCardProps) => {
     const mods: Mods = {
         [cls.editing]: !readonly,
     };
+
+    const validConfig = useInputValidationConfig();
+    const { username = '', firstname = '', lastname = '' } = data || {};
+
+    const { lastnameErrors, usernameErrors, firstnameErrors } =
+        useFormValidation(
+            { username, firstname, lastname },
+            validConfig,
+            'profile',
+        );
 
     return (
         <VStack
@@ -48,6 +59,8 @@ export const UserCardDeprecated = (props: UserCardProps) => {
                 onChange={onChangeUsername}
                 readonly={readonly}
                 data-testid="UserCard.username"
+                validations={validConfig.lastname}
+                errors={usernameErrors}
             />
             <InputDeprecated
                 value={data?.firstname}
@@ -55,6 +68,8 @@ export const UserCardDeprecated = (props: UserCardProps) => {
                 onChange={onChangeFirstname}
                 readonly={readonly}
                 data-testid="UserCard.firstname"
+                validations={validConfig.firstname}
+                errors={firstnameErrors}
             />
             <InputDeprecated
                 value={data?.lastname}
@@ -62,6 +77,8 @@ export const UserCardDeprecated = (props: UserCardProps) => {
                 onChange={onChangeLastname}
                 readonly={readonly}
                 data-testid="UserCard.lastname"
+                validations={validConfig.lastname}
+                errors={lastnameErrors}
             />
             <InputDeprecated
                 value={data?.age}

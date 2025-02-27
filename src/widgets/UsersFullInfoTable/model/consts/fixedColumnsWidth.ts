@@ -16,11 +16,10 @@ export const MAX_COLUMN_CHARACTERS = 18;
 export const FIXED_COLUMNS_WIDTH_DEPRECATED = {
     avatar: 50,
     username: 150,
-
     firstname: 60,
     lastname: 80,
     articlesQuantity: 90,
     features: 120,
-    role: 90,
+    role: 110,
     action: 50,
 };

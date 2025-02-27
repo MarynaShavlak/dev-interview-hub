@@ -4,7 +4,7 @@ import { Input } from '@/shared/ui/redesigned/Input';
 import cls from './EditableCell.module.scss';
 
 import { trimText } from '@/shared/lib/text/trimText/trimText';
-import { TableMetaCustom } from '@/features/Table';
+import { TableMetaCustom } from '../..';
 
 export type EditableCellProps<T, IDType> = CellContext<T, IDType>;
 
