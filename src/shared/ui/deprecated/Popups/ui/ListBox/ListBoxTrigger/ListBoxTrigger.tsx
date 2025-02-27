@@ -11,12 +11,13 @@ interface ListBoxTriggerProps<T extends string> {
     selectedItem: ListBoxItem<T> | undefined;
     defaultValue?: string;
     readonly?: boolean;
+    handleClick?: () => void;
 }
 
 export function ListBoxTrigger<T extends string>(
     props: ListBoxTriggerProps<T>,
 ) {
-    const { selectedItem, defaultValue, readonly } = props;
+    const { selectedItem, defaultValue, readonly, handleClick } = props;
     const btnFlexClasses = getFlexClasses({
         hStack: true,
         gap: '8',
@@ -28,6 +29,7 @@ export function ListBoxTrigger<T extends string>(
             className={classNames(cls.trigger, {}, btnFlexClasses)}
             as={Button}
             disabled={readonly}
+            onClick={handleClick}
         >
             {selectedItem?.label ?? defaultValue}
             <Icon Svg={ArrowIcon} width={32} height={32} />

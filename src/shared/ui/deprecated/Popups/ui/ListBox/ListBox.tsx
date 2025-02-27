@@ -1,5 +1,5 @@
 import { Listbox as HListBox } from '@headlessui/react';
-import { useMemo } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import { ListBoxItem, Option } from './Option/Option';
 import { Each } from '@/shared/lib/components/Each/Each';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
@@ -38,7 +38,7 @@ export function ListBox<T extends string>(props: ListBoxProps<T>) {
         withBorder = false,
         label,
     } = props;
-
+    const [isOpen, setIsOpen] = useState(false);
     const optionsClasses = classNames(cls.options, {}, [
         mapDirectionClass[direction],
     ]);
@@ -50,20 +50,31 @@ export function ListBox<T extends string>(props: ListBoxProps<T>) {
     const selectedItem = useMemo(() => {
         return items?.find((item) => item.value === value);
     }, [items, value]);
+
+    const onChangeOption = useCallback(
+        (val: T) => {
+            onChange(val);
+            setIsOpen(false);
+        },
+        [onChange],
+    );
     return (
-        <HStack gap="4">
+        <HStack gap="4" max justify="between">
             {label && <span>{`${label}>`}</span>}
             <HListBox
                 disabled={readonly}
                 as="div"
-                className={listBoxClasses}
                 value={value}
-                onChange={onChange}
+                onChange={onChangeOption}
+                className={classNames(listBoxClasses, {}, [
+                    isOpen ? cls.visible : cls.invisible,
+                ])}
             >
                 <ListBoxTrigger
                     selectedItem={selectedItem}
                     defaultValue={defaultValue}
                     readonly={readonly}
+                    handleClick={() => setIsOpen((prev) => !prev)}
                 />
 
                 <HListBox.Options className={optionsClasses}>

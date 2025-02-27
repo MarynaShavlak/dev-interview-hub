@@ -12,3 +12,14 @@
     border: 1px solid var(--primary-color);
     padding-left: 5px;
 }
+
+
+.visible {
+    position: relative;
+    width:100%;
+}
+
+.invisible {
+    position: static;
+    width:100%;
+}
