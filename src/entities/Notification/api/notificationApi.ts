@@ -15,6 +15,7 @@ import { getDocRefByField } from '@/shared/lib/firestore/getDocRefByField/getDoc
 import { auth, firestore } from '../../../../json-server/firebase';
 import { fetchAllNotifications } from '../lib/utilities/fetchAllNotifications/fetchAllNotifications';
 import { subscribeToNotifications } from '../lib/utilities/subscribeToNotifications/subscribeToNotifications';
+import { fetchCollection } from '@/shared/lib/firestore/fetchCollection/fetchCollection';
 
 const notificationApi = firestoreApi
     .enhanceEndpoints({
@@ -98,6 +99,77 @@ const notificationApi = firestoreApi
                 invalidatesTags: ['Notifications'],
             }),
 
+            deleteAllGeneralNotificationsForUser: build.mutation<
+                void,
+                { userId: string }
+            >({
+                async queryFn({ userId }) {
+                    try {
+                        // Get all general notifications
+                        // const generalNotificationsRef = collection(
+                        //     firestore,
+                        //     'notifications',
+                        //     'general',
+                        //     'messages',
+                        // );
+                        //
+                        // const querySnapshot = await getDocs(
+                        //     generalNotificationsRef,
+                        // );
+                        //
+                        // if (querySnapshot.empty) {
+                        //     return {
+                        //         error: 'No general notifications found to dismiss',
+                        //     };
+                        // }
+                        const allGeneralNotifications =
+                            await fetchCollection<GeneralNotification>(
+                                'notifications/general/messages',
+                            );
+                        console.log(
+                            ' allGeneralNotifications',
+                            allGeneralNotifications,
+                        );
+                        // return { data:  allGeneralNotifications };
+                        // Filter notifications that don't already have this userId in dismissedBy
+                        // const pendingUpdates = querySnapshot.docs.filter(
+                        //     (doc) => {
+                        //         const data = doc.data() as GeneralNotification;
+                        //         // Check if dismissedBy exists and if userId is not already in the array
+                        //         return (
+                        //             !data.dismissedBy ||
+                        //             !data.dismissedBy.includes(userId)
+                        //         );
+                        //     },
+                        // );
+                        //
+                        // if (pendingUpdates.length === 0) {
+                        //     return { data: undefined }; // All notifications already dismissed by this user
+                        // }
+                        //
+                        // // Update each notification to include the user in dismissedBy array
+                        // const updatePromises = pendingUpdates.map((doc) => {
+                        //     return updateDoc(doc.ref, {
+                        //         dismissedBy: arrayUnion(userId),
+                        //     });
+                        // });
+                        //
+                        // await Promise.allSettled(updatePromises);
+
+                        return { data: undefined };
+                    } catch (error) {
+                        console.error(
+                            'Error dismissing all general notifications:',
+                            error,
+                        );
+                        return {
+                            error: 'Failed to dismiss all general notifications',
+                        };
+                    }
+                },
+                invalidatesTags: ['Notifications'],
+            }),
+
             dismissPersonalNotification: build.mutation<
                 void,
                 { notificationId: string; userId: string }
@@ -143,7 +215,6 @@ const notificationApi = firestoreApi
                             userId,
                         );
 
-                        // Loop through and delete each notification
                         const querySnapshot =
                             await getDocs(userNotificationsRef);
 
@@ -153,13 +224,11 @@ const notificationApi = firestoreApi
                             };
                         }
 
-                        // Create an array of delete promises for each notification
                         const deletePromises = querySnapshot.docs.map((doc) =>
                             deleteDoc(doc.ref),
                         );
 
-                        // Wait for all deletions to complete
-                        await Promise.all(deletePromises);
+                        await Promise.allSettled(deletePromises);
 
                         return { data: undefined };
                     } catch (error) {
@@ -185,4 +254,7 @@ export const dismissPersonalNotificationMutation =
     notificationApi.endpoints.dismissPersonalNotification.initiate;
 
 export const deleteAllPersonalNotificationsMutation =
+    notificationApi.endpoints.deleteAllPersonalNotifications.initiate;
+
+export const deleteAllGeneralNotificationsForUserMutation =
     notificationApi.endpoints.deleteAllPersonalNotifications.initiate;

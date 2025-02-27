@@ -1,6 +1,9 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig } from '@/app/providers/StoreProvider';
-import { deleteAllPersonalNotificationsMutation } from '../../../api/notificationApi';
+import {
+    deleteAllGeneralNotificationsForUserMutation,
+    deleteAllPersonalNotificationsMutation,
+} from '../../../api/notificationApi';
 import { auth } from '../../../../../../json-server/firebase';
 
 export const deleteAllNotificationsThunk = createAsyncThunk<
@@ -20,6 +23,9 @@ export const deleteAllNotificationsThunk = createAsyncThunk<
             deleteAllPersonalNotificationsMutation({
                 userId: user.uid,
             }),
+        );
+        await dispatch(
+            deleteAllGeneralNotificationsForUserMutation({ userId: user.uid }),
         );
         return undefined;
     } catch (error) {
