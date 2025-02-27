@@ -1,8 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig } from '@/app/providers/StoreProvider';
 import {
-    deleteAllGeneralNotificationsForUserMutation,
-    deleteAllPersonalNotificationsMutation,
+    removeAllGeneralNotificationsForUserMutation,
+    removeAllPersonalNotificationsMutation,
 } from '../../../api/notificationApi';
 import { auth } from '../../../../../../json-server/firebase';
 
@@ -21,12 +21,12 @@ export const deleteAllNotificationsThunk = createAsyncThunk<
     try {
         const [personalResult, generalResult] = await Promise.allSettled([
             dispatch(
-                deleteAllPersonalNotificationsMutation({
+                removeAllPersonalNotificationsMutation({
                     userId: user.uid,
                 }),
             ).unwrap(),
             dispatch(
-                deleteAllGeneralNotificationsForUserMutation({
+                removeAllGeneralNotificationsForUserMutation({
                     userId: user.uid,
                 }),
             ).unwrap(),

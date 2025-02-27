@@ -1,4 +1,4 @@
-import { GeneralNotification } from '../../../model/types/notification';
+import { GeneralNotification } from '../../../../model/types/notification';
 
 export const filterDismissedNotifications = (
     notifications: GeneralNotification[],

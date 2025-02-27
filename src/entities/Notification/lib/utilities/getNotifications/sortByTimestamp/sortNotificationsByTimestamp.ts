@@ -1,8 +1,8 @@
 import {
     GeneralNotification,
     PersonalNotification,
-} from '../../../model/types/notification';
-import { getTimestampMillis } from '../getTimestampMillis/getTimestampMillis';
+} from '../../../../model/types/notification';
+import { getTimestampMillis } from '../../getTimestampMillis/getTimestampMillis';
 
 export const sortNotificationsByTimestamp = (
     notifications: (GeneralNotification | PersonalNotification)[],

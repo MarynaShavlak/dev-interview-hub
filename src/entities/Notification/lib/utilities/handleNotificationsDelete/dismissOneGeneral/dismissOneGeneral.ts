@@ -3,7 +3,7 @@ import { GeneralNotification } from '../../../../model/types/notification';
 import { deleteOneGeneralNotificationForUser } from '../../deleteOneGeneralNotificationForUser/deleteOneGeneralNotificationForUser';
 import { ERROR_MESSAGES } from '../../../../model/consts/errorMessages';
 
-export const dismissGeneralNotification = async (
+export const dismissOneGeneral = async (
     notificationId: string,
     userId: string,
 ) => {

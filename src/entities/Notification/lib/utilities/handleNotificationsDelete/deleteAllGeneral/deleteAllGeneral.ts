@@ -1,9 +1,9 @@
 import { fetchCollectionDocsData } from '@/shared/lib/firestore/fetchCollectionDocsData/fetchCollectionDocsData';
 import { GeneralNotification } from '../../../../model/types/notification';
-import { filterDismissedNotifications } from '../../filterDismissedNotifications/filterDismissedNotifications';
+import { filterDismissedNotifications } from '../../getNotifications/filterDismissedNotifications/filterDismissedNotifications';
 import { updateNotificationsDismissedByUser } from '../../updateNotificationsDismissedByUser/updateNotificationsDismissedByUser';
 
-export const deleteAllGeneralNotifications = async (userId: string) => {
+export const deleteAllGeneral = async (userId: string) => {
     const allGeneralNotifications =
         await fetchCollectionDocsData<GeneralNotification>(
             'notifications/general/messages',

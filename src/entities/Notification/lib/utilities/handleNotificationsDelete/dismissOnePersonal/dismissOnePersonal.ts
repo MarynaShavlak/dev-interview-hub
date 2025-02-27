@@ -3,7 +3,7 @@ import { PersonalNotification } from '../../../../model/types/notification';
 import { getDocRefByField } from '@/shared/lib/firestore/getDocRefByField/getDocRefByField';
 import { ERROR_MESSAGES } from '../../../../model/consts/errorMessages';
 
-export const dismissPersonalNotification = async (
+export const dismissOnePersonal = async (
     notificationId: string,
     userId: string,
 ) => {

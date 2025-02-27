@@ -1,7 +1,7 @@
 import {
     GeneralNotification,
     PersonalNotification,
-} from '../../../model/types/notification';
+} from '../../../../model/types/notification';
 
 export const getUniqueNotifications = (
     notifications: (GeneralNotification | PersonalNotification)[],

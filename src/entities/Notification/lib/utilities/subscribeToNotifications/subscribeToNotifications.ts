@@ -2,10 +2,10 @@ import { onSnapshot } from 'firebase/firestore';
 import { MaybeDrafted } from '@reduxjs/toolkit/dist/query/core/buildThunks';
 import { createUserNotificationQuery } from '../createUserNotificationsQuery/createUserNotificationsQuery';
 import { createUserPersonalNotificationQuery } from '../createUserPersonalNotificationQuery/createUserPersonalNotificationQuery';
-import { filterDismissedNotifications } from '../filterDismissedNotifications/filterDismissedNotifications';
-import { getPreviousPersonalNotifications } from '../getPreviousPersonalNotifications/getPreviousPersonalNotifications';
-import { getAllCachedSortedNotifications } from '../getAllCachedSortedNotifications/getAllCachedSortedNotifications';
-import { getPreviousGeneralNotifications } from '../getPreviousGeneralNotifications/getPreviousGeneralNotifications';
+import { filterDismissedNotifications } from '../getNotifications/filterDismissedNotifications/filterDismissedNotifications';
+import { getPreviousPersonal } from '../getNotifications/getPreviousPersonal/getPreviousPersonal';
+import { getAllCachedSorted } from '../getNotifications/getAllCachedSorted/getAllCachedSorted';
+import { getPreviousGeneral } from '../getNotifications/getPreviousGeneral/getPreviousGeneral';
 import {
     GeneralNotification,
     PersonalNotification,
@@ -40,9 +40,8 @@ export const subscribeToNotifications = (
                         general,
                         userId,
                     );
-                    const previousPersonal =
-                        getPreviousPersonalNotifications(draft);
-                    return getAllCachedSortedNotifications(
+                    const previousPersonal = getPreviousPersonal(draft);
+                    return getAllCachedSorted(
                         filteredGeneral,
                         previousPersonal,
                     );
@@ -57,12 +56,8 @@ export const subscribeToNotifications = (
                     const personal = snapshot.docs.map((doc) =>
                         doc.data(),
                     ) as PersonalNotification[];
-                    const previousGeneral =
-                        getPreviousGeneralNotifications(draft);
-                    return getAllCachedSortedNotifications(
-                        previousGeneral,
-                        personal,
-                    );
+                    const previousGeneral = getPreviousGeneral(draft);
+                    return getAllCachedSorted(previousGeneral, personal);
                 });
             },
         );

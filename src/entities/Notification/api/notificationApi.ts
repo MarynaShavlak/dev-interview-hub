@@ -9,10 +9,10 @@ import { fetchAllNotifications } from '../lib/utilities/fetchAllNotifications/fe
 import { subscribeToNotifications } from '../lib/utilities/subscribeToNotifications/subscribeToNotifications';
 import { ERROR_MESSAGES } from '../model/consts/errorMessages';
 import { handleRequestErrorMessage } from '@/shared/lib/firestore/handleRequestErrorMessage/handleRequestErrorMessage';
-import { dismissGeneralNotification } from '../lib/utilities/handleNotificationsDelete/dismissGeneralNotification/dismissGeneralNotification';
-import { deleteAllGeneralNotifications } from '../lib/utilities/handleNotificationsDelete/deleteAllGeneralNotifications/deleteAllGeneralNotifications';
-import { dismissPersonalNotification } from '../lib/utilities/handleNotificationsDelete/dismissPersonalNotification/dismissPersonalNotification';
-import { deleteAllPersonalNotifications } from '../lib/utilities/handleNotificationsDelete/deleteAllPersonalNotifications/deleteAllPersonalNotifications';
+import { dismissOneGeneral } from '../lib/utilities/handleNotificationsDelete/dismissOneGeneral/dismissOneGeneral';
+import { deleteAllGeneral } from '../lib/utilities/handleNotificationsDelete/deleteAllGeneral/deleteAllGeneral';
+import { dismissOnePersonal } from '../lib/utilities/handleNotificationsDelete/dismissOnePersonal/dismissOnePersonal';
+import { deleteAllPersonal } from '../lib/utilities/handleNotificationsDelete/deleteAllPersonal/deleteAllPersonal';
 
 const notificationApi = firestoreApi
     .enhanceEndpoints({
@@ -68,16 +68,13 @@ const notificationApi = firestoreApi
                     }
                 },
             }),
-            dismissGeneralNotification: build.mutation<
+            markGeneralNotificationAsDismissed: build.mutation<
                 void,
                 { notificationId: string; userId: string }
             >({
                 async queryFn({ notificationId, userId }) {
                     try {
-                        await dismissGeneralNotification(
-                            notificationId,
-                            userId,
-                        );
+                        await dismissOneGeneral(notificationId, userId);
 
                         return { data: undefined };
                     } catch (error) {
@@ -90,13 +87,13 @@ const notificationApi = firestoreApi
                 invalidatesTags: ['Notifications'],
             }),
 
-            deleteAllGeneralNotificationsForUser: build.mutation<
+            removeAllGeneralNotificationsForUser: build.mutation<
                 void,
                 { userId: string }
             >({
                 async queryFn({ userId }) {
                     try {
-                        await deleteAllGeneralNotifications(userId);
+                        await deleteAllGeneral(userId);
                         return { data: undefined };
                     } catch (error) {
                         return handleRequestErrorMessage(
@@ -108,16 +105,13 @@ const notificationApi = firestoreApi
                 invalidatesTags: ['Notifications'],
             }),
 
-            dismissPersonalNotification: build.mutation<
+            markPersonalNotificationAsDismissed: build.mutation<
                 void,
                 { notificationId: string; userId: string }
             >({
                 async queryFn({ notificationId, userId }) {
                     try {
-                        await dismissPersonalNotification(
-                            notificationId,
-                            userId,
-                        );
+                        await dismissOnePersonal(notificationId, userId);
                         return { data: undefined };
                     } catch (error) {
                         return handleRequestErrorMessage(
@@ -128,13 +122,13 @@ const notificationApi = firestoreApi
                 },
                 invalidatesTags: ['PersonalNotifications'],
             }),
-            deleteAllPersonalNotifications: build.mutation<
+            removeAllPersonalNotifications: build.mutation<
                 void,
                 { userId: string }
             >({
                 async queryFn({ userId }) {
                     try {
-                        await deleteAllPersonalNotifications(userId);
+                        await deleteAllPersonal(userId);
                         return { data: undefined };
                     } catch (error) {
                         return handleRequestErrorMessage(
@@ -149,14 +143,14 @@ const notificationApi = firestoreApi
     });
 
 export const useAllNotifications = notificationApi.useGetAllNotificationsQuery;
-export const dismissGeneralNotificationMutation =
-    notificationApi.endpoints.dismissGeneralNotification.initiate;
+export const markGeneralNotificationAsDismissedMutation =
+    notificationApi.endpoints.markGeneralNotificationAsDismissed.initiate;
 
-export const dismissPersonalNotificationMutation =
-    notificationApi.endpoints.dismissPersonalNotification.initiate;
+export const markPersonalNotificationAsDismissedMutation =
+    notificationApi.endpoints.markPersonalNotificationAsDismissed.initiate;
 
-export const deleteAllPersonalNotificationsMutation =
-    notificationApi.endpoints.deleteAllPersonalNotifications.initiate;
+export const removeAllPersonalNotificationsMutation =
+    notificationApi.endpoints.removeAllPersonalNotifications.initiate;
 
-export const deleteAllGeneralNotificationsForUserMutation =
-    notificationApi.endpoints.deleteAllGeneralNotificationsForUser.initiate;
+export const removeAllGeneralNotificationsForUserMutation =
+    notificationApi.endpoints.removeAllGeneralNotificationsForUser.initiate;

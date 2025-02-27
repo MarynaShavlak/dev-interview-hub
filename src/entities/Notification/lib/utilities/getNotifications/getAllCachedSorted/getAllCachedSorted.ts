@@ -1,12 +1,12 @@
 import { mergeNotifications } from '../mergeNotifications/mergeNotifications';
 import { getUniqueNotifications } from '../getUniqueNotifications/getUniqueNotifications';
-import { sortNotificationsByTimestamp } from '../sortNotificationsByTimestamp/sortNotificationsByTimestamp';
+import { sortNotificationsByTimestamp } from '../sortByTimestamp/sortNotificationsByTimestamp';
 import {
     GeneralNotification,
     PersonalNotification,
-} from '../../../model/types/notification';
+} from '../../../../model/types/notification';
 
-export const getAllCachedSortedNotifications = (
+export const getAllCachedSorted = (
     general: GeneralNotification[],
     personal: PersonalNotification[],
 ) => {
