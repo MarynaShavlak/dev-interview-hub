@@ -20,6 +20,7 @@ interface ListBoxProps<T extends string> {
     label?: string;
     className?: string;
     withBorder?: boolean;
+    max?: boolean;
 }
 
 /**
@@ -37,6 +38,7 @@ export function ListBox<T extends string>(props: ListBoxProps<T>) {
         direction = 'bottom right',
         withBorder = false,
         label,
+        max = false,
     } = props;
     const [isOpen, setIsOpen] = useState(false);
     const optionsClasses = classNames(cls.options, {}, [
@@ -59,7 +61,7 @@ export function ListBox<T extends string>(props: ListBoxProps<T>) {
         [onChange],
     );
     return (
-        <HStack gap="4" max justify="between">
+        <HStack gap="4" max={max}>
             {label && <span>{`${label}>`}</span>}
             <HListBox
                 disabled={readonly}

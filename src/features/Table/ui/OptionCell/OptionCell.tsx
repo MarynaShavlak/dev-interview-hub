@@ -87,6 +87,7 @@ export const OptionCell = <TData extends { id: string }>({
                 onChange={onCellClick}
                 direction="bottom right"
                 size="s"
+                max
             />
         </HStack>
     );
