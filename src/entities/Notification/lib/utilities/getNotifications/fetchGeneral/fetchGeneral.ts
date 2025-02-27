@@ -1,9 +1,9 @@
-import { createUserNotificationQuery } from '../createUserNotificationsQuery/createUserNotificationsQuery';
+import { createUserNotificationQuery } from '../../createQuery/createGeneralNotificationsQuery/createGeneralNotificationsQuery';
 import { fetchQueryResults } from '@/shared/lib/firestore/fetchQueryResults/fetchQueryResults';
-import { GeneralNotification } from '../../../model/types/notification';
-import { filterDismissedNotifications } from '../getNotifications/filterDismissedNotifications/filterDismissedNotifications';
+import { GeneralNotification } from '../../../../model/types/notification';
+import { filterDismissedNotifications } from '../filterDismissedNotifications/filterDismissedNotifications';
 
-export const fetchGeneralNotifications = async (userId: string) => {
+export const fetchGeneral = async (userId: string) => {
     const generalNotificationsQuery = createUserNotificationQuery();
     const generalNotifications = await fetchQueryResults<GeneralNotification>(
         generalNotificationsQuery,

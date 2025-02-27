@@ -1,9 +1,9 @@
 import { orderBy, query, Query } from 'firebase/firestore';
 import { dataPoint } from '@/shared/lib/firestore/firestore';
-import { auth } from '../../../../../../json-server/firebase';
-import { PersonalNotification } from '../../../model/types/notification';
+import { auth } from '../../../../../../../json-server/firebase';
+import { PersonalNotification } from '../../../../model/types/notification';
 
-export const createUserPersonalNotificationQuery =
+export const createPersonalNotificationQuery =
     (): Query<PersonalNotification> => {
         const user = auth.currentUser;
 

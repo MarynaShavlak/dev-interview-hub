@@ -4,7 +4,7 @@ import {
 } from '../../../../model/types/notification';
 import { getTimestampMillis } from '../../getTimestampMillis/getTimestampMillis';
 
-export const sortNotificationsByTimestamp = (
+export const sortByTimestamp = (
     notifications: (GeneralNotification | PersonalNotification)[],
 ): (GeneralNotification | PersonalNotification)[] => {
     return notifications.sort((a, b) => {

@@ -1,6 +1,6 @@
 import { mergeNotifications } from '../mergeNotifications/mergeNotifications';
 import { getUniqueNotifications } from '../getUniqueNotifications/getUniqueNotifications';
-import { sortNotificationsByTimestamp } from '../sortByTimestamp/sortNotificationsByTimestamp';
+import { sortByTimestamp } from '../sortByTimestamp/sortByTimestamp';
 import {
     GeneralNotification,
     PersonalNotification,
@@ -14,5 +14,5 @@ export const getAllCachedSorted = (
 
     const uniqueNotifications = getUniqueNotifications(allNotifications);
 
-    return sortNotificationsByTimestamp(uniqueNotifications);
+    return sortByTimestamp(uniqueNotifications);
 };

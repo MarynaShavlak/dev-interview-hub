@@ -5,7 +5,7 @@ import {
 } from '../model/types/notification';
 
 import { auth } from '../../../../json-server/firebase';
-import { fetchAllNotifications } from '../lib/utilities/fetchAllNotifications/fetchAllNotifications';
+import { fetchAllNotifications } from '../lib/utilities/getNotifications/fetchAllNotifications/fetchAllNotifications';
 import { subscribeToNotifications } from '../lib/utilities/subscribeToNotifications/subscribeToNotifications';
 import { ERROR_MESSAGES } from '../model/consts/errorMessages';
 import { handleRequestErrorMessage } from '@/shared/lib/firestore/handleRequestErrorMessage/handleRequestErrorMessage';

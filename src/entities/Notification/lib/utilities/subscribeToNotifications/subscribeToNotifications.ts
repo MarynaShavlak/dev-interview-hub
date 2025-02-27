@@ -1,7 +1,7 @@
 import { onSnapshot } from 'firebase/firestore';
 import { MaybeDrafted } from '@reduxjs/toolkit/dist/query/core/buildThunks';
-import { createUserNotificationQuery } from '../createUserNotificationsQuery/createUserNotificationsQuery';
-import { createUserPersonalNotificationQuery } from '../createUserPersonalNotificationQuery/createUserPersonalNotificationQuery';
+import { createUserNotificationQuery } from '../createQuery/createGeneralNotificationsQuery/createGeneralNotificationsQuery';
+import { createPersonalNotificationQuery } from '../createQuery/createPersonalNotificationQuery/createPersonalNotificationQuery';
 import { filterDismissedNotifications } from '../getNotifications/filterDismissedNotifications/filterDismissedNotifications';
 import { getPreviousPersonal } from '../getNotifications/getPreviousPersonal/getPreviousPersonal';
 import { getAllCachedSorted } from '../getNotifications/getAllCachedSorted/getAllCachedSorted';
@@ -26,8 +26,7 @@ export const subscribeToNotifications = (
         if (!userId) return undefined;
 
         const generalNotificationsQuery = createUserNotificationQuery();
-        const personalNotificationsQuery =
-            createUserPersonalNotificationQuery();
+        const personalNotificationsQuery = createPersonalNotificationQuery();
 
         unsubscribeGeneral = onSnapshot(
             generalNotificationsQuery,

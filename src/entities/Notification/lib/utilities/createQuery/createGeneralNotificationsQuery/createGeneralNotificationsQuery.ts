@@ -1,7 +1,7 @@
 import { orderBy, query, Query, where } from 'firebase/firestore';
 import { dataPoint } from '@/shared/lib/firestore/firestore';
-import { auth } from '../../../../../../json-server/firebase';
-import { GeneralNotification } from '../../../model/types/notification';
+import { auth } from '../../../../../../../json-server/firebase';
+import { GeneralNotification } from '../../../../model/types/notification';
 
 export const createUserNotificationQuery = (): Query<GeneralNotification> => {
     const user = auth.currentUser;
