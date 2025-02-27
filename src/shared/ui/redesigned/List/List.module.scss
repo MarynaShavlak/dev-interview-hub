@@ -24,8 +24,6 @@
     position: relative;
     margin-left: 20px;
 
-    //list-style: decimal;
-
     &::before {
         content: counter(custom-counter) ".";
         counter-increment: custom-counter;

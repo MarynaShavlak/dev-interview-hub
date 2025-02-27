@@ -4,6 +4,16 @@
     right: 5px;
 }
 
+.photoIcon {
+    fill: var(--icon-redesigned);
+    cursor: pointer;
+}
+
+.photoIconRedesigned {
+    fill: var(--secondary-color);
+    cursor: pointer;
+}
+
 .uploadFileCenteredWrapper {
     position: absolute;
     top: 50%;
@@ -49,14 +59,4 @@
             fill: var(--primary-color);
         }
     }
-}
-
-.photoIcon {
-    fill: var(--icon-redesigned);
-    cursor: pointer;
-}
-
-.photoIconRedesigned {
-    fill: var(--secondary-color);
-    cursor: pointer;
 }
