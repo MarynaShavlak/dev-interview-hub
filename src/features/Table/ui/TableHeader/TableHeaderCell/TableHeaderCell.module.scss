@@ -1,89 +1,82 @@
 .tr {
-  display: flex;
-  width: fit-content;
+    display: flex;
+    width: fit-content;
 }
 
 .thRedesigned {
-  border: 1px solid var(--icon-redesigned);
-  font: var(--font-s-redesigned);
-
+    border: 1px solid var(--icon-redesigned);
+    font: var(--font-s-redesigned);
 }
 
 .thDeprecated {
-  border: 1px solid var(--primary-color);
-  font: var(--font-s);
-
+    border: 1px solid var(--primary-color);
+    font: var(--font-s);
 }
 
 .th {
-  position: relative;
-  padding-left: 4px;
-  padding-right: 4px;
-
-  font-weight: 600;
-  text-align: center;
+    position: relative;
+    padding-left: 4px;
+    padding-right: 4px;
+    font-weight: 600;
+    text-align: center;
 }
 
 .headerTitle {
-  max-width: 80px;
+    max-width: 80px;
 }
 
-
 .optionActionBlock {
-  position: absolute;
-  top: -2px;
-  right:4px;
+    position: absolute;
+    top: -2px;
+    right: 4px;
 }
 
 .optionFilterActionBlock {
-  position: absolute;
-  top: 50%;
-  right: 0;
-  transform: translate(-8px, -50%);
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translate(-8px, -50%);
 }
 
 .optionSortActionBlock {
-  position: absolute;
-  top: 50%;
-  right: 0;
-  transform: translate(0, -50%);
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translate(0, -50%);
 }
 
-
 .resizer {
-  position: absolute;
-  opacity: 0;
-  top: 0;
-  right: 0;
-  height: 100%;
-  width: 5px;
-
-  cursor: col-resize;
-  user-select: none;
-  touch-action: none;
-  border-radius: 6px;
-  transition: opacity 300ms;
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 5px;
+    cursor: col-resize;
+    user-select: none;
+    touch-action: none;
+    border-radius: 6px;
+    transition: opacity 300ms;
 }
 
 .resizerRedesigned {
-  background-color: var(--accent-redesigned);
+    background-color: var(--accent-redesigned);
 }
 
 .resizerDeprecated {
-  background-color: var(--primary-color);
+    background-color: var(--primary-color);
 }
 
 .resizerRedesigned .isResizing {
-  background-color: var(--save-redesigned);
-  opacity: 1;
+    background-color: var(--save-redesigned);
+    opacity: 1;
 }
-.resizerDeprecated  .isResizing {
-  background-color: var(--inverted-secondary-color);
-  opacity: 1;
+
+.resizerDeprecated .isResizing {
+    background-color: var(--inverted-secondary-color);
+    opacity: 1;
 }
 
 *:hover > .resizer {
-  opacity: 1;
+    opacity: 1;
 }
-
-

@@ -1,24 +1,17 @@
 .Icon {
-
-        fill: var(--icon-redesigned);
-        color: var(--icon-redesigned);
-
-
+    fill: var(--icon-redesigned);
+    color: var(--icon-redesigned);
     transition: color 300ms ease;
 }
 
-
 .error {
-     fill: var(--cancel-redesigned);
+    fill: var(--cancel-redesigned);
     color: var(--cancel-redesigned);
-
 }
 
 .accent {
-
     fill: var(--accent-redesigned);
     color: var(--accent-redesigned);
-
 }
 
 .button {
@@ -28,12 +21,13 @@
     outline: none;
     background: none;
     cursor: pointer;
-    transition: color 300ms ease,  opacity 300ms ease;
+    transition: color 300ms ease, opacity 300ms ease;
 }
 
 .button:hover .Icon {
     color: var(--accent-redesigned);
 }
+
 .isDisabled {
     opacity: 0.3;
 }

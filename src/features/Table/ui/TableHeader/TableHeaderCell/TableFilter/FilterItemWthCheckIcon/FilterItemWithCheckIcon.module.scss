@@ -1,24 +1,25 @@
 .filterItemRedesigned {
-  transition: background-color 300ms;
-  padding: 5px 10px;
-  &:hover {
-    background: var(--light-bg-redesigned);
-  }
+    transition: background-color 300ms;
+    padding: 5px 10px;
+
+    &:hover {
+        background: var(--light-bg-redesigned);
+    }
 }
 
 .activeRedesigned {
-  background: var(--light-bg-redesigned);
+    background: var(--light-bg-redesigned);
 }
 
-
 .filterItemDeprecated {
-  transition: background-color 300ms;
-  padding: 5px 10px;
-  &:hover {
-    background: var(--bg-color);
-  }
+    transition: background-color 300ms;
+    padding: 5px 10px;
+
+    &:hover {
+        background: var(--bg-color);
+    }
 }
 
 .activeDeprecated {
-  background: var(--bg-color);
+    background: var(--bg-color);
 }

@@ -1,51 +1,50 @@
-.uploadZone {border: 1px dashed var(--accent-redesigned);}
+.uploadZone { border: 1px dashed var(--accent-redesigned); }
 
 .uploadZoneBtn {
-  border-radius: 34px;
-  cursor: pointer;
-  padding: 8px 16px;
-  transition: opacity 300ms ease-in, background 300ms ease, color 300ms ease-in;
-  font: var(--font-s-redesigned);
-  border: 2px solid var(--icon-redesigned);
-  color: var(--text-redesigned);
-  background: var(--light-bg-redesigned);
-  &:hover {
-    color: var(--accent-redesigned);
-  }
+    border-radius: 34px;
+    cursor: pointer;
+    padding: 8px 16px;
+    transition: opacity 300ms ease-in, background 300ms ease, color 300ms ease-in;
+    font: var(--font-s-redesigned);
+    border: 2px solid var(--icon-redesigned);
+    color: var(--text-redesigned);
+    background: var(--light-bg-redesigned);
+
+    &:hover {
+        color: var(--accent-redesigned);
+    }
 }
 
 .resetImageIcon {
-  position: absolute;
-  top: 0;
-  right: 0;
-  opacity:0;
-  transition:opacity 300ms ease-in;
-  fill: var(--cancel-redesigned);
+    position: absolute;
+    top: 0;
+    right: 0;
+    opacity: 0;
+    transition: opacity 300ms ease-in;
+    fill: var(--cancel-redesigned);
 }
-
-
 
 .uploadZoneBtnWrap {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  background-color: transparent;
-  cursor: pointer;
-  transition: background-color 300ms ease-in;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: transparent;
+    cursor: pointer;
+    transition: background-color 300ms ease-in;
 
-  .uploadZoneBtn {
-    opacity:0;
-  }
-  &:hover {
-    background-color: var(--skeleton-shadow);
     .uploadZoneBtn {
-      opacity:1;
-    }
-    .resetImageIcon {
-      opacity:1;
+        opacity: 0;
     }
 
-  }
+    &:hover {
+        background-color: var(--skeleton-shadow);
+
+        .uploadZoneBtn {
+            opacity: 1;
+        }
+
+        .resetImageIcon {
+            opacity: 1;
+        }
+    }
 }
-
-

@@ -1,16 +1,15 @@
 .options {
     background: var(--dark-bg-redesigned);
     position: absolute;
-
     z-index: 10000;
     border-radius: 12px;
     box-shadow: 4px 4px 8px var(--dark-bg-redesigned);
 }
 
 .visible {
-    position:relative;
+    position: relative;
 }
 
 .invisible {
-    position:static;
+    position: static;
 }

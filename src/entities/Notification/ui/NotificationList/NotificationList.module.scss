@@ -1,13 +1,12 @@
 .NotificationList {
     width: 100%;
-    min-width:500px;
+    min-width: 500px;
 }
 
 .NotificationListDeprecated {
     width: 100%;
-    min-width:550px;
+    min-width: 550px;
 }
-
 
 .headerRedesigned {
     padding: 8px;
@@ -15,13 +14,11 @@
     border-bottom: 1px solid var(--accent-redesigned);
 }
 
-
 .headerDeprecated {
     padding: 8px;
     padding-top: 0;
     border-bottom: 1px solid var(--primary-color);
 }
-
 
 .notificationsCountRedesigned {
     display: inline-flex;

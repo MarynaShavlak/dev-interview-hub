@@ -5,36 +5,31 @@
 }
 
 .NotificationItem {
-    position:relative;
+    position: relative;
+
 }
 
-
 .linkRedesigned:hover {
-background: linear-gradient(89.97deg, rgba(94, 211, 243, 0.3) 1.15%, rgba(94, 211, 243, 0) 99.97%);
+    background: linear-gradient(89.97deg, rgb(94 211 243 / 30%) 1.15%, rgb(94 211 243 / 0%) 99.97%);
 }
 
 .linkDeprecated:hover {
-   p {
+    p {
         color: var(--inverted-secondary-color);
     }
-
-
 }
-
-
 
 .notificationItemIcon {
     min-width: 40px;
     min-height: 40px;
+    align-self: flex-start;
 }
-
 
 .closeIconRedesigned {
     position: absolute;
     top: 0;
     right: 0;
     fill: var(--cancel-redesigned);
-
 }
 
 .closeIconDeprecated {
@@ -42,5 +37,4 @@ background: linear-gradient(89.97deg, rgba(94, 211, 243, 0.3) 1.15%, rgba(94, 21
     top: 0;
     right: 0;
     fill: var(--red-dark);
-
 }

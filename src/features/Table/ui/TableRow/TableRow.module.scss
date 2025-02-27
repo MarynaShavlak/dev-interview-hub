@@ -1,18 +1,16 @@
 .tr {
-  display: flex;
-  width: fit-content;
-  text-align: center;
-  z-index:1;
-
+    display: flex;
+    width: fit-content;
+    text-align: center;
+    z-index: 1;
 }
 
- .tdRedesigned {
-   border: 1px solid var(--icon-redesigned);
-   font: var(--font-s-redesigned);
-   }
-
+.tdRedesigned {
+    border: 1px solid var(--icon-redesigned);
+    font: var(--font-s-redesigned);
+}
 
 .tdDeprecated {
-  border: 1px solid var(--primary-color);
-  font: var(--font-s);
+    border: 1px solid var(--primary-color);
+    font: var(--font-s);
 }

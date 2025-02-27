@@ -24,7 +24,6 @@
     align-items: center;
     justify-content: center;
 
-
     &:hover:not(.disabled) {
         color: var(--accent-redesigned);
 
@@ -49,8 +48,6 @@
     border-radius: 34px;
 }
 
-
-
 .outline {
     background: none;
     border: 2px solid var(--icon-redesigned);
@@ -60,6 +57,7 @@
         border: 2px solid var(--accent-redesigned);
     }
 }
+
 .accent {
     background-color: var(--accent-redesigned);
     border: 2px solid var(--accent-redesigned);
@@ -91,15 +89,15 @@
     }
 }
 
-
 .link {
     padding: 0;
     border: none;
     background: none;
-    outline: none;    cursor: pointer;
+    outline: none;
+    cursor: pointer;
     color: var(--accent-redesigned);
 
-        &:hover {
+    &:hover {
         text-decoration: underline;
         text-decoration-color: var(--accent-redesigned);
     }
@@ -152,5 +150,3 @@
 .max {
     width: 100%;
 }
-
-

@@ -1,66 +1,62 @@
-
 .uploadFileAbsoluteWrapper {
-  position: absolute;
-  bottom: 12px;
-  right: 5px;
-
+    position: absolute;
+    bottom: 12px;
+    right: 5px;
 }
 
-
-
 .uploadFileCenteredWrapper {
-  position:absolute;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%);
-
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .uploadInput {
-  display: none;
-  }
+    display: none;
+}
 
-.uploadLabel{
-  position: relative;
-  background: var(--light-bg-redesigned);
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  border: 1px solid var(--icon-redesigned);
-  overflow: hidden;
-  cursor: pointer;
-  z-index: 2;
-  &:hover {
-    .photoIcon {
-      fill: var(--accent-redesigned);
+.uploadLabel {
+    position: relative;
+    background: var(--light-bg-redesigned);
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1px solid var(--icon-redesigned);
+    overflow: hidden;
+    cursor: pointer;
+    z-index: 2;
+
+    &:hover {
+        .photoIcon {
+            fill: var(--accent-redesigned);
+        }
     }
-  }
 }
 
 .uploadLabelRedesigned {
-  position: relative;
-  background: var(--bg-color);
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  border: 1px solid var( --primary-color);
-  overflow: hidden;
-  cursor: pointer;
-  z-index: 2;
-  &:hover {
-    .photoIcon {
-      fill: var( --primary-color);
+    position: relative;
+    background: var(--bg-color);
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1px solid var(--primary-color);
+    overflow: hidden;
+    cursor: pointer;
+    z-index: 2;
+
+    &:hover {
+        .photoIcon {
+            fill: var(--primary-color);
+        }
     }
-  }
 }
 
 .photoIcon {
-  fill: var(--icon-redesigned);
-  cursor: pointer;
+    fill: var(--icon-redesigned);
+    cursor: pointer;
 }
 
-
-.photoIconRedesigned  {
-  fill: var(--secondary-color);
-  cursor: pointer;
+.photoIconRedesigned {
+    fill: var(--secondary-color);
+    cursor: pointer;
 }

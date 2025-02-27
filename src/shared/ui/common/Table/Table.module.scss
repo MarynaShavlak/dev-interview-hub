@@ -1,61 +1,57 @@
 .tableRedesigned {
-  border-collapse: collapse;
-  border-radius: 20px;
-  border:  1px solid var(--light-bg-redesigned);
-
-  thead {
-    background-color: var(--light-bg-redesigned);
-  }
-
-  th, td {
+    border-collapse: collapse;
+    border-radius: 20px;
     border: 1px solid var(--light-bg-redesigned);
-    padding: 8px;
-    text-align: left;
-  }
-  th:last-child{
-    width: 90px;
-  }
 
-  td {
-    width: fit-content;
+    thead {
+        background-color: var(--light-bg-redesigned);
+    }
 
-  }
+    th,
+    td {
+        border: 1px solid var(--light-bg-redesigned);
+        padding: 8px;
+        text-align: left;
+    }
 
+    th:last-child {
+        width: 90px;
+    }
 
-  tr:hover {
-    background-color: var(--light-bg-redesigned);
-    cursor: pointer;
-  }
+    td {
+        width: fit-content;
+    }
 
-
+    tr:hover {
+        background-color: var(--light-bg-redesigned);
+        cursor: pointer;
+    }
 }
 
 .tableDeprecated {
-  border-collapse: collapse;
+    border-collapse: collapse;
 
-  thead {
-    background-color: var(--card-bg);
-  }
+    thead {
+        background-color: var(--card-bg);
+    }
 
-  th, td {
-    border: 1px solid var(--primary-color);
-    padding: 8px;
-    text-align: left;
-  }
-  th:last-child{
-    width: 90px;
-  }
+    th,
+    td {
+        border: 1px solid var(--primary-color);
+        padding: 8px;
+        text-align: left;
+    }
 
-  td {
-    width: fit-content;
+    th:last-child {
+        width: 90px;
+    }
 
-  }
+    td {
+        width: fit-content;
+    }
 
-
-  tr:hover {
-    background-color: var(--card-bg);
-    cursor: pointer;
-  }
-
+    tr:hover {
+        background-color: var(--card-bg);
+        cursor: pointer;
+    }
 }
-

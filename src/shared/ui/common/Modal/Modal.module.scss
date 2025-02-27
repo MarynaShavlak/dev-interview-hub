@@ -12,7 +12,8 @@
     align-items: center;
 }
 
-.contentDeprecated, .contentRedesigned {
+.contentDeprecated,
+.contentRedesigned {
     padding: 20px;
     transition: 0.3s transform;
     transform: scale(0.5);
@@ -24,9 +25,8 @@
     border-radius: 12px;
 }
 
-
 .modalRedesigned {
-    .contentRedesigned{
+    .contentRedesigned {
         background: var(--light-bg-redesigned);
     }
 }
@@ -42,26 +42,25 @@
     opacity: 1;
     z-index: var(--modal-z-index);
 
-    .contentDeprecated, .contentRedesigned  {
+    .contentDeprecated,
+    .contentRedesigned {
         transform: scale(1);
     }
 }
 
 .isClosing {
-    .contentDeprecated, .contentRedesigned  {
+    .contentDeprecated,
+    .contentRedesigned {
         transform: scale(0.2);
     }
 }
-
 
 .closeIconRedesigned {
     position: absolute;
     top: 0;
     right: 0;
     fill: var(--cancel-redesigned);
-
 }
-
 
 .closeIconDeprecated {
     position: absolute;

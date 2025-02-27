@@ -12,11 +12,8 @@
 
 .passwordInputWrapper {
     position: relative;
-    width:100%;
-
+    width: 100%;
 }
-
-
 
 .passwordInputLink {
     position: absolute;
@@ -28,30 +25,24 @@
     align-self: center;
 }
 
-
 .formDivider {
-
     &::before,
     &::after {
         content: "";
-        height: 1px ;
+        height: 1px;
         margin: 0 10px;
-        flex:1;
+        flex: 1;
         background-color: var(--accent-redesigned);
-
     }
 }
-
 
 .formDividerDeprecated {
     &::before,
     &::after {
         content: "";
-        height: 1px ;
+        height: 1px;
         margin: 0 10px;
-        flex:1;
+        flex: 1;
         background-color: var(--primary-color);
-
     }
 }
-

@@ -1,17 +1,16 @@
 .cancelIconWrap {
-  border-radius: 50%;
-  background-color: var(--cancel-redesigned-alfa);
-  width:40px;
-  height:40px;
+    border-radius: 50%;
+    background-color: var(--cancel-redesigned-alfa);
+    width: 40px;
+    height: 40px;
 }
 
 .cancelIcon {
- stroke: var(--cancel-redesigned);
-  fill:var(--cancel-redesigned);
-  color: var(--cancel-redesigned);
+    stroke: var(--cancel-redesigned);
+    fill: var(--cancel-redesigned);
+    color: var(--cancel-redesigned);
 }
 
-
 .confirmContent {
-  min-width: 400px;
+    min-width: 400px;
 }

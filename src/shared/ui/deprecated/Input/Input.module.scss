@@ -1,15 +1,14 @@
 .wrap {
-    position:relative;
-
+    position: relative;
 }
+
 .InputWrapper {
     display: flex;
-    width:100%;
-  }
+    width: 100%;
+}
 
 .placeholder {
     margin-right: 5px;
-
 }
 
 .input {
@@ -58,36 +57,29 @@
     }
 }
 
-
 .withError {
     border-bottom: 2px solid var(--red-dark);
     border-top: 2px solid var(--red-dark);
 }
-.withErrorPlaceholder {
-   color: var(--red-dark);
-}
 
+.withErrorPlaceholder {
+    color: var(--red-dark);
+}
 
 .isLimitExceeded {
     color: var(--red-dark);
 }
 
-
 .InputLimit {
     font-size: 12px;
 }
 
-
 .limitWrap {
-    position:absolute;
-    top:-20px;
+    position: absolute;
+    top: -20px;
 }
 
 .withBorder {
     border: 1px solid var(--primary-color);
-    padding:5px;
-
-
-
+    padding: 5px;
 }
-

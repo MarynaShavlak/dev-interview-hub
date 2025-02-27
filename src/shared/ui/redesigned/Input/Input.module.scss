@@ -47,7 +47,6 @@
     border-radius: 0;
 }
 
-
 .focused {
     border: 2px solid var(--accent-redesigned);
 
@@ -56,17 +55,15 @@
         color: var(--accent-redesigned);
     }
 }
+
 .focused.withError {
     border: 2px solid var(--cancel-redesigned);
 }
 
-
-.clear.focused  {
+.clear.focused {
     border: none;
     background-color: var(--light-bg-redesigned);
-
 }
-
 
 .input {
     border: none;
@@ -88,9 +85,6 @@
     color: var(--cancel-redesigned);
 }
 
-
 .InputLimit {
     font-size: 12px;
 }
-
-

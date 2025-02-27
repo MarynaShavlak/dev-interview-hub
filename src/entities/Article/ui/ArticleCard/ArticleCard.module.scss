@@ -66,9 +66,6 @@
     .SkeletonCard {
         width: 100%;
     }
-
-
-
 }
 
 .ArticleListItemRedesigned {
@@ -82,7 +79,7 @@
         }
 
         .card {
-           width:240px;
+            width: 240px;
             height: 350px;
             overflow: hidden;
         }
@@ -93,7 +90,6 @@
             min-height: 140px;
             max-height: 140px;
         }
-
 
         .info {
             padding: 8px 8px 16px;
@@ -135,22 +131,17 @@
         }
     }
 
-
-
     .SkeletonCard {
         width: 100%;
     }
 }
 
-
 .SEQUENCE {
-    cursor:pointer;
+    cursor: pointer;
     border: 1px solid transparent;
-    transition:  border-color 300ms ease;
+    transition: border-color 300ms ease;
 
     &:hover {
-
-        border: 1px solid var(--accent-redesigned)
+        border: 1px solid var(--accent-redesigned);
     }
 }
-

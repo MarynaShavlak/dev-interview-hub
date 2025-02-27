@@ -1,34 +1,23 @@
 .tableRedesigned {
-  border: 1px solid var(--icon-redesigned);
-
+    border: 1px solid var(--icon-redesigned);
 }
 
-
 .tableDeprecated {
-  border: 1px solid var(--primary-color);
-
+    border: 1px solid var(--primary-color);
 }
 
 .tableAvatar {
-  align-self: center;
+    align-self: center;
 }
 
-
 .tableWrap {
-//max-width:856px;
-  min-width:856px;
-  min-height: 400px;
-  overflow-x: hidden;
-  overflow-y: hidden;
-
-
+    //max-width:856px;
+    min-width: 856px;
+    min-height: 400px;
+    overflow-x: hidden;
+    overflow-y: hidden;
 }
 
 .contentWrap {
-  padding-right: 10px;
+    padding-right: 10px;
 }
-
-
-
-
-

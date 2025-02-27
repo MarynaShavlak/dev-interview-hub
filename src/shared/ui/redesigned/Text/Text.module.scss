@@ -1,14 +1,11 @@
 .title {
     color: var(--text-redesigned);
     transition: opacity 300ms ease;
-
-
 }
 
 .text {
     color: var(--text-redesigned);
     transition: opacity 300ms ease;
-
 }
 
 .error {
@@ -31,7 +28,6 @@
     }
 }
 
-
 .secondary {
     .title {
         color: var(--hint-redesigned);
@@ -41,9 +37,6 @@
         color: var(--hint-redesigned);
     }
 }
-
-
-
 
 .left {
     text-align: left;
@@ -101,10 +94,10 @@
     }
 }
 
-
 .bold.title {
     font-weight: 700;
 }
+
 //
 //
 //.bold.text{

@@ -2,12 +2,9 @@
     height: 100%;
 }
 
-
-
-
 .FiltersSkeletonContainer {
     width: 240px;
-    height:538px;
+    height: 538px;
 }
 
 .ViewSkeletonContainer {
@@ -15,11 +12,10 @@
     height: 48px;
 }
 
-
 //________________________________
 .pagList {
     display: flex;
-    gap:8px;
+    gap: 8px;
 }
 
 .pagWrap {
@@ -28,32 +24,33 @@
 }
 
 .pagItem {
-
     background-color: transparent;
     padding: 2px;
     border-radius: 10px;
-    border:1px solid var(--light-bg-redesigned);
+    border: 1px solid var(--light-bg-redesigned);
     width: 30px;
     height: 40px;
+
     &:hover {
-      background-color: var(--light-bg-redesigned);
+        background-color: var(--light-bg-redesigned);
     }
 }
 
 .pagSelectedItem {
     background-color: var(--accent-redesigned);
-    border:1px solid var(--accent-redesigned);
+    border: 1px solid var(--accent-redesigned);
+
     &:hover {
-       background-color: var(--accent-redesigned);
+        background-color: var(--accent-redesigned);
     }
+
     .pagLink {
         color: var(--light-bg-redesigned);
     }
-
 }
 
 .pagLink {
-    display:flex;
+    display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
@@ -61,9 +58,9 @@
     color: var(--text-redesigned);
 }
 
-
 .pagDisabledItem {
-opacity: 0.5;
+    opacity: 0.5;
+
     &:hover {
         background-color: transparent;
     }
