@@ -1,22 +1,18 @@
-import { deleteDoc } from 'firebase/firestore';
 import { firestoreApi } from '@/shared/api/rtkApi';
 import {
     GeneralNotification,
     PersonalNotification,
 } from '../model/types/notification';
 
-import { getDocRefByField } from '@/shared/lib/firestore/getDocRefByField/getDocRefByField';
 import { auth } from '../../../../json-server/firebase';
 import { fetchAllNotifications } from '../lib/utilities/fetchAllNotifications/fetchAllNotifications';
 import { subscribeToNotifications } from '../lib/utilities/subscribeToNotifications/subscribeToNotifications';
-import { fetchCollectionDocsData } from '@/shared/lib/firestore/fetchCollectionDocsData/fetchCollectionDocsData';
-import { filterDismissedNotifications } from '../lib/utilities/filterDismissedNotifications/filterDismissedNotifications';
-import { deleteOneGeneralNotificationForUser } from '../lib/utilities/deleteOneGeneralNotificationForUser/deleteOneGeneralNotificationForUser';
-import { updateNotificationsDismissedByUser } from '../lib/utilities/updateNotificationsDismissedByUser/updateNotificationsDismissedByUser';
 import { ERROR_MESSAGES } from '../model/consts/errorMessages';
 import { handleRequestErrorMessage } from '@/shared/lib/firestore/handleRequestErrorMessage/handleRequestErrorMessage';
-import { fetchCollectionDocs } from '@/shared/lib/firestore/fetchCollectionDocs/fetchCollectionDocs';
-import { deleteAllPersonalNotificationDocsForUser } from '../lib/utilities/deleteAllPersonalNotificationDocsForUser/deleteAllPersonalNotificationDocsForUser';
+import { dismissGeneralNotification } from '../lib/utilities/handleNotificationsDelete/dismissGeneralNotification/dismissGeneralNotification';
+import { deleteAllGeneralNotifications } from '../lib/utilities/handleNotificationsDelete/deleteAllGeneralNotifications/deleteAllGeneralNotifications';
+import { dismissPersonalNotification } from '../lib/utilities/handleNotificationsDelete/dismissPersonalNotification/dismissPersonalNotification';
+import { deleteAllPersonalNotifications } from '../lib/utilities/handleNotificationsDelete/deleteAllPersonalNotifications/deleteAllPersonalNotifications';
 
 const notificationApi = firestoreApi
     .enhanceEndpoints({
@@ -78,23 +74,10 @@ const notificationApi = firestoreApi
             >({
                 async queryFn({ notificationId, userId }) {
                     try {
-                        const notificationDocRef =
-                            await getDocRefByField<GeneralNotification>(
-                                'notifications/general/messages',
-                                'id',
-                                notificationId,
-                            );
-
-                        if (!notificationDocRef) {
-                            return { error: 'Notification not found' };
-                        }
-
-                        if (notificationDocRef) {
-                            await deleteOneGeneralNotificationForUser(
-                                notificationDocRef,
-                                userId,
-                            );
-                        }
+                        await dismissGeneralNotification(
+                            notificationId,
+                            userId,
+                        );
 
                         return { data: undefined };
                     } catch (error) {
@@ -113,26 +96,7 @@ const notificationApi = firestoreApi
             >({
                 async queryFn({ userId }) {
                     try {
-                        const allGeneralNotifications =
-                            await fetchCollectionDocsData<GeneralNotification>(
-                                'notifications/general/messages',
-                            );
-
-                        const notificationsToUpdate =
-                            filterDismissedNotifications(
-                                allGeneralNotifications,
-                                userId,
-                            );
-
-                        if (notificationsToUpdate.length === 0) {
-                            return { data: undefined };
-                        }
-
-                        await updateNotificationsDismissedByUser(
-                            notificationsToUpdate,
-                            userId,
-                        );
-
+                        await deleteAllGeneralNotifications(userId);
                         return { data: undefined };
                     } catch (error) {
                         return handleRequestErrorMessage(
@@ -150,23 +114,10 @@ const notificationApi = firestoreApi
             >({
                 async queryFn({ notificationId, userId }) {
                     try {
-                        const notificationDocRef =
-                            await getDocRefByField<PersonalNotification>(
-                                `notifications/personal/${userId}`,
-                                'id',
-                                notificationId,
-                            );
-
-                        if (!notificationDocRef) {
-                            return handleRequestErrorMessage(
-                                ERROR_MESSAGES.PERSONAL_NOTIFICATION_NOT_FOUND,
-                            );
-                        }
-
-                        if (notificationDocRef) {
-                            await deleteDoc(notificationDocRef);
-                        }
-
+                        await dismissPersonalNotification(
+                            notificationId,
+                            userId,
+                        );
                         return { data: undefined };
                     } catch (error) {
                         return handleRequestErrorMessage(
@@ -183,21 +134,7 @@ const notificationApi = firestoreApi
             >({
                 async queryFn({ userId }) {
                     try {
-                        const notificationDocs =
-                            await fetchCollectionDocs<PersonalNotification>(
-                                `notifications/personal/${userId}`,
-                            );
-
-                        if (notificationDocs.empty) {
-                            return {
-                                error: 'No personal notifications found for the user.',
-                            };
-                        }
-
-                        await deleteAllPersonalNotificationDocsForUser(
-                            notificationDocs,
-                        );
-
+                        await deleteAllPersonalNotifications(userId);
                         return { data: undefined };
                     } catch (error) {
                         return handleRequestErrorMessage(
