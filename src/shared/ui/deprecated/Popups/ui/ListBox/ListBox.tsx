@@ -62,7 +62,7 @@ export function ListBox<T extends string>(props: ListBoxProps<T>) {
     );
     return (
         <HStack gap="4" max={max}>
-            {label && <span>{`${label}>`}</span>}
+            {label && <span className={cls.label}>{`${label}>`}</span>}
             <HListBox
                 disabled={readonly}
                 as="div"
