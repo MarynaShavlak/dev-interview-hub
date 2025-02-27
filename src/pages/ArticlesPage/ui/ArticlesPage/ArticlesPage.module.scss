@@ -35,19 +35,6 @@
     }
 }
 
-.pagSelectedItem {
-    background-color: var(--accent-redesigned);
-    border: 1px solid var(--accent-redesigned);
-
-    &:hover {
-        background-color: var(--accent-redesigned);
-    }
-
-    .pagLink {
-        color: var(--light-bg-redesigned);
-    }
-}
-
 .pagLink {
     display: flex;
     align-items: center;
@@ -62,5 +49,18 @@
 
     &:hover {
         background-color: transparent;
+    }
+}
+
+.pagSelectedItem {
+    background-color: var(--accent-redesigned);
+    border: 1px solid var(--accent-redesigned);
+
+    &:hover {
+        background-color: var(--accent-redesigned);
+    }
+
+    .pagLink {
+        color: var(--light-bg-redesigned);
     }
 }
