@@ -1,10 +1,4 @@
-import {
-    arrayUnion,
-    collection,
-    deleteDoc,
-    getDocs,
-    updateDoc,
-} from 'firebase/firestore';
+import { collection, deleteDoc, getDocs } from 'firebase/firestore';
 import { firestoreApi } from '@/shared/api/rtkApi';
 import {
     GeneralNotification,
@@ -16,6 +10,9 @@ import { auth, firestore } from '../../../../json-server/firebase';
 import { fetchAllNotifications } from '../lib/utilities/fetchAllNotifications/fetchAllNotifications';
 import { subscribeToNotifications } from '../lib/utilities/subscribeToNotifications/subscribeToNotifications';
 import { fetchCollection } from '@/shared/lib/firestore/fetchCollection/fetchCollection';
+import { filterDismissedNotifications } from '../lib/utilities/filterDismissedNotifications/filterDismissedNotifications';
+import { deleteOneGeneralNotificationForUser } from '../lib/utilities/deleteOneGeneralNotificationForUser/deleteOneGeneralNotificationForUser';
+import { updateNotificationsDismissedByUser } from '../lib/utilities/updateNotificationsDismissedByUser/updateNotificationsDismissedByUser';
 
 const notificationApi = firestoreApi
     .enhanceEndpoints({
@@ -85,9 +82,10 @@ const notificationApi = firestoreApi
                         }
 
                         if (notificationDocRef) {
-                            await updateDoc(notificationDocRef, {
-                                dismissedBy: arrayUnion(userId),
-                            });
+                            await deleteOneGeneralNotificationForUser(
+                                notificationDocRef,
+                                userId,
+                            );
                         }
 
                         return { data: undefined };
@@ -110,39 +108,20 @@ const notificationApi = firestoreApi
                                 'notifications/general/messages',
                             );
 
-                        // Filter notifications that don't have userId in dismissedBy array
                         const notificationsToUpdate =
-                            allGeneralNotifications.filter(
-                                (notification) =>
-                                    !notification.dismissedBy ||
-                                    !notification.dismissedBy.includes(userId),
+                            filterDismissedNotifications(
+                                allGeneralNotifications,
+                                userId,
                             );
 
                         if (notificationsToUpdate.length === 0) {
-                            return { data: undefined }; // All notifications already dismissed
+                            return { data: undefined };
                         }
 
-                        // Update each notification to include userId in dismissedBy
-                        const updatePromises = notificationsToUpdate
-                            .map(async (notification) => {
-                                const docRef =
-                                    await getDocRefByField<GeneralNotification>(
-                                        'notifications/general/messages',
-                                        'id',
-                                        notification.id,
-                                    );
-
-                                if (docRef) {
-                                    return updateDoc(docRef, {
-                                        dismissedBy: arrayUnion(userId),
-                                    });
-                                }
-                                return null;
-                            })
-                            .filter(Boolean); // Filter out null promises
-
-                        // Execute all updates and wait for them to complete
-                        await Promise.allSettled(updatePromises);
+                        await updateNotificationsDismissedByUser(
+                            notificationsToUpdate,
+                            userId,
+                        );
 
                         return { data: undefined };
                     } catch (error) {
