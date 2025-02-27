@@ -144,12 +144,12 @@
 
 
 .SEQUENCE {
-       cursor:pointer;
+    cursor:pointer;
     border: 1px solid transparent;
-    transition: transform 300ms ease, border-color 300ms ease;
-    z-index:4;
+    transition:  border-color 300ms ease;
+
     &:hover {
-        transform: scale(1.1);
+
         border: 1px solid var(--accent-redesigned)
     }
 }
