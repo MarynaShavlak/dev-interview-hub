@@ -40,7 +40,7 @@ export const CurrencySelect = memo(
             items: options,
             onChange: onChangeHandler,
             readonly,
-            direction: 'top right' as const,
+            direction: 'bottom left' as const,
         };
 
         return (
