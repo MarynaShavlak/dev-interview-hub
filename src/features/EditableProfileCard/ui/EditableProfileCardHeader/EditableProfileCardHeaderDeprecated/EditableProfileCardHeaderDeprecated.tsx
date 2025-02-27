@@ -57,6 +57,7 @@ export const EditableProfileCardHeaderDeprecated = memo(
                                 <Button
                                     theme={ButtonTheme.OUTLINE}
                                     onClick={onSave}
+                                    disabled={hasInputErrors}
                                     data-testid="EditableProfileCardHeader.SaveButton"
                                 >
                                     {t('Зберегти')}
