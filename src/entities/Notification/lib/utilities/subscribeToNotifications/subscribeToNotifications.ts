@@ -10,6 +10,8 @@ import {
     GeneralNotification,
     PersonalNotification,
 } from '../../../model/types/notification';
+import { handleRequestErrorMessage } from '@/shared/lib/firestore/handleRequestErrorMessage/handleRequestErrorMessage';
+import { ERROR_MESSAGES } from '../../../model/consts/errorMessages';
 
 export const subscribeToNotifications = (
     updateCachedData: (
@@ -61,7 +63,7 @@ export const subscribeToNotifications = (
             },
         );
     } catch (error) {
-        console.error('Error in all notifications subscription:', error);
+        handleRequestErrorMessage(ERROR_MESSAGES.SUBSCRIPTIONS_ERROR, error);
     }
 
     return { unsubscribeGeneral, unsubscribePersonal };

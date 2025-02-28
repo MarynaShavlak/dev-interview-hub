@@ -10,4 +10,5 @@ export const ERROR_MESSAGES = {
     NO_PERSONAL_NOTIFICATIONS: 'No personal notifications found for the user.',
     NOTIFICATION_NOT_FOUND: 'Notification not found.',
     PERSONAL_NOTIFICATION_NOT_FOUND: 'Personal notification not found.',
+    SUBSCRIPTIONS_ERROR: 'Error in all notifications subscription.',
 };

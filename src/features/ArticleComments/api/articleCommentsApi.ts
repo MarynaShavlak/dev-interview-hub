@@ -10,6 +10,9 @@ import { createArticleCommentsQuery } from '../lib/utilities/createArticleCommen
 import { fetchQueryResults } from '@/shared/lib/firestore/fetchQueryResults/fetchQueryResults';
 import { createCommentsByArticleIdsQuery } from '../lib/utilities/createCommentsByArticleIdsQuery/createCommentsByArticleIdsQuery';
 import { deleteDocFromFirestore } from '@/shared/lib/firestore/deleteDocFromFirestore/deleteDocFromFirestore';
+import { fetchCommentsForArticle } from '../lib/utilities/fetchCommentsForArticle/fetchCommentsForArticle';
+import { ERROR_MESSAGES } from '../model/consts/errorMessages';
+import { handleRequestErrorMessage } from '@/shared/lib/firestore/handleRequestErrorMessage/handleRequestErrorMessage';
 
 export const articlesCommentsFirebaseApi = firestoreApi
     .enhanceEndpoints({ addTagTypes: ['ArticleComments'] })
@@ -60,25 +63,25 @@ export const articlesCommentsFirebaseApi = firestoreApi
             getCommentsByArticleId: build.query<ArticleComment[], string>({
                 providesTags: [{ type: 'ArticleComments', id: 'commentId' }],
                 keepUnusedDataFor: 3600,
-                async queryFn(articleId) {
+                async queryFn(articleId: string) {
                     try {
-                        const commentsQuery =
-                            createArticleCommentsQuery(articleId);
-
-                        const comments =
-                            await fetchQueryResults<ArticleComment>(
-                                commentsQuery,
+                        if (!articleId) {
+                            const error = new Error(
+                                ERROR_MESSAGES.ARTICLE_NOT_FOUND,
                             );
+                            return { error };
+                        }
+                        const comments =
+                            await fetchCommentsForArticle(articleId);
 
                         return { data: comments };
                     } catch (error) {
-                        console.error(
-                            'Error fetching comments by article ID:',
+                        return handleRequestErrorMessage(
+                            ERROR_MESSAGES.COMMENTS_BY_ARTICLE_ID_FETCH_FAIL(
+                                articleId,
+                            ),
                             error,
                         );
-                        return {
-                            error: 'Error fetching comments by article ID',
-                        };
                     }
                 },
                 async onCacheEntryAdded(
