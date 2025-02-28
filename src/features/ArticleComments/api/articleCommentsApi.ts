@@ -102,6 +102,23 @@ export const articlesCommentsFirebaseApi = firestoreApi
             >({
                 providesTags: ['ArticleComments'],
                 keepUnusedDataFor: 3600,
+
+                async onQueryStarted(articleIds, { dispatch, queryFulfilled }) {
+                    try {
+                        // If articleIds is empty, you may want to skip the request
+                        if (!articleIds || articleIds.length === 0) {
+                            // Optionally dispatch an action or return early if no valid ids
+                            return { data: [] };
+                        }
+
+                        // Handle the query result when the request is successful
+                        const { data } = await queryFulfilled;
+                        // Optionally update state or do something else with the fetched data
+                    } catch (error) {
+                        // Handle the error here if needed, like dispatching additional actions
+                        console.error(`Error fetching comments: ${error}`);
+                    }
+                },
                 async queryFn(articleIds) {
                     try {
                         if (!articleIds || articleIds.length === 0)
@@ -118,6 +135,7 @@ export const articlesCommentsFirebaseApi = firestoreApi
                         );
                     }
                 },
+
                 async onCacheEntryAdded(
                     articleIds,
                     { updateCachedData, cacheDataLoaded, cacheEntryRemoved },
