@@ -1,11 +1,10 @@
-import { getDoc, onSnapshot, query } from 'firebase/firestore';
+import { getDoc, onSnapshot } from 'firebase/firestore';
 import { firestoreApi } from '@/shared/api/firestoreApi';
 
 import { fetchCollectionDocsData } from '@/shared/lib/firestore/fetchCollectionDocsData/fetchCollectionDocsData';
 import { ArticleComment } from '../model/types/articleComment';
 import { User } from '@/entities/User';
 import { addDocToFirestore } from '@/shared/lib/firestore/addDocToFirestore/addDocToFirestore';
-import { dataPoint } from '@/shared/lib/firestore/firestore';
 import { createArticleCommentsQuery } from '../lib/utilities/createArticleCommentsQuery/createArticleCommentsQuery';
 import { fetchQueryResults } from '@/shared/lib/firestore/fetchQueryResults/fetchQueryResults';
 import { createCommentsByArticleIdsQuery } from '../lib/utilities/createCommentsByArticleIdsQuery/createCommentsByArticleIdsQuery';
@@ -15,6 +14,7 @@ import { ERROR_MESSAGES } from '../model/consts/errorMessages';
 import { handleRequestErrorMessage } from '@/shared/lib/firestore/handleRequestErrorMessage/handleRequestErrorMessage';
 
 import { subscribeToArticleComments } from '../lib/utilities/subscribeToArticleComments/subscribeToArticleComments';
+import { subscribeToAllArticlesComments } from '../lib/utilities/subscribeToAllArticlesComments/subscribeToAllArticlesComments';
 
 export const articlesCommentsFirebaseApi = firestoreApi
     .enhanceEndpoints({ addTagTypes: ['ArticleComments'] })
@@ -31,8 +31,10 @@ export const articlesCommentsFirebaseApi = firestoreApi
                             );
                         return { data: comments };
                     } catch (error) {
-                        console.error('Error fetching comments:', error);
-                        return { error };
+                        return handleRequestErrorMessage(
+                            ERROR_MESSAGES.COMMENTS_FETCH_FAIL,
+                            error,
+                        );
                     }
                 },
                 async onCacheEntryAdded(
@@ -40,21 +42,8 @@ export const articlesCommentsFirebaseApi = firestoreApi
                     { updateCachedData, cacheDataLoaded, cacheEntryRemoved },
                 ) {
                     await cacheDataLoaded;
-                    let unsubscribe;
-                    try {
-                        const collectionRef =
-                            dataPoint<ArticleComment>('comments');
-                        const queryRef = query(collectionRef);
-                        unsubscribe = onSnapshot(queryRef, (snapshot) => {
-                            updateCachedData((draft) => {
-                                const result = snapshot?.docs?.map((doc) =>
-                                    doc.data(),
-                                ) as ArticleComment[];
-                            });
-                        });
-                    } catch (error) {
-                        console.error('Error in comments!', error);
-                    }
+                    const unsubscribe =
+                        subscribeToAllArticlesComments(updateCachedData);
 
                     await cacheEntryRemoved;
                     if (unsubscribe) {
