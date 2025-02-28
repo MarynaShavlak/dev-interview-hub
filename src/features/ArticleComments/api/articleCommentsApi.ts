@@ -14,6 +14,8 @@ import { fetchCommentsForArticle } from '../lib/utilities/fetchCommentsForArticl
 import { ERROR_MESSAGES } from '../model/consts/errorMessages';
 import { handleRequestErrorMessage } from '@/shared/lib/firestore/handleRequestErrorMessage/handleRequestErrorMessage';
 
+import { subscribeToArticleComments } from '../lib/utilities/subscribeToArticleComments/subscribeToArticleComments';
+
 export const articlesCommentsFirebaseApi = firestoreApi
     .enhanceEndpoints({ addTagTypes: ['ArticleComments'] })
     .injectEndpoints({
@@ -89,26 +91,13 @@ export const articlesCommentsFirebaseApi = firestoreApi
                     { updateCachedData, cacheDataLoaded, cacheEntryRemoved },
                 ) {
                     await cacheDataLoaded;
-                    let unsubscribe;
-                    try {
-                        const commentsQuery =
-                            createArticleCommentsQuery(articleId);
-
-                        unsubscribe = onSnapshot(commentsQuery, (snapshot) => {
-                            updateCachedData((draft) => {
-                                const result = snapshot?.docs?.map((doc) =>
-                                    doc.data(),
-                                ) as ArticleComment[];
-                            });
-                        });
-                    } catch (error) {
-                        console.error('Error in comments snapshot:', error);
-                    }
+                    const unsubscribe = subscribeToArticleComments(
+                        updateCachedData,
+                        articleId,
+                    );
 
                     await cacheEntryRemoved;
-                    if (unsubscribe) {
-                        unsubscribe();
-                    }
+                    if (unsubscribe) unsubscribe();
                 },
             }),
             getCommentsByArticleIdsList: build.query<

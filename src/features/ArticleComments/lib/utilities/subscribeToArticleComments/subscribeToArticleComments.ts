@@ -29,5 +29,5 @@ export const subscribeToArticleComments = (
         handleRequestErrorMessage(ERROR_MESSAGES.COMMENTS_SNAPSHOT_FAIL, error);
     }
 
-    return { unsubscribe };
+    return unsubscribe;
 };
