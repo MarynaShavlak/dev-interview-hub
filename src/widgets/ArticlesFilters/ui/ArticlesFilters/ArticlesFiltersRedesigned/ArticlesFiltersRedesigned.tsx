@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next';
 
 import { SearchBox } from 'react-instantsearch';
 
+import { memo } from 'react';
 import { ArticlesFiltersProps } from '../ArticlesFilters';
 import { Icon } from '@/shared/ui/redesigned/Icon';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
@@ -13,6 +14,12 @@ import CloseIcon from '@/shared/assets/icons/close.svg';
 import { ArticleCategoryTabs } from '@/features/ArticleCategoryTabs';
 import { ArticleSortSelector } from '@/features/ArticleSortSelector';
 import { ArticleSortField } from '@/entities/Article';
+
+const ResetIconComponent = memo(() => (
+    <Icon Svg={CloseIcon} className={cls.ResetIcon} />
+));
+
+const SubmitIconComponent = memo(() => <Icon Svg={SearchIcon} />);
 
 export const ArticlesFiltersRedesigned = (props: ArticlesFiltersProps) => {
     const {
@@ -34,10 +41,8 @@ export const ArticlesFiltersRedesigned = (props: ArticlesFiltersProps) => {
             <VStack gap="32">
                 <SearchBox
                     placeholder={t('Пошук')}
-                    resetIconComponent={() => (
-                        <Icon Svg={CloseIcon} className={cls.ResetIcon} />
-                    )}
-                    submitIconComponent={() => <Icon Svg={SearchIcon} />}
+                    resetIconComponent={ResetIconComponent}
+                    submitIconComponent={SubmitIconComponent}
                     data-testid="ArticlesPage.SearchInput"
                     classNames={{
                         submit: cls.SubmitSearchBtn,

@@ -148,6 +148,7 @@ export const useUsersFullInfoTableColumns = (
             actionColumn,
         ];
     }, [
+        FIXED_COLUMNS_WIDTH,
         actionColumn,
         columnHelper,
         createUserAvatarCol,
