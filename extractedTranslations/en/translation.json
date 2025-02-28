@@ -33,6 +33,7 @@
   "Username": "",
   "decrement": "decrement",
   "increment": "increment",
+  "javascript": "javascript",
   "throw error": "throw error",
   "userId": "",
   "{{count}} переглядів": "",
@@ -230,6 +231,5 @@
   "переглядам": "переглядам",
   "по": "",
   "спаданню": "спаданню",
-  "із": "із",
-  "javascript": "javascript"
+  "із": "із"
 }

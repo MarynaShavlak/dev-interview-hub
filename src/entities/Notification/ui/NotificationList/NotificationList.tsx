@@ -5,6 +5,7 @@ import { NotificationListDeprecated } from './NotificationListDeprecated/Notific
 
 export interface NotificationListProps {
     className?: string;
+    userId: string;
 }
 
 export const NotificationList = memo((props: NotificationListProps) => {

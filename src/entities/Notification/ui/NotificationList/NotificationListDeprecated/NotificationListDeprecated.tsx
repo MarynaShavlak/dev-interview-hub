@@ -14,13 +14,15 @@ import { Button as ButtonDeprecated } from '@/shared/ui/deprecated/Button';
 
 export const NotificationListDeprecated = memo(
     (props: NotificationListProps) => {
-        const { className } = props;
+        const { className, userId } = props;
         const listClass = classNames(cls.NotificationListDeprecated, {}, [
             className,
         ]);
 
         const { t } = useTranslation();
-        const { data: allNotifications, isLoading } = useAllNotifications();
+        const { data: allNotifications, isLoading } = useAllNotifications(
+            userId || '',
+        );
         const titleText = t('Сповіщення');
 
         if (isLoading) {

@@ -4,7 +4,6 @@ import {
     PersonalNotification,
 } from '../model/types/notification';
 
-import { auth } from '../../../../json-server/firebase';
 import { fetchAllNotifications } from '../lib/utilities/getNotifications/fetchAllNotifications/fetchAllNotifications';
 import { subscribeToNotifications } from '../lib/utilities/subscribeToNotifications/subscribeToNotifications';
 import { ERROR_MESSAGES } from '../model/consts/errorMessages';
@@ -22,21 +21,19 @@ const notificationApi = firestoreApi
         endpoints: (build) => ({
             getAllNotifications: build.query<
                 (GeneralNotification | PersonalNotification)[],
-                void
+                string
             >({
                 providesTags: ['Notifications', 'PersonalNotifications'],
                 keepUnusedDataFor: 3600,
-                async queryFn(_) {
+                async queryFn(userId: string) {
                     try {
-                        const user = auth.currentUser;
-
-                        if (!user) {
+                        if (!userId) {
                             const error = new Error(
                                 ERROR_MESSAGES.USER_NOT_AUTHORIZED,
                             );
                             return { error };
                         }
-                        const data = await fetchAllNotifications(user.uid);
+                        const data = await fetchAllNotifications(userId);
                         return { data };
                     } catch (error) {
                         return handleRequestErrorMessage(
@@ -47,17 +44,14 @@ const notificationApi = firestoreApi
                 },
 
                 async onCacheEntryAdded(
-                    _,
+                    userId,
                     { updateCachedData, cacheDataLoaded, cacheEntryRemoved },
                 ) {
                     await cacheDataLoaded;
 
-                    const user = auth.currentUser;
-                    if (!user) return;
-
                     const unsubscribe = subscribeToNotifications(
                         updateCachedData,
-                        user.uid,
+                        userId,
                     );
 
                     if (unsubscribe) {

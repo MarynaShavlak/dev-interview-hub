@@ -16,12 +16,13 @@ import { deleteAllNotificationsThunk } from '../../../model/services/deleteAllNo
 
 export const NotificationListRedesigned = memo(
     (props: NotificationListProps) => {
-        const { className } = props;
+        const { className, userId } = props;
         const dispatch = useAppDispatch();
         const listClass = classNames(cls.NotificationList, {}, [className]);
 
         const { t } = useTranslation();
-        const { data: allNotifications, isLoading } = useAllNotifications();
+        const { data: allNotifications, isLoading } =
+            useAllNotifications(userId);
         const titleText = t('Сповіщення');
 
         const handleDeleteAllNotifications = useCallback(async () => {

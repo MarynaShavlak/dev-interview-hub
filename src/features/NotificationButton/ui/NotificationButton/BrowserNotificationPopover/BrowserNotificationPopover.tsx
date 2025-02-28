@@ -6,6 +6,7 @@ import { Popover as PopoverDeprecated } from '@/shared/ui/deprecated/Popups';
 import cls from './BrowserNotificationPopover.module.scss';
 import { Popover } from '@/shared/ui/redesigned/Popups';
 import { TestProps } from '@/shared/types/tests';
+import { useUserAuthData } from '@/entities/User';
 
 interface BrowserNotificationPopoverProps extends TestProps {
     className?: string;
@@ -15,27 +16,41 @@ export const BrowserNotificationPopover = ({
     className,
     trigger,
     'data-testid': dataTestId,
-}: BrowserNotificationPopoverProps) => (
-    <ToggleFeaturesComponent
-        feature="isAppRedesigned"
-        on={
-            <Popover
-                className={classNames(cls.NotificationButton, {}, [className])}
-                direction="bottom left"
-                trigger={trigger}
-            >
-                <NotificationList className={cls.notifications} />
-            </Popover>
-        }
-        off={
-            <PopoverDeprecated
-                className={classNames(cls.NotificationButton, {}, [className])}
-                direction="bottom left"
-                trigger={trigger}
-                data-testid={dataTestId}
-            >
-                <NotificationList className={cls.notifications} />
-            </PopoverDeprecated>
-        }
-    />
-);
+}: BrowserNotificationPopoverProps) => {
+    const user = useUserAuthData();
+    console.log('userid', user?.id);
+    return user?.id ? (
+        <ToggleFeaturesComponent
+            feature="isAppRedesigned"
+            on={
+                <Popover
+                    className={classNames(cls.NotificationButton, {}, [
+                        className,
+                    ])}
+                    direction="bottom left"
+                    trigger={trigger}
+                >
+                    <NotificationList
+                        className={cls.notifications}
+                        userId={user.id}
+                    />
+                </Popover>
+            }
+            off={
+                <PopoverDeprecated
+                    className={classNames(cls.NotificationButton, {}, [
+                        className,
+                    ])}
+                    direction="bottom left"
+                    trigger={trigger}
+                    data-testid={dataTestId}
+                >
+                    <NotificationList
+                        className={cls.notifications}
+                        userId={user.id}
+                    />
+                </PopoverDeprecated>
+            }
+        />
+    ) : null;
+};

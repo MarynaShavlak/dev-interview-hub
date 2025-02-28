@@ -4,6 +4,7 @@ import { BrowserNotificationPopover } from './BrowserNotificationPopover/Browser
 import { NotificationButtonTrigger } from './NotificationButtonTrigger/NotificationButtonTrigger';
 import { NotificationList } from '@/entities/Notification';
 import { Drawer } from '@/shared/ui/common/Drawer';
+import { useUserAuthData } from '@/entities/User';
 
 interface NotificationButtonProps {
     className?: string;
@@ -11,7 +12,8 @@ interface NotificationButtonProps {
 
 export const NotificationButton = memo((props: NotificationButtonProps) => {
     const { className } = props;
-
+    const user = useUserAuthData();
+    console.log('userid', user?.id);
     // const [isOpen, setIsOpen] = useState(false);
     const [isOpen, setIsOpen] = useState(true);
 
@@ -23,7 +25,7 @@ export const NotificationButton = memo((props: NotificationButtonProps) => {
         setIsOpen(false);
     }, []);
 
-    return (
+    return user?.id ? (
         <div data-testid="notification-button">
             <BrowserView>
                 <BrowserNotificationPopover
@@ -47,9 +49,9 @@ export const NotificationButton = memo((props: NotificationButtonProps) => {
                     onClose={onCloseDrawer}
                     data-testid="notifications-drawer"
                 >
-                    <NotificationList />
+                    <NotificationList userId={user.id} />
                 </Drawer>
             </MobileView>
         </div>
-    );
+    ) : null;
 });

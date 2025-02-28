@@ -6,11 +6,14 @@ import { Text } from '@/shared/ui/redesigned/Text';
 import { Text as TextDeprecated } from '@/shared/ui/deprecated/Text';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import cls from '../NotificationList/NotificationList.module.scss';
-import { NotificationListProps } from '../NotificationList/NotificationList';
+
+interface EmptyNotificationsListProps {
+    className?: string;
+}
 
 export const EmptyNotificationsList = ({
     className,
-}: NotificationListProps) => {
+}: EmptyNotificationsListProps) => {
     const listClass = classNames(cls.NotificationList, {}, [className]);
 
     const { t } = useTranslation();
