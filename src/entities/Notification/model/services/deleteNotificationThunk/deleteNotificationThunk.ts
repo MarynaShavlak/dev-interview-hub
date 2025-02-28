@@ -4,7 +4,6 @@ import {
     markGeneralNotificationAsDismissedMutation,
     markPersonalNotificationAsDismissedMutation,
 } from '../../../api/notificationApi';
-import { auth } from '../../../../../../json-server/firebase';
 import { NotificationType } from '../../types/notification';
 
 type DeleteNotificationArgs = {
@@ -19,13 +18,13 @@ export const deleteNotificationThunk = createAsyncThunk<
 >(
     'notification/deleteNotification',
     async ({ notificationId, type }, thunkApi) => {
-        const { rejectWithValue, dispatch } = thunkApi;
+        const { extra, rejectWithValue, dispatch } = thunkApi;
+        const { auth } = extra;
         const user = auth.currentUser;
-        // const authData = getUserAuthData(getState());
+
         if (!user) {
             return rejectWithValue('No user data found.');
         }
-        // const userId = authData.id;
 
         if (!notificationId) {
             return rejectWithValue('Notification ID is required.');

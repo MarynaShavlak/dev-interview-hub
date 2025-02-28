@@ -4,14 +4,14 @@ import {
     removeAllGeneralNotificationsForUserMutation,
     removeAllPersonalNotificationsMutation,
 } from '../../../api/notificationApi';
-import { auth } from '../../../../../../json-server/firebase';
 
 export const deleteAllNotificationsThunk = createAsyncThunk<
     void,
     void,
     ThunkConfig<string>
 >('notification/deleteNotification', async (_, thunkApi) => {
-    const { rejectWithValue, dispatch } = thunkApi;
+    const { extra, rejectWithValue, dispatch } = thunkApi;
+    const { auth } = extra;
     const user = auth.currentUser;
 
     if (!user) {

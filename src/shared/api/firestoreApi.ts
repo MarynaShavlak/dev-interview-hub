@@ -1,9 +1,4 @@
-import {
-    createApi,
-    fakeBaseQuery,
-    fetchBaseQuery,
-} from '@reduxjs/toolkit/query/react';
-import { USER_LOCALSTORAGE_KEY } from '@/shared/const/localstorage';
+import { createApi, fakeBaseQuery } from '@reduxjs/toolkit/query/react';
 
 /**
  * Redux Toolkit Query API instance for interacting with the backend.
@@ -22,20 +17,20 @@ import { USER_LOCALSTORAGE_KEY } from '@/shared/const/localstorage';
  * - The `Authorization` header is automatically set with the user's token from `localStorage`.
  */
 
-export const rtkApi = createApi({
-    reducerPath: 'api',
-    baseQuery: fetchBaseQuery({
-        baseUrl: __API__,
-        prepareHeaders: (headers) => {
-            const token = localStorage.getItem(USER_LOCALSTORAGE_KEY) || '';
-            if (token) {
-                headers.set('Authorization', token);
-            }
-            return headers;
-        },
-    }),
-    endpoints: (builder) => ({}),
-});
+// export const rtkApi = createApi({
+//     reducerPath: 'api',
+//     baseQuery: fetchBaseQuery({
+//         baseUrl: __API__,
+//         prepareHeaders: (headers, { getState, extra }) => {
+//             const token = localStorage.getItem(USER_LOCALSTORAGE_KEY) || '';
+//             if (token) {
+//                 headers.set('Authorization', token);
+//             }
+//             return headers;
+//         },
+//     }),
+//     endpoints: (builder) => ({}),
+// });
 
 export const firestoreApi = createApi({
     reducerPath: 'firestoreApi',

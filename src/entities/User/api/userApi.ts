@@ -1,6 +1,6 @@
 import { getDoc, onSnapshot, query, updateDoc } from 'firebase/firestore';
 
-import { firestoreApi } from '@/shared/api/rtkApi';
+import { firestoreApi } from '@/shared/api/firestoreApi';
 import { User } from '../model/types/user';
 import { getUserDocRefById } from '../lib/utilities/getUserDocRefById/getUserDocRefById';
 import { fetchDocumentByRef } from '@/shared/lib/firestore/fetchDocumentByRef/fetchDocumentByRef';

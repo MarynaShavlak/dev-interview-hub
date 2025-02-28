@@ -1,5 +1,5 @@
 import { getDoc, onSnapshot } from 'firebase/firestore';
-import { firestoreApi } from '@/shared/api/rtkApi';
+import { firestoreApi } from '@/shared/api/firestoreApi';
 import { ArticleRatingData } from '../model/types/articleRatingData';
 import { createArticleRatingQuery } from '../lib/utilities/createArticleRatingQuery/createArticleRatingQuery';
 import { fetchQueryResults } from '@/shared/lib/firestore/fetchQueryResults/fetchQueryResults';

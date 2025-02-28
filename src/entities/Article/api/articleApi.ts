@@ -7,7 +7,7 @@ import {
     query as firebaseQuery,
 } from 'firebase/firestore';
 import { EntityState } from '@reduxjs/toolkit';
-import { firestoreApi } from '@/shared/api/rtkApi';
+import { firestoreApi } from '@/shared/api/firestoreApi';
 import { Article, ArticleSort } from '../model/types/article';
 import { articlesAdapter, initialState } from '../model/slices/articleSlice';
 import { addDocToFirestore } from '@/shared/lib/firestore/addDocToFirestore/addDocToFirestore';

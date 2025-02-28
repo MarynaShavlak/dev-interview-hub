@@ -5,7 +5,6 @@ import {
     Reducer,
     ReducersMapObject,
 } from '@reduxjs/toolkit';
-import { AxiosInstance } from 'axios';
 import { CombinedState } from 'redux';
 import { FirebaseApp } from 'firebase/app';
 import { Auth } from 'firebase/auth';
@@ -18,7 +17,7 @@ import { UserSchema } from '@/entities/User';
 import { LoginSchema, SignupSchema } from '@/features/AuthByUsername';
 import { ProfileSchema } from '@/features/EditableProfileCard';
 import { ArticlesPageSchema } from '@/pages/ArticlesPage';
-import { firestoreApi, rtkApi } from '@/shared/api/rtkApi';
+import { firestoreApi } from '@/shared/api/firestoreApi';
 import { AddCommentFormSchema } from '@/entities/Comment';
 import { ArticleCommentsSchema } from '@/features/ArticleComments';
 import { CreateArticleSchema } from '@/pages/ArticleEditorPage';
@@ -26,7 +25,7 @@ import { CreateArticleSchema } from '@/pages/ArticleEditorPage';
 export interface StateSchema {
     user: UserSchema;
     scroll: UIScrollSchema;
-    [rtkApi.reducerPath]: ReturnType<typeof rtkApi.reducer>;
+    // [rtkApi.reducerPath]: ReturnType<typeof rtkApi.reducer>;
     [firestoreApi.reducerPath]: ReturnType<typeof firestoreApi.reducer>;
     // Async reducers
     loginForm?: LoginSchema;
@@ -62,7 +61,7 @@ export interface ReduxStoreWithManager extends EnhancedStore<StateSchema> {
 }
 
 export interface ThunkExtraArg {
-    api: AxiosInstance;
+    // api: AxiosInstance;
     firebaseApp: FirebaseApp;
     auth: Auth;
     firestore: Firestore;

@@ -104,7 +104,7 @@ Data interactions are handled using the **Redux Toolkit**.
 To enhance reusability, entities are normalized with the **EntityAdapter** wherever applicable. 
 In this project, it is specifically utilized to normalize the data for [articles](./src/pages/ArticlesPage/model/slices/README.md) and  [comments](./src/features/ArticleComments/model/slices/README.md) within their respective slices. 
 
-Server requests are managed using **RTK query**, with the configuration available at  [rtkApi](./src/shared/api/rtkApi.ts)
+Server requests are managed using **RTK query**, with the configuration available at  [rtkApi](./src/shared/api/firestoreApi.ts)
 
 For asynchronous integration of reducers — ensuring they are not included in the main bundle — [DynamicModuleLoader](./src/shared/lib/components/DynamicModuleLoader/README.md) is implemented.
 

@@ -1,4 +1,4 @@
-import { firestoreApi } from '@/shared/api/rtkApi';
+import { firestoreApi } from '@/shared/api/firestoreApi';
 import {
     GeneralNotification,
     PersonalNotification,
@@ -26,9 +26,10 @@ const notificationApi = firestoreApi
             >({
                 providesTags: ['Notifications', 'PersonalNotifications'],
                 keepUnusedDataFor: 3600,
-                async queryFn() {
+                async queryFn(_) {
                     try {
                         const user = auth.currentUser;
+
                         if (!user) {
                             const error = new Error(
                                 ERROR_MESSAGES.USER_NOT_AUTHORIZED,

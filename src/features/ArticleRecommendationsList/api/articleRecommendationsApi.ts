@@ -1,6 +1,6 @@
 import { onSnapshot } from 'firebase/firestore';
 import { Article, ArticleCategory } from '@/entities/Article';
-import { firestoreApi } from '@/shared/api/rtkApi';
+import { firestoreApi } from '@/shared/api/firestoreApi';
 import { getRandomItems } from '@/shared/lib/mathCalculations/getRandomItems';
 import { createArticlesRecommendationsQuery } from '../lib/utilities/createArticlesRecommendationsQuery/createArticlesRecommendationsQuery';
 import { fetchQueryResults } from '@/shared/lib/firestore/fetchQueryResults/fetchQueryResults';

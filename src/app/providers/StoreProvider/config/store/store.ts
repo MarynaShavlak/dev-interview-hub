@@ -2,8 +2,7 @@ import { configureStore, ReducersMapObject } from '@reduxjs/toolkit';
 import { CombinedState, Reducer } from 'redux';
 import { scrollReducer } from '@/widgets/Page';
 import { userReducer } from '@/entities/User';
-import { $api } from '@/shared/api/api';
-import { firestoreApi, rtkApi } from '@/shared/api/rtkApi';
+import { firestoreApi } from '@/shared/api/firestoreApi';
 import { StateSchema, ThunkExtraArg } from './StateSchema/StateSchema';
 import { createReducerManager } from './reducerManager/reducerManager';
 import {
@@ -21,14 +20,14 @@ export const createReduxStore = (
         ...asyncReducers,
         user: userReducer,
         scroll: scrollReducer,
-        [rtkApi.reducerPath]: rtkApi.reducer,
+        // [rtkApi.reducerPath]: rtkApi.reducer,
         [firestoreApi.reducerPath]: firestoreApi.reducer,
     };
 
     const reducerManager = createReducerManager(rootReducers);
 
     const extraArg: ThunkExtraArg = {
-        api: $api,
+        // api: $api,
         firebaseApp,
         auth,
         firestore,
@@ -56,7 +55,7 @@ export const createReduxStore = (
                     ignoredActionPaths: ['meta.arg', 'meta.baseQueryMeta'],
                 },
             })
-                .concat(rtkApi.middleware)
+                // .concat(rtkApi.middleware)
                 .concat(firestoreApi.middleware),
     });
 
