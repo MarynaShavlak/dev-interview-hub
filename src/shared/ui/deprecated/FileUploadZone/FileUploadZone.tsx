@@ -50,38 +50,34 @@ export const FileUploadZone = (props: FileUploadZoneProps) => {
         ? t('Змінити зображення')
         : t('Завантажити зображення');
 
-    return (
-        <>
-            {imagePreview ? (
-                <div className={cls.uploadZoneBtnWrap}>
-                    <FileUploadInput
-                        onChange={handleImageChange}
-                        AddFileElement={renderUploadButton(text)}
-                    />
+    return imagePreview ? (
+        <div className={cls.uploadZoneBtnWrap}>
+            <FileUploadInput
+                onChange={handleImageChange}
+                AddFileElement={renderUploadButton(text)}
+            />
 
-                    <Button theme={ButtonTheme.CLEAR} onClick={resetImage}>
-                        <Icon
-                            Svg={CloseIcon}
-                            className={cls.resetImageIcon}
-                            width={32}
-                            height={32}
-                        />
-                    </Button>
-                </div>
-            ) : (
-                <Card
-                    className={classNames(cls.uploadZone, {}, [
-                        ...uploadZoneClasses,
-                        className,
-                    ])}
-                    max
-                >
-                    <FileUploadInput
-                        onChange={handleImageChange}
-                        AddFileElement={renderUploadButton(text)}
-                    />
-                </Card>
-            )}
-        </>
+            <Button theme={ButtonTheme.CLEAR} onClick={resetImage}>
+                <Icon
+                    Svg={CloseIcon}
+                    className={cls.resetImageIcon}
+                    width={32}
+                    height={32}
+                />
+            </Button>
+        </div>
+    ) : (
+        <Card
+            className={classNames(cls.uploadZone, {}, [
+                ...uploadZoneClasses,
+                className,
+            ])}
+            max
+        >
+            <FileUploadInput
+                onChange={handleImageChange}
+                AddFileElement={renderUploadButton(text)}
+            />
+        </Card>
     );
 };

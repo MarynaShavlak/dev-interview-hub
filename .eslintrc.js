@@ -68,6 +68,7 @@ module.exports = {
                     'color',
                     'dateFormat',
                     'wrapperClassName',
+                    'defaultLanguage',
                 ],
             },
         ],
@@ -108,6 +109,7 @@ module.exports = {
         'no-console': 'off',
         'no-alert': 'off',
         'jsx-a11y/ label-has-associated-control': 'off',
+        'jsx-props-no-spreading': 'off',
     },
     globals: {
         __IS_DEV__: true,

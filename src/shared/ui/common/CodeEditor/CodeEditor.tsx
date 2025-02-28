@@ -1,6 +1,7 @@
 import React, { memo, ReactNode, useRef, useState } from 'react';
 import { Editor, OnMount } from '@monaco-editor/react';
 import * as monaco from 'monaco-editor';
+import { useTranslation } from 'react-i18next';
 import { VStack } from '../Stack';
 import { ListBox as ListBoxRedesigned } from '../../redesigned/Popups';
 import { ListBox as ListBoxDeprecated } from '../../deprecated/Popups';
@@ -54,7 +55,7 @@ export const CodeEditor = memo((props: CodeEditorProps) => {
         onChangeCode,
         // onChangeLanguage,
     } = props;
-
+    const { t } = useTranslation();
     const editorRef = useRef<monaco.editor.IStandaloneCodeEditor | null>(null);
     const [code, setCode] = useState<string>(initialCode);
     const [language, setLanguage] = useState<string>(initialLanguage);
@@ -91,7 +92,7 @@ export const CodeEditor = memo((props: CodeEditorProps) => {
         <VStack gap="16" className={className}>
             <ListBox
                 value={language}
-                defaultValue="javascript"
+                defaultValue={t('javascript')}
                 items={languageOptions}
                 onChange={handleLanguageChange}
                 direction="bottom right"

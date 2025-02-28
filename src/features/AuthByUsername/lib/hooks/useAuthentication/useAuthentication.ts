@@ -9,7 +9,7 @@ import {
     SignupCredentials,
 } from '../../../model/services/signupByEmailThunk/signupByEmailThunk';
 import { authByGoogleThunk } from '../../../model/services/authByGoogleThunk/authByGoogleThunk';
-import { resetPassword } from '../../../model/services/resetPassword/resetPassword';
+import { resetPasswordThunk } from '../../../model/services/resetPasswordThunk/resetPasswordThunk';
 
 interface AuthCredentials {
     email: string;
@@ -91,7 +91,7 @@ export const useAuthentication = ({
     const resetPasswordCall = async (email: string) => {
         setIsFetchingUser(true);
         try {
-            await dispatch(resetPassword(email));
+            await dispatch(resetPasswordThunk(email));
             onSuccess?.();
             console.log('Password reset email sent successfully.');
         } catch (error) {

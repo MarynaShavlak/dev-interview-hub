@@ -39,7 +39,7 @@ export const ArticleListView = memo((props: ArticleListViewProps) => {
                 }}
                 initialTopMostItemIndex={scrollStopArticleIndex}
                 components={{
-                    Footer: () => <Footer isLoading={isLoading} />,
+                    Footer: memo(() => <Footer isLoading={isLoading} />),
                     Header: ArticlesInfiniteListHeader,
                 }}
             />

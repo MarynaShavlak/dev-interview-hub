@@ -68,5 +68,6 @@
   "Не вдалося завантажити зображення": "Failed to load the image, or it has been deleted.",
   "Немає сповіщень": "You're all caught up! No new notifications",
   "Сповіщення": "Notifications",
-  "Видалити всі": "Delete all"
+  "Видалити всі": "Delete all",
+  "javascript": "javascript"
 }

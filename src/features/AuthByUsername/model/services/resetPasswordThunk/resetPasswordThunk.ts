@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { sendPasswordResetEmail } from 'firebase/auth';
 import { ThunkConfig } from '@/app/providers/StoreProvider';
 
-export const resetPassword = createAsyncThunk<
+export const resetPasswordThunk = createAsyncThunk<
     void,
     string,
     ThunkConfig<string>
@@ -12,6 +12,7 @@ export const resetPassword = createAsyncThunk<
     const { auth } = extra;
     try {
         await sendPasswordResetEmail(auth, email);
+        return undefined;
     } catch (error: any) {
         console.error('Error sending password reset email:', error);
         return rejectWithValue(
