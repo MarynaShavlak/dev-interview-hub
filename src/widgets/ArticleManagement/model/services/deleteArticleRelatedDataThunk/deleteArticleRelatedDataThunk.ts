@@ -1,4 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { useCallback } from 'react';
 import { ERROR_MESSAGES } from '../../consts/errorMessages';
 import { ThunkConfig } from '@/app/providers/StoreProvider';
 import { deleteCommentsByArticleId } from '@/features/ArticleComments';
@@ -16,28 +17,36 @@ export const deleteArticleRelatedDataThunk = createAsyncThunk<
         return rejectWithValue(ERROR_MESSAGES.MISSING_ARTICLE);
     }
 
-    try {
-        try {
-            await dispatch(deleteCommentsByArticleId(articleId)).unwrap();
-        } catch (error) {
-            return rejectWithValue(
-                handleThunkErrorMessage(error, ERROR_MESSAGES.DELETE_COMMENTS),
-            );
-        }
+    const executeDelete = useCallback(
+        async (deleteAction: (id: string) => any, errorMessage: string) => {
+            try {
+                await dispatch(deleteAction(articleId)).unwrap();
+            } catch (error) {
+                throw handleThunkErrorMessage(error, errorMessage);
+            }
+        },
+        [articleId, dispatch],
+    );
 
-        try {
-            await dispatch(deleteRatingsByArticleId(articleId)).unwrap();
-        } catch (error) {
-            return rejectWithValue(
-                handleThunkErrorMessage(error, ERROR_MESSAGES.DELETE_RATINGS),
-            );
-        }
+    try {
+        await executeDelete(
+            deleteCommentsByArticleId,
+            ERROR_MESSAGES.DELETE_COMMENTS,
+        );
+
+        await executeDelete(
+            deleteRatingsByArticleId,
+            ERROR_MESSAGES.DELETE_RATINGS,
+        );
+        return undefined;
     } catch (error) {
         return rejectWithValue(
-            handleThunkErrorMessage(
-                error,
-                ERROR_MESSAGES.DELETE_RELATED_DATA(articleId),
-            ),
+            typeof error === 'string'
+                ? error
+                : handleThunkErrorMessage(
+                      error,
+                      ERROR_MESSAGES.DELETE_RELATED_DATA(articleId),
+                  ),
         );
     }
 });
