@@ -1,4 +1,4 @@
-import { ArticleComment } from '../../..';
+import { ArticleComment } from '../../../model/types/articleComment';
 import { deleteDocFromFirestore } from '@/shared/lib/firestore/deleteDocFromFirestore/deleteDocFromFirestore';
 
 export const deleteCommentsFromFirestore = async (

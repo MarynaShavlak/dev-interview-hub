@@ -9,12 +9,13 @@ import { handleRequestErrorMessage } from '@/shared/lib/firestore/handleRequestE
 import { subscribeToArticleComments } from '../lib/utilities/subscribeToArticleComments/subscribeToArticleComments';
 import { subscribeToAllArticlesComments } from '../lib/utilities/subscribeToAllArticlesComments/subscribeToAllArticlesComments';
 import { fetchCommentsForMultipleArticles } from '../lib/utilities/fetchCommentsForMultipleArticles/fetchCommentsForMultipleArticles';
-import { subscribeToMultipleArticlesComments } from '../lib/utilities/subscribeToMultipleArticlesComments/subscribeToMultipleArticlesComments';
 import {
     NewCommentDraft,
     saveCommentToFirestore,
 } from '../lib/utilities/saveCommentToFirestore/saveCommentToFirestore';
 import { deleteCommentsFromFirestore } from '../lib/utilities/deleteCommentsFromFirestore/deleteCommentsFromFirestore';
+import { handleFirestoreSubscription } from '@/shared/lib/firestore/handleFirestoreSubscription/handleFirestoreSubscription';
+import { subscribeToMultipleArticlesComments } from '../lib/utilities/subscribeToMultipleArticlesComments/subscribeToMultipleArticlesComments';
 
 export const articlesCommentsFirebaseApi = firestoreApi
     .enhanceEndpoints({ addTagTypes: ['ArticleComments'] })
@@ -41,14 +42,20 @@ export const articlesCommentsFirebaseApi = firestoreApi
                     _,
                     { updateCachedData, cacheDataLoaded, cacheEntryRemoved },
                 ) {
-                    await cacheDataLoaded;
-                    const unsubscribe =
-                        subscribeToAllArticlesComments(updateCachedData);
+                    handleFirestoreSubscription({
+                        subscriptionFn: subscribeToAllArticlesComments, // Subscription function
+                        updateFn: updateCachedData, // Callback function to update cache
+                        dependency: null, // Dependency
+                        cacheDataLoaded, // Promise for cache data loading
+                        cacheEntryRemoved, // Promise for cache entry removal
+                    });
 
-                    await cacheEntryRemoved;
-                    if (unsubscribe) {
-                        unsubscribe();
-                    }
+                    // await cacheDataLoaded;
+                    // const unsubscribe =
+                    //     subscribeToAllArticlesComments(updateCachedData);
+                    //
+                    // await cacheEntryRemoved;
+                    // unsubscribe?.();
                 },
             }),
             getCommentsByArticleId: build.query<ArticleComment[], string>({
@@ -79,14 +86,21 @@ export const articlesCommentsFirebaseApi = firestoreApi
                     articleId,
                     { updateCachedData, cacheDataLoaded, cacheEntryRemoved },
                 ) {
-                    await cacheDataLoaded;
-                    const unsubscribe = subscribeToArticleComments(
-                        updateCachedData,
-                        articleId,
-                    );
-
-                    await cacheEntryRemoved;
-                    if (unsubscribe) unsubscribe();
+                    handleFirestoreSubscription({
+                        subscriptionFn: subscribeToArticleComments, // Subscription function
+                        updateFn: updateCachedData, // Callback function to update cache
+                        dependency: articleId, // Dependency (articleId)
+                        cacheDataLoaded, // Promise for cache data loading
+                        cacheEntryRemoved, // Promise for cache entry removal
+                    });
+                    // await cacheDataLoaded;
+                    // const unsubscribe = subscribeToArticleComments(
+                    //     updateCachedData,
+                    //     articleId,
+                    // );
+                    //
+                    // await cacheEntryRemoved;
+                    // unsubscribe?.();
                 },
             }),
             getCommentsByArticleIdsList: build.query<
@@ -115,16 +129,21 @@ export const articlesCommentsFirebaseApi = firestoreApi
                     articleIds,
                     { updateCachedData, cacheDataLoaded, cacheEntryRemoved },
                 ) {
-                    await cacheDataLoaded;
-                    const unsubscribe = subscribeToMultipleArticlesComments(
-                        updateCachedData,
-                        articleIds,
-                    );
-
-                    await cacheEntryRemoved;
-                    if (unsubscribe) {
-                        unsubscribe();
-                    }
+                    handleFirestoreSubscription({
+                        subscriptionFn: subscribeToMultipleArticlesComments, // Subscription function
+                        updateFn: updateCachedData, // Callback function to update cache
+                        dependency: articleIds, // Dependency
+                        cacheDataLoaded, // Promise for cache data loading
+                        cacheEntryRemoved, // Promise for cache entry removal
+                    });
+                    // await cacheDataLoaded;
+                    // const unsubscribe = subscribeToMultipleArticlesComments(
+                    //     updateCachedData,
+                    //     articleIds,
+                    // );
+                    //
+                    // await cacheEntryRemoved;
+                    // unsubscribe?.();
                 },
             }),
             addComment: build.mutation<ArticleComment, NewCommentDraft>({

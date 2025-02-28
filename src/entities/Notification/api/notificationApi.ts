@@ -58,8 +58,8 @@ const notificationApi = firestoreApi
                         const { unsubscribeGeneral, unsubscribePersonal } =
                             unsubscribe;
                         await cacheEntryRemoved;
-                        if (unsubscribeGeneral) unsubscribeGeneral();
-                        if (unsubscribePersonal) unsubscribePersonal();
+                        unsubscribeGeneral?.();
+                        unsubscribePersonal?.();
                     }
                 },
             }),
