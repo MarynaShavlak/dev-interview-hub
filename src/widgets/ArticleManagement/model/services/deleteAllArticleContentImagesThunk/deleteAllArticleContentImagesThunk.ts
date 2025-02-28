@@ -16,52 +16,33 @@ export const deleteAllArticleContentImagesThunk = createAsyncThunk<
         return rejectWithValue(ERROR_MESSAGES.MISSING_ARTICLE);
     }
 
+    const deleteImage = async (imageUrl: string, errorMessage: string) => {
+        try {
+            return await dispatch(deleteArticleImageThunk(imageUrl)).unwrap();
+        } catch (error) {
+            throw handleThunkErrorMessage(error, errorMessage);
+        }
+    };
+
     try {
         const imagesToDeleteUrls = article?.blocks
             ? getBlockImageUrls(article.blocks)
             : [];
         if (imagesToDeleteUrls.length > 0) {
-            try {
-                const deletePromises = imagesToDeleteUrls.map(
-                    async (imageUrl) => {
-                        try {
-                            return await dispatch(
-                                deleteArticleImageThunk(imageUrl),
-                            ).unwrap();
-                        } catch (error) {
-                            return rejectWithValue(
-                                handleThunkErrorMessage(
-                                    error,
-                                    ERROR_MESSAGES.DELETE_BLOCK_IMAGES,
-                                ),
-                            );
-                        }
-                    },
-                );
-
-                await Promise.allSettled(deletePromises);
-            } catch (error) {
-                return rejectWithValue(
-                    handleThunkErrorMessage(
-                        error,
+            const deletePromises = imagesToDeleteUrls.map(
+                (imageUrl) =>
+                    deleteImage(
+                        imageUrl,
                         ERROR_MESSAGES.DELETE_BLOCK_IMAGES,
-                    ),
-                );
-            }
-        }
+                    ).catch((error) => ({ error })), // Capture errors but continue processing
+            );
 
-        if (article?.img) {
-            try {
-                await dispatch(deleteArticleImageThunk(article.img)).unwrap();
-            } catch (error) {
-                return rejectWithValue(
-                    handleThunkErrorMessage(
-                        error,
-                        ERROR_MESSAGES.DELETE_MAIN_IMAGE,
-                    ),
-                );
-            }
+            await Promise.allSettled(deletePromises);
         }
+        if (article?.img) {
+            await deleteImage(article.img, ERROR_MESSAGES.DELETE_MAIN_IMAGE);
+        }
+        return undefined;
     } catch (error) {
         return rejectWithValue(
             handleThunkErrorMessage(error, ERROR_MESSAGES.DELETE_ERROR),
