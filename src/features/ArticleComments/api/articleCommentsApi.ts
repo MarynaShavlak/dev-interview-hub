@@ -49,13 +49,6 @@ export const articlesCommentsFirebaseApi = firestoreApi
                         cacheDataLoaded, // Promise for cache data loading
                         cacheEntryRemoved, // Promise for cache entry removal
                     });
-
-                    // await cacheDataLoaded;
-                    // const unsubscribe =
-                    //     subscribeToAllArticlesComments(updateCachedData);
-                    //
-                    // await cacheEntryRemoved;
-                    // unsubscribe?.();
                 },
             }),
             getCommentsByArticleId: build.query<ArticleComment[], string>({
@@ -136,14 +129,6 @@ export const articlesCommentsFirebaseApi = firestoreApi
                         cacheDataLoaded, // Promise for cache data loading
                         cacheEntryRemoved, // Promise for cache entry removal
                     });
-                    // await cacheDataLoaded;
-                    // const unsubscribe = subscribeToMultipleArticlesComments(
-                    //     updateCachedData,
-                    //     articleIds,
-                    // );
-                    //
-                    // await cacheEntryRemoved;
-                    // unsubscribe?.();
                 },
             }),
             addComment: build.mutation<ArticleComment, NewCommentDraft>({
