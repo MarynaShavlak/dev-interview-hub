@@ -2,9 +2,6 @@ import { firestoreApi } from '@/shared/api/firestoreApi';
 
 import { fetchCollectionDocsData } from '@/shared/lib/firestore/fetchCollectionDocsData/fetchCollectionDocsData';
 import { ArticleComment } from '../model/types/articleComment';
-import { createArticleCommentsQuery } from '../lib/utilities/createArticleCommentsQuery/createArticleCommentsQuery';
-import { fetchQueryResults } from '@/shared/lib/firestore/fetchQueryResults/fetchQueryResults';
-import { deleteDocFromFirestore } from '@/shared/lib/firestore/deleteDocFromFirestore/deleteDocFromFirestore';
 import { fetchCommentsForArticle } from '../lib/utilities/fetchCommentsForArticle/fetchCommentsForArticle';
 import { ERROR_MESSAGES } from '../model/consts/errorMessages';
 import { handleRequestErrorMessage } from '@/shared/lib/firestore/handleRequestErrorMessage/handleRequestErrorMessage';
@@ -17,6 +14,7 @@ import {
     NewCommentDraft,
     saveCommentToFirestore,
 } from '../lib/utilities/saveCommentToFirestore/saveCommentToFirestore';
+import { deleteCommentsFromFirestore } from '../lib/utilities/deleteCommentsFromFirestore/deleteCommentsFromFirestore';
 
 export const articlesCommentsFirebaseApi = firestoreApi
     .enhanceEndpoints({ addTagTypes: ['ArticleComments'] })
@@ -147,28 +145,16 @@ export const articlesCommentsFirebaseApi = firestoreApi
                 invalidatesTags: ['ArticleComments'],
                 async queryFn(articleId) {
                     try {
-                        const commentsQuery =
-                            createArticleCommentsQuery(articleId);
                         const comments =
-                            await fetchQueryResults<ArticleComment>(
-                                commentsQuery,
-                            );
-
-                        const deletePromises = comments.map((comment) =>
-                            deleteDocFromFirestore('comments', comment.id),
-                        );
-
-                        await Promise.allSettled(deletePromises);
-
+                            await fetchCommentsForArticle(articleId);
+                        await deleteCommentsFromFirestore(comments);
                         return { data: undefined };
                     } catch (error) {
-                        console.error(
-                            'Error deleting comments by article ID:',
-                            error,
+                        return handleRequestErrorMessage(
+                            ERROR_MESSAGES.DELETE_COMMENTS_BY_ARTICLE_ID_FAIL(
+                                articleId,
+                            ),
                         );
-                        return {
-                            error: 'Error deleting comments by article ID',
-                        };
                     }
                 },
             }),
