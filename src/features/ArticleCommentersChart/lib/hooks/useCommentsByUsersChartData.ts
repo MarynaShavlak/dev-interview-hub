@@ -1,7 +1,7 @@
-import { ArticleCommentatorsDistributionChartProps } from '../../model/types/types';
+import { ArticleCommentersChartProps } from '../../model/types/types';
 
 export const useCommentsByUsersChartData = (
-    commentCountsByUser: ArticleCommentatorsDistributionChartProps['commentCountsByUser'],
+    commentCountsByUser: ArticleCommentersChartProps['commentCountsByUser'],
 ): {
     commentsByUsersData: { x: string; y: number }[];
 } => {

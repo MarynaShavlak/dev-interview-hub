@@ -6,7 +6,7 @@ export interface ArticleCommentCount {
     articleTitle: string;
 }
 
-export interface ArticleCommentatorsDistributionChartProps {
+export interface ArticleCommentersChartProps {
     commentCountsByUser: Record<string, number>;
     className?: string;
     chartDimensions: ChartDimensions;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { ArticleQuarterlyDataChart } from '@/features/ArticleQuarterlyDataChart';
-import { ArticleCommentatorsDistributionChart } from '@/features/ArticleCommentatorsDistributionChart';
+import { ArticleCommentersChart } from '@/features/ArticleCommentersChart';
 import { DashboardStats } from '@/features/DashboardStats';
 import { processRatings } from '../../lib/dataHandlers/processRatings/processRatings';
 import { initializeData } from '../../lib/dataHandlers/initializeData/initializeData';
@@ -101,7 +101,7 @@ export const StatisticsCharts = () => {
                 width={articleRatingDistributionChart.width}
                 height={articleRatingDistributionChart.height}
             />
-            <ArticleCommentatorsDistributionChart
+            <ArticleCommentersChart
                 commentCountsByUser={commentCountsByUser}
                 className={cls.commentsDistributionChart}
                 chartDimensions={commentsByUsersChart}

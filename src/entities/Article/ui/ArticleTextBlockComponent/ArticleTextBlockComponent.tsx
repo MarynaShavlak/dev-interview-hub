@@ -50,6 +50,7 @@ const renderText = (text: string, withTags: boolean) => {
             />
         );
     }
+    return null;
 };
 
 export const ArticleTextBlockComponent = memo(

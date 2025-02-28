@@ -27,7 +27,7 @@ const ArticleComments = memo((props: ArticleCommentsProps) => {
         (text: string) => {
             dispatch(addCommentForArticleThunk({ text, articleId: id }));
         },
-        [dispatch],
+        [dispatch, id],
     );
 
     const {

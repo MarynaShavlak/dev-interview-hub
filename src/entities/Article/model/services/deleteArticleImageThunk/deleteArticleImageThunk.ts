@@ -19,6 +19,7 @@ export const deleteArticleImageThunk = createAsyncThunk<
         const decodedPath = getImagePathFromUrl(imagePath);
         const imageRef = ref(firebaseStorage, decodedPath);
         await deleteObject(imageRef);
+        return undefined;
     } catch (error) {
         if (
             error instanceof Error &&
