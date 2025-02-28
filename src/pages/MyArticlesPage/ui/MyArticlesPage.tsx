@@ -1,4 +1,4 @@
-import React, { memo, useCallback } from 'react';
+import React, { memo } from 'react';
 import { UserArticlesTable } from '@/widgets/UserArticlesTable';
 import { Page } from '@/widgets/Page';
 import { deleteArticleWithRelationsThunk } from '@/widgets/ArticleManagement';
@@ -8,21 +8,18 @@ import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch
 const MyArticlesPage = memo(() => {
     const dispatch = useAppDispatch();
 
-    const handleDeleteArticle = useCallback(
-        async (articleId: string) => {
-            try {
-                const deletedArticleId = await dispatch(
-                    deleteArticleWithRelationsThunk(articleId),
-                ).unwrap();
-                await searchClient.clearCache();
-                return deletedArticleId;
-            } catch (error) {
-                console.error('Error deleting article:', error);
-                return null;
-            }
-        },
-        [dispatch],
-    );
+    const handleDeleteArticle = async (articleId: string) => {
+        try {
+            const deletedArticleId = await dispatch(
+                deleteArticleWithRelationsThunk(articleId),
+            ).unwrap();
+            await searchClient.clearCache();
+            return deletedArticleId;
+        } catch (error) {
+            console.error('Error deleting article:', error);
+            return null;
+        }
+    };
 
     // if (!articles?.length) {
     //     return null;

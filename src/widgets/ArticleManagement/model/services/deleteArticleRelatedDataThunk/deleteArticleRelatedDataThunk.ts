@@ -1,5 +1,4 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { useCallback } from 'react';
 import { ERROR_MESSAGES } from '../../consts/errorMessages';
 import { ThunkConfig } from '@/app/providers/StoreProvider';
 import { deleteCommentsByArticleId } from '@/features/ArticleComments';
@@ -12,21 +11,21 @@ export const deleteArticleRelatedDataThunk = createAsyncThunk<
     ThunkConfig<string>
 >('article/deleteAssociatedContent', async (articleId, thunkApi) => {
     const { rejectWithValue, dispatch } = thunkApi;
-
+    console.log('related__articleId', articleId);
     if (!articleId) {
         return rejectWithValue(ERROR_MESSAGES.MISSING_ARTICLE);
     }
 
-    const executeDelete = useCallback(
-        async (deleteAction: (id: string) => any, errorMessage: string) => {
-            try {
-                await dispatch(deleteAction(articleId)).unwrap();
-            } catch (error) {
-                throw handleThunkErrorMessage(error, errorMessage);
-            }
-        },
-        [articleId, dispatch],
-    );
+    const executeDelete = async (
+        deleteAction: (id: string) => any,
+        errorMessage: string,
+    ) => {
+        try {
+            await dispatch(deleteAction(articleId)).unwrap();
+        } catch (error) {
+            throw handleThunkErrorMessage(error, errorMessage);
+        }
+    };
 
     try {
         await executeDelete(
@@ -41,12 +40,10 @@ export const deleteArticleRelatedDataThunk = createAsyncThunk<
         return undefined;
     } catch (error) {
         return rejectWithValue(
-            typeof error === 'string'
-                ? error
-                : handleThunkErrorMessage(
-                      error,
-                      ERROR_MESSAGES.DELETE_RELATED_DATA(articleId),
-                  ),
+            handleThunkErrorMessage(
+                error,
+                ERROR_MESSAGES.DELETE_RELATED_DATA(articleId),
+            ),
         );
     }
 });

@@ -7,7 +7,6 @@ import { ThunkConfig } from '@/app/providers/StoreProvider';
 import { handleThunkErrorMessage } from '@/shared/lib/firestore/handleThunkErrorMessage/handleThunkErrorMessage';
 import { ERROR_MESSAGES } from '../../consts/errorMessages';
 import { deleteArticleRelatedDataThunk } from '../deleteArticleRelatedDataThunk/deleteArticleRelatedDataThunk';
-import { deleteAllArticleContentImagesThunk } from '../deleteAllArticleContentImagesThunk/deleteAllArticleContentImagesThunk';
 
 export const deleteArticleWithRelationsThunk = createAsyncThunk<
     string,
@@ -30,11 +29,12 @@ export const deleteArticleWithRelationsThunk = createAsyncThunk<
         const deletedArticleId = await dispatch(
             deleteArticleThunk(articleId),
         ).unwrap();
+        console.log('deletedArticleId', deletedArticleId);
 
         if (deletedArticleId) {
-            await dispatch(
-                deleteAllArticleContentImagesThunk(article),
-            ).unwrap();
+            // await dispatch(
+            //     deleteAllArticleContentImagesThunk(article),
+            // ).unwrap();
             await dispatch(
                 deleteArticleRelatedDataThunk(deletedArticleId),
             ).unwrap();
