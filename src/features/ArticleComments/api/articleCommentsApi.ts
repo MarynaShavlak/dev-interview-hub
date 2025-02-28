@@ -1,13 +1,9 @@
-import { getDoc, onSnapshot } from 'firebase/firestore';
 import { firestoreApi } from '@/shared/api/firestoreApi';
 
 import { fetchCollectionDocsData } from '@/shared/lib/firestore/fetchCollectionDocsData/fetchCollectionDocsData';
 import { ArticleComment } from '../model/types/articleComment';
-import { User } from '@/entities/User';
-import { addDocToFirestore } from '@/shared/lib/firestore/addDocToFirestore/addDocToFirestore';
 import { createArticleCommentsQuery } from '../lib/utilities/createArticleCommentsQuery/createArticleCommentsQuery';
 import { fetchQueryResults } from '@/shared/lib/firestore/fetchQueryResults/fetchQueryResults';
-import { createCommentsByArticleIdsQuery } from '../lib/utilities/createCommentsByArticleIdsQuery/createCommentsByArticleIdsQuery';
 import { deleteDocFromFirestore } from '@/shared/lib/firestore/deleteDocFromFirestore/deleteDocFromFirestore';
 import { fetchCommentsForArticle } from '../lib/utilities/fetchCommentsForArticle/fetchCommentsForArticle';
 import { ERROR_MESSAGES } from '../model/consts/errorMessages';
@@ -16,6 +12,11 @@ import { handleRequestErrorMessage } from '@/shared/lib/firestore/handleRequestE
 import { subscribeToArticleComments } from '../lib/utilities/subscribeToArticleComments/subscribeToArticleComments';
 import { subscribeToAllArticlesComments } from '../lib/utilities/subscribeToAllArticlesComments/subscribeToAllArticlesComments';
 import { fetchCommentsForMultipleArticles } from '../lib/utilities/fetchCommentsForMultipleArticles/fetchCommentsForMultipleArticles';
+import { subscribeToMultipleArticlesComments } from '../lib/utilities/subscribeToMultipleArticlesComments/subscribeToMultipleArticlesComments';
+import {
+    NewCommentDraft,
+    saveCommentToFirestore,
+} from '../lib/utilities/saveCommentToFirestore/saveCommentToFirestore';
 
 export const articlesCommentsFirebaseApi = firestoreApi
     .enhanceEndpoints({ addTagTypes: ['ArticleComments'] })
@@ -117,26 +118,10 @@ export const articlesCommentsFirebaseApi = firestoreApi
                     { updateCachedData, cacheDataLoaded, cacheEntryRemoved },
                 ) {
                     await cacheDataLoaded;
-                    let unsubscribe;
-                    try {
-                        const commentsQuery =
-                            createCommentsByArticleIdsQuery(articleIds);
-                        if (commentsQuery) {
-                            unsubscribe = onSnapshot(
-                                commentsQuery,
-                                (snapshot) => {
-                                    updateCachedData((draft) => {
-                                        const result = snapshot?.docs?.map(
-                                            (doc) => doc.data(),
-                                        ) as ArticleComment[];
-                                        return result;
-                                    });
-                                },
-                            );
-                        }
-                    } catch (error) {
-                        console.error('Error in comments snapshot:', error);
-                    }
+                    const unsubscribe = subscribeToMultipleArticlesComments(
+                        updateCachedData,
+                        articleIds,
+                    );
 
                     await cacheEntryRemoved;
                     if (unsubscribe) {
@@ -144,37 +129,17 @@ export const articlesCommentsFirebaseApi = firestoreApi
                     }
                 },
             }),
-            addComment: build.mutation<
-                ArticleComment,
-                { articleId: string; user: User; text: string; id: string }
-            >({
+            addComment: build.mutation<ArticleComment, NewCommentDraft>({
                 invalidatesTags: [{ type: 'ArticleComments', id: 'commentId' }],
                 async queryFn(newComment) {
                     try {
-                        const docRef = await addDocToFirestore<ArticleComment>(
-                            'comments',
-                            {
-                                ...newComment,
-                                createdAt: new Date().toISOString(),
-                            },
-                        );
-
-                        const createdDocSnapshot = await getDoc(docRef);
-
-                        if (!createdDocSnapshot.exists()) {
-                            throw new Error(
-                                'Failed to retrieve created comment.',
-                            );
-                        }
-
-                        return {
-                            data: {
-                                ...createdDocSnapshot.data(),
-                            } as ArticleComment,
-                        };
+                        const createdComment =
+                            await saveCommentToFirestore(newComment);
+                        return { data: createdComment };
                     } catch (error) {
-                        console.error('Error adding new comment:', error);
-                        return { error };
+                        return handleRequestErrorMessage(
+                            ERROR_MESSAGES.ADD_COMMENT_FAIL,
+                        );
                     }
                 },
             }),

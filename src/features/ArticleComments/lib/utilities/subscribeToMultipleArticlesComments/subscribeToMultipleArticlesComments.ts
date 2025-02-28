@@ -5,7 +5,7 @@ import { handleRequestErrorMessage } from '@/shared/lib/firestore/handleRequestE
 import { ERROR_MESSAGES } from '../../../model/consts/errorMessages';
 import { createCommentsByArticleIdsQuery } from '../createCommentsByArticleIdsQuery/createCommentsByArticleIdsQuery';
 
-export const subscribeToMultipleArticleComments = (
+export const subscribeToMultipleArticlesComments = (
     updateCachedData: (
         updater: (draft: MaybeDrafted<ArticleComment[]>) => void,
     ) => void,
