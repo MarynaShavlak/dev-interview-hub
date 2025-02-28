@@ -27,14 +27,14 @@ export const useGetArticleStats = (): UseArticleStatsResult => {
         error: isArticlesError,
     } = useArticlesByUserId(authedUserId);
     const articlesIdArray = articles?.map((article) => article.id);
-
+    console.log('articles', articlesIdArray);
     const {
         data: ratings = [],
         isLoading: isRatingsLoading,
         error: isRatingsError,
     } = useRatingsByArticleIdsList(articlesIdArray || []);
     const {
-        data: comments = [],
+        data: comments,
         isLoading: isCommentsLoading,
         error: isCommentsError,
     } = useCommentsByArticleIdsList(articlesIdArray || []);
@@ -49,7 +49,7 @@ export const useGetArticleStats = (): UseArticleStatsResult => {
         const articleStats: Record<string, ArticleStats> = {};
 
         articlesIdArray.forEach((articleId) => {
-            const articleComments = comments.filter(
+            const articleComments = comments?.filter(
                 (comment) => comment.articleId === articleId,
             );
 
@@ -69,7 +69,7 @@ export const useGetArticleStats = (): UseArticleStatsResult => {
                 : '-';
 
             articleStats[articleId] = {
-                commentsQuantity: articleComments.length,
+                commentsQuantity: articleComments?.length || 3000,
                 averageRating,
             };
         });

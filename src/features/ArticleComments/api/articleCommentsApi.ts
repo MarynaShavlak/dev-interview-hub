@@ -15,6 +15,7 @@ import { handleRequestErrorMessage } from '@/shared/lib/firestore/handleRequestE
 
 import { subscribeToArticleComments } from '../lib/utilities/subscribeToArticleComments/subscribeToArticleComments';
 import { subscribeToAllArticlesComments } from '../lib/utilities/subscribeToAllArticlesComments/subscribeToAllArticlesComments';
+import { fetchCommentsForMultipleArticles } from '../lib/utilities/fetchCommentsForMultipleArticles/fetchCommentsForMultipleArticles';
 
 export const articlesCommentsFirebaseApi = firestoreApi
     .enhanceEndpoints({ addTagTypes: ['ArticleComments'] })
@@ -97,24 +98,18 @@ export const articlesCommentsFirebaseApi = firestoreApi
                 keepUnusedDataFor: 3600,
                 async queryFn(articleIds) {
                     try {
-                        const commentsQuery =
-                            createCommentsByArticleIdsQuery(articleIds);
-                        if (commentsQuery) {
-                            const comments =
-                                await fetchQueryResults<ArticleComment>(
-                                    commentsQuery,
-                                );
-                            return { data: comments };
-                        }
-                        return { data: [] };
+                        if (!articleIds || articleIds.length === 0)
+                            return { data: [] };
+                        const comments =
+                            await fetchCommentsForMultipleArticles(articleIds);
+                        return { data: comments };
                     } catch (error) {
-                        console.error(
-                            'Error fetching comments by article IDs:',
+                        return handleRequestErrorMessage(
+                            ERROR_MESSAGES.COMMENTS_BY_ARTICLE_IDS_FETCH_FAIL(
+                                articleIds,
+                            ),
                             error,
                         );
-                        return {
-                            error: 'Error fetching comments by article IDs',
-                        };
                     }
                 },
                 async onCacheEntryAdded(
@@ -134,6 +129,7 @@ export const articlesCommentsFirebaseApi = firestoreApi
                                         const result = snapshot?.docs?.map(
                                             (doc) => doc.data(),
                                         ) as ArticleComment[];
+                                        return result;
                                     });
                                 },
                             );
