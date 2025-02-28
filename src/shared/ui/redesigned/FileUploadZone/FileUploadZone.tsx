@@ -55,35 +55,31 @@ export const FileUploadZone = (props: FileUploadZoneProps) => {
         ? t('Змінити зображення')
         : t('Завантажити зображення');
 
-    return (
-        <>
-            {imagePreview ? (
-                <div className={cls.uploadZoneBtnWrap}>
-                    <FileUploadInput
-                        onChange={handleImageChange}
-                        AddFileElement={renderUploadButton(icon, text)}
-                    />
-                    <Icon
-                        Svg={CloseIcon}
-                        className={cls.resetImageIcon}
-                        clickable
-                        onClick={resetImage}
-                    />
-                </div>
-            ) : (
-                <Card
-                    className={classNames(cls.uploadZone, {}, [
-                        ...uploadZoneClasses,
-                        className,
-                    ])}
-                    max
-                >
-                    <FileUploadInput
-                        onChange={handleImageChange}
-                        AddFileElement={renderUploadButton(icon, text)}
-                    />
-                </Card>
-            )}
-        </>
+    return imagePreview ? (
+        <div className={cls.uploadZoneBtnWrap}>
+            <FileUploadInput
+                onChange={handleImageChange}
+                AddFileElement={renderUploadButton(icon, text)}
+            />
+            <Icon
+                Svg={CloseIcon}
+                className={cls.resetImageIcon}
+                clickable
+                onClick={resetImage}
+            />
+        </div>
+    ) : (
+        <Card
+            className={classNames(cls.uploadZone, {}, [
+                ...uploadZoneClasses,
+                className,
+            ])}
+            max
+        >
+            <FileUploadInput
+                onChange={handleImageChange}
+                AddFileElement={renderUploadButton(icon, text)}
+            />
+        </Card>
     );
 };
