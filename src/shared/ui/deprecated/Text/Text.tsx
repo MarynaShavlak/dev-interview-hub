@@ -15,6 +15,7 @@ export enum TextAlign {
     RIGHT = 'right',
     LEFT = 'left',
     CENTER = 'center',
+    JUSTIFY = 'justify',
 }
 
 export enum TextSize {

@@ -1,4 +1,5 @@
 import React, { memo, useCallback } from 'react';
+import { useTranslation } from 'react-i18next';
 import { getRouteProfile } from '@/shared/const/router/router';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { Avatar } from '@/shared/ui/deprecated/Avatar';
@@ -11,6 +12,9 @@ import { getFlexClasses } from '@/shared/lib/classes/getFlexClasses/getFlexClass
 import { Button, ButtonTheme } from '@/shared/ui/deprecated/Button';
 import { Icon } from '@/shared/ui/deprecated/Icon';
 import DeleteIcon from '@/shared/assets/icons/delete.svg';
+import { ConfirmDeleteModal } from '@/shared/ui/common/ConfirmDeleteModal';
+import { useToggleVisibility } from '@/shared/lib/hooks/useToggleVisibility/useToggleVisibility';
+import { truncateText } from '@/shared/lib/text/truncateText/truncateText';
 
 interface CommentCardDeprecatedProps {
     className?: string;
@@ -21,8 +25,11 @@ interface CommentCardDeprecatedProps {
 export const CommentCardDeprecated = memo(
     (props: CommentCardDeprecatedProps) => {
         const { className, comment, deleteComment } = props;
+        const { t } = useTranslation('articleDetails');
         const { text, id, user } = comment;
         const additionalClasses = getFlexClasses({ hStack: true, gap: '8' });
+
+        const deleteCommentModal = useToggleVisibility();
 
         const handleDelete = useCallback(async () => {
             deleteComment?.(id);
@@ -54,11 +61,19 @@ export const CommentCardDeprecated = memo(
                     </AppLink>
                     {deleteComment && (
                         <Button
-                            onClick={handleDelete}
+                            onClick={deleteCommentModal.show}
                             theme={ButtonTheme.CLEAR}
                         >
                             <Icon Svg={DeleteIcon} width={24} variant="error" />
                         </Button>
+                    )}
+                    {deleteCommentModal.isVisible && (
+                        <ConfirmDeleteModal
+                            isOpen={deleteCommentModal.isVisible}
+                            onCancel={deleteCommentModal.hide}
+                            text={`${t('коментар')} "${truncateText(text, 100)}" ${t('від користувача')} <b>${user.username}</b>`}
+                            onConfirm={handleDelete}
+                        />
                     )}
                 </HStack>
 

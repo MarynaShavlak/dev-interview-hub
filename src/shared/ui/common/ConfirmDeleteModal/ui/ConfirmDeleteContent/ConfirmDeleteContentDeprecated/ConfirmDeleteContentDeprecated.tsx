@@ -1,11 +1,11 @@
 import React, { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import DeleteIcon from '@/shared/assets/icons/delete.svg';
-import { Icon } from '@/shared/ui/deprecated/Icon';
-import { Text, TextSize } from '@/shared/ui/deprecated/Text';
-import { HStack, VStack } from '@/shared/ui/common/Stack';
+import { Icon } from '../../../../../deprecated/Icon';
+import { Text, TextAlign, TextSize } from '../../../../../deprecated/Text';
+import { HStack, VStack } from '../../../../Stack';
 import cls from './ConfirmDeleteContentDeprecated.module.scss';
-import { Button, ButtonTheme } from '@/shared/ui/deprecated/Button';
+import { Button, ButtonTheme } from '../../../../../deprecated/Button';
 import { ConfirmDeleteContentProps } from '../ConfirmDeleteContent';
 
 export const ConfirmDeleteContentDeprecated = memo(
@@ -38,7 +38,7 @@ export const ConfirmDeleteContentDeprecated = memo(
 
                     <Text text={t('Підтвердити видалення')} size={TextSize.M} />
 
-                    <Text text={confirmText} />
+                    <Text text={confirmText} align={TextAlign.JUSTIFY} />
                     <Text text={warningText} />
                 </VStack>
                 <HStack justify="between" max>
