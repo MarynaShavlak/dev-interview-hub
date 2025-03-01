@@ -1,10 +1,10 @@
 import { useTranslation } from 'react-i18next';
 import React, { memo } from 'react';
+import { ConfirmDeleteModal } from 'src/shared/ui/common/ConfirmDeleteModal';
+import { ConfirmCancelModal } from 'src/shared/ui/common/ConfirmCancelModal';
 import { HStack } from '@/shared/ui/common/Stack';
 
 import { Button, ButtonTheme } from '@/shared/ui/deprecated/Button';
-import { ConfirmDeleteModal } from '@/features/ConfirmDeleteModal';
-import { ConfirmCancelModal } from '@/features/ConfirmCancelModal';
 import cls from '../ArticleEditorPageHeader.module.scss';
 import { Text, TextSize } from '@/shared/ui/deprecated/Text';
 import { Loader } from '@/shared/ui/deprecated/Loader';
