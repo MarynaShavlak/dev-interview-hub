@@ -5,6 +5,7 @@ import { ArticleComment } from '../../..';
 export const fetchCommentsForMultipleArticles = async (
     articleIds: string[],
 ) => {
+    if (!articleIds || articleIds.length === 0) return [];
     const commentsQuery = createCommentsByArticleIdsQuery(articleIds);
     if (commentsQuery) {
         const comments = await fetchQueryResults<ArticleComment>(commentsQuery);

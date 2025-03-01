@@ -16,6 +16,7 @@ import {
 import { deleteCommentsFromFirestore } from '../lib/utilities/deleteCommentsFromFirestore/deleteCommentsFromFirestore';
 import { handleFirestoreSubscription } from '@/shared/lib/firestore/handleFirestoreSubscription/handleFirestoreSubscription';
 import { subscribeToMultipleArticlesComments } from '../lib/utilities/subscribeToMultipleArticlesComments/subscribeToMultipleArticlesComments';
+import { executeQuery } from '@/shared/lib/firestore/executeQuery/executeQuery';
 
 export const articlesCommentsFirebaseApi = firestoreApi
     .enhanceEndpoints({ addTagTypes: ['ArticleComments'] })
@@ -103,37 +104,25 @@ export const articlesCommentsFirebaseApi = firestoreApi
                 providesTags: ['ArticleComments'],
                 keepUnusedDataFor: 3600,
 
-                async onQueryStarted(articleIds, { dispatch, queryFulfilled }) {
-                    try {
-                        // If articleIds is empty, you may want to skip the request
-                        if (!articleIds || articleIds.length === 0) {
-                            // Optionally dispatch an action or return early if no valid ids
-                            return { data: [] };
-                        }
-
-                        // Handle the query result when the request is successful
-                        const { data } = await queryFulfilled;
-                        // Optionally update state or do something else with the fetched data
-                    } catch (error) {
-                        // Handle the error here if needed, like dispatching additional actions
-                        console.error(`Error fetching comments: ${error}`);
-                    }
-                },
                 async queryFn(articleIds) {
-                    try {
-                        if (!articleIds || articleIds.length === 0)
-                            return { data: [] };
-                        const comments =
-                            await fetchCommentsForMultipleArticles(articleIds);
-                        return { data: comments };
-                    } catch (error) {
-                        return handleRequestErrorMessage(
-                            ERROR_MESSAGES.COMMENTS_BY_ARTICLE_IDS_FETCH_FAIL(
-                                articleIds,
-                            ),
-                            error,
-                        );
-                    }
+                    return executeQuery(
+                        () => fetchCommentsForMultipleArticles(articleIds), // The async operation
+                        ERROR_MESSAGES.COMMENTS_BY_ARTICLE_IDS_FETCH_FAIL(
+                            articleIds,
+                        ), // Custom error message
+                    );
+                    // try {
+                    //     const comments =
+                    //         await fetchCommentsForMultipleArticles(articleIds);
+                    //     return { data: comments };
+                    // } catch (error) {
+                    //     return handleRequestErrorMessage(
+                    //         ERROR_MESSAGES.COMMENTS_BY_ARTICLE_IDS_FETCH_FAIL(
+                    //             articleIds,
+                    //         ),
+                    //         error,
+                    //     );
+                    // }
                 },
 
                 async onCacheEntryAdded(
