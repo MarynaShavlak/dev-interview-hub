@@ -4,7 +4,6 @@ import {
     PersonalNotification,
 } from '../model/types/notification';
 
-import { fetchAllNotifications } from '../lib/utilities/getNotifications/fetchAllNotifications/fetchAllNotifications';
 import { subscribeToNotifications } from '../lib/utilities/subscribeToNotifications/subscribeToNotifications';
 import { ERROR_MESSAGES } from '../model/consts/errorMessages';
 import { handleRequestErrorMessage } from '@/shared/lib/firestore/handleRequestErrorMessage/handleRequestErrorMessage';
@@ -12,6 +11,8 @@ import { dismissOneGeneral } from '../lib/utilities/handleNotificationsDelete/di
 import { deleteAllGeneral } from '../lib/utilities/handleNotificationsDelete/deleteAllGeneral/deleteAllGeneral';
 import { dismissOnePersonal } from '../lib/utilities/handleNotificationsDelete/dismissOnePersonal/dismissOnePersonal';
 import { deleteAllPersonal } from '../lib/utilities/handleNotificationsDelete/deleteAllPersonal/deleteAllPersonal';
+import { executeQuery } from '@/shared/lib/firestore/executeQuery/executeQuery';
+import { fetchAllNotifications } from '../lib/utilities/getNotifications/fetchAllNotifications/fetchAllNotifications';
 
 const notificationApi = firestoreApi
     .enhanceEndpoints({
@@ -26,21 +27,34 @@ const notificationApi = firestoreApi
                 providesTags: ['Notifications', 'PersonalNotifications'],
                 keepUnusedDataFor: 3600,
                 async queryFn(userId: string) {
-                    try {
-                        if (!userId) {
-                            const error = new Error(
+                    if (!userId) {
+                        return {
+                            error: new Error(
                                 ERROR_MESSAGES.USER_NOT_AUTHORIZED,
-                            );
-                            return { error };
-                        }
-                        const data = await fetchAllNotifications(userId);
-                        return { data };
-                    } catch (error) {
-                        return handleRequestErrorMessage(
-                            ERROR_MESSAGES.NOTIFICATIONS_FETCH_FAIL,
-                            error,
-                        );
+                            ),
+                        };
                     }
+                    // try {
+                    //     if (!userId) {
+                    //         return {
+                    //             error: new Error(
+                    //                 ERROR_MESSAGES.USER_NOT_AUTHORIZED,
+                    //             ),
+                    //         };
+                    //     }
+                    //     const data = await fetchAllNotifications(userId);
+                    //     return { data };
+                    // } catch (error) {
+                    //     return handleRequestErrorMessage(
+                    //         ERROR_MESSAGES.NOTIFICATIONS_FETCH_FAIL,
+                    //         error,
+                    //     );
+                    // }
+
+                    return executeQuery(
+                        () => fetchAllNotifications(userId),
+                        ERROR_MESSAGES.NOTIFICATIONS_FETCH_FAIL,
+                    );
                 },
 
                 async onCacheEntryAdded(
