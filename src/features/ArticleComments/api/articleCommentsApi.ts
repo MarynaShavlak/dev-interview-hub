@@ -16,6 +16,7 @@ import { deleteCommentsFromFirestore } from '../lib/utilities/deleteCommentsFrom
 import { handleFirestoreSubscription } from '@/shared/lib/firestore/handleFirestoreSubscription/handleFirestoreSubscription';
 import { subscribeToMultipleArticlesComments } from '../lib/utilities/subscribeToMultipleArticlesComments/subscribeToMultipleArticlesComments';
 import { executeQuery } from '@/shared/lib/firestore/executeQuery/executeQuery';
+import { deleteDocFromFirestore } from '@/shared/lib/firestore/deleteDocFromFirestore/deleteDocFromFirestore';
 
 export const articlesCommentsFirebaseApi = firestoreApi
     .enhanceEndpoints({ addTagTypes: ['ArticleComments'] })
@@ -112,6 +113,17 @@ export const articlesCommentsFirebaseApi = firestoreApi
                     );
                 },
             }),
+            deleteComment: build.mutation<string, string>({
+                invalidatesTags: ['ArticleComments'],
+                async queryFn(commentId) {
+                    try {
+                        await deleteDocFromFirestore('comments', commentId);
+                        return { data: commentId };
+                    } catch (error) {
+                        return { error };
+                    }
+                },
+            }),
             deleteCommentsByArticleId: build.mutation<void, string>({
                 invalidatesTags: ['ArticleComments'],
                 async queryFn(articleId) {
@@ -136,6 +148,9 @@ export const addCommentMutation =
 
 export const useCommentsByArticleIdsList =
     articlesCommentsFirebaseApi.useGetCommentsByArticleIdsListQuery;
+
+export const deleteCommentMutation =
+    articlesCommentsFirebaseApi.endpoints.deleteComment.initiate;
 
 export const deleteCommentsByArticleId =
     articlesCommentsFirebaseApi.endpoints.deleteCommentsByArticleId.initiate;

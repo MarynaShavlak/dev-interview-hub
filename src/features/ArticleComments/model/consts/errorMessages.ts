@@ -10,4 +10,5 @@ export const ERROR_MESSAGES = {
     COMMENT_RETRIEVAL_FAIL: 'Failed to retrieve created comment.',
     DELETE_COMMENTS_BY_ARTICLE_ID_FAIL: (articleId: string) =>
         `Failed to delete comments for article with ID "${articleId}".`,
+    DELETE_ERROR: 'Something when wrong when deleting comment.',
 };
