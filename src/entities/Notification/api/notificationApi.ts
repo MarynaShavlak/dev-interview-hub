@@ -82,16 +82,10 @@ const notificationApi = firestoreApi
                 { notificationId: string; userId: string }
             >({
                 async queryFn({ notificationId, userId }) {
-                    try {
-                        await dismissOneGeneral(notificationId, userId);
-
-                        return { data: undefined };
-                    } catch (error) {
-                        return handleRequestErrorMessage(
-                            ERROR_MESSAGES.DISMISS_GENERAL_FAIL(userId),
-                            error,
-                        );
-                    }
+                    return executeQuery(
+                        () => dismissOneGeneral(notificationId, userId),
+                        ERROR_MESSAGES.DISMISS_GENERAL_FAIL(userId),
+                    );
                 },
                 invalidatesTags: ['Notifications'],
             }),
@@ -101,15 +95,10 @@ const notificationApi = firestoreApi
                 { userId: string }
             >({
                 async queryFn({ userId }) {
-                    try {
-                        await deleteAllGeneral(userId);
-                        return { data: undefined };
-                    } catch (error) {
-                        return handleRequestErrorMessage(
-                            ERROR_MESSAGES.DELETE_ALL_GENERAL_FAIL,
-                            error,
-                        );
-                    }
+                    return executeQuery(
+                        () => deleteAllGeneral(userId),
+                        ERROR_MESSAGES.DELETE_ALL_GENERAL_FAIL,
+                    );
                 },
                 invalidatesTags: ['Notifications'],
             }),
@@ -119,15 +108,10 @@ const notificationApi = firestoreApi
                 { notificationId: string; userId: string }
             >({
                 async queryFn({ notificationId, userId }) {
-                    try {
-                        await dismissOnePersonal(notificationId, userId);
-                        return { data: undefined };
-                    } catch (error) {
-                        return handleRequestErrorMessage(
-                            ERROR_MESSAGES.DISMISS_PERSONAL_FAIL(userId),
-                            error,
-                        );
-                    }
+                    return executeQuery(
+                        () => dismissOnePersonal(notificationId, userId),
+                        ERROR_MESSAGES.DISMISS_PERSONAL_FAIL(userId),
+                    );
                 },
                 invalidatesTags: ['PersonalNotifications'],
             }),
