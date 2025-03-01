@@ -4,6 +4,8 @@ import {
     removeAllGeneralNotificationsForUserMutation,
     removeAllPersonalNotificationsMutation,
 } from '../../../api/notificationApi';
+import { handleThunkErrorMessage } from '@/shared/lib/firestore/handleThunkErrorMessage/handleThunkErrorMessage';
+import { ERROR_MESSAGES } from '../../consts/errorMessages';
 
 export const deleteAllNotificationsThunk = createAsyncThunk<
     void,
@@ -15,7 +17,7 @@ export const deleteAllNotificationsThunk = createAsyncThunk<
     const user = auth.currentUser;
 
     if (!user) {
-        return rejectWithValue('No user data found.');
+        return rejectWithValue(ERROR_MESSAGES.USER_NOT_AUTHORIZED);
     }
 
     try {
@@ -35,7 +37,10 @@ export const deleteAllNotificationsThunk = createAsyncThunk<
         return undefined;
     } catch (error) {
         return rejectWithValue(
-            `Failed to delete for current user notifications `,
+            handleThunkErrorMessage(
+                error,
+                ERROR_MESSAGES.DELETE_NOTIFICATIONS_FAIL,
+            ),
         );
     }
 });

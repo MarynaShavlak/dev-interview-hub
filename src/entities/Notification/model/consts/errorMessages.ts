@@ -11,4 +11,6 @@ export const ERROR_MESSAGES = {
     NOTIFICATION_NOT_FOUND: 'Notification not found.',
     PERSONAL_NOTIFICATION_NOT_FOUND: 'Personal notification not found.',
     SUBSCRIPTIONS_ERROR: 'Error in all notifications subscription.',
+    DELETE_NOTIFICATIONS_FAIL:
+        'Failed to delete notifications for the current user.',
 };
