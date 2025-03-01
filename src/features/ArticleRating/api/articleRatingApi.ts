@@ -1,4 +1,4 @@
-import { getDoc, onSnapshot } from 'firebase/firestore';
+import { getDoc } from 'firebase/firestore';
 import { firestoreApi } from '@/shared/api/firestoreApi';
 import { ArticleRatingType } from '../model/types/articleRatingType';
 import { fetchQueryResults } from '@/shared/lib/firestore/fetchQueryResults/fetchQueryResults';
@@ -14,6 +14,9 @@ import { fetchArticleRateByUser } from '../lib/utilities/fetchArticleRateByUser/
 import { handleFirestoreSubscription } from '@/shared/lib/firestore/handleFirestoreSubscription/handleFirestoreSubscription';
 
 import { subscribeToArticleRating } from '../lib/utilities/subscribeToArticleRating/subscribeToArticleRating';
+
+import { fetchRatingsForMultipleArticles } from '../lib/utilities/fetchRatingsForMultipleArticles/fetchRatingsForMultipleArticles';
+import { subscribeToMultipleArticlesRatings } from '../lib/utilities/subscribeToMultipleArticlesRatings/subscribeToMultipleArticlesRatings';
 
 interface GetArticleRatingArg {
     userId: string;
@@ -78,56 +81,24 @@ export const articleRatingFirebaseApi = firestoreApi
                 providesTags: ['ArticleRating'],
                 keepUnusedDataFor: 3600,
                 async queryFn(articleIds) {
-                    try {
-                        const ratingsQuery =
-                            createRatingsByArticleIdsQuery(articleIds);
-                        if (ratingsQuery) {
-                            const ratings =
-                                await fetchQueryResults<ArticleRatingType>(
-                                    ratingsQuery,
-                                );
-                            return { data: ratings };
-                        }
-                        return { data: [] };
-                    } catch (error) {
-                        console.error(
-                            'Error fetching ratings by article IDs:',
-                            error,
-                        );
-                        return {
-                            error: 'Error fetching ratings by article IDs',
-                        };
-                    }
+                    return executeQuery(
+                        () => fetchRatingsForMultipleArticles(articleIds),
+                        ERROR_RATING_MESSAGES.FETCH_RATINGS_BY_ARTICLE_IDS_FAIL(
+                            articleIds,
+                        ),
+                    );
                 },
                 async onCacheEntryAdded(
                     articleIds,
                     { updateCachedData, cacheDataLoaded, cacheEntryRemoved },
                 ) {
-                    await cacheDataLoaded;
-                    let unsubscribe;
-                    try {
-                        const ratingsQuery =
-                            createRatingsByArticleIdsQuery(articleIds);
-                        if (ratingsQuery) {
-                            unsubscribe = onSnapshot(
-                                ratingsQuery,
-                                (snapshot) => {
-                                    updateCachedData((draft) => {
-                                        const result = snapshot?.docs?.map(
-                                            (doc) => doc.data(),
-                                        ) as ArticleRatingType[];
-                                    });
-                                },
-                            );
-                        }
-                    } catch (error) {
-                        console.error('Error in ratings snapshot:', error);
-                    }
-
-                    await cacheEntryRemoved;
-                    if (unsubscribe) {
-                        unsubscribe();
-                    }
+                    handleFirestoreSubscription({
+                        subscriptionFn: subscribeToMultipleArticlesRatings,
+                        updateFn: updateCachedData,
+                        dependency: articleIds,
+                        cacheDataLoaded,
+                        cacheEntryRemoved,
+                    });
                 },
             }),
             rateArticle: build.mutation<ArticleRatingType, RateArticleArg>({
