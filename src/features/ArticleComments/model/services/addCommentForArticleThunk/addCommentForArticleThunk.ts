@@ -5,6 +5,8 @@ import { ThunkConfig } from '@/app/providers/StoreProvider';
 import { Comment } from '@/entities/Comment';
 import { addCommentMutation } from '../../../api/articleCommentsApi';
 import { getArticleDataByIdQuery } from '@/entities/Article';
+import { ERROR_MESSAGES } from '../../consts/errorMessages';
+import { handleThunkErrorMessage } from '@/shared/lib/firestore/handleThunkErrorMessage/handleThunkErrorMessage';
 
 /**
  * Thunk to add a comment to an article.
@@ -25,35 +27,35 @@ export const addCommentForArticleThunk = createAsyncThunk<
     { text: string; articleId: string },
     ThunkConfig<string>
 >(
-    'articleDetails/addCommentForArticle',
+    'articleComments/addCommentForArticle',
     async ({ text, articleId }, thunkApi) => {
-        const { extra, dispatch, rejectWithValue, getState } = thunkApi;
+        const { dispatch, rejectWithValue, getState } = thunkApi;
 
         try {
             const userData = getUserAuthData(getState());
-            // const article = getArticleDetailsData(getState());
             const article = await dispatch(
                 getArticleDataByIdQuery(articleId),
             ).unwrap();
-
             if (!userData) {
-                return rejectWithValue('User authentication data is missing.');
+                return rejectWithValue(ERROR_MESSAGES.USER_AUTH_MISSING);
             }
 
             if (!article) {
-                return rejectWithValue('Article details are missing.');
+                return rejectWithValue(ERROR_MESSAGES.ARTICLE_DETAILS_MISSING);
             }
 
             if (!text || text.trim() === '') {
-                return rejectWithValue('Comment text cannot be empty.');
+                return rejectWithValue(ERROR_MESSAGES.COMMENT_TEXT_REQUIRED);
             }
+            const { id, avatar, email, firstname, lastname, username } =
+                userData;
             const userInfo = {
-                id: userData.id,
-                avatar: userData.avatar,
-                email: userData.email,
-                firstname: userData.firstname,
-                lastname: userData.lastname,
-                username: userData.username,
+                id,
+                avatar,
+                email,
+                firstname,
+                lastname,
+                username,
             };
             const commentId = v4();
             const addedComment = await dispatch(
@@ -65,14 +67,14 @@ export const addCommentForArticleThunk = createAsyncThunk<
                 }),
             ).unwrap();
 
-            if (!addedComment) {
-                return rejectWithValue('No data received from API.');
-            }
-
             return addedComment;
         } catch (error) {
-            console.error('Error adding comment for article:', error);
-            return rejectWithValue('Failed to add comment.');
+            return rejectWithValue(
+                handleThunkErrorMessage(
+                    error,
+                    ERROR_MESSAGES.COMMENT_ADD_API_FAIL,
+                ),
+            );
         }
     },
 );

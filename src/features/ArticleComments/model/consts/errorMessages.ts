@@ -11,4 +11,9 @@ export const ERROR_MESSAGES = {
     DELETE_COMMENTS_BY_ARTICLE_ID_FAIL: (articleId: string) =>
         `Failed to delete comments for article with ID "${articleId}".`,
     DELETE_ERROR: 'Something when wrong when deleting comment.',
+    COMMENT_ID_REQUIRED: 'Comment ID is required.',
+    COMMENT_TEXT_REQUIRED: 'Comment text cannot be empty.',
+    USER_AUTH_MISSING: 'User authentication data is missing.',
+    ARTICLE_DETAILS_MISSING: 'Article details are missing.',
+    COMMENT_ADD_API_FAIL: 'No data received from API.',
 };

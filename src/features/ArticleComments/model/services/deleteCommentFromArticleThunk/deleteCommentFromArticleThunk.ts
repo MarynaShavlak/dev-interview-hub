@@ -8,11 +8,11 @@ export const deleteCommentFromArticleThunk = createAsyncThunk<
     string,
     string,
     ThunkConfig<string>
->('articleDetails/deletedCommentFromArticle', async (commentId, thunkApi) => {
+>('articleComments/deletedCommentFromArticle', async (commentId, thunkApi) => {
     const { rejectWithValue, dispatch } = thunkApi;
 
     if (!commentId) {
-        return rejectWithValue('Article ID is required.');
+        return rejectWithValue(ERROR_MESSAGES.COMMENT_ID_REQUIRED);
     }
 
     try {
