@@ -1,7 +1,6 @@
 import { getDoc, onSnapshot } from 'firebase/firestore';
 import { firestoreApi } from '@/shared/api/firestoreApi';
 import { ArticleRatingType } from '../model/types/articleRatingType';
-import { createArticleRatingQuery } from '../lib/utilities/createArticleRatingQuery/createArticleRatingQuery';
 import { fetchQueryResults } from '@/shared/lib/firestore/fetchQueryResults/fetchQueryResults';
 import { User } from '@/entities/User';
 import { addDocToFirestore } from '@/shared/lib/firestore/addDocToFirestore/addDocToFirestore';
@@ -12,6 +11,9 @@ import { executeQuery } from '@/shared/lib/firestore/executeQuery/executeQuery';
 import { ERROR_RATING_MESSAGES } from '../model/consts/errorRatingMessages';
 
 import { fetchArticleRateByUser } from '../lib/utilities/fetchArticleRateByUser/fetchArticleRateByUser';
+import { handleFirestoreSubscription } from '@/shared/lib/firestore/handleFirestoreSubscription/handleFirestoreSubscription';
+
+import { subscribeToArticleRating } from '../lib/utilities/subscribeToArticleRating/subscribeToArticleRating';
 
 interface GetArticleRatingArg {
     userId: string;
@@ -60,32 +62,13 @@ export const articleRatingFirebaseApi = firestoreApi
                     { articleId, userId },
                     { updateCachedData, cacheDataLoaded, cacheEntryRemoved },
                 ) {
-                    await cacheDataLoaded;
-                    let unsubscribe;
-                    try {
-                        const ratingQuery = createArticleRatingQuery(
-                            articleId,
-                            userId,
-                        );
-
-                        unsubscribe = onSnapshot(ratingQuery, (snapshot) => {
-                            updateCachedData((draft) => {
-                                const result = snapshot?.docs?.map((doc) =>
-                                    doc.data(),
-                                ) as ArticleRatingType[];
-                            });
-                        });
-                    } catch (error) {
-                        console.error(
-                            'Error fetching rating for article by user ID:',
-                            error,
-                        );
-                    }
-
-                    await cacheEntryRemoved;
-                    if (unsubscribe) {
-                        unsubscribe();
-                    }
+                    handleFirestoreSubscription({
+                        subscriptionFn: subscribeToArticleRating,
+                        updateFn: updateCachedData,
+                        dependency: { articleId, userId },
+                        cacheDataLoaded,
+                        cacheEntryRemoved,
+                    });
                 },
             }),
             getRatingsByArticleIdsList: build.query<
