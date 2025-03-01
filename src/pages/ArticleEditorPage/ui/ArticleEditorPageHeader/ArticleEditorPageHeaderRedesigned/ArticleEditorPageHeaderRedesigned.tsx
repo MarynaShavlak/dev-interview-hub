@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import React, { memo } from 'react';
-import { ConfirmDeleteModal } from 'src/shared/ui/common/ConfirmDeleteModal';
-import { ConfirmCancelModal } from 'src/shared/ui/common/ConfirmCancelModal';
+import { ConfirmCancelModal } from '@/shared/ui/common/ConfirmCancelModal';
+import { ConfirmDeleteModal } from '@/shared/ui/common/ConfirmDeleteModal';
 import { HStack } from '@/shared/ui/common/Stack';
 
 import { Button } from '@/shared/ui/redesigned/Button';

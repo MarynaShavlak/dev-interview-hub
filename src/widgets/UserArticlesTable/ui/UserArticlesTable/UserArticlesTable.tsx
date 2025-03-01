@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 
 import { useTranslation } from 'react-i18next';
-import { ConfirmDeleteModal } from 'src/shared/ui/common/ConfirmDeleteModal';
+import { ConfirmDeleteModal } from '@/shared/ui/common/ConfirmDeleteModal';
 import { Box } from '@/shared/ui/common/Box';
 import cls from './UserArticlesTable.module.scss';
 import {
