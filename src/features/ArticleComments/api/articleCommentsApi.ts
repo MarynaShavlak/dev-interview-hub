@@ -56,25 +56,37 @@ export const articlesCommentsFirebaseApi = firestoreApi
                 providesTags: [{ type: 'ArticleComments', id: 'commentId' }],
                 keepUnusedDataFor: 3600,
                 async queryFn(articleId: string) {
-                    try {
-                        if (!articleId) {
-                            const error = new Error(
-                                ERROR_MESSAGES.ARTICLE_NOT_FOUND,
-                            );
-                            return { error };
-                        }
-                        const comments =
-                            await fetchCommentsForArticle(articleId);
-
-                        return { data: comments };
-                    } catch (error) {
-                        return handleRequestErrorMessage(
-                            ERROR_MESSAGES.COMMENTS_BY_ARTICLE_ID_FETCH_FAIL(
-                                articleId,
-                            ),
-                            error,
-                        );
+                    if (!articleId) {
+                        return {
+                            error: new Error(ERROR_MESSAGES.ARTICLE_NOT_FOUND),
+                        };
                     }
+
+                    return executeQuery(
+                        () => fetchCommentsForArticle(articleId), // Async operation
+                        ERROR_MESSAGES.COMMENTS_BY_ARTICLE_ID_FETCH_FAIL(
+                            articleId,
+                        ), // Custom error message
+                    );
+                    // try {
+                    //     if (!articleId) {
+                    //         const error = new Error(
+                    //             ERROR_MESSAGES.ARTICLE_NOT_FOUND,
+                    //         );
+                    //         return { error };
+                    //     }
+                    //     const comments =
+                    //         await fetchCommentsForArticle(articleId);
+                    //
+                    //     return { data: comments };
+                    // } catch (error) {
+                    //     return handleRequestErrorMessage(
+                    //         ERROR_MESSAGES.COMMENTS_BY_ARTICLE_ID_FETCH_FAIL(
+                    //             articleId,
+                    //         ),
+                    //         error,
+                    //     );
+                    // }
                 },
                 async onCacheEntryAdded(
                     articleId,
