@@ -26,18 +26,24 @@ export const articlesCommentsFirebaseApi = firestoreApi
                 providesTags: ['ArticleComments'],
                 keepUnusedDataFor: 3600,
                 async queryFn() {
-                    try {
-                        const comments =
-                            await fetchCollectionDocsData<ArticleComment>(
-                                'comments',
-                            );
-                        return { data: comments };
-                    } catch (error) {
-                        return handleRequestErrorMessage(
-                            ERROR_MESSAGES.COMMENTS_FETCH_FAIL,
-                            error,
-                        );
-                    }
+                    return executeQuery(
+                        () =>
+                            fetchCollectionDocsData<ArticleComment>('comments'), // Async operation
+                        ERROR_MESSAGES.COMMENTS_FETCH_FAIL, // Custom error message
+                    );
+
+                    // try {
+                    //     const comments =
+                    //         await fetchCollectionDocsData<ArticleComment>(
+                    //             'comments',
+                    //         );
+                    //     return { data: comments };
+                    // } catch (error) {
+                    //     return handleRequestErrorMessage(
+                    //         ERROR_MESSAGES.COMMENTS_FETCH_FAIL,
+                    //         error,
+                    //     );
+                    // }
                 },
                 async onCacheEntryAdded(
                     _,
