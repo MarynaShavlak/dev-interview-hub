@@ -24,13 +24,6 @@ import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch
 
 export const useArticleRating = (articleId: string) => {
     const dispatch = useAppDispatch();
-
-    // const { data, isLoading, error } = useGetArticleRatingByUserId({
-    //     articleId,
-    //     userId: userData?.id ?? '',
-    // });
-    // console.log('rating', data);
-
     const handleRateArticle = useCallback(
         async (starsCount: number, feedback?: string) => {
             const createdRating = await dispatch(

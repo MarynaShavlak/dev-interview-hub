@@ -18,4 +18,6 @@ export const ERROR_RATING_MESSAGES = {
     USER_ID_REQUIRED: 'User ID is required.',
     INVALID_RATING_VALUE: 'Rating value must be between 1 and 5.',
     RATING_ALREADY_EXISTS: 'User has already rated this article',
+    DELETE_RATINGS_BY_ARTICLE_ID_FAIL: (articleId: string) =>
+        `Failed to delete ratings for article with ID "${articleId}".`,
 };

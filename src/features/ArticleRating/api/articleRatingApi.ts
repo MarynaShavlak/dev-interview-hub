@@ -1,10 +1,7 @@
 import { firestoreApi } from '@/shared/api/firestoreApi';
 import { ArticleRatingType } from '../model/types/articleRatingType';
-import { fetchQueryResults } from '@/shared/lib/firestore/fetchQueryResults/fetchQueryResults';
 import { User } from '@/entities/User';
 import { fetchCollectionDocsData } from '@/shared/lib/firestore/fetchCollectionDocsData/fetchCollectionDocsData';
-import { createRatingsByArticleIdsQuery } from '../lib/utilities/createRatingsByArticleIdsQuery/createRatingsByArticleIdsQuery';
-import { deleteDocFromFirestore } from '@/shared/lib/firestore/deleteDocFromFirestore/deleteDocFromFirestore';
 import { executeQuery } from '@/shared/lib/firestore/executeQuery/executeQuery';
 import { ERROR_RATING_MESSAGES } from '../model/consts/errorRatingMessages';
 
@@ -17,6 +14,8 @@ import { fetchRatingsForMultipleArticles } from '../lib/utilities/fetchRatingsFo
 import { subscribeToMultipleArticlesRatings } from '../lib/utilities/subscribeToMultipleArticlesRatings/subscribeToMultipleArticlesRatings';
 
 import { saveRatingToFirestore } from '../lib/utilities/saveRatingToFirestore/saveRatingToFirestore';
+import { fetchRatingsForArticle } from '../lib/utilities/fetchRatingsForArticle/fetchRatingsForArticle';
+import { deleteRatingsFromFirestore } from '../lib/utilities/deleteRatingsFromFirestore/deleteRatingsFromFirestore';
 
 interface GetArticleRatingArg {
     userId: string;
@@ -113,34 +112,11 @@ export const articleRatingFirebaseApi = firestoreApi
             deleteRatingsByArticleId: build.mutation<void, string>({
                 invalidatesTags: ['ArticleRating'],
                 async queryFn(articleId) {
-                    try {
-                        const ratingsQuery = createRatingsByArticleIdsQuery([
-                            articleId,
-                        ]);
-                        if (ratingsQuery) {
-                            const ratings =
-                                await fetchQueryResults<ArticleRatingType>(
-                                    ratingsQuery,
-                                );
-
-                            const deletePromises = ratings.map((rating) =>
-                                deleteDocFromFirestore('ratings', rating.id),
-                            );
-
-                            await Promise.allSettled(deletePromises);
-
-                            return { data: undefined };
-                        }
-                        return { data: undefined };
-                    } catch (error) {
-                        console.error(
-                            'Error deleting ratings by article ID:',
-                            error,
-                        );
-                        return {
-                            error: 'Error deleting ratings by article ID',
-                        };
-                    }
+                    return executeQuery(async () => {
+                        const comments =
+                            await fetchRatingsForArticle(articleId);
+                        await deleteRatingsFromFirestore(comments);
+                    }, ERROR_RATING_MESSAGES.DELETE_RATINGS_BY_ARTICLE_ID_FAIL(articleId));
                 },
             }),
         }),
@@ -151,8 +127,6 @@ export const useArticlesRatings =
 
 export const useGetArticleRatingByUserId =
     articleRatingFirebaseApi.useGetArticleRatingByUserIdQuery;
-export const useAddArticleRating =
-    articleRatingFirebaseApi.useRateArticleMutation;
 
 export const useRatingsByArticleIdsList =
     articleRatingFirebaseApi.useGetRatingsByArticleIdsListQuery;
