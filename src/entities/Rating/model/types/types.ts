@@ -6,7 +6,7 @@
  */
 import { User } from '@/entities/User';
 
-export interface RatingData {
+export interface RatingType {
     rate: number;
     feedback: string | null;
     user: User;

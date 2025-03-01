@@ -1,16 +1,16 @@
 import { Query, query, where } from 'firebase/firestore';
 import { dataPoint } from '@/shared/lib/firestore/firestore';
 
-import { ArticleRatingData } from '../../../model/types/articleRatingData';
+import { ArticleRatingType } from '../../../model/types/articleRatingType';
 
 export const createRatingsByArticleIdsQuery = (
     articleIds: string[],
-): Query<ArticleRatingData> | null => {
+): Query<ArticleRatingType> | null => {
     if (!articleIds || articleIds.length === 0) {
         return null;
     }
 
-    const ratingsCollection = dataPoint<ArticleRatingData>('ratings');
+    const ratingsCollection = dataPoint<ArticleRatingType>('ratings');
 
     return query(ratingsCollection, where('articleId', 'in', articleIds));
 };

@@ -1,3 +1,3 @@
-export type { ArticleRatingData } from '../../features/ArticleRating/model/types/articleRatingData';
+export type { ArticleRatingType } from '../../features/ArticleRating/model/types/articleRatingType';
 
 export { StatisticsCharts } from './ui/StatisticsCharts/StatisticsCharts';

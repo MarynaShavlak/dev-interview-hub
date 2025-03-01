@@ -27,7 +27,7 @@ Rating/
 ### 1. `model/`: Core logic and data structures
 
 #### 1.1. `types/`: Includes TypeScript type definitions for the Rating module.
-- [**types.ts**](./model/types/types.ts): Defines the `RatingData` interface and other related types used throughout the module.
+- [**types.ts**](./model/types/types.ts): Defines the `RatingType` interface and other related types used throughout the module.
 
 ### 2. `ui/`: UI components
 
@@ -57,7 +57,7 @@ Entry point for testing-related functionalities within the Rating module. It is 
 ## Public API
 
 - **Types**:
-    - `RatingData` - An interface defining the structure of a rating object.
+    - `RatingType` - An interface defining the structure of a rating object.
 
 - **Components**:
     - `Rating`: The main rating component used to render ratings.

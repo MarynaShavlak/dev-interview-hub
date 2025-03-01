@@ -1,6 +1,6 @@
 import { Query, query, where } from 'firebase/firestore';
 import { dataPoint } from '@/shared/lib/firestore/firestore';
-import { ArticleRatingData } from '../../../model/types/articleRatingData';
+import { ArticleRatingType } from '../../../model/types/articleRatingType';
 
 /**
  * Creates a Firestore query for fetching article ratings by article ID and user ID.
@@ -12,8 +12,8 @@ import { ArticleRatingData } from '../../../model/types/articleRatingData';
 export const createArticleRatingQuery = (
     articleId: string,
     userId: string,
-): Query<ArticleRatingData> => {
-    const ratingsCollection = dataPoint<ArticleRatingData>('ratings');
+): Query<ArticleRatingType> => {
+    const ratingsCollection = dataPoint<ArticleRatingType>('ratings');
     return query(
         ratingsCollection,
         where('articleId', '==', articleId),

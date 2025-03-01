@@ -25,6 +25,7 @@ export const useStatisticsData = () => {
         isLoading: isRatingsLoading,
         error: isRatingsError,
     } = useArticlesRatings();
+    console.log('ratings', ratings);
     const {
         data: comments = [],
         isLoading: isCommentsLoading,

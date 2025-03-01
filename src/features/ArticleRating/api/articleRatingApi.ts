@@ -1,6 +1,6 @@
 import { getDoc, onSnapshot } from 'firebase/firestore';
 import { firestoreApi } from '@/shared/api/firestoreApi';
-import { ArticleRatingData } from '../model/types/articleRatingData';
+import { ArticleRatingType } from '../model/types/articleRatingType';
 import { createArticleRatingQuery } from '../lib/utilities/createArticleRatingQuery/createArticleRatingQuery';
 import { fetchQueryResults } from '@/shared/lib/firestore/fetchQueryResults/fetchQueryResults';
 import { User } from '@/entities/User';
@@ -8,6 +8,10 @@ import { addDocToFirestore } from '@/shared/lib/firestore/addDocToFirestore/addD
 import { fetchCollectionDocsData } from '@/shared/lib/firestore/fetchCollectionDocsData/fetchCollectionDocsData';
 import { createRatingsByArticleIdsQuery } from '../lib/utilities/createRatingsByArticleIdsQuery/createRatingsByArticleIdsQuery';
 import { deleteDocFromFirestore } from '@/shared/lib/firestore/deleteDocFromFirestore/deleteDocFromFirestore';
+import { executeQuery } from '@/shared/lib/firestore/executeQuery/executeQuery';
+import { ERROR_RATING_MESSAGES } from '../model/consts/errorRatingMessages';
+
+import { fetchArticleRateByUser } from '../lib/utilities/fetchArticleRateByUser/fetchArticleRateByUser';
 
 interface GetArticleRatingArg {
     userId: string;
@@ -26,48 +30,31 @@ export const articleRatingFirebaseApi = firestoreApi
     .enhanceEndpoints({ addTagTypes: ['ArticleRating'] })
     .injectEndpoints({
         endpoints: (build) => ({
-            getArticlesRatings: build.query<ArticleRatingData[], void>({
+            getArticlesRatings: build.query<ArticleRatingType[], void>({
                 async queryFn() {
-                    try {
-                        const ratings =
-                            await fetchCollectionDocsData<ArticleRatingData>(
+                    return executeQuery(
+                        () =>
+                            fetchCollectionDocsData<ArticleRatingType>(
                                 'ratings',
-                            );
-                        return { data: ratings };
-                    } catch (error) {
-                        console.error('Error fetching ratings:', error);
-                        return { error };
-                    }
+                            ),
+                        ERROR_RATING_MESSAGES.FETCH_RATINGS_FAIL,
+                    );
                 },
             }),
             getArticleRatingByUserId: build.query<
-                ArticleRatingData[],
+                ArticleRatingType[],
                 GetArticleRatingArg
             >({
                 providesTags: [{ type: 'ArticleRating', id: 'ratingId' }],
                 keepUnusedDataFor: 3600,
                 async queryFn({ articleId, userId }) {
-                    try {
-                        const ratingQuery = createArticleRatingQuery(
-                            articleId,
+                    return executeQuery(
+                        () => fetchArticleRateByUser({ articleId, userId }),
+                        ERROR_RATING_MESSAGES.FETCH_RATING_BY_USER_FAIL(
                             userId,
-                        );
-
-                        const ratings =
-                            await fetchQueryResults<ArticleRatingData>(
-                                ratingQuery,
-                            );
-
-                        return { data: ratings };
-                    } catch (error) {
-                        console.error(
-                            'Error fetching rating for article by user ID:',
-                            error,
-                        );
-                        return {
-                            error: 'Error fetching rating for article by user ID',
-                        };
-                    }
+                            articleId,
+                        ),
+                    );
                 },
                 async onCacheEntryAdded(
                     { articleId, userId },
@@ -85,7 +72,7 @@ export const articleRatingFirebaseApi = firestoreApi
                             updateCachedData((draft) => {
                                 const result = snapshot?.docs?.map((doc) =>
                                     doc.data(),
-                                ) as ArticleRatingData[];
+                                ) as ArticleRatingType[];
                             });
                         });
                     } catch (error) {
@@ -102,7 +89,7 @@ export const articleRatingFirebaseApi = firestoreApi
                 },
             }),
             getRatingsByArticleIdsList: build.query<
-                ArticleRatingData[],
+                ArticleRatingType[],
                 string[]
             >({
                 providesTags: ['ArticleRating'],
@@ -113,7 +100,7 @@ export const articleRatingFirebaseApi = firestoreApi
                             createRatingsByArticleIdsQuery(articleIds);
                         if (ratingsQuery) {
                             const ratings =
-                                await fetchQueryResults<ArticleRatingData>(
+                                await fetchQueryResults<ArticleRatingType>(
                                     ratingsQuery,
                                 );
                             return { data: ratings };
@@ -145,7 +132,7 @@ export const articleRatingFirebaseApi = firestoreApi
                                     updateCachedData((draft) => {
                                         const result = snapshot?.docs?.map(
                                             (doc) => doc.data(),
-                                        ) as ArticleRatingData[];
+                                        ) as ArticleRatingType[];
                                     });
                                 },
                             );
@@ -160,12 +147,12 @@ export const articleRatingFirebaseApi = firestoreApi
                     }
                 },
             }),
-            rateArticle: build.mutation<ArticleRatingData, RateArticleArg>({
+            rateArticle: build.mutation<ArticleRatingType, RateArticleArg>({
                 invalidatesTags: [{ type: 'ArticleRating', id: 'ratingId' }],
                 async queryFn(newRating) {
                     try {
                         const docRef =
-                            await addDocToFirestore<ArticleRatingData>(
+                            await addDocToFirestore<ArticleRatingType>(
                                 'ratings',
                                 {
                                     ...newRating,
@@ -184,7 +171,7 @@ export const articleRatingFirebaseApi = firestoreApi
                         return {
                             data: {
                                 ...createdDocSnapshot.data(),
-                            } as ArticleRatingData,
+                            } as ArticleRatingType,
                         };
                     } catch (error) {
                         console.error('Error adding new rating:', error);
@@ -201,7 +188,7 @@ export const articleRatingFirebaseApi = firestoreApi
                         ]);
                         if (ratingsQuery) {
                             const ratings =
-                                await fetchQueryResults<ArticleRatingData>(
+                                await fetchQueryResults<ArticleRatingType>(
                                     ratingsQuery,
                                 );
 

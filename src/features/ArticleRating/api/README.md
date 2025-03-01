@@ -14,7 +14,7 @@ These endpoints leverage Redux Toolkit Query for efficient data fetching and sta
 
 ### Import Details
 - `rtkApi`: The base API service from **'@/shared/api/rtkApi'**.
-- `RatingData`: The type definition for article ratings from **'@/entities/Rating'**.
+- `RatingType`: The type definition for article ratings from **'@/entities/Rating'**.
 
 ###  Parameters
 `getArticleRating` Query expects an object containing the following properties:
@@ -36,8 +36,8 @@ These endpoints leverage Redux Toolkit Query for efficient data fetching and sta
 
 
 ### Type Parameters 
-1. For `getArticleRating`-  `<RatingData[], GetArticleRatingArg>`:
-   - `RatingData[]` indicates that the query returns an array of rating objects.
+1. For `getArticleRating`-  `<RatingType[], GetArticleRatingArg>`:
+   - `RatingType[]` indicates that the query returns an array of rating objects.
    - `GetArticleRatingArg` defines the shape of the argument object expected by the query.
 
 2. For `rateArticle`-  `<void, RateArticleArg>`:
@@ -114,4 +114,4 @@ const SubmitRatingComponent = ({ userId, articleId }) => {
 
 ## Conclusion
 The `articleRatingApi` provides a robust and efficient way to manage article ratings, enhancing user engagement and feedback collection. Utilizing Redux Toolkit Query ensures smooth state management and data fetching, making it easier to integrate article ratings into your application. 
-The use of type parameters `<RatingData[], GetArticleRatingArg>` and `<void, RateArticleArg>` ensures type safety and clear expectations for the query and mutation's arguments and responses. 
+The use of type parameters `<RatingType[], GetArticleRatingArg>` and `<void, RateArticleArg>` ensures type safety and clear expectations for the query and mutation's arguments and responses. 
