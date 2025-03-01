@@ -4,7 +4,6 @@ import { fetchCollectionDocsData } from '@/shared/lib/firestore/fetchCollectionD
 import { ArticleComment } from '../model/types/articleComment';
 import { fetchCommentsForArticle } from '../lib/utilities/fetchCommentsForArticle/fetchCommentsForArticle';
 import { ERROR_MESSAGES } from '../model/consts/errorMessages';
-import { handleRequestErrorMessage } from '@/shared/lib/firestore/handleRequestErrorMessage/handleRequestErrorMessage';
 
 import { subscribeToArticleComments } from '../lib/utilities/subscribeToArticleComments/subscribeToArticleComments';
 import { subscribeToAllArticlesComments } from '../lib/utilities/subscribeToAllArticlesComments/subscribeToAllArticlesComments';
@@ -28,22 +27,9 @@ export const articlesCommentsFirebaseApi = firestoreApi
                 async queryFn() {
                     return executeQuery(
                         () =>
-                            fetchCollectionDocsData<ArticleComment>('comments'), // Async operation
-                        ERROR_MESSAGES.COMMENTS_FETCH_FAIL, // Custom error message
+                            fetchCollectionDocsData<ArticleComment>('comments'),
+                        ERROR_MESSAGES.COMMENTS_FETCH_FAIL,
                     );
-
-                    // try {
-                    //     const comments =
-                    //         await fetchCollectionDocsData<ArticleComment>(
-                    //             'comments',
-                    //         );
-                    //     return { data: comments };
-                    // } catch (error) {
-                    //     return handleRequestErrorMessage(
-                    //         ERROR_MESSAGES.COMMENTS_FETCH_FAIL,
-                    //         error,
-                    //     );
-                    // }
                 },
                 async onCacheEntryAdded(
                     _,
@@ -69,50 +55,23 @@ export const articlesCommentsFirebaseApi = firestoreApi
                     }
 
                     return executeQuery(
-                        () => fetchCommentsForArticle(articleId), // Async operation
+                        () => fetchCommentsForArticle(articleId),
                         ERROR_MESSAGES.COMMENTS_BY_ARTICLE_ID_FETCH_FAIL(
                             articleId,
-                        ), // Custom error message
+                        ),
                     );
-                    // try {
-                    //     if (!articleId) {
-                    //         const error = new Error(
-                    //             ERROR_MESSAGES.ARTICLE_NOT_FOUND,
-                    //         );
-                    //         return { error };
-                    //     }
-                    //     const comments =
-                    //         await fetchCommentsForArticle(articleId);
-                    //
-                    //     return { data: comments };
-                    // } catch (error) {
-                    //     return handleRequestErrorMessage(
-                    //         ERROR_MESSAGES.COMMENTS_BY_ARTICLE_ID_FETCH_FAIL(
-                    //             articleId,
-                    //         ),
-                    //         error,
-                    //     );
-                    // }
                 },
                 async onCacheEntryAdded(
                     articleId,
                     { updateCachedData, cacheDataLoaded, cacheEntryRemoved },
                 ) {
                     handleFirestoreSubscription({
-                        subscriptionFn: subscribeToArticleComments, // Subscription function
-                        updateFn: updateCachedData, // Callback function to update cache
-                        dependency: articleId, // Dependency (articleId)
-                        cacheDataLoaded, // Promise for cache data loading
-                        cacheEntryRemoved, // Promise for cache entry removal
+                        subscriptionFn: subscribeToArticleComments,
+                        updateFn: updateCachedData,
+                        dependency: articleId,
+                        cacheDataLoaded,
+                        cacheEntryRemoved,
                     });
-                    // await cacheDataLoaded;
-                    // const unsubscribe = subscribeToArticleComments(
-                    //     updateCachedData,
-                    //     articleId,
-                    // );
-                    //
-                    // await cacheEntryRemoved;
-                    // unsubscribe?.();
                 },
             }),
             getCommentsByArticleIdsList: build.query<
@@ -124,23 +83,11 @@ export const articlesCommentsFirebaseApi = firestoreApi
 
                 async queryFn(articleIds) {
                     return executeQuery(
-                        () => fetchCommentsForMultipleArticles(articleIds), // The async operation
+                        () => fetchCommentsForMultipleArticles(articleIds),
                         ERROR_MESSAGES.COMMENTS_BY_ARTICLE_IDS_FETCH_FAIL(
                             articleIds,
-                        ), // Custom error message
+                        ),
                     );
-                    // try {
-                    //     const comments =
-                    //         await fetchCommentsForMultipleArticles(articleIds);
-                    //     return { data: comments };
-                    // } catch (error) {
-                    //     return handleRequestErrorMessage(
-                    //         ERROR_MESSAGES.COMMENTS_BY_ARTICLE_IDS_FETCH_FAIL(
-                    //             articleIds,
-                    //         ),
-                    //         error,
-                    //     );
-                    // }
                 },
 
                 async onCacheEntryAdded(
@@ -148,43 +95,31 @@ export const articlesCommentsFirebaseApi = firestoreApi
                     { updateCachedData, cacheDataLoaded, cacheEntryRemoved },
                 ) {
                     handleFirestoreSubscription({
-                        subscriptionFn: subscribeToMultipleArticlesComments, // Subscription function
-                        updateFn: updateCachedData, // Callback function to update cache
-                        dependency: articleIds, // Dependency
-                        cacheDataLoaded, // Promise for cache data loading
-                        cacheEntryRemoved, // Promise for cache entry removal
+                        subscriptionFn: subscribeToMultipleArticlesComments,
+                        updateFn: updateCachedData,
+                        dependency: articleIds,
+                        cacheDataLoaded,
+                        cacheEntryRemoved,
                     });
                 },
             }),
             addComment: build.mutation<ArticleComment, NewCommentDraft>({
                 invalidatesTags: [{ type: 'ArticleComments', id: 'commentId' }],
                 async queryFn(newComment) {
-                    try {
-                        const createdComment =
-                            await saveCommentToFirestore(newComment);
-                        return { data: createdComment };
-                    } catch (error) {
-                        return handleRequestErrorMessage(
-                            ERROR_MESSAGES.ADD_COMMENT_FAIL,
-                        );
-                    }
+                    return executeQuery(
+                        () => saveCommentToFirestore(newComment),
+                        ERROR_MESSAGES.ADD_COMMENT_FAIL,
+                    );
                 },
             }),
             deleteCommentsByArticleId: build.mutation<void, string>({
                 invalidatesTags: ['ArticleComments'],
                 async queryFn(articleId) {
-                    try {
+                    return executeQuery(async () => {
                         const comments =
                             await fetchCommentsForArticle(articleId);
                         await deleteCommentsFromFirestore(comments);
-                        return { data: undefined };
-                    } catch (error) {
-                        return handleRequestErrorMessage(
-                            ERROR_MESSAGES.DELETE_COMMENTS_BY_ARTICLE_ID_FAIL(
-                                articleId,
-                            ),
-                        );
-                    }
+                    }, ERROR_MESSAGES.DELETE_COMMENTS_BY_ARTICLE_ID_FAIL(articleId));
                 },
             }),
         }),
@@ -204,3 +139,58 @@ export const useCommentsByArticleIdsList =
 
 export const deleteCommentsByArticleId =
     articlesCommentsFirebaseApi.endpoints.deleteCommentsByArticleId.initiate;
+
+// try {
+//     const comments =
+//         await fetchCollectionDocsData<ArticleComment>(
+//             'comments',
+//         );
+//     return { data: comments };
+// } catch (error) {
+//     return handleRequestErrorMessage(
+//         ERROR_MESSAGES.COMMENTS_FETCH_FAIL,
+//         error,
+//     );
+// }
+
+// try {
+//     if (!articleId) {
+//         const error = new Error(
+//             ERROR_MESSAGES.ARTICLE_NOT_FOUND,
+//         );
+//         return { error };
+//     }
+//     const comments =
+//         await fetchCommentsForArticle(articleId);
+//
+//     return { data: comments };
+// } catch (error) {
+//     return handleRequestErrorMessage(
+//         ERROR_MESSAGES.COMMENTS_BY_ARTICLE_ID_FETCH_FAIL(
+//             articleId,
+//         ),
+//         error,
+//     );
+// }
+
+// try {
+//     const comments =
+//         await fetchCommentsForMultipleArticles(articleIds);
+//     return { data: comments };
+// } catch (error) {
+//     return handleRequestErrorMessage(
+//         ERROR_MESSAGES.COMMENTS_BY_ARTICLE_IDS_FETCH_FAIL(
+//             articleIds,
+//         ),
+//         error,
+//     );
+// }
+
+// await cacheDataLoaded;
+// const unsubscribe = subscribeToArticleComments(
+//     updateCachedData,
+//     articleId,
+// );
+//
+// await cacheEntryRemoved;
+// unsubscribe?.();
