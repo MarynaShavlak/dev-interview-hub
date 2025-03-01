@@ -12,11 +12,12 @@ import { Card } from '@/shared/ui/redesigned/Card';
 interface CommentCardRedesignedProps {
     className?: string;
     comment: Comment;
+    deleteComment?: (commentId: string) => Promise<any>;
 }
 
 export const CommentCardRedesigned = memo(
     (props: CommentCardRedesignedProps) => {
-        const { className, comment } = props;
+        const { className, comment, deleteComment } = props;
 
         return (
             <Card padding="24" max>

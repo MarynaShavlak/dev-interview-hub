@@ -10,6 +10,7 @@ import { VStack } from '@/shared/ui/common/Stack';
 import { addCommentForArticleThunk } from '../model/services/addCommentForArticleThunk/addCommentForArticleThunk';
 
 import { useCommentsByArticleId } from '../api/articleCommentsApi';
+import { deleteCommentFromArticleThunk } from '../model/services/deleteCommentFromArticleThunk/deleteCommentFromArticleThunk';
 
 export interface ArticleCommentsProps {
     className?: string;
@@ -36,6 +37,20 @@ const ArticleComments = memo((props: ArticleCommentsProps) => {
         error,
     } = useCommentsByArticleId(id);
 
+    const handleDeleteComment = async (commentId: string) => {
+        try {
+            const deletedCommentId = await dispatch(
+                deleteCommentFromArticleThunk(commentId),
+            ).unwrap();
+            console.log('success delete comment');
+
+            return deletedCommentId;
+        } catch (error) {
+            console.error('Error deleting comment:', error);
+            return null;
+        }
+    };
+
     return (
         <VStack
             gap="16"
@@ -58,6 +73,7 @@ const ArticleComments = memo((props: ArticleCommentsProps) => {
                 isLoading={commentsIsLoading}
                 comments={comments}
                 error={error as string}
+                deleteComment={handleDeleteComment}
             />
         </VStack>
     );
