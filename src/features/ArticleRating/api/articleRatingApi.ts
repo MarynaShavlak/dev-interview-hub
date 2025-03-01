@@ -1,9 +1,7 @@
-import { getDoc } from 'firebase/firestore';
 import { firestoreApi } from '@/shared/api/firestoreApi';
 import { ArticleRatingType } from '../model/types/articleRatingType';
 import { fetchQueryResults } from '@/shared/lib/firestore/fetchQueryResults/fetchQueryResults';
 import { User } from '@/entities/User';
-import { addDocToFirestore } from '@/shared/lib/firestore/addDocToFirestore/addDocToFirestore';
 import { fetchCollectionDocsData } from '@/shared/lib/firestore/fetchCollectionDocsData/fetchCollectionDocsData';
 import { createRatingsByArticleIdsQuery } from '../lib/utilities/createRatingsByArticleIdsQuery/createRatingsByArticleIdsQuery';
 import { deleteDocFromFirestore } from '@/shared/lib/firestore/deleteDocFromFirestore/deleteDocFromFirestore';
@@ -17,6 +15,8 @@ import { subscribeToArticleRating } from '../lib/utilities/subscribeToArticleRat
 
 import { fetchRatingsForMultipleArticles } from '../lib/utilities/fetchRatingsForMultipleArticles/fetchRatingsForMultipleArticles';
 import { subscribeToMultipleArticlesRatings } from '../lib/utilities/subscribeToMultipleArticlesRatings/subscribeToMultipleArticlesRatings';
+
+import { saveRatingToFirestore } from '../lib/utilities/saveRatingToFirestore/saveRatingToFirestore';
 
 interface GetArticleRatingArg {
     userId: string;
@@ -104,33 +104,10 @@ export const articleRatingFirebaseApi = firestoreApi
             rateArticle: build.mutation<ArticleRatingType, RateArticleArg>({
                 invalidatesTags: [{ type: 'ArticleRating', id: 'ratingId' }],
                 async queryFn(newRating) {
-                    try {
-                        const docRef =
-                            await addDocToFirestore<ArticleRatingType>(
-                                'ratings',
-                                {
-                                    ...newRating,
-                                    createdAt: new Date().toISOString(),
-                                },
-                            );
-
-                        const createdDocSnapshot = await getDoc(docRef);
-
-                        if (!createdDocSnapshot.exists()) {
-                            throw new Error(
-                                'Failed to retrieve created rating.',
-                            );
-                        }
-
-                        return {
-                            data: {
-                                ...createdDocSnapshot.data(),
-                            } as ArticleRatingType,
-                        };
-                    } catch (error) {
-                        console.error('Error adding new rating:', error);
-                        return { error };
-                    }
+                    return executeQuery(
+                        () => saveRatingToFirestore(newRating),
+                        ERROR_RATING_MESSAGES.ADD_RATING_FAIL,
+                    );
                 },
             }),
             deleteRatingsByArticleId: build.mutation<void, string>({
@@ -182,3 +159,6 @@ export const useRatingsByArticleIdsList =
 
 export const deleteRatingsByArticleId =
     articleRatingFirebaseApi.endpoints.deleteRatingsByArticleId.initiate;
+
+export const rateArticleMutation =
+    articleRatingFirebaseApi.endpoints.rateArticle.initiate;

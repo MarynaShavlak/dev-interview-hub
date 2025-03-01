@@ -1,10 +1,11 @@
 import { useCallback, useMemo } from 'react';
-import { v4 } from 'uuid';
 import { useUserAuthData } from '@/entities/User';
 import {
     useAddArticleRating,
     useGetArticleRatingByUserId,
 } from '../../api/articleRatingApi';
+import { rateArticleThunk } from '../../model/services/rateArticleThunk/rateArticleThunk';
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 
 /**
  * Custom hook for managing article ratings and feedback.
@@ -28,6 +29,7 @@ import {
 
 export const useArticleRating = (articleId: string) => {
     const userData = useUserAuthData();
+    const dispatch = useAppDispatch();
 
     const userInfo = useMemo(
         () => ({
@@ -51,19 +53,22 @@ export const useArticleRating = (articleId: string) => {
 
     const handleRateArticle = useCallback(
         (starsCount: number, feedback?: string) => {
-            try {
-                rateArticleMutation({
-                    user: userInfo,
-                    articleId,
-                    rate: starsCount,
-                    feedback: feedback || null,
-                    id: v4(),
-                });
-            } catch (e) {
-                console.log(e);
-            }
+            // try {
+            //     rateArticleMutation({
+            //         user: userInfo,
+            //         articleId,
+            //         rate: starsCount,
+            //         feedback: feedback || null,
+            //         id: v4(),
+            //     });
+            // } catch (e) {
+            //     console.log(e);
+            // }
+            dispatch(
+                rateArticleThunk({ rate: starsCount, feedback, articleId }),
+            );
         },
-        [articleId, rateArticleMutation, userInfo],
+        [articleId, dispatch],
     );
 
     const onSubmitFeedback = useCallback(
