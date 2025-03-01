@@ -6,7 +6,6 @@ import {
 
 import { subscribeToNotifications } from '../lib/utilities/subscribeToNotifications/subscribeToNotifications';
 import { ERROR_MESSAGES } from '../model/consts/errorMessages';
-import { handleRequestErrorMessage } from '@/shared/lib/firestore/handleRequestErrorMessage/handleRequestErrorMessage';
 import { dismissOneGeneral } from '../lib/utilities/handleNotificationsDelete/dismissOneGeneral/dismissOneGeneral';
 import { deleteAllGeneral } from '../lib/utilities/handleNotificationsDelete/deleteAllGeneral/deleteAllGeneral';
 import { dismissOnePersonal } from '../lib/utilities/handleNotificationsDelete/dismissOnePersonal/dismissOnePersonal';
@@ -34,22 +33,6 @@ const notificationApi = firestoreApi
                             ),
                         };
                     }
-                    // try {
-                    //     if (!userId) {
-                    //         return {
-                    //             error: new Error(
-                    //                 ERROR_MESSAGES.USER_NOT_AUTHORIZED,
-                    //             ),
-                    //         };
-                    //     }
-                    //     const data = await fetchAllNotifications(userId);
-                    //     return { data };
-                    // } catch (error) {
-                    //     return handleRequestErrorMessage(
-                    //         ERROR_MESSAGES.NOTIFICATIONS_FETCH_FAIL,
-                    //         error,
-                    //     );
-                    // }
 
                     return executeQuery(
                         () => fetchAllNotifications(userId),
@@ -120,15 +103,10 @@ const notificationApi = firestoreApi
                 { userId: string }
             >({
                 async queryFn({ userId }) {
-                    try {
-                        await deleteAllPersonal(userId);
-                        return { data: undefined };
-                    } catch (error) {
-                        return handleRequestErrorMessage(
-                            ERROR_MESSAGES.DELETE_ALL_PERSONAL_FAIL,
-                            error,
-                        );
-                    }
+                    return executeQuery(
+                        () => deleteAllPersonal(userId),
+                        ERROR_MESSAGES.DELETE_ALL_PERSONAL_FAIL,
+                    );
                 },
                 invalidatesTags: ['PersonalNotifications'],
             }),
