@@ -14,10 +14,18 @@ interface CommentListProps {
     isLoading?: boolean;
     error?: string;
     deleteComment: (commentId: string) => Promise<any>;
+    canDeleteComments: boolean;
 }
 
 export const CommentList = memo((props: CommentListProps) => {
-    const { className, isLoading, comments, error, deleteComment } = props;
+    const {
+        className,
+        isLoading,
+        comments,
+        error,
+        deleteComment,
+        canDeleteComments,
+    } = props;
     const { t } = useTranslation('articleDetails');
     const noCommentsMessage = t('Коментарів немає');
     const errorMessage = t(
@@ -66,6 +74,7 @@ export const CommentList = memo((props: CommentListProps) => {
                             comment={item}
                             isLoading={isLoading}
                             deleteComment={deleteComment}
+                            canDeleteComments={canDeleteComments}
                         />
                     )}
                 />

@@ -17,11 +17,12 @@ interface CommentCardRedesignedProps {
     className?: string;
     comment: Comment;
     deleteComment?: (commentId: string) => Promise<any>;
+    canDeleteComments?: boolean;
 }
 
 export const CommentCardRedesigned = memo(
     (props: CommentCardRedesignedProps) => {
-        const { className, comment, deleteComment } = props;
+        const { className, comment, deleteComment, canDeleteComments } = props;
 
         const { text, user } = comment;
         const { deleteCommentModal, handleDelete, confirmDeleteText } =
@@ -50,7 +51,7 @@ export const CommentCardRedesigned = memo(
                                 )}
                             </HStack>
                         </AppLink>
-                        {deleteComment && (
+                        {canDeleteComments && deleteComment && (
                             <Icon
                                 clickable
                                 Svg={DeleteIcon}
@@ -58,7 +59,7 @@ export const CommentCardRedesigned = memo(
                                 width={24}
                             />
                         )}
-                        {deleteCommentModal.isVisible && (
+                        {canDeleteComments && deleteCommentModal.isVisible && (
                             <ConfirmDeleteModal
                                 isOpen={deleteCommentModal.isVisible}
                                 onCancel={deleteCommentModal.hide}

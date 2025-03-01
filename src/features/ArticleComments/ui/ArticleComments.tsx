@@ -11,6 +11,7 @@ import { addCommentForArticleThunk } from '../model/services/addCommentForArticl
 
 import { useCommentsByArticleId } from '../api/articleCommentsApi';
 import { deleteCommentFromArticleThunk } from '../model/services/deleteCommentFromArticleThunk/deleteCommentFromArticleThunk';
+import { useGetUserRoles } from '@/entities/User';
 
 export interface ArticleCommentsProps {
     className?: string;
@@ -30,6 +31,8 @@ const ArticleComments = memo((props: ArticleCommentsProps) => {
         },
         [dispatch, id],
     );
+
+    const { isAdmin, isManager } = useGetUserRoles();
 
     const {
         data: comments,
@@ -74,6 +77,7 @@ const ArticleComments = memo((props: ArticleCommentsProps) => {
                 comments={comments}
                 error={error as string}
                 deleteComment={handleDeleteComment}
+                canDeleteComments={isAdmin || isManager}
             />
         </VStack>
     );

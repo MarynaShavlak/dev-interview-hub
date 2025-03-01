@@ -18,11 +18,12 @@ interface CommentCardDeprecatedProps {
     className?: string;
     comment: Comment;
     deleteComment?: (commentId: string) => Promise<any>;
+    canDeleteComments?: boolean;
 }
 
 export const CommentCardDeprecated = memo(
     (props: CommentCardDeprecatedProps) => {
-        const { className, comment, deleteComment } = props;
+        const { className, comment, deleteComment, canDeleteComments } = props;
         const { text, user } = comment;
         const additionalClasses = getFlexClasses({ hStack: true, gap: '8' });
         const { deleteCommentModal, handleDelete, confirmDeleteText } =
@@ -52,7 +53,7 @@ export const CommentCardDeprecated = memo(
                         ) : null}
                         <Text title={user.username} />
                     </AppLink>
-                    {deleteComment && (
+                    {canDeleteComments && deleteComment && (
                         <Button
                             onClick={deleteCommentModal.show}
                             theme={ButtonTheme.CLEAR}
@@ -60,7 +61,7 @@ export const CommentCardDeprecated = memo(
                             <Icon Svg={DeleteIcon} width={24} variant="error" />
                         </Button>
                     )}
-                    {deleteCommentModal.isVisible && (
+                    {canDeleteComments && deleteCommentModal.isVisible && (
                         <ConfirmDeleteModal
                             isOpen={deleteCommentModal.isVisible}
                             onCancel={deleteCommentModal.hide}

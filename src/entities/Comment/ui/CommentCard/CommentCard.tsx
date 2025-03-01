@@ -10,10 +10,12 @@ export interface CommentCardProps {
     comment?: Comment;
     isLoading?: boolean;
     deleteComment?: (commentId: string) => Promise<any>;
+    canDeleteComments?: boolean;
 }
 
 export const CommentCard = memo((props: CommentCardProps) => {
-    const { className, comment, isLoading, deleteComment } = props;
+    const { className, comment, isLoading, deleteComment, canDeleteComments } =
+        props;
 
     if (isLoading) {
         return <CommentCardSkeleton className={className} />;
@@ -31,6 +33,7 @@ export const CommentCard = memo((props: CommentCardProps) => {
                     comment={comment}
                     className={className}
                     deleteComment={deleteComment}
+                    canDeleteComments={canDeleteComments}
                 />
             }
             off={
@@ -38,6 +41,7 @@ export const CommentCard = memo((props: CommentCardProps) => {
                     comment={comment}
                     className={className}
                     deleteComment={deleteComment}
+                    canDeleteComments={canDeleteComments}
                 />
             }
         />
