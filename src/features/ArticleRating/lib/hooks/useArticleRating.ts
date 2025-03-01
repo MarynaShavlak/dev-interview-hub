@@ -1,9 +1,4 @@
-import { useCallback, useMemo } from 'react';
-import { useUserAuthData } from '@/entities/User';
-import {
-    useAddArticleRating,
-    useGetArticleRatingByUserId,
-} from '../../api/articleRatingApi';
+import { useCallback } from 'react';
 import { rateArticleThunk } from '../../model/services/rateArticleThunk/rateArticleThunk';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 
@@ -28,45 +23,20 @@ import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch
  * */
 
 export const useArticleRating = (articleId: string) => {
-    const userData = useUserAuthData();
     const dispatch = useAppDispatch();
 
-    const userInfo = useMemo(
-        () => ({
-            id: userData?.id ?? '',
-            avatar: userData?.avatar ?? '',
-            email: userData?.email ?? '',
-            firstname: userData?.firstname ?? '',
-            lastname: userData?.lastname ?? '',
-            username: userData?.username ?? '',
-        }),
-        [userData],
-    );
-
-    const { data, isLoading, error } = useGetArticleRatingByUserId({
-        articleId,
-        userId: userData?.id ?? '',
-    });
+    // const { data, isLoading, error } = useGetArticleRatingByUserId({
+    //     articleId,
+    //     userId: userData?.id ?? '',
+    // });
     // console.log('rating', data);
 
-    const [rateArticleMutation] = useAddArticleRating();
-
     const handleRateArticle = useCallback(
-        (starsCount: number, feedback?: string) => {
-            // try {
-            //     rateArticleMutation({
-            //         user: userInfo,
-            //         articleId,
-            //         rate: starsCount,
-            //         feedback: feedback || null,
-            //         id: v4(),
-            //     });
-            // } catch (e) {
-            //     console.log(e);
-            // }
-            dispatch(
+        async (starsCount: number, feedback?: string) => {
+            const createdRating = await dispatch(
                 rateArticleThunk({ rate: starsCount, feedback, articleId }),
             );
+            return createdRating;
         },
         [articleId, dispatch],
     );
@@ -86,9 +56,9 @@ export const useArticleRating = (articleId: string) => {
     );
 
     return {
-        rating: data?.[0],
-        isLoading,
-        error,
+        // rating: data?.[0],
+        // isLoading,
+        // error,
         onSubmitFeedback,
         onSubmitRating,
     };

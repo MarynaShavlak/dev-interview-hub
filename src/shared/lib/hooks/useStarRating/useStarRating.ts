@@ -33,6 +33,11 @@ export const useStarRating = ({
     const [activeStarsCount, setActiveStarsCount] = useState(selectedStars);
     const [isSelected, setIsSelected] = useState(Boolean(selectedStars));
 
+    const setSelectedStarsState = useCallback((stars: number) => {
+        setActiveStarsCount(stars);
+        setIsSelected(Boolean(stars));
+    }, []);
+
     const onHover = useCallback(
         (starsCount: number) => () => {
             if (!isSelected) {
@@ -59,5 +64,12 @@ export const useStarRating = ({
         [isSelected, onSelect],
     );
 
-    return { activeStarsCount, isSelected, onHover, onLeave, onClick };
+    return {
+        activeStarsCount,
+        isSelected,
+        onHover,
+        onLeave,
+        onClick,
+        setSelectedStarsState,
+    };
 };

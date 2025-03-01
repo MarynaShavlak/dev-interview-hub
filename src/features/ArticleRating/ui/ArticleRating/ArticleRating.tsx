@@ -1,23 +1,30 @@
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { DisabledRatingBlock } from './DisabledRatingBlock/DisabledRatingBlock';
-import { useArticleRating } from '../../lib/hooks/useArticleRating';
 import { toggleFeatures, ToggleFeaturesComponent } from '@/shared/lib/features';
 import { Skeleton as SkeletonDeprecated } from '@/shared/ui/deprecated/Skeleton';
 import { Skeleton as SkeletonRedesigned } from '@/shared/ui/redesigned/Skeleton';
 import { Rating } from '@/entities/Rating';
+import { useUserAuthData } from '@/entities/User';
+import { useGetArticleRatingByUserId } from '../../api/articleRatingApi';
+import { useArticleRating } from '../../lib/hooks/useArticleRating';
 
 export interface ArticleRatingProps {
     className?: string;
-    articleId?: string;
+    articleId: string;
 }
 
 const ArticleRating = memo((props: ArticleRatingProps) => {
     const { className, articleId } = props;
-    const { rating, isLoading, error, onSubmitFeedback, onSubmitRating } =
-        useArticleRating(articleId || '');
+    const { onSubmitRating, onSubmitFeedback } = useArticleRating(articleId);
+    const userData = useUserAuthData();
+    const { data, error, isLoading } = useGetArticleRatingByUserId({
+        articleId,
+        userId: userData?.id ?? '',
+    });
+    const rating = data?.[0];
+    console.log('____rating', rating);
     const { t } = useTranslation();
-    console.log('error', error);
 
     const Skeleton = toggleFeatures({
         name: 'isAppRedesigned',
@@ -25,6 +32,7 @@ const ArticleRating = memo((props: ArticleRatingProps) => {
         off: () => SkeletonDeprecated,
     });
     if (error) return null;
+    // if (!rating) return null;
     if (isLoading) {
         return <Skeleton width="100%" height={120} border="40px" />;
     }

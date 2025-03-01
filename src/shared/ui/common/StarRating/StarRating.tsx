@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo, useEffect } from 'react';
 import { InteractiveStar } from './InteractiveStar/InteractiveStar';
 import { DisabledStar } from './DisabledStar/DisabedStar';
 import { useStarRating } from '@/shared/lib/hooks/useStarRating/useStarRating';
@@ -25,8 +25,18 @@ export const StarRating = memo((props: StarRatingProps) => {
         onSelect,
         disabled,
     } = props;
-    const { activeStarsCount, isSelected, onHover, onLeave, onClick } =
-        useStarRating({ selectedStars, onSelect });
+    const {
+        activeStarsCount,
+        isSelected,
+        onHover,
+        onLeave,
+        onClick,
+        setSelectedStarsState,
+    } = useStarRating({ selectedStars, onSelect });
+
+    useEffect(() => {
+        setSelectedStarsState(selectedStars);
+    }, [selectedStars, setSelectedStarsState]);
 
     const mainClass = toggleFeatures({
         name: 'isAppRedesigned',

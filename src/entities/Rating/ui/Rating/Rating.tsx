@@ -1,4 +1,4 @@
-import { memo, useCallback, useState } from 'react';
+import { memo, useCallback, useEffect, useState } from 'react';
 import { RatingRedesigned } from './RatingRedesigned/RatingRedesigned';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
 import { RatingDeprecated } from './RatingDeprecated/RatingDeprecated';
@@ -27,6 +27,10 @@ export const Rating = memo((props: RatingCardProps) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [starsCount, setStarsCount] = useState(rate);
     const [feedback, setFeedback] = useState('');
+
+    useEffect(() => {
+        setStarsCount(rate);
+    }, [rate]);
 
     const onSelectStars = useCallback(
         (selectedStarsCount: number) => {

@@ -6,9 +6,10 @@ import { handleThunkErrorMessage } from '@/shared/lib/firestore/handleThunkError
 import { rateArticleMutation } from '../../../api/articleRatingApi';
 import { ERROR_RATING_MESSAGES } from '../../consts/errorRatingMessages';
 import { ArticleRatingType } from '../../types/articleRatingType';
+import { checkExistingRating } from '../../../lib/utilities/checkExistingRating/checkExistingRating';
 
 export const rateArticleThunk = createAsyncThunk<
-    ArticleRatingType,
+    ArticleRatingType | null,
     { rate: number; articleId: string; feedback?: string },
     ThunkConfig<string>
 >(
@@ -31,6 +32,15 @@ export const rateArticleThunk = createAsyncThunk<
 
             const { id, avatar, email, firstname, lastname, username } =
                 userData;
+
+            const ratingExists = await checkExistingRating(
+                articleId,
+                userData.id,
+            );
+            console.log('ratingExists', ratingExists);
+            if (ratingExists) {
+                return null;
+            }
             const userInfo = {
                 id,
                 avatar,
