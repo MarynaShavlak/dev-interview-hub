@@ -11,7 +11,7 @@ export const deleteAllNotificationsThunk = createAsyncThunk<
     void,
     void,
     ThunkConfig<string>
->('notification/deleteNotification', async (_, thunkApi) => {
+>('notification/deleteAllNotifications', async (_, thunkApi) => {
     const { extra, rejectWithValue, dispatch } = thunkApi;
     const { auth } = extra;
     const user = auth.currentUser;

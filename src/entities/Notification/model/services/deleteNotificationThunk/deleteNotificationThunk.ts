@@ -5,6 +5,8 @@ import {
     markPersonalNotificationAsDismissedMutation,
 } from '../../../api/notificationApi';
 import { NotificationType } from '../../types/notification';
+import { ERROR_MESSAGES } from '../../consts/errorMessages';
+import { handleThunkErrorMessage } from '@/shared/lib/firestore/handleThunkErrorMessage/handleThunkErrorMessage';
 
 type DeleteNotificationArgs = {
     notificationId: string;
@@ -12,9 +14,9 @@ type DeleteNotificationArgs = {
 };
 
 export const deleteNotificationThunk = createAsyncThunk<
-    string, // Return type: deleted notification ID
+    string,
     DeleteNotificationArgs,
-    ThunkConfig<string> // Thunk configuration type
+    ThunkConfig<string>
 >(
     'notification/deleteNotification',
     async ({ notificationId, type }, thunkApi) => {
@@ -23,11 +25,11 @@ export const deleteNotificationThunk = createAsyncThunk<
         const user = auth.currentUser;
 
         if (!user) {
-            return rejectWithValue('No user data found.');
+            return rejectWithValue(ERROR_MESSAGES.USER_NOT_AUTHORIZED);
         }
 
         if (!notificationId) {
-            return rejectWithValue('Notification ID is required.');
+            return rejectWithValue(ERROR_MESSAGES.NOTIFICATION_ID_REQUIRED);
         }
 
         try {
@@ -50,7 +52,10 @@ export const deleteNotificationThunk = createAsyncThunk<
             return notificationId;
         } catch (error) {
             return rejectWithValue(
-                `Failed to dismiss for current user notification with id ${notificationId}`,
+                handleThunkErrorMessage(
+                    error,
+                    ERROR_MESSAGES.DELETE_NOTIFICATION_FAIL(notificationId),
+                ),
             );
         }
     },

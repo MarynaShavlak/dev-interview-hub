@@ -13,4 +13,7 @@ export const ERROR_MESSAGES = {
     SUBSCRIPTIONS_ERROR: 'Error in all notifications subscription.',
     DELETE_NOTIFICATIONS_FAIL:
         'Failed to delete notifications for the current user.',
+    DELETE_NOTIFICATION_FAIL: (id: string) =>
+        `Failed to dismiss notification with ID "${id}".`,
+    NOTIFICATION_ID_REQUIRED: 'Notification ID is required.',
 };
