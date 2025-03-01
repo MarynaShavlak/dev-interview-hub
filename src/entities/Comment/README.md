@@ -85,7 +85,7 @@ Comment/
 
 ### 3. `lib/`: Utility functions and hooks.
 - **`hook/`**
-  - [**useAddCommentForm.ts**](./lib/hook/README.md): Hook for managing the add comment form state and actions.
+  - [**useAddCommentForm.ts**](lib/hook/useAddCommentForm/README.md): Hook for managing the add comment form state and actions.
 
 
 ### 4. `index.ts`

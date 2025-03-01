@@ -8,7 +8,7 @@ import { Button } from '@/shared/ui/redesigned/Button';
 import { HStack } from '@/shared/ui/common/Stack';
 import cls from '../AddCommentForm.module.scss';
 import { AddCommentFormProps } from '../AddCommentForm';
-import { useAddCommentForm } from '../../../lib/hook/useAddCommentForm';
+import { useAddCommentForm } from '../../../lib/hook/useAddCommentForm/useAddCommentForm';
 
 export const AddCommentFormRedesigned = memo((props: AddCommentFormProps) => {
     const { className, onSendComment } = props;

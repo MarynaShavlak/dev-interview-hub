@@ -38,7 +38,7 @@ export const ConfirmDeleteContentRedesigned = memo(
 
                     <Text text={t('Підтвердити видалення')} bold size="m" />
 
-                    <Text text={confirmText} />
+                    <Text text={confirmText} align="justify" />
                     <Text text={warningText} />
                 </VStack>
                 <HStack justify="between" max>

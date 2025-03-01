@@ -2,8 +2,8 @@ import { useCallback } from 'react';
 import {
     useAddCommentFormText,
     useAddCommentFormError,
-} from '../../model/selectors/addCommentFormSelectors';
-import { useAddCommentFormActions } from '../../model/slices/addCommentFormSlice';
+} from '../../../model/selectors/addCommentFormSelectors';
+import { useAddCommentFormActions } from '../../../model/slices/addCommentFormSlice';
 
 /**
  * Custom hook for managing the add comment form state and actions.

@@ -1,5 +1,4 @@
-import React, { memo, useCallback } from 'react';
-import { useTranslation } from 'react-i18next';
+import React, { memo } from 'react';
 import { getRouteProfile } from '@/shared/const/router/router';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { Avatar } from '@/shared/ui/deprecated/Avatar';
@@ -13,8 +12,7 @@ import { Button, ButtonTheme } from '@/shared/ui/deprecated/Button';
 import { Icon } from '@/shared/ui/deprecated/Icon';
 import DeleteIcon from '@/shared/assets/icons/delete.svg';
 import { ConfirmDeleteModal } from '@/shared/ui/common/ConfirmDeleteModal';
-import { useToggleVisibility } from '@/shared/lib/hooks/useToggleVisibility/useToggleVisibility';
-import { truncateText } from '@/shared/lib/text/truncateText/truncateText';
+import { useCommentActions } from '../../../lib/hook/useCommentActions/useCommentActions';
 
 interface CommentCardDeprecatedProps {
     className?: string;
@@ -25,15 +23,10 @@ interface CommentCardDeprecatedProps {
 export const CommentCardDeprecated = memo(
     (props: CommentCardDeprecatedProps) => {
         const { className, comment, deleteComment } = props;
-        const { t } = useTranslation('articleDetails');
-        const { text, id, user } = comment;
+        const { text, user } = comment;
         const additionalClasses = getFlexClasses({ hStack: true, gap: '8' });
-
-        const deleteCommentModal = useToggleVisibility();
-
-        const handleDelete = useCallback(async () => {
-            deleteComment?.(id);
-        }, [id, deleteComment]);
+        const { deleteCommentModal, handleDelete, confirmDeleteText } =
+            useCommentActions({ comment, deleteComment });
 
         return (
             <VStack
@@ -71,7 +64,7 @@ export const CommentCardDeprecated = memo(
                         <ConfirmDeleteModal
                             isOpen={deleteCommentModal.isVisible}
                             onCancel={deleteCommentModal.hide}
-                            text={`${t('коментар')} "${truncateText(text, 100)}" ${t('від користувача')} <b>${user.username}</b>`}
+                            text={confirmDeleteText}
                             onConfirm={handleDelete}
                         />
                     )}

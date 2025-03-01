@@ -6,7 +6,7 @@ import cls from './Text.module.scss';
 import { getStyleConfig } from './getStyleConfig';
 
 export type TextVariant = 'primary' | 'error' | 'accent' | 'secondary';
-export type TextAlign = 'right' | 'left' | 'center';
+export type TextAlign = 'right' | 'left' | 'center' | 'justify';
 export type TextSize = 's' | 'm' | 'l';
 
 interface TextProps extends TestProps {

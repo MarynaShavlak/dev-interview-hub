@@ -6,7 +6,7 @@ import { Button, ButtonTheme } from '@/shared/ui/deprecated/Button';
 
 import { HStack } from '@/shared/ui/common/Stack';
 import cls from '../AddCommentForm.module.scss';
-import { useAddCommentForm } from '../../../lib/hook/useAddCommentForm';
+import { useAddCommentForm } from '../../../lib/hook/useAddCommentForm/useAddCommentForm';
 import { AddCommentFormProps } from '../AddCommentForm';
 
 export const AddCommentFormDeprecated = memo((props: AddCommentFormProps) => {

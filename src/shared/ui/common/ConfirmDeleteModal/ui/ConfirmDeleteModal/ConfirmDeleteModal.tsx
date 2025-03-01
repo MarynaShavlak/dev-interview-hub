@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import { Modal } from '@/shared/ui/common/Modal';
+import { Modal } from '../../../Modal';
 
 import { ConfirmDeleteContentAsync as ConfirmDeleteContent } from '../ConfirmDeleteContent/ConfirmDeleteContent.async';
 

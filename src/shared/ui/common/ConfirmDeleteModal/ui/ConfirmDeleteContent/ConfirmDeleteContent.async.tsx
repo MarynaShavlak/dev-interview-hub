@@ -1,9 +1,9 @@
 import { lazy, Suspense } from 'react';
 import { ConfirmDeleteContentProps } from './ConfirmDeleteContent';
 
-import { Skeleton } from '@/shared/ui/redesigned/Skeleton';
+import { Skeleton } from '../../../../redesigned/Skeleton';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
-import { Loader } from '@/shared/ui/deprecated/Loader';
+import { Loader } from '../../../../deprecated/Loader';
 
 const ConfirmDeleteContentLazy = lazy(() => import('./ConfirmDeleteContent'));
 
