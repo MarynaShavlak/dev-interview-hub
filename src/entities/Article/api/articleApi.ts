@@ -27,6 +27,7 @@ import {
     NewArticleDraft,
     saveArticleToFirestore,
 } from '../lib/utilities/saveArticleToFirestore/saveArticleToFirestore';
+import { updateArticleInFirestore } from '../lib/utilities/updateArticleInFirestore/updateArticleInFirestore';
 
 export const articleFirebaseApi = firestoreApi
     .enhanceEndpoints({
@@ -237,35 +238,11 @@ export const articleFirebaseApi = firestoreApi
             >({
                 invalidatesTags: ['Articles'],
                 async queryFn({ articleId, updates }) {
-                    try {
-                        const articleDocRef = await getDocRefByField<Article>(
-                            'articles',
-                            'id',
-                            articleId,
-                        );
-
-                        if (articleDocRef) {
-                            await updateDoc(articleDocRef, updates);
-                            const updatedDoc = await getDoc(articleDocRef);
-                            const updatedData = updatedDoc.data();
-
-                            if (updatedData) {
-                                return {
-                                    data: { ...updatedData } as Article,
-                                };
-                            }
-                        }
-
-                        return {
-                            error: {
-                                name: 'NotFound',
-                                message: 'Article not found',
-                            },
-                        };
-                    } catch (error) {
-                        console.error('Error updating article:', error);
-                        return { error };
-                    }
+                    return executeQuery(
+                        async () =>
+                            updateArticleInFirestore(articleId, updates),
+                        ERROR_ARTICLE_MESSAGES.UPDATE_ARTICLE_ERROR(articleId),
+                    );
                 },
             }),
             incrementArticleViews: build.mutation<Article, string>({
