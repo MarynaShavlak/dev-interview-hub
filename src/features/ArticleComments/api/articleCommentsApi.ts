@@ -120,12 +120,6 @@ export const articlesCommentsFirebaseApi = firestoreApi
                         () => deleteDocFromFirestore('comments', commentId),
                         ERROR_MESSAGES.DELETE_ERROR,
                     );
-                    // try {
-                    //     await deleteDocFromFirestore('comments', commentId);
-                    //     return { data: commentId };
-                    // } catch (error) {
-                    //     return { error };
-                    // }
                 },
             }),
             deleteCommentsByArticleId: build.mutation<void, string>({

@@ -1,8 +1,7 @@
-import { getDoc, onSnapshot, query, updateDoc } from 'firebase/firestore';
+import { onSnapshot, query } from 'firebase/firestore';
 
 import { firestoreApi } from '@/shared/api/firestoreApi';
 import { User } from '../model/types/user';
-import { getUserDocRefById } from '../lib/utilities/getUserDocRefById/getUserDocRefById';
 import { dataPoint } from '@/shared/lib/firestore/firestore';
 import { executeQuery } from '@/shared/lib/firestore/executeQuery/executeQuery';
 
@@ -12,6 +11,7 @@ import { subscribeToUser } from '../lib/utilities/subscribeToUser/subscribeToUse
 import { handleFirestoreSubscription } from '@/shared/lib/firestore/handleFirestoreSubscription/handleFirestoreSubscription';
 
 import { deleteDocFromFirestore } from '@/shared/lib/firestore/deleteDocFromFirestore/deleteDocFromFirestore';
+import { updateUserInFirestore } from '../lib/utilities/updateUserInFirestore/updateUserInFirestore';
 
 export const userFirebaseApi = firestoreApi
     .enhanceEndpoints({
@@ -88,32 +88,10 @@ export const userFirebaseApi = firestoreApi
                 { userId: string; updates: Partial<User> }
             >({
                 async queryFn({ userId, updates }) {
-                    try {
-                        const userDocRef = await getUserDocRefById(userId);
-
-                        if (userDocRef) {
-                            await updateDoc(userDocRef, updates);
-                            const updatedDoc = await getDoc(userDocRef);
-                            const updatedData = updatedDoc.data();
-
-                            if (updatedData) {
-                                return {
-                                    data: {
-                                        ...updatedData,
-                                    } as User,
-                                };
-                            }
-                        }
-                        return {
-                            error: {
-                                name: 'NotFound',
-                                message: 'User not found',
-                            },
-                        };
-                    } catch (error) {
-                        console.error('Error updating user data:', error);
-                        return { error };
-                    }
+                    return executeQuery(
+                        async () => updateUserInFirestore(userId, updates),
+                        ERROR_USER_MESSAGES.UPDATE_USER_ERROR(userId),
+                    );
                 },
             }),
         }),
@@ -154,4 +132,31 @@ export const deleteUserMutation = userFirebaseApi.endpoints.deleteUser.initiate;
 // await cacheEntryRemoved;
 // if (unsubscribe) {
 //     unsubscribe();
+// }
+
+// try {
+//     const userDocRef = await getUserDocRefById(userId);
+//
+//     if (userDocRef) {
+//         await updateDoc(userDocRef, updates);
+//         const updatedDoc = await getDoc(userDocRef);
+//         const updatedData = updatedDoc.data();
+//
+//         if (updatedData) {
+//             return {
+//                 data: {
+//                     ...updatedData,
+//                 } as User,
+//             };
+//         }
+//     }
+//     return {
+//         error: {
+//             name: 'NotFound',
+//             message: 'User not found',
+//         },
+//     };
+// } catch (error) {
+//     console.error('Error updating user data:', error);
+//     return { error };
 // }

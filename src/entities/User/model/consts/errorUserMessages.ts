@@ -7,6 +7,7 @@ export const ERROR_USER_MESSAGES = {
     USER_NOT_FOUND: 'User not found.',
     DELETE_USER_ID_FAIL: (userId: string) =>
         `Failed to delete user with ID "${userId}".`,
-    UPDATE_USER_ERROR: 'Error updating user data.',
+    UPDATE_USER_ERROR: (userId: string) =>
+        `Error updating user with id "${userId}".`,
     GENERIC_ERROR: 'Something went wrong with users.',
 };
