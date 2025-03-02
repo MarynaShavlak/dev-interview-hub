@@ -19,4 +19,7 @@ export const ERROR_USER_MESSAGES = {
     LOGOUT_ERROR: 'Logout failed',
     NO_USER_ID_IN_STORAGE: 'No user ID found in local storage.',
     AUTH_INIT_ERROR: 'Failed to initialize auth data.',
+    USER_ID_REQUIRED: 'User ID is required.',
+    DELETE_USER_ERROR: (userId: string) =>
+        `Failed to delete user with id ${userId}`,
 };
