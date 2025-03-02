@@ -5,7 +5,8 @@ export const ERROR_USER_MESSAGES = {
         `Error in ser with id "${userId}" snapshot.`,
 
     USER_NOT_FOUND: 'User not found.',
-    DELETE_USER_ERROR: 'Error deleting user from Firestore.',
+    DELETE_USER_ID_FAIL: (userId: string) =>
+        `Failed to delete user with ID "${userId}".`,
     UPDATE_USER_ERROR: 'Error updating user data.',
     GENERIC_ERROR: 'Something went wrong with users.',
 };

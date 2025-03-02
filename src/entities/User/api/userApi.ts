@@ -3,16 +3,15 @@ import { getDoc, onSnapshot, query, updateDoc } from 'firebase/firestore';
 import { firestoreApi } from '@/shared/api/firestoreApi';
 import { User } from '../model/types/user';
 import { getUserDocRefById } from '../lib/utilities/getUserDocRefById/getUserDocRefById';
-import { fetchDocumentByRef } from '@/shared/lib/firestore/fetchDocumentByRef/fetchDocumentByRef';
-import { getDocRefByField } from '@/shared/lib/firestore/getDocRefByField/getDocRefByField';
 import { dataPoint } from '@/shared/lib/firestore/firestore';
-import { deleteDocFromFirestore } from '@/shared/lib/firestore/deleteDocFromFirestore/deleteDocFromFirestore';
 import { executeQuery } from '@/shared/lib/firestore/executeQuery/executeQuery';
 
 import { fetchUser } from '../lib/utilities/fetchUser/fetchUser';
 import { ERROR_USER_MESSAGES } from '../model/consts/errorUserMessages';
 import { subscribeToUser } from '../lib/utilities/subscribeToUser/subscribeToUser';
 import { handleFirestoreSubscription } from '@/shared/lib/firestore/handleFirestoreSubscription/handleFirestoreSubscription';
+
+import { deleteDocFromFirestore } from '@/shared/lib/firestore/deleteDocFromFirestore/deleteDocFromFirestore';
 
 export const userFirebaseApi = firestoreApi
     .enhanceEndpoints({
@@ -78,34 +77,10 @@ export const userFirebaseApi = firestoreApi
             deleteUser: build.mutation<string, string>({
                 invalidatesTags: ['Users'],
                 async queryFn(userId) {
-                    try {
-                        const userDocRef = await getDocRefByField<User>(
-                            'users',
-                            'id',
-                            userId,
-                        );
-                        if (!userDocRef) {
-                            return {
-                                error: {
-                                    message: 'User not found in Firestore.',
-                                },
-                            };
-                        }
-
-                        // Fetch user data to check authentication method
-                        const userData =
-                            await fetchDocumentByRef<User>(userDocRef);
-                        if (!userData) {
-                            return {
-                                error: { message: 'User data not found.' },
-                            };
-                        }
-
-                        await deleteDocFromFirestore('users', userId);
-                        return { data: userId };
-                    } catch (error) {
-                        return { error };
-                    }
+                    return executeQuery(
+                        async () => deleteDocFromFirestore('users', userId),
+                        ERROR_USER_MESSAGES.DELETE_USER_ID_FAIL(userId),
+                    );
                 },
             }),
             updateUserData: build.mutation<

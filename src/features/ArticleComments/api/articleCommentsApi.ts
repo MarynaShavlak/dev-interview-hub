@@ -116,12 +116,16 @@ export const articlesCommentsFirebaseApi = firestoreApi
             deleteComment: build.mutation<string, string>({
                 invalidatesTags: ['ArticleComments'],
                 async queryFn(commentId) {
-                    try {
-                        await deleteDocFromFirestore('comments', commentId);
-                        return { data: commentId };
-                    } catch (error) {
-                        return { error };
-                    }
+                    return executeQuery(
+                        () => deleteDocFromFirestore('comments', commentId),
+                        ERROR_MESSAGES.DELETE_ERROR,
+                    );
+                    // try {
+                    //     await deleteDocFromFirestore('comments', commentId);
+                    //     return { data: commentId };
+                    // } catch (error) {
+                    //     return { error };
+                    // }
                 },
             }),
             deleteCommentsByArticleId: build.mutation<void, string>({
