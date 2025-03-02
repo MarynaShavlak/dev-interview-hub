@@ -7,8 +7,6 @@ export const validateProfileData = (profile?: Partial<User>) => {
     }
 
     const { firstname, lastname, age, username } = profile;
-    console.log('age', age);
-
     const errors: ValidateProfileError[] = [];
 
     if (!firstname || !lastname) {
