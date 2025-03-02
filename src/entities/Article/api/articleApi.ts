@@ -22,6 +22,8 @@ import { createQueryConstraints } from '../lib/utilities/createQueryConstraints/
 import { fetchArticles } from '../lib/utilities/fetchArticles/fetchArticles';
 import { filterAndPaginateArticles } from '../lib/utilities/filterAndPaginateArticles/filterAndPaginateArticles';
 import { SortOrder } from '@/shared/types/sortOrder';
+import { executeQuery } from '@/shared/lib/firestore/executeQuery/executeQuery';
+import { ERROR_ARTICLE_MESSAGES } from '../model/consts/errorArticleMessages';
 
 export const articleFirebaseApi = firestoreApi
     .enhanceEndpoints({
@@ -235,12 +237,16 @@ export const articleFirebaseApi = firestoreApi
             deleteArticle: build.mutation<string, string>({
                 invalidatesTags: ['Articles'],
                 async queryFn(articleId) {
-                    try {
-                        await deleteDocFromFirestore('articles', articleId);
-                        return { data: articleId };
-                    } catch (error) {
-                        return { error };
-                    }
+                    return executeQuery(
+                        () => deleteDocFromFirestore('articles', articleId),
+                        ERROR_ARTICLE_MESSAGES.DELETE_ARTICLE_ERROR(articleId),
+                    );
+                    // try {
+                    //     await deleteDocFromFirestore('articles', articleId);
+                    //     return { data: articleId };
+                    // } catch (error) {
+                    //     return { error };
+                    // }
                 },
             }),
             updateArticle: build.mutation<

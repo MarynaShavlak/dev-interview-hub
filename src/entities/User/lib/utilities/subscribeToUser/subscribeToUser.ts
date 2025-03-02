@@ -25,17 +25,6 @@ export const subscribeToUser = (
                 return result[0];
             });
         });
-        // const userDocRef = getDocRefByField<User>('users', 'id', userId);
-        // if (!userDocRef) return undefined;
-        // unsubscribe =
-        //     userDocRef &&
-        //     onSnapshot(userDocRef, (doc) => {
-        //         // if (doc.exists()) {
-        //         updateCachedData(() => {
-        //             const result = doc.data() as User;
-        //             return result;
-        //         });
-        //     });
     } catch (error) {
         handleRequestErrorMessage(
             ERROR_USER_MESSAGES.USER_SNAPSHOT_FAIL(userId),
@@ -45,16 +34,3 @@ export const subscribeToUser = (
 
     return unsubscribe;
 };
-
-// }
-// else {
-//     console.log('User not found in snapshot');
-// }
-// unsubscribe = onSnapshot(commentsQuery, (snapshot) => {
-//     updateCachedData((draft) => {
-//         const result = snapshot?.docs?.map((doc) =>
-//             doc.data(),
-//         ) as ArticleComment[];
-//         return result;
-//     });
-// });
