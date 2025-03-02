@@ -17,4 +17,6 @@ export const ERROR_USER_MESSAGES = {
     JSON_SETTINGS_RETRIEVAL_ERROR: 'Failed to retrieve updated JSON settings',
     JSON_SETTINGS_SAVE_ERROR: 'An error occurred while saving JSON settings.',
     LOGOUT_ERROR: 'Logout failed',
+    NO_USER_ID_IN_STORAGE: 'No user ID found in local storage.',
+    AUTH_INIT_ERROR: 'Failed to initialize auth data.',
 };

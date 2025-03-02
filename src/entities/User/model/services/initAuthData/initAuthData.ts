@@ -5,6 +5,8 @@ import { User } from '../../types/user';
 import { USER_LOCALSTORAGE_KEY } from '@/shared/const/localstorage';
 import { getUserDataByIdQuery } from '../../../api/userApi';
 import { initializeUserFeatures } from '../../../lib/userUtils/userUtils';
+import { ERROR_USER_MESSAGES } from '../../consts/errorUserMessages';
+import { handleThunkErrorMessage } from '@/shared/lib/firestore/handleThunkErrorMessage/handleThunkErrorMessage';
 
 /**
  * Thunk to initialize authentication data based on user ID stored in local storage.
@@ -21,24 +23,27 @@ import { initializeUserFeatures } from '../../../lib/userUtils/userUtils';
 export const initAuthData = createAsyncThunk<User, void, ThunkConfig<string>>(
     'user/initAuthData',
     async (newJsonSettings, thunkApi) => {
-        const { rejectWithValue, dispatch, extra } = thunkApi;
+        const { rejectWithValue, dispatch } = thunkApi;
         const userId = localStorage.getItem(USER_LOCALSTORAGE_KEY) as string;
         if (!userId) {
-            return rejectWithValue('No user ID found in local storage.');
+            return rejectWithValue(ERROR_USER_MESSAGES.NO_USER_ID_IN_STORAGE);
         }
 
         try {
             const response = await dispatch(
                 getUserDataByIdQuery(userId),
             ).unwrap();
-            // console.log('response in init', response);
 
             initializeUserFeatures(response);
 
             return response;
         } catch (error) {
-            console.error('Error during auth initialization:', error);
-            return rejectWithValue('Failed to initialize auth data.');
+            return rejectWithValue(
+                handleThunkErrorMessage(
+                    error,
+                    ERROR_USER_MESSAGES.AUTH_INIT_ERROR,
+                ),
+            );
         }
     },
 );
