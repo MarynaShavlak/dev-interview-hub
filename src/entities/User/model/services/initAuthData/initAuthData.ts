@@ -6,7 +6,7 @@ import { USER_LOCALSTORAGE_KEY } from '@/shared/const/localstorage';
 import { getUserDataByIdQuery } from '../../../api/userApi';
 import { initializeUserFeatures } from '../../../lib/userUtils/userUtils';
 import { ERROR_USER_MESSAGES } from '../../consts/errorUserMessages';
-import { handleThunkErrorMessage } from '@/shared/lib/firestore/handleThunkErrorMessage/handleThunkErrorMessage';
+import { handleThunkErrorMessage } from '@/shared/lib/firestore';
 
 /**
  * Thunk to initialize authentication data based on user ID stored in local storage.

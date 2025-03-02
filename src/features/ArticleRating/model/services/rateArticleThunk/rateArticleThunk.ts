@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { v4 } from 'uuid';
 import { getUserAuthData } from '@/entities/User';
 import { ThunkConfig } from '@/app/providers/StoreProvider';
-import { handleThunkErrorMessage } from '@/shared/lib/firestore/handleThunkErrorMessage/handleThunkErrorMessage';
+import { handleThunkErrorMessage } from '@/shared/lib/firestore';
 import { rateArticleMutation } from '../../../api/articleRatingApi';
 import { ERROR_RATING_MESSAGES } from '../../consts/errorRatingMessages';
 import { ArticleRatingType } from '../../types/articleRatingType';

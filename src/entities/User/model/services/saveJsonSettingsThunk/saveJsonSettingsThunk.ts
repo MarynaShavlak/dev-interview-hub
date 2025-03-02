@@ -5,7 +5,7 @@ import { getUserAuthData } from '../../selectors/getUserAuthData/getUserAuthData
 import { getJsonSettings } from '../../selectors/getJsonSettings/getJsonSettings';
 import { updateUserDataMutation } from '../../../api/userApi';
 import { ERROR_USER_MESSAGES } from '../../consts/errorUserMessages';
-import { handleThunkErrorMessage } from '@/shared/lib/firestore/handleThunkErrorMessage/handleThunkErrorMessage';
+import { handleThunkErrorMessage } from '@/shared/lib/firestore';
 
 /**
  * Thunk to save and update user JSON settings.

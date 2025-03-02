@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { Article, deleteArticleImageThunk } from '@/entities/Article';
 import { ThunkConfig } from '@/app/providers/StoreProvider';
 import { getBlockImageUrls } from '../../../lib/utilities/getBlockImageUrls/getBlockImageUrls';
-import { handleThunkErrorMessage } from '@/shared/lib/firestore/handleThunkErrorMessage/handleThunkErrorMessage';
+import { handleThunkErrorMessage } from '@/shared/lib/firestore';
 import { ERROR_MESSAGES } from '../../consts/errorMessages';
 
 export const deleteAllArticleContentImagesThunk = createAsyncThunk<

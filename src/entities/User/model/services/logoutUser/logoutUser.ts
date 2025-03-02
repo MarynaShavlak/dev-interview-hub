@@ -3,7 +3,7 @@ import { signOut } from 'firebase/auth';
 import { clearUserDataFromStorage } from '../../../lib/userUtils/userUtils';
 import { userActions } from '../../slices/userSlice';
 import { ThunkConfig } from '@/app/providers/StoreProvider';
-import { handleThunkErrorMessage } from '@/shared/lib/firestore/handleThunkErrorMessage/handleThunkErrorMessage';
+import { handleThunkErrorMessage } from '@/shared/lib/firestore';
 import { ERROR_USER_MESSAGES } from '../../consts/errorUserMessages';
 
 /**

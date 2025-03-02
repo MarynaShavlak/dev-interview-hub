@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig } from '@/app/providers/StoreProvider';
 import { deleteUserMutation } from '../../../api/userApi';
 import { ERROR_USER_MESSAGES } from '../../consts/errorUserMessages';
-import { handleThunkErrorMessage } from '@/shared/lib/firestore/handleThunkErrorMessage/handleThunkErrorMessage';
+import { handleThunkErrorMessage } from '@/shared/lib/firestore';
 
 export const deleteUserByAdminThunk = createAsyncThunk<
     string,

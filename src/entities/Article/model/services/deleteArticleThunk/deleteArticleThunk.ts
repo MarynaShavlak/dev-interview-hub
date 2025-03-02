@@ -1,6 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig } from '@/app/providers/StoreProvider';
 import { deleteArticleMutation } from '../../../api/articleApi';
+import { handleThunkErrorMessage } from '@/shared/lib/firestore';
+import { ERROR_ARTICLE_MESSAGES } from '../../consts/errorArticleMessages';
 
 export const deleteArticleThunk = createAsyncThunk<
     string,
@@ -10,7 +12,7 @@ export const deleteArticleThunk = createAsyncThunk<
     const { rejectWithValue, dispatch } = thunkApi;
 
     if (!articleId) {
-        return rejectWithValue('Article ID is required.');
+        return rejectWithValue(ERROR_ARTICLE_MESSAGES.ARTICLE_ID_REQUIRED);
     }
 
     try {
@@ -20,6 +22,8 @@ export const deleteArticleThunk = createAsyncThunk<
 
         return deletedArticleId;
     } catch (error) {
-        return rejectWithValue(`Failed to delete article with id ${articleId}`);
+        return rejectWithValue(
+            handleThunkErrorMessage(error, ERROR_ARTICLE_MESSAGES.DELETE_ERROR),
+        );
     }
 });

@@ -4,7 +4,7 @@ import {
     removeAllGeneralNotificationsForUserMutation,
     removeAllPersonalNotificationsMutation,
 } from '../../../api/notificationApi';
-import { handleThunkErrorMessage } from '@/shared/lib/firestore/handleThunkErrorMessage/handleThunkErrorMessage';
+import { handleThunkErrorMessage } from '@/shared/lib/firestore';
 import { ERROR_MESSAGES } from '../../consts/errorMessages';
 
 export const deleteAllNotificationsThunk = createAsyncThunk<

@@ -6,7 +6,7 @@ import {
 } from '../../../api/notificationApi';
 import { NotificationType } from '../../types/notification';
 import { ERROR_MESSAGES } from '../../consts/errorMessages';
-import { handleThunkErrorMessage } from '@/shared/lib/firestore/handleThunkErrorMessage/handleThunkErrorMessage';
+import { handleThunkErrorMessage } from '@/shared/lib/firestore';
 
 type DeleteNotificationArgs = {
     notificationId: string;

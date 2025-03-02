@@ -2,3 +2,5 @@ export { deleteDocFromFirestore } from './deleteDocFromFirestore/deleteDocFromFi
 export { handleFirestoreSubscription } from './handleFirestoreSubscription/handleFirestoreSubscription';
 export { executeQuery } from './executeQuery/executeQuery';
 export { fetchCollectionDocsData } from './fetchCollectionDocsData/fetchCollectionDocsData';
+export { handleThunkErrorMessage } from './handleThunkErrorMessage/handleThunkErrorMessage';
+export { getImagePathFromUrl } from './getImagePathFromUrl/getImagePathFromUrl';

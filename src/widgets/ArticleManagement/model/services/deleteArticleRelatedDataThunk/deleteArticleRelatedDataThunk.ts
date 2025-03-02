@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ERROR_MESSAGES } from '../../consts/errorMessages';
 import { ThunkConfig } from '@/app/providers/StoreProvider';
 import { deleteCommentsByArticleId } from '@/features/ArticleComments';
-import { handleThunkErrorMessage } from '@/shared/lib/firestore/handleThunkErrorMessage/handleThunkErrorMessage';
+import { handleThunkErrorMessage } from '@/shared/lib/firestore';
 import { deleteRatingsByArticleId } from '@/features/ArticleRating';
 
 export const deleteArticleRelatedDataThunk = createAsyncThunk<

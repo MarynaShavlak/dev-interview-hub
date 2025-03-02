@@ -21,4 +21,9 @@ export const ERROR_ARTICLE_MESSAGES = {
         `Failed to retrieve updated data for article with id ${articleId}`,
     ARTICLES_BY_USER_ID_FETCH_FAIL: (userId: string) =>
         `Failed to fetch articles for user with ID "${userId}".`,
+    DELETE_ERROR: 'Something when wrong when deleting article.',
+    ARTICLE_ID_REQUIRED: 'Article ID is required.',
+    FIREBASE_STORAGE_NOT_INITIALIZED: 'Firebase storage is not initialized',
+    DELETE_IMAGE_ERROR: 'Failed to delete image',
+    IMAGE_NOT_FOUND: (imagePath: string) => `Image not found: ${imagePath}`,
 };

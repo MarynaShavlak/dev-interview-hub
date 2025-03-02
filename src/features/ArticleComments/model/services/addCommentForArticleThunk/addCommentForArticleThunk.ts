@@ -6,7 +6,7 @@ import { Comment } from '@/entities/Comment';
 import { addCommentMutation } from '../../../api/articleCommentsApi';
 import { getArticleDataByIdQuery } from '@/entities/Article';
 import { ERROR_COMMENT_MESSAGES } from '../../consts/errorCommentMessages';
-import { handleThunkErrorMessage } from '@/shared/lib/firestore/handleThunkErrorMessage/handleThunkErrorMessage';
+import { handleThunkErrorMessage } from '@/shared/lib/firestore';
 
 /**
  * Thunk to add a comment to an article.

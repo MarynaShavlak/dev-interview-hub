@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig } from '@/app/providers/StoreProvider';
 import { deleteCommentMutation } from '../../../api/articleCommentsApi';
-import { handleThunkErrorMessage } from '@/shared/lib/firestore/handleThunkErrorMessage/handleThunkErrorMessage';
+import { handleThunkErrorMessage } from '@/shared/lib/firestore';
 import { ERROR_COMMENT_MESSAGES } from '../../consts/errorCommentMessages';
 
 export const deleteCommentFromArticleThunk = createAsyncThunk<

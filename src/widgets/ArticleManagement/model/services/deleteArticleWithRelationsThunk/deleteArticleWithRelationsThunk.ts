@@ -4,7 +4,7 @@ import {
     getArticleDataByIdQuery,
 } from '@/entities/Article';
 import { ThunkConfig } from '@/app/providers/StoreProvider';
-import { handleThunkErrorMessage } from '@/shared/lib/firestore/handleThunkErrorMessage/handleThunkErrorMessage';
+import { handleThunkErrorMessage } from '@/shared/lib/firestore';
 import { ERROR_MESSAGES } from '../../consts/errorMessages';
 import { deleteArticleRelatedDataThunk } from '../deleteArticleRelatedDataThunk/deleteArticleRelatedDataThunk';
 import { deleteAllArticleContentImagesThunk } from '../deleteAllArticleContentImagesThunk/deleteAllArticleContentImagesThunk';
