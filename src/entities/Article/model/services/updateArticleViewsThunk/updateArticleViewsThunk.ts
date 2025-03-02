@@ -1,10 +1,12 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { Article } from '../../..';
+import { Article } from '../../../model/types/article';
 import { ThunkConfig } from '@/app/providers/StoreProvider';
 import { getUserAuthData } from '@/entities/User';
 
 import { incrementArticleViewsMutation } from '../../../api/articleApi';
 import { updateLocalStorageViews } from '../../../lib/utilities/updateLocalStorageViews/updateLocalStorageViews';
+import { ERROR_ARTICLE_MESSAGES } from '../../consts/errorArticleMessages';
+import { handleThunkErrorMessage } from '@/shared/lib/firestore';
 
 export const updateArticleViewsThunk = createAsyncThunk<
     Article,
@@ -18,7 +20,7 @@ export const updateArticleViewsThunk = createAsyncThunk<
     const authorId = article?.user.id;
 
     if (authorId === authData?.id) {
-        return rejectWithValue("Author's views are not counted");
+        return rejectWithValue(ERROR_ARTICLE_MESSAGES.AUTHOR_VIEWS_NOT_COUNTED);
     }
 
     try {
@@ -27,14 +29,18 @@ export const updateArticleViewsThunk = createAsyncThunk<
         ).unwrap();
 
         if (!updatedArticle) {
-            return rejectWithValue('No data received from API.');
+            return rejectWithValue(ERROR_ARTICLE_MESSAGES.NO_API_DATA);
         }
 
         updateLocalStorageViews(articleId);
 
         return updatedArticle;
     } catch (error) {
-        console.error('Failed to update article views:', error);
-        return rejectWithValue('Failed to update article views.');
+        return rejectWithValue(
+            handleThunkErrorMessage(
+                error,
+                ERROR_ARTICLE_MESSAGES.UPDATE_ARTICLE_VIEWS_ERROR,
+            ),
+        );
     }
 });

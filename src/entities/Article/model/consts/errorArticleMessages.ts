@@ -26,4 +26,7 @@ export const ERROR_ARTICLE_MESSAGES = {
     FIREBASE_STORAGE_NOT_INITIALIZED: 'Firebase storage is not initialized',
     DELETE_IMAGE_ERROR: 'Failed to delete image',
     IMAGE_NOT_FOUND: (imagePath: string) => `Image not found: ${imagePath}`,
+    AUTHOR_VIEWS_NOT_COUNTED: "Author's views are not counted",
+    NO_API_DATA: 'No data received from API.',
+    UPDATE_ARTICLE_VIEWS_ERROR: 'Failed to update article views.',
 };

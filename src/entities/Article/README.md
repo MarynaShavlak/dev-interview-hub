@@ -91,7 +91,7 @@ Article/
 
 - **`services/`**
   - **`fetchArticleByIdThunk/`**
-    - [**fetchArticleByIdThunk.ts**](model/services/fetchArticleByIdThunk/README.md): Fetches article data by ID from the API.
+    - [**fetchArticleByIdThunk.ts**](model/services/__fetchArticleByIdThunk/README.md): Fetches article data by ID from the API.
 
 - **`slices/`**
   - [**articleDetailsSlice.ts**](model/slices/README.md): Manages article-related state in Redux, including actions and reducers.
