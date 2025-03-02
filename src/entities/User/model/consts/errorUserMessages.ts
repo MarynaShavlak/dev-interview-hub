@@ -16,4 +16,5 @@ export const ERROR_USER_MESSAGES = {
         `Failed to retrieve updated data for user ${userId}`,
     JSON_SETTINGS_RETRIEVAL_ERROR: 'Failed to retrieve updated JSON settings',
     JSON_SETTINGS_SAVE_ERROR: 'An error occurred while saving JSON settings.',
+    LOGOUT_ERROR: 'Logout failed',
 };

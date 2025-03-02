@@ -3,6 +3,8 @@ import { signOut } from 'firebase/auth';
 import { clearUserDataFromStorage } from '../../../lib/userUtils/userUtils';
 import { userActions } from '../../slices/userSlice';
 import { ThunkConfig } from '@/app/providers/StoreProvider';
+import { handleThunkErrorMessage } from '@/shared/lib/firestore/handleThunkErrorMessage/handleThunkErrorMessage';
+import { ERROR_USER_MESSAGES } from '../../consts/errorUserMessages';
 
 /**
  * Thunk to log out the user.
@@ -28,9 +30,12 @@ export const logoutUser = createAsyncThunk<void, void, ThunkConfig<string>>(
             dispatch(logout());
             clearUserDataFromStorage();
         } catch (error) {
-            console.error('Failed to logout user:', error);
-
-            return rejectWithValue('Logout failed');
+            return rejectWithValue(
+                handleThunkErrorMessage(
+                    error,
+                    ERROR_USER_MESSAGES.LOGOUT_ERROR,
+                ),
+            );
         }
         return undefined;
     },
