@@ -9,8 +9,6 @@ import { Article, ArticleSort } from '../model/types/article';
 import { articlesAdapter, initialState } from '../model/slices/articleSlice';
 import { fetchDocumentByRef } from '@/shared/lib/firestore/fetchDocumentByRef/fetchDocumentByRef';
 import { getDocRefByField } from '@/shared/lib/firestore/getDocRefByField/getDocRefByField';
-import { createArticlesByUserQuery } from '../lib/utilities/createArticlesByUserQuery/createArticlesByUserQuery';
-import { fetchQueryResults } from '@/shared/lib/firestore/fetchQueryResults/fetchQueryResults';
 import { deleteDocFromFirestore } from '@/shared/lib/firestore/deleteDocFromFirestore/deleteDocFromFirestore';
 import { dataPoint } from '@/shared/lib/firestore/firestore';
 import { ArticleCategory } from '../model/consts/articleConsts';
@@ -26,6 +24,10 @@ import {
 } from '../lib/utilities/saveArticleToFirestore/saveArticleToFirestore';
 import { updateArticleInFirestore } from '../lib/utilities/updateArticleInFirestore/updateArticleInFirestore';
 import { incrementArticleViewsInFirestore } from '../lib/utilities/incrementArticleViewsInFirestore/incrementArticleViewsInFirestore';
+import { fetchArticlesForUser } from '../lib/utilities/fetchArticlesForUser/fetchArticlesForUser';
+import { handleFirestoreSubscription } from '@/shared/lib/firestore/handleFirestoreSubscription/handleFirestoreSubscription';
+
+import { subscribeToUserArticles } from '../lib/utilities/subscribeToUserArticles/subscribeToUserArticles';
 
 export const articleFirebaseApi = firestoreApi
     .enhanceEndpoints({
@@ -110,49 +112,31 @@ export const articleFirebaseApi = firestoreApi
                 providesTags: [{ type: 'Articles', id: 'userId' }],
                 keepUnusedDataFor: 3600,
                 async queryFn(userId) {
-                    try {
-                        const articlesQuery = createArticlesByUserQuery(userId);
-
-                        const articles =
-                            await fetchQueryResults<Article>(articlesQuery);
-
-                        return { data: articles };
-                    } catch (error) {
-                        console.error(
-                            'Error fetching articles by user ID:',
-                            error,
-                        );
+                    if (!userId) {
                         return {
-                            error: 'Error fetching articles by user ID',
+                            error: new Error(
+                                ERROR_ARTICLE_MESSAGES.USER_NOT_FOUND,
+                            ),
                         };
                     }
+                    return executeQuery(
+                        () => fetchArticlesForUser(userId),
+                        ERROR_ARTICLE_MESSAGES.ARTICLES_BY_USER_ID_FETCH_FAIL(
+                            userId,
+                        ),
+                    );
                 },
                 async onCacheEntryAdded(
                     userId,
                     { updateCachedData, cacheDataLoaded, cacheEntryRemoved },
                 ) {
-                    await cacheDataLoaded;
-                    let unsubscribe;
-                    try {
-                        const articlesQuery = createArticlesByUserQuery(userId);
-
-                        unsubscribe = onSnapshot(articlesQuery, (snapshot) => {
-                            updateCachedData((draft) => {
-                                const result = snapshot?.docs?.map((doc) =>
-                                    doc.data(),
-                                ) as Article[];
-
-                                // draft.splice(0, draft.length, ...result);
-                            });
-                        });
-                    } catch (error) {
-                        console.error('Error in articles snapshot:', error);
-                    }
-
-                    await cacheEntryRemoved;
-                    if (unsubscribe) {
-                        unsubscribe();
-                    }
+                    handleFirestoreSubscription({
+                        subscriptionFn: subscribeToUserArticles,
+                        updateFn: updateCachedData,
+                        dependency: userId,
+                        cacheDataLoaded,
+                        cacheEntryRemoved,
+                    });
                 },
             }),
             getArticleDataById: build.query<Article, string>({
