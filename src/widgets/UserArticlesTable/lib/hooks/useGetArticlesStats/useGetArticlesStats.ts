@@ -27,7 +27,7 @@ export const useGetArticleStats = (): UseArticleStatsResult => {
         error: isArticlesError,
     } = useArticlesByUserId(authedUserId);
     const articlesIdArray = articles?.map((article) => article.id);
-    console.log('articles', articlesIdArray);
+    // console.log('articles', articlesIdArray);
     const {
         data: ratings = [],
         isLoading: isRatingsLoading,

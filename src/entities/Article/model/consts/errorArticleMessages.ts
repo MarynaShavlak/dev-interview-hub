@@ -3,6 +3,7 @@ export const ERROR_ARTICLE_MESSAGES = {
     FETCH_ARTICLE_ERROR: (articleId: string) =>
         `Failed to fetch article with ID "${articleId}".`,
     ARTICLES_FETCH_FAIL: 'Failed to fetch articles.',
+    FILTERED_ARTICLES_FETCH_FAIL: 'Failed to fetch filtered articles.',
     DELETE_ARTICLE_ERROR: (articleId: string) =>
         `Failed to delete article with id ${articleId}`,
     ARTICLE_SNAPSHOT_FAIL: (articleId: string) =>

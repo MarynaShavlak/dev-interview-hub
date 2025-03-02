@@ -1,16 +1,13 @@
-import { query as firebaseQuery } from 'firebase/firestore';
 import { EntityState } from '@reduxjs/toolkit';
 import { firestoreApi } from '@/shared/api/firestoreApi';
-import { Article, ArticleSort } from '../model/types/article';
+import { Article } from '../model/types/article';
 import { articlesAdapter, initialState } from '../model/slices/articleSlice';
-import { deleteDocFromFirestore } from '@/shared/lib/firestore/deleteDocFromFirestore/deleteDocFromFirestore';
-import { dataPoint } from '@/shared/lib/firestore/firestore';
-import { ArticleCategory } from '../model/consts/articleConsts';
-import { createQueryConstraints } from '../lib/utilities/createQueryConstraints/createQueryConstraints';
-import { fetchFilteredArticles } from '../lib/utilities/fetchFilteredArticles/fetchFilteredArticles';
-import { filterAndPaginateArticles } from '../lib/utilities/filterAndPaginateArticles/filterAndPaginateArticles';
-import { SortOrder } from '@/shared/types/sortOrder';
-import { executeQuery } from '@/shared/lib/firestore/executeQuery/executeQuery';
+import {
+    deleteDocFromFirestore,
+    executeQuery,
+    handleFirestoreSubscription,
+} from '@/shared/lib/firestore';
+
 import { ERROR_ARTICLE_MESSAGES } from '../model/consts/errorArticleMessages';
 import {
     NewArticleDraft,
@@ -19,12 +16,14 @@ import {
 import { updateArticleInFirestore } from '../lib/utilities/updateArticleInFirestore/updateArticleInFirestore';
 import { incrementArticleViewsInFirestore } from '../lib/utilities/incrementArticleViewsInFirestore/incrementArticleViewsInFirestore';
 import { fetchArticlesForUser } from '../lib/utilities/fetchArticlesForUser/fetchArticlesForUser';
-import { handleFirestoreSubscription } from '@/shared/lib/firestore/handleFirestoreSubscription/handleFirestoreSubscription';
-
 import { subscribeToUserArticles } from '../lib/utilities/subscribeToUserArticles/subscribeToUserArticles';
 import { fetchArticle } from '../lib/utilities/fetchArticle/fetchArticle';
 import { subscribeToArticle } from '../lib/utilities/subscribeToArticle/subscribeToArticle';
 import { fetchAllArticlesFromFirestore } from '../lib/utilities/fetchAllArticlesFromFirestore/fetchAllArticlesFromFirestore';
+import {
+    fetchAllFilteredArticlesFromFirestore,
+    GetFilteredArticlesArgs,
+} from '../lib/utilities/fetchAllFilteredArticlesFromFirestore/fetchAllFilteredArticlesFromFirestore';
 
 interface UpdateArticleArgs {
     articleId: string;
@@ -39,53 +38,14 @@ export const articleFirebaseApi = firestoreApi
         endpoints: (build) => ({
             getFilteredArticles: build.query<
                 Article[],
-                {
-                    sort: ArticleSort;
-                    order: SortOrder;
-                    category: ArticleCategory[];
-                    limit: number;
-                    query: string;
-                    page: number;
-                }
+                GetFilteredArticlesArgs
             >({
                 providesTags: ['Articles'],
-                async queryFn({ sort, order, category, limit, query, page }) {
-                    try {
-                        const collectionRef = dataPoint<Article>('articles');
-                        console.log(
-                            'in endpoint to fetch artiles:',
-                            sort,
-                            order,
-                            category,
-                            limit,
-                        );
-                        const constraints = createQueryConstraints({
-                            sort,
-                            order,
-                            category,
-                        });
-
-                        const filteredQuery = firebaseQuery(
-                            collectionRef,
-                            ...constraints,
-                        );
-                        const allArticles =
-                            await fetchFilteredArticles(filteredQuery);
-                        const articles = filterAndPaginateArticles({
-                            articles: allArticles,
-                            query,
-                            page,
-                            limit,
-                        });
-
-                        return { data: articles };
-                    } catch (error) {
-                        console.error(
-                            'Error fetching filtered articles:',
-                            error,
-                        );
-                        return { error: 'Error fetching filtered articles' };
-                    }
+                async queryFn(params) {
+                    return executeQuery(
+                        () => fetchAllFilteredArticlesFromFirestore(params),
+                        ERROR_ARTICLE_MESSAGES.FILTERED_ARTICLES_FETCH_FAIL,
+                    );
                 },
             }),
             getArticles: build.query<EntityState<Article>, void>({
@@ -129,9 +89,6 @@ export const articleFirebaseApi = firestoreApi
                 },
             }),
             getArticleDataById: build.query<Article, string>({
-                providesTags: (result, error, articleId) => [
-                    { type: 'Articles', id: articleId },
-                ],
                 async queryFn(articleId) {
                     return executeQuery(
                         () => fetchArticle(articleId),
