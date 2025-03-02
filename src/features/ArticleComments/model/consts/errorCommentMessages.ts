@@ -1,4 +1,4 @@
-export const ERROR_MESSAGES = {
+export const ERROR_COMMENT_MESSAGES = {
     ARTICLE_NOT_FOUND: 'Article not found.',
     COMMENTS_FETCH_FAIL: 'Failed to fetch comments.',
     COMMENTS_BY_ARTICLE_ID_FETCH_FAIL: (articleId: string) =>

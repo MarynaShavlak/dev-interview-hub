@@ -5,7 +5,7 @@ import { ThunkConfig } from '@/app/providers/StoreProvider';
 import { Comment } from '@/entities/Comment';
 import { addCommentMutation } from '../../../api/articleCommentsApi';
 import { getArticleDataByIdQuery } from '@/entities/Article';
-import { ERROR_MESSAGES } from '../../consts/errorMessages';
+import { ERROR_COMMENT_MESSAGES } from '../../consts/errorCommentMessages';
 import { handleThunkErrorMessage } from '@/shared/lib/firestore/handleThunkErrorMessage/handleThunkErrorMessage';
 
 /**
@@ -37,15 +37,21 @@ export const addCommentForArticleThunk = createAsyncThunk<
                 getArticleDataByIdQuery(articleId),
             ).unwrap();
             if (!userData) {
-                return rejectWithValue(ERROR_MESSAGES.USER_AUTH_MISSING);
+                return rejectWithValue(
+                    ERROR_COMMENT_MESSAGES.USER_AUTH_MISSING,
+                );
             }
 
             if (!article) {
-                return rejectWithValue(ERROR_MESSAGES.ARTICLE_DETAILS_MISSING);
+                return rejectWithValue(
+                    ERROR_COMMENT_MESSAGES.ARTICLE_DETAILS_MISSING,
+                );
             }
 
             if (!text || text.trim() === '') {
-                return rejectWithValue(ERROR_MESSAGES.COMMENT_TEXT_REQUIRED);
+                return rejectWithValue(
+                    ERROR_COMMENT_MESSAGES.COMMENT_TEXT_REQUIRED,
+                );
             }
             const { id, avatar, email, firstname, lastname, username } =
                 userData;
@@ -72,7 +78,7 @@ export const addCommentForArticleThunk = createAsyncThunk<
             return rejectWithValue(
                 handleThunkErrorMessage(
                     error,
-                    ERROR_MESSAGES.COMMENT_ADD_API_FAIL,
+                    ERROR_COMMENT_MESSAGES.COMMENT_ADD_API_FAIL,
                 ),
             );
         }

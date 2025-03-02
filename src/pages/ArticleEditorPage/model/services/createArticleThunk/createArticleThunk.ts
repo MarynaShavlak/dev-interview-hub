@@ -34,7 +34,7 @@ export const createArticleThunk = createAsyncThunk<
             ...formData,
             id: v4(),
             user: authData,
-            createdAt: new Date().toISOString(),
+            // createdAt: new Date().toISOString(),
         };
         console.log('newArticle', newArticle);
         const createdArticle = await dispatch(

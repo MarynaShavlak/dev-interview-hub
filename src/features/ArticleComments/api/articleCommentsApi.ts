@@ -3,7 +3,7 @@ import { firestoreApi } from '@/shared/api/firestoreApi';
 import { fetchCollectionDocsData } from '@/shared/lib/firestore/fetchCollectionDocsData/fetchCollectionDocsData';
 import { ArticleComment } from '../model/types/articleComment';
 import { fetchCommentsForArticle } from '../lib/utilities/fetchCommentsForArticle/fetchCommentsForArticle';
-import { ERROR_MESSAGES } from '../model/consts/errorMessages';
+import { ERROR_COMMENT_MESSAGES } from '../model/consts/errorCommentMessages';
 
 import { subscribeToArticleComments } from '../lib/utilities/subscribeToArticleComments/subscribeToArticleComments';
 import { subscribeToAllArticlesComments } from '../lib/utilities/subscribeToAllArticlesComments/subscribeToAllArticlesComments';
@@ -29,7 +29,7 @@ export const articlesCommentsFirebaseApi = firestoreApi
                     return executeQuery(
                         () =>
                             fetchCollectionDocsData<ArticleComment>('comments'),
-                        ERROR_MESSAGES.COMMENTS_FETCH_FAIL,
+                        ERROR_COMMENT_MESSAGES.COMMENTS_FETCH_FAIL,
                     );
                 },
                 async onCacheEntryAdded(
@@ -51,13 +51,15 @@ export const articlesCommentsFirebaseApi = firestoreApi
                 async queryFn(articleId: string) {
                     if (!articleId) {
                         return {
-                            error: new Error(ERROR_MESSAGES.ARTICLE_NOT_FOUND),
+                            error: new Error(
+                                ERROR_COMMENT_MESSAGES.ARTICLE_NOT_FOUND,
+                            ),
                         };
                     }
 
                     return executeQuery(
                         () => fetchCommentsForArticle(articleId),
-                        ERROR_MESSAGES.COMMENTS_BY_ARTICLE_ID_FETCH_FAIL(
+                        ERROR_COMMENT_MESSAGES.COMMENTS_BY_ARTICLE_ID_FETCH_FAIL(
                             articleId,
                         ),
                     );
@@ -85,7 +87,7 @@ export const articlesCommentsFirebaseApi = firestoreApi
                 async queryFn(articleIds) {
                     return executeQuery(
                         () => fetchCommentsForMultipleArticles(articleIds),
-                        ERROR_MESSAGES.COMMENTS_BY_ARTICLE_IDS_FETCH_FAIL(
+                        ERROR_COMMENT_MESSAGES.COMMENTS_BY_ARTICLE_IDS_FETCH_FAIL(
                             articleIds,
                         ),
                     );
@@ -109,7 +111,7 @@ export const articlesCommentsFirebaseApi = firestoreApi
                 async queryFn(newComment) {
                     return executeQuery(
                         () => saveCommentToFirestore(newComment),
-                        ERROR_MESSAGES.ADD_COMMENT_FAIL,
+                        ERROR_COMMENT_MESSAGES.ADD_COMMENT_FAIL,
                     );
                 },
             }),
@@ -118,7 +120,7 @@ export const articlesCommentsFirebaseApi = firestoreApi
                 async queryFn(commentId) {
                     return executeQuery(
                         () => deleteDocFromFirestore('comments', commentId),
-                        ERROR_MESSAGES.DELETE_ERROR,
+                        ERROR_COMMENT_MESSAGES.DELETE_ERROR,
                     );
                 },
             }),
@@ -129,7 +131,7 @@ export const articlesCommentsFirebaseApi = firestoreApi
                         const comments =
                             await fetchCommentsForArticle(articleId);
                         await deleteCommentsFromFirestore(comments);
-                    }, ERROR_MESSAGES.DELETE_COMMENTS_BY_ARTICLE_ID_FAIL(articleId));
+                    }, ERROR_COMMENT_MESSAGES.DELETE_COMMENTS_BY_ARTICLE_ID_FAIL(articleId));
                 },
             }),
         }),

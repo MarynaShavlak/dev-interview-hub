@@ -10,7 +10,6 @@ import { EntityState } from '@reduxjs/toolkit';
 import { firestoreApi } from '@/shared/api/firestoreApi';
 import { Article, ArticleSort } from '../model/types/article';
 import { articlesAdapter, initialState } from '../model/slices/articleSlice';
-import { addDocToFirestore } from '@/shared/lib/firestore/addDocToFirestore/addDocToFirestore';
 import { fetchDocumentByRef } from '@/shared/lib/firestore/fetchDocumentByRef/fetchDocumentByRef';
 import { getDocRefByField } from '@/shared/lib/firestore/getDocRefByField/getDocRefByField';
 import { createArticlesByUserQuery } from '../lib/utilities/createArticlesByUserQuery/createArticlesByUserQuery';
@@ -24,6 +23,10 @@ import { filterAndPaginateArticles } from '../lib/utilities/filterAndPaginateArt
 import { SortOrder } from '@/shared/types/sortOrder';
 import { executeQuery } from '@/shared/lib/firestore/executeQuery/executeQuery';
 import { ERROR_ARTICLE_MESSAGES } from '../model/consts/errorArticleMessages';
+import {
+    NewArticleDraft,
+    saveArticleToFirestore,
+} from '../lib/utilities/saveArticleToFirestore/saveArticleToFirestore';
 
 export const articleFirebaseApi = firestoreApi
     .enhanceEndpoints({
@@ -210,28 +213,13 @@ export const articleFirebaseApi = firestoreApi
                     }
                 },
             }),
-            addArticle: build.mutation<Article, Article>({
+            addArticle: build.mutation<Article, NewArticleDraft>({
                 invalidatesTags: ['Articles'],
                 async queryFn(newArticle) {
-                    try {
-                        const docRef = await addDocToFirestore<Article>(
-                            'articles',
-                            newArticle,
-                        );
-
-                        const createdDocSnapshot = await getDoc(docRef);
-
-                        if (!createdDocSnapshot.exists()) {
-                            throw new Error(
-                                'Failed to retrieve created article.',
-                            );
-                        }
-                        return {
-                            data: createdDocSnapshot.data() as Article,
-                        };
-                    } catch (error) {
-                        return { error };
-                    }
+                    return executeQuery(
+                        () => saveArticleToFirestore(newArticle),
+                        ERROR_ARTICLE_MESSAGES.ADD_ARTICLE_FAIL,
+                    );
                 },
             }),
             deleteArticle: build.mutation<string, string>({
@@ -241,12 +229,6 @@ export const articleFirebaseApi = firestoreApi
                         () => deleteDocFromFirestore('articles', articleId),
                         ERROR_ARTICLE_MESSAGES.DELETE_ARTICLE_ERROR(articleId),
                     );
-                    // try {
-                    //     await deleteDocFromFirestore('articles', articleId);
-                    //     return { data: articleId };
-                    // } catch (error) {
-                    //     return { error };
-                    // }
                 },
             }),
             updateArticle: build.mutation<

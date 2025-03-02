@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig } from '@/app/providers/StoreProvider';
 import { deleteCommentMutation } from '../../../api/articleCommentsApi';
 import { handleThunkErrorMessage } from '@/shared/lib/firestore/handleThunkErrorMessage/handleThunkErrorMessage';
-import { ERROR_MESSAGES } from '../../consts/errorMessages';
+import { ERROR_COMMENT_MESSAGES } from '../../consts/errorCommentMessages';
 
 export const deleteCommentFromArticleThunk = createAsyncThunk<
     string,
@@ -12,7 +12,7 @@ export const deleteCommentFromArticleThunk = createAsyncThunk<
     const { rejectWithValue, dispatch } = thunkApi;
 
     if (!commentId) {
-        return rejectWithValue(ERROR_MESSAGES.COMMENT_ID_REQUIRED);
+        return rejectWithValue(ERROR_COMMENT_MESSAGES.COMMENT_ID_REQUIRED);
     }
 
     try {
@@ -23,7 +23,7 @@ export const deleteCommentFromArticleThunk = createAsyncThunk<
         return deletedCommentId;
     } catch (error) {
         return rejectWithValue(
-            handleThunkErrorMessage(error, ERROR_MESSAGES.DELETE_ERROR),
+            handleThunkErrorMessage(error, ERROR_COMMENT_MESSAGES.DELETE_ERROR),
         );
     }
 });

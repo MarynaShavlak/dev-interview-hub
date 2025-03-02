@@ -2,7 +2,7 @@ import { MaybeDrafted } from '@reduxjs/toolkit/dist/query/core/buildThunks';
 import { onSnapshot, query } from 'firebase/firestore';
 import { ArticleComment } from '../../../model/types/articleComment';
 import { handleRequestErrorMessage } from '@/shared/lib/firestore/handleRequestErrorMessage/handleRequestErrorMessage';
-import { ERROR_MESSAGES } from '../../../model/consts/errorMessages';
+import { ERROR_COMMENT_MESSAGES } from '../../../model/consts/errorCommentMessages';
 import { dataPoint } from '@/shared/lib/firestore/firestore';
 
 export const subscribeToAllArticlesComments = (
@@ -24,7 +24,10 @@ export const subscribeToAllArticlesComments = (
             });
         });
     } catch (error) {
-        handleRequestErrorMessage(ERROR_MESSAGES.COMMENTS_SNAPSHOT_FAIL, error);
+        handleRequestErrorMessage(
+            ERROR_COMMENT_MESSAGES.COMMENTS_SNAPSHOT_FAIL,
+            error,
+        );
     }
 
     return unsubscribe;
