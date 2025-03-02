@@ -1,4 +1,5 @@
 export const ERROR_USER_MESSAGES = {
+    USER_AUTH_MISSING: 'User authentication data is missing.',
     USERS_FETCH_FAIL: 'Failed to fetch comments.',
     FETCH_USER_ERROR: (userId: string) =>
         `Failed to fetch user with ID "${userId}".`,
@@ -13,4 +14,6 @@ export const ERROR_USER_MESSAGES = {
 
     UPDATED_DATA_RETRIEVAL_ERROR: (userId: string) =>
         `Failed to retrieve updated data for user ${userId}`,
+    JSON_SETTINGS_RETRIEVAL_ERROR: 'Failed to retrieve updated JSON settings',
+    JSON_SETTINGS_SAVE_ERROR: 'An error occurred while saving JSON settings.',
 };

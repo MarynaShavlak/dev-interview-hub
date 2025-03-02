@@ -4,6 +4,8 @@ import { JsonSettings } from '../../types/jsonSettings';
 import { getUserAuthData } from '../../selectors/getUserAuthData/getUserAuthData';
 import { getJsonSettings } from '../../selectors/getJsonSettings/getJsonSettings';
 import { updateUserDataMutation } from '../../../api/userApi';
+import { ERROR_USER_MESSAGES } from '../../consts/errorUserMessages';
+import { handleThunkErrorMessage } from '@/shared/lib/firestore/handleThunkErrorMessage/handleThunkErrorMessage';
 
 /**
  * Thunk to save and update user JSON settings.
@@ -28,20 +30,10 @@ export const saveJsonSettingsThunk = createAsyncThunk<
     const currentSettings = getJsonSettings(getState());
 
     if (!userData) {
-        return rejectWithValue('No user data found.');
+        return rejectWithValue(ERROR_USER_MESSAGES.USER_AUTH_MISSING);
     }
 
     try {
-        // const response = await dispatch(
-        //     setJsonSettingsMutation({
-        //         userId: userData.id,
-        //         jsonSettings: {
-        //             ...currentSettings,
-        //             ...newJsonSettings,
-        //         },
-        //     }),
-        // ).unwrap();
-
         const updatedSettings = {
             ...currentSettings,
             ...newJsonSettings,
@@ -54,15 +46,20 @@ export const saveJsonSettingsThunk = createAsyncThunk<
                 },
             }),
         ).unwrap();
-        console.log('updateProfileData', response);
 
         if (!response || !response.jsonSettings) {
-            return rejectWithValue('Failed to retrieve updated JSON settings');
+            return rejectWithValue(
+                ERROR_USER_MESSAGES.JSON_SETTINGS_RETRIEVAL_ERROR,
+            );
         }
 
         return response.jsonSettings;
     } catch (error) {
-        console.error('Error saving JSON settings:', error);
-        return rejectWithValue('An error occurred while saving JSON settings.');
+        return rejectWithValue(
+            handleThunkErrorMessage(
+                error,
+                ERROR_USER_MESSAGES.JSON_SETTINGS_SAVE_ERROR,
+            ),
+        );
     }
 });
