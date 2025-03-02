@@ -1,14 +1,17 @@
 import { firestoreApi } from '@/shared/api/firestoreApi';
 import { User } from '../model/types/user';
-import { executeQuery } from '@/shared/lib/firestore/executeQuery/executeQuery';
+
 import { fetchUser } from '../lib/utilities/fetchUser/fetchUser';
 import { ERROR_USER_MESSAGES } from '../model/consts/errorUserMessages';
 import { subscribeToUser } from '../lib/utilities/subscribeToUser/subscribeToUser';
-import { handleFirestoreSubscription } from '@/shared/lib/firestore/handleFirestoreSubscription/handleFirestoreSubscription';
-import { deleteDocFromFirestore } from '@/shared/lib/firestore/deleteDocFromFirestore/deleteDocFromFirestore';
 import { updateUserInFirestore } from '../lib/utilities/updateUserInFirestore/updateUserInFirestore';
 import { subscribeToAllUsers } from '../lib/utilities/subscribeToAllUsers/subscribeToAllUsers';
-import { fetchCollectionDocsData } from '@/shared/lib/firestore/fetchCollectionDocsData/fetchCollectionDocsData';
+import {
+    deleteDocFromFirestore,
+    executeQuery,
+    fetchCollectionDocsData,
+    handleFirestoreSubscription,
+} from '@/shared/lib/firestore';
 
 export const userFirebaseApi = firestoreApi
     .enhanceEndpoints({

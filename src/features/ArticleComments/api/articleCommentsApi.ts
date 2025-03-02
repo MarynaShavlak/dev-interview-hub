@@ -1,10 +1,7 @@
 import { firestoreApi } from '@/shared/api/firestoreApi';
-
-import { fetchCollectionDocsData } from '@/shared/lib/firestore/fetchCollectionDocsData/fetchCollectionDocsData';
 import { ArticleComment } from '../model/types/articleComment';
 import { fetchCommentsForArticle } from '../lib/utilities/fetchCommentsForArticle/fetchCommentsForArticle';
 import { ERROR_COMMENT_MESSAGES } from '../model/consts/errorCommentMessages';
-
 import { subscribeToArticleComments } from '../lib/utilities/subscribeToArticleComments/subscribeToArticleComments';
 import { subscribeToAllArticlesComments } from '../lib/utilities/subscribeToAllArticlesComments/subscribeToAllArticlesComments';
 import { fetchCommentsForMultipleArticles } from '../lib/utilities/fetchCommentsForMultipleArticles/fetchCommentsForMultipleArticles';
@@ -13,10 +10,13 @@ import {
     saveCommentToFirestore,
 } from '../lib/utilities/saveCommentToFirestore/saveCommentToFirestore';
 import { deleteCommentsFromFirestore } from '../lib/utilities/deleteCommentsFromFirestore/deleteCommentsFromFirestore';
-import { handleFirestoreSubscription } from '@/shared/lib/firestore/handleFirestoreSubscription/handleFirestoreSubscription';
 import { subscribeToMultipleArticlesComments } from '../lib/utilities/subscribeToMultipleArticlesComments/subscribeToMultipleArticlesComments';
-import { executeQuery } from '@/shared/lib/firestore/executeQuery/executeQuery';
-import { deleteDocFromFirestore } from '@/shared/lib/firestore/deleteDocFromFirestore/deleteDocFromFirestore';
+import {
+    deleteDocFromFirestore,
+    executeQuery,
+    fetchCollectionDocsData,
+    handleFirestoreSubscription,
+} from '@/shared/lib/firestore';
 
 export const articlesCommentsFirebaseApi = firestoreApi
     .enhanceEndpoints({ addTagTypes: ['ArticleComments'] })

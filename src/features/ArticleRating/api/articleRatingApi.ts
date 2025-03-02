@@ -1,21 +1,21 @@
 import { firestoreApi } from '@/shared/api/firestoreApi';
 import { ArticleRatingType } from '../model/types/articleRatingType';
 import { User } from '@/entities/User';
-import { fetchCollectionDocsData } from '@/shared/lib/firestore/fetchCollectionDocsData/fetchCollectionDocsData';
-import { executeQuery } from '@/shared/lib/firestore/executeQuery/executeQuery';
+
 import { ERROR_RATING_MESSAGES } from '../model/consts/errorRatingMessages';
 
 import { fetchArticleRateByUser } from '../lib/utilities/fetchArticleRateByUser/fetchArticleRateByUser';
-import { handleFirestoreSubscription } from '@/shared/lib/firestore/handleFirestoreSubscription/handleFirestoreSubscription';
-
 import { subscribeToArticleRating } from '../lib/utilities/subscribeToArticleRating/subscribeToArticleRating';
-
 import { fetchRatingsForMultipleArticles } from '../lib/utilities/fetchRatingsForMultipleArticles/fetchRatingsForMultipleArticles';
 import { subscribeToMultipleArticlesRatings } from '../lib/utilities/subscribeToMultipleArticlesRatings/subscribeToMultipleArticlesRatings';
-
 import { saveRatingToFirestore } from '../lib/utilities/saveRatingToFirestore/saveRatingToFirestore';
 import { fetchRatingsForArticle } from '../lib/utilities/fetchRatingsForArticle/fetchRatingsForArticle';
 import { deleteRatingsFromFirestore } from '../lib/utilities/deleteRatingsFromFirestore/deleteRatingsFromFirestore';
+import {
+    executeQuery,
+    fetchCollectionDocsData,
+    handleFirestoreSubscription,
+} from '@/shared/lib/firestore';
 
 interface GetArticleRatingArg {
     userId: string;

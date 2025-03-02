@@ -153,38 +153,27 @@ type RootState = {
         typeof articleFirebaseApi.reducer
     >;
 };
-
-export const getArticleDataByIdQuery =
-    articleFirebaseApi.endpoints.getArticleDataById.initiate;
-export const useArticleDataById = articleFirebaseApi.useGetArticleDataByIdQuery;
-
+const { endpoints } = articleFirebaseApi;
+export const useGetFilteredArticles =
+    articleFirebaseApi.useGetFilteredArticlesQuery;
 export const useGetArticles = articleFirebaseApi.useGetArticlesQuery;
+export const useArticleDataById = articleFirebaseApi.useGetArticleDataByIdQuery;
 export const useArticlesByUserId =
     articleFirebaseApi.useGetArticlesByUserIdQuery;
-export const getArticlesQuery =
-    articleFirebaseApi.endpoints.getArticles.initiate;
 
-export const addArticleMutation =
-    articleFirebaseApi.endpoints.addArticle.initiate;
-
-export const deleteArticleMutation =
-    articleFirebaseApi.endpoints.deleteArticle.initiate;
-export const updateArticleMutation =
-    articleFirebaseApi.endpoints.updateArticle.initiate;
-
+export const getArticleDataByIdQuery = endpoints.getArticleDataById.initiate;
+export const getArticlesQuery = endpoints.getArticles.initiate;
+export const addArticleMutation = endpoints.addArticle.initiate;
+export const deleteArticleMutation = endpoints.deleteArticle.initiate;
+export const updateArticleMutation = endpoints.updateArticle.initiate;
 export const incrementArticleViewsMutation =
-    articleFirebaseApi.endpoints.incrementArticleViews.initiate;
+    endpoints.incrementArticleViews.initiate;
+export const getFilteredArticlesQuery = endpoints.getFilteredArticles.initiate;
 
 export const selectEntryResult = (state: RootState) =>
-    articleFirebaseApi.endpoints.getArticles.select()(state).data;
+    endpoints.getArticles.select()(state).data;
 
 const entrySelectors = articlesAdapter.getSelectors(
     (state: RootState) => selectEntryResult(state) ?? initialState,
 );
 export const selectAllArticles = entrySelectors.selectAll;
-
-export const useGetFilteredArticles =
-    articleFirebaseApi.useGetFilteredArticlesQuery;
-
-export const getFilteredArticlesQuery =
-    articleFirebaseApi.endpoints.getFilteredArticles.initiate;

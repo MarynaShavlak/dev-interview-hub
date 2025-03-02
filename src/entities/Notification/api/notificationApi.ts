@@ -1,16 +1,15 @@
 import { firestoreApi } from '@/shared/api/firestoreApi';
+import { executeQuery } from '@/shared/lib/firestore';
 import {
     GeneralNotification,
     PersonalNotification,
 } from '../model/types/notification';
-
-import { subscribeToNotifications } from '../lib/utilities/subscribeToNotifications/subscribeToNotifications';
 import { ERROR_MESSAGES } from '../model/consts/errorMessages';
+import { subscribeToNotifications } from '../lib/utilities/subscribeToNotifications/subscribeToNotifications';
 import { dismissOneGeneral } from '../lib/utilities/handleNotificationsDelete/dismissOneGeneral/dismissOneGeneral';
 import { deleteAllGeneral } from '../lib/utilities/handleNotificationsDelete/deleteAllGeneral/deleteAllGeneral';
 import { dismissOnePersonal } from '../lib/utilities/handleNotificationsDelete/dismissOnePersonal/dismissOnePersonal';
 import { deleteAllPersonal } from '../lib/utilities/handleNotificationsDelete/deleteAllPersonal/deleteAllPersonal';
-import { executeQuery } from '@/shared/lib/firestore/executeQuery/executeQuery';
 import { fetchAllNotifications } from '../lib/utilities/getNotifications/fetchAllNotifications/fetchAllNotifications';
 
 const notificationApi = firestoreApi

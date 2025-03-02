@@ -1,5 +1,5 @@
 import { DocumentData, getDocs, Query } from 'firebase/firestore';
-import { Article } from '../../..';
+import { Article } from '../../../model/types/article';
 
 export const getFilteredArticles = async (
     filteredQuery: Query<Article, DocumentData>,
