@@ -2,6 +2,7 @@ export const ERROR_ARTICLE_MESSAGES = {
     USER_NOT_FOUND: 'User not found.',
     FETCH_ARTICLE_ERROR: (articleId: string) =>
         `Failed to fetch article with ID "${articleId}".`,
+    ARTICLES_FETCH_FAIL: 'Failed to fetch articles.',
     DELETE_ARTICLE_ERROR: (articleId: string) =>
         `Failed to delete article with id ${articleId}`,
     ARTICLE_SNAPSHOT_FAIL: (articleId: string) =>

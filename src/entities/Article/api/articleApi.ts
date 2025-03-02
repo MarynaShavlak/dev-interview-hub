@@ -1,4 +1,4 @@
-import { getDocs, query as firebaseQuery } from 'firebase/firestore';
+import { query as firebaseQuery } from 'firebase/firestore';
 import { EntityState } from '@reduxjs/toolkit';
 import { firestoreApi } from '@/shared/api/firestoreApi';
 import { Article, ArticleSort } from '../model/types/article';
@@ -7,7 +7,7 @@ import { deleteDocFromFirestore } from '@/shared/lib/firestore/deleteDocFromFire
 import { dataPoint } from '@/shared/lib/firestore/firestore';
 import { ArticleCategory } from '../model/consts/articleConsts';
 import { createQueryConstraints } from '../lib/utilities/createQueryConstraints/createQueryConstraints';
-import { fetchArticles } from '../lib/utilities/fetchArticles/fetchArticles';
+import { fetchFilteredArticles } from '../lib/utilities/fetchFilteredArticles/fetchFilteredArticles';
 import { filterAndPaginateArticles } from '../lib/utilities/filterAndPaginateArticles/filterAndPaginateArticles';
 import { SortOrder } from '@/shared/types/sortOrder';
 import { executeQuery } from '@/shared/lib/firestore/executeQuery/executeQuery';
@@ -24,6 +24,12 @@ import { handleFirestoreSubscription } from '@/shared/lib/firestore/handleFirest
 import { subscribeToUserArticles } from '../lib/utilities/subscribeToUserArticles/subscribeToUserArticles';
 import { fetchArticle } from '../lib/utilities/fetchArticle/fetchArticle';
 import { subscribeToArticle } from '../lib/utilities/subscribeToArticle/subscribeToArticle';
+import { fetchAllArticlesFromFirestore } from '../lib/utilities/fetchAllArticlesFromFirestore/fetchAllArticlesFromFirestore';
+
+interface UpdateArticleArgs {
+    articleId: string;
+    updates: Partial<Article>;
+}
 
 export const articleFirebaseApi = firestoreApi
     .enhanceEndpoints({
@@ -63,7 +69,8 @@ export const articleFirebaseApi = firestoreApi
                             collectionRef,
                             ...constraints,
                         );
-                        const allArticles = await fetchArticles(filteredQuery);
+                        const allArticles =
+                            await fetchFilteredArticles(filteredQuery);
                         const articles = filterAndPaginateArticles({
                             articles: allArticles,
                             query,
@@ -84,24 +91,10 @@ export const articleFirebaseApi = firestoreApi
             getArticles: build.query<EntityState<Article>, void>({
                 providesTags: ['Articles'],
                 async queryFn() {
-                    try {
-                        const collectionRef = dataPoint<Article>('articles');
-                        const snapshot = await getDocs(collectionRef);
-
-                        const articles = snapshot.docs.map((doc) => ({
-                            ...doc.data(),
-                            id: doc.id,
-                        })) as Article[];
-
-                        return {
-                            data: articlesAdapter.setAll(
-                                articlesAdapter.getInitialState(),
-                                articles,
-                            ),
-                        };
-                    } catch (error) {
-                        return { error: error as unknown };
-                    }
+                    return executeQuery(
+                        () => fetchAllArticlesFromFirestore(),
+                        ERROR_ARTICLE_MESSAGES.ARTICLES_FETCH_FAIL,
+                    );
                 },
             }),
             getArticlesByUserId: build.query<Article[], string>({
@@ -176,10 +169,7 @@ export const articleFirebaseApi = firestoreApi
                     );
                 },
             }),
-            updateArticle: build.mutation<
-                Article,
-                { articleId: string; updates: Partial<Article> }
-            >({
+            updateArticle: build.mutation<Article, UpdateArticleArgs>({
                 invalidatesTags: ['Articles'],
                 async queryFn({ articleId, updates }) {
                     return executeQuery(
@@ -200,6 +190,12 @@ export const articleFirebaseApi = firestoreApi
             }),
         }),
     });
+
+type RootState = {
+    [articleFirebaseApi.reducerPath]: ReturnType<
+        typeof articleFirebaseApi.reducer
+    >;
+};
 
 export const getArticleDataByIdQuery =
     articleFirebaseApi.endpoints.getArticleDataById.initiate;
@@ -222,12 +218,6 @@ export const updateArticleMutation =
 export const incrementArticleViewsMutation =
     articleFirebaseApi.endpoints.incrementArticleViews.initiate;
 
-type RootState = {
-    [articleFirebaseApi.reducerPath]: ReturnType<
-        typeof articleFirebaseApi.reducer
-    >;
-};
-
 export const selectEntryResult = (state: RootState) =>
     articleFirebaseApi.endpoints.getArticles.select()(state).data;
 
@@ -241,8 +231,3 @@ export const useGetFilteredArticles =
 
 export const getFilteredArticlesQuery =
     articleFirebaseApi.endpoints.getFilteredArticles.initiate;
-
-// const articlesWithSearch = articles.filter((article) =>
-//     article.title.includes(search),
-// );
-// console.log('articlesWithSearch', articlesWithSearch);

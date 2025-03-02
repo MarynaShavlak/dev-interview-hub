@@ -1,7 +1,7 @@
 import { DocumentData, getDocs, Query } from 'firebase/firestore';
 import { Article } from '../../..';
 
-export const fetchArticles = async (
+export const fetchFilteredArticles = async (
     filteredQuery: Query<Article, DocumentData>,
 ) => {
     const snapshot = await getDocs(filteredQuery);
