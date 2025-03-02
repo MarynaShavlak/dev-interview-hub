@@ -19,16 +19,10 @@ export const rateArticleThunk = createAsyncThunk<
 
         try {
             const userData = getUserAuthData(getState());
-            // const article = await dispatch(
-            //     getArticleDataByIdQuery(articleId),
-            // ).unwrap();
+
             if (!userData) {
                 return rejectWithValue(ERROR_RATING_MESSAGES.USER_AUTH_MISSING);
             }
-
-            // if (!article) {
-            //     return rejectWithValue(ERROR_MESSAGES.ARTICLE_DETAILS_MISSING);
-            // }
 
             const { id, avatar, email, firstname, lastname, username } =
                 userData;
@@ -37,7 +31,7 @@ export const rateArticleThunk = createAsyncThunk<
                 articleId,
                 userData.id,
             );
-            console.log('ratingExists', ratingExists);
+
             if (ratingExists) {
                 return null;
             }

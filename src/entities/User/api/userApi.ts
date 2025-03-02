@@ -7,6 +7,10 @@ import { fetchDocumentByRef } from '@/shared/lib/firestore/fetchDocumentByRef/fe
 import { getDocRefByField } from '@/shared/lib/firestore/getDocRefByField/getDocRefByField';
 import { dataPoint } from '@/shared/lib/firestore/firestore';
 import { deleteDocFromFirestore } from '@/shared/lib/firestore/deleteDocFromFirestore/deleteDocFromFirestore';
+import { executeQuery } from '@/shared/lib/firestore/executeQuery/executeQuery';
+
+import { fetchUser } from '../lib/utilities/fetchUser/fetchUser';
+import { ERROR_USER_MESSAGES } from '../model/consts/errorUserMessages';
 
 export const userFirebaseApi = firestoreApi
     .enhanceEndpoints({
@@ -51,24 +55,22 @@ export const userFirebaseApi = firestoreApi
                     { type: 'Users', id: userId },
                 ],
                 async queryFn(userId) {
-                    try {
-                        const userDocRef = await getDocRefByField<User>(
-                            'users',
-                            'id',
-                            userId,
-                        );
-                        const userData =
-                            await fetchDocumentByRef<User>(userDocRef);
-                        return { data: userData };
-                    } catch (error) {
-                        console.error('Error fetching user data:', error);
-                        return { error: { message: 'User not found' } };
-                    }
+                    return executeQuery(
+                        () => fetchUser(userId),
+                        ERROR_USER_MESSAGES.FETCH_USER_ERROR(userId),
+                    );
                 },
                 async onCacheEntryAdded(
                     userId,
                     { updateCachedData, cacheDataLoaded, cacheEntryRemoved },
                 ) {
+                    // handleFirestoreSubscription({
+                    //     subscriptionFn: subscribeToUser,
+                    //     updateFn: updateCachedData,
+                    //     dependency: userId,
+                    //     cacheDataLoaded,
+                    //     cacheEntryRemoved,
+                    // });
                     await cacheDataLoaded;
                     let unsubscribe;
                     try {
@@ -175,47 +177,3 @@ export const updateUserDataMutation =
 export const { useGetUsersQuery: useUsers } = userFirebaseApi;
 
 export const deleteUserMutation = userFirebaseApi.endpoints.deleteUser.initiate;
-
-// interface SetJsonSettingsArg {
-//     userId: string;
-//     jsonSettings: JsonSettings;
-// }
-
-// export const userApi = rtkApi.injectEndpoints({
-//     endpoints: (build) => ({
-//         getUserDataById: build.query<User, string>({
-//             query: (userId) => ({
-//                 url: `/users/${userId}`,
-//                 method: 'GET',
-//             }),
-//         }),
-//         setJsonSettings: build.mutation<User, SetJsonSettingsArg>({
-//             query: ({ userId, jsonSettings }) => ({
-//                 url: `/users/${userId}`,
-//                 method: 'PATCH',
-//                 body: {
-//                     jsonSettings,
-//                 },
-//             }),
-//         }),
-//         getUsers: build.query<User[], null>({
-//             query: () => ({
-//                 url: '/users',
-//             }),
-//         }),
-//     }),
-// });
-
-// export const setJsonSettingsMutation =
-//     userApi.endpoints.setJsonSettings.initiate;
-// // export const getUserDataByIdQuery = userApi.endpoints.getUserDataById.initiate;
-// // export const useUsers = userApi.useGetUsersQuery;
-
-// _______________________________________________________________________
-
-// try {
-//     const users = await fetchCollection<User>('users');
-//     return { data: users };
-// } catch (error) {
-//     return { error };
-// }
