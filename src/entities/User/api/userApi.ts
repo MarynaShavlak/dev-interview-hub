@@ -1,8 +1,5 @@
-import { onSnapshot, query } from 'firebase/firestore';
-
 import { firestoreApi } from '@/shared/api/firestoreApi';
 import { User } from '../model/types/user';
-import { dataPoint } from '@/shared/lib/firestore/firestore';
 import { executeQuery } from '@/shared/lib/firestore/executeQuery/executeQuery';
 
 import { fetchUser } from '../lib/utilities/fetchUser/fetchUser';
@@ -12,6 +9,9 @@ import { handleFirestoreSubscription } from '@/shared/lib/firestore/handleFirest
 
 import { deleteDocFromFirestore } from '@/shared/lib/firestore/deleteDocFromFirestore/deleteDocFromFirestore';
 import { updateUserInFirestore } from '../lib/utilities/updateUserInFirestore/updateUserInFirestore';
+
+import { subscribeToAllUsers } from '../lib/utilities/subscribeToAllUsers/subscribeToAllUsers';
+import { fetchCollectionDocsData } from '@/shared/lib/firestore/fetchCollectionDocsData/fetchCollectionDocsData';
 
 export const userFirebaseApi = firestoreApi
     .enhanceEndpoints({
@@ -23,32 +23,22 @@ export const userFirebaseApi = firestoreApi
                 providesTags: ['Users'],
                 keepUnusedDataFor: 3600,
                 async queryFn() {
-                    return { data: [] };
+                    return executeQuery(
+                        () => fetchCollectionDocsData<User>('users'),
+                        ERROR_USER_MESSAGES.USERS_FETCH_FAIL,
+                    );
                 },
                 async onCacheEntryAdded(
                     _,
                     { updateCachedData, cacheDataLoaded, cacheEntryRemoved },
                 ) {
-                    await cacheDataLoaded;
-                    let unsubscribe;
-                    try {
-                        const collectionRef = dataPoint<User>('users');
-                        const queryRef = query(collectionRef);
-                        unsubscribe = onSnapshot(queryRef, (snapshot) => {
-                            updateCachedData((draft) => {
-                                return snapshot?.docs?.map((doc) =>
-                                    doc.data(),
-                                ) as User[];
-                            });
-                        });
-                    } catch (error) {
-                        console.log('error in users!', error);
-                        throw new Error('Something went wrong with users.');
-                    }
-                    await cacheEntryRemoved;
-                    if (unsubscribe) {
-                        unsubscribe();
-                    }
+                    handleFirestoreSubscription({
+                        subscriptionFn: subscribeToAllUsers, // Subscription function
+                        updateFn: updateCachedData, // Callback function to update cache
+                        dependency: null, // Dependency
+                        cacheDataLoaded, // Promise for cache data loading
+                        cacheEntryRemoved, // Promise for cache entry removal
+                    });
                 },
             }),
             getUserDataById: build.query<User, string>({
