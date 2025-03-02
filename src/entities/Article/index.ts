@@ -1,3 +1,5 @@
+export { ERROR_ARTICLE_MESSAGES } from './model/consts/errorArticleMessages';
+
 export { updateArticleViewsThunk } from './model/services/updateArticleViewsThunk/updateArticleViewsThunk';
 export { useArticleNavigation } from './lib/hooks/useArticleNavigation/useArticleNavigation';
 export { useEditArticleNavigation } from './lib/hooks/useEditArticleNavigation/useEditArticleNavigation';

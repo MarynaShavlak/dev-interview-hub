@@ -1,9 +1,15 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { v4 } from 'uuid';
 import { ThunkConfig } from '@/app/providers/StoreProvider';
-import { addArticleMutation, Article } from '@/entities/Article';
+import {
+    addArticleMutation,
+    Article,
+    ERROR_ARTICLE_MESSAGES,
+} from '@/entities/Article';
 import { getArticleFormData } from '../../selectors/getCreateArticleSelectors';
 import { getUserAuthData } from '@/entities/User';
+import { handleThunkErrorMessage } from '@/shared/lib/firestore';
+import { ERROR_ARTICLE_EDITOR_MESSAGES } from '../../types/errorArticleEditorMessages';
 
 /**
  * Thunk to handle creating a new article.
@@ -22,11 +28,11 @@ export const createArticleThunk = createAsyncThunk<
     const authData = getUserAuthData(getState());
 
     if (!authData) {
-        return rejectWithValue('User is not authenticated.');
+        return rejectWithValue(ERROR_ARTICLE_MESSAGES.USER_NOT_FOUND);
     }
 
     if (!formData) {
-        return rejectWithValue('Form data is missing.');
+        return rejectWithValue(ERROR_ARTICLE_EDITOR_MESSAGES.NO_FORM_DATA);
     }
 
     try {
@@ -36,17 +42,23 @@ export const createArticleThunk = createAsyncThunk<
             user: authData,
             // createdAt: new Date().toISOString(),
         };
-        console.log('newArticle', newArticle);
+
         const createdArticle = await dispatch(
             addArticleMutation(newArticle),
         ).unwrap();
         if (!createdArticle) {
-            return rejectWithValue('No data received from API.');
+            return rejectWithValue(
+                ERROR_ARTICLE_MESSAGES.ARTICLE_RETRIEVAL_FAIL,
+            );
         }
 
         return createdArticle;
     } catch (error) {
-        console.error('Failed to create article:', error);
-        return rejectWithValue('Failed to create article.');
+        return rejectWithValue(
+            handleThunkErrorMessage(
+                error,
+                ERROR_ARTICLE_MESSAGES.ADD_ARTICLE_FAIL,
+            ),
+        );
     }
 });
