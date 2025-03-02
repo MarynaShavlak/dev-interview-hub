@@ -2,16 +2,20 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import { v4 } from 'uuid';
 import { ThunkConfig } from '@/app/providers/StoreProvider';
+import { ERROR_ARTICLE_MESSAGES } from '../../consts/errorArticleMessages';
+import { handleThunkErrorMessage } from '@/shared/lib/firestore';
 
 export const uploadArticleImageThunk = createAsyncThunk<
     string,
     File,
     ThunkConfig<string>
->('image/upload', async (file: File, thunkAPI) => {
+>('article/uploadArticleImage', async (file: File, thunkAPI) => {
     const { extra, rejectWithValue } = thunkAPI;
     const { firebaseStorage } = extra;
     if (!firebaseStorage) {
-        return rejectWithValue('Firebase storage is not initialized');
+        return rejectWithValue(
+            ERROR_ARTICLE_MESSAGES.FIREBASE_STORAGE_NOT_INITIALIZED,
+        );
     }
     try {
         const safeFileName = encodeURIComponent(file.name);
@@ -23,8 +27,11 @@ export const uploadArticleImageThunk = createAsyncThunk<
 
         return await getDownloadURL(pathReference);
     } catch (error) {
-        const errorMessage =
-            error instanceof Error ? error.message : 'Failed to upload image';
-        return rejectWithValue(errorMessage);
+        return rejectWithValue(
+            handleThunkErrorMessage(
+                error,
+                ERROR_ARTICLE_MESSAGES.UPLOAD_IMAGE_ERROR,
+            ),
+        );
     }
 });

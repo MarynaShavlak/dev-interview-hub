@@ -29,4 +29,5 @@ export const ERROR_ARTICLE_MESSAGES = {
     AUTHOR_VIEWS_NOT_COUNTED: "Author's views are not counted",
     NO_API_DATA: 'No data received from API.',
     UPDATE_ARTICLE_VIEWS_ERROR: 'Failed to update article views.',
+    UPLOAD_IMAGE_ERROR: 'Failed to upload image',
 };
