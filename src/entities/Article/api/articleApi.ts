@@ -1,8 +1,5 @@
 import {
-    getDoc,
     onSnapshot,
-    updateDoc,
-    increment,
     getDocs,
     query as firebaseQuery,
 } from 'firebase/firestore';
@@ -28,6 +25,7 @@ import {
     saveArticleToFirestore,
 } from '../lib/utilities/saveArticleToFirestore/saveArticleToFirestore';
 import { updateArticleInFirestore } from '../lib/utilities/updateArticleInFirestore/updateArticleInFirestore';
+import { incrementArticleViewsInFirestore } from '../lib/utilities/incrementArticleViewsInFirestore/incrementArticleViewsInFirestore';
 
 export const articleFirebaseApi = firestoreApi
     .enhanceEndpoints({
@@ -248,41 +246,10 @@ export const articleFirebaseApi = firestoreApi
             incrementArticleViews: build.mutation<Article, string>({
                 invalidatesTags: ['Articles'],
                 async queryFn(articleId) {
-                    try {
-                        const articleDocRef = await getDocRefByField<Article>(
-                            'articles',
-                            'id',
-                            articleId,
-                        );
-
-                        if (articleDocRef) {
-                            await updateDoc(articleDocRef, {
-                                views: increment(1),
-                            });
-
-                            const updatedDoc = await getDoc(articleDocRef);
-                            const updatedData = updatedDoc.data();
-
-                            if (updatedData) {
-                                return {
-                                    data: { ...updatedData } as Article,
-                                };
-                            }
-                        }
-
-                        return {
-                            error: {
-                                name: 'NotFound',
-                                message: 'Article not found',
-                            },
-                        };
-                    } catch (error) {
-                        console.error(
-                            'Error incrementing article views:',
-                            error,
-                        );
-                        return { error };
-                    }
+                    return executeQuery(
+                        async () => incrementArticleViewsInFirestore(articleId),
+                        ERROR_ARTICLE_MESSAGES.INCREMENT_VIEWS_ERROR(articleId),
+                    );
                 },
             }),
         }),

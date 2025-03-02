@@ -7,6 +7,8 @@ export const ERROR_ARTICLE_MESSAGES = {
         `Article with id "${articleId}" not found.`,
     UPDATE_ARTICLE_ERROR: (articleId: string) =>
         `Error updating article with id "${articleId}".`,
+    INCREMENT_VIEWS_ERROR: (articleId: string) =>
+        `Error incrementing article views with id "${articleId}".`,
     UPDATED_DATA_RETRIEVAL_ERROR: (articleId: string) =>
         `Failed to retrieve updated data for article with id ${articleId}`,
 };
