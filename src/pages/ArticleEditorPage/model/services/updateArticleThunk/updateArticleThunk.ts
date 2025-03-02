@@ -1,8 +1,14 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig } from '@/app/providers/StoreProvider';
 import { getArticleFormData } from '../../selectors/getCreateArticleSelectors';
-import { updateArticleMutation, Article } from '@/entities/Article';
+import {
+    updateArticleMutation,
+    Article,
+    ERROR_ARTICLE_MESSAGES,
+} from '@/entities/Article';
 import { getUserAuthData } from '@/entities/User';
+import { ERROR_ARTICLE_EDITOR_MESSAGES } from '../../types/errorArticleEditorMessages';
+import { handleThunkErrorMessage } from '@/shared/lib/firestore';
 
 /**
  * Thunk to handle updating an existing article.
@@ -21,11 +27,11 @@ export const updateArticleThunk = createAsyncThunk<
     const authData = getUserAuthData(getState());
 
     if (!authData) {
-        return rejectWithValue('User is not authenticated.');
+        return rejectWithValue(ERROR_ARTICLE_MESSAGES.USER_NOT_FOUND);
     }
 
     if (!formData) {
-        return rejectWithValue('Form data is missing.');
+        return rejectWithValue(ERROR_ARTICLE_EDITOR_MESSAGES.NO_FORM_DATA);
     }
 
     try {
@@ -37,12 +43,20 @@ export const updateArticleThunk = createAsyncThunk<
         ).unwrap();
 
         if (!updatedArticle) {
-            return rejectWithValue('No data received from API.');
+            return rejectWithValue(
+                ERROR_ARTICLE_MESSAGES.UPDATED_DATA_RETRIEVAL_ERROR(
+                    formData.id,
+                ),
+            );
         }
 
         return updatedArticle;
     } catch (error) {
-        console.error('Failed to update article:', error);
-        return rejectWithValue('Failed to update article.');
+        return rejectWithValue(
+            handleThunkErrorMessage(
+                error,
+                ERROR_ARTICLE_MESSAGES.UPDATE_ARTICLE_ERROR(formData.id),
+            ),
+        );
     }
 });
