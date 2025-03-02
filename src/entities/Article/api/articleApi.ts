@@ -1,14 +1,8 @@
-import {
-    onSnapshot,
-    getDocs,
-    query as firebaseQuery,
-} from 'firebase/firestore';
+import { getDocs, query as firebaseQuery } from 'firebase/firestore';
 import { EntityState } from '@reduxjs/toolkit';
 import { firestoreApi } from '@/shared/api/firestoreApi';
 import { Article, ArticleSort } from '../model/types/article';
 import { articlesAdapter, initialState } from '../model/slices/articleSlice';
-import { fetchDocumentByRef } from '@/shared/lib/firestore/fetchDocumentByRef/fetchDocumentByRef';
-import { getDocRefByField } from '@/shared/lib/firestore/getDocRefByField/getDocRefByField';
 import { deleteDocFromFirestore } from '@/shared/lib/firestore/deleteDocFromFirestore/deleteDocFromFirestore';
 import { dataPoint } from '@/shared/lib/firestore/firestore';
 import { ArticleCategory } from '../model/consts/articleConsts';
@@ -28,6 +22,8 @@ import { fetchArticlesForUser } from '../lib/utilities/fetchArticlesForUser/fetc
 import { handleFirestoreSubscription } from '@/shared/lib/firestore/handleFirestoreSubscription/handleFirestoreSubscription';
 
 import { subscribeToUserArticles } from '../lib/utilities/subscribeToUserArticles/subscribeToUserArticles';
+import { fetchArticle } from '../lib/utilities/fetchArticle/fetchArticle';
+import { subscribeToArticle } from '../lib/utilities/subscribeToArticle/subscribeToArticle';
 
 export const articleFirebaseApi = firestoreApi
     .enhanceEndpoints({
@@ -140,60 +136,26 @@ export const articleFirebaseApi = firestoreApi
                 },
             }),
             getArticleDataById: build.query<Article, string>({
-                // providesTags: (result, error, articleId) => [
-                //     { type: 'Articles', id: articleId },
-                // ],
+                providesTags: (result, error, articleId) => [
+                    { type: 'Articles', id: articleId },
+                ],
                 async queryFn(articleId) {
-                    console.log('____articleId', articleId);
-                    try {
-                        const articleDocRef = await getDocRefByField<Article>(
-                            'articles',
-                            'id',
-                            articleId,
-                        );
-
-                        const articleData =
-                            await fetchDocumentByRef<Article>(articleDocRef);
-                        return { data: articleData };
-                    } catch (error) {
-                        console.error('Error fetching article data:', error);
-                        return { error: { message: 'Article not found' } };
-                    }
+                    return executeQuery(
+                        () => fetchArticle(articleId),
+                        ERROR_ARTICLE_MESSAGES.FETCH_ARTICLE_ERROR(articleId),
+                    );
                 },
                 async onCacheEntryAdded(
                     articleId,
                     { updateCachedData, cacheDataLoaded, cacheEntryRemoved },
                 ) {
-                    await cacheDataLoaded;
-                    let unsubscribe;
-                    try {
-                        const articleDocRef = await getDocRefByField<Article>(
-                            'articles',
-                            'id',
-                            articleId,
-                        );
-
-                        unsubscribe = articleDocRef
-                            ? onSnapshot(articleDocRef, (doc) => {
-                                  if (doc.exists()) {
-                                      updateCachedData(
-                                          () => doc.data() as Article,
-                                      );
-                                  } else {
-                                      console.log(
-                                          'Article not found in snapshot',
-                                      );
-                                  }
-                              })
-                            : null;
-                    } catch (error) {
-                        console.error('Error in article data snapshot:', error);
-                    }
-
-                    await cacheEntryRemoved;
-                    if (unsubscribe) {
-                        unsubscribe();
-                    }
+                    handleFirestoreSubscription({
+                        subscriptionFn: subscribeToArticle,
+                        updateFn: updateCachedData,
+                        dependency: articleId,
+                        cacheDataLoaded,
+                        cacheEntryRemoved,
+                    });
                 },
             }),
             addArticle: build.mutation<Article, NewArticleDraft>({

@@ -4,7 +4,7 @@ export const ERROR_USER_MESSAGES = {
     FETCH_USER_ERROR: (userId: string) =>
         `Failed to fetch user with ID "${userId}".`,
     USER_SNAPSHOT_FAIL: (userId: string) =>
-        `Error in ser with id "${userId}" snapshot.`,
+        `Error in user with id "${userId}" snapshot.`,
     USERS_SNAPSHOT_FAIL: `Error in users snapshot.`,
     USER_NOT_FOUND: (userId: string) => `User with id "${userId}" not found.`,
     DELETE_USER_ID_FAIL: (userId: string) =>
