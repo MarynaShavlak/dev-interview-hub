@@ -11,6 +11,8 @@ import { executeQuery } from '@/shared/lib/firestore/executeQuery/executeQuery';
 
 import { fetchUser } from '../lib/utilities/fetchUser/fetchUser';
 import { ERROR_USER_MESSAGES } from '../model/consts/errorUserMessages';
+import { subscribeToUser } from '../lib/utilities/subscribeToUser/subscribeToUser';
+import { handleFirestoreSubscription } from '@/shared/lib/firestore/handleFirestoreSubscription/handleFirestoreSubscription';
 
 export const userFirebaseApi = firestoreApi
     .enhanceEndpoints({
@@ -64,41 +66,13 @@ export const userFirebaseApi = firestoreApi
                     userId,
                     { updateCachedData, cacheDataLoaded, cacheEntryRemoved },
                 ) {
-                    // handleFirestoreSubscription({
-                    //     subscriptionFn: subscribeToUser,
-                    //     updateFn: updateCachedData,
-                    //     dependency: userId,
-                    //     cacheDataLoaded,
-                    //     cacheEntryRemoved,
-                    // });
-                    await cacheDataLoaded;
-                    let unsubscribe;
-                    try {
-                        const userDocRef = await getDocRefByField<User>(
-                            'users',
-                            'id',
-                            userId,
-                        );
-
-                        unsubscribe = userDocRef
-                            ? onSnapshot(userDocRef, (doc) => {
-                                  if (doc.exists()) {
-                                      updateCachedData(
-                                          () => doc.data() as User,
-                                      );
-                                  } else {
-                                      console.log('User not found in snapshot');
-                                  }
-                              })
-                            : null;
-                    } catch (error) {
-                        console.error('Error in user data snapshot:', error);
-                    }
-
-                    await cacheEntryRemoved;
-                    if (unsubscribe) {
-                        unsubscribe();
-                    }
+                    handleFirestoreSubscription({
+                        subscriptionFn: subscribeToUser,
+                        updateFn: updateCachedData,
+                        dependency: userId,
+                        cacheDataLoaded,
+                        cacheEntryRemoved,
+                    });
                 },
             }),
             deleteUser: build.mutation<string, string>({
@@ -177,3 +151,32 @@ export const updateUserDataMutation =
 export const { useGetUsersQuery: useUsers } = userFirebaseApi;
 
 export const deleteUserMutation = userFirebaseApi.endpoints.deleteUser.initiate;
+
+// await cacheDataLoaded;
+// let unsubscribe;
+// try {
+//     const userDocRef = await getDocRefByField<User>(
+//         'users',
+//         'id',
+//         userId,
+//     );
+//
+//     unsubscribe = userDocRef
+//         ? onSnapshot(userDocRef, (doc) => {
+//             if (doc.exists()) {
+//                 updateCachedData(
+//                     () => doc.data() as User,
+//                 );
+//             } else {
+//                 console.log('User not found in snapshot');
+//             }
+//         })
+//         : null;
+// } catch (error) {
+//     console.error('Error in user data snapshot:', error);
+// }
+//
+// await cacheEntryRemoved;
+// if (unsubscribe) {
+//     unsubscribe();
+// }
