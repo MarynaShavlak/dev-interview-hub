@@ -31,7 +31,6 @@ export const updateUserProfileThunk = createAsyncThunk<
         dispatch(setUser(response));
         return response;
     } catch (error) {
-        console.error('Failed to update user data:', error);
         return rejectWithValue([ValidateProfileError.SERVER_ERROR]);
     }
 });
