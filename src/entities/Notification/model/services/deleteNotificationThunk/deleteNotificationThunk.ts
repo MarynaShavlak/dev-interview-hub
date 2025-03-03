@@ -5,7 +5,7 @@ import {
     markPersonalNotificationAsDismissedMutation,
 } from '../../../api/notificationApi';
 import { NotificationType } from '../../types/notification';
-import { ERROR_MESSAGES } from '../../consts/errorMessages';
+import { ERROR_NOTIFICATION_MESSAGES } from '../../consts/errorNotificationMessages';
 import { handleThunkErrorMessage } from '@/shared/lib/firestore';
 
 type DeleteNotificationArgs = {
@@ -25,11 +25,15 @@ export const deleteNotificationThunk = createAsyncThunk<
         const user = auth.currentUser;
 
         if (!user) {
-            return rejectWithValue(ERROR_MESSAGES.USER_NOT_AUTHORIZED);
+            return rejectWithValue(
+                ERROR_NOTIFICATION_MESSAGES.USER_NOT_AUTHORIZED,
+            );
         }
 
         if (!notificationId) {
-            return rejectWithValue(ERROR_MESSAGES.NOTIFICATION_ID_REQUIRED);
+            return rejectWithValue(
+                ERROR_NOTIFICATION_MESSAGES.NOTIFICATION_ID_REQUIRED,
+            );
         }
 
         try {
@@ -54,7 +58,9 @@ export const deleteNotificationThunk = createAsyncThunk<
             return rejectWithValue(
                 handleThunkErrorMessage(
                     error,
-                    ERROR_MESSAGES.DELETE_NOTIFICATION_FAIL(notificationId),
+                    ERROR_NOTIFICATION_MESSAGES.DELETE_NOTIFICATION_FAIL(
+                        notificationId,
+                    ),
                 ),
             );
         }

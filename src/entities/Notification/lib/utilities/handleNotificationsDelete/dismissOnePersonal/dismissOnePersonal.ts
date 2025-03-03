@@ -1,7 +1,7 @@
 import { deleteDoc } from 'firebase/firestore';
 import { PersonalNotification } from '../../../../model/types/notification';
 import { getDocRefByField } from '@/shared/lib/firestore/getDocRefByField/getDocRefByField';
-import { ERROR_MESSAGES } from '../../../../model/consts/errorMessages';
+import { ERROR_NOTIFICATION_MESSAGES } from '../../../../model/consts/errorNotificationMessages';
 
 export const dismissOnePersonal = async (
     notificationId: string,
@@ -14,7 +14,9 @@ export const dismissOnePersonal = async (
     );
 
     if (!notificationDocRef)
-        throw new Error(ERROR_MESSAGES.PERSONAL_NOTIFICATION_NOT_FOUND);
+        throw new Error(
+            ERROR_NOTIFICATION_MESSAGES.PERSONAL_NOTIFICATION_NOT_FOUND,
+        );
 
     await deleteDoc(notificationDocRef);
 };

@@ -4,7 +4,7 @@ import {
     GeneralNotification,
     PersonalNotification,
 } from '../model/types/notification';
-import { ERROR_MESSAGES } from '../model/consts/errorMessages';
+import { ERROR_NOTIFICATION_MESSAGES } from '../model/consts/errorNotificationMessages';
 import { subscribeToNotifications } from '../lib/utilities/subscribeToNotifications/subscribeToNotifications';
 import { dismissOneGeneral } from '../lib/utilities/handleNotificationsDelete/dismissOneGeneral/dismissOneGeneral';
 import { deleteAllGeneral } from '../lib/utilities/handleNotificationsDelete/deleteAllGeneral/deleteAllGeneral';
@@ -28,14 +28,14 @@ const notificationApi = firestoreApi
                     if (!userId) {
                         return {
                             error: new Error(
-                                ERROR_MESSAGES.USER_NOT_AUTHORIZED,
+                                ERROR_NOTIFICATION_MESSAGES.USER_NOT_AUTHORIZED,
                             ),
                         };
                     }
 
                     return executeQuery(
                         () => fetchAllNotifications(userId),
-                        ERROR_MESSAGES.NOTIFICATIONS_FETCH_FAIL,
+                        ERROR_NOTIFICATION_MESSAGES.NOTIFICATIONS_FETCH_FAIL,
                     );
                 },
 
@@ -66,7 +66,9 @@ const notificationApi = firestoreApi
                 async queryFn({ notificationId, userId }) {
                     return executeQuery(
                         () => dismissOneGeneral(notificationId, userId),
-                        ERROR_MESSAGES.DISMISS_GENERAL_FAIL(userId),
+                        ERROR_NOTIFICATION_MESSAGES.DISMISS_GENERAL_FAIL(
+                            userId,
+                        ),
                     );
                 },
                 invalidatesTags: ['Notifications'],
@@ -79,7 +81,7 @@ const notificationApi = firestoreApi
                 async queryFn({ userId }) {
                     return executeQuery(
                         () => deleteAllGeneral(userId),
-                        ERROR_MESSAGES.DELETE_ALL_GENERAL_FAIL,
+                        ERROR_NOTIFICATION_MESSAGES.DELETE_ALL_GENERAL_FAIL,
                     );
                 },
                 invalidatesTags: ['Notifications'],
@@ -92,7 +94,9 @@ const notificationApi = firestoreApi
                 async queryFn({ notificationId, userId }) {
                     return executeQuery(
                         () => dismissOnePersonal(notificationId, userId),
-                        ERROR_MESSAGES.DISMISS_PERSONAL_FAIL(userId),
+                        ERROR_NOTIFICATION_MESSAGES.DISMISS_PERSONAL_FAIL(
+                            userId,
+                        ),
                     );
                 },
                 invalidatesTags: ['PersonalNotifications'],
@@ -104,7 +108,7 @@ const notificationApi = firestoreApi
                 async queryFn({ userId }) {
                     return executeQuery(
                         () => deleteAllPersonal(userId),
-                        ERROR_MESSAGES.DELETE_ALL_PERSONAL_FAIL,
+                        ERROR_NOTIFICATION_MESSAGES.DELETE_ALL_PERSONAL_FAIL,
                     );
                 },
                 invalidatesTags: ['PersonalNotifications'],

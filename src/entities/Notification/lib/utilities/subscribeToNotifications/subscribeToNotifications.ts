@@ -11,7 +11,7 @@ import {
     PersonalNotification,
 } from '../../../model/types/notification';
 import { handleRequestErrorMessage } from '@/shared/lib/firestore/handleRequestErrorMessage/handleRequestErrorMessage';
-import { ERROR_MESSAGES } from '../../../model/consts/errorMessages';
+import { ERROR_NOTIFICATION_MESSAGES } from '../../../model/consts/errorNotificationMessages';
 
 export const subscribeToNotifications = (
     updateCachedData: (
@@ -63,7 +63,10 @@ export const subscribeToNotifications = (
             },
         );
     } catch (error) {
-        handleRequestErrorMessage(ERROR_MESSAGES.SUBSCRIPTIONS_ERROR, error);
+        handleRequestErrorMessage(
+            ERROR_NOTIFICATION_MESSAGES.SUBSCRIPTIONS_ERROR,
+            error,
+        );
     }
 
     return { unsubscribeGeneral, unsubscribePersonal };

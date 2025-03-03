@@ -5,7 +5,7 @@ import {
     removeAllPersonalNotificationsMutation,
 } from '../../../api/notificationApi';
 import { handleThunkErrorMessage } from '@/shared/lib/firestore';
-import { ERROR_MESSAGES } from '../../consts/errorMessages';
+import { ERROR_NOTIFICATION_MESSAGES } from '../../consts/errorNotificationMessages';
 
 export const deleteAllNotificationsThunk = createAsyncThunk<
     void,
@@ -17,7 +17,7 @@ export const deleteAllNotificationsThunk = createAsyncThunk<
     const user = auth.currentUser;
 
     if (!user) {
-        return rejectWithValue(ERROR_MESSAGES.USER_NOT_AUTHORIZED);
+        return rejectWithValue(ERROR_NOTIFICATION_MESSAGES.USER_NOT_AUTHORIZED);
     }
 
     try {
@@ -39,7 +39,7 @@ export const deleteAllNotificationsThunk = createAsyncThunk<
         return rejectWithValue(
             handleThunkErrorMessage(
                 error,
-                ERROR_MESSAGES.DELETE_NOTIFICATIONS_FAIL,
+                ERROR_NOTIFICATION_MESSAGES.DELETE_NOTIFICATIONS_FAIL,
             ),
         );
     }
