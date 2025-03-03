@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig } from '@/app/providers/StoreProvider';
-import { uploadImage } from '@/shared/lib/firestore';
+import { handleThunkErrorMessage, uploadImage } from '@/shared/lib/firestore';
+import { ERROR_PROFILE_CARD_MESSAGES } from '../../consts/errorProfileCardMessages';
 
 export const uploadUserProfileImageThunk = createAsyncThunk<
     string,
@@ -10,13 +11,18 @@ export const uploadUserProfileImageThunk = createAsyncThunk<
     const { extra, rejectWithValue } = thunkAPI;
     const { firebaseStorage } = extra;
     if (!firebaseStorage) {
-        return rejectWithValue('Firebase storage is not initialized');
+        return rejectWithValue(
+            ERROR_PROFILE_CARD_MESSAGES.FIREBASE_STORAGE_NOT_INITIALIZED,
+        );
     }
     try {
         return await uploadImage(file, 'users', firebaseStorage);
     } catch (error) {
-        const errorMessage =
-            error instanceof Error ? error.message : 'Failed to upload image';
-        return rejectWithValue(errorMessage);
+        return rejectWithValue(
+            handleThunkErrorMessage(
+                error,
+                ERROR_PROFILE_CARD_MESSAGES.UPLOAD_IMAGE_ERROR,
+            ),
+        );
     }
 });

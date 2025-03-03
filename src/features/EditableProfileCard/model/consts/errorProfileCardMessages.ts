@@ -6,4 +6,6 @@ export const ERROR_PROFILE_CARD_MESSAGES = {
     INVALID_USER_DATA: 'User data is incorrect or incomplete.',
     UPDATE_PROFILE_ERROR: (userId: string) =>
         `Error updating profile for user with id "${userId}".`,
+    FIREBASE_STORAGE_NOT_INITIALIZED: 'Firebase storage is not initialized',
+    UPLOAD_IMAGE_ERROR: 'Failed to upload image',
 };
