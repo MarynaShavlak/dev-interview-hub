@@ -9,6 +9,7 @@ import {
     UseToggleVisibilityReturnType,
 } from '@/shared/lib/hooks/useToggleVisibility/useToggleVisibility';
 import { useArticlesByUserData } from '../useArticlesByUserData/useArticlesByUserData';
+import { areArticlesEqual } from '../../utilities/areArticlesEqual/areArticlesEqual';
 
 interface SelectedArticle {
     id: string;
@@ -32,6 +33,7 @@ export const useManageUserArticlesTableRow = (
 ): UseManageUserArticlesTableRowReturnType => {
     const { articles, isLoading } = useArticlesByUserData();
     const [data, setData] = useState<UserArticlesTableInfo[] | null>(null);
+    console.log('articles', articles);
 
     // useEffect(() => {
     //     if (!isLoading && articles?.length !== data?.length) {
@@ -40,7 +42,7 @@ export const useManageUserArticlesTableRow = (
     // }, [articles, isLoading, data?.length, setData]);
     useEffect(() => {
         // Only update data if articles have changed and are not loading
-        if (!isLoading && JSON.stringify(articles) !== JSON.stringify(data)) {
+        if (!isLoading && !areArticlesEqual(articles, data)) {
             setData(articles);
         }
     }, [articles, isLoading, data]);

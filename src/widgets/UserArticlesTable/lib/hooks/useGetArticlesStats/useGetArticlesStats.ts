@@ -30,7 +30,6 @@ export const useGetArticleStats = (): UseArticleStatsResult => {
         () => articles?.map((article) => article.id) || [],
         [articles],
     );
-    console.log('articlesIdArray', articlesIdArray);
 
     const {
         data: ratings,
@@ -42,11 +41,10 @@ export const useGetArticleStats = (): UseArticleStatsResult => {
         isLoading: isCommentsLoading,
         error: isCommentsError,
     } = useCommentsByArticleIdsList(articlesIdArray || []);
-    console.log('articles', articles);
-    console.log('comments', comments);
-    console.log('ratings', ratings);
+
     const isLoading =
-        isArticlesLoading || isRatingsLoading || isCommentsLoading;
+        isArticlesLoading ||
+        (articlesIdArray.length > 0 && (isRatingsLoading || isCommentsLoading));
     const isError = Boolean(
         isArticlesError || isRatingsError || isCommentsError,
     );
