@@ -32,6 +32,7 @@ export const useManageUserArticlesTableRow = (
 ): UseManageUserArticlesTableRowReturnType => {
     const { articles, isLoading } = useArticlesByUserData();
     const [data, setData] = useState<UserArticlesTableInfo[] | null>(null);
+    console.log('info', articles, data);
 
     useEffect(() => {
         if (!isLoading && articles?.length !== data?.length) {
@@ -54,9 +55,6 @@ export const useManageUserArticlesTableRow = (
 
             try {
                 const deletedArticleId = await onDeleteArticle(articleId);
-                // setData((prevData) =>
-                //     prevData.filter((row) => row.id !== articleId),
-                // );
 
                 return deletedArticleId;
             } catch (error: any) {
