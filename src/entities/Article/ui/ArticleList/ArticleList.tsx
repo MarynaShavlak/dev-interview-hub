@@ -59,7 +59,7 @@ export const ArticleList = memo((props: ArticleListProps) => {
 
     if (view === ArticleView.LIST) {
         return (
-            <VStack gap="16" className={classes}>
+            <VStack gap="16" className={classes} max>
                 {content}
             </VStack>
         );
@@ -72,6 +72,7 @@ export const ArticleList = memo((props: ArticleListProps) => {
             className={classes}
             align="center"
             justify="center"
+            max
         >
             {content}
         </HStack>

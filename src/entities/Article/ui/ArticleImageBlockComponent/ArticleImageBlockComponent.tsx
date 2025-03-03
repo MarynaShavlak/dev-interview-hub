@@ -37,8 +37,8 @@ export const ArticleImageBlockComponent = memo(
                 >
                     <ToggleFeaturesComponent
                         feature="isAppRedesigned"
-                        on={<Skeleton width="100%" height="100px" />}
-                        off={<SkeletonDeprecated width="100%" height="100px" />}
+                        on={<Skeleton width="100%" height="332px" />}
+                        off={<SkeletonDeprecated width="100%" height="332px" />}
                     />
                 </VStack>
             );

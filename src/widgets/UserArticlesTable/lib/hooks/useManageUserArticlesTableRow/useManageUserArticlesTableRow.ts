@@ -33,15 +33,8 @@ export const useManageUserArticlesTableRow = (
 ): UseManageUserArticlesTableRowReturnType => {
     const { articles, isLoading } = useArticlesByUserData();
     const [data, setData] = useState<UserArticlesTableInfo[] | null>(null);
-    console.log('articles', articles);
 
-    // useEffect(() => {
-    //     if (!isLoading && articles?.length !== data?.length) {
-    //         setData(articles);
-    //     }
-    // }, [articles, isLoading, data?.length, setData]);
     useEffect(() => {
-        // Only update data if articles have changed and are not loading
         if (!isLoading && !areArticlesEqual(articles, data)) {
             setData(articles);
         }
