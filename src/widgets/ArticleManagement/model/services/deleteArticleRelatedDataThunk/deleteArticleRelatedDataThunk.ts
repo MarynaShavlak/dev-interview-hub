@@ -1,19 +1,21 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { ERROR_MESSAGES } from '../../consts/errorMessages';
 import { ThunkConfig } from '@/app/providers/StoreProvider';
 import { deleteCommentsByArticleId } from '@/features/ArticleComments';
 import { handleThunkErrorMessage } from '@/shared/lib/firestore';
 import { deleteRatingsByArticleId } from '@/features/ArticleRating';
+import { ERROR_ARTICLE_MESSAGES } from '@/entities/Article';
 
 export const deleteArticleRelatedDataThunk = createAsyncThunk<
     void,
     string,
     ThunkConfig<string>
->('article/deleteAssociatedContent', async (articleId, thunkApi) => {
+>('article/deleteRelatedContent', async (articleId, thunkApi) => {
     const { rejectWithValue, dispatch } = thunkApi;
-    console.log('related__articleId', articleId);
+
     if (!articleId) {
-        return rejectWithValue(ERROR_MESSAGES.MISSING_ARTICLE);
+        return rejectWithValue(
+            ERROR_ARTICLE_MESSAGES.ARTICLE_NOT_FOUND(articleId),
+        );
     }
 
     const executeDelete = async (
@@ -30,19 +32,19 @@ export const deleteArticleRelatedDataThunk = createAsyncThunk<
     try {
         await executeDelete(
             deleteCommentsByArticleId,
-            ERROR_MESSAGES.DELETE_COMMENTS,
+            ERROR_ARTICLE_MESSAGES.DELETE_COMMENTS,
         );
 
         await executeDelete(
             deleteRatingsByArticleId,
-            ERROR_MESSAGES.DELETE_RATINGS,
+            ERROR_ARTICLE_MESSAGES.DELETE_RATINGS,
         );
         return undefined;
     } catch (error) {
         return rejectWithValue(
             handleThunkErrorMessage(
                 error,
-                ERROR_MESSAGES.DELETE_RELATED_DATA(articleId),
+                ERROR_ARTICLE_MESSAGES.DELETE_RELATED_DATA(articleId),
             ),
         );
     }

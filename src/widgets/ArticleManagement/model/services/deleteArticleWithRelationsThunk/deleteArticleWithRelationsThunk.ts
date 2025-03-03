@@ -1,11 +1,11 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import {
     deleteArticleThunk,
+    ERROR_ARTICLE_MESSAGES,
     getArticleDataByIdQuery,
 } from '@/entities/Article';
 import { ThunkConfig } from '@/app/providers/StoreProvider';
 import { handleThunkErrorMessage } from '@/shared/lib/firestore';
-import { ERROR_MESSAGES } from '../../consts/errorMessages';
 import { deleteArticleRelatedDataThunk } from '../deleteArticleRelatedDataThunk/deleteArticleRelatedDataThunk';
 import { deleteAllArticleContentImagesThunk } from '../deleteAllArticleContentImagesThunk/deleteAllArticleContentImagesThunk';
 
@@ -16,7 +16,9 @@ export const deleteArticleWithRelationsThunk = createAsyncThunk<
 >('article/deleteArticleWithRelations', async (articleId: string, thunkApi) => {
     const { rejectWithValue, dispatch } = thunkApi;
     if (!articleId) {
-        return rejectWithValue('Article ID is required.');
+        return rejectWithValue(
+            ERROR_ARTICLE_MESSAGES.ARTICLE_NOT_FOUND(articleId),
+        );
     }
 
     try {
@@ -24,13 +26,14 @@ export const deleteArticleWithRelationsThunk = createAsyncThunk<
             getArticleDataByIdQuery(articleId),
         ).unwrap();
         if (!article) {
-            return rejectWithValue('Article not found.');
+            return rejectWithValue(
+                ERROR_ARTICLE_MESSAGES.ARTICLE_NOT_FOUND(articleId),
+            );
         }
 
         const deletedArticleId = await dispatch(
             deleteArticleThunk(articleId),
         ).unwrap();
-        console.log('deletedArticleId', deletedArticleId);
 
         if (deletedArticleId) {
             await dispatch(
@@ -46,7 +49,7 @@ export const deleteArticleWithRelationsThunk = createAsyncThunk<
         return rejectWithValue(
             handleThunkErrorMessage(
                 error,
-                ERROR_MESSAGES.DELETE_FAIL(articleId),
+                ERROR_ARTICLE_MESSAGES.DELETE_ARTICLE_ERROR(articleId),
             ),
         );
     }
