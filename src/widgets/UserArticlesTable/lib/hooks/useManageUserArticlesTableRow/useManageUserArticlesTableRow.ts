@@ -32,13 +32,18 @@ export const useManageUserArticlesTableRow = (
 ): UseManageUserArticlesTableRowReturnType => {
     const { articles, isLoading } = useArticlesByUserData();
     const [data, setData] = useState<UserArticlesTableInfo[] | null>(null);
-    console.log('info', articles, data);
 
+    // useEffect(() => {
+    //     if (!isLoading && articles?.length !== data?.length) {
+    //         setData(articles);
+    //     }
+    // }, [articles, isLoading, data?.length, setData]);
     useEffect(() => {
-        if (!isLoading && articles?.length !== data?.length) {
+        // Only update data if articles have changed and are not loading
+        if (!isLoading && JSON.stringify(articles) !== JSON.stringify(data)) {
             setData(articles);
         }
-    }, [articles, isLoading, data?.length, setData]);
+    }, [articles, isLoading, data]);
 
     const deleteArticleModal = useToggleVisibility();
     const { navigateToEditArticle } = useEditArticleNavigation();
@@ -49,7 +54,6 @@ export const useManageUserArticlesTableRow = (
     const deleteTableRow = useCallback(
         async (articleId: string) => {
             if (!articleId) {
-                console.error('Article ID is required to delete the article.');
                 return null;
             }
 
@@ -58,8 +62,6 @@ export const useManageUserArticlesTableRow = (
 
                 return deletedArticleId;
             } catch (error: any) {
-                console.error('Error deleting article:', error);
-
                 return null;
             }
         },

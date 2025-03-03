@@ -5,7 +5,6 @@ import { useGetArticleStats } from '../useGetArticlesStats/useGetArticlesStats';
 
 export const useArticlesByUserData = () => {
     const { articles, isLoading, isError, stats } = useGetArticleStats();
-    console.log('stats', stats);
 
     if (!articles || !stats) return { articles: null, isLoading, isError };
 
