@@ -10,7 +10,7 @@ import { useProfileData } from '../../model/selectors/getProfileData/getProfileD
 import { updateUserProfileThunk } from '../../model/services/updateUserProfileThunk/updateUserProfileThunk';
 import { useProfile } from '../../lib/hooks/useProfile/useProfile';
 import { useUploadedProfilePhoto } from '../../model/selectors/getUploadedProfilePhoto/getUploadedProfilePhoto';
-import { uploadImageThunk } from '../../model/services/uploadImageThunk/uploadImageThunk';
+import { uploadUserProfileImageThunk } from '../../model/services/uploadUserProfileImageThunk/uploadUserProfileImageThunk';
 
 interface EditableProfileCardHeaderProps {
     className?: string;
@@ -35,7 +35,7 @@ export const EditableProfileCardHeader = memo(
         const onSave = useCallback(async () => {
             if (uploadedProfilePhoto) {
                 const url = await dispatch(
-                    uploadImageThunk(uploadedProfilePhoto),
+                    uploadUserProfileImageThunk(uploadedProfilePhoto),
                 ).unwrap();
                 onChangeAvatar(url);
             }
