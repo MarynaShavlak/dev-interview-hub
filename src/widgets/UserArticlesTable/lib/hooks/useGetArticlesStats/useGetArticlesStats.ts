@@ -1,4 +1,3 @@
-import { useMemo } from 'react';
 import { useCommentsByArticleIdsList } from '@/features/ArticleComments';
 import { useRatingsByArticleIdsList } from '@/features/ArticleRating';
 import { useUserAuthData } from '@/entities/User';
@@ -22,14 +21,14 @@ export const useGetArticleStats = (): UseArticleStatsResult => {
     const authedUserId = currentUserdata?.id || '';
 
     const {
-        data: articles = [],
+        data: articles,
         isLoading: isArticlesLoading,
         error: isArticlesError,
     } = useArticlesByUserId(authedUserId);
     const articlesIdArray = articles?.map((article) => article.id);
     // console.log('articles', articlesIdArray);
     const {
-        data: ratings = [],
+        data: ratings,
         isLoading: isRatingsLoading,
         error: isRatingsError,
     } = useRatingsByArticleIdsList(articlesIdArray || []);
@@ -38,26 +37,28 @@ export const useGetArticleStats = (): UseArticleStatsResult => {
         isLoading: isCommentsLoading,
         error: isCommentsError,
     } = useCommentsByArticleIdsList(articlesIdArray || []);
-
+    console.log('comments', comments);
+    console.log('articles', articles);
+    console.log('ratings', ratings);
     const isLoading =
         isArticlesLoading || isRatingsLoading || isCommentsLoading;
     const isError = Boolean(
         isArticlesError || isRatingsError || isCommentsError,
     );
 
-    const stats = useMemo(() => {
+    const stats = () => {
         const articleStats: Record<string, ArticleStats> = {};
 
-        articlesIdArray.forEach((articleId) => {
+        articlesIdArray?.forEach((articleId) => {
             const articleComments = comments?.filter(
                 (comment) => comment.articleId === articleId,
             );
 
-            const articleRatings = ratings.filter(
+            const articleRatings = ratings?.filter(
                 (rating) => rating.articleId === articleId,
             );
 
-            const averageRating = articleRatings.length
+            const averageRating = articleRatings?.length
                 ? Number(
                       (
                           articleRatings.reduce(
@@ -75,7 +76,7 @@ export const useGetArticleStats = (): UseArticleStatsResult => {
         });
 
         return articleStats;
-    }, [articlesIdArray, comments, ratings]);
+    };
 
     return {
         stats,

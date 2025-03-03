@@ -34,7 +34,7 @@ export const useManageUserArticlesTableRow = (
     const [data, setData] = useState<UserArticlesTableInfo[] | null>(null);
 
     useEffect(() => {
-        if (!isLoading && articles.length !== data?.length) {
+        if (!isLoading && articles?.length !== data?.length) {
             setData(articles);
         }
     }, [articles, isLoading, data?.length, setData]);
