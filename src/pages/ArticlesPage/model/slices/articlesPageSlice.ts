@@ -8,7 +8,7 @@ import {
 } from '@/entities/Article';
 import { SortOrder } from '@/shared/types/sortOrder';
 import { ArticlesPageSchema } from '../..';
-import { fetchArticlesList } from '../services/fetchArticlesList/fetchArticlesList';
+import { fetchArticlesListThunk } from '../services/fetchArticlesListThunk/fetchArticlesListThunk';
 import { StateSchema } from '@/app/providers/StoreProvider';
 import { defaultSort } from '../consts/defaultValues';
 
@@ -82,14 +82,14 @@ const articlesPageSlice = buildSlice({
     },
     extraReducers: (builder) => {
         builder
-            .addCase(fetchArticlesList.pending, (state, action) => {
+            .addCase(fetchArticlesListThunk.pending, (state, action) => {
                 state.error = undefined;
                 state.isLoading = true;
                 if (action.meta.arg.replace) {
                     articlesAdapter.removeAll(state);
                 }
             })
-            .addCase(fetchArticlesList.fulfilled, (state, action) => {
+            .addCase(fetchArticlesListThunk.fulfilled, (state, action) => {
                 state.isLoading = false;
 
                 state.hasMore = action.payload.length >= state.limit;
@@ -99,7 +99,7 @@ const articlesPageSlice = buildSlice({
                     articlesAdapter.addMany(state, action.payload);
                 }
             })
-            .addCase(fetchArticlesList.rejected, (state, action) => {
+            .addCase(fetchArticlesListThunk.rejected, (state, action) => {
                 state.isLoading = false;
                 state.error = action.payload;
             });

@@ -34,7 +34,7 @@
 - **Success**: Ensures comments are added successfully.
 - **Error Handling**: Includes cases with missing user data, article details, comment text, API failures, and incomplete response data.
 
-### [fetchArticlesList](../../../src/pages/ArticlesPage/model/services/fetchArticlesList/fetchArticlesList.test.ts)
+### [fetchArticlesListThunk](../../../src/pages/ArticlesPage/model/services/fetchArticlesListThunk/fetchArticlesListThunk.test.ts)
 - **Success**: Validates successful article list retrieval based on page settings and filters.
 - **Error Handling**: Tests empty response, edge cases, and API
 

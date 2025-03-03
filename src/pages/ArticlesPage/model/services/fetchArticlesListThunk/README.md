@@ -1,6 +1,6 @@
-# `fetchArticlesList` Thunk Documentation
+# `fetchArticlesListThunk` Thunk Documentation
 
-The `fetchArticlesList` thunk is an asynchronous action designed to retrieve a list of articles from the backend, applying various filters and settings based on the current state in the Redux store. This thunk utilizes the `createAsyncThunk` function from Redux Toolkit to manage the asynchronous operation and state updates.
+The `fetchArticlesListThunk` thunk is an asynchronous action designed to retrieve a list of articles from the backend, applying various filters and settings based on the current state in the Redux store. This thunk utilizes the `createAsyncThunk` function from Redux Toolkit to manage the asynchronous operation and state updates.
 
 ## Parameters
 
@@ -30,12 +30,12 @@ The thunk catches exceptions during the fetch process and logs them to the conso
 
 ## Usage Example
 
-The following example demonstrates how to use the `fetchArticlesList` thunk in a React component to fetch and display a list of articles.
+The following example demonstrates how to use the `fetchArticlesListThunk` thunk in a React component to fetch and display a list of articles.
 
 ```typescript jsx
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@/shared/lib/hooks';
-import { fetchArticlesList } from '../../model/services/fetchArticlesList/fetchArticlesList';
+import { fetchArticlesListThunk } from '../../model/services/fetchArticlesListThunk/fetchArticlesListThunk';
 import { selectArticles } from '../../model/selectors/articlesPageSelectors';
 
 const ArticlesList = () => {
@@ -43,7 +43,7 @@ const ArticlesList = () => {
     const articles = useAppSelector(selectArticles);
 
     useEffect(() => {
-        dispatch(fetchArticlesList({ replace: true }));
+        dispatch(fetchArticlesListThunk({ replace: true }));
     }, [dispatch]);
 
     return (
@@ -65,4 +65,4 @@ const ArticlesList = () => {
 export default ArticlesList;
 ```
 ## Conclusion
-The `fetchArticlesList` thunk is essential for retrieving a filtered list of articles based on various settings and parameters. It effectively manages the asynchronous API call, processes the response data, and handles errors, ensuring reliable and efficient data retrieval for components that display or interact with articles. This thunk provides flexibility for integrating article lists into React components, enhancing the user experience with accurate and up-to-date information.
+The `fetchArticlesListThunk` thunk is essential for retrieving a filtered list of articles based on various settings and parameters. It effectively manages the asynchronous API call, processes the response data, and handles errors, ensuring reliable and efficient data retrieval for components that display or interact with articles. This thunk provides flexibility for integrating article lists into React components, enhancing the user experience with accurate and up-to-date information.

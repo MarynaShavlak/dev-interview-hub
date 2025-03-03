@@ -135,7 +135,7 @@
 - **Initializing State**: Verifies that the `initState` action initializes the state with the correct `view`, `limit`, and `_inited` properties.
 
 ### Async Action Handling
-- **Pending Fetch Articles List**: Ensures that when `fetchArticlesList` is pending, the `isLoading` property is set to `true`, and any previous `error` is cleared.
-- **Fulfilled Fetch Articles with Replace Option**: Confirms that the `fetchArticlesList.fulfilled` action replaces the current articles in the state when the `replace` option is used.
-- **Fulfilled Fetch Articles with AddMany Option**: Verifies that the `fetchArticlesList.fulfilled` action appends new articles to the existing ones in the state when the `addMany` option is used.
-- **Rejected Fetch Articles**: Ensures that when `fetchArticlesList` is rejected, the `error` property is updated with the error message, and `isLoading` is set to `false`.
+- **Pending Fetch Articles List**: Ensures that when `fetchArticlesListThunk` is pending, the `isLoading` property is set to `true`, and any previous `error` is cleared.
+- **Fulfilled Fetch Articles with Replace Option**: Confirms that the `fetchArticlesListThunk.fulfilled` action replaces the current articles in the state when the `replace` option is used.
+- **Fulfilled Fetch Articles with AddMany Option**: Verifies that the `fetchArticlesListThunk.fulfilled` action appends new articles to the existing ones in the state when the `addMany` option is used.
+- **Rejected Fetch Articles**: Ensures that when `fetchArticlesListThunk` is rejected, the `error` property is updated with the error message, and `isLoading` is set to `false`.

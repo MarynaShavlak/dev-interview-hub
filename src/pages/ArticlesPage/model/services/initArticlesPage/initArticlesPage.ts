@@ -6,7 +6,7 @@ import { getArticlesPageInited } from '../../selectors/articlesPageSelectors';
 import { articlesPageActions } from '../../slices/articlesPageSlice';
 // import { fetchArticlesList } from '../fetchArticlesList/fetchArticlesList';
 import { ARTICLES_VIEW_LOCALSTORAGE_KEY } from '@/shared/const/localstorage';
-import { fetchArticlesList } from '../fetchArticlesList/fetchArticlesList';
+import { fetchArticlesListThunk } from '../fetchArticlesListThunk/fetchArticlesListThunk';
 import { shouldDoActionForRedesignUi } from '@/shared/lib/features';
 
 import { parseSearchParams } from '../../../lib/utilities/parseSearchParams/parseSearchParams';
@@ -93,7 +93,7 @@ export const initArticlesPage = createAsyncThunk<
             const shouldFetchData = shouldDoActionForRedesignUi();
 
             if (shouldFetchData) {
-                dispatch(fetchArticlesList({}));
+                dispatch(fetchArticlesListThunk({}));
             }
         }
     } catch (error) {

@@ -30,8 +30,8 @@ ArticlesPage/
 │   ├── selectors/                           # Selectors to extract specific data from the articles state.
 │   │   └── articlesPageSelectors.ts
 │   ├── services/                            # Services related to fetching articles and managing pagination.
-│   │   └── fetchArticlesList/               # Service to fetch the list of articles.
-│   │       └── fetchArticlesList.ts
+│   │   └── fetchArticlesListThunk/               # Service to fetch the list of articles.
+│   │       └── fetchArticlesListThunk.ts
 │   │   └── fetchNextArticlesPage/           # Service to fetch the next page of articles for infinite scroll.
 │   │       └── fetchNextArticlesPage.ts
 │   │   └── initArticlesPage/                # Service to initialize the articles page.

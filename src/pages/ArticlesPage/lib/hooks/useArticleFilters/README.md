@@ -31,7 +31,7 @@ An object with the following properties:
 
 2. **Action Dispatching**:
    - **`useArticlesPageActions`**: Provides actions to update filtering criteria such as view, sort, order, search, and category.
-   - **`fetchArticlesList`**: A service function used to fetch the list of articles based on current filters.
+   - **`fetchArticlesListThunk`**: A service function used to fetch the list of articles based on current filters.
 
 3. **Debouncing**:
    - **`useDebounce`**: Applies a debounce to the fetchData function to optimize performance by delaying execution until the user stops typing.

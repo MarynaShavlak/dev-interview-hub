@@ -17,7 +17,7 @@ import {
 import { ARTICLES_VIEW_LOCALSTORAGE_KEY } from '@/shared/const/localstorage';
 import { SortOrder } from '@/shared/types/sortOrder';
 import { ArticlesPageSchema } from '../types/articlesPageSchema';
-import { fetchArticlesList } from '../../model/services/fetchArticlesList/fetchArticlesList';
+import { fetchArticlesListThunk } from '../../model/services/fetchArticlesListThunk/fetchArticlesListThunk';
 ```
 - `createEntityAdapter`: Redux Toolkit utility for managing normalized data structures.
 - `buildSlice`: A custom utility function for creating Redux slices.
@@ -26,7 +26,7 @@ import { fetchArticlesList } from '../../model/services/fetchArticlesList/fetchA
 - `Article`, `ArticleSortField`, `ArticleView`, `ArticleCategory`: Types related to articles, including sorting fields, view types, and categories.
 - `SortOrder`: Type representing sorting order (ascending/descending).
 - `ArticlesPageSchema`: TypeScript type defining the schema for articles page state.
-- `fetchArticlesList`: Asynchronous thunk action for fetching a list of articles.
+- `fetchArticlesListThunk`: Asynchronous thunk action for fetching a list of articles.
 
 ## Initial State
 ```typescript
@@ -106,9 +106,9 @@ The `getArticles` selector is created using the adapter's `getSelectors` method.
 
 | Action                      | State Change                                                   | Purpose                                                                                                  |
 |-----------------------------|----------------------------------------------------------------|----------------------------------------------------------------------------------------------------------|
-| `fetchArticlesList.pending` | Sets `isLoading` to `true`, clears `error`, and removes all articles if `replace` is `true`. | Indicates that the article fetching process has started, clears previous errors, and prepares for new data. |
-| `fetchArticlesList.fulfilled` | Sets `isLoading` to `false`, updates `hasMore` based on the length of the fetched articles, and either replaces or adds articles based on `replace`. | Handles the successful retrieval of articles, updates the state with new articles, and determines if more articles are available. |
-| `fetchArticlesList.rejected` | Sets `isLoading` to `false` and updates `error` with the payload. | Manages the state when article fetching fails by setting `isLoading` to `false` and storing the error message. |
+| `fetchArticlesListThunk.pending` | Sets `isLoading` to `true`, clears `error`, and removes all articles if `replace` is `true`. | Indicates that the article fetching process has started, clears previous errors, and prepares for new data. |
+| `fetchArticlesListThunk.fulfilled` | Sets `isLoading` to `false`, updates `hasMore` based on the length of the fetched articles, and either replaces or adds articles based on `replace`. | Handles the successful retrieval of articles, updates the state with new articles, and determines if more articles are available. |
+| `fetchArticlesListThunk.rejected` | Sets `isLoading` to `false` and updates `error` with the payload. | Manages the state when article fetching fails by setting `isLoading` to `false` and storing the error message. |
 
 
 ## Exports
@@ -150,7 +150,7 @@ export const fetchNextArticlesPage = createAsyncThunk<
 
     if (hasMore && !isLoading) {
         dispatch(articlesPageActions.setPage(page + 1));
-        await dispatch(fetchArticlesList({}));
+        await dispatch(fetchArticlesListThunk({}));
     }
 });
 ```

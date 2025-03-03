@@ -13,18 +13,18 @@ The `fetchNextArticlesPage` thunk is an asynchronous action designed to load the
 
 `Promise<void>`:
 - **On Success**: Resolves when the next page of articles is successfully fetched and added to the state.
-- **On Error**: The thunk does not explicitly handle errors or return an error message, but issues in the `fetchArticlesList` thunk would affect the outcome.
+- **On Error**: The thunk does not explicitly handle errors or return an error message, but issues in the `fetchArticlesListThunk` thunk would affect the outcome.
 
 ## Internal Behavior
 
 1. **State Retrieval**: Checks the current state to determine if there are more articles to load (`hasMore`), if articles are currently being loaded (`isLoading`), and the current page number.
 2. **Condition Check**: If more articles are available and no articles are currently being loaded, the thunk proceeds to the next step.
 3. **Page Update**: Increments the current page number in the state by dispatching `articlesPageActions.setPage` with the updated page number.
-4. **Fetch Next Page**: Dispatches the `fetchArticlesList` thunk to load articles for the next page.
+4. **Fetch Next Page**: Dispatches the `fetchArticlesListThunk` thunk to load articles for the next page.
 
 ## Error Handling
 
-The thunk does not explicitly handle errors. If the `fetchArticlesList` thunk encounters issues, such as network errors or API failures, those errors will affect the overall fetching process.
+The thunk does not explicitly handle errors. If the `fetchArticlesListThunk` thunk encounters issues, such as network errors or API failures, those errors will affect the overall fetching process.
 
 ## Usage Example
 

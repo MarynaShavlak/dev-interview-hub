@@ -13,18 +13,18 @@ The `initArticlesPage` thunk is an asynchronous action designed to initialize th
 
 `Promise<void>`:
 - **On Success**: Resolves when the articles page state is initialized and the articles list is successfully fetched.
-- **On Error**: The thunk does not explicitly handle errors or return an error message, but issues in the `fetchArticlesList` thunk would affect the outcome.
+- **On Error**: The thunk does not explicitly handle errors or return an error message, but issues in the `fetchArticlesListThunk` thunk would affect the outcome.
 
 ## Internal Behavior
 
 1. **State Check**: Checks if the articles page has already been initialized using `getArticlesPageInited`. If the page is not initialized, it proceeds with the initialization process.
 2. **Parameter Processing**: Iterates over predefined URL search parameter actions (`searchParamActions`) and extracts corresponding values from `searchParams`. Updates the Redux store with these values using the appropriate actions.
 3. **State Initialization**:  Retrieves the view setting from `localStorage` and dispatches `articlesPageActions.initState(view)` to configure the initial state, adjusting settings like the article display limit based on the view type.
-4. **Fetch Articles**: Calls `fetchArticlesList` to retrieve the articles list based on the initialized settings.
+4. **Fetch Articles**: Calls `fetchArticlesListThunk` to retrieve the articles list based on the initialized settings.
 
 ## Error Handling
 
-The thunk does not explicitly handle errors during the initialization or fetch processes. Errors encountered in the `fetchArticlesList` thunk or during state updates would impact the overall functionality.
+The thunk does not explicitly handle errors during the initialization or fetch processes. Errors encountered in the `fetchArticlesListThunk` thunk or during state updates would impact the overall functionality.
 
 ## Usage Example
 

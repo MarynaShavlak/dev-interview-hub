@@ -3,7 +3,9 @@ import { fetchNextArticlesPage } from './fetchNextArticlesPage';
 // import { fetchArticlesList } from '../fetchArticlesList/fetchArticlesList';
 import { articlesPageActions } from '../../slices/articlesPageSlice';
 
-jest.mock('../fetchArticlesList/fetchArticlesList');
+jest.mock(
+    '@/pages/ArticlesPage/model/services/fetchArticlesListThunk/fetchArticlesListThunk',
+);
 
 describe('async thunk fetchNextArticlesPage test', () => {
     test('successfully fetches the next page', async () => {
