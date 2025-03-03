@@ -42,7 +42,7 @@ export const useUserArticlesTableColumns = (props: useTableColumnProps) => {
                     size: titleColumnWidth,
                     sortable: true,
                     link: true,
-                    href: navigateToArticle,
+                    navigateTo: navigateToArticle,
                 }),
             ),
             columnHelper.accessor(

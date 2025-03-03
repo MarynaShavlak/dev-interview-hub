@@ -3,7 +3,7 @@ import { CellContext } from '@tanstack/react-table';
 
 interface LinkCellProps<TData> extends CellContext<TData, any> {
     value: string;
-    navigateFn: (id: string) => string;
+    navigateFn: (id: string) => void;
 }
 
 export const LinkCell = <TData extends { id: string }>({

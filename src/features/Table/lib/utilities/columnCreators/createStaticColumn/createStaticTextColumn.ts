@@ -9,28 +9,30 @@ type StaticTextColumnConfig<T> = {
     sortable?: boolean;
     filterable?: boolean;
     link?: boolean;
-    href?: string;
+    navigateTo?: (id: string) => void;
 };
 
-export const createStaticTextColumn = <T>(maxLength?: number) => {
+export const createStaticTextColumn = <T extends { id: string }>(
+    maxLength?: number,
+) => {
     return ({
         id,
         size,
         sortable = false,
         filterable = false,
         link = false,
-        href,
+        navigateTo,
     }: StaticTextColumnConfig<T>) => ({
         id,
         header: capitalizeFirstLetter(id),
-        cell: (props: CellContext<T, string | number | undefined>) => {
+        cell: (props: CellContext<T, any>) => {
             const value = maxLength
                 ? `${truncateText(String(props.getValue()), maxLength)}`
                 : `${props.getValue()}`;
-            if (!link || !href) return value;
+            if (!link || !navigateTo) return value;
             return LinkCell({
                 ...props,
-                href,
+                navigateFn: navigateTo,
                 value,
             });
         },
