@@ -1,3 +1,5 @@
+export { ERROR_USER_MESSAGES } from './model/consts/errorUserMessages';
+
 export { useGetUserRoles } from '@/entities/User/lib/hooks/useGetUserRoles/useGetUserRoles';
 
 export { deleteUserThunk } from './model/services/deleteUserThunk/deleteUserThunk';

@@ -21,4 +21,6 @@ export const ERROR_USER_MESSAGES = {
         `Error in user with id "${userId}" snapshot.`,
     USERS_FETCH_FAIL: 'Failed to fetch comments.',
     USERS_SNAPSHOT_FAIL: `Error in users snapshot.`,
+    UPDATE_USER_ROLE_FAIL: 'Failed to update user roles.',
+    UPDATE_USER_ROLE_ERROR: 'An error occurred while updating user roles.',
 };

@@ -1,6 +1,12 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig } from '@/app/providers/StoreProvider';
-import { updateUserDataMutation, User, UserRole } from '@/entities/User';
+import {
+    ERROR_USER_MESSAGES,
+    updateUserDataMutation,
+    User,
+    UserRole,
+} from '@/entities/User';
+import { handleThunkErrorMessage } from '@/shared/lib/firestore';
 
 /**
  * Thunk to update user role.
@@ -27,7 +33,7 @@ export const updateUserRoleThunk = createAsyncThunk<
     const { userId, newRoles } = params;
 
     if (!userId) {
-        return rejectWithValue('No user ID provided.');
+        return rejectWithValue(ERROR_USER_MESSAGES.USER_ID_REQUIRED);
     }
 
     try {
@@ -41,12 +47,16 @@ export const updateUserRoleThunk = createAsyncThunk<
         ).unwrap();
 
         if (!response || !response.roles) {
-            return rejectWithValue('Failed to update user roles.');
+            return rejectWithValue(ERROR_USER_MESSAGES.UPDATE_USER_ROLE_ERROR);
         }
 
         return response;
     } catch (error) {
-        console.error('Error updating user roles:', error);
-        return rejectWithValue('An error occurred while updating user roles.');
+        return rejectWithValue(
+            handleThunkErrorMessage(
+                error,
+                ERROR_USER_MESSAGES.UPDATE_USER_ROLE_ERROR,
+            ),
+        );
     }
 });
