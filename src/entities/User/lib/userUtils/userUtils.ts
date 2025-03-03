@@ -15,7 +15,7 @@ export const initializeUserFeatures = (user: User): void => {
     // const designKey = user.features?.isAppRedesigned ? 'new' : 'new';
 
     const designKey = user.features?.isAppRedesigned ? 'new' : 'old';
-    console.log('designKey', designKey);
+
     localStorage.setItem(LOCAL_STORAGE_LAST_DESIGN_KEY, designKey);
 };
 

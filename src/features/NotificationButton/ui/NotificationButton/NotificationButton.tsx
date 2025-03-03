@@ -13,7 +13,7 @@ interface NotificationButtonProps {
 export const NotificationButton = memo((props: NotificationButtonProps) => {
     const { className } = props;
     const user = useUserAuthData();
-    console.log('userid', user?.id);
+
     // const [isOpen, setIsOpen] = useState(false);
     const [isOpen, setIsOpen] = useState(true);
 

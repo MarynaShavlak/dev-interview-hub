@@ -18,7 +18,7 @@ export const BrowserNotificationPopover = ({
     'data-testid': dataTestId,
 }: BrowserNotificationPopoverProps) => {
     const user = useUserAuthData();
-    console.log('userid', user?.id);
+
     return user?.id ? (
         <ToggleFeaturesComponent
             feature="isAppRedesigned"
