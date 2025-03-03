@@ -9,15 +9,20 @@ interface UserArticlesTableDataProps {
     data: UserArticlesTableInfo[];
     deleteRow: (rowIndex: string) => void;
     editRow: (rowIndex: string) => void;
+    navigateToArticle: (id: string) => void;
 }
 
 export const useUserArticlesTableData = (props: UserArticlesTableDataProps) => {
-    const { data, deleteRow, editRow } = props;
+    const { data, deleteRow, editRow, navigateToArticle } = props;
 
     const [columnFilters, setColumnFilters] = useState<CommonFilterType>([]);
     const [globalFilter, setGlobalFilter] = useState<string>('');
     const headerOptionsMapping = useGetHeaderOptionsWithTranslation(data);
-    const columns = useUserArticlesTableColumns({ deleteRow, editRow });
+    const columns = useUserArticlesTableColumns({
+        deleteRow,
+        editRow,
+        navigateToArticle,
+    });
 
     return {
         columns,

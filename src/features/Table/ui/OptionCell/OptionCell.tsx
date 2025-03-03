@@ -34,7 +34,6 @@ export const OptionCell = <TData extends { id: string }>({
     getValue,
     row,
     column,
-
     options,
     isEditRoleMode,
     updateRow,

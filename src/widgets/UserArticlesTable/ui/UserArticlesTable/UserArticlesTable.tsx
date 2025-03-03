@@ -33,6 +33,7 @@ export const UserArticlesTable = memo(
         const {
             handleDeleteClick,
             handleEditClick,
+            handleNavigateToArticle,
             confirmDelete,
             articleTitle,
             isLoading,
@@ -51,6 +52,7 @@ export const UserArticlesTable = memo(
             data: data || [],
             deleteRow: handleDeleteClick,
             editRow: handleEditClick,
+            navigateToArticle: handleNavigateToArticle,
         });
 
         const table = useUserArticlesTableConfig({

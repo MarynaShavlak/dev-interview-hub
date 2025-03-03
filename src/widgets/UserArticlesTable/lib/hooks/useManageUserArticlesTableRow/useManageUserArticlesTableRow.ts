@@ -1,5 +1,8 @@
 import { useCallback, useEffect, useState } from 'react';
-import { useEditArticleNavigation } from '@/entities/Article';
+import {
+    useArticleNavigation,
+    useEditArticleNavigation,
+} from '@/entities/Article';
 import { UserArticlesTableInfo } from '../../../model/types/userArticlesTableInfo';
 import {
     useToggleVisibility,
@@ -13,8 +16,9 @@ interface SelectedArticle {
 }
 
 interface UseManageUserArticlesTableRowReturnType {
-    handleDeleteClick: (userId: string) => void;
-    handleEditClick: (userId: string) => void;
+    handleDeleteClick: (articleId: string) => void;
+    handleNavigateToArticle: (articleId: string) => void;
+    handleEditClick: (articleIdId: string) => void;
     confirmDelete: () => Promise<void>;
     selectedArticle: SelectedArticle | null;
     isLoading: boolean;
@@ -37,6 +41,7 @@ export const useManageUserArticlesTableRow = (
 
     const deleteArticleModal = useToggleVisibility();
     const { navigateToEditArticle } = useEditArticleNavigation();
+    const { navigateToArticle } = useArticleNavigation();
     const [selectedArticle, setSelectedArticle] =
         useState<SelectedArticle | null>(null);
 
@@ -95,6 +100,15 @@ export const useManageUserArticlesTableRow = (
         [navigateToEditArticle],
     );
 
+    const handleNavigateToArticle = useCallback(
+        (articleId: string) => {
+            if (articleId) {
+                navigateToArticle(articleId);
+            }
+        },
+        [navigateToArticle],
+    );
+
     const articleTitle = selectedArticle?.title
         ? `"${selectedArticle.title}"`
         : '';
@@ -102,6 +116,7 @@ export const useManageUserArticlesTableRow = (
     return {
         handleDeleteClick,
         handleEditClick,
+        handleNavigateToArticle,
         confirmDelete,
         selectedArticle,
         isLoading,

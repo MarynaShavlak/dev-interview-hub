@@ -15,11 +15,12 @@ import {
 interface useTableColumnProps {
     deleteRow: (rowIndex: string) => void;
     editRow: (rowIndex: string) => void;
+    navigateToArticle: (id: string) => void;
 }
 
 export const useUserArticlesTableColumns = (props: useTableColumnProps) => {
     const { t } = useTranslation('articleDetails');
-    const { deleteRow, editRow } = props;
+    const { deleteRow, editRow, navigateToArticle } = props;
     const createUserTextCol = createStaticTextColumn<UserArticlesTableInfo>();
     const columnHelper = createColumnHelper<UserArticlesTableInfo>();
     const actionColumn = useCreateActionColumn<UserArticlesTableInfo>({
@@ -40,6 +41,8 @@ export const useUserArticlesTableColumns = (props: useTableColumnProps) => {
                     id: t('Заголовок статті'),
                     size: titleColumnWidth,
                     sortable: true,
+                    link: true,
+                    href: navigateToArticle,
                 }),
             ),
             columnHelper.accessor(
