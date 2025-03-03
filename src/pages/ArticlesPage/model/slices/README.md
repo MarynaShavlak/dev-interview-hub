@@ -138,11 +138,11 @@ const store = configureStore({
 
 
 // async thunk 
-export const fetchNextArticlesPage = createAsyncThunk<
+export const fetchNextArticlesPageThunk = createAsyncThunk<
     void,
     void,
     ThunkConfig<string>
-    >('articlesPage/fetchNextArticlesPage', async (_, thunkApi) => {
+    >('articlesPage/fetchNextArticlesPageThunk', async (_, thunkApi) => {
     const { getState, dispatch } = thunkApi;
     const hasMore = getArticlesPageHasMore(getState());
     const page = getArticlesPageNum(getState());

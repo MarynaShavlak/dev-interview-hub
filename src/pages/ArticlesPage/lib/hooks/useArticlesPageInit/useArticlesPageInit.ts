@@ -3,7 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect/useInitialEffect';
 import { initArticlesPage } from '../../../model/services/initArticlesPage/initArticlesPage';
-import { fetchNextArticlesPage } from '../../../model/services/fetchNextArticlesPage/fetchNextArticlesPage';
+import { fetchNextArticlesPageThunk } from '../../../model/services/fetchNextArticlesPageThunk/fetchNextArticlesPageThunk';
 
 /**
  * Custom hook for managing the initialization and loading of articles on a page.
@@ -27,7 +27,7 @@ export const useArticlesPageInit = () => {
 
     const onLoadNextPart = useCallback(() => {
         console.log('load next part');
-        dispatch(fetchNextArticlesPage());
+        dispatch(fetchNextArticlesPageThunk());
     }, [dispatch]);
 
     return {

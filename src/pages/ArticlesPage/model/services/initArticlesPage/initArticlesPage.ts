@@ -8,21 +8,19 @@ import { articlesPageActions } from '../../slices/articlesPageSlice';
 import { ARTICLES_VIEW_LOCALSTORAGE_KEY } from '@/shared/const/localstorage';
 import { fetchArticlesListThunk } from '../fetchArticlesListThunk/fetchArticlesListThunk';
 import { shouldDoActionForRedesignUi } from '@/shared/lib/features';
-
 import { parseSearchParams } from '../../../lib/utilities/parseSearchParams/parseSearchParams';
+import { handleThunkErrorMessage } from '@/shared/lib/firestore';
+import { ERROR_ARTICLES_PAGE_MESSAGES } from '../../consts/errorArticlesPageMessages';
 
 /**
  * Thunk to initialize the articles page with settings based on URL search parameters.
  *
- * This thunk is responsible for setting the initial state of the articles page based on
- * query parameters from the URL. It updates the Redux store with values for sorting, ordering,
- * search terms, and categories if they are present in the search parameters. It also dispatches
- * an action to initialize the state and then fetches the articles list.
+ * It extracts query parameters, updates the Redux store with relevant filters,
+ * initializes the page state, and optionally fetches the articles list.
  *
  * @param {URLSearchParams} searchParams - The URL search parameters to initialize the page settings.
- * @param {ThunkAPI} thunkAPI - The thunkAPI object provided by Redux Toolkit, containing
- *        dispatch, getState, extra, and more.
- * @returns {Promise<void>} A promise that resolves when the page is initialized and the articles list is fetched.
+ * @param {ThunkAPI} thunkAPI - The thunkAPI object containing dispatch, getState, and other Redux tools.
+ * @returns {Promise<void>} Resolves when the page is initialized and the articles list is fetched.
  */
 
 export const initArticlesPage = createAsyncThunk<
@@ -30,73 +28,36 @@ export const initArticlesPage = createAsyncThunk<
     URLSearchParams,
     ThunkConfig<string>
 >('articlesPage/initArticlesPage', async (searchParams, thunkApi) => {
+    const { rejectWithValue, getState, dispatch } = thunkApi;
+    const inited = getArticlesPageInited(getState());
     try {
-        const { getState, dispatch } = thunkApi;
-        const inited = getArticlesPageInited(getState());
-        // console.log('inited', inited);
+        if (inited) return undefined;
 
-        if (!inited) {
-            const parsedParams = parseSearchParams(searchParams);
-            const { order, sort, search, category } = parsedParams;
+        const parsedParams = parseSearchParams(searchParams);
+        const { order, sort, search, category } = parsedParams;
 
-            if (order) dispatch(articlesPageActions.setOrder(order));
-            if (sort) dispatch(articlesPageActions.setSort(sort));
-            if (search) dispatch(articlesPageActions.setSearch(search));
-            if (category) dispatch(articlesPageActions.setCategory(category));
+        if (order) dispatch(articlesPageActions.setOrder(order));
+        if (sort) dispatch(articlesPageActions.setSort(sort));
+        if (search) dispatch(articlesPageActions.setSearch(search));
+        if (category) dispatch(articlesPageActions.setCategory(category));
 
-            // const orderFromUrl = searchParams.get('order') as SortOrder;
-            //
-            // const sortFromUrl = searchParams.get('sort') as ArticleSortType;
-            //
-            // const searchFromUrl = searchParams.get('query');
-            // const categoryFromUrl = searchParams.get(
-            //     'category',
-            // ) as ArticleCategory;
-            // console.log('orderFromUrl', orderFromUrl);
-            // console.log('sortFromUrl', sortFromUrl);
-            // if (orderFromUrl) {
-            //     dispatch(articlesPageActions.setOrder(orderFromUrl));
-            // }
-            // if (!orderFromUrl && sortFromUrl) {
-            //     const order = sortFromUrl?.split('_')[2] as SortOrder;
-            //     dispatch(articlesPageActions.setOrder(order));
-            // }
-            //
-            // if (sortFromUrl?.includes('_')) {
-            //     const sort = sortFromUrl?.split('_')[1] as ArticleSortType;
-            //     dispatch(articlesPageActions.setSort(sort));
-            // }
-            //
-            // if (sortFromUrl && !sortFromUrl?.includes('_')) {
-            //     dispatch(articlesPageActions.setSort(sortFromUrl));
-            // }
-            //
-            // if (searchFromUrl) {
-            //     dispatch(articlesPageActions.setSearch(searchFromUrl));
-            // }
-            // if (categoryFromUrl?.includes('-')) {
-            //     const category = categoryFromUrl.split(
-            //         '-',
-            //     )[0] as ArticleCategory;
-            //     dispatch(articlesPageActions.setCategory(category));
-            // }
-            // if (categoryFromUrl && !categoryFromUrl?.includes('-')) {
-            //     dispatch(articlesPageActions.setCategory(categoryFromUrl));
-            // }
+        const view = localStorage.getItem(
+            ARTICLES_VIEW_LOCALSTORAGE_KEY,
+        ) as ArticleView;
 
-            const view = localStorage.getItem(
-                ARTICLES_VIEW_LOCALSTORAGE_KEY,
-            ) as ArticleView;
+        dispatch(articlesPageActions.initState(view));
 
-            dispatch(articlesPageActions.initState(view));
+        const shouldFetchData = shouldDoActionForRedesignUi();
 
-            const shouldFetchData = shouldDoActionForRedesignUi();
-
-            if (shouldFetchData) {
-                dispatch(fetchArticlesListThunk({}));
-            }
+        if (shouldFetchData) {
+            dispatch(fetchArticlesListThunk({}));
         }
     } catch (error) {
-        console.error('Error in initArticlesPage:', error);
+        return rejectWithValue(
+            handleThunkErrorMessage(
+                error,
+                ERROR_ARTICLES_PAGE_MESSAGES.INIT_ERROR,
+            ),
+        );
     }
 });

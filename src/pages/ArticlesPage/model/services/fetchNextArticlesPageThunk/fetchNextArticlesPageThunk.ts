@@ -23,7 +23,7 @@ import { fetchArticlesListThunk } from '../fetchArticlesListThunk/fetchArticlesL
  * @returns {Promise<void>} A promise that resolves when the next page of articles is fetched.
  */
 
-export const fetchNextArticlesPage = createAsyncThunk<
+export const fetchNextArticlesPageThunk = createAsyncThunk<
     void,
     void,
     ThunkConfig<string>

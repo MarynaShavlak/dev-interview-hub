@@ -42,7 +42,7 @@
 - **Initialization**: Verifies correct initialization of the articles page, dispatching appropriate actions and loading articles.
 - **No Reinitialization**: Confirms no actions are dispatched if the page is already initialized.
 
-### [fetchNextArticlesPage](../../../src/pages/ArticlesPage/model/services/fetchNextArticlesPage/fetchNextArticlesPage.test.ts)
+### [fetchNextArticlesPageThunk](../../../src/pages/ArticlesPage/model/services/fetchNextArticlesPageThunk/fetchNextArticlesPageThunk.test.ts)
 - **Pagination**: Tests correct behavior for fetching the next page, including conditions when `hasMore` is false, `isLoading` is true, and handling of undefined `hasMore`.
 
 ###  [useArticleRecommendationsList](../../../src/features/ArticleRecommendationsList/api/articleRecommendationsApi.test.tsx) Hook

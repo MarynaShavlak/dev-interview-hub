@@ -1,6 +1,6 @@
-# `fetchNextArticlesPage` Thunk Documentation
+# `fetchNextArticlesPageThunk` Thunk Documentation
 
-The `fetchNextArticlesPage` thunk is an asynchronous action designed to load the next page of articles if more pages are available. This thunk uses the `createAsyncThunk` function from Redux Toolkit to manage the asynchronous logic and state updates related to paginated article retrieval.
+The `fetchNextArticlesPageThunk` thunk is an asynchronous action designed to load the next page of articles if more pages are available. This thunk uses the `createAsyncThunk` function from Redux Toolkit to manage the asynchronous logic and state updates related to paginated article retrieval.
 
 ## Parameters
 
@@ -28,12 +28,12 @@ The thunk does not explicitly handle errors. If the `fetchArticlesListThunk` thu
 
 ## Usage Example
 
-The following example demonstrates how to use the `fetchNextArticlesPage` thunk in a React component to fetch and display additional articles as users scroll.
+The following example demonstrates how to use the `fetchNextArticlesPageThunk` thunk in a React component to fetch and display additional articles as users scroll.
 
 ```typescript jsx
 import { useCallback } from 'react';
 import { useAppDispatch, useAppSelector } from '@/shared/lib/hooks';
-import { fetchNextArticlesPage } from '../../model/services/fetchNextArticlesPage/fetchNextArticlesPage';
+import { fetchNextArticlesPageThunk } from '../../model/services/fetchNextArticlesPageThunk/fetchNextArticlesPageThunk';
 import { selectArticles, selectHasMore, selectIsLoading } from '../../model/selectors/articlesPageSelectors';
 
 const ArticlesList = () => {
@@ -44,7 +44,7 @@ const ArticlesList = () => {
 
     const loadMoreArticles = useCallback(() => {
         if (!isLoading && hasMore) {
-            dispatch(fetchNextArticlesPage());
+            dispatch(fetchNextArticlesPageThunk());
         }
     }, [dispatch, isLoading, hasMore]);
 
@@ -68,4 +68,4 @@ export default ArticlesList;
 ```
 
 ## Conclusion
-The `fetchNextArticlesPage` thunk facilitates paginated article retrieval by fetching additional pages when more articles are available and the current page is not already loading. It provides an efficient way to handle pagination in applications displaying large sets of articles, ensuring that users can load more content seamlessly while managing the state and loading indicators effectively.
+The `fetchNextArticlesPageThunk` thunk facilitates paginated article retrieval by fetching additional pages when more articles are available and the current page is not already loading. It provides an efficient way to handle pagination in applications displaying large sets of articles, ensuring that users can load more content seamlessly while managing the state and loading indicators effectively.

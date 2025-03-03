@@ -22,11 +22,11 @@ An object with the following properties:
     - **`useSearchParams`**: Retrieves the current URL search parameters for initializing the articles page.
 
 2. **Action Dispatching**:
-    - **`fetchNextArticlesPage`**: A service function dispatched to fetch the next set of articles when the user scrolls to the end.
+    - **`fetchNextArticlesPageThunk`**: A service function dispatched to fetch the next set of articles when the user scrolls to the end.
     - **`initArticlesPage`**: A service function dispatched to initialize the articles page with the current search parameters.
 
 3. **Callbacks**:
-    - **`onLoadNextPart`**: A callback function that triggers the `fetchNextArticlesPage` action to load more articles. It is memoized to avoid unnecessary re-renders.
+    - **`onLoadNextPart`**: A callback function that triggers the `fetchNextArticlesPageThunk` action to load more articles. It is memoized to avoid unnecessary re-renders.
 
 4. **Effects**:
     - **`useInitialEffect`**: A custom hook that runs the `initArticlesPage` action when the component mounts, using the current search parameters.

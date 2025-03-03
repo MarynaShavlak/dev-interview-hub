@@ -1,5 +1,5 @@
 import { TestAsyncThunk } from '@/shared/lib/tests/TestAsyncThunk/TestAsyncThunk';
-import { fetchNextArticlesPage } from './fetchNextArticlesPage';
+import { fetchNextArticlesPageThunk } from './fetchNextArticlesPageThunk';
 // import { fetchArticlesList } from '../fetchArticlesList/fetchArticlesList';
 import { articlesPageActions } from '../../slices/articlesPageSlice';
 
@@ -9,7 +9,7 @@ jest.mock(
 
 describe('async thunk fetchNextArticlesPage test', () => {
     test('successfully fetches the next page', async () => {
-        const thunk = new TestAsyncThunk(fetchNextArticlesPage, {
+        const thunk = new TestAsyncThunk(fetchNextArticlesPageThunk, {
             articlesPage: {
                 page: 2,
                 // ids: [],
@@ -30,7 +30,7 @@ describe('async thunk fetchNextArticlesPage test', () => {
     });
 
     test('does not fetch when hasMore is false', async () => {
-        const thunk = new TestAsyncThunk(fetchNextArticlesPage, {
+        const thunk = new TestAsyncThunk(fetchNextArticlesPageThunk, {
             articlesPage: {
                 page: 2,
                 // ids: [],
@@ -51,7 +51,7 @@ describe('async thunk fetchNextArticlesPage test', () => {
     });
 
     test('does not fetch when isLoading is true', async () => {
-        const thunk = new TestAsyncThunk(fetchNextArticlesPage, {
+        const thunk = new TestAsyncThunk(fetchNextArticlesPageThunk, {
             articlesPage: {
                 page: 2,
                 // ids: [],
@@ -73,7 +73,7 @@ describe('async thunk fetchNextArticlesPage test', () => {
 
     test('increments page number correctly', async () => {
         const initialPage = 3;
-        const thunk = new TestAsyncThunk(fetchNextArticlesPage, {
+        const thunk = new TestAsyncThunk(fetchNextArticlesPageThunk, {
             articlesPage: {
                 page: initialPage,
                 // ids: [],
@@ -93,7 +93,7 @@ describe('async thunk fetchNextArticlesPage test', () => {
     });
 
     test('handles edge case where hasMore is undefined', async () => {
-        const thunk = new TestAsyncThunk(fetchNextArticlesPage, {
+        const thunk = new TestAsyncThunk(fetchNextArticlesPageThunk, {
             articlesPage: {
                 page: 2,
                 // ids: [],

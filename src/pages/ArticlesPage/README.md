@@ -32,8 +32,8 @@ ArticlesPage/
 │   ├── services/                            # Services related to fetching articles and managing pagination.
 │   │   └── fetchArticlesListThunk/               # Service to fetch the list of articles.
 │   │       └── fetchArticlesListThunk.ts
-│   │   └── fetchNextArticlesPage/           # Service to fetch the next page of articles for infinite scroll.
-│   │       └── fetchNextArticlesPage.ts
+│   │   └── fetchNextArticlesPageThunk/           # Service to fetch the next page of articles for infinite scroll.
+│   │       └── fetchNextArticlesPageThunk.ts
 │   │   └── initArticlesPage/                # Service to initialize the articles page.
 │   │       └── initArticlesPage.ts
 │   ├── slices/                              # Redux slices for managing the articles page state.

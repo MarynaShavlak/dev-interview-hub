@@ -57,7 +57,7 @@ export const fetchArticlesListThunk = createAsyncThunk<
                 limit,
                 category: modifiedCategory ? [modifiedCategory] : [],
                 query: search,
-                // search: '',
+
                 page,
             }),
         ).unwrap();
