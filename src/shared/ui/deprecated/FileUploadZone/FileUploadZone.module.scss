@@ -1,4 +1,8 @@
-.uploadZone { border: 1px dashed var(--primary-color); }
+.uploadZone {
+    //height: 200px;
+    border: 1px dashed var(--primary-color);
+    position:relative;
+}
 
 .uploadZoneBtn {
     border-radius: 34px;
@@ -25,13 +29,11 @@
     fill: var(--red-dark);
 }
 
-.resetRedesigned {
-    fill: var(--cancel-redesigned);
-}
 
 .uploadZoneBtnWrap {
-    width: 100%;
-    height: 100%;
+    //width: 100%;
+    //height: 300px;
+
     position: absolute;
     background-color: transparent;
     cursor: pointer;

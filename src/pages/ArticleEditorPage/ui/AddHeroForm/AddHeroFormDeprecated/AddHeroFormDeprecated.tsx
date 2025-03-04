@@ -58,6 +58,7 @@ export const AddHeroFormDeprecated = memo((props: AddHeroFormProps) => {
                                 handleImageChange={handleImageChange}
                                 resetImage={resetImage}
                                 className={cls.heroImageZone}
+                                height="420px"
                             />
                         </VStack>
                     </Box>
