@@ -38,6 +38,8 @@ Default.args = {
 
 export const WithImagePreview = Template.bind({});
 WithImagePreview.args = {
+    height: '300px',
+    width: '400px',
     imagePreview:
         'https://www.contentviewspro.com/wp-content/uploads/2017/07/default_image.png',
     handleImageChange: (e: ChangeEvent<HTMLInputElement>) => {
