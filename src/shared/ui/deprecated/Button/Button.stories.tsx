@@ -44,26 +44,8 @@ Outline.args = {
     theme: ButtonTheme.OUTLINE,
 };
 
-export const OutlineSizeL = Template.bind({});
-OutlineSizeL.args = {
-    theme: ButtonTheme.OUTLINE,
-    size: ButtonSize.L,
-};
-
-export const OutlineSizeXl = Template.bind({});
-OutlineSizeXl.args = {
-    theme: ButtonTheme.OUTLINE,
-    size: ButtonSize.XL,
-};
-
-export const OutlineDark = Template.bind({});
-OutlineDark.args = {
-    theme: ButtonTheme.OUTLINE,
-};
-OutlineDark.decorators = [ThemeDecorator(Theme.DARK)];
-
-export const BackgroundTheme = Template.bind({});
-BackgroundTheme.args = {
+export const Background = Template.bind({});
+Background.args = {
     theme: ButtonTheme.BACKGROUND,
 };
 
@@ -72,25 +54,58 @@ BackgroundInverted.args = {
     theme: ButtonTheme.BACKGROUND_INVERTED,
 };
 
+export const OutlineRed = Template.bind({});
+OutlineRed.args = {
+    theme: ButtonTheme.OUTLINE_RED,
+};
+
+export const OutlineDark = Template.bind({});
+OutlineDark.args = {
+    theme: ButtonTheme.OUTLINE,
+};
+OutlineDark.decorators = [ThemeDecorator(Theme.DARK)];
+
+export const Link = Template.bind({});
+Link.args = {
+    theme: ButtonTheme.LINK,
+};
+
+export const SizeSmall = Template.bind({});
+SizeSmall.args = {
+    size: ButtonSize.S,
+};
+
+export const SizeMedium = Template.bind({});
+SizeMedium.args = {
+    size: ButtonSize.M,
+};
+
+export const SizeLarge = Template.bind({});
+SizeLarge.args = {
+    size: ButtonSize.L,
+};
+
+export const SizeExtraLarge = Template.bind({});
+SizeExtraLarge.args = {
+    size: ButtonSize.XL,
+};
+
 export const Square = Template.bind({});
 Square.args = {
     children: '>',
-    theme: ButtonTheme.BACKGROUND_INVERTED,
     square: true,
 };
 
-export const SquareSizeL = Template.bind({});
-SquareSizeL.args = {
+export const SquareLarge = Template.bind({});
+SquareLarge.args = {
     children: '>',
-    theme: ButtonTheme.BACKGROUND_INVERTED,
     square: true,
     size: ButtonSize.L,
 };
 
-export const SquareSizeXl = Template.bind({});
-SquareSizeXl.args = {
+export const SquareExtraLarge = Template.bind({});
+SquareExtraLarge.args = {
     children: '>',
-    theme: ButtonTheme.BACKGROUND_INVERTED,
     square: true,
     size: ButtonSize.XL,
 };
