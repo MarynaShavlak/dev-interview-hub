@@ -52,6 +52,7 @@ export const initArticlesPage = createAsyncThunk<
         if (shouldFetchData) {
             dispatch(fetchArticlesListThunk({}));
         }
+        return undefined;
     } catch (error) {
         return rejectWithValue(
             handleThunkErrorMessage(

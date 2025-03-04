@@ -89,5 +89,12 @@ export const useUserArticlesTableColumns = (props: useTableColumnProps) => {
             ),
             actionColumn,
         ];
-    }, [actionColumn, columnHelper, createUserTextCol, t, titleColumnWidth]);
+    }, [
+        actionColumn,
+        columnHelper,
+        createUserTextCol,
+        navigateToArticle,
+        t,
+        titleColumnWidth,
+    ]);
 };

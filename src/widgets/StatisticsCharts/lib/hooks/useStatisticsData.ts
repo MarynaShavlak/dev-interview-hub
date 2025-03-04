@@ -16,22 +16,18 @@ export const useStatisticsData = () => {
     const { isLoading: isArticlesLoading, error: isArticlesError } =
         useGetArticles();
     const articles = useSelector(selectAllArticles);
-    // const articles = useSelector(getArticles.selectAll);
-    // console.log('entries', articles);
-    // const articles = useSelector(getArticles.selectAll);
 
     const {
         data: ratings = [],
         isLoading: isRatingsLoading,
         error: isRatingsError,
     } = useArticlesRatings();
-    console.log('ratings', ratings);
+
     const {
         data: comments = [],
         isLoading: isCommentsLoading,
         error: isCommentsError,
     } = useArticlesComments();
-    console.log('comments', comments);
 
     const isLoading =
         isUsersLoading ||
@@ -44,10 +40,3 @@ export const useStatisticsData = () => {
 
     return { users, articles, ratings, comments, isLoading, isError };
 };
-
-// export const useStatisticsData = () => {
-//     const articles = useSelector(getArticles.selectAll);
-//     console.log('articles', articles);
-//
-//     return { articles };
-// };

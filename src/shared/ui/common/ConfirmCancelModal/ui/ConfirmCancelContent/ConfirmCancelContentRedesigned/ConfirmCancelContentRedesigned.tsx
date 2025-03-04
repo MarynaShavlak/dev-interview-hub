@@ -1,11 +1,11 @@
 import React, { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import AttentionIcon from '@/shared/assets/icons/attention.svg';
-import { Icon } from '@/shared/ui/redesigned/Icon';
-import { Text } from '@/shared/ui/redesigned/Text';
-import { HStack, VStack } from '@/shared/ui/common/Stack';
+import { Icon } from '../../../../../redesigned/Icon';
+import { Text } from '../../../../../redesigned/Text';
+import { HStack, VStack } from '../../../../Stack';
 import cls from './ConfirmCancelContentRedesigned.module.scss';
-import { Button } from '@/shared/ui/redesigned/Button';
+import { Button } from '../../../../../redesigned/Button';
 import { ConfirmCancelContentProps } from '../ConfirmCancelContent';
 
 export const ConfirmCancelContentRedesigned = memo(

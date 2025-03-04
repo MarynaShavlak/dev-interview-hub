@@ -1,11 +1,11 @@
 import React, { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import AttentionIcon from '@/shared/assets/icons/attention.svg';
-import { Icon } from '@/shared/ui/deprecated/Icon';
-import { Text, TextSize } from '@/shared/ui/deprecated/Text';
-import { HStack, VStack } from '@/shared/ui/common/Stack';
+import { Icon } from '../../../../../deprecated/Icon';
+import { Text, TextSize } from '../../../../../deprecated/Text';
+import { HStack, VStack } from '../../../../Stack';
 import cls from './ConfirmCancelContentDeprecated.module.scss';
-import { Button, ButtonTheme } from '@/shared/ui/deprecated/Button';
+import { Button, ButtonTheme } from '../../../../../deprecated/Button';
 import { ConfirmCancelContentProps } from '../ConfirmCancelContent';
 
 export const ConfirmCancelContentDeprecated = memo(
