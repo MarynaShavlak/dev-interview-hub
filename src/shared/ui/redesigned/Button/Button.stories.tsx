@@ -10,7 +10,15 @@ export default {
         backgroundColor: { control: 'color' },
         variant: {
             control: 'select',
-            options: ['clear', 'outline', 'filled', 'save', 'cancel'],
+            options: [
+                'clear',
+                'outline',
+                'filled',
+                'save',
+                'cancel',
+                'accent',
+                'link',
+            ],
         },
         size: {
             control: 'select',
@@ -53,9 +61,14 @@ Cancel.args = {
 };
 
 export const Accent = Template.bind({});
-Save.args = {
+Accent.args = {
     children: 'Accent Button',
     variant: 'accent',
+};
+export const Link = Template.bind({});
+Link.args = {
+    children: 'Link Button',
+    variant: 'link',
 };
 
 export const Small = Template.bind({});
@@ -64,6 +77,11 @@ Small.args = {
     size: 's',
 };
 
+export const Medium = Template.bind({});
+Medium.args = {
+    children: 'Medium Button',
+    size: 'm',
+};
 export const Large = Template.bind({});
 Large.args = {
     children: 'Large Button',
@@ -111,4 +129,22 @@ WithBothAddons.args = {
     children: 'With Addons',
     addonLeft: <span>🔍</span>,
     addonRight: <span>⚙</span>,
+};
+
+export const ComplexButton = Template.bind({});
+ComplexButton.args = {
+    children: 'Complex Button',
+    variant: 'filled',
+    size: 'xl',
+    max: true,
+    addonLeft: (
+        <span role="img" aria-label="rocket">
+            🚀
+        </span>
+    ),
+    addonRight: (
+        <span role="img" aria-label="check">
+            ✔
+        </span>
+    ),
 };
