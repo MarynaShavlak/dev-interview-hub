@@ -11,11 +11,28 @@ export default {
         imagePreview: { control: 'text' },
         className: { control: 'text' },
     },
+    parameters: {
+        docs: {
+            source: {
+                type: 'code',
+            },
+        },
+    },
 } as ComponentMeta<typeof FileUploadZone>;
 
-const Template: ComponentStory<typeof FileUploadZone> = (args) => (
-    <FileUploadZone {...args} />
-);
+const Template: ComponentStory<typeof FileUploadZone> = (args) => {
+    return (
+        <div
+            style={{
+                width: '400px',
+                height: '300px',
+                margin: 'auto',
+            }}
+        >
+            <FileUploadZone {...args} />
+        </div>
+    );
+};
 
 export const Default = Template.bind({});
 Default.args = {
