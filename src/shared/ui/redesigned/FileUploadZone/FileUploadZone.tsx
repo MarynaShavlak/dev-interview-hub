@@ -15,10 +15,19 @@ interface FileUploadZoneProps {
     handleImageChange: (event: ChangeEvent<HTMLInputElement>) => void;
     resetImage: () => void;
     className?: string;
+    height?: string;
+    width?: string;
 }
 
 export const FileUploadZone = (props: FileUploadZoneProps) => {
-    const { imagePreview, handleImageChange, resetImage, className } = props;
+    const {
+        imagePreview,
+        handleImageChange,
+        resetImage,
+        className,
+        height = '300px',
+        width = '100%',
+    } = props;
     const { t } = useTranslation('profile');
     const uploadZoneClasses = getFlexClasses({
         vStack: true,
@@ -56,7 +65,7 @@ export const FileUploadZone = (props: FileUploadZoneProps) => {
         : t('Завантажити зображення');
 
     return imagePreview ? (
-        <div className={cls.uploadZoneBtnWrap}>
+        <div className={cls.uploadZoneBtnWrap} style={{ width, height }}>
             <FileUploadInput
                 onChange={handleImageChange}
                 AddFileElement={renderUploadButton(icon, text)}
@@ -75,6 +84,7 @@ export const FileUploadZone = (props: FileUploadZoneProps) => {
                 className,
             ])}
             max
+            style={{ width, height }}
         >
             <FileUploadInput
                 onChange={handleImageChange}

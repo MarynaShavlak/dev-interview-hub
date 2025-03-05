@@ -1,13 +1,13 @@
 import React, { ChangeEvent } from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { FileUploadZone } from './FileUploadZone';
-import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
-import { Theme } from '@/shared/const/theme';
+import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator/NewDesignDecorator';
 
 export default {
-    title: 'shared/deprecated/FileUploadZone',
+    title: 'shared/redesigned/FileUploadZone',
     component: FileUploadZone,
     argTypes: {
+        backgroundColor: { control: 'color' },
         imagePreview: { control: 'text' },
         className: { control: 'text' },
     },
@@ -18,6 +18,7 @@ export default {
             },
         },
     },
+    decorators: [NewDesignDecorator],
 } as ComponentMeta<typeof FileUploadZone>;
 
 const Template: ComponentStory<typeof FileUploadZone> = (args) => {
@@ -90,46 +91,3 @@ WithImagePreview.args = {
         console.log('Reset Image');
     },
 };
-
-export const DefaultDark = Template.bind({});
-DefaultDark.args = {
-    imagePreview: null,
-    handleImageChange: (e: ChangeEvent<HTMLInputElement>) => {
-        const file = e.target.files?.[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onloadend = () => {
-                console.log('File changed:', file);
-                console.log('Preview URL:', reader.result);
-            };
-            reader.readAsDataURL(file);
-        }
-    },
-    resetImage: () => {
-        console.log('Reset Image');
-    },
-};
-DefaultDark.decorators = [ThemeDecorator(Theme.DARK)];
-
-export const WithImagePreviewDarkTheme = Template.bind({});
-WithImagePreviewDarkTheme.args = {
-    height: '300px',
-    width: '400px',
-    imagePreview:
-        'https://www.contentviewspro.com/wp-content/uploads/2017/07/default_image.png',
-    handleImageChange: (e: ChangeEvent<HTMLInputElement>) => {
-        const file = e.target.files?.[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onloadend = () => {
-                console.log('File changed:', file);
-                console.log('Preview URL:', reader.result);
-            };
-            reader.readAsDataURL(file);
-        }
-    },
-    resetImage: () => {
-        console.log('Reset Image');
-    },
-};
-WithImagePreviewDarkTheme.decorators = [ThemeDecorator(Theme.DARK)];
