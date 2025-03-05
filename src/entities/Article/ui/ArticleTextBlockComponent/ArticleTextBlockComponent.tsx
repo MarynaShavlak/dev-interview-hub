@@ -1,4 +1,5 @@
 import React, { memo } from 'react';
+import { List } from '@/shared/ui/common/List';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
 import { Each } from '@/shared/lib/components/Each/Each';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
@@ -7,7 +8,6 @@ import { Text } from '@/shared/ui/redesigned/Text';
 import cls from './ArticleTextBlockComponent.module.scss';
 import { ArticleTextBlock } from '../../model/types/article';
 import { getTagContent } from '@/shared/lib/text/getTagContent/getTagContent';
-import { List } from '@/shared/ui/redesigned/List';
 import { VStack } from '@/shared/ui/common/Stack';
 
 interface ArticleTextBlockComponentProps {

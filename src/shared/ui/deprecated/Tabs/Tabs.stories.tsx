@@ -51,4 +51,31 @@ ExtraTabs.args = {
         { value: 'tab7', label: 'Tab 7' },
     ],
     value: 'tab4',
+    onTabClick: action('onTabClick'),
+};
+
+export const MultiSelectTabs = Template.bind({});
+MultiSelectTabs.args = {
+    tabs: [
+        { value: 'tab1', label: 'Tab 1' },
+        { value: 'tab2', label: 'Tab 2' },
+        { value: 'tab3', label: 'Tab 3' },
+        { value: 'tab4', label: 'Tab 4' },
+    ],
+    value: ['tab1', 'tab3'],
+    multiselect: true,
+    onTabClick: action('onTabClick'),
+};
+
+export const VerticalMultiSelect = Template.bind({});
+VerticalMultiSelect.args = {
+    tabs: [
+        { value: 'tab1', label: 'Tab 1' },
+        { value: 'tab2', label: 'Tab 2' },
+        { value: 'tab3', label: 'Tab 3' },
+    ],
+    value: ['tab1', 'tab2'], // Selected multiple tabs
+    direction: 'column',
+    multiselect: true,
+    onTabClick: action('onTabClick'),
 };

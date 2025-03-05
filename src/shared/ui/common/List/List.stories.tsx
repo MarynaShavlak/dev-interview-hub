@@ -4,7 +4,7 @@ import { List, ListProps } from './List';
 import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator/NewDesignDecorator';
 
 export default {
-    title: 'shared/redesigned/List',
+    title: 'shared/common/List',
     component: List,
     argTypes: {
         variant: { control: 'radio', options: ['primary', 'accent'] },
