@@ -1,7 +1,9 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { BarChart } from './BarChart';
-import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator/NewDesignDecorator'; // Update the path if necessary
+import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator/NewDesignDecorator';
+import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
+import { Theme } from '@/shared/const/theme'; // Update the path if necessary
 
 export default {
     title: 'shared/common/Charts/BarChart',
@@ -25,16 +27,25 @@ const Template: ComponentStory<typeof BarChart> = (args) => (
     <BarChart {...args} />
 );
 
-export const DefaultBarChart = Template.bind({});
-DefaultBarChart.args = {
-    data: [10, 20, 30, 40, 50],
-    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
-    title: 'Monthly Sales',
-    xAxisTitle: 'Month',
-    yAxisTitle: 'Sales ($)',
+const defaultArgs = {
+    data: [80, 70, 50, 40, 10],
+    labels: ['Стаття 1', 'Стаття 2', 'Стаття 3', 'Стаття 4', 'Стаття 5'],
+    title: 'Рейтинг статей за кількістю коментарів',
+    xAxisTitle: 'Назва статті',
+    yAxisTitle: 'Кількість коментарів',
     width: '500',
     height: '400',
 };
+export const DefaultBarChart = Template.bind({});
+DefaultBarChart.args = defaultArgs;
+
+export const DarkThemeBarChart = Template.bind({});
+DarkThemeBarChart.args = defaultArgs;
+DarkThemeBarChart.decorators = [ThemeDecorator(Theme.DARK)];
+
+export const OrangeThemeBarChart = Template.bind({});
+OrangeThemeBarChart.args = defaultArgs;
+OrangeThemeBarChart.decorators = [ThemeDecorator(Theme.ORANGE)];
 
 export const BarChartWithNoData = Template.bind({});
 BarChartWithNoData.args = {
