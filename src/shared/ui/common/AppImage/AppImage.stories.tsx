@@ -22,9 +22,11 @@ const Template: ComponentStory<typeof AppImage> = (args) => (
 
 export const Normal = Template.bind({});
 Normal.args = {
-    src: 'https://via.placeholder.com/400x300',
+    src: 'https://hwchamber.co.uk/wp-content/uploads/2022/04/avatar-placeholder.gif',
     alt: 'Normal image',
     className: 'normal-image-class',
+    width: 200,
+    height: 200,
 };
 
 export const WithErrorFallback = Template.bind({});
@@ -48,14 +50,18 @@ WithErrorFallbackRedesigned.decorators = [NewDesignDecorator];
 
 export const LargeImage = Template.bind({});
 LargeImage.args = {
-    src: 'https://via.placeholder.com/800x600',
+    src: 'https://hwchamber.co.uk/wp-content/uploads/2022/04/avatar-placeholder.gif',
     alt: 'Large image',
     className: 'large-image-class',
+    width: 400,
+    height: 400,
 };
 
 export const SmallImage = Template.bind({});
 SmallImage.args = {
-    src: 'https://via.placeholder.com/100x100',
+    src: 'https://hwchamber.co.uk/wp-content/uploads/2022/04/avatar-placeholder.gif',
     alt: 'Small image',
     className: 'small-image-class',
+    width: 100,
+    height: 100,
 };
