@@ -107,3 +107,26 @@ DefaultDark.args = {
     },
 };
 DefaultDark.decorators = [ThemeDecorator(Theme.DARK)];
+
+export const WithImagePreviewDarkTheme = Template.bind({});
+WithImagePreviewDarkTheme.args = {
+    height: '300px',
+    width: '400px',
+    imagePreview:
+        'https://www.contentviewspro.com/wp-content/uploads/2017/07/default_image.png',
+    handleImageChange: (e: ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                console.log('File changed:', file);
+                console.log('Preview URL:', reader.result);
+            };
+            reader.readAsDataURL(file);
+        }
+    },
+    resetImage: () => {
+        console.log('Reset Image');
+    },
+};
+WithImagePreviewDarkTheme.decorators = [ThemeDecorator(Theme.DARK)];
