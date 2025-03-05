@@ -21,14 +21,27 @@ export default {
 } as ComponentMeta<typeof FileUploadZone>;
 
 const Template: ComponentStory<typeof FileUploadZone> = (args) => {
+    const { imagePreview } = args;
     return (
         <div
             style={{
                 width: '400px',
                 height: '300px',
                 margin: 'auto',
+                position: 'relative',
             }}
         >
+            <img
+                src={imagePreview || ''}
+                style={{
+                    width: '400px',
+                    height: '300px',
+
+                    position: 'absolute',
+                    top: '0',
+                    left: '0',
+                }}
+            />
             <FileUploadZone {...args} />
         </div>
     );
