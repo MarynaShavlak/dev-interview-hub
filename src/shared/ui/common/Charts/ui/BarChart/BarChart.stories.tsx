@@ -36,16 +36,16 @@ const defaultArgs = {
     width: '500',
     height: '400',
 };
-export const DefaultBarChart = Template.bind({});
-DefaultBarChart.args = defaultArgs;
+export const Default = Template.bind({});
+Default.args = defaultArgs;
 
-export const DarkThemeBarChart = Template.bind({});
-DarkThemeBarChart.args = defaultArgs;
-DarkThemeBarChart.decorators = [ThemeDecorator(Theme.DARK)];
+export const DarkTheme = Template.bind({});
+DarkTheme.args = defaultArgs;
+DarkTheme.decorators = [ThemeDecorator(Theme.DARK)];
 
-export const OrangeThemeBarChart = Template.bind({});
-OrangeThemeBarChart.args = defaultArgs;
-OrangeThemeBarChart.decorators = [ThemeDecorator(Theme.ORANGE)];
+export const OrangeTheme = Template.bind({});
+OrangeTheme.args = defaultArgs;
+OrangeTheme.decorators = [ThemeDecorator(Theme.ORANGE)];
 
 export const BarChartWithNoData = Template.bind({});
 BarChartWithNoData.args = {
@@ -79,14 +79,17 @@ BarChartWithNoTitle.args = {
 };
 
 // redesigned charts
-export const RedesignedDefaultBarChart = Template.bind({});
-RedesignedDefaultBarChart.args = {
-    data: [10, 20, 30, 40, 50],
-    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
-    title: 'Monthly Sales',
-    xAxisTitle: 'Month',
-    yAxisTitle: 'Sales ($)',
-    width: '500',
-    height: '400',
-};
-RedesignedDefaultBarChart.decorators = [NewDesignDecorator];
+export const RedesignedDefault = Template.bind({});
+RedesignedDefault.args = defaultArgs;
+RedesignedDefault.decorators = [NewDesignDecorator];
+
+export const RedesignedDark = Template.bind({});
+RedesignedDark.args = defaultArgs;
+RedesignedDark.decorators = [NewDesignDecorator, ThemeDecorator(Theme.DARK)];
+
+export const RedesignedOrange = Template.bind({});
+RedesignedOrange.args = defaultArgs;
+RedesignedOrange.decorators = [
+    NewDesignDecorator,
+    ThemeDecorator(Theme.ORANGE),
+];
