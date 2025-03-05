@@ -1,13 +1,13 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { PieChart } from './PieChart';
+import { RadialbarChart } from './RadialbarChart';
 import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator/NewDesignDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 import { Theme } from '@/shared/const/theme';
 
 export default {
-    title: 'shared/common/Charts/PieChart',
-    component: PieChart,
+    title: 'shared/common/Charts/RadialbarChart',
+    component: RadialbarChart,
     argTypes: {
         data: { control: 'array' },
         labels: { control: 'array' },
@@ -16,23 +16,23 @@ export default {
             control: 'radio',
         },
     },
-} as ComponentMeta<typeof PieChart>;
+} as ComponentMeta<typeof RadialbarChart>;
 
-const Template: ComponentStory<typeof PieChart> = (args) => {
+const Template: ComponentStory<typeof RadialbarChart> = (args) => {
     return (
         <div style={{ width: '500px', height: '500px', margin: 'auto' }}>
-            <PieChart {...args} />
+            <RadialbarChart {...args} />
         </div>
     );
 };
 
 const defaultArgs = {
-    data: [40, 30, 20, 10],
-    labels: ['Category A', 'Category B', 'Category C', 'Category D'],
-    title: 'Donut Chart Example',
-    width: '380',
-    height: '190',
-    legendPosition: 'bottom' as const,
+    data: [70, 50, 30],
+    labels: ['Progress A', 'Progress B', 'Progress C'],
+    title: 'Radial Bar Chart Example',
+    width: '400',
+    height: '500',
+    legendPosition: 'right' as const,
 };
 
 export const Default = Template.bind({});
@@ -46,13 +46,13 @@ export const OrangeTheme = Template.bind({});
 OrangeTheme.args = defaultArgs;
 OrangeTheme.decorators = [ThemeDecorator(Theme.ORANGE)];
 
-export const PieChartWithNoData = Template.bind({});
-PieChartWithNoData.args = {
+export const RadialbarChartWithNoData = Template.bind({});
+RadialbarChartWithNoData.args = {
     data: [],
     labels: [],
     title: 'No Data Available',
-    width: '300',
-    height: '300',
+    width: '400',
+    height: '500',
 };
 
 export const RedesignedDefault = Template.bind({});

@@ -28,7 +28,6 @@ export const UsersActivityChartDeprecated = memo(
                     legendPosition="top"
                     height="200"
                     width="380"
-                    totalLabel={t('Загальний відсоток')}
                 />
             </Card>
         );

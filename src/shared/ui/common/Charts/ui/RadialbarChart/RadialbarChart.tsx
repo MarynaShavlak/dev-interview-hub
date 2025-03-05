@@ -7,9 +7,7 @@ import { mergeOptions } from '../../lib/utilities/mergeOptions/mergeOptions';
 import { BaseChartProps } from '../types';
 
 interface BarChartProps extends BaseChartProps {
-    data: [number, number, number];
-    totalLabel: string;
-    totalValue?: string;
+    data: number[];
 }
 
 export const RadialbarChart = (props: BarChartProps) => {
@@ -20,8 +18,6 @@ export const RadialbarChart = (props: BarChartProps) => {
         legendPosition = 'right',
         width = '400',
         height = '500',
-        totalLabel,
-        totalValue,
     } = props;
 
     const baseChartOptions = useBaseChartOptions({
@@ -45,28 +41,6 @@ export const RadialbarChart = (props: BarChartProps) => {
                 },
                 dataLabels: {
                     show: false,
-                    // total: {
-                    //     show: true,
-                    //     label: totalLabel,
-                    //     fontSize: '10px',
-                    //     formatter(w) {
-                    //         const res = (
-                    //             w.config.series.reduce(
-                    //                 (
-                    //                     accumulator: number,
-                    //                     currentValue: number,
-                    //                 ) => accumulator + currentValue,
-                    //                 0,
-                    //             ) / w.config.series.length
-                    //         ).toFixed(2);
-                    //
-                    //         return totalValue || `${res}%`;
-                    //     },
-                    // },
-                    // value: {
-                    //     fontSize: '16px',
-                    //     fontWeight: 'bold',
-                    // },
                 },
                 barLabels: {
                     enabled: true,

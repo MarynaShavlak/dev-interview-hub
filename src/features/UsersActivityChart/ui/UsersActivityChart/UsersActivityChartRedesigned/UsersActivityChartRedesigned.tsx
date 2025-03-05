@@ -28,7 +28,6 @@ export const UsersActivityChartRedesigned = memo(
                     legendPosition="top"
                     height={height}
                     width={width}
-                    totalLabel={t('Загальний відсоток')}
                 />
             </Card>
         );

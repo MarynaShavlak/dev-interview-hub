@@ -37,8 +37,6 @@ export const ArticleRatingDistributionChartRedesigned = memo(
                     legendPosition="top"
                     height={height}
                     width={width}
-                    totalLabel={t('Загальна кількість')}
-                    totalValue={`${totalArticlesWithRatings}`}
                 />
             </Card>
         );
