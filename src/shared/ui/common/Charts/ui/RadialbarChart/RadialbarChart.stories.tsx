@@ -69,3 +69,11 @@ RedesignedOrange.decorators = [
     NewDesignDecorator,
     ThemeDecorator(Theme.ORANGE),
 ];
+
+export const WithCustomSize = Template.bind({});
+WithCustomSize.args = {
+    ...defaultArgs,
+    width: '200px',
+    height: '200px',
+};
+WithCustomSize.decorators = [NewDesignDecorator];
