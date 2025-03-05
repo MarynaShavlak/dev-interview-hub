@@ -24,6 +24,10 @@ i18n.use(initReactI18next).init({
             translation: {
                 Мова: 'English',
                 'Мова абревіатура': 'EN',
+                'Текст підтвердження': 'Are you sure you want to delete',
+                'Текст попередження': 'This action cannot be undone.',
+                'Незбережені зміни': 'You have unsaved changes',
+                'Текст відміни': 'Are you sure you want to cancel',
             },
             articleDetails: {
                 '{{count}} перегляд': '{{count}} view',
@@ -37,6 +41,10 @@ i18n.use(initReactI18next).init({
             translation: {
                 Мова: 'Українська',
                 'Мова абревіатура': 'УКР',
+                'Текст підтвердження': 'Ви впевнені, що хочете видалити',
+                'Текст попередження': 'Цю дію неможливо скасувати.',
+                'Незбережені зміни': 'У вас є незбережені зміни.',
+                'Текст відміни': 'Ви впевнені, що хочете скасувати',
             },
             articleDetails: {
                 '{{count}} переглядів_zero': '{{count}} переглядів',
