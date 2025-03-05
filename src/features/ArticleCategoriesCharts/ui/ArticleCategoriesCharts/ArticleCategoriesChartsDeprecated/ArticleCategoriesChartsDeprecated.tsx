@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { DonutChart } from '@/shared/ui/common/Charts/ui/DonutChart/DonutChart';
+import { PieChart } from '@/shared/ui/common/Charts/ui/PieChart/PieChart';
 import { Card } from '@/shared/ui/deprecated/Card';
 import { ArticleCategoriesChartsProps } from '../../../model/types/types';
 import { useArticleCategoriesChartData } from '../../../lib/hooks/useArticleCategoriesChartData';
@@ -21,7 +21,7 @@ export const ArticleCategoriesChartsDeprecated = memo(
         return (
             <VStack gap="16" max className={className}>
                 <Card>
-                    <DonutChart
+                    <PieChart
                         data={articlesByCategories}
                         labels={labels}
                         title={t('Cтатті за категоріями, %')}
@@ -32,7 +32,7 @@ export const ArticleCategoriesChartsDeprecated = memo(
                 </Card>
 
                 <Card>
-                    <DonutChart
+                    <PieChart
                         data={viewsByCategories}
                         labels={labels}
                         title={t('Перегляди статей за категоріями, %')}

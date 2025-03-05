@@ -10,7 +10,7 @@ interface DonutChartProps extends BaseChartProps {
     data: number[];
 }
 
-export const DonutChart = (props: DonutChartProps) => {
+export const PieChart = (props: DonutChartProps) => {
     const {
         data,
         labels,
