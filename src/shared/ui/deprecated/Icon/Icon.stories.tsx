@@ -29,6 +29,8 @@ Inverted.args = {
 export const UserIconExample = Template.bind({});
 UserIconExample.args = {
     Svg: UserIcon,
+    width: 24,
+    height: 24,
 };
 
 export const CustomSize = Template.bind({});

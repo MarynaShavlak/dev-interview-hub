@@ -78,3 +78,52 @@ Small.args = {
     placeholder: 'Small input',
     size: 's',
 };
+
+export const Clearable = Template.bind({});
+Clearable.args = {
+    placeholder: 'Type something',
+    clear: true,
+    size: 'm',
+};
+
+export const WithValidation = Template.bind({});
+WithValidation.args = {
+    label: 'Email',
+    placeholder: 'Enter your email',
+    validations: { maxLength: 20 },
+    errors: {
+        isEmpty: false,
+        minLengthError: false,
+        maxLengthError: true,
+        emailError: false,
+        usernameError: true,
+        isUrlError: false,
+    },
+    size: 'm',
+    maxLengthIndicator: true,
+};
+
+export const CustomGap = Template.bind({});
+CustomGap.args = {
+    label: 'Custom gap',
+    placeholder: 'Input with increased spacing',
+    gap: '8',
+    size: 'm',
+};
+
+export const WithError = Template.bind({});
+WithError.args = {
+    label: 'Input with max length error and username error',
+    validations: { maxLength: 5 },
+    value: 'Text which is longer than max available length and is not correct username',
+    errors: {
+        isEmpty: false,
+        minLengthError: false,
+        maxLengthError: true,
+        emailError: false,
+        usernameError: true,
+        isUrlError: false,
+    },
+    size: 'm',
+    maxLengthIndicator: true,
+};

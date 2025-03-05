@@ -44,3 +44,22 @@ export const DigitsOnly = Template.bind({});
 DigitsOnly.args = {
     digitsOnly: true,
 };
+
+export const WithBorder = Template.bind({});
+WithBorder.args = {
+    value: 'Border enabled',
+    withBorder: true,
+};
+
+export const MaxLengthIndicator = Template.bind({});
+MaxLengthIndicator.args = {
+    value: 'Limited text',
+    maxLengthIndicator: true,
+    validations: { maxLength: 10 },
+};
+
+export const EmptyPlaceholder = Template.bind({});
+EmptyPlaceholder.args = {
+    placeholder: '',
+    value: 'Input with no placeholder',
+};
