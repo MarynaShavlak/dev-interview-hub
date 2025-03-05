@@ -7,6 +7,7 @@ import { AppImage } from '../../common/AppImage';
 import UserIcon from '../../../assets/icons/user-filled.svg';
 import { Skeleton } from '../Skeleton';
 import { Icon } from '../Icon';
+import { truncateText } from '@/shared/lib/text/truncateText/truncateText';
 
 interface AvatarProps {
     className?: string;
@@ -68,7 +69,7 @@ export const Avatar = memo(
         }
         const truncatedUserName =
             textLength && userName.length > textLength
-                ? `${userName.slice(0, textLength - 3)}...`
+                ? `${truncateText(userName, textLength - 3)}`
                 : userName;
 
         return (
