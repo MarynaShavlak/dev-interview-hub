@@ -49,3 +49,21 @@ AccentCentered.args = {
     variant: 'accent',
     align: 'center',
 };
+
+export const AlignLeft = Template.bind({});
+AlignLeft.args = {
+    items: ['Left Aligned 1', 'Left Aligned 2'],
+    align: 'left',
+};
+
+export const AlignCenter = Template.bind({});
+AlignCenter.args = {
+    items: ['Center Aligned 1', 'Center Aligned 2'],
+    align: 'center',
+};
+
+export const AlignRight = Template.bind({});
+AlignRight.args = {
+    items: ['Right Aligned 1', 'Right Aligned 2'],
+    align: 'right',
+};
