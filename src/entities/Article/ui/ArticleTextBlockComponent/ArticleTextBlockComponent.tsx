@@ -42,12 +42,7 @@ const renderText = (text: string, withTags: boolean) => {
     }
     if (typeof result === 'object') {
         return (
-            <List
-                items={result.items}
-                variant="primary"
-                size="m"
-                type={result.name}
-            />
+            <List items={result.items} variant="primary" type={result.name} />
         );
     }
     return null;

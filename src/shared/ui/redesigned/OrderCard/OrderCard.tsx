@@ -5,6 +5,7 @@ import { Text } from '../Text';
 
 import cls from './OrderCard.module.scss';
 import { getFlexClasses } from '@/shared/lib/classes/getFlexClasses/getFlexClasses';
+import { getTextSizeByIndex } from '@/shared/lib/text/getTextSizeByIndex/getTextSizeByIndex';
 
 interface OrderCardProps {
     index: number;
@@ -17,7 +18,6 @@ export const OrderCard = memo(({ index, className }: OrderCardProps) => {
         align: 'center',
         justify: 'center',
     });
-
     return (
         <Card
             border="round"
@@ -27,7 +27,7 @@ export const OrderCard = memo(({ index, className }: OrderCardProps) => {
                 className,
             ])}
         >
-            <Text text={String(index)} size="m" />
+            <Text text={String(index)} size={getTextSizeByIndex(index)} />
         </Card>
     );
 });

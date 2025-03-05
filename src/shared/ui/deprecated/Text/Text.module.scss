@@ -42,6 +42,17 @@
     text-align: justify;
 }
 
+.size_xs {
+    .title {
+        font: var(--font-s);
+    }
+
+    .text {
+        font: var(--font-xs);
+    }
+}
+
+
 .size_s {
     .title {
         font: var(--font-m);

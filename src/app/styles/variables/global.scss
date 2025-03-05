@@ -3,6 +3,11 @@
     --font-family-text-redesigned: "Nunito Sans", sans-serif;
     --font-family-header-redesigned: "Roboto", sans-serif;
 
+    // size xs
+    --font-size-xs: 12px;
+    --font-line-xs: 20px;
+    --font-xs: var(--font-size-xs) / var(--font-line-xs) var(--font-family-main);
+
     // size s
     --font-size-s: 12px;
     --font-line-s: 20px;
@@ -38,6 +43,9 @@
     --red-dark: #ce0505;
 
     // redesigned
+
+    // xs
+    --font-xs-redesigned: var(--font-size-xs) / var(--font-line-xs) var(--font-family-text-redesigned);
 
     // s
     --font-s-redesigned: var(--font-size-s) / var(--font-line-s) var(--font-family-text-redesigned);

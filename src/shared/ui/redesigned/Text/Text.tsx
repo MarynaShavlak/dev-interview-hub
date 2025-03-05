@@ -7,7 +7,7 @@ import { getStyleConfig } from './getStyleConfig';
 
 export type TextVariant = 'primary' | 'error' | 'accent' | 'secondary';
 export type TextAlign = 'right' | 'left' | 'center' | 'justify';
-export type TextSize = 's' | 'm' | 'l';
+export type TextSize = 'xs' | 's' | 'm' | 'l';
 
 interface TextProps extends TestProps {
     className?: string;
@@ -21,15 +21,17 @@ interface TextProps extends TestProps {
     withTags?: boolean;
 }
 
-type HeaderTagType = 'h1' | 'h2' | 'h3';
+type HeaderTagType = 'h1' | 'h2' | 'h3' | 'h4';
 
 const mapSizeToClass: Record<TextSize, string> = {
+    xs: cls.size_xs,
     s: cls.size_s,
     m: cls.size_m,
     l: cls.size_l,
 };
 
 const mapSizeToHeaderTag: Record<TextSize, HeaderTagType> = {
+    xs: 'h4',
     s: 'h3',
     m: 'h2',
     l: 'h1',

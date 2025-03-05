@@ -54,6 +54,17 @@
     text-align: justify;
 }
 
+.size_xs {
+    .title {
+        font: var(--font-s-redesigned);
+    }
+
+    .text {
+        font: var(--font-xs-redesigned);
+    }
+}
+
+
 .size_s {
     .title {
         font: var(--font-m-redesigned);

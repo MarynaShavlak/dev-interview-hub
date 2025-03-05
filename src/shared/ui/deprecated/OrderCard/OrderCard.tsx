@@ -1,10 +1,11 @@
 import { memo } from 'react';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { Card, CardTheme } from '../Card';
-import { Text, TextSize } from '../Text';
+import { Text } from '../Text';
 
 import cls from './OrderCard.module.scss';
 import { getFlexClasses } from '@/shared/lib/classes/getFlexClasses/getFlexClasses';
+import { getDeprecatedTextSizeByIndex } from '@/shared/lib/text/getTextSizeByIndex/getTextSizeByIndex';
 
 interface OrderCardProps {
     index: number;
@@ -26,7 +27,10 @@ export const OrderCard = memo(({ index, className }: OrderCardProps) => {
                 className,
             ])}
         >
-            <Text text={String(index)} size={TextSize.M} />
+            <Text
+                text={String(index)}
+                size={getDeprecatedTextSizeByIndex(index)}
+            />
         </Card>
     );
 });

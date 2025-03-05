@@ -19,6 +19,7 @@ export enum TextAlign {
 }
 
 export enum TextSize {
+    XS = 'size_xs',
     S = 'size_s',
     M = 'size_m',
     L = 'size_l',
@@ -34,9 +35,10 @@ interface TextProps extends TestProps {
     withTags?: boolean;
 }
 
-type HeaderTagType = 'h1' | 'h2' | 'h3';
+type HeaderTagType = 'h1' | 'h2' | 'h3' | 'h4';
 
 const mapSizeToHeaderTag: Record<TextSize, HeaderTagType> = {
+    [TextSize.XS]: 'h4',
     [TextSize.S]: 'h3',
     [TextSize.M]: 'h2',
     [TextSize.L]: 'h1',
