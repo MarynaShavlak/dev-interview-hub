@@ -8,11 +8,11 @@ export const getStyleConfig = (
     if (isOnlyTitleOrText) {
         return {
             bothStyles: { [cls.bold]: bold, [cls.italic]: italic },
-            singleElementStyles: {},
+            singleElementStyles: { [cls.italic]: italic },
         };
     }
     return {
-        bothStyles: {},
+        bothStyles: { [cls.italic]: italic },
         singleElementStyles: { [cls.bold]: bold, [cls.italic]: italic },
     };
 };

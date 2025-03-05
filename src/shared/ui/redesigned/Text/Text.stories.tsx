@@ -53,9 +53,24 @@ ErrorVariant.args = {
 export const AccentVariant = Template.bind({});
 AccentVariant.args = {
     title: 'Accent Variant',
-    text: 'This is the accent variant with bold text.',
+    text: 'This is the accent variant ',
     variant: 'accent',
     size: 'm',
+};
+
+export const SecondaryVariant = Template.bind({});
+SecondaryVariant.args = {
+    title: 'Secondary Variant',
+    text: 'This is the secondary variant',
+    variant: 'secondary',
+    size: 'm',
+};
+
+export const ExtraSmallSize = Template.bind({});
+ExtraSmallSize.args = {
+    title: 'Extra Small Size Title',
+    text: 'This is a  extra small-sized text component.',
+    size: 'xs',
 };
 
 export const SmallSize = Template.bind({});
@@ -100,9 +115,23 @@ RightAligned.args = {
     align: 'right',
 };
 
+export const ItalicText = Template.bind({});
+ItalicText.args = {
+    title: 'Italic Title',
+    text: 'This text is italic.',
+    italic: true,
+};
+
+export const BoldTitle = Template.bind({});
+BoldTitle.args = {
+    title: 'Bold Title',
+    text: 'This text is bold.',
+    bold: true,
+};
+
 export const BoldText = Template.bind({});
 BoldText.args = {
-    title: 'Bold Title',
+    title: undefined,
     text: 'This text is bold.',
     bold: true,
 };
@@ -115,4 +144,27 @@ NoTitle.args = {
 export const NoText = Template.bind({});
 NoText.args = {
     title: 'This title has no text.',
+};
+
+export const WithTags = Template.bind({});
+WithTags.args = {
+    title: 'Text with Tags',
+    text: '<strong>This text includes HTML tags</strong>',
+    withTags: true,
+};
+
+export const WithRenderTags = Template.bind({});
+WithRenderTags.args = {
+    title: 'Text with Tags',
+    text:
+        '<pre>' +
+        '// Here tag pre is rendered' +
+        '\n' +
+        'export const WithRenderTags = Template.bind({});\n' +
+        'WithRenderTags.args = {\n' +
+        "    title: 'Text with Tags',\n" +
+        "    text: '<pre>This text includes HTML tags</pre>',\n" +
+        '    withTags: false,\n' +
+        '};</pre>',
+    withTags: false,
 };
