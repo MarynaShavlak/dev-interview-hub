@@ -78,13 +78,18 @@ OnlyTextDark.args = {
 };
 OnlyTextDark.decorators = [ThemeDecorator(Theme.DARK)];
 
-export const SizeL = Template.bind({});
-SizeL.args = {
+export const SizeXS = Template.bind({});
+SizeXS.args = {
     title: 'Title lorem ipsun',
     text: 'Description Description Description Description',
-    size: TextSize.L,
+    size: TextSize.XS,
 };
-
+export const SizeS = Template.bind({});
+SizeS.args = {
+    title: 'Title lorem ipsun',
+    text: 'Description Description Description Description',
+    size: TextSize.S,
+};
 export const SizeM = Template.bind({});
 SizeM.args = {
     title: 'Title lorem ipsun',
@@ -92,11 +97,11 @@ SizeM.args = {
     size: TextSize.M,
 };
 
-export const SizeS = Template.bind({});
-SizeS.args = {
+export const SizeL = Template.bind({});
+SizeL.args = {
     title: 'Title lorem ipsun',
     text: 'Description Description Description Description',
-    size: TextSize.S,
+    size: TextSize.L,
 };
 
 export const AlignCenter = Template.bind({});
@@ -111,4 +116,27 @@ AlignRight.args = {
     title: 'Title lorem ipsun',
     text: 'Description Description Description Description',
     align: TextAlign.RIGHT,
+};
+
+export const WithTags = Template.bind({});
+WithTags.args = {
+    title: 'Text with Tags',
+    text: '<strong>This text includes HTML tags</strong>',
+    withTags: true,
+};
+
+export const WithRenderTags = Template.bind({});
+WithRenderTags.args = {
+    title: 'Text with Tags',
+    text:
+        '<pre>' +
+        '// Here tag pre is rendered' +
+        '\n' +
+        'export const WithRenderTags = Template.bind({});\n' +
+        'WithRenderTags.args = {\n' +
+        "    title: 'Text with Tags',\n" +
+        "    text: '<pre>This text includes HTML tags</pre>',\n" +
+        '    withTags: false,\n' +
+        '};</pre>',
+    withTags: false,
 };
