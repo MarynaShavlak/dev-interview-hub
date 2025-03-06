@@ -3,6 +3,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import { CommentList } from './CommentList';
 import {
+    mockDeleteComment,
     testCommentData,
     testCommentNoUserAvatarData,
     testCommentsData,
@@ -23,6 +24,12 @@ const Template: ComponentStory<typeof CommentList> = (args) => (
 
 const normalArgs = {
     comments: testCommentsData,
+    canDeleteComments: false,
+};
+const withDeleteArgs = {
+    comments: testCommentsData,
+    canDeleteComments: true,
+    deleteComment: mockDeleteComment,
 };
 
 const loadingArgs = {
@@ -30,27 +37,60 @@ const loadingArgs = {
     isLoading: true,
 };
 
-export const Normal = Template.bind({});
-Normal.args = normalArgs;
+export const Default = Template.bind({});
+Default.args = normalArgs;
 
-export const WithOneNoUserAvatarComment = Template.bind({});
-WithOneNoUserAvatarComment.args = {
+export const SingleCommentNoAvatar = Template.bind({});
+SingleCommentNoAvatar.args = {
     comments: [testCommentNoUserAvatarData, testCommentData],
 };
 
-export const Loading = Template.bind({});
-Loading.args = loadingArgs;
+export const WithDeletePermission = Template.bind({});
+WithDeletePermission.args = withDeleteArgs;
 
-export const NormalRedesigned = Template.bind({});
-NormalRedesigned.args = normalArgs;
-NormalRedesigned.decorators = [NewDesignDecorator];
+export const LoadingState = Template.bind({});
+LoadingState.args = loadingArgs;
 
-export const WithOneNoUserAvatarCommentRedesigned = Template.bind({});
-WithOneNoUserAvatarCommentRedesigned.args = {
+export const DefaultRedesigned = Template.bind({});
+DefaultRedesigned.args = normalArgs;
+DefaultRedesigned.decorators = [NewDesignDecorator];
+
+export const WithDeletePermissionRedesigned = Template.bind({});
+WithDeletePermissionRedesigned.args = withDeleteArgs;
+WithDeletePermissionRedesigned.decorators = [NewDesignDecorator];
+
+export const SingleCommentNoAvatarRedesigned = Template.bind({});
+SingleCommentNoAvatarRedesigned.args = {
     comments: [testCommentNoUserAvatarData, testCommentData],
 };
-WithOneNoUserAvatarCommentRedesigned.decorators = [NewDesignDecorator];
+SingleCommentNoAvatarRedesigned.decorators = [NewDesignDecorator];
 
-export const LoadingRedesigned = Template.bind({});
-LoadingRedesigned.args = loadingArgs;
-LoadingRedesigned.decorators = [NewDesignDecorator];
+export const LoadingStateRedesigned = Template.bind({});
+LoadingStateRedesigned.args = loadingArgs;
+LoadingStateRedesigned.decorators = [NewDesignDecorator];
+
+export const EmptyCommentList = Template.bind({});
+EmptyCommentList.args = {
+    comments: [],
+    canDeleteComments: false,
+};
+
+export const EmptyCommentListRedesigned = Template.bind({});
+EmptyCommentListRedesigned.args = {
+    comments: [],
+    canDeleteComments: false,
+};
+EmptyCommentListRedesigned.decorators = [NewDesignDecorator];
+
+export const ErrorState = Template.bind({});
+ErrorState.args = {
+    comments: [],
+    error: 'Failed to load comments',
+};
+
+export const ErrorStateRedesigned = Template.bind({});
+ErrorStateRedesigned.args = {
+    comments: [],
+    error: 'Failed to load comments',
+};
+ErrorStateRedesigned.decorators = [NewDesignDecorator];

@@ -2,7 +2,11 @@ import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import { CommentCard } from './CommentCard';
-import { testCommentData, testCommentNoUserAvatarData } from '../../testing';
+import {
+    mockDeleteComment,
+    testCommentData,
+    testCommentNoUserAvatarData,
+} from '../../testing';
 import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator/NewDesignDecorator';
 
 export default {
@@ -16,16 +20,6 @@ export default {
 const Template: ComponentStory<typeof CommentCard> = (args) => (
     <CommentCard {...args} />
 );
-
-// Mock deleteComment function
-const mockDeleteComment = async (commentId: string) => {
-    return new Promise((resolve) => {
-        setTimeout(() => {
-            console.log(`Comment with ID ${commentId} deleted.`);
-            resolve(true);
-        }, 500);
-    });
-};
 
 const normalArgs = {
     comment: testCommentData,
