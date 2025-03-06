@@ -4,7 +4,7 @@ import { NoArticlesFound } from './NoArticlesFound';
 import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator/NewDesignDecorator';
 
 export default {
-    title: 'entities/Article/NoArticlesFound',
+    title: 'entities/Article/ArticleList/NoArticlesFound',
     component: NoArticlesFound,
     argTypes: {
         backgroundColor: { control: 'color' },

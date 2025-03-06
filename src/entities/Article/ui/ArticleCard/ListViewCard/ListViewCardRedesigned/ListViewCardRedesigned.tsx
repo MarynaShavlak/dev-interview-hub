@@ -19,7 +19,7 @@ import { AppLink } from '@/shared/ui/redesigned/AppLink';
 import { getRouteArticleDetails } from '@/shared/const/router/router';
 import { truncateText } from '@/shared/lib/text/truncateText/truncateText';
 import { formatDateString } from '@/shared/lib/text/formatDateString/formatDateString';
-import { ArticleTextBlockComponent } from '../../../..';
+import { ArticleTextBlockComponent } from '../../../../ui/ArticleTextBlockComponent/ArticleTextBlockComponent';
 
 export const ListViewCardRedesigned = memo((props: BaseCardProps) => {
     const { className, article, handleClick } = props;
