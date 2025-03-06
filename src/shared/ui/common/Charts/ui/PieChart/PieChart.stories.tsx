@@ -29,7 +29,7 @@ const Template: ComponentStory<typeof PieChart> = (args) => {
 const defaultArgs = {
     data: [40, 30, 20, 10],
     labels: ['Category A', 'Category B', 'Category C', 'Category D'],
-    title: 'Donut Chart Example',
+    title: 'Pie Chart Example',
     width: '380',
     height: '190',
     legendPosition: 'bottom' as const,
@@ -50,9 +50,9 @@ export const PieChartWithNoData = Template.bind({});
 PieChartWithNoData.args = {
     data: [],
     labels: [],
-    title: 'No Data Available',
-    width: '300',
-    height: '300',
+    title: 'Pie Chart Example',
+    width: '380',
+    height: '190',
 };
 
 export const RedesignedDefault = Template.bind({});

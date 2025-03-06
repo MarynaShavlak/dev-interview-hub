@@ -6,6 +6,8 @@ import { useBaseChartOptions } from '../../lib/hooks/useBaseChartOptions/useBase
 import { mergeOptions } from '../../lib/utilities/mergeOptions/mergeOptions';
 import { BaseChartProps } from '../types';
 
+import { NoDataChart } from '../NoDataChart/NoDataChart';
+
 interface DonutChartProps extends BaseChartProps {
     data: number[];
 }
@@ -50,11 +52,6 @@ export const PieChart = (props: DonutChartProps) => {
             },
         },
         plotOptions: {
-            // pie: {
-            //     donut: {
-            //         size: '45%',
-            //     },
-            // },
             pie: {
                 // customScale: 1.2,
                 startAngle: -90,
@@ -74,6 +71,9 @@ export const PieChart = (props: DonutChartProps) => {
     };
 
     const chartOptions = mergeOptions(baseChartOptions, additionalOptions);
+    if (data.length === 0) {
+        return <NoDataChart title={title} />;
+    }
 
     return (
         <ReactApexChart

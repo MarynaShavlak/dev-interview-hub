@@ -1,0 +1,27 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+    <!-- Background Circle -->
+    <circle cx="100" cy="100" r="60" fill="lightgray" opacity="0.5"/>
+
+    <!-- Bar Chart in Center -->
+    <g stroke="gray" fill="none" stroke-width="2">
+        <rect x="85" y="110" width="10" height="20"/>
+        <rect x="97" y="100" width="10" height="30"/>
+        <rect x="109" y="90" width="10" height="40"/>
+    </g>
+
+    <!-- Pie Charts -->
+    <g transform="translate(40,40)" stroke="gray" fill="none" stroke-width="2">
+        <circle cx="0" cy="0" r="15"/>
+        <path d="M0,0 L15,0 A15,15 0 0,1 0,15 Z"/>
+    </g>
+
+    <g transform="translate(40,160)" stroke="gray" fill="none" stroke-width="2">
+        <circle cx="0" cy="0" r="15"/>
+        <path d="M0,0 L15,0 A15,15 0 0,1 0,15 Z"/>
+    </g>
+
+    <!-- Line Chart -->
+    <g transform="translate(150,80)" stroke="gray" fill="none" stroke-width="2">
+        <polyline points="0,10 10,5 20,15 30,5"/>
+    </g>
+</svg>
