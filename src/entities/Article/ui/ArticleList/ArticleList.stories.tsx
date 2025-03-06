@@ -1,40 +1,53 @@
-// import { ComponentMeta, ComponentStory } from '@storybook/react';
-// import { ArticleView } from '../../model/consts/articleConsts';
-//
-// import { ArticleList } from './ArticleList';
-// import { testArticleData } from '../../testing';
-export {};
+import { ComponentMeta, ComponentStory } from '@storybook/react';
 
-// import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator/NewDesignDecorator';
-//
-// export default {
-//     title: 'entities/Article/ArticleList',
-//     component: ArticleList,
-//     argTypes: {
-//         backgroundColor: { control: 'color' },
-//     },
-// } as ComponentMeta<typeof ArticleList>;
-//
-// const Template: ComponentStory<typeof ArticleList> = (args) => (
-//     <ArticleList {...args} />
-// );
-//
-// export const LoadingList = Template.bind({});
-// LoadingList.args = {
-//     articles: [],
-//     isLoading: true,
-//     view: ArticleView.LIST,
-// };
-//
-// export const LoadingGrid = Template.bind({});
-// LoadingGrid.args = {
-//     articles: [],
-//     isLoading: true,
-//     view: ArticleView.GRID,
-// };
-//
-// export const NormalGrid = Template.bind({});
-// NormalGrid.args = {
+import { ArticleList } from './ArticleList';
+import { ArticleView } from '../..';
+import { testArticlesListData } from '../../testing';
+import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator/NewDesignDecorator';
+
+export default {
+    title: 'entities/Article/ArticleList',
+    component: ArticleList,
+    argTypes: {
+        backgroundColor: { control: 'color' },
+        options: [ArticleView.GRID, ArticleView.LIST, ArticleView.SEQUENCE],
+    },
+} as ComponentMeta<typeof ArticleList>;
+
+const Template: ComponentStory<typeof ArticleList> = (args) => (
+    <ArticleList {...args} />
+);
+
+const defaultArgs = {
+    articlesToRender: testArticlesListData,
+    isLoading: false,
+    page: 1,
+};
+
+const gridArgs = {
+    ...defaultArgs,
+    view: ArticleView.GRID,
+};
+
+const listArgs = {
+    ...defaultArgs,
+    view: ArticleView.LIST,
+};
+export const DefaultGridView = Template.bind({});
+DefaultGridView.args = gridArgs;
+export const DefaultGridViewRedesigned = Template.bind({});
+DefaultGridViewRedesigned.args = gridArgs;
+DefaultGridViewRedesigned.decorators = [NewDesignDecorator];
+
+export const DefaultListView = Template.bind({});
+DefaultListView.args = listArgs;
+
+export const DefaultListViewRedesigned = Template.bind({});
+DefaultListViewRedesigned.args = listArgs;
+DefaultListViewRedesigned.decorators = [NewDesignDecorator];
+
+// export const Grid = Template.bind({});
+// Grid.args = {
 //     articles: new Array(9).fill(0).map((item, index) => ({
 //         ...testArticleData,
 //         id: String(index),
@@ -42,7 +55,7 @@ export {};
 //     isLoading: false,
 //     view: ArticleView.GRID,
 // };
-//
+
 // export const NormalList = Template.bind({});
 // NormalList.args = {
 //     articles: new Array(9).fill(0).map((item, index) => ({
@@ -90,3 +103,18 @@ export {};
 //     view: ArticleView.LIST,
 // };
 // NormalListRedesigned.decorators = [NewDesignDecorator];
+//
+//
+// export const LoadingList = Template.bind({});
+// LoadingList.args = {
+//     articles: [],
+//     isLoading: true,
+//     view: ArticleView.LIST,
+// };
+//
+// export const LoadingGrid = Template.bind({});
+// LoadingGrid.args = {
+//     articles: [],
+//     isLoading: true,
+//     view: ArticleView.GRID,
+// };

@@ -21,7 +21,6 @@ export interface ArticleListProps {
 export const ArticleList = memo((props: ArticleListProps) => {
     const {
         className,
-
         view = ArticleView.GRID,
         isLoading,
         target,

@@ -19,11 +19,12 @@ import { AppLink } from '@/shared/ui/redesigned/AppLink';
 import { getRouteArticleDetails } from '@/shared/const/router/router';
 import { truncateText } from '@/shared/lib/text/truncateText/truncateText';
 import { formatDateString } from '@/shared/lib/text/formatDateString/formatDateString';
+import { ArticleTextBlockComponent } from '../../../..';
 
 export const ListViewCardRedesigned = memo((props: BaseCardProps) => {
     const { className, article, handleClick } = props;
     const { t } = useTranslation('articles');
-    console.log('article', article);
+
     const {
         createdAt,
         title,
@@ -100,10 +101,7 @@ export const ListViewCardRedesigned = memo((props: BaseCardProps) => {
                     }
                 />
                 {textBlock?.paragraphs && (
-                    <Text
-                        className={cls.textBlock}
-                        text={textBlock.paragraphs.slice(0, 2).join(' ')}
-                    />
+                    <ArticleTextBlockComponent block={textBlock} withTags />
                 )}
                 <HStack justify="between" max>
                     <AppLink to={getRouteArticleDetails(id)}>
