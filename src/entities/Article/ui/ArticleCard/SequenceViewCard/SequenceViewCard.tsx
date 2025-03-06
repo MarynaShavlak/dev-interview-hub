@@ -25,10 +25,7 @@ export const SequenceViewCard = memo((props: BaseCardProps) => {
         <Card
             border="partial"
             padding="24"
-            className={classNames(cls.SEQUENCE, {}, [
-                ...additionalClasses,
-                className,
-            ])}
+            className={classNames('', {}, [...additionalClasses, className])}
             max
         >
             <HStack justify="between" max>

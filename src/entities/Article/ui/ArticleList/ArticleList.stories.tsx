@@ -21,13 +21,13 @@ const Template: ComponentStory<typeof ArticleList> = (args) => (
 const defaultArgs = {
     articlesToRender: testArticlesListData,
     isLoading: false,
-    page: 1,
+    page: 0,
 };
 
 const loadingArgs = {
     articlesToRender: [],
     isLoading: true,
-    page: 1,
+    page: 0,
 };
 
 const gridArgs = {
@@ -40,6 +40,10 @@ const listArgs = {
     view: ArticleView.LIST,
 };
 
+const sequenceArgs = {
+    ...defaultArgs,
+    view: ArticleView.SEQUENCE,
+};
 const gridLoadingArgs = {
     ...loadingArgs,
     view: ArticleView.GRID,
@@ -48,6 +52,10 @@ const gridLoadingArgs = {
 const listLoadingArgs = {
     ...loadingArgs,
     view: ArticleView.LIST,
+};
+const sequenceLoadingArgs = {
+    ...loadingArgs,
+    view: ArticleView.SEQUENCE,
 };
 
 export const DefaultGridView = Template.bind({});
@@ -63,6 +71,10 @@ export const DefaultListViewRedesigned = Template.bind({});
 DefaultListViewRedesigned.args = listArgs;
 DefaultListViewRedesigned.decorators = [NewDesignDecorator];
 
+export const DefaultSequenceViewRedesigned = Template.bind({});
+DefaultSequenceViewRedesigned.args = sequenceArgs;
+DefaultSequenceViewRedesigned.decorators = [NewDesignDecorator];
+
 export const LoadingGridView = Template.bind({});
 LoadingGridView.args = gridLoadingArgs;
 
@@ -75,4 +87,8 @@ LoadingListView.args = listLoadingArgs;
 
 export const LoadingListViewRedesigned = Template.bind({});
 LoadingListViewRedesigned.args = listLoadingArgs;
-LoadingGridViewRedesigned.decorators = [NewDesignDecorator];
+LoadingListViewRedesigned.decorators = [NewDesignDecorator];
+
+export const LoadingSequenceViewRedesigned = Template.bind({});
+LoadingSequenceViewRedesigned.args = sequenceLoadingArgs;
+LoadingSequenceViewRedesigned.decorators = [NewDesignDecorator];

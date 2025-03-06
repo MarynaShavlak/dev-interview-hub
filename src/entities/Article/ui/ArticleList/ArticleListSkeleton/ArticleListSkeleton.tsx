@@ -5,6 +5,7 @@ import { HStack, VStack } from '@/shared/ui/common/Stack';
 import cls from '../ArticleList.module.scss';
 import { ArticleView } from '../../../model/consts/articleConsts';
 import { ArticleCardSkeleton } from '../../ArticleCardSkeleton/ArticleCardSkeleton';
+import { getLimitByView } from '../../../lib/utilities/getLimitByView/getLimitByView';
 
 interface ArticleListSkeletonProps {
     view: ArticleView;
@@ -25,10 +26,10 @@ export const ArticleListSkeleton = memo(
         });
 
         const classes = classNames(mainClass, {}, [cls[view]]);
-        const defaultSkeletonCount = view === ArticleView.GRID ? 9 : 3;
+        const defaultSkeletonCount = getLimitByView(view);
         const count = skeletonCount ?? defaultSkeletonCount;
 
-        if (view === ArticleView.LIST) {
+        if (view === ArticleView.LIST || view === ArticleView.SEQUENCE) {
             return (
                 <VStack gap="16" className={classes} max>
                     {getSkeletons(view, count)}

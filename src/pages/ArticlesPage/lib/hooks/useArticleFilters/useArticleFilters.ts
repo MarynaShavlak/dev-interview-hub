@@ -11,11 +11,11 @@ import {
     ArticleCategory,
     ArticleView,
     ArticleSortType,
+    getLimitByView,
 } from '@/entities/Article';
 import { useArticlesPageActions } from '../../../model/slices/articlesPageSlice';
 import { SortOrder } from '@/shared/types/sortOrder';
 import { ARTICLES_VIEW_LOCALSTORAGE_KEY } from '@/shared/const/localstorage';
-import { getLimitByView } from '../../utilities/getLimitByView/getLimitByView';
 import { useArticleDataFetching } from '../useArticleDataFetching/useArticleDataFetching';
 import { createAlgoliaIndexNameFromUrl } from '../../utilities/createAlgoliaIndexNameFromUrl/createAlgoliaIndexNameFromUrl';
 import { extractSortType } from '../../utilities/extractSortType/extractSortType';

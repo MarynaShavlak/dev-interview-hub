@@ -1,4 +1,4 @@
-import { ArticleView } from '@/entities/Article';
+import { ArticleView } from '../../../model/consts/articleConsts';
 
 export const getLimitByView = (view: ArticleView): number => {
     switch (view) {

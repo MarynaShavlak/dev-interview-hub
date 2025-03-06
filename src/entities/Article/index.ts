@@ -1,3 +1,5 @@
+export { getLimitByView } from './lib/utilities/getLimitByView/getLimitByView';
+
 export { ERROR_ARTICLE_MESSAGES } from './model/consts/errorArticleMessages';
 
 export { updateArticleViewsThunk } from './model/services/updateArticleViewsThunk/updateArticleViewsThunk';
