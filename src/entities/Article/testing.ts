@@ -1,4 +1,9 @@
-import { Article, ArticleBlock, ArticleTextBlock } from './model/types/article';
+import {
+    Article,
+    ArticleBlock,
+    ArticleCodeBlock,
+    ArticleTextBlock,
+} from './model/types/article';
 import { ArticleCategory, ArticleSection } from './model/consts/articleConsts';
 import avatar from '@/shared/assets/tests/avatar-dropdown.png';
 
@@ -40,13 +45,22 @@ export const imageBlock = {
     title: 'Title of image',
 };
 
-export const codeBlock = {
+export const codeBlockWithNoTitle = {
     id: '4',
     type: ArticleSection.CODE,
     code:
         'function factorial(n) {\n  if (n === 0) {\n    return 1;\n  } else {\n    return n * factorial(n - 1);\n  }' +
         '\n}\n\nconsole.log(factorial(5)); // Виведе: 120',
-};
+} as ArticleCodeBlock;
+
+export const codeBlockWithTitle = {
+    id: 'dskfpsdegsp322j',
+    type: ArticleSection.CODE,
+    title: 'Code block title',
+    code:
+        'function factorial(n) {\n  if (n === 0) {\n    return 1;\n  } else {\n    return n * factorial(n - 1);\n  }' +
+        '\n}\n\nconsole.log(factorial(5)); // Виведе: 120',
+} as ArticleCodeBlock;
 
 export const textBlockWithTags = {
     id: '5325434',
@@ -78,8 +92,9 @@ export const testArticleData: Article = {
         textBlockWithTitleAndFewParagraphs,
         textBlockWithNoTitle,
         imageBlock,
-        codeBlock,
+        codeBlockWithTitle,
         textBlockWithTags,
+        codeBlockWithNoTitle,
     ] as ArticleBlock[],
 };
 
