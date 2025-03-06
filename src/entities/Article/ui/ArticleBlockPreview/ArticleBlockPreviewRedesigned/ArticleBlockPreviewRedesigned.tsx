@@ -25,6 +25,7 @@ export const ArticleBlockPreviewRedesigned = <T,>({
                 justify: 'between',
             }),
         )}
+        customPadding="8px 50px 8px 8px"
         max
         fullHeight
     >

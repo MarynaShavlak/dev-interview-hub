@@ -74,3 +74,9 @@ LargeContent.args = {
         </div>
     ),
 };
+
+export const CustomPadding = Template.bind({});
+CustomPadding.args = {
+    theme: CardTheme.NORMAL,
+    padding: '20px 30px 40px 50px', // Example custom padding
+};
