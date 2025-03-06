@@ -67,16 +67,3 @@ export const testRatingWithFeedbackPersonalNotification: PersonalNotification =
         timestamp: '2025-02-26T14:36:28.626Z',
         type: 'personal_rating',
     };
-export const dataSuccessRequest = [
-    {
-        url: `${__API__}/notifications`,
-        method: 'GET',
-        status: 200,
-        response: [
-            testGeneralNotification,
-            testCommentPersonalNotification,
-            testRatingPersonalNotification,
-            testRatingWithFeedbackPersonalNotification,
-        ],
-    },
-];

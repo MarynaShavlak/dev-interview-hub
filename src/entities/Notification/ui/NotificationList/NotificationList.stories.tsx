@@ -5,6 +5,9 @@ import { NotificationList } from './NotificationList';
 import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator/NewDesignDecorator';
 
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
+import { NotificationListSkeleton } from '../NotificationListSkeleton/NotificationListSkeleton';
+import { EmptyNotificationsList } from '../EmptyNotificationsList/EmptyNotificationsList';
+import { ErrorNotificationsList } from '../ErrorNotificationsList/ErrorNotificationsList';
 
 export default {
     title: 'entities/Notification/NotificationList',
@@ -25,51 +28,40 @@ const normalArgs = {
 
 export const Default = Template.bind({});
 Default.args = normalArgs;
-// Default.parameters = {
-//     mockData: [
-//         testGeneralNotification,
-//         testCommentPersonalNotification,
-//         testRatingPersonalNotification,
-//         testRatingWithFeedbackPersonalNotification,
-//     ],
-// };
 
 export const DefaultRedesigned = Template.bind({});
 DefaultRedesigned.args = normalArgs;
-// DefaultRedesigned.parameters = {
-//     mockData: dataSuccessRequest,
-// };
 DefaultRedesigned.decorators = [NewDesignDecorator];
 
-// import React from 'react';
-// import { ComponentStory, ComponentMeta } from '@storybook/react';
-// import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
-// import { NotificationList } from './NotificationList';
-// import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator/NewDesignDecorator';
-// import { dataSuccessRequest } from '../../testing';
-//
-// export default {
-//     title: 'entities/Notification/NotificationList',
-//     component: NotificationList,
-//     argTypes: {
-//         backgroundColor: { control: 'color' },
-//     },
-//     decorators: [StoreDecorator({})],
-// } as ComponentMeta<typeof NotificationList>;
-//
-// const Template: ComponentStory<typeof NotificationList> = (args) => (
-//     <NotificationList {...args} />
-// );
-//
-// export const Normal = Template.bind({});
-// Normal.args = {};
-// Normal.parameters = {
-//     mockData: dataSuccessRequest,
-// };
-//
-// export const NormalRedesigned = Template.bind({});
-// NormalRedesigned.args = {};
-// NormalRedesigned.parameters = {
-//     mockData: dataSuccessRequest,
-// };
-// NormalRedesigned.decorators = [NewDesignDecorator];
+export const LoadingState = Template.bind({});
+LoadingState.args = normalArgs;
+LoadingState.decorators = [() => <NotificationListSkeleton />];
+
+export const LoadingStateRedesigned = Template.bind({});
+LoadingStateRedesigned.args = normalArgs;
+LoadingStateRedesigned.decorators = [
+    () => <NotificationListSkeleton />,
+    NewDesignDecorator,
+];
+
+export const EmptyList = Template.bind({});
+EmptyList.args = normalArgs;
+EmptyList.decorators = [() => <EmptyNotificationsList />];
+
+export const EmptyListRedesigned = Template.bind({});
+EmptyListRedesigned.args = normalArgs;
+EmptyListRedesigned.decorators = [
+    () => <EmptyNotificationsList />,
+    NewDesignDecorator,
+];
+
+export const ErrorStateHotifications = Template.bind({});
+ErrorStateHotifications.args = normalArgs;
+ErrorStateHotifications.decorators = [() => <ErrorNotificationsList />];
+
+export const ErrorStateHotificationsRedesigned = Template.bind({});
+ErrorStateHotificationsRedesigned.args = normalArgs;
+ErrorStateHotificationsRedesigned.decorators = [
+    () => <ErrorNotificationsList />,
+    NewDesignDecorator,
+];

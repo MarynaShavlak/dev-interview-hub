@@ -11,6 +11,7 @@ import { NotificationItem } from '../../NotificationItem/NotificationItem';
 import { NotificationListSkeleton } from '../../NotificationListSkeleton/NotificationListSkeleton';
 import { Text as TextDeprecated, TextSize } from '@/shared/ui/deprecated/Text';
 import { Button as ButtonDeprecated } from '@/shared/ui/deprecated/Button';
+import { ErrorNotificationsList } from '../../ErrorNotificationsList/ErrorNotificationsList';
 
 export const NotificationListDeprecated = memo(
     (props: NotificationListProps) => {
@@ -20,9 +21,11 @@ export const NotificationListDeprecated = memo(
         ]);
 
         const { t } = useTranslation();
-        const { data: allNotifications, isLoading } = useAllNotifications(
-            userId || '',
-        );
+        const {
+            data: allNotifications,
+            isLoading,
+            error,
+        } = useAllNotifications(userId || '');
         const titleText = t('Сповіщення');
 
         if (isLoading) {
@@ -30,6 +33,9 @@ export const NotificationListDeprecated = memo(
         }
         if (allNotifications?.length === 0) {
             return <EmptyNotificationsList className={className} />;
+        }
+        if (error) {
+            return <ErrorNotificationsList className={className} />;
         }
 
         return (

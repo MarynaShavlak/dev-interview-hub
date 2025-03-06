@@ -13,6 +13,7 @@ import { NotificationItem } from '../../NotificationItem/NotificationItem';
 import { NotificationListSkeleton } from '../../NotificationListSkeleton/NotificationListSkeleton';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { deleteAllNotificationsThunk } from '../../../model/services/deleteAllNotificationsThunk/deleteAllNotificationsThunk';
+import { ErrorNotificationsList } from '../../ErrorNotificationsList/ErrorNotificationsList';
 
 export const NotificationListRedesigned = memo(
     (props: NotificationListProps) => {
@@ -21,8 +22,11 @@ export const NotificationListRedesigned = memo(
         const listClass = classNames(cls.NotificationList, {}, [className]);
 
         const { t } = useTranslation();
-        const { data: allNotifications, isLoading } =
-            useAllNotifications(userId);
+        const {
+            data: allNotifications,
+            isLoading,
+            error,
+        } = useAllNotifications(userId);
         const titleText = t('Сповіщення');
 
         const handleDeleteAllNotifications = useCallback(async () => {
@@ -38,6 +42,9 @@ export const NotificationListRedesigned = memo(
         }
         if (allNotifications?.length === 0) {
             return <EmptyNotificationsList className={className} />;
+        }
+        if (error) {
+            return <ErrorNotificationsList className={className} />;
         }
 
         return (

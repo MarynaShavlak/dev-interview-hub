@@ -69,5 +69,10 @@
   "Немає сповіщень": "You're all caught up! No new notifications",
   "Сповіщення": "Notifications",
   "Видалити всі": "Delete all",
-  "javascript": "javascript"
+  "javascript": "javascript",
+  "Не вдалося завантажити сповіщення": {
+    " Спробуйте ще раз пізніше": {
+      "": "Failed to load notifications. Try again later."
+    }
+  }
 }

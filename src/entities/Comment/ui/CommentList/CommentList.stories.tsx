@@ -48,9 +48,6 @@ SingleCommentNoAvatar.args = {
 export const WithDeletePermission = Template.bind({});
 WithDeletePermission.args = withDeleteArgs;
 
-export const LoadingState = Template.bind({});
-LoadingState.args = loadingArgs;
-
 export const DefaultRedesigned = Template.bind({});
 DefaultRedesigned.args = normalArgs;
 DefaultRedesigned.decorators = [NewDesignDecorator];
@@ -65,6 +62,8 @@ SingleCommentNoAvatarRedesigned.args = {
 };
 SingleCommentNoAvatarRedesigned.decorators = [NewDesignDecorator];
 
+export const LoadingState = Template.bind({});
+LoadingState.args = loadingArgs;
 export const LoadingStateRedesigned = Template.bind({});
 LoadingStateRedesigned.args = loadingArgs;
 LoadingStateRedesigned.decorators = [NewDesignDecorator];
