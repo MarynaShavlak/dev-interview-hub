@@ -38,3 +38,15 @@ WithoutTitleRedesigned.args = {
     block: testArticleData.blocks[1] as ArticleTextBlock,
 };
 WithoutTitleRedesigned.decorators = [NewDesignDecorator];
+
+export const WithTagsEnabled = Template.bind({});
+WithTagsEnabled.args = {
+    block: testArticleData.blocks[0] as ArticleTextBlock,
+    withTags: true,
+};
+
+export const WithTagsDisabled = Template.bind({});
+WithTagsDisabled.args = {
+    block: testArticleData.blocks[0] as ArticleTextBlock,
+    withTags: false,
+};
