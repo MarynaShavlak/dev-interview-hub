@@ -2,6 +2,7 @@ import {
     Article,
     ArticleBlock,
     ArticleCodeBlock,
+    ArticleImageBlock,
     ArticleTextBlock,
 } from './model/types/article';
 import { ArticleCategory, ArticleSection } from './model/consts/articleConsts';
@@ -43,7 +44,14 @@ export const imageBlock = {
         'https://media.istockphoto.com/id/1128826884/vector/no-image-vector-symbol-' +
         'missing-available-icon-no-gallery-for-this-moment.jpg?s=612x612&w=0&k=20&c=390e76zN_TJ7HZHJpnI7jNl7UBpO3UP7hpR2meE1Qd4=',
     title: 'Title of image',
-};
+} as ArticleImageBlock;
+
+export const imageBlockWithInvalidUrl = {
+    id: '66666iii',
+    type: ArticleSection.IMAGE,
+    src: 'invalid url',
+    title: 'Title of image',
+} as ArticleImageBlock;
 
 export const codeBlockWithNoTitle = {
     id: '4',

@@ -1,19 +1,14 @@
 import { memo } from 'react';
-import { useTranslation } from 'react-i18next';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
-import {
-    Text as TextDeprecated,
-    TextAlign,
-    TextTheme,
-} from '@/shared/ui/deprecated/Text';
+import { Text as TextDeprecated, TextAlign } from '@/shared/ui/deprecated/Text';
 import { Text } from '@/shared/ui/redesigned/Text';
 import cls from './ArticleImageBlockComponent.module.scss';
 import { ArticleImageBlock } from '../../model/types/article';
 import { VStack } from '@/shared/ui/common/Stack';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { useImageLoader } from '@/shared/lib/hooks/useImageLoader/useImageLoader';
-import { Skeleton as SkeletonDeprecated } from '@/shared/ui/deprecated/Skeleton';
-import { Skeleton } from '@/shared/ui/redesigned/Skeleton';
+import { ArticleImageBlockComponentSkeleton } from './ArticleImageBlockComponentSkeleton/ArticleImageBlockComponentSkeleton';
+import { ArticleImageBlockComponentError } from './ArticleImageBlockComponentError/ArticleImageBlockComponentError';
 
 interface ArticleImageBlockComponentProps {
     className?: string;
@@ -23,53 +18,17 @@ interface ArticleImageBlockComponentProps {
 export const ArticleImageBlockComponent = memo(
     (props: ArticleImageBlockComponentProps) => {
         const { className, block } = props;
-        const { t } = useTranslation();
+
         const { isLoading, imageError, setImageError } = useImageLoader(
             block.src,
         );
 
         if (isLoading) {
-            return (
-                <VStack
-                    className={classNames(cls.ImgBlock, {}, [className])}
-                    align="center"
-                    gap="8"
-                >
-                    <ToggleFeaturesComponent
-                        feature="isAppRedesigned"
-                        on={<Skeleton width="100%" height="332px" />}
-                        off={<SkeletonDeprecated width="100%" height="332px" />}
-                    />
-                </VStack>
-            );
+            return <ArticleImageBlockComponentSkeleton className={className} />;
         }
 
         if (imageError) {
-            return (
-                <VStack
-                    className={classNames(cls.ImgBlock, {}, [className])}
-                    align="center"
-                    gap="8"
-                >
-                    <ToggleFeaturesComponent
-                        feature="isAppRedesigned"
-                        on={
-                            <Text
-                                variant="error"
-                                text={t('Не вдалося завантажити зображення')}
-                                align="center"
-                            />
-                        }
-                        off={
-                            <TextDeprecated
-                                theme={TextTheme.ERROR}
-                                text={t('Не вдалося завантажити зображення')}
-                                align={TextAlign.CENTER}
-                            />
-                        }
-                    />
-                </VStack>
-            );
+            return <ArticleImageBlockComponentError className={className} />;
         }
         return (
             <VStack
