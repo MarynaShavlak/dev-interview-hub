@@ -2,8 +2,8 @@ import { createPersonalNotificationQuery } from '../../createQuery/createPersona
 import { fetchQueryResults } from '@/shared/lib/firestore/fetchQueryResults/fetchQueryResults';
 import { PersonalNotification } from '../../../../model/types/notification';
 
-export const fetchPersonal = async () => {
-    const personalNotificationsQuery = createPersonalNotificationQuery();
+export const fetchPersonal = async (userId: string) => {
+    const personalNotificationsQuery = createPersonalNotificationQuery(userId);
     const personalNotifications = await fetchQueryResults<PersonalNotification>(
         personalNotificationsQuery,
     );

@@ -5,7 +5,7 @@ import { sortByTimestamp } from '../sortByTimestamp/sortByTimestamp';
 
 export const fetchAllNotifications = async (userId: string) => {
     const generalNotifications = await fetchGeneral(userId);
-    const personalNotifications = await fetchPersonal();
+    const personalNotifications = await fetchPersonal(userId);
 
     const allNotifications = mergeNotifications(
         generalNotifications,

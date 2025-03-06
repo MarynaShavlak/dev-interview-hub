@@ -39,35 +39,36 @@ const normalRatingWithFeedbackPersonalArgs = {
 const normalGeneralArgs = {
     item: testGeneralNotification,
 };
-export const NormalGeneralNotification = Template.bind({});
-NormalGeneralNotification.args = normalGeneralArgs;
+export const GeneralNotification = Template.bind({});
+GeneralNotification.args = normalGeneralArgs;
 
-export const NormalGeneralNotificationRedesigned = Template.bind({});
-NormalGeneralNotificationRedesigned.args = normalGeneralArgs;
-NormalGeneralNotificationRedesigned.decorators = [NewDesignDecorator];
+export const GeneralNotificationRedesigned = Template.bind({});
+GeneralNotificationRedesigned.args = normalGeneralArgs;
+GeneralNotificationRedesigned.decorators = [NewDesignDecorator];
 
-export const NormalCommentPersonalNotification = Template.bind({});
-NormalCommentPersonalNotification.args = normalCommentPersonalArgs;
+export const CommentPersonalNotification = Template.bind({});
+CommentPersonalNotification.args = normalCommentPersonalArgs;
 
-export const NormalCommentPersonalNotificationRedesigned = Template.bind({});
-NormalCommentPersonalNotificationRedesigned.args = normalCommentPersonalArgs;
-NormalCommentPersonalNotificationRedesigned.decorators = [NewDesignDecorator];
+export const CommentPersonalNotificationRedesigned = Template.bind({});
+CommentPersonalNotificationRedesigned.args = normalCommentPersonalArgs;
+CommentPersonalNotificationRedesigned.decorators = [NewDesignDecorator];
 
-export const NormalRatingPersonalNotification = Template.bind({});
-NormalRatingPersonalNotification.args = normalRatingPersonalArgs;
+export const RatingPersonalNotification = Template.bind({});
+RatingPersonalNotification.args = normalRatingPersonalArgs;
 
-export const NormalRatingPersonalNotificationRedesigned = Template.bind({});
-NormalRatingPersonalNotificationRedesigned.args = normalRatingPersonalArgs;
-NormalRatingPersonalNotificationRedesigned.decorators = [NewDesignDecorator];
+export const RatingPersonalNotificationRedesigned = Template.bind({});
+RatingPersonalNotificationRedesigned.args = normalRatingPersonalArgs;
+RatingPersonalNotificationRedesigned.decorators = [NewDesignDecorator];
 
-export const NormalRatingWithFeedbackPersonalNotification = Template.bind({});
-NormalRatingWithFeedbackPersonalNotification.args =
+export const RatingWithFeedbackPersonalNotification = Template.bind({});
+RatingWithFeedbackPersonalNotification.args =
     normalRatingWithFeedbackPersonalArgs;
 
-export const NormalRatingWithFeedbackPersonalNotificationRedesigned =
-    Template.bind({});
-NormalRatingWithFeedbackPersonalNotificationRedesigned.args =
+export const RatingWithFeedbackPersonalNotificationRedesigned = Template.bind(
+    {},
+);
+RatingWithFeedbackPersonalNotificationRedesigned.args =
     normalRatingWithFeedbackPersonalArgs;
-NormalRatingWithFeedbackPersonalNotificationRedesigned.decorators = [
+RatingWithFeedbackPersonalNotificationRedesigned.decorators = [
     NewDesignDecorator,
 ];

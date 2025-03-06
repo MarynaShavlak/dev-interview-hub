@@ -28,7 +28,8 @@ export const subscribeToNotifications = (
         if (!userId) return undefined;
 
         const generalNotificationsQuery = createUserNotificationQuery();
-        const personalNotificationsQuery = createPersonalNotificationQuery();
+        const personalNotificationsQuery =
+            createPersonalNotificationQuery(userId);
 
         unsubscribeGeneral = onSnapshot(
             generalNotificationsQuery,

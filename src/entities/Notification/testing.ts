@@ -3,31 +3,6 @@ import {
     PersonalNotification,
 } from './model/types/notification';
 
-export const dataSuccessRequest = [
-    {
-        url: `${__API__}/notifications`,
-        method: 'GET',
-        status: 200,
-        response: [
-            {
-                id: '1',
-                title: 'Сповіщення 1',
-                description: 'Текст сповіщення 1',
-            },
-            {
-                id: '2',
-                title: 'Сповіщення 2',
-                description: 'Текст сповіщення 2',
-            },
-            {
-                id: '3',
-                title: 'Сповіщення 3',
-                description: 'Текст сповіщення 3',
-            },
-        ],
-    },
-];
-
 export const testGeneralNotification: GeneralNotification = {
     id: '1078d68b-3bd7-4ba0-8b9b-5e9338c4e1e8',
     localizationTitle: {
@@ -92,3 +67,16 @@ export const testRatingWithFeedbackPersonalNotification: PersonalNotification =
         timestamp: '2025-02-26T14:36:28.626Z',
         type: 'personal_rating',
     };
+export const dataSuccessRequest = [
+    {
+        url: `${__API__}/notifications`,
+        method: 'GET',
+        status: 200,
+        response: [
+            testGeneralNotification,
+            testCommentPersonalNotification,
+            testRatingPersonalNotification,
+            testRatingWithFeedbackPersonalNotification,
+        ],
+    },
+];
