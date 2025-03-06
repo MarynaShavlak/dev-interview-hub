@@ -8,8 +8,6 @@ import {
 import { ArticleCategory, ArticleSection } from './model/consts/articleConsts';
 import avatar from '@/shared/assets/tests/avatar-dropdown.png';
 
-// export { articleDetailsReducer } from './model/slices/articleDetailsSlice';
-
 export const textBlockWithTitleAndFewParagraphs = {
     id: '2344',
     type: ArticleSection.TEXT,
@@ -215,11 +213,11 @@ export const testArticlesListData: Article[] = [
     },
 ];
 
-export const articlesNormalizedData = {
-    ids: testArticlesListData.map((article) => article.id),
-    entities: testArticlesListData.reduce((acc, article) => {
-        // @ts-ignore
-        acc[article.id] = article;
-        return acc;
-    }, {}),
-};
+// export const articlesNormalizedData = {
+//     ids: testArticlesListData.map((article) => article.id),
+//     entities: testArticlesListData.reduce((acc, article) => {
+//         // @ts-ignore
+//         acc[article.id] = article;
+//         return acc;
+//     }, {}),
+// };

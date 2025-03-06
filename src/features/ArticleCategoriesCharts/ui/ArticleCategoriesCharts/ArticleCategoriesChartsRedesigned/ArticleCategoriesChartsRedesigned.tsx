@@ -18,6 +18,7 @@ export const ArticleCategoriesChartsRedesigned = memo(
         } = props;
         const { labels, viewsByCategories, articlesByCategories } =
             useArticleCategoriesChartData(data);
+        console.log('data', data);
 
         return (
             <VStack gap="16" className={className}>
