@@ -45,7 +45,7 @@ export const testGeneralNotification: GeneralNotification = {
     authorId: '2CuQOzOQ9YeU7bFzncJh8YwGZGI2',
 };
 
-export const testPersonalNotification: PersonalNotification = {
+export const testCommentPersonalNotification: PersonalNotification = {
     id: '070c8ae6-f504-401a-bd75-9eba13ec8c7e',
     localizationTitle: {
         en: 'New comment on your article!',
@@ -59,3 +59,36 @@ export const testPersonalNotification: PersonalNotification = {
     timestamp: '2025-03-03T15:36:40.126Z',
     type: 'personal_comment',
 };
+
+export const testRatingPersonalNotification: PersonalNotification = {
+    id: '3c4b6404-e211-4e17-84d4-f9d6aa334a5f',
+    localizationTitle: {
+        en: 'Your article has been rated!',
+        uk: 'Вашу статтю було оцінено!',
+    },
+    localizationMessage: {
+        en: 'User <b>shavlakmaryna@gmail.com</b> rated your article "Client-server architecture" with ⭐⭐⭐⭐ .',
+        uk: 'Користувач <b>shavlakmaryna@gmail.com</b> оцінив Вашу статтю "Client-server architecture" на ⭐⭐⭐⭐.',
+    },
+    href: '/article/25633903-9fa4-4982-a3f5-05e2007ca59c',
+    timestamp: '2025-03-01T15:16:37.933Z',
+    type: 'personal_rating',
+};
+
+export const testRatingWithFeedbackPersonalNotification: PersonalNotification =
+    {
+        id: 'dc419786-1f29-4b10-9d3c-d930bf998122',
+        localizationTitle: {
+            en: 'Your article has been rated!',
+            uk: 'Вашу статтю було оцінено!',
+        },
+        localizationMessage: {
+            // eslint-disable-next-line max-len
+            en: 'User <b>shavlakmaryna@gmail.com</b> rated your article "Client-server architecture" with ⭐ and left feedback: "Incomplete and poorly researched. Lacks useful information.".',
+            // eslint-disable-next-line max-len
+            uk: 'Користувач <b>shavlakmaryna@gmail.com</b> оцінив Вашу статтю "Client-server architecture" на ⭐ і залишив відгук: "Incomplete and poorly researched. Lacks useful information.".',
+        },
+        href: '/article/6d5a0894-f876-4cb8-afa6-988bae7eef16',
+        timestamp: '2025-02-26T14:36:28.626Z',
+        type: 'personal_rating',
+    };
