@@ -24,6 +24,12 @@ const defaultArgs = {
     page: 1,
 };
 
+const loadingArgs = {
+    articlesToRender: [],
+    isLoading: true,
+    page: 1,
+};
+
 const gridArgs = {
     ...defaultArgs,
     view: ArticleView.GRID,
@@ -33,6 +39,17 @@ const listArgs = {
     ...defaultArgs,
     view: ArticleView.LIST,
 };
+
+const gridLoadingArgs = {
+    ...loadingArgs,
+    view: ArticleView.GRID,
+};
+
+const listLoadingArgs = {
+    ...loadingArgs,
+    view: ArticleView.LIST,
+};
+
 export const DefaultGridView = Template.bind({});
 DefaultGridView.args = gridArgs;
 export const DefaultGridViewRedesigned = Template.bind({});
@@ -46,75 +63,16 @@ export const DefaultListViewRedesigned = Template.bind({});
 DefaultListViewRedesigned.args = listArgs;
 DefaultListViewRedesigned.decorators = [NewDesignDecorator];
 
-// export const Grid = Template.bind({});
-// Grid.args = {
-//     articles: new Array(9).fill(0).map((item, index) => ({
-//         ...testArticleData,
-//         id: String(index),
-//     })),
-//     isLoading: false,
-//     view: ArticleView.GRID,
-// };
+export const LoadingGridView = Template.bind({});
+LoadingGridView.args = gridLoadingArgs;
 
-// export const NormalList = Template.bind({});
-// NormalList.args = {
-//     articles: new Array(9).fill(0).map((item, index) => ({
-//         ...testArticleData,
-//         id: String(index),
-//     })),
-//     isLoading: false,
-//     view: ArticleView.LIST,
-// };
-//
-// export const LoadingListRedesigned = Template.bind({});
-// LoadingListRedesigned.args = {
-//     articles: [],
-//     isLoading: true,
-//     view: ArticleView.LIST,
-// };
-// LoadingListRedesigned.decorators = [NewDesignDecorator];
-//
-// export const LoadingGridRedesigned = Template.bind({});
-// LoadingGridRedesigned.args = {
-//     articles: [],
-//     isLoading: true,
-//     view: ArticleView.GRID,
-// };
-// LoadingGridRedesigned.decorators = [NewDesignDecorator];
-//
-// export const NormalGridRedesigned = Template.bind({});
-// NormalGridRedesigned.args = {
-//     articles: new Array(9).fill(0).map((item, index) => ({
-//         ...testArticleData,
-//         id: String(index),
-//     })),
-//     isLoading: false,
-//     view: ArticleView.GRID,
-// };
-// NormalGridRedesigned.decorators = [NewDesignDecorator];
-//
-// export const NormalListRedesigned = Template.bind({});
-// NormalListRedesigned.args = {
-//     articles: new Array(9).fill(0).map((item, index) => ({
-//         ...testArticleData,
-//         id: String(index),
-//     })),
-//     isLoading: false,
-//     view: ArticleView.LIST,
-// };
-// NormalListRedesigned.decorators = [NewDesignDecorator];
-//
-//
-// export const LoadingList = Template.bind({});
-// LoadingList.args = {
-//     articles: [],
-//     isLoading: true,
-//     view: ArticleView.LIST,
-// };
-//
-// export const LoadingGrid = Template.bind({});
-// LoadingGrid.args = {
-//     articles: [],
-//     isLoading: true,
-//     view: ArticleView.GRID,
-// };
+export const LoadingGridViewRedesigned = Template.bind({});
+LoadingGridViewRedesigned.args = gridLoadingArgs;
+LoadingGridViewRedesigned.decorators = [NewDesignDecorator];
+
+export const LoadingListView = Template.bind({});
+LoadingListView.args = listLoadingArgs;
+
+export const LoadingListViewRedesigned = Template.bind({});
+LoadingListViewRedesigned.args = listLoadingArgs;
+LoadingGridViewRedesigned.decorators = [NewDesignDecorator];
