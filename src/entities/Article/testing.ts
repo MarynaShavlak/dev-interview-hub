@@ -1,4 +1,4 @@
-import { Article, ArticleBlock } from './model/types/article';
+import { Article, ArticleBlock, ArticleTextBlock } from './model/types/article';
 import { ArticleCategory, ArticleSection } from './model/consts/articleConsts';
 import avatar from '@/shared/assets/tests/avatar-dropdown.png';
 
@@ -19,7 +19,8 @@ export const textBlockWithTitleAndFewParagraphs = {
             ' bibendum lectus. Maecenas enim augue, consequat at ornare eu, convallis eget nunc.',
         'This is the third paragraph for testing purposes.',
     ],
-};
+} as ArticleTextBlock;
+
 export const textBlockWithNoTitle = {
     id: '672345',
     type: ArticleSection.TEXT,
@@ -28,7 +29,7 @@ export const textBlockWithNoTitle = {
         'Here is the second paragraph with more content.',
         'This is the third paragraph for testing purposes.',
     ],
-};
+} as ArticleTextBlock;
 
 export const imageBlock = {
     id: '66666888',
@@ -51,14 +52,12 @@ export const textBlockWithTags = {
     id: '5325434',
     type: ArticleSection.TEXT,
     paragraphs: [
-        'Vestibulum euismod, felis at viverra iaculis, <img src="images/img.jpg" />nibh massa placerat nulla, a fringilla nulla risus quis dui. ' +
-            'Proin ultrices commodo purus, a <span>11111</span> varius turpis faucibus ac. Nullam enim metus, porta in nisi ac, sodales faucibus arcu. ',
-        'Nullam fringilla erat in erat elementum laoreet. Pellentesque sit amet arcu nibh. ',
-        'ed a lectus eget <p>lectus eget</p>. Integer fermentum mi vel est efficitur rhoncus. Sed odio eros, maximus eget elit et,' +
-            ' convallis condimentum metus. Morbi varius eleifend tortor et vulputate. ' +
-            'Donec ut est et nulla accumsan maximus id eu magna. Nunc lacinia erat id enim sodales, a tincidunt augue lacinia. ',
+        `Vestibulum <img src="images/img.jpg" alt="Some image"/> nibh massa 
+     Proin a <b>bold text 11111</b> varius tac. Nullam enim 
+     <div style="border: 1px solid red;">Styled div 22222</div>,`,
+        'ed a lectus eget. Integer fermentum mi vel est efficitur rhoncus. Sed odio eros, maximus eget elit et,',
     ],
-};
+} as ArticleTextBlock;
 export const testArticleData: Article = {
     id: '1',
     user: {

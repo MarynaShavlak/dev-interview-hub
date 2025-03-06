@@ -1,8 +1,11 @@
 import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { ArticleTextBlockComponent } from './ArticleTextBlockComponent';
-import { testArticleData } from '../../testing';
-import { ArticleTextBlock } from '../../model/types/article';
+import {
+    textBlockWithNoTitle,
+    textBlockWithTags,
+    textBlockWithTitleAndFewParagraphs,
+} from '../../testing';
 import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator/NewDesignDecorator';
 
 export default {
@@ -17,36 +20,38 @@ const Template: ComponentStory<typeof ArticleTextBlockComponent> = (args) => (
     <ArticleTextBlockComponent {...args} />
 );
 
-export const WithTitle = Template.bind({});
-WithTitle.args = {
-    block: testArticleData.blocks[0] as ArticleTextBlock,
+const withTagsArgs = {
+    block: textBlockWithTags,
+    withTags: true,
+};
+const noTagsArgs = {
+    block: textBlockWithTags,
+    withTags: false,
 };
 
+export const WithTitle = Template.bind({});
+WithTitle.args = { block: textBlockWithTitleAndFewParagraphs };
+
 export const WithTitleRedesigned = Template.bind({});
-WithTitleRedesigned.args = {
-    block: testArticleData.blocks[0] as ArticleTextBlock,
-};
+WithTitleRedesigned.args = { block: textBlockWithTitleAndFewParagraphs };
 WithTitleRedesigned.decorators = [NewDesignDecorator];
 
 export const WithoutTitle = Template.bind({});
-WithoutTitle.args = {
-    block: testArticleData.blocks[1] as ArticleTextBlock,
-};
+WithoutTitle.args = { block: textBlockWithNoTitle };
 
 export const WithoutTitleRedesigned = Template.bind({});
-WithoutTitleRedesigned.args = {
-    block: testArticleData.blocks[1] as ArticleTextBlock,
-};
+WithoutTitleRedesigned.args = { block: textBlockWithNoTitle };
 WithoutTitleRedesigned.decorators = [NewDesignDecorator];
 
 export const WithTagsEnabled = Template.bind({});
-WithTagsEnabled.args = {
-    block: testArticleData.blocks[0] as ArticleTextBlock,
-    withTags: true,
-};
+WithTagsEnabled.args = withTagsArgs;
+export const WithTagsEnabledRedesigned = Template.bind({});
+WithTagsEnabledRedesigned.args = withTagsArgs;
+WithTagsEnabledRedesigned.decorators = [NewDesignDecorator];
 
 export const WithTagsDisabled = Template.bind({});
-WithTagsDisabled.args = {
-    block: testArticleData.blocks[0] as ArticleTextBlock,
-    withTags: false,
-};
+WithTagsDisabled.args = noTagsArgs;
+
+export const WithTagsDisabledRedesigned = Template.bind({});
+WithTagsDisabledRedesigned.args = noTagsArgs;
+WithTagsDisabledRedesigned.decorators = [NewDesignDecorator];
