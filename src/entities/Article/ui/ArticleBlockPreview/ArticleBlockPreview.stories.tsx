@@ -14,6 +14,7 @@ import {
 } from '../../model/types/article';
 import { ArticleTextBlockComponent } from '../../ui/ArticleTextBlockComponent/ArticleTextBlockComponent';
 import { ArticleCodeBlockComponent, ArticleImageBlockComponent } from '../..';
+import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator/NewDesignDecorator';
 
 // Default export for Storybook
 export default {
@@ -60,23 +61,34 @@ const TemplateText: ComponentStory<
     typeof ArticleBlockPreview<ArticleTextBlock>
 > = (args) => <ArticleBlockPreview<ArticleTextBlock> {...args} />;
 
-export const DefaultTextBlockPreview = TemplateText.bind({});
-DefaultTextBlockPreview.args = textArgs;
-
 const TemplateCode: ComponentStory<
     typeof ArticleBlockPreview<ArticleCodeBlock>
 > = (args) => <ArticleBlockPreview<ArticleCodeBlock> {...args} />;
-
-export const DefaultCodeBlockPreview = TemplateCode.bind({});
-DefaultCodeBlockPreview.args = codeArgs;
 
 const TemplateImage: ComponentStory<
     typeof ArticleBlockPreview<ArticleImageBlock>
 > = (args) => <ArticleBlockPreview<ArticleImageBlock> {...args} />;
 
-export const DefaultImageBlockPreview = TemplateImage.bind({});
-DefaultImageBlockPreview.args = imageArgs;
+export const TextBlockPreview = TemplateText.bind({});
+TextBlockPreview.args = textArgs;
 
+export const CodeBlockPreview = TemplateCode.bind({});
+CodeBlockPreview.args = codeArgs;
+
+export const ImageBlockPreview = TemplateImage.bind({});
+ImageBlockPreview.args = imageArgs;
+
+export const TextBlockPreviewRedesigned = TemplateText.bind({});
+TextBlockPreviewRedesigned.args = textArgs;
+TextBlockPreviewRedesigned.decorators = [NewDesignDecorator];
+
+export const CodeBlockPreviewRedesigned = TemplateCode.bind({});
+CodeBlockPreviewRedesigned.args = codeArgs;
+CodeBlockPreviewRedesigned.decorators = [NewDesignDecorator];
+
+export const ImageBlockPreviewRedesigned = TemplateImage.bind({});
+ImageBlockPreviewRedesigned.args = imageArgs;
+ImageBlockPreviewRedesigned.decorators = [NewDesignDecorator];
 //
 // // Story for rendering the ArticleBlockPreview with a custom BlockComponent
 // export const CustomBlockComponent = Template.bind({});

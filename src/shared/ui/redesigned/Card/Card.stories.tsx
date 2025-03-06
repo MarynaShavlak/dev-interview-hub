@@ -115,3 +115,10 @@ CustomCard.args = {
     max: true,
     fullHeight: true,
 };
+
+export const CustomPadding = Template.bind({});
+CustomPadding.args = {
+    children: 'Card with Custom Padding',
+    variant: 'outlined',
+    customPadding: '20px', // Custom padding applied here
+};
