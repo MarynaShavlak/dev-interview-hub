@@ -30,22 +30,22 @@ const Template: ComponentStory<typeof CountrySelect> = (args) => {
 
 export const Normal = Template.bind({});
 Normal.args = {};
-Normal.decorators = [AlignDecorator('center')];
+Normal.decorators = [AlignDecorator('right')];
 
 export const NormalRedesigned = Template.bind({});
 NormalRedesigned.args = {};
-NormalRedesigned.decorators = [AlignDecorator('center'), NewDesignDecorator];
+NormalRedesigned.decorators = [AlignDecorator('right'), NewDesignDecorator];
 
 export const Readonly = Template.bind({});
 Readonly.args = {
     value: Country.Poland,
     readonly: true,
 };
-Readonly.decorators = [AlignDecorator('center')];
+Readonly.decorators = [AlignDecorator('right')];
 
 export const ReadonlyRedesigned = Template.bind({});
 ReadonlyRedesigned.args = {
     value: Country.Poland,
     readonly: true,
 };
-ReadonlyRedesigned.decorators = [AlignDecorator('center'), NewDesignDecorator];
+ReadonlyRedesigned.decorators = [AlignDecorator('right'), NewDesignDecorator];
