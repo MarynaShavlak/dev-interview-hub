@@ -26,6 +26,7 @@ export const ArticleBlockPreviewDeprecated = <T,>({
                 justify: 'between',
             }),
         )}
+        padding="15px 50px 15px 15px"
         max
         // fullHeight
     >

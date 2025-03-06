@@ -70,6 +70,7 @@ module.exports = {
                     'wrapperClassName',
                     'defaultLanguage',
                     'attribute',
+                    'padding'
                 ],
             },
         ],
