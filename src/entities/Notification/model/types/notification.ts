@@ -29,6 +29,7 @@ export interface PersonalNotification {
 
 export interface GeneralNotification extends PersonalNotification {
     dismissedBy: string[];
+    authorId: string;
 }
 
 export type Notification = GeneralNotification | PersonalNotification;
