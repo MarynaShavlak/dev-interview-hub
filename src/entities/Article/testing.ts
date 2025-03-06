@@ -90,7 +90,7 @@ export const testArticleData: Article = {
         username: 'testUsername',
         avatar,
     },
-    title: 'Test Article Title',
+    title: 'This is a Test Article Title',
     subtitle: { text: 'This is a test subtitle.' },
     img: 'https://www.century21albania.com/vendor/core/images/default-image.jpg',
     views: 100,

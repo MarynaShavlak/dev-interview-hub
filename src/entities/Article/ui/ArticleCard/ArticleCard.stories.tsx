@@ -19,27 +19,33 @@ export default {
 const Template: ComponentStory<typeof ArticleCard> = (args) => (
     <ArticleCard {...args} />
 );
+const gridArgs = {
+    view: ArticleView.GRID,
+    target: '_blank',
+};
+const listArgs = {
+    view: ArticleView.LIST,
+};
+const sequenceArgs = {
+    view: ArticleView.SEQUENCE,
+    index: 0,
+    page: 1,
+};
 
 export const GridView = Template.bind({});
-GridView.args = {
-    view: ArticleView.GRID,
-    target: '_blank',
-};
+GridView.args = gridArgs;
 
 export const GridViewRedesigned = Template.bind({});
-GridViewRedesigned.args = {
-    view: ArticleView.GRID,
-    target: '_blank',
-};
+GridViewRedesigned.args = gridArgs;
 GridViewRedesigned.decorators = [NewDesignDecorator];
 
 export const ListView = Template.bind({});
-ListView.args = {
-    view: ArticleView.LIST,
-};
+ListView.args = listArgs;
 
 export const ListViewRedesigned = Template.bind({});
-ListViewRedesigned.args = {
-    view: ArticleView.LIST,
-};
+ListViewRedesigned.args = listArgs;
 ListViewRedesigned.decorators = [NewDesignDecorator];
+
+export const SequenceViewRedesigned = Template.bind({});
+SequenceViewRedesigned.args = sequenceArgs;
+SequenceViewRedesigned.decorators = [NewDesignDecorator];
