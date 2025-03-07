@@ -9,6 +9,7 @@ import {
     DASHBOARD_CARD,
     SKELETON_DEPR_SUBSTRACT,
     SKELETON_SCALE_GAP,
+    SKELETON_SUBSTRACT,
 } from '../../model/consts/chartsRects';
 import { getSkeletonDimensions } from '../../lib/utilities/getSkeletonDimensions/getSkeletonDimensions';
 import { Each } from '@/shared/lib/components/Each/Each';
@@ -32,18 +33,6 @@ export const StatisticsChartsSkeleton = memo(() => {
         articleRatingDistributionChart,
     } = getSkeletonDimensions();
 
-    const ratingsByUsersChartWith = toggleFeatures({
-        name: 'isAppRedesigned',
-        off: () => Number(ratingsByUsersChart.width) + Number(CHART_GAP),
-        on: () => ratingsByUsersChart.width,
-    });
-
-    const commentsByUsersChartHeight = toggleFeatures({
-        name: 'isAppRedesigned',
-        off: () => Number(commentsByUsersChart.height) + Number(CHART_GAP),
-        on: () => commentsByUsersChart.height,
-    });
-
     const articlesByCategoriesChartHeight =
         viewsByCategoriesChart.height +
         articlesByCategoriesChart.height +
@@ -51,7 +40,7 @@ export const StatisticsChartsSkeleton = memo(() => {
         toggleFeatures({
             name: 'isAppRedesigned',
             off: () => Number(SKELETON_DEPR_SUBSTRACT),
-            on: () => 0,
+            on: () => Number(SKELETON_SUBSTRACT),
         });
 
     return (
@@ -84,7 +73,7 @@ export const StatisticsChartsSkeleton = memo(() => {
             <Skeleton
                 className={cls.bubbleChart}
                 border="12px"
-                width={ratingsByUsersChartWith}
+                width={Number(ratingsByUsersChart.width) + Number(CHART_GAP)}
                 height={ratingsByUsersChart.height}
             />
             <Skeleton
@@ -97,7 +86,7 @@ export const StatisticsChartsSkeleton = memo(() => {
                 className={cls.commentsDistributionChart}
                 border="12px"
                 width={commentsByUsersChart.width}
-                height={commentsByUsersChartHeight}
+                height={Number(commentsByUsersChart.height) + Number(CHART_GAP)}
             />
             <Skeleton
                 className={cls.commentsRatingChart}

@@ -33,6 +33,16 @@ export const DefaultRedesigned = Template.bind({});
 DefaultRedesigned.args = normalArgs;
 DefaultRedesigned.decorators = [NewDesignDecorator];
 
+export const EmptyList = Template.bind({});
+EmptyList.args = normalArgs;
+EmptyList.decorators = [() => <EmptyNotificationsList />];
+
+export const EmptyListRedesigned = Template.bind({});
+EmptyListRedesigned.args = normalArgs;
+EmptyListRedesigned.decorators = [
+    () => <EmptyNotificationsList />,
+    NewDesignDecorator,
+];
 export const LoadingState = Template.bind({});
 LoadingState.args = normalArgs;
 LoadingState.decorators = [() => <NotificationListSkeleton />];
@@ -44,24 +54,13 @@ LoadingStateRedesigned.decorators = [
     NewDesignDecorator,
 ];
 
-export const EmptyList = Template.bind({});
-EmptyList.args = normalArgs;
-EmptyList.decorators = [() => <EmptyNotificationsList />];
+export const ErrorStateNotifications = Template.bind({});
+ErrorStateNotifications.args = normalArgs;
+ErrorStateNotifications.decorators = [() => <ErrorNotificationsList />];
 
-export const EmptyListRedesigned = Template.bind({});
-EmptyListRedesigned.args = normalArgs;
-EmptyListRedesigned.decorators = [
-    () => <EmptyNotificationsList />,
-    NewDesignDecorator,
-];
-
-export const ErrorStateHotifications = Template.bind({});
-ErrorStateHotifications.args = normalArgs;
-ErrorStateHotifications.decorators = [() => <ErrorNotificationsList />];
-
-export const ErrorStateHotificationsRedesigned = Template.bind({});
-ErrorStateHotificationsRedesigned.args = normalArgs;
-ErrorStateHotificationsRedesigned.decorators = [
+export const ErrorStateNotificationsRedesigned = Template.bind({});
+ErrorStateNotificationsRedesigned.args = normalArgs;
+ErrorStateNotificationsRedesigned.decorators = [
     () => <ErrorNotificationsList />,
     NewDesignDecorator,
 ];
