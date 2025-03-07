@@ -55,17 +55,27 @@ PieChartWithNoData.args = {
     height: '190',
 };
 
-export const RedesignedDefault = Template.bind({});
-RedesignedDefault.args = defaultArgs;
-RedesignedDefault.decorators = [NewDesignDecorator];
+export const PieChartWithNoDataRedesigned = Template.bind({});
+PieChartWithNoDataRedesigned.args = {
+    data: [],
+    labels: [],
+    title: 'Pie Chart Example',
+    width: '380',
+    height: '190',
+};
+PieChartWithNoDataRedesigned.decorators = [NewDesignDecorator];
 
-export const RedesignedDark = Template.bind({});
-RedesignedDark.args = defaultArgs;
-RedesignedDark.decorators = [NewDesignDecorator, ThemeDecorator(Theme.DARK)];
+export const DefaultRedesigned = Template.bind({});
+DefaultRedesigned.args = defaultArgs;
+DefaultRedesigned.decorators = [NewDesignDecorator];
 
-export const RedesignedOrange = Template.bind({});
-RedesignedOrange.args = defaultArgs;
-RedesignedOrange.decorators = [
+export const DarkRedesigned = Template.bind({});
+DarkRedesigned.args = defaultArgs;
+DarkRedesigned.decorators = [NewDesignDecorator, ThemeDecorator(Theme.DARK)];
+
+export const OrangeRedesigned = Template.bind({});
+OrangeRedesigned.args = defaultArgs;
+OrangeRedesigned.decorators = [
     NewDesignDecorator,
     ThemeDecorator(Theme.ORANGE),
 ];

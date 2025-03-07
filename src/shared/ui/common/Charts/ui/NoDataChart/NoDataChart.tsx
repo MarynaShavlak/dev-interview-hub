@@ -24,7 +24,7 @@ export const NoDataChart = (props: BaseChartProps) => {
             <EmptyChart width={width} height={height} />
             <Box
                 width={`${width}px`}
-                height={`${height}px`}
+                height="60px"
                 className={classNames('', {}, flexClasses)}
             >
                 <ToggleFeaturesComponent

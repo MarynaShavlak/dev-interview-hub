@@ -17,11 +17,12 @@
 
     <g transform="translate(40,160)" stroke="gray" fill="none" stroke-width="2">
         <circle cx="0" cy="0" r="15"/>
-        <path d="M0,0 L15,0 A15,15 0 0,1 0,15 Z"/>
+        <path d="M0,0 L15,0 A15,15 0 0,1 10,10 Z"/>
     </g>
-
     <!-- Line Chart -->
     <g transform="translate(150,80)" stroke="gray" fill="none" stroke-width="2">
         <polyline points="0,10 10,5 20,15 30,5"/>
     </g>
 </svg>
+
+
