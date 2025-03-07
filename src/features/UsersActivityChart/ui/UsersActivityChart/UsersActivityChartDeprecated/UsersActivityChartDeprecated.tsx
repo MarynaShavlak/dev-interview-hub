@@ -8,7 +8,13 @@ import { useActiveUsersChartData } from '../../../lib/hooks/useActiveUsersChartD
 export const UsersActivityChartDeprecated = memo(
     (props: UsersActivityChartProps) => {
         const { t } = useTranslation('admin');
-        const { activeUsersList, totalUsers, className } = props;
+        const {
+            activeUsersList,
+            totalUsers,
+            className,
+            height = '200',
+            width = '380',
+        } = props;
         const activeUsersData = useActiveUsersChartData(
             activeUsersList,
             totalUsers,
@@ -26,8 +32,8 @@ export const UsersActivityChartDeprecated = memo(
                     labels={activeUserLabels}
                     title={t('Відсоток активних користувачів, %')}
                     legendPosition="top"
-                    height="200"
-                    width="380"
+                    height={height}
+                    width={width}
                 />
             </Card>
         );

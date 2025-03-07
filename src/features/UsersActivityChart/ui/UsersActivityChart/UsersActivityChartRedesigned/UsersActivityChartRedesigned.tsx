@@ -13,6 +13,7 @@ export const UsersActivityChartRedesigned = memo(
             activeUsersList,
             totalUsers,
         );
+        console.log('__', activeUsersList, totalUsers);
         const activeUserLabels = [
             `${t('Автори статей')}`,
             `${t('Коментатори статей')}`,
