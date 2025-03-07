@@ -1,9 +1,9 @@
 <svg  viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
     <!-- Background Circle -->
-    <circle cx="100" cy="100" r="60" fill="lightgray" opacity="0.5"/>
+    <circle cx="100" cy="100" r="60" fill="currentColor" opacity="0.5"/>
 
     <!-- Bar Chart in Center -->
-    <g stroke="gray" fill="none" stroke-width="2">
+    <g stroke="grey" fill="none" stroke-width="2">
         <rect x="85" y="110" width="10" height="20"/>
         <rect x="97" y="100" width="10" height="30"/>
         <rect x="109" y="90" width="10" height="40"/>

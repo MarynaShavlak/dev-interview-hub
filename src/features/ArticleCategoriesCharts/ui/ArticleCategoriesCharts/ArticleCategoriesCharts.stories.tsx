@@ -8,7 +8,7 @@ import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDe
 import { Theme } from '@/shared/const/theme';
 
 export default {
-    title: 'features/ArticleCategoriesCharts',
+    title: 'features/charts/ArticleCategoriesCharts',
     component: ArticleCategoriesCharts,
     decorators: [StoreDecorator({})],
 } as ComponentMeta<typeof ArticleCategoriesCharts>;

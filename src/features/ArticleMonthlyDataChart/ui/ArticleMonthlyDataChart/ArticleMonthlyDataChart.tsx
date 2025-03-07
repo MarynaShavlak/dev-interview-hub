@@ -1,5 +1,4 @@
 import React, { memo } from 'react';
-import { useTranslation } from 'react-i18next';
 import { useGetArticles } from '@/entities/Article';
 
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
@@ -11,10 +10,7 @@ import { ArticleMonthlyDataChartProps } from '../../model/types/types';
 
 export const ArticleMonthlyDataChart = memo(
     (props: ArticleMonthlyDataChartProps) => {
-        const { t } = useTranslation('admin');
-
         const { isLoading: isArticlesLoading, error } = useGetArticles();
-
         if (error) return null;
 
         if (isArticlesLoading) {

@@ -5,7 +5,7 @@ import { BaseChartProps } from '../types';
 import EmptyChart from '@/shared/assets/icons/emptyChart.svg';
 import { VStack } from '../../../Stack';
 
-import { ToggleFeaturesComponent } from '@/shared/lib/features';
+import { toggleFeatures, ToggleFeaturesComponent } from '@/shared/lib/features';
 import { Text } from '../../../../redesigned/Text';
 import { Text as TextDeprecated, TextAlign } from '../../../../deprecated/Text';
 import { Box } from '../../../Box';
@@ -24,9 +24,17 @@ export const NoDataChart = (props: BaseChartProps) => {
         justify: 'between',
     });
     const chartHeight = String(Number(height) - 60);
-
+    const colorClass = toggleFeatures({
+        name: 'isAppRedesigned',
+        on: () => cls.colorRedesigned,
+        off: () => cls.color,
+    });
     return (
-        <VStack justify="center" align="center" className={cls.wrapper}>
+        <VStack
+            justify="center"
+            align="center"
+            className={classNames(cls.wrapper, {}, [colorClass])}
+        >
             <EmptyChart width={width} height={chartHeight} />
             <Box
                 width={`${width}px`}
