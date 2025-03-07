@@ -5,6 +5,7 @@ import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDe
 import { Theme } from '@/shared/const/theme';
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 import { ArticleQuarterlyDataChart } from '../..';
+import { testChartData } from '../../testing';
 
 export default {
     title: 'features/charts/ArticleQuarterlyDataChart',
@@ -27,13 +28,9 @@ const QuarterlyTemplate: ComponentStory<typeof ArticleQuarterlyDataChart> = (
 );
 
 const quarterlyDefaultArgs = {
-    categories: ['IT', 'CSS', 'HTML'],
-    data: {
-        Q1: { Technology: 30, Science: 15, Health: 25 },
-        Q2: { Technology: 40, Science: 20, Health: 30 },
-        Q3: { Technology: 50, Science: 25, Health: 35 },
-    },
+    categories: ['TypeScript', 'HTML', 'React', 'JavaScript', 'CSS', 'IT'],
     chartDimensions: { width: '600', height: '400' },
+    data: testChartData,
 };
 
 const quarterlyNoDataArgs = {
