@@ -36,6 +36,13 @@ const defaultArgs = {
     height: '500',
 };
 
+const noDataArgs = {
+    data: [],
+    title: 'Treemap Chart Example',
+    width: '400',
+    height: '500',
+};
+
 export const Default = Template.bind({});
 Default.args = defaultArgs;
 
@@ -47,25 +54,17 @@ export const OrangeTheme = Template.bind({});
 OrangeTheme.args = defaultArgs;
 OrangeTheme.decorators = [ThemeDecorator(Theme.ORANGE)];
 
-export const TreemapChartWithNoData = Template.bind({});
-TreemapChartWithNoData.args = {
-    data: [],
-    title: 'No Data Available',
-    width: '400',
-    height: '500',
-};
+export const DefaultRedesigned = Template.bind({});
+DefaultRedesigned.args = defaultArgs;
+DefaultRedesigned.decorators = [NewDesignDecorator];
 
-export const RedesignedDefault = Template.bind({});
-RedesignedDefault.args = defaultArgs;
-RedesignedDefault.decorators = [NewDesignDecorator];
+export const DarkRedesigned = Template.bind({});
+DarkRedesigned.args = defaultArgs;
+DarkRedesigned.decorators = [NewDesignDecorator, ThemeDecorator(Theme.DARK)];
 
-export const RedesignedDark = Template.bind({});
-RedesignedDark.args = defaultArgs;
-RedesignedDark.decorators = [NewDesignDecorator, ThemeDecorator(Theme.DARK)];
-
-export const RedesignedOrange = Template.bind({});
-RedesignedOrange.args = defaultArgs;
-RedesignedOrange.decorators = [
+export const OrangeRedesigned = Template.bind({});
+OrangeRedesigned.args = defaultArgs;
+OrangeRedesigned.decorators = [
     NewDesignDecorator,
     ThemeDecorator(Theme.ORANGE),
 ];
@@ -77,3 +76,10 @@ WithCustomSize.args = {
     height: '200px',
 };
 WithCustomSize.decorators = [NewDesignDecorator];
+
+export const TreemapChartWithNoData = Template.bind({});
+TreemapChartWithNoData.args = noDataArgs;
+
+export const TreemapChartWithNoDatRedesigned = Template.bind({});
+TreemapChartWithNoDatRedesigned.args = noDataArgs;
+TreemapChartWithNoDatRedesigned.decorators = [NewDesignDecorator];

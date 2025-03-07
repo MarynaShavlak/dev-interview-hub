@@ -1,0 +1,20 @@
+<svg width="300" height="300" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+    <!-- Circle Background -->
+    <circle cx="150" cy="100" r="50" fill="black"/>
+
+    <!-- Precisely Rounded Code Brackets -->
+    <g stroke="white" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <!-- Left Bracket -->
+        <path d="M135,90 Q125,100 135,110"/>
+        <!-- Right Bracket -->
+        <path d="M165,90 Q175,100 165,110"/>
+    </g>
+
+    <!-- Text -->
+    <text x="150" y="180" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="black" text-anchor="middle">
+        DEV
+    </text>
+    <text x="150" y="210" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="black" text-anchor="middle">
+        INTERVIEW HUB
+    </text>
+</svg>
