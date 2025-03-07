@@ -36,6 +36,16 @@ const defaultArgs = {
     width: '500',
     height: '400',
 };
+
+const noDataArgs = {
+    data: [],
+    labels: [],
+    title: 'Bar Chart Example',
+    xAxisTitle: 'Month',
+    yAxisTitle: 'Value',
+    width: '500',
+    height: '400',
+};
 export const Default = Template.bind({});
 Default.args = defaultArgs;
 
@@ -46,17 +56,6 @@ DarkTheme.decorators = [ThemeDecorator(Theme.DARK)];
 export const OrangeTheme = Template.bind({});
 OrangeTheme.args = defaultArgs;
 OrangeTheme.decorators = [ThemeDecorator(Theme.ORANGE)];
-
-export const BarChartWithNoData = Template.bind({});
-BarChartWithNoData.args = {
-    data: [],
-    labels: [],
-    title: 'No Data Available',
-    xAxisTitle: 'Month',
-    yAxisTitle: 'Value',
-    width: '500',
-    height: '400',
-};
 
 export const BarChartWithCustomSize = Template.bind({});
 BarChartWithCustomSize.args = {
@@ -93,3 +92,10 @@ RedesignedOrange.decorators = [
     NewDesignDecorator,
     ThemeDecorator(Theme.ORANGE),
 ];
+
+export const BarChartWithNoData = Template.bind({});
+BarChartWithNoData.args = noDataArgs;
+
+export const BarChartWithNoDataRedesigned = Template.bind({});
+BarChartWithNoDataRedesigned.args = noDataArgs;
+BarChartWithNoDataRedesigned.decorators = [NewDesignDecorator];

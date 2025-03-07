@@ -3,6 +3,7 @@ import ReactApexChart from 'react-apexcharts';
 import { useBaseChartOptions } from '../../lib/hooks/useBaseChartOptions/useBaseChartOptions';
 import { mergeOptions } from '../../lib/utilities/mergeOptions/mergeOptions';
 import { BaseChartProps } from '../types';
+import { NoDataChart } from '../NoDataChart/NoDataChart';
 
 interface BubbleChartProps extends BaseChartProps {
     data: ApexAxisChartSeries;
@@ -88,6 +89,10 @@ export const BubbleChart = (props: BubbleChartProps) => {
         baseChartOptions,
         additionalOptions,
     );
+
+    if (data.length === 0) {
+        return <NoDataChart title={title} width={width} height={height} />;
+    }
 
     return (
         <ReactApexChart

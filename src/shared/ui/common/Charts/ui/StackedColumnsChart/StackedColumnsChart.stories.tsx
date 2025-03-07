@@ -42,6 +42,15 @@ const defaultArgs = {
     height: '500',
     legendPosition: 'right' as const,
 };
+const noDataArgs = {
+    data: [],
+    labels: [],
+    title: 'Stacked Columns Chart Example',
+    xAxisTitle: 'Months',
+    yAxisTitle: 'Values',
+    width: '400',
+    height: '500',
+};
 
 export const Default = Template.bind({});
 Default.args = defaultArgs;
@@ -54,28 +63,17 @@ export const OrangeTheme = Template.bind({});
 OrangeTheme.args = defaultArgs;
 OrangeTheme.decorators = [ThemeDecorator(Theme.ORANGE)];
 
-export const StackedColumnsChartWithNoData = Template.bind({});
-StackedColumnsChartWithNoData.args = {
-    data: [],
-    labels: [],
-    title: 'No Data Available',
-    xAxisTitle: 'Months',
-    yAxisTitle: 'Values',
-    width: '400',
-    height: '500',
-};
+export const DefaultRedesigned = Template.bind({});
+DefaultRedesigned.args = defaultArgs;
+DefaultRedesigned.decorators = [NewDesignDecorator];
 
-export const RedesignedDefault = Template.bind({});
-RedesignedDefault.args = defaultArgs;
-RedesignedDefault.decorators = [NewDesignDecorator];
+export const DarkRedesigned = Template.bind({});
+DarkRedesigned.args = defaultArgs;
+DarkRedesigned.decorators = [NewDesignDecorator, ThemeDecorator(Theme.DARK)];
 
-export const RedesignedDark = Template.bind({});
-RedesignedDark.args = defaultArgs;
-RedesignedDark.decorators = [NewDesignDecorator, ThemeDecorator(Theme.DARK)];
-
-export const RedesignedOrange = Template.bind({});
-RedesignedOrange.args = defaultArgs;
-RedesignedOrange.decorators = [
+export const OrangeRedesigned = Template.bind({});
+OrangeRedesigned.args = defaultArgs;
+OrangeRedesigned.decorators = [
     NewDesignDecorator,
     ThemeDecorator(Theme.ORANGE),
 ];
@@ -88,3 +86,10 @@ WithCustomSize.args = {
     legendPosition: 'top' as const,
 };
 WithCustomSize.decorators = [NewDesignDecorator];
+
+export const StackedColumnsChartWithNoData = Template.bind({});
+StackedColumnsChartWithNoData.args = noDataArgs;
+
+export const StackedColumnsChartWithNoDataRedesigned = Template.bind({});
+StackedColumnsChartWithNoDataRedesigned.args = noDataArgs;
+StackedColumnsChartWithNoDataRedesigned.decorators = [NewDesignDecorator];

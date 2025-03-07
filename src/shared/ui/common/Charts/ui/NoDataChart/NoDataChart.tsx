@@ -17,7 +17,11 @@ export const NoDataChart = (props: BaseChartProps) => {
 
     const { t } = useTranslation();
     const noDataText = t('Дані для побудови графіку відсутні');
-    const flexClasses = getFlexClasses({ vStack: true, align: 'center' });
+    const flexClasses = getFlexClasses({
+        vStack: true,
+        align: 'center',
+        justify: 'between',
+    });
 
     return (
         <VStack justify="center" align="center">

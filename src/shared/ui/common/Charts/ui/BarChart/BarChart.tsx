@@ -5,6 +5,7 @@ import ApexCharts from 'apexcharts';
 import { useBaseChartOptions } from '../../lib/hooks/useBaseChartOptions/useBaseChartOptions';
 import { mergeOptions } from '../../lib/utilities/mergeOptions/mergeOptions';
 import { BaseChartProps } from '../types';
+import { NoDataChart } from '../NoDataChart/NoDataChart';
 
 interface BarChartProps extends BaseChartProps {
     data: number[];
@@ -70,6 +71,9 @@ export const BarChart = (props: BarChartProps) => {
             data,
         },
     ];
+    if (data.length === 0) {
+        return <NoDataChart title={title} width={width} height={height} />;
+    }
 
     return (
         <ReactApexChart

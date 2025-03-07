@@ -52,6 +52,16 @@ const defaultArgs = {
     tooltipData: { x: 'X Value', y: 'Y Value', z: 'Size' },
 };
 
+const noDataArgs = {
+    data: [],
+    title: 'Bubble Chart Example',
+    xAxisTitle: 'X Axis',
+    yAxisTitle: 'Y Axis',
+    width: '500',
+    height: '400',
+    tooltipData: { x: 'X', y: 'Y', z: 'Size' },
+};
+
 export const Default = Template.bind({});
 Default.args = defaultArgs;
 
@@ -70,28 +80,24 @@ BubbleChartWithCustomSize.args = {
     height: '300',
 };
 
-export const BubbleChartWithNoData = Template.bind({});
-BubbleChartWithNoData.args = {
-    data: [],
-    title: 'No Data Available',
-    xAxisTitle: 'X Axis',
-    yAxisTitle: 'Y Axis',
-    width: '500',
-    height: '400',
-    tooltipData: { x: 'X', y: 'Y', z: 'Size' },
-};
-
 export const RedesignedDefault = Template.bind({});
 RedesignedDefault.args = defaultArgs;
 RedesignedDefault.decorators = [NewDesignDecorator];
 
-export const RedesignedDark = Template.bind({});
-RedesignedDark.args = defaultArgs;
-RedesignedDark.decorators = [NewDesignDecorator, ThemeDecorator(Theme.DARK)];
+export const DarkRedesigned = Template.bind({});
+DarkRedesigned.args = defaultArgs;
+DarkRedesigned.decorators = [NewDesignDecorator, ThemeDecorator(Theme.DARK)];
 
-export const RedesignedOrange = Template.bind({});
-RedesignedOrange.args = defaultArgs;
-RedesignedOrange.decorators = [
+export const OrangeRedesigned = Template.bind({});
+OrangeRedesigned.args = defaultArgs;
+OrangeRedesigned.decorators = [
     NewDesignDecorator,
     ThemeDecorator(Theme.ORANGE),
 ];
+
+export const BubbleChartWithNoData = Template.bind({});
+BubbleChartWithNoData.args = noDataArgs;
+
+export const BubbleChartRedesigned = Template.bind({});
+BubbleChartRedesigned.args = noDataArgs;
+BubbleChartRedesigned.decorators = [NewDesignDecorator];
