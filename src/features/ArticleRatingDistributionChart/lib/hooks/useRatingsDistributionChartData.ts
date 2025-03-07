@@ -3,8 +3,8 @@ import { calculatePercentage } from '@/shared/lib/mathCalculations/calculatePerc
 export const useRatingsDistributionChartData = (
     ratingDistributionMap: Map<number, number>,
     totalArticlesWithRatings: number,
-): [number, number, number] => {
-    const articlesByRatingDistributionData: [number, number, number] = [
+): number[] => {
+    const articlesByRatingDistributionData: number[] = [
         calculatePercentage(
             ratingDistributionMap.get(1)! + ratingDistributionMap.get(2)!,
             totalArticlesWithRatings,

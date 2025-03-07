@@ -59,7 +59,7 @@ export const RadialbarChart = (props: BarChartProps) => {
     };
 
     const chartOptions = mergeOptions(baseChartOptions, additionalOptions);
-    if (data.length === 0) {
+    if (data.length === 0 || data.every((value) => value === 0)) {
         return <NoDataChart title={title} width={width} height={height} />;
     }
     return (

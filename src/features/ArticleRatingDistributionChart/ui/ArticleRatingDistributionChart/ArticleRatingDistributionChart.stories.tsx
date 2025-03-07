@@ -1,43 +1,49 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { ArticleMonthlyDataChart } from './ArticleMonthlyDataChart';
+import { ArticleRatingDistributionChart } from './ArticleRatingDistributionChart';
 import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator/NewDesignDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 import { Theme } from '@/shared/const/theme';
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 
 export default {
-    title: 'features/charts/ArticleMonthlyDataChart',
-    component: ArticleMonthlyDataChart,
+    title: 'features/charts/ArticleRatingDistributionChart',
+    component: ArticleRatingDistributionChart,
     argTypes: {
-        categories: { control: 'array' },
-        data: { control: 'object' },
+        ratingDistributionMap: { control: 'object' },
+        totalArticlesWithRatings: { control: 'number' },
         className: { control: 'text' },
         chartDimensions: { control: 'object' },
     },
     decorators: [StoreDecorator({})],
-} as ComponentMeta<typeof ArticleMonthlyDataChart>;
+} as ComponentMeta<typeof ArticleRatingDistributionChart>;
 
-const Template: ComponentStory<typeof ArticleMonthlyDataChart> = (args) => (
+const Template: ComponentStory<typeof ArticleRatingDistributionChart> = (
+    args,
+) => (
     <div style={{ width: '800px', height: '500px', margin: 'auto' }}>
-        <ArticleMonthlyDataChart {...args} />
+        <ArticleRatingDistributionChart {...args} />
     </div>
 );
 
 const defaultArgs = {
-    categories: ['IT', 'HTML', 'CSS'],
-    data: {
-        January: { IT: 10, HTML: 5, CSS: 8 },
-        February: { IT: 15, HTML: 10, CSS: 12 },
-        March: { IT: 20, HTML: 12, CSS: 15 },
-    },
-    chartDimensions: { width: '600', height: '400' },
+    ratingDistributionMap: new Map([
+        [1, 5],
+        [2, 10],
+        [3, 15],
+        [4, 20],
+        [5, 25],
+    ]),
+    totalArticlesWithRatings: 75,
+    width: '600',
+    height: '400',
 };
 
 const noDataArgs = {
-    categories: [],
-    data: {},
-    chartDimensions: { width: '600', height: '400' },
+    ratingDistributionMap: new Map<number, number>(),
+    totalArticlesWithRatings: 0,
+    width: '600',
+    height: '400',
 };
 
 export const Default = Template.bind({});
@@ -69,7 +75,8 @@ OrangeRedesigned.decorators = [
 export const WithCustomSize = Template.bind({});
 WithCustomSize.args = {
     ...defaultArgs,
-    chartDimensions: { width: '800', height: '280' },
+    width: '800',
+    height: '280',
 };
 WithCustomSize.decorators = [NewDesignDecorator];
 

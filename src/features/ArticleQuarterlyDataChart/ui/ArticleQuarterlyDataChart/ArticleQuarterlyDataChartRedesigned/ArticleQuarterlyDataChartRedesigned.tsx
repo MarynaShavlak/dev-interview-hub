@@ -9,11 +9,8 @@ export const ArticleQuarterlyDataChartRedesigned = memo(
     (props: ArticleQuarterlyDataChartProps) => {
         const { t } = useTranslation('admin');
         const { categories, data, className, chartDimensions } = props;
-        console.log(data, categories);
-
         const { quarterlyCategoryData, quarterlyLabels } =
             useArticleQuarterlyData(categories, data);
-        console.log('quarterlyCategoryData', quarterlyCategoryData);
 
         return (
             <Card className={className}>
