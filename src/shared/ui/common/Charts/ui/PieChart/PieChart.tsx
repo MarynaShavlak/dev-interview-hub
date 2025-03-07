@@ -72,7 +72,7 @@ export const PieChart = (props: DonutChartProps) => {
 
     const chartOptions = mergeOptions(baseChartOptions, additionalOptions);
     if (data.length === 0) {
-        return <NoDataChart title={title} />;
+        return <NoDataChart title={title} width={width} height={height} />;
     }
 
     return (
