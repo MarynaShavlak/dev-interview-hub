@@ -7,6 +7,7 @@ import cls from './StatisticsCharts.module.scss';
 import {
     CHART_GAP,
     DASHBOARD_CARD,
+    SKELETON_DEPR_SUBSTRACT,
     SKELETON_SCALE_GAP,
 } from '../../model/consts/chartsRects';
 import { getSkeletonDimensions } from '../../lib/utilities/getSkeletonDimensions/getSkeletonDimensions';
@@ -30,6 +31,28 @@ export const StatisticsChartsSkeleton = memo(() => {
         viewsByCategoriesChart,
         articleRatingDistributionChart,
     } = getSkeletonDimensions();
+
+    const ratingsByUsersChartWith = toggleFeatures({
+        name: 'isAppRedesigned',
+        off: () => Number(ratingsByUsersChart.width) + Number(CHART_GAP),
+        on: () => ratingsByUsersChart.width,
+    });
+
+    const commentsByUsersChartHeight = toggleFeatures({
+        name: 'isAppRedesigned',
+        off: () => Number(commentsByUsersChart.height) + Number(CHART_GAP),
+        on: () => commentsByUsersChart.height,
+    });
+
+    const articlesByCategoriesChartHeight =
+        viewsByCategoriesChart.height +
+        articlesByCategoriesChart.height +
+        Number(SKELETON_SCALE_GAP) +
+        toggleFeatures({
+            name: 'isAppRedesigned',
+            off: () => Number(SKELETON_DEPR_SUBSTRACT),
+            on: () => 0,
+        });
 
     return (
         <div className={chartsWrap}>
@@ -56,16 +79,12 @@ export const StatisticsChartsSkeleton = memo(() => {
                 className={cls.articleCategoriesChart}
                 border="12px"
                 width={articlesByCategoriesChart.width}
-                height={
-                    viewsByCategoriesChart.height +
-                    articlesByCategoriesChart.height +
-                    SKELETON_SCALE_GAP
-                }
+                height={articlesByCategoriesChartHeight}
             />
             <Skeleton
                 className={cls.bubbleChart}
                 border="12px"
-                width={ratingsByUsersChart.width}
+                width={ratingsByUsersChartWith}
                 height={ratingsByUsersChart.height}
             />
             <Skeleton
@@ -78,24 +97,24 @@ export const StatisticsChartsSkeleton = memo(() => {
                 className={cls.commentsDistributionChart}
                 border="12px"
                 width={commentsByUsersChart.width}
-                height={commentsByUsersChart.height}
+                height={commentsByUsersChartHeight}
             />
             <Skeleton
                 className={cls.commentsRatingChart}
                 border="12px"
-                width={commentsByArticlesChart.width}
+                width={commentsByArticlesChart.width + 14}
                 height={commentsByArticlesChart.height}
             />
             <Skeleton
                 className={cls.monthlyChart}
                 border="12px"
-                width={monthlyCategoryChart.width}
+                width={monthlyCategoryChart.width + 14}
                 height={monthlyCategoryChart.height}
             />
             <Skeleton
                 className={cls.quarterlyChart}
                 border="12px"
-                width={quarterlyCategoryChart.width}
+                width={quarterlyCategoryChart.width + 14}
                 height={quarterlyCategoryChart.height}
             />
         </div>

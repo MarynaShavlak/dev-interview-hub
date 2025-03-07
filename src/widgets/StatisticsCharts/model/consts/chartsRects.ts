@@ -14,7 +14,7 @@ export type ChartKeys =
 
 const byCategoriesChartsWidth = toggleFeatures({
     name: 'isAppRedesigned',
-    off: () => '382',
+    off: () => '396',
     on: () => '412',
 });
 
@@ -47,8 +47,20 @@ const fullHeight = toggleFeatures({
     on: () => '300',
 });
 
+const activeUsersChartWidth = toggleFeatures({
+    name: 'isAppRedesigned',
+    off: () => '396',
+    on: () => '412',
+});
+
+const ratingsByUsersChartWidth = toggleFeatures({
+    name: 'isAppRedesigned',
+    off: () => '368',
+    on: () => '384',
+});
+
 export const CHARTS_RECTS: Record<ChartKeys, ChartDimensions> = {
-    activeUsersChart: { width: '412', height: '200' },
+    activeUsersChart: { width: activeUsersChartWidth, height: '200' },
     articlesByCategoriesChart: {
         width: byCategoriesChartsWidth,
         height: byCategoriesChartsHeight,
@@ -57,7 +69,7 @@ export const CHARTS_RECTS: Record<ChartKeys, ChartDimensions> = {
         width: byCategoriesChartsWidth,
         height: String(Number(byCategoriesChartsHeight) - 10),
     },
-    ratingsByUsersChart: { width: '384', height: '300' },
+    ratingsByUsersChart: { width: ratingsByUsersChartWidth, height: '300' },
     articleRatingDistributionChart: { width: '220', height: '200' },
     commentsByArticlesChart: { width: fullWidth, height: fullHeight }, // 828
     commentsByUsersChart: {
@@ -69,9 +81,12 @@ export const CHARTS_RECTS: Record<ChartKeys, ChartDimensions> = {
 };
 
 export const CHART_GAP = '16';
+
 export const DASHBOARD_CARD = {
     width: 192,
     height: 105,
 };
 export const SKELETON_SCALE_GAP = 100;
 export const SKELETON_SUBSTRACT = 20;
+export const SKELETON_DEPR_SUBSTRACT = 28;
+export const CARD_DEPR_PAD = 30;
