@@ -15,7 +15,8 @@ export const UserRatingsBubbleChartRedesigned = memo(
             minXaxisValue,
             maxYaxisValue,
         } = useUserRatingsChartData(data, totalArticles);
-
+        console.log('data___', data);
+        console.log('totalArticles___', totalArticles);
         const xAxisTitle = t('Відсоток оцінених користувачем статей,%');
         const yAxisTitle = t('Середній рейтинг статей наданий користувачем');
         const xTooltip = t('Відсоток оцінених статей');
