@@ -4,6 +4,7 @@ import ApexCharts from 'apexcharts';
 import { useBaseChartOptions } from '../../lib/hooks/useBaseChartOptions/useBaseChartOptions';
 import { mergeOptions } from '../../lib/utilities/mergeOptions/mergeOptions';
 import { BaseChartProps } from '../types';
+import { NoDataChart } from '../NoDataChart/NoDataChart';
 
 interface LineChartProps extends BaseChartProps {
     data: { name: string; data: number[] }[];
@@ -68,7 +69,9 @@ export const LineChart = (props: LineChartProps) => {
     };
 
     const chartOptions = mergeOptions(baseChartOptions, additionalOptions);
-
+    if (data.length === 0) {
+        return <NoDataChart title={title} width={width} height={height} />;
+    }
     return (
         <ReactApexChart
             series={data}

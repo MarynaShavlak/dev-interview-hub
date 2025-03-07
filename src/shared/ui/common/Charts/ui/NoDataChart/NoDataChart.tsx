@@ -11,6 +11,7 @@ import { Text as TextDeprecated, TextAlign } from '../../../../deprecated/Text';
 import { Box } from '../../../Box';
 import { getFlexClasses } from '@/shared/lib/classes/getFlexClasses/getFlexClasses';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
+import cls from './NoDataChart.module.scss';
 
 export const NoDataChart = (props: BaseChartProps) => {
     const { width = '200', height = '200', title } = props;
@@ -22,10 +23,11 @@ export const NoDataChart = (props: BaseChartProps) => {
         align: 'center',
         justify: 'between',
     });
+    const chartHeight = String(Number(height) - 60);
 
     return (
-        <VStack justify="center" align="center">
-            <EmptyChart width={width} height={height} />
+        <VStack justify="center" align="center" className={cls.wrapper}>
+            <EmptyChart width={width} height={chartHeight} />
             <Box
                 width={`${width}px`}
                 height="60px"

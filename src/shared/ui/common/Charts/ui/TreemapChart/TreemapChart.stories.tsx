@@ -80,6 +80,6 @@ WithCustomSize.decorators = [NewDesignDecorator];
 export const TreemapChartWithNoData = Template.bind({});
 TreemapChartWithNoData.args = noDataArgs;
 
-export const TreemapChartWithNoDatRedesigned = Template.bind({});
-TreemapChartWithNoDatRedesigned.args = noDataArgs;
-TreemapChartWithNoDatRedesigned.decorators = [NewDesignDecorator];
+export const TreemapChartWithNoDataRedesigned = Template.bind({});
+TreemapChartWithNoDataRedesigned.args = noDataArgs;
+TreemapChartWithNoDataRedesigned.decorators = [NewDesignDecorator];

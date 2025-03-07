@@ -1,51 +1,52 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { StackedColumnsChart } from './StackedColumnsChart';
+import { LineChart } from './LineChart';
 import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator/NewDesignDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 import { Theme } from '@/shared/const/theme';
 
 export default {
-    title: 'shared/common/Charts/StackedColumnsChart',
-    component: StackedColumnsChart,
+    title: 'shared/common/Charts/LineChart',
+    component: LineChart,
     argTypes: {
         data: { control: 'array' },
         labels: { control: 'array' },
         title: { control: 'text' },
-        legendPosition: {
-            control: 'radio',
-        },
+        legendPosition: { control: 'radio' },
         xAxisTitle: { control: 'text' },
         yAxisTitle: { control: 'text' },
+        markers: { control: 'boolean' },
     },
-} as ComponentMeta<typeof StackedColumnsChart>;
+} as ComponentMeta<typeof LineChart>;
 
-const Template: ComponentStory<typeof StackedColumnsChart> = (args) => {
+const Template: ComponentStory<typeof LineChart> = (args) => {
     return (
         <div style={{ width: '800px', height: '500px', margin: 'auto' }}>
-            <StackedColumnsChart {...args} />
+            <LineChart {...args} />
         </div>
     );
 };
 
 const defaultArgs = {
     data: [
-        { name: 'Category A', data: [30, 40, 35] },
-        { name: 'Category B', data: [20, 30, 25] },
-        { name: 'Category C', data: [10, 15, 20] },
+        { name: 'Series A', data: [30, 40, 35] },
+        { name: 'Series B', data: [20, 30, 25] },
+        { name: 'Series C', data: [10, 15, 20] },
     ],
     labels: ['January', 'February', 'March'],
-    title: 'Stacked Columns Chart Example',
+    title: 'Line Chart Example',
     xAxisTitle: 'Months',
     yAxisTitle: 'Values',
     width: '400',
     height: '500',
     legendPosition: 'right' as const,
+    markers: false,
 };
+
 const noDataArgs = {
     data: [],
     labels: [],
-    title: 'Stacked Columns Chart Example',
+    title: 'Line Chart Example',
     xAxisTitle: 'Months',
     yAxisTitle: 'Values',
     width: '400',
@@ -87,9 +88,15 @@ WithCustomSize.args = {
 };
 WithCustomSize.decorators = [NewDesignDecorator];
 
-export const StackedColumnsChartWithNoData = Template.bind({});
-StackedColumnsChartWithNoData.args = noDataArgs;
+export const WithMarkers = Template.bind({});
+WithMarkers.args = {
+    ...defaultArgs,
+    markers: true,
+};
 
-export const StackedColumnsChartWithNoDataRedesigned = Template.bind({});
-StackedColumnsChartWithNoDataRedesigned.args = noDataArgs;
-StackedColumnsChartWithNoDataRedesigned.decorators = [NewDesignDecorator];
+export const LineChartWithNoData = Template.bind({});
+LineChartWithNoData.args = noDataArgs;
+
+export const LineChartWithNoDataRedesigned = Template.bind({});
+LineChartWithNoDataRedesigned.args = noDataArgs;
+LineChartWithNoDataRedesigned.decorators = [NewDesignDecorator];
