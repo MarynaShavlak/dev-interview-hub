@@ -35,10 +35,10 @@ export const NoDataChart = (props: BaseChartProps) => {
             >
                 <ToggleFeaturesComponent
                     feature="isAppRedesigned"
-                    on={<Text text={`${title}: `} align="center" />}
+                    on={<Text text={`${title}`} align="center" />}
                     off={
                         <TextDeprecated
-                            text={`${title}: `}
+                            text={`${title}`}
                             align={TextAlign.CENTER}
                         />
                     }

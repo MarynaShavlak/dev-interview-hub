@@ -1,36 +1,34 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { ArticleCategoriesCharts } from './ArticleCategoriesCharts';
+import { ArticleCommentersChart } from './ArticleCommentersChart';
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
-import { ArticleStats } from '../../model/types/types';
 import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator/NewDesignDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 import { Theme } from '@/shared/const/theme';
 
 export default {
-    title: 'features/ArticleCategoriesCharts',
-    component: ArticleCategoriesCharts,
+    title: 'features/ArticleCommentersChart',
+    component: ArticleCommentersChart,
     decorators: [StoreDecorator({})],
-} as ComponentMeta<typeof ArticleCategoriesCharts>;
+} as ComponentMeta<typeof ArticleCommentersChart>;
 
-const Template: ComponentStory<typeof ArticleCategoriesCharts> = (args) => {
-    return <ArticleCategoriesCharts {...args} />;
+const Template: ComponentStory<typeof ArticleCommentersChart> = (args) => {
+    return <ArticleCommentersChart {...args} />;
 };
 
-const sampleData: Record<string, ArticleStats> = {
-    CSS: { viewCount: 17111, articleCount: 31 },
-    HTML: { viewCount: 6823, articleCount: 25 },
-    React: { viewCount: 12621, articleCount: 11 },
-};
+const chartDimensions = { width: '576', height: '220' };
 
-const chartDimensions = { width: '385', height: '185' };
+const defaultArgs = {
+    commentCountsByUser: {
+        'User A': 10,
+        'User B': 15,
+        'User C': 5,
+    },
+    chartDimensions,
+};
 
 export const Default = Template.bind({});
-Default.args = {
-    data: sampleData,
-    articlesByCategoriesDimensions: chartDimensions,
-    viewsByCategoriesDimensions: chartDimensions,
-};
+Default.args = defaultArgs;
 
 export const DarkTheme = Template.bind({});
 DarkTheme.args = Default.args;
@@ -57,9 +55,8 @@ OrangeRedesigned.decorators = [
 
 export const EmptyData = Template.bind({});
 EmptyData.args = {
-    data: {},
-    articlesByCategoriesDimensions: chartDimensions,
-    viewsByCategoriesDimensions: chartDimensions,
+    commentCountsByUser: {},
+    chartDimensions,
 };
 
 export const EmptyDataRedesigned = Template.bind({});
