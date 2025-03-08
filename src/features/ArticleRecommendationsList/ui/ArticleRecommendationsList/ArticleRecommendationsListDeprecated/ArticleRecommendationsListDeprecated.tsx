@@ -1,12 +1,7 @@
-import { memo } from 'react';
+import React, { memo } from 'react';
 import { useArticleRecommendations } from '../../../lib/hooks/useArticleRecommendations/useArticleRecommendations';
 import { HStack, VStack } from '@/shared/ui/common/Stack';
-import {
-    ArticleCard,
-    ArticleListSkeleton,
-    ArticleView,
-} from '@/entities/Article';
-import { Skeleton as SkeletonDeprecated } from '@/shared/ui/deprecated/Skeleton';
+import { ArticleCard, ArticleView } from '@/entities/Article';
 import {
     Text as TextDeprecated,
     TextSize,
@@ -14,6 +9,8 @@ import {
 } from '@/shared/ui/deprecated/Text';
 import { Each } from '@/shared/lib/components/Each/Each';
 import { ArticleRecommendationsListProps } from '../ArticleRecommendationsList';
+import { ArticleRecommendationsListSkeleton } from '../ArticleRecommendationsListSkeleton/ArticleRecommendationsListSkeleton';
+import { ArticleRecommendationsListError } from '../ArticleRecommendationsListError/ArticleRecommendationsListError';
 
 export const ArticleRecommendationsListDeprecated = memo(
     (props: ArticleRecommendationsListProps) => {
@@ -31,27 +28,13 @@ export const ArticleRecommendationsListDeprecated = memo(
         } = useArticleRecommendations(id);
 
         if (isLoading) {
-            return (
-                <VStack max gap="8">
-                    <SkeletonDeprecated
-                        width="100%"
-                        height={40}
-                        border="34px"
-                    />
-                    <ArticleListSkeleton
-                        view={ArticleView.GRID}
-                        skeletonCount={3}
-                    />
-                </VStack>
-            );
+            return <ArticleRecommendationsListSkeleton />;
         }
         if (error) {
             return (
-                <TextDeprecated
-                    size={TextSize.L}
-                    title={errorTitle}
-                    text={errorText}
-                    theme={TextTheme.ERROR}
+                <ArticleRecommendationsListError
+                    errorTitle={errorTitle}
+                    errorText={errorText}
                 />
             );
         }

@@ -1,13 +1,8 @@
 import React, { memo } from 'react';
 
 import { Text } from '@/shared/ui/redesigned/Text';
-import {
-    ArticleListSkeleton,
-    ArticleView,
-    ArticleViews,
-} from '@/entities/Article';
+import { ArticleViews } from '@/entities/Article';
 import { HStack, VStack } from '@/shared/ui/common/Stack';
-import { Skeleton } from '@/shared/ui/redesigned/Skeleton';
 import { Each } from '@/shared/lib/components/Each/Each';
 
 import { ArticleRecommendationsListProps } from '../ArticleRecommendationsList';
@@ -15,6 +10,8 @@ import { useArticleRecommendations } from '../../../lib/hooks/useArticleRecommen
 import { AppLink } from '@/shared/ui/deprecated/AppLink';
 import { getRouteArticleDetails } from '@/shared/const/router/router';
 import { OrderCard } from '@/shared/ui/redesigned/OrderCard';
+import { ArticleRecommendationsListSkeleton } from '../ArticleRecommendationsListSkeleton/ArticleRecommendationsListSkeleton';
+import { ArticleRecommendationsListError } from '../ArticleRecommendationsListError/ArticleRecommendationsListError';
 
 export const ArticleRecommendationsListRedesigned = memo(
     (props: ArticleRecommendationsListProps) => {
@@ -32,23 +29,13 @@ export const ArticleRecommendationsListRedesigned = memo(
         } = useArticleRecommendations(id);
 
         if (isLoading) {
-            return (
-                <VStack max gap="8">
-                    <Skeleton width="100%" height={40} border="34px" />
-                    <ArticleListSkeleton
-                        view={ArticleView.GRID}
-                        skeletonCount={3}
-                    />
-                </VStack>
-            );
+            return <ArticleRecommendationsListSkeleton />;
         }
         if (error) {
             return (
-                <Text
-                    size="l"
-                    title={errorTitle}
-                    text={errorText}
-                    variant="error"
+                <ArticleRecommendationsListError
+                    errorTitle={errorTitle}
+                    errorText={errorText}
                 />
             );
         }
