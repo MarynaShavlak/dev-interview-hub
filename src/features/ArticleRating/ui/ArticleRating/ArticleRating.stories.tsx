@@ -27,7 +27,7 @@ const Template: ComponentStory<typeof ArticleRating> = (args) => (
     <ArticleRating {...args} />
 );
 
-const normalParams = {
+const DefaultParams = {
     mockData: [
         {
             url: `${__API__}/article-ratings?userId=1&articleId=1`,
@@ -52,18 +52,18 @@ const ratingDisabledParams = {
     ],
 };
 
-export const Normal = Template.bind({});
-Normal.args = {};
-Normal.decorators = [ArticleRatingEnabledDecorator];
-Normal.parameters = normalParams;
+export const Default = Template.bind({});
+Default.args = {};
+Default.decorators = [ArticleRatingEnabledDecorator];
+Default.parameters = DefaultParams;
 
-export const NormalRedesigned = Template.bind({});
-NormalRedesigned.args = {};
-NormalRedesigned.decorators = [
+export const DefaultRedesigned = Template.bind({});
+DefaultRedesigned.args = {};
+DefaultRedesigned.decorators = [
     ArticleRatingEnabledDecorator,
     NewDesignDecorator,
 ];
-NormalRedesigned.parameters = normalParams;
+DefaultRedesigned.parameters = DefaultParams;
 
 export const RatingDisabled = Template.bind({});
 RatingDisabled.args = {};

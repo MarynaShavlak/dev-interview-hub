@@ -72,6 +72,7 @@ module.exports = {
                     'attribute',
                     'padding',
                     'customPadding',
+                    'minLabelWidth',
                 ],
             },
         ],

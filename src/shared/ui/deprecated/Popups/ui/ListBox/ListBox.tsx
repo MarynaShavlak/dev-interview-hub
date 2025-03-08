@@ -21,6 +21,7 @@ interface ListBoxProps<T extends string> {
     className?: string;
     withBorder?: boolean;
     max?: boolean;
+    minLabelWidth?: string;
 }
 
 /**
@@ -39,6 +40,7 @@ export function ListBox<T extends string>(props: ListBoxProps<T>) {
         withBorder = false,
         label,
         max = false,
+        minLabelWidth = '140px',
     } = props;
     const [isOpen, setIsOpen] = useState(false);
     const optionsClasses = classNames(cls.options, {}, [
@@ -62,7 +64,12 @@ export function ListBox<T extends string>(props: ListBoxProps<T>) {
     );
     return (
         <HStack gap="4" max={max}>
-            {label && <span className={cls.label}>{`${label}>`}</span>}
+            {label && (
+                <span
+                    className={cls.label}
+                    style={{ minWidth: minLabelWidth }}
+                >{`${label}>`}</span>
+            )}
             <HListBox
                 disabled={readonly}
                 as="div"

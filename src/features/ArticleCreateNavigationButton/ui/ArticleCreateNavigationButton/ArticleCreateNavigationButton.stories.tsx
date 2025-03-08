@@ -1,19 +1,19 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { ArticleListNavigationButton } from './ArticleListNavigationButton';
+import { ArticleCreateNavigationButton } from './ArticleCreateNavigationButton';
 import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator/NewDesignDecorator';
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 
 export default {
-    title: 'features/ArticleListNavigationButton',
-    component: ArticleListNavigationButton,
+    title: 'features/ArticleCreateNavigationButton',
+    component: ArticleCreateNavigationButton,
     argTypes: {
         backgroundColor: { control: 'color' },
     },
-} as ComponentMeta<typeof ArticleListNavigationButton>;
+} as ComponentMeta<typeof ArticleCreateNavigationButton>;
 
-const Template: ComponentStory<typeof ArticleListNavigationButton> = (args) => (
-    <ArticleListNavigationButton />
-);
+const Template: ComponentStory<typeof ArticleCreateNavigationButton> = (
+    args,
+) => <ArticleCreateNavigationButton />;
 
 export const Default = Template.bind({});
 Default.args = {};

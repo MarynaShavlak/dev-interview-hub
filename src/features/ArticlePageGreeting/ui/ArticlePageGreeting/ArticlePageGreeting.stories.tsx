@@ -25,9 +25,9 @@ const storeDecorator = StoreDecorator({
     },
 });
 
-export const Normal = Template.bind({});
-Normal.args = {};
-Normal.decorators = [storeDecorator];
+export const Default = Template.bind({});
+Default.args = {};
+Default.decorators = [storeDecorator];
 
 export const Redesigned = Template.bind({});
 Redesigned.args = {};

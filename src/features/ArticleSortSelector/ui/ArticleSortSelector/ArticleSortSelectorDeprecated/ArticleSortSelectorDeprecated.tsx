@@ -39,6 +39,7 @@ export const ArticleSortSelectorDeprecated = memo(
                     onChange={onChangeOrder}
                     label={t('по')}
                     withBorder
+                    minLabelWidth="40px"
                 />
             </div>
         );

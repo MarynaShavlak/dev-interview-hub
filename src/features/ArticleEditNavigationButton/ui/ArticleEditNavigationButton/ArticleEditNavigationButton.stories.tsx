@@ -15,9 +15,9 @@ const Template: ComponentStory<typeof ArticleEditNavigationButton> = (args) => (
     <ArticleEditNavigationButton id="1" />
 );
 
-export const Normal = Template.bind({});
-Normal.args = {};
-Normal.decorators = [StoreDecorator({})];
+export const Default = Template.bind({});
+Default.args = {};
+Default.decorators = [StoreDecorator({})];
 
 export const Redesigned = Template.bind({});
 Redesigned.args = {};
