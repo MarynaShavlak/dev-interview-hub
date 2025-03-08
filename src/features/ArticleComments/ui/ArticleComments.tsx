@@ -12,6 +12,7 @@ import { addCommentForArticleThunk } from '../model/services/addCommentForArticl
 import { useCommentsByArticleId } from '../api/articleCommentsApi';
 import { deleteCommentFromArticleThunk } from '../model/services/deleteCommentFromArticleThunk/deleteCommentFromArticleThunk';
 import { useGetUserRoles } from '@/entities/User';
+import { ArticleCommentsSkeleton } from './ArticleCommentsSkeleton/ArticleCommentsSkeleton';
 
 export interface ArticleCommentsProps {
     className?: string;
@@ -34,11 +35,7 @@ const ArticleComments = memo((props: ArticleCommentsProps) => {
 
     const { isAdmin, isManager } = useGetUserRoles();
 
-    const {
-        data: comments,
-        isLoading: commentsIsLoading,
-        error,
-    } = useCommentsByArticleId(id);
+    const { data: comments, isLoading, error } = useCommentsByArticleId(id);
 
     const handleDeleteComment = async (commentId: string) => {
         try {
@@ -53,6 +50,10 @@ const ArticleComments = memo((props: ArticleCommentsProps) => {
             return null;
         }
     };
+
+    if (isLoading) {
+        return <ArticleCommentsSkeleton />;
+    }
 
     return (
         <VStack
@@ -73,7 +74,7 @@ const ArticleComments = memo((props: ArticleCommentsProps) => {
             />
             <AddCommentForm onSendComment={onSendComment} />
             <CommentList
-                isLoading={commentsIsLoading}
+                isLoading={isLoading}
                 comments={comments}
                 error={error as string}
                 deleteComment={handleDeleteComment}

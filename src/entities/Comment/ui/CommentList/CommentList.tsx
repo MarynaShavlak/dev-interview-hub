@@ -7,6 +7,7 @@ import { Text as TextDeprecated } from '@/shared/ui/deprecated/Text';
 import { Text } from '@/shared/ui/redesigned/Text';
 import { CommentCard } from '../CommentCard/CommentCard';
 import { Comment } from '../../model/types/comment';
+import { CommentListSkeleton } from './CommentListSkeleton';
 
 interface CommentListProps {
     className?: string;
@@ -33,18 +34,7 @@ export const CommentList = memo((props: CommentListProps) => {
     );
 
     if (isLoading) {
-        return (
-            <VStack
-                gap="16"
-                max
-                className={className}
-                data-testid="article-comments-loading"
-            >
-                <CommentCard isLoading />
-                <CommentCard isLoading />
-                <CommentCard isLoading />
-            </VStack>
-        );
+        return <CommentListSkeleton className={className} />;
     }
     if (error) {
         return (

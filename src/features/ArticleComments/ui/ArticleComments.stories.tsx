@@ -71,24 +71,24 @@ WithNoInitialCommentsRedesigned.decorators = [
     NewDesignDecorator,
 ];
 
-export const LoadingState = Template.bind({});
-LoadingState.args = normalArgs;
-LoadingState.decorators = [() => <NotificationListSkeleton />];
-
-export const LoadingStateRedesigned = Template.bind({});
-LoadingStateRedesigned.args = normalArgs;
-LoadingStateRedesigned.decorators = [
-    () => <NotificationListSkeleton />,
-    NewDesignDecorator,
-];
-
-export const ErrorStateArticleComments = Template.bind({});
-ErrorStateArticleComments.args = normalArgs;
-ErrorStateArticleComments.decorators = [() => <ErrorNotificationsList />];
-
-export const ErrorStateArticleCommentsRedesigned = Template.bind({});
-ErrorStateArticleCommentsRedesigned.args = normalArgs;
-ErrorStateArticleCommentsRedesigned.decorators = [
-    () => <ErrorNotificationsList />,
-    NewDesignDecorator,
-];
+// export const LoadingState = Template.bind({});
+// LoadingState.args = normalArgs;
+// LoadingState.decorators = [() => <NotificationListSkeleton />];
+//
+// export const LoadingStateRedesigned = Template.bind({});
+// LoadingStateRedesigned.args = normalArgs;
+// LoadingStateRedesigned.decorators = [
+//     () => <NotificationListSkeleton />,
+//     NewDesignDecorator,
+// ];
+//
+// export const ErrorStateArticleComments = Template.bind({});
+// ErrorStateArticleComments.args = normalArgs;
+// ErrorStateArticleComments.decorators = [() => <ErrorNotificationsList />];
+//
+// export const ErrorStateArticleCommentsRedesigned = Template.bind({});
+// ErrorStateArticleCommentsRedesigned.args = normalArgs;
+// ErrorStateArticleCommentsRedesigned.decorators = [
+//     () => <ErrorNotificationsList />,
+//     NewDesignDecorator,
+// ];
