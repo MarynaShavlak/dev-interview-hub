@@ -4,6 +4,7 @@ import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDe
 import { ArticleComments } from '..';
 import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator/NewDesignDecorator';
 import { ArticleCommentsSkeleton } from './ArticleCommentsSkeleton/ArticleCommentsSkeleton';
+import { ArticleCommentsError } from './ArticleCommentsError/ArticleCommentsError';
 
 export default {
     title: 'features/ArticleComments',
@@ -83,13 +84,18 @@ LoadingStateRedesigned.decorators = [
     NewDesignDecorator,
 ];
 
-// export const ErrorStateArticleComments = Template.bind({});
-// ErrorStateArticleComments.args = normalArgs;
-// ErrorStateArticleComments.decorators = [() => <ErrorNotificationsList />];
+export const ErrorStateArticleComments = Template.bind({});
+ErrorStateArticleComments.args = normalArgs;
 
-// export const ErrorStateArticleCommentsRedesigned = Template.bind({});
-// ErrorStateArticleCommentsRedesigned.args = normalArgs;
-// ErrorStateArticleCommentsRedesigned.decorators = [
-//     () => <ErrorNotificationsList />,
-//     NewDesignDecorator,
-// ];
+ErrorStateArticleComments.decorators = [
+    () => <ArticleCommentsError id={normalArgs.id} />,
+    StoreDecorator({}),
+];
+
+export const ErrorStateArticleCommentsRedesigned = Template.bind({});
+ErrorStateArticleCommentsRedesigned.args = normalArgs;
+ErrorStateArticleCommentsRedesigned.decorators = [
+    () => <ArticleCommentsError id={normalArgs.id} />,
+    StoreDecorator({}),
+    NewDesignDecorator,
+];

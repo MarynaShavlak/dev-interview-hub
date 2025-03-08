@@ -8,6 +8,7 @@ import { Text } from '@/shared/ui/redesigned/Text';
 import { CommentCard } from '../CommentCard/CommentCard';
 import { Comment } from '../../model/types/comment';
 import { CommentListSkeleton } from './CommentListSkeleton';
+import { CommentListError } from './CommentsListError/CommentsListError';
 
 interface CommentListProps {
     className?: string;
@@ -29,23 +30,12 @@ export const CommentList = memo((props: CommentListProps) => {
     } = props;
     const { t } = useTranslation('articleDetails');
     const noCommentsMessage = t('Коментарів немає');
-    const errorMessage = t(
-        'Не вдалося завантажити коментарі. Спробуйте ще раз пізніше.',
-    );
 
     if (isLoading) {
         return <CommentListSkeleton className={className} />;
     }
     if (error) {
-        return (
-            <VStack gap="16" max className={className} align="center">
-                <ToggleFeaturesComponent
-                    feature="isAppRedesigned"
-                    on={<Text text={errorMessage} />}
-                    off={<TextDeprecated text={errorMessage} />}
-                />
-            </VStack>
-        );
+        return <CommentListError className={className} />;
     }
 
     return (

@@ -8,6 +8,7 @@ import { deleteCommentFromArticleThunk } from '../model/services/deleteCommentFr
 import { useGetUserRoles } from '@/entities/User';
 import { ArticleCommentsSkeleton } from './ArticleCommentsSkeleton/ArticleCommentsSkeleton';
 import { ArticleCommentsHeader } from './ArticleCommentsHeader/ArticleCommentsHeader';
+import { ArticleCommentsError } from './ArticleCommentsError/ArticleCommentsError';
 
 export interface ArticleCommentsProps {
     className?: string;
@@ -37,6 +38,9 @@ const ArticleComments = memo((props: ArticleCommentsProps) => {
 
     if (isLoading) {
         return <ArticleCommentsSkeleton />;
+    }
+    if (error) {
+        return <ArticleCommentsError id={id} className={className} />;
     }
 
     return (
