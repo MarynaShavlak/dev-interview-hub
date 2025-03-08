@@ -12,6 +12,7 @@ import { getRouteArticleDetails } from '@/shared/const/router/router';
 import { OrderCard } from '@/shared/ui/redesigned/OrderCard';
 import { ArticleRecommendationsListSkeleton } from '../ArticleRecommendationsListSkeleton/ArticleRecommendationsListSkeleton';
 import { ArticleRecommendationsListError } from '../ArticleRecommendationsListError/ArticleRecommendationsListError';
+import { EmptyArticleRecommendationsList } from '../EmptyArticleRecommendationsList/EmptyArticleRecommendationsList';
 
 export const ArticleRecommendationsListRedesigned = memo(
     (props: ArticleRecommendationsListProps) => {
@@ -42,11 +43,9 @@ export const ArticleRecommendationsListRedesigned = memo(
 
         if (!articles || !articles.length) {
             return (
-                <Text
-                    size="l"
-                    title={noRecommendsTitle}
-                    text={noRecommendsText}
-                    variant="error"
+                <EmptyArticleRecommendationsList
+                    noRecommendsTitle={noRecommendsTitle}
+                    noRecommendsText={noRecommendsText}
                 />
             );
         }
