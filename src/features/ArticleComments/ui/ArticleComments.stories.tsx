@@ -3,6 +3,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 import { ArticleComments } from '..';
 import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator/NewDesignDecorator';
+import { ArticleCommentsSkeleton } from './ArticleCommentsSkeleton/ArticleCommentsSkeleton';
 
 export default {
     title: 'features/ArticleComments',
@@ -71,21 +72,21 @@ WithNoInitialCommentsRedesigned.decorators = [
     NewDesignDecorator,
 ];
 
-// export const LoadingState = Template.bind({});
-// LoadingState.args = normalArgs;
-// LoadingState.decorators = [() => <NotificationListSkeleton />];
-//
-// export const LoadingStateRedesigned = Template.bind({});
-// LoadingStateRedesigned.args = normalArgs;
-// LoadingStateRedesigned.decorators = [
-//     () => <NotificationListSkeleton />,
-//     NewDesignDecorator,
-// ];
-//
+export const LoadingState = Template.bind({});
+LoadingState.args = normalArgs;
+LoadingState.decorators = [() => <ArticleCommentsSkeleton />];
+
+export const LoadingStateRedesigned = Template.bind({});
+LoadingStateRedesigned.args = normalArgs;
+LoadingStateRedesigned.decorators = [
+    () => <ArticleCommentsSkeleton />,
+    NewDesignDecorator,
+];
+
 // export const ErrorStateArticleComments = Template.bind({});
 // ErrorStateArticleComments.args = normalArgs;
 // ErrorStateArticleComments.decorators = [() => <ErrorNotificationsList />];
-//
+
 // export const ErrorStateArticleCommentsRedesigned = Template.bind({});
 // ErrorStateArticleCommentsRedesigned.args = normalArgs;
 // ErrorStateArticleCommentsRedesigned.decorators = [

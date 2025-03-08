@@ -1,18 +1,13 @@
-import { useTranslation } from 'react-i18next';
-import { memo, useCallback } from 'react';
-import { ToggleFeaturesComponent } from '@/shared/lib/features';
+import { memo } from 'react';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { Text as TextDeprecated, TextSize } from '@/shared/ui/deprecated/Text';
-import { Text } from '@/shared/ui/redesigned/Text';
-import { AddCommentForm, CommentList } from '@/entities/Comment';
+import { CommentList } from '@/entities/Comment';
 import { VStack } from '@/shared/ui/common/Stack';
-
-import { addCommentForArticleThunk } from '../model/services/addCommentForArticleThunk/addCommentForArticleThunk';
 
 import { useCommentsByArticleId } from '../api/articleCommentsApi';
 import { deleteCommentFromArticleThunk } from '../model/services/deleteCommentFromArticleThunk/deleteCommentFromArticleThunk';
 import { useGetUserRoles } from '@/entities/User';
 import { ArticleCommentsSkeleton } from './ArticleCommentsSkeleton/ArticleCommentsSkeleton';
+import { ArticleCommentsHeader } from './ArticleCommentsHeader/ArticleCommentsHeader';
 
 export interface ArticleCommentsProps {
     className?: string;
@@ -21,18 +16,7 @@ export interface ArticleCommentsProps {
 
 const ArticleComments = memo((props: ArticleCommentsProps) => {
     const { className, id } = props;
-    const { t } = useTranslation('articleDetails');
-
     const dispatch = useAppDispatch();
-    const sectionTitleText = t('Коментарі');
-
-    const onSendComment = useCallback(
-        (text: string) => {
-            dispatch(addCommentForArticleThunk({ text, articleId: id }));
-        },
-        [dispatch, id],
-    );
-
     const { isAdmin, isManager } = useGetUserRoles();
 
     const { data: comments, isLoading, error } = useCommentsByArticleId(id);
@@ -62,24 +46,24 @@ const ArticleComments = memo((props: ArticleCommentsProps) => {
             className={className}
             data-testid="article-comments"
         >
-            <ToggleFeaturesComponent
-                feature="isAppRedesigned"
-                on={<Text size="l" title={sectionTitleText} />}
-                off={
-                    <TextDeprecated
-                        size={TextSize.L}
-                        title={sectionTitleText}
-                    />
-                }
-            />
-            <AddCommentForm onSendComment={onSendComment} />
-            <CommentList
-                isLoading={isLoading}
-                comments={comments}
-                error={error as string}
-                deleteComment={handleDeleteComment}
-                canDeleteComments={isAdmin || isManager}
-            />
+            <ArticleCommentsHeader id={id} />
+            {error ? (
+                <CommentList
+                    isLoading={false}
+                    comments={undefined}
+                    error={error as string}
+                    deleteComment={handleDeleteComment}
+                    canDeleteComments={isAdmin || isManager}
+                />
+            ) : (
+                <CommentList
+                    isLoading={isLoading}
+                    comments={comments}
+                    error={error as string}
+                    deleteComment={handleDeleteComment}
+                    canDeleteComments={isAdmin || isManager}
+                />
+            )}
         </VStack>
     );
 });
