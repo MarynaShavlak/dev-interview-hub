@@ -3,6 +3,7 @@ import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 import AuthForm from './AuthForm';
 import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator/NewDesignDecorator';
+import { AlignDecorator } from '@/shared/config/storybook/AlignDecorator/AlignDecorator';
 
 export default {
     title: 'features/AuthByUsername/AuthForm',
@@ -16,11 +17,12 @@ const Template: ComponentStory<typeof AuthForm> = (args) => (
     <AuthForm {...args} />
 );
 
-export const Normal = Template.bind({});
-Normal.args = {};
-Normal.decorators = [
+export const Default = Template.bind({});
+Default.args = {};
+Default.decorators = [
+    AlignDecorator('center'),
     StoreDecorator({
-        loginForm: { email: 'mary@gmail.com', password: 'asd' },
+        loginForm: { email: 'marynashavlak@gmail.com', password: '12345678' },
     }),
 ];
 
@@ -40,9 +42,9 @@ Loading.decorators = [
     }),
 ];
 
-export const NormalRedesigned = Template.bind({});
-NormalRedesigned.args = {};
-NormalRedesigned.decorators = [
+export const DefaultRedesigned = Template.bind({});
+DefaultRedesigned.args = {};
+DefaultRedesigned.decorators = [
     StoreDecorator({
         loginForm: { email: 'mary@gmail.com', password: 'asd' },
     }),

@@ -21,7 +21,7 @@ interface PasswordInputProps {
     onShowResetForm?: () => void;
 }
 
-export const PasswordInput = memo((props: PasswordInputProps) => {
+export const PasswordInputRedesigned = memo((props: PasswordInputProps) => {
     const {
         password,
         onChangePassword,

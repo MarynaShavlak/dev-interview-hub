@@ -34,7 +34,7 @@ export const AuthFormDeprecated = memo((props: AuthFormProps) => {
         align: 'center',
     });
     return (
-        <VStack gap="16">
+        <VStack gap="16" className={cls.AuthForm}>
             {isLoginFormOpen ? (
                 <SignInForm {...props} />
             ) : (

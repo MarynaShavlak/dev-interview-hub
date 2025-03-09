@@ -26,7 +26,7 @@ export const AuthFormRedesigned = memo((props: AuthFormProps) => {
         : t('Увійти');
 
     return (
-        <VStack gap="16">
+        <VStack gap="16" className={cls.AuthForm}>
             {isLoginFormOpen ? (
                 <SignInForm {...props} />
             ) : (

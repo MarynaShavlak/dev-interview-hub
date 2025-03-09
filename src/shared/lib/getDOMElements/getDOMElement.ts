@@ -18,3 +18,6 @@ export const getToolbarElement = (): HTMLElement | null =>
 
 export const getPageElement = (): HTMLElement | null =>
     document.querySelector('[data-testid="Page"]');
+
+export const getElementByTestId = (testId: string): HTMLElement | null =>
+    document.querySelector(`[data-testid=${testId}]`);

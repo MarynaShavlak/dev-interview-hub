@@ -10,7 +10,13 @@ interface AuthModalProps {
 
 export const AuthModal = memo(
     ({ className, isOpen, onClose }: AuthModalProps) => (
-        <Modal className={className} isOpen={isOpen} onClose={onClose} lazy>
+        <Modal
+            className={className}
+            isOpen={isOpen}
+            onClose={onClose}
+            lazy
+            data-testid="Auth-Modal"
+        >
             <AuthForm onSuccess={onClose} />
         </Modal>
     ),

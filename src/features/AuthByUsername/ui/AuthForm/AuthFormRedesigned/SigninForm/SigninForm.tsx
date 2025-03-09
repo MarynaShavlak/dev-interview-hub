@@ -1,7 +1,6 @@
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { VStack } from '@/shared/ui/common/Stack';
-import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import cls from '../../AuthForm.module.scss';
 import { Text } from '@/shared/ui/redesigned/Text';
 import { Input } from '@/shared/ui/redesigned/Input';
@@ -13,7 +12,7 @@ import { useInputValidationConfig } from '@/shared/lib/hooks/validationHooks/use
 import { useFormValidation } from '@/shared/lib/hooks/validationHooks/useFormValidation/useFormValidation';
 import { useToggleForm } from '../../../../lib/hooks/useToggleForm/useToggleForm';
 import { RecoverPasswordForm } from '../RecoverPasswordForm/RecoverPasswordForm';
-import { PasswordInput } from '../PasswordInput/PasswordInput';
+import { PasswordInputRedesigned } from '../../PasswordInput/PasswordInputRedesigned/PasswordInputRedesigned';
 
 export const SignInForm = memo((props: AuthFormProps) => {
     const { className, onSuccess } = props;
@@ -42,7 +41,7 @@ export const SignInForm = memo((props: AuthFormProps) => {
         <VStack
             max
             gap="16"
-            className={classNames(cls.AuthForm, {}, [className])}
+            className={className}
             data-testid="auth-form-sign-in"
             align="center"
         >
@@ -75,7 +74,7 @@ export const SignInForm = memo((props: AuthFormProps) => {
                         {/* > */}
                         {/*    {t('Забули пароль?')} */}
                         {/* </Button> */}
-                        <PasswordInput
+                        <PasswordInputRedesigned
                             password={password}
                             onChangePassword={onChangePassword}
                             // passwordErrors={passwordErrors}

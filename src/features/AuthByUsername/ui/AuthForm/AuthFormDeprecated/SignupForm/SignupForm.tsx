@@ -1,7 +1,6 @@
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { VStack } from '@/shared/ui/common/Stack';
-import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import cls from '../../AuthForm.module.scss';
 import { Text, TextTheme } from '@/shared/ui/deprecated/Text';
 import { Input } from '@/shared/ui/deprecated/Input';
@@ -12,7 +11,7 @@ import { useInputValidationConfig } from '@/shared/lib/hooks/validationHooks/use
 import { useErrorText } from '../../../../lib/hooks/useErrorText/useErrorText';
 import { useFormValidation } from '@/shared/lib/hooks/validationHooks/useFormValidation/useFormValidation';
 import { useSignUpForm } from '../../../../lib/hooks/useSignUpForm/useSignUpForm';
-import { PasswordInput } from '../PasswordInput/PasswordInput';
+import { PasswordInput } from '../../PasswordInput/PasswordInput';
 
 export const SignUpForm = memo((props: AuthFormProps) => {
     const { className, onSuccess } = props;
@@ -54,7 +53,7 @@ export const SignUpForm = memo((props: AuthFormProps) => {
         <VStack
             max
             gap="16"
-            className={classNames(cls.AuthForm, {}, [className])}
+            className={className}
             data-testid="auth-form-sign-up"
             align="center"
         >

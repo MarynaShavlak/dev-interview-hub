@@ -25,7 +25,7 @@ interface PasswordInputProps {
     label?: string;
 }
 
-export const PasswordInput = memo((props: PasswordInputProps) => {
+export const PasswordInputDeprecated = memo((props: PasswordInputProps) => {
     const {
         password,
         onChangePassword,
