@@ -1,6 +1,5 @@
 import { memo } from 'react';
 import { ArticleViewSelectorProps } from '../ArticleViewSelector';
-import { deprecatedViewTypes } from '../../../model/consts/viewsTypes';
 import { ArticleView } from '@/entities/Article';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { Each } from '@/shared/lib/components/Each/Each';
@@ -11,6 +10,7 @@ import {
 
 import { Icon as IconDeprecated } from '@/shared/ui/deprecated/Icon';
 import cls from '../ArticleViewSelector.module.scss';
+import { getDeprecatedViewTypes } from '../../../lib/utilities/getDeprecatedViewTypes/getDeprecatedViewTypes';
 
 export const ArticleViewSelectorDeprecated = memo(
     (props: ArticleViewSelectorProps) => {
@@ -19,13 +19,14 @@ export const ArticleViewSelectorDeprecated = memo(
         const onClick = (newView: ArticleView) => () => {
             onViewClick?.(newView);
         };
+        const viewTypes = getDeprecatedViewTypes();
 
         return (
             <div
                 className={classNames(cls.ArticleViewSelector, {}, [className])}
             >
                 <Each
-                    of={deprecatedViewTypes}
+                    of={viewTypes}
                     render={(viewType) => {
                         return (
                             <ButtonDeprecated
