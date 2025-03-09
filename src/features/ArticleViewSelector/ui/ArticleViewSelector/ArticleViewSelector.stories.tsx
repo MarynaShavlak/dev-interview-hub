@@ -27,14 +27,14 @@ GridViewSelectedRedesigned.args = {
     view: ArticleView.GRID,
 };
 GridViewSelectedRedesigned.decorators = [NewDesignDecorator];
-//
-// export const ListViewSelected = Template.bind({});
-// ListViewSelected.args = {
-//     view: ArticleView.LIST,
-// };
-//
-// export const ListViewRedesigned = Template.bind({});
-// ListViewRedesigned.args = {
-//     view: ArticleView.LIST,
-// };
-// ListViewRedesigned.decorators = [NewDesignDecorator];
+
+export const ListViewSelected = Template.bind({});
+ListViewSelected.args = {
+    view: ArticleView.LIST,
+};
+
+export const SequenceViewSelected = Template.bind({});
+SequenceViewSelected.args = {
+    view: ArticleView.SEQUENCE,
+};
+SequenceViewSelected.decorators = [NewDesignDecorator];

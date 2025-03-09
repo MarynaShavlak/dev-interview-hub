@@ -1,7 +1,8 @@
 .ArticleViewSelector {
     .notSelected {
-        fill: var(--secondary-color);
-        stroke: var(--secondary-color);
+
+        fill: var(--card-bg);
+        stroke: var(--card-bg);
     }
 }
 
