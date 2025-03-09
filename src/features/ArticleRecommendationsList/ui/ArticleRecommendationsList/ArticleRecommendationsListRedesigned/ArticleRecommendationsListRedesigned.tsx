@@ -68,7 +68,7 @@ export const ArticleRecommendationsListRedesigned = memo(
                                     max
                                     justify="between"
                                 >
-                                    <HStack gap="16" align="center">
+                                    <HStack gap="16" align="center" max>
                                         <OrderCard index={index + 1} />
                                         <AppLink
                                             to={getRouteArticleDetails(item.id)}

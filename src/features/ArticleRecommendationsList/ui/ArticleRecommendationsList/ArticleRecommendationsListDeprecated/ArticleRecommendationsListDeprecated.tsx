@@ -52,7 +52,7 @@ export const ArticleRecommendationsListDeprecated = memo(
                 data-testid="ArticleRecommendationsList"
             >
                 <TextDeprecated size={TextSize.L} title={title} />
-                <HStack wrap="wrap" gap="24" justify="center" max>
+                <HStack wrap="wrap" gap="24" max>
                     <Each
                         of={articles}
                         render={(item, index) => {
