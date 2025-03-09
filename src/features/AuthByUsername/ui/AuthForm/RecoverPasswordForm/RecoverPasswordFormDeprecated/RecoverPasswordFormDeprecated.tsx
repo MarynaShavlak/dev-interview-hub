@@ -8,6 +8,7 @@ import { useFormValidation } from '@/shared/lib/hooks/validationHooks/useFormVal
 import { Input } from '@/shared/ui/deprecated/Input';
 import cls from '../ RecoverPasswordForm.module.scss';
 import { RecoverPasswordFormProps } from '../RecoverPasswordForm';
+import { VStack } from '@/shared/ui/common/Stack';
 
 export const RecoverPasswordFormDeprecated = memo(
     ({ toggleForm }: RecoverPasswordFormProps) => {
@@ -31,7 +32,7 @@ export const RecoverPasswordFormDeprecated = memo(
         );
 
         return (
-            <>
+            <VStack max gap="16" align="center">
                 <Text title={t('Відновлення паролю')} />
                 {error && (
                     <Text
@@ -77,7 +78,7 @@ export const RecoverPasswordFormDeprecated = memo(
                 >
                     {redirectLinkText}
                 </Button>
-            </>
+            </VStack>
         );
     },
 );

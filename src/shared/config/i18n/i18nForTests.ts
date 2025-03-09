@@ -36,7 +36,19 @@ i18n.use(initReactI18next).init({
                 '{{count}} переглядів_one': '{{count}} view',
                 '{{count}} переглядів_other': '{{count}} views',
             },
+            profile: {
+                'Відновлення паролю': 'Recover Password',
+                'Вкажіть адресу':
+                    "Enter the email address you used to register and we'll send you the instruction",
+                'Скинути пароль': 'Reset password',
+                "Я пам'ятаю пароль": 'I remember password',
+                'Помилка відновлення паролю':
+                    'Password recovery error. Please try again later.',
+                'Лист {{email}} відновлення паролю':
+                    'If account {{email}} exist, an email will be sent with further instructions',
+            },
         },
+
         uk: {
             translation: {
                 Мова: 'Українська',
@@ -51,6 +63,17 @@ i18n.use(initReactI18next).init({
                 '{{count}} переглядів_one': '{{count}} перегляд',
                 '{{count}} переглядів_few': '{{count}} перегляди',
                 '{{count}} переглядів_many': '{{count}} переглядів',
+            },
+            profile: {
+                'Відновлення паролю': 'Відновлення паролю',
+                'Вкажіть адресу':
+                    'Введіть адресу електронної пошти, яку Ви використовували для реєстрації, і ми надішлемо Вам інструкції.',
+                'Скинути пароль': 'Скинути пароль',
+                "Я пам'ятаю пароль": "Я пам'ятаю пароль",
+                'Помилка відновлення паролю':
+                    'Помилка відновлення паролю. Будь ласка, спробуйте ще раз пізніше',
+                'Лист {{email}} відновлення паролю':
+                    'Якщо обліковий запис {{email}} існує, на електронну пошту буде надіслано лист з подальшими інструкціями.',
             },
         },
     },
