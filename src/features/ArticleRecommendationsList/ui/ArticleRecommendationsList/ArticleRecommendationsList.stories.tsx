@@ -3,6 +3,9 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 import ArticleRecommendationsList from './ArticleRecommendationsList';
 import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator/NewDesignDecorator';
+import { EmptyArticleRecommendationsList } from './EmptyArticleRecommendationsList/EmptyArticleRecommendationsList';
+import { ArticleRecommendationsListSkeleton } from './ArticleRecommendationsListSkeleton/ArticleRecommendationsListSkeleton';
+import { ArticleRecommendationsListError } from './ArticleRecommendationsListError/ArticleRecommendationsListError';
 
 export default {
     title: 'features/ArticleRecommendationsList',
@@ -23,54 +26,6 @@ const Template: ComponentStory<typeof ArticleRecommendationsList> = (args) => (
     <ArticleRecommendationsList {...args} />
 );
 
-// const normalParams = {
-//     mockData: [
-//         {
-//             url: `${__API__}/articles?_limit=3&_expand=user&id_ne=4`,
-//             method: 'GET',
-//             status: 200,
-//             response: [
-//                 { ...testArticleData, id: '1' },
-//                 { ...testArticleData, id: '2' },
-//                 { ...testArticleData, id: '3' },
-//             ],
-//         },
-//     ],
-// };
-//
-// const errorParams = {
-//     mockData: [
-//         {
-//             url: `${__API__}/articles?_limit=3&_expand=user&id_ne=4`,
-//             method: 'GET',
-//             status: 500,
-//             response: { message: 'Internal Server Error' },
-//         },
-//     ],
-// };
-//
-// const emptyParams = {
-//     mockData: [
-//         {
-//             url: `${__API__}/articles?_limit=3&_expand=user&id_ne=4`,
-//             method: 'GET',
-//             status: 200,
-//             response: [],
-//         },
-//     ],
-// };
-//
-// const loadingParams = {
-//     mockData: [
-//         {
-//             url: `${__API__}/articles?_limit=3&_expand=user&id_ne=4`,
-//             method: 'GET',
-//             status: 200,
-//             delay: 1000000000,
-//             response: [],
-//         },
-//     ],
-// };
 const normalArgs = { id: '1' };
 export const Default = Template.bind({});
 Default.args = normalArgs;
@@ -78,30 +33,65 @@ Default.args = normalArgs;
 export const DefaultRedesigned = Template.bind({});
 DefaultRedesigned.args = normalArgs;
 DefaultRedesigned.decorators = [NewDesignDecorator];
-//
-// export const Error = Template.bind({});
-// Error.args = {};
-// Error.parameters = errorParams;
-//
-// export const ErrorRedesigned = Template.bind({});
-// ErrorRedesigned.args = {};
-// ErrorRedesigned.parameters = errorParams;
-// ErrorRedesigned.decorators = [NewDesignDecorator];
-//
-// export const NoRecommends = Template.bind({});
-// NoRecommends.args = {};
-// NoRecommends.parameters = emptyParams;
-//
-// export const NoRecommendsRedesigned = Template.bind({});
-// NoRecommendsRedesigned.args = {};
-// NoRecommendsRedesigned.parameters = emptyParams;
-// NoRecommendsRedesigned.decorators = [NewDesignDecorator];
-//
-// export const Loading = Template.bind({});
-// Loading.args = {};
-// Loading.parameters = loadingParams;
-//
-// export const LoadingRedesigned = Template.bind({});
-// LoadingRedesigned.args = {};
-// LoadingRedesigned.parameters = loadingParams;
-// LoadingRedesigned.decorators = [NewDesignDecorator];
+
+export const WithNoRecommendations = Template.bind({});
+WithNoRecommendations.args = { id: '2' };
+WithNoRecommendations.decorators = [
+    () => (
+        <EmptyArticleRecommendationsList
+            noRecommendsText="Наразі немає доступних рекомендацій. Будь ласка, перевірте пізніше"
+            noRecommendsTitle="Немає доступних рекомендацій"
+        />
+    ),
+    StoreDecorator({}),
+];
+
+export const WithNoRecommendationsRedesigned = Template.bind({});
+WithNoRecommendationsRedesigned.args = { id: '2' };
+WithNoRecommendationsRedesigned.decorators = [
+    () => (
+        <EmptyArticleRecommendationsList
+            noRecommendsText="Наразі немає доступних рекомендацій. Будь ласка, перевірте пізніше"
+            noRecommendsTitle="Немає доступних рекомендацій"
+        />
+    ),
+    StoreDecorator({}),
+    NewDesignDecorator,
+];
+
+export const LoadingState = Template.bind({});
+LoadingState.args = normalArgs;
+LoadingState.decorators = [() => <ArticleRecommendationsListSkeleton />];
+
+export const LoadingStateRedesigned = Template.bind({});
+LoadingStateRedesigned.args = normalArgs;
+LoadingStateRedesigned.decorators = [
+    () => <ArticleRecommendationsListSkeleton />,
+    NewDesignDecorator,
+];
+
+export const ErrorState = Template.bind({});
+ErrorState.args = normalArgs;
+
+ErrorState.decorators = [
+    () => (
+        <ArticleRecommendationsListError
+            errorText="На жаль, не вдалося завантажити рекомендації. Спробуйте пізніше."
+            errorTitle="Помилка завантаження рекомендацій"
+        />
+    ),
+    StoreDecorator({}),
+];
+
+export const ErrorStateRedesigned = Template.bind({});
+ErrorStateRedesigned.args = normalArgs;
+ErrorStateRedesigned.decorators = [
+    () => (
+        <ArticleRecommendationsListError
+            errorText="На жаль, не вдалося завантажити рекомендації. Спробуйте пізніше."
+            errorTitle="Помилка завантаження рекомендацій"
+        />
+    ),
+    StoreDecorator({}),
+    NewDesignDecorator,
+];
