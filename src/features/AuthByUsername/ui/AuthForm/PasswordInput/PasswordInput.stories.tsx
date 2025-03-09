@@ -35,6 +35,14 @@ const emptyArgs = {
     password: '',
 };
 
+const minLengthArgs = {
+    password: '00',
+};
+
+const maxLengthArgs = {
+    password: '123456789012345678901',
+};
+
 export const Default = Template.bind({});
 Default.args = normalArgs;
 
@@ -49,20 +57,34 @@ export const EmptyPasswordWithErrorRedesigned = Template.bind({});
 EmptyPasswordWithErrorRedesigned.args = emptyArgs;
 EmptyPasswordWithErrorRedesigned.decorators = [NewDesignDecorator];
 
-export const PasswordWithReset = Template.bind({});
-PasswordWithReset.args = {
+export const WithMinLengthError = Template.bind({});
+WithMinLengthError.args = minLengthArgs;
+
+export const WithMinLengthErrorRedesigned = Template.bind({});
+WithMinLengthErrorRedesigned.args = minLengthArgs;
+WithMinLengthErrorRedesigned.decorators = [NewDesignDecorator];
+
+export const WithMaxLengthError = Template.bind({});
+WithMaxLengthError.args = maxLengthArgs;
+
+export const WithMaxLengthErrorRedesigned = Template.bind({});
+WithMaxLengthErrorRedesigned.args = maxLengthArgs;
+WithMaxLengthErrorRedesigned.decorators = [NewDesignDecorator];
+
+export const WithReset = Template.bind({});
+WithReset.args = {
     ...normalArgs,
     withResetOption: true,
     onShowResetForm: () => console.log('Reset form clicked'),
 };
 
-export const PasswordWithResetRedesigned = Template.bind({});
-PasswordWithResetRedesigned.args = {
+export const WithResetRedesigned = Template.bind({});
+WithResetRedesigned.args = {
     ...normalArgs,
     withResetOption: true,
     onShowResetForm: () => console.log('Reset form clicked'),
 };
-PasswordWithResetRedesigned.decorators = [NewDesignDecorator];
+WithResetRedesigned.decorators = [NewDesignDecorator];
 //
 // export const WithResetOption = Template.bind({});
 // WithResetOption.args = {

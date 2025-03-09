@@ -38,7 +38,7 @@ export const PasswordInputDeprecated = memo((props: PasswordInputProps) => {
     const { t } = useTranslation('profile');
 
     const { isVisible, toggleVisibility } = useToggleVisibility();
-    const wrappClasses = getFlexClasses({ hStack: true });
+    const wrappClasses = getFlexClasses({ hStack: true, align: 'start' });
 
     const InputElement = (
         <Box className={classNames(cls.passwordInputWrapper, {}, wrappClasses)}>
