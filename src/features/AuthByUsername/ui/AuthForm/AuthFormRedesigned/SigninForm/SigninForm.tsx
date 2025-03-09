@@ -12,7 +12,7 @@ import { useInputValidationConfig } from '@/shared/lib/hooks/validationHooks/use
 import { useFormValidation } from '@/shared/lib/hooks/validationHooks/useFormValidation/useFormValidation';
 import { useToggleForm } from '../../../../lib/hooks/useToggleForm/useToggleForm';
 import { RecoverPasswordForm } from '../RecoverPasswordForm/RecoverPasswordForm';
-import { PasswordInputRedesigned } from '../../PasswordInput/PasswordInputRedesigned/PasswordInputRedesigned';
+import { PasswordInput } from '../../PasswordInput/PasswordInput';
 
 export const SignInForm = memo((props: AuthFormProps) => {
     const { className, onSuccess } = props;
@@ -74,7 +74,7 @@ export const SignInForm = memo((props: AuthFormProps) => {
                         {/* > */}
                         {/*    {t('Забули пароль?')} */}
                         {/* </Button> */}
-                        <PasswordInputRedesigned
+                        <PasswordInput
                             password={password}
                             onChangePassword={onChangePassword}
                             // passwordErrors={passwordErrors}

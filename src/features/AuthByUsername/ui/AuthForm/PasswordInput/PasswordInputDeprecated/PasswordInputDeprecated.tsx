@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { VStack } from '@/shared/ui/common/Stack';
-import cls from '../../AuthForm.module.scss';
+import cls from '../PasswordInput.module.scss';
 import { Input } from '@/shared/ui/deprecated/Input';
 import { Button, ButtonTheme } from '@/shared/ui/deprecated/Button';
 
@@ -51,11 +51,7 @@ export const PasswordInputDeprecated = memo((props: PasswordInputProps) => {
                 validations={validConfig?.password}
                 errors={passwordErrors}
             />
-            <Button
-                theme={ButtonTheme.CLEAR}
-                className={cls.btnIconPassword}
-                onClick={toggleVisibility}
-            >
+            <Button theme={ButtonTheme.CLEAR} onClick={toggleVisibility}>
                 <Icon
                     width={32}
                     height={32}

@@ -12,6 +12,7 @@ interface PasswordInputProps {
     validConfig?: InputErrorValidation;
     withResetOption?: boolean;
     onShowResetForm?: () => void;
+    label?: string;
 }
 
 export const PasswordInput = memo((props: PasswordInputProps) => {

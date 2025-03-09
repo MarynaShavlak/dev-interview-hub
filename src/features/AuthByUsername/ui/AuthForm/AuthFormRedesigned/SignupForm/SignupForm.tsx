@@ -11,7 +11,7 @@ import { useInputValidationConfig } from '@/shared/lib/hooks/validationHooks/use
 import { useErrorText } from '../../../../lib/hooks/useErrorText/useErrorText';
 import { useFormValidation } from '@/shared/lib/hooks/validationHooks/useFormValidation/useFormValidation';
 import { useSignUpForm } from '../../../../lib/hooks/useSignUpForm/useSignUpForm';
-import { PasswordInputRedesigned } from '../../PasswordInput/PasswordInputRedesigned/PasswordInputRedesigned';
+import { PasswordInput } from '../../PasswordInput/PasswordInput';
 
 export const SignUpForm = memo((props: AuthFormProps) => {
     const { className, onSuccess } = props;
@@ -99,7 +99,7 @@ export const SignUpForm = memo((props: AuthFormProps) => {
                 errors={emailErrors}
             />
 
-            <PasswordInputRedesigned
+            <PasswordInput
                 password={password}
                 onChangePassword={onChangePassword}
                 passwordErrors={passwordErrors}
