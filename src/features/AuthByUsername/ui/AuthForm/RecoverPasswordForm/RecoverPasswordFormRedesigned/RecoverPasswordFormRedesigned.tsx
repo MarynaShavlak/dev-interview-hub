@@ -7,13 +7,10 @@ import { useSignInForm } from '../../../../lib/hooks/useSignInForm/useSignInForm
 import { useInputValidationConfig } from '@/shared/lib/hooks/validationHooks/useInputValidationConfig/useInputValidationConfig';
 import { useFormValidation } from '@/shared/lib/hooks/validationHooks/useFormValidation/useFormValidation';
 import { Input } from '@/shared/ui/redesigned/Input';
-import cls from '../../AuthForm.module.scss';
+import cls from '../ RecoverPasswordForm.module.scss';
+import { RecoverPasswordFormProps } from '../RecoverPasswordForm';
 
-interface RecoverPasswordFormProps {
-    toggleForm: () => void;
-}
-
-export const RecoverPasswordForm = memo(
+export const RecoverPasswordFormRedesigned = memo(
     ({ toggleForm }: RecoverPasswordFormProps) => {
         const { t } = useTranslation('profile');
         const [isEmailSent, setIsEmailSent] = useState(false);
@@ -65,7 +62,7 @@ export const RecoverPasswordForm = memo(
                         <Button
                             max
                             variant="accent"
-                            className={cls.authBtn}
+                            className={cls.resetBtn}
                             onClick={onResetPasswordClick}
                             disabled={isLoading || hasInputErrors}
                             data-testid="reset-password-btn"

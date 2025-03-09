@@ -6,24 +6,13 @@ import { Input } from '@/shared/ui/deprecated/Input';
 import { Button, ButtonTheme } from '@/shared/ui/deprecated/Button';
 
 import { useToggleVisibility } from '../../../../lib/hooks/useToggleVisibility/useToggleVisibility';
-import { ValidationErrors } from '@/shared/lib/hooks/validationHooks/useInputErrors/useInputErrors';
-import { InputErrorValidation } from '@/shared/lib/hooks/validationHooks/useInputValidationConfig/useInputValidationConfig';
 import EyeIconRedesigned from '@/shared/assets/icons/eye.svg';
 import EyeInvisibleIconRedesigned from '@/shared/assets/icons/eye-slash.svg';
 import { Icon } from '@/shared/ui/deprecated/Icon';
 import { Box } from '@/shared/ui/common/Box';
 import { getFlexClasses } from '@/shared/lib/classes/getFlexClasses/getFlexClasses';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
-
-interface PasswordInputProps {
-    password: string;
-    onChangePassword: (value: string) => void;
-    passwordErrors?: ValidationErrors;
-    validConfig?: InputErrorValidation;
-    withResetOption?: boolean;
-    onShowResetForm?: () => void;
-    label?: string;
-}
+import { PasswordInputProps } from '../PasswordInput';
 
 export const PasswordInputDeprecated = memo((props: PasswordInputProps) => {
     const {

@@ -5,7 +5,7 @@ import { InputErrorValidation } from '@/shared/lib/hooks/validationHooks/useInpu
 import { PasswordInputRedesigned } from './PasswordInputRedesigned/PasswordInputRedesigned';
 import { PasswordInputDeprecated } from './PasswordInputDeprecated/PasswordInputDeprecated';
 
-interface PasswordInputProps {
+export interface PasswordInputProps {
     password: string;
     onChangePassword: (value: string) => void;
     passwordErrors?: ValidationErrors;

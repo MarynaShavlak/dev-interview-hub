@@ -11,8 +11,8 @@ import { useSignInForm } from '../../../../lib/hooks/useSignInForm/useSignInForm
 import { useInputValidationConfig } from '@/shared/lib/hooks/validationHooks/useInputValidationConfig/useInputValidationConfig';
 import { useFormValidation } from '@/shared/lib/hooks/validationHooks/useFormValidation/useFormValidation';
 import { useToggleForm } from '../../../../lib/hooks/useToggleForm/useToggleForm';
-import { RecoverPasswordForm } from '../RecoverPasswordForm/RecoverPasswordForm';
 import { PasswordInput } from '../../PasswordInput/PasswordInput';
+import { RecoverPasswordForm } from '../../RecoverPasswordForm/RecoverPasswordForm';
 
 export const SignInForm = memo((props: AuthFormProps) => {
     const { className, onSuccess } = props;
