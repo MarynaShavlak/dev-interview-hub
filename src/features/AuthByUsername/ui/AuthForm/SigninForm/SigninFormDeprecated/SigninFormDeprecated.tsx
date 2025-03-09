@@ -2,9 +2,9 @@ import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { VStack } from '@/shared/ui/common/Stack';
 import cls from '../../AuthForm.module.scss';
-import { Text } from '@/shared/ui/redesigned/Text';
-import { Input } from '@/shared/ui/redesigned/Input';
-import { Button } from '@/shared/ui/redesigned/Button';
+import { Text, TextTheme } from '@/shared/ui/deprecated/Text';
+import { Input } from '@/shared/ui/deprecated/Input';
+import { Button } from '@/shared/ui/deprecated/Button';
 
 import { AuthFormProps } from '../../AuthForm';
 import { useSignInForm } from '../../../../lib/hooks/useSignInForm/useSignInForm';
@@ -14,7 +14,7 @@ import { useToggleForm } from '../../../../lib/hooks/useToggleForm/useToggleForm
 import { PasswordInput } from '../../PasswordInput/PasswordInput';
 import { RecoverPasswordForm } from '../../RecoverPasswordForm/RecoverPasswordForm';
 
-export const SignInForm = memo((props: AuthFormProps) => {
+export const SigninFormDeprecated = memo((props: AuthFormProps) => {
     const { className, onSuccess } = props;
     const { t } = useTranslation('profile');
     const {
@@ -29,7 +29,7 @@ export const SignInForm = memo((props: AuthFormProps) => {
 
     const validConfig = useInputValidationConfig();
 
-    const { hasInputErrors, passwordErrors, emailErrors } = useFormValidation(
+    const { hasInputErrors, emailErrors } = useFormValidation(
         { email, password },
         validConfig,
         'signIn',
@@ -53,7 +53,7 @@ export const SignInForm = memo((props: AuthFormProps) => {
                     {error && (
                         <Text
                             text={t('Ви ввели невірний логін або пароль')}
-                            variant="error"
+                            theme={TextTheme.ERROR}
                         />
                     )}
                     <Input
@@ -62,23 +62,13 @@ export const SignInForm = memo((props: AuthFormProps) => {
                         onChange={onChangeEmail}
                         value={email}
                         data-testid="login-email-input"
-                        label={t('Email')}
                         validations={validConfig.email}
                         errors={emailErrors}
                     />
                     <VStack className={cls.passwordInputWrapper} max>
-                        {/* <Button */}
-                        {/*    variant="link" */}
-                        {/*    className={cls.passwordInputLink} */}
-                        {/*    onClick={toggleForm} */}
-                        {/* > */}
-                        {/*    {t('Забули пароль?')} */}
-                        {/* </Button> */}
                         <PasswordInput
                             password={password}
                             onChangePassword={onChangePassword}
-                            // passwordErrors={passwordErrors}
-                            // validConfig={validConfig}
                             withResetOption
                             onShowResetForm={toggleForm}
                         />
@@ -86,7 +76,6 @@ export const SignInForm = memo((props: AuthFormProps) => {
 
                     <Button
                         max
-                        variant="accent"
                         className={cls.authBtn}
                         onClick={onLoginClick}
                         disabled={isLoading || hasInputErrors}

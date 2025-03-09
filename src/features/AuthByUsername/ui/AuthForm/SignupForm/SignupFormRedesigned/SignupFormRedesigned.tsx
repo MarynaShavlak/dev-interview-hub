@@ -2,9 +2,9 @@ import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { VStack } from '@/shared/ui/common/Stack';
 import cls from '../../AuthForm.module.scss';
-import { Text, TextTheme } from '@/shared/ui/deprecated/Text';
-import { Input } from '@/shared/ui/deprecated/Input';
-import { Button, ButtonTheme } from '@/shared/ui/deprecated/Button';
+import { Text } from '@/shared/ui/redesigned/Text';
+import { Input } from '@/shared/ui/redesigned/Input';
+import { Button } from '@/shared/ui/redesigned/Button';
 import { AuthFormProps } from '../../AuthForm';
 
 import { useInputValidationConfig } from '@/shared/lib/hooks/validationHooks/useInputValidationConfig/useInputValidationConfig';
@@ -13,7 +13,7 @@ import { useFormValidation } from '@/shared/lib/hooks/validationHooks/useFormVal
 import { useSignUpForm } from '../../../../lib/hooks/useSignUpForm/useSignUpForm';
 import { PasswordInput } from '../../PasswordInput/PasswordInput';
 
-export const SignUpForm = memo((props: AuthFormProps) => {
+export const SignupFormRedesigned = memo((props: AuthFormProps) => {
     const { className, onSuccess } = props;
     const { t } = useTranslation('profile');
 
@@ -55,49 +55,46 @@ export const SignUpForm = memo((props: AuthFormProps) => {
             gap="16"
             className={className}
             data-testid="auth-form-sign-up"
-            align="center"
         >
             <Text title={t('Форма реєстрації')} />
-            {error && <Text text={errorText} theme={TextTheme.ERROR} />}
+            {error && <Text text={errorText} variant="error" />}
             <Input
                 type="text"
-                placeholder={t("Ім'я")}
+                placeholder={t("Введіть ваше ім'я")}
                 onChange={onChangeFirstname}
                 value={firstname}
                 data-testid="signup-firstname-input"
-                // label={t()}
+                label={t("Ім'я")}
                 validations={validConfig.firstname}
                 errors={firstnameErrors}
-                maxLengthIndicator
             />
             <Input
                 type="text"
-                placeholder={t('Прізвище')}
+                placeholder={t('Введіть Ваше прізвище')}
                 onChange={onChangeLastname}
                 value={lastname}
                 data-testid="signup-lastname-input"
-                // label={t('Прізвище')}
+                label={t('Прізвище')}
                 validations={validConfig.lastname}
                 errors={lastnameErrors}
-                maxLengthIndicator
             />
             <Input
                 type="text"
-                placeholder={t("Ім'я користувача")}
+                placeholder={t("Введіть ім'я користувача")}
                 onChange={onChangeUsername}
                 value={username}
                 data-testid="signup-username-input"
-                // label={t("Ім'я користувача")}
+                label={t("Ім'я користувача")}
                 validations={validConfig.username}
                 errors={usernameErrors}
             />
             <Input
                 type="text"
-                placeholder={t('Email')}
+                placeholder={t('Введіть email')}
                 onChange={onChangeEmail}
                 value={email}
                 data-testid="signup-email-input"
-                // label={t('Email')}
+                label={t('Email')}
                 validations={validConfig.email}
                 errors={emailErrors}
             />
@@ -107,13 +104,11 @@ export const SignUpForm = memo((props: AuthFormProps) => {
                 onChangePassword={onChangePassword}
                 passwordErrors={passwordErrors}
                 validConfig={validConfig}
-                label={t('Пароль')}
             />
 
             <Button
                 max
-                // variant="accent"
-                theme={ButtonTheme.OUTLINE}
+                variant="accent"
                 className={cls.authBtn}
                 onClick={onSignupClick}
                 disabled={isLoading || hasInputErrors}

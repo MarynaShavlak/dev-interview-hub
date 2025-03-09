@@ -1,8 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { memo } from 'react';
 import { AuthFormProps } from '../AuthForm';
-import { SignInForm } from './SigninForm/SigninForm';
-import { SignUpForm } from './SignupForm/SignupForm';
 import { HStack, VStack } from '@/shared/ui/common/Stack';
 import cls from '../AuthForm.module.scss';
 import { Text } from '@/shared/ui/redesigned/Text';
@@ -11,6 +9,8 @@ import { Icon } from '@/shared/ui/redesigned/Icon';
 import GoogleIcon from '@/shared/assets/icons/google.svg';
 import { useToggleForm } from '../../../lib/hooks/useToggleForm/useToggleForm';
 import { useSignUpForm } from '../../../lib/hooks/useSignUpForm/useSignUpForm';
+import { SignupForm } from '../SignupForm/SignupForm';
+import { SigninForm } from '../SigninForm/SigninForm';
 
 export const AuthFormRedesigned = memo((props: AuthFormProps) => {
     const { t } = useTranslation('profile');
@@ -28,9 +28,9 @@ export const AuthFormRedesigned = memo((props: AuthFormProps) => {
     return (
         <VStack gap="16" className={cls.AuthForm}>
             {isLoginFormOpen ? (
-                <SignInForm {...props} />
+                <SigninForm {...props} />
             ) : (
-                <SignUpForm {...props} />
+                <SignupForm {...props} />
             )}
             <HStack
                 className={cls.formDivider}
