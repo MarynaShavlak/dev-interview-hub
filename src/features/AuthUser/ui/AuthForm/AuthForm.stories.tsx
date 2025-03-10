@@ -29,6 +29,7 @@ Default.decorators = [
 export const DefaultRedesigned = Template.bind({});
 DefaultRedesigned.args = {};
 DefaultRedesigned.decorators = [
+    AlignDecorator('center'),
     StoreDecorator({
         loginForm: { email: 'mary@gmail.com', password: 'asd' },
     }),
@@ -38,6 +39,7 @@ DefaultRedesigned.decorators = [
 export const withError = Template.bind({});
 withError.args = {};
 withError.decorators = [
+    AlignDecorator('center'),
     StoreDecorator({
         loginForm: { email: 'mary@gmail.com', password: 'asd', error: 'ERROR' },
     }),
@@ -46,6 +48,7 @@ withError.decorators = [
 export const withErrorRedesigned = Template.bind({});
 withErrorRedesigned.args = {};
 withErrorRedesigned.decorators = [
+    AlignDecorator('center'),
     StoreDecorator({
         loginForm: { email: 'mary@gmail.com', password: 'asd', error: 'ERROR' },
     }),

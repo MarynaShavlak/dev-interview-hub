@@ -64,3 +64,29 @@ RedesignedEditor.args = {
 };
 
 RedesignedEditor.decorators = [NewDesignDecorator];
+
+export const RedesignedEditorDark = Template.bind({});
+RedesignedEditorDark.args = {
+    initialCode: 'const a = 10;',
+    loader: 'Loading...',
+    height: '200px',
+    width: '100%',
+};
+
+RedesignedEditorDark.decorators = [
+    NewDesignDecorator,
+    ThemeDecorator(Theme.DARK),
+];
+
+export const RedesignedEditorOrange = Template.bind({});
+RedesignedEditorOrange.args = {
+    initialCode: 'const a = 10;',
+    loader: 'Loading...',
+    height: '200px',
+    width: '100%',
+};
+
+RedesignedEditorOrange.decorators = [
+    NewDesignDecorator,
+    ThemeDecorator(Theme.ORANGE),
+];
