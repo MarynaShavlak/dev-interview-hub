@@ -54,6 +54,10 @@ const withCodeOnly = {
 export const Default = Template.bind({});
 Default.args = baseArgs;
 
+export const DefaultDark = Template.bind({});
+DefaultDark.args = baseArgs;
+DefaultDark.decorators = [ThemeDecorator(Theme.DARK)];
+
 export const DefaultRedesigned = Template.bind({});
 DefaultRedesigned.args = baseArgs;
 DefaultRedesigned.decorators = [NewDesignDecorator];
