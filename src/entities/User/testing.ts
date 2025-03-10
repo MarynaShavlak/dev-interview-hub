@@ -5,13 +5,14 @@ import { Currency } from '@/entities/Currency';
 import { Country } from '@/entities/Country';
 
 export const testUserData: User = {
-    email: '',
-    firstname: '',
-    lastname: '',
+    email: 'testemail@gmail.com',
+    firstname: 'testuser firtstname',
+    lastname: 'testuser lastname',
     id: '123',
     username: 'testUsername',
     avatar: '',
-    city: '',
+    age: '30',
+    city: 'Kharkiv',
     currency: Currency.UAH,
     country: Country.Ukraine,
     roles: [UserRole.USER],
