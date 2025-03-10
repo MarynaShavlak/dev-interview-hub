@@ -33,5 +33,3 @@ const createStory = (user: User, useNewDesign = false) => {
 
 export const Default = createStory(testUserData);
 export const DefaultRedesigned = createStory(testUserData, true);
-// export const NoUser = createStory(null);
-// export const NoUserRedesigned = createStory(null, true);

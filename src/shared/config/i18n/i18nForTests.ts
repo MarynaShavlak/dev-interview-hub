@@ -35,6 +35,8 @@ i18n.use(initReactI18next).init({
                 '{{count}} переглядів_zero': '{{count}} views',
                 '{{count}} переглядів_one': '{{count}} view',
                 '{{count}} переглядів_other': '{{count}} views',
+                'Заголовок блоку': 'Block title( optional)',
+                'Опис коду': 'Code description ( optional)',
             },
             profile: {
                 'Відновлення паролю': 'Recover Password',
@@ -63,6 +65,8 @@ i18n.use(initReactI18next).init({
                 '{{count}} переглядів_one': '{{count}} перегляд',
                 '{{count}} переглядів_few': '{{count}} перегляди',
                 '{{count}} переглядів_many': '{{count}} переглядів',
+                'Заголовок блоку': "Заголовок блоку (необов'язкове)",
+                'Опис коду': "Опис коду (необов'язкове)",
             },
             profile: {
                 'Відновлення паролю': 'Відновлення паролю',
