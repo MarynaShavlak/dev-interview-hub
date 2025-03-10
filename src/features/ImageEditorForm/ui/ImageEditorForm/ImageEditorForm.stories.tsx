@@ -41,6 +41,29 @@ const withPreviewArgs = {
         'https://www.contentviewspro.com/wp-content/uploads/2017/07/default_image.png',
     imageTypeError: null,
 };
+const withEmptyTitle = {
+    ...baseArgs,
+    title: '',
+    hasNoValidImage: false,
+    preview:
+        'https://www.contentviewspro.com/wp-content/uploads/2017/07/default_image.png',
+    imageTypeError: null,
+};
+const withImageTypeError = {
+    ...baseArgs,
+    hasNoValidImage: true,
+    preview: null,
+    imageTypeError:
+        'Некоректний тип зображення. Завантажте файл у форматі PNG, JPG або JPEG.',
+};
+const withLongTitle = {
+    ...baseArgs,
+    title: 'This is a very long image title that has more tha 50 allowed characters.',
+    hasNoValidImage: false,
+    preview:
+        'https://www.contentviewspro.com/wp-content/uploads/2017/07/default_image.png',
+    imageTypeError: null,
+};
 
 export const Default = Template.bind({});
 Default.args = noImageArgs;
@@ -55,3 +78,24 @@ WithImagePreview.args = withPreviewArgs;
 export const WithImagePreviewRedesigned = Template.bind({});
 WithImagePreviewRedesigned.args = withPreviewArgs;
 WithImagePreviewRedesigned.decorators = [NewDesignDecorator];
+
+export const WithEmptyTitle = Template.bind({});
+WithEmptyTitle.args = withEmptyTitle;
+
+export const WithEmptyTitleRedesigned = Template.bind({});
+WithEmptyTitleRedesigned.args = withEmptyTitle;
+WithEmptyTitleRedesigned.decorators = [NewDesignDecorator];
+
+export const WithImageTypeError = Template.bind({});
+WithImageTypeError.args = withImageTypeError;
+
+export const WithImageTypeErrorRedesigned = Template.bind({});
+WithImageTypeErrorRedesigned.args = withImageTypeError;
+WithImageTypeErrorRedesigned.decorators = [NewDesignDecorator];
+
+export const WithLongTitle = Template.bind({});
+WithLongTitle.args = withLongTitle;
+
+export const WithLongTitleRedesigned = Template.bind({});
+WithLongTitleRedesigned.args = withLongTitle;
+WithLongTitleRedesigned.decorators = [NewDesignDecorator];
