@@ -5,7 +5,7 @@ import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDe
 import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator/NewDesignDecorator';
 
 export default {
-    title: 'features/Auth/RecoverPasswordForm',
+    title: 'features/AuthUser/RecoverPasswordForm',
     component: RecoverPasswordForm,
     decorators: [StoreDecorator({})],
 } as ComponentMeta<typeof RecoverPasswordForm>;

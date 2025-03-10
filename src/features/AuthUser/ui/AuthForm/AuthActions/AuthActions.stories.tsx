@@ -6,7 +6,7 @@ import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 
 export default {
-    title: 'features/Auth/AuthActions',
+    title: 'features/AuthUser/AuthActions',
     component: AuthActions,
     argTypes: {
         backgroundColor: { control: 'color' },

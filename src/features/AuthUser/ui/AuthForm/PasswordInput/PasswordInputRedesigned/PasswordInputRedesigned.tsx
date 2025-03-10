@@ -7,9 +7,8 @@ import { Button } from '@/shared/ui/redesigned/Button';
 import { Icon } from '@/shared/ui/redesigned/Icon';
 import EyeIconRedesigned from '@/shared/assets/icons/eye.svg';
 import EyeInvisibleIconRedesigned from '@/shared/assets/icons/eye-slash.svg';
-
-import { useToggleVisibility } from '../../../../lib/hooks/useToggleVisibility/useToggleVisibility';
 import { PasswordInputProps } from '../PasswordInput';
+import { useToggleVisibility } from '@/shared/lib/hooks/useToggleVisibility/useToggleVisibility';
 
 export const PasswordInputRedesigned = memo((props: PasswordInputProps) => {
     const {

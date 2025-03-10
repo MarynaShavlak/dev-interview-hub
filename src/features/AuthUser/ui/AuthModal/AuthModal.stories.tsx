@@ -6,7 +6,7 @@ import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator
 import { PortalDecorator } from '@/shared/config/storybook/PortalDecorator/PortalDecorator';
 
 export default {
-    title: 'features/AuthByUsername/AuthModal',
+    title: 'features/AuthUser/AuthModal',
     component: AuthModal,
     argTypes: {
         isOpen: { control: 'boolean' },

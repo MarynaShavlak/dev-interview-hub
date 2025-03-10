@@ -7,7 +7,7 @@ import { useInputErrors } from '@/shared/lib/hooks/validationHooks/useInputError
 import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator/NewDesignDecorator';
 
 export default {
-    title: 'features/Auth/PasswordInput',
+    title: 'features/AuthUser/PasswordInput',
     component: PasswordInput,
     argTypes: {
         backgroundColor: { control: 'color' },

@@ -5,12 +5,12 @@ import {
 } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { loginReducer } from '../../model/slices/loginSlice/loginSlice';
 import { signupReducer } from '../../testing';
-import { useToggleForm } from '../../lib/hooks/useToggleForm/useToggleForm';
 import { VStack } from '@/shared/ui/common/Stack';
 import cls from './AuthForm.module.scss';
 import { SigninForm } from './SigninForm/SigninForm';
 import { SignupForm } from './SignupForm/SignupForm';
 import { AuthActions } from './AuthActions/AuthActions';
+import { useToggleVisibility } from '@/shared/lib/hooks/useToggleVisibility/useToggleVisibility';
 
 export interface AuthFormProps {
     className?: string;
@@ -23,7 +23,8 @@ const initialReducers: ReducersList = {
 };
 
 const AuthForm = memo((props: AuthFormProps) => {
-    const { isLoginFormOpen, toggleForm } = useToggleForm();
+    const { isVisible: isLoginFormOpen, toggleVisibility: toggleForm } =
+        useToggleVisibility(true);
     return (
         <DynamicModuleLoader reducers={initialReducers} removeAfterUnmount>
             <VStack gap="16" className={cls.AuthForm}>

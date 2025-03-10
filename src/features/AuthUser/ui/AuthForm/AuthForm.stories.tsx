@@ -6,7 +6,7 @@ import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator
 import { AlignDecorator } from '@/shared/config/storybook/AlignDecorator/AlignDecorator';
 
 export default {
-    title: 'features/AuthByUsername/AuthForm',
+    title: 'features/AuthUser/AuthForm',
     component: AuthForm,
     argTypes: {
         backgroundColor: { control: 'color' },
@@ -26,22 +26,6 @@ Default.decorators = [
     }),
 ];
 
-export const withError = Template.bind({});
-withError.args = {};
-withError.decorators = [
-    StoreDecorator({
-        loginForm: { email: 'mary@gmail.com', password: 'asd', error: 'ERROR' },
-    }),
-];
-
-export const Loading = Template.bind({});
-Loading.args = {};
-Loading.decorators = [
-    StoreDecorator({
-        loginForm: { isLoading: true },
-    }),
-];
-
 export const DefaultRedesigned = Template.bind({});
 DefaultRedesigned.args = {};
 DefaultRedesigned.decorators = [
@@ -51,20 +35,19 @@ DefaultRedesigned.decorators = [
     NewDesignDecorator,
 ];
 
+export const withError = Template.bind({});
+withError.args = {};
+withError.decorators = [
+    StoreDecorator({
+        loginForm: { email: 'mary@gmail.com', password: 'asd', error: 'ERROR' },
+    }),
+];
+
 export const withErrorRedesigned = Template.bind({});
 withErrorRedesigned.args = {};
 withErrorRedesigned.decorators = [
     StoreDecorator({
         loginForm: { email: 'mary@gmail.com', password: 'asd', error: 'ERROR' },
-    }),
-    NewDesignDecorator,
-];
-
-export const LoadingRedesigned = Template.bind({});
-LoadingRedesigned.args = {};
-LoadingRedesigned.decorators = [
-    StoreDecorator({
-        loginForm: { isLoading: true },
     }),
     NewDesignDecorator,
 ];

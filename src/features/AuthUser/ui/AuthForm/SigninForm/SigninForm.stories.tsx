@@ -6,7 +6,7 @@ import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDe
 import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator/NewDesignDecorator';
 
 export default {
-    title: 'features/Auth/SigninForm',
+    title: 'features/AuthUser/SigninForm',
     component: SigninForm,
     argTypes: {
         backgroundColor: { control: 'color' },

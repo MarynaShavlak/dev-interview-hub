@@ -4,8 +4,6 @@ import { VStack } from '@/shared/ui/common/Stack';
 import cls from '../PasswordInput.module.scss';
 import { Input } from '@/shared/ui/deprecated/Input';
 import { Button, ButtonTheme } from '@/shared/ui/deprecated/Button';
-
-import { useToggleVisibility } from '../../../../lib/hooks/useToggleVisibility/useToggleVisibility';
 import EyeIconRedesigned from '@/shared/assets/icons/eye.svg';
 import EyeInvisibleIconRedesigned from '@/shared/assets/icons/eye-slash.svg';
 import { Icon } from '@/shared/ui/deprecated/Icon';
@@ -13,6 +11,7 @@ import { Box } from '@/shared/ui/common/Box';
 import { getFlexClasses } from '@/shared/lib/classes/getFlexClasses/getFlexClasses';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { PasswordInputProps } from '../PasswordInput';
+import { useToggleVisibility } from '@/shared/lib/hooks/useToggleVisibility/useToggleVisibility';
 
 export const PasswordInputDeprecated = memo((props: PasswordInputProps) => {
     const {
