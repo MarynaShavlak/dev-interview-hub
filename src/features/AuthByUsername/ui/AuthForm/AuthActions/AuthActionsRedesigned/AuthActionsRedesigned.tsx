@@ -24,7 +24,7 @@ export const AuthActionsRedesigned = memo((props: AuthActionsProps) => {
         : t('Увійти');
 
     return (
-        <VStack gap="16" className={cls.AuthForm}>
+        <VStack gap="16" max>
             <HStack
                 className={cls.formDivider}
                 align="center"

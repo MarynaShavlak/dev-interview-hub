@@ -2,9 +2,9 @@ import { useTranslation } from 'react-i18next';
 import { memo } from 'react';
 import { HStack, VStack } from '@/shared/ui/common/Stack';
 import cls from '../AuthActions.module.scss';
-import { Text } from '@/shared/ui/redesigned/Text';
-import { Button } from '@/shared/ui/redesigned/Button';
-import { Icon } from '@/shared/ui/redesigned/Icon';
+import { Text } from '@/shared/ui/deprecated/Text';
+import { Button } from '@/shared/ui/deprecated/Button';
+import { Icon } from '@/shared/ui/deprecated/Icon';
 import GoogleIcon from '@/shared/assets/icons/google.svg';
 import { useSignUpForm } from '../../../../lib/hooks/useSignUpForm/useSignUpForm';
 import { AuthActionsProps } from '../AuthActions';
@@ -33,7 +33,7 @@ export const AuthActionsDeprecated = memo((props: AuthActionsProps) => {
     });
 
     return (
-        <VStack gap="16" className={cls.AuthForm}>
+        <VStack gap="16" max>
             <HStack
                 className={cls.formDividerDeprecated}
                 align="center"
