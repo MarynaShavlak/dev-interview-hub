@@ -4,6 +4,10 @@ import { OptionCell } from './OptionCell';
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 import { ColorOption } from '../../model/types/tableTypes';
 
+const rowMock = {
+    original: { id: '1' },
+};
+const columnMock = { id: 'status' };
 const colorOptions: ColorOption[] = [
     { id: '1', name: 'red', color: '#ff0000' },
     { id: '2', name: 'green', color: '#00ff00' },
@@ -11,7 +15,9 @@ const colorOptions: ColorOption[] = [
 ];
 
 const defaultArgs = {
-    // getValue: () => colorOptions[0], // Example: 'red'
+    row: rowMock,
+    column: columnMock,
+    getValue: () => colorOptions[0], // Example: 'red'
     options: colorOptions,
     isEditRoleMode: false,
     updateRow: (id: string, columnId: string, newValue: any) =>
@@ -28,5 +34,6 @@ const Template: ComponentStory<typeof OptionCell> = (args) => (
 );
 
 export const AdminView = Template.bind({});
+// @ts-ignore
 AdminView.args = { ...defaultArgs, isEditRoleMode: false };
 AdminView.decorators = [StoreDecorator({})];
