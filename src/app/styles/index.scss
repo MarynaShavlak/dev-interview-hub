@@ -24,16 +24,16 @@
     display: flex;
 }
 
-*::-webkit-scrollbar {
+.app_redesigned  *::-webkit-scrollbar {
     width: 12px;               /* ширина scrollbar */
     height: 8px;
 }
 
-*::-webkit-scrollbar-track {
+.app_redesigned  *::-webkit-scrollbar-track {
     background: var(--light-bg-redesigned);        /* колір дорожки */
 }
 
-*::-webkit-scrollbar-thumb {
+.app_redesigned  *::-webkit-scrollbar-thumb {
     background-color: var(--icon-redesigned);    /* колір плашки */
     border-radius: 20px;       /* закруглення плашки */
     border: 2px solid var(--accent-redesigned);  /* padding навколо плашки */
@@ -53,3 +53,5 @@
     border-radius: 20px;       /* закруглення плашки */
     border: 2px solid var(--primary-color);  /* padding навколо плашки */
 }
+
+
