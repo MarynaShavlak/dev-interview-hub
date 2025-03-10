@@ -2,7 +2,6 @@ import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { DashboardCard } from './DashboardCard';
 import UserIcon from '@/shared/assets/icons/avatar.svg';
-import StarIcon from '@/shared/assets/icons/star.svg';
 import ArticleIcon from '@/shared/assets/icons/article.svg';
 import CommentIcon from '@/shared/assets/icons/comment.svg';
 import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator/NewDesignDecorator';
@@ -69,10 +68,10 @@ WithLongValue.args = {
     Icon: CommentIcon,
 };
 
-// Card with percentage value
-export const WithPercentageValue = Template.bind({});
-WithPercentageValue.args = {
-    title: 'Growth Rate',
-    value: '+27.4%',
-    Icon: StarIcon,
+export const WithLongValueRedesigned = Template.bind({});
+WithLongValueRedesigned.args = {
+    title: 'Complex Metric',
+    value: '142,568,973',
+    Icon: CommentIcon,
 };
+WithLongValueRedesigned.decorators = [NewDesignDecorator];
