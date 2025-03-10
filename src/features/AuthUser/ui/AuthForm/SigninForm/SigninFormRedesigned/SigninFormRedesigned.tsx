@@ -2,19 +2,19 @@ import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { VStack } from '@/shared/ui/common/Stack';
 import cls from '../../AuthForm.module.scss';
-import { Text, TextTheme } from '@/shared/ui/deprecated/Text';
-import { Input } from '@/shared/ui/deprecated/Input';
-import { Button } from '@/shared/ui/deprecated/Button';
+import { Text } from '@/shared/ui/redesigned/Text';
+import { Input } from '@/shared/ui/redesigned/Input';
+import { Button } from '@/shared/ui/redesigned/Button';
 
 import { AuthFormProps } from '../../AuthForm';
 import { useSignInForm } from '../../../../lib/hooks/useSignInForm/useSignInForm';
 import { useInputValidationConfig } from '@/shared/lib/hooks/validationHooks/useInputValidationConfig/useInputValidationConfig';
 import { useFormValidation } from '@/shared/lib/hooks/validationHooks/useFormValidation/useFormValidation';
-import { useToggleForm } from '../../../../lib/hooks/useToggleForm/useToggleForm';
 import { PasswordInput } from '../../PasswordInput/PasswordInput';
 import { RecoverPasswordForm } from '../../RecoverPasswordForm/RecoverPasswordForm';
+import { useToggleVisibility } from '@/shared/lib/hooks/useToggleVisibility/useToggleVisibility';
 
-export const SigninFormDeprecated = memo((props: AuthFormProps) => {
+export const SigninFormRedesigned = memo((props: AuthFormProps) => {
     const { className, onSuccess } = props;
     const { t } = useTranslation('profile');
     const {
@@ -29,13 +29,14 @@ export const SigninFormDeprecated = memo((props: AuthFormProps) => {
 
     const validConfig = useInputValidationConfig();
 
-    const { hasInputErrors, emailErrors } = useFormValidation(
+    const { hasInputErrors, passwordErrors, emailErrors } = useFormValidation(
         { email, password },
         validConfig,
         'signIn',
     );
 
-    const { isLoginFormOpen, toggleForm } = useToggleForm();
+    const { isVisible: isLoginFormOpen, toggleVisibility: toggleForm } =
+        useToggleVisibility(true);
 
     return (
         <VStack
@@ -53,7 +54,7 @@ export const SigninFormDeprecated = memo((props: AuthFormProps) => {
                     {error && (
                         <Text
                             text={t('Ви ввели невірний логін або пароль')}
-                            theme={TextTheme.ERROR}
+                            variant="error"
                         />
                     )}
                     <Input
@@ -62,6 +63,7 @@ export const SigninFormDeprecated = memo((props: AuthFormProps) => {
                         onChange={onChangeEmail}
                         value={email}
                         data-testid="login-email-input"
+                        label={t('Email')}
                         validations={validConfig.email}
                         errors={emailErrors}
                     />
@@ -76,6 +78,7 @@ export const SigninFormDeprecated = memo((props: AuthFormProps) => {
 
                     <Button
                         max
+                        variant="accent"
                         className={cls.authBtn}
                         onClick={onLoginClick}
                         disabled={isLoading || hasInputErrors}

@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { AuthModal } from '@/features/AuthByUsername';
+
 import { Button } from '@/shared/ui/redesigned/Button';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import cls from '../Navbar.module.scss';
@@ -10,6 +10,7 @@ import {
     ButtonTheme,
 } from '@/shared/ui/deprecated/Button';
 import { useToggleVisibility } from '@/shared/lib/hooks/useToggleVisibility/useToggleVisibility';
+import { AuthModal } from '@/features/AuthUser';
 
 interface NavbarProps {
     className?: string;

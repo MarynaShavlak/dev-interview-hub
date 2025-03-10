@@ -1,7 +1,7 @@
 import { Story } from '@storybook/react';
 import { StateSchema, StoreProvider } from '@/app/providers/StoreProvider';
 import { addCommentFormReducer } from '@/entities/Comment/testing';
-import { loginReducer, signupReducer } from '@/features/AuthByUsername/testing';
+import { loginReducer, signupReducer } from '@/features/AuthUser/testing';
 import { profileReducer } from '@/features/EditableProfileCard/testing';
 import { ReducersList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { articlesPageReducer } from '@/pages/ArticlesPage/testing';

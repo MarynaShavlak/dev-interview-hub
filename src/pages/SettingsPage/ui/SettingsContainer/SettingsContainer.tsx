@@ -1,5 +1,6 @@
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
+
 import { VStack } from '@/shared/ui/common/Stack';
 import { Text } from '@/shared/ui/redesigned/Text';
 import { UiDesignSwitcher } from '@/features/UIDesignSwitcher';

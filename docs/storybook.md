@@ -27,7 +27,7 @@ Storybook decorators enhance components with additional functionality or context
 - [StoreDecorator](../src/shared/config/storybook/StoreDecorator/StoreDecorator.tsx) - Wraps components in a Redux store with customizable state and reducers, simulating different Redux states.
 - [SuspenseDecorator](../src/shared/config/storybook/SuspenseDecorator/SuspenseDecorator.tsx) - Wraps components in React's Suspense to manage lazy-loaded components and asynchronous operations.
 - [ThemeDecorator](../src/shared/config/storybook/ThemeDecorator/ThemeDecorator.tsx) - Wraps components in a ThemeProvider to apply different themes (e.g., light or dark) during testing.
-- [StyleDecorator](../src/shared/config/storybook/StyleDecorator/StyleDecorator.ts) - Imports the main stylesheet to apply global styles, ensuring components render with the correct styling.
+- [StyleDecorator](../src/shared/config/storybook/StyleDecorator/StyleDecorator.tsx) - Imports the main stylesheet to apply global styles, ensuring components render with the correct styling.
 - [FeaturesFlagsDecorator](../src/shared/config/storybook/FeaturesFlagsDecorator/FeaturesFlagsDecorator.tsx) - Configures feature flags for components, simulating different feature states.
 - [ArticleRatingEnabledDecorator](../src/shared/config/storybook/ArticleRatingEnabledDecorator/ArticleRatingEnabledDecorator.tsx) - Enables the article rating feature by setting the appropriate flag.
 - [NewDesignDecorator](../src/shared/config/storybook/NewDesignDecorator/NewDesignDecorator.tsx) - Activates the new design feature and applies specific styling to simulate the redesigned app layout.

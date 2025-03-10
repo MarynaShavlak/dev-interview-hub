@@ -10,11 +10,11 @@ import { FirebaseApp } from 'firebase/app';
 import { Auth } from 'firebase/auth';
 import { Firestore } from 'firebase/firestore';
 import { FirebaseStorage } from 'firebase/storage';
+import { LoginSchema, SignupSchema } from 'src/features/AuthUser';
 import { UIScrollSchema } from '@/widgets/Page';
 import { Article } from '@/entities/Article';
 import { UserSchema } from '@/entities/User';
 
-import { LoginSchema, SignupSchema } from '@/features/AuthByUsername';
 import { ProfileSchema } from '@/features/EditableProfileCard';
 import { ArticlesPageSchema } from '@/pages/ArticlesPage';
 import { firestoreApi } from '@/shared/api/firestoreApi';

@@ -197,7 +197,7 @@ For detailed architectural components and structures, refer to the following cat
 - [ArticleRecommendationsList](src/features/ArticleRecommendationsList/ui/ArticleRecommendationsList/README.md)
 - [ArticleSortSelector](src/features/ArticleSortSelector/ui/ArticleSortSelector/README.md)
 - [ArticleViewSelector](src/features/ArticleViewSelector/ui/ArticleViewSelector/README.md)
-- [AuthByUsername](./src/features/AuthByUsername/README.md)
+- [AuthByUsername](src/features/AuthUser/README.md)
 - [AvatarDropdown](src/features/AvatarDropdown/ui/AvatarDropdown/README.md)
 - [EditableProfileCard](src/features/EditableProfileCard/README.md)
 - [LangSwitcher](src/features/LangSwitcher/ui/LangSwitcher/README.md)

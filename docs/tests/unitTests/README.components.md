@@ -45,7 +45,7 @@ The project includes component tests using React Testing Library to verify that 
 | **Thank-You Message**           | Correctly displays a thank-you message when a rating is provided.                                            |                                   
 | **Feedback Modal**              | Appropriately shows or hides the feedback modal based on the component's configuration.Verifies that the modal can be closed without submitting feedback or correctly submits feedback.                       | 
 
-## 6. [AuthForm](../../../src/features/AuthByUsername/ui/AuthForm/AuthForm.test.tsx) Component
+## 6. [AuthForm](../../../src/features/AuthUser/ui/AuthForm/AuthForm.test.tsx) Component
 
 | Aspect                          | Purpose                                                                                                          | 
 |---------------------------------|------------------------------------------------------------------------------------------------------------------|

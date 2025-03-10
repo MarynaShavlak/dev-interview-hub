@@ -20,7 +20,7 @@
 
 ---
 
-## 2. [loginSlice](../../../src/features/AuthByUsername/model/slices/loginSlice/loginSlice.test.ts) Reducers
+## 2. [loginSlice](../../../src/features/AuthUser/model/slices/loginSlice/loginSlice.test.ts) Reducers
 
 ### Initial State Tests
 - **Initial State**: Confirms that the `loginReducer` returns the correct initial state when no action is provided.
