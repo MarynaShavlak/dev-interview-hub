@@ -1,8 +1,9 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { withI18nDecorator } from '@/shared/config/storybook/withI18nDecorator/withI18nDecorator';
-import { EmptyTableState } from '../..';
+
 import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator/NewDesignDecorator';
+import { EmptyTableState } from './EmptyTableState';
 
 export default {
     title: 'features/Table/EmptyTableState',
