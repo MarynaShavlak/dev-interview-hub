@@ -2,17 +2,7 @@ import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { OptionCell } from './OptionCell';
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
-import { ColorOption } from '../../model/types/tableTypes';
-
-const rowMock = {
-    original: { id: '1' },
-};
-const columnMock = { id: 'status' };
-const colorOptions: ColorOption[] = [
-    { id: '1', name: 'red', color: '#ff0000' },
-    { id: '2', name: 'green', color: '#00ff00' },
-    { id: '3', name: 'blue', color: '#0000ff' },
-];
+import { colorOptions, columnMock, rowMock } from '../../testing';
 
 const defaultArgs = {
     row: rowMock,

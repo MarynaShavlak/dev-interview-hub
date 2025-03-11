@@ -3,6 +3,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { LinkCell } from './LinkCell';
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator/NewDesignDecorator';
+import { navigateMock } from '../../testing';
 
 export default {
     title: 'features/Table/LinkCell',
@@ -16,7 +17,6 @@ const Template: ComponentStory<typeof LinkCell> = (args) => (
     <LinkCell {...args} />
 );
 
-const navigateMock = (id: string) => console.log('Navigating to:', id);
 const defaultArgs = {
     value: 'Link cell',
     navigateFn: navigateMock,
