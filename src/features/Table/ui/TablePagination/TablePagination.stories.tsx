@@ -1,53 +1,113 @@
-import React from 'react';
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 import {
+    useReactTable,
     getCoreRowModel,
     getPaginationRowModel,
-    useReactTable,
 } from '@tanstack/react-table';
+import { useState } from 'react';
 import { TablePagination } from './TablePagination';
 import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator/NewDesignDecorator';
 
-export default {
+const createData = (count: number) => {
+    return Array(count)
+        .fill(0)
+        .map((_, index) => ({
+            id: index + 1,
+            name: `Item ${index + 1}`,
+            description: `Description for item ${index + 1}`,
+        }));
+};
+
+const meta = {
     title: 'features/Table/TablePagination',
     component: TablePagination,
+} satisfies Meta<typeof TablePagination>;
 
-    argTypes: {
-        className: { control: 'text' },
-    },
-} as ComponentMeta<typeof TablePagination>;
+export default meta;
 
-const Template: ComponentStory<typeof TablePagination> = (args) => {
-    const table = useReactTable({
-        data: new Array(50)
-            .fill(null)
-            .map((_, index) => ({ id: index, name: `Item ${index + 1}` })),
-        columns: [{ accessorKey: 'name', header: 'Name' }],
-        getCoreRowModel: getCoreRowModel(),
-        getPaginationRowModel: getPaginationRowModel(),
+type Story = StoryObj<typeof meta>;
+
+interface TablePaginationStoryProps {
+    data?: { id: number; name: string; description: string }[];
+    pageSize?: number;
+    initialPage?: number;
+    className?: string;
+}
+
+const TablePaginationStory = ({
+    data = createData(50),
+    pageSize = 10,
+    initialPage = 0,
+    className = '',
+}: TablePaginationStoryProps) => {
+    const [pagination, setPagination] = useState({
+        pageIndex: initialPage,
+        pageSize,
     });
 
-    return <TablePagination {...args} table={table} />;
+    const table = useReactTable({
+        data,
+        columns: [
+            {
+                header: 'ID',
+                accessorKey: 'id',
+            },
+            {
+                header: 'Name',
+                accessorKey: 'name',
+            },
+            {
+                header: 'Description',
+                accessorKey: 'description',
+            },
+        ],
+        state: {
+            pagination,
+        },
+        onPaginationChange: setPagination,
+        getCoreRowModel: getCoreRowModel(),
+        getPaginationRowModel: getPaginationRowModel(),
+        debugTable: true,
+    });
+
+    return <TablePagination table={table} className={className} />;
 };
 
-export const Default = Template.bind({});
+export const Default: Story = {
+    render: () => <TablePaginationStory />,
+};
 
-export const DefaultRedesigned = Template.bind({});
+export const DefaultRedesigned: Story = {
+    render: () => <TablePaginationStory />,
+};
 DefaultRedesigned.decorators = [NewDesignDecorator];
 
-export const WithPrevDisabled = Template.bind({});
-
-WithPrevDisabled.args = {
-    table: {
-        // @ts-ignore
-        getState: () => ({ pagination: { pageIndex: 0, pageSize: 10 } }),
-    },
+export const LargeDataset: Story = {
+    render: () => <TablePaginationStory data={createData(100)} pageSize={10} />,
 };
 
-export const WithNextDisabled = Template.bind({});
-WithNextDisabled.args = {
-    table: {
-        // @ts-ignore
-        getState: () => ({ pagination: { pageIndex: 4, pageSize: 4 } }),
-    },
+export const StartFromMiddlePage: Story = {
+    render: () => <TablePaginationStory initialPage={2} />,
+};
+
+export const LastPage: Story = {
+    render: () => (
+        <TablePaginationStory
+            data={createData(30)}
+            pageSize={10}
+            initialPage={2}
+        />
+    ),
+};
+
+export const FirstPage: Story = {
+    render: () => <TablePaginationStory initialPage={0} />,
+};
+
+export const ExactlyOnePage: Story = {
+    render: () => <TablePaginationStory data={createData(10)} pageSize={10} />,
+};
+
+export const EmptyDataset: Story = {
+    render: () => <TablePaginationStory data={[]} />,
 };
