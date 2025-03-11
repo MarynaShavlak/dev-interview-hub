@@ -2,6 +2,7 @@ import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { SortingButton } from './SortingButton';
 import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator/NewDesignDecorator';
+import { mockSortDefaultColumn } from '../../../../testing';
 
 export default {
     title: 'features/Table/Header/SortingButton',
@@ -10,12 +11,6 @@ export default {
         backgroundColor: { control: 'color' },
     },
 } as ComponentMeta<typeof SortingButton>;
-
-const mockSortDefaultColumn = {
-    getIsSorted: () => null, // Change to 'asc' or 'desc' to test sorting states
-    getCanSort: () => true,
-    getToggleSortingHandler: () => () => alert('Sorting toggled!'),
-};
 
 const mockSortAscColumn = {
     ...mockSortDefaultColumn,

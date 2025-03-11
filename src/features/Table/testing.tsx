@@ -1,6 +1,11 @@
-import { createColumnHelper } from '@tanstack/react-table';
-import { ColorOption } from './model/types/tableTypes';
+import { createColumnHelper, Header } from '@tanstack/react-table';
+import { ColorOption, CommonFilterType } from './model/types/tableTypes';
 
+export const mockSortDefaultColumn = {
+    getIsSorted: () => null, // Change to 'asc' or 'desc' to test sorting states
+    getCanSort: () => true,
+    getToggleSortingHandler: () => () => alert('Sorting toggled!'),
+};
 export const navigateMock = (id: string) => console.log('Navigating to:', id);
 
 export const mockSetColumnFilters = () => {
@@ -103,3 +108,44 @@ export const createMockRow = (data: Person) => {
             })),
     };
 };
+
+export const createMockHeader = (): Header<any, unknown> => {
+    // Create a proper column object first
+    const column = {
+        id: 'name',
+        getIsSorted: () => false,
+        getCanSort: () => true,
+        getToggleSortingHandler: () => () => console.log('Toggle sorting'),
+    };
+
+    return {
+        id: 'name',
+        column,
+        getContext: () => ({
+            column,
+            table: {
+                options: {
+                    meta: {},
+                },
+            },
+            header: {
+                id: 'name',
+            },
+        }),
+        colSpan: 1,
+        rowSpan: 1,
+        subHeaders: [],
+        getLeafHeaders: () => [],
+        isPlaceholder: false,
+        placeholderId: '',
+        depth: 0,
+        index: 0,
+    } as unknown as Header<any, unknown>;
+};
+export const mockHeaderOptionsMapping = {
+    name: ['Option 1', 'Option 2'],
+};
+
+export const mockColumnFilters: CommonFilterType = [
+    { id: 'name', value: ['Option 1'] },
+] as CommonFilterType;
