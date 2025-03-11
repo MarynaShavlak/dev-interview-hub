@@ -86,9 +86,19 @@ export const LargeDataset: Story = {
     render: () => <TablePaginationStory data={createData(100)} pageSize={10} />,
 };
 
+export const LargeDatasetRedesigned: Story = {
+    render: () => <TablePaginationStory data={createData(100)} pageSize={10} />,
+};
+LargeDatasetRedesigned.decorators = [NewDesignDecorator];
+
 export const StartFromMiddlePage: Story = {
     render: () => <TablePaginationStory initialPage={2} />,
 };
+
+export const StartFromMiddlePageRedesigned: Story = {
+    render: () => <TablePaginationStory initialPage={2} />,
+};
+StartFromMiddlePageRedesigned.decorators = [NewDesignDecorator];
 
 export const LastPage: Story = {
     render: () => (
@@ -100,14 +110,38 @@ export const LastPage: Story = {
     ),
 };
 
+export const LastPageRedesigned: Story = {
+    render: () => (
+        <TablePaginationStory
+            data={createData(30)}
+            pageSize={10}
+            initialPage={2}
+        />
+    ),
+};
+LastPageRedesigned.decorators = [NewDesignDecorator];
+
 export const FirstPage: Story = {
     render: () => <TablePaginationStory initialPage={0} />,
 };
+export const FirstPageRedesigned: Story = {
+    render: () => <TablePaginationStory initialPage={0} />,
+};
+FirstPageRedesigned.decorators = [NewDesignDecorator];
 
 export const ExactlyOnePage: Story = {
     render: () => <TablePaginationStory data={createData(10)} pageSize={10} />,
 };
+export const ExactlyOnePageRedesigned: Story = {
+    render: () => <TablePaginationStory data={createData(10)} pageSize={10} />,
+};
+ExactlyOnePageRedesigned.decorators = [NewDesignDecorator];
 
 export const EmptyDataset: Story = {
     render: () => <TablePaginationStory data={[]} />,
 };
+
+export const EmptyDatasetRedesigned: Story = {
+    render: () => <TablePaginationStory data={[]} />,
+};
+EmptyDatasetRedesigned.decorators = [NewDesignDecorator];
