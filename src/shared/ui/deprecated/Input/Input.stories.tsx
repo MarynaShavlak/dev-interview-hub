@@ -63,3 +63,9 @@ EmptyPlaceholder.args = {
     placeholder: '',
     value: 'Input with no placeholder',
 };
+
+export const Clearable = Template.bind({});
+Clearable.args = {
+    placeholder: 'Type something',
+    clear: true,
+};

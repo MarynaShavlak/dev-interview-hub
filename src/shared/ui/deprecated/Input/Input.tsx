@@ -27,6 +27,7 @@ interface InputProps extends HTMLInputProps {
     maxWidth?: boolean;
     maxLengthIndicator?: boolean;
     withBorder?: boolean;
+    clear?: boolean;
 }
 
 /**
@@ -49,6 +50,7 @@ export const Input = memo((props: InputProps) => {
         maxWidth = true,
         maxLengthIndicator = false,
         withBorder = false,
+        clear = false,
         ...otherProps
     } = props;
 
@@ -72,6 +74,7 @@ export const Input = memo((props: InputProps) => {
         [cls.readonly]: readonly,
         [cls.withError]: isLimitExceeded,
         [cls.withBorder]: withBorder,
+        [cls.clear]: clear,
     };
 
     const placeholderMods: Mods = {

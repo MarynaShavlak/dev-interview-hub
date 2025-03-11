@@ -148,7 +148,6 @@ export const createMockHeaderGroup = (
     canSort = true,
     canFilter = true,
 ): HeaderGroup<any> => {
-    // Create headers array with mock columns
     const headers = [
         {
             id: 'name',
