@@ -16,7 +16,11 @@ export const TablePaginationRedesigned = <T,>({
         handlePrevBtnClick,
         handleNextBtnClick,
         paginationText,
+        pageCount,
     } = useTablePagination(table);
+    if (!pageCount) {
+        return null;
+    }
 
     return (
         <HStack className={className}>

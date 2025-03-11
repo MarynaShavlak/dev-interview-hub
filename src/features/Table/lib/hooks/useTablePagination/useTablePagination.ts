@@ -4,6 +4,7 @@ import { Table } from '@tanstack/react-table';
 
 export const useTablePagination = <T>(table: Table<T>) => {
     const { t } = useTranslation();
+    const pageCount = table.getPageCount();
 
     const handlePrevBtnClick = useCallback(() => {
         table.previousPage();
@@ -20,7 +21,7 @@ export const useTablePagination = <T>(table: Table<T>) => {
         ' ' +
         `${t('із')}` +
         ' ' +
-        `${table.getPageCount()}`;
+        `${pageCount}`;
 
     const isDisabledNextBtn = !table.getCanNextPage();
     const isDisabledPrevBtn = !table.getCanPreviousPage();
@@ -30,5 +31,6 @@ export const useTablePagination = <T>(table: Table<T>) => {
         handlePrevBtnClick,
         handleNextBtnClick,
         paginationText,
+        pageCount,
     };
 };

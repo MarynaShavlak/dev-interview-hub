@@ -18,12 +18,16 @@ export const TablePaginationDeprecated = <T,>({
         handlePrevBtnClick,
         handleNextBtnClick,
         paginationText,
+        pageCount,
     } = useTablePagination(table);
 
     const btnFlexClasses = getFlexClasses({
         hStack: true,
         align: 'center',
     });
+    if (!pageCount) {
+        return null;
+    }
 
     return (
         <HStack>
