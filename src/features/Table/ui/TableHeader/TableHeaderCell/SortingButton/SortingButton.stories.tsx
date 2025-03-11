@@ -4,7 +4,7 @@ import { SortingButton } from './SortingButton';
 import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator/NewDesignDecorator';
 
 export default {
-    title: 'features/Table/SortingButton',
+    title: 'features/Table/Header/SortingButton',
     component: SortingButton,
     argTypes: {
         backgroundColor: { control: 'color' },
