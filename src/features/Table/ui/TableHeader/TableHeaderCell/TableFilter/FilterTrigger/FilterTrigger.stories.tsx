@@ -4,7 +4,7 @@ import { FilterTrigger } from './FilterTrigger';
 import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator/NewDesignDecorator';
 
 export default {
-    title: 'features/Table/Header/TableFilter/FilterTrigger',
+    title: 'features/Table/Header/Cell/TableFilter/FilterTrigger',
     component: FilterTrigger,
     argTypes: {
         isFilterActive: { control: 'boolean' },

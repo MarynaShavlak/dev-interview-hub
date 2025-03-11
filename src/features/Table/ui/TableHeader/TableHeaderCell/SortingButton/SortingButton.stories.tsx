@@ -5,7 +5,7 @@ import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator
 import { mockSortDefaultColumn } from '../../../../testing';
 
 export default {
-    title: 'features/Table/Header/SortingButton',
+    title: 'features/Table/Header/Cell/SortingButton',
     component: SortingButton,
     argTypes: {
         backgroundColor: { control: 'color' },

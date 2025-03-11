@@ -7,7 +7,7 @@ import { AlignDecorator } from '@/shared/config/storybook/AlignDecorator/AlignDe
 import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator/NewDesignDecorator';
 
 export default {
-    title: 'features/Table/Header/TableFilter/TableFilter',
+    title: 'features/Table/Header/Cell/TableFilter/TableFilter',
     component: TableFilter,
     argTypes: {},
 } as ComponentMeta<typeof TableFilter>;

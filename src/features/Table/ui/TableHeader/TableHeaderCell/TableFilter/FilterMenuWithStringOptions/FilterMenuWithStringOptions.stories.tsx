@@ -5,7 +5,7 @@ import { mockSetColumnFilters, stringOptions } from '../../../../../testing';
 import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator/NewDesignDecorator';
 
 export default {
-    title: 'features/Table/Header/TableFilter/FilterMenuWithStringOptions',
+    title: 'features/Table/Header/Cell/TableFilter/FilterMenuWithStringOptions',
     component: FilterMenuWithStringOptions,
 } as ComponentMeta<typeof FilterMenuWithStringOptions>;
 

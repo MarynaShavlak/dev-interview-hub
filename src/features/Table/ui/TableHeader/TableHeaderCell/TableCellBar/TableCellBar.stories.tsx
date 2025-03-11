@@ -6,9 +6,11 @@ import {
     mockColumnFilters,
     mockHeaderOptionsMapping,
 } from '../../../../testing';
+import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator/NewDesignDecorator';
+import { AlignDecorator } from '@/shared/config/storybook/AlignDecorator/AlignDecorator';
 
 export default {
-    title: 'features/Table/Header/TableCellBar',
+    title: 'features/Table/Header/Cell/TableCellBar',
     component: TableCellBar,
     argTypes: {
         isSortAvailable: { control: 'boolean' },
@@ -38,6 +40,7 @@ Default.args = {
     isSortAvailable: true,
     isFilterAvailable: true,
 };
+Default.decorators = [AlignDecorator('right')];
 
 export const SortOnly = Template.bind({});
 SortOnly.args = {
@@ -45,17 +48,50 @@ SortOnly.args = {
     isSortAvailable: true,
     isFilterAvailable: false,
 };
-
+SortOnly.decorators = [AlignDecorator('right')];
 export const FilterOnly = Template.bind({});
 FilterOnly.args = {
     ...defaultArgs,
     isSortAvailable: false,
     isFilterAvailable: true,
 };
-
+FilterOnly.decorators = [AlignDecorator('right')];
 export const NoOptions = Template.bind({});
 NoOptions.args = {
     ...defaultArgs,
     isSortAvailable: false,
     isFilterAvailable: false,
 };
+NoOptions.decorators = [AlignDecorator('right')];
+
+export const DefaultRedesigned = Template.bind({});
+DefaultRedesigned.args = {
+    ...defaultArgs,
+    isSortAvailable: true,
+    isFilterAvailable: true,
+};
+DefaultRedesigned.decorators = [AlignDecorator('right'), NewDesignDecorator];
+
+export const SortOnlyRedesigned = Template.bind({});
+SortOnlyRedesigned.args = {
+    ...defaultArgs,
+    isSortAvailable: true,
+    isFilterAvailable: false,
+};
+SortOnlyRedesigned.decorators = [AlignDecorator('right'), NewDesignDecorator];
+
+export const FilterOnlyRedesigned = Template.bind({});
+FilterOnlyRedesigned.args = {
+    ...defaultArgs,
+    isSortAvailable: false,
+    isFilterAvailable: true,
+};
+FilterOnlyRedesigned.decorators = [AlignDecorator('right'), NewDesignDecorator];
+
+export const NoOptionsRedesigned = Template.bind({});
+NoOptionsRedesigned.args = {
+    ...defaultArgs,
+    isSortAvailable: false,
+    isFilterAvailable: false,
+};
+NoOptionsRedesigned.decorators = [AlignDecorator('right'), NewDesignDecorator];

@@ -5,7 +5,7 @@ import { colorOptions, mockSetColumnFilters } from '../../../../../testing';
 import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator/NewDesignDecorator';
 
 export default {
-    title: 'features/Table/Header/TableFilter/FilterMenuWithColorOptions',
+    title: 'features/Table/Header/Cell/TableFilter/FilterMenuWithColorOptions',
     component: FilterMenuWithColorOptions,
 } as ComponentMeta<typeof FilterMenuWithColorOptions>;
 

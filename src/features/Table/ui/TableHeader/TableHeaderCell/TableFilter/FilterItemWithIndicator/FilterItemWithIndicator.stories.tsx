@@ -5,7 +5,7 @@ import { colorOptions, mockSetColumnFilters } from '../../../../../testing';
 import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator/NewDesignDecorator';
 
 export default {
-    title: 'features/Table/Header/TableFilter/FilterItemWithIndicator',
+    title: 'features/Table/Header/Cell/TableFilter/FilterItemWithIndicator',
     component: FilterItemWithIndicator,
 } as ComponentMeta<typeof FilterItemWithIndicator>;
 

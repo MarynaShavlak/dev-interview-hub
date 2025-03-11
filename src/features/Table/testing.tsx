@@ -1,4 +1,4 @@
-import { createColumnHelper, Header } from '@tanstack/react-table';
+import { createColumnHelper, Header, HeaderGroup } from '@tanstack/react-table';
 import { ColorOption, CommonFilterType } from './model/types/tableTypes';
 
 export const mockSortDefaultColumn = {
@@ -142,10 +142,143 @@ export const createMockHeader = (): Header<any, unknown> => {
         index: 0,
     } as unknown as Header<any, unknown>;
 };
-export const mockHeaderOptionsMapping = {
-    name: ['Option 1', 'Option 2'],
+
+export const createMockHeaderGroup = (
+    withResizing = false,
+    canSort = true,
+    canFilter = true,
+): HeaderGroup<any> => {
+    // Create headers array with mock columns
+    const headers = [
+        {
+            id: 'name',
+            column: {
+                id: 'name',
+                columnDef: {
+                    header: 'Name',
+                },
+                getCanSort: () => canSort,
+                getCanFilter: () => canFilter,
+                getIsResizing: () => false,
+                getIsSorted: () => false,
+                getToggleSortingHandler: () => () =>
+                    console.log('Toggle sorting for Name'),
+                getSize: () => 150,
+            },
+            getContext: () => ({
+                column: {
+                    id: 'name',
+                    columnDef: {
+                        header: 'Name',
+                    },
+                },
+                table: {
+                    options: {
+                        meta: {},
+                    },
+                },
+                header: {
+                    id: 'name',
+                },
+            }),
+            getSize: () => 150,
+            getResizeHandler: () => () => console.log('Resize Name column'),
+        },
+        {
+            id: 'age',
+            column: {
+                id: 'age',
+                columnDef: {
+                    header: 'Age',
+                },
+                getCanSort: () => canSort,
+                getCanFilter: () => false, // Age doesn't have filter
+                getIsResizing: () => withResizing,
+                getIsSorted: () => (withResizing ? 'asc' : false),
+                getToggleSortingHandler: () => () =>
+                    console.log('Toggle sorting for Age'),
+                getSize: () => 100,
+            },
+            getContext: () => ({
+                column: {
+                    id: 'age',
+                    columnDef: {
+                        header: 'Age',
+                    },
+                },
+                table: {
+                    options: {
+                        meta: {},
+                    },
+                },
+                header: {
+                    id: 'age',
+                },
+            }),
+            getSize: () => 100,
+            getResizeHandler: () => () => console.log('Resize Age column'),
+        },
+        {
+            id: 'status',
+            column: {
+                id: 'status',
+                columnDef: {
+                    header: 'Status',
+                },
+                getCanSort: () => canSort,
+                getCanFilter: () => canFilter,
+                getIsResizing: () => false,
+                getIsSorted: () => (withResizing ? false : 'desc'),
+                getToggleSortingHandler: () => () =>
+                    console.log('Toggle sorting for Status'),
+                getSize: () => 120,
+            },
+            getContext: () => ({
+                column: {
+                    id: 'status',
+                    columnDef: {
+                        header: 'Status',
+                    },
+                },
+                table: {
+                    options: {
+                        meta: {},
+                    },
+                },
+                header: {
+                    id: 'status',
+                },
+            }),
+            getSize: () => 120,
+            getResizeHandler: () => () => console.log('Resize Status column'),
+        },
+    ];
+
+    return {
+        id: 'header-group-1',
+        headers,
+        getHeaderGroupProps: () => ({}),
+    } as unknown as HeaderGroup<any>;
 };
 
 export const mockColumnFilters: CommonFilterType = [
     { id: 'name', value: ['Option 1'] },
+    { id: 'status', value: ['Active', 'Pending'] },
 ] as CommonFilterType;
+
+export const mockHeaderOptionsMapping: Record<string, string[]> = {
+    name: ['Option 1', 'Option 2', 'Option 3'],
+    status: ['Active', 'Pending', 'Inactive'],
+};
+
+export const mockHeaderOptionsWithColors: Record<
+    string,
+    (string | ColorOption)[]
+> = {
+    name: ['Option 1', 'Option 2', 'Option 3'],
+    status: [
+        { id: 'active', name: 'Active', color: '#4CAF50' },
+        { id: 'pending', name: 'Pending', color: '#FFC107' },
+        { id: 'inactive', name: 'Inactive', color: '#F44336' },
+    ],
+};
