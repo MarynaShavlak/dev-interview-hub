@@ -1,7 +1,7 @@
 import React from 'react';
 import { Popover as PopoverRedesigned } from '@/shared/ui/redesigned/Popups';
 import { Popover as PopoverDeprecated } from '@/shared/ui/deprecated/Popups';
-import cls from './FilterPopover.module.scss';
+import cls from './TableFilter.module.scss';
 
 import { FilterMenuWithColorOptions } from './FilterMenuWithColorOptions/FilterMenuWithColorOptions';
 import { FilterTrigger } from './FilterTrigger/FilterTrigger';

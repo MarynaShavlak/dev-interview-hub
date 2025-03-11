@@ -5,7 +5,7 @@ import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator
 import { mockSetColumnFilters } from '../../../../../testing';
 
 export default {
-    title: 'features/Table/Header/FilterItemWithCheckIcon',
+    title: 'features/Table/Header/TableFilter/FilterItemWithCheckIcon',
     component: FilterItemWithCheckIcon,
 } as ComponentMeta<typeof FilterItemWithCheckIcon>;
 
