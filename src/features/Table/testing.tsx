@@ -2,6 +2,10 @@ import { createColumnHelper } from '@tanstack/react-table';
 import { ColorOption } from './model/types/tableTypes';
 
 export const navigateMock = (id: string) => console.log('Navigating to:', id);
+
+export const mockSetColumnFilters = () => {
+    alert('Column filters updated!');
+};
 export const rowMock = {
     original: { id: '1' },
 };

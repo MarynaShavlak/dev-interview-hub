@@ -1,17 +1,13 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { FilterItemWithIndicator } from './FilterItemWithIndicator';
-import { colorOptions } from '../../../../../testing';
+import { colorOptions, mockSetColumnFilters } from '../../../../../testing';
 import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator/NewDesignDecorator';
 
 export default {
     title: 'features/Table/Header/FilterItemWithIndicator',
     component: FilterItemWithIndicator,
 } as ComponentMeta<typeof FilterItemWithIndicator>;
-
-const mockSetColumnFilters = () => {
-    alert('Column filters updated!');
-};
 
 const Template: ComponentStory<typeof FilterItemWithIndicator> = (args) => (
     <FilterItemWithIndicator {...args} />

@@ -2,15 +2,12 @@ import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { FilterItemWithCheckIcon } from './FilterItemWithCheckIcon';
 import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator/NewDesignDecorator';
+import { mockSetColumnFilters } from '../../../../../testing';
 
 export default {
     title: 'features/Table/Header/FilterItemWithCheckIcon',
     component: FilterItemWithCheckIcon,
 } as ComponentMeta<typeof FilterItemWithCheckIcon>;
-
-const mockSetColumnFilters = () => {
-    alert('Column filters updated!');
-};
 
 const Template: ComponentStory<typeof FilterItemWithCheckIcon> = (args) => (
     <FilterItemWithCheckIcon {...args} />
