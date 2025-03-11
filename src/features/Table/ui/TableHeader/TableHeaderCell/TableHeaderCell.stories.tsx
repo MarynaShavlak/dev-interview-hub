@@ -1,8 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { TableHeaderCell } from './TableHeaderCell';
-import { mockColumnFilters, mockHeaderOptionsMapping } from '../../../testing';
+import {
+    createMockHeaderGroup,
+    mockColumnFilters,
+    mockHeaderOptionsMapping,
+    mockHeaderOptionsWithColors,
+} from '../../../testing';
+import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator/NewDesignDecorator';
 
-// Create meta object for the component
 const meta = {
     title: 'features/Table/Header/Cell/TableHeaderCell',
     component: TableHeaderCell,
@@ -17,91 +22,39 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {
-    args: {
-        // @ts-ignore
-        headerGroup: createMockHeaderGroup(),
-        columnFilters: mockColumnFilters,
-        headerOptionsMapping: mockHeaderOptionsMapping,
-        setColumnFilters: () => console.log('Set column filters'),
-        withResizer: true,
-    },
+const defaultArgs = {
+    headerGroup: createMockHeaderGroup(),
+    columnFilters: mockColumnFilters,
+    headerOptionsMapping: mockHeaderOptionsMapping,
+    setColumnFilters: () => console.log('Set column filters'),
+    withResizer: true,
 };
 
-// Deprecated UI version
-// export const DeprecatedUI: Story = {
-//     args: {
-//         headerGroup: createMockHeaderGroup(),
-//         columnFilters: mockColumnFilters,
-//         headerOptionsMapping: mockHeaderOptionsMapping,
-//         setColumnFilters: () => console.log('Set column filters'),
-//         withResizer: true,
-//     },
-//     decorators: [
-//         (Story) => {
-//             featureFlags.isAppRedesigned = false;
-//             return <Story />;
-//         },
-//     ],
-// };
-//
-// // Redesigned UI version
-// export const RedesignedUI: Story = {
-//     args: {
-//         headerGroup: createMockHeaderGroup(),
-//         columnFilters: mockColumnFilters,
-//         headerOptionsMapping: mockHeaderOptionsMapping,
-//         setColumnFilters: () => console.log('Set column filters'),
-//         withResizer: true,
-//     },
-//     decorators: [
-//         (Story) => {
-//             featureFlags.isAppRedesigned = true;
-//             return <Story />;
-//         },
-//     ],
-// };
-//
-// // With active resizing
-// export const WithActiveResizing: Story = {
-//     args: {
-//         headerGroup: createMockHeaderGroup(true),
-//         columnFilters: mockColumnFilters,
-//         headerOptionsMapping: mockHeaderOptionsMapping,
-//         setColumnFilters: () => console.log('Set column filters'),
-//         withResizer: true,
-//     },
-// };
-//
-// // Without resizer
-// export const WithoutResizer: Story = {
-//     args: {
-//         headerGroup: createMockHeaderGroup(),
-//         columnFilters: mockColumnFilters,
-//         headerOptionsMapping: mockHeaderOptionsMapping,
-//         setColumnFilters: () => console.log('Set column filters'),
-//         withResizer: false,
-//     },
-// };
-//
-// // With color options for filters
-// export const WithColorOptions: Story = {
-//     args: {
-//         headerGroup: createMockHeaderGroup(),
-//         columnFilters: mockColumnFilters,
-//         headerOptionsMapping: mockHeaderOptionsWithColors,
-//         setColumnFilters: () => console.log('Set column filters'),
-//         withResizer: true,
-//     },
-// };
-//
-// // No sorting or filtering available
-// export const NoSortNoFilter: Story = {
-//     args: {
-//         headerGroup: createMockHeaderGroup(false, false, false),
-//         columnFilters: mockColumnFilters,
-//         headerOptionsMapping: mockHeaderOptionsMapping,
-//         setColumnFilters: () => console.log('Set column filters'),
-//         withResizer: true,
-//     },
-// };
+const withColorArgs = {
+    ...defaultArgs,
+    headerOptionsMapping: mockHeaderOptionsWithColors,
+};
+
+const noActionsArgs = {
+    ...defaultArgs,
+    headerGroup: createMockHeaderGroup(false, false, false),
+    headerOptionsMapping: mockHeaderOptionsMapping,
+};
+
+// @ts-ignore
+export const Default: Story = { args: defaultArgs };
+// @ts-ignore
+export const DefaultRedesigned: Story = { args: defaultArgs };
+DefaultRedesigned.decorators = [NewDesignDecorator];
+
+// @ts-ignore
+export const WithColorOptions: Story = { args: withColorArgs };
+
+// @ts-ignore
+export const WithColorOptionsRedesigned: Story = { args: withColorArgs };
+WithColorOptionsRedesigned.decorators = [NewDesignDecorator];
+// @ts-ignore
+export const NoSortNoFilter: Story = { args: noActionsArgs };
+// @ts-ignore
+export const NoSortNoFilterRedesigned: Story = { args: noActionsArgs };
+NoSortNoFilterRedesigned.decorators = [NewDesignDecorator];
