@@ -15,7 +15,12 @@ export const colorOptions: ColorOption[] = [
     { id: '2', name: 'green', color: '#00ff00' },
     { id: '3', name: 'blue', color: '#0000ff' },
 ];
-
+export const stringOptions: string[] = [
+    'Category 1',
+    'Category 2',
+    'Category 3',
+    'Category 4',
+];
 export const createPaginationData = (count: number) => {
     return Array(count)
         .fill(0)
