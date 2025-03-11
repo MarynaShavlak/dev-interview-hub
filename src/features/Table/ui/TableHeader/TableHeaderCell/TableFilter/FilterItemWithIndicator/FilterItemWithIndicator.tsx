@@ -9,6 +9,7 @@ import {
 import { ColorIndicatorOptionItem } from '../../../../ColorIndicatorOptionItem/ColorIndicatorOptionItem';
 import { getColorOptions } from '../../../../../lib/utilities/getColorOptions/getColorOptions';
 import { useColorOptionsFilterOperations } from '../../../../../lib/hooks/useColorOptionsFilterOperations/useColorOptionsFilterOperations';
+import { toggleFeatures } from '@/shared/lib/features';
 
 interface FilterItemProps extends ColumnFilterHandlerProps {
     option: ColorOption;
@@ -51,12 +52,25 @@ export const FilterItemWithIndicator = (props: FilterItemProps) => {
             updateExistingFilter,
         ],
     );
+
+    const filterItemClass = toggleFeatures({
+        name: 'isAppRedesigned',
+        on: () => cls.filterItemRedesigned,
+        off: () => cls.filterItemDeprecated,
+    });
+
+    const activeClass = toggleFeatures({
+        name: 'isAppRedesigned',
+        on: () => cls.activeRedesigned,
+        off: () => cls.activeDeprecated,
+    });
+
     return (
         <VStack
             max
             className={classNames(
-                cls.filterItem,
-                { [cls.active]: isActive },
+                filterItemClass,
+                { [activeClass]: isActive },
                 [],
             )}
             onClick={onClickHandler}

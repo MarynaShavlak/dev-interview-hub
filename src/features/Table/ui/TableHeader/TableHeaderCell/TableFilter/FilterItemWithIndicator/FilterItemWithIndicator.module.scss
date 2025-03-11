@@ -1,4 +1,18 @@
-.filterItem {
+.filterItemDeprecated {
+    transition: background-color 300ms;
+    padding: 5px 10px;
+
+    &:hover {
+        background: var(--inverted-primary-color);
+    }
+}
+
+.activeDeprecated {
+    background: var(--inverted-primary-color);
+}
+
+
+.filterItemRedesigned {
     transition: background-color 300ms;
     padding: 5px 10px;
 
@@ -7,6 +21,6 @@
     }
 }
 
-.active {
+.activeRedesigned {
     background: var(--light-bg-redesigned);
 }
