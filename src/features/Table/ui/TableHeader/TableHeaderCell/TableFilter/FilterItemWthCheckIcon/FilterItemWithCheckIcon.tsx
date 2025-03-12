@@ -57,15 +57,43 @@ export const FilterItemWithCheckIcon = (props: FilterItemProps) => {
     const NotSelectedIcon = (
         <ToggleFeaturesComponent
             feature="isAppRedesigned"
-            on={<Icon Svg={EmptyCheckIcon} width={15} height={15} />}
-            off={<IconDeprecated Svg={EmptyCheckIcon} width={15} height={15} />}
+            on={
+                <Icon
+                    Svg={EmptyCheckIcon}
+                    width={15}
+                    height={15}
+                    className={cls.icon}
+                />
+            }
+            off={
+                <IconDeprecated
+                    Svg={EmptyCheckIcon}
+                    width={15}
+                    height={15}
+                    className={cls.icon}
+                />
+            }
         />
     );
     const SelectedIcon = (
         <ToggleFeaturesComponent
             feature="isAppRedesigned"
-            on={<Icon Svg={CheckedIcon} width={15} height={15} />}
-            off={<IconDeprecated Svg={CheckedIcon} width={15} height={15} />}
+            on={
+                <Icon
+                    Svg={CheckedIcon}
+                    width={15}
+                    height={15}
+                    className={cls.icon}
+                />
+            }
+            off={
+                <IconDeprecated
+                    Svg={CheckedIcon}
+                    width={15}
+                    height={15}
+                    className={cls.icon}
+                />
+            }
         />
     );
 
@@ -91,10 +119,12 @@ export const FilterItemWithCheckIcon = (props: FilterItemProps) => {
             )}
             gap="8"
             onClick={onClickHandler}
+            align="start"
+            justify="start"
         >
             {!isActive && NotSelectedIcon}
             {isActive && SelectedIcon}
-            {option || '-'}
+            <span className={cls.text}>{option || '-'}</span>
         </HStack>
     );
 };
