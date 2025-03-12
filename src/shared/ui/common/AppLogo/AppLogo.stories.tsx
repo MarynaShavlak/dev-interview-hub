@@ -10,7 +10,6 @@ export default {
         size: { control: { type: 'number' } },
         backgroundColor: { control: 'color' },
     },
-    decorators: [NewDesignDecorator],
 } as ComponentMeta<typeof AppLogo>;
 
 const Template: ComponentStory<typeof AppLogo> = (args) => (

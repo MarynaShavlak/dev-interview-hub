@@ -25,7 +25,12 @@ const AuthorizedDeprecatedNavbar = memo(({ className }: NavbarProps) => {
 
     return (
         <header className={classNames(cls.Navbar, {}, [className])}>
-            <VStack align="center" className={cls.logoWrapper} gap="4">
+            <VStack
+                align="center"
+                className={cls.logoWrapper}
+                gap="4"
+                justify="start"
+            >
                 <AppLogo size={40} />
                 <TextDeprecated
                     className={cls.appName}
