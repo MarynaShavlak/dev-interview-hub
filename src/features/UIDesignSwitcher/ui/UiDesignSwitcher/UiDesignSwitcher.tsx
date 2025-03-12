@@ -11,8 +11,7 @@ import { HStack } from '@/shared/ui/common/Stack';
 import { Skeleton } from '@/shared/ui/redesigned/Skeleton';
 import { Skeleton as SkeletonDeprecated } from '@/shared/ui/deprecated/Skeleton';
 import { updateFeatureFlagsThunk } from '../../model/services/updateFeatureFlagsThunk/updateFeatureFlagsThunk';
-import { ARTICLES_VIEW_LOCALSTORAGE_KEY } from '@/shared/const/localstorage';
-import { ArticleView } from '@/entities/Article';
+import { updateArticlesView } from '../../lib/utilities/updateArticlesView/updateArticlesView';
 
 interface UiDesignSwitcherProps {
     className?: string;
@@ -51,19 +50,7 @@ export const UiDesignSwitcher = memo((props: UiDesignSwitcherProps) => {
                     },
                 }),
             ).unwrap();
-            const view = localStorage.getItem(ARTICLES_VIEW_LOCALSTORAGE_KEY);
-            if (value === 'old' && view === ArticleView.SEQUENCE) {
-                localStorage.setItem(
-                    ARTICLES_VIEW_LOCALSTORAGE_KEY,
-                    ArticleView.LIST,
-                );
-            }
-            if (value === 'new' && view === ArticleView.LIST) {
-                localStorage.setItem(
-                    ARTICLES_VIEW_LOCALSTORAGE_KEY,
-                    ArticleView.SEQUENCE,
-                );
-            }
+            updateArticlesView(value);
 
             setIsLoading(false);
             forceUpdate();

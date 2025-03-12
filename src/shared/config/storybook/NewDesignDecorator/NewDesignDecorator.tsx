@@ -1,6 +1,7 @@
 import { Story } from '@storybook/react';
 import { setFeatureFlags } from '@/shared/lib/features';
 import { getAllFeatureFlags } from '@/shared/lib/features/lib/setGetFeatures/setGetFeatures';
+import './styleNewDesignDecorator.scss';
 
 /**
  * The `NewDesignDecorator` is a Storybook decorator that activates the new design feature by updating the feature flags.
@@ -26,24 +27,6 @@ export const NewDesignDecorator = (StoryComponent: Story) => {
                 padding: '20px',
             }}
         >
-            <style>
-                {`
-                    .app_redesigned *::-webkit-scrollbar {
-                        width: 12px;
-                        height: 8px;
-                    }
-                    
-                    .app_redesigned *::-webkit-scrollbar-track {
-                        background: var(--light-bg-redesigned);
-                    }
-
-                    .app_redesigned *::-webkit-scrollbar-thumb {
-                        background-color: var(--icon-redesigned);
-                        border-radius: 20px;
-                        border: 2px solid var(--accent-redesigned);
-                    }
-                `}
-            </style>
             <StoryComponent />
         </div>
     );

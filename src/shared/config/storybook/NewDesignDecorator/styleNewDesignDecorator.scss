@@ -1,0 +1,13 @@
+*::-webkit-scrollbar, *::-webkit-scrollbar {
+  width: 12px;               /* ширина scrollbar */
+  height: 8px;
+}
+ *::-webkit-scrollbar-track, *::-webkit-scrollbar-track {
+  background: var(--light-bg-redesigned);        /* колір дорожки */
+}
+
+*::-webkit-scrollbar-thumb, *::-webkit-scrollbar-thumb  {
+  background-color: var(--icon-redesigned);    /* колір плашки */
+  border-radius: 20px;       /* закруглення плашки */
+  border: 2px solid var(--accent-redesigned);  /* padding навколо плашки */
+}

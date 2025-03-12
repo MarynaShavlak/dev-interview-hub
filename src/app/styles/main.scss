@@ -1,0 +1,31 @@
+@import "reset";
+@import "variables/global";
+@import "themes/normal";
+@import "themes/dark";
+@import "themes/orange";
+@import "../../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;700&family=Roboto:wght@400;500;700&display=swap');
+
+.app {
+  font: var(--font-m);
+  color: var(--primary-color);
+  background: var(--bg-color);
+  min-height: 100vh;
+}
+
+.app_redesigned {
+  background: var(--bg-redesigned);
+  min-height: 100vh;
+  font: var(--font-m-redesigned);
+  color: var(--text-redesigned);
+}
+
+.content-page {
+  display: flex;
+}
+
+
+
+
+
+
