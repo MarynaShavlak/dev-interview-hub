@@ -7,7 +7,7 @@ import { useImageBlockState } from '../../lib/hooks/useImageBlockState/useImageB
 import { useImageBlockOperations } from '../../lib/hooks/useImageBlockOperations/useImageBlockOperations';
 import { ImageBlockDisplay } from '../ImageBlockDisplay/ImageBlockDisplay';
 
-interface ImageBlockEditorProps {
+export interface ImageBlockEditorProps {
     block: ArticleImageBlock;
     addBlockInArticle: (block: ArticleImageBlock) => void;
     deleteBlockFromArticle: (id: string) => void;

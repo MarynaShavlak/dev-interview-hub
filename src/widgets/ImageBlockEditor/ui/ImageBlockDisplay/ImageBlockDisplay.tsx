@@ -13,7 +13,7 @@ interface ViewerProps {
     editBlock: () => void;
 }
 
-interface ImageBlockDisplayProps {
+export interface ImageBlockDisplayProps {
     isEditArticlePage: boolean;
     isEditing: boolean;
     formProps: Omit<ImageEditorFormProps, 'onDelete'>;
