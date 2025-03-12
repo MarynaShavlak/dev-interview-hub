@@ -11,13 +11,11 @@ export default {
     argTypes: {
         backgroundColor: { control: 'color' },
     },
-    args: {
-        articleId: '1',
-    },
+
     decorators: [
         StoreDecorator({
             user: {
-                authData: { id: '1' },
+                authData: { id: 'yG3WqJQRWygRZJBFd6L9SG10rvq1' },
             },
         }),
     ],
@@ -27,49 +25,40 @@ const Template: ComponentStory<typeof ArticleRating> = (args) => (
     <ArticleRating {...args} />
 );
 
-const DefaultParams = {
-    mockData: [
-        {
-            url: `${__API__}/article-ratings?userId=1&articleId=1`,
-            method: 'GET',
-            status: 200,
-            response: [
-                {
-                    rate: 4,
-                },
-            ],
-        },
-    ],
+const withRateArgs = {
+    articleId: '75',
 };
-const ratingDisabledParams = {
-    mockData: [
-        {
-            url: `${__API__}/article-ratings?userId=1&articleId=1`,
-            method: 'GET',
-            status: 200,
-            response: [],
-        },
-    ],
+
+const withNoRateArgs = {
+    articleId: '174',
 };
 
 export const Default = Template.bind({});
-Default.args = {};
+Default.args = withRateArgs;
 Default.decorators = [ArticleRatingEnabledDecorator];
-Default.parameters = DefaultParams;
 
 export const DefaultRedesigned = Template.bind({});
-DefaultRedesigned.args = {};
+DefaultRedesigned.args = withRateArgs;
 DefaultRedesigned.decorators = [
     ArticleRatingEnabledDecorator,
     NewDesignDecorator,
 ];
-DefaultRedesigned.parameters = DefaultParams;
+
+export const WithNoRate = Template.bind({});
+WithNoRate.args = withNoRateArgs;
+WithNoRate.decorators = [ArticleRatingEnabledDecorator];
+
+export const WithNoRateRedesigned = Template.bind({});
+WithNoRateRedesigned.args = withNoRateArgs;
+WithNoRateRedesigned.decorators = [
+    ArticleRatingEnabledDecorator,
+    NewDesignDecorator,
+];
 
 export const RatingDisabled = Template.bind({});
-RatingDisabled.args = {};
-RatingDisabled.parameters = ratingDisabledParams;
+RatingDisabled.args = withNoRateArgs;
 
 export const RatingDisabledRedesigned = Template.bind({});
-RatingDisabledRedesigned.args = {};
-RatingDisabledRedesigned.parameters = ratingDisabledParams;
+RatingDisabledRedesigned.args = withNoRateArgs;
+
 RatingDisabledRedesigned.decorators = [NewDesignDecorator];
