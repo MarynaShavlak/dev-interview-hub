@@ -10,6 +10,7 @@ import { ArticleCategoryTabsProps } from '../ArticleCategoryTabs';
 export const ArticleCategoryTabsDeprecated = memo(
     (props: ArticleCategoryTabsProps) => {
         const { className, value, onChangeCategory } = props;
+        console.log('vale', value);
 
         const rawCategoryTabs = useCategoryTabs();
         const categoryTabs = useMemo(() => rawCategoryTabs, [rawCategoryTabs]);

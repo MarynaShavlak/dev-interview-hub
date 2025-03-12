@@ -48,6 +48,6 @@ NormalRedesigned.args = {
     sort: ArticleSortField.TITLE_ASC,
 };
 NormalRedesigned.decorators = [
-    (Story) => AlgoliaSearchDecorator(Story, 'articles'), // You can specify your desired index name here
+    (Story) => AlgoliaSearchDecorator(Story, ArticleSortField.TITLE_ASC), // You can specify your desired index name here
     NewDesignDecorator,
 ];

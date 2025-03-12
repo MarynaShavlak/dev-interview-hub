@@ -16,6 +16,7 @@
   "HTML": "HTML",
   "ID статті": "",
   "IT": "IT",
+  "JavaScript": "",
   "Lorem ipsum dolor sit amet, consectetur adipisicing elit": {
     " Aliquid commodi consequatur eligendi impedit incidunt necessitatibus possimus quis saepe sunt totam": {
       "": ""
@@ -29,7 +30,9 @@
   "Rating 1-2": "",
   "Rating 3-4": "",
   "Rating 5": "",
+  "React": "",
   "Search": "",
+  "TypeScript": "",
   "Username": "",
   "decrement": "decrement",
   "increment": "increment",
