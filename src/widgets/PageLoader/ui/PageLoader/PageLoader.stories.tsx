@@ -3,7 +3,7 @@ import { PageLoader } from './PageLoader';
 import { AlignDecorator } from '@/shared/config/storybook/AlignDecorator/AlignDecorator';
 
 export default {
-    title: 'features/PageLoader',
+    title: 'widgets/PageLoader',
     component: PageLoader,
     argTypes: {
         backgroundColor: { control: 'color' },
