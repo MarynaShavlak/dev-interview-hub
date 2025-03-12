@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
 import { ArticleSortSelector } from './ArticleSortSelector';
-import { ArticleSortField, ArticleSortType } from '@/entities/Article';
+import { ArticleSortType } from '@/entities/Article';
 import { SortOrder } from '@/shared/types/sortOrder';
 
 export default {
@@ -16,9 +16,7 @@ export default {
 const Template: ComponentStory<typeof ArticleSortSelector> = (args) => {
     const { order: argsOrder, sort: argsSort } = args;
     const [order, setOrder] = useState<SortOrder>(argsOrder || 'asc');
-    const [sort, setSort] = useState<ArticleSortType>(
-        argsSort || ArticleSortField.TITLE_ASC,
-    );
+    const [sort, setSort] = useState<ArticleSortType>(argsSort || 'title');
 
     const handleOrderChange = (newOrder: SortOrder) => {
         setOrder(newOrder);
