@@ -10,7 +10,7 @@ interface ViewerProps {
     editBlock: () => void;
 }
 
-interface TextBlockDisplayProps {
+export interface TextBlockDisplayProps {
     isEditArticlePage: boolean;
     isEditing: boolean;
     formProps: Omit<TextEditorFormProps, 'onDelete'>;

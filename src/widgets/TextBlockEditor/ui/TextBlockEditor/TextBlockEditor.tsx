@@ -5,7 +5,7 @@ import { useTextBlockOperations } from '../../lib/hooks/useTextBlockOperations/u
 import { TextBlockDisplay } from '../TextBlockDisplay/TextBlockDisplay';
 import { useIsEditArticlePage } from '@/shared/lib/hooks/useIsEditArticlePage/useIsEditArticlePage';
 
-interface TextBlockEditorProps {
+export interface TextBlockEditorProps {
     block: ArticleTextBlock;
     addBlockInArticle: (block: ArticleTextBlock) => void;
     deleteBlockFromArticle: (id: string) => void;
