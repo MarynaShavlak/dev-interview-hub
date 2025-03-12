@@ -17,5 +17,9 @@ import '@/app/styles/index.scss';
 // export const StyleDecorator = (story: () => Story) => story();
 
 export const StyleDecorator = (StoryComponent: Story) => {
-    return <StoryComponent />;
+    return (
+        <div className="app">
+            <StoryComponent />
+        </div>
+    );
 };
