@@ -53,7 +53,6 @@ export const UsersFullInfoTable = memo(() => {
         columnFilters,
     });
     const isFilteredEmpty = table.getRowModel().rows.length === 0;
-    // console.log('data', data);
 
     if (isLoading) {
         return <LoadingTableSkeleton />;

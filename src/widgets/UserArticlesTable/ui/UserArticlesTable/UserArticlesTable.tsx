@@ -20,7 +20,6 @@ import { Each } from '@/shared/lib/components/Each/Each';
 import { TableActionBar } from '../TableActionBar/TableActionBar';
 import { useUserArticlesTableConfig } from '../../lib/hooks/useUserArticlesTableConfig/useUserArticlesTableConfig';
 import { toggleFeatures } from '@/shared/lib/features';
-import { EmptyTable } from '../EmptyTable/EmptyTable';
 
 interface UserArticlesTableProps {
     onDeleteArticle: (articleId: string) => Promise<string | null>;
@@ -68,7 +67,7 @@ export const UserArticlesTable = memo(
             return <LoadingTableSkeleton />;
         }
         if (data?.length === 0) {
-            return <EmptyTable />;
+            return <EmptyTableState message={t('Не створено жодної статті')} />;
         }
 
         const tableClass = toggleFeatures({

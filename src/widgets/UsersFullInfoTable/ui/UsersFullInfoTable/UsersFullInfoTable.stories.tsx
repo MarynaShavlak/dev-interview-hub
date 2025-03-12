@@ -1,6 +1,6 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import React from 'react';
-import { UserArticlesTable } from './UserArticlesTable';
+import { UsersFullInfoTable } from './UsersFullInfoTable';
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 import { UserRole } from '@/entities/User';
 import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator/NewDesignDecorator';
@@ -8,8 +8,8 @@ import { LoadingTableSkeleton } from '../LoadingTableSkeleton/LoadingTableSkelet
 import { EmptyTableState } from '@/features/Table';
 
 export default {
-    title: 'widgets/UserArticlesTable',
-    component: UserArticlesTable,
+    title: 'widgets/UsersFullInfoTable',
+    component: UsersFullInfoTable,
     argTypes: {},
     decorators: [
         StoreDecorator({
@@ -21,26 +21,17 @@ export default {
             },
         }),
     ],
-} as ComponentMeta<typeof UserArticlesTable>;
+} as ComponentMeta<typeof UsersFullInfoTable>;
 
-const Template: ComponentStory<typeof UserArticlesTable> = (args) => (
-    <UserArticlesTable {...args} />
+const Template: ComponentStory<typeof UsersFullInfoTable> = (args) => (
+    <UsersFullInfoTable />
 );
 
-const mockDeleteArticle = async (articleId: string): Promise<string | null> => {
-    console.log(`Deleted article with ID: ${articleId}`);
-    return articleId;
-};
-
 export const Default = Template.bind({});
-Default.args = {
-    onDeleteArticle: mockDeleteArticle,
-};
+Default.args = {};
 
 export const DefaultRedesigned = Template.bind({});
-DefaultRedesigned.args = {
-    onDeleteArticle: mockDeleteArticle,
-};
+DefaultRedesigned.args = {};
 DefaultRedesigned.decorators = [NewDesignDecorator];
 
 export const Loading = Template.bind({});
@@ -54,10 +45,10 @@ LoadingRedesigned.decorators = [
 
 export const EmptyState = Template.bind({});
 EmptyState.decorators = [
-    () => <EmptyTableState message="Не створено жодної статті" />,
+    () => <EmptyTableState message="Не зареєстровано жодного користувача" />,
 ];
 
 export const EmptyStateRedesigned = Template.bind({});
 EmptyStateRedesigned.decorators = [
-    () => <EmptyTableState message="Не створено жодної статті" />,
+    () => <EmptyTableState message="Не зареєстровано жодного користувача" />,
 ];
