@@ -31,7 +31,7 @@ export const ColorIndicatorOptionItem = ({
     return (
         <HStack gap="8" onClick={onClick} className={className} max>
             <ColorIcon color={option.color} />
-            {capitalizeFirstLetter(option.name.toLowerCase())}
+            {capitalizeFirstLetter(option?.name?.toLowerCase())}
         </HStack>
     );
 };

@@ -84,7 +84,7 @@ export const useUserArticlesTableColumns = (props: useTableColumnProps) => {
                     id: t('Середній рейтинг'),
                     size: FIXED_COLUMNS_WIDTH.averageRating,
                     sortable: true,
-                    filterable: true,
+                    filterable: false,
                 }),
             ),
             actionColumn,
