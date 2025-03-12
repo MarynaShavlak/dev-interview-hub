@@ -33,7 +33,7 @@ export const TableFilter = (props: FilterPopoverProps) => {
         allColorOptions,
         isStringOptions,
     } = getFilterOptions(filterCategory, columnFilters, allOptions);
-    console.log('isStringOptions', isStringOptions);
+
     const Popover = toggleFeatures({
         name: 'isAppRedesigned',
         on: () => PopoverRedesigned,
