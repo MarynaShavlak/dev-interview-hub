@@ -3,12 +3,18 @@ import { useTranslation } from 'react-i18next';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import cls from '../Navbar.module.scss';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
-import { Text, TextTheme } from '@/shared/ui/deprecated/Text';
 import { AppLink, AppLinkTheme } from '@/shared/ui/deprecated/AppLink';
 import { getRouteArticleCreate } from '@/shared/const/router/router';
-import { HStack } from '@/shared/ui/common/Stack';
+import { HStack, VStack } from '@/shared/ui/common/Stack';
 import { NotificationButton } from '@/features/NotificationButton';
 import { AvatarDropdown } from '@/features/AvatarDropdown';
+import { AppLogo } from '@/shared/ui/common/AppLogo';
+import {
+    Text as TextDeprecated,
+    TextAlign,
+    TextSize,
+    TextTheme,
+} from '@/shared/ui/deprecated/Text';
 
 interface NavbarProps {
     className?: string;
@@ -19,11 +25,17 @@ const AuthorizedDeprecatedNavbar = memo(({ className }: NavbarProps) => {
 
     return (
         <header className={classNames(cls.Navbar, {}, [className])}>
-            <Text
-                className={cls.appName}
-                title={t('PROD TEMPLATE APP')}
-                theme={TextTheme.INVERTED}
-            />
+            <VStack align="center" className={cls.logoWrapper} gap="4">
+                <AppLogo size={40} />
+                <TextDeprecated
+                    className={cls.appName}
+                    title={t('DEV INTERVIEW HUB')}
+                    theme={TextTheme.INVERTED}
+                    align={TextAlign.CENTER}
+                    size={TextSize.S}
+                />
+            </VStack>
+
             <AppLink
                 to={getRouteArticleCreate()}
                 theme={AppLinkTheme.SECONDARY}

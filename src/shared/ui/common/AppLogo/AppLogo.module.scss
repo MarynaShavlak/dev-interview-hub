@@ -2,10 +2,30 @@
     position: relative;
 }
 
-.appLogo {
+.appLogoDeprecated {
     position: relative;
     z-index: 10;
+    color: var(--inverted-primary-color);
+    fill: var(--inverted-primary-color);
+
+    g {
+        color: var(--inverted-bg-color);
+    }
 }
+
+
+
+.appLogoRedesigned{
+    position: relative;
+    z-index: 10;
+    color: var(--icon-redesigned);
+    fill: var(--icon-redesigned);
+
+  g {
+        color: var(--dark-bg-redesigned);
+    }
+}
+
 
 .gradientBig {
     position: absolute;

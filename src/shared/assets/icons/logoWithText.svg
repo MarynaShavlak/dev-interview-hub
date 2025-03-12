@@ -1,0 +1,18 @@
+<svg width="300" height="300" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+    <!-- Circle Background -->
+    <circle cx="150" cy="100" r="50" fill="black"/>
+
+    <g stroke="white" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <!-- Left Bracket -->
+        <path d="M130,80 L120,100 L130,120"/>
+        <!-- Right Bracket -->
+        <path d="M170,80 L180,100 L170,120"/>
+    </g>
+    <!-- Text -->
+    <text x="150" y="180" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="black" text-anchor="middle">
+        DEV
+    </text>
+    <text x="150" y="210" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="black" text-anchor="middle">
+        INTERVIEW HUB
+    </text>
+</svg>

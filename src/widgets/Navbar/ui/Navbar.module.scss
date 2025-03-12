@@ -21,7 +21,11 @@
     margin-right: 15px;
 }
 
-.appName {
+
+
+.logoWrapper {
     width: var(--sidebar-width);
-    margin-left: 15px;
+}
+.appName {
+        align-self: center;
 }
