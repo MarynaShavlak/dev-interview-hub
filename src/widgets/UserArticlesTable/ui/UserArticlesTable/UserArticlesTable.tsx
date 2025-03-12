@@ -18,9 +18,9 @@ import { LoadingTableSkeleton } from '../LoadingTableSkeleton/LoadingTableSkelet
 import { useManageUserArticlesTableRow } from '../../lib/hooks/useManageUserArticlesTableRow/useManageUserArticlesTableRow';
 import { Each } from '@/shared/lib/components/Each/Each';
 import { TableActionBar } from '../TableActionBar/TableActionBar';
-import { ArticleCreateNavigationButton } from '@/features/ArticleCreateNavigationButton';
 import { useUserArticlesTableConfig } from '../../lib/hooks/useUserArticlesTableConfig/useUserArticlesTableConfig';
 import { toggleFeatures } from '@/shared/lib/features';
+import { EmptyTable } from '../EmptyTable/EmptyTable';
 
 interface UserArticlesTableProps {
     onDeleteArticle: (articleId: string) => Promise<string | null>;
@@ -68,12 +68,7 @@ export const UserArticlesTable = memo(
             return <LoadingTableSkeleton />;
         }
         if (data?.length === 0) {
-            return (
-                <VStack gap="24" align="center">
-                    <EmptyTableState message={t('Не створено жодної статті')} />
-                    <ArticleCreateNavigationButton />
-                </VStack>
-            );
+            return <EmptyTable />;
         }
 
         const tableClass = toggleFeatures({

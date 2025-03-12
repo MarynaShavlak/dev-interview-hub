@@ -6,6 +6,7 @@ import {
     Button as ButtonDeprecated,
     ButtonTheme,
 } from '@/shared/ui/deprecated/Button';
+import cls from './LinkCell.module.scss';
 
 interface LinkCellProps<TData> extends CellContext<TData, any> {
     value: string;
@@ -24,6 +25,7 @@ export const LinkCell = <TData extends { id: string }>({
                 <Button
                     onClick={() => navigateFn(row.original.id)}
                     variant="clear"
+                    className={cls.link}
                 >
                     {value}
                 </Button>
@@ -32,6 +34,7 @@ export const LinkCell = <TData extends { id: string }>({
                 <ButtonDeprecated
                     theme={ButtonTheme.CLEAR}
                     onClick={() => navigateFn(row.original.id)}
+                    className={cls.link}
                 >
                     {value}
                 </ButtonDeprecated>
