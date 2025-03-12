@@ -1,7 +1,6 @@
 import { Story } from '@storybook/react';
 import { setFeatureFlags } from '@/shared/lib/features';
 import { getAllFeatureFlags } from '@/shared/lib/features/lib/setGetFeatures/setGetFeatures';
-import './styleNewDesignDecorator.scss';
 
 /**
  * The `NewDesignDecorator` is a Storybook decorator that activates the new design feature by updating the feature flags.

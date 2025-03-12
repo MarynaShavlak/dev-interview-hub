@@ -2,7 +2,6 @@ import React from 'react';
 import { Story } from '@storybook/react';
 // eslint-disable-next-line ms-production-project-plugin/layer-imports
 import '@/app/styles/main.scss';
-import './styleDecorator.scss';
 
 // /**
 //  * The `StyleDecorator` is a Storybook decorator that applies global styles to all components by importing the main SCSS file.
