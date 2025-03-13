@@ -34,7 +34,7 @@ export interface StateSchema {
     // articleDetails?: ArticleDetailsSchema;
     addCommentForm?: AddCommentFormSchema;
     articlesPage?: ArticlesPageSchema;
-    // articleDetailsPage?: ArticleDetailsPageSchema;
+    // articleDetailsPage?: ArticleDetailsPageSchema;7
     articleComments?: ArticleCommentsSchema;
     articles?: EntityState<Article>;
     createArticle?: CreateArticleSchema;
