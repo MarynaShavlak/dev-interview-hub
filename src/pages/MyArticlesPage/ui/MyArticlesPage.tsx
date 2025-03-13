@@ -21,10 +21,6 @@ const MyArticlesPage = memo(() => {
         }
     };
 
-    // if (!articles?.length) {
-    //     return null;
-    // }
-
     return (
         <Page data-testid="My Articles Page">
             <UserArticlesTable onDeleteArticle={handleDeleteArticle} />
