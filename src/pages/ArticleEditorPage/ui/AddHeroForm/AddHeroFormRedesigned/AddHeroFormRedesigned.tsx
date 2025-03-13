@@ -7,10 +7,11 @@ import { OrderCard } from '@/shared/ui/redesigned/OrderCard';
 import { Box } from '@/shared/ui/common/Box';
 import cls from '../AddHeroForm.module.scss';
 import { AppImage } from '@/shared/ui/common/AppImage';
-import defaultImage from '@/shared/assets/images/default-img-list.png';
 import { Skeleton } from '@/shared/ui/redesigned/Skeleton';
 
 import { AddHeroFormProps } from '../AddHeroForm';
+import { Icon } from '@/shared/ui/redesigned/Icon';
+import DefaultImage from '@/shared/assets/icons/logoWithText.svg';
 
 export const AddHeroFormRedesigned = memo((props: AddHeroFormProps) => {
     const { index, imagePreview, error, handleImageChange, resetImage } = props;
@@ -24,7 +25,7 @@ export const AddHeroFormRedesigned = memo((props: AddHeroFormProps) => {
             <VStack gap="16" max>
                 <Text text={t('Банер статті')} bold />
                 <VStack gap="4" align="center" max>
-                    <Box className={cls.avatarWrap}>
+                    <Box className={cls.avatarWrapRedesigned}>
                         <VStack
                             gap="16"
                             align="center"
@@ -40,12 +41,10 @@ export const AddHeroFormRedesigned = memo((props: AddHeroFormProps) => {
                                         />
                                     }
                                     errorFallback={
-                                        <AppImage
-                                            className={cls.img}
-                                            src={defaultImage}
-                                            alt={t(
-                                                'Дефолтне зображення картинки статті',
-                                            )}
+                                        <Icon
+                                            Svg={DefaultImage}
+                                            width="200px"
+                                            height="200px"
                                         />
                                     }
                                     src={imagePreview}

@@ -1,7 +1,6 @@
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { getFlexClasses } from '@/shared/lib/classes/getFlexClasses/getFlexClasses';
-import defaultImage from '@/shared/assets/images/default-img-list.png';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { ArticleSection } from '../../../../model/consts/articleConsts';
 import { ArticleTextBlock } from '../../../../model/types/article';
@@ -20,6 +19,8 @@ import { getRouteArticleDetails } from '@/shared/const/router/router';
 import { truncateText } from '@/shared/lib/text/truncateText/truncateText';
 import { formatDateString } from '@/shared/lib/text/formatDateString/formatDateString';
 import { ArticleTextBlockComponent } from '../../../../ui/ArticleTextBlockComponent/ArticleTextBlockComponent';
+import DefaultImage from '@/shared/assets/icons/logoWithText.svg';
+import { Icon } from '@/shared/ui/redesigned/Icon';
 
 export const ListViewCardRedesigned = memo((props: BaseCardProps) => {
     const { className, article, handleClick } = props;
@@ -93,11 +94,7 @@ export const ListViewCardRedesigned = memo((props: BaseCardProps) => {
                     className={cls.img}
                     alt={title}
                     errorFallback={
-                        <AppImage
-                            className={cls.img}
-                            src={defaultImage}
-                            alt={t('Дефолтне зображення картинки статті')}
-                        />
+                        <Icon Svg={DefaultImage} width="200px" height="200px" />
                     }
                 />
                 {textBlock?.paragraphs && (

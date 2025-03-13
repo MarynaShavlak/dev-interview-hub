@@ -1,13 +1,12 @@
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
-import defaultImage from '@/shared/assets/images/default-img-list.png';
 import { Skeleton } from '@/shared/ui/redesigned/Skeleton';
 import { renderArticleBlock } from '../renderArticleBlock';
 
 import { Text } from '@/shared/ui/redesigned/Text';
 import cls from '../ArticleDetails.module.scss';
 import { AppImage } from '@/shared/ui/common/AppImage';
-import { VStack } from '@/shared/ui/common/Stack';
+import { HStack, VStack } from '@/shared/ui/common/Stack';
 
 import { ArticleDetailsError } from '../ArticleDetailsError/ArticleDetailsError';
 import { ArticleDetailsSkeleton } from '../ArticleDetailsSkeleton/ArticleDetailsSkeleton';
@@ -15,6 +14,8 @@ import { AppLink } from '@/shared/ui/redesigned/AppLink';
 import { ArticleDetailsProps } from '../ArticleDetails';
 import { useArticleDataById } from '../../../api/articleApi';
 import { useUpdateArticleViews } from '../../../lib/hooks/useUpdateArticleViews/useUpdateArticleViews';
+import DefaultImage from '@/shared/assets/icons/logoWithText.svg';
+import { Icon } from '@/shared/ui/redesigned/Icon';
 
 export const ArticleDetailsRedesigned = memo((props: ArticleDetailsProps) => {
     const { t } = useTranslation('articles');
@@ -63,11 +64,9 @@ export const ArticleDetailsRedesigned = memo((props: ArticleDetailsProps) => {
             <AppImage
                 fallback={<Skeleton width="100%" height={420} border="16px" />}
                 errorFallback={
-                    <AppImage
-                        className={cls.img}
-                        src={defaultImage}
-                        alt={t('Дефолтне зображення картинки статті')}
-                    />
+                    <HStack max justify="center" className={cls.iconWrap}>
+                        <Icon Svg={DefaultImage} height="100px" width="100px" />
+                    </HStack>
                 }
                 src={img}
                 className={cls.img}

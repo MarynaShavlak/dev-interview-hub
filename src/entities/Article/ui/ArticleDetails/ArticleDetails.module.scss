@@ -12,3 +12,9 @@
     max-height: 300px;
     min-width: 424px;
 }
+
+.iconWrap {
+    svg g {
+        stroke: var(--dark-bg-redesigned);
+    }
+}

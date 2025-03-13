@@ -3,7 +3,7 @@
     max-height: 420px;
 }
 
-.avatarWrap {
+.avatarWrapDeprecated, .avatarWrapRedesigned {
     position: relative;
     width: 100%;
 }
@@ -11,4 +11,15 @@
 .heroImageZone {
     height: 200px;
     width: 100%;
+}
+.avatarWrapDeprecated {
+    svg g {
+        stroke: var(--card-bg);
+    }
+}
+
+.avatarWrapRedesigned {
+    svg g {
+        stroke: var(--card-bg);
+    }
 }
