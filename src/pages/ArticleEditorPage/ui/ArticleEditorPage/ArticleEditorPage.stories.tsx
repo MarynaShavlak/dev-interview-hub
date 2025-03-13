@@ -1,23 +1,39 @@
-export function con() {
-    console.log('stories');
-}
-// import React from 'react';
-// import { ComponentStory, ComponentMeta } from '@storybook/react';
-// import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
-// import ArticleEditPage from './ArticleEditPage';
-//
-// export default {
-//     title: 'pages/ArticleEditPage',
-//     component: ArticleEditPage,
-//     argTypes: {
-//         backgroundColor: { control: 'color' },
-//     },
-// } as ComponentMeta<typeof ArticleEditPage>;
-//
-// const Template: ComponentStory<typeof ArticleEditPage> = (args) => (
-//     <ArticleEditPage {...args} />
-// );
-//
-// export const Normal = Template.bind({});
-// Normal.args = {};
-// Normal.decorators = [StoreDecorator({})];
+import React from 'react';
+import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
+import ArticleEditorPage from './ArticleEditorPage';
+import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator/NewDesignDecorator';
+import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
+import { Theme } from '@/shared/const/theme';
+
+export default {
+    title: 'pages/ArticleEditorPage',
+    component: ArticleEditorPage,
+    argTypes: {
+        backgroundColor: { control: 'color' },
+    },
+    args: {},
+    decorators: [StoreDecorator({})],
+} as ComponentMeta<typeof ArticleEditorPage>;
+
+const Template: ComponentStory<typeof ArticleEditorPage> = (args) => (
+    <ArticleEditorPage {...args} />
+);
+
+export const Default = Template.bind({});
+
+export const DefaultRedesigned = Template.bind({});
+DefaultRedesigned.decorators = [NewDesignDecorator];
+
+export const Dark = Template.bind({});
+Dark.decorators = [ThemeDecorator(Theme.DARK)];
+export const DarkRedesigned = Template.bind({});
+DarkRedesigned.decorators = [ThemeDecorator(Theme.DARK), NewDesignDecorator];
+
+export const Orange = Template.bind({});
+Orange.decorators = [ThemeDecorator(Theme.ORANGE)];
+export const OrangeRedesigned = Template.bind({});
+OrangeRedesigned.decorators = [
+    ThemeDecorator(Theme.ORANGE),
+    NewDesignDecorator,
+];
