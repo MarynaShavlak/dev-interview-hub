@@ -39,15 +39,15 @@ const Template: ComponentStory<typeof ArticleSortSelector> = (args) => {
     );
 };
 
-export const Normal = Template.bind({});
-Normal.args = {};
+export const Default = Template.bind({});
+Default.args = {};
 
-export const NormalRedesigned = Template.bind({});
-NormalRedesigned.args = {
+export const DefaultRedesigned = Template.bind({});
+DefaultRedesigned.args = {
     order: 'asc',
     sort: ArticleSortField.TITLE_ASC,
 };
-NormalRedesigned.decorators = [
+DefaultRedesigned.decorators = [
     (Story) => AlgoliaSearchDecorator(Story, ArticleSortField.TITLE_ASC), // You can specify your desired index name here
     NewDesignDecorator,
 ];

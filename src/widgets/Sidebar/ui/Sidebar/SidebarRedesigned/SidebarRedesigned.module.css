@@ -1,49 +1,58 @@
 .SidebarRedesigned {
-  position: relative;
-  background: var(--light-bg-redesigned);
-  width: 220px;
-  height: 100%;
-  border-radius: 32px;
-  overflow: hidden;
-  transition: width 0.3s;
+    position: relative;
+    background: var(--light-bg-redesigned);
+    width: 220px;
+    height: 100%;
+
+    border-radius: 32px;
+    overflow: hidden;
+    transition: width 0.3s;
 }
+
 .SidebarRedesigned .appLogo {
-  padding-top: 20px;
+    padding-top: 20px;
 }
+
 .SidebarRedesigned .items {
-  margin-top: 40px;
+    margin-top: 40px;
 }
+
 .SidebarRedesigned .collapseBtn {
-  position: absolute;
-  right: 0;
-  top: 50%;
-  z-index: 10;
-  transform: rotate(90deg);
+    position: absolute;
+    right: 0;
+    top: 50%;
+    z-index: 10;
+    transform: rotate(90deg);
 }
+
 .SidebarRedesigned .switchers {
-  position: absolute;
-  bottom: 40px;
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  gap: 16px;
+    position: absolute;
+    bottom: 40px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    gap: 16px;
 }
 
 .collapsedRedesigned {
-  width: 50px;
+    width: 50px;
 }
+
 .collapsedRedesigned .switchers {
-  flex-direction: column;
-  align-items: center;
+    flex-direction: column;
+    align-items: center;
 }
+
 .collapsedRedesigned .items {
-  display: flex;
-  align-items: center;
-  margin-left: 0;
+    display: flex;
+    align-items: center;
+    margin-left: 0;
 }
+
 .collapsedRedesigned .lang {
-  margin-left: 0;
+    margin-left: 0;
 }
+
 .collapsedRedesigned .collapseBtn {
-  transform: rotate(-90deg);
-}/*# sourceMappingURL=SidebarRedesigned.module.css.map */
+    transform: rotate(-90deg);
+}

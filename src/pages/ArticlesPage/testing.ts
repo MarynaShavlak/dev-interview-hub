@@ -10,6 +10,13 @@ export const baseArgs = {
         isLoading: false,
     },
 };
+export const sequenceArgs = {
+    articlesPage: {
+        ...articlesNormalizedData,
+        view: ArticleView.SEQUENCE,
+        isLoading: false,
+    },
+};
 export const emptyArgs = {
     articlesPage: {
         ids: [],
