@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { getFlexClasses } from '@/shared/lib/classes/getFlexClasses/getFlexClasses';
-import defaultImage from '@/shared/assets/images/default-img.png';
+
 import { Avatar } from '@/shared/ui/redesigned/Avatar';
 import { ArticleViews } from '../../../ArticleViews/ArticleViews';
 import { HStack, VStack } from '@/shared/ui/common/Stack';
@@ -15,6 +15,8 @@ import cls from '../../ArticleCard.module.scss';
 import { Skeleton } from '@/shared/ui/redesigned/Skeleton';
 import { BaseCardProps } from '../../ArticleCard';
 import { formatDateString } from '@/shared/lib/text/formatDateString/formatDateString';
+import { Icon } from '@/shared/ui/redesigned/Icon';
+import DefaultImage from '@/shared/assets/icons/logoWithText.svg';
 
 export const GridViewCardRedesigned = memo((props: BaseCardProps) => {
     const { className, article, target, handleClick } = props;
@@ -44,13 +46,13 @@ export const GridViewCardRedesigned = memo((props: BaseCardProps) => {
                 <AppImage
                     fallback={<Skeleton className={cls.img} />}
                     errorFallback={
-                        <AppImage
-                            src={defaultImage}
-                            width="200px"
-                            height="200px"
-                            className={cls.img}
-                            alt={t('Дефолтне зображення картинки статті')}
-                        />
+                        <HStack max justify="center" className={cls.iconWrap}>
+                            <Icon
+                                Svg={DefaultImage}
+                                height="100px"
+                                width="100px"
+                            />
+                        </HStack>
                     }
                     alt={title}
                     src={img}

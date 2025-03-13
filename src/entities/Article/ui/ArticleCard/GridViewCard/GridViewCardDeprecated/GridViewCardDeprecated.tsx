@@ -11,8 +11,7 @@ import { Text } from '@/shared/ui/deprecated/Text';
 import { Card } from '@/shared/ui/deprecated/Card';
 import cls from '../../ArticleCard.module.scss';
 import { Skeleton } from '@/shared/ui/deprecated/Skeleton';
-// import defaultImage from '@/shared/assets/images/default-img-transparent.png';
-import defaultImage from '@/shared/assets/icons/logoWithText.svg';
+import DefaultImage from '@/shared/assets/icons/logoWithText.svg';
 import { AppLink } from '@/shared/ui/deprecated/AppLink';
 import { useHover } from '@/shared/lib/hooks/useHover/useHover';
 import { BaseCardProps } from '../../ArticleCard';
@@ -57,17 +56,10 @@ export const GridViewCardDeprecated = memo((props: BaseCardProps) => {
                         fallback={<Skeleton width="200px" height="200px" />}
                         errorFallback={
                             <Icon
-                                Svg={defaultImage}
+                                Svg={DefaultImage}
                                 width="200px"
                                 height="200px"
                             />
-                            // <AppImage
-                            //     className={cls.img}
-                            //     src={defaultImage}
-                            //     width="200px"
-                            //     height="200px"
-                            //     alt={t('Дефолтне зображення картинки статті')}
-                            // />
                         }
                         alt={title}
                         src={img}

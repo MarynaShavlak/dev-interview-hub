@@ -85,6 +85,14 @@
             width: 240px;
             height: 350px;
             overflow: hidden;
+            svg g {
+                stroke: var(--dark-bg-redesigned);
+            }
+        }
+
+        .iconWrap {
+            padding-top: 10px;
+            height: 100px;
         }
 
         .img {
@@ -92,6 +100,7 @@
             object-fit: cover;
             min-height: 140px;
             max-height: 140px;
+
         }
 
         .info {
