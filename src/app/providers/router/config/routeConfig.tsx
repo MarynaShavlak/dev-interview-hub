@@ -10,7 +10,7 @@ import { ArticlesPage, ArticlesPageSkeleton } from '@/pages/ArticlesPage';
 import { ForbiddenPage, ForbiddenPageSkeleton } from '@/pages/ForbiddenPage';
 import { MainPage, MainPageSkeleton } from '@/pages/MainPage';
 import { NotFoundPage, NotFoundPageSkeleton } from '@/pages/NotFoundPage';
-import { ProfilePage } from '@/pages/ProfilePage';
+import { ProfilePage, ProfilePageSkeleton } from '@/pages/ProfilePage';
 import { SettingsPage, SettingsPageSkeleton } from '@/pages/SettingsPage';
 import { MyArticlesPage, MyArticlesPageSkeleton } from '@/pages/MyArticlesPage';
 import {
@@ -32,7 +32,6 @@ import {
     ArticleEditorPage,
     ArticleEditorPageSkeleton,
 } from '@/pages/ArticleEditorPage';
-import { UserCardSkeletonRedesigned as ProfileSkeleton } from '@/features/EditableProfileCard';
 
 export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
     [AppRoutes.MAIN]: {
@@ -55,7 +54,7 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
         path: getRouteProfile(':id'),
         element: <ProfilePage />,
         authOnly: true,
-        skeleton: <ProfileSkeleton />,
+        skeleton: <ProfilePageSkeleton />,
     },
     [AppRoutes.ARTICLES]: {
         path: getRouteArticles(),

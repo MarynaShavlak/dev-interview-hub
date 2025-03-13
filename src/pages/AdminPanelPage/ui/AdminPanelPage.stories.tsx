@@ -19,11 +19,11 @@ const Template: ComponentStory<typeof AdminPanelPage> = () => (
     <AdminPanelPage />
 );
 
-export const Normal = Template.bind({});
+export const Default = Template.bind({});
 
-export const NormalRedesigned = Template.bind({});
+export const DefaultRedesigned = Template.bind({});
 
-NormalRedesigned.decorators = [NewDesignDecorator];
+DefaultRedesigned.decorators = [NewDesignDecorator];
 
 export const Loading = Template.bind({});
 Loading.decorators = [() => <AdminPanelPageSkeleton />];

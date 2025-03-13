@@ -15,6 +15,7 @@ export default {
         '@storybook/addon-interactions',
         'storybook-addon-mock',
         'storybook-addon-themes',
+        '@storybook/addon-react-router-v6',
     ],
     framework: '@storybook/react',
     core: {
