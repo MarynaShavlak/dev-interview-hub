@@ -1,7 +1,6 @@
 .uploadZone {
-
     border: 1px dashed var(--primary-color);
-    position:relative;
+    position: relative;
 }
 
 .uploadZoneBtn {
@@ -28,7 +27,6 @@
     transition: opacity 300ms ease-in;
     fill: var(--red-dark);
 }
-
 
 .uploadZoneBtnWrap {
     position: absolute;

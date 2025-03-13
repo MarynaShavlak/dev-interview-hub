@@ -30,6 +30,9 @@
             width: 200px;
             height: 200px;
             position: relative;
+             svg g {
+                 stroke: var(--card-bg);
+             }
         }
 
         .img {
@@ -69,7 +72,6 @@
 }
 
 .ArticleListItemRedesigned {
-    //width: 100%;
     &.GRID {
         @media (max-width: 1024px) {
             width: 50%;

@@ -1,12 +1,11 @@
-     .wrapper {
-       width: fit-content;
+.wrapper {
+    width: fit-content;
+}
 
-     }
+.color {
+    color: var(--bg-color);
+}
 
-     .color {
-       color: var(--bg-color)
-     }
-
-     .colorRedesigned {
-       color: var(--icon-redesigned)
-     }
+.colorRedesigned {
+    color: var(--icon-redesigned);
+}

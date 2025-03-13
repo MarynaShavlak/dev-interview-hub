@@ -28,12 +28,10 @@ DefaultOrderCard.args = {
     index: 1,
 };
 
-
 export const OrderCardWithFourDigitIndex = Template.bind({});
 OrderCardWithFourDigitIndex.args = {
     index: 2000,
 };
-
 
 export const OrderCardWithLargeIndex = Template.bind({});
 OrderCardWithLargeIndex.args = {

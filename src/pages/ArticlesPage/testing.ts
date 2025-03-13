@@ -1,3 +1,4 @@
+// eslint-disable-next-line ms-production-project-plugin/public-api-imports
 import { articlesNormalizedData } from '@/entities/Article/testing';
 import { ArticleView } from '@/entities/Article';
 

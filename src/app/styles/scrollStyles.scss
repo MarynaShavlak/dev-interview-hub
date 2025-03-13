@@ -1,29 +1,44 @@
-
-.app_redesigned *::-webkit-scrollbar, *::-webkit-scrollbar {
-  width: 12px;               /* ширина scrollbar */
-  height: 8px;
-}
-.app_redesigned *::-webkit-scrollbar-track, *::-webkit-scrollbar-track {
-  background: var(--light-bg-redesigned);        /* колір дорожки */
+*::-webkit-scrollbar {
+    width: 12px;               /* ширина scrollbar */
+    height: 8px;
 }
 
-.app_redesigned *::-webkit-scrollbar-thumb, *::-webkit-scrollbar-thumb  {
-  background-color: var(--icon-redesigned);    /* колір плашки */
-  border-radius: 20px;       /* закруглення плашки */
-  border: 2px solid var(--accent-redesigned);  /* padding навколо плашки */
+*::-webkit-scrollbar-track {
+    background: var(--light-bg-redesigned);        /* колір дорожки */
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: var(--icon-redesigned);    /* колір плашки */
+    border-radius: 20px;       /* закруглення плашки */
+    border: 2px solid var(--accent-redesigned);  /* padding навколо плашки */
+}
+
+.app_redesigned *::-webkit-scrollbar, {
+    width: 12px;               /* ширина scrollbar */
+    height: 8px;
+}
+
+.app_redesigned *::-webkit-scrollbar-track, {
+    background: var(--light-bg-redesigned);        /* колір дорожки */
+}
+
+.app_redesigned *::-webkit-scrollbar-thumb, {
+    background-color: var(--icon-redesigned);    /* колір плашки */
+    border-radius: 20px;       /* закруглення плашки */
+    border: 2px solid var(--accent-redesigned);  /* padding навколо плашки */
 }
 
 .app*::-webkit-scrollbar {
-  width: 12px;               /* ширина scrollbar */
-  height: 8px;
+    width: 12px;               /* ширина scrollbar */
+    height: 8px;
 }
 
 .app *::-webkit-scrollbar-track {
-  background: var(--card-bg);        /* колір дорожки */
+    background: var(--card-bg);        /* колір дорожки */
 }
 
 .app *::-webkit-scrollbar-thumb {
-  background-color: var(--inverted-primary-color);    /* колір плашки */
-  border-radius: 20px;       /* закруглення плашки */
-  border: 2px solid var(--primary-color);  /* padding навколо плашки */
+    background-color: var(--inverted-primary-color);    /* колір плашки */
+    border-radius: 20px;       /* закруглення плашки */
+    border: 2px solid var(--primary-color);  /* padding навколо плашки */
 }

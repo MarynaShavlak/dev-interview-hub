@@ -13,19 +13,16 @@
     }
 }
 
-
-
-.appLogoRedesigned{
+.appLogoRedesigned {
     position: relative;
     z-index: 10;
     color: var(--icon-redesigned);
     fill: var(--icon-redesigned);
 
-  g {
+    g {
         color: var(--dark-bg-redesigned);
     }
 }
-
 
 .gradientBig {
     position: absolute;
