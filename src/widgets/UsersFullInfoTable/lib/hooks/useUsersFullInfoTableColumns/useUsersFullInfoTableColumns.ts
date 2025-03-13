@@ -84,12 +84,12 @@ export const useUsersFullInfoTableColumns = (
         isCollapsed || emailColumnWidth > 200
             ? createUserTextCol({
                   id: t('Email'),
-                  size: emailColumnWidth,
+                  size: emailColumnWidth - 10,
                   filterable: true,
               })
             : createUserTrimmedTextCol({
                   id: t('Email'),
-                  size: emailColumnWidth,
+                  size: emailColumnWidth - 10,
                   filterable: true,
               });
 
