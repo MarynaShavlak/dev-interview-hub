@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { Pagination } from 'react-instantsearch';
 
 import { useHits } from 'react-instantsearch-core';
-import { ArticlePageGreeting } from '@/features/ArticlePageGreeting';
 
 import cls from '../ArticlesPage/ArticlesPage.module.scss';
 
@@ -62,8 +61,6 @@ export const ArticlesPageContent = () => {
                     disabledItem: cls.pagDisabledItem,
                 }}
             />
-
-            <ArticlePageGreeting />
         </VStack>
     );
 };

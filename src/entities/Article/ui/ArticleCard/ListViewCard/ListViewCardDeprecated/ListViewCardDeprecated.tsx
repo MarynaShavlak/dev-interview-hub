@@ -20,6 +20,7 @@ import { Card } from '@/shared/ui/deprecated/Card';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import cls from '../../ArticleCard.module.scss';
 import { BaseCardProps } from '../../ArticleCard';
+import { formatDateString } from '@/shared/lib/text/formatDateString/formatDateString';
 
 export const ListViewCardDeprecated = memo((props: BaseCardProps) => {
     const { className, article, handleClick } = props;
@@ -55,7 +56,7 @@ export const ListViewCardDeprecated = memo((props: BaseCardProps) => {
                         <Avatar size={30} src={user.avatar} />
                         <Text text={user.username} />
                     </HStack>
-                    <Text text={createdAt} />
+                    <Text text={formatDateString(createdAt)} />
                 </VStack>
                 <Text title={title} data-testid="ArticleListItem.Title" />
                 <ArticleCategories article={article} />

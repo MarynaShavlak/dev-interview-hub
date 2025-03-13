@@ -15,6 +15,7 @@ import { FiltersContainer } from '../../FiltersContainer/FiltersContainer';
 import { ArticleCreateNavigationButton } from '@/features/ArticleCreateNavigationButton';
 import { ArticlesPageContent } from '../../ArticlesPageContent/ArticlesPageContent';
 import { useArticlesPageInit } from '../../../lib/hooks/useArticlesPageInit/useArticlesPageInit';
+import { ArticlePageGreeting } from '@/features/ArticlePageGreeting';
 
 const reducers: ReducersList = {
     articlesPage: articlesPageReducer,
@@ -43,6 +44,7 @@ export const ArticlesPageRedesigned = () => {
                     />
                 </ArticlesAlgoliaSearch>
             )}
+            <ArticlePageGreeting />
         </DynamicModuleLoader>
     );
 };

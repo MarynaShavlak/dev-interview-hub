@@ -4,8 +4,10 @@ import { getFlexClasses } from '@/shared/lib/classes/getFlexClasses/getFlexClass
 import { Card } from '@/shared/ui/redesigned/Card';
 import { VStack } from '@/shared/ui/common/Stack';
 import { StickyContentLayout } from '@/shared/layouts/StickyContentLayout';
-import { Skeleton } from '@/shared/ui/redesigned/Skeleton';
+import { Skeleton as SkeletonRedesigned } from '@/shared/ui/redesigned/Skeleton';
 import cls from '../ArticlesPage/ArticlesPage.module.scss';
+import { toggleFeatures } from '@/shared/lib/features';
+import { Skeleton as SkeletonDeprecated } from '@/shared/ui/deprecated/Skeleton';
 
 const additionalClasses = getFlexClasses({
     hStack: true,
@@ -15,6 +17,11 @@ const additionalClasses = getFlexClasses({
 });
 
 export const ArticlesPageSkeleton = memo(() => {
+    const Skeleton = toggleFeatures({
+        name: 'isAppRedesigned',
+        on: () => SkeletonRedesigned,
+        off: () => SkeletonDeprecated,
+    });
     return (
         <StickyContentLayout
             left={
