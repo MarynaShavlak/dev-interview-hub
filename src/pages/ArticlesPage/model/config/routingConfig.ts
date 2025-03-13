@@ -16,24 +16,6 @@ export const createRoutingConfig = (
     return {
         router: history({
             cleanUrlOnDispose: true,
-            // writeDelay: 400,
-            // windowTitle(routeState) {
-            //     const { query, category, sort } = routeState;
-            //
-            //     if (!query && !category && !sort) {
-            //         return 'Articles';
-            //     }
-            //
-            //     const filters = [
-            //         query,
-            //         category,
-            //         extractSortType((sort as ArticleSortType) || ''),
-            //         extractSortOrder((sort as ArticleSortType) || ''),
-            //     ]
-            //         .filter(Boolean)
-            //         .join(', ');
-            //
-            // },
         }),
         stateMapping: {
             stateToRoute(uiState: ArticlesUiState): ArticlesRouteState {
