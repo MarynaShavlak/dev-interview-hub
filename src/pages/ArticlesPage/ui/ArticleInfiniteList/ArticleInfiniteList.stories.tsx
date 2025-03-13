@@ -3,7 +3,7 @@ import React from 'react';
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 
 import { ArticleInfiniteList } from './ArticleInfiniteList';
-import { baseArgs, emptyArgs } from '../../testing';
+import { baseArgs } from '../../testing';
 import { ArticleView } from '@/entities/Article';
 import { EmptyArticleInfiniteList } from './EmptyArticleInfiniteList/EmptyArticleInfiniteList';
 
@@ -73,7 +73,4 @@ Error.decorators = [
 ];
 
 export const Empty = Template.bind({});
-Empty.decorators = [
-    StoreDecorator(emptyArgs),
-    () => <EmptyArticleInfiniteList />,
-];
+Empty.decorators = [() => <EmptyArticleInfiniteList />, StoreDecorator({})];
