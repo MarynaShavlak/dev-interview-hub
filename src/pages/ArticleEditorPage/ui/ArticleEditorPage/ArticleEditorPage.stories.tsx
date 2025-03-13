@@ -5,6 +5,7 @@ import ArticleEditorPage from './ArticleEditorPage';
 import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator/NewDesignDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 import { Theme } from '@/shared/const/theme';
+import { ContentSkeleton } from '../ArticleEditorPageContent/ContentSkeleton/ContentSkeleton';
 
 export default {
     title: 'pages/ArticleEditorPage',
@@ -37,3 +38,8 @@ OrangeRedesigned.decorators = [
     ThemeDecorator(Theme.ORANGE),
     NewDesignDecorator,
 ];
+
+export const Loading = Template.bind({});
+Loading.decorators = [() => <ContentSkeleton />];
+export const LoadingRedesigned = Template.bind({});
+LoadingRedesigned.decorators = [() => <ContentSkeleton />, NewDesignDecorator];

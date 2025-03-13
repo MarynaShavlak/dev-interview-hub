@@ -1,9 +1,7 @@
 import React, { memo } from 'react';
-import { Skeleton } from '@/shared/ui/redesigned/Skeleton';
-import { HStack } from '@/shared/ui/common/Stack';
-import cls from './ContentSkeleton.module.scss';
-import { Loader } from '@/shared/ui/deprecated/Loader';
-import { ToggleFeaturesComponent } from '@/shared/lib/features';
+import { Skeleton as SkeletonRedesigned } from '@/shared/ui/redesigned/Skeleton';
+import { toggleFeatures, ToggleFeaturesComponent } from '@/shared/lib/features';
+import { Skeleton as SkeletonDeprecated } from '@/shared/ui/deprecated/Skeleton';
 
 interface ContentSkeletonProps {
     width?: string;
@@ -12,15 +10,17 @@ interface ContentSkeletonProps {
 
 export const ContentSkeleton = memo((props: ContentSkeletonProps) => {
     const { width = '100%', height = '560px' } = props;
+
+    const Skeleton = toggleFeatures({
+        name: 'isAppRedesigned',
+        on: () => SkeletonRedesigned,
+        off: () => SkeletonDeprecated,
+    });
     return (
         <ToggleFeaturesComponent
             feature="isAppRedesigned"
             on={<Skeleton width={width} height={height} border="40px" />}
-            off={
-                <HStack justify="center" max className={cls.loaderWrapper}>
-                    <Loader />
-                </HStack>
-            }
+            off={<Skeleton width={width} height={height} />}
         />
     );
 });
