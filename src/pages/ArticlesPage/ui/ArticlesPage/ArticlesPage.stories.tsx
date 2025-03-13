@@ -3,11 +3,10 @@ import React from 'react';
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 
 import ArticlesPage from './ArticlesPage';
-import { ArticleView } from '@/entities/Article';
-import { articlesNormalizedData } from '@/entities/Article/testing';
 import { CustomStylesDecorator } from '@/shared/config/storybook/CustomStylesDecorator/CustomStylesDecorator';
 import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator/NewDesignDecorator';
 import { ArticlesPageSkeleton } from '../ArticlesPageSkeleton/ArticlesPageSkeleton';
+import { firstVisitData, notFirstVisitData } from '../../testing';
 
 // import { articlesNormalizedData } from '@/entities/Article/testing';
 
@@ -22,31 +21,6 @@ export default {
 const Template: ComponentStory<typeof ArticlesPage> = (args) => (
     <ArticlesPage />
 );
-
-const baseArgs = {
-    articlesPage: {
-        ...articlesNormalizedData,
-        view: ArticleView.GRID,
-        isLoading: false,
-    },
-};
-
-const firstVisitData = {
-    ...baseArgs,
-    user: {
-        authData: {
-            id: '2CuQOzOQ9YeU7bFzncJh8YwGZGI2',
-            jsonSettings: { isArticlesPageWasOpened: false },
-        },
-    },
-};
-
-const notFirstVisitData = {
-    ...baseArgs,
-    user: {
-        authData: { jsonSettings: { isArticlesPageWasOpened: true } },
-    },
-};
 
 export const FirstArticlesPageVisit = Template.bind({});
 FirstArticlesPageVisit.args = {};

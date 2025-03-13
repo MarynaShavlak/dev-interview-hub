@@ -95,8 +95,6 @@ export const ArticleInfiniteList = memo(
     },
 );
 
-export {};
-
 // import { memo, useCallback } from 'react';
 // import { useSelector } from 'react-redux';
 // import { Virtuoso, VirtuosoGrid } from 'react-virtuoso';
