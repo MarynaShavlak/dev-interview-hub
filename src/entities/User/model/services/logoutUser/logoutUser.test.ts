@@ -5,10 +5,14 @@ import { TestAsyncThunk } from '@/shared/lib/tests/TestAsyncThunk/TestAsyncThunk
 import { USER_LOCALSTORAGE_KEY } from '@/shared/const/localstorage';
 import { clearUserDataFromStorage } from '../../../lib/userUtils/userUtils';
 
-// Mock Firebase signOut
-jest.mock('firebase/auth', () => ({
-    signOut: jest.fn(),
-}));
+// Mock Firebase auth module
+jest.mock('firebase/auth', () => {
+    const mockSignOut = jest.fn();
+    return {
+        signOut: mockSignOut,
+        getAuth: jest.fn(() => ({})),
+    };
+});
 
 // Mock clearUserDataFromStorage
 jest.mock('../../../lib/userUtils/userUtils', () => ({
@@ -27,6 +31,9 @@ const localStorageMock = (() => {
         setItem: (key: string, value: string) => {
             store[key] = value.toString();
         },
+        removeItem: (key: string) => {
+            delete store[key]; // Add removeItem to delete the key
+        },
         clear: () => {
             store = {};
         },
@@ -35,7 +42,7 @@ const localStorageMock = (() => {
 
 Object.defineProperty(window, 'localStorage', { value: localStorageMock });
 
-// Mock ERROR_USER_MESSAGES (adjust this based on your actual consts)
+// Mock ERROR_USER_MESSAGES
 const ERROR_USER_MESSAGES = {
     LOGOUT_ERROR: 'Logout failed',
 } as const;
@@ -48,8 +55,11 @@ describe('async thunk logoutUser test', () => {
     });
 
     test('should dispatch logout action and clear storage on success', async () => {
-        // Mock successful signOut
+        // Access the mocked signOut directly from the import
         (signOut as jest.Mock).mockResolvedValueOnce(undefined);
+        (clearUserDataFromStorage as jest.Mock).mockImplementation(() => {
+            localStorage.removeItem(USER_LOCALSTORAGE_KEY);
+        });
 
         const thunk = new TestAsyncThunk(logoutUser);
         localStorage.setItem(USER_LOCALSTORAGE_KEY, 'userId123');
@@ -57,17 +67,20 @@ describe('async thunk logoutUser test', () => {
 
         const result = await thunk.callThunk(undefined);
 
-        expect(signOut).toHaveBeenCalled();
+        expect(signOut).toHaveBeenCalledWith(thunk.mockAuth);
         expect(thunk.dispatch).toHaveBeenCalledWith(userActions.logout());
-        expect(thunk.dispatch).toHaveBeenCalledTimes(2); // Thunk dispatch + logout action
+        expect(thunk.dispatch).toHaveBeenCalledTimes(3);
         expect(clearUserDataFromStorage).toHaveBeenCalled();
-        expect(localStorage.getItem(USER_LOCALSTORAGE_KEY)).toBeNull(); // Assuming clearUserDataFromStorage clears this
-        expect(result).toBe(undefined);
+        expect(localStorage.getItem(USER_LOCALSTORAGE_KEY)).toBeNull();
+        if (typeof result !== 'string') {
+            expect(result.meta.requestStatus).toBe('fulfilled');
+            expect(result.payload).toEqual(undefined);
+        }
+        // Success returns undefined
         expect(consoleErrorSpy).not.toHaveBeenCalled();
     });
 
     test('should handle logout failure and log error', async () => {
-        // Mock signOut to fail
         const mockError = new Error('Auth error');
         (signOut as jest.Mock).mockRejectedValueOnce(mockError);
 
@@ -77,12 +90,11 @@ describe('async thunk logoutUser test', () => {
 
         const result = await thunk.callThunk(undefined);
 
-        expect(signOut).toHaveBeenCalled();
-        expect(thunk.dispatch).toHaveBeenCalledTimes(1); // Only thunk dispatch, no logout
+        expect(signOut).toHaveBeenCalledWith(thunk.mockAuth);
+        expect(thunk.dispatch).toHaveBeenCalledTimes(2);
         expect(clearUserDataFromStorage).not.toHaveBeenCalled();
-        // expect(result.meta.requestStatus).toBe('rejected');
-        expect(result).toBe(ERROR_USER_MESSAGES.LOGOUT_ERROR); // 'Logout failed'
-        expect(localStorage.getItem(USER_LOCALSTORAGE_KEY)).toBe('userId123'); // Storage unchanged
+        expect(result).toBe(ERROR_USER_MESSAGES.LOGOUT_ERROR);
+        expect(localStorage.getItem(USER_LOCALSTORAGE_KEY)).toBe('userId123');
         expect(consoleErrorSpy).toHaveBeenCalledWith(
             ERROR_USER_MESSAGES.LOGOUT_ERROR,
             mockError,

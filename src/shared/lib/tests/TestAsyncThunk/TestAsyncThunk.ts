@@ -29,6 +29,7 @@ export class TestAsyncThunk<Return, Arg, RejectedValue> {
 
     navigate: jest.MockedFn<any>; // Mocked function for navigation actions
 
+    mockAuth: any;
     /**
      * Constructs a new instance of `TestAsyncThunk`.
      *
@@ -45,6 +46,7 @@ export class TestAsyncThunk<Return, Arg, RejectedValue> {
         this.getState = jest.fn(() => state as StateSchema);
         this.api = mockedAxios;
         this.navigate = jest.fn();
+        this.mockAuth = {};
     }
     /**
      * Executes the thunk action.
@@ -62,6 +64,7 @@ export class TestAsyncThunk<Return, Arg, RejectedValue> {
         const result = await action(this.dispatch, this.getState, {
             api: this.api,
             navigate: this.navigate,
+            auth: this.mockAuth,
         });
         if (
             result.meta.requestStatus === 'rejected' &&
