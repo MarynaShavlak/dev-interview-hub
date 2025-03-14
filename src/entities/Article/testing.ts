@@ -8,6 +8,8 @@ import {
 import { ArticleCategory, ArticleSection } from './model/consts/articleConsts';
 import avatar from '@/shared/assets/tests/avatar-dropdown.png';
 
+export { getFilteredArticlesQuery } from './api/articleApi';
+
 export const textBlockWithTitleAndFewParagraphs = {
     id: '2344',
     type: ArticleSection.TEXT,
