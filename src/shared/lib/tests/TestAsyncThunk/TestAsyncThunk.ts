@@ -63,6 +63,12 @@ export class TestAsyncThunk<Return, Arg, RejectedValue> {
             api: this.api,
             navigate: this.navigate,
         });
+        if (
+            result.meta.requestStatus === 'rejected' &&
+            (result as any).meta.rejectedWithValue
+        ) {
+            return result.payload as RejectedValue;
+        }
         return result;
     }
 }
