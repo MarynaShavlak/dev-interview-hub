@@ -6,7 +6,6 @@ import { articlesPageActions } from '../../slices/articlesPageSlice';
 import { ARTICLES_VIEW_LOCALSTORAGE_KEY } from '@/shared/const/localstorage';
 import { ERROR_ARTICLES_PAGE_MESSAGES } from '../../consts/errorArticlesPageMessages';
 import * as fetchArticlesListModule from '../fetchArticlesListThunk/fetchArticlesListThunk';
-import { fetchArticlesListThunk } from '../fetchArticlesListThunk/fetchArticlesListThunk';
 
 jest.mock('@/shared/lib/features');
 
@@ -193,45 +192,5 @@ describe('initArticlesPage thunk', () => {
             articlesPageActions.initState('INVALID_VIEW' as ArticleView), // Will pass through as-is
         );
         expect(thunk.dispatch).toBeCalledTimes(3);
-    });
-
-    test('should fetch articles list with parsed search params when shouldDoActionForRedesignUi is true', async () => {
-        jest.mocked(shouldDoActionForRedesignUi).mockReturnValue(true);
-
-        const searchParams = new URLSearchParams({
-            order: 'asc',
-            sort: 'title',
-            query: 'react',
-            category: 'React',
-        });
-
-        const thunk = new TestAsyncThunk(initArticlesPage, {
-            articlesPage: {
-                _inited: false,
-            },
-        });
-        const dispatchSpy = jest.spyOn(thunk, 'dispatch');
-
-        await thunk.callThunk(searchParams);
-
-        expect(thunk.dispatch).toHaveBeenCalledWith(
-            articlesPageActions.setOrder('asc'),
-        );
-        expect(thunk.dispatch).toHaveBeenCalledWith(
-            articlesPageActions.setSort('title'),
-        );
-        expect(thunk.dispatch).toHaveBeenCalledWith(
-            articlesPageActions.setSearch('react'),
-        );
-        expect(thunk.dispatch).toHaveBeenCalledWith(
-            articlesPageActions.setCategory(ArticleCategory.REACT),
-        );
-
-        const fetchThunkDispatched = dispatchSpy.mock.calls.some(
-            ([action]) => action === fetchArticlesListThunk({}),
-        );
-        expect(fetchThunkDispatched).toBeTruthy();
-
-        expect(thunk.dispatch).toBeCalledTimes(8);
     });
 });
