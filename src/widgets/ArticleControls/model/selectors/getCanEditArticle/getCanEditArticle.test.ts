@@ -1,68 +1,103 @@
-export {};
-// import { getCanEditArticle } from './getCanEditArticle';
-// import { StateSchema } from '@/app/providers/StoreProvider';
-// import { testArticleData } from '@/entities/Article/testing';
-// import { testUserData } from '@/entities/User/testing';
-//
-// describe('getCanEditArticle selector', () => {
-//     test('should return true when the article author is the authenticated user', () => {
-//         const state: DeepPartial<StateSchema> = {
-//             articleDetails: { data: testArticleData },
-//             user: {
-//                 authData: testUserData,
-//             },
-//         };
-//
-//         expect(getCanEditArticle(state as StateSchema)).toEqual(true);
-//     });
-//
-//     test('should return false when the article author is not the authenticated user', () => {
-//         const state: DeepPartial<StateSchema> = {
-//             articleDetails: { data: testArticleData },
-//             user: {
-//                 authData: { id: 'anotherId', username: 'testUsername' },
-//             },
-//         };
-//
-//         expect(getCanEditArticle(state as StateSchema)).toEqual(false);
-//     });
-//
-//     test('should return false when article data is missing', () => {
-//         const state: DeepPartial<StateSchema> = {
-//             articleDetails: {
-//                 data: undefined,
-//             },
-//             user: {
-//                 authData: testUserData,
-//             },
-//         };
-//
-//         expect(getCanEditArticle(state as StateSchema)).toEqual(false);
-//     });
-//
-//     test('should return false when user data is missing', () => {
-//         const state: DeepPartial<StateSchema> = {
-//             articleDetails: {
-//                 data: testArticleData,
-//             },
-//             user: {
-//                 authData: undefined,
-//             },
-//         };
-//
-//         expect(getCanEditArticle(state as StateSchema)).toEqual(false);
-//     });
-//
-//     test('should return false when both article and user data are missing', () => {
-//         const state: DeepPartial<StateSchema> = {
-//             articleDetails: {
-//                 data: undefined,
-//             },
-//             user: {
-//                 authData: undefined,
-//             },
-//         };
-//
-//         expect(getCanEditArticle(state as StateSchema)).toEqual(false);
-//     });
-// });
+import { getCanEditArticle } from './getCanEditArticle';
+import { StateSchema } from '@/app/providers/StoreProvider';
+import { testArticleData } from '@/entities/Article/testing';
+import { testUserData } from '@/entities/User/testing';
+import { articleFirebaseApi } from '@/entities/Article';
+
+// Mock articleId for testing
+const TEST_ARTICLE_ID = 'testArticleId';
+
+describe('getCanEditArticle selector', () => {
+    const canEditSelector = getCanEditArticle(TEST_ARTICLE_ID);
+
+    test('should return true when authenticated user is the article author', () => {
+        const state: DeepPartial<StateSchema> = {
+            [articleFirebaseApi.reducerPath]: {
+                queries: {
+                    [`getArticleDataById("${TEST_ARTICLE_ID}")`]: {
+                        data: {
+                            ...testArticleData,
+                            user: { id: testUserData.id },
+                        },
+                    },
+                },
+            },
+            user: {
+                authData: testUserData,
+            },
+        };
+
+        expect(canEditSelector(state as StateSchema)).toBe(true);
+    });
+
+    test('should return false when authenticated user is not the article author', () => {
+        const state: DeepPartial<StateSchema> = {
+            [articleFirebaseApi.reducerPath]: {
+                queries: {
+                    [`getArticleDataById("${TEST_ARTICLE_ID}")`]: {
+                        data: {
+                            ...testArticleData,
+                            user: { id: 'differentUserId' },
+                        },
+                    },
+                },
+            },
+            user: {
+                authData: testUserData,
+            },
+        };
+
+        expect(canEditSelector(state as StateSchema)).toBe(false);
+    });
+
+    test('should return false when article data is not available', () => {
+        const state: DeepPartial<StateSchema> = {
+            [articleFirebaseApi.reducerPath]: {
+                queries: {
+                    [`getArticleDataById("${TEST_ARTICLE_ID}")`]: {
+                        data: undefined,
+                    },
+                },
+            },
+            user: {
+                authData: testUserData,
+            },
+        };
+
+        expect(canEditSelector(state as StateSchema)).toBe(false);
+    });
+
+    test('should return false when user authentication data is not available', () => {
+        const state: DeepPartial<StateSchema> = {
+            [articleFirebaseApi.reducerPath]: {
+                queries: {
+                    [`getArticleDataById("${TEST_ARTICLE_ID}")`]: {
+                        data: testArticleData,
+                    },
+                },
+            },
+            user: {
+                authData: undefined,
+            },
+        };
+
+        expect(canEditSelector(state as StateSchema)).toBe(false);
+    });
+
+    test('should return false when both article and user data are unavailable', () => {
+        const state: DeepPartial<StateSchema> = {
+            [articleFirebaseApi.reducerPath]: {
+                queries: {
+                    [`getArticleDataById("${TEST_ARTICLE_ID}")`]: {
+                        data: undefined,
+                    },
+                },
+            },
+            user: {
+                authData: undefined,
+            },
+        };
+
+        expect(canEditSelector(state as StateSchema)).toBe(false);
+    });
+});
