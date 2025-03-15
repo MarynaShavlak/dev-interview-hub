@@ -12,6 +12,10 @@ jest.mock('react-device-detect', () => ({
     MobileView: ({ children }: ViewProps) => children,
 }));
 
+jest.mock('@/entities/User', () => ({
+    useUserAuthData: jest.fn().mockReturnValue({ id: 'test-user-id' }),
+}));
+
 describe('NotificationButton Component', () => {
     test('should render the NotificationButton component', () => {
         componentRender(<NotificationButton />);

@@ -14,8 +14,7 @@ export const NotificationButton = memo((props: NotificationButtonProps) => {
     const { className } = props;
     const user = useUserAuthData();
 
-    // const [isOpen, setIsOpen] = useState(false);
-    const [isOpen, setIsOpen] = useState(true);
+    const [isOpen, setIsOpen] = useState(false);
 
     const onOpenDrawer = useCallback(() => {
         setIsOpen(true);
@@ -48,6 +47,7 @@ export const NotificationButton = memo((props: NotificationButtonProps) => {
                     isOpen={isOpen}
                     onClose={onCloseDrawer}
                     data-testid="notifications-drawer"
+                    lazy
                 >
                     <NotificationList userId={user.id} />
                 </Drawer>
