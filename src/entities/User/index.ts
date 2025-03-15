@@ -1,3 +1,5 @@
+export { userFirebaseApi } from './api/userApi';
+
 export { ERROR_USER_MESSAGES } from './model/consts/errorUserMessages';
 
 export { useGetUserRoles } from '@/entities/User/lib/hooks/useGetUserRoles/useGetUserRoles';
