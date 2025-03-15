@@ -16,7 +16,7 @@ export const validateProfileData = (profile?: Partial<User>) => {
         errors.push(ValidateProfileError.INCORRECT_USERNAME);
     }
 
-    if (age !== undefined && !Number.isInteger(Number(age))) {
+    if (!age || !Number.isInteger(Number(age))) {
         errors.push(ValidateProfileError.INCORRECT_AGE);
     }
 
