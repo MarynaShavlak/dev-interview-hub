@@ -7,6 +7,7 @@ const initialState: LoginSchema = {
     isLoading: false,
     email: '',
     password: '',
+    error: undefined,
 };
 
 export const loginSlice = buildSlice({
@@ -15,9 +16,11 @@ export const loginSlice = buildSlice({
     reducers: {
         setEmail: (state, action: PayloadAction<string>) => {
             state.email = action.payload;
+            state.error = undefined;
         },
         setPassword: (state, action: PayloadAction<string>) => {
             state.password = action.payload;
+            state.error = undefined;
         },
     },
     extraReducers: (builder) => {
@@ -28,6 +31,7 @@ export const loginSlice = buildSlice({
             })
             .addCase(loginByEmailThunk.fulfilled, (state, action) => {
                 state.isLoading = false;
+                state.error = undefined;
             })
             .addCase(loginByEmailThunk.rejected, (state, action) => {
                 state.isLoading = false;

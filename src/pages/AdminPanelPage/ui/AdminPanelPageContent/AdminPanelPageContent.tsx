@@ -23,10 +23,7 @@ export const AdminPanelPageContent = () => {
         <ToggleFeaturesComponent
             feature="isAppRedesigned"
             on={
-                <main
-                    data-testid="AdminPanelPage"
-                    className={classNames('', {}, mainWrapperClasses)}
-                >
+                <main className={classNames('', {}, mainWrapperClasses)}>
                     <AdminTabsNavigation
                         activeTab={activeTab}
                         onTabChange={setActiveTab}
@@ -40,10 +37,7 @@ export const AdminPanelPageContent = () => {
                 </main>
             }
             off={
-                <Page
-                    data-testid="AdminPanelPage"
-                    className={classNames('', {}, mainWrapperClasses)}
-                >
+                <Page className={classNames('', {}, mainWrapperClasses)}>
                     <AdminTabsNavigation
                         activeTab={activeTab}
                         onTabChange={setActiveTab}

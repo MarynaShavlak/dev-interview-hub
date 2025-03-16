@@ -60,8 +60,8 @@ export const Button = forwardRef(
                     cls[variant],
                     cls[size],
                 ])}
-                disabled={disabled}
                 {...otherProps}
+                disabled={disabled}
                 ref={ref}
             >
                 <div className={cls.addonLeft}>{addonLeft}</div>
