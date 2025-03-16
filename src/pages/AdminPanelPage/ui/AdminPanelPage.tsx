@@ -14,7 +14,7 @@ const reducers: ReducersList = {
 const AdminPanelPage = () => {
     return (
         <DynamicModuleLoader reducers={reducers} removeAfterUnmount={false}>
-            <AdminPanelPageContent data-testid="AdminPanelPage" />
+            <AdminPanelPageContent />
         </DynamicModuleLoader>
     );
 };

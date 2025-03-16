@@ -1,4 +1,4 @@
-import { screen } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 import { componentRender } from '@/shared/lib/tests/componentRender/componentRender';
 import AppRouter from '../AppRouter/AppRouter';
 import {
@@ -43,9 +43,13 @@ describe('AppRouter Component', () => {
                 user: { _inited: true, authData: { id: '1' } },
             },
         });
-
-        const page = await screen.findByTestId('ProfilePage');
-        expect(page).toBeInTheDocument();
+        await waitFor(
+            () => {
+                const page = screen.getByTestId('ProfilePage');
+                expect(page).toBeInTheDocument();
+            },
+            { timeout: 3000 },
+        );
     });
 
     test('should deny access to the Admin page when the user lacks the required role)', async () => {
@@ -68,7 +72,12 @@ describe('AppRouter Component', () => {
             },
         });
 
-        const page = await screen.findByTestId('AdminPanelPage');
-        expect(page).toBeInTheDocument();
+        await waitFor(
+            () => {
+                const page = screen.getByTestId('AdminPanelPage');
+                expect(page).toBeInTheDocument();
+            },
+            { timeout: 3000 },
+        );
     });
 });

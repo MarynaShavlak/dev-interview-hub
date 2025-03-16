@@ -37,7 +37,10 @@ export const AdminPanelPageContent = () => {
                 </main>
             }
             off={
-                <Page className={classNames('', {}, mainWrapperClasses)}>
+                <Page
+                    className={classNames('', {}, mainWrapperClasses)}
+                    data-testid="AdminPanelPage"
+                >
                     <AdminTabsNavigation
                         activeTab={activeTab}
                         onTabChange={setActiveTab}
