@@ -112,7 +112,7 @@ export const SignupFormRedesigned = memo((props: AuthFormProps) => {
                 className={cls.authBtn}
                 onClick={onSignupClick}
                 disabled={isLoading || hasInputErrors}
-                data-testid="login-submit-btn"
+                data-testid="signup-submit-btn"
             >
                 {t('Зареєструватись')}
             </Button>

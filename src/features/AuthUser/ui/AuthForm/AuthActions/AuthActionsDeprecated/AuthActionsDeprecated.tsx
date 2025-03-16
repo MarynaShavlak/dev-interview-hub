@@ -46,7 +46,6 @@ export const AuthActionsDeprecated = memo((props: AuthActionsProps) => {
                 max
                 className={classNames(cls.authBtn, {}, btnClasses)}
                 onClick={onAuthByGoogleClick}
-                data-testid="login-submit-btn"
             >
                 <Icon Svg={GoogleIcon} width="25" height="25" />
                 {buttonGoogleText}

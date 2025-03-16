@@ -13,7 +13,7 @@ const options = {
 };
 
 // Store the correct credentials here
-const correctUsername = 'correctUsername';
+const correctEmail = 'correctEmail@gmail.com';
 const correctPassword = 'correctPassword';
 
 describe('LoginForm Component', () => {
@@ -25,18 +25,18 @@ describe('LoginForm Component', () => {
     test('should render the LoginForm component.', async () => {
         const onSuccessMock = jest.fn();
         componentRender(<AuthForm onSuccess={onSuccessMock} />, options);
-        expect(screen.getByTestId('login-form')).toBeInTheDocument();
+        expect(screen.getByTestId('auth-form-sign-in')).toBeInTheDocument();
     });
 
     test('should update the username and password fields on user input.', async () => {
         const onSuccessMock = jest.fn();
         componentRender(<AuthForm onSuccess={onSuccessMock} />, options);
 
-        const usernameInput = screen.getByTestId('login-username-input');
+        const emailInput = screen.getByTestId('login-email-input');
         const passwordInput = screen.getByTestId('login-password-input');
 
-        await userEvent.type(usernameInput, correctUsername);
-        expect(usernameInput).toHaveValue(correctUsername);
+        await userEvent.type(emailInput, correctEmail);
+        expect(emailInput).toHaveValue(correctEmail);
 
         await userEvent.type(passwordInput, correctPassword);
         expect(passwordInput).toHaveValue(correctPassword);
@@ -47,8 +47,8 @@ describe('LoginForm Component', () => {
         componentRender(<AuthForm onSuccess={onSuccessMock} />, options);
 
         await userEvent.type(
-            screen.getByTestId('login-username-input'),
-            'wrongUsername',
+            screen.getByTestId('login-email-input'),
+            'wrongEmail',
         );
         await userEvent.type(
             screen.getByTestId('login-password-input'),
@@ -69,8 +69,8 @@ describe('LoginForm Component', () => {
         componentRender(<AuthForm onSuccess={onSuccessMock} />, options);
 
         await userEvent.type(
-            screen.getByTestId('login-username-input'),
-            'wrongUsername',
+            screen.getByTestId('login-email-input'),
+            'wrongEmail',
         );
         await userEvent.type(
             screen.getByTestId('login-password-input'),
@@ -94,7 +94,7 @@ describe('LoginForm Component', () => {
 
         await userEvent.type(
             screen.getByTestId('login-username-input'),
-            correctUsername,
+            correctEmail,
         );
         await userEvent.type(
             screen.getByTestId('login-password-input'),
@@ -130,8 +130,8 @@ describe('LoginForm Component', () => {
         componentRender(<AuthForm onSuccess={onSuccessMock} />, options);
 
         await userEvent.type(
-            screen.getByTestId('login-username-input'),
-            correctUsername,
+            screen.getByTestId('login-email-input'),
+            correctEmail,
         );
 
         await userEvent.click(screen.getByTestId('login-submit-btn'));
@@ -162,8 +162,8 @@ describe('LoginForm Component', () => {
 
         // Trigger a failed login attempt
         await userEvent.type(
-            screen.getByTestId('login-username-input'),
-            'wrongUsername',
+            screen.getByTestId('login-email-input'),
+            'wrongEmail',
         );
         await userEvent.type(
             screen.getByTestId('login-password-input'),
@@ -179,17 +179,17 @@ describe('LoginForm Component', () => {
         });
 
         // Start typing a new username and password
-        const usernameInput = screen.getByTestId('login-username-input');
+        const emailInput = screen.getByTestId('login-email-input');
         const passwordInput = screen.getByTestId('login-password-input');
 
-        await userEvent.clear(usernameInput);
+        await userEvent.clear(emailInput);
         await userEvent.clear(passwordInput);
-        await userEvent.type(usernameInput, correctUsername);
+        await userEvent.type(emailInput, correctEmail);
         await userEvent.type(passwordInput, correctPassword);
 
         // Verify the error message is cleared
         // Verify the input fields have the new values
-        expect(usernameInput).toHaveValue(correctUsername);
+        expect(emailInput).toHaveValue(correctEmail);
         expect(passwordInput).toHaveValue(correctPassword);
 
         await userEvent.click(screen.getByTestId('login-submit-btn'));
