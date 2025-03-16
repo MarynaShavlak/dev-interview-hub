@@ -1,5 +1,6 @@
 import { setFeatureFlags } from '@/shared/lib/features';
 import {
+    ARTICLES_VIEW_LOCALSTORAGE_KEY,
     LOCAL_STORAGE_LAST_DESIGN_KEY,
     USER_LOCALSTORAGE_KEY,
 } from '@/shared/const/localstorage';
@@ -38,4 +39,5 @@ export const handleUserAuthentication = (
  */
 export const clearUserDataFromStorage = (): void => {
     localStorage.removeItem(USER_LOCALSTORAGE_KEY);
+    localStorage.setItem(ARTICLES_VIEW_LOCALSTORAGE_KEY, 'GRID');
 };
