@@ -48,7 +48,7 @@ describe('LoginForm Component', () => {
 
         await userEvent.type(
             screen.getByTestId('login-email-input'),
-            'wrongEmail',
+            'wrongEmail@gmail.com',
         );
         await userEvent.type(
             screen.getByTestId('login-password-input'),
@@ -70,7 +70,7 @@ describe('LoginForm Component', () => {
 
         await userEvent.type(
             screen.getByTestId('login-email-input'),
-            'wrongEmail',
+            'wrongEmail@gmail.com',
         );
         await userEvent.type(
             screen.getByTestId('login-password-input'),
@@ -93,7 +93,7 @@ describe('LoginForm Component', () => {
         componentRender(<AuthForm onSuccess={onSuccessMock} />, options);
 
         await userEvent.type(
-            screen.getByTestId('login-username-input'),
+            screen.getByTestId('login-email-input'),
             correctEmail,
         );
         await userEvent.type(
@@ -115,14 +115,14 @@ describe('LoginForm Component', () => {
             screen.getByTestId('login-password-input'),
             correctPassword,
         );
+        expect(screen.getByTestId('login-submit-btn')).toBeDisabled();
+        // await userEvent.click(screen.getByTestId('login-submit-btn'));
 
-        await userEvent.click(screen.getByTestId('login-submit-btn'));
-
-        await waitFor(() => {
-            expect(
-                screen.getByText('Ви ввели невірний логін або пароль'),
-            ).toBeInTheDocument();
-        });
+        // await waitFor(() => {
+        //     expect(
+        //         screen.getByText('Ви ввели невірний логін або пароль'),
+        //     ).toBeInTheDocument();
+        // });
     });
 
     test('should display an error message when the password is empty.', async () => {
@@ -133,27 +133,29 @@ describe('LoginForm Component', () => {
             screen.getByTestId('login-email-input'),
             correctEmail,
         );
+        expect(screen.getByTestId('login-submit-btn')).toBeDisabled();
 
-        await userEvent.click(screen.getByTestId('login-submit-btn'));
-
-        await waitFor(() => {
-            expect(
-                screen.getByText('Ви ввели невірний логін або пароль'),
-            ).toBeInTheDocument();
-        });
+        // await userEvent.click(screen.getByTestId('login-submit-btn'));
+        //
+        // await waitFor(() => {
+        //     expect(
+        //         screen.getByText('Ви ввели невірний логін або пароль'),
+        //     ).toBeInTheDocument();
+        // });
     });
 
     test('should display errors when both username and password are empty.', async () => {
         const onSuccessMock = jest.fn();
         componentRender(<AuthForm onSuccess={onSuccessMock} />, options);
+        expect(screen.getByTestId('login-submit-btn')).toBeDisabled();
 
-        await userEvent.click(screen.getByTestId('login-submit-btn'));
-
-        await waitFor(() => {
-            expect(
-                screen.getByText('Ви ввели невірний логін або пароль'),
-            ).toBeInTheDocument();
-        });
+        // await userEvent.click(screen.getByTestId('login-submit-btn'));
+        //
+        // await waitFor(() => {
+        //     expect(
+        //         screen.getByText('Ви ввели невірний логін або пароль'),
+        //     ).toBeInTheDocument();
+        // });
     });
 
     test('should clear error message and update fields when retrying after a failed login attempt.', async () => {
@@ -163,7 +165,7 @@ describe('LoginForm Component', () => {
         // Trigger a failed login attempt
         await userEvent.type(
             screen.getByTestId('login-email-input'),
-            'wrongEmail',
+            'wrongEmail@gmail.com',
         );
         await userEvent.type(
             screen.getByTestId('login-password-input'),

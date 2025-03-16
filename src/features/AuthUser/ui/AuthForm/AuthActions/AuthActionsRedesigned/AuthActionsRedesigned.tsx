@@ -39,7 +39,6 @@ export const AuthActionsRedesigned = memo((props: AuthActionsProps) => {
                 addonLeft={<Icon Svg={GoogleIcon} width="25" height="25" />}
                 className={cls.authBtn}
                 onClick={onAuthByGoogleClick}
-                data-testid="login-submit-btn"
             >
                 {buttonGoogleText}
             </Button>

@@ -80,7 +80,6 @@ export const SigninFormDeprecated = memo((props: AuthFormProps) => {
                         className={cls.authBtn}
                         onClick={onLoginClick}
                         disabled={isLoading || hasInputErrors}
-                        data-testid="login-submit-btn"
                     >
                         {t('Увійти')}
                     </Button>
