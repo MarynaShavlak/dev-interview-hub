@@ -1,4 +1,165 @@
-export {};
+import { mockFirebase } from 'firestore-jest-mock';
+import { mockCollection } from 'firestore-jest-mock/mocks/firestore';
+import { addCommentForArticleThunk } from './addCommentForArticleThunk';
+import { getArticleDataByIdQuery } from '@/entities/Article';
+import { addCommentMutation } from '../../../api/articleCommentsApi';
+import { ERROR_COMMENT_MESSAGES } from '../../consts/errorCommentMessages';
+import { testComment } from '../../../testing';
+
+// Mock Firebase/Firestore
+mockFirebase({
+    database: {
+        comments: [
+            { ...testComment, id: '1' },
+            { ...testComment, id: '2' },
+        ],
+    },
+});
+
+describe('addCommentForArticleThunk', () => {
+    // Mock state and thunk config
+    const mockUser = {
+        id: 'user1',
+        avatar: 'avatar.png',
+        email: 'test@example.com',
+        firstname: 'John',
+        lastname: 'Doe',
+        username: 'johndoe',
+    };
+
+    const mockArticle = {
+        id: 'article1',
+        title: 'Test Article',
+    };
+
+    const mockComment = {
+        id: 'comment1',
+        articleId: 'article1',
+        user: mockUser,
+        text: 'Test comment',
+    };
+
+    let dispatch;
+    let getState;
+    let thunkApi;
+
+    beforeEach(() => {
+        dispatch = jest.fn();
+        getState = jest.fn();
+        thunkApi = { dispatch, getState, rejectWithValue: jest.fn() };
+
+        // Reset mocks
+        jest.clearAllMocks();
+        mockCollection('comments');
+    });
+
+    it('should successfully add a comment', async () => {
+        // Arrange
+        // @ts-ignore
+        getState.mockReturnValue({ user: { authData: mockUser } });
+        // @ts-ignore
+        dispatch.mockImplementation(async (action) => {
+            if (action.type === getArticleDataByIdQuery.type) {
+                return { unwrap: () => Promise.resolve(mockArticle) };
+            }
+            if (action.type === addCommentMutation.type) {
+                return { unwrap: () => Promise.resolve(mockComment) };
+            }
+            return Promise.resolve();
+        });
+
+        // Act
+        const result = await addCommentForArticleThunk(
+            { text: 'Test comment', articleId: 'article1' },
+            thunkApi,
+        );
+
+        // Assert
+        expect(result).toEqual(mockComment);
+        expect(dispatch).toHaveBeenCalledTimes(2);
+        expect(thunkApi.rejectWithValue).not.toHaveBeenCalled();
+    });
+
+    it('should reject when user auth data is missing', async () => {
+        // Arrange
+        getState.mockReturnValue({ user: { authData: null } });
+
+        // Act
+        await addCommentForArticleThunk(
+            { text: 'Test comment', articleId: 'article1' },
+            thunkApi,
+        );
+
+        // Assert
+        expect(thunkApi.rejectWithValue).toHaveBeenCalledWith(
+            ERROR_COMMENT_MESSAGES.USER_AUTH_MISSING,
+        );
+    });
+
+    it('should reject when article details are missing', async () => {
+        // Arrange
+        getState.mockReturnValue({ user: { authData: mockUser } });
+        dispatch.mockResolvedValue({ unwrap: () => Promise.resolve(null) });
+
+        // Act
+        await addCommentForArticleThunk(
+            { text: 'Test comment', articleId: 'article1' },
+            thunkApi,
+        );
+
+        // Assert
+        expect(thunkApi.rejectWithValue).toHaveBeenCalledWith(
+            ERROR_COMMENT_MESSAGES.ARTICLE_DETAILS_MISSING,
+        );
+    });
+
+    it('should reject when comment text is empty', async () => {
+        // Arrange
+        getState.mockReturnValue({ user: { authData: mockUser } });
+        dispatch.mockResolvedValue({
+            unwrap: () => Promise.resolve(mockArticle),
+        });
+
+        // Act
+        await addCommentForArticleThunk(
+            { text: '', articleId: 'article1' },
+            thunkApi,
+        );
+
+        // Assert
+        expect(thunkApi.rejectWithValue).toHaveBeenCalledWith(
+            ERROR_COMMENT_MESSAGES.COMMENT_TEXT_REQUIRED,
+        );
+    });
+
+    it('should handle API failure', async () => {
+        // Arrange
+        const error = new Error('API Error');
+        getState.mockReturnValue({ user: { authData: mockUser } });
+        dispatch.mockImplementation(async (action) => {
+            if (action.type === getArticleDataByIdQuery.type) {
+                return { unwrap: () => Promise.resolve(mockArticle) };
+            }
+            if (action.type === addCommentMutation.type) {
+                return { unwrap: () => Promise.reject(error) };
+            }
+        });
+
+        // Act
+        await addCommentForArticleThunk(
+            { text: 'Test comment', articleId: 'article1' },
+            thunkApi,
+        );
+
+        // Assert
+        expect(thunkApi.rejectWithValue).toHaveBeenCalledWith(
+            expect.stringContaining(
+                ERROR_COMMENT_MESSAGES.COMMENT_ADD_API_FAIL,
+            ),
+        );
+    });
+});
+
 // import { addCommentForArticleThunk } from './addCommentForArticleThunk'; // Adjust path as needed
 //
 // import { StateSchema } from '@/app/providers/StoreProvider';
