@@ -16,6 +16,7 @@ import { useArticleBlocksActions } from '../../../lib/hooks/useArticleBlocksActi
 import { useTriggerTopScrollPosition } from '@/shared/lib/hooks/useTriggerTopScrollPosition/useTriggerTopScrollPosition';
 import { getBtnsListDeprecatedStyles } from '../../../lib/utils/getBtnsListStyles/getBtnsListStyles';
 import { getPageElement } from '@/shared/lib/getDOMElements/getDOMElement';
+import { useAriaExpandedZIndex } from '../../../lib/hooks/useAriaExpandedZIndex/useAriaExpandedZIndex';
 
 export const AddBlocksFormDeprecated = memo((props: AddBlocksFormProps) => {
     const { index, blocks: allBlocks, blockActions } = props;
@@ -31,7 +32,7 @@ export const AddBlocksFormDeprecated = memo((props: AddBlocksFormProps) => {
         triggerRef,
         scrollContainer,
     );
-
+    const zIndex = useAriaExpandedZIndex('trigger');
     const {
         handleAddArticleBlock,
         handleUpdateArticleBlock,
@@ -67,6 +68,7 @@ export const AddBlocksFormDeprecated = memo((props: AddBlocksFormProps) => {
                         {},
                         btnListFlexClasses,
                     )}
+                    style={{ zIndex }}
                 >
                     <AddArticleBlocksButtons
                         onAddTextBlockBtnClick={insertTextBlock}

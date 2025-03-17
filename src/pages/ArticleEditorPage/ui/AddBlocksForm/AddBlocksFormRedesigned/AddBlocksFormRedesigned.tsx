@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import React, { memo, useEffect, useRef, useState } from 'react';
+import React, { memo, useEffect, useRef } from 'react';
 import { Text } from '@/shared/ui/redesigned/Text';
 import { HStack, VStack } from '@/shared/ui/common/Stack';
 import { OrderCard } from '@/shared/ui/redesigned/OrderCard';
@@ -16,7 +16,7 @@ import { getBtnsListStyles } from '../../../lib/utils/getBtnsListStyles/getBtnsL
 import { AddArticleBlocksButtons } from '../../AddArticleBlocksButtons/AddArticleBlocksButtons';
 import { BlockRenderer } from '../BlockRenderer/BlockRenderer';
 import { useArticleBlocksActions } from '../../../lib/hooks/useArticleBlocksActions/useArticleBlocksActions';
-import { getElementByTestId } from '@/shared/lib/getDOMElements/getDOMElement';
+import { useAriaExpandedZIndex } from '../../../lib/hooks/useAriaExpandedZIndex/useAriaExpandedZIndex';
 
 export const AddBlocksFormRedesigned = memo((props: AddBlocksFormProps) => {
     const { index, blocks: allBlocks, blockActions } = props;
@@ -28,8 +28,6 @@ export const AddBlocksFormRedesigned = memo((props: AddBlocksFormProps) => {
     const elementRef = useRef<HTMLDivElement>(null);
     const triggerRef = useRef<HTMLDivElement>(null);
     const topPosition = useTriggerTopScrollPosition(triggerRef);
-
-    const [zIndex, setZIndex] = useState(2);
 
     const {
         handleAddArticleBlock,
@@ -45,32 +43,7 @@ export const AddBlocksFormRedesigned = memo((props: AddBlocksFormProps) => {
     }, [topPosition]);
 
     const btnListFlexClasses = getFlexClasses({ hStack: true, gap: '16' });
-
-    useEffect(() => {
-        const notBtn = getElementByTestId('trigger');
-
-        if (notBtn) {
-            const updateZIndex = () => {
-                const ariaExpanded = notBtn.getAttribute('aria-expanded');
-
-                setZIndex(ariaExpanded === 'true' ? 0 : 2);
-            };
-
-            updateZIndex(); // Set initial z-index
-
-            const observer = new MutationObserver((mutations) => {
-                mutations.forEach((mutation) => {
-                    if (mutation.attributeName === 'aria-expanded') {
-                        updateZIndex();
-                    }
-                });
-            });
-
-            observer.observe(notBtn, { attributes: true });
-            return () => observer.disconnect();
-        }
-        return undefined;
-    }, []);
+    const zIndex = useAriaExpandedZIndex('trigger');
 
     return (
         <HStack gap="16" align="start" max>
