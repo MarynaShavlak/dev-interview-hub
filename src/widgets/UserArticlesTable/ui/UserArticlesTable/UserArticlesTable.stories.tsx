@@ -6,6 +6,7 @@ import { UserRole } from '@/entities/User';
 import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator/NewDesignDecorator';
 import { LoadingTableSkeleton } from '../LoadingTableSkeleton/LoadingTableSkeleton';
 import { EmptyTableState } from '@/features/Table';
+import { ArticleCreateNavigationButton } from '@/features/ArticleCreateNavigationButton';
 
 export default {
     title: 'widgets/UserArticlesTable',
@@ -54,10 +55,18 @@ LoadingRedesigned.decorators = [
 
 export const EmptyState = Template.bind({});
 EmptyState.decorators = [
-    () => <EmptyTableState message="Не створено жодної статті" />,
+    () => (
+        <EmptyTableState message="Не створено жодної статті">
+            <ArticleCreateNavigationButton />
+        </EmptyTableState>
+    ),
 ];
 
 export const EmptyStateRedesigned = Template.bind({});
 EmptyStateRedesigned.decorators = [
-    () => <EmptyTableState message="Не створено жодної статті" />,
+    () => (
+        <EmptyTableState message="Не створено жодної статті">
+            <ArticleCreateNavigationButton />
+        </EmptyTableState>
+    ),
 ];

@@ -28,3 +28,16 @@ DefaultRedesigned.args = {
     message: 'Не створено жодної статті',
 };
 DefaultRedesigned.decorators = [NewDesignDecorator];
+
+export const WithChildren = Template.bind({});
+WithChildren.args = {
+    message: 'Не створено жодної статті',
+    children: <p>some children </p>,
+};
+
+export const WithChildrenRedesigned = Template.bind({});
+WithChildrenRedesigned.args = {
+    message: 'Не створено жодної статті',
+    children: <p>some children </p>,
+};
+WithChildrenRedesigned.decorators = [NewDesignDecorator];
