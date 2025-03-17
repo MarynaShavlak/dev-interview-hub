@@ -3,7 +3,8 @@
     max-height: 420px;
 }
 
-.avatarWrapDeprecated, .avatarWrapRedesigned {
+.avatarWrapDeprecated,
+.avatarWrapRedesigned {
     position: relative;
     width: 100%;
 }
@@ -12,6 +13,7 @@
     height: 200px;
     width: 100%;
 }
+
 .avatarWrapDeprecated {
     svg g {
         stroke: var(--card-bg);

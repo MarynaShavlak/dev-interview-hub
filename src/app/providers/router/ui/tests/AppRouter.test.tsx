@@ -77,7 +77,7 @@ describe('AppRouter Component', () => {
                 const page = screen.getByTestId('AdminPanelPage');
                 expect(page).toBeInTheDocument();
             },
-            { timeout: 6000 },
+            { timeout: 1000 },
         );
     });
 });

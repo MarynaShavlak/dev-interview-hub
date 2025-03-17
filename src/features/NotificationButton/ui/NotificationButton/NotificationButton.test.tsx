@@ -90,11 +90,14 @@ describe('NotificationButton Component', () => {
         // Close the drawer
         const drawerOverlay = screen.getByTestId('drawer-overlay');
         fireEvent.click(drawerOverlay);
-        await waitFor(() => {
-            expect(
-                screen.queryByTestId('notifications-drawer'),
-            ).not.toBeInTheDocument();
-        });
+        await waitFor(
+            () => {
+                expect(
+                    screen.queryByTestId('notifications-drawer'),
+                ).not.toBeInTheDocument();
+            },
+            { timeout: 1000 },
+        );
 
         // Open the drawer again
         fireEvent.click(triggerButton);
@@ -112,10 +115,13 @@ describe('NotificationButton Component', () => {
         const newDrawerOverlay = screen.getByTestId('drawer-overlay');
         fireEvent.click(newDrawerOverlay);
 
-        await waitFor(() => {
-            expect(
-                screen.queryByTestId('notifications-drawer'),
-            ).not.toBeInTheDocument();
-        });
+        await waitFor(
+            () => {
+                expect(
+                    screen.queryByTestId('notifications-drawer'),
+                ).not.toBeInTheDocument();
+            },
+            { timeout: 1000 },
+        );
     });
 });

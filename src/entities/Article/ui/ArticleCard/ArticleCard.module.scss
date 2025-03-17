@@ -1,4 +1,29 @@
 .ArticleListItem {
+    &.LIST {
+        width: calc(100% - 40px);
+        padding-left: 40px;
+        margin-bottom: 16px;
+
+        .card {
+            width: 100%;
+        }
+
+        svg g {
+            stroke: var(--card-bg);
+        }
+
+        .img {
+            width: 100%;
+            max-height: 250px;
+            object-fit: cover;
+        }
+
+        .textBlock {
+            max-height: 200px;
+            overflow-y: hidden;
+        }
+    }
+
     &.GRID {
         width: 230px;
         transition: 0.3s;
@@ -30,9 +55,10 @@
             width: 200px;
             height: 200px;
             position: relative;
-             svg g {
-                 stroke: var(--card-bg);
-             }
+
+            svg g {
+                stroke: var(--card-bg);
+            }
         }
 
         .img {
@@ -46,29 +72,6 @@
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-        }
-    }
-
-    &.LIST {
-        width: calc(100% - 40px);
-        padding-left: 40px;
-        margin-bottom: 16px;
-        .card {
-            width:100%;
-        }
-        svg g {
-            stroke: var(--card-bg);
-        }
-
-        .img {
-            width: 100%;
-            max-height: 250px;
-            object-fit: cover;
-        }
-
-        .textBlock {
-            max-height: 200px;
-            overflow-y: hidden;
         }
     }
 
@@ -91,6 +94,7 @@
             width: 240px;
             height: 350px;
             overflow: hidden;
+
             svg g {
                 stroke: var(--dark-bg-redesigned);
             }
@@ -106,7 +110,6 @@
             object-fit: cover;
             min-height: 140px;
             max-height: 140px;
-
         }
 
         .info {
