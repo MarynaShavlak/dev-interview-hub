@@ -23,7 +23,7 @@ const ArticleRating = memo((props: ArticleRatingProps) => {
         userId: userData?.id ?? '',
     });
     const rating = data?.[0];
-    console.log('____rating', rating);
+
     const { t } = useTranslation();
 
     const Skeleton = toggleFeatures({

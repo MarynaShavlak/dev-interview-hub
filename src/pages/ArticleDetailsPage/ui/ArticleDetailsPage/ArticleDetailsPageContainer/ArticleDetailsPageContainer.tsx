@@ -27,9 +27,8 @@ export const ArticleDetailsPageContainer = memo(
 
         const currentUserdata = useUserAuthData();
         const articleAuthorId = article?.user.id;
-        console.log('articleAuthorId', articleAuthorId);
+
         const authedUserId = currentUserdata?.id;
-        console.log('authedUserId', authedUserId);
 
         if (!id || !article) return null;
 
@@ -38,7 +37,7 @@ export const ArticleDetailsPageContainer = memo(
                 <ToggleFeaturesComponent
                     feature="isAppRedesigned"
                     on={
-                        <Card fullHeight border="round" padding="24">
+                        <Card fullHeight border="round" padding="24" max>
                             <ArticleDetails id={id} />
                         </Card>
                     }
