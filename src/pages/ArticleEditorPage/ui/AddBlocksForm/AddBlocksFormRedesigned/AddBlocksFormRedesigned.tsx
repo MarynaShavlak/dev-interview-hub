@@ -17,6 +17,7 @@ import { AddArticleBlocksButtons } from '../../AddArticleBlocksButtons/AddArticl
 import { BlockRenderer } from '../BlockRenderer/BlockRenderer';
 import { useArticleBlocksActions } from '../../../lib/hooks/useArticleBlocksActions/useArticleBlocksActions';
 import { useAriaExpandedZIndex } from '../../../lib/hooks/useAriaExpandedZIndex/useAriaExpandedZIndex';
+import { calculateZIndex } from '../../../lib/utils/calculateZIndex/calculateZIndex';
 
 export const AddBlocksFormRedesigned = memo((props: AddBlocksFormProps) => {
     const { index, blocks: allBlocks, blockActions } = props;
@@ -43,8 +44,10 @@ export const AddBlocksFormRedesigned = memo((props: AddBlocksFormProps) => {
     }, [topPosition]);
 
     const btnListFlexClasses = getFlexClasses({ hStack: true, gap: '16' });
-    const zIndex = useAriaExpandedZIndex('trigger');
+    const zIndexNotifications = useAriaExpandedZIndex('trigger');
+    const zIndexAvatarDropdown = useAriaExpandedZIndex('dropdown-trigger');
 
+    const zIndex = calculateZIndex(zIndexNotifications, zIndexAvatarDropdown);
     return (
         <HStack gap="16" align="start" max>
             <OrderCard index={index} />

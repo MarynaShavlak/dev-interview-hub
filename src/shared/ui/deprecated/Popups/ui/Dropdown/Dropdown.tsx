@@ -33,7 +33,12 @@ export function Dropdown(props: DropdownProps) {
                 popupCls.popup,
             ])}
         >
-            <Menu.Button className={popupCls.trigger}>{trigger}</Menu.Button>
+            <Menu.Button
+                className={popupCls.trigger}
+                data-testid="drowpdown-trigger"
+            >
+                {trigger}
+            </Menu.Button>
             <Menu.Items className={classNames(cls.menu, {}, menuClasses)}>
                 <Each
                     of={items}

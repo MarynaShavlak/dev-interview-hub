@@ -29,7 +29,12 @@ export const Dropdown = (props: DropdownProps) => {
                 popupCls.popup,
             ])}
         >
-            <Menu.Button className={popupCls.trigger}>{trigger}</Menu.Button>
+            <Menu.Button
+                className={popupCls.trigger}
+                data-testid="dropdown-trigger"
+            >
+                {trigger}
+            </Menu.Button>
             <Menu.Items className={classNames(cls.menu, {}, menuClasses)}>
                 <Each
                     of={items}

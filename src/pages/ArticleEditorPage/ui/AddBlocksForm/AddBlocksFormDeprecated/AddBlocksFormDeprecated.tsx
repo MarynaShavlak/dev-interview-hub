@@ -17,6 +17,7 @@ import { useTriggerTopScrollPosition } from '@/shared/lib/hooks/useTriggerTopScr
 import { getBtnsListDeprecatedStyles } from '../../../lib/utils/getBtnsListStyles/getBtnsListStyles';
 import { getPageElement } from '@/shared/lib/getDOMElements/getDOMElement';
 import { useAriaExpandedZIndex } from '../../../lib/hooks/useAriaExpandedZIndex/useAriaExpandedZIndex';
+import { calculateZIndex } from '../../../lib/utils/calculateZIndex/calculateZIndex';
 
 export const AddBlocksFormDeprecated = memo((props: AddBlocksFormProps) => {
     const { index, blocks: allBlocks, blockActions } = props;
@@ -32,7 +33,10 @@ export const AddBlocksFormDeprecated = memo((props: AddBlocksFormProps) => {
         triggerRef,
         scrollContainer,
     );
-    const zIndex = useAriaExpandedZIndex('trigger');
+    const zIndexNotifications = useAriaExpandedZIndex('trigger');
+    const zIndexAvatarDropdown = useAriaExpandedZIndex('dropdown-trigger');
+
+    const zIndex = calculateZIndex(zIndexNotifications, zIndexAvatarDropdown);
     const {
         handleAddArticleBlock,
         handleUpdateArticleBlock,
