@@ -13,6 +13,9 @@ export default {
     argTypes: {
         backgroundColor: { control: 'color' },
     },
+    parameters: {
+        loki: { skip: true },
+    },
 } as ComponentMeta<typeof TextEditorForm>;
 
 const Template: ComponentStory<typeof TextEditorForm> = (args) => (

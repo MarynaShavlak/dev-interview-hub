@@ -12,6 +12,9 @@ export default {
         addBlockInArticle: { action: 'addBlockInArticle' },
         deleteBlockFromArticle: { action: 'deleteBlockFromArticle' },
     },
+    parameters: {
+        loki: { skip: true },
+    },
 } as ComponentMeta<typeof CodeBlockEditor>;
 
 const Template: ComponentStory<typeof CodeBlockEditor> = (args) => (

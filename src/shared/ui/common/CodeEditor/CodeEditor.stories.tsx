@@ -15,6 +15,9 @@ export default {
         loader: { control: 'text' },
         onChangeCode: { action: 'onChangeCode' },
     },
+    parameters: {
+        loki: { skip: true },
+    },
 } as ComponentMeta<typeof CodeEditor>;
 
 const Template: ComponentStory<typeof CodeEditor> = (args) => (

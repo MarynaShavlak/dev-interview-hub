@@ -10,7 +10,7 @@ export const testUserData: User = {
     lastname: 'testuser lastname',
     id: '123',
     username: 'testUsername',
-    avatar: 'https://drive.google.com/file/d/1RD0jSAm8kdTLKa-Vr0daeE8T9-QcfPCa/view?usp=drive_link',
+    avatar: 'https://cdn-icons-png.flaticon.com/512/6596/6596121.png',
     age: '30',
     city: 'Kharkiv',
     currency: Currency.UAH,

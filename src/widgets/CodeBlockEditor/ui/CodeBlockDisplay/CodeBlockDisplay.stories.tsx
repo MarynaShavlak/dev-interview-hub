@@ -13,6 +13,9 @@ export default {
     argTypes: {
         onDelete: { action: 'onDelete' }, // Define action for onDelete
     },
+    parameters: {
+        loki: { skip: true },
+    },
 } as ComponentMeta<typeof CodeBlockDisplay>;
 
 const Template: ComponentStory<typeof CodeBlockDisplay> = (args) => (

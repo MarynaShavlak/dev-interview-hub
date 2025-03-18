@@ -74,7 +74,7 @@ export const textBlockWithTags = {
     id: '5325434',
     type: ArticleSection.TEXT,
     paragraphs: [
-        `Vestibulum <img src="images/img.jpg" alt="Some image"/> nibh massa 
+        `Vestibulum <img  alt="Some image"/> nibh massa 
      Proin a <b>bold text 11111</b> varius tac. Nullam enim 
      <div style="border: 1px solid red;">Styled div 22222</div>,`,
         'ed a lectus eget. Integer fermentum mi vel est efficitur rhoncus. Sed odio eros, maximus eget elit et,',
