@@ -67,10 +67,6 @@ DefaultGridViewRedesigned.decorators = [NewDesignDecorator];
 export const DefaultListView = Template.bind({});
 DefaultListView.args = listArgs;
 
-export const DefaultListViewRedesigned = Template.bind({});
-DefaultListViewRedesigned.args = listArgs;
-DefaultListViewRedesigned.decorators = [NewDesignDecorator];
-
 export const DefaultSequenceViewRedesigned = Template.bind({});
 DefaultSequenceViewRedesigned.args = sequenceArgs;
 DefaultSequenceViewRedesigned.decorators = [NewDesignDecorator];
