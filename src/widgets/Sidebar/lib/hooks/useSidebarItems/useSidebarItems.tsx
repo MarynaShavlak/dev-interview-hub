@@ -9,6 +9,7 @@ import LibIcon from '@/shared/assets/icons/lib.svg';
 import LibIconDeprecated from '@/shared/assets/icons/edit.svg';
 import MainIconDeprecated from '@/shared/assets/icons/main-20-20.svg';
 import ProfileIconDeprecated from '@/shared/assets/icons/profile-20-20.svg';
+import QuizIcon from '@/shared/assets/icons/quiz.svg';
 import {
     getRouteAbout,
     getRouteArticles,
@@ -89,6 +90,16 @@ export const useSidebarItems = () => {
                 }),
                 text: 'Мої статті',
                 authOnly: true,
+            },
+            {
+                path: 'https://marynashavlak.github.io/multi-step-form-jquery/',
+                Icon: toggleFeatures({
+                    name: 'isAppRedesigned',
+                    off: () => QuizIcon,
+                    on: () => QuizIcon,
+                }),
+                text: 'JS Quiz',
+                target: '_blank',
             },
         );
     }
