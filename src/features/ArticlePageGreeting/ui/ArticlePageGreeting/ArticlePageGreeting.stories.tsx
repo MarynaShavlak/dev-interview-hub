@@ -10,6 +10,9 @@ export default {
     argTypes: {
         backgroundColor: { control: 'color' },
     },
+    parameters: {
+        loki: { skip: true },
+    },
 } as ComponentMeta<typeof ArticlePageGreeting>;
 
 const Template: ComponentStory<typeof ArticlePageGreeting> = (args) => (

@@ -16,6 +16,9 @@ export default {
     args: {
         id: '174',
     },
+    parameters: {
+        loki: { skip: true },
+    },
 } as ComponentMeta<typeof AdditionalInfoContainer>;
 
 const Template: ComponentStory<typeof AdditionalInfoContainer> = (args) => (

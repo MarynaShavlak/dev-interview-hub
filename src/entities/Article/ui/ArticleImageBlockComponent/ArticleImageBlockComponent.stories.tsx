@@ -1,9 +1,10 @@
 import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { ArticleImageBlockComponent } from './ArticleImageBlockComponent';
-import { imageBlock, imageBlockWithInvalidUrl } from '../../testing';
+import { imageBlock } from '../../testing';
 import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator/NewDesignDecorator';
 import { ArticleImageBlockComponentSkeleton } from './ArticleImageBlockComponentSkeleton/ArticleImageBlockComponentSkeleton';
+import { ArticleImageBlockComponentError } from './ArticleImageBlockComponentError/ArticleImageBlockComponentError';
 
 export default {
     title: 'entities/Article/ArticleImageBlockComponent',
@@ -36,7 +37,12 @@ LoadingStateRedesigned.decorators = [
 ];
 
 export const ErrorState = Template.bind({});
-ErrorState.args = { block: imageBlockWithInvalidUrl };
+ErrorState.args = { block: imageBlock };
+ErrorState.decorators = [() => <ArticleImageBlockComponentError />];
+
 export const ErrorStateRedesigned = Template.bind({});
-ErrorStateRedesigned.args = { block: imageBlockWithInvalidUrl };
-ErrorStateRedesigned.decorators = [NewDesignDecorator];
+ErrorStateRedesigned.args = { block: imageBlock };
+ErrorStateRedesigned.decorators = [
+    () => <ArticleImageBlockComponentError />,
+    NewDesignDecorator,
+];
