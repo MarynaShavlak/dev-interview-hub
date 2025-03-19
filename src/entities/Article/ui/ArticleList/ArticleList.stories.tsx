@@ -88,3 +88,6 @@ LoadingListViewRedesigned.decorators = [NewDesignDecorator];
 export const LoadingSequenceViewRedesigned = Template.bind({});
 LoadingSequenceViewRedesigned.args = sequenceLoadingArgs;
 LoadingSequenceViewRedesigned.decorators = [NewDesignDecorator];
+LoadingSequenceViewRedesigned.parameters = {
+    loki: { skip: true },
+};

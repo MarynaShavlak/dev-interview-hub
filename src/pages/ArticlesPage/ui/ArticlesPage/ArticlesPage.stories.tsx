@@ -16,6 +16,9 @@ export default {
     argTypes: {
         onInfiniteScroll: { action: 'onInfiniteScroll' },
     },
+    parameters: {
+        loki: { skip: true },
+    },
 } as ComponentMeta<typeof ArticlesPage>;
 
 const Template: ComponentStory<typeof ArticlesPage> = (args) => (

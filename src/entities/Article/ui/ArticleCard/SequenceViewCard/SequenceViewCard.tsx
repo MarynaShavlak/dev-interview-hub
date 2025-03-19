@@ -21,13 +21,8 @@ export const SequenceViewCard = memo((props: BaseCardProps) => {
         align: 'center',
     });
     // console.group();
-    // console.log('img', article.user.email, article.user.id);
-    // console.log(
-    //     'img',
+    // console.log('img', article.img, article.user.id);
     //
-    //     article.user.avatar,
-    //     article.id,
-    // );
     // console.groupEnd();
 
     return (

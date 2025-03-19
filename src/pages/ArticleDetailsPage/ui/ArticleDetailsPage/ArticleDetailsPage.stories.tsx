@@ -20,7 +20,7 @@ export default {
     parameters: {
         reactRouter: {
             routePath: '/article/:id',
-            routeParams: { id: '1' },
+            routeParams: { id: '43' },
         },
     },
     args: {},
