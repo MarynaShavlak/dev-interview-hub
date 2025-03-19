@@ -52,6 +52,7 @@ const SidebarItemRedesigned = ({ item, collapsed }: SidebarItemProps) => {
                 [cls.collapsedRedesigned]: collapsed,
             })}
             activeClassName={cls.active}
+            target={item.target}
         >
             <Icon Svg={item.Icon} />
             <span className={cls.link}>{t(item.text)}</span>
