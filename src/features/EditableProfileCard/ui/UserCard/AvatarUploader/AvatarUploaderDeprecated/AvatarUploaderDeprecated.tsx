@@ -41,6 +41,7 @@ export const AvatarUploaderDeprecated = ({
                                 size={128}
                                 src={avatarSrc}
                                 alt={avatarTextPlaceholder}
+                                data-testid="UserCard.avatar"
                             />
                         )}
 
