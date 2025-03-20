@@ -3,6 +3,7 @@ import { USER_LOCALSTORAGE_KEY } from '../../../src/shared/const/localstorage';
 import { User } from '../../../src/entities/User';
 import { selectByTestId } from '../../helpers/selectByTestId';
 import { auth } from '../../../json-server/firebase';
+import { fetchUserFromFirestore } from '../../helpers/fetchUserFromFirestore';
 
 export const login = (
     email: string = 'andrii_shavlak@gmail.com', // Default email
@@ -17,9 +18,9 @@ export const login = (
                     USER_LOCALSTORAGE_KEY,
                     firebaseUser.uid,
                 );
-
-                return firebaseUser;
+                return fetchUserFromFirestore(firebaseUser.uid);
             })
+            .then((existingUser) => existingUser)
             .catch((error) => {
                 throw new Error(`Firebase login failed: ${error.message}`);
             });

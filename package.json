@@ -49,6 +49,7 @@
     "@babel/preset-env": "^7.16.11",
     "@babel/preset-react": "^7.16.7",
     "@babel/preset-typescript": "^7.16.7",
+    "@cypress/webpack-preprocessor": "^6.0.2",
     "@jedmao/redux-mock-store": "^3.0.5",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.13",
     "@storybook/addon-actions": "^6.5.13",
@@ -193,9 +194,7 @@
         "target": "chrome.app",
         "width": 1366,
         "height": 768
-
       }
-
     }
   }
 }

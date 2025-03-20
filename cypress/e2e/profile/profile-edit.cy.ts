@@ -4,6 +4,7 @@ describe('User visits the profile page', () => {
     beforeEach(() => {
         cy.visit('');
         cy.login().then((data) => {
+            console.log('data', data);
             profileId = data.id;
             cy.visit(`profile/${data.id}`);
         });
