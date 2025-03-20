@@ -1,34 +1,88 @@
+import { addDoc, collection } from 'firebase/firestore';
+import { v4 } from 'uuid';
 import { Article } from '../../../src/entities/Article';
+import { firestore } from '../../../json-server/firebase';
+import { removeArticleFromFirestore } from '../../helpers/removeArticleFromFirestore';
+
+const user = {
+    email: 'testemail@gmail.com',
+    firstname: 'testuser firtstname',
+    lastname: 'testuser lastname',
+    id: '123',
+    username: 'testUsername',
+    avatar: 'https://cdn-icons-png.flaticon.com/512/6596/6596121.png',
+    age: '30',
+    city: 'Kharkiv',
+
+    roles: ['ADMIN'],
+    features: {
+        isArticleRatingEnabled: true,
+        isAppRedesigned: true,
+    },
+    jsonSettings: {
+        theme: 'app_light_theme',
+        isFirstVisit: true,
+        settingsPageHasBeenOpen: false,
+        isArticlesPageWasOpened: false,
+    },
+};
 
 const defaultArticle = {
     title: 'TESTING ARTICLE',
-    subtitle: 'React hooks',
+    subtitle: {
+        text: 'Test subtitle',
+    },
     img: 'https://miro.medium.com/v2/resize:fit:1400/0*5KGuaB1kovyV4EbV.png',
     views: 1022,
-    createdAt: '26.02.2024',
-    userId: '1',
+    createdAt: '2025-03-12T17:20:33.872Z',
+    user,
     category: ['IT'],
     blocks: [],
+    id: v4(),
 };
 
+// export const createArticle = (article?: Article) => {
+//     return cy
+//         .request({
+//             method: 'POST',
+//             url: `${Cypress.env('apiUrl')}/articles`,
+//             headers: { Authorization: 'asasf' },
+//             body: article ?? defaultArticle,
+//         })
+//         .then((resp) => resp.body);
+// };
+
 export const createArticle = (article?: Article) => {
-    return cy
-        .request({
-            method: 'POST',
-            url: `${Cypress.env('apiUrl')}/articles`,
-            headers: { Authorization: 'asasf' },
-            body: article ?? defaultArticle,
-        })
-        .then((resp) => resp.body);
+    return cy.wrap(null).then(() => {
+        const articleData = article ?? defaultArticle;
+
+        return addDoc(collection(firestore, 'articles'), articleData)
+            .then((docRef) => {
+                return articleData as Article;
+            })
+            .catch((error) => {
+                throw new Error(
+                    `Failed to create article in Firestore: ${error.message}`,
+                );
+            });
+    });
 };
 
 export const removeArticle = (articleId: string) => {
-    return cy.request({
-        method: 'DELETE',
-        url: `${Cypress.env('apiUrl')}/articles/${articleId}`,
-        headers: { Authorization: 'asasf' },
+    return cy.wrap(null).then(() => {
+        return removeArticleFromFirestore(articleId).catch((error) => {
+            throw new Error(error.message);
+        });
     });
 };
+
+// export const removeArticle = (articleId: string) => {
+//     return cy.request({
+//         method: 'DELETE',
+//         url: `${Cypress.env('apiUrl')}/article/${articleId}`,
+//         headers: { Authorization: 'asasf' },
+//     });
+// };
 
 declare global {
     namespace Cypress {

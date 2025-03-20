@@ -758,7 +758,21 @@
       "avatar": "https://example.com/avatar27.jpg"
     }
   ],
-  "articles": [],
+  "articles": [
+    {
+      "title": "TESTING ARTICLE",
+      "subtitle": "React hooks",
+      "img": "https://miro.medium.com/v2/resize:fit:1400/0*5KGuaB1kovyV4EbV.png",
+      "views": 1022,
+      "createdAt": "26.02.2024",
+      "userId": "1",
+      "category": [
+        "IT"
+      ],
+      "blocks": [],
+      "id": 1
+    }
+  ],
   "article-ratings": [],
   "comments": []
 }
