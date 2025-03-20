@@ -13,6 +13,9 @@ export default {
         backgroundColor: { control: 'color' },
     },
     decorators: [StoreDecorator({})],
+    parameters: {
+        loki: { skip: true },
+    },
 } as ComponentMeta<typeof ArticleDetails>;
 
 const Template: ComponentStory<typeof ArticleDetails> = (args) => (

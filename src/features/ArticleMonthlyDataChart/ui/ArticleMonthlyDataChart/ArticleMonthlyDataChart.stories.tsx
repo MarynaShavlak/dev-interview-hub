@@ -15,6 +15,10 @@ export default {
         className: { control: 'text' },
         chartDimensions: { control: 'object' },
     },
+    parameters: {
+        loki: { skip: true },
+    },
+
     decorators: [StoreDecorator({})],
 } as ComponentMeta<typeof ArticleMonthlyDataChart>;
 

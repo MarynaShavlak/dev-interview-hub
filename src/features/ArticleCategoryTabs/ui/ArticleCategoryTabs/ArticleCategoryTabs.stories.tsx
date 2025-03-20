@@ -11,6 +11,9 @@ export default {
     argTypes: {
         backgroundColor: { control: 'color' },
     },
+    parameters: {
+        loki: { skip: true },
+    },
 } as ComponentMeta<typeof ArticleCategoryTabs>;
 
 const Template: ComponentStory<typeof ArticleCategoryTabs> = (args) => (

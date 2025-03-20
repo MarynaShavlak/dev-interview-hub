@@ -13,6 +13,9 @@ export default {
     argTypes: {
         backgroundColor: { control: 'color' },
     },
+    parameters: {
+        loki: { skip: true },
+    },
 } as ComponentMeta<typeof ArticleSortSelector>;
 
 const Template: ComponentStory<typeof ArticleSortSelector> = (args) => {

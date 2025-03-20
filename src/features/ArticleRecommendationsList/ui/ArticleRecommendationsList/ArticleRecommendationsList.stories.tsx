@@ -20,6 +20,9 @@ export default {
             },
         }),
     ],
+    parameters: {
+        loki: { skip: true },
+    },
 } as ComponentMeta<typeof ArticleRecommendationsList>;
 
 const Template: ComponentStory<typeof ArticleRecommendationsList> = (args) => (

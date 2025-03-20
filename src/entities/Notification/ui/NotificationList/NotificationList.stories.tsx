@@ -15,6 +15,9 @@ export default {
     argTypes: {
         backgroundColor: { control: 'color' },
     },
+    parameters: {
+        loki: { skip: true },
+    },
     decorators: [StoreDecorator({})],
 } as ComponentMeta<typeof NotificationList>;
 

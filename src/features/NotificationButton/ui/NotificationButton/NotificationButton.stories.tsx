@@ -13,6 +13,9 @@ export default {
     argTypes: {
         backgroundColor: { control: 'color' },
     },
+    parameters: {
+        loki: { skip: true },
+    },
 } as ComponentMeta<typeof NotificationButton>;
 
 const Template: ComponentStory<typeof NotificationButton> = (args) => (
