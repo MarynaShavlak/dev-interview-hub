@@ -34,6 +34,21 @@ describe('User visits the articles list page', () => {
             'TESTING ARTICLE',
         );
     });
+
+    // it('and filters articles by category ', () => {
+    //     cy.intercept('GET', '**/articles/*', (req) => {
+    //         req.reply({
+    //             statusCode: 200,
+    //             fixture: 'articles.json',
+    //         });
+    //     });
+    //     cy.filterArticlesByCategory('CSS').then((articles) => {
+    //         expect(articles.length).to.be.greaterThan(0);
+    //         articles.forEach((article) => {
+    //             expect(article.category).contains('CSS');
+    //         });
+    //     });
+    // });
 });
 
 //
