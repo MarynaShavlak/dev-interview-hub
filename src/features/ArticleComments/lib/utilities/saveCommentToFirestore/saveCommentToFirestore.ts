@@ -8,6 +8,7 @@ export type NewCommentDraft = Omit<ArticleComment, 'createdAt'>;
 
 export const saveCommentToFirestore = async (newComment: NewCommentDraft) => {
     // try {
+    console.log('newComment', newComment);
     const commentWithTimestamp = {
         ...newComment,
         createdAt: new Date().toISOString(),

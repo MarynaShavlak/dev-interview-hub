@@ -3,6 +3,7 @@ let currentArticleId = '';
 describe('User visits the article page', () => {
     beforeEach(() => {
         cy.login();
+
         cy.createArticle().then((article) => {
             console.log('article', article);
             currentArticleId = article.id;
@@ -36,21 +37,33 @@ describe('User visits the article page', () => {
         cy.getByTestId('ArticleRecommendationsList').should('exist');
     });
 
-    // it('And leaves a comment', () => {
-    //     cy.intercept('GET', '**/articles/*', {
-    //         fixture: 'article-details.json',
-    //     });
-    //     cy.getByTestId('AddCommentForm').scrollIntoView();
-    //     cy.addComment('text of the comment');
-    //     cy.getByTestId('CommentCard.Content').should('have.length', 1);
-    // });
-    //
-    // it('And rates the article', () => {
-    //     cy.intercept('GET', '**/articles/*', {
-    //         fixture: 'article-details.json',
-    //     });
-    //     cy.getByTestId('RatingCard').scrollIntoView();
-    //     cy.setRate(4, 'feedback');
-    //     cy.get('[data-selected=true]').should('have.length', 4);
-    // });
+    it('And leaves a comment', () => {
+        cy.intercept('GET', '**/article/*', (req) => {
+            req.reply({
+                statusCode: 200,
+                fixture: 'article-details.json',
+            });
+        });
+        cy.getByTestId('AddCommentForm').scrollIntoView();
+        cy.addComment('text of the comment');
+        cy.getByTestId('CommentCard.Content').should('have.length', 1);
+    });
 });
+
+// it('And leaves a comment', () => {
+//     cy.intercept('GET', '**/articles/*', {
+//         fixture: 'article-details.json',
+//     });
+//     cy.getByTestId('AddCommentForm').scrollIntoView();
+//     cy.addComment('text of the comment');
+//     cy.getByTestId('CommentCard.Content').should('have.length', 1);
+// });
+//
+// it('And rates the article', () => {
+//     cy.intercept('GET', '**/articles/*', {
+//         fixture: 'article-details.json',
+//     });
+//     cy.getByTestId('RatingCard').scrollIntoView();
+//     cy.setRate(4, 'feedback');
+//     cy.get('[data-selected=true]').should('have.length', 4);
+// });

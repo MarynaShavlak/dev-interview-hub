@@ -33,6 +33,7 @@ export const addCommentForArticleThunk = createAsyncThunk<
 
         try {
             const userData = getUserAuthData(getState());
+            console.log('userData', userData);
             const article = await dispatch(
                 getArticleDataByIdQuery(articleId),
             ).unwrap();

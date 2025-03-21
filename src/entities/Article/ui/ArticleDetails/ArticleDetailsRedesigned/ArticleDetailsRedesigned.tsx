@@ -23,6 +23,8 @@ export const ArticleDetailsRedesigned = memo((props: ArticleDetailsProps) => {
 
     const { data: article, isLoading, error } = useArticleDataById(id || '');
     useUpdateArticleViews({ id, article, isLoading });
+    // const str = JSON.stringify(article);
+    // console.log(str);
     if (!article) {
         return null;
     }
