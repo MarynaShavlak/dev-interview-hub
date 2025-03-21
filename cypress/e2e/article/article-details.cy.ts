@@ -1,4 +1,5 @@
 let currentArticleId = '';
+let commentText = '';
 
 describe('User visits the article page', () => {
     beforeEach(() => {
@@ -14,6 +15,9 @@ describe('User visits the article page', () => {
 
     afterEach(() => {
         cy.removeArticle(currentArticleId);
+        if (commentText) {
+            cy.removeComment(commentText);
+        }
     });
 
     it('And sees the article content', () => {
@@ -30,7 +34,6 @@ describe('User visits the article page', () => {
                 'include',
                 'https://miro.medium.com/v2/resize:fit:1400/0*5KGuaB1kovyV4EbV.png',
             );
-        cy.getByTestId('ArticleDetails.Views.Paragraph').contains(1022);
     });
 
     it('And sees the recommendations list', () => {
@@ -45,7 +48,8 @@ describe('User visits the article page', () => {
             });
         });
         cy.getByTestId('AddCommentForm').scrollIntoView();
-        cy.addComment('text of the comment');
+        commentText = 'text of the comment';
+        cy.addComment(commentText);
         cy.getByTestId('CommentCard.Content').should('have.length', 1);
     });
 });

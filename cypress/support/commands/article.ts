@@ -41,17 +41,6 @@ const defaultArticle = {
     id: v4(),
 };
 
-// export const createArticle = (article?: Article) => {
-//     return cy
-//         .request({
-//             method: 'POST',
-//             url: `${Cypress.env('apiUrl')}/articles`,
-//             headers: { Authorization: 'asasf' },
-//             body: article ?? defaultArticle,
-//         })
-//         .then((resp) => resp.body);
-// };
-
 export const createArticle = (article?: Article) => {
     return cy.wrap(null).then(() => {
         const articleData = article ?? defaultArticle;
@@ -75,14 +64,6 @@ export const removeArticle = (articleId: string) => {
         });
     });
 };
-
-// export const removeArticle = (articleId: string) => {
-//     return cy.request({
-//         method: 'DELETE',
-//         url: `${Cypress.env('apiUrl')}/article/${articleId}`,
-//         headers: { Authorization: 'asasf' },
-//     });
-// };
 
 declare global {
     namespace Cypress {
