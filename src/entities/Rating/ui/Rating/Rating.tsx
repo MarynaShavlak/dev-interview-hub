@@ -45,7 +45,6 @@ export const Rating = memo((props: RatingCardProps) => {
     );
 
     const acceptFeedback = useCallback(() => {
-        console.log('in acceptFeddback', feedback);
         setIsModalOpen(false);
         onSubmitFeedback?.(starsCount, feedback);
     }, [feedback, onSubmitFeedback, starsCount]);

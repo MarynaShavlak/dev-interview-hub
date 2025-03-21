@@ -40,6 +40,7 @@ export const ArticlesFiltersDeprecated = memo((props: ArticlesFiltersProps) => {
                     onChange={onChangeSearch}
                     value={search}
                     placeholder={t('Пошук')}
+                    data-testid="ArticlesPage.SearchInput"
                 />
             </Card>
             <ArticleCategoryTabs

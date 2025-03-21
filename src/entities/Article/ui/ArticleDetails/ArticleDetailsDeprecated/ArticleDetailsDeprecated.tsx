@@ -20,6 +20,7 @@ import { useUpdateArticleViews } from '../../../lib/hooks/useUpdateArticleViews/
 export const ArticleDetailsDeprecated = memo((props: ArticleDetailsProps) => {
     const { id } = props;
     const { data: article, isLoading, error } = useArticleDataById(id || '');
+    // console.log(JSON.stringify(article));
     useUpdateArticleViews({ id, article, isLoading });
     if (!article) {
         return null;

@@ -1,7 +1,6 @@
 import { removeRatingFromFirestore } from '../../helpers/removeRatingFromFirestore';
 
 export const setRate = (starsCount = 5, feedback = 'feedback') => {
-    console.log('ffff', feedback);
     cy.getByTestId(`StarRating-${starsCount}`).click();
     cy.getByTestId('feedback-input').type(feedback);
     cy.getByTestId('feedback-input').should('have.value', feedback);

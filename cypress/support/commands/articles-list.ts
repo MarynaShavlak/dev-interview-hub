@@ -1,7 +1,14 @@
 import { Article } from '../../../src/entities/Article';
 
 export const searchArticles = (searchValue: string) => {
-    cy.getByTestId('ArticlesPage.SearchInput').clear().type(searchValue);
+    // Query the input, clear it, and type separately
+    cy.getByTestId('ArticlesPage.SearchInput').clear();
+    cy.getByTestId('ArticlesPage.SearchInput').type(searchValue);
+    // Ensure the input retains the value after typing
+    cy.getByTestId('ArticlesPage.SearchInput').should(
+        'have.value',
+        searchValue,
+    );
 };
 
 export const filterArticlesByCategory = (category: string) => {

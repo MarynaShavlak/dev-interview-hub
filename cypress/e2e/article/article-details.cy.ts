@@ -7,9 +7,8 @@ describe('User visits the article page', () => {
         cy.login();
 
         cy.createArticle().then((article) => {
-            console.log('article', article);
             currentArticleId = article.id;
-            console.log('current article id', currentArticleId);
+
             cy.visit(`article/${article.id}`);
         });
     });
