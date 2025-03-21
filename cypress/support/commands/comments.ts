@@ -17,7 +17,7 @@ declare global {
     namespace Cypress {
         interface Chainable {
             addComment(text: string): Chainable<void>;
-            removeComment(commentId: string): Chainable<void>;
+            removeComment(commentText: string): Chainable<void>;
         }
     }
 }

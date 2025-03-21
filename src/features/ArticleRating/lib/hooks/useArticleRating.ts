@@ -24,6 +24,7 @@ import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch
 
 export const useArticleRating = (articleId: string) => {
     const dispatch = useAppDispatch();
+
     const handleRateArticle = useCallback(
         async (starsCount: number, feedback?: string) => {
             const createdRating = await dispatch(
@@ -49,9 +50,6 @@ export const useArticleRating = (articleId: string) => {
     );
 
     return {
-        // rating: data?.[0],
-        // isLoading,
-        // error,
         onSubmitFeedback,
         onSubmitRating,
     };

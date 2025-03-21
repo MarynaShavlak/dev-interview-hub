@@ -6,7 +6,12 @@
     "email":"testuser@gmail.com",
     "firstname":"Test",
     "id":"nwPyI60mR9XWY3ozVuRGItx08PY2",
-    "avatar":"https://s1.1zoom.ru/big3/992/367659-alexfas01.jpg"},
+    "avatar":"https://s1.1zoom.ru/big3/992/367659-alexfas01.jpg",
+    "features": {
+      "isArticleRatingEnabled": true,
+      "isAppRedesigned": true
+    }
+  },
   "subtitle":{
     "text":"Джерело:",
     "link":"https://foxminded.ua/zamykannia-javascript/"},

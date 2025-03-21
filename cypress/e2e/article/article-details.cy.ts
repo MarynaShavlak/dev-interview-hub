@@ -1,5 +1,6 @@
 let currentArticleId = '';
 let commentText = '';
+let feedbackText = '';
 
 describe('User visits the article page', () => {
     beforeEach(() => {
@@ -17,6 +18,11 @@ describe('User visits the article page', () => {
         cy.removeArticle(currentArticleId);
         if (commentText) {
             cy.removeComment(commentText);
+            commentText = '';
+        }
+        if (feedbackText) {
+            cy.removeRating(feedbackText);
+            feedbackText = '';
         }
     });
 
@@ -48,26 +54,21 @@ describe('User visits the article page', () => {
             });
         });
         cy.getByTestId('AddCommentForm').scrollIntoView();
-        commentText = 'text of the comment';
+        commentText = 'test cypress text of the comment';
         cy.addComment(commentText);
         cy.getByTestId('CommentCard.Content').should('have.length', 1);
     });
-});
 
-// it('And leaves a comment', () => {
-//     cy.intercept('GET', '**/articles/*', {
-//         fixture: 'article-details.json',
-//     });
-//     cy.getByTestId('AddCommentForm').scrollIntoView();
-//     cy.addComment('text of the comment');
-//     cy.getByTestId('CommentCard.Content').should('have.length', 1);
-// });
-//
-// it('And rates the article', () => {
-//     cy.intercept('GET', '**/articles/*', {
-//         fixture: 'article-details.json',
-//     });
-//     cy.getByTestId('RatingCard').scrollIntoView();
-//     cy.setRate(4, 'feedback');
-//     cy.get('[data-selected=true]').should('have.length', 4);
-// });
+    it('And rates the article', () => {
+        cy.intercept('GET', '**/article/*', (req) => {
+            req.reply({
+                statusCode: 200,
+                fixture: 'article-details.json',
+            });
+        });
+        cy.getByTestId('RatingCard').scrollIntoView();
+        feedbackText = 'test cypress feedback text';
+        cy.setRate(4, feedbackText);
+        cy.get('[data-selected=true]').should('have.length', 4);
+    });
+});

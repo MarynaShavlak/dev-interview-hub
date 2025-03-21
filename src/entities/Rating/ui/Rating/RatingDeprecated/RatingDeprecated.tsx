@@ -18,7 +18,7 @@ export const RatingDeprecated = memo((props: RatingDeprecatedProps) => {
     const { t } = useTranslation();
 
     return (
-        <CardDeprecated max className={className}>
+        <CardDeprecated max className={className} data-testid="RatingCard">
             <VStack align="center" gap="8">
                 <TextDeprecated
                     title={starsCount ? t('Дякуємо за оцінку!') : title}
