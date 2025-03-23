@@ -1,27 +1,14 @@
 import { testArticle } from '../../data/articleData';
 
 let articleId = '';
-// const email = 'andrii_shavlak@gmail.com'; // Default email
-// const password = 'andrii_shavlak2908';
 
 describe('User visits the articles list page', () => {
     beforeEach(() => {
         cy.loginUser();
-        // cy.loginWithEmailAndPassword(email, password).then((firebaseUser) => {
-        //     if (!firebaseUser) {
-        //         throw new Error('Firebase user is undefined after login');
-        //     }
-        //     cy.window().then((win) => {
-        //         win.localStorage.setItem(
-        //             USER_LOCALSTORAGE_KEY,
-        //             firebaseUser.uid,
-        //         );
-        //     });
-        // });
+
         cy.callFirestore('add', 'articles', testArticle).then((docRef) => {
             console.log('docRef:', docRef);
-            articleId = docRef.id || docRef._path.segments[1]; // Fallback to _path.segments[1] if id isn’t available
-            console.log('articleId:', articleId);
+            articleId = docRef.id || docRef._path.segments[1];
         });
         cy.visit('/articles');
     });
