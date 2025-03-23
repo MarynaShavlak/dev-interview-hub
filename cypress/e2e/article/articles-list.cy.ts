@@ -1,5 +1,5 @@
-import { defaultArticle } from '../../support/commands/article';
 import { USER_LOCALSTORAGE_KEY } from '../../../src/shared/const/localstorage';
+import { testArticle } from '../../data/articleData';
 
 let articleId = '';
 const email = 'andrii_shavlak@gmail.com'; // Default email
@@ -8,9 +8,6 @@ const password = 'andrii_shavlak2908';
 describe('User visits the articles list page', () => {
     beforeEach(() => {
         cy.loginWithEmailAndPassword(email, password).then((firebaseUser) => {
-            console.log('userCredential', firebaseUser);
-
-            // Set localStorage after successful login
             if (!firebaseUser) {
                 throw new Error('Firebase user is undefined after login');
             }
@@ -20,17 +17,17 @@ describe('User visits the articles list page', () => {
                     firebaseUser.uid,
                 );
             });
-            cy.log(`Logged in as: ${firebaseUser.uid}`);
         });
-        cy.callFirestore('add', 'articles', defaultArticle).then((id) => {
-            articleId = id; // Store the article ID
+        cy.callFirestore('add', 'articles', testArticle).then((docRef) => {
+            console.log('docRef:', docRef);
+            articleId = docRef.id || docRef._path.segments[1]; // Fallback to _path.segments[1] if id isn’t available
+            console.log('articleId:', articleId);
         });
         cy.visit('/articles');
     });
     after(() => {
-        // Clean up: Remove the article if articleId is set
         if (articleId) {
-            cy.callFirestore('delete', `article/${articleId}`);
+            cy.callFirestore('delete', `articles/${articleId}`);
         }
     });
 
