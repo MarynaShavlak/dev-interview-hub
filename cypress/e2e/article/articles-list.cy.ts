@@ -1,5 +1,4 @@
 import { testArticle } from '../../data/articleData';
-import { email, password } from '../../data/userData';
 
 let articleId = '';
 // const email = 'andrii_shavlak@gmail.com'; // Default email
@@ -7,7 +6,7 @@ let articleId = '';
 
 describe('User visits the articles list page', () => {
     beforeEach(() => {
-        cy.loginUser(email, password);
+        cy.loginUser();
         // cy.loginWithEmailAndPassword(email, password).then((firebaseUser) => {
         //     if (!firebaseUser) {
         //         throw new Error('Firebase user is undefined after login');
@@ -30,6 +29,7 @@ describe('User visits the articles list page', () => {
         if (articleId) {
             cy.callFirestore('delete', `articles/${articleId}`);
         }
+        cy.logoutUser();
     });
 
     it('and the articles load successfully', () => {

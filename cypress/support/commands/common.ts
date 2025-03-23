@@ -3,12 +3,13 @@ import { selectByTestId } from '../../helpers/selectByTestId';
 import { User } from '../../../src/entities/User';
 
 export const loginUser = (
-    email: string, // Default email
-    password: string, // Default password
+    email: string = 'andrii_shavlak@gmail.com', // Default email
+    password: string = 'andrii_shavlak2908', // Default password
 ) => {
     return cy
         .loginWithEmailAndPassword(email, password)
         .then((firebaseUser) => {
+            console.log('firebaseUser', firebaseUser);
             if (!firebaseUser) {
                 throw new Error('Firebase user is undefined after login');
             }
@@ -20,6 +21,14 @@ export const loginUser = (
                 );
             });
         });
+};
+
+export const logoutUser = () => {
+    cy.window().then((win) => {
+        win.localStorage.removeItem(USER_LOCALSTORAGE_KEY);
+    });
+    // Logout from Firebase using cypress-firebase's cy.logout()
+    cy.logout();
 };
 
 // export const login = (
@@ -51,8 +60,9 @@ export const getByTestId = (testId: string) => {
 declare global {
     namespace Cypress {
         interface Chainable {
-            loginUser(email: string, password: string): Chainable<User>;
+            loginUser(email?: string, password?: string): Chainable<User>;
             getByTestId(testId: string): Chainable<JQuery<HTMLElement>>;
+            logoutUser(): Chainable<void>;
         }
     }
 }

@@ -19,8 +19,12 @@ describe('Routing', () => {
     });
 
     describe('User authenticated', () => {
+        const email = 'andrii_shavlak@gmail.com';
+        const password = 'andrii_shavlak2908';
+
         beforeEach(() => {
-            cy.login();
+            cy.logoutUser();
+            cy.loginUser(email, password);
         });
 
         it('Navigates to the profile page', () => {
