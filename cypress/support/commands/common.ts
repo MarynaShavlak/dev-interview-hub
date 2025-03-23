@@ -1,6 +1,6 @@
+import firebase from 'firebase/compat';
 import { USER_LOCALSTORAGE_KEY } from '../../../src/shared/const/localstorage';
 import { selectByTestId } from '../../helpers/selectByTestId';
-import { User } from '../../../src/entities/User';
 
 export const loginUser = (
     email: string = 'andrii_shavlak@gmail.com', // Default email
@@ -13,13 +13,22 @@ export const loginUser = (
             if (!firebaseUser) {
                 throw new Error('Firebase user is undefined after login');
             }
-            // Set localStorage with the user's UID
-            cy.window().then((win) => {
+            return cy.window().then((win) => {
                 win.localStorage.setItem(
                     USER_LOCALSTORAGE_KEY,
                     firebaseUser.uid,
                 );
+
+                // Use cy.wrap to properly return the Firebase user in the Cypress chain
+                return cy.wrap(firebaseUser);
             });
+            // Set localStorage with the user's UID
+            // cy.window().then((win) => {
+            //     win.localStorage.setItem(
+            //         USER_LOCALSTORAGE_KEY,
+            //         firebaseUser.uid,
+            //     );
+            // });
         });
 };
 
@@ -59,6 +68,8 @@ export const getByTestId = (testId: string) => {
 
 declare global {
     namespace Cypress {
+        import User = firebase.User;
+
         interface Chainable {
             loginUser(email?: string, password?: string): Chainable<User>;
             getByTestId(testId: string): Chainable<JQuery<HTMLElement>>;

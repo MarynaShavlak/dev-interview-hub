@@ -3,11 +3,16 @@ let profileId = '';
 describe('User visits the profile page', () => {
     beforeEach(() => {
         cy.visit('');
-        cy.login().then((data) => {
-            console.log('data', data);
-            profileId = data.id;
-            cy.visit(`profile/${data.id}`);
+        cy.logoutUser();
+        cy.loginUser().then((user) => {
+            profileId = user.uid;
+            cy.visit(`profile/${profileId}`);
         });
+        // cy.login().then((data) => {
+        //     console.log('data', data);
+        //     profileId = data.id;
+        //     cy.visit(`profile/${data.id}`);
+        // });
     });
 
     afterEach(() => {
