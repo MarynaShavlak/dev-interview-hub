@@ -1,23 +1,24 @@
-import { USER_LOCALSTORAGE_KEY } from '../../../src/shared/const/localstorage';
 import { testArticle } from '../../data/articleData';
+import { email, password } from '../../data/userData';
 
 let articleId = '';
-const email = 'andrii_shavlak@gmail.com'; // Default email
-const password = 'andrii_shavlak2908';
+// const email = 'andrii_shavlak@gmail.com'; // Default email
+// const password = 'andrii_shavlak2908';
 
 describe('User visits the articles list page', () => {
     beforeEach(() => {
-        cy.loginWithEmailAndPassword(email, password).then((firebaseUser) => {
-            if (!firebaseUser) {
-                throw new Error('Firebase user is undefined after login');
-            }
-            cy.window().then((win) => {
-                win.localStorage.setItem(
-                    USER_LOCALSTORAGE_KEY,
-                    firebaseUser.uid,
-                );
-            });
-        });
+        cy.loginUser(email, password);
+        // cy.loginWithEmailAndPassword(email, password).then((firebaseUser) => {
+        //     if (!firebaseUser) {
+        //         throw new Error('Firebase user is undefined after login');
+        //     }
+        //     cy.window().then((win) => {
+        //         win.localStorage.setItem(
+        //             USER_LOCALSTORAGE_KEY,
+        //             firebaseUser.uid,
+        //         );
+        //     });
+        // });
         cy.callFirestore('add', 'articles', testArticle).then((docRef) => {
             console.log('docRef:', docRef);
             articleId = docRef.id || docRef._path.segments[1]; // Fallback to _path.segments[1] if id isn’t available
