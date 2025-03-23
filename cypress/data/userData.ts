@@ -1,2 +1,4 @@
-export const email = 'andrii_shavlak@gmail.com';
-export const password = 'andrii_shavlak2908';
+export const userData = {
+    email: 'marynashavlak@gmail.com',
+    password: 'toshkatata70',
+};

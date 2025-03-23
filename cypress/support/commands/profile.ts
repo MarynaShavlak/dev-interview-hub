@@ -31,11 +31,11 @@ export const updateProfile = (firstname: string, lastname: string) => {
 export const resetProfile = (profileId: string) => {
     const defaultProfileData: Partial<User> = {
         id: profileId,
-        firstname: 'Andrii',
+        firstname: 'Maryna',
         lastname: 'Shavlak',
-        age: '56',
+        age: '30',
         city: 'Kharkiv',
-        username: 'andrii_shavlak',
+        username: 'marynashavlak',
     };
     return cy.wrap(null).then(() => {
         return resetUserProfileInFirestore(profileId, defaultProfileData)

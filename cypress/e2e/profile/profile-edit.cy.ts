@@ -20,13 +20,13 @@ describe('User visits the profile page', () => {
     });
 
     it('And the profile loads successfully', () => {
-        cy.getByTestId('UserCard.firstname').should('have.value', 'Andrii');
+        cy.getByTestId('UserCard.firstname').should('have.value', 'Maryna');
         cy.getByTestId('UserCard.lastname').should('have.value', 'Shavlak');
         cy.getByTestId('UserCard.username').should(
             'have.value',
-            'andrii_shavlak',
+            'marynashavlak',
         );
-        cy.getByTestId('UserCard.age').should('have.value', '56');
+        cy.getByTestId('UserCard.age').should('have.value', '30');
         cy.getByTestId('UserCard.city').should('have.value', 'Kharkiv');
     });
 
