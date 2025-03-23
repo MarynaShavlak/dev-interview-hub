@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React, { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Each } from '@/shared/lib/components/Each/Each';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
@@ -12,10 +12,13 @@ import { NotificationListSkeleton } from '../../NotificationListSkeleton/Notific
 import { Text as TextDeprecated, TextSize } from '@/shared/ui/deprecated/Text';
 import { Button as ButtonDeprecated } from '@/shared/ui/deprecated/Button';
 import { ErrorNotificationsList } from '../../ErrorNotificationsList/ErrorNotificationsList';
+import { deleteAllNotificationsThunk } from '../../../model/services/deleteAllNotificationsThunk/deleteAllNotificationsThunk';
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 
 export const NotificationListDeprecated = memo(
     (props: NotificationListProps) => {
         const { className, userId } = props;
+        const dispatch = useAppDispatch();
         const listClass = classNames(cls.NotificationListDeprecated, {}, [
             className,
         ]);
@@ -27,6 +30,14 @@ export const NotificationListDeprecated = memo(
             error,
         } = useAllNotifications(userId || '');
         const titleText = t('Сповіщення');
+
+        const handleDeleteAllNotifications = useCallback(async () => {
+            try {
+                await dispatch(deleteAllNotificationsThunk());
+            } catch (error) {
+                console.error('Failed to dismiss notification:', error);
+            }
+        }, [dispatch]);
 
         if (isLoading) {
             return <NotificationListSkeleton className={className} />;
@@ -53,7 +64,7 @@ export const NotificationListDeprecated = memo(
                         </span>
                     </HStack>
 
-                    <ButtonDeprecated onClick={() => console.log('delete all')}>
+                    <ButtonDeprecated onClick={handleDeleteAllNotifications}>
                         {t('Видалити всі')}
                     </ButtonDeprecated>
                 </HStack>
