@@ -38,6 +38,7 @@ export const loginByEmailThunk = createAsyncThunk<
         console.log('firebaseUser in login thunk', firebaseUser);
 
         const existingUser = await fetchUserFromFirestore(firebaseUser.uid);
+        console.log('existingUser', existingUser);
         if (!existingUser) {
             throw new Error('Existing user not found in Firestore');
         }

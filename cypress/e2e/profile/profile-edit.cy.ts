@@ -1,4 +1,8 @@
+import { User } from '../../../src/entities/User';
+
 let profileId = '';
+let profileDocId = '';
+let initialProfileData = {};
 
 describe('User visits the profile page', () => {
     beforeEach(() => {
@@ -6,17 +10,25 @@ describe('User visits the profile page', () => {
         cy.logoutUser();
         cy.loginUser().then((user) => {
             profileId = user.uid;
+            cy.getProfileDocId(profileId).then((docId) => {
+                if (docId) {
+                    profileDocId = docId;
+                }
+            });
+            cy.getProfile(profileId).then((profile) => {
+                if (profile) {
+                    initialProfileData = profile;
+                }
+            });
             cy.visit(`profile/${profileId}`);
         });
-        // cy.login().then((data) => {
-        //     console.log('data', data);
-        //     profileId = data.id;
-        //     cy.visit(`profile/${data.id}`);
-        // });
     });
 
     afterEach(() => {
-        cy.resetProfile(profileId);
+        if (profileDocId && initialProfileData) {
+            console.log('profileDocId', profileDocId);
+            cy.resetProfile(profileDocId, initialProfileData as User);
+        }
     });
 
     it('And the profile loads successfully', () => {
