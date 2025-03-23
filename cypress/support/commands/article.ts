@@ -27,7 +27,7 @@ const user = {
     },
 };
 
-const defaultArticle = {
+export const defaultArticle = {
     title: 'TESTING ARTICLE',
     subtitle: {
         text: 'Test subtitle',

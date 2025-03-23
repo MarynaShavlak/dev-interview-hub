@@ -7921,6 +7921,11 @@
   "resolved" "https://registry.npmjs.org/cyclist/-/cyclist-1.0.2.tgz"
   "version" "1.0.2"
 
+"cypress-firebase@^4.2.1":
+  "integrity" "sha512-VPZ1t8KvUyQH1yunV1No6ttJ/pMdIAchXvEcJxUezLKGrAfpg34q7AKqeCqQ7vGaWbLm5kAL1ucxgKH8c2eSVw=="
+  "resolved" "https://registry.npmjs.org/cypress-firebase/-/cypress-firebase-4.2.1.tgz"
+  "version" "4.2.1"
+
 "cypress@^13.14.2":
   "integrity" "sha512-lsiQrN17vHMB2fnvxIrKLAjOr9bPwsNbPZNrWf99s4u+DVmCY6U+w7O3GGG9FvP4EUVYaDu+guWeNLiUzBrqvA=="
   "resolved" "https://registry.npmjs.org/cypress/-/cypress-13.14.2.tgz"
@@ -8422,6 +8427,11 @@
   "integrity" "sha512-YXQl1DSa4/PQyRfgrv6aoNjhasp/p4qs9FjJ4q4cQk+8m4r6k4ZSiEyytKG8f8W9gi8WsQtIObNmKd+tMzNTmA=="
   "resolved" "https://registry.npmjs.org/dotenv-expand/-/dotenv-expand-5.1.0.tgz"
   "version" "5.1.0"
+
+"dotenv@^16.4.7":
+  "integrity" "sha512-47qPchRCykZC03FhkYAhrvwU4xDBFIj1QPqaarj6mdM/hgUzfPHcpkHJOn3mJAufFeeAxAzeGsr5X0M4k6fLZQ=="
+  "resolved" "https://registry.npmjs.org/dotenv/-/dotenv-16.4.7.tgz"
+  "version" "16.4.7"
 
 "dotenv@^8.0.0":
   "integrity" "sha512-IrPdXQsk2BbzvCBGBOTmmSH5SodmqZNt4ERAZDmW4CT+tL8VtvinqywuANaFu4bOMWki16nqf0e4oC0QIaDr/g=="
@@ -9706,7 +9716,7 @@
     "locate-path" "^6.0.0"
     "path-exists" "^4.0.0"
 
-"firebase-admin@^12.0.0":
+"firebase-admin@^11.0.0 || ^12.0.0", "firebase-admin@^12.0.0":
   "integrity" "sha512-wBrrSSsKV++/+O8E7O/C7/wL0nbG/x4Xv4yatz/+sohaZ+LsnWtYUcrd3gZutO86hLpDex7xgyrkKbgulmtVyQ=="
   "resolved" "https://registry.npmjs.org/firebase-admin/-/firebase-admin-12.0.0.tgz"
   "version" "12.0.0"

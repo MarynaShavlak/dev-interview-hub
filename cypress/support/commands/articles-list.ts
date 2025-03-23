@@ -11,6 +11,17 @@ export const searchArticles = (searchValue: string) => {
     );
 };
 
+export const filterArticlesByCategory = (category: string) => {
+    return cy
+        .callFirestore('get', 'articles', {
+            where: [['category', 'array-contains', category]],
+        })
+        .then((r) => {
+            console.log('articles filtered for', r);
+            return r;
+        });
+};
+
 // export const filterArticlesByCategory = (category: string) => {
 //     const queryString = `sort=createdAt&order=asc&query=&category=${category}`;
 //     const url = `${Cypress.env('apiUrl')}/articles?${queryString}`;
