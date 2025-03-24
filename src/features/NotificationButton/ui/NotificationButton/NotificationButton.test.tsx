@@ -17,13 +17,19 @@ jest.mock('@/entities/User', () => ({
 }));
 
 describe('NotificationButton Component', () => {
+    const mockUserReducer = (state = { authData: { id: 'test-user-id' } }) =>
+        state;
     test('should render the NotificationButton component', () => {
-        componentRender(<NotificationButton />);
+        componentRender(<NotificationButton />, {
+            asyncReducers: { user: mockUserReducer },
+        });
         expect(screen.getByTestId('notification-button')).toBeInTheDocument();
     });
 
     test('should open the drawer on button click (MobileView)', async () => {
-        componentRender(<NotificationButton />);
+        componentRender(<NotificationButton />, {
+            asyncReducers: { user: mockUserReducer },
+        });
         const triggerButton = screen.getByTestId(
             'notifications-trigger-btn-mobile',
         );
@@ -37,7 +43,9 @@ describe('NotificationButton Component', () => {
     });
 
     test('should open the popover on button click (BrowserView)', async () => {
-        componentRender(<NotificationButton />);
+        componentRender(<NotificationButton />, {
+            asyncReducers: { user: mockUserReducer },
+        });
         const triggerButton = screen.getByTestId(
             'notifications-trigger-btn-desktop',
         );
@@ -51,7 +59,9 @@ describe('NotificationButton Component', () => {
     });
 
     test('should close the drawer when overlay is clicked', async () => {
-        componentRender(<NotificationButton />);
+        componentRender(<NotificationButton />, {
+            asyncReducers: { user: mockUserReducer },
+        });
         const triggerButton = screen.getByTestId(
             'notifications-trigger-btn-mobile',
         );
@@ -74,7 +84,9 @@ describe('NotificationButton Component', () => {
     });
 
     test('should toggle drawer state multiple times', async () => {
-        componentRender(<NotificationButton />);
+        componentRender(<NotificationButton />, {
+            asyncReducers: { user: mockUserReducer },
+        });
         const triggerButton = screen.getByTestId(
             'notifications-trigger-btn-mobile',
         );
