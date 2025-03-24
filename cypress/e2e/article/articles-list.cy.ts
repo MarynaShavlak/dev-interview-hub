@@ -26,12 +26,6 @@ describe('User visits the articles list page', () => {
     });
 
     it('and searches articles', () => {
-        cy.intercept('GET', '**/articles/*', (req) => {
-            req.reply({
-                statusCode: 200,
-                fixture: 'articles.json',
-            });
-        });
         cy.searchArticles('TESTING ARTICLE');
 
         cy.getByTestId('ArticleList').should('exist');
@@ -46,12 +40,6 @@ describe('User visits the articles list page', () => {
         });
     });
     it('and sorts articles by views in ascending order', () => {
-        cy.intercept('GET', '**/articles/*', (req) => {
-            req.reply({
-                statusCode: 200,
-                fixture: 'articles.json',
-            });
-        });
         cy.sortArticlesByViews('asc').then((articles) => {
             expect(articles.length).to.be.greaterThan(0);
             let previousViews = -1;
@@ -62,12 +50,6 @@ describe('User visits the articles list page', () => {
         });
     });
     it('and sorts articles by views in descending order', () => {
-        cy.intercept('GET', '**/articles/*', (req) => {
-            req.reply({
-                statusCode: 200,
-                fixture: 'articles.json',
-            });
-        });
         cy.sortArticlesByViews('desc').then((articles) => {
             expect(articles.length).to.be.greaterThan(0);
             let previousViews = Infinity;
