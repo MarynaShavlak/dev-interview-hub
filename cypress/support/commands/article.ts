@@ -1,6 +1,6 @@
 import { addDoc, collection } from 'firebase/firestore';
 import { Article } from '../../../src/entities/Article';
-import { firestore } from '../../../json-server/firebase';
+import { firestore } from '../../../db/firebase';
 import { testArticle } from '../../data/articleData';
 
 export const createArticle = (article?: Article) => {

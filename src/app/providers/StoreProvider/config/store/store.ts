@@ -10,7 +10,7 @@ import {
     firebaseApp,
     firestore,
     firebaseStorage,
-} from '../../../../../../json-server/firebase';
+} from '../../../../../../db/firebase';
 
 export const createReduxStore = (
     initialState?: StateSchema,

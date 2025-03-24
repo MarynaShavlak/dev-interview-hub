@@ -9,7 +9,7 @@ import * as articlesListCommands from './commands/articles-list';
 import 'firebase/compat/auth';
 import 'firebase/compat/database';
 import 'firebase/compat/firestore';
-import { firebaseConfig } from '../../json-server/firebase';
+import { firebaseConfig } from '../../db/firebase';
 
 Cypress.Commands.addAll(commonCommands);
 Cypress.Commands.addAll(profileCommands);

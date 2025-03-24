@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { collection, setDoc, doc } from 'firebase/firestore';
 import { Page } from '@/widgets/Page';
 
-import { firestore } from '../../../../json-server/firebase';
+import { firestore } from '../../../../db/firebase';
 
 // const comments = [
 //     {

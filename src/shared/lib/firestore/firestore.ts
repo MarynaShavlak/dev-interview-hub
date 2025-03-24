@@ -4,7 +4,7 @@ import {
     type DocumentData,
 } from 'firebase/firestore';
 import { collection } from '@firebase/firestore';
-import { firestore } from '../../../../json-server/firebase';
+import { firestore } from '../../../../db/firebase';
 
 export const createFirestoreConverter = <T>(): FirestoreDataConverter<T> => ({
     /**
