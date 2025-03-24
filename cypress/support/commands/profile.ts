@@ -40,6 +40,7 @@ export const resetProfile = (profileDocId: string, initialUser: User) => {
     if (!initialUser) {
         throw new Error('initialUser data is required to reset profile');
     }
+    console.log('initialUser', initialUser);
 
     // Use callFirestore to update the document
     return cy.callFirestore(

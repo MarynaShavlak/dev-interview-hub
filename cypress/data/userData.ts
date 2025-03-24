@@ -1,4 +1,4 @@
 export const userData = {
-    email: 'marynashavlak@gmail.com',
+    email: 'app_testuser_username@gmail.com',
     password: 'toshkatata70',
 };

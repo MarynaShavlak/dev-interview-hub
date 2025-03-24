@@ -32,11 +32,17 @@ describe('User visits the profile page', () => {
     });
 
     it('And the profile loads successfully', () => {
-        cy.getByTestId('UserCard.firstname').should('have.value', 'Maryna');
-        cy.getByTestId('UserCard.lastname').should('have.value', 'Shavlak');
+        cy.getByTestId('UserCard.firstname').should(
+            'have.value',
+            'app_testuser_firstname',
+        );
+        cy.getByTestId('UserCard.lastname').should(
+            'have.value',
+            'app_testuser_lastname',
+        );
         cy.getByTestId('UserCard.username').should(
             'have.value',
-            'marynashavlak',
+            'apptestuser_username',
         );
         cy.getByTestId('UserCard.age').should('have.value', '30');
         cy.getByTestId('UserCard.city').should('have.value', 'Kharkiv');
