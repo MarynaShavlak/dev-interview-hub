@@ -1,7 +1,8 @@
-import { fireEvent, screen, waitFor } from '@testing-library/react';
+import { act, fireEvent, screen, waitFor } from '@testing-library/react';
 import { ReactNode } from 'react';
 import { NotificationButton } from '../NotificationButton/NotificationButton';
 import { componentRender } from '@/shared/lib/tests/componentRender/componentRender';
+import { userReducer } from '@/entities/User';
 
 interface ViewProps {
     children: ReactNode;
@@ -11,30 +12,35 @@ jest.mock('react-device-detect', () => ({
     BrowserView: ({ children }: ViewProps) => children,
     MobileView: ({ children }: ViewProps) => children,
 }));
+const initialState = {
+    user: {
+        authData: { id: '123' }, // Mock user with an id
+    },
+};
 
-jest.mock('@/entities/User', () => ({
-    useUserAuthData: jest.fn().mockReturnValue({ id: 'test-user-id' }),
-}));
+const options = {
+    initialState,
+    asyncReducers: {
+        user: userReducer,
+    },
+};
 
 describe('NotificationButton Component', () => {
-    const mockUserReducer = (state = { authData: { id: 'test-user-id' } }) =>
-        state;
     test('should render the NotificationButton component', () => {
-        componentRender(<NotificationButton />, {
-            asyncReducers: { user: mockUserReducer },
-        });
+        componentRender(<NotificationButton />, options);
         expect(screen.getByTestId('notification-button')).toBeInTheDocument();
     });
 
     test('should open the drawer on button click (MobileView)', async () => {
-        componentRender(<NotificationButton />, {
-            asyncReducers: { user: mockUserReducer },
-        });
+        componentRender(<NotificationButton />, options);
         const triggerButton = screen.getByTestId(
             'notifications-trigger-btn-mobile',
         );
+        await act(async () => {
+            fireEvent.click(triggerButton);
+        });
 
-        fireEvent.click(triggerButton);
+        // fireEvent.click(triggerButton);
         await waitFor(() => {
             expect(
                 screen.getByTestId('notifications-drawer'),
@@ -43,9 +49,7 @@ describe('NotificationButton Component', () => {
     });
 
     test('should open the popover on button click (BrowserView)', async () => {
-        componentRender(<NotificationButton />, {
-            asyncReducers: { user: mockUserReducer },
-        });
+        componentRender(<NotificationButton />, options);
         const triggerButton = screen.getByTestId(
             'notifications-trigger-btn-desktop',
         );
@@ -59,9 +63,7 @@ describe('NotificationButton Component', () => {
     });
 
     test('should close the drawer when overlay is clicked', async () => {
-        componentRender(<NotificationButton />, {
-            asyncReducers: { user: mockUserReducer },
-        });
+        componentRender(<NotificationButton />, options);
         const triggerButton = screen.getByTestId(
             'notifications-trigger-btn-mobile',
         );
@@ -84,9 +86,7 @@ describe('NotificationButton Component', () => {
     });
 
     test('should toggle drawer state multiple times', async () => {
-        componentRender(<NotificationButton />, {
-            asyncReducers: { user: mockUserReducer },
-        });
+        componentRender(<NotificationButton />, options);
         const triggerButton = screen.getByTestId(
             'notifications-trigger-btn-mobile',
         );

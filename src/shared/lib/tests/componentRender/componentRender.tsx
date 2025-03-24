@@ -10,6 +10,8 @@ import '@/app/styles/index.scss';
 import { Theme } from '@/shared/const/theme';
 // eslint-disable-next-line ms-production-project-plugin/layer-imports
 import { ThemeProvider } from '@/app/providers/ThemeProvider';
+// eslint-disable-next-line ms-production-project-plugin/layer-imports
+import { userReducer } from '@/entities/User';
 
 export interface componentRenderOptions {
     route?: string;
@@ -96,5 +98,21 @@ export const componentRender = (
     component: ReactNode,
     options: componentRenderOptions = {},
 ) => {
-    return render(<TestProvider options={options}>{component}</TestProvider>);
+    const defaultAsyncReducers = {
+        user: userReducer, // Add the user reducer here
+    };
+    // return render(<TestProvider options={options}>{component}</TestProvider>);
+    return render(
+        <TestProvider
+            options={{
+                ...options,
+                asyncReducers: {
+                    ...defaultAsyncReducers,
+                    ...options.asyncReducers,
+                },
+            }}
+        >
+            {component}
+        </TestProvider>,
+    );
 };
