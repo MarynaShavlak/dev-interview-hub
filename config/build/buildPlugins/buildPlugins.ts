@@ -7,7 +7,10 @@ import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
 import CopyPlugin from 'copy-webpack-plugin';
 import CircularDependencyPlugin from 'circular-dependency-plugin';
 import { InjectManifest } from 'workbox-webpack-plugin';
+import  Dotenv from 'dotenv-webpack';
 import { BuildOptions } from '../types/config';
+
+// const Dotenv = require('dotenv-webpack');
 
 export const buildPlugins = ({
     paths, isDev, apiUrl, project,
@@ -34,6 +37,9 @@ export const buildPlugins = ({
                     syntactic: true,
                 },
             },
+        }),
+        new Dotenv({
+            // path: '../../../.env'
         }),
 
 
