@@ -18,8 +18,8 @@ import { getAuth } from 'firebase/auth';
 
 export const firebaseConfig = {
     apiKey: 'AIzaSyBiGo0Kq8YUFPYQ0DetFJxOuqUh3C7nGQA',
-    authDomain: 'dev-interview-hub.firebaseapp.com',
     projectId: 'dev-interview-hub',
+    authDomain: 'dev-interview-hub.firebaseapp.com',
     storageBucket: 'dev-interview-hub.firebasestorage.app',
     messagingSenderId: '195551545741',
     appId: '1:195551545741:web:e56f301b462aa7f15c95c4',
