@@ -71,13 +71,14 @@ describe('AppRouter Component', () => {
                 user: { _inited: true, authData: { roles: [UserRole.ADMIN] } },
             },
         });
-
-        await waitFor(
-            () => {
-                const page = screen.getByTestId('AdminPanelPage');
-                expect(page).toBeInTheDocument();
-            },
-            { timeout: 1000 },
-        );
+        const page = await screen.findByTestId('AdminPanelPage');
+        expect(page).toBeInTheDocument();
+        // await waitFor(
+        //     () => {
+        //         const page = screen.getByTestId('AdminPanelPage');
+        //         expect(page).toBeInTheDocument();
+        //     },
+        //     { timeout: 2000 },
+        // );
     });
 });

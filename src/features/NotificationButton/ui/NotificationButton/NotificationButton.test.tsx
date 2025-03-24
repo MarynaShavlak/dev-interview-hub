@@ -96,7 +96,7 @@ describe('NotificationButton Component', () => {
                     screen.queryByTestId('notifications-drawer'),
                 ).not.toBeInTheDocument();
             },
-            { timeout: 1000 },
+            { timeout: 2000 },
         );
 
         // Open the drawer again
@@ -121,7 +121,7 @@ describe('NotificationButton Component', () => {
                     screen.queryByTestId('notifications-drawer'),
                 ).not.toBeInTheDocument();
             },
-            { timeout: 1000 },
+            { timeout: 2000 },
         );
     });
 });

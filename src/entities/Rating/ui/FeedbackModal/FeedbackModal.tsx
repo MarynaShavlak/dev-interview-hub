@@ -54,6 +54,7 @@ export const FeedbackModal = memo((props: FeedbackProps) => {
                                 <Button
                                     variant="save"
                                     onClick={onSubmitFeedback}
+                                    data-testid="submit-feedback-btn"
                                 >
                                     {sendButtonText}
                                 </Button>
