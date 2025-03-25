@@ -68,7 +68,10 @@ describe('AppRouter Component', () => {
         componentRender(<AppRouter />, {
             route: getRouteAdmin(),
             initialState: {
-                user: { _inited: true, authData: { roles: [UserRole.ADMIN] } },
+                user: {
+                    _inited: true,
+                    authData: { id: '1', roles: [UserRole.ADMIN] },
+                },
             },
         });
         const page = await screen.findByTestId('AdminPanelPage');
