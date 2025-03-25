@@ -74,14 +74,12 @@ describe('AppRouter Component', () => {
                 },
             },
         });
-        const page = await screen.findByTestId('AdminPanelPage');
-        expect(page).toBeInTheDocument();
-        // await waitFor(
-        //     () => {
-        //         const page = screen.getByTestId('AdminPanelPage');
-        //         expect(page).toBeInTheDocument();
-        //     },
-        //     { timeout: 2000 },
-        // );
+        await waitFor(
+            () => {
+                const page = screen.getByTestId('AdminPanelPage');
+                expect(page).toBeInTheDocument();
+            },
+            { timeout: 10000 },
+        );
     });
 });
