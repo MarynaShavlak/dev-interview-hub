@@ -35,12 +35,12 @@ jobs:
       - name: build storybook
         run: npm run storybook:build
         if: always()
-#      - name: screenshot testing
-#        run: npm run test:ui:ci
-#        if: always()
-      - name: unit testing
+      - name: screenshot testing
+        run: npm run test:ui:ci
         if: always()
-        run: npm run test:unit
+#      - name: unit testing
+#        if: always()
+#        run: npm run test:unit
       - name: Generate HTML report
         run: npm run test:ui:report
         if: always()
