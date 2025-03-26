@@ -36,6 +36,7 @@ export const ArticleEditorPageHeaderDeprecated = memo(
             canSave,
             articleTitle,
         } = useArticleEditorPageHeader(onActions, hasErrors);
+        console.log('canSave', canSave);
 
         if (isLoading) {
             return (
