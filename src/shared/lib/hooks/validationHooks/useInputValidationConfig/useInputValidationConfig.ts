@@ -29,14 +29,14 @@ export const useInputValidationConfig = (): InputErrorValidation => {
         },
         title: {
             isEmpty: true,
-            minLength: 10,
-            maxLength: 70,
+            minLength: 2,
+            maxLength: 100,
             // minLength: 2,
             // maxLength: 8,
         },
         subtitleText: {
             isEmpty: true,
-            minLength: 10,
+            minLength: 2,
             maxLength: 150,
             // minLength: 2,
             // maxLength: 70,
