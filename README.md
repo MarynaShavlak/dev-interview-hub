@@ -1,4 +1,4 @@
-# Dev-hub Platform
+# Dev Interview Hub
 
 ## Project Launch
 Quickly set up and start the project with:
