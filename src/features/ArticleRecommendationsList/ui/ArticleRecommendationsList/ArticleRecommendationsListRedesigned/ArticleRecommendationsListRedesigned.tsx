@@ -74,7 +74,11 @@ export const ArticleRecommendationsListRedesigned = memo(
                                             to={getRouteArticleDetails(item.id)}
                                             target="_blank"
                                         >
-                                            <Text size="m" text={item.title} />
+                                            <Text
+                                                size="m"
+                                                text={item.title}
+                                                withTags
+                                            />
                                         </AppLink>
                                     </HStack>
                                     <ArticleViews views={item.views} />
