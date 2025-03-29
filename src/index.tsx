@@ -8,6 +8,7 @@ import App from './app/App';
 import '@/app/styles/index.scss';
 import './shared/config/i18n/i18n';
 import { ErrorBoundary } from './app/providers/ErrorBoundary';
+import registerServiceWorker from '../config/serviceWorker/serviceWorkerRegistration';
 
 const AppWrapper = () => {
     return (
@@ -36,4 +37,4 @@ if (!container) {
 const root = createRoot(container);
 
 root.render(<AppWrapper />);
-// registerServiceWorker();
+registerServiceWorker();
