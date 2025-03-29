@@ -3,7 +3,7 @@ import { Modal } from '../../../Modal';
 
 import { ConfirmDeleteContentAsync as ConfirmDeleteContent } from '../ConfirmDeleteContent/ConfirmDeleteContent.async';
 
-interface ConfirmDeleteModalProps {
+export interface ConfirmDeleteModalProps {
     className?: string;
     isOpen: boolean;
     onCancel: () => void;
@@ -11,7 +11,7 @@ interface ConfirmDeleteModalProps {
     text: string;
 }
 
-export const ConfirmDeleteModal = memo((props: ConfirmDeleteModalProps) => {
+const ConfirmDeleteModal = memo((props: ConfirmDeleteModalProps) => {
     const { className, isOpen, onCancel, text, onConfirm } = props;
 
     return (
@@ -24,3 +24,5 @@ export const ConfirmDeleteModal = memo((props: ConfirmDeleteModalProps) => {
         </Modal>
     );
 });
+
+export default ConfirmDeleteModal;

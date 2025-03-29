@@ -1,6 +1,6 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { ConfirmDeleteModal } from './ConfirmDeleteModal';
+import ConfirmDeleteModal from './ConfirmDeleteModal';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 import { Theme } from '@/shared/const/theme';
 import { withI18nDecorator } from '@/shared/config/storybook/withI18nDecorator/withI18nDecorator';
