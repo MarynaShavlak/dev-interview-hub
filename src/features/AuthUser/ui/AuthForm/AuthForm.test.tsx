@@ -11,13 +11,11 @@ const options = {
     },
 };
 
-// Store the correct credentials here
 const correctEmail = 'correctEmail@gmail.com';
 const correctPassword = 'correctPassword';
 
 describe('LoginForm Component', () => {
     beforeEach(() => {
-        // Set the feature flag to true before each test
         setFeatureFlags({ isAppRedesigned: true });
     });
 
@@ -62,59 +60,6 @@ describe('LoginForm Component', () => {
             ).toBeInTheDocument();
         });
     });
-    //
-    // test('should disable the login button while loading.', async () => {
-    //     jest.mock(
-    //         '../../model/services/loginByEmailThunk/loginByEmailThunk',
-    //         () => ({
-    //             loginByEmailThunk: {
-    //                 pending: 'login/loginByEmail/pending',
-    //             },
-    //         }),
-    //     );
-    //     const onSuccessMock = jest.fn();
-    //     componentRender(<AuthForm onSuccess={onSuccessMock} />, options);
-    //
-    //     await userEvent.type(
-    //         screen.getByTestId('login-email-input'),
-    //         correctEmail,
-    //     );
-    //     await userEvent.type(
-    //         screen.getByTestId('login-password-input'),
-    //         correctPassword,
-    //     );
-    //
-    //     await userEvent.click(screen.getByTestId('login-submit-btn'));
-    //
-    //     await waitFor(() => {
-    //         expect(screen.getByTestId('login-submit-btn')).toBeDisabled();
-    //     });
-    // });
-    //
-    // test('should call onSuccess callback when login is successful.', async () => {
-    //     const mockPostReq = jest.spyOn($api, 'post').mockResolvedValue({
-    //         data: {
-    //             token: '123',
-    //         },
-    //     });
-    //
-    //     const onSuccessMock = jest.fn();
-    //     componentRender(<AuthForm onSuccess={onSuccessMock} />, options);
-    //
-    //     await userEvent.type(
-    //         screen.getByTestId('login-email-input'),
-    //         correctEmail,
-    //     );
-    //     await userEvent.type(
-    //         screen.getByTestId('login-password-input'),
-    //         correctPassword,
-    //     );
-    //
-    //     await userEvent.click(screen.getByTestId('login-submit-btn'));
-    //
-    //     expect(mockPostReq).toHaveBeenCalled();
-    //     mockPostReq.mockRestore();
-    // });
 
     test('should display an error message when the username is empty.', async () => {
         const onSuccessMock = jest.fn();

@@ -5,7 +5,8 @@ type HitsItems = ReturnType<typeof useHits>['items'];
 
 export const transformItems = (items: HitsItems): Article[] => {
     return items.map((item) => {
-        const { category, id, title, subtitle, user, views, createdAt } = item;
+        const { category, id, title, subtitle, user, views, createdAt, img } =
+            item;
         return {
             category,
             id,
@@ -15,6 +16,7 @@ export const transformItems = (items: HitsItems): Article[] => {
             views,
             createdAt,
             blocks: [],
+            img,
         };
     });
 };

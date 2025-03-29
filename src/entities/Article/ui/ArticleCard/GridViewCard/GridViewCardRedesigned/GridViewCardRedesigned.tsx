@@ -1,5 +1,4 @@
 import { memo } from 'react';
-import { useTranslation } from 'react-i18next';
 import { getFlexClasses } from '@/shared/lib/classes/getFlexClasses/getFlexClasses';
 
 import { Avatar } from '@/shared/ui/redesigned/Avatar';
@@ -20,7 +19,7 @@ import DefaultImage from '@/shared/assets/icons/logoWithText.svg';
 
 export const GridViewCardRedesigned = memo((props: BaseCardProps) => {
     const { className, article, target, handleClick } = props;
-    const { t } = useTranslation('articles');
+
     const { createdAt, title, img, id, views, user } = article;
     const additionalClasses = getFlexClasses({
         vStack: true,

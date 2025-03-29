@@ -5,7 +5,6 @@ import AddCommentForm from './AddCommentForm';
 import { setFeatureFlags } from '@/shared/lib/features';
 
 import { addCommentFormReducer } from '../../model/slices/addCommentFormSlice';
-import { $api } from '@/shared/api/api';
 
 const options = {
     asyncReducers: {
@@ -60,8 +59,6 @@ describe('AddCommentForm Component', () => {
     });
 
     test('should clear the comment text field after sending a comment.', async () => {
-        jest.spyOn($api, 'post').mockResolvedValueOnce({});
-
         const onSendCommentMock = jest.fn();
         componentRender(
             <AddCommentForm onSendComment={onSendCommentMock} />,

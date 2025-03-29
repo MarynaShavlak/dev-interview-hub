@@ -2026,42 +2026,6 @@
   "resolved" "https://registry.npmjs.org/@firebase/webchannel-wrapper/-/webchannel-wrapper-1.0.2.tgz"
   "version" "1.0.2"
 
-"@floating-ui/core@^1.6.0":
-  "integrity" "sha512-7XJ9cPU+yI2QeLS+FCSlqNFZJq8arvswefkZrYI1yQBbftw6FyrZOxYSh+9S7z7TpeWlRt9zJ5IhM1WIL334jA=="
-  "resolved" "https://registry.npmjs.org/@floating-ui/core/-/core-1.6.8.tgz"
-  "version" "1.6.8"
-  dependencies:
-    "@floating-ui/utils" "^0.2.8"
-
-"@floating-ui/dom@^1.0.0":
-  "integrity" "sha512-qkMCxSR24v2vGkhYDo/UzxfJN3D4syqSjyuTFz6C7XcpU1pASPRieNI0Kj5VP3/503mOfYiGY891ugBX1GlABQ=="
-  "resolved" "https://registry.npmjs.org/@floating-ui/dom/-/dom-1.6.11.tgz"
-  "version" "1.6.11"
-  dependencies:
-    "@floating-ui/core" "^1.6.0"
-    "@floating-ui/utils" "^0.2.8"
-
-"@floating-ui/react-dom@^2.1.2":
-  "integrity" "sha512-06okr5cgPzMNBy+Ycse2A6udMi4bqwW/zgBF/rwjcNqWkyr82Mcg8b0vjX8OJpZFy/FKjJmw6wV7t44kK6kW7A=="
-  "resolved" "https://registry.npmjs.org/@floating-ui/react-dom/-/react-dom-2.1.2.tgz"
-  "version" "2.1.2"
-  dependencies:
-    "@floating-ui/dom" "^1.0.0"
-
-"@floating-ui/react@^0.26.23":
-  "integrity" "sha512-2ly0pCkZIGEQUq5H8bBK0XJmc1xIK/RM3tvVzY3GBER7IOD1UgmC2Y2tjj4AuS+TC+vTE1KJv2053290jua0Sw=="
-  "resolved" "https://registry.npmjs.org/@floating-ui/react/-/react-0.26.24.tgz"
-  "version" "0.26.24"
-  dependencies:
-    "@floating-ui/react-dom" "^2.1.2"
-    "@floating-ui/utils" "^0.2.8"
-    "tabbable" "^6.0.0"
-
-"@floating-ui/utils@^0.2.8":
-  "integrity" "sha512-kym7SodPp8/wloecOpcmSnWJsK7M0E5Wg8UcFA+uO4B9s5d0ywXOEro/8HM9x0rW+TljRzul/14UYz3TleT3ig=="
-  "resolved" "https://registry.npmjs.org/@floating-ui/utils/-/utils-0.2.8.tgz"
-  "version" "0.2.8"
-
 "@gar/promisify@^1.0.1":
   "integrity" "sha512-k2Ty1JcVojjJFwrg/ThKi2ujJ7XNLYaFGNB/bWT9wGR+oSMJHMa5w+CUq6p/pVrKeNNgA7pCqEcjSnHVoqJQFw=="
   "resolved" "https://registry.npmjs.org/@gar/promisify/-/promisify-1.1.3.tgz"
@@ -4732,7 +4696,7 @@
     "@types/ms" "*"
     "@types/node" "*"
 
-"@types/lodash@^4.14.167", "@types/lodash@^4.17.5":
+"@types/lodash@^4.14.167":
   "integrity" "sha512-MBIOHVZqVqgfro1euRDWX7OO0fBVUUMrN6Pwm8LQsz8cWhEpihlvR70ENj3f40j58TNxZaWv2ndSkInykNBBJw=="
   "resolved" "https://registry.npmjs.org/@types/lodash/-/lodash-4.17.5.tgz"
   "version" "4.17.5"
@@ -4883,14 +4847,6 @@
   "version" "5.1.18"
   dependencies:
     "@types/history" "^4.7.11"
-    "@types/react" "*"
-
-"@types/react-virtualized@^9.21.21":
-  "integrity" "sha512-4l2TFLQ8BCjNDQlvH85tU6gctuZoEdgYzENQyZHpgTHU7hoLzYgPSOALMAeA58LOWua8AzC6wBivPj1lfl6JgQ=="
-  "resolved" "https://registry.npmjs.org/@types/react-virtualized/-/react-virtualized-9.21.30.tgz"
-  "version" "9.21.30"
-  dependencies:
-    "@types/prop-types" "*"
     "@types/react" "*"
 
 "@types/react@*", "@types/react@^16.8 || ^17.0 || ^18.0", "@types/react@^18.0.17", "@types/react@>=16", "@types/react@>=16.8.0":
@@ -7307,11 +7263,6 @@
   "resolved" "https://registry.npmjs.org/clsx/-/clsx-1.1.0.tgz"
   "version" "1.1.0"
 
-"clsx@^2.1.1":
-  "integrity" "sha512-eYm0QWBtUrBWZWG0d386OGAw16Z995PiOVo2B7bjWSbHedGl5e0ZWaq65kOGgUSNesEIDkB9ISbTg/JK9dhCZA=="
-  "resolved" "https://registry.npmjs.org/clsx/-/clsx-2.1.1.tgz"
-  "version" "2.1.1"
-
 "co@^4.6.0":
   "integrity" "sha1-bqa989hTrlTMuOR7+gvz+QMfsYQ= sha512-QVb0dM5HvG+uaxitm8wONl7jltx8dqhfU33DcqtOZcLSVIKSDDLDi7+0LbAKiyI8hD9u42m2YxXSkMGWThaecQ=="
   "resolved" "https://registry.npmjs.org/co/-/co-4.6.0.tgz"
@@ -8038,11 +7989,6 @@
   "version" "2.30.0"
   dependencies:
     "@babel/runtime" "^7.21.0"
-
-"date-fns@^3.6.0":
-  "integrity" "sha512-fRHTG8g/Gif+kSh50gaGEdToemgfj74aRX3swtiouboip5JDLAyDE9F11nHMIcvOaXeOC6D7SpNhi7uFyB7Uww=="
-  "resolved" "https://registry.npmjs.org/date-fns/-/date-fns-3.6.0.tgz"
-  "version" "3.6.0"
 
 "dayjs@^1.10.4", "dayjs@^1.11.13":
   "integrity" "sha512-oaMBel6gjolK862uaPQOVTA7q3TZhuSvuMQAAglQDOWYO9A91IrAOUJEyKVlqJlHE0vq5p5UXxzdPfMH/x6xNg=="
@@ -15030,16 +14976,6 @@
   dependencies:
     "prop-types" "^15.8.1"
 
-"react-datepicker@^7.4.0":
-  "integrity" "sha512-vSSok4DTZ9/Os8O4HjZLxh4SZVFU6dQvoCX6mfbNdBqMsBBdzftrvMz0Nb4UUVVbgj9o8PfX84K3/31oPrTqmg=="
-  "resolved" "https://registry.npmjs.org/react-datepicker/-/react-datepicker-7.4.0.tgz"
-  "version" "7.4.0"
-  dependencies:
-    "@floating-ui/react" "^0.26.23"
-    "clsx" "^2.1.1"
-    "date-fns" "^3.6.0"
-    "prop-types" "^15.8.1"
-
 "react-device-detect@^2.2.2":
   "integrity" "sha512-zSN1gIAztUekp5qUT/ybHwQ9fmOqVT1psxpSlTn1pe0CO+fnJHKRLOWWac5nKxOxvOpD/w84hk1I+EydrJp7SA=="
   "resolved" "https://registry.npmjs.org/react-device-detect/-/react-device-detect-2.2.2.tgz"
@@ -15076,7 +15012,7 @@
     "node-dir" "^0.1.10"
     "strip-indent" "^3.0.0"
 
-"react-dom@^0.14.8 || ^15.0.1 || ^16.0.0 || ^17.0.1", "react-dom@^0.14.8 || ^15.0.1 || ^16.0.0 || ^17.0.1 || ^18.0.0", "react-dom@^16 || ^17 || ^18", "react-dom@^16.8 || ^17.0 || ^18.0", "react-dom@^16.8.0  || >=17.0.0 || >=18.0.0", "react-dom@^16.8.0 || ^17.0.0 || ^18.0.0", "react-dom@^16.9.0 || ^17 || ^18", "react-dom@^18.0.0", "react-dom@^18.2.0", "react-dom@>= 0.14.0", "react-dom@>= 16.8.0 < 19", "react-dom@>= 16.8.6", "react-dom@>=0.14.0", "react-dom@>=16 || >=17 || >= 18", "react-dom@>=16.8", "react-dom@>=16.8.0", "react-dom@0.13.x || 0.14.x || ^15.0.0-0 || 15.x.x || ^16.0.0-0 || ^16.x.x || ^17.x.x || ^18.x.x":
+"react-dom@^0.14.8 || ^15.0.1 || ^16.0.0 || ^17.0.1", "react-dom@^0.14.8 || ^15.0.1 || ^16.0.0 || ^17.0.1 || ^18.0.0", "react-dom@^16 || ^17 || ^18", "react-dom@^16.8 || ^17.0 || ^18.0", "react-dom@^16.8.0  || >=17.0.0 || >=18.0.0", "react-dom@^16.8.0 || ^17.0.0 || ^18.0.0", "react-dom@^18.0.0", "react-dom@^18.2.0", "react-dom@>= 0.14.0", "react-dom@>= 16.8.0 < 19", "react-dom@>= 16.8.6", "react-dom@>=0.14.0", "react-dom@>=16 || >=17 || >= 18", "react-dom@>=16.8", "react-dom@0.13.x || 0.14.x || ^15.0.0-0 || 15.x.x || ^16.0.0-0 || ^16.x.x || ^17.x.x || ^18.x.x":
   "integrity" "sha512-6IMTriUmvsjHUjNtEDudZfuDQUoWXVxKHhlEGSk81n4YFS+r/Kl99wXiwlVXtPBtJenozv2P+hxDsw9eA7Xo6g=="
   "resolved" "https://registry.npmjs.org/react-dom/-/react-dom-18.2.0.tgz"
   "version" "18.2.0"
@@ -15250,7 +15186,7 @@
   "resolved" "https://registry.npmjs.org/react-virtuoso/-/react-virtuoso-4.9.0.tgz"
   "version" "4.9.0"
 
-"react@^0.14.8 || ^15.0.1 || ^16.0.0 || ^17.0.1", "react@^0.14.8 || ^15.0.1 || ^16.0.0 || ^17.0.1 || ^18.0.0", "react@^16 || ^17 || ^18", "react@^16.13.1 || ^17.0.0", "react@^16.8 || ^17.0 || ^18.0", "react@^16.8.0  || >=17.0.0 || >=18.0.0", "react@^16.8.0 || ^17.0.0 || ^18.0.0", "react@^16.8.4 || ^17.0.0", "react@^16.9.0 || ^17 || ^18", "react@^16.9.0 || ^17.0.0 || ^18", "react@^17.0.2", "react@^18.0.0", "react@^18.2.0", "react@^18.3.1", "react@>= 0.14.0", "react@>= 16.8.0", "react@>= 16.8.0 < 19", "react@>= 16.8.6", "react@>=0.13", "react@>=0.14.0", "react@>=16", "react@>=16 || >=17 || >= 18", "react@>=16.13.1", "react@>=16.8", "react@>=16.8.0", "react@0.13.x || 0.14.x || ^15.0.0-0 || 15.x.x || ^16.0.0-0 || ^16.x.x || ^17.x.x || ^18.x.x":
+"react@^0.14.8 || ^15.0.1 || ^16.0.0 || ^17.0.1", "react@^0.14.8 || ^15.0.1 || ^16.0.0 || ^17.0.1 || ^18.0.0", "react@^16 || ^17 || ^18", "react@^16.13.1 || ^17.0.0", "react@^16.8 || ^17.0 || ^18.0", "react@^16.8.0  || >=17.0.0 || >=18.0.0", "react@^16.8.0 || ^17.0.0 || ^18.0.0", "react@^16.8.4 || ^17.0.0", "react@^16.9.0 || ^17.0.0 || ^18", "react@^17.0.2", "react@^18.0.0", "react@^18.2.0", "react@^18.3.1", "react@>= 0.14.0", "react@>= 16.8.0", "react@>= 16.8.0 < 19", "react@>= 16.8.6", "react@>=0.13", "react@>=0.14.0", "react@>=16", "react@>=16 || >=17 || >= 18", "react@>=16.13.1", "react@>=16.8", "react@>=16.8.0", "react@0.13.x || 0.14.x || ^15.0.0-0 || 15.x.x || ^16.0.0-0 || ^16.x.x || ^17.x.x || ^18.x.x":
   "integrity" "sha512-wS+hAgJShR0KhEvPJArfuPVN1+Hz1t0Y6n5jLrGQbkb4urgPE/0Rve+1kMB1v/oWgHgm4WIcV+i7F2pTVj+2iQ=="
   "resolved" "https://registry.npmjs.org/react/-/react-18.3.1.tgz"
   "version" "18.3.1"
@@ -17128,11 +17064,6 @@
   dependencies:
     "@pkgr/core" "^0.1.0"
     "tslib" "^2.6.2"
-
-"tabbable@^6.0.0":
-  "integrity" "sha512-Cat63mxsVJlzYvN51JmVXIgNoUokrIaT2zLclCXjRd8boZ0004U4KCs/sToJ75C6sdlByWxpYnb5Boif1VSFew=="
-  "resolved" "https://registry.npmjs.org/tabbable/-/tabbable-6.2.0.tgz"
-  "version" "6.2.0"
 
 "table@^6.8.0":
   "integrity" "sha512-s/fitrbVeEyHKFa7mFdkuQMWlH1Wgw/yEXMt5xACT4ZpzWFluehAxRtUUQKPuWhaLAWhFcVx6w3oC8VKaUfPGA=="
