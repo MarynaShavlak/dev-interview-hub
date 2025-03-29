@@ -5,7 +5,7 @@ export default function registerServiceWorker() {
     //     return;
     // }
 
-    if (process.env.NODE_ENV !== 'developpment') {
+    if (process.env.NODE_ENV !== 'development') {
         return;
     }
     // Check if the serviceWorker Object exists in the navigator object ( means if browser supports SW )
