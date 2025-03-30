@@ -18624,7 +18624,7 @@
   "resolved" "https://registry.npmjs.org/workbox-core/-/workbox-core-7.3.0.tgz"
   "version" "7.3.0"
 
-"workbox-expiration@7.3.0":
+"workbox-expiration@^7.3.0", "workbox-expiration@7.3.0":
   "integrity" "sha512-lpnSSLp2BM+K6bgFCWc5bS1LR5pAwDWbcKt1iL87/eTSJRdLdAwGQznZE+1czLgn/X05YChsrEegTNxjM067vQ=="
   "resolved" "https://registry.npmjs.org/workbox-expiration/-/workbox-expiration-7.3.0.tgz"
   "version" "7.3.0"

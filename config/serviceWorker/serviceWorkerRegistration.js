@@ -1,31 +1,87 @@
+// export default function registerServiceWorker() {
+//     // if ( 'production' !== process.env.NODE_ENV ) {
+//     //     return;
+//     // }
+//
+//     if (process.env.mode !== 'production') {
+//         return;
+//     }
+//     // Check if the serviceWorker Object exists in the navigator object ( means if browser supports SW )
+//     if ('serviceWorker' in navigator) {
+//         const wb = new Workbox('./sw.js');
+//
+//         wb.addEventListener('installed', (event) => {
+//             /**
+//              * We have the condition - event.isUpdate because we don't want to show
+//              * this message on the very first service worker installation,
+//              * only on the updated
+//              */
+//             if (event.isUpdate) {
+//                 if (
+//                     confirm(`New app update is available!. Click OK to refresh`)
+//                 ) {
+//                     window.location.reload();
+//                 }
+//             }
+//         });
+//         wb.register();
+//     }
+// }
 import { Workbox } from 'workbox-window';
 
 export default function registerServiceWorker() {
-    // if ( 'production' !== process.env.NODE_ENV ) {
-    //     return;
-    // }
+    console.log(
+        'Attempting to register service worker, environment:',
+        process.env.NODE_ENV,
+    );
 
-    if (process.env.mode !== 'production') {
+    // Check both NODE_ENV and mode to be safe
+    if (
+        process.env.NODE_ENV !== 'production' &&
+        process.env.mode !== 'production'
+    ) {
+        console.log('Not in production, skipping service worker registration');
         return;
     }
-    // Check if the serviceWorker Object exists in the navigator object ( means if browser supports SW )
+
+    // Check if the serviceWorker Object exists in the navigator object
     if ('serviceWorker' in navigator) {
+        console.log('Service Worker is supported by this browser');
         const wb = new Workbox('./sw.js');
 
         wb.addEventListener('installed', (event) => {
-            /**
-             * We have the condition - event.isUpdate because we don't want to show
-             * this message on the very first service worker installation,
-             * only on the updated
-             */
+            console.log(
+                'Service worker installed',
+                event.isUpdate ? '(update)' : '(first install)',
+            );
             if (event.isUpdate) {
                 if (
-                    confirm(`New app update is available!. Click OK to refresh`)
+                    confirm(`New app update is available! Click OK to refresh`)
                 ) {
                     window.location.reload();
                 }
             }
         });
-        wb.register();
+
+        wb.addEventListener('activated', () => {
+            console.log('Service worker activated');
+        });
+
+        wb.addEventListener('waiting', () => {
+            console.log('Service worker waiting');
+        });
+
+        wb.register()
+            .then((registration) => {
+                console.log(
+                    'Service Worker registered with scope:',
+                    registration.scope,
+                );
+            })
+            .catch((error) => {
+                console.error('Service Worker registration failed:', error);
+            });
+    } else {
+        console.log('Service Worker is not supported by this browser');
     }
 }
