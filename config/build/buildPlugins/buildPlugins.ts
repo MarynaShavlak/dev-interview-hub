@@ -8,6 +8,7 @@ import CopyPlugin from 'copy-webpack-plugin';
 import CircularDependencyPlugin from 'circular-dependency-plugin';
 import { InjectManifest } from 'workbox-webpack-plugin';
 import  Dotenv from 'dotenv-webpack';
+import FaviconsWebpackPlugin from 'favicons-webpack-plugin';
 import { BuildOptions } from '../types/config';
 
 
@@ -21,6 +22,19 @@ export const buildPlugins = ({
     const plugins = [
         new HtmlWebpackPlugin({
             template: paths.html,
+
+        }),
+        new FaviconsWebpackPlugin({
+            logo: 'src/shared/assets/images/logo.png',
+            mode: 'webapp',
+            devMode: 'webapp',
+            prefix: 'assets/favicons/',
+            cache: true,
+            inject: true,
+            favicons: {
+                background: '#fff',
+                theme_color: '#333',
+            }
         }),
         new webpack.ProgressPlugin(),
         new webpack.DefinePlugin({
