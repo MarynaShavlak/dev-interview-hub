@@ -56,14 +56,7 @@ export const MarkupHTMLCreator = memo((props: MarkupHTMLCreatorProps) => {
             handlePastedText={handlePastedText}
             editorState={editorState}
             toolbar={{
-                options: [
-                    'inline',
-                    'blockType',
-                    'emoji',
-                    'list',
-                    'remove',
-                    'history',
-                ],
+                options: ['inline', 'emoji', 'list', 'remove', 'history'],
                 inline: {
                     options: [
                         'bold',
@@ -74,13 +67,7 @@ export const MarkupHTMLCreator = memo((props: MarkupHTMLCreatorProps) => {
                         'subscript',
                     ],
                 },
-                blockType: {
-                    inDropdown: true,
-                    options: ['Normal', 'Blockquote', 'Code'],
-                    className: undefined,
-                    component: undefined,
-                    dropdownClassName: undefined,
-                },
+
                 list: {
                     options: ['unordered', 'ordered'],
                 },
