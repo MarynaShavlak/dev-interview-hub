@@ -98,6 +98,18 @@ In the pre-commit hooks, we check the project using linters, with the configurat
 
 ----
 
+## Service Worker
+
+The **Service Worker** is implemented to enhance performance, provide offline capabilities, and improve caching strategies.
+
+- The Service Worker file is located in [`config/serviceWorker/config-sw.js`](config/serviceWorker/config-sw.js).
+- It caches static assets, API responses, and other critical resources to improve load times and support offline functionality.
+- The implementation follows best practices, ensuring updates are handled correctly using versioning and the `skipWaiting` strategy.
+- The registration logic is managed in [`config/serviceWorker/serviceWorkerRegistration.js`](config/serviceWorker/serviceWorkerRegistration.js).
+
+For debugging or testing, the Service Worker can be manually unregistered using the browser's developer tools.
+
+----
 ## Working with Data
 
 Data interactions are handled using the **Redux Toolkit**.
