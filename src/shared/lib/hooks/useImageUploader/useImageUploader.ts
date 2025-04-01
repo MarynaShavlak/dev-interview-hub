@@ -32,6 +32,11 @@ export const useImageUploader = ({
     const [fileTypeError, setFileTypeError] = useState<string | null>(null);
     const [avatarSrc, setAvatarSrc] = useState<string>(initialAvatar || '');
     const errorMessage = t('Некоректний тип файлу');
+    // useEffect(() => {
+    //     if (initialAvatar) {
+    //         setAvatarSrc(initialAvatar);
+    //     }
+    // }, [initialAvatar]);
 
     useEffect(() => {
         let previewUrl: string | null = null;
@@ -42,6 +47,10 @@ export const useImageUploader = ({
             setAvatarSrc(previewUrl);
             onFileUpload?.(selectedImage);
         }
+        // else if (initialAvatar) {
+        //     // When no image is selected but initialAvatar exists
+        //     setAvatarSrc(initialAvatar);
+        // }
 
         return () => {
             if (previewUrl) {
@@ -78,6 +87,7 @@ export const useImageUploader = ({
         },
         [errorMessage, resetImage],
     );
+    console.log('in hook', avatarSrc);
 
     return {
         avatarSrc,

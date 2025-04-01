@@ -26,7 +26,8 @@ export const ArticleEditorPageContent = memo(
             resetImage,
         } = heroImage;
         const { blocks, isLoading } = metadata;
-
+        console.log('avatarSrc', avatarSrc);
+        console.log('previews', preview);
         if (isLoading) {
             return <ContentSkeleton />;
         }

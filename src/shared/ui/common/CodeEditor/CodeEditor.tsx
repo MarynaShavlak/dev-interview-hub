@@ -30,7 +30,8 @@ export type Language =
     | 'php'
     | 'html'
     | 'css'
-    | 'scss';
+    | 'scss'
+    | 'markdown';
 
 const LANGUAGE_VERSIONS: Record<Language, string> = {
     javascript: '18.15.0',
@@ -42,6 +43,7 @@ const LANGUAGE_VERSIONS: Record<Language, string> = {
     html: '5.0.0',
     css: '3.0.0',
     scss: '1.62.1',
+    markdown: '6.0.0',
 };
 
 export const CodeEditor = memo((props: CodeEditorProps) => {

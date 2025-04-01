@@ -36,7 +36,7 @@ export const AddHeroFormRedesigned = memo((props: AddHeroFormProps) => {
                                     fallback={
                                         <Skeleton
                                             width="100%"
-                                            height={420}
+                                            height={300}
                                             border="16px"
                                         />
                                     }
