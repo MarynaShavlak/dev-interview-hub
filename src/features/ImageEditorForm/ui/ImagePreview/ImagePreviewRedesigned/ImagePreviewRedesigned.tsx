@@ -17,7 +17,7 @@ export const ImagePreviewRedesigned = (props: ImagePreviewProps) => {
         title,
         className,
     } = props;
-
+    console.log('imagePreview', imagePreview);
     const previewWrapClass = imagePreview ? cls.previewWrap : '';
 
     return (

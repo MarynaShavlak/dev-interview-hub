@@ -8,8 +8,7 @@ import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { AdminTabsNavigation } from '../AdminTabsNavigation/AdminTabsNavigation';
 import { ADMIN_TAB_KEY } from '@/shared/const/localstorage';
 import { useLocalStorage } from '@/shared/lib/hooks/useLocalStorage/useLocalStorage';
-
-type AdminTabType = 'charts' | 'table';
+import { AdminTabType } from '../../model/types/adminTabTypes';
 
 export const AdminPanelPageContent = () => {
     const [activeTab, setActiveTab] = useLocalStorage<AdminTabType>(

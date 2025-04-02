@@ -72,7 +72,7 @@ export const useArticleEditor = (): UseArticleEditorReturn => {
     const isEditArticlePage = Boolean(id);
 
     const initialAvatar = isEditArticlePage ? article?.img : '';
-    console.log('initialAvatar', initialAvatar);
+    // console.log('initialAvatar', initialAvatar);
     const {
         formData,
         uploadedArticleImage,
@@ -112,7 +112,7 @@ export const useArticleEditor = (): UseArticleEditorReturn => {
             onFileUpload,
             deleteFromStorage,
         });
-    console.log('__avatarSrc ', avatarSrc);
+    // console.log('__avatarSrc ', avatarSrc);
     const onClearArticle = useCallback(() => {
         onResetArticle();
         blockOperations.clearBlocks();

@@ -23,6 +23,7 @@ export const ImageEditorFormRedesigned = memo((props: ImageEditorFormProps) => {
         handleImageChange,
         imageTypeError,
     } = props;
+    console.log('preview inImageEditorForm', preview);
     const { t } = useTranslation('articleDetails');
     const validConfig = useInputValidationConfig();
     const { blockTitleRequiredErrors } = useFormValidation(
