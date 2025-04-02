@@ -20,10 +20,6 @@ export const SequenceViewCard = memo((props: BaseCardProps) => {
         hStack: true,
         align: 'center',
     });
-    // console.group();
-    // console.log('img', article.img, article.user.id);
-    //
-    // console.groupEnd();
 
     return (
         <Card

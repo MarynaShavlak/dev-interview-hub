@@ -1,4 +1,5 @@
 import React, { memo } from 'react';
+import { QuestionsQueue } from '@/widgets/QuestionsQueue';
 import { UserArticlesTable } from '@/widgets/UserArticlesTable';
 import { deleteArticleWithRelationsThunk } from '@/widgets/ArticleManagement';
 import { searchClient } from '@/shared/config/firebase/searchClient';
@@ -39,7 +40,7 @@ export const MyArticlesPageContent = memo(() => {
             {activeTab === 'ready' ? (
                 <UserArticlesTable onDeleteArticle={handleDeleteArticle} />
             ) : (
-                <div>333333333333</div>
+                <QuestionsQueue />
             )}
         </VStack>
     );
