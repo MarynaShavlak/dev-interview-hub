@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React, { memo, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Input } from '@/shared/ui/redesigned/Input';
 import { Button } from '@/shared/ui/redesigned/Button';
@@ -12,6 +12,7 @@ import { useInputValidationConfig } from '@/shared/lib/hooks/validationHooks/use
 
 import { ArticleMetaFormProps } from '../ArticleMetaForm';
 import { useArticleMetaForm } from '../../../lib/hooks/useArticleMetaForm/useArticleMetaForm';
+import { ARTICLE_TO_CREATE_TITLE } from '@/shared/const/localstorage';
 
 export const ArticleMetaFormRedesigned = memo((props: ArticleMetaFormProps) => {
     const { titleIndex, subtitleIndex, errors } = props;
@@ -33,6 +34,28 @@ export const ArticleMetaFormRedesigned = memo((props: ArticleMetaFormProps) => {
         onChangeSubtitleLink,
     } = form;
 
+    const [initialTitle, setInitialTitle] = useState<string>(
+        () => sessionStorage.getItem(ARTICLE_TO_CREATE_TITLE) || '',
+    );
+
+    // useEffect(() => {
+    //     sessionStorage.setItem(ARTICLE_TO_CREATE_TITLE, initialTitle);
+    // }, [initialTitle]);
+
+    useEffect(() => {
+        const storedTitle = sessionStorage.getItem(ARTICLE_TO_CREATE_TITLE);
+        if (storedTitle) {
+            sessionStorage.removeItem(ARTICLE_TO_CREATE_TITLE);
+        }
+    }, []);
+    //
+    // // Update on change (if needed)
+    // useEffect(() => {
+    //     if (initialTitle) {
+    //         sessionStorage.setItem(ARTICLE_TO_CREATE_TITLE, initialTitle);
+    //     }
+    // }, [initialTitle]);
+
     if (!formData) {
         return null;
     }
@@ -40,13 +63,14 @@ export const ArticleMetaFormRedesigned = memo((props: ArticleMetaFormProps) => {
         title,
         subtitle: { text, link },
     } = formData;
+
     return (
         <VStack gap="24">
             <HStack gap="16" align="start" max>
                 <OrderCard index={titleIndex} />
 
                 <Input
-                    value={title || ''}
+                    value={title || initialTitle || ''}
                     label={t('Заголовок статті')}
                     labelBold
                     gap="16"

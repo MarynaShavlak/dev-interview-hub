@@ -5,7 +5,7 @@ import { QuestionCardDeprecated } from './QuestionCardDeprecated/QuestionCardDep
 
 export interface QuestionCardProps {
     target?: HTMLAttributeAnchorTarget;
-    handleEditClick: () => void;
+    handleEditClick: (title: string) => void;
     handleDeleteClick: () => void;
     index: number;
     text: string;

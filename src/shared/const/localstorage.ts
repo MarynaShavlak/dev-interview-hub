@@ -6,3 +6,4 @@ export const ARTICLE_LIST_ITEM_LOCALSTORAGE_IDX = 'articles_list';
 export const VIEWS_STORAGE_KEY = 'article_views';
 export const ADMIN_TAB_KEY = 'adminActiveTab';
 export const MY_ARTICLES_TAB_KEY = 'myArticlesActiveTab';
+export const ARTICLE_TO_CREATE_TITLE = 'newArticleTitle';

@@ -4,21 +4,20 @@ import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch
 
 import { VStack } from '@/shared/ui/common/Stack';
 
-import { getFlexClasses } from '@/shared/lib/classes/getFlexClasses/getFlexClasses';
 import { QuestionCard } from './QuestionCard/QuestionCard';
+import { ARTICLE_TO_CREATE_TITLE } from '@/shared/const/localstorage';
 
 export const QuestionsQueue = memo(() => {
     const dispatch = useAppDispatch();
+
     const { t } = useTranslation('articles');
-    const additionalClasses = getFlexClasses({
-        hStack: true,
-        align: 'center',
-    });
+
     const handleDeleteClick = () => {
         console.log('deleteClick');
     };
-    const handleEditClick = () => {
-        console.log('editClick');
+    const handleEditClick = (title: string) => {
+        console.log('editClick', title);
+        sessionStorage.setItem(ARTICLE_TO_CREATE_TITLE, title);
     };
 
     return (
@@ -26,6 +25,12 @@ export const QuestionsQueue = memo(() => {
             <QuestionCard
                 text="5555555555555"
                 index={1}
+                handleDeleteClick={handleDeleteClick}
+                handleEditClick={handleEditClick}
+            />
+            <QuestionCard
+                text="6666666666666"
+                index={2}
                 handleDeleteClick={handleDeleteClick}
                 handleEditClick={handleEditClick}
             />

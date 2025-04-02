@@ -13,6 +13,7 @@ import { QuestionCardProps } from '../QuestionCard';
 import { Icon } from '@/shared/ui/deprecated/Icon';
 import DeleteIcon from '@/shared/assets/icons/delete.svg';
 import { Button, ButtonTheme } from '@/shared/ui/deprecated/Button';
+import { ArticleCreateNavigationButton } from '@/features/ArticleCreateNavigationButton';
 
 export const QuestionCardDeprecated = memo((props: QuestionCardProps) => {
     const { text, handleEditClick, handleDeleteClick, target, index } = props;
@@ -35,12 +36,7 @@ export const QuestionCardDeprecated = memo((props: QuestionCardProps) => {
                 </HStack>
 
                 <HStack justify="center" gap="8">
-                    {/* <Icon */}
-                    {/*    Svg={EditIcon} */}
-                    {/*    width={18} */}
-                    {/*    clickable */}
-                    {/*    onClick={handleEditClick} */}
-                    {/* /> */}
+                    <ArticleCreateNavigationButton />
                     <Button
                         className={classNames('', {}, additionalClasses)}
                         theme={ButtonTheme.CLEAR}

@@ -12,7 +12,7 @@ import { OrderCard } from '@/shared/ui/redesigned/OrderCard';
 import { QuestionCardProps } from '../QuestionCard';
 import { Icon } from '@/shared/ui/redesigned/Icon';
 import DeleteIcon from '@/shared/assets/icons/delete.svg';
-import EditIcon from '@/shared/assets/icons/edit.svg';
+import { ArticleCreateNavigationButton } from '@/features/ArticleCreateNavigationButton';
 
 export const QuestionCardRedesigned = memo((props: QuestionCardProps) => {
     const { text, handleEditClick, handleDeleteClick, target, index } = props;
@@ -36,11 +36,8 @@ export const QuestionCardRedesigned = memo((props: QuestionCardProps) => {
                 </HStack>
 
                 <HStack justify="center" gap="8">
-                    <Icon
-                        Svg={EditIcon}
-                        width={18}
-                        clickable
-                        onClick={handleEditClick}
+                    <ArticleCreateNavigationButton
+                        onClick={() => handleEditClick(text)}
                     />
                     <Icon
                         Svg={DeleteIcon}

@@ -36,6 +36,10 @@ export const createArticleSlice = buildSlice({
             state.form = data as Article;
             state.hasChanges = true;
         },
+        updateTitle(state, action) {
+            state.form.title = action.payload;
+            state.hasChanges = true;
+        },
         updateSubtitleLink(state, action) {
             state.form.subtitle.link = action.payload;
             state.hasChanges = true;

@@ -14,17 +14,19 @@ import cls from './ArticleCreateNavigationButton.module.scss';
 
 interface ArticleCreateNavigationButtonProps {
     max?: boolean;
+    onClick?: () => void;
 }
 
 export const ArticleCreateNavigationButton = memo(
-    ({ max = false }: ArticleCreateNavigationButtonProps) => {
+    ({ max = false, onClick }: ArticleCreateNavigationButtonProps) => {
         const { t } = useTranslation('articles');
 
         const navigate = useNavigate();
 
         const onCreateArticle = useCallback(() => {
+            onClick?.();
             navigate(getRouteArticleCreate());
-        }, [navigate]);
+        }, [navigate, onClick]);
         const buttonText = t('Створити статтю');
 
         return (
