@@ -1,6 +1,7 @@
 import React, { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
+import { AddNewArticleButton } from '@/shared/ui/common/AddNewArticleButton';
 import { HStack } from '@/shared/ui/common/Stack';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
 
@@ -13,7 +14,6 @@ import { QuestionCardProps } from '../QuestionCard';
 import { Icon } from '@/shared/ui/deprecated/Icon';
 import DeleteIcon from '@/shared/assets/icons/delete.svg';
 import { Button, ButtonTheme } from '@/shared/ui/deprecated/Button';
-import { ArticleCreateNavigationButton } from '@/features/ArticleCreateNavigationButton';
 
 export const QuestionCardDeprecated = memo((props: QuestionCardProps) => {
     const { text, handleEditClick, handleDeleteClick, target, index } = props;
@@ -36,7 +36,7 @@ export const QuestionCardDeprecated = memo((props: QuestionCardProps) => {
                 </HStack>
 
                 <HStack justify="center" gap="8">
-                    <ArticleCreateNavigationButton />
+                    <AddNewArticleButton />
                     <Button
                         className={classNames('', {}, additionalClasses)}
                         theme={ButtonTheme.CLEAR}

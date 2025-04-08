@@ -4,10 +4,10 @@ import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch
 
 import { VStack } from '@/shared/ui/common/Stack';
 
-import { QuestionCard } from './QuestionCard/QuestionCard';
 import { ARTICLE_TO_CREATE_TITLE } from '@/shared/const/localstorage';
+import { QuestionCard } from '../QuestionCard/QuestionCard';
 
-export const QuestionsQueue = memo(() => {
+export const QuestionsList = memo(() => {
     const dispatch = useAppDispatch();
 
     const { t } = useTranslation('articles');

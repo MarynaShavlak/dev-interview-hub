@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { AddNewArticleButton } from '@/shared/ui/common/AddNewArticleButton';
 import {
     DynamicModuleLoader,
     ReducersList,
@@ -12,7 +13,6 @@ import { ArticlesAlgoliaSearch } from '../../ArticlesAlgoliaSearch/ArticlesAlgol
 import { ViewSelectorContainer } from '../../ViewSelectorContainer/ViewSelectorContainer';
 import { VStack } from '@/shared/ui/common/Stack';
 import { FiltersContainer } from '../../FiltersContainer/FiltersContainer';
-import { ArticleCreateNavigationButton } from '@/features/ArticleCreateNavigationButton';
 import { ArticlesPageContent } from '../../ArticlesPageContent/ArticlesPageContent';
 import { useArticlesPageInit } from '../../../lib/hooks/useArticlesPageInit/useArticlesPageInit';
 import { ArticlePageGreeting } from '@/features/ArticlePageGreeting';
@@ -37,7 +37,7 @@ export const ArticlesPageRedesigned = () => {
                         right={
                             <VStack gap="24">
                                 <FiltersContainer />
-                                <ArticleCreateNavigationButton max />
+                                <AddNewArticleButton max />
                             </VStack>
                         }
                         content={<ArticlesPageContent />}

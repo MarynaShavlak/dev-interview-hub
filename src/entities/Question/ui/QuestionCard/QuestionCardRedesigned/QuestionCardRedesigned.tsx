@@ -1,6 +1,7 @@
 import React, { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
+import { AddNewArticleButton } from '@/shared/ui/common/AddNewArticleButton';
 import { HStack } from '@/shared/ui/common/Stack';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
 
@@ -12,7 +13,6 @@ import { OrderCard } from '@/shared/ui/redesigned/OrderCard';
 import { QuestionCardProps } from '../QuestionCard';
 import { Icon } from '@/shared/ui/redesigned/Icon';
 import DeleteIcon from '@/shared/assets/icons/delete.svg';
-import { ArticleCreateNavigationButton } from '@/features/ArticleCreateNavigationButton';
 
 export const QuestionCardRedesigned = memo((props: QuestionCardProps) => {
     const { text, handleEditClick, handleDeleteClick, target, index } = props;
@@ -36,7 +36,7 @@ export const QuestionCardRedesigned = memo((props: QuestionCardProps) => {
                 </HStack>
 
                 <HStack justify="center" gap="8">
-                    <ArticleCreateNavigationButton
+                    <AddNewArticleButton
                         onClick={() => handleEditClick(text)}
                     />
                     <Icon

@@ -1,6 +1,7 @@
 import React, { memo } from 'react';
 
 import { useTranslation } from 'react-i18next';
+import { AddNewArticleButton } from '@/shared/ui/common/AddNewArticleButton';
 import { ConfirmDeleteModal } from '@/shared/ui/common/ConfirmDeleteModal';
 import { Box } from '@/shared/ui/common/Box';
 import cls from './UserArticlesTable.module.scss';
@@ -20,7 +21,6 @@ import { Each } from '@/shared/lib/components/Each/Each';
 import { TableActionBar } from '../TableActionBar/TableActionBar';
 import { useUserArticlesTableConfig } from '../../lib/hooks/useUserArticlesTableConfig/useUserArticlesTableConfig';
 import { toggleFeatures } from '@/shared/lib/features';
-import { ArticleCreateNavigationButton } from '@/features/ArticleCreateNavigationButton';
 
 interface UserArticlesTableProps {
     onDeleteArticle: (articleId: string) => Promise<string | null>;
@@ -70,7 +70,7 @@ export const UserArticlesTable = memo(
         if (data?.length === 0) {
             return (
                 <EmptyTableState message={t('Не створено жодної статті')}>
-                    <ArticleCreateNavigationButton />
+                    <AddNewArticleButton />
                 </EmptyTableState>
             );
         }

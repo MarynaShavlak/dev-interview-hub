@@ -21,6 +21,7 @@ import { firestoreApi } from '@/shared/api/firestoreApi';
 import { AddCommentFormSchema } from '@/entities/Comment';
 import { ArticleCommentsSchema } from '@/features/ArticleComments';
 import { CreateArticleSchema } from '@/pages/ArticleEditorPage';
+import { AddQuestionFormSchema } from '@/entities/Question';
 
 export interface StateSchema {
     user: UserSchema;
@@ -33,6 +34,7 @@ export interface StateSchema {
     profile?: ProfileSchema;
     // articleDetails?: ArticleDetailsSchema;
     addCommentForm?: AddCommentFormSchema;
+    addQuestionForm?: AddQuestionFormSchema;
     articlesPage?: ArticlesPageSchema;
     // articleDetailsPage?: ArticleDetailsPageSchema;7
     articleComments?: ArticleCommentsSchema;

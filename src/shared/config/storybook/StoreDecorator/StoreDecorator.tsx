@@ -6,6 +6,7 @@ import { profileReducer } from '@/features/EditableProfileCard/testing';
 import { ReducersList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { articlesPageReducer } from '@/pages/ArticlesPage/testing';
 import { createArticleReducer } from '@/pages/ArticleEditorPage/testing';
+import { addQuestionFormReducer } from '@/entities/Question/testing';
 
 /**
  * The `StoreDecorator` function is a Storybook decorator that wraps components in a Redux store
@@ -31,6 +32,7 @@ const defaultAsyncReducers: ReducersList = {
     profile: profileReducer,
     // articleDetails: articleDetailsReducer,
     addCommentForm: addCommentFormReducer,
+    addQuestionForm: addQuestionFormReducer,
     articlesPage: articlesPageReducer,
     createArticle: createArticleReducer,
 };

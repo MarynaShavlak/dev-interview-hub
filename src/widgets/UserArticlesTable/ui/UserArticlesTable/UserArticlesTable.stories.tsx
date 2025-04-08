@@ -1,12 +1,12 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import React from 'react';
+import { AddNewArticleButton } from '@/shared/ui/common/AddNewArticleButton';
 import { UserArticlesTable } from './UserArticlesTable';
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 import { UserRole } from '@/entities/User';
 import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator/NewDesignDecorator';
 import { LoadingTableSkeleton } from '../LoadingTableSkeleton/LoadingTableSkeleton';
 import { EmptyTableState } from '@/features/Table';
-import { ArticleCreateNavigationButton } from '@/features/ArticleCreateNavigationButton';
 
 export default {
     title: 'widgets/UserArticlesTable',
@@ -57,7 +57,7 @@ export const EmptyState = Template.bind({});
 EmptyState.decorators = [
     () => (
         <EmptyTableState message="Не створено жодної статті">
-            <ArticleCreateNavigationButton />
+            <AddNewArticleButton />
         </EmptyTableState>
     ),
 ];
@@ -66,7 +66,7 @@ export const EmptyStateRedesigned = Template.bind({});
 EmptyStateRedesigned.decorators = [
     () => (
         <EmptyTableState message="Не створено жодної статті">
-            <ArticleCreateNavigationButton />
+            <AddNewArticleButton />
         </EmptyTableState>
     ),
 ];

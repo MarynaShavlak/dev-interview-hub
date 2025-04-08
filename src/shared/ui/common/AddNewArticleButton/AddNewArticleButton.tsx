@@ -4,20 +4,20 @@ import { useNavigate } from 'react-router-dom';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
 // import { useArticleDetailsData } from '@/entities/Article';
 import { getRouteArticleCreate } from '@/shared/const/router/router';
-import { Button } from '@/shared/ui/redesigned/Button';
+import { Button } from '../../redesigned/Button';
 import {
     Button as ButtonDeprecated,
     ButtonTheme,
-} from '@/shared/ui/deprecated/Button';
+} from '../../deprecated/Button';
 
-import cls from './ArticleCreateNavigationButton.module.scss';
+import cls from './AddNewArticleButton.module.scss';
 
 interface ArticleCreateNavigationButtonProps {
     max?: boolean;
     onClick?: () => void;
 }
 
-export const ArticleCreateNavigationButton = memo(
+export const AddNewArticleButton = memo(
     ({ max = false, onClick }: ArticleCreateNavigationButtonProps) => {
         const { t } = useTranslation('articles');
 

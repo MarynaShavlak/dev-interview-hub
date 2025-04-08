@@ -20,5 +20,7 @@
     "JavaScript": "JavaScript",
     "React": "React",
   "Читати": "Read",
-  "Створити статтю": "Add article"
+  "Створити статтю": "Add article",
+  "Введіть текст питання": "Enter question text",
+    "Додати": "Add"
 }
