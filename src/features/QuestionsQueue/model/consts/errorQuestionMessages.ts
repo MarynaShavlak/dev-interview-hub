@@ -3,7 +3,7 @@ export const ERROR_QUESTION_MESSAGES = {
     // ARTICLE_DETAILS_MISSING: 'Article details are missing.',
     USER_NOT_FOUND: 'User not found.',
     QUESTION_ADD_API_FAIL: 'No data received from API.',
-    // COMMENT_ID_REQUIRED: 'Comment ID is required.',
+    QUESTION_ID_REQUIRED: 'Question ID is required.',
     QUESTION_RETRIEVAL_FAIL: 'Failed to retrieve created question.',
     QUESTION_TEXT_REQUIRED: 'Question text cannot be empty.',
     QUESTIONS_BY_USER_ID_FETCH_FAIL: (userId: string) =>
@@ -14,6 +14,6 @@ export const ERROR_QUESTION_MESSAGES = {
     QUESTIONS_SNAPSHOT_FAIL: 'Error in questions snapshot.',
     // DELETE_COMMENTS_BY_ARTICLE_ID_FAIL: (articleId: string) =>
     //     `Failed to delete comments for article with ID "${articleId}".`,
-    // DELETE_ERROR: 'Something went wrong when deleting comment.',
+    DELETE_ERROR: 'Something went wrong when deleting question.',
     USER_AUTH_MISSING: 'User authentication data is missing.',
 };

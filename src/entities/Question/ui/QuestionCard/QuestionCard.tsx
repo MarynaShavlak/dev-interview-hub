@@ -2,13 +2,14 @@ import { HTMLAttributeAnchorTarget, memo } from 'react';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
 import { QuestionCardRedesigned } from './QuestionCardRedesigned/QuestionCardRedesigned';
 import { QuestionCardDeprecated } from './QuestionCardDeprecated/QuestionCardDeprecated';
+import { Question } from '../../model/types/question';
 
 export interface QuestionCardProps {
     target?: HTMLAttributeAnchorTarget;
     handleEditClick: (title: string) => void;
-    handleDeleteClick: () => void;
+    deleteQuestion: (questionId: string) => Promise<any>;
     index: number;
-    text: string;
+    question: Question;
 }
 
 export const QuestionCard = memo((props: QuestionCardProps) => {

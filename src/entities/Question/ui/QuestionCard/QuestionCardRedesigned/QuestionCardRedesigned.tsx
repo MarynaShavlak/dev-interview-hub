@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React, { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { AddNewArticleButton } from '@/shared/ui/common/AddNewArticleButton';
@@ -15,12 +15,17 @@ import { Icon } from '@/shared/ui/redesigned/Icon';
 import DeleteIcon from '@/shared/assets/icons/delete.svg';
 
 export const QuestionCardRedesigned = memo((props: QuestionCardProps) => {
-    const { text, handleEditClick, handleDeleteClick, target, index } = props;
+    const { question, handleEditClick, deleteQuestion, target, index } = props;
     const { t } = useTranslation('articles');
     const additionalClasses = getFlexClasses({
         hStack: true,
         align: 'center',
     });
+    const { text, id } = question;
+
+    const handleDeleteClick = useCallback(() => {
+        deleteQuestion(id);
+    }, [deleteQuestion, id]);
 
     return (
         <Card

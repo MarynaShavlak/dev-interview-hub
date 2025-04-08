@@ -19,7 +19,7 @@ interface QuestionsListProps {
     questions?: Question[];
     isLoading?: boolean;
     error?: string;
-    deleteQuestion?: (questionId: string) => Promise<any>;
+    deleteQuestion: (questionId: string) => Promise<any>;
 }
 
 export const QuestionsList = memo((props: QuestionsListProps) => {
@@ -45,16 +45,16 @@ export const QuestionsList = memo((props: QuestionsListProps) => {
     }
 
     return (
-        <VStack gap="24" max>
+        <VStack gap="24" max align="center">
             {questions?.length ? (
                 <Each
                     of={questions}
                     render={(item, index) => (
                         <QuestionCard
                             key={item.id}
-                            text={item.text}
+                            question={item}
                             index={index + 1}
-                            handleDeleteClick={handleDeleteClick}
+                            deleteQuestion={deleteQuestion}
                             handleEditClick={handleEditClick}
                         />
                     )}

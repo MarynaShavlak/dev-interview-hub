@@ -1,6 +1,7 @@
 import { firestoreApi } from '@/shared/api/firestoreApi';
 
 import {
+    deleteDocFromFirestore,
     executeQuery,
     handleFirestoreSubscription,
 } from '@/shared/lib/firestore';
@@ -58,6 +59,15 @@ export const questionsQueueFirebaseApi = firestoreApi
                     );
                 },
             }),
+            deleteQuestion: build.mutation<string, string>({
+                invalidatesTags: ['QuestionsQueue'],
+                async queryFn(questionId) {
+                    return executeQuery(
+                        () => deleteDocFromFirestore('questions', questionId),
+                        ERROR_QUESTION_MESSAGES.DELETE_ERROR,
+                    );
+                },
+            }),
         }),
     });
 
@@ -66,3 +76,6 @@ export const addQuestionMutation =
 
 export const useQuestionsByUser =
     questionsQueueFirebaseApi.useGetQuestionsByUserQuery;
+
+export const deleteQuestionMutation =
+    questionsQueueFirebaseApi.endpoints.deleteQuestion.initiate;
