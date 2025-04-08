@@ -22,5 +22,6 @@
   "Читати": "Read",
   "Створити статтю": "Add article",
   "Введіть текст питання": "Enter question text",
-    "Додати": "Add"
+    "Додати": "Add",
+    "Доданих питань у черзі немає": "There are no questions in queue"
 }
