@@ -23,5 +23,10 @@
   "Створити статтю": "Add article",
   "Введіть текст питання": "Enter question text",
     "Додати": "Add",
-    "Доданих питань у черзі немає": "There are no questions in queue"
+    "Доданих питань у черзі немає": "There are no questions in queue",
+  "Не вдалося завантажити питання": {
+    " Спробуйте ще раз пізніше": {
+      "": "Failed to load questions. Try again later."
+    }
+  }
 }

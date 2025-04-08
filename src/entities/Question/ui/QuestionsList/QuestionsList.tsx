@@ -11,6 +11,8 @@ import { Each } from '@/shared/lib/components/Each/Each';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
 import { Text } from '@/shared/ui/redesigned/Text';
 import { Text as TextDeprecated } from '@/shared/ui/deprecated/Text';
+import { QuestionsListError } from './QuestionsListError/QuestionsListError';
+import { QuestionsListSkeleton } from './QuestionCardSkeleton/QuestionsListSkeleton';
 
 interface QuestionsListProps {
     className?: string;
@@ -35,12 +37,12 @@ export const QuestionsList = memo((props: QuestionsListProps) => {
         sessionStorage.setItem(ARTICLE_TO_CREATE_TITLE, title);
     };
 
-    // if (isLoading) {
-    //     return <QuestionListSkeleton className={className} />;
-    // }
-    // if (error) {
-    //     return <QuestionListError className={className} />;
-    // }
+    if (isLoading) {
+        return <QuestionsListSkeleton />;
+    }
+    if (error) {
+        return <QuestionsListError className={className} />;
+    }
 
     return (
         <VStack gap="24" max>

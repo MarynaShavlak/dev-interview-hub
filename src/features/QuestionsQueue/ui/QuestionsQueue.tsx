@@ -27,7 +27,20 @@ export const QuestionsQueue = memo(() => {
     return (
         <VStack gap="16" max>
             <AddQuestionForm onAddQuestion={onAddQuestion} />
-            <QuestionsList questions={questions} />
+
+            {error ? (
+                <QuestionsList
+                    isLoading={false}
+                    questions={undefined}
+                    error={error as string}
+                />
+            ) : (
+                <QuestionsList
+                    questions={questions}
+                    isLoading={isLoading}
+                    error={error as string}
+                />
+            )}
         </VStack>
     );
 });
