@@ -105,7 +105,9 @@ export const Input = memo((props: InputProps) => {
             <div className={cls.addonRight}>{addonRight}</div>
         </div>
     );
-
+    console.log('maxlengthinsi', maxLengthIndicator);
+    console.log('errors', errors);
+    console.log('currentInputLength', currentInputLength);
     if (label) {
         return (
             <VStack max={maxWidth} gap={gap}>
@@ -113,6 +115,36 @@ export const Input = memo((props: InputProps) => {
                 {maxLengthIndicator && (
                     <HStack max justify="between">
                         <Text text={label} bold={labelBold} />
+                        <span
+                            className={classNames(
+                                cls.InputLimit,
+                                { [cls.isLimitExceeded]: isLimitExceeded },
+                                [],
+                            )}
+                        >
+                            <span>{currentInputLength}</span>/
+                            <span>{maxInputLength}</span>
+                        </span>
+                    </HStack>
+                )}
+                {input}
+                {errors && (
+                    <ValidationErrorMessages
+                        isDirty={isDirty}
+                        value={value}
+                        validations={validations}
+                        errors={errors}
+                    />
+                )}{' '}
+            </VStack>
+        );
+    }
+
+    if (!label && maxLengthIndicator) {
+        return (
+            <VStack max={maxWidth} gap={gap} justify="end">
+                {maxLengthIndicator && (
+                    <HStack max justify="end">
                         <span
                             className={classNames(
                                 cls.InputLimit,
