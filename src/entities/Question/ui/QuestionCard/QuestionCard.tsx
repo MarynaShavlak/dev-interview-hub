@@ -6,7 +6,7 @@ import { Question } from '../../model/types/question';
 
 export interface QuestionCardProps {
     target?: HTMLAttributeAnchorTarget;
-    createArticle: (title: string) => void;
+    createArticle: (updatedQuestion: Question) => Promise<any>;
     deleteQuestion: (questionId: string) => Promise<any>;
     updateQuestion: (updatedQuestion: Question) => Promise<any>;
     index: number;

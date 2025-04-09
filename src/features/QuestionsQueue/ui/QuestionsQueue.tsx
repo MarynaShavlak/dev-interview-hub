@@ -9,6 +9,7 @@ import { useUserAuthData } from '@/entities/User';
 
 import { deleteQuestionThunk } from '../model/services/deleteQuestionThunk/deleteQuestionThunk';
 import { updateQuestionThunk } from '../model/services/updateQuestionThunk/updateQuestionThunk';
+import { ARTICLE_TO_CREATE_TITLE } from '@/shared/const/localstorage';
 
 export const QuestionsQueue = memo(() => {
     const dispatch = useAppDispatch();
@@ -53,6 +54,17 @@ export const QuestionsQueue = memo(() => {
         }
     };
 
+    const createArticleFromQuestion = useCallback(
+        async (question: Question) => {
+            sessionStorage.setItem(ARTICLE_TO_CREATE_TITLE, question.text);
+            console.log('create article with title', question.text);
+            const deletedQuestionId = await dispatch(
+                deleteQuestionThunk(question.id),
+            ).unwrap();
+        },
+        [dispatch],
+    );
+
     return (
         <VStack gap="16" max>
             <AddQuestionForm onAddQuestion={onAddQuestion} />
@@ -64,6 +76,7 @@ export const QuestionsQueue = memo(() => {
                     error={error as string}
                     deleteQuestion={handleDeleteQuestion}
                     updateQuestion={handleUpdateQuestion}
+                    createArticle={createArticleFromQuestion}
                 />
             ) : (
                 <QuestionsList
@@ -72,6 +85,7 @@ export const QuestionsQueue = memo(() => {
                     error={error as string}
                     deleteQuestion={handleDeleteQuestion}
                     updateQuestion={handleUpdateQuestion}
+                    createArticle={createArticleFromQuestion}
                 />
             )}
         </VStack>

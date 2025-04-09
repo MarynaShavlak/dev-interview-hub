@@ -5,7 +5,7 @@ interface UseQuestionCardProps {
     question: Question;
     deleteQuestion: (id: string) => void;
     updateQuestion: (question: Question) => Promise<void>;
-    createArticle: (text: string) => void;
+    createArticle: (question: Question) => Promise<void>;
 }
 
 export const useQuestionCard = (props: UseQuestionCardProps) => {
@@ -33,9 +33,9 @@ export const useQuestionCard = (props: UseQuestionCardProps) => {
         [updateQuestion],
     );
 
-    const handleCreateArticle = useCallback(() => {
-        createArticle(text);
-    }, [createArticle, text]);
+    const handleCreateArticle = useCallback(async () => {
+        await createArticle(question);
+    }, [createArticle, question]);
 
     return {
         isEditing,
