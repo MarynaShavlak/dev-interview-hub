@@ -25,6 +25,7 @@ export const AddQuestionFormDeprecated = memo((props: AddQuestionFormProps) => {
     return (
         <HStack
             justify="between"
+            gap="16"
             max
             data-testid="AddQuestionForm"
             className={classNames(cls.AddQuestionForm, {}, [className])}
@@ -43,6 +44,7 @@ export const AddQuestionFormDeprecated = memo((props: AddQuestionFormProps) => {
                 theme={ButtonTheme.OUTLINE}
                 onClick={onSendHandler}
                 data-testid="AddQuestionForm.Button"
+                disabled={!text || hasInputErrors}
             >
                 {t('Додати')}
             </Button>
