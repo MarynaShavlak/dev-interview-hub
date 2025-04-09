@@ -1,6 +1,6 @@
 import React, { memo, useCallback } from 'react';
 
-import { QuestionsList, AddQuestionForm } from '@/entities/Question';
+import { QuestionsList, AddQuestionForm, Question } from '@/entities/Question';
 import { VStack } from '@/shared/ui/common/Stack';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { addQuestionThunk } from '../model/services/addQuestionThunk/addQuestionThunk';
@@ -8,6 +8,7 @@ import { useQuestionsByUser } from '../api/questionsQueueApi';
 import { useUserAuthData } from '@/entities/User';
 
 import { deleteQuestionThunk } from '../model/services/deleteQuestionThunk/deleteQuestionThunk';
+import { updateQuestionThunk } from '../model/services/updateQuestionThunk/updateQuestionThunk';
 
 export const QuestionsQueue = memo(() => {
     const dispatch = useAppDispatch();
@@ -39,6 +40,19 @@ export const QuestionsQueue = memo(() => {
         }
     };
 
+    const handleUpdateQuestion = async (question: Question) => {
+        try {
+            const updatedQuestion = await dispatch(
+                updateQuestionThunk(question),
+            ).unwrap();
+
+            return updatedQuestion;
+        } catch (error) {
+            console.error('Error updating question:', error);
+            return null;
+        }
+    };
+
     return (
         <VStack gap="16" max>
             <AddQuestionForm onAddQuestion={onAddQuestion} />
@@ -49,6 +63,7 @@ export const QuestionsQueue = memo(() => {
                     questions={undefined}
                     error={error as string}
                     deleteQuestion={handleDeleteQuestion}
+                    updateQuestion={handleUpdateQuestion}
                 />
             ) : (
                 <QuestionsList
@@ -56,6 +71,7 @@ export const QuestionsQueue = memo(() => {
                     isLoading={isLoading}
                     error={error as string}
                     deleteQuestion={handleDeleteQuestion}
+                    updateQuestion={handleUpdateQuestion}
                 />
             )}
         </VStack>

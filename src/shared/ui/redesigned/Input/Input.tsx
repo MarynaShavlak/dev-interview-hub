@@ -105,9 +105,9 @@ export const Input = memo((props: InputProps) => {
             <div className={cls.addonRight}>{addonRight}</div>
         </div>
     );
-    console.log('maxlengthinsi', maxLengthIndicator);
-    console.log('errors', errors);
-    console.log('currentInputLength', currentInputLength);
+    // console.log('maxlengthinsi', maxLengthIndicator);
+    // console.log('errors', errors);
+    // console.log('currentInputLength', currentInputLength);
     if (label) {
         return (
             <VStack max={maxWidth} gap={gap}>

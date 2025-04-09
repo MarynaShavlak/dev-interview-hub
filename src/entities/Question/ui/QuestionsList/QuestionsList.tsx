@@ -20,11 +20,19 @@ interface QuestionsListProps {
     isLoading?: boolean;
     error?: string;
     deleteQuestion: (questionId: string) => Promise<any>;
+    updateQuestion: (updatedQuestion: Question) => Promise<any>;
 }
 
 export const QuestionsList = memo((props: QuestionsListProps) => {
     const dispatch = useAppDispatch();
-    const { deleteQuestion, error, isLoading, questions, className } = props;
+    const {
+        deleteQuestion,
+        updateQuestion,
+        error,
+        isLoading,
+        questions,
+        className,
+    } = props;
 
     const { t } = useTranslation('articles');
     const noCommentsMessage = t('Доданих питань у черзі немає');
@@ -32,7 +40,7 @@ export const QuestionsList = memo((props: QuestionsListProps) => {
     const handleDeleteClick = () => {
         console.log('deleteClick');
     };
-    const handleEditClick = (title: string) => {
+    const createArticleFromQuestion = (title: string) => {
         console.log('editClick', title);
         sessionStorage.setItem(ARTICLE_TO_CREATE_TITLE, title);
     };
@@ -55,7 +63,8 @@ export const QuestionsList = memo((props: QuestionsListProps) => {
                             question={item}
                             index={index + 1}
                             deleteQuestion={deleteQuestion}
-                            handleEditClick={handleEditClick}
+                            updateQuestion={updateQuestion}
+                            createArticle={createArticleFromQuestion}
                         />
                     )}
                 />

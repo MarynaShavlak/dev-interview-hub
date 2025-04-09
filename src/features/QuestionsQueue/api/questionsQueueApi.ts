@@ -13,6 +13,7 @@ import {
 import { Question } from '@/entities/Question';
 import { fetchQuestionsForUser } from '../lib/utilities/fetchQuestionsForUser/fetchQuestionsForUser';
 import { subscribeToQuestions } from '../lib/utilities/subscribeToQuestions/subscribeToQuestions';
+import { updateQuestionInFirestore } from '../lib/utilities/updateQuestionInFirestore/updateQuestionInFirestore';
 
 export const questionsQueueFirebaseApi = firestoreApi
     .enhanceEndpoints({ addTagTypes: ['QuestionsQueue'] })
@@ -68,6 +69,20 @@ export const questionsQueueFirebaseApi = firestoreApi
                     );
                 },
             }),
+            updateQuestion: build.mutation<
+                Question,
+                { questionId: string; updates: Partial<Question> }
+            >({
+                async queryFn({ questionId, updates }) {
+                    return executeQuery(
+                        async () =>
+                            updateQuestionInFirestore(questionId, updates),
+                        ERROR_QUESTION_MESSAGES.UPDATE_QUESTION_ERROR(
+                            questionId,
+                        ),
+                    );
+                },
+            }),
         }),
     });
 
@@ -79,3 +94,6 @@ export const useQuestionsByUser =
 
 export const deleteQuestionMutation =
     questionsQueueFirebaseApi.endpoints.deleteQuestion.initiate;
+
+export const updateQuestionMutation =
+    questionsQueueFirebaseApi.endpoints.updateQuestion.initiate;

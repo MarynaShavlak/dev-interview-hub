@@ -16,4 +16,10 @@ export const ERROR_QUESTION_MESSAGES = {
     //     `Failed to delete comments for article with ID "${articleId}".`,
     DELETE_ERROR: 'Something went wrong when deleting question.',
     USER_AUTH_MISSING: 'User authentication data is missing.',
+    UPDATE_QUESTION_ERROR: (questionId: string) =>
+        `Error updating question with id "${questionId}".`,
+    UPDATED_DATA_RETRIEVAL_ERROR: (questionId: string) =>
+        `Failed to retrieve updated data for question with id  ${questionId}`,
+    QUESTION_NOT_FOUND: (questionId: string) =>
+        `Question with id "${questionId}" not found.`,
 };
