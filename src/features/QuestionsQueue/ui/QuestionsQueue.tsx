@@ -57,7 +57,7 @@ export const QuestionsQueue = memo(() => {
     const createArticleFromQuestion = useCallback(
         async (question: Question) => {
             sessionStorage.setItem(ARTICLE_TO_CREATE_TITLE, question.text);
-            console.log('create article with title', question.text);
+
             const deletedQuestionId = await dispatch(
                 deleteQuestionThunk(question.id),
             ).unwrap();
