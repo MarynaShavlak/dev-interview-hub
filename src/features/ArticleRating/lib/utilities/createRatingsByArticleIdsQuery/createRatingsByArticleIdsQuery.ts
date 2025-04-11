@@ -1,4 +1,4 @@
-import { Query, query, where } from 'firebase/firestore';
+import { Query, query } from 'firebase/firestore';
 import { dataPoint } from '@/shared/lib/firestore/firestore';
 
 import { ArticleRatingType } from '../../../model/types/articleRatingType';
@@ -12,5 +12,6 @@ export const createRatingsByArticleIdsQuery = (
 
     const ratingsCollection = dataPoint<ArticleRatingType>('ratings');
 
-    return query(ratingsCollection, where('articleId', 'in', articleIds));
+    // return query(ratingsCollection, where('articleId', 'in', articleIds));
+    return query(ratingsCollection);
 };
