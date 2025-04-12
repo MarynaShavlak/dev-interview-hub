@@ -67,7 +67,8 @@ export const processArticles = (data: StatisticsData, articles?: Article[]) => {
     };
 
     articles.forEach((article) => {
-        data.activeUsersList.inArticles.add(article.user.id);
+        // data.activeUsersList.inArticles.add(article.user.id);
+        data.activeUsersList.inArticles.add(article.user.email);
         totalViews += article.views;
         updateCategoryData(article);
         yearsList.add(getYearFromDate(formatDateString(article.createdAt)));

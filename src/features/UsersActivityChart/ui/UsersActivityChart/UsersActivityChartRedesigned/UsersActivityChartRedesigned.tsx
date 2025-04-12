@@ -9,6 +9,8 @@ export const UsersActivityChartRedesigned = memo(
     (props: UsersActivityChartProps) => {
         const { t } = useTranslation('admin');
         const { activeUsersList, totalUsers, className, width, height } = props;
+        console.log('activeUsersList', activeUsersList);
+        console.log('totalUsers', totalUsers);
         const activeUsersData = useActiveUsersChartData(
             activeUsersList,
             totalUsers,
@@ -19,7 +21,7 @@ export const UsersActivityChartRedesigned = memo(
             `${t('Коментатори статей')}`,
             `${t('Оцінка статей')}`,
         ];
-
+        console.log('activeUsersData', activeUsersData);
         return (
             <Card className={className}>
                 <RadialbarChart
