@@ -32,6 +32,7 @@ export const Tabs = memo((props: TabsProps) => {
 
     const handleMultiSelect = useCallback(
         (tab: TabItem) => {
+            console.log('tab', tab);
             let newValue = [];
             if (Array.isArray(value)) {
                 if (value.includes(tab.value)) {
@@ -42,6 +43,7 @@ export const Tabs = memo((props: TabsProps) => {
             } else {
                 newValue = [tab.value];
             }
+            console.log('newValue', newValue);
             return newValue.join(',');
         },
         [value],

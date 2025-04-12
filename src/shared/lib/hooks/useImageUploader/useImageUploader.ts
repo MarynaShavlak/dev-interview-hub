@@ -87,7 +87,6 @@ export const useImageUploader = ({
         },
         [errorMessage, resetImage],
     );
-    console.log('in hook', avatarSrc);
 
     return {
         avatarSrc,

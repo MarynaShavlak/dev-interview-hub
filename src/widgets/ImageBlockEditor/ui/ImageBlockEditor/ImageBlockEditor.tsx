@@ -17,7 +17,7 @@ export interface ImageBlockEditorProps {
 export const ImageBlockEditor = (props: ImageBlockEditorProps) => {
     const { block, addBlockInArticle, deleteBlockFromArticle, onEditBlock } =
         props;
-    console.log('block', block);
+
     const initialTitle = block.title || '';
     const initialAvatar = block.src || '';
     const isEditArticlePage = Boolean(initialTitle && initialAvatar);

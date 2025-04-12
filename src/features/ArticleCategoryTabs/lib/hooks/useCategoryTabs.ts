@@ -39,5 +39,18 @@ export const useCategoryTabs = () => {
             value: ArticleCategory.TYPESCRIPT,
             label: t('TypeScript'),
         },
+
+        {
+            value: ArticleCategory.ACCESSIBILITY,
+            label: t('Accessibility'),
+        },
+        {
+            value: ArticleCategory.SEO,
+            label: 'SEO',
+        },
+        {
+            value: ArticleCategory.GIT,
+            label: 'Git',
+        },
     ] as TabItem[];
 };

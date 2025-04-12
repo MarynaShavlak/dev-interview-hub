@@ -21,6 +21,9 @@ export enum ArticleCategory {
     REACT = 'React',
     JAVASCRIPT = 'JavaScript',
     TYPESCRIPT = 'TypeScript',
+    GIT = 'Git',
+    SEO = 'SEO',
+    ACCESSIBILITY = 'Accessibility',
 }
 
 export enum ArticleView {

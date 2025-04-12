@@ -9,19 +9,18 @@ export const UsersActivityChartRedesigned = memo(
     (props: UsersActivityChartProps) => {
         const { t } = useTranslation('admin');
         const { activeUsersList, totalUsers, className, width, height } = props;
-        console.log('activeUsersList', activeUsersList);
-        console.log('totalUsers', totalUsers);
+
         const activeUsersData = useActiveUsersChartData(
             activeUsersList,
             totalUsers,
         );
-        console.log('__', activeUsersList, totalUsers);
+
         const activeUserLabels = [
             `${t('Автори статей')}`,
             `${t('Коментатори статей')}`,
             `${t('Оцінка статей')}`,
         ];
-        console.log('activeUsersData', activeUsersData);
+
         return (
             <Card className={className}>
                 <RadialbarChart
