@@ -5,7 +5,7 @@ import { Code as CodeDeprecated } from '@/shared/ui/deprecated/Code';
 import cls from './ArticleCodeBlockComponent.module.scss';
 import { ArticleCodeBlock } from '../../model/types/article';
 import { Text } from '@/shared/ui/redesigned/Text';
-import { Text as TextDeprecated } from '@/shared/ui/deprecated/Text';
+import { Text as TextDeprecated, TextAlign } from '@/shared/ui/deprecated/Text';
 import { VStack } from '@/shared/ui/common/Stack';
 
 interface ArticleCodeBlockComponentProps {
@@ -22,11 +22,20 @@ export const ArticleCodeBlockComponent = memo(
                 {block.title && (
                     <ToggleFeaturesComponent
                         feature="isAppRedesigned"
-                        on={<Text text={block.title} bold />}
+                        on={
+                            <Text
+                                text={block.title}
+                                bold
+                                withTags
+                                align="center"
+                            />
+                        }
                         off={
                             <TextDeprecated
                                 text={block.title}
                                 className={cls.title}
+                                withTags
+                                align={TextAlign.CENTER}
                             />
                         }
                     />

@@ -16,6 +16,7 @@ export const useAppToolbar = () => {
         [AppRoutes.ADMIN_PANEL]: <ScrollToolbar />,
         [AppRoutes.ARTICLE_CREATE]: <ScrollToolbar />,
         [AppRoutes.ARTICLE_EDIT]: <ScrollToolbar />,
+        [AppRoutes.MY_ARTICLES]: <ScrollToolbar />,
     };
 
     return toolbarByAppRoute[appRoute];
