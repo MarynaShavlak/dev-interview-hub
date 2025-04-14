@@ -24,6 +24,7 @@ export enum ArticleCategory {
     GIT = 'Git',
     SEO = 'SEO',
     ACCESSIBILITY = 'Accessibility',
+    PERFORMANCE = 'Performance',
 }
 
 export enum ArticleView {

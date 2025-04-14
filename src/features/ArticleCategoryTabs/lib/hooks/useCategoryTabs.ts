@@ -52,5 +52,9 @@ export const useCategoryTabs = () => {
             value: ArticleCategory.GIT,
             label: 'Git',
         },
+        {
+            value: ArticleCategory.PERFORMANCE,
+            label: 'Performance',
+        },
     ] as TabItem[];
 };
