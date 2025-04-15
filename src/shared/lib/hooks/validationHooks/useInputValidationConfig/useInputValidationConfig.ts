@@ -35,8 +35,8 @@ export const useInputValidationConfig = (): InputErrorValidation => {
             // maxLength: 8,
         },
         subtitleText: {
-            isEmpty: true,
-            minLength: 2,
+            // isEmpty: true,
+            // minLength: 2,
             maxLength: 150,
             // minLength: 2,
             // maxLength: 70,
