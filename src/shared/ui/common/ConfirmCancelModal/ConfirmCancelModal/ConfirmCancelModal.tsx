@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import { Modal } from '../../../Modal';
+import { Modal } from '../../Modal';
 
 import { ConfirmCancelContentAsync as ConfirmCancelContent } from '../ConfirmCancelContent/ConfirmCancelContent.async';
 

@@ -1,11 +1,11 @@
 import React, { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import DeleteIcon from '@/shared/assets/icons/delete.svg';
-import { Icon } from '../../../../../redesigned/Icon';
-import { Text } from '../../../../../redesigned/Text';
-import { HStack, VStack } from '../../../../Stack';
+import { Icon } from '../../../../redesigned/Icon';
+import { Text } from '../../../../redesigned/Text';
+import { HStack, VStack } from '../../../Stack';
 import cls from './ConfirmDeleteContentRedesigned.module.scss';
-import { Button } from '../../../../../redesigned/Button';
+import { Button } from '../../../../redesigned/Button';
 import { ConfirmDeleteContentProps } from '../ConfirmDeleteContent';
 
 export const ConfirmDeleteContentRedesigned = memo(

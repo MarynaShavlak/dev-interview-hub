@@ -1,1 +1,1 @@
-export { ConfirmCancelModal } from '@/shared/ui/common/ConfirmCancelModal/ui/ConfirmCancelModal/ConfirmCancelModal';
+export { ConfirmCancelModal } from './ConfirmCancelModal/ConfirmCancelModal';

@@ -2,8 +2,8 @@ import { lazy, Suspense } from 'react';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
 
 import { ConfirmDeleteModalProps } from './ConfirmDeleteModal';
-import { Skeleton } from '../../../../redesigned/Skeleton';
-import { Skeleton as SkeletonDeprecated } from '../../../../deprecated/Skeleton';
+import { Skeleton } from '../../../redesigned/Skeleton';
+import { Skeleton as SkeletonDeprecated } from '../../../deprecated/Skeleton';
 
 export const ConfirmDeleteModalLazy = lazy(
     () => import('./ConfirmDeleteModal'),

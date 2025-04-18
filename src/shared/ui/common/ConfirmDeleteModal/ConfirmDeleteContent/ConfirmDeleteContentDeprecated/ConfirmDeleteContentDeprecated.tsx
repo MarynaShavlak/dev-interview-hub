@@ -1,11 +1,11 @@
 import React, { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import DeleteIcon from '@/shared/assets/icons/delete.svg';
-import { Icon } from '../../../../../deprecated/Icon';
-import { Text, TextAlign, TextSize } from '../../../../../deprecated/Text';
-import { HStack, VStack } from '../../../../Stack';
+import { Icon } from '../../../../deprecated/Icon';
+import { Text, TextAlign, TextSize } from '../../../../deprecated/Text';
+import { HStack, VStack } from '../../../Stack';
 import cls from './ConfirmDeleteContentDeprecated.module.scss';
-import { Button, ButtonTheme } from '../../../../../deprecated/Button';
+import { Button, ButtonTheme } from '../../../../deprecated/Button';
 import { ConfirmDeleteContentProps } from '../ConfirmDeleteContent';
 
 export const ConfirmDeleteContentDeprecated = memo(

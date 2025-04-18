@@ -1,11 +1,11 @@
 import { lazy, Suspense } from 'react';
-import { ConfirmDeleteContentProps } from './ConfirmDeleteContent';
+import { ConfirmCancelContentProps } from './ConfirmCancelContent';
 
-import { Skeleton } from '../../../../redesigned/Skeleton';
+import { Skeleton } from '../../../redesigned/Skeleton';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
-import { Loader } from '../../../../deprecated/Loader';
+import { Loader } from '../../../deprecated/Loader';
 
-const ConfirmDeleteContentLazy = lazy(() => import('./ConfirmDeleteContent'));
+const ConfirmDeleteContentLazy = lazy(() => import('./ConfirmCancelContent'));
 
 const fallback = (
     <ToggleFeaturesComponent
@@ -14,7 +14,7 @@ const fallback = (
         off={<Loader />}
     />
 );
-export const ConfirmDeleteContentAsync = (props: ConfirmDeleteContentProps) => {
+export const ConfirmCancelContentAsync = (props: ConfirmCancelContentProps) => {
     return (
         <Suspense fallback={fallback}>
             <ConfirmDeleteContentLazy {...props} />

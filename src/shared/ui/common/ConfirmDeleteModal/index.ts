@@ -1,1 +1,1 @@
-export { ConfirmDeleteModalAsync as ConfirmDeleteModal } from './ui/ConfirmDeleteModal/ConfirmDeleteModal.async';
+export { ConfirmDeleteModalAsync as ConfirmDeleteModal } from './ConfirmDeleteModal/ConfirmDeleteModal.async';
