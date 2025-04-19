@@ -14,7 +14,6 @@ const ImageModalContent = memo((props: ImageModalContentProps) => {
     const { src, title } = props;
     return (
         <VStack gap="4" align="center" className={cls.imgModalContent}>
-            <img src={src} alt={title} className={cls.img} />
             <ToggleFeaturesComponent
                 feature="isAppRedesigned"
                 on={<Text text={title} align="center" bold withTags />}
@@ -26,6 +25,7 @@ const ImageModalContent = memo((props: ImageModalContentProps) => {
                     />
                 }
             />
+            <img src={src} alt={title} className={cls.img} />
         </VStack>
     );
 });
