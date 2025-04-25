@@ -92,7 +92,7 @@ export const useSidebarItems = () => {
                 authOnly: true,
             },
             {
-                path: 'https://marynashavlak.github.io/multi-step-form-jquery/',
+                path: 'https://marynashavlak.github.io/jt-types-conversations-quiz/',
                 Icon: toggleFeatures({
                     name: 'isAppRedesigned',
                     off: () => QuizIcon,
