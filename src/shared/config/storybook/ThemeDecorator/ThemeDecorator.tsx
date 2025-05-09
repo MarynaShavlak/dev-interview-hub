@@ -1,6 +1,6 @@
 import { Story } from '@storybook/react';
-// eslint-disable-next-line ms-production-project-plugin/layer-imports
-// eslint-disable-next-line ms-production-project-plugin/layer-imports
+// eslint-disable-next-line path-supervisor/layer-imports
+// eslint-disable-next-line path-supervisor/layer-imports
 import { ThemeProvider } from '@/app/providers/ThemeProvider';
 import { Theme } from '@/shared/const/theme';
 

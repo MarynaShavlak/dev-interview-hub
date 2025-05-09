@@ -1,6 +1,6 @@
 import { ReactElement } from 'react';
 import { RouteProps } from 'react-router-dom';
-// eslint-disable-next-line ms-production-project-plugin/layer-imports
+// eslint-disable-next-line path-supervisor/layer-imports
 import { UserRole } from '@/entities/User';
 
 export type AppRoutesProps = RouteProps & {

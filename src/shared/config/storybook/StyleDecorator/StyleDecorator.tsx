@@ -1,6 +1,6 @@
 import React from 'react';
 import { Story } from '@storybook/react';
-// eslint-disable-next-line ms-production-project-plugin/layer-imports
+// eslint-disable-next-line path-supervisor/layer-imports
 import '@/app/styles/main.scss';
 
 // /**

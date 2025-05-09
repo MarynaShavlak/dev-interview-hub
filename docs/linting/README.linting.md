@@ -2,7 +2,7 @@
 
 The project uses **ESLint** for checking TypeScript code and **Stylelint** for style files.
 
-Additionally, to strictly enforce core architectural principles, a custom ESLint plugin, <a href="https://www.npmjs.com/package/eslint-plugin-ms-production-project-plugin" target="_blank">ms-production-project-plugin</a>, is used. This plugin includes three key rules:
+Additionally, to strictly enforce core architectural principles, a custom ESLint plugin, <a href="https://www.npmjs.com/package/eslint-plugin-path-supervisor" target="_blank">path-supervisor</a>, is used. This plugin includes three key rules:
 1. **path-checker**: Prohibits the use of absolute imports within the same module._**Includes auto-fix functionality**_.
 2. **layer-imports**: Ensures proper layer usage according to the FSD architecture (e.g., widgets cannot be used in features or entities).
 3. **public-api-imports**: Allows imports from other modules only through their public API. _**Includes auto-fix functionality**_.
