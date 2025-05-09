@@ -9031,10 +9031,10 @@ eslint-plugin-storybook@^0.6.7:
     requireindex "^1.1.0"
     ts-dedent "^2.2.0"
 
-eslint-plugin-toggle-features-rule-plugin@^0.0.6:
-  version "0.0.6"
-  resolved "https://registry.npmjs.org/eslint-plugin-toggle-features-rule-plugin/-/eslint-plugin-toggle-features-rule-plugin-0.0.6.tgz"
-  integrity sha512-IDFsrn3VLOtFACn2dFC2TTeBebCftTzzn29CrXTFEXb4LDUlqWu/3ktfNJ89F+K4+lLS4JWOEpiJtbgEm6SS9w==
+eslint-plugin-toggle-features@^0.0.9:
+  version "0.0.9"
+  resolved "https://registry.npmjs.org/eslint-plugin-toggle-features/-/eslint-plugin-toggle-features-0.0.9.tgz"
+  integrity sha512-hRlU2VE3WuCJHohtGR+d47yem/2pMTFQaqpjPyLxxgkWJvxnoAGk/ypn3Maio83FBOJr++Xzw/WkFl7W5ZBePQ==
   dependencies:
     requireindex "^1.2.0"
 

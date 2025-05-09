@@ -1,7 +1,7 @@
-import { memo } from 'react';
+import React, { memo } from 'react';
 import { ArticleDetailsRedesigned } from './ArticleDetailsRedesigned/ArticleDetailsRedesigned';
-import { ToggleFeaturesComponent } from '@/shared/lib/features';
 import { ArticleDetailsDeprecated } from './ArticleDetailsDeprecated/ArticleDetailsDeprecated';
+import { ToggleFeaturesComponent } from '@/shared/lib/features';
 
 export interface ArticleDetailsProps {
     id?: string;
@@ -9,6 +9,7 @@ export interface ArticleDetailsProps {
 
 export const ArticleDetails = memo((props: ArticleDetailsProps) => {
     const { id } = props;
+
     return (
         <ToggleFeaturesComponent
             feature="isAppRedesigned"

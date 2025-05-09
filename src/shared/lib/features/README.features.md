@@ -1,7 +1,7 @@
 # Working with Feature Flags
 
 The use of feature flags is only allowed through the `toggleFeatures` helper or `ToggleFeaturesComponent` component.
-To ensure that feature flags are consistently and correctly implemented, a custom ESLint plugin  <a href="https://www.npmjs.com/package/eslint-plugin-toggle-features-rule-plugin" target="_blank">eslint-plugin-toggle-features-rule-plugin</a> has been developed.
+To ensure that feature flags are consistently and correctly implemented, a custom ESLint plugin  <a href="https://www.npmjs.com/package/eslint-plugin-toggle-features" target="_blank">eslint-plugin-toggle-features</a> has been developed.
 This plugin enforces specific rules that simplify feature flag management and ensure compatibility with automatic feature flag removal scripts.
 
 ## [toggleFeatures](./lib/toggleFeatures/README.md)  Helper
@@ -21,7 +21,7 @@ The `ToggleFeaturesComponent` is a React component designed to toggle between tw
 - `on`: The React element to render when the feature is enabled.
 - `off`: The React element to render when the feature is disabled.
 
-## Custom ESLint Plugin: `eslint-plugin-toggle-features-rule-plugin`
+## Custom ESLint Plugin: `eslint-plugin-toggle-features`
 
 This project includes a custom ESLint plugin with two key rules that enforce proper feature flag usage and support automated feature flag removal:
 

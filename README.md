@@ -128,7 +128,7 @@ Feature flags are managed through the `toggleFeatures` helper or `ToggleFeatures
 - [toggleFeatures](./src/shared/lib/features/lib/toggleFeatures/README.md) helper allows you to conditionally execute logic based on feature flags.
 - [ToggleFeaturesComponent](./src/shared/lib/features/components/ToggleFeaturesComponent/README.md) toggles UI elements based on feature flags.
 
-A custom ESLint plugin, <a href="https://www.npmjs.com/package/eslint-plugin-toggle-features-rule-plugin" target="_blank">eslint-plugin-toggle-features-rule-plugin</a>, is used to enforce:
+A custom ESLint plugin, <a href="https://www.npmjs.com/package/eslint-plugin-toggle-features" target="_blank">eslint-plugin-toggle-features</a>, is used to enforce:
 - **`one-line-arrow-function`**:Ensures concise arrow functions for feature logic.
 - **`component-jsx-props`**: Enforces that only JSX elements are used in feature flag props `on` and `off`.
 
