@@ -23,7 +23,7 @@ module.exports = {
         '@typescript-eslint',
         'i18next',
         'react-hooks',
-        'ms-production-project-plugin',
+        'path-supervisor',
         'toggle-features',
         'unused-imports',
     ],
@@ -86,15 +86,15 @@ module.exports = {
         'linebreak-style': 'off',
         'react/no-array-index-key': 'off',
         'arrow-body-style': 'off',
-        'ms-production-project-plugin/path-checker': ['error', { alias: '@' }],
-        'ms-production-project-plugin/layer-imports': [
+        'path-supervisor/path-checker': ['error', { alias: '@' }],
+        'path-supervisor/layer-imports': [
             'error',
             {
                 alias: '@',
                 ignoreImportPatterns: ['**/StoreProvider', '**/testing'],
             },
         ],
-        'ms-production-project-plugin/public-api-imports': [
+        'path-supervisor/public-api-imports': [
             'error',
             {
                 alias: '@',

@@ -8980,10 +8980,10 @@ eslint-plugin-jsx-a11y@^6.5.1:
     language-tags "^1.0.5"
     minimatch "^3.0.4"
 
-eslint-plugin-ms-production-project-plugin@^0.0.16:
-  version "0.0.16"
-  resolved "https://registry.npmjs.org/eslint-plugin-ms-production-project-plugin/-/eslint-plugin-ms-production-project-plugin-0.0.16.tgz"
-  integrity sha512-36ziiWXO+xKIQ0tNSMpfm17oNx+1FH7TzLDLZAfqZc6slFfOzrCTE/rvg5VzP9X8dhsMDVM138znBI6wYwUNyA==
+eslint-plugin-path-supervisor@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.npmjs.org/eslint-plugin-path-supervisor/-/eslint-plugin-path-supervisor-0.0.1.tgz"
+  integrity sha512-X57SXpPEvIZqgdHan7XlC8aCuDFRHjGH1ZyxCOlVz2Z9yhaE4XAnMfi8Bz+4m0+sfCLJF+bhfPSE8QFZDhtUFQ==
   dependencies:
     micromatch "^4.0.5"
     requireindex "^1.2.0"
