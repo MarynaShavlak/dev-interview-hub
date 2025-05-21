@@ -54,6 +54,15 @@ export const useFormValidation = (
         case 'signIn':
             relevantErrors = [emailErrors, passwordErrors];
             break;
+        case 'signUp':
+            relevantErrors = [
+                emailErrors,
+                passwordErrors,
+                usernameErrors,
+                firstnameErrors,
+                lastnameErrors,
+            ];
+            break;
         case 'resetPassword':
             relevantErrors = [emailErrors];
             break;
@@ -65,19 +74,12 @@ export const useFormValidation = (
                 titleErrors,
                 subtitleTextErrors,
                 subtitleLinkErrors,
-                // blockTitleErrors,
-                // blockTitleRequiredErrors,
             ];
             break;
-        default:
-            relevantErrors = [
-                emailErrors,
-                passwordErrors,
-                usernameErrors,
-                firstnameErrors,
-                lastnameErrors,
-            ];
-            break;
+        default: {
+            const exhaustiveCheck: never = mode;
+            throw new Error(`Unhandled mode case: ${exhaustiveCheck}`);
+        }
     }
 
     const hasInputErrors = relevantErrors.some((validation) =>

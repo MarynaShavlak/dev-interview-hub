@@ -18,7 +18,7 @@ export interface InputValidations {
     isUsername?: boolean;
     isUrl?: boolean;
 }
-
+type Validation = keyof InputValidations;
 const urlSchema = z.string().url();
 
 export const useInputErrors = (
@@ -44,7 +44,12 @@ export const useInputErrors = (
             isUrlError: false,
         };
 
-        Object.entries(validations).forEach(([validation, rule]) => {
+        (
+            Object.entries(validations) as [
+                Validation,
+                InputValidations[Validation],
+            ][]
+        ).forEach(([validation, rule]) => {
             switch (validation) {
                 case 'minLength':
                     if (
@@ -98,9 +103,12 @@ export const useInputErrors = (
                     }
                     break;
                 }
-                default:
-                    console.warn(`Unknown validation: ${validation}`);
-                    break;
+                default: {
+                    const exhaustiveCheck: never = validation;
+                    throw new Error(
+                        `Unhandled validation case: ${exhaustiveCheck}`,
+                    );
+                }
             }
         });
 

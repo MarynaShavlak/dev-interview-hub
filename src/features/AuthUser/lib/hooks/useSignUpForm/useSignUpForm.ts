@@ -10,6 +10,7 @@ import {
     useSignupPassword,
     useSignupUsername,
 } from '../../../model/selectors/getSignupData/getSignupData';
+import { ErrorCode } from '../useErrorText/useErrorText';
 
 /**
  * Custom hook for managing the state and behavior of a login form.
@@ -44,7 +45,7 @@ export const useSignUpForm = (
     email: string;
     password: string;
     isLoading: boolean;
-    error: string | undefined;
+    error: ErrorCode;
     onChangeUsername: (value: string) => void;
     onChangeFirstname: (value: string) => void;
     onChangeLastname: (value: string) => void;

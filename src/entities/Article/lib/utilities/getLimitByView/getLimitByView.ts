@@ -6,7 +6,11 @@ export const getLimitByView = (view: ArticleView): number => {
             return 20;
         case ArticleView.LIST:
             return 4;
-        default:
+        case ArticleView.GRID:
             return 9;
+        default: {
+            const exhaustiveCheck: never = view;
+            throw new Error(`Unhandled ArticleView case: ${exhaustiveCheck}`);
+        }
     }
 };

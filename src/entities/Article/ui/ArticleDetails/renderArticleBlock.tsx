@@ -1,4 +1,9 @@
-import { ArticleBlock } from '../../model/types/article';
+import {
+    ArticleBlock,
+    ArticleCodeBlock,
+    ArticleImageBlock,
+    ArticleTextBlock,
+} from '../../model/types/article';
 import { ArticleSection } from '../../model/consts/articleConsts';
 import { ArticleCodeBlockComponent } from '../ArticleCodeBlockComponent/ArticleCodeBlockComponent';
 import cls from './ArticleDetails.module.scss';
@@ -22,7 +27,7 @@ export const renderArticleBlock = (block: ArticleBlock) => {
             return (
                 <ArticleCodeBlockComponent
                     key={block.id}
-                    block={block}
+                    block={block as ArticleCodeBlock}
                     className={cls.block}
                 />
             );
@@ -30,7 +35,7 @@ export const renderArticleBlock = (block: ArticleBlock) => {
             return (
                 <ArticleImageBlockComponent
                     key={block.id}
-                    block={block}
+                    block={block as ArticleImageBlock}
                     className={cls.block}
                 />
             );
@@ -39,7 +44,7 @@ export const renderArticleBlock = (block: ArticleBlock) => {
                 <ArticleTextBlockComponent
                     key={block.id}
                     className={cls.block}
-                    block={block}
+                    block={block as ArticleTextBlock}
                     withTags={false}
                 />
             );

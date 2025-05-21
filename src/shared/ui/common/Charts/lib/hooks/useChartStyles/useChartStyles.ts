@@ -33,8 +33,10 @@ export const useChartStyles = () => {
                     on: () => '#1b1311',
                     off: () => '#faf4fb',
                 });
-            default:
-                return '#000000';
+            default: {
+                const exhaustiveCheck: never = theme;
+                throw new Error(`Unhandled Theme case: ${exhaustiveCheck}`);
+            }
         }
     }, [theme]);
 
@@ -58,8 +60,10 @@ export const useChartStyles = () => {
                     on: () => '#4875f0',
                     off: () => '#bd5012',
                 });
-            default:
-                return '#000000';
+            default: {
+                const exhaustiveCheck: never = theme;
+                throw new Error(`Unhandled Theme case: ${exhaustiveCheck}`);
+            }
         }
     }, [theme]);
 

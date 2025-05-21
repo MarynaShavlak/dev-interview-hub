@@ -6,6 +6,7 @@ import { ThunkConfig } from '@/app/providers/StoreProvider';
 import { FirebaseAuthErrorCode } from '../../types/firebaseAuthErrorCode';
 import { prepareUserData } from '../../../lib/utilities/prepareUserData/prepareUserData';
 import { addDocToFirestore } from '@/shared/lib/firestore/addDocToFirestore/addDocToFirestore';
+import { ErrorCode } from '../../../lib/hooks/useErrorText/useErrorText';
 
 export interface SignupCredentials {
     firstname: string;
@@ -15,20 +16,10 @@ export interface SignupCredentials {
     password: string;
 }
 
-// export const mapFirebaseUserToCustomUser = (
-//     firebaseUser: FirebaseUser,
-// ): User => {
-//     return {
-//         id: firebaseUser.uid,
-//         username: firebaseUser.email || 'Unknown',
-//         avatar: firebaseUser.photoURL || undefined,
-//     };
-// };
-
 const handleFirebaseError = (error: {
     code: FirebaseAuthErrorCode;
     message: string;
-}) => {
+}): ErrorCode => {
     switch (error.code) {
         case 'auth/email-already-in-use':
             return 'auth/email-already-in-use';
@@ -37,14 +28,14 @@ const handleFirebaseError = (error: {
         case 'auth/too-many-requests':
             return 'auth/too-many-requests';
         default:
-            return `Signup failed due to: ${error.message}`;
+            return 'auth/unknown';
     }
 };
 
 export const signupByEmailThunk = createAsyncThunk<
     User,
     SignupCredentials,
-    ThunkConfig<string>
+    ThunkConfig<ErrorCode>
 >('login/signupByEmail', async (signUpData, thunkAPI) => {
     const { extra, dispatch, rejectWithValue } = thunkAPI;
     const { setUser, setAuthData } = userActions;
@@ -80,7 +71,7 @@ export const signupByEmailThunk = createAsyncThunk<
         };
         const errorMessage = firebaseError.code
             ? handleFirebaseError(firebaseError)
-            : 'Signup failed. Please try again.';
+            : 'auth/unknown';
 
         console.error('Error during signup:', err);
         return rejectWithValue(errorMessage);

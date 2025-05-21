@@ -21,18 +21,24 @@ export function useTheme(): UseThemeResult {
 
     const toggleTheme = (saveAction?: (theme: Theme) => void) => {
         let newTheme: Theme;
-        switch (theme) {
-            case Theme.DARK:
-                newTheme = Theme.LIGHT;
-                break;
-            case Theme.LIGHT:
-                newTheme = Theme.ORANGE;
-                break;
-            case Theme.ORANGE:
-                newTheme = Theme.DARK;
-                break;
-            default:
-                newTheme = Theme.LIGHT;
+        if (theme === undefined) {
+            newTheme = Theme.LIGHT;
+        } else {
+            switch (theme) {
+                case Theme.DARK:
+                    newTheme = Theme.LIGHT;
+                    break;
+                case Theme.LIGHT:
+                    newTheme = Theme.ORANGE;
+                    break;
+                case Theme.ORANGE:
+                    newTheme = Theme.DARK;
+                    break;
+                default: {
+                    const exhaustiveCheck: never = theme;
+                    throw new Error(`Unhandled theme case: ${exhaustiveCheck}`);
+                }
+            }
         }
 
         setTheme?.(newTheme);

@@ -1,3 +1,5 @@
+import { ErrorCode } from '../../lib/hooks/useErrorText/useErrorText';
+
 export interface SignupSchema {
     firstname: string;
     lastname: string;
@@ -5,5 +7,5 @@ export interface SignupSchema {
     email: string;
     password: string;
     isLoading: boolean;
-    error?: string;
+    error?: ErrorCode;
 }

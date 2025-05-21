@@ -35,7 +35,9 @@ export const ArticleCard = memo((props: ArticleCardProps) => {
             return <GridViewCard {...commonProps} />;
         case ArticleView.SEQUENCE:
             return <SequenceViewCard {...commonProps} index={computedIndex} />;
-        default:
-            return null;
+        default: {
+            const exhaustiveCheck: never = view;
+            throw new Error(`Unhandled ArticleView case: ${exhaustiveCheck}`);
+        }
     }
 });

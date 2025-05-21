@@ -65,6 +65,42 @@ All configuration files are systematically organized within the `/config` direct
 
 For comprehensive configuration details, refer to the [Project Configuration Documentation](./config/README.configs.md).
 
+
+## Working with Typescript 
+
+1. **TypeScript Exhaustive Checks with `never` Type**
+
+   I implemented robust type safety through TypeScript's exhaustive checking pattern, which ensures complete handling of all possible enum or union type cases in switch statements. This approach prevents potential bugs that could arise from adding new enum values without updating the corresponding switch statements.
+
+   **Example Code:**
+```ts
+  switch (value) {
+     case 'option1':
+       // handle option1
+       break;
+     case 'option2':
+       // handle option2
+       break;
+     default: {
+       const exhaustiveCheck: never = value;
+       throw new Error(`Unhandled case: ${exhaustiveCheck}`);
+     }
+   }
+```
+**Project Applications:**
+- I applied this pattern consistently across various parts of the application including:
+    - Theme management (Light/Dark/Orange themes)
+    - Article view modes (Sequence/List/Grid)
+    - Authentication modes and error handling
+    - Input validation scenarios
+    - UI component rendering decisions
+
+
+
+
+
+
+
 ## Working with Translations
 
 This project employs the [i18next](https://react.i18next.com/) library for translations. 
