@@ -106,6 +106,17 @@ For comprehensive configuration details, refer to the [Project Configuration Doc
   - Type-safe selector utilities (buildSelector) that maintain type safety while supporting variable arguments
   - Testing utilities where mock objects don't require full type definitions
 
+3. Advanced Type Operators: typeof and keyof
+   I leveraged TypeScript's powerful type operators to create type-safe applications that maintain strong typing while minimizing redundant type declarations.
+   **Project Applications:**
+
+- Type-safe feature flag management system
+- Internationalization (i18n) implementation that guarantees type safety
+- Role-based authorization system with compile-time checks
+- Type-safe Redux store configuration with dynamic reducer management
+- Strongly-typed lookup tables for configuration values
+- Self-documenting API interfaces where key constraints are enforced at compile time
+- Feature toggle system that maintains type safety across the application
 
 
 ## Working with Translations
