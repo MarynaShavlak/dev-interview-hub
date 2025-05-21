@@ -68,55 +68,13 @@ For comprehensive configuration details, refer to the [Project Configuration Doc
 
 ## Working with Typescript 
 
-1. **TypeScript Exhaustive Checks with `never` Type**
+1. **Advanced TypeScript Patterns**
+   Applied exhaustive never checks, strategic any use, and advanced operators (typeof, keyof) to balance type safety with flexibility. Ensured full enum coverage in switch cases, flexible data utilities, and strongly-typed systems for themes, auth, table configs, i18n, feature flags, and Redux store management.
 
-   I implemented robust type safety through TypeScript's exhaustive checking pattern, which ensures complete handling of all possible enum or union type cases in switch statements. This approach prevents potential bugs that could arise from adding new enum values without updating the corresponding switch statements.
+2. **Generic Type Constraints & Interface Extensions**
+   Implemented reusable, type-safe utilities using generic constraints and extensible interface hierarchies to ensure data integrity, flexibility, and compile-time validation across Firestore operations, deep merge logic, UI components, Redux stores, and pagination systems.
 
-   **Example Code:**
-```ts
-  switch (value) {
-     case 'option1':
-       // handle option1
-       break;
-     case 'option2':
-       // handle option2
-       break;
-     default: {
-       const exhaustiveCheck: never = value;
-       throw new Error(`Unhandled case: ${exhaustiveCheck}`);
-     }
-   }
-```
-**Project Applications:**
-- I applied this pattern consistently across various parts of the application including:
-    - Theme management (Light/Dark/Orange themes)
-    - Article view modes (Sequence/List/Grid)
-    - Authentication modes and error handling
-    - Input validation scenarios
-    - UI component rendering decisions
 
-2. **Strategic Use of the `any` Type**
-   In my project, I deliberately employed TypeScript's any type in specific scenarios where flexibility was necessary while maintaining overall type safety throughout the codebase.
-   **Project Applications:**
-
-  - Generic type definitions with `keyof any` for flexible object keys
-  - Multi-format data processing utilities that handle various input types
-  - Component configurations for table filters and sorting functions
-  - Custom utility hooks for event handlers (useDebounce/useThrottle) with flexible parameter handling
-  - Type-safe selector utilities (buildSelector) that maintain type safety while supporting variable arguments
-  - Testing utilities where mock objects don't require full type definitions
-
-3. Advanced Type Operators: typeof and keyof
-   I leveraged TypeScript's powerful type operators to create type-safe applications that maintain strong typing while minimizing redundant type declarations.
-   **Project Applications:**
-
-- Type-safe feature flag management system
-- Internationalization (i18n) implementation that guarantees type safety
-- Role-based authorization system with compile-time checks
-- Type-safe Redux store configuration with dynamic reducer management
-- Strongly-typed lookup tables for configuration values
-- Self-documenting API interfaces where key constraints are enforced at compile time
-- Feature toggle system that maintains type safety across the application
 
 
 ## Working with Translations
