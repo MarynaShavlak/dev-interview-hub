@@ -72,10 +72,14 @@ For comprehensive configuration details, refer to the [Project Configuration Doc
    Applied exhaustive never checks, strategic any use, and advanced operators (typeof, keyof) to balance type safety with flexibility. Ensured full enum coverage in switch cases, flexible data utilities, and strongly-typed systems for themes, auth, table configs, i18n, feature flags, and Redux store management.
 
 2. **Generic Type Constraints & Interface Extensions**
-   Implemented reusable, type-safe utilities using generic constraints and extensible interface hierarchies to ensure data integrity, flexibility, and compile-time validation across Firestore operations, deep merge logic, UI components, Redux stores, and pagination systems.
+   Built reusable, type-safe utilities using generic constraints and extensible interface hierarchies to enforce data integrity and flexibility across Firestore operations, deep merges, Redux stores, pagination systems, and UI components. Leveraged generics in React components to support flexible props while maintaining strong typing and reusability.
 
 3. **Optional Chaining & Non-Null Assertions**
-Used optional chaining `(?.)` and non-null assertions `(!)` throughout the project to handle deeply nested objects and third-party configs safely and effectively. Optional chaining improved fault tolerance in areas like authentication callbacks, input validation, and data fetching. Non-null assertions ensured strict type operations during Storybook webpack config overrides and guaranteed presence of values like `config!`, `module!.rules!`, and `resolve!.alias!` when extending build logic.
+   Used optional chaining `(?.)` and non-null assertions `(!)` throughout the project to handle deeply nested objects and third-party configs safely and effectively. Optional chaining improved fault tolerance in areas like authentication callbacks, input validation, and data fetching. Non-null assertions ensured strict type operations during Storybook webpack config overrides and guaranteed presence of values like `config!`, `module!.rules!`, and `resolve!.alias!` when extending build logic.
+
+4. **Type Narrowing with Type Guards and Discriminated Unions**
+Employed precise type narrowing strategies across the codebase for robust runtime safety. 
+Used `typeof` checks to differentiate between primitives, complex objects, and Firestore timestamps. Applied `in` and `instanceof` operators in deeply recursive utility types like `DeepPartial<T> `and runtime utilities like `extractOptionValueName()`. Implemented discriminated unions in React rendering logic (e.g., article block rendering) to conditionally render components based on `block.type`, ensuring exhaustive and type-safe branching with clear fallbacks.
 
 
 ## Working with Translations
