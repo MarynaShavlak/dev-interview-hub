@@ -23,7 +23,7 @@ export const ArticleEditorPageContainer = memo(() => {
         formActions: { onSave, onClear, onCancelChanges, onDelete, onUpdate },
         blockActions,
     } = useArticleEditor();
-    // console.log('heroImage', heroImage);
+
     const { isEditArticlePage, saveError, isLoading } = metadata;
 
     if (isLoading) {

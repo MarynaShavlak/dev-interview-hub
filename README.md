@@ -251,60 +251,56 @@ For detailed architectural components and structures, refer to the following cat
 | [NoDataChart](./src/shared/ui/common/Charts/NoDataChart/NoDataChart.tsx)                                  | [TreemapChart](./src/shared/ui/common/Charts/ui/TreemapChart/TreemapChart.tsx)                            |
 
 
-
-
 ### Entities
 
-- [Article](./src/entities/Article/README.md)
-- [Comment](./src/entities/Comment/README.md)
-- [Country](./src/entities/Country/README.md)
-- [Currency](./src/entities/Currency/README.md)
-- [Notification](./src/entities/Notification/README.md)
-- [Question](./src/entities/Question/README.md)
-- [Profile](./src/entities/Profile/README.md)
-- [Rating](./src/entities/Rating/README.md)
-- [User](./src/entities/User/README.md)
+|                       |                           |                          |
+|--------------------------------|------------------------------------|-----------------------------------|
+| [Article](./src/entities/Article/README.md)     | [Notification](./src/entities/Notification/README.md) | [Rating](./src/entities/Rating/README.md)     |
+| [Comment](./src/entities/Comment/README.md)     | [Question](./src/entities/Question/README.md)         | [User](./src/entities/User/README.md)         |
+| [Country](./src/entities/Country/README.md)     | [Profile](./src/entities/Profile/README.md)           | [Currency](./src/entities/Currency/README.md) |
+
 
 ### Features
-- [ArticleCategoryTabs](src/features/ArticleCategoryTabs/ui/ArticleCategoryTabs/README.md)
-- [ArticleComments](src/features/ArticleComments/README.md)
-- [ArticleEditNavigationButton](src/features/ArticleEditNavigationButton/ui/ArticleEditNavigationButton/README.md)
-- [ArticleListNavigationButton](src/features/ArticleListNavigationButton/ui/ArticleListNavigationButton/README.md)
-- [ArticlePageGreeting](src/features/ArticlePageGreeting/ui/ArticlePageGreeting/README.md)
-- [ArticleRating](src/features/ArticleRating/ui/ArticleRating/README.md)
-- [ArticleRecommendationsList](src/features/ArticleRecommendationsList/ui/ArticleRecommendationsList/README.md)
-- [ArticleSortSelector](src/features/ArticleSortSelector/ui/ArticleSortSelector/README.md)
-- [ArticleViewSelector](src/features/ArticleViewSelector/ui/ArticleViewSelector/README.md)
-- [AuthByUsername](src/features/AuthUser/README.md)
-- [AvatarDropdown](src/features/AvatarDropdown/ui/AvatarDropdown/README.md)
-- [EditableProfileCard](src/features/EditableProfileCard/README.md)
-- [LangSwitcher](src/features/LangSwitcher/ui/LangSwitcher/README.md)
-- [NotificationButton](src/features/NotificationButton/ui/NotificationButton/README.md)
-- [ScrollToTopButton](src/features/ScrollToTopButton/ui/ScrollToTopButton/README.md)
-- [ThemeSwitcher](src/features/ThemeSwitcher/ui/ThemeSwitcher/README.md)
-- [UIDesignSwitcher](src/features/UIDesignSwitcher/ui/UiDesignSwitcher/README.md)
+
+|                                                                                                                              |                                                                                                                               |                                                                                                                                  |
+|------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------|
+| [ArticleCategoryTabs](src/features/ArticleCategoryTabs/ui/ArticleCategoryTabs/README.md)                                                 | [EditableProfileCard](src/features/EditableProfileCard/README.md)                                                                       | [DashboardStats.tsx](src/features/DashboardStats/ui/DashboardStats/DashboardStats.tsx)                                                  |
+| [ArticleComments](src/features/ArticleComments/README.md)                                                                                | [LangSwitcher](src/features/LangSwitcher/ui/LangSwitcher/README.md)                                                                     | [ArticleCategoriesCharts](src/features/ArticleCategoriesCharts/ui/ArticleCategoriesCharts/ArticleCategoriesCharts.tsx)                   |
+| [ArticleEditNavigationButton](src/features/ArticleEditNavigationButton/ui/ArticleEditNavigationButton/README.md)                        | [NotificationButton](src/features/NotificationButton/ui/NotificationButton/README.md)                                                   | [ArticleCommentersChart](src/features/ArticleCommentersChart/ui/ArticleCommentersChart/ArticleCommentersChart.tsx)                       |
+| [ArticleListNavigationButton](src/features/ArticleListNavigationButton/ui/ArticleListNavigationButton/README.md)                        | [ScrollToTopButton](src/features/ScrollToTopButton/ui/ScrollToTopButton/README.md)                                                       | [ArticleMonthlyDataChart.tsx](src/features/ArticleMonthlyDataChart/ui/ArticleMonthlyDataChart/ArticleMonthlyDataChart.tsx)               |
+| [ArticlePageGreeting](src/features/ArticlePageGreeting/ui/ArticlePageGreeting/README.md)                                                | [ThemeSwitcher](src/features/ThemeSwitcher/ui/ThemeSwitcher/README.md)                                                                   | [ArticleQuarterlyDataChart.tsx](src/features/ArticleQuarterlyDataChart/ui/ArticleQuarterlyDataChart/ArticleQuarterlyDataChart.tsx)       |
+| [ArticleRating](src/features/ArticleRating/ui/ArticleRating/README.md)                                                                  | [UIDesignSwitcher](src/features/UIDesignSwitcher/ui/UiDesignSwitcher/README.md)                                                         | [TopCommentedArticlesChart.tsx](src/features/TopCommentedArticlesChart/ui/TopCommentedArticlesChart/TopCommentedArticlesChart.tsx)       |
+| [ArticleRecommendationsList](src/features/ArticleRecommendationsList/ui/ArticleRecommendationsList/README.md)                          | [QuestionsQueue.tsx](src/features/QuestionsQueue/ui/QuestionsQueue.tsx)                                                                  | [ArticleRatingDistributionChart.tsx](src/features/ArticleRatingDistributionChart/ui/ArticleRatingDistributionChart/ArticleRatingDistributionChart.tsx) |
+| [ArticleSortSelector](src/features/ArticleSortSelector/ui/ArticleSortSelector/README.md)                                                | [Table](src/features/Table/index.ts)                                                                                                     | [UserRatingsBubbleChart.tsx](src/features/UserRatingsBubbleChart/ui/UserRatingsBubbleChart/UserRatingsBubbleChart.tsx)                   |
+| [ArticleViewSelector](src/features/ArticleViewSelector/ui/ArticleViewSelector/README.md)                                                | [CodeEditorForm.tsx](src/features/CodeEditorForm/ui/CodeEditorForm/CodeEditorForm.tsx)                                                   | [UsersActivityChart.tsx](src/features/UsersActivityChart/ui/UsersActivityChart/UsersActivityChart.tsx)                                   |
+| [AuthUser](src/features/AuthUser/README.md)                                                                                              | [ImageEditorForm.tsx](src/features/ImageEditorForm/ui/ImageEditorForm/ImageEditorForm.tsx)                                               |                                                                                                                                          |
+| [AvatarDropdown](src/features/AvatarDropdown/ui/AvatarDropdown/README.md)                                                               | [TextEditorForm.tsx](src/features/TextEditorForm/ui/TextEditorForm/TextEditorForm.tsx)                                                   |                                                                                                                                          |
+
+
+
 
 ### Widgets 
-- [ArticleAdditionalInfo](src/widgets/ArticleAdditionalInfo/README.md)
-- [ArticlesFilters](src/widgets/ArticlesFilters/README.md)
-- [Navbar](src/widgets/Navbar/README.md)
-- [Page](src/widgets/Page/README.md)
-- [PageError](src/widgets/PageError/README.md)
-- [PageLoader](src/widgets/PageLoader/README.md)
-- [ScrollToolbar](src/widgets/ScrollToolbar/README.md)
-- [Sidebar](src/widgets/Sidebar/README.md)
+
+
+|                                                                 |                                                                                                                              |                                                                                                                                                                                          |
+|--------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [ArticleControls](src/widgets/ArticleControls/ui/ArticleControls.tsx)   | [ImageBlockEditor](src/widgets/ImageBlockEditor/ui/ImageBlockEditor/ImageBlockEditor.tsx)                                    | [PageLoader](src/widgets/PageLoader/README.md)                                                                                                                                           |
+| [ArticleManagement](src/widgets/ArticleManagement/index.ts)             | [TextBlockEditor](src/widgets/TextBlockEditor/ui/TextBlockEditor/TextBlockEditor.tsx)                                        | [ScrollToolbar](src/widgets/ScrollToolbar/README.md)                                                                                                                                     |
+| [ArticlesFilters](src/widgets/ArticlesFilters/README.md)                | [CodeBlockEditor](src/widgets/CodeBlockEditor/ui/CodeBlockEditor/CodeBlockEditor.tsx)  |          [StatisticsCharts](src/widgets/StatisticsCharts/ui/StatisticsCharts/StatisticsCharts.tsx)                                                                                                                                                                               |
+| [Page](src/widgets/Page/README.md)   |                                        [Navbar](src/widgets/Navbar/README.md)                                                  | [UserArticlesTable](src/widgets/UserArticlesTable/ui/UserArticlesTable/UserArticlesTable.tsx)   |
+| [PageError](src/widgets/PageError/README.md)                            |       [Sidebar](src/widgets/Sidebar/README.md)                        | [UsersFullInfoTable](src/widgets/UsersFullInfoTable/ui/UsersFullInfoTable/UsersFullInfoTable.tsx)                                                                                        |
+
+
 
 ### Pages
-- [AboutPage](src/pages/AboutPage/README.md)
-- [AdminPanelPage](src/pages/AdminPanelPage/README.md)
-- [ArticleDetailsPage](src/pages/ArticleDetailsPage/ui/ArticleDetailsPage/README.md)
-- [ArticleEditPage](src/pages/ArticleEditPage/README.md)
-- [ArticlesPage](src/pages/ArticlesPage/README.md)
-- [ForbiddenPage](src/pages/ForbiddenPage/ui/README.md)
-- [MainPage](src/pages/MainPage/README.md)
-- [NotFoundPage](src/pages/NotFoundPage/ui/README.md)
-- [ProfilePage](src/pages/ProfilePage/ui/ProfilePage/README.md)
-- [SettingsPage](src/pages/SettingsPage/README.md)
+
+|                                                                |                                                                 |                                                                |
+|--------------------------------------------------------------------------|--------------------------------------------------------------------------|--------------------------------------------------------------------------|
+| [AboutPage](src/pages/AboutPage/README.md)                               | [ForbiddenPage](src/pages/ForbiddenPage/ui/README.md)                    | [ProfilePage](src/pages/ProfilePage/ui/ProfilePage/README.md)           |
+| [AdminPanelPage](src/pages/AdminPanelPage/README.md)                     | [MainPage](src/pages/MainPage/README.md)                                 | [SettingsPage](src/pages/SettingsPage/README.md)                        |
+| [ArticleDetailsPage](src/pages/ArticleDetailsPage/ui/ArticleDetailsPage/README.md) | [MyArticlesPage](src/pages/MyArticlesPage/ui/MyArticlesPage.tsx)        | [NotFoundPage](src/pages/NotFoundPage/ui/README.md)                    |
+| [ArticleEditorPage](src/pages/ArticleEditorPage/ui/ArticleEditorPage/ArticleEditorPage.tsx) | [ArticlesPage](src/pages/ArticlesPage/README.md)                         |                                                                          |
+
 
 ----
 
