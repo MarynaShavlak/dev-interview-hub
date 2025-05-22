@@ -7,6 +7,7 @@ import { FirebaseAuthErrorCode } from '../../types/firebaseAuthErrorCode';
 import { prepareUserData } from '../../../lib/utilities/prepareUserData/prepareUserData';
 import { addDocToFirestore } from '@/shared/lib/firestore/addDocToFirestore/addDocToFirestore';
 import { ErrorCode } from '../../../lib/hooks/useErrorText/useErrorText';
+import { assertExists } from '@/shared/lib/checks/assertExists/assertExists';
 
 export interface SignupCredentials {
     firstname: string;
@@ -46,19 +47,13 @@ export const signupByEmailThunk = createAsyncThunk<
             signUpData.email,
             signUpData.password,
         );
+        assertExists(firebaseUser, 'No user data returned from Firebase');
 
-        if (!firebaseUser) {
-            throw new Error('No user data returned from Firebase');
-        }
         const data: User = prepareUserData(firebaseUser, signUpData);
         const userDocRef = await addDocToFirestore<User>('users', data);
-        // const documentId = userDocRef.id;
+
         const doc = await getDoc(userDocRef);
         const userData = doc.data();
-        console.log('userData in SignupByEmail', userData);
-
-        // console.log('New user document ID:', documentId);
-        // const customUser: User = mapFirebaseUserToCustomUser(firebaseUser);
 
         dispatch(setUser(data));
         dispatch(setAuthData(data));

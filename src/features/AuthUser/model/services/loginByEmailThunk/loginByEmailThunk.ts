@@ -3,6 +3,7 @@ import { signInWithEmailAndPassword } from 'firebase/auth';
 import { handleUserAuthentication, userActions } from '@/entities/User';
 import { ThunkConfig } from '@/app/providers/StoreProvider';
 import { fetchUserFromFirestore } from '../../../lib/utilities/fetchUserFromFirestore/fetchUserFromFirestore';
+import { assertExists } from '@/shared/lib/checks/assertExists/assertExists';
 
 interface loginByEmailProps {
     email: string;
@@ -31,19 +32,11 @@ export const loginByEmailThunk = createAsyncThunk<
             authData.email,
             authData.password,
         );
-
-        if (!firebaseUser) {
-            throw new Error('No user data returned from Firebase');
-        }
-        console.log('firebaseUser in login thunk', firebaseUser);
+        assertExists(firebaseUser, 'No user data returned from Firebase');
 
         const existingUser = await fetchUserFromFirestore(firebaseUser.uid);
-        console.log('existingUser', existingUser);
-        if (!existingUser) {
-            throw new Error('Existing user not found in Firestore');
-        }
+        assertExists(existingUser, 'Existing user not found in Firestore');
 
-        console.log('existingUser in login thunk', existingUser);
         dispatch(setUser(existingUser));
         dispatch(setAuthData(existingUser));
         handleUserAuthentication(existingUser, firebaseUser.uid);

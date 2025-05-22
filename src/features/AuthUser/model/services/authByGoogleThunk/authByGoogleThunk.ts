@@ -8,6 +8,7 @@ import { fetchUserFromFirestore } from '../../../lib/utilities/fetchUserFromFire
 import { checkUserExists } from '../../../lib/utilities/checkUserExists/checkUserExists';
 import { signInWithGoogle } from '../../../lib/utilities/signInWithGoogle/signInWithGoogle';
 import { addDocToFirestore } from '@/shared/lib/firestore/addDocToFirestore/addDocToFirestore';
+import { assertExists } from '@/shared/lib/checks/assertExists/assertExists';
 
 export const authByGoogleThunk = createAsyncThunk<
     User,
@@ -31,18 +32,13 @@ export const authByGoogleThunk = createAsyncThunk<
             const userDocRef = await addDocToFirestore<User>('users', newUser);
             userData = newUser;
             const doc = await getDoc(userDocRef);
-
-            // console.log('userData in Google Provider', userData);
         } else {
             const existingUser = await fetchUserFromFirestore(firebaseUser.uid);
-            if (!existingUser) {
-                throw new Error('Existing user not found in Firestore');
-            }
+            assertExists(existingUser, 'Existing user not found in Firestore');
+
             userData = existingUser;
         }
 
-        // console.log('by google data to set in slice', userData);
-        // const customUser = mapFirebaseUserToCustomUser(firebaseUser);
         dispatch(setUser(userData));
         dispatch(setAuthData(userData));
         handleUserAuthentication(userData, firebaseUser.uid);
@@ -55,14 +51,3 @@ export const authByGoogleThunk = createAsyncThunk<
         );
     }
 });
-
-// const usersReference = collection(firestore, 'users');
-// const q = query(usersReference, where('id', '==', firebaseUser.uid));
-// const querySnapshot = await getDocs(q);
-//
-// let loggedUserData;
-// if (!querySnapshot.empty) {
-//     const userDocRef = querySnapshot.docs[0].ref;
-//     const doc = await getDoc(userDocRef);
-//     loggedUserData = doc.data();
-// }

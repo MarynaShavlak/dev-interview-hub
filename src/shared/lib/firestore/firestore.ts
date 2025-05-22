@@ -5,6 +5,7 @@ import {
 } from 'firebase/firestore';
 import { collection } from '@firebase/firestore';
 import { firestore } from '../../../../db/firebase';
+import { assertExists } from '../checks/assertExists/assertExists';
 
 export const createFirestoreConverter = <T>(): FirestoreDataConverter<T> => ({
     /**
@@ -26,9 +27,7 @@ export const createFirestoreConverter = <T>(): FirestoreDataConverter<T> => ({
      */
     fromFirestore(snap: QueryDocumentSnapshot): T {
         const data = snap.data();
-        if (!data) {
-            throw new Error('Document snapshot is empty or undefined.');
-        }
+        assertExists(data, 'Document snapshot is empty or undefined.');
         return data as T;
     },
 });

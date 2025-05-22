@@ -1,7 +1,7 @@
-export function assertNotNull<T>(
-    value: T | null | undefined,
+export function assertExists(
+    value: unknown,
     errorMessage: string,
-): asserts value is T {
+): asserts value {
     if (value === null || value === undefined) {
         throw new Error(errorMessage);
     }

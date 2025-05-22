@@ -96,7 +96,27 @@ Used built-in helpers like `Partial`, `Omit`, `Pick`, `Record`, and `ReturnType`
 - `Omit` / `Pick`: Selected or excluded fields for API payloads and forms (`Omit<User, 'password'>`).
 - `Record`: Built key-value maps with consistent value types (`Record<Status, string>`).
 - `ReturnType`: Inferred return types of factory functions and selectors (`ReturnType<typeof createStore>`).
-8. 
+
+8. **Custom Type Guards with asserts for Runtime Safety**
+Defined `asserts `functions like `assertExists` to enforce non-null values at runtime while narrowing types for the compiler:
+
+- Ensured reliable access to async data (e.g., `assertExists(firebaseUser, 'No user data returned')`).
+- Prevented undefined behavior in Firestore and auth flows (`assertExists(docRef, 'Reference is null')`).
+- Enabled safe early exits with type narrowing in reusable utility functions.
+
+9. **Type Extraction with infer for Store Middleware**
+Utilized TypeScript’s `infer` keyword to extract internal types from complex generics, enhancing type safety in store composition:
+
+- Extracted middleware type from `EnhancedStore (S extends EnhancedStore<..., infer M> ? M : never)` to preserve accurate typing in `StoreType`.
+- Enabled generic reuse across Redux store configurations without manually retyping inferred structures.
+- Ensured robust and DRY type handling when extending Redux with API slices and extra reducers.
+
+10. **Consistent Data Modeling with enum and Object Literals**
+Used `enum` and `as const` object literals across projects to define and manage fixed sets of values like routes, roles, statuses, and configuration options.
+
+- `enum`: Ensured type-safe references to identifiers such as app routes or user roles, reducing risk of typos and improving IDE support.
+- Object literals: Structured feature-specific data (e.g. role metadata, color schemes, route maps) in `as const` objects for immutability and precise type inference.
+
 ## Working with Translations
 
 This project employs the [i18next](https://react.i18next.com/) library for translations. 

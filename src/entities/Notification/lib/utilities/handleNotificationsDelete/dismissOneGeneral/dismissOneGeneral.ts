@@ -2,6 +2,7 @@ import { getDocRefByField } from '@/shared/lib/firestore/getDocRefByField/getDoc
 import { GeneralNotification } from '../../../../model/types/notification';
 import { deleteOneGeneralNotificationForUser } from '../../deleteOneGeneralNotificationForUser/deleteOneGeneralNotificationForUser';
 import { ERROR_NOTIFICATION_MESSAGES } from '../../../../model/consts/errorNotificationMessages';
+import { assertExists } from '@/shared/lib/checks/assertExists/assertExists';
 
 export const dismissOneGeneral = async (
     notificationId: string,
@@ -13,8 +14,9 @@ export const dismissOneGeneral = async (
         notificationId,
     );
 
-    if (!notificationDocRef)
-        throw new Error(ERROR_NOTIFICATION_MESSAGES.NOTIFICATION_NOT_FOUND);
-
+    assertExists(
+        notificationDocRef,
+        ERROR_NOTIFICATION_MESSAGES.NOTIFICATION_NOT_FOUND,
+    );
     await deleteOneGeneralNotificationForUser(notificationDocRef, userId);
 };

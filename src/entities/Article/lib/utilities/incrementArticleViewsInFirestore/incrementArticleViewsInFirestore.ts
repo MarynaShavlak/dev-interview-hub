@@ -3,7 +3,7 @@ import { getDoc, increment, updateDoc } from 'firebase/firestore';
 import { Article } from '../../../model/types/article';
 import { ERROR_ARTICLE_MESSAGES } from '../../../model/consts/errorArticleMessages';
 import { getArticleDocRefById } from '../getArticleDocRefById/getArticleDocRefById';
-import { assertNotNull } from '@/shared/lib/checks/assertNotNull/assertNotNull';
+import { assertExists } from '@/shared/lib/checks/assertExists/assertExists';
 
 export const incrementArticleViewsInFirestore = async (articleId: string) => {
     const articleDocRef = await getArticleDocRefById(articleId);
@@ -16,15 +16,9 @@ export const incrementArticleViewsInFirestore = async (articleId: string) => {
     });
     const updatedDoc = await getDoc(articleDocRef);
     const updatedData = updatedDoc.data();
-    assertNotNull(
+    assertExists(
         updatedData,
         ERROR_ARTICLE_MESSAGES.UPDATED_DATA_RETRIEVAL_ERROR(articleId),
     );
-    // if (!updatedData) {
-    //     throw new Error(
-    //         ERROR_ARTICLE_MESSAGES.UPDATED_DATA_RETRIEVAL_ERROR(articleId),
-    //     );
-    // }
-
     return updatedData as Article;
 };
