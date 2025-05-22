@@ -84,6 +84,12 @@ Used `typeof` checks to differentiate between primitives, complex objects, and F
 5. **Custom Type Guards for Runtime Type Validation**
 Defined custom type guard functions like `isColorOption() `to distinguish between complex types and primitives at runtime. These guards helped enforce stricter type contracts during conditional rendering, form logic, and dynamic option handling—improving both readability and compile-time assurances.
 
+6. **Type Assertions for Controlled Type Inference**
+Leveraged as, as unknown as, and satisfies to guide TypeScript’s inference in edge cases where static analysis falls short or dynamic behavior requires manual intervention:
+   - `as`: Asserted specific types in Redux setup and component logic (e.g., `reducerManager.reduce as Reducer<...>`).
+   - `as unknown as`: Bypassed type checks in tests and mocks (e.g., `null as unknown as string`, `8 as unknown as FlexGap`).
+   - `satisfies`: Ensured type-safe Storybook metadata without losing autocomplete (`meta satisfies Meta<typeof TableRow>`).
+
 
 ## Working with Translations
 
