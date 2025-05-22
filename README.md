@@ -74,7 +74,8 @@ For comprehensive configuration details, refer to the [Project Configuration Doc
 2. **Generic Type Constraints & Interface Extensions**
    Implemented reusable, type-safe utilities using generic constraints and extensible interface hierarchies to ensure data integrity, flexibility, and compile-time validation across Firestore operations, deep merge logic, UI components, Redux stores, and pagination systems.
 
-
+3. **Optional Chaining & Non-Null Assertions**
+Used optional chaining `(?.)` and non-null assertions `(!)` throughout the project to handle deeply nested objects and third-party configs safely and effectively. Optional chaining improved fault tolerance in areas like authentication callbacks, input validation, and data fetching. Non-null assertions ensured strict type operations during Storybook webpack config overrides and guaranteed presence of values like `config!`, `module!.rules!`, and `resolve!.alias!` when extending build logic.
 
 
 ## Working with Translations
