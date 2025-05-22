@@ -2,7 +2,7 @@ import { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
-// import { useArticleDetailsData } from '@/entities/Article';
+
 import { getRouteArticleCreate } from '@/shared/const/router/router';
 import { Button } from '../../redesigned/Button';
 import {

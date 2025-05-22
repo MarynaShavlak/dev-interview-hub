@@ -109,7 +109,7 @@ Entry point for testing-related functionalities within the Comment module. It is
 
 ## Public Testing API
 - **Testing Exports**:
-    - `addCommentFormReducer` - Reducer for add comment form state management for use in testing scenarios and development tools.  - `testUserData` -  is a mock object representing user data, designed for use in testing scenarios and development tools.
+    - `addCommentFormReducer` - Reducer for add comment form state management for use in testing scenarios and development tools. 
     - `testCommentsData` -  is a mock array of objects representing comments data, designed for use in testing scenarios and development tools.
     - `testCommentData` -  is a mock object representing comment data, designed for use in testing scenarios and development tools.
     - `testCommentNoUserAvatarData` - is a mock object representing comment data with no info about user avatar, designed for use in testing scenarios and development tools.

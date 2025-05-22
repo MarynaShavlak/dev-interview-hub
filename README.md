@@ -218,23 +218,40 @@ For detailed architectural components and structures, refer to the following cat
 
 ### Shared
 
-| Common for both styles versions                             | Deprecated                                                          | Redesigned                                                          | 
-|-------------------------------------------------------------|---------------------------------------------------------------------|---------------------------------------------------------------------|
-| [AppImage](./src/shared/ui/common/AppImage/README.md)       | [AppLink](./src/shared/ui/deprecated/AppLink/README.md)             | [AppLink](./src/shared/ui/redesigned/AppLink/README.md)             |  
-| [AppLogo](./src/shared/ui/common/AppLogo/README.md)         | [Avatar](./src/shared/ui/deprecated/Avatar/README.md)               | [Avatar](./src/shared/ui/redesigned/Avatar/README.md)               |
-| [Drawer](./src/shared/ui/common/Drawer/README.md)           | [Button](./src/shared/ui/deprecated/Button/README.md)               | [Button](./src/shared/ui/redesigned/Button/README.md)               |
-| [Modal](./src/shared/ui/common/Modal/README.md)             | [Card](./src/shared/ui/deprecated/Card/README.md)                   | [Card](./src/shared/ui/redesigned/Card/README.md)                   |
-| [Overlay](./src/shared/ui/common/Overlay/README.md)         | [Code](./src/shared/ui/deprecated/Code/README.md)                   | [Code](./src/shared/ui/redesigned/Code/README.md)                   |
-| [Portal](./src/shared/ui/common/Portal/README.md)           | [Icon](./src/shared/ui/deprecated/Icon/README.md)                   | [Icon](./src/shared/ui/redesigned/Icon/README.md)                   |
-| [Flex](./src/shared/ui/common/Stack/Flex/README.md)         | [Input](./src/shared/ui/deprecated/Input/README.md)                 | [Input](./src/shared/ui/redesigned/Input/README.md)                 |
-| [HStack](./src/shared/ui/common/Stack/HStack/README.md)     | [Skeleton](./src/shared/ui/deprecated/Skeleton/README.md)           | [Skeleton](./src/shared/ui/redesigned/Skeleton/README.md)           |
-| [VStack](./src/shared/ui/common/Stack/VStack/README.md)     | [Tabs](./src/shared/ui/deprecated/Tabs/README.md)                   | [Tabs](./src/shared/ui/redesigned/Tabs/README.md)                   |
-| [StarRating](./src/shared/ui/common/StarRating/README.md)   | [Text](./src/shared/ui/deprecated/Text/README.md)                   | [Text](./src/shared/ui/redesigned/Text/README.md)                   |
-|                                                             | [Dropdown](./src/shared/ui/deprecated/Popups/ui/Dropdown/README.md) | [Dropdown](./src/shared/ui/redesigned/Popups/ui/Dropdown/README.md) |
-|                                                             | [ListBox](./src/shared/ui/deprecated/Popups/ui/ListBox/README.md)   | [ListBox](./src/shared/ui/redesigned/Popups/ui/ListBox/README.md)                    |
-|                                                             | [Popover](./src/shared/ui/deprecated/Popups/ui/Popover/README.md)   | [Popover](./src/shared/ui/redesigned/Popups/ui/Popover/README.md)                    |
-|                                                             | [Loader](./src/shared/ui/deprecated/Loader/README.md)               |                  |
-|                                                             | [Select](./src/shared/ui/deprecated/Select/README.md)               |                  |
+| Common for both styles versions                                                                           | Deprecated                                                                           | Redesigned                                                                           |
+|-----------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------|
+| [AddNewArticleButton](./src/shared/ui/common/AddNewArticleButton/AddNewArticleButton.tsx)                 | [ActionButtonList](./src/shared/ui/deprecated/ActionButtonList/ActionButtonList.tsx) | [ActionButtonList](./src/shared/ui/redesigned/ActionButtonList/ActionButtonList.tsx) |
+| [AppImage](./src/shared/ui/common/AppImage/README.md)                                                     | [AppLink](./src/shared/ui/deprecated/AppLink/README.md)                              | [AppLink](./src/shared/ui/redesigned/AppLink/README.md)                              |
+| [AppLogo](./src/shared/ui/common/AppLogo/README.md)                                                       | [Avatar](./src/shared/ui/deprecated/Avatar/README.md)                                | [Avatar](./src/shared/ui/redesigned/Avatar/README.md)                                |
+| [Box](./src/shared/ui/common/Box/Box.tsx)                                                                 | [Button](./src/shared/ui/deprecated/Button/README.md)                                | [Button](./src/shared/ui/redesigned/Button/README.md)                                |
+| [CodeEditor](./src/shared/ui/common/CodeEditor/CodeEditor.tsx)                                            | [Card](./src/shared/ui/deprecated/Card/README.md)                                    | [Card](./src/shared/ui/redesigned/Card/README.md)                                    |
+| [ConfirmCancelModal](./src/shared/ui/common/ConfirmCancelModal/ConfirmCancelModal/ConfirmCancelModal.tsx) | [Code](./src/shared/ui/deprecated/Code/README.md)                                    | [Code](./src/shared/ui/redesigned/Code/README.md)                                    |
+| [ConfirmDeleteModal](./src/shared/ui/common/ConfirmDeleteModal/ConfirmDeleteModal/ConfirmDeleteModal.tsx) | [Dropdown](./src/shared/ui/deprecated/Popups/ui/Dropdown/README.md)                  | [Dropdown](./src/shared/ui/redesigned/Popups/ui/Dropdown/README.md)                  |
+| [Drawer](./src/shared/ui/common/Drawer/README.md)                                                         | [FileUploadZone](./src/shared/ui/deprecated/FileUploadZone/FileUploadZone.tsx)       | [FileUploadZone](./src/shared/ui/redesigned/FileUploadZone/FileUploadZone.tsx)       |
+| [FileUploadInput](./src/shared/ui/common/FileUploadInput/FileUploadInput.tsx)                             | [Icon](./src/shared/ui/deprecated/Icon/README.md)                                    | [Icon](./src/shared/ui/redesigned/Icon/README.md)                                    |
+| [Flex](./src/shared/ui/common/Stack/Flex/README.md)                                                       | [Input](./src/shared/ui/deprecated/Input/README.md)                                  | [Input](./src/shared/ui/redesigned/Input/README.md)                                  |
+| [HStack](./src/shared/ui/common/Stack/HStack/README.md)                                                   | [ListBox](./src/shared/ui/deprecated/Popups/ui/ListBox/README.md)                    | [ListBox](./src/shared/ui/redesigned/Popups/ui/ListBox/README.md)                    |
+| [ImageModal](./src/shared/ui/common/ImageModal/ImageModal/ImageModal.tsx)                                 | [Loader](./src/shared/ui/deprecated/Loader/README.md)                                |                                                                                      |
+| [List](./src/shared/ui/common/List/List.tsx)                                                              | [OrderCard](./src/shared/ui/deprecated/OrderCard/OrderCard.tsx)                      | [OrderCard](./src/shared/ui/redesigned/OrderCard/OrderCard.tsx)                      |
+| [MarkupHTMLCreator](./src/shared/ui/common/MarkupHTMLCreator/MarkupHTMLCreator.tsx)                       | [Popover](./src/shared/ui/deprecated/Popups/ui/Popover/README.md)                    | [Popover](./src/shared/ui/redesigned/Popups/ui/Popover/README.md)                    |
+| [Modal](./src/shared/ui/common/Modal/README.md)                                                           | [Select](./src/shared/ui/deprecated/Select/README.md)                                |                                                                                      |
+| [Overlay](./src/shared/ui/common/Overlay/README.md)                                                       | [Skeleton](./src/shared/ui/deprecated/Skeleton/README.md)                            | [Skeleton](./src/shared/ui/redesigned/Skeleton/README.md)                            |
+| [Portal](./src/shared/ui/common/Portal/README.md)                                                         | [Tabs](./src/shared/ui/deprecated/Tabs/README.md)                                    | [Tabs](./src/shared/ui/redesigned/Tabs/README.md)                                    |
+| [StarRating](./src/shared/ui/common/StarRating/README.md)                                                 | [Text](./src/shared/ui/deprecated/Text/README.md)                                    | [Text](./src/shared/ui/redesigned/Text/README.md)                                    |
+| [ValidationErrorMessages](./src/shared/ui/common/ValidationErrorMessages/ValidationErrorMessages.tsx)     |                                                                                      |                                                                                      |
+| [VStack](./src/shared/ui/common/Stack/VStack/README.md)                                                   |                                                                                      |                                                                                      |
+
+**Chart Components**
+
+| Chart Component                                                                                           | Chart Component                                                                                           |
+|-----------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------|
+| [BarChart](./src/shared/ui/common/Charts/ui/BarChart/BarChart.tsx)                                        | [PieChart](./src/shared/ui/common/Charts/ui/PieChart/BarChart.tsx)                                        |
+| [BubbleChart](./src/shared/ui/common/Charts/ui/BubbleChart/BubbleChart.tsx)                               | [RadialbarChart](./src/shared/ui/common/Charts/ui/RadialbarChart/RadialbarChart.tsx)                      |
+| [LineChart](./src/shared/ui/common/Charts/ui/LineChart/LineChart.tsx)                                     | [StackedColumnsChart](./src/shared/ui/common/Charts/ui/StackedColumnsChart/StackedColumnsChart.tsx)       |
+| [NoDataChart](./src/shared/ui/common/Charts/NoDataChart/NoDataChart.tsx)                                  | [TreemapChart](./src/shared/ui/common/Charts/ui/TreemapChart/TreemapChart.tsx)                            |
+
+
+
 
 ### Entities
 
@@ -243,6 +260,7 @@ For detailed architectural components and structures, refer to the following cat
 - [Country](./src/entities/Country/README.md)
 - [Currency](./src/entities/Currency/README.md)
 - [Notification](./src/entities/Notification/README.md)
+- [Question](./src/entities/Question/README.md)
 - [Profile](./src/entities/Profile/README.md)
 - [Rating](./src/entities/Rating/README.md)
 - [User](./src/entities/User/README.md)
