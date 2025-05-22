@@ -90,7 +90,13 @@ Leveraged as, as unknown as, and satisfies to guide TypeScript’s inference in 
    - `as unknown as`: Bypassed type checks in tests and mocks (e.g., `null as unknown as string`, `8 as unknown as FlexGap`).
    - `satisfies`: Ensured type-safe Storybook metadata without losing autocomplete (`meta satisfies Meta<typeof TableRow>`).
 
-
+7. **Utility Types for Flexible and Safe Type Design**
+Used built-in helpers like `Partial`, `Omit`, `Pick`, `Record`, and `ReturnType` to adapt and constrain types effectively:
+- `Partial`: Made config and prop objects partially optional (`Partial<UserSettings>`).
+- `Omit` / `Pick`: Selected or excluded fields for API payloads and forms (`Omit<User, 'password'>`).
+- `Record`: Built key-value maps with consistent value types (`Record<Status, string>`).
+- `ReturnType`: Inferred return types of factory functions and selectors (`ReturnType<typeof createStore>`).
+8. 
 ## Working with Translations
 
 This project employs the [i18next](https://react.i18next.com/) library for translations. 

@@ -47,14 +47,6 @@ export const AnimationProvider = ({ children }: { children: ReactNode }) => {
         loadLibraries();
     }, []);
 
-    // useEffect(() => {
-    //     getAsyncAnimationModules().then(([Spring, Gesture]) => {
-    //         SpringRef.current = Spring;
-    //         GestureRef.current = Gesture;
-    //         setIsLoaded(true);
-    //     });
-    // }, []);
-
     const value = useMemo(
         () => ({
             Gesture: GestureRef.current,
