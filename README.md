@@ -66,56 +66,52 @@ All configuration files are systematically organized within the `/config` direct
 For comprehensive configuration details, refer to the [Project Configuration Documentation](./config/README.configs.md).
 
 
-## Working with Typescript 
+## TypeScript Skills Summary 
+[Detailed TypeScript Skills Documentation](./docs/ts/README.typescript.md)
 
-1. **Advanced TypeScript Patterns**
-   Applied exhaustive never checks, strategic any use, and advanced operators (typeof, keyof) to balance type safety with flexibility. Ensured full enum coverage in switch cases, flexible data utilities, and strongly-typed systems for themes, auth, table configs, i18n, feature flags, and Redux store management.
+### **Exhaustive Type Checking & Control Flow Analysis**
 
-2. **Generic Type Constraints & Interface Extensions**
-   Built reusable, type-safe utilities using generic constraints and extensible interface hierarchies to enforce data integrity and flexibility across Firestore operations, deep merges, Redux stores, pagination systems, and UI components. Leveraged generics in React components to support flexible props while maintaining strong typing and reusability.
+Implemented comprehensive type safety using `never` checks, `typeof`/`keyof` operators, and exhaustive enum coverage to create robust type systems for theme management, authentication, i18n, feature flags, and Redux state management.
 
-3. **Optional Chaining & Non-Null Assertions**
-   Used optional chaining `(?.)` and non-null assertions `(!)` throughout the project to handle deeply nested objects and third-party configs safely and effectively. Optional chaining improved fault tolerance in areas like authentication callbacks, input validation, and data fetching. Non-null assertions ensured strict type operations during Storybook webpack config overrides and guaranteed presence of values like `config!`, `module!.rules!`, and `resolve!.alias!` when extending build logic.
+### **Generic Programming & Constraint Design**
 
-4. **Type Narrowing with Type Guards and Discriminated Unions**
-Employed precise type narrowing strategies across the codebase for robust runtime safety. 
-Used `typeof` checks to differentiate between primitives, complex objects, and Firestore timestamps. Applied `in` and `instanceof` operators in deeply recursive utility types like `DeepPartial<T> `and runtime utilities like `extractOptionValueName()`. Implemented discriminated unions in React rendering logic (e.g., article block rendering) to conditionally render components based on `block.type`, ensuring exhaustive and type-safe branching with clear fallbacks.
+Built reusable type-safe utilities with advanced generic constraints for Firestore operations, deep object merging, Redux composition, and pagination systems while maintaining strict typing across React components.
 
-5. **Custom Type Guards for Runtime Type Validation**
-Defined custom type guard functions like `isColorOption() `to distinguish between complex types and primitives at runtime. These guards helped enforce stricter type contracts during conditional rendering, form logic, and dynamic option handling—improving both readability and compile-time assurances.
+### **Defensive Programming with Optional Chaining**
 
-6. **Type Assertions for Controlled Type Inference**
-Leveraged as, as unknown as, and satisfies to guide TypeScript’s inference in edge cases where static analysis falls short or dynamic behavior requires manual intervention:
-   - `as`: Asserted specific types in Redux setup and component logic (e.g., `reducerManager.reduce as Reducer<...>`).
-   - `as unknown as`: Bypassed type checks in tests and mocks (e.g., `null as unknown as string`, `8 as unknown as FlexGap`).
-   - `satisfies`: Ensured type-safe Storybook metadata without losing autocomplete (`meta satisfies Meta<typeof TableRow>`).
+Applied optional chaining (`?.`) and non-null assertions (`!`) for safe object traversal in authentication callbacks, form validation, API responses, and build configuration overrides.
 
-7. **Utility Types for Flexible and Safe Type Design**
-Used built-in helpers like `Partial`, `Omit`, `Pick`, `Record`, and `ReturnType` to adapt and constrain types effectively:
-- `Partial`: Made config and prop objects partially optional (`Partial<UserSettings>`).
-- `Omit` / `Pick`: Selected or excluded fields for API payloads and forms (`Omit<User, 'password'>`).
-- `Record`: Built key-value maps with consistent value types (`Record<Status, string>`).
-- `ReturnType`: Inferred return types of factory functions and selectors (`ReturnType<typeof createStore>`).
+### **Advanced Type Guards & Discriminated Unions**
 
-8. **Custom Type Guards with asserts for Runtime Safety**
-Defined `asserts `functions like `assertExists` to enforce non-null values at runtime while narrowing types for the compiler:
+Created sophisticated type narrowing with built-in guards (`typeof`, `in`, `instanceof`) and custom type predicates for dynamic component rendering and exhaustive pattern matching.
 
-- Ensured reliable access to async data (e.g., `assertExists(firebaseUser, 'No user data returned')`).
-- Prevented undefined behavior in Firestore and auth flows (`assertExists(docRef, 'Reference is null')`).
-- Enabled safe early exits with type narrowing in reusable utility functions.
+### **Runtime Assertion & Type Narrowing**
 
-9. **Type Extraction with infer for Store Middleware**
-Utilized TypeScript’s `infer` keyword to extract internal types from complex generics, enhancing type safety in store composition:
+Developed custom `asserts` functions like `assertExists()` for runtime type safety in async operations, Firestore queries, and authentication flows while preserving compile-time type information.
 
-- Extracted middleware type from `EnhancedStore (S extends EnhancedStore<..., infer M> ? M : never)` to preserve accurate typing in `StoreType`.
-- Enabled generic reuse across Redux store configurations without manually retyping inferred structures.
-- Ensured robust and DRY type handling when extending Redux with API slices and extra reducers.
+### **Strategic Type Assertions & Inference Control**
 
-10. **Consistent Data Modeling with enum and Object Literals**
-Used `enum` and `as const` object literals across projects to define and manage fixed sets of values like routes, roles, statuses, and configuration options.
+Applied precise type assertions (`as`, `as unknown as`, `satisfies`) for Redux composition, test environments, and Storybook configurations while maintaining autocomplete and type compliance.
 
-- `enum`: Ensured type-safe references to identifiers such as app routes or user roles, reducing risk of typos and improving IDE support.
-- Object literals: Structured feature-specific data (e.g. role metadata, color schemes, route maps) in `as const` objects for immutability and precise type inference.
+### **Utility Type Composition**
+
+Leveraged built-in utility types (`Partial`, `Omit`, `Pick`, `Record`, `ReturnType`) for flexible API payload generation, configuration objects, and type-safe key-value mappings.
+
+### **Conditional Type Extraction with `infer`**
+
+Utilized `infer` keyword for sophisticated type extraction from Redux middleware generics, maintaining accurate typing across complex store configurations while following DRY principles.
+
+### **Recursive & Mapped Type Utilities**
+
+Developed complex utility types like `DeepPartial<T>` and mapped types for deep object manipulation while preserving type relationships and compile-time safety.
+
+###  **Enum & Constant Type Design**
+
+Structured application constants using `enum` declarations and `as const` objects for type-safe route management, user roles, and configuration schemas with IDE autocomplete support.
+
+### **Type-Driven Development Patterns**
+
+Adopted type-first approaches where TypeScript drives API design and component architecture, creating self-documenting code that encodes business logic directly in type definitions.
 
 ## Working with Translations
 
