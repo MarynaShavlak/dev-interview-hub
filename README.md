@@ -81,6 +81,9 @@ For comprehensive configuration details, refer to the [Project Configuration Doc
 Employed precise type narrowing strategies across the codebase for robust runtime safety. 
 Used `typeof` checks to differentiate between primitives, complex objects, and Firestore timestamps. Applied `in` and `instanceof` operators in deeply recursive utility types like `DeepPartial<T> `and runtime utilities like `extractOptionValueName()`. Implemented discriminated unions in React rendering logic (e.g., article block rendering) to conditionally render components based on `block.type`, ensuring exhaustive and type-safe branching with clear fallbacks.
 
+5. **Custom Type Guards for Runtime Type Validation**
+Defined custom type guard functions like `isColorOption() `to distinguish between complex types and primitives at runtime. These guards helped enforce stricter type contracts during conditional rendering, form logic, and dynamic option handling—improving both readability and compile-time assurances.
+
 
 ## Working with Translations
 
