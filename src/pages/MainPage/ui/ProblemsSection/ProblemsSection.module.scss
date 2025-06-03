@@ -34,7 +34,12 @@
     font-weight: 900;
 }
 
+.cardTextDeprecated span {
+    color: var(--inverted-bg-color);
+    font-weight: 900;
+}
+
 .cardTitle {
-    width: 270px;
+    width: 250px;
     margin: 0 auto;
 }
