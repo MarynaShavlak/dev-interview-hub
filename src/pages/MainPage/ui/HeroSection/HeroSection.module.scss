@@ -1,0 +1,24 @@
+.heroImg {
+    width: 60%;
+    position: relative;
+    margin: 0 auto;
+    display: block;
+}
+
+.title {
+    font-weight: 900;
+}
+
+.logoText span {
+    color: var(--accent-redesigned);
+    font-weight: bold;
+}
+
+.logoTextDeprecated span {
+    color: var(--inverted-bg-color);
+    font-weight: bold;
+}
+
+.startButton {
+    width: 250px;
+}

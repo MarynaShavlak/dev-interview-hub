@@ -1,5 +1,4 @@
 import { UserRole } from '@/entities/User';
-import { AboutPage, AboutPageSkeleton } from '@/pages/AboutPage';
 import { AdminPanelPage, AdminPanelPageSkeleton } from '@/pages/AdminPanelPage';
 import {
     ArticleDetailsPage,
@@ -15,7 +14,6 @@ import { SettingsPage, SettingsPageSkeleton } from '@/pages/SettingsPage';
 import { MyArticlesPage, MyArticlesPageSkeleton } from '@/pages/MyArticlesPage';
 import {
     AppRoutes,
-    getRouteAbout,
     getRouteAdmin,
     getRouteArticleCreate,
     getRouteArticleDetails,
@@ -45,11 +43,7 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
         authOnly: true,
         skeleton: <SettingsPageSkeleton />,
     },
-    [AppRoutes.ABOUT]: {
-        path: getRouteAbout(),
-        element: <AboutPage />,
-        skeleton: <AboutPageSkeleton />,
-    },
+
     [AppRoutes.PROFILE]: {
         path: getRouteProfile(':id'),
         element: <ProfilePage />,
