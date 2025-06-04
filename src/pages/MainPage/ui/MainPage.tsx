@@ -4,6 +4,7 @@ import { VStack } from '@/shared/ui/common/Stack';
 import { AudienceSection } from './AudienceSection/AudienceSection';
 import { HeroSection } from './HeroSection/HeroSection';
 import { ProblemsSection } from './ProblemsSection/ProblemsSection';
+import { FeaturesSection } from './AudienceSection/FeaturesSection/FeaturesSection';
 
 const MainPage = memo(() => {
     return (
@@ -12,6 +13,7 @@ const MainPage = memo(() => {
                 <HeroSection />
                 <AudienceSection />
                 <ProblemsSection />
+                <FeaturesSection />
             </VStack>
         </Page>
     );

@@ -33,6 +33,7 @@ interface TextProps extends TestProps {
     align?: TextAlign;
     size?: TextSize;
     withTags?: boolean;
+    bold?: boolean;
 }
 
 type HeaderTagType = 'h1' | 'h2' | 'h3' | 'h4';
@@ -53,6 +54,7 @@ export const Text = memo((props: TextProps) => {
         className,
         text,
         title,
+        bold,
         theme = TextTheme.PRIMARY,
         align = TextAlign.LEFT,
         size = TextSize.M,
