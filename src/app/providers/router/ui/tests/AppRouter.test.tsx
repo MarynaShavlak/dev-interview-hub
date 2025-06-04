@@ -2,19 +2,19 @@ import { screen, waitFor } from '@testing-library/react';
 import { componentRender } from '@/shared/lib/tests/componentRender/componentRender';
 import AppRouter from '../AppRouter/AppRouter';
 import {
-    getRouteAbout,
     getRouteAdmin,
+    getRouteMain,
     getRouteProfile,
 } from '@/shared/const/router/router';
 import { UserRole } from '@/entities/User';
 
 describe('AppRouter Component', () => {
-    test('should render the About page correctly', async () => {
+    test('should render the Main page correctly', async () => {
         componentRender(<AppRouter />, {
-            route: getRouteAbout(),
+            route: getRouteMain(),
         });
 
-        const page = await screen.findByTestId('AboutPage');
+        const page = await screen.findByTestId('MainPage');
         expect(page).toBeInTheDocument();
     });
 

@@ -1,0 +1,28 @@
+.title {
+    font-weight: 900;
+}
+
+.audienceIcon {
+    display: block;
+    margin: 0 auto;
+}
+
+.gridContainer {
+    padding: 16px;
+    display: grid;
+    grid-template-columns: repeat(2, 390px);
+    gap: 24px;
+    width: 100%;
+}
+
+.audienceCard {
+    display: grid;
+    grid-template-rows: subgrid;
+    grid-row: span 2;
+    height: 250px;
+    box-shadow: var(--home-card-shadow);
+}
+
+.cardText {
+    text-align: justify;
+}

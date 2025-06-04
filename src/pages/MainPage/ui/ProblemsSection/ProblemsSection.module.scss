@@ -1,0 +1,50 @@
+.title {
+    font-weight: 900;
+}
+
+.gridContainer {
+    padding: 16px;
+    display: grid;
+    grid-template-columns: repeat(2, 390px);
+    gap: 24px;
+    width: 100%;
+}
+
+.problemCard {
+    position: relative;
+    display: grid;
+    grid-template-rows: subgrid;
+    grid-row: span 3;
+    height: 100%;
+    box-shadow: var(--home-card-shadow);
+}
+
+.problemOrder {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+.cardText {
+    text-align: justify;
+}
+
+.cardText span {
+    color: var(--icon-redesigned);
+    font-weight: 900;
+}
+
+.cardTextDeprecated span {
+    color: var(--inverted-bg-color);
+    font-weight: 900;
+}
+
+.cardTitle {
+    width: 250px;
+    margin: 0 auto;
+}
+
+.cardTitle {
+    font-weight: 900;
+
+}

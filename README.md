@@ -296,9 +296,9 @@ For detailed architectural components and structures, refer to the following cat
 
 |                                                                |                                                                 |                                                                |
 |--------------------------------------------------------------------------|--------------------------------------------------------------------------|--------------------------------------------------------------------------|
-| [AboutPage](src/pages/AboutPage/README.md)                               | [ForbiddenPage](src/pages/ForbiddenPage/ui/README.md)                    | [ProfilePage](src/pages/ProfilePage/ui/ProfilePage/README.md)           |
-| [AdminPanelPage](src/pages/AdminPanelPage/README.md)                     | [MainPage](src/pages/MainPage/README.md)                                 | [SettingsPage](src/pages/SettingsPage/README.md)                        |
-| [ArticleDetailsPage](src/pages/ArticleDetailsPage/ui/ArticleDetailsPage/README.md) | [MyArticlesPage](src/pages/MyArticlesPage/ui/MyArticlesPage.tsx)        | [NotFoundPage](src/pages/NotFoundPage/ui/README.md)                    |
+| [MainPage](src/pages/MainPage/README.md)                               | [ForbiddenPage](src/pages/ForbiddenPage/ui/README.md)                    |   [SettingsPage](src/pages/SettingsPage/README.md)          |
+| [AdminPanelPage](src/pages/AdminPanelPage/README.md)                     |        [ProfilePage](src/pages/ProfilePage/ui/ProfilePage/README.md)                         |    [NotFoundPage](src/pages/NotFoundPage/ui/README.md)                       |
+| [ArticleDetailsPage](src/pages/ArticleDetailsPage/ui/ArticleDetailsPage/README.md) | [MyArticlesPage](src/pages/MyArticlesPage/ui/MyArticlesPage.tsx)        |                  |
 | [ArticleEditorPage](src/pages/ArticleEditorPage/ui/ArticleEditorPage/ArticleEditorPage.tsx) | [ArticlesPage](src/pages/ArticlesPage/README.md)                         |                                                                          |
 
 

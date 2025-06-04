@@ -1,4 +1,5 @@
 .title {
+    font-weight: 900;
     color: var(--primary-color);
 }
 
@@ -74,10 +75,15 @@
 
 .size_l {
     .title {
+
         font: var(--font-xl);
     }
 
     .text {
         font: var(--font-l);
     }
+}
+
+.bold {
+    font-weight: bold;
 }
