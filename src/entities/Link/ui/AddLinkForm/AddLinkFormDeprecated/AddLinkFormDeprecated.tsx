@@ -47,7 +47,6 @@ export const AddLinkFormDeprecated = memo((props: AddLinkFormProps) => {
                     value={text}
                     onChange={onLinkTextChange}
                     validations={validConfig.subtitleLink}
-                    maxLengthIndicator
                     errors={wasSubmitted ? linkErrors : undefined}
                 />
                 <Input

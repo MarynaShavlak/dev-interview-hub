@@ -1,10 +1,8 @@
 import React, { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { HStack } from '@/shared/ui/common/Stack';
+import { HStack, VStack } from '@/shared/ui/common/Stack';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
-
-import { Text, TextSize } from '@/shared/ui/deprecated/Text';
 
 import { Card } from '@/shared/ui/deprecated/Card';
 import { getFlexClasses } from '@/shared/lib/classes/getFlexClasses/getFlexClasses';
@@ -16,6 +14,8 @@ import { Button, ButtonTheme } from '@/shared/ui/deprecated/Button';
 import { useLinkCard } from '../../../lib/hook/useLinkCard/useLinkCard';
 import { EditLinkForm } from '../../EditLinkForm/EditLinkForm';
 import { LinkCardProps } from '../LinkCard';
+import { AppLink } from '@/shared/ui/deprecated/AppLink';
+import { Text, TextSize } from '@/shared/ui/deprecated/Text';
 
 export const LinkCardDeprecated = memo((props: LinkCardProps) => {
     const { link, deleteLink, updateLink, target, index } = props;
@@ -58,7 +58,16 @@ export const LinkCardDeprecated = memo((props: LinkCardProps) => {
                 <HStack justify="between" max>
                     <HStack gap="24">
                         <OrderCard index={index} />
-                        <Text text={link.text} size={TextSize.M} withTags />
+                        <AppLink to={link.text} target="_blank">
+                            <VStack gap="8">
+                                <Text
+                                    text={link.label}
+                                    size={TextSize.M}
+                                    withTags
+                                />
+                                <Text text={link.text} size={TextSize.S} />
+                            </VStack>
+                        </AppLink>
                     </HStack>
 
                     <HStack justify="center" gap="8">

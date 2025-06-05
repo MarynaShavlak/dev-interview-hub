@@ -1,11 +1,9 @@
 import React, { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { HStack } from '@/shared/ui/common/Stack';
+import { HStack, VStack } from '@/shared/ui/common/Stack';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
-
 import { Text } from '@/shared/ui/redesigned/Text';
-
 import { Card } from '@/shared/ui/redesigned/Card';
 import { getFlexClasses } from '@/shared/lib/classes/getFlexClasses/getFlexClasses';
 import { OrderCard } from '@/shared/ui/redesigned/OrderCard';
@@ -16,6 +14,7 @@ import EditIcon from '@/shared/assets/icons/edit.svg';
 
 import { useLinkCard } from '../../../lib/hook/useLinkCard/useLinkCard';
 import { EditLinkForm } from '../../EditLinkForm/EditLinkForm';
+import { AppLink } from '@/shared/ui/redesigned/AppLink';
 
 export const LinkCardRedesigned = memo((props: LinkCardProps) => {
     const { link, deleteLink, updateLink, target, index } = props;
@@ -58,7 +57,17 @@ export const LinkCardRedesigned = memo((props: LinkCardProps) => {
                 <HStack justify="between" max>
                     <HStack gap="24">
                         <OrderCard index={index} />
-                        <Text text={link.text} size="m" withTags />
+                        <AppLink to={link.text} target="_blank">
+                            <VStack gap="8">
+                                <Text
+                                    text={link.label}
+                                    size="m"
+                                    bold
+                                    withTags
+                                />
+                                <Text text={link.text} size="s" />
+                            </VStack>
+                        </AppLink>
                     </HStack>
 
                     <HStack justify="center" gap="8">
