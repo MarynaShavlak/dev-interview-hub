@@ -11,29 +11,42 @@ interface UseEditLinkFormProps {
 
 export const useEditLinkForm = (props: UseEditLinkFormProps) => {
     const { link, onSave } = props;
-    const { text } = link;
+    const { text, label } = link;
 
     const [linkText, setLinkText] = useState(text);
+    const [linkLabel, setLinkLabel] = useState(label);
     const validConfig = useInputValidationConfig();
-    const titleErrors = useInputErrors(linkText, validConfig.title);
-    const hasInputErrors = Object.values(titleErrors).some((error) => error);
+    const linkErrors = useInputErrors(linkText, validConfig.subtitleLink);
+    const labelErrors = useInputErrors(linkLabel, validConfig.title);
+    const hasInputErrors =
+        Object.values(labelErrors).some((error) => error) ||
+        Object.values(linkErrors).some((error) => error);
 
     const handleLinkTextChange = useCallback((value: string) => {
         setLinkText(value);
+    }, []);
+
+    const handleLinkLabelChange = useCallback((value: string) => {
+        setLinkLabel(value);
     }, []);
 
     const submitLinkTextChange = useCallback(() => {
         onSave({
             ...link,
             text: linkText,
+            label: linkLabel,
         });
-    }, [onSave, link, linkText]);
+    }, [onSave, link, linkText, linkLabel]);
 
     return {
         linkText,
+        linkLabel,
         handleLinkTextChange,
+        handleLinkLabelChange,
         submitLinkTextChange,
         hasInputErrors,
         validConfig,
+        linkErrors,
+        labelErrors,
     };
 };

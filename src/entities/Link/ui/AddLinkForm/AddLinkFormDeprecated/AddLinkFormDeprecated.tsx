@@ -63,7 +63,7 @@ export const AddLinkFormDeprecated = memo((props: AddLinkFormProps) => {
                 theme={ButtonTheme.OUTLINE}
                 onClick={onSendHandler}
                 data-testid="AddLinkForm.Button"
-                disabled={!text || hasInputErrors}
+                disabled={!text || !label || hasInputErrors}
             >
                 {t('Додати')}
             </Button>
