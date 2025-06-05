@@ -22,6 +22,7 @@ import { AddCommentFormSchema } from '@/entities/Comment';
 import { ArticleCommentsSchema } from '@/features/ArticleComments';
 import { CreateArticleSchema } from '@/pages/ArticleEditorPage';
 import { AddQuestionFormSchema } from '@/entities/Question';
+import { AddLinkFormSchema } from '@/entities/Link';
 
 export interface StateSchema {
     user: UserSchema;
@@ -35,6 +36,7 @@ export interface StateSchema {
     // articleDetails?: ArticleDetailsSchema;
     addCommentForm?: AddCommentFormSchema;
     addQuestionForm?: AddQuestionFormSchema;
+    addLinkForm?: AddLinkFormSchema;
     articlesPage?: ArticlesPageSchema;
     // articleDetailsPage?: ArticleDetailsPageSchema;7
     articleComments?: ArticleCommentsSchema;

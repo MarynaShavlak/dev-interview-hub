@@ -1,0 +1,53 @@
+import { useTranslation } from 'react-i18next';
+import { memo } from 'react';
+import { classNames } from '@/shared/lib/classes/classNames/classNames';
+import { Input } from '@/shared/ui/deprecated/Input';
+import { Button, ButtonTheme } from '@/shared/ui/deprecated/Button';
+
+import { HStack } from '@/shared/ui/common/Stack';
+import cls from '../AddLinkForm.module.scss';
+import { useAddLinkForm } from '../../../lib/hook/useAddLinkForm/useAddLinkForm';
+import { AddLinkFormProps } from '../AddLinkForm';
+import { useInputValidationConfig } from '@/shared/lib/hooks/validationHooks/useInputValidationConfig/useInputValidationConfig';
+import { useInputErrors } from '@/shared/lib/hooks/validationHooks/useInputErrors/useInputErrors';
+
+export const AddLinkFormDeprecated = memo((props: AddLinkFormProps) => {
+    const { className, onAddLink } = props;
+    const { t } = useTranslation('articles');
+    const { text, error, onQuestionTextChange, onSendHandler, wasSubmitted } =
+        useAddLinkForm(onAddLink);
+    const validConfig = useInputValidationConfig();
+    const titleErrors = useInputErrors(text, validConfig.title);
+    const hasInputErrors = Object.values(titleErrors).some((error) => error);
+
+    if (error) return null;
+
+    return (
+        <HStack
+            justify="between"
+            gap="16"
+            max
+            data-testid="AddLinkForm"
+            className={classNames(cls.AddLinkForm, {}, [className])}
+        >
+            <Input
+                className={cls.input}
+                placeholder={t('Введіть текст питання')}
+                value={text}
+                onChange={onQuestionTextChange}
+                data-testid="AddLinkForm.Input"
+                validations={validConfig.title}
+                maxLengthIndicator
+                errors={wasSubmitted ? titleErrors : undefined}
+            />
+            <Button
+                theme={ButtonTheme.OUTLINE}
+                onClick={onSendHandler}
+                data-testid="AddLinkForm.Button"
+                disabled={!text || hasInputErrors}
+            >
+                {t('Додати')}
+            </Button>
+        </HStack>
+    );
+});

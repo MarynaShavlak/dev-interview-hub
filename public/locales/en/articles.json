@@ -29,5 +29,10 @@
       "": "Failed to load questions. Try again later."
     }
   },
-  "Accessibility": "Accessibility"
+  "Accessibility": "Accessibility",
+  "Не вдалося завантажити посилання": {
+    " Спробуйте ще раз пізніше": {
+      "": "Failed to load links. Try again later."
+    }
+  }
 }

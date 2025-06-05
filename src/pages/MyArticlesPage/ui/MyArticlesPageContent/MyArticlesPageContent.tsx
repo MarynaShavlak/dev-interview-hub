@@ -40,7 +40,10 @@ export const MyArticlesPageContent = memo(() => {
             {activeTab === 'ready' ? (
                 <UserArticlesTable onDeleteArticle={handleDeleteArticle} />
             ) : (
-                <QuestionsQueue />
+                <>
+                    <QuestionsQueue />
+                    {/* <LinksManager /> */}
+                </>
             )}
         </VStack>
     );
