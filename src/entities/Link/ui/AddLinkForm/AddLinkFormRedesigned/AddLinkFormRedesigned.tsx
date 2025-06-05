@@ -5,7 +5,7 @@ import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { Input } from '@/shared/ui/redesigned/Input';
 import { Button } from '@/shared/ui/redesigned/Button';
 
-import { HStack } from '@/shared/ui/common/Stack';
+import { HStack, VStack } from '@/shared/ui/common/Stack';
 import cls from '../AddLinkForm.module.scss';
 import { useAddLinkForm } from '../../../lib/hook/useAddLinkForm/useAddLinkForm';
 import { useInputValidationConfig } from '@/shared/lib/hooks/validationHooks/useInputValidationConfig/useInputValidationConfig';
@@ -15,11 +15,22 @@ import { AddLinkFormProps } from '../AddLinkForm';
 export const AddLinkFormRedesigned = memo((props: AddLinkFormProps) => {
     const { className, onAddLink } = props;
     const { t } = useTranslation('articles');
-    const { text, error, onQuestionTextChange, onSendHandler, wasSubmitted } =
-        useAddLinkForm(onAddLink);
+    const {
+        text,
+        label,
+        error,
+        onLinkTextChange,
+        onSendHandler,
+        wasSubmitted,
+        onLinkLabelChange,
+    } = useAddLinkForm(onAddLink);
     const validConfig = useInputValidationConfig();
-    const titleErrors = useInputErrors(text, validConfig.title);
-    const hasInputErrors = Object.values(titleErrors).some((error) => error);
+    const linkErrors = useInputErrors(text, validConfig.subtitleLink);
+    const labelErrors = useInputErrors(label, validConfig.title);
+    const hasInputErrors =
+        Object.values(labelErrors).some((error) => error) ||
+        Object.values(linkErrors).some((error) => error);
+
     if (error) {
         return null;
     }
@@ -36,20 +47,32 @@ export const AddLinkFormRedesigned = memo((props: AddLinkFormProps) => {
                     className,
                 ])}
             >
-                <Input
-                    className={cls.input}
-                    placeholder={t('Введіть текст питання')}
-                    value={text}
-                    data-testid="AddLinkForm.Input"
-                    onChange={onQuestionTextChange}
-                    validations={validConfig.title}
-                    maxLengthIndicator
-                    errors={wasSubmitted ? titleErrors : undefined}
-                />
+                <VStack gap="16" className={cls.inputWrap}>
+                    <Input
+                        className={cls.input}
+                        label={t('Посилання')}
+                        placeholder={t('Вставте посилання')}
+                        value={text}
+                        onChange={onLinkTextChange}
+                        validations={validConfig.subtitleLink}
+                        errors={wasSubmitted ? undefined : linkErrors}
+                    />
+                    <Input
+                        label={t('Назва посилання')}
+                        className={cls.input}
+                        placeholder={t('Введіть назву посилання')}
+                        value={label}
+                        onChange={onLinkLabelChange}
+                        validations={validConfig.title}
+                        maxLengthIndicator
+                        errors={wasSubmitted ? labelErrors : undefined}
+                    />
+                </VStack>
+
                 <Button
                     data-testid="AddLinkForm.Button"
                     onClick={onSendHandler}
-                    disabled={!text || hasInputErrors}
+                    disabled={!text || !label || hasInputErrors}
                 >
                     {t('Додати')}
                 </Button>

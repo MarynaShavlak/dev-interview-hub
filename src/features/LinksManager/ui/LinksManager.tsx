@@ -16,8 +16,8 @@ export const LinksManager = memo(() => {
     const user = useUserAuthData();
 
     const onAddLink = useCallback(
-        (text: string) => {
-            dispatch(addLinkThunk({ text }));
+        (text: string, label: string) => {
+            dispatch(addLinkThunk({ text, label }));
         },
         [dispatch],
     );

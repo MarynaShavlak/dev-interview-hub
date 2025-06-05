@@ -4,6 +4,7 @@ import { AddLinkFormSchema } from '../types/addLinkForm';
 
 const initialState: AddLinkFormSchema = {
     text: '',
+    label: '',
 };
 
 export const addLinkFormSlice = buildSlice({
@@ -12,6 +13,9 @@ export const addLinkFormSlice = buildSlice({
     reducers: {
         setText: (state, action: PayloadAction<string>) => {
             state.text = action.payload;
+        },
+        setLabel: (state, action: PayloadAction<string>) => {
+            state.label = action.payload;
         },
     },
 });

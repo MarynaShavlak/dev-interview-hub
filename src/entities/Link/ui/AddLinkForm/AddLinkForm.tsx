@@ -11,7 +11,7 @@ import { addLinkFormReducer } from '../../model/slices/addLinkFormSlice';
 
 export interface AddLinkFormProps {
     className?: string;
-    onAddLink: (text: string) => void;
+    onAddLink: (text: string, label: string) => void;
 }
 
 const reducers: ReducersList = {

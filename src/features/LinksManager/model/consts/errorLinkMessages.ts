@@ -6,6 +6,7 @@ export const ERROR_LINK_MESSAGES = {
     LINK_ID_REQUIRED: 'Link ID is required.',
     LINK_RETRIEVAL_FAIL: 'Failed to retrieve created link.',
     LINK_TEXT_REQUIRED: 'Link text cannot be empty.',
+    LINK_LABEL_REQUIRED: 'Link label cannot be empty.',
     LINKS_BY_USER_ID_FETCH_FAIL: (userId: string) =>
         `Failed to fetch links for user with ID "${userId}".`,
 

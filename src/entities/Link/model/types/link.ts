@@ -3,4 +3,5 @@ export interface Link {
     userId: string;
     text: string;
     createdAt: string;
+    label: string;
 }

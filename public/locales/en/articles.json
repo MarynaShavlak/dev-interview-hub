@@ -34,5 +34,9 @@
     " Спробуйте ще раз пізніше": {
       "": "Failed to load links. Try again later."
     }
-  }
+  },
+  "Вставте посилання": "Insert link",
+  "Назва посилання": "Link name",
+  "Посилання": "Link",
+  "Введіть назву посилання": "Enter link name"
 }

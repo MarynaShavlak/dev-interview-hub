@@ -7,3 +7,7 @@ export const [useAddLinkFormText, getAddLinkFormText] = buildSelector(
 export const [useAddLinkFormError, getAddLinkFormError] = buildSelector(
     (state: StateSchema) => state.addLinkForm?.error,
 );
+
+export const [useAddLinkFormLabel, getAddLinkFormLabel] = buildSelector(
+    (state: StateSchema) => state.addLinkForm?.label ?? '',
+);

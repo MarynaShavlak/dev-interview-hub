@@ -10,9 +10,9 @@ import { Link } from '@/entities/Link';
 
 export const addLinkThunk = createAsyncThunk<
     Link,
-    { text: string },
+    { text: string; label: string },
     ThunkConfig<string>
->('linksManager/addLinkToManager', async ({ text }, thunkApi) => {
+>('linksManager/addLinkToManager', async ({ text, label }, thunkApi) => {
     const { dispatch, rejectWithValue, getState } = thunkApi;
 
     try {
@@ -26,12 +26,17 @@ export const addLinkThunk = createAsyncThunk<
             return rejectWithValue(ERROR_LINK_MESSAGES.LINK_TEXT_REQUIRED);
         }
 
+        if (!label || label.trim() === '') {
+            return rejectWithValue(ERROR_LINK_MESSAGES.LINK_LABEL_REQUIRED);
+        }
+
         const linkId = v4();
         const addedLink = await dispatch(
             addLinkMutation({
                 userId: userData.id,
                 text,
                 id: linkId,
+                label,
             }),
         ).unwrap();
 

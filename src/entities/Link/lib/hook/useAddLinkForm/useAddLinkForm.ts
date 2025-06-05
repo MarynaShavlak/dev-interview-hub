@@ -1,17 +1,21 @@
 import { useCallback, useState } from 'react';
 import {
     useAddLinkFormError,
+    useAddLinkFormLabel,
     useAddLinkFormText,
 } from '../../../model/selectors/addLinkFormSelectors';
 import { useAddLinkFormActions } from '../../../model/slices/addLinkFormSlice';
 
-export const useAddLinkForm = (onAddLink: (text: string) => void) => {
+export const useAddLinkForm = (
+    onAddLink: (text: string, label: string) => void,
+) => {
     const text = useAddLinkFormText();
+    const label = useAddLinkFormLabel();
     const error = useAddLinkFormError();
-    const { setText } = useAddLinkFormActions();
+    const { setText, setLabel } = useAddLinkFormActions();
     const [wasSubmitted, setWasSubmitted] = useState(false);
 
-    const onQuestionTextChange = useCallback(
+    const onLinkTextChange = useCallback(
         (value: string) => {
             setText(value);
             setWasSubmitted(false);
@@ -19,21 +23,32 @@ export const useAddLinkForm = (onAddLink: (text: string) => void) => {
         [setText],
     );
 
+    const onLinkLabelChange = useCallback(
+        (value: string) => {
+            setLabel(value);
+            setWasSubmitted(false);
+        },
+        [setLabel],
+    );
+
     const onSendHandler = useCallback(() => {
-        if (!text.trim()) {
+        if (!text.trim() && !label.trim()) {
             setWasSubmitted(true);
             return;
         }
-        onAddLink(text);
-        onQuestionTextChange('');
+        onAddLink(text, label);
+        onLinkTextChange('');
+        onLinkLabelChange('');
         setWasSubmitted(false);
-    }, [onQuestionTextChange, onAddLink, text]);
+    }, [text, label, onAddLink, onLinkTextChange, onLinkLabelChange]);
 
     return {
         text,
+        label,
         error,
-        onQuestionTextChange,
+        onLinkTextChange,
         onSendHandler,
         wasSubmitted,
+        onLinkLabelChange,
     };
 };

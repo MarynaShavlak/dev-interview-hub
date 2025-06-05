@@ -66,7 +66,8 @@ export const Input = memo((props: InputProps) => {
     } = props;
 
     const generatedId = useId();
-
+    console.log('validations', validations);
+    console.log('errors', errors);
     const { ref, isFocused, onChangeHandler, onBlurHandler, onFocus, isDirty } =
         useInput({ autofocus, digitsOnly, onChange, onBlur });
     const currentInputLength = String(value).length;

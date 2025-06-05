@@ -24,12 +24,17 @@ import {
     getRouteProfile,
     getRouteSettings,
     getRouteMyArticles,
+    getRouteUsefulLinks,
 } from '@/shared/const/router/router';
 import { AppRoutesProps } from '@/shared/types/router';
 import {
     ArticleEditorPage,
     ArticleEditorPageSkeleton,
 } from '@/pages/ArticleEditorPage';
+import {
+    UsefulLinksPage,
+    UsefulLinksPageSkeleton,
+} from '@/pages/UsefulLinksPage';
 
 export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
     [AppRoutes.MAIN]: {
@@ -61,6 +66,12 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
         element: <MyArticlesPage />,
         authOnly: true,
         skeleton: <MyArticlesPageSkeleton />,
+    },
+    [AppRoutes.USEFUL_LINKS]: {
+        path: getRouteUsefulLinks(),
+        element: <UsefulLinksPage />,
+        authOnly: true,
+        skeleton: <UsefulLinksPageSkeleton />,
     },
     [AppRoutes.ARTICLE_DETAILS]: {
         path: getRouteArticleDetails(':id'),

@@ -8,11 +8,13 @@ import LibIconDeprecated from '@/shared/assets/icons/edit.svg';
 import MainIconDeprecated from '@/shared/assets/icons/main-20-20.svg';
 import ProfileIconDeprecated from '@/shared/assets/icons/profile-20-20.svg';
 import QuizIcon from '@/shared/assets/icons/quiz.svg';
+import LinkIcon from '@/shared/assets/icons/link.svg';
 import {
     getRouteArticles,
     getRouteMain,
     getRouteMyArticles,
     getRouteProfile,
+    getRouteUsefulLinks,
 } from '@/shared/const/router/router';
 import { toggleFeatures } from '@/shared/lib/features';
 import { SidebarItemType } from '../../../model/types/sidebar';
@@ -77,6 +79,16 @@ export const useSidebarItems = () => {
                     on: () => LibIcon,
                 }),
                 text: 'Мої статті',
+                authOnly: true,
+            },
+            {
+                path: getRouteUsefulLinks(),
+                Icon: toggleFeatures({
+                    name: 'isAppRedesigned',
+                    off: () => LinkIcon,
+                    on: () => LinkIcon,
+                }),
+                text: 'Посилання',
                 authOnly: true,
             },
             {
