@@ -30,7 +30,7 @@ export const useInputValidationConfig = (): InputErrorValidation => {
         title: {
             isEmpty: true,
             minLength: 2,
-            maxLength: 100,
+            maxLength: 150,
             // minLength: 2,
             // maxLength: 8,
         },

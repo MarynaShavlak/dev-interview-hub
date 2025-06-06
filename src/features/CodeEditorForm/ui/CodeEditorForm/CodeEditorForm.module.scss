@@ -1,8 +1,11 @@
 .titleInput {
     width: 650px;
+    input {
+        width:100%;
+    }
 }
 
 .blockWrap {
     flex-grow: 1;
-    width: 650px;
+
 }
