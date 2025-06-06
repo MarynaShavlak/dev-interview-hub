@@ -45,11 +45,11 @@ export const useInputValidationConfig = (): InputErrorValidation => {
             isUrl: true,
         },
         blockTitle: {
-            maxLength: 60,
+            maxLength: 100,
         },
         blockTitleRequired: {
             isEmpty: true,
-            maxLength: 60,
+            maxLength: 100,
         },
     };
 };

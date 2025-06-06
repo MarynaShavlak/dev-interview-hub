@@ -20,13 +20,6 @@ declare const __IS_DEV__: boolean;
 declare const __API__: string;
 declare const __PROJECT__: 'storybook' | 'frontend' | 'jest';
 
-// declare const __FIREBASE_API_KEY__: string;
-// declare const __FIREBASE_AUTH_DOMAIN__: string;
-// declare const __FIREBASE_PROJECT_ID__: string;
-// declare const __FIREBASE_STORAGE_BUCKET__: string;
-// declare const __FIREBASE_MESSAGING_SENDER_ID__: string;
-// declare const __FIREBASE_APP_ID__: string;
-
 type DeepPartial<T> = T extends object
     ? {
           [P in keyof T]?: DeepPartial<T[P]>;
