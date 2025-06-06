@@ -10,6 +10,7 @@ import { Skeleton } from '@/shared/ui/redesigned/Skeleton';
 import { ActionButtonList } from '@/shared/ui/redesigned/ActionButtonList';
 import AddIcon from '@/shared/assets/icons/plus.svg';
 import { CodeEditorFormProps } from '../CodeEditorForm';
+import { Box } from '@/shared/ui/common/Box';
 
 export const CodeEditorFormRedesigned = memo((props: CodeEditorFormProps) => {
     const {
@@ -35,19 +36,22 @@ export const CodeEditorFormRedesigned = memo((props: CodeEditorFormProps) => {
     );
 
     return (
-        <VStack gap="16" max className={cls.blockWrap}>
-            <Input
-                value={title}
-                label={t('Опис коду')}
-                labelBold
-                gap="16"
-                maxWidth={false}
-                className={cls.titleInput}
-                onChange={handleTitleChange}
-                validations={validConfig.blockTitle}
-                maxLengthIndicator
-                errors={blockTitleErrors}
-            />
+        <VStack gap="16" max>
+            <Box className={cls.blockWrap}>
+                <Input
+                    value={title}
+                    label={t('Опис коду')}
+                    labelBold
+                    gap="16"
+                    maxWidth={false}
+                    className={cls.titleInput}
+                    onChange={handleTitleChange}
+                    validations={validConfig.blockTitle}
+                    maxLengthIndicator
+                    errors={blockTitleErrors}
+                />
+            </Box>
+
             <HStack gap="16" align="end" justify="between" max>
                 <CodeEditor
                     height="200px"

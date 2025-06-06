@@ -38,10 +38,6 @@ export const ArticleMetaFormRedesigned = memo((props: ArticleMetaFormProps) => {
         () => sessionStorage.getItem(ARTICLE_TO_CREATE_TITLE) || '',
     );
 
-    // useEffect(() => {
-    //     sessionStorage.setItem(ARTICLE_TO_CREATE_TITLE, initialTitle);
-    // }, [initialTitle]);
-
     useEffect(() => {
         const storedTitle = sessionStorage.getItem(ARTICLE_TO_CREATE_TITLE);
         if (storedTitle) {
@@ -49,12 +45,6 @@ export const ArticleMetaFormRedesigned = memo((props: ArticleMetaFormProps) => {
         }
     }, []);
     //
-    // // Update on change (if needed)
-    // useEffect(() => {
-    //     if (initialTitle) {
-    //         sessionStorage.setItem(ARTICLE_TO_CREATE_TITLE, initialTitle);
-    //     }
-    // }, [initialTitle]);
 
     if (!formData) {
         return null;
@@ -65,7 +55,7 @@ export const ArticleMetaFormRedesigned = memo((props: ArticleMetaFormProps) => {
     } = formData;
 
     return (
-        <VStack gap="24">
+        <VStack gap="24" max>
             <HStack gap="16" align="start" max>
                 <OrderCard index={titleIndex} />
 
