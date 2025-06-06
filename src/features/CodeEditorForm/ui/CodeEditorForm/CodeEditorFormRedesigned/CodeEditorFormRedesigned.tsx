@@ -35,7 +35,7 @@ export const CodeEditorFormRedesigned = memo((props: CodeEditorFormProps) => {
     );
 
     return (
-        <VStack gap="16" max>
+        <VStack gap="16" max className={cls.blockWrap}>
             <Input
                 value={title}
                 label={t('Опис коду')}

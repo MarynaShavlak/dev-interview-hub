@@ -40,7 +40,7 @@ export const ImageEditorFormDeprecated = memo((props: ImageEditorFormProps) => {
     return (
         <VStack justify="center" align="center" max>
             <VStack gap="16" max>
-                <VStack gap="8" max>
+                <VStack gap="8" max className={cls.blockWrap}>
                     <Text title={t('Назва зображення')} size={TextSize.S} />
                     <Input
                         value={title}
