@@ -6,6 +6,7 @@ import { MyArticlesTabsNavigationProps } from '../MyArticlesTabsNavigation';
 import { useMyArticlesTabs } from '../../../lib/hook/useMyArticlesTabs/useMyArticlesTabs';
 import { MyArticlesTabType } from '../../../model/types/myArticlesTabTypes';
 import { Tabs } from '@/shared/ui/deprecated/Tabs';
+import { AddNewArticleButton } from '@/shared/ui/common/AddNewArticleButton';
 
 export const MyArticlesTabsNavigationDeprecated = memo(
     ({ activeTab, onTabChange }: MyArticlesTabsNavigationProps) => {
@@ -21,6 +22,7 @@ export const MyArticlesTabsNavigationDeprecated = memo(
                     }
                     multiselect={false}
                 />
+                <AddNewArticleButton />
             </HStack>
         );
     },
