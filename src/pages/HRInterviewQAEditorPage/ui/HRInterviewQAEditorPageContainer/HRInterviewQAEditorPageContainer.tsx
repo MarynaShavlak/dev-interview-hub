@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 import { VStack } from '@/shared/ui/common/Stack';
-import { ArticleEditorPageHeader } from '../ArticleEditorPageHeader/ArticleEditorPageHeader';
+import { HRInterviewQAEditorPageHeader } from '../HRInterviewQAEditorPageHeader/HRInterviewQAEditorPageHeader';
 import { useHRInterviewQAEditor } from '../../lib/hooks/useHRInterviewQAEditor/useHRInterviewQAEditor';
 import { SaveHRInterviewQAError } from '../SaveHRInterviewQAError/SaveHRInterviewQAError';
 import {
@@ -34,7 +34,7 @@ export const HRInterviewQAEditorPageContainer = memo(() => {
         <DynamicModuleLoader reducers={reducers}>
             <VStack gap="24" max>
                 {saveError && <SaveHRInterviewQAError />}
-                <ArticleEditorPageHeader
+                <HRInterviewQAEditorPageHeader
                     hasErrors={validation.hasInputErrors}
                     onActions={{
                         clear: onClear,

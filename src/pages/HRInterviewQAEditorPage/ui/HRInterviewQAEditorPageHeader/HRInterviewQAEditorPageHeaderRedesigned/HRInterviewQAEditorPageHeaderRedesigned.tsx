@@ -4,16 +4,16 @@ import { ConfirmCancelModal } from '@/shared/ui/common/ConfirmCancelModal';
 import { ConfirmDeleteModal } from '@/shared/ui/common/ConfirmDeleteModal';
 import { HStack } from '@/shared/ui/common/Stack';
 
-import { Button, ButtonTheme } from '@/shared/ui/deprecated/Button';
-import cls from '../ArticleEditorPageHeader.module.scss';
-import { Text, TextSize } from '@/shared/ui/deprecated/Text';
-import { Loader } from '@/shared/ui/deprecated/Loader';
+import { Button } from '@/shared/ui/redesigned/Button';
+import cls from '../HRInterviewQAEditorPageHeader.module.scss';
+import { Text } from '@/shared/ui/redesigned/Text';
 
-import { ArticleEditorPageHeaderProps } from '../ArticleEditorPageHeader';
+import { HRInterviewQAEditorPageHeaderProps } from '../HRInterviewQAEditorPageHeader';
 import { useHRInterviewQAEditorPageHeader } from '../../../lib/hooks/useHRInterviewQAEditorPageHeader/useHRInterviewQAEditorPageHeader';
+import { Skeleton } from '@/shared/ui/redesigned/Skeleton';
 
-export const ArticleEditorPageHeaderDeprecated = memo(
-    (props: ArticleEditorPageHeaderProps) => {
+export const HRInterviewQAEditorPageHeaderRedesigned = memo(
+    (props: HRInterviewQAEditorPageHeaderProps) => {
         const {
             className,
             hasErrors,
@@ -35,34 +35,34 @@ export const ArticleEditorPageHeaderDeprecated = memo(
             handleCancel,
             canSave,
             articleTitle,
+            cancelEdit,
         } = useHRInterviewQAEditorPageHeader(onActions, hasErrors);
-        console.log('canSave', canSave);
 
         if (isLoading) {
-            return (
-                <HStack justify="center" max>
-                    <Loader />
-                </HStack>
-            );
+            return <Skeleton width="100%" height="76px" border="16px" />;
         }
 
         return (
-            <HStack justify="between" max className={cls.pageTitleWrap}>
-                <Text title={pageTitle} size={TextSize.L} />
+            <HStack
+                justify="between"
+                max
+                className={cls.pageTitleWrapRedesigned}
+            >
+                <Text title={pageTitle} size="l" />
                 <HStack gap="8" className={className}>
                     {isEditArticlePage && (
                         <>
                             <Button
-                                theme={ButtonTheme.OUTLINE_RED}
+                                variant="cancel"
                                 onClick={deleteArticleModal.show}
                             >
                                 {t('Видалити')}
                             </Button>
-                            <Button onClick={cancelArticleEditing.show}>
+                            <Button onClick={cancelEdit}>
                                 {t('Відмінити')}
                             </Button>
                             <Button
-                                theme={ButtonTheme.BACKGROUND_INVERTED}
+                                variant="save"
                                 onClick={handleUpdate}
                                 disabled={!canSave}
                             >
@@ -72,14 +72,11 @@ export const ArticleEditorPageHeaderDeprecated = memo(
                     )}
                     {!isEditArticlePage && (
                         <>
-                            <Button
-                                theme={ButtonTheme.OUTLINE_RED}
-                                onClick={onActions.clear}
-                            >
+                            <Button variant="cancel" onClick={onActions.clear}>
                                 {t('Очистити')}
                             </Button>
                             <Button
-                                theme={ButtonTheme.BACKGROUND_INVERTED}
+                                variant="save"
                                 onClick={handleSave}
                                 disabled={!canSave}
                             >

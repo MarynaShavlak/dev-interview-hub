@@ -6,7 +6,7 @@ import {
 } from '@/shared/lib/hooks/useToggleVisibility/useToggleVisibility';
 import { useArticleNavigation } from '@/entities/Article';
 
-import { ArticleEditorPageHeaderProps } from '../../../ui/ArticleEditorPageHeader/ArticleEditorPageHeader';
+import { HRInterviewQAEditorPageHeaderProps } from '../../../ui/HRInterviewQAEditorPageHeader/HRInterviewQAEditorPageHeader';
 
 import { useHRInterviewQAFormState } from '../useHRInterviewQAFormState/useHRInterviewQAFormState';
 
@@ -23,7 +23,7 @@ interface UseHRInterviewQAEditorPageHeaderReturn {
 }
 
 export const useHRInterviewQAEditorPageHeader = (
-    onActions: ArticleEditorPageHeaderProps['onActions'],
+    onActions: HRInterviewQAEditorPageHeaderProps['onActions'],
     hasErrors: boolean,
 ): UseHRInterviewQAEditorPageHeaderReturn => {
     const { formData, hasChanges } = useHRInterviewQAFormState();
