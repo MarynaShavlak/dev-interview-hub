@@ -7,16 +7,29 @@
 
 .item {
   position: relative;
-  border-radius: 20px;
+
   cursor: pointer;
   border: 1px solid transparent;
-  background: var(--dark-bg-redesigned);
-  transition:  border 0.3s;
+
+  transition: background-color 0.3s, border 0.3s;
 
   &:first-child {
     margin-top: 0;
   }
 
+
+
+  &:focus-within {
+    position: relative;
+    z-index: 10;
+  }
+  padding: 24px;
+
+}
+
+.itemRedesigned {
+  background: var(--dark-bg-redesigned);
+  border-radius: 20px;
   &:hover {
     border: 1px solid var(--accent-redesigned);
 
@@ -24,23 +37,27 @@
       color: var(--accent-redesigned);
     }
   }
-
-  &:focus-within {
-    position: relative;
-    z-index: 10;
-  }
-
   &[data-state='open'] {
 
     border-color: var(--accent-redesigned);
   }
-
-
-  padding: 24px;
-
 }
 
+.itemDeprecated {
+  background: var(--card-bg);
+  &:hover {
+    border: 1px solid var(--primary-color);
 
+    .trigger {
+      color: var(--primary-color);
+    }
+  }
+  &[data-state='open'] {
+
+    border-color: var(--primary-color);
+    background: var(--code-bg);
+  }
+}
 .trigger {
   text-align: left;
   display: flex;
@@ -55,14 +72,21 @@
   background: none;
   border: none;
   padding: 0;
+
+}
+
+.triggerRedesigned {
   font: var(--font-l-redesigned);
-
-
   color: var(--text-redesigned);
 }
 
+.triggerDeprecated {
+  font: var(--font-l);
+  color: var(--primary-color);
+}
+
 .icon {
-  color: var(--accent-redesigned);
+
   transition: transform 0.3s cubic-bezier(0.87, 0, 0.13, 1);
 
   [data-state='open'] & {
@@ -70,10 +94,18 @@
   }
 }
 
+.iconRedesigned{
+  color: var(--accent-redesigned);
+}
+.iconDeprecated{
+  color: var(--primary-color);
+}
+
+
 .content {
   overflow: hidden;
   will-change: height;
-  color: var(--text-redesigned);
+
   &[data-state='closed'] {
     animation: accordion-up 0.3s ease forwards;
   }
@@ -81,6 +113,13 @@
   &[data-state='open'] {
     animation: accordion-down 0.3s ease forwards;
   }
+}
+
+.contentRedesigned {
+  color: var(--text-redesigned);
+}
+.contentDeprecated {
+  color: var(--primary-color);
 }
 
 .contentInner {
