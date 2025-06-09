@@ -25,6 +25,7 @@ import {
     getRouteSettings,
     getRouteMyArticles,
     getRouteUsefulLinks,
+    getRouteHRInterviewQACreate,
 } from '@/shared/const/router/router';
 import { AppRoutesProps } from '@/shared/types/router';
 import {
@@ -35,6 +36,10 @@ import {
     UsefulLinksPage,
     UsefulLinksPageSkeleton,
 } from '@/pages/UsefulLinksPage';
+import {
+    HRInterviewQAEditorPage,
+    HRInterviewQAEditorPageSkeleton,
+} from '@/pages/HRInterviewQAEditorPage';
 
 export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
     [AppRoutes.MAIN]: {
@@ -97,6 +102,12 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
         authOnly: true,
         roles: [UserRole.MANAGER, UserRole.ADMIN],
         skeleton: <AdminPanelPageSkeleton />,
+    },
+    [AppRoutes.HR_INTERVIEW_CREATE]: {
+        path: getRouteHRInterviewQACreate(),
+        element: <HRInterviewQAEditorPage />,
+        authOnly: true,
+        skeleton: <HRInterviewQAEditorPageSkeleton />,
     },
     [AppRoutes.FORBIDDEN]: {
         path: getRouteForbidden(),

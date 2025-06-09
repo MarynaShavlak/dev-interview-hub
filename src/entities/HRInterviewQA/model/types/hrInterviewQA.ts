@@ -14,6 +14,7 @@ export type HRInterviewQACategory = {
 export interface HRInterviewQABlock {
     title?: string;
     paragraphs: string[];
+    id: string;
 }
 
 export interface HRInterviewQA {

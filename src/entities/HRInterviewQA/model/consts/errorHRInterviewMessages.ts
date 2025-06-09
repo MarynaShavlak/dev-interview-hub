@@ -1,12 +1,12 @@
 export const ERROR_HR_INTERVIEW_MESSAGES = {
     ADD_HR_INTERVIEW_FAIL: 'Error adding new HR interview question.',
     // ARTICLE_ID_REQUIRED: 'Article ID is required.',
-    // ARTICLE_NOT_FOUND: (articleId: string) =>
-    //     `Article with id "${articleId}" not found.`,
+    HR_INTERVIEW_NOT_FOUND: (id: string) =>
+        `HR Interview QA with id "${id}" not found.`,
     HR_INTERVIEW_RETRIEVAL_FAIL:
         'Failed to retrieve created HR interview question.',
-    // ARTICLE_SNAPSHOT_FAIL: (articleId: string) =>
-    //     `Error in article with id "${articleId}" snapshot.`,
+    HR_INTERVIEW_SNAPSHOT_FAIL: (id: string) =>
+        `Error in HR interview QA with id "${id}" snapshot.`,
     // ARTICLES_BY_USER_ID_FETCH_FAIL: (userId: string) =>
     //     `Failed to fetch articles for user with ID "${userId}".`,
     // ARTICLES_FETCH_FAIL: 'Failed to fetch articles.',
@@ -22,19 +22,19 @@ export const ERROR_HR_INTERVIEW_MESSAGES = {
     // DELETE_RATINGS: 'Failed to delete article ratings.',
     // DELETE_RELATED_DATA: (id: string) =>
     //     `Failed to delete associated content for article ID "${id}".`,
-    // FETCH_ARTICLE_ERROR: (articleId: string) =>
-    //     `Failed to fetch article with ID "${articleId}".`,
+    FETCH_HR_INTERVIEW_ERROR: (id: string) =>
+        `Failed to fetch HR interview QA  with ID "${id}".`,
     // FILTERED_ARTICLES_FETCH_FAIL: 'Failed to fetch filtered articles.',
     // FIREBASE_STORAGE_NOT_INITIALIZED: 'Firebase storage is not initialized',
     // IMAGE_NOT_FOUND: (imagePath: string) => `Image not found: ${imagePath}`,
     // INCREMENT_VIEWS_ERROR: (articleId: string) =>
     //     `Error incrementing article views with id "${articleId}".`,
     // NO_API_DATA: 'No data received from API.',
-    // UPDATE_ARTICLE_ERROR: (articleId: string) =>
-    //     `Error updating article with id "${articleId}".`,
+    UPDATE_HR_INTERVIEW_ERROR: (id: string) =>
+        `Error updating interview QA  with id "${id}".`,
     // UPDATE_ARTICLE_VIEWS_ERROR: 'Failed to update article views.',
-    // UPDATED_DATA_RETRIEVAL_ERROR: (articleId: string) =>
-    //     `Failed to retrieve updated data for article with id ${articleId}`,
+    UPDATED_DATA_RETRIEVAL_ERROR: (id: string) =>
+        `Failed to retrieve updated data for interview QA with id ${id}`,
     // UPLOAD_IMAGE_ERROR: 'Failed to upload image',
-    // USER_NOT_FOUND: 'User not found.',
+    USER_NOT_FOUND: 'User not found.',
 };

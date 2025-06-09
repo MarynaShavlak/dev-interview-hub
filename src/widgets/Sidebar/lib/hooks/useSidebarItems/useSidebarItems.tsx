@@ -9,8 +9,10 @@ import MainIconDeprecated from '@/shared/assets/icons/main-20-20.svg';
 import ProfileIconDeprecated from '@/shared/assets/icons/profile-20-20.svg';
 import QuizIcon from '@/shared/assets/icons/quiz.svg';
 import LinkIcon from '@/shared/assets/icons/link.svg';
+import InterviewIcon from '@/shared/assets/icons/interview.svg';
 import {
     getRouteArticles,
+    getRouteHRInterviewQACreate,
     getRouteMain,
     getRouteMyArticles,
     getRouteProfile,
@@ -79,6 +81,16 @@ export const useSidebarItems = () => {
                     on: () => LibIcon,
                 }),
                 text: 'Мої статті',
+                authOnly: true,
+            },
+            {
+                path: getRouteHRInterviewQACreate(),
+                Icon: toggleFeatures({
+                    name: 'isAppRedesigned',
+                    off: () => InterviewIcon,
+                    on: () => InterviewIcon,
+                }),
+                text: 'HR Співбесіда',
                 authOnly: true,
             },
             {

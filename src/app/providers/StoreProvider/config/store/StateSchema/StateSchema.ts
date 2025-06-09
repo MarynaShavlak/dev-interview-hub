@@ -23,6 +23,7 @@ import { ArticleCommentsSchema } from '@/features/ArticleComments';
 import { CreateArticleSchema } from '@/pages/ArticleEditorPage';
 import { AddQuestionFormSchema } from '@/entities/Question';
 import { AddLinkFormSchema } from '@/entities/Link';
+import { CreateHRInterviewQASchema } from '@/pages/HRInterviewQAEditorPage';
 
 export interface StateSchema {
     user: UserSchema;
@@ -42,6 +43,7 @@ export interface StateSchema {
     articleComments?: ArticleCommentsSchema;
     articles?: EntityState<Article>;
     createArticle?: CreateArticleSchema;
+    createHRInterviewQA?: CreateHRInterviewQASchema;
 }
 
 export type StateSchemaKey = keyof StateSchema;

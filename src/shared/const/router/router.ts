@@ -9,6 +9,7 @@ export enum AppRoutes {
     ARTICLE_EDIT = 'article_edit',
     ADMIN_PANEL = 'admin_panel',
     USEFUL_LINKS = 'useful_links',
+    HR_INTERVIEW_CREATE = 'hr_interview_qa_create',
     FORBIDDEN = 'forbidden',
     // last
     NOT_FOUND = 'not_found',
@@ -24,6 +25,7 @@ export const getRouteAdmin = () => '/admin';
 export const getRouteForbidden = () => '/forbidden';
 export const getRouteMyArticles = () => '/my-articles-lib';
 export const getRouteUsefulLinks = () => '/useful-links';
+export const getRouteHRInterviewQACreate = () => '/hr-interview-qa/new';
 
 export const AppRouteByPathPattern: Record<string, AppRoutes> = {
     [getRouteMain()]: AppRoutes.MAIN,

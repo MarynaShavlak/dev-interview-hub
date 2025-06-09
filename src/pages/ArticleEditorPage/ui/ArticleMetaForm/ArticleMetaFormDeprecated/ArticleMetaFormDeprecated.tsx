@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React, { memo, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Input } from '@/shared/ui/deprecated/Input';
 import { Button } from '@/shared/ui/deprecated/Button';
@@ -15,6 +15,7 @@ import { ArticleMetaFormProps } from '../ArticleMetaForm';
 import { useArticleMetaForm } from '../../../lib/hooks/useArticleMetaForm/useArticleMetaForm';
 import { getFlexClasses } from '@/shared/lib/classes/getFlexClasses/getFlexClasses';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
+import { ARTICLE_TO_CREATE_TITLE } from '@/shared/const/localstorage';
 
 export const ArticleMetaFormDeprecated = memo((props: ArticleMetaFormProps) => {
     const { titleIndex, subtitleIndex, errors } = props;
@@ -35,6 +36,16 @@ export const ArticleMetaFormDeprecated = memo((props: ArticleMetaFormProps) => {
         onChangeSubtitleText,
         onChangeSubtitleLink,
     } = form;
+    const [initialTitle, setInitialTitle] = useState<string>(
+        () => sessionStorage.getItem(ARTICLE_TO_CREATE_TITLE) || '',
+    );
+
+    useEffect(() => {
+        const storedTitle = sessionStorage.getItem(ARTICLE_TO_CREATE_TITLE);
+        if (storedTitle) {
+            sessionStorage.removeItem(ARTICLE_TO_CREATE_TITLE);
+        }
+    }, []);
 
     if (!formData) {
         return null;
@@ -57,7 +68,7 @@ export const ArticleMetaFormDeprecated = memo((props: ArticleMetaFormProps) => {
                 <VStack gap="8" max>
                     <Text title={t('Заголовок статті')} size={TextSize.M} />
                     <Input
-                        value={title || ''}
+                        value={title || initialTitle || ''}
                         maxWidth
                         onChange={onChangeTitle}
                         validations={validConfig.title}
