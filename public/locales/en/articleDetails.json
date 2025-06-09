@@ -86,5 +86,10 @@
   "коментар": "comment",
   "від користувача": "from user",
   "Вставте посилання": "Insert link",
-  "Введіть назву посилання": "Enter link name"
+  "Введіть назву посилання": "Enter link name",
+  "Редагування питання на HR співбесіді": "Edit HR interview Question & Answer",
+  "Створення нового питання на HR співбесіді": "Create new HR interview Question & Answer",
+  "Питання від рекрутера": "Question from recruiter",
+  "Блоки відповіді на питання": "Question answer blocks",
+  "Категорії питань": "Question categories"
 }

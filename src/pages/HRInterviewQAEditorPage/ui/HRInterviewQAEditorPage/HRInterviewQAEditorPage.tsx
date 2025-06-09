@@ -3,11 +3,11 @@ import { Page } from '@/widgets/Page';
 
 import { HRInterviewQAEditorPageContainer } from '../HRInterviewQAEditorPageContainer/HRInterviewQAEditorPageContainer';
 
-interface ArticleEditorPageProps {
+interface HRInterviewQAEditorPageProps {
     className?: string;
 }
 
-const ArticleEditorPage = memo((props: ArticleEditorPageProps) => {
+const HRInterviewQAEditorPage = memo((props: HRInterviewQAEditorPageProps) => {
     const { className } = props;
 
     return (
@@ -17,4 +17,4 @@ const ArticleEditorPage = memo((props: ArticleEditorPageProps) => {
     );
 });
 
-export default ArticleEditorPage;
+export default HRInterviewQAEditorPage;

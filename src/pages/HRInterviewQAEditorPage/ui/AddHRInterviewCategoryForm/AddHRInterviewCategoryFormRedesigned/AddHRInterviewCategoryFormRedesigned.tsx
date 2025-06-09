@@ -28,7 +28,7 @@ export const AddHRInterviewCategoryFormRedesigned = memo(
             <HStack gap="16" align="start" max>
                 <OrderCard index={index} />
                 <VStack gap="16">
-                    <Text text={t('Категорії статей')} bold />
+                    <Text text={t('Категорії питань')} bold />
                     <Text text={t('Оберіть категорію')} italic />
                     <Tabs
                         tabs={categoryTabs}

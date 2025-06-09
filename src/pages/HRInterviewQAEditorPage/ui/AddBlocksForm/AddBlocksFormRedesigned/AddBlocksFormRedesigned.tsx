@@ -51,7 +51,7 @@ export const AddBlocksFormRedesigned = memo((props: AddBlocksFormProps) => {
         <HStack gap="16" align="start" max>
             <OrderCard index={index} />
             <VStack gap="16" className={cls.addBlocksForm} max>
-                <Text text={t('Блоки статті')} bold />
+                <Text text={t('Блоки відповіді на питання')} bold />
                 <Text
                     text={t('Додайте блок')}
                     className={cls.subtext}

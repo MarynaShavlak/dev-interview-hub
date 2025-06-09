@@ -23,8 +23,8 @@ export const HRInterviewQAEditorPageHeaderRedesigned = memo(
         } = props;
         const { t } = useTranslation('articleDetails');
         const pageTitle = isEditArticlePage
-            ? t('Редагування статті')
-            : t('Створення нової статті');
+            ? t('Редагування питання на HR співбесіді')
+            : t('Створення нового питання на HR співбесіді');
 
         const {
             deleteArticleModal,

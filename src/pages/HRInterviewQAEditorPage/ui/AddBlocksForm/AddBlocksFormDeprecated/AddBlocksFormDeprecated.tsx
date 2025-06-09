@@ -55,7 +55,7 @@ export const AddBlocksFormDeprecated = memo((props: AddBlocksFormProps) => {
         <HStack gap="16" align="start" max>
             <OrderCard index={index} />
             <VStack gap="16" className={cls.addBlocksForm} max>
-                <Text title={t('Блоки статті')} />
+                <Text title={t('Блоки відповіді на питання')} />
                 <Text
                     text={t('Додайте блок')}
                     className={cls.subtext}

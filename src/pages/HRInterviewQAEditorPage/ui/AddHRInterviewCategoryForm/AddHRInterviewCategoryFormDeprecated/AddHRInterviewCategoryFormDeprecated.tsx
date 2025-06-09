@@ -28,7 +28,7 @@ export const AddHRInterviewCategoryFormDeprecated = memo(
             <HStack gap="16" align="start" max>
                 <OrderCard index={index} />
                 <VStack gap="16">
-                    <Text title={t('Категорії статей')} />
+                    <Text title={t('Категорії питань')} />
                     <Text text={t('Оберіть категорію')} />
                     <Tabs
                         tabs={categoryTabs}

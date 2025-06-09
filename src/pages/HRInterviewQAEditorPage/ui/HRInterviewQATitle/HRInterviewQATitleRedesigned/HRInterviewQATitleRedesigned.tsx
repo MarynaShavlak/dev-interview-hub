@@ -45,7 +45,7 @@ export const HRInterviewQATitleRedesigned = memo(
 
                     <Input
                         value={title || initialTitle || ''}
-                        label={t('Заголовок статті')}
+                        label={t('Питання від рекрутера')}
                         labelBold
                         gap="16"
                         maxWidth

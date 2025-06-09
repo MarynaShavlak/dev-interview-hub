@@ -1,4 +1,4 @@
-export { ArticleEditorPageAsync as HRInterviewQAEditorPage } from './ui/ArticleEditorPage/ArticleEditorPage.async';
+export { HRInterviewQAEditorPageAsync as HRInterviewQAEditorPage } from './ui/HRInterviewQAEditorPage/HRInterviewQAEditorPage.async';
 
 export { HRInterviewQAEditorPageSkeleton } from './ui/HRInterviewQAEditorPageSkeleton/HRInterviewQAEditorPageSkeleton';
 

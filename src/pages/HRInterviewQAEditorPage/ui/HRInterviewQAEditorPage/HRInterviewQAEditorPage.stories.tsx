@@ -1,7 +1,7 @@
 import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
-import ArticleEditorPage from './ArticleEditorPage';
+import HRInterviewQAEditorPage from './HRInterviewQAEditorPage';
 import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator/NewDesignDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 import { Theme } from '@/shared/const/theme';
@@ -10,16 +10,16 @@ import { testArticleData } from '@/entities/Article/testing';
 
 export default {
     title: 'pages/ArticleEditorPage',
-    component: ArticleEditorPage,
+    component: HRInterviewQAEditorPage,
     argTypes: {
         backgroundColor: { control: 'color' },
     },
     args: {},
     decorators: [StoreDecorator({})],
-} as ComponentMeta<typeof ArticleEditorPage>;
+} as ComponentMeta<typeof HRInterviewQAEditorPage>;
 
-const Template: ComponentStory<typeof ArticleEditorPage> = (args) => (
-    <ArticleEditorPage {...args} />
+const Template: ComponentStory<typeof HRInterviewQAEditorPage> = (args) => (
+    <HRInterviewQAEditorPage {...args} />
 );
 const editArticleParameters = {
     reactRouter: {
