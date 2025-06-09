@@ -28,19 +28,15 @@ export const AddHRInterviewCategoryFormRedesigned = memo(
                 <OrderCard index={index} />
                 <VStack gap="16">
                     <Text text={t('Категорії питань')} bold />
-                    <Text text={t('Оберіть категорію')} italic />
-                    {categoryTabs.map((category, idx) => (
-                        <HStack gap="16" key={idx}>
-                            <Text text={category.groupLabel} />
-                            <Tabs
-                                tabs={category.tabs}
-                                value={formData?.category.label || ''}
-                                onTabClick={(tab) => {
-                                    onChangeCategory(tab.value);
-                                }}
-                            />
-                        </HStack>
-                    ))}
+                    <Text text={t('Оберіть одну категорію')} italic />
+
+                    <Tabs
+                        tabs={categoryTabs}
+                        value={formData?.category || ''}
+                        onTabClick={(tab) => {
+                            onChangeCategory(tab.value);
+                        }}
+                    />
                 </VStack>
             </HStack>
         );

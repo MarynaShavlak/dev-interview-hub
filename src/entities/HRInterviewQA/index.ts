@@ -17,3 +17,4 @@ export type {
     HRInterviewQACategory,
     HRInterviewQASubcategory,
 } from './model/types/hrInterviewQA';
+export type { HRCategory } from './model/types/hrCategory';

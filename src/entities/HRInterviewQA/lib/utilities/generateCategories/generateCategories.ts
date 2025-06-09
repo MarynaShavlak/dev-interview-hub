@@ -1,5 +1,5 @@
 import { HRInterviewQACategory } from '../../../model/types/hrInterviewQA';
-import { baseCategories } from '../../../model/data/baseCategories';
+import { baseCategories } from '../../../model/types/baseCategories';
 
 export const generateCategories = (
     labels: Record<string, string>,

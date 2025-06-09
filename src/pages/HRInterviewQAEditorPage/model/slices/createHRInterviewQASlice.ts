@@ -3,13 +3,12 @@ import { buildSlice } from '@/shared/lib/store';
 import { User } from '@/entities/User';
 import { CreateHRInterviewQASchema } from '../types/createHRInterviewQASchema';
 import {
+    HRCategory,
     HRInterviewQA,
     HRInterviewQABlock,
-    HRInterviewQACategory,
-    HRInterviewQACategoriesEng,
 } from '@/entities/HRInterviewQA';
 
-const defaultCategory: HRInterviewQACategory = HRInterviewQACategoriesEng[0];
+const defaultCategory: HRCategory = 'describeYourself';
 
 const initialState: CreateHRInterviewQASchema = {
     form: {
@@ -44,17 +43,7 @@ export const createHRInterviewQASlice = buildSlice({
             state.hasChanges = true;
         },
         updateCategory(state, action) {
-            const categoryToAdd = action.payload;
-
-            if (state.form.category && Array.isArray(state.form.category)) {
-                const index = state.form.category.indexOf(categoryToAdd);
-
-                if (index === -1) {
-                    state.form.category.push(categoryToAdd);
-                } else {
-                    state.form.category.splice(index, 1);
-                }
-            }
+            state.form.category = action.payload;
             state.hasChanges = true;
         },
         updateBlocks(state, action: PayloadAction<HRInterviewQABlock>) {

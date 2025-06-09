@@ -1,4 +1,7 @@
-import { BaseCategory } from '../types/baseCategory';
+export interface BaseCategory {
+    key: string;
+    subcategories: { key: string }[];
+}
 
 export const baseCategories: BaseCategory[] = [
     {

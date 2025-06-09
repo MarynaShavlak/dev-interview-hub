@@ -32,7 +32,7 @@ export const AddHRInterviewCategoryFormDeprecated = memo(
                     <Text text={t('Оберіть категорію')} />
                     <Tabs
                         tabs={categoryTabs}
-                        value={formData?.category.label || ''}
+                        value={formData?.category || ''}
                         onTabClick={(tab) => {
                             onChangeCategory(tab.value);
                         }}
