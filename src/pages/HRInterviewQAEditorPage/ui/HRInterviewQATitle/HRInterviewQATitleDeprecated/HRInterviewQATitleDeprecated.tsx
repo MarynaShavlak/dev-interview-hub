@@ -39,7 +39,7 @@ export const HRInterviewQATitleDeprecated = memo(
         const { title } = formData;
 
         return (
-            <VStack gap="24">
+            <VStack gap="24" max>
                 <HStack gap="16" align="start" max>
                     <OrderCard index={titleIndex} />
                     <VStack gap="8" max>

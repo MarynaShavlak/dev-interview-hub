@@ -35,7 +35,7 @@ export const TextEditorFormDeprecated = memo((props: TextEditorFormProps) => {
     );
 
     return (
-        <VStack gap="16" max className={cls.blockWrap}>
+        <VStack gap="16" max>
             <VStack gap="8" max className={cls.blockWrap}>
                 <Text title={t('Заголовок блоку')} size={TextSize.S} />
                 <Input

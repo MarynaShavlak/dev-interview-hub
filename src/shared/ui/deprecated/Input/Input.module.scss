@@ -1,5 +1,6 @@
 .wrap {
     position: relative;
+    width:100%;
 }
 
 .InputWrapper {
@@ -33,6 +34,7 @@
 .caretWrapper {
     flex-grow: 1;
     position: relative;
+
 }
 
 .caret {
