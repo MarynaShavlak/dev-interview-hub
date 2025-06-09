@@ -10,7 +10,7 @@ import { Text, TextSize } from '@/shared/ui/deprecated/Text';
 import { Loader } from '@/shared/ui/deprecated/Loader';
 
 import { ArticleEditorPageHeaderProps } from '../ArticleEditorPageHeader';
-import { useArticleEditorPageHeader } from '../../../lib/hooks/useArticleEditorPageHeader/useArticleEditorPageHeader';
+import { useHRInterviewQAEditorPageHeader } from '../../../lib/hooks/useHRInterviewQAEditorPageHeader/useHRInterviewQAEditorPageHeader';
 
 export const ArticleEditorPageHeaderDeprecated = memo(
     (props: ArticleEditorPageHeaderProps) => {
@@ -35,7 +35,7 @@ export const ArticleEditorPageHeaderDeprecated = memo(
             handleCancel,
             canSave,
             articleTitle,
-        } = useArticleEditorPageHeader(onActions, hasErrors);
+        } = useHRInterviewQAEditorPageHeader(onActions, hasErrors);
         console.log('canSave', canSave);
 
         if (isLoading) {

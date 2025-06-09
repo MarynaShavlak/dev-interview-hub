@@ -10,20 +10,19 @@ import cls from '../AddBlocksForm.module.scss';
 import { getFlexClasses } from '@/shared/lib/classes/getFlexClasses/getFlexClasses';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { AddBlocksFormProps } from '../AddBlocksForm';
-import { AddArticleBlocksButtons } from '../../AddArticleBlocksButtons/AddArticleBlocksButtons';
-import { BlockRenderer } from '../BlockRenderer/BlockRenderer';
-import { useArticleBlocksActions } from '../../../lib/hooks/useArticleBlocksActions/useArticleBlocksActions';
+import { AddHRInterviewQABlocksButtons } from '../../AddHRInterviewQABlocksButtons/AddHRInterviewQABlocksButtons';
+import { useHRInterviewQABlocksActions } from '../../../lib/hooks/useHRInterviewQABlocksActions/useHRInterviewQABlocksActions';
 import { useTriggerTopScrollPosition } from '@/shared/lib/hooks/useTriggerTopScrollPosition/useTriggerTopScrollPosition';
 import { getBtnsListDeprecatedStyles } from '../../../lib/utils/getBtnsListStyles/getBtnsListStyles';
 import { getPageElement } from '@/shared/lib/getDOMElements/getDOMElement';
 import { useAriaExpandedZIndex } from '../../../lib/hooks/useAriaExpandedZIndex/useAriaExpandedZIndex';
 import { calculateZIndex } from '../../../lib/utils/calculateZIndex/calculateZIndex';
+import { TextBlockEditor } from '@/widgets/TextBlockEditor';
 
 export const AddBlocksFormDeprecated = memo((props: AddBlocksFormProps) => {
     const { index, blocks: allBlocks, blockActions } = props;
 
-    const { insertTextBlock, insertCodeBlock, insertImageBlock, clearBlocks } =
-        blockActions;
+    const { insertTextBlock, clearBlocks } = blockActions;
     const { t } = useTranslation('articleDetails');
     const isSomeBlockAdded = Number(allBlocks.length) > 0;
     const elementRef = useRef<HTMLDivElement>(null);
@@ -38,10 +37,10 @@ export const AddBlocksFormDeprecated = memo((props: AddBlocksFormProps) => {
 
     const zIndex = calculateZIndex(zIndexNotifications, zIndexAvatarDropdown);
     const {
-        handleAddArticleBlock,
-        handleUpdateArticleBlock,
-        handleDeleteArticleBlock,
-    } = useArticleBlocksActions(blockActions);
+        handleAddHRInterviewQABlock,
+        handleUpdateHRInterviewQABlock,
+        handleDeleteHRInterviewQABlock,
+    } = useHRInterviewQABlocksActions(blockActions);
 
     useEffect(() => {
         if (elementRef.current && topPosition !== 0) {
@@ -74,10 +73,8 @@ export const AddBlocksFormDeprecated = memo((props: AddBlocksFormProps) => {
                     )}
                     style={{ zIndex }}
                 >
-                    <AddArticleBlocksButtons
+                    <AddHRInterviewQABlocksButtons
                         onAddTextBlockBtnClick={insertTextBlock}
-                        onAddCodeBlockBtnClick={insertCodeBlock}
-                        onAddImageBlockBtnClick={insertImageBlock}
                         deleteAllBlocks={clearBlocks}
                         isSomeBlockAdded={isSomeBlockAdded}
                     />
@@ -87,14 +84,14 @@ export const AddBlocksFormDeprecated = memo((props: AddBlocksFormProps) => {
                     <Each
                         of={allBlocks}
                         render={(block) => (
-                            <BlockRenderer
+                            <TextBlockEditor
                                 key={block.id}
                                 block={block}
-                                addBlockInArticle={handleAddArticleBlock}
+                                addBlockInArticle={handleAddHRInterviewQABlock}
                                 deleteBlockFromArticle={
-                                    handleDeleteArticleBlock
+                                    handleDeleteHRInterviewQABlock
                                 }
-                                onEditBlock={handleUpdateArticleBlock}
+                                onEditBlock={handleUpdateHRInterviewQABlock}
                             />
                         )}
                     />

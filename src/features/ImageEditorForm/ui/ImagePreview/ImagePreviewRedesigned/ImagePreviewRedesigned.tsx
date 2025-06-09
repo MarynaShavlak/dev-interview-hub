@@ -3,10 +3,11 @@ import { v4 } from 'uuid';
 import { FileUploadZone } from '@/shared/ui/redesigned/FileUploadZone';
 import { VStack } from '@/shared/ui/common/Stack';
 import { Box } from '@/shared/ui/common/Box/Box';
-import { ArticleImageBlockComponent, ArticleSection } from '@/entities/Article';
+import { ArticleImageBlockComponent } from '@/entities/Article';
 import cls from '../ImagePreview.module.scss';
 import { Text } from '@/shared/ui/redesigned/Text';
 import { ImagePreviewProps } from '../ImagePreview';
+import { SectionType } from '@/shared/types/sectionTypes';
 
 export const ImagePreviewRedesigned = (props: ImagePreviewProps) => {
     const {
@@ -32,7 +33,7 @@ export const ImagePreviewRedesigned = (props: ImagePreviewProps) => {
                     {imagePreview && (
                         <ArticleImageBlockComponent
                             block={{
-                                type: ArticleSection.IMAGE,
+                                type: SectionType.IMAGE,
                                 title: '',
                                 src: imagePreview,
                                 id: v4(),

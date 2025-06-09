@@ -1,11 +1,12 @@
 import React, { memo, useMemo } from 'react';
 
-import { ArticleCodeBlock, ArticleSection } from '@/entities/Article';
+import { ArticleCodeBlock } from '@/entities/Article';
 import { useCodeBlockState } from '../../lib/hooks/useCodeBlockState/useCodeBlockState';
 
 import { useCodeBlockOperations } from '../../lib/hooks/useCodeBlockOperations/useCodeBlockOperations';
 import { CodeBlockDisplay } from '../CodeBlockDisplay/CodeBlockDisplay';
 import { useIsEditArticlePage } from '@/shared/lib/hooks/useIsEditArticlePage/useIsEditArticlePage';
+import { SectionType } from '@/shared/types/sectionTypes';
 
 export interface CodeBlockEditorProps {
     block: ArticleCodeBlock;
@@ -54,7 +55,7 @@ export const CodeBlockEditor = memo((props: CodeBlockEditorProps) => {
                 ? block
                 : {
                       id: block.id,
-                      type: ArticleSection.CODE,
+                      type: SectionType.CODE,
                       code,
                       title: title || '',
                   },

@@ -30,7 +30,7 @@ The **`ArticleCategories`** component accepts the following props:
 ```typescript jsx
 import { ArticleCategories } from '@/entities/Article';
 import { Article } from './article';
-import { ArticleCategory, ArticleSection } from './articleConsts';
+import { ArticleCategory, SectionType } from './articleConsts';
 import { testArticleData } from './testing';
 
 

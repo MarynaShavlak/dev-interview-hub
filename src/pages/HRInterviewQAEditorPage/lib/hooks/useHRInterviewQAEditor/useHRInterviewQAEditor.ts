@@ -8,9 +8,9 @@ import { useInputValidationConfig } from '@/shared/lib/hooks/validationHooks/use
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 
 import {
-    useArticleBlocksDisplay,
-    UseArticleBlocksDisplayReturnType,
-} from '../useArticleBlocksDisplay/useArticleBlocksDisplay';
+    useHRInterviewQABlocksDisplay,
+    UseHRInterviewQABlocksDisplayReturnType,
+} from '../useHRInterviewQABlocksDisplay/useHRInterviewQABlocksDisplay';
 
 import { createHRInterviewQAThunk } from '../../../model/services/createHRInterviewQAThunk/createHRInterviewQAThunk';
 import { searchClient } from '@/shared/config/firebase/searchClient';
@@ -21,7 +21,7 @@ import { useHRInterviewQAFormState } from '../useHRInterviewQAFormState/useHRInt
 
 interface Metadata {
     isEditArticlePage: boolean;
-    blocks: UseArticleBlocksDisplayReturnType['blocks'];
+    blocks: UseHRInterviewQABlocksDisplayReturnType['blocks'];
     saveError: string | null;
     isLoading: boolean;
 }
@@ -40,7 +40,7 @@ export interface UseHRInterviewQAEditorReturn {
         UseFormValidationReturnType,
         'hasInputErrors' | 'titleErrors'
     >;
-    blockActions: UseArticleBlocksDisplayReturnType;
+    blockActions: UseHRInterviewQABlocksDisplayReturnType;
     formActions: FormActions;
 }
 
@@ -65,7 +65,7 @@ export const useHRInterviewQAEditor = (): UseHRInterviewQAEditorReturn => {
         validConfig,
         'article',
     );
-    const blockOperations = useArticleBlocksDisplay(
+    const blockOperations = useHRInterviewQABlocksDisplay(
         isEditArticlePage,
         formData,
     );
@@ -90,7 +90,7 @@ export const useHRInterviewQAEditor = (): UseHRInterviewQAEditorReturn => {
             }
             return null;
         } catch (error: any) {
-            console.error('Error saving article:', error);
+            console.error('Error savingHR interview QA:', error);
             setSaveError(error.message || 'An unexpected error occurred.');
             return null;
         }
@@ -98,7 +98,9 @@ export const useHRInterviewQAEditor = (): UseHRInterviewQAEditorReturn => {
 
     const onDeleteArticle = useCallback(async () => {
         if (!id || !formData) {
-            console.error('Article ID is required to delete the article.');
+            console.error(
+                'Article ID is required to delete theHR interview QA.',
+            );
             return null;
         }
         try {
@@ -113,8 +115,10 @@ export const useHRInterviewQAEditor = (): UseHRInterviewQAEditorReturn => {
 
             return null;
         } catch (error: any) {
-            console.error('Error deleting article:', error);
-            setSaveError(error.message || 'Failed to delete the article.');
+            console.error('Error deletingHR interview QA:', error);
+            setSaveError(
+                error.message || 'Failed to delete theHR interview QA.',
+            );
             return null;
         }
     }, [dispatch, formData, id, onClearArticle]);
@@ -122,7 +126,7 @@ export const useHRInterviewQAEditor = (): UseHRInterviewQAEditorReturn => {
     const onUpdateArticle = useCallback(async () => {
         if (!id || !formData) {
             console.error(
-                'Article ID and form data are required to update the article.',
+                'Article ID and form data are required to update theHR interview QA.',
             );
             setSaveError('Article data is incomplete.');
             return null;
@@ -138,17 +142,17 @@ export const useHRInterviewQAEditor = (): UseHRInterviewQAEditorReturn => {
 
             if (updatedArticle?.id) {
                 console.log(
-                    `Article with ID "${updatedArticle.id}" has been updated.`,
+                    `HR interview QA with ID "${updatedArticle.id}" has been updated.`,
                 );
                 return updatedArticle.id;
             }
 
             return null;
         } catch (error: any) {
-            console.error('Error updating article:', error);
+            console.error('Error updatingHR interview QA:', error);
             setSaveError(
                 error.message ||
-                    'An error occurred while updating the article.',
+                    'An error occurred while updating theHR interview QA.',
             );
             return null;
         }

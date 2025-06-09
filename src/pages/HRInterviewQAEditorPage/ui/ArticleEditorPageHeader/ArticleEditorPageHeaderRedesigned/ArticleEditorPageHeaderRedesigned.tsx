@@ -9,7 +9,7 @@ import cls from '../ArticleEditorPageHeader.module.scss';
 import { Text } from '@/shared/ui/redesigned/Text';
 
 import { ArticleEditorPageHeaderProps } from '../ArticleEditorPageHeader';
-import { useArticleEditorPageHeader } from '../../../lib/hooks/useArticleEditorPageHeader/useArticleEditorPageHeader';
+import { useHRInterviewQAEditorPageHeader } from '../../../lib/hooks/useHRInterviewQAEditorPageHeader/useHRInterviewQAEditorPageHeader';
 import { Skeleton } from '@/shared/ui/redesigned/Skeleton';
 
 export const ArticleEditorPageHeaderRedesigned = memo(
@@ -36,7 +36,7 @@ export const ArticleEditorPageHeaderRedesigned = memo(
             canSave,
             articleTitle,
             cancelEdit,
-        } = useArticleEditorPageHeader(onActions, hasErrors);
+        } = useHRInterviewQAEditorPageHeader(onActions, hasErrors);
 
         if (isLoading) {
             return <Skeleton width="100%" height="76px" border="16px" />;

@@ -1,4 +1,5 @@
 import type { User } from '@/entities/User';
+import { SectionType } from '@/shared/types/sectionTypes';
 
 export type HRInterviewQASubcategory = {
     key: string;
@@ -15,6 +16,7 @@ export interface HRInterviewQABlock {
     title?: string;
     paragraphs: string[];
     id: string;
+    type: SectionType.TEXT;
 }
 
 export interface HRInterviewQA {
@@ -22,6 +24,6 @@ export interface HRInterviewQA {
     user: User;
     title: string;
     createdAt: string;
-    category: HRInterviewQACategory[];
+    category: HRInterviewQACategory;
     blocks: HRInterviewQABlock[];
 }

@@ -31,7 +31,7 @@ The **`ArticleViews`** component accepts the following props:
 ```typescript jsx
 import { ArticleViews } from '@/entities/Article';
 import { Article } from './article';
-import { ArticleCategory, ArticleSection } from './articleConsts';
+import { ArticleCategory, SectionType } from './articleConsts';
 import { testArticleData } from './testing';
 
 const ExampleComponent = () => {

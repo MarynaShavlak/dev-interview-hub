@@ -5,7 +5,7 @@ import ArticleEditorPage from './ArticleEditorPage';
 import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator/NewDesignDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 import { Theme } from '@/shared/const/theme';
-import { ContentSkeleton } from '../ArticleEditorPageContent/ContentSkeleton/ContentSkeleton';
+import { ContentSkeleton } from '../HRInterviewQAEditorPageContent/ContentSkeleton/ContentSkeleton';
 import { testArticleData } from '@/entities/Article/testing';
 
 export default {

@@ -1,7 +1,8 @@
 import { useCallback } from 'react';
-import { ArticleSection, ArticleTextBlock } from '@/entities/Article';
+import { ArticleTextBlock } from '@/entities/Article';
 import { useToggleVisibility } from '@/shared/lib/hooks/useToggleVisibility/useToggleVisibility';
 import { useIsEditArticlePage } from '@/shared/lib/hooks/useIsEditArticlePage/useIsEditArticlePage';
+import { SectionType } from '@/shared/types/sectionTypes';
 
 interface UseTextBlockOperationsProps {
     blockId: string;
@@ -32,7 +33,7 @@ export const useTextBlockOperations = ({
     const saveTextBlock = useCallback(() => {
         const updatedTextBlock: ArticleTextBlock = {
             id: blockId,
-            type: ArticleSection.TEXT,
+            type: SectionType.TEXT,
             paragraphs,
             title: title || '',
         };

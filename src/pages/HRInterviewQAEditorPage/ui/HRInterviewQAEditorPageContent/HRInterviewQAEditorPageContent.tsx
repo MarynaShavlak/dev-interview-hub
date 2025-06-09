@@ -1,20 +1,20 @@
 import React, { memo } from 'react';
 import { HRInterviewQATitle } from '../HRInterviewQATitle/HRInterviewQATitle';
-import { AddCategoryForm } from '../AddCategoryForm/AddCategoryForm';
 import { AddBlocksForm } from '../AddBlocksForm/AddBlocksForm';
 import { UseHRInterviewQAEditorReturn } from '../../lib/hooks/useHRInterviewQAEditor/useHRInterviewQAEditor';
 import { VStack } from '@/shared/ui/common/Stack';
 
 import { ContentSkeleton } from './ContentSkeleton/ContentSkeleton';
+import { AddHRInterviewCategoryForm } from '../AddHRInterviewCategoryForm/AddHRInterviewCategoryForm';
 
-interface ArticleEditorPageProps {
+interface HRInterviewQAEditorPageProps {
     metadata: UseHRInterviewQAEditorReturn['metadata'];
     validation: UseHRInterviewQAEditorReturn['validation'];
     blockActions: UseHRInterviewQAEditorReturn['blockActions'];
 }
 
-export const ArticleEditorPageContent = memo(
-    (props: ArticleEditorPageProps) => {
+export const HRInterviewQAEditorPageContent = memo(
+    (props: HRInterviewQAEditorPageProps) => {
         const { validation, blockActions, metadata } = props;
 
         const { blocks, isLoading } = metadata;
@@ -27,7 +27,7 @@ export const ArticleEditorPageContent = memo(
             <VStack gap="24">
                 <HRInterviewQATitle titleIndex={1} errors={validation} />
 
-                <AddCategoryForm index={4} />
+                <AddHRInterviewCategoryForm index={4} />
                 <AddBlocksForm
                     index={5}
                     blocks={blocks}

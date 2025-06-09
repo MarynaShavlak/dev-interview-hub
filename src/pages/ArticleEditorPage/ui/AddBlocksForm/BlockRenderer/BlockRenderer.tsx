@@ -1,8 +1,9 @@
 import React from 'react';
-import { ArticleBlock, ArticleSection } from '@/entities/Article';
+import { ArticleBlock } from '@/entities/Article';
 import { TextBlockEditor } from '@/widgets/TextBlockEditor';
 import { CodeBlockEditor } from '@/widgets/CodeBlockEditor';
 import { ImageBlockEditor } from '@/widgets/ImageBlockEditor';
+import { SectionType } from '@/shared/types/sectionTypes';
 
 interface BlockRendererProps {
     block: ArticleBlock;
@@ -16,7 +17,7 @@ export const BlockRenderer = (props: BlockRendererProps) => {
         props;
 
     switch (block.type) {
-        case ArticleSection.TEXT:
+        case SectionType.TEXT:
             return (
                 <TextBlockEditor
                     block={block}
@@ -25,7 +26,7 @@ export const BlockRenderer = (props: BlockRendererProps) => {
                     onEditBlock={onEditBlock}
                 />
             );
-        case ArticleSection.CODE:
+        case SectionType.CODE:
             return (
                 <CodeBlockEditor
                     block={block}
@@ -34,7 +35,7 @@ export const BlockRenderer = (props: BlockRendererProps) => {
                     onEditBlock={onEditBlock}
                 />
             );
-        case ArticleSection.IMAGE:
+        case SectionType.IMAGE:
             return (
                 <ImageBlockEditor
                     block={block}

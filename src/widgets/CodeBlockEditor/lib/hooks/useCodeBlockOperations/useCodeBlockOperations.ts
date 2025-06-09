@@ -1,7 +1,8 @@
 import { useCallback } from 'react';
-import { ArticleCodeBlock, ArticleSection } from '@/entities/Article';
+import { ArticleCodeBlock } from '@/entities/Article';
 import { useToggleVisibility } from '@/shared/lib/hooks/useToggleVisibility/useToggleVisibility';
 import { useIsEditArticlePage } from '@/shared/lib/hooks/useIsEditArticlePage/useIsEditArticlePage';
+import { SectionType } from '@/shared/types/sectionTypes';
 
 interface UseCodeBlockOperationsProps {
     blockId: string;
@@ -31,7 +32,7 @@ export const useCodeBlockOperations = ({
     const saveCodeBlock = useCallback(() => {
         const updatedBlock: ArticleCodeBlock = {
             id: blockId,
-            type: ArticleSection.CODE,
+            type: SectionType.CODE,
             code: code.trim(),
             title,
         };

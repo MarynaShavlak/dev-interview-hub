@@ -1,15 +1,17 @@
 import React, { memo, useMemo } from 'react';
-import { ArticleSection, ArticleTextBlock } from '@/entities/Article';
+import { ArticleTextBlock } from '@/entities/Article';
 import { useTextBlockState } from '../../lib/hooks/useTextBlockState/useTextBlockState';
 import { useTextBlockOperations } from '../../lib/hooks/useTextBlockOperations/useTextBlockOperations';
 import { TextBlockDisplay } from '../TextBlockDisplay/TextBlockDisplay';
 import { useIsEditArticlePage } from '@/shared/lib/hooks/useIsEditArticlePage/useIsEditArticlePage';
+import { HRInterviewQABlock } from '@/entities/HRInterviewQA';
+import { SectionType } from '@/shared/types/sectionTypes';
 
 export interface TextBlockEditorProps {
-    block: ArticleTextBlock;
-    addBlockInArticle: (block: ArticleTextBlock) => void;
+    block: ArticleTextBlock | HRInterviewQABlock;
+    addBlockInArticle: (block: ArticleTextBlock | HRInterviewQABlock) => void;
     deleteBlockFromArticle: (id: string) => void;
-    onEditBlock?: (block: ArticleTextBlock) => void;
+    onEditBlock?: (block: ArticleTextBlock | HRInterviewQABlock) => void;
 }
 
 export const TextBlockEditor = memo((props: TextBlockEditorProps) => {
@@ -48,13 +50,13 @@ export const TextBlockEditor = memo((props: TextBlockEditorProps) => {
         onEditBlock,
     });
 
-    const currentBlockData: ArticleTextBlock = useMemo(
+    const currentBlockData: ArticleTextBlock | HRInterviewQABlock = useMemo(
         () =>
             isEditArticlePage
                 ? block
                 : {
                       id: block.id,
-                      type: ArticleSection.TEXT,
+                      type: SectionType.TEXT,
                       paragraphs,
                       title: title || '',
                   },

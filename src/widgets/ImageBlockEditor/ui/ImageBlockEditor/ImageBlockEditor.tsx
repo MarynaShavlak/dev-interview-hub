@@ -1,11 +1,12 @@
 import React, { useMemo } from 'react';
-import { ArticleImageBlock, ArticleSection } from '@/entities/Article';
+import { ArticleImageBlock } from '@/entities/Article';
 
 import { ImageUploadError } from '../ImageUploadError/ImageUploadError';
 import { useImageBlockState } from '../../lib/hooks/useImageBlockState/useImageBlockState';
 
 import { useImageBlockOperations } from '../../lib/hooks/useImageBlockOperations/useImageBlockOperations';
 import { ImageBlockDisplay } from '../ImageBlockDisplay/ImageBlockDisplay';
+import { SectionType } from '@/shared/types/sectionTypes';
 
 export interface ImageBlockEditorProps {
     block: ArticleImageBlock;
@@ -61,7 +62,7 @@ export const ImageBlockEditor = (props: ImageBlockEditorProps) => {
                 ? block
                 : {
                       id: block.id,
-                      type: ArticleSection.IMAGE,
+                      type: SectionType.IMAGE,
                       src: initialAvatar,
                       title,
                   },

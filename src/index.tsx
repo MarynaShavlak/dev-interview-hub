@@ -38,3 +38,4 @@ const root = createRoot(container);
 
 root.render(<AppWrapper />);
 registerServiceWorker();
+export { SectionType } from '@/shared/types/sectionTypes';

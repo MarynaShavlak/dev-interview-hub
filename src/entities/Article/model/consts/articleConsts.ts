@@ -7,12 +7,6 @@ export enum ArticleSortField {
     CREATED_DESC = 'articles_createdAt_desc',
 }
 
-export enum ArticleSection {
-    CODE = 'CODE',
-    IMAGE = 'IMAGE',
-    TEXT = 'TEXT',
-}
-
 export enum ArticleCategory {
     ALL = 'ALL',
     IT = 'IT',

@@ -1,16 +1,16 @@
 import { useCallback } from 'react';
-import { useArticleFormState } from '../useHRInterviewQAFormState/useHRInterviewQAFormState';
-import { ArticleBlock } from '@/entities/Article';
 import { AddBlocksFormProps } from '../../../ui/AddBlocksForm/AddBlocksForm';
+import { useHRInterviewQAFormState } from '../useHRInterviewQAFormState/useHRInterviewQAFormState';
+import { HRInterviewQABlock } from '@/entities/HRInterviewQA';
 
-export const useArticleBlocksActions = (
+export const useHRInterviewQABlocksActions = (
     blockActions: AddBlocksFormProps['blockActions'],
 ) => {
     const { addBlock, updateBlock, removeBlock } = blockActions;
 
-    const { onDeleteBlock, onChangeBlocks } = useArticleFormState();
+    const { onDeleteBlock, onChangeBlocks } = useHRInterviewQAFormState();
 
-    const handleDeleteArticleBlock = useCallback(
+    const handleDeleteHRInterviewQABlock = useCallback(
         (blockId: string) => {
             removeBlock(blockId);
             onDeleteBlock(blockId);
@@ -18,16 +18,16 @@ export const useArticleBlocksActions = (
         [removeBlock, onDeleteBlock],
     );
 
-    const handleUpdateArticleBlock = useCallback(
-        (updatedBlock: ArticleBlock) => {
+    const handleUpdateHRInterviewQABlock = useCallback(
+        (updatedBlock: HRInterviewQABlock) => {
             updateBlock(updatedBlock);
             onChangeBlocks(updatedBlock);
         },
         [onChangeBlocks, updateBlock],
     );
 
-    const handleAddArticleBlock = useCallback(
-        (newBlock: ArticleBlock) => {
+    const handleAddHRInterviewQABlock = useCallback(
+        (newBlock: HRInterviewQABlock) => {
             addBlock(newBlock);
             onChangeBlocks(newBlock);
         },
@@ -35,8 +35,8 @@ export const useArticleBlocksActions = (
     );
 
     return {
-        handleAddArticleBlock,
-        handleUpdateArticleBlock,
-        handleDeleteArticleBlock,
+        handleAddHRInterviewQABlock,
+        handleUpdateHRInterviewQABlock,
+        handleDeleteHRInterviewQABlock,
     };
 };

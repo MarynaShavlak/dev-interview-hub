@@ -1,9 +1,9 @@
 import { ArticleBlock } from '../../model/types/article';
-import { ArticleSection } from '../../model/consts/articleConsts';
 import { ArticleCodeBlockComponent } from '../ArticleCodeBlockComponent/ArticleCodeBlockComponent';
 import cls from './ArticleDetails.module.scss';
 import { ArticleImageBlockComponent } from '../ArticleImageBlockComponent/ArticleImageBlockComponent';
 import { ArticleTextBlockComponent } from '../ArticleTextBlockComponent/ArticleTextBlockComponent';
+import { SectionType } from '@/shared/types/sectionTypes';
 
 /**
  * Renders a specific type of article block component based on the block's type.
@@ -18,7 +18,7 @@ import { ArticleTextBlockComponent } from '../ArticleTextBlockComponent/ArticleT
 
 export const renderArticleBlock = (block: ArticleBlock) => {
     switch (block.type) {
-        case ArticleSection.CODE:
+        case SectionType.CODE:
             return (
                 <ArticleCodeBlockComponent
                     key={block.id}
@@ -26,7 +26,7 @@ export const renderArticleBlock = (block: ArticleBlock) => {
                     className={cls.block}
                 />
             );
-        case ArticleSection.IMAGE:
+        case SectionType.IMAGE:
             return (
                 <ArticleImageBlockComponent
                     key={block.id}
@@ -34,7 +34,7 @@ export const renderArticleBlock = (block: ArticleBlock) => {
                     className={cls.block}
                 />
             );
-        case ArticleSection.TEXT:
+        case SectionType.TEXT:
             return (
                 <ArticleTextBlockComponent
                     key={block.id}

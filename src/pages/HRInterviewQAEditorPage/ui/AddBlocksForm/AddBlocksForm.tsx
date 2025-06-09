@@ -1,19 +1,17 @@
 import React, { memo } from 'react';
-import { ArticleBlock } from '@/entities/Article';
 
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
 import { AddBlocksFormRedesigned } from './AddBlocksFormRedesigned/AddBlocksFormRedesigned';
 import { AddBlocksFormDeprecated } from './AddBlocksFormDeprecated/AddBlocksFormDeprecated';
+import { HRInterviewQABlock } from '@/entities/HRInterviewQA';
 
 export interface AddBlocksFormProps {
     index: number;
-    blocks: ArticleBlock[];
+    blocks: HRInterviewQABlock[];
     blockActions: {
         insertTextBlock: () => void;
-        insertCodeBlock: () => void;
-        insertImageBlock: () => void;
-        addBlock: (block: ArticleBlock) => void;
-        updateBlock: (updatedBlock: ArticleBlock) => void;
+        addBlock: (block: HRInterviewQABlock) => void;
+        updateBlock: (updatedBlock: HRInterviewQABlock) => void;
         removeBlock: (id: string) => void;
         clearBlocks: () => void;
     };

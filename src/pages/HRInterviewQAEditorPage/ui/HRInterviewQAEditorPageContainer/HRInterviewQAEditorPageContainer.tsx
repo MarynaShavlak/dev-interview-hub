@@ -7,19 +7,19 @@ import {
     DynamicModuleLoader,
     ReducersList,
 } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
-import { createArticleReducer } from '../../model/slices/createHRInterviewQASlice';
-import { ArticleEditorPageContent } from '../ArticleEditorPageContent/ArticleEditorPageContent';
-import { ContentSkeleton } from '../ArticleEditorPageContent/ContentSkeleton/ContentSkeleton';
+
+import { HRInterviewQAEditorPageContent } from '../HRInterviewQAEditorPageContent/HRInterviewQAEditorPageContent';
+import { ContentSkeleton } from '../HRInterviewQAEditorPageContent/ContentSkeleton/ContentSkeleton';
+import { createHRInterviewQAReducer } from '../../model/slices/createHRInterviewQASlice';
 
 const reducers: ReducersList = {
-    createArticle: createArticleReducer,
+    createHRInterviewQA: createHRInterviewQAReducer,
 };
 
-export const ArticleEditorPageContainer = memo(() => {
+export const HRInterviewQAEditorPageContainer = memo(() => {
     const {
         metadata,
         validation,
-        heroImage,
         formActions: { onSave, onClear, onCancelChanges, onDelete, onUpdate },
         blockActions,
     } = useHRInterviewQAEditor();
@@ -46,11 +46,10 @@ export const ArticleEditorPageContainer = memo(() => {
                     isEditArticlePage={isEditArticlePage}
                     isLoading={isLoading}
                 />
-                <ArticleEditorPageContent
+                <HRInterviewQAEditorPageContent
                     blockActions={blockActions}
                     metadata={metadata}
                     validation={validation}
-                    heroImage={heroImage}
                 />
             </VStack>
         </DynamicModuleLoader>

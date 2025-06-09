@@ -2,7 +2,6 @@ import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { getFlexClasses } from '@/shared/lib/classes/getFlexClasses/getFlexClasses';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
-import { ArticleSection } from '../../../../model/consts/articleConsts';
 import { ArticleTextBlock } from '../../../../model/types/article';
 import { ArticleViews } from '../../../ArticleViews/ArticleViews';
 import { AppImage } from '@/shared/ui/common/AppImage';
@@ -21,6 +20,7 @@ import { formatDateString } from '@/shared/lib/text/formatDateString/formatDateS
 import { ArticleTextBlockComponent } from '../../../../ui/ArticleTextBlockComponent/ArticleTextBlockComponent';
 import DefaultImage from '@/shared/assets/icons/logoWithText.svg';
 import { Icon } from '@/shared/ui/redesigned/Icon';
+import { SectionType } from '@/shared/types/sectionTypes';
 
 export const ListViewCardRedesigned = memo((props: BaseCardProps) => {
     const { className, article, handleClick } = props;
@@ -38,7 +38,7 @@ export const ListViewCardRedesigned = memo((props: BaseCardProps) => {
         blocks,
     } = article;
     const textBlock = blocks.find(
-        (block) => block.type === ArticleSection.TEXT,
+        (block) => block.type === SectionType.TEXT,
     ) as ArticleTextBlock;
     const additionalClasses = getFlexClasses({ vStack: true, gap: '16' });
     const subtitleText = subtitle.text;

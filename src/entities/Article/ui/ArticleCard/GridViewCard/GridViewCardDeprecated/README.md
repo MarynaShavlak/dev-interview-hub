@@ -37,7 +37,7 @@ The **`GridViewCardDeprecated`** component accepts the following props:
 import { GridViewCardDeprecated } from '@/entities/Article';
 import { ArticleCategories } from '@/entities/Article';
 import { Article } from '../../../../model/types/article';
-import { ArticleCategory, ArticleSection } from '../../../../model/consts/articleConsts';
+import { ArticleCategory, SectionType } from '../../../../model/consts/articleConsts';
 import { testArticleData } from './testing';
 
 

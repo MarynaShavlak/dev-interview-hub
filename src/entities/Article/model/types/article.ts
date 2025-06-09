@@ -1,29 +1,26 @@
 import type { User } from '@/entities/User';
-import {
-    ArticleSection,
-    ArticleCategory,
-    ArticleSortField,
-} from '../consts/articleConsts';
+import { ArticleCategory, ArticleSortField } from '../consts/articleConsts';
+import { SectionType } from '@/shared/types/sectionTypes';
 
 /**
  * Base interface for different types of article blocks.
  *
  * @property {string} id - Unique identifier for the article block.
- * @property {ArticleSection} type - The type of the article block.
+ * @property {SectionType} type - The type of the article block.
  */
 export interface ArticleBlockBase {
     id: string;
-    type: ArticleSection;
+    type: SectionType;
 }
 
 /**
  * Interface for a code block in an article.
  *
- * @property {ArticleSection} type - The type of the article block, set to CODE.
+ * @property {SectionType} type - The type of the article block, set to CODE.
  * @property {string} code - The code content of the block.
  */
 export interface ArticleCodeBlock extends ArticleBlockBase {
-    type: ArticleSection.CODE;
+    type: SectionType.CODE;
     code: string;
     title?: string;
     // description?: string;
@@ -32,12 +29,12 @@ export interface ArticleCodeBlock extends ArticleBlockBase {
 /**
  * Interface for an image block in an article.
  *
- * @property {ArticleSection} type - The type of the article block, set to IMAGE.
+ * @property {SectionType} type - The type of the article block, set to IMAGE.
  * @property {string} src - The source URL of the image.
  * @property {string} title - The title or caption of the image.
  */
 export interface ArticleImageBlock extends ArticleBlockBase {
-    type: ArticleSection.IMAGE;
+    type: SectionType.IMAGE;
     src: string;
     title: string;
 }
@@ -45,13 +42,13 @@ export interface ArticleImageBlock extends ArticleBlockBase {
 /**
  * Interface for a text block in an article.
  *
- * @property {ArticleSection} type - The type of the article block, set to TEXT.
+ * @property {SectionType} type - The type of the article block, set to TEXT.
  * @property {string[]} paragraphs - Array of paragraphs in the text block.
  * @property {string} [title] - The title of the text block. Optional.
  */
 
 export interface ArticleTextBlock extends ArticleBlockBase {
-    type: ArticleSection.TEXT;
+    type: SectionType.TEXT;
     paragraphs: string[];
     title?: string;
 }

@@ -2,11 +2,11 @@ import { useCallback, useState } from 'react';
 import { useToggleVisibility } from '@/shared/lib/hooks/useToggleVisibility/useToggleVisibility';
 import {
     ArticleImageBlock,
-    ArticleSection,
     deleteArticleImageThunk,
     uploadArticleImageThunk,
 } from '@/entities/Article';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { SectionType } from '@/shared/types/sectionTypes';
 
 interface UseImageBlockOperationsProps {
     blockId: string;
@@ -67,7 +67,7 @@ export const useImageBlockOperations = ({
         const imageUrl = await getArticleImageUrl();
         const updatedBlock: ArticleImageBlock = {
             id: blockId,
-            type: ArticleSection.IMAGE,
+            type: SectionType.IMAGE,
             src: imageUrl || '',
             title,
         };

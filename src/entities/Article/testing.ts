@@ -5,14 +5,15 @@ import {
     ArticleImageBlock,
     ArticleTextBlock,
 } from './model/types/article';
-import { ArticleCategory, ArticleSection } from './model/consts/articleConsts';
+import { ArticleCategory } from './model/consts/articleConsts';
 import avatar from '@/shared/assets/tests/avatar-dropdown.png';
+import { SectionType } from '@/shared/types/sectionTypes';
 
 export { getFilteredArticlesQuery } from './api/articleApi';
 
 export const textBlockWithTitleAndFewParagraphs = {
     id: '2344',
-    type: ArticleSection.TEXT,
+    type: SectionType.TEXT,
     title: 'Title of block',
     paragraphs: [
         'This is the first paragraph.',
@@ -29,7 +30,7 @@ export const textBlockWithTitleAndFewParagraphs = {
 
 export const textBlockWithNoTitle = {
     id: '672345',
-    type: ArticleSection.TEXT,
+    type: SectionType.TEXT,
     paragraphs: [
         'This is the first paragraph.',
         'Here is the second paragraph with more content.',
@@ -39,7 +40,7 @@ export const textBlockWithNoTitle = {
 
 export const imageBlock = {
     id: '66666888',
-    type: ArticleSection.IMAGE,
+    type: SectionType.IMAGE,
     src:
         'https://media.istockphoto.com/id/1128826884/vector/no-image-vector-symbol-' +
         'missing-available-icon-no-gallery-for-this-moment.jpg?s=612x612&w=0&k=20&c=390e76zN_TJ7HZHJpnI7jNl7UBpO3UP7hpR2meE1Qd4=',
@@ -48,14 +49,14 @@ export const imageBlock = {
 
 export const imageBlockWithInvalidUrl = {
     id: '66666iii',
-    type: ArticleSection.IMAGE,
+    type: SectionType.IMAGE,
     src: 'invalid_url',
     title: 'Title of image',
 } as ArticleImageBlock;
 
 export const codeBlockWithNoTitle = {
     id: '4',
-    type: ArticleSection.CODE,
+    type: SectionType.CODE,
     code:
         'function factorial(n) {\n  if (n === 0) {\n    return 1;\n  } else {\n    return n * factorial(n - 1);\n  }' +
         '\n}\n\nconsole.log(factorial(5)); // Виведе: 120',
@@ -63,7 +64,7 @@ export const codeBlockWithNoTitle = {
 
 export const codeBlockWithTitle = {
     id: 'dskfpsdegsp322j',
-    type: ArticleSection.CODE,
+    type: SectionType.CODE,
     title: 'Code block title',
     code:
         'function factorial(n) {\n  if (n === 0) {\n    return 1;\n  } else {\n    return n * factorial(n - 1);\n  }' +
@@ -72,7 +73,7 @@ export const codeBlockWithTitle = {
 
 export const textBlockWithTags = {
     id: '5325434',
-    type: ArticleSection.TEXT,
+    type: SectionType.TEXT,
     paragraphs: [
         `Vestibulum <img  alt="Some image"/> nibh massa 
      Proin a <b>bold text 11111</b> varius tac. Nullam enim 

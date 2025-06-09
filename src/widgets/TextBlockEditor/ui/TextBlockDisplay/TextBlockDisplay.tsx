@@ -4,9 +4,11 @@ import {
     ArticleTextBlock,
     ArticleTextBlockComponent,
 } from '@/entities/Article';
+import { HRInterviewQABlock } from '@/entities/HRInterviewQA';
+import { isArticleBlock } from '../../lib/utilities/isArticleBlock/isArticleBlock';
 
 interface ViewerProps {
-    block: ArticleTextBlock;
+    block: ArticleTextBlock | HRInterviewQABlock;
     editBlock: () => void;
 }
 
@@ -39,9 +41,18 @@ export const TextBlockDisplay = (props: TextBlockDisplayProps) => {
             <ArticleBlockPreview
                 {...viewerProps}
                 deleteBlock={onDelete}
-                BlockComponent={(props) => (
-                    <ArticleTextBlockComponent {...props} withTags={false} /> // Pass withTags={false}
-                )}
+                BlockComponent={(props) => {
+                    if (isArticleBlock(viewerProps.block)) {
+                        return (
+                            <ArticleTextBlockComponent
+                                {...props}
+                                block={viewerProps.block}
+                                withTags={false}
+                            /> // Pass withTags={false}
+                        );
+                    }
+                    return <div>HR Interview Block</div>;
+                }}
             />
         );
 

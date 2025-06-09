@@ -2,7 +2,14 @@ import { PayloadAction } from '@reduxjs/toolkit';
 import { buildSlice } from '@/shared/lib/store';
 import { User } from '@/entities/User';
 import { CreateHRInterviewQASchema } from '../types/createHRInterviewQASchema';
-import { HRInterviewQA, HRInterviewQABlock } from '@/entities/HRInterviewQA';
+import {
+    HRInterviewQA,
+    HRInterviewQABlock,
+    HRInterviewQACategory,
+    HRInterviewQACategories,
+} from '@/entities/HRInterviewQA';
+
+const defaultCategory: HRInterviewQACategory = HRInterviewQACategories[0];
 
 const initialState: CreateHRInterviewQASchema = {
     form: {
@@ -10,7 +17,7 @@ const initialState: CreateHRInterviewQASchema = {
         user: {} as User,
         title: '',
         createdAt: '',
-        category: [],
+        category: defaultCategory,
         blocks: [],
     },
     isEdit: false,

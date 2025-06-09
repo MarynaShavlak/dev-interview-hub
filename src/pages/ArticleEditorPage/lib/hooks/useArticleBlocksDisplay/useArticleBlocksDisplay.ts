@@ -2,12 +2,12 @@ import { useState, useCallback, useMemo, useEffect } from 'react';
 import { v4 } from 'uuid';
 import {
     ArticleTextBlock,
-    ArticleSection,
     ArticleBlock,
     ArticleCodeBlock,
     ArticleImageBlock,
     Article,
 } from '@/entities/Article';
+import { SectionType } from '@/shared/types/sectionTypes';
 
 export interface UseArticleBlocksDisplayReturnType {
     blocks: ArticleBlock[];
@@ -48,7 +48,7 @@ export const useArticleBlocksDisplay = (
     const insertTextBlock = useCallback(() => {
         const newTextBlock: ArticleTextBlock = {
             id: v4(),
-            type: ArticleSection.TEXT,
+            type: SectionType.TEXT,
             paragraphs: [],
             title: '',
         };
@@ -58,7 +58,7 @@ export const useArticleBlocksDisplay = (
     const insertCodeBlock = useCallback(() => {
         const newTextBlock: ArticleCodeBlock = {
             id: v4(),
-            type: ArticleSection.CODE,
+            type: SectionType.CODE,
             code: '',
             title: '',
         };
@@ -68,7 +68,7 @@ export const useArticleBlocksDisplay = (
     const insertImageBlock = useCallback(() => {
         const newTextBlock: ArticleImageBlock = {
             id: v4(),
-            type: ArticleSection.IMAGE,
+            type: SectionType.IMAGE,
             src: '',
             title: '',
         };

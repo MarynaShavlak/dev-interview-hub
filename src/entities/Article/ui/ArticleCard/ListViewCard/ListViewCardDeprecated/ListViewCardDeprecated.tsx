@@ -1,7 +1,6 @@
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { getFlexClasses } from '@/shared/lib/classes/getFlexClasses/getFlexClasses';
-import { ArticleSection } from '../../../../model/consts/articleConsts';
 import { ArticleTextBlock } from '../../../../model/types/article';
 import { ArticleCategories } from '../../../ArticleCategories/ArticleCategories';
 import { ArticleViews } from '../../../ArticleViews/ArticleViews';
@@ -21,6 +20,7 @@ import cls from '../../ArticleCard.module.scss';
 import { BaseCardProps } from '../../ArticleCard';
 import { formatDateString } from '@/shared/lib/text/formatDateString/formatDateString';
 import { Icon } from '@/shared/ui/deprecated/Icon';
+import { SectionType } from '@/shared/types/sectionTypes';
 
 export const ListViewCardDeprecated = memo((props: BaseCardProps) => {
     const { className, article, handleClick } = props;
@@ -38,7 +38,7 @@ export const ListViewCardDeprecated = memo((props: BaseCardProps) => {
         blocks,
     } = article;
     const textBlock = blocks.find(
-        (block) => block.type === ArticleSection.TEXT,
+        (block) => block.type === SectionType.TEXT,
     ) as ArticleTextBlock;
 
     const additionalClasses = getFlexClasses({ vStack: true, gap: '8' });

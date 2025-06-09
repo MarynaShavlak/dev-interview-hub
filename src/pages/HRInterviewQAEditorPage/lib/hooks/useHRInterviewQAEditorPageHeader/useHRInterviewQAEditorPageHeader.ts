@@ -5,10 +5,12 @@ import {
     UseToggleVisibilityReturnType,
 } from '@/shared/lib/hooks/useToggleVisibility/useToggleVisibility';
 import { useArticleNavigation } from '@/entities/Article';
-import { useArticleFormState } from '../useHRInterviewQAFormState/useHRInterviewQAFormState';
+
 import { ArticleEditorPageHeaderProps } from '../../../ui/ArticleEditorPageHeader/ArticleEditorPageHeader';
 
-interface UseArticleEditorPageHeaderReturn {
+import { useHRInterviewQAFormState } from '../useHRInterviewQAFormState/useHRInterviewQAFormState';
+
+interface UseHRInterviewQAEditorPageHeaderReturn {
     deleteArticleModal: UseToggleVisibilityReturnType;
     cancelArticleEditing: UseToggleVisibilityReturnType;
     handleSave: () => Promise<void>;
@@ -20,11 +22,11 @@ interface UseArticleEditorPageHeaderReturn {
     articleTitle?: string;
 }
 
-export const useArticleEditorPageHeader = (
+export const useHRInterviewQAEditorPageHeader = (
     onActions: ArticleEditorPageHeaderProps['onActions'],
     hasErrors: boolean,
-): UseArticleEditorPageHeaderReturn => {
-    const { formData, hasChanges } = useArticleFormState();
+): UseHRInterviewQAEditorPageHeaderReturn => {
+    const { formData, hasChanges } = useHRInterviewQAFormState();
 
     const { navigateToArticle } = useArticleNavigation();
     const deleteArticleModal = useToggleVisibility();

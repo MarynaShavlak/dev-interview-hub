@@ -38,7 +38,6 @@ export {
     ArticleView,
     ArticleSortField,
     ArticleCategory,
-    ArticleSection,
 } from './model/consts/articleConsts';
 
 export { ArticleList } from './ui/ArticleList/ArticleList';

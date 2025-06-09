@@ -30,11 +30,11 @@ The **`ArticleCodeBlockComponent`** component accepts the following props:
 ```typescript jsx
 import { ArticleCodeBlockComponent } from '@/entities/Article';
 import { ArticleCodeBlock } from '@/entities/Article';
-import { ArticleSection } from '../consts/articleConsts';
+import { SectionType } from '../consts/articleConsts';
 
 const sampleCodeBlock: ArticleTextBlock = {
    id: '1',
-   type: ArticleSection.CODE,
+   type: SectionType.CODE,
    code: `console.log('Hello, world!');`
 };
 

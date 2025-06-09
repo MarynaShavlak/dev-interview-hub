@@ -13,17 +13,16 @@ import { getFlexClasses } from '@/shared/lib/classes/getFlexClasses/getFlexClass
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { AddBlocksFormProps } from '../AddBlocksForm';
 import { getBtnsListStyles } from '../../../lib/utils/getBtnsListStyles/getBtnsListStyles';
-import { AddArticleBlocksButtons } from '../../AddArticleBlocksButtons/AddArticleBlocksButtons';
-import { BlockRenderer } from '../BlockRenderer/BlockRenderer';
-import { useArticleBlocksActions } from '../../../lib/hooks/useArticleBlocksActions/useArticleBlocksActions';
+import { AddHRInterviewQABlocksButtons } from '../../AddHRInterviewQABlocksButtons/AddHRInterviewQABlocksButtons';
+import { useHRInterviewQABlocksActions } from '../../../lib/hooks/useHRInterviewQABlocksActions/useHRInterviewQABlocksActions';
 import { useAriaExpandedZIndex } from '../../../lib/hooks/useAriaExpandedZIndex/useAriaExpandedZIndex';
 import { calculateZIndex } from '../../../lib/utils/calculateZIndex/calculateZIndex';
+import { TextBlockEditor } from '@/widgets/TextBlockEditor';
 
 export const AddBlocksFormRedesigned = memo((props: AddBlocksFormProps) => {
     const { index, blocks: allBlocks, blockActions } = props;
 
-    const { insertTextBlock, insertCodeBlock, insertImageBlock, clearBlocks } =
-        blockActions;
+    const { insertTextBlock, clearBlocks } = blockActions;
     const { t } = useTranslation('articleDetails');
     const isSomeBlockAdded = Number(allBlocks.length) > 0;
     const elementRef = useRef<HTMLDivElement>(null);
@@ -31,10 +30,10 @@ export const AddBlocksFormRedesigned = memo((props: AddBlocksFormProps) => {
     const topPosition = useTriggerTopScrollPosition(triggerRef);
 
     const {
-        handleAddArticleBlock,
-        handleUpdateArticleBlock,
-        handleDeleteArticleBlock,
-    } = useArticleBlocksActions(blockActions);
+        handleAddHRInterviewQABlock,
+        handleUpdateHRInterviewQABlock,
+        handleDeleteHRInterviewQABlock,
+    } = useHRInterviewQABlocksActions(blockActions);
 
     useEffect(() => {
         if (elementRef.current && topPosition !== 0) {
@@ -69,10 +68,8 @@ export const AddBlocksFormRedesigned = memo((props: AddBlocksFormProps) => {
                     )}
                     style={{ zIndex }}
                 >
-                    <AddArticleBlocksButtons
+                    <AddHRInterviewQABlocksButtons
                         onAddTextBlockBtnClick={insertTextBlock}
-                        onAddCodeBlockBtnClick={insertCodeBlock}
-                        onAddImageBlockBtnClick={insertImageBlock}
                         deleteAllBlocks={clearBlocks}
                         isSomeBlockAdded={isSomeBlockAdded}
                     />
@@ -82,14 +79,14 @@ export const AddBlocksFormRedesigned = memo((props: AddBlocksFormProps) => {
                     <Each
                         of={allBlocks}
                         render={(block) => (
-                            <BlockRenderer
+                            <TextBlockEditor
                                 key={block.id}
                                 block={block}
-                                addBlockInArticle={handleAddArticleBlock}
+                                addBlockInArticle={handleAddHRInterviewQABlock}
                                 deleteBlockFromArticle={
-                                    handleDeleteArticleBlock
+                                    handleDeleteHRInterviewQABlock
                                 }
-                                onEditBlock={handleUpdateArticleBlock}
+                                onEditBlock={handleUpdateHRInterviewQABlock}
                             />
                         )}
                     />

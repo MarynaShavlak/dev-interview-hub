@@ -1,1 +1,1 @@
-export { createArticleReducer } from './model/slices/createHRInterviewQASlice';
+export { createHRInterviewQAReducer } from './model/slices/createHRInterviewQASlice';
