@@ -1,96 +1,88 @@
-import { HRInterviewQACategory } from '../types/hrInterviewQA';
+import { generateCategories } from '../../lib/utilities/generateCategories/generateCategories';
 
-export const HRInterviewQACategories: HRInterviewQACategory[] = [
-    {
-        key: 'introductionAndPersonalTraits',
-        label: 'Introduction and Personal Traits',
-        subcategories: [
-            { key: 'describeYourself', label: 'Describe yourself' },
-            {
-                key: 'strengthsWeaknesses',
-                label: 'Strengths, weaknesses, superpower, uniqueness',
-            },
-        ],
-    },
-    {
-        key: 'motivationAndCareerFit',
-        label: 'Motivation and Career Fit',
-        subcategories: [
-            { key: 'whyIT', label: 'Why IT?' },
-            {
-                key: 'aboutCompany',
-                label: 'About the company, reasons for applying',
-            },
-        ],
-    },
-    {
-        key: 'roleAndContribution',
-        label: 'Role and Contribution',
-        subcategories: [
-            {
-                key: 'contributionToRole',
-                label: 'Your contribution to the role and company',
-            },
-            { key: 'goalsPlans', label: 'Goals and plans' },
-        ],
-    },
-    {
-        key: 'experienceAndGrowth',
-        label: 'Experience and Growth',
-        subcategories: [
-            { key: 'achievementsMistakes', label: 'Achievements and mistakes' },
-            { key: 'myDevelopment', label: 'My development' },
-        ],
-    },
-    {
-        key: 'teamworkAndLeadership',
-        label: 'Teamwork and Leadership',
-        subcategories: [
-            { key: 'initiative', label: 'Initiative' },
-            { key: 'teamLeadership', label: 'Team and leadership' },
-        ],
-    },
-    {
-        key: 'challengesAndAdaptability',
-        label: 'Challenges and Adaptability',
-        subcategories: [
-            { key: 'criticismFeedback', label: 'Criticism, feedback' },
-            {
-                key: 'stressAndUnexpected',
-                label: 'Stress, pressure, flexibility, unexpected challenges',
-            },
-        ],
-    },
-    {
-        key: 'workEnvironmentAndRelationships',
-        label: 'Work Environment and Relationships',
-        subcategories: [
-            {
-                key: 'conflictWithBoss',
-                label: 'Conflicts and disagreements with boss',
-            },
-            { key: 'coworker', label: 'Coworkers' },
-        ],
-    },
-    {
-        key: 'externalPerceptionAndCareer',
-        label: 'External Perception and Career',
-        subcategories: [
-            { key: 'previousWork', label: 'Previous work' },
-            {
-                key: 'othersOpinion',
-                label: "Another people's opinion about you",
-            },
-        ],
-    },
-    {
-        key: 'miscellaneous',
-        label: 'Miscellaneous',
-        subcategories: [
-            { key: 'customersClients', label: 'Customers and clients' },
-            { key: 'interestingQuestions', label: 'Interesting questions' },
-            { key: 'generalQuestions', label: 'General questions' },
-            { key: 'salaryExpectations', label: 'Salary expectations' },
-        ],
-    },
-];
+const labelsEng: Record<string, string> = {
+    introductionAndPersonalTraits: 'Introduction and Personal Traits',
+    describeYourself: 'Describe yourself',
+    strengthsWeaknesses: 'Strengths, weaknesses, uniqueness',
+    hobbiesAndFamily: 'Hobbies and family',
+    motivationAndCareerFit: 'Motivation and Career Fit',
+    whyIT: 'Why IT?',
+    aboutCompany: 'About the company, reasons for applying',
+    motivationGeneral: 'Motivation',
+    inspirations: 'Inspirations',
+    roleAndContribution: 'Role and Contribution',
+    contributionToRole: 'Your contribution to the role and company',
+    goalsPlans: 'Goals and plans',
+    reasonsToHire: 'Reasons to hire me',
+    experienceAndGrowth: 'Experience and Growth',
+    achievementsMistakes: 'Achievements and mistakes',
+    myDevelopment: 'My development',
+    teamworkAndLeadership: 'Teamwork and Leadership',
+    initiative: 'Initiative',
+    teamLeadership: 'Team and leadership',
+    challengesAndAdaptability: 'Challenges and Adaptability',
+    criticismFeedback: 'Criticism, feedback',
+    prioritizeTasks: 'Prioritize Tasks',
+    stressAndUnexpected: 'Stress, pressure, flexibility, unexpected challenges',
+    difficultSituations: 'Challenges and difficult situations',
+    workEnvironment: 'Work Environment',
+    idealWork: 'Ideal work',
+    boringThings: 'Boring Tasks',
+    hateThings: 'Things I hate',
+    relationships: 'Relationships',
+    conflictWithBoss: 'Conflicts and disagreements with boss',
+    coworker: 'Coworkers',
+    externalPerceptionAndCareer: 'External Perception and Career',
+    previousWork: 'Previous work',
+    othersOpinion: "Another people's opinion about you",
+    miscellaneous: 'Miscellaneous',
+    customersClients: 'Customers and clients',
+    interestingQuestions: 'Interesting questions',
+    generalQuestions: 'General questions',
+    salaryExpectations: 'Salary expectations',
+};
+
+const labelsUkr: Record<string, string> = {
+    introductionAndPersonalTraits: 'Про себе',
+    describeYourself: 'Опишіть себе',
+    strengthsWeaknesses: 'Сильні та слабкі сторони, унікальність',
+    hobbiesAndFamily: "Хобі та сім'я",
+    motivationAndCareerFit: "Мотивація та кар'єрні прагнення",
+    whyIT: 'Чому IT?',
+    aboutCompany: 'Про компанію, причини подання заявки',
+    motivationGeneral: 'Мотивація',
+    inspirations: 'Джерело натхнення ',
+    roleAndContribution: 'Роль та внесок',
+    contributionToRole: 'Ваш внесок у роль і компанію',
+    goalsPlans: 'Цілі та плани',
+    reasonsToHire: 'Причини найняти мене',
+    experienceAndGrowth: 'Досвід і розвиток',
+    achievementsMistakes: 'Досягнення та помилки',
+    myDevelopment: 'Мій розвиток',
+    teamworkAndLeadership: 'Командна робота та лідерство',
+    initiative: 'Ініціатива',
+    teamLeadership: 'Команда та лідерство',
+    challengesAndAdaptability: 'Виклики та адаптація',
+    criticismFeedback: 'Критика, фідбек',
+    prioritizeTasks: 'Пріоритети завдань',
+    stressAndUnexpected: 'Стрес, тиск, швидкі зміни',
+    difficultSituations: 'Виклики та складні ситуації',
+    workEnvironment: 'Робоче середовище',
+    idealWork: 'Ідеальна робота, нудні завдання, речі, які я ненавиджу',
+    boringThings: 'Нудні завдання',
+    hateThings: 'Що я ненавиджу',
+    relationships: 'Взаємовідносини в колективі',
+    conflictWithBoss: 'Конфлікти і розбіжності з начальником',
+    coworker: 'Колеги',
+    externalPerceptionAndCareer: "Зовнішнє сприйняття та кар'єра",
+    previousWork: 'Попередній досвід роботи',
+    othersOpinion: 'Думка інших про мене',
+    miscellaneous: 'Різне',
+    customersClients: 'Клієнти і користувачі',
+    interestingQuestions: 'Цікаві питання',
+    generalQuestions: 'Загальні питання',
+    salaryExpectations: 'Очікування щодо зарплати',
+};
+
+export const HRInterviewQACategoriesEng = generateCategories(labelsEng);
+export const HRInterviewQACategoriesUkr = generateCategories(labelsUkr);

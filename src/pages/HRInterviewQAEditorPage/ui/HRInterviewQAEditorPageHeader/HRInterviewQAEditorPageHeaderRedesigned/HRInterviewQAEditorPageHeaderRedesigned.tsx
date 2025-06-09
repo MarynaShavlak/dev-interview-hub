@@ -80,7 +80,7 @@ export const HRInterviewQAEditorPageHeaderRedesigned = memo(
                                 onClick={handleSave}
                                 disabled={!canSave}
                             >
-                                {t('Зберегти статтю')}
+                                {t('Зберегти відповідь на питання')}
                             </Button>
                         </>
                     )}

@@ -1,4 +1,7 @@
-export { HRInterviewQACategories } from './model/data/categories';
+export {
+    HRInterviewQACategoriesEng,
+    HRInterviewQACategoriesUkr,
+} from './model/data/categories';
 
 export { ERROR_HR_INTERVIEW_MESSAGES } from './model/consts/errorHRInterviewMessages';
 
@@ -12,4 +15,5 @@ export type {
     HRInterviewQA,
     HRInterviewQABlock,
     HRInterviewQACategory,
+    HRInterviewQASubcategory,
 } from './model/types/hrInterviewQA';

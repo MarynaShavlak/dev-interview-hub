@@ -6,10 +6,10 @@ import {
     HRInterviewQA,
     HRInterviewQABlock,
     HRInterviewQACategory,
-    HRInterviewQACategories,
+    HRInterviewQACategoriesEng,
 } from '@/entities/HRInterviewQA';
 
-const defaultCategory: HRInterviewQACategory = HRInterviewQACategories[0];
+const defaultCategory: HRInterviewQACategory = HRInterviewQACategoriesEng[0];
 
 const initialState: CreateHRInterviewQASchema = {
     form: {
