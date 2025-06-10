@@ -15,7 +15,7 @@ import { AddBlocksFormProps } from '../AddBlocksForm';
 import { getBtnsListStyles } from '../../../lib/utils/getBtnsListStyles/getBtnsListStyles';
 import { AddHRInterviewQABlocksButtons } from '../../AddHRInterviewQABlocksButtons/AddHRInterviewQABlocksButtons';
 import { useHRInterviewQABlocksActions } from '../../../lib/hooks/useHRInterviewQABlocksActions/useHRInterviewQABlocksActions';
-import { useAriaExpandedZIndex } from '../../../lib/hooks/useAriaExpandedZIndex/useAriaExpandedZIndex';
+import { useAriaExpandedZIndex } from '@/shared/lib/hooks/useAriaExpandedZIndex/useAriaExpandedZIndex';
 import { calculateZIndex } from '../../../lib/utils/calculateZIndex/calculateZIndex';
 import { TextBlockEditor } from '@/widgets/TextBlockEditor';
 

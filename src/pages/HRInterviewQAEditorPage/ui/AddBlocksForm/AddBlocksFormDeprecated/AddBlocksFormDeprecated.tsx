@@ -15,7 +15,7 @@ import { useHRInterviewQABlocksActions } from '../../../lib/hooks/useHRInterview
 import { useTriggerTopScrollPosition } from '@/shared/lib/hooks/useTriggerTopScrollPosition/useTriggerTopScrollPosition';
 import { getBtnsListDeprecatedStyles } from '../../../lib/utils/getBtnsListStyles/getBtnsListStyles';
 import { getPageElement } from '@/shared/lib/getDOMElements/getDOMElement';
-import { useAriaExpandedZIndex } from '../../../lib/hooks/useAriaExpandedZIndex/useAriaExpandedZIndex';
+import { useAriaExpandedZIndex } from '@/shared/lib/hooks/useAriaExpandedZIndex/useAriaExpandedZIndex';
 import { calculateZIndex } from '../../../lib/utils/calculateZIndex/calculateZIndex';
 import { TextBlockEditor } from '@/widgets/TextBlockEditor';
 

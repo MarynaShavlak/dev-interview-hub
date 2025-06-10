@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getElementByTestId } from '@/shared/lib/getDOMElements/getDOMElement';
+import { getElementByTestId } from '../../getDOMElements/getDOMElement';
 
 /**
  * Hook that manages z-index based on the aria-expanded state of an element

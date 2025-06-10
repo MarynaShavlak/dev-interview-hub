@@ -73,6 +73,7 @@ module.exports = {
                     'padding',
                     'customPadding',
                     'minLabelWidth',
+                    'indexName'
                 ],
             },
         ],

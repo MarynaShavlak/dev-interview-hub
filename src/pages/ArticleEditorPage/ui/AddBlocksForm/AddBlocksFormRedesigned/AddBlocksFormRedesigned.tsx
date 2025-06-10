@@ -16,8 +16,9 @@ import { getBtnsListStyles } from '../../../lib/utils/getBtnsListStyles/getBtnsL
 import { AddArticleBlocksButtons } from '../../AddArticleBlocksButtons/AddArticleBlocksButtons';
 import { BlockRenderer } from '../BlockRenderer/BlockRenderer';
 import { useArticleBlocksActions } from '../../../lib/hooks/useArticleBlocksActions/useArticleBlocksActions';
-import { useAriaExpandedZIndex } from '../../../lib/hooks/useAriaExpandedZIndex/useAriaExpandedZIndex';
+
 import { calculateZIndex } from '../../../lib/utils/calculateZIndex/calculateZIndex';
+import { useAriaExpandedZIndex } from '@/shared/lib/hooks/useAriaExpandedZIndex/useAriaExpandedZIndex';
 
 export const AddBlocksFormRedesigned = memo((props: AddBlocksFormProps) => {
     const { index, blocks: allBlocks, blockActions } = props;

@@ -111,28 +111,3 @@ export const {
     actions: articlesPageActions,
     useActions: useArticlesPageActions,
 } = articlesPageSlice;
-
-// extraReducers: (builder) => {
-//     builder
-//         .addCase(fetchArticlesList.pending, (state, action) => {
-//             state.error = undefined;
-//             state.isLoading = true;
-//             if (action.meta.arg.replace) {
-//                 articlesAdapter.removeAll(state);
-//             }
-//         })
-//         .addCase(fetchArticlesList.fulfilled, (state, action) => {
-//             state.isLoading = false;
-//
-//             state.hasMore = action.payload.length >= state.limit;
-//             if (action.meta.arg.replace) {
-//                 articlesAdapter.setAll(state, action.payload);
-//             } else {
-//                 articlesAdapter.addMany(state, action.payload);
-//             }
-//         })
-//         .addCase(fetchArticlesList.rejected, (state, action) => {
-//             state.isLoading = false;
-//             state.error = action.payload;
-//         });
-// },

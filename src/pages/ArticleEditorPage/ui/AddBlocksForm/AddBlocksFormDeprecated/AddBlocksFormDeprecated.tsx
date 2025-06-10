@@ -16,8 +16,9 @@ import { useArticleBlocksActions } from '../../../lib/hooks/useArticleBlocksActi
 import { useTriggerTopScrollPosition } from '@/shared/lib/hooks/useTriggerTopScrollPosition/useTriggerTopScrollPosition';
 import { getBtnsListDeprecatedStyles } from '../../../lib/utils/getBtnsListStyles/getBtnsListStyles';
 import { getPageElement } from '@/shared/lib/getDOMElements/getDOMElement';
-import { useAriaExpandedZIndex } from '../../../lib/hooks/useAriaExpandedZIndex/useAriaExpandedZIndex';
+
 import { calculateZIndex } from '../../../lib/utils/calculateZIndex/calculateZIndex';
+import { useAriaExpandedZIndex } from '@/shared/lib/hooks/useAriaExpandedZIndex/useAriaExpandedZIndex';
 
 export const AddBlocksFormDeprecated = memo((props: AddBlocksFormProps) => {
     const { index, blocks: allBlocks, blockActions } = props;

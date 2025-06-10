@@ -12,7 +12,7 @@ import LinkIcon from '@/shared/assets/icons/link.svg';
 import InterviewIcon from '@/shared/assets/icons/interview.svg';
 import {
     getRouteArticles,
-    getRouteHRInterviewQACreate,
+    getRouteHRInterview,
     getRouteMain,
     getRouteMyArticles,
     getRouteProfile,
@@ -84,7 +84,7 @@ export const useSidebarItems = () => {
                 authOnly: true,
             },
             {
-                path: getRouteHRInterviewQACreate(),
+                path: getRouteHRInterview(),
                 Icon: toggleFeatures({
                     name: 'isAppRedesigned',
                     off: () => InterviewIcon,
