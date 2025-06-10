@@ -1,5 +1,6 @@
 export type HRCategory =
     | 'describeYourself'
+    | 'reasonsToHire'
     | 'strengthsWeaknesses'
     | 'hobbiesAndFamily'
     | 'whyIT'
@@ -8,7 +9,6 @@ export type HRCategory =
     | 'inspirations'
     | 'contributionToRole'
     | 'goalsPlans'
-    | 'reasonsToHire'
     | 'achievementsMistakes'
     | 'myDevelopment'
     | 'initiative'

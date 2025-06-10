@@ -17,7 +17,7 @@ export const HRInterviewCategoryTabs = memo(
         const { t } = useTranslation();
         const rawCategoryTabs = useHRCategoryTabs();
         const categoryTabs = useMemo(() => rawCategoryTabs, [rawCategoryTabs]);
-
+        console.log('categoryTabs', categoryTabs);
         return (
             <VStack gap="8">
                 <ClearRefinements

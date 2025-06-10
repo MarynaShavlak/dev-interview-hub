@@ -1,10 +1,10 @@
 .FiltersSkeletonContainer {
-  width: 240px;
+  width: 500px;
 }
 
 /* General Component Styling */
-.ArticlesFilters {
-  width: 240px;
+.HRFilters {
+  width: 500px;
 }
 
 /* Category Count Styles */
@@ -23,15 +23,23 @@
   display: flex;
   gap: 8px;
   cursor: pointer;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
-.MenuItem,
 .AllItemsBtn {
   min-width: 80px;
   padding: 6px 16px;
   transition: border 300ms ease-in;
   width: fit-content;
+  cursor: pointer;
+}
+
+.MenuItem{
+  min-width: 80px;
+  padding: 6px 16px;
+  transition: border 300ms ease-in;
+  max-width: 222px;
   cursor: pointer;
 }
 

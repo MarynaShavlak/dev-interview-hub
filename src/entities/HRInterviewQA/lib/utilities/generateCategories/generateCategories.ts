@@ -1,15 +1,9 @@
-import { HRInterviewQACategory } from '../../../model/types/hrInterviewQA';
-import { baseCategories } from '../../../model/types/baseCategories';
+type LabelsType = Record<string, string>;
 
-export const generateCategories = (
-    labels: Record<string, string>,
-): HRInterviewQACategory[] => {
-    return baseCategories.map(({ key, subcategories }) => ({
-        key,
-        label: labels[key],
-        subcategories: subcategories.map(({ key }) => ({
-            key,
-            label: labels[key],
-        })),
-    }));
-};
+function generateCategories(
+    labels: LabelsType,
+): { key: string; value: string }[] {
+    return Object.keys(labels).map((key) => ({ key, value: labels[key] }));
+}
+
+export { generateCategories };

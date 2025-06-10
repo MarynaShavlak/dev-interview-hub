@@ -33,7 +33,7 @@ export const HRInterviewFilters = (props: HRInterviewFiltersProps) => {
 
     return (
         <Card
-            className={classNames(cls.ArticlesFilters, {}, [className])}
+            className={classNames(cls.HRFilters, {}, [className])}
             padding="24"
         >
             <VStack gap="32">

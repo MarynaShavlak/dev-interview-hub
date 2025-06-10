@@ -13,16 +13,27 @@
 .MenuList {
     display: flex;
     gap: 8px;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 
-.MenuItem,
 .AllItemsBtn {
     min-width: 80px;
     padding: 6px 16px;
     transition: border 300ms ease-in;
     width: fit-content;
     cursor: pointer;
+}
+
+.MenuItem {
+    //min-width: 80px;
+    //width: calc((100% - 8px) / 2);
+    padding: 6px 16px;
+    transition: border 300ms ease-in;
+
+    cursor: pointer;
+    width: fit-content;
 }
 
 .MenuItem {

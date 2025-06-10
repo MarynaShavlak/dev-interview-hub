@@ -2,8 +2,6 @@ import { useTranslation } from 'react-i18next';
 import {
     HRInterviewQACategoriesEng,
     HRInterviewQACategoriesUkr,
-    HRInterviewQACategory,
-    HRInterviewQASubcategory,
 } from '@/entities/HRInterviewQA';
 import { TabItem } from '@/shared/ui/redesigned/Tabs';
 
@@ -15,15 +13,10 @@ export const useHRCategoryTabs = () => {
             ? HRInterviewQACategoriesUkr
             : HRInterviewQACategoriesEng;
 
-    const tabs: TabItem[] = [];
-    HRInterviewQACategories.forEach((category: HRInterviewQACategory) => {
-        category.subcategories.forEach((sub: HRInterviewQASubcategory) => {
-            tabs.push({
-                value: sub.key,
-                label: t(sub.label),
-            });
-        });
-    });
+    const tabs: TabItem[] = HRInterviewQACategories.map(({ key, value }) => ({
+        value: key,
+        label: t(value),
+    }));
 
     return tabs;
 };
