@@ -68,7 +68,7 @@
   text-align: left;
   display: flex;
   width: 100%;
-  flex: 1;
+  gap:16px;
   cursor: pointer;
   align-items: center;
   justify-content: space-between;
@@ -78,6 +78,13 @@
   background: none;
   border: none;
   padding: 0;
+
+
+
+  svg {
+    width:32px;
+    height:32px;
+  }
 
 }
 

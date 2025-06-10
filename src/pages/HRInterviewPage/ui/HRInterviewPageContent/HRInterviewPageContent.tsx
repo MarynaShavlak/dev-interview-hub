@@ -7,9 +7,14 @@ import cls from '../HRInterviewPage/HRInterviewPage.module.scss';
 
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { VStack } from '@/shared/ui/common/Stack';
+import { Text } from '@/shared/ui/redesigned/Text';
 import { Skeleton } from '@/shared/ui/redesigned/Skeleton';
 import { Accordion } from '@/shared/ui/common/Accordion';
 import { NoHRInterviewQAFound } from '../NoHRInterviewQAFound/NoHRInterviewQAFound';
+import {
+    ArticleTextBlock,
+    ArticleTextBlockComponent,
+} from '@/entities/Article';
 
 export const HRInterviewPageContent = () => {
     const [isLoading, setIsLoading] = useState(true);
@@ -26,11 +31,34 @@ export const HRInterviewPageContent = () => {
         }
     }, [hits]);
 
-    // const articlesToRender = transformItems(items);
+    // const mappedItems = items.map((item) => {
+    //     console.log('item', item);
+    //     const block: ArticleTextBlock = {
+    //         id: item.id,
+    //         type: SectionType.TEXT,
+    //         paragraphs: item.blocks[0].paragraphs,
+    //     };
+    //     return {
+    //         trigger: item.title,
+    //         content: (
+    //             <ArticleTextBlockComponent block={block} withTags={false} />
+    //         ),
+    //     };
+    // });
     const mappedItems = items.map((item) => {
+        console.log('item', item);
+
+        const textBlocks = item.blocks.map((block: ArticleTextBlock) => (
+            <ArticleTextBlockComponent
+                key={block.id}
+                block={block}
+                withTags={false}
+            />
+        ));
+
         return {
-            trigger: item.title,
-            content: item.blocks.join(', '),
+            trigger: <Text text={item.title} className={cls.hrQuestion} />,
+            content: <VStack gap="16">{textBlocks}</VStack>,
         };
     });
 
