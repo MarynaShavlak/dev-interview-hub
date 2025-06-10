@@ -9,6 +9,7 @@ import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { VStack } from '@/shared/ui/common/Stack';
 import { Skeleton } from '@/shared/ui/redesigned/Skeleton';
 import { Accordion } from '@/shared/ui/common/Accordion';
+import { NoHRInterviewQAFound } from '../NoHRInterviewQAFound/NoHRInterviewQAFound';
 
 export const HRInterviewPageContent = () => {
     const [isLoading, setIsLoading] = useState(true);
@@ -38,23 +39,18 @@ export const HRInterviewPageContent = () => {
             <Skeleton width="100%" height="calc(100vh - 64px)" border="12px" />
         );
     }
-    // if (articlesToRender.length === 0) {
-    //     return <NoArticlesFound />;
-    // }
+    if (items.length === 0) {
+        return <NoHRInterviewQAFound />;
+    }
 
     return (
         <VStack
             gap="24"
             justify="between"
-            className={classNames(cls.ArticlesPageRedesigned, {}, [])}
-            data-testid="ArticlesPage"
+            className={classNames(cls.pageRedesigned, {}, [])}
         >
             <Accordion items={mappedItems} collapsible type="single" />
-            {/* <ArticleList */}
-            {/*    view={view} */}
-            {/*    page={page} */}
-            {/*    articlesToRender={articlesToRender} */}
-            {/* /> */}
+
             <Pagination
                 classNames={{
                     list: cls.pagList,

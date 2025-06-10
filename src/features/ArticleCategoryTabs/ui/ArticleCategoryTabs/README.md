@@ -5,7 +5,7 @@ The **`ArticleCategoryTabs`** component is a specialized tab component for categ
 
 ## Type Definition 
 ```typescript
-interface ArticleCategoryTabsProps {
+interface HRInterviewCategoryTabsProps {
     className?: string;
     value: ArticleCategory;
     onChangeCategory: (category: ArticleCategory) => void;

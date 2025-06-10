@@ -7,7 +7,7 @@ import { Text } from '@/shared/ui/deprecated/Text';
 
 import { AddHRInterviewCategoryFormProps } from '../AddHRInterviewCategoryForm';
 import { useHRInterviewQAFormState } from '../../../lib/hooks/useHRInterviewQAFormState/useHRInterviewQAFormState';
-import { useHRCategoryTabs } from '../../../lib/hooks/useHRCategoryTabs/useHRCategoryTabs';
+import { useHRCategoryTabs } from '@/features/HRInterviewCategoryTabs';
 
 export const AddHRInterviewCategoryFormDeprecated = memo(
     (props: AddHRInterviewCategoryFormProps) => {

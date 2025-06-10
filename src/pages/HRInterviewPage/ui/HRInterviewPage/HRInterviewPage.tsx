@@ -5,6 +5,7 @@ import { VStack } from '@/shared/ui/common/Stack';
 
 import { HRInterviewAlgoliaSearch } from '../HRInterviewAlgoliaSearch/HRInterviewAlgoliaSearch';
 import { HRInterviewPageContent } from '../HRInterviewPageContent/HRInterviewPageContent';
+import { HRInterviewFilters } from '@/widgets/HRInterviewFilters';
 
 const HRInterviewPage = () => {
     return (
@@ -12,7 +13,11 @@ const HRInterviewPage = () => {
             <HRInterviewAlgoliaSearch>
                 <StickyContentLayout
                     left={<VStack gap="24">left</VStack>}
-                    right={<VStack gap="24">right</VStack>}
+                    right={
+                        <VStack gap="24">
+                            <HRInterviewFilters />
+                        </VStack>
+                    }
                     content={<HRInterviewPageContent />}
                 />
             </HRInterviewAlgoliaSearch>
