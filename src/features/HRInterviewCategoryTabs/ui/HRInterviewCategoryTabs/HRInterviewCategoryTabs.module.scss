@@ -51,6 +51,7 @@
     gap: 4px;
     align-items: center;
     cursor: pointer;
+    font: var(--font-s-redesigned);
 }
 
 .MenuCheckbox {
@@ -66,6 +67,7 @@
 
 
 .AllItemsBtn {
+
     min-width: 80px;
     padding: 6px 16px;
     transition: border 300ms ease-in;
@@ -80,14 +82,14 @@
 .AllItemsBtnRedesigned,
 .AllItemsBtnNotSelectedRedesigned {
     border-radius: 40px;
-    font: var(--font-m-redesigned);
+    font: var(--font-s-redesigned);
     color: var(--text-redesigned);
 }
 
 .AllItemsBtnDeprecated,
 .AllItemsBtnNotSelectedDeprecated {
     border: 1px solid var(--primary-color);
-    font: var(--font-m);
+    font: var(--font-s);
     color: var(--primary-color);
 }
 

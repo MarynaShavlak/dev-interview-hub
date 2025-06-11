@@ -6,6 +6,7 @@ import { HRInterviewAlgoliaSearch } from '../../HRInterviewAlgoliaSearch/HRInter
 import { Page } from '@/widgets/Page';
 import { HRInterviewFilters } from '@/widgets/HRInterviewFilters';
 import { VStack } from '@/shared/ui/common/Stack';
+import { HRInterviewQueueNavigationButton } from '../../HRInterviewQueueNavigationButton/HRInterviewQueueNavigationButton';
 
 export const HRInterviewPageDeprecated = () => {
     return (
@@ -13,6 +14,7 @@ export const HRInterviewPageDeprecated = () => {
             <HRInterviewAlgoliaSearch>
                 <Page>
                     <VStack gap="40">
+                        <HRInterviewQueueNavigationButton />
                         <HRInterviewFilters />
                         <HRInterviewPageContent />
                     </VStack>
