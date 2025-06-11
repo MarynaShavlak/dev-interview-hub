@@ -41,7 +41,6 @@ export const HRInterviewFilters = (props: HRInterviewFiltersProps) => {
                     placeholder={t('Пошук')}
                     resetIconComponent={ResetIconComponent}
                     submitIconComponent={SubmitIconComponent}
-                    data-testid="ArticlesPage.SearchInput"
                     classNames={{
                         submit: cls.SubmitSearchBtn,
                         reset: cls.ResetSearchBtn,

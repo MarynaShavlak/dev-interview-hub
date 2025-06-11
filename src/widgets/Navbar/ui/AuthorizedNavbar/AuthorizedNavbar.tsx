@@ -4,7 +4,10 @@ import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import cls from '../Navbar.module.scss';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
 import { AppLink, AppLinkTheme } from '@/shared/ui/deprecated/AppLink';
-import { getRouteArticleCreate } from '@/shared/const/router/router';
+import {
+    getRouteArticleCreate,
+    getRouteHRInterviewQACreate,
+} from '@/shared/const/router/router';
 import { HStack, VStack } from '@/shared/ui/common/Stack';
 import { NotificationButton } from '@/features/NotificationButton';
 import { AvatarDropdown } from '@/features/AvatarDropdown';
@@ -40,14 +43,23 @@ const AuthorizedDeprecatedNavbar = memo(({ className }: NavbarProps) => {
                     size={TextSize.S}
                 />
             </VStack>
+            <HStack gap="40">
+                <AppLink
+                    to={getRouteArticleCreate()}
+                    theme={AppLinkTheme.SECONDARY}
+                    className={cls.createBtn}
+                >
+                    {t('Додати статтю')}
+                </AppLink>
+                <AppLink
+                    to={getRouteHRInterviewQACreate()}
+                    theme={AppLinkTheme.SECONDARY}
+                    className={cls.createBtn}
+                >
+                    {t('Додати нове HR питання')}
+                </AppLink>
+            </HStack>
 
-            <AppLink
-                to={getRouteArticleCreate()}
-                theme={AppLinkTheme.SECONDARY}
-                className={cls.createBtn}
-            >
-                {t('Додати статтю')}
-            </AppLink>
             <HStack gap="16" className={cls.actions}>
                 <NotificationButton />
                 <AvatarDropdown />

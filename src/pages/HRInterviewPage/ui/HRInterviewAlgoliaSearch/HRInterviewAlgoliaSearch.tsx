@@ -23,7 +23,7 @@ export const HRInterviewAlgoliaSearch = ({ children }: ArticlesSearchProps) => {
                 preserveSharedStateOnUnmount: true,
             }}
         >
-            <Configure hitsPerPage={20} />
+            <Configure hitsPerPage={10} />
             <VirtualPagination />
             {children}
         </InstantSearch>

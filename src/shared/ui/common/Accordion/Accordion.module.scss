@@ -57,7 +57,7 @@
     .trigger {
       color: var(--primary-color);
       :first-child {
-        color: var(--inverted-primary-color);
+        color: var(--primary-color);
       }
     }
   }
