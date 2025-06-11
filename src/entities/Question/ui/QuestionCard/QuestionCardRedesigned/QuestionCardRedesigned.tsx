@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { AddNewArticleButton } from '@/shared/ui/common/AddNewArticleButton';
+import { AddNewEntityButton } from '@/shared/ui/common/AddNewEntityButton';
 import { HStack } from '@/shared/ui/common/Stack';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
 
@@ -71,7 +71,10 @@ export const QuestionCardRedesigned = memo((props: QuestionCardProps) => {
                     </HStack>
 
                     <HStack justify="center" gap="8">
-                        <AddNewArticleButton onClick={handleCreateArticle} />
+                        <AddNewEntityButton
+                            onClick={handleCreateArticle}
+                            entityType="article"
+                        />
                         <Icon
                             Svg={EditIcon}
                             width={18}

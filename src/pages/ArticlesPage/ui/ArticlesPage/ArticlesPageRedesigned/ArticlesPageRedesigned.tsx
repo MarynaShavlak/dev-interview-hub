@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { AddNewArticleButton } from '@/shared/ui/common/AddNewArticleButton';
+import { AddNewEntityButton } from '@/shared/ui/common/AddNewEntityButton';
 import {
     DynamicModuleLoader,
     ReducersList,
@@ -37,7 +37,7 @@ export const ArticlesPageRedesigned = () => {
                         right={
                             <VStack gap="24">
                                 <FiltersContainer />
-                                <AddNewArticleButton max />
+                                <AddNewEntityButton max entityType="article" />
                             </VStack>
                         }
                         content={<ArticlesPageContent />}

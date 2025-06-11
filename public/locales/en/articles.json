@@ -21,6 +21,7 @@
     "React": "React",
   "Читати": "Read",
   "Створити статтю": "Add article",
+  "createButtonLabel": "Add article",
   "Введіть текст питання": "Enter question text",
     "Додати": "Add",
     "Доданих питань у черзі немає": "There are no questions in queue",

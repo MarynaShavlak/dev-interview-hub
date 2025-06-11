@@ -1,6 +1,6 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import React from 'react';
-import { AddNewArticleButton } from '@/shared/ui/common/AddNewArticleButton';
+import { AddNewEntityButton } from '@/shared/ui/common/AddNewEntityButton';
 import { UserArticlesTable } from './UserArticlesTable';
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 import { UserRole } from '@/entities/User';
@@ -57,7 +57,7 @@ export const EmptyState = Template.bind({});
 EmptyState.decorators = [
     () => (
         <EmptyTableState message="Не створено жодної статті">
-            <AddNewArticleButton />
+            <AddNewEntityButton entityType="article" />
         </EmptyTableState>
     ),
 ];
@@ -66,7 +66,7 @@ export const EmptyStateRedesigned = Template.bind({});
 EmptyStateRedesigned.decorators = [
     () => (
         <EmptyTableState message="Не створено жодної статті">
-            <AddNewArticleButton />
+            <AddNewEntityButton entityType="article" />
         </EmptyTableState>
     ),
 ];

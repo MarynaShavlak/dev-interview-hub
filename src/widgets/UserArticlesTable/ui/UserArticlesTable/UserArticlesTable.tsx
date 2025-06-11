@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 
 import { useTranslation } from 'react-i18next';
-import { AddNewArticleButton } from '@/shared/ui/common/AddNewArticleButton';
+import { AddNewEntityButton } from '@/shared/ui/common/AddNewEntityButton';
 import { ConfirmDeleteModal } from '@/shared/ui/common/ConfirmDeleteModal';
 import { Box } from '@/shared/ui/common/Box';
 import cls from './UserArticlesTable.module.scss';
@@ -70,7 +70,7 @@ export const UserArticlesTable = memo(
         if (data?.length === 0) {
             return (
                 <EmptyTableState message={t('Не створено жодної статті')}>
-                    <AddNewArticleButton />
+                    <AddNewEntityButton entityType="article" />
                 </EmptyTableState>
             );
         }
