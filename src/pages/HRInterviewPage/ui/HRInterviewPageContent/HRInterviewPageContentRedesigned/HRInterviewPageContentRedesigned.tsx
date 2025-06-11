@@ -56,7 +56,7 @@ export const HRInterviewPageContentRedesigned = () => {
         <VStack
             gap="24"
             justify="between"
-            className={classNames(cls.pageRedesigned, {}, [])}
+            className={classNames(cls.page, {}, [])}
         >
             <Accordion items={mappedItems} collapsible type="single" />
 

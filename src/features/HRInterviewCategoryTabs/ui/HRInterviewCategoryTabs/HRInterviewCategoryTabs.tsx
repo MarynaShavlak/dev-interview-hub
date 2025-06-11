@@ -7,8 +7,6 @@ import { useHRCategoryTabs } from '../../lib/hooks/useHRCategoryTabs/useHRCatego
 
 export interface HRInterviewCategoryTabsProps {
     className?: string;
-    // value: HRCategory;
-    // onChangeCategory: (category: HRCategory) => void;
 }
 
 export const HRInterviewCategoryTabs = memo(
@@ -19,7 +17,7 @@ export const HRInterviewCategoryTabs = memo(
         const categoryTabs = useMemo(() => rawCategoryTabs, [rawCategoryTabs]);
 
         return (
-            <VStack gap="8">
+            <VStack gap="8" className={className}>
                 <ClearRefinements
                     translations={{
                         resetButtonText: t('Вcі питання'),
