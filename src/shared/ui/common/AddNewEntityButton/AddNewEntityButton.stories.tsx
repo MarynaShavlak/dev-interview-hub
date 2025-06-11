@@ -12,7 +12,7 @@ export default {
 } as ComponentMeta<typeof AddNewEntityButton>;
 
 const Template: ComponentStory<typeof AddNewEntityButton> = (args) => (
-    <AddNewEntityButton />
+    <AddNewEntityButton entityType="article" />
 );
 
 export const Default = Template.bind({});

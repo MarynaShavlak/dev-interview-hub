@@ -14,15 +14,19 @@ import { Question } from '@/entities/Question';
 import { fetchQuestionsForUser } from '../lib/utilities/fetchQuestionsForUser/fetchQuestionsForUser';
 import { subscribeToQuestions } from '../lib/utilities/subscribeToQuestions/subscribeToQuestions';
 import { updateQuestionInFirestore } from '../lib/utilities/updateQuestionInFirestore/updateQuestionInFirestore';
+import { EntityType } from '@/shared/types/entityType';
 
 export const questionsQueueFirebaseApi = firestoreApi
     .enhanceEndpoints({ addTagTypes: ['QuestionsQueue'] })
     .injectEndpoints({
         endpoints: (build) => ({
-            getQuestionsByUser: build.query<Question[], string>({
+            getQuestionsByUser: build.query<
+                Question[],
+                { userId: string; type: EntityType }
+            >({
                 providesTags: [{ type: 'QuestionsQueue', id: 'questionId' }],
                 keepUnusedDataFor: 3600,
-                async queryFn(userId: string) {
+                async queryFn({ userId, type }) {
                     if (!userId) {
                         return {
                             error: new Error(
@@ -32,18 +36,20 @@ export const questionsQueueFirebaseApi = firestoreApi
                     }
 
                     return executeQuery(
-                        () => fetchQuestionsForUser(userId),
+                        () => fetchQuestionsForUser(userId, type),
                         ERROR_QUESTION_MESSAGES.QUESTIONS_BY_USER_ID_FETCH_FAIL(
                             userId,
                         ),
                     );
                 },
                 async onCacheEntryAdded(
-                    userId,
+                    args,
                     { updateCachedData, cacheDataLoaded, cacheEntryRemoved },
                 ) {
+                    const { userId, type } = args;
                     handleFirestoreSubscription({
-                        subscriptionFn: subscribeToQuestions,
+                        subscriptionFn: (updateFn) =>
+                            subscribeToQuestions(updateFn, userId, type),
                         updateFn: updateCachedData,
                         dependency: userId,
                         cacheDataLoaded,

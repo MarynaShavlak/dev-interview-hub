@@ -7,12 +7,13 @@ import { handleThunkErrorMessage } from '@/shared/lib/firestore';
 import { addQuestionMutation } from '../../../api/questionsQueueApi';
 import { ERROR_QUESTION_MESSAGES } from '../../consts/errorQuestionMessages';
 import { Question } from '@/entities/Question';
+import { EntityType } from '@/shared/types/entityType';
 
 export const addQuestionThunk = createAsyncThunk<
     Question,
-    { text: string },
+    { text: string; type: EntityType },
     ThunkConfig<string>
->('questionsQueue/addQuestionsToQueue', async ({ text }, thunkApi) => {
+>('questionsQueue/addQuestionsToQueue', async ({ text, type }, thunkApi) => {
     const { dispatch, rejectWithValue, getState } = thunkApi;
 
     try {
@@ -34,6 +35,7 @@ export const addQuestionThunk = createAsyncThunk<
                 userId: userData.id,
                 text,
                 id: questionId,
+                type,
             }),
         ).unwrap();
 

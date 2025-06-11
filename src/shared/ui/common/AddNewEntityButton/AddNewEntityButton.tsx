@@ -15,11 +15,12 @@ import {
 } from '../../deprecated/Button';
 
 import cls from './AddNewEntityButton.module.scss';
+import { EntityType } from '@/shared/types/entityType';
 
 interface AddNewEntityButtonProps {
     max?: boolean;
     size?: ButtonSize;
-    entityType: 'article' | 'hrInterviewQA';
+    entityType: EntityType;
     onClick?: () => void;
 }
 const namespaceMap: Record<AddNewEntityButtonProps['entityType'], string> = {

@@ -10,23 +10,29 @@ import { useUserAuthData } from '@/entities/User';
 import { deleteQuestionThunk } from '../model/services/deleteQuestionThunk/deleteQuestionThunk';
 import { updateQuestionThunk } from '../model/services/updateQuestionThunk/updateQuestionThunk';
 import { ARTICLE_TO_CREATE_TITLE } from '@/shared/const/localstorage';
+import { EntityType } from '@/shared/types/entityType';
 
-export const QuestionsQueue = memo(() => {
+interface QuestionsQueueProps {
+    type: EntityType;
+}
+
+export const QuestionsQueue = memo((props: QuestionsQueueProps) => {
+    const { type } = props;
     const dispatch = useAppDispatch();
     const user = useUserAuthData();
 
     const onAddQuestion = useCallback(
         (text: string) => {
-            dispatch(addQuestionThunk({ text }));
+            dispatch(addQuestionThunk({ text, type }));
         },
-        [dispatch],
+        [dispatch, type],
     );
 
     const {
         data: questions,
         isLoading,
         error,
-    } = useQuestionsByUser(user?.id || '');
+    } = useQuestionsByUser({ userId: user?.id || '', type });
 
     const handleDeleteQuestion = async (questionId: string) => {
         try {

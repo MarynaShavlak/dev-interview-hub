@@ -41,7 +41,7 @@ export const MyArticlesPageContent = memo(() => {
                 <UserArticlesTable onDeleteArticle={handleDeleteArticle} />
             ) : (
                 <>
-                    <QuestionsQueue />
+                    <QuestionsQueue type="article" />
                     {/* <LinksManager /> */}
                 </>
             )}

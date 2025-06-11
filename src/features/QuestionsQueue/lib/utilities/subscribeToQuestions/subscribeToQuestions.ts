@@ -4,18 +4,20 @@ import { handleRequestErrorMessage } from '@/shared/lib/firestore/handleRequestE
 import { ERROR_QUESTION_MESSAGES } from '../../../model/consts/errorQuestionMessages';
 import { Question } from '@/entities/Question';
 import { createQuestionsQuery } from '../createQuestionsQuery/createQuestionsQuery';
+import { EntityType } from '@/shared/types/entityType';
 
 export const subscribeToQuestions = (
     updateCachedData: (
         updater: (draft: MaybeDrafted<Question[]>) => void,
     ) => void,
     userId: string,
+    type: EntityType,
 ) => {
     let unsubscribe: (() => void) | undefined;
 
     try {
         if (!userId) return undefined;
-        const questionsQuery = createQuestionsQuery(userId);
+        const questionsQuery = createQuestionsQuery(userId, type);
 
         unsubscribe = onSnapshot(questionsQuery, (snapshot) => {
             updateCachedData((draft) => {
