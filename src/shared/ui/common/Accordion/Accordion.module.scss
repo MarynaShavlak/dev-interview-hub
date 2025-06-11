@@ -42,6 +42,9 @@
     border-color: var(--accent-redesigned);
     .trigger {
       font-weight: 700;
+      :first-child {
+        color: var(--accent-redesigned);
+      }
     }
   }
 }
@@ -53,6 +56,9 @@
 
     .trigger {
       color: var(--primary-color);
+      :first-child {
+        color: var(--inverted-primary-color);
+      }
     }
   }
   &[data-state='open'] {
@@ -65,7 +71,7 @@
   }
 }
 .trigger {
-  text-align: left;
+  //text-align: left;
   display: flex;
   width: 100%;
   gap:16px;
@@ -81,16 +87,12 @@
 
 
 
-  svg {
-    width:32px;
-    height:32px;
-  }
+
 
 }
 
 .triggerRedesigned {
   font: var(--font-m-redesigned);
-
   color: var(--text-redesigned);
 }
 
@@ -100,9 +102,9 @@
 }
 
 .icon {
-
+  width:32px;
+  height:32px;
   transition: transform 0.3s cubic-bezier(0.87, 0, 0.13, 1);
-
   [data-state='open'] & {
     transform: rotate(180deg);
   }

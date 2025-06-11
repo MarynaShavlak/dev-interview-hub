@@ -46,8 +46,6 @@ export const HRInterviewPageContent = () => {
     //     };
     // });
     const mappedItems = items.map((item) => {
-        console.log('item', item);
-
         const textBlocks = item.blocks.map((block: ArticleTextBlock) => (
             <ArticleTextBlockComponent
                 key={block.id}

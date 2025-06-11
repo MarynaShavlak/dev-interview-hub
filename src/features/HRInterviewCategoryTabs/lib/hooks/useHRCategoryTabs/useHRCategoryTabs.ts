@@ -6,7 +6,7 @@ import {
 import { TabItem } from '@/shared/ui/redesigned/Tabs';
 
 export const useHRCategoryTabs = () => {
-    const { t, i18n } = useTranslation('hrQuestions');
+    const { t, i18n } = useTranslation();
     const lang = i18n.language;
     const HRInterviewQACategories =
         lang === 'uk' || lang === 'ua'
