@@ -2,10 +2,18 @@
 .categoryCount {
     display: inline-flex;
     justify-content: center;
-    background-color: var(--light-bg-redesigned);
     padding: 2px;
-    border-radius: 10px;
     min-width: 30px;
+}
+
+.categoryCountRedesigned {
+    background-color: var(--light-bg-redesigned);
+    border-radius: 10px;
+
+}
+.categoryCountDeprecated {
+    display:none;
+
 }
 
 /* Menu Item Styles */
@@ -15,29 +23,27 @@
     gap: 8px;
     flex-direction: row;
     flex-wrap: wrap;
+
+}
+
+.MenuListRedesigned {
     justify-content: space-between;
 }
 
-.AllItemsBtn {
-    min-width: 80px;
+.MenuItem {
     padding: 6px 16px;
     transition: border 300ms ease-in;
-    width: fit-content;
-    cursor: pointer;
-}
-
-.MenuItem {
-    //min-width: 80px;
-    //width: calc((100% - 8px) / 2);
-    padding: 6px 16px;
-    transition: border 300ms ease-in;
-
     cursor: pointer;
     width: fit-content;
-}
-
-.MenuItem {
     position: relative;
+}
+
+.MenuItemDeprecated {
+    border: 1px solid var(--primary-color);
+    &:hover {
+        background: var(--card-bg);
+        border: 1px solid transparent;
+    }
 }
 
 .MenuLabel {
@@ -58,27 +64,57 @@
     cursor: pointer;
 }
 
-.AllItemsBtn {
-    border-radius: 40px;
-    background: transparent;
-}
 
-.AllItemsBtn,
-.AllItemsBtnNotSelected {
+.AllItemsBtn {
+    min-width: 80px;
+    padding: 6px 16px;
+    transition: border 300ms ease-in;
+    width: fit-content;
+    cursor: pointer;
+    background: transparent;
     display: flex;
     border: none;
     align-items: center;
+}
+
+.AllItemsBtnRedesigned,
+.AllItemsBtnNotSelectedRedesigned {
+    border-radius: 40px;
     font: var(--font-m-redesigned);
     color: var(--text-redesigned);
 }
 
-.AllItemsBtnNotSelected {
+.AllItemsBtnDeprecated,
+.AllItemsBtnNotSelectedDeprecated {
+    border: 1px solid var(--primary-color);
+    font: var(--font-m);
+    color: var(--primary-color);
+}
+
+.AllItemsBtnDeprecated {
+    border: 1px solid var(--primary-color);
+
+}
+
+.AllItemsBtnNotSelectedDeprecated {
+    background: var(--card-bg);
+    border: 1px solid transparent;
+
+}
+
+.AllItemsBtnNotSelectedRedesigned {
     background: var(--light-bg-redesigned);
 }
 
-.SelectedMenuItem {
+.SelectedMenuItemRedesigned {
     border-radius: 40px;
     background: var(--light-bg-redesigned);
+}
+
+.SelectedMenuItemDeprecated {
+    background: var(--card-bg);
+    border: 1px solid transparent;
+
 }
 
 .MenuLink {

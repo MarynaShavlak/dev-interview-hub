@@ -56,7 +56,7 @@ export const HRInterviewPageContentDeprecated = () => {
         <VStack
             gap="24"
             justify="between"
-            className={classNames(cls.page, {}, [])}
+            className={classNames(cls.pageDeprecated, {}, [])}
         >
             <Accordion items={mappedItems} collapsible type="single" />
 

@@ -2,6 +2,10 @@
     height: 100%;
 }
 
+.pageDeprecated {
+    width: 100%;
+}
+
 .pagList {
     display: flex;
     gap: 8px;
@@ -82,4 +86,8 @@
     .pagLink {
         color: var(--bg-color);
     }
+}
+
+.hrQuestion {
+    width: calc((100% - 32px - 16px))
 }

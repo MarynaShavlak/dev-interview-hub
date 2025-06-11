@@ -7,16 +7,18 @@ import {
     getRouteArticleCreate,
     getRouteHRInterviewQACreate,
 } from '@/shared/const/router/router';
-import { Button } from '../../redesigned/Button';
+import { Button, ButtonSize } from '../../redesigned/Button';
 import {
     Button as ButtonDeprecated,
     ButtonTheme,
+    ButtonSize as DeprecatedButtonSize,
 } from '../../deprecated/Button';
 
 import cls from './AddNewEntityButton.module.scss';
 
 interface AddNewEntityButtonProps {
     max?: boolean;
+    size?: ButtonSize;
     entityType: 'article' | 'hrInterviewQA';
     onClick?: () => void;
 }
@@ -26,10 +28,21 @@ const namespaceMap: Record<AddNewEntityButtonProps['entityType'], string> = {
 };
 
 export const AddNewEntityButton = memo(
-    ({ max = false, onClick, entityType }: AddNewEntityButtonProps) => {
+    ({
+        max = false,
+        onClick,
+        entityType,
+        size = 's',
+    }: AddNewEntityButtonProps) => {
         const namespace = namespaceMap[entityType];
         const { t } = useTranslation(namespace);
         const navigate = useNavigate();
+        const deprecatedSizeMap: Record<ButtonSize, DeprecatedButtonSize> = {
+            s: DeprecatedButtonSize.S,
+            m: DeprecatedButtonSize.M,
+            l: DeprecatedButtonSize.L,
+            xl: DeprecatedButtonSize.XL,
+        };
 
         const onCreateArticle = useCallback(() => {
             onClick?.();
@@ -56,7 +69,7 @@ export const AddNewEntityButton = memo(
                 feature="isAppRedesigned"
                 on={
                     <Button
-                        size="m"
+                        size={size}
                         onClick={onCreateArticle}
                         className={cls.addButton}
                         variant="save"
@@ -69,6 +82,7 @@ export const AddNewEntityButton = memo(
                     <ButtonDeprecated
                         theme={ButtonTheme.OUTLINE}
                         onClick={onCreateArticle}
+                        size={deprecatedSizeMap[size]}
                     >
                         {buttonText}
                     </ButtonDeprecated>
