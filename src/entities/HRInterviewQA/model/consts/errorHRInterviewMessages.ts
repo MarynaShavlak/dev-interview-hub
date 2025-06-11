@@ -7,8 +7,8 @@ export const ERROR_HR_INTERVIEW_MESSAGES = {
         'Failed to retrieve created HR interview question.',
     HR_INTERVIEW_SNAPSHOT_FAIL: (id: string) =>
         `Error in HR interview QA with id "${id}" snapshot.`,
-    // ARTICLES_BY_USER_ID_FETCH_FAIL: (userId: string) =>
-    //     `Failed to fetch articles for user with ID "${userId}".`,
+    HR_INTERVIEWS_BY_USER_ID_FETCH_FAIL: (userId: string) =>
+        `Failed to fetch HR interview QAs for user with ID "${userId}".`,
     // ARTICLES_FETCH_FAIL: 'Failed to fetch articles.',
     // ARTICLES_SNAPSHOT_FAIL: 'Error in articles snapshot.',
     // AUTHOR_VIEWS_NOT_COUNTED: "Author's views are not counted",

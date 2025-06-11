@@ -28,6 +28,7 @@ import {
     getRouteHRInterviewQACreate,
     getRouteHRInterview,
     getRouteHRInterviewQueue,
+    getRouteHRInterviewEditor,
 } from '@/shared/const/router/router';
 import { AppRoutesProps } from '@/shared/types/router';
 import {
@@ -50,6 +51,10 @@ import {
     HRInterviewQueuePage,
     HRInterviewQueuePageSkeleton,
 } from '@/pages/HRInterviewQueuePage';
+import {
+    HRInterviewEditorTablePage,
+    HRInterviewEditorTablePageSkeleton,
+} from '@/pages/HRInterviewEditorTablePage';
 
 export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
     [AppRoutes.MAIN]: {
@@ -118,6 +123,12 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
         element: <HRInterviewPage />,
         authOnly: true,
         skeleton: <HRInterviewPageSkeleton />,
+    },
+    [AppRoutes.HR_INTERVIEW_EDITOR]: {
+        path: getRouteHRInterviewEditor(),
+        element: <HRInterviewEditorTablePage />,
+        authOnly: true,
+        skeleton: <HRInterviewEditorTablePageSkeleton />,
     },
     [AppRoutes.HR_INTERVIEW_QUEUE]: {
         path: getRouteHRInterviewQueue(),

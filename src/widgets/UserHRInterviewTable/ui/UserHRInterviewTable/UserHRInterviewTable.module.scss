@@ -1,0 +1,22 @@
+.tableRedesigned {
+    border: 1px solid var(--icon-redesigned);
+}
+
+.tableDeprecated {
+    border: 1px solid var(--primary-color);
+}
+
+.tableAvatar {
+    align-self: center;
+}
+
+.tableWrap {
+    min-width: 856px;
+    min-height: 400px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+.contentWrap {
+    padding-right: 10px;
+}

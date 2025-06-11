@@ -4,7 +4,7 @@ import { Card } from '@/shared/ui/redesigned/Card';
 import { VStack } from '@/shared/ui/common/Stack';
 import { StickyContentLayout } from '@/shared/layouts/StickyContentLayout';
 import { Skeleton as SkeletonRedesigned } from '@/shared/ui/redesigned/Skeleton';
-import cls from '../HRInterviewQueuePage/HRInterviewQueuePage.module.scss';
+import cls from '../HRInterviewEditorTablePage/HRInterviewEditorTablePage.module.scss';
 import { toggleFeatures, ToggleFeaturesComponent } from '@/shared/lib/features';
 import { Skeleton as SkeletonDeprecated } from '@/shared/ui/deprecated/Skeleton';
 
@@ -15,7 +15,7 @@ const additionalClasses = getFlexClasses({
     justify: 'center',
 });
 
-export const HRInterviewQueuePageSkeleton = memo(() => {
+export const HRInterviewEditorTablePageSkeleton = memo(() => {
     const Skeleton = toggleFeatures({
         name: 'isAppRedesigned',
         on: () => SkeletonRedesigned,

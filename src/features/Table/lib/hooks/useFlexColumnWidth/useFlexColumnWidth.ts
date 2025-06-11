@@ -6,7 +6,7 @@ export const useFlexColumnWidth = (
     widthParams: Record<string, number>,
     minColumnWidth: number,
 ): number => {
-    const [flexColumnWidth, setFlexColumnWidth] = useState(230);
+    const [flexColumnWidth, setFlexColumnWidth] = useState(200);
 
     useEffect(() => {
         const calculateColumnWidth = () => {

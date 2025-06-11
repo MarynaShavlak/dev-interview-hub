@@ -28,7 +28,11 @@ export const calculateAvailableFlexColumnWidth = (
     const sidebarWidth = sidebar?.getBoundingClientRect().width ?? 0;
     const fixedColumnsWidth = calculateTotalFixedColumnsWidth(columnWidths);
     const nonAdjustableWidth =
-        sidebarWidth + toolbarWidth + TABLE_BORDER_WIDTH + PAGE_PADDINGS_WIDTH;
+        sidebarWidth +
+        toolbarWidth +
+        TABLE_BORDER_WIDTH +
+        PAGE_PADDINGS_WIDTH +
+        10;
 
     const availableWidth =
         window.innerWidth - fixedColumnsWidth - nonAdjustableWidth;

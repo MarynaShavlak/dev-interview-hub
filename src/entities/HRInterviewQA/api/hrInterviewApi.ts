@@ -14,6 +14,8 @@ import {
 import { updateHRInterviewQAInFirestore } from '../lib/utilities/updateHRInterviewQAInFirestore/updateHRInterviewQAInFirestore';
 import { fetchHRInterviewQA } from '../lib/utilities/fetchHRInterviewQA/fetchHRInterviewQA';
 import { subscribeToHRInterviewQA } from '../lib/utilities/subscribeToHRInterviewQA/subscribeToHRInterviewQA';
+import { subscribeToUserArticles } from '@/entities/Article';
+import { fetchHRInterviewsForUser } from '../lib/utilities/fetchHRInterviewsForUser/fetchHRInterviewsForUser';
 
 interface UpdateHRInterviewQAArgs {
     id: string;
@@ -26,6 +28,37 @@ export const HRInterviewQAFirebaseApi = firestoreApi
     })
     .injectEndpoints({
         endpoints: (build) => ({
+            getHRInterviewQAsByUserId: build.query<HRInterviewQA[], string>({
+                providesTags: [{ type: 'HRInterviewQAs', id: 'userId' }],
+                keepUnusedDataFor: 3600,
+                async queryFn(userId) {
+                    if (!userId) {
+                        return {
+                            error: new Error(
+                                ERROR_HR_INTERVIEW_MESSAGES.USER_NOT_FOUND,
+                            ),
+                        };
+                    }
+                    return executeQuery(
+                        () => fetchHRInterviewsForUser(userId),
+                        ERROR_HR_INTERVIEW_MESSAGES.HR_INTERVIEWS_BY_USER_ID_FETCH_FAIL(
+                            userId,
+                        ),
+                    );
+                },
+                async onCacheEntryAdded(
+                    userId,
+                    { updateCachedData, cacheDataLoaded, cacheEntryRemoved },
+                ) {
+                    handleFirestoreSubscription({
+                        subscriptionFn: subscribeToUserArticles,
+                        updateFn: updateCachedData,
+                        dependency: userId,
+                        cacheDataLoaded,
+                        cacheEntryRemoved,
+                    });
+                },
+            }),
             getHRInterviewQADataById: build.query<HRInterviewQA, string>({
                 async queryFn(id) {
                     return executeQuery(
@@ -84,3 +117,5 @@ export const updateHRInterviewQAMutation =
     endpoints.updateHRInterviewQA.initiate;
 export const getHRInterviewQADataByIdQuery =
     endpoints.getHRInterviewQADataById.initiate;
+export const useHRInterviewQAsByUserId =
+    HRInterviewQAFirebaseApi.useGetHRInterviewQAsByUserId;
