@@ -9,7 +9,10 @@ import { useUserAuthData } from '@/entities/User';
 
 import { deleteQuestionThunk } from '../model/services/deleteQuestionThunk/deleteQuestionThunk';
 import { updateQuestionThunk } from '../model/services/updateQuestionThunk/updateQuestionThunk';
-import { ARTICLE_TO_CREATE_TITLE } from '@/shared/const/localstorage';
+import {
+    ARTICLE_TO_CREATE_TITLE,
+    HR_INTERVIEW_TO_CREATE_TITLE,
+} from '@/shared/const/localstorage';
 import { EntityType } from '@/shared/types/entityType';
 
 interface QuestionsQueueProps {
@@ -60,15 +63,22 @@ export const QuestionsQueue = memo((props: QuestionsQueueProps) => {
         }
     };
 
-    const createArticleFromQuestion = useCallback(
+    const createEntityFromQuestion = useCallback(
         async (question: Question) => {
-            sessionStorage.setItem(ARTICLE_TO_CREATE_TITLE, question.text);
+            if (type === 'article') {
+                sessionStorage.setItem(ARTICLE_TO_CREATE_TITLE, question.text);
+            } else {
+                sessionStorage.setItem(
+                    HR_INTERVIEW_TO_CREATE_TITLE,
+                    question.text,
+                );
+            }
 
             const deletedQuestionId = await dispatch(
                 deleteQuestionThunk(question.id),
             ).unwrap();
         },
-        [dispatch],
+        [dispatch, type],
     );
 
     return (
@@ -80,18 +90,20 @@ export const QuestionsQueue = memo((props: QuestionsQueueProps) => {
                     isLoading={false}
                     questions={undefined}
                     error={error as string}
+                    type={type}
                     deleteQuestion={handleDeleteQuestion}
                     updateQuestion={handleUpdateQuestion}
-                    createArticle={createArticleFromQuestion}
+                    createEntity={createEntityFromQuestion}
                 />
             ) : (
                 <QuestionsList
                     questions={questions}
+                    type={type}
                     isLoading={isLoading}
                     error={error as string}
                     deleteQuestion={handleDeleteQuestion}
                     updateQuestion={handleUpdateQuestion}
-                    createArticle={createArticleFromQuestion}
+                    createEntity={createEntityFromQuestion}
                 />
             )}
         </VStack>

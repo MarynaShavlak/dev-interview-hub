@@ -7,6 +7,7 @@ import { HRInterviewFilters } from '@/widgets/HRInterviewFilters';
 import { AddNewEntityButton } from '@/shared/ui/common/AddNewEntityButton';
 import { HRInterviewPageContent } from '../../HRInterviewPageContent/HRInterviewPageContent';
 import { HRInterviewAlgoliaSearch } from '../../HRInterviewAlgoliaSearch/HRInterviewAlgoliaSearch';
+import { HRInterviewQueueNavigationButton } from '../../HRInterviewQueueNavigationButton/HRInterviewQueueNavigationButton';
 
 export const HRInterviewPageRedesigned = () => {
     return (
@@ -19,6 +20,7 @@ export const HRInterviewPageRedesigned = () => {
                                 entityType="hrInterviewQA"
                                 max
                             />
+                            <HRInterviewQueueNavigationButton />
                         </VStack>
                     }
                     right={

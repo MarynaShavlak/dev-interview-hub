@@ -7,7 +7,7 @@ import { OrderCard } from '@/shared/ui/redesigned/OrderCard';
 import { useInputValidationConfig } from '@/shared/lib/hooks/validationHooks/useInputValidationConfig/useInputValidationConfig';
 
 import { HRInterviewQATitleProps } from '../HRInterviewQATitle';
-import { HR_INTERVIEW_QA_TO_CREATE_TITLE } from '@/shared/const/localstorage';
+import { HR_INTERVIEW_TO_CREATE_TITLE } from '@/shared/const/localstorage';
 import { useHRInterviewQAFormState } from '../../../lib/hooks/useHRInterviewQAFormState/useHRInterviewQAFormState';
 
 export const HRInterviewQATitleRedesigned = memo(
@@ -21,15 +21,15 @@ export const HRInterviewQATitleRedesigned = memo(
         const { formData, onChangeTitle } = form;
 
         const [initialTitle, setInitialTitle] = useState<string>(
-            () => sessionStorage.getItem(HR_INTERVIEW_QA_TO_CREATE_TITLE) || '',
+            () => sessionStorage.getItem(HR_INTERVIEW_TO_CREATE_TITLE) || '',
         );
 
         useEffect(() => {
             const storedTitle = sessionStorage.getItem(
-                HR_INTERVIEW_QA_TO_CREATE_TITLE,
+                HR_INTERVIEW_TO_CREATE_TITLE,
             );
             if (storedTitle) {
-                sessionStorage.removeItem(HR_INTERVIEW_QA_TO_CREATE_TITLE);
+                sessionStorage.removeItem(HR_INTERVIEW_TO_CREATE_TITLE);
             }
         }, []);
 

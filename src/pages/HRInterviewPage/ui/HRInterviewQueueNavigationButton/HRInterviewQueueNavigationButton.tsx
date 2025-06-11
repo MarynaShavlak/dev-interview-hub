@@ -1,23 +1,23 @@
 import { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import { Icon } from '@/shared/ui/redesigned/Icon';
+
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
-import { getRouteArticles } from '@/shared/const/router/router';
+import { getRouteHRInterviewQueue } from '@/shared/const/router/router';
+
+import cls from './HRInterviewQueueNavigationButton.module.scss';
 import { Button } from '@/shared/ui/redesigned/Button';
 import {
-    Button as ButtonDeprecated,
     ButtonTheme,
+    Button as ButtonDeprecated,
 } from '@/shared/ui/deprecated/Button';
-import ArrowIcon from '@/shared/assets/icons/left-arrow.svg';
-import cls from './ArticleListNavigationButton.module.scss';
 
-export const ArticleListNavigationButton = memo(() => {
-    const { t } = useTranslation('articleDetails');
+export const HRInterviewQueueNavigationButton = memo(() => {
+    const { t } = useTranslation();
     const navigate = useNavigate();
 
-    const onNavigateToList = useCallback(() => {
-        navigate(getRouteArticles());
+    const onNavigateToQueue = useCallback(() => {
+        navigate(getRouteHRInterviewQueue());
     }, [navigate]);
 
     return (
@@ -26,19 +26,19 @@ export const ArticleListNavigationButton = memo(() => {
             on={
                 <Button
                     size="s"
-                    addonLeft={<Icon width="12" height="12" Svg={ArrowIcon} />}
-                    onClick={onNavigateToList}
+                    onClick={onNavigateToQueue}
                     className={cls.ArticleListButton}
+                    max
                 >
-                    {t('Всі статті')}
+                    {t('Питання в черзі')}
                 </Button>
             }
             off={
                 <ButtonDeprecated
                     theme={ButtonTheme.OUTLINE}
-                    onClick={onNavigateToList}
+                    onClick={onNavigateToQueue}
                 >
-                    {t('Назад до списку')}
+                    {t('Питання в черзі')}
                 </ButtonDeprecated>
             }
         />

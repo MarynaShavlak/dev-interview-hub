@@ -1,11 +1,11 @@
 import React, { memo } from 'react';
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { EntitiesListNavigationButton } from '@/shared/ui/common/EntitiesListNavigationButton';
 import cls from '../ArticleDetailsPage.module.scss';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { Page } from '@/widgets/Page';
 import { ArticleDetailsPageProps } from '../ArticleDetailsPage';
-import { ArticleListNavigationButton } from '@/features/ArticleListNavigationButton';
 import { StickyContentLayout } from '@/shared/layouts/StickyContentLayout';
 import { Text } from '@/shared/ui/redesigned/Text';
 
@@ -33,7 +33,7 @@ export const ArticleDetailsPageRedesigned = memo(
         if (!id || !article?.id) {
             return (
                 <StickyContentLayout
-                    left={<ArticleListNavigationButton />}
+                    left={<EntitiesListNavigationButton type="article" />}
                     content={
                         <Page
                             className={classNames(cls.ArticleDetailsPage, {}, [
@@ -49,7 +49,7 @@ export const ArticleDetailsPageRedesigned = memo(
 
         return (
             <StickyContentLayout
-                left={<ArticleListNavigationButton />}
+                left={<EntitiesListNavigationButton type="article" />}
                 content={
                     <Page
                         className={classNames(cls.ArticleDetailsPage, {}, [

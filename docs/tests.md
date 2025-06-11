@@ -33,7 +33,7 @@ The project uses four types of tests:
 - [Configuration details](../cypress/README.cypress.md)
 
 ### Commands and Fixtures:
-  - **Commands**: Custom Cypress commands like `createArticle`, `removeArticle`, and `login` simplify complex interactions by abstracting repetitive tasks, making tests cleaner and more maintainable.
+  - **Commands**: Custom Cypress commands like `createEntity`, `removeArticle`, and `login` simplify complex interactions by abstracting repetitive tasks, making tests cleaner and more maintainable.
   - **Fixtures**: Cypress fixtures (articles.json, profile.json, article-details.json) are used to mock API responses, ensuring consistent and faster tests by simulating real data scenarios without relying on live servers
 
 ### Tests Categories:

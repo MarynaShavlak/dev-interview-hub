@@ -1,6 +1,7 @@
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
+import { EntitiesListNavigationButton } from '@/shared/ui/common/EntitiesListNavigationButton';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
 import { getCanEditArticle } from '../model/selectors/getCanEditArticle/getCanEditArticle';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
@@ -8,7 +9,6 @@ import { HStack, VStack } from '@/shared/ui/common/Stack';
 import { Avatar } from '@/shared/ui/redesigned/Avatar';
 import { Text } from '@/shared/ui/redesigned/Text';
 import { ArticleEditNavigationButton } from '@/features/ArticleEditNavigationButton';
-import { ArticleListNavigationButton } from '@/features/ArticleListNavigationButton';
 import { Article } from '@/entities/Article';
 import { formatDateString } from '@/shared/lib/text/formatDateString/formatDateString';
 import { useGetUserRoles } from '@/entities/User';
@@ -53,7 +53,7 @@ export const ArticleControls = memo((props: ArticleControlsProps) => {
             }
             off={
                 <HStack max justify="between" className={className}>
-                    <ArticleListNavigationButton />
+                    <EntitiesListNavigationButton type="article" />
                     {canEdit && <ArticleEditNavigationButton id={id} />}
                 </HStack>
             }

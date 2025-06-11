@@ -11,6 +11,7 @@ import { Text } from '@/shared/ui/redesigned/Text';
 import { Text as TextDeprecated } from '@/shared/ui/deprecated/Text';
 import { QuestionsListError } from './QuestionsListError/QuestionsListError';
 import { QuestionsListSkeleton } from './QuestionCardSkeleton/QuestionsListSkeleton';
+import { EntityType } from '@/shared/types/entityType';
 
 interface QuestionsListProps {
     className?: string;
@@ -19,18 +20,20 @@ interface QuestionsListProps {
     error?: string;
     deleteQuestion: (questionId: string) => Promise<any>;
     updateQuestion: (updatedQuestion: Question) => Promise<any>;
-    createArticle: (updatedQuestion: Question) => Promise<any>;
+    createEntity: (updatedQuestion: Question) => Promise<any>;
+    type: EntityType;
 }
 
 export const QuestionsList = memo((props: QuestionsListProps) => {
     const {
         deleteQuestion,
         updateQuestion,
-        createArticle,
+        createEntity,
         error,
         isLoading,
         questions,
         className,
+        type,
     } = props;
 
     const { t } = useTranslation('articles');
@@ -51,11 +54,12 @@ export const QuestionsList = memo((props: QuestionsListProps) => {
                     render={(item, index) => (
                         <QuestionCard
                             key={item.id}
+                            type={type}
                             question={item}
                             index={index + 1}
                             deleteQuestion={deleteQuestion}
                             updateQuestion={updateQuestion}
-                            createArticle={createArticle}
+                            createEntity={createEntity}
                         />
                     )}
                 />

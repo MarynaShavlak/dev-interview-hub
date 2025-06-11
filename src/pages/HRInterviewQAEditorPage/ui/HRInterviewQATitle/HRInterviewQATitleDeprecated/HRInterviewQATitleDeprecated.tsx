@@ -9,7 +9,7 @@ import { useInputValidationConfig } from '@/shared/lib/hooks/validationHooks/use
 
 import { HRInterviewQATitleProps } from '../HRInterviewQATitle';
 import { useHRInterviewQAFormState } from '../../../lib/hooks/useHRInterviewQAFormState/useHRInterviewQAFormState';
-import { HR_INTERVIEW_QA_TO_CREATE_TITLE } from '@/shared/const/localstorage';
+import { HR_INTERVIEW_TO_CREATE_TITLE } from '@/shared/const/localstorage';
 
 export const HRInterviewQATitleDeprecated = memo(
     (props: HRInterviewQATitleProps) => {
@@ -21,15 +21,15 @@ export const HRInterviewQATitleDeprecated = memo(
 
         const { formData, onChangeTitle } = form;
         const [initialTitle, setInitialTitle] = useState<string>(
-            () => sessionStorage.getItem(HR_INTERVIEW_QA_TO_CREATE_TITLE) || '',
+            () => sessionStorage.getItem(HR_INTERVIEW_TO_CREATE_TITLE) || '',
         );
 
         useEffect(() => {
             const storedTitle = sessionStorage.getItem(
-                HR_INTERVIEW_QA_TO_CREATE_TITLE,
+                HR_INTERVIEW_TO_CREATE_TITLE,
             );
             if (storedTitle) {
-                sessionStorage.removeItem(HR_INTERVIEW_QA_TO_CREATE_TITLE);
+                sessionStorage.removeItem(HR_INTERVIEW_TO_CREATE_TITLE);
             }
         }, []);
 

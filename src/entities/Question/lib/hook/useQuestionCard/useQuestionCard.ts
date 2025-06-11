@@ -5,11 +5,11 @@ interface UseQuestionCardProps {
     question: Question;
     deleteQuestion: (id: string) => void;
     updateQuestion: (question: Question) => Promise<void>;
-    createArticle: (question: Question) => Promise<void>;
+    createEntity: (question: Question) => Promise<void>;
 }
 
 export const useQuestionCard = (props: UseQuestionCardProps) => {
-    const { question, deleteQuestion, updateQuestion, createArticle } = props;
+    const { question, deleteQuestion, updateQuestion, createEntity } = props;
     const { id, text } = question;
     const [isEditing, setIsEditing] = useState(false);
 
@@ -33,9 +33,9 @@ export const useQuestionCard = (props: UseQuestionCardProps) => {
         [updateQuestion],
     );
 
-    const handleCreateArticle = useCallback(async () => {
-        await createArticle(question);
-    }, [createArticle, question]);
+    const handleCreateEntity = useCallback(async () => {
+        await createEntity(question);
+    }, [createEntity, question]);
 
     return {
         isEditing,
@@ -43,6 +43,6 @@ export const useQuestionCard = (props: UseQuestionCardProps) => {
         handleDeleteClick,
         handleCancelEditing,
         handleSave,
-        handleCreateArticle,
+        handleCreateEntity,
     };
 };

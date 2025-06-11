@@ -7,4 +7,4 @@ export const VIEWS_STORAGE_KEY = 'article_views';
 export const ADMIN_TAB_KEY = 'adminActiveTab';
 export const MY_ARTICLES_TAB_KEY = 'myArticlesActiveTab';
 export const ARTICLE_TO_CREATE_TITLE = 'newArticleTitle';
-export const HR_INTERVIEW_QA_TO_CREATE_TITLE = 'newHRInterviewQATitle';
+export const HR_INTERVIEW_TO_CREATE_TITLE = 'newHRInterviewTitle';

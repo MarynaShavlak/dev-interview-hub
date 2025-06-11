@@ -16,82 +16,83 @@
     "{{count}} переглядів_other": "{{count}} views",
     "Стаття не доступна": "Article is not available",
     "Всі статті": "All articles",
-  "Не вдалося завантажити коментарі": {
-    " Спробуйте ще раз пізніше": {
-      "": "Failed to load comments. Try again later."
-    }
-  },
-  "Можливо, статтю, яку ви шукаєте, видалено або вона не існує": {
-    " Будь ласка, перевірте правильність URL-адреси або поверніться на головну сторінку ": "The article you are looking for may have been removed or does not exist. Please check the URL or return to the homepage."
-  },
-  "Помилка завантаження рекомендацій": "Error loading recommendations",
-  "На жаль, не вдалося завантажити рекомендації": {
-    " Спробуйте пізніше": {
-      "": "Unfortunately, we were unable to load the recommendations. Please try again later."
-    }
-  },
-  "Немає доступних рекомендацій": "No recommendations available",
-  "Наразі немає доступних рекомендацій": {
-    " Будь ласка, перевірте пізніше": {
-      "": "There are currently no recommendations available. Please check back later."
-    }
-  },
-  "Заголовок статті": "Title",
-  "Підзаголовок статті": "Subtitle",
-  "Додати посилання": "Add link",
-  "Посилання": "Link (optional)",
-  "Видалити посилання": "Delete link",
-  "Категорії статей": "Categories",
-  "Блоки статті": "Article Blocks",
-  "Додати блок тексту": "Add text block",
-  "Додати": "Add",
-  "блок": "Block",
-  "тексту": "text",
-  "зображення": "image",
-  "коду": "code",
-  "Напишіть тект параграфу": "Type paragraph text",
-  "Зберегти": "Save",
-  "Видалити": "Delete",
-  "Заголовок блоку": "Block title( optional)",
-  "Опис коду": "Code description ( optional)",
-  "Банер статті": "Banner",
-  "Дефолтне зображення картинки статті": "The default image of the article image",
-  "Некоректний тип файлу": "Invalid image type. Please upload a PNG, JPG, or JPEG.",
-  "Оберіть категорію": "*Select at least one category.",
-  "Додайте блок": "*Add at least one block",
-  "Видалити всі": "Delete all",
-  "Назва зображення": "Image title (required)",
-  "Помилка завантаження файлу": "File upload error. Please try again.",
-  "Спробувати повторно": "Upload Again",
-  "Помилка збереження статті": "Failed to save article due to server error",
-  "Помилка сервера при збереженні данних": "Server error while saving data. Please try again",
-  "Редагування статті": "Edit article",
-  "Очистити": "Clear",
-  "Відмінити": "Cancel",
-  "статтю": "article",
-  "редагування статті": "article editing",
-  "Продовжити редагування": "Keep editing",
-  "Відмінити зміни": "Discard changes",
-  "Зберегти статтю": "Save new article",
-  "Зберегти зміни": "Save changes",
-  "Дата створення": "Creation Date",
-  "Категорії": "Categories",
-  "Перегляди": "Views",
-  "Середній рейтинг": "Average Rating",
-  "Id": "Id",
-  "Автор": "Author",
-  "Дія": "Action",
-  "Не створено жодної статті": "No articles have been created",
-  "Не знайдено статей за Вашим запитом": "No articles found matching your search.",
-  "коментар": "comment",
-  "від користувача": "from user",
-  "Вставте посилання": "Insert link",
-  "Введіть назву посилання": "Enter link name",
-  "Редагування питання на HR співбесіді": "Edit HR interview Question & Answer",
-  "Створення нового питання на HR співбесіді": "Create new HR interview Question & Answer",
-  "Питання від рекрутера": "Question from recruiter",
-  "Блоки відповіді на питання": "Question answer blocks",
-  "Категорії питань": "Question categories",
-  "Зберегти відповідь на питання": "Save question answer",
-  "Оберіть одну категорію": "*Select one category"
+    "Не вдалося завантажити коментарі": {
+        " Спробуйте ще раз пізніше": {
+            "": "Failed to load comments. Try again later."
+        }
+    },
+    "Можливо, статтю, яку ви шукаєте, видалено або вона не існує": {
+        " Будь ласка, перевірте правильність URL-адреси або поверніться на головну сторінку ": "The article you are looking for may have been removed or does not exist. Please check the URL or return to the homepage."
+    },
+    "Помилка завантаження рекомендацій": "Error loading recommendations",
+    "На жаль, не вдалося завантажити рекомендації": {
+        " Спробуйте пізніше": {
+            "": "Unfortunately, we were unable to load the recommendations. Please try again later."
+        }
+    },
+    "Немає доступних рекомендацій": "No recommendations available",
+    "Наразі немає доступних рекомендацій": {
+        " Будь ласка, перевірте пізніше": {
+            "": "There are currently no recommendations available. Please check back later."
+        }
+    },
+    "Заголовок статті": "Title",
+    "Підзаголовок статті": "Subtitle",
+    "Додати посилання": "Add link",
+    "Посилання": "Link (optional)",
+    "Видалити посилання": "Delete link",
+    "Категорії статей": "Categories",
+    "Блоки статті": "Article Blocks",
+    "Додати блок тексту": "Add text block",
+    "Додати": "Add",
+    "блок": "Block",
+    "тексту": "text",
+    "зображення": "image",
+    "коду": "code",
+    "Напишіть тект параграфу": "Type paragraph text",
+    "Зберегти": "Save",
+    "Видалити": "Delete",
+    "Заголовок блоку": "Block title( optional)",
+    "Опис коду": "Code description ( optional)",
+    "Банер статті": "Banner",
+    "Дефолтне зображення картинки статті": "The default image of the article image",
+    "Некоректний тип файлу": "Invalid image type. Please upload a PNG, JPG, or JPEG.",
+    "Оберіть категорію": "*Select at least one category.",
+    "Додайте блок": "*Add at least one block",
+    "Видалити всі": "Delete all",
+    "Назва зображення": "Image title (required)",
+    "Помилка завантаження файлу": "File upload error. Please try again.",
+    "Спробувати повторно": "Upload Again",
+    "Помилка збереження статті": "Failed to save article due to server error",
+    "Помилка сервера при збереженні данних": "Server error while saving data. Please try again",
+    "Редагування статті": "Edit article",
+    "Очистити": "Clear",
+    "Відмінити": "Cancel",
+    "статтю": "article",
+    "редагування статті": "article editing",
+    "Продовжити редагування": "Keep editing",
+    "Відмінити зміни": "Discard changes",
+    "Зберегти статтю": "Save new article",
+    "Зберегти зміни": "Save changes",
+    "Дата створення": "Creation Date",
+    "Категорії": "Categories",
+    "Перегляди": "Views",
+    "Середній рейтинг": "Average Rating",
+    "Id": "Id",
+    "Автор": "Author",
+    "Дія": "Action",
+    "Не створено жодної статті": "No articles have been created",
+    "Не знайдено статей за Вашим запитом": "No articles found matching your search.",
+    "коментар": "comment",
+    "від користувача": "from user",
+    "Вставте посилання": "Insert link",
+    "Введіть назву посилання": "Enter link name",
+    "Редагування питання на HR співбесіді": "Edit HR interview Question & Answer",
+    "Створення нового питання на HR співбесіді": "Create new HR interview Question & Answer",
+    "Питання від рекрутера": "Question from recruiter",
+    "Блоки відповіді на питання": "Question answer blocks",
+    "Категорії питань": "Question categories",
+    "Зберегти відповідь на питання": "Save question answer",
+    "Оберіть одну категорію": "*Select one category",
+    "Всі питання": "All HR interview Q&A"
 }

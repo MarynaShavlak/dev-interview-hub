@@ -1,7 +1,7 @@
 {
-  "name": "Dev Interview Hub: Master the Interview, Land the Job !",
-  "short_name": "Dev Interview Hub",
-  "background_color": "#ffffff",
-  "theme_color": "#ffffff",
-  "display": "fullscreen"
+    "name": "Dev Interview Hub: Master the Interview, Land the Job !",
+    "short_name": "Dev Interview Hub",
+    "background_color": "#ffffff",
+    "theme_color": "#ffffff",
+    "display": "fullscreen"
 }

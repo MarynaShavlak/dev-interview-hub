@@ -21,10 +21,11 @@ import { EditQuestionForm } from '../../EditQuestionForm/EditQuestionForm';
 export const QuestionCardDeprecated = memo((props: QuestionCardProps) => {
     const {
         question,
-        createArticle,
+        createEntity,
         deleteQuestion,
         updateQuestion,
         target,
+        type,
         index,
     } = props;
     const { t } = useTranslation('articles');
@@ -39,12 +40,12 @@ export const QuestionCardDeprecated = memo((props: QuestionCardProps) => {
         handleDeleteClick,
         handleCancelEditing,
         handleSave,
-        handleCreateArticle,
+        handleCreateEntity,
     } = useQuestionCard({
         question,
         deleteQuestion,
         updateQuestion,
-        createArticle,
+        createEntity,
     });
 
     return (
@@ -73,8 +74,8 @@ export const QuestionCardDeprecated = memo((props: QuestionCardProps) => {
 
                     <HStack justify="center" gap="8">
                         <AddNewEntityButton
-                            onClick={handleCreateArticle}
-                            entityType="article"
+                            onClick={handleCreateEntity}
+                            entityType={type}
                         />
                         <Button
                             className={classNames('', {}, additionalClasses)}
