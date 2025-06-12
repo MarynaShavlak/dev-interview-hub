@@ -9,7 +9,7 @@ export {
     addHRInterviewQAMutation,
     updateHRInterviewQAMutation,
     getHRInterviewQADataByIdQuery,
-    useHRInterviewQADataByUserId,
+    useHRInterviewQAsByUserId,
 } from './api/hrInterviewApi';
 
 export type {

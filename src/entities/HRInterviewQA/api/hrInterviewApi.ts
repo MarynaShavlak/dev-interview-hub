@@ -14,8 +14,9 @@ import {
 import { updateHRInterviewQAInFirestore } from '../lib/utilities/updateHRInterviewQAInFirestore/updateHRInterviewQAInFirestore';
 import { fetchHRInterviewQA } from '../lib/utilities/fetchHRInterviewQA/fetchHRInterviewQA';
 import { subscribeToHRInterviewQA } from '../lib/utilities/subscribeToHRInterviewQA/subscribeToHRInterviewQA';
-import { subscribeToUserArticles } from '@/entities/Article';
+
 import { fetchHRInterviewsForUser } from '../lib/utilities/fetchHRInterviewsForUser/fetchHRInterviewsForUser';
+import { subscribeToUserHRInterviews } from '../lib/utilities/subscribeToUserHRInterviews/subscribeToUserHRInterviews';
 
 interface UpdateHRInterviewQAArgs {
     id: string;
@@ -51,7 +52,7 @@ export const HRInterviewQAFirebaseApi = firestoreApi
                     { updateCachedData, cacheDataLoaded, cacheEntryRemoved },
                 ) {
                     handleFirestoreSubscription({
-                        subscriptionFn: subscribeToUserArticles,
+                        subscriptionFn: subscribeToUserHRInterviews,
                         updateFn: updateCachedData,
                         dependency: userId,
                         cacheDataLoaded,
@@ -118,4 +119,4 @@ export const updateHRInterviewQAMutation =
 export const getHRInterviewQADataByIdQuery =
     endpoints.getHRInterviewQADataById.initiate;
 export const useHRInterviewQAsByUserId =
-    HRInterviewQAFirebaseApi.useGetHRInterviewQAsByUserId;
+    HRInterviewQAFirebaseApi.useGetHRInterviewQAsByUserIdQuery;

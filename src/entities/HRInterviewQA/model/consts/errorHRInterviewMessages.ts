@@ -9,8 +9,8 @@ export const ERROR_HR_INTERVIEW_MESSAGES = {
         `Error in HR interview QA with id "${id}" snapshot.`,
     HR_INTERVIEWS_BY_USER_ID_FETCH_FAIL: (userId: string) =>
         `Failed to fetch HR interview QAs for user with ID "${userId}".`,
-    // ARTICLES_FETCH_FAIL: 'Failed to fetch articles.',
-    // ARTICLES_SNAPSHOT_FAIL: 'Error in articles snapshot.',
+    HR_INTERVIEWS_FETCH_FAIL: 'Failed to fetch HR interview questions.',
+    HR_INTERVIEWS_SNAPSHOT_FAIL: 'Error in HR interview questions snapshot.',
     // AUTHOR_VIEWS_NOT_COUNTED: "Author's views are not counted",
     // DELETE_ARTICLE_ERROR: (articleId: string) =>
     //     `Failed to delete article with id ${articleId}`,

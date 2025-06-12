@@ -3,42 +3,43 @@ import {
     useArticleNavigation,
     useEditArticleNavigation,
 } from '@/entities/Article';
-import { UserArticlesTableInfo } from '../../../model/types/userArticlesTableInfo';
+
 import {
     useToggleVisibility,
     UseToggleVisibilityReturnType,
 } from '@/shared/lib/hooks/useToggleVisibility/useToggleVisibility';
-import { useArticlesByUserData } from '../useArticlesByUserData/useArticlesByUserData';
+import { useHRInterviewQAsByUserData } from '../useHRInterviewQAsByUserData/useHRInterviewQAsByUserData';
 import { areArticlesEqual } from '../../utilities/areArticlesEqual/areArticlesEqual';
+import { HRInterviewQA } from '@/entities/HRInterviewQA';
 
 interface SelectedArticle {
     id: string;
     title: string;
 }
 
-interface UseManageUserArticlesTableRowReturnType {
+interface UseManageUserHRInterviewTableRowReturnType {
     handleDeleteClick: (articleId: string) => void;
     handleNavigateToArticle: (articleId: string) => void;
     handleEditClick: (articleIdId: string) => void;
     confirmDelete: () => Promise<void>;
     selectedArticle: SelectedArticle | null;
     isLoading: boolean;
-    data: UserArticlesTableInfo[] | null;
+    data: HRInterviewQA[] | null;
     deleteArticleModal: UseToggleVisibilityReturnType;
     articleTitle: string;
 }
 
-export const useManageUserArticlesTableRow = (
+export const useManageUserHRInterviewTableRow = (
     onDeleteArticle: (articleId: string) => Promise<string | null>,
-): UseManageUserArticlesTableRowReturnType => {
-    const { articles, isLoading } = useArticlesByUserData();
-    const [data, setData] = useState<UserArticlesTableInfo[] | null>(null);
+): UseManageUserHRInterviewTableRowReturnType => {
+    const { data: interviewData, isLoading } = useHRInterviewQAsByUserData();
+    const [data, setData] = useState<HRInterviewQA[] | null>(null);
 
     useEffect(() => {
-        if (!isLoading && !areArticlesEqual(articles, data)) {
-            setData(articles);
+        if (!isLoading && !areArticlesEqual(interviewData, data)) {
+            setData(interviewData);
         }
-    }, [articles, isLoading, data]);
+    }, [interviewData, isLoading, data]);
 
     const deleteArticleModal = useToggleVisibility();
     const { navigateToEditArticle } = useEditArticleNavigation();

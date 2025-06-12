@@ -16,7 +16,7 @@ import { VStack } from '@/shared/ui/common/Stack';
 import { useUserArticlesTableData } from '../../lib/hooks/useUserArticlesTableData/useUserArticlesTableData';
 import { LoadingTableSkeleton } from '../LoadingTableSkeleton/LoadingTableSkeleton';
 
-import { useManageUserArticlesTableRow } from '../../lib/hooks/useManageUserArticlesTableRow/useManageUserArticlesTableRow';
+import { useManageUserHRInterviewTableRow } from '../../lib/hooks/useManageUserHRInterviewTableRow/useManageUserHRInterviewTableRow';
 import { Each } from '@/shared/lib/components/Each/Each';
 import { TableActionBar } from '../TableActionBar/TableActionBar';
 import { useUserArticlesTableConfig } from '../../lib/hooks/useUserArticlesTableConfig/useUserArticlesTableConfig';
@@ -40,7 +40,7 @@ export const UserHRInterviewTable = memo(
             isLoading,
             data,
             deleteArticleModal,
-        } = useManageUserArticlesTableRow(onDeleteArticle);
+        } = useManageUserHRInterviewTableRow(onDeleteArticle);
 
         const {
             columns,

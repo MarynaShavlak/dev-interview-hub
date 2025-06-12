@@ -1,3 +1,6 @@
+export { subscribeToUserCollection } from './subscribeToUserCollection/subscribeToUserCollection';
+
+export { createUserBasedQuery } from './createUserBasedQuery/createUserBasedQuery';
 export { uploadImage } from './uploadImage/uploadImage';
 export { deleteDocFromFirestore } from './deleteDocFromFirestore/deleteDocFromFirestore';
 export { handleFirestoreSubscription } from './handleFirestoreSubscription/handleFirestoreSubscription';
