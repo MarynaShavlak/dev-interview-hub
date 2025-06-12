@@ -1,9 +1,7 @@
-import { memo, useCallback } from 'react';
+import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
 
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
-import { getRouteHRInterviewEditor } from '@/shared/const/router/router';
 
 import cls from './HRInterviewEditTableNavigationButton.module.scss';
 import { Button } from '@/shared/ui/redesigned/Button';
@@ -11,14 +9,11 @@ import {
     ButtonTheme,
     Button as ButtonDeprecated,
 } from '@/shared/ui/deprecated/Button';
+import { useInterviewTableNavigation } from '@/entities/HRInterviewQA';
 
 export const HRInterviewEditTableNavigationButton = memo(() => {
     const { t } = useTranslation();
-    const navigate = useNavigate();
-
-    const onNavigateToEditTable = useCallback(() => {
-        navigate(getRouteHRInterviewEditor());
-    }, [navigate]);
+    const { onNavigateToInterviewTable } = useInterviewTableNavigation();
 
     return (
         <ToggleFeaturesComponent
@@ -26,7 +21,7 @@ export const HRInterviewEditTableNavigationButton = memo(() => {
             on={
                 <Button
                     size="s"
-                    onClick={onNavigateToEditTable}
+                    onClick={onNavigateToInterviewTable}
                     className={cls.ArticleListButton}
                     max
                 >
@@ -36,7 +31,7 @@ export const HRInterviewEditTableNavigationButton = memo(() => {
             off={
                 <ButtonDeprecated
                     theme={ButtonTheme.OUTLINE}
-                    onClick={onNavigateToEditTable}
+                    onClick={onNavigateToInterviewTable}
                 >
                     {t('Редагувати відповіді')}
                 </ButtonDeprecated>

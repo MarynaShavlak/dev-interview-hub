@@ -1,3 +1,5 @@
+export { useInterviewTableNavigation } from './lib/hooks/useInterviewTableNavigation/useInterviewTableNavigation';
+
 export { deleteHRInterviewQAThunk } from './model/services/deleteHRInterviewQAThunk/deleteHRInterviewQAThunk';
 
 export { useEditHRInterviewQANavigation } from './lib/hooks/useEditHRInterviewQANavigation/useEditHRInterviewQANavigation';

@@ -4,11 +4,11 @@ import {
     useToggleVisibility,
     UseToggleVisibilityReturnType,
 } from '@/shared/lib/hooks/useToggleVisibility/useToggleVisibility';
-import { useArticleNavigation } from '@/entities/Article';
 
 import { HRInterviewQAEditorPageHeaderProps } from '../../../ui/HRInterviewQAEditorPageHeader/HRInterviewQAEditorPageHeader';
 
 import { useHRInterviewQAFormState } from '../useHRInterviewQAFormState/useHRInterviewQAFormState';
+import { useInterviewTableNavigation } from '@/entities/HRInterviewQA';
 
 interface UseHRInterviewQAEditorPageHeaderReturn {
     deleteArticleModal: UseToggleVisibilityReturnType;
@@ -28,39 +28,39 @@ export const useHRInterviewQAEditorPageHeader = (
 ): UseHRInterviewQAEditorPageHeaderReturn => {
     const { formData, hasChanges } = useHRInterviewQAFormState();
 
-    const { navigateToArticle } = useArticleNavigation();
+    const { onNavigateToInterviewTable } = useInterviewTableNavigation();
     const deleteArticleModal = useToggleVisibility();
     const cancelArticleEditing = useToggleVisibility();
     const editedArticleId = formData?.id;
 
     const handleSave = useCallback(async () => {
         const savedArticleId = await onActions.save();
-        if (savedArticleId) navigateToArticle(savedArticleId);
-    }, [navigateToArticle, onActions]);
+        if (savedArticleId) onNavigateToInterviewTable();
+    }, [onActions, onNavigateToInterviewTable]);
 
     const handleUpdate = useCallback(async () => {
         const updatedArticleId = await onActions.update();
-        if (updatedArticleId) navigateToArticle(updatedArticleId);
-    }, [navigateToArticle, onActions]);
+        if (updatedArticleId) onNavigateToInterviewTable();
+    }, [onActions, onNavigateToInterviewTable]);
 
     const handleDelete = useCallback(async () => {
         const deletedArticleId = await onActions.delete();
-        if (deletedArticleId) navigateToArticle(`${deletedArticleId}-deleted`);
-    }, [navigateToArticle, onActions]);
+        if (deletedArticleId) onNavigateToInterviewTable();
+    }, [onActions, onNavigateToInterviewTable]);
 
     const handleCancel = useCallback(() => {
         if (!hasChanges && editedArticleId) {
             onActions.cancel();
-            navigateToArticle(editedArticleId);
+            onNavigateToInterviewTable();
         } else if (editedArticleId) {
             cancelArticleEditing.hide();
-            navigateToArticle(editedArticleId);
+            onNavigateToInterviewTable();
         }
     }, [
         hasChanges,
         editedArticleId,
-        navigateToArticle,
         onActions,
+        onNavigateToInterviewTable,
         cancelArticleEditing,
     ]);
 

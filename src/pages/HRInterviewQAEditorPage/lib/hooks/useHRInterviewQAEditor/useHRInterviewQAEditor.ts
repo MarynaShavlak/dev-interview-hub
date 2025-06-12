@@ -15,9 +15,9 @@ import {
 import { createHRInterviewQAThunk } from '../../../model/services/createHRInterviewQAThunk/createHRInterviewQAThunk';
 import { searchClient } from '@/shared/config/firebase/searchClient';
 import { updateHRInterviewQAThunk } from '../../../model/services/updateHRInterviewQAThunk/updateHRInterviewQAThunk';
-import { deleteArticleWithRelationsThunk } from '@/widgets/ArticleManagement';
 import { useHRInterviewQAData } from '../useHRInterviewQAData/useHRInterviewQAData';
 import { useHRInterviewQAFormState } from '../useHRInterviewQAFormState/useHRInterviewQAFormState';
+import { deleteHRInterviewQAThunk } from '@/entities/HRInterviewQA';
 
 interface Metadata {
     isEditArticlePage: boolean;
@@ -70,7 +70,6 @@ export const useHRInterviewQAEditor = (): UseHRInterviewQAEditorReturn => {
         formData,
     );
 
-    // console.log('__avatarSrc ', avatarSrc);
     const onClearArticle = useCallback(() => {
         onResetHRInterviewQA();
         blockOperations.clearBlocks();
@@ -105,7 +104,7 @@ export const useHRInterviewQAEditor = (): UseHRInterviewQAEditorReturn => {
         }
         try {
             const deletedArticleId = await dispatch(
-                deleteArticleWithRelationsThunk(formData.id),
+                deleteHRInterviewQAThunk(formData.id),
             ).unwrap();
 
             if (deletedArticleId) {

@@ -22,7 +22,7 @@
     min-height: 42px;
 }
 
-.headerTitle {
+.tr .th:not(:first-child) .headerTitle {
     max-width: 80px;
 }
 
