@@ -12,6 +12,7 @@ const MainPage = memo(() => {
     //     content: `This is the content of item ${i + 1}`,
     //     value: `item-${i + 1}`,
     // }));
+
     return (
         <Page data-testid="MainPage">
             <VStack gap="40" align="center">

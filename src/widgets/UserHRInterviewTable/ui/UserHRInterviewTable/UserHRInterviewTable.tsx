@@ -13,13 +13,13 @@ import {
 } from '@/features/Table';
 import { VStack } from '@/shared/ui/common/Stack';
 
-import { useUserArticlesTableData } from '../../lib/hooks/useUserArticlesTableData/useUserArticlesTableData';
+import { useUserHRInterviewTableData } from '../../lib/hooks/useUserHRInterviewTableData/useUserHRInterviewTableData';
 import { LoadingTableSkeleton } from '../LoadingTableSkeleton/LoadingTableSkeleton';
 
 import { useManageUserHRInterviewTableRow } from '../../lib/hooks/useManageUserHRInterviewTableRow/useManageUserHRInterviewTableRow';
 import { Each } from '@/shared/lib/components/Each/Each';
 import { TableActionBar } from '../TableActionBar/TableActionBar';
-import { useUserArticlesTableConfig } from '../../lib/hooks/useUserArticlesTableConfig/useUserArticlesTableConfig';
+import { useUserHRInterviewTableConfig } from '../../lib/hooks/useUserHRInterviewTableConfig/useUserHRInterviewTableConfig';
 import { toggleFeatures } from '@/shared/lib/features';
 import { HRInterviewQA } from '@/entities/HRInterviewQA';
 
@@ -34,7 +34,6 @@ export const UserHRInterviewTable = memo(
         const {
             handleDeleteClick,
             handleEditClick,
-            handleNavigateToArticle,
             confirmDelete,
             articleTitle,
             isLoading,
@@ -42,6 +41,7 @@ export const UserHRInterviewTable = memo(
             deleteArticleModal,
         } = useManageUserHRInterviewTableRow(onDeleteArticle);
 
+        console.log('data', data);
         const {
             columns,
             headerOptionsMapping,
@@ -49,14 +49,13 @@ export const UserHRInterviewTable = memo(
             setGlobalFilter,
             columnFilters,
             setColumnFilters,
-        } = useUserArticlesTableData({
+        } = useUserHRInterviewTableData({
             data: data || [],
             deleteRow: handleDeleteClick,
             editRow: handleEditClick,
-            navigateToArticle: handleNavigateToArticle,
         });
 
-        const table = useUserArticlesTableConfig({
+        const table = useUserHRInterviewTableConfig({
             data: data || [],
             columns,
             globalFilter,

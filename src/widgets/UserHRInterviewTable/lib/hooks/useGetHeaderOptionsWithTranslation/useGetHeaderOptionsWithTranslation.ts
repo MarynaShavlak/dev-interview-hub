@@ -1,20 +1,15 @@
 import { useTranslation } from 'react-i18next';
-import { UserArticlesTableInfo } from '../../../model/types/userArticlesTableInfo';
-import { generateHeaderOptionsMapping } from '../../utilities/generateHeaderOptionsMapping/generateHeaderOptionsMapping';
 
-export const useGetHeaderOptionsWithTranslation = (
-    data: UserArticlesTableInfo[],
-) => {
+import { generateHeaderOptionsMapping } from '../../utilities/generateHeaderOptionsMapping/generateHeaderOptionsMapping';
+import { HRInterviewQA } from '@/entities/HRInterviewQA';
+
+export const useGetHeaderOptionsWithTranslation = (data: HRInterviewQA[]) => {
     const { t } = useTranslation('articleDetails');
     const headerOptionsMapping = generateHeaderOptionsMapping(data);
     return {
-        [t('Середній рейтинг')]: headerOptionsMapping.averageRating,
-        [t('Категорії')]: headerOptionsMapping.categories,
-        [t('Коментарі')]: headerOptionsMapping.commentsQuantity,
+        [t('Категорія')]: headerOptionsMapping.category,
         [t('Дата створення')]: headerOptionsMapping.createdAt,
         [t('Id')]: headerOptionsMapping.id,
         [t('Заголовок статті')]: headerOptionsMapping.title,
-        [t('Автор')]: headerOptionsMapping.user,
-        [t('Перегляди')]: headerOptionsMapping.views,
     };
 };

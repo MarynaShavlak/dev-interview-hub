@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { createColumnHelper } from '@tanstack/react-table';
 import { useMemo } from 'react';
-import { UserArticlesTableInfo } from '../../../model/types/userArticlesTableInfo';
+
 import {
     createStaticTextColumn,
     useCreateActionColumn,
@@ -11,19 +11,19 @@ import {
     FIXED_COLUMNS_WIDTH,
     MINIMUM_TITLE_WIDTH,
 } from '../../../model/consts/fixedColumnsWidth';
+import { HRInterviewQA } from '@/entities/HRInterviewQA';
 
 interface useTableColumnProps {
     deleteRow: (rowIndex: string) => void;
     editRow: (rowIndex: string) => void;
-    navigateToArticle: (id: string) => void;
 }
 
-export const useUserArticlesTableColumns = (props: useTableColumnProps) => {
+export const useUserHRInterviewTableColumns = (props: useTableColumnProps) => {
     const { t } = useTranslation('articleDetails');
-    const { deleteRow, editRow, navigateToArticle } = props;
-    const createUserTextCol = createStaticTextColumn<UserArticlesTableInfo>();
-    const columnHelper = createColumnHelper<UserArticlesTableInfo>();
-    const actionColumn = useCreateActionColumn<UserArticlesTableInfo>({
+    const { deleteRow, editRow } = props;
+    const createUserTextCol = createStaticTextColumn<HRInterviewQA>();
+    const columnHelper = createColumnHelper<HRInterviewQA>();
+    const actionColumn = useCreateActionColumn<HRInterviewQA>({
         deleteRow,
         editRow,
         width: FIXED_COLUMNS_WIDTH.action,
@@ -42,7 +42,6 @@ export const useUserArticlesTableColumns = (props: useTableColumnProps) => {
                     size: titleColumnWidth,
                     sortable: true,
                     link: true,
-                    navigateTo: navigateToArticle,
                 }),
             ),
             columnHelper.accessor(
@@ -54,7 +53,7 @@ export const useUserArticlesTableColumns = (props: useTableColumnProps) => {
                 }),
             ),
             columnHelper.accessor(
-                'categories',
+                'category',
                 createUserTextCol({
                     id: t('Категорії'),
                     size: FIXED_COLUMNS_WIDTH.categories,
@@ -65,12 +64,5 @@ export const useUserArticlesTableColumns = (props: useTableColumnProps) => {
 
             actionColumn,
         ];
-    }, [
-        actionColumn,
-        columnHelper,
-        createUserTextCol,
-        navigateToArticle,
-        t,
-        titleColumnWidth,
-    ]);
+    }, [actionColumn, columnHelper, createUserTextCol, t, titleColumnWidth]);
 };

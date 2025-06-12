@@ -3,6 +3,14 @@
     width: fit-content;
     text-align: center;
     z-index: 1;
+
+
+}
+
+.tr .tdRedesigned:first-child ,
+.tr .tdDeprecated:first-child {
+    text-align: left;
+    padding-left: 5px;
 }
 
 .tdRedesigned {

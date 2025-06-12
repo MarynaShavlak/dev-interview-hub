@@ -7,22 +7,23 @@ import {
     useReactTable,
 } from '@tanstack/react-table';
 import { CommonFilterType } from '@/features/Table';
-import { UserArticlesTableInfo } from '../../../model/types/userArticlesTableInfo';
-import { DEFAULT_PAGE_SIZE } from '../../../model/consts/pagination';
-import { useUserArticlesTableColumns } from '../useUserArticlesTableColumns/useUserArticlesTableColumns';
 
-interface UseUserArticlesTableConfigParams {
-    data: UserArticlesTableInfo[];
-    columns: ReturnType<typeof useUserArticlesTableColumns>;
+import { DEFAULT_PAGE_SIZE } from '../../../model/consts/pagination';
+import { useUserHRInterviewTableColumns } from '../useUserHRInterviewTableColumns/useUserHRInterviewTableColumns';
+import { HRInterviewQA } from '@/entities/HRInterviewQA';
+
+interface UseUserHRInterviewTableConfigParams {
+    data: HRInterviewQA[];
+    columns: ReturnType<typeof useUserHRInterviewTableColumns>;
     globalFilter: string;
     columnFilters: CommonFilterType;
 }
 
-export const useUserArticlesTableConfig = (
-    params: UseUserArticlesTableConfigParams,
-): Table<UserArticlesTableInfo> => {
+export const useUserHRInterviewTableConfig = (
+    params: UseUserHRInterviewTableConfigParams,
+): Table<HRInterviewQA> => {
     const { data, columns, globalFilter, columnFilters } = params;
-    const table = useReactTable<UserArticlesTableInfo>({
+    const table = useReactTable<HRInterviewQA>({
         data,
         columns,
         state: {

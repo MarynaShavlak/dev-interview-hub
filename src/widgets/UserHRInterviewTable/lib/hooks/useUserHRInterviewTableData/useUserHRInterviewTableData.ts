@@ -1,27 +1,27 @@
 import { useState } from 'react';
-
 import { useGetHeaderOptionsWithTranslation } from '../useGetHeaderOptionsWithTranslation/useGetHeaderOptionsWithTranslation';
-import { useUserArticlesTableColumns } from '../useUserArticlesTableColumns/useUserArticlesTableColumns';
-import { UserArticlesTableInfo } from '../../../model/types/userArticlesTableInfo';
-import { CommonFilterType } from '@/features/Table';
+import { useUserHRInterviewTableColumns } from '../useUserHRInterviewTableColumns/useUserHRInterviewTableColumns';
 
-interface UserArticlesTableDataProps {
-    data: UserArticlesTableInfo[];
+import { CommonFilterType } from '@/features/Table';
+import { HRInterviewQA } from '@/entities/HRInterviewQA';
+
+interface UserHRInterviewTableDataProps {
+    data: HRInterviewQA[];
     deleteRow: (rowIndex: string) => void;
     editRow: (rowIndex: string) => void;
-    navigateToArticle: (id: string) => void;
 }
 
-export const useUserArticlesTableData = (props: UserArticlesTableDataProps) => {
-    const { data, deleteRow, editRow, navigateToArticle } = props;
+export const useUserHRInterviewTableData = (
+    props: UserHRInterviewTableDataProps,
+) => {
+    const { data, deleteRow, editRow } = props;
 
     const [columnFilters, setColumnFilters] = useState<CommonFilterType>([]);
     const [globalFilter, setGlobalFilter] = useState<string>('');
     const headerOptionsMapping = useGetHeaderOptionsWithTranslation(data);
-    const columns = useUserArticlesTableColumns({
+    const columns = useUserHRInterviewTableColumns({
         deleteRow,
         editRow,
-        navigateToArticle,
     });
 
     return {

@@ -29,6 +29,7 @@ import {
     getRouteHRInterview,
     getRouteHRInterviewQueue,
     getRouteHRInterviewEditor,
+    getRouteHRInterviewAnswerEdit,
 } from '@/shared/const/router/router';
 import { AppRoutesProps } from '@/shared/types/router';
 import {
@@ -138,6 +139,12 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
     },
     [AppRoutes.HR_INTERVIEW_CREATE]: {
         path: getRouteHRInterviewQACreate(),
+        element: <HRInterviewQAEditorPage />,
+        authOnly: true,
+        skeleton: <HRInterviewQAEditorPageSkeleton />,
+    },
+    [AppRoutes.HR_INTERVIEW_ANSWER_EDIT]: {
+        path: getRouteHRInterviewAnswerEdit(':id'),
         element: <HRInterviewQAEditorPage />,
         authOnly: true,
         skeleton: <HRInterviewQAEditorPageSkeleton />,

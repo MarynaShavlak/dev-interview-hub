@@ -1,3 +1,5 @@
+export { useEditHRInterviewQANavigation } from './lib/hooks/useEditHRInterviewQANavigation/useEditHRInterviewQANavigation';
+
 export {
     HRInterviewQACategoriesEng,
     HRInterviewQACategoriesUkr,

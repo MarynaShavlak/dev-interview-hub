@@ -8,6 +8,7 @@ import { AddNewEntityButton } from '@/shared/ui/common/AddNewEntityButton';
 import { HRInterviewPageContent } from '../../HRInterviewPageContent/HRInterviewPageContent';
 import { HRInterviewAlgoliaSearch } from '../../HRInterviewAlgoliaSearch/HRInterviewAlgoliaSearch';
 import { HRInterviewQueueNavigationButton } from '../../HRInterviewQueueNavigationButton/HRInterviewQueueNavigationButton';
+import { HRInterviewEditTableNavigationButton } from '../../HRInterviewEditTableNavigationButton/HRInterviewEditTableNavigationButton';
 
 export const HRInterviewPageRedesigned = () => {
     return (
@@ -21,6 +22,7 @@ export const HRInterviewPageRedesigned = () => {
                                 max
                             />
                             <HRInterviewQueueNavigationButton />
+                            <HRInterviewEditTableNavigationButton />
                         </VStack>
                     }
                     right={

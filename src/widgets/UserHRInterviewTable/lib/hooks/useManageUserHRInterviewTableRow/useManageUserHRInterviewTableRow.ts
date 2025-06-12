@@ -1,8 +1,4 @@
 import { useCallback, useEffect, useState } from 'react';
-import {
-    useArticleNavigation,
-    useEditArticleNavigation,
-} from '@/entities/Article';
 
 import {
     useToggleVisibility,
@@ -10,7 +6,11 @@ import {
 } from '@/shared/lib/hooks/useToggleVisibility/useToggleVisibility';
 import { useHRInterviewQAsByUserData } from '../useHRInterviewQAsByUserData/useHRInterviewQAsByUserData';
 import { areArticlesEqual } from '../../utilities/areArticlesEqual/areArticlesEqual';
-import { HRInterviewQA } from '@/entities/HRInterviewQA';
+import {
+    HRInterviewQA,
+    useEditHRInterviewQANavigation,
+} from '@/entities/HRInterviewQA';
+import { useArticleNavigation } from '@/entities/Article';
 
 interface SelectedArticle {
     id: string;
@@ -19,7 +19,7 @@ interface SelectedArticle {
 
 interface UseManageUserHRInterviewTableRowReturnType {
     handleDeleteClick: (articleId: string) => void;
-    handleNavigateToArticle: (articleId: string) => void;
+
     handleEditClick: (articleIdId: string) => void;
     confirmDelete: () => Promise<void>;
     selectedArticle: SelectedArticle | null;
@@ -42,7 +42,7 @@ export const useManageUserHRInterviewTableRow = (
     }, [interviewData, isLoading, data]);
 
     const deleteArticleModal = useToggleVisibility();
-    const { navigateToEditArticle } = useEditArticleNavigation();
+    const { navigateToEditHRInterviewQA } = useEditHRInterviewQANavigation();
     const { navigateToArticle } = useArticleNavigation();
     const [selectedArticle, setSelectedArticle] =
         useState<SelectedArticle | null>(null);
@@ -90,19 +90,10 @@ export const useManageUserHRInterviewTableRow = (
     const handleEditClick = useCallback(
         (articleId: string) => {
             if (articleId) {
-                navigateToEditArticle(articleId);
+                navigateToEditHRInterviewQA(articleId);
             }
         },
-        [navigateToEditArticle],
-    );
-
-    const handleNavigateToArticle = useCallback(
-        (articleId: string) => {
-            if (articleId) {
-                navigateToArticle(articleId);
-            }
-        },
-        [navigateToArticle],
+        [navigateToEditHRInterviewQA],
     );
 
     const articleTitle = selectedArticle?.title
@@ -112,7 +103,7 @@ export const useManageUserHRInterviewTableRow = (
     return {
         handleDeleteClick,
         handleEditClick,
-        handleNavigateToArticle,
+
         confirmDelete,
         selectedArticle,
         isLoading,

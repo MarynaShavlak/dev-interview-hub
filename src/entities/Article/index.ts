@@ -1,10 +1,12 @@
+export { useEditArticleNavigation } from './lib/hooks/useEditArticleNavigation/useEditArticleNavigation';
+
 export { getLimitByView } from './lib/utilities/getLimitByView/getLimitByView';
 
 export { ERROR_ARTICLE_MESSAGES } from './model/consts/errorArticleMessages';
 
 export { updateArticleViewsThunk } from './model/services/updateArticleViewsThunk/updateArticleViewsThunk';
 export { useArticleNavigation } from './lib/hooks/useArticleNavigation/useArticleNavigation';
-export { useEditArticleNavigation } from './lib/hooks/useEditArticleNavigation/useEditArticleNavigation';
+
 export { deleteArticleThunk } from './model/services/deleteArticleThunk/deleteArticleThunk';
 export { deleteArticleImageThunk } from './model/services/deleteArticleImageThunk/deleteArticleImageThunk';
 export { uploadArticleImageThunk } from './model/services/uploadArticleImageThunk/uploadArticleImageThunk';
