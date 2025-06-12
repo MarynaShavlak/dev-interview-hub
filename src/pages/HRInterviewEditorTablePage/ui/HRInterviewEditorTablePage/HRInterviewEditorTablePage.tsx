@@ -1,17 +1,19 @@
 import React, { memo } from 'react';
 
 import { UserHRInterviewTable } from '@/widgets/UserHRInterviewTable';
+import { searchClient } from '@/shared/config/firebase/searchClient';
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { deleteHRInterviewQAThunk } from '@/entities/HRInterviewQA';
 
 const HRInterviewEditorTablePage = () => {
+    const dispatch = useAppDispatch();
     const handleDeleteArticle = async (articleId: string) => {
         try {
-            console.log('deleteArticle:', articleId);
-            return articleId;
-            // const deletedArticleId = await dispatch(
-            //     deleteArticleWithRelationsThunk(articleId),
-            // ).unwrap();
-            // await searchClient.clearCache();
-            // return deletedArticleId;
+            const deletedArticleId = await dispatch(
+                deleteHRInterviewQAThunk(articleId),
+            ).unwrap();
+            await searchClient.clearCache();
+            return deletedArticleId;
         } catch (error) {
             console.error('Error deleting article:', error);
             return null;
@@ -21,12 +23,3 @@ const HRInterviewEditorTablePage = () => {
 };
 
 export default memo(HRInterviewEditorTablePage);
-// <ToggleFeaturesComponent
-//     feature="isAppRedesigned"
-//     on={<QuestionsQueue type="hrInterviewQA" />}
-//     off={
-//         <Page>
-//             <QuestionsQueue type="hrInterviewQA" />
-//         </Page>
-//     }
-// />

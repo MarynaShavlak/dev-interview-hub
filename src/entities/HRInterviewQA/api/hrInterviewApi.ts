@@ -1,6 +1,7 @@
 import { firestoreApi } from '@/shared/api/firestoreApi';
 
 import {
+    deleteDocFromFirestore,
     executeQuery,
     handleFirestoreSubscription,
 } from '@/shared/lib/firestore';
@@ -94,6 +95,17 @@ export const HRInterviewQAFirebaseApi = firestoreApi
                     );
                 },
             }),
+            deleteHRInterviewQA: build.mutation<string, string>({
+                invalidatesTags: ['HRInterviewQAs'],
+                async queryFn(id) {
+                    return executeQuery(
+                        () => deleteDocFromFirestore('hrInterviewQA', id),
+                        ERROR_HR_INTERVIEW_MESSAGES.DELETE_HR_INTERVIEW_ERROR(
+                            id,
+                        ),
+                    );
+                },
+            }),
             updateHRInterviewQA: build.mutation<
                 HRInterviewQA,
                 UpdateHRInterviewQAArgs
@@ -114,6 +126,8 @@ export const HRInterviewQAFirebaseApi = firestoreApi
 const { endpoints } = HRInterviewQAFirebaseApi;
 
 export const addHRInterviewQAMutation = endpoints.addHRInterviewQA.initiate;
+export const deleteHRInterviewQAMutation =
+    endpoints.deleteHRInterviewQA.initiate;
 export const updateHRInterviewQAMutation =
     endpoints.updateHRInterviewQA.initiate;
 export const getHRInterviewQADataByIdQuery =

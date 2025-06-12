@@ -1,6 +1,6 @@
 export const ERROR_HR_INTERVIEW_MESSAGES = {
     ADD_HR_INTERVIEW_FAIL: 'Error adding new HR interview question.',
-    // ARTICLE_ID_REQUIRED: 'Article ID is required.',
+    HR_INTERVIEW_ID_REQUIRED: 'HR Interview QA ID is required.',
     HR_INTERVIEW_NOT_FOUND: (id: string) =>
         `HR Interview QA with id "${id}" not found.`,
     HR_INTERVIEW_RETRIEVAL_FAIL:
@@ -12,11 +12,11 @@ export const ERROR_HR_INTERVIEW_MESSAGES = {
     HR_INTERVIEWS_FETCH_FAIL: 'Failed to fetch HR interview questions.',
     HR_INTERVIEWS_SNAPSHOT_FAIL: 'Error in HR interview questions snapshot.',
     // AUTHOR_VIEWS_NOT_COUNTED: "Author's views are not counted",
-    // DELETE_ARTICLE_ERROR: (articleId: string) =>
-    //     `Failed to delete article with id ${articleId}`,
+    DELETE_HR_INTERVIEW_ERROR: (id: string) =>
+        `Failed to delete HR interview QA with id ${id}`,
     // DELETE_BLOCK_IMAGES: 'Failed to delete article block images.',
     // DELETE_COMMENTS: 'Failed to delete article comments.',
-    // DELETE_ERROR: 'Something went wrong when deleting article.',
+    DELETE_ERROR: 'Something went wrong when deleting HR interview questions.',
     // DELETE_IMAGE_ERROR: 'Failed to delete image',
     // DELETE_MAIN_IMAGE: 'Failed to delete main article image.',
     // DELETE_RATINGS: 'Failed to delete article ratings.',
