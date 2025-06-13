@@ -23,7 +23,6 @@ export const HRInterviewEditTableNavigationButton = memo(() => {
                     size="s"
                     onClick={onNavigateToInterviewTable}
                     className={cls.ArticleListButton}
-                    max
                 >
                     {t('Редагувати відповіді')}
                 </Button>

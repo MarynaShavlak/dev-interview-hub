@@ -28,7 +28,6 @@ export const HRInterviewQueueNavigationButton = memo(() => {
                     size="s"
                     onClick={onNavigateToQueue}
                     className={cls.ArticleListButton}
-                    max
                 >
                     {t('Питання в черзі')}
                 </Button>
