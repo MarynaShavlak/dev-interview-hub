@@ -23,6 +23,7 @@ export const useUserHRInterviewTableConfig = (
     params: UseUserHRInterviewTableConfigParams,
 ): Table<HRInterviewQA> => {
     const { data, columns, globalFilter, columnFilters } = params;
+
     const table = useReactTable<HRInterviewQA>({
         data,
         columns,

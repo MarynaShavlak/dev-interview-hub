@@ -1,6 +1,6 @@
 export const FIXED_COLUMNS_WIDTH = {
     createdAt: 130,
-    categories: 130,
+    category: 160,
     action: 50,
 };
 

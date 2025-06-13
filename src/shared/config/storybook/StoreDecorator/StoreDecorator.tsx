@@ -8,7 +8,7 @@ import { articlesPageReducer } from '@/pages/ArticlesPage/testing';
 import { createArticleReducer } from '@/pages/ArticleEditorPage/testing';
 import { addQuestionFormReducer } from '@/entities/Question/testing';
 import { addLinkFormReducer } from '@/entities/Link/testing';
-import { createHRInterviewQAReducer } from '@/pages/HRInterviewQAEditorPage/testing';
+import { createHRInterviewQAReducer } from '@/pages/HRInterviewAnswerEditorPage/testing';
 
 /**
  * The `StoreDecorator` function is a Storybook decorator that wraps components in a Redux store

@@ -2,21 +2,27 @@ import { formatDateString } from '@/shared/lib/text/formatDateString/formatDateS
 
 import { useUserAuthData } from '@/entities/User';
 import {
+    HRCategory,
     HRInterviewQA,
     useHRInterviewQAsByUserId,
 } from '@/entities/HRInterviewQA';
+import { useHRCategoryTabs } from '@/features/HRInterviewCategoryTabs';
 
 export const useHRInterviewQAsByUserData = () => {
     const currentUserdata = useUserAuthData();
     const authedUserId = currentUserdata?.id || '';
     const { data, isLoading, error } = useHRInterviewQAsByUserId(authedUserId);
+    const tabs = useHRCategoryTabs();
 
     if (!data) return { data: null, isLoading, isError: Boolean(error) };
 
     const modifiedData: HRInterviewQA[] = data.map(
-        ({ createdAt, ...props }) => {
+        ({ createdAt, category, ...props }) => {
+            const label =
+                tabs.find((tab) => tab.value === category)?.label || category;
             return {
                 ...props,
+                category: label as HRCategory,
                 createdAt: formatDateString(createdAt),
             };
         },

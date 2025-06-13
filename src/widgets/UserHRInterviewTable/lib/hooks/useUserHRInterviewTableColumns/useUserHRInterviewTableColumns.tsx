@@ -56,7 +56,7 @@ export const useUserHRInterviewTableColumns = (props: useTableColumnProps) => {
                 'category',
                 createUserTextCol({
                     id: t('Категорії'),
-                    size: FIXED_COLUMNS_WIDTH.categories,
+                    size: FIXED_COLUMNS_WIDTH.category,
                     sortable: true,
                     filterable: true,
                 }),

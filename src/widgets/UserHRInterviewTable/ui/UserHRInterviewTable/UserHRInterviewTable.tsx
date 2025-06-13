@@ -41,7 +41,6 @@ export const UserHRInterviewTable = memo(
             deleteArticleModal,
         } = useManageUserHRInterviewTableRow(onDeleteArticle);
 
-        console.log('data', data);
         const {
             columns,
             headerOptionsMapping,

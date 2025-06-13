@@ -11,6 +11,7 @@ import { Auth } from 'firebase/auth';
 import { Firestore } from 'firebase/firestore';
 import { FirebaseStorage } from 'firebase/storage';
 import { LoginSchema, SignupSchema } from 'src/features/AuthUser';
+import { CreateHRInterviewQASchema } from 'src/pages/HRInterviewAnswerEditorPage';
 import { UIScrollSchema } from '@/widgets/Page';
 import { Article } from '@/entities/Article';
 import { UserSchema } from '@/entities/User';
@@ -23,7 +24,6 @@ import { ArticleCommentsSchema } from '@/features/ArticleComments';
 import { CreateArticleSchema } from '@/pages/ArticleEditorPage';
 import { AddQuestionFormSchema } from '@/entities/Question';
 import { AddLinkFormSchema } from '@/entities/Link';
-import { CreateHRInterviewQASchema } from '@/pages/HRInterviewQAEditorPage';
 
 export interface StateSchema {
     user: UserSchema;

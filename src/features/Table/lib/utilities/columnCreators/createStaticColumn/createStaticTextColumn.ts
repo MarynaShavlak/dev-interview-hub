@@ -41,6 +41,7 @@ export const createStaticTextColumn = <T extends { id: string }>(
         enableSorting: sortable,
         filterFn: (row: Row<T>, columnId: string, filterCriteria: any) => {
             if (filterCriteria.length === 0) return true;
+
             return filterCriteria.includes(row.getValue(columnId));
         },
     });

@@ -5,8 +5,9 @@ import { HRInterviewPageContent } from '../../HRInterviewPageContent/HRInterview
 import { HRInterviewAlgoliaSearch } from '../../HRInterviewAlgoliaSearch/HRInterviewAlgoliaSearch';
 import { Page } from '@/widgets/Page';
 import { HRInterviewFilters } from '@/widgets/HRInterviewFilters';
-import { VStack } from '@/shared/ui/common/Stack';
+import { HStack, VStack } from '@/shared/ui/common/Stack';
 import { HRInterviewQueueNavigationButton } from '../../HRInterviewQueueNavigationButton/HRInterviewQueueNavigationButton';
+import { HRInterviewEditTableNavigationButton } from '../../HRInterviewEditTableNavigationButton/HRInterviewEditTableNavigationButton';
 
 export const HRInterviewPageDeprecated = () => {
     return (
@@ -14,27 +15,15 @@ export const HRInterviewPageDeprecated = () => {
             <HRInterviewAlgoliaSearch>
                 <Page>
                     <VStack gap="40">
-                        <HRInterviewQueueNavigationButton />
+                        <HStack gap="24">
+                            <HRInterviewQueueNavigationButton />
+                            <HRInterviewEditTableNavigationButton />
+                        </HStack>
+
                         <HRInterviewFilters />
                         <HRInterviewPageContent />
                     </VStack>
                 </Page>
-                {/* <StickyContentLayout */}
-                {/*    left={ */}
-                {/*        <VStack gap="24"> */}
-                {/*            <AddNewEntityButton */}
-                {/*                entityType="hrInterviewQA" */}
-                {/*                max */}
-                {/*            /> */}
-                {/*        </VStack> */}
-                {/*    } */}
-                {/*    right={ */}
-                {/*        <VStack gap="24"> */}
-                {/*            <HRInterviewFilters /> */}
-                {/*        </VStack> */}
-                {/*    } */}
-                {/*    content={} */}
-                {/* /> */}
             </HRInterviewAlgoliaSearch>
         )
     );

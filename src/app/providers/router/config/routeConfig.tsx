@@ -1,3 +1,7 @@
+import {
+    HRInterviewAnswerEditorPage,
+    HRInterviewQAEditorPageSkeleton,
+} from '@/pages/HRInterviewAnswerEditorPage';
 import { UserRole } from '@/entities/User';
 import { AdminPanelPage, AdminPanelPageSkeleton } from '@/pages/AdminPanelPage';
 import {
@@ -40,10 +44,6 @@ import {
     UsefulLinksPage,
     UsefulLinksPageSkeleton,
 } from '@/pages/UsefulLinksPage';
-import {
-    HRInterviewQAEditorPage,
-    HRInterviewQAEditorPageSkeleton,
-} from '@/pages/HRInterviewQAEditorPage';
 import {
     HRInterviewPage,
     HRInterviewPageSkeleton,
@@ -139,13 +139,13 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
     },
     [AppRoutes.HR_INTERVIEW_CREATE]: {
         path: getRouteHRInterviewQACreate(),
-        element: <HRInterviewQAEditorPage />,
+        element: <HRInterviewAnswerEditorPage />,
         authOnly: true,
         skeleton: <HRInterviewQAEditorPageSkeleton />,
     },
     [AppRoutes.HR_INTERVIEW_ANSWER_EDIT]: {
         path: getRouteHRInterviewAnswerEdit(':id'),
-        element: <HRInterviewQAEditorPage />,
+        element: <HRInterviewAnswerEditorPage />,
         authOnly: true,
         skeleton: <HRInterviewQAEditorPageSkeleton />,
     },

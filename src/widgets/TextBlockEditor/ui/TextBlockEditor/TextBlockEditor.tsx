@@ -6,6 +6,7 @@ import { TextBlockDisplay } from '../TextBlockDisplay/TextBlockDisplay';
 import { useIsEditArticlePage } from '@/shared/lib/hooks/useIsEditArticlePage/useIsEditArticlePage';
 import { HRInterviewQABlock } from '@/entities/HRInterviewQA';
 import { SectionType } from '@/shared/types/sectionTypes';
+import { useIsEditHRInterviewAnswerPage } from '@/shared/lib/hooks/useIsEditHRInterviewAnswerPage/useIsEditHRInterviewAnswerPage';
 
 export interface TextBlockEditorProps {
     block: ArticleTextBlock | HRInterviewQABlock;
@@ -21,6 +22,8 @@ export const TextBlockEditor = memo((props: TextBlockEditorProps) => {
     const initialParagraphs = block.paragraphs || [];
     const isEmptyInfo = !initialTitle && initialParagraphs.length === 0;
     const isEditArticlePage = useIsEditArticlePage();
+    const isEditHRInterviewAnswerPage = useIsEditHRInterviewAnswerPage();
+    const isEditPage = isEditArticlePage || isEditHRInterviewAnswerPage;
 
     const {
         title,
@@ -52,7 +55,7 @@ export const TextBlockEditor = memo((props: TextBlockEditorProps) => {
 
     const currentBlockData: ArticleTextBlock | HRInterviewQABlock = useMemo(
         () =>
-            isEditArticlePage
+            isEditPage
                 ? block
                 : {
                       id: block.id,
@@ -60,7 +63,7 @@ export const TextBlockEditor = memo((props: TextBlockEditorProps) => {
                       paragraphs,
                       title: title || '',
                   },
-        [block, isEditArticlePage, paragraphs, title],
+        [block, isEditPage, paragraphs, title],
     );
 
     const formProps = {
@@ -73,13 +76,13 @@ export const TextBlockEditor = memo((props: TextBlockEditorProps) => {
     };
 
     const viewerProps = {
-        editBlock: isEditArticlePage ? enterEditMode : toggleEditMode,
+        editBlock: isEditPage ? enterEditMode : toggleEditMode,
         block: currentBlockData,
     };
 
     return (
         <TextBlockDisplay
-            isEditArticlePage={isEditArticlePage}
+            isEditArticlePage={isEditPage}
             isEditing={isEditModeActive}
             formProps={formProps}
             onDelete={handleDeleteTextBlock}

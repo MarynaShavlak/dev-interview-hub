@@ -82,6 +82,7 @@ export const useHRInterviewQAEditor = (): UseHRInterviewQAEditorReturn => {
             const savedArticle = await dispatch(
                 createHRInterviewQAThunk(),
             ).unwrap();
+            await searchClient.clearCache();
 
             if (savedArticle?.id) {
                 onClearArticle();
@@ -106,6 +107,7 @@ export const useHRInterviewQAEditor = (): UseHRInterviewQAEditorReturn => {
             const deletedArticleId = await dispatch(
                 deleteHRInterviewQAThunk(formData.id),
             ).unwrap();
+            await searchClient.clearCache();
 
             if (deletedArticleId) {
                 onClearArticle();

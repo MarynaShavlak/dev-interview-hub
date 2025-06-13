@@ -4,6 +4,8 @@ import { UserHRInterviewTable } from '@/widgets/UserHRInterviewTable';
 import { searchClient } from '@/shared/config/firebase/searchClient';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { deleteHRInterviewQAThunk } from '@/entities/HRInterviewQA';
+import { Page } from '@/widgets/Page';
+import { ToggleFeaturesComponent } from '@/shared/lib/features';
 
 const HRInterviewEditorTablePage = () => {
     const dispatch = useAppDispatch();
@@ -19,7 +21,19 @@ const HRInterviewEditorTablePage = () => {
             return null;
         }
     };
-    return <UserHRInterviewTable onDeleteArticle={handleDeleteArticle} />;
+    return (
+        <ToggleFeaturesComponent
+            feature="isAppRedesigned"
+            on={<UserHRInterviewTable onDeleteArticle={handleDeleteArticle} />}
+            off={
+                <Page>
+                    <UserHRInterviewTable
+                        onDeleteArticle={handleDeleteArticle}
+                    />
+                </Page>
+            }
+        />
+    );
 };
 
 export default memo(HRInterviewEditorTablePage);
