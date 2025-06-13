@@ -6,9 +6,10 @@ import {
     getDocs,
 } from 'firebase/firestore';
 import { dataPoint } from '../firestore';
+import { FirestoreCollectionType } from '@/shared/types/firestoreCollections';
 
 export async function getAllDocRefsByField<T extends object>(
-    collectionName: string,
+    collectionName: FirestoreCollectionType,
     field: keyof T,
     value: any,
 ): Promise<DocumentReference[]> {

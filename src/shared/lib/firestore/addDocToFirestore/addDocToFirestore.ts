@@ -1,5 +1,6 @@
 import { addDoc, CollectionReference } from 'firebase/firestore';
 import { dataPoint } from '../firestore';
+import { FirestoreCollectionType } from '@/shared/types/firestoreCollections';
 
 /**
  * Generic utility function to add a document to a Firestore collection.
@@ -8,7 +9,7 @@ import { dataPoint } from '../firestore';
  * @returns The reference to the newly added document.
  */
 export const addDocToFirestore = async <T extends object>(
-    collectionName: string,
+    collectionName: FirestoreCollectionType,
     docData: T,
 ) => {
     try {

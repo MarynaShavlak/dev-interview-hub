@@ -13,7 +13,7 @@ import { ERROR_VOCABULARY_MESSAGES } from '../model/consts/errorVocabularyMessag
 import { Vocabulary } from '@/entities/Vocabulary';
 import { subscribeToVocabulary } from '../lib/utilities/subscribeToVocabulary/subscribeToVocabulary';
 
-import { updateVocabularyInFirestore } from '../lib/utilities/updateVocabularyInFirestore/updateVocabularyInFirestore';
+import { updateDocById } from '@/shared/lib/firestore/updateDocById/updateDocById';
 
 export type NewVocabularyDraft = Omit<Vocabulary, 'createdAt'>;
 
@@ -87,7 +87,7 @@ export const vocabularyManagerFirebaseApi = firestoreApi
                 async queryFn({ vocabId, updates }) {
                     return executeQuery(
                         async () =>
-                            updateVocabularyInFirestore(vocabId, updates),
+                            updateDocById('vocabularies', vocabId, updates),
                         ERROR_VOCABULARY_MESSAGES.UPDATE_VOCABULARY_ERROR(
                             vocabId,
                         ),

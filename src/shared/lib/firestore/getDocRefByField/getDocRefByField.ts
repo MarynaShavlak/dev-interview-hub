@@ -7,6 +7,7 @@ import {
     DocumentData,
 } from 'firebase/firestore';
 import { dataPoint } from '../firestore';
+import { FirestoreCollectionType } from '@/shared/types/firestoreCollections';
 
 /**
  * Get a Firestore document reference by a field value.
@@ -16,7 +17,7 @@ import { dataPoint } from '../firestore';
  * @returns The DocumentReference if found, or null if not.
  */
 export async function getDocRefByField<T extends object>(
-    collectionName: string,
+    collectionName: FirestoreCollectionType,
     field: keyof T,
     value: any,
 ): Promise<DocumentReference<T, DocumentData> | null> {

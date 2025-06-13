@@ -1,8 +1,9 @@
 import { doc, getDoc } from 'firebase/firestore';
 import { dataPoint } from '../firestore';
+import { FirestoreCollectionType } from '@/shared/types/firestoreCollections';
 
 export async function getDataByDocId<T extends object>(
-    collectionName: string,
+    collectionName: FirestoreCollectionType,
     docId: string,
 ): Promise<T | null> {
     try {

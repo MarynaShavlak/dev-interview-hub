@@ -2,6 +2,7 @@ import { getDoc } from 'firebase/firestore';
 
 import { addDocToFirestore } from '../addDocToFirestore/addDocToFirestore';
 import { handleRequestErrorMessage } from '../handleRequestErrorMessage/handleRequestErrorMessage';
+import { FirestoreCollectionType } from '@/shared/types/firestoreCollections';
 
 /**
  * Generic type for new documents without `createdAt` field
@@ -17,7 +18,7 @@ export type NewDocDraft<T> = Omit<T, 'createdAt'>;
  * @returns The saved document's data with type T.
  */
 export const saveDocToFirestore = async <T extends object>(
-    collectionName: string,
+    collectionName: FirestoreCollectionType,
     newDoc: NewDocDraft<T>,
     retrievalErrorMessage?: string,
 ): Promise<T> => {

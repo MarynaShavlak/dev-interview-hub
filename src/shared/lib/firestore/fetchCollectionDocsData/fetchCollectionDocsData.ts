@@ -1,7 +1,8 @@
 import { fetchCollectionDocs } from '../fetchCollectionDocs/fetchCollectionDocs';
+import { FirestoreCollectionType } from '@/shared/types/firestoreCollections';
 
 export async function fetchCollectionDocsData<T extends object>(
-    collectionName: string,
+    collectionName: FirestoreCollectionType,
 ): Promise<T[]> {
     const querySnapshot = await fetchCollectionDocs<T>(collectionName);
 

@@ -6,6 +6,7 @@ import {
 } from 'firebase/firestore';
 import { getDocRefByField } from '../getDocRefByField/getDocRefByField';
 import { assertExists } from '../../checks/assertExists/assertExists';
+import { FirestoreCollectionType } from '@/shared/types/firestoreCollections';
 
 /**
  * Updates a document in Firestore by its `id` field and returns the updated data.
@@ -17,7 +18,7 @@ import { assertExists } from '../../checks/assertExists/assertExists';
  * @returns The updated document data of type T.
  */
 export const updateDocById = async <T extends { id: string }>(
-    collectionName: string,
+    collectionName: FirestoreCollectionType,
     id: string,
     updates: Partial<T>,
 ): Promise<T> => {

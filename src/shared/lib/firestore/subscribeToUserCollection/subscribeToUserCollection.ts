@@ -2,11 +2,12 @@ import { MaybeDrafted } from '@reduxjs/toolkit/dist/query/core/buildThunks';
 import { onSnapshot } from 'firebase/firestore';
 import { handleRequestErrorMessage } from '../handleRequestErrorMessage/handleRequestErrorMessage';
 import { createUserBasedQuery } from '../createUserBasedQuery/createUserBasedQuery';
+import { FirestoreCollectionType } from '@/shared/types/firestoreCollections';
 
 type UpdateCacheFn<T> = (updater: (draft: MaybeDrafted<T[]>) => void) => void;
 
 export const subscribeToUserCollection = <T extends object>(
-    collectionName: string,
+    collectionName: FirestoreCollectionType,
     userId: string,
     updateCachedData: UpdateCacheFn<T>,
     errorMessage: string,

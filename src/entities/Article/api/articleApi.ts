@@ -5,15 +5,14 @@ import { articlesAdapter, initialState } from '../model/slices/articleSlice';
 import {
     deleteDocFromFirestore,
     executeQuery,
+    fetchCollectionForUser,
     handleFirestoreSubscription,
     saveDocToFirestore,
 } from '@/shared/lib/firestore';
 
 import { ERROR_ARTICLE_MESSAGES } from '../model/consts/errorArticleMessages';
 
-import { updateArticleInFirestore } from '../lib/utilities/updateArticleInFirestore/updateArticleInFirestore';
 import { incrementArticleViewsInFirestore } from '../lib/utilities/incrementArticleViewsInFirestore/incrementArticleViewsInFirestore';
-import { fetchArticlesForUser } from '../lib/utilities/fetchArticlesForUser/fetchArticlesForUser';
 import { subscribeToUserArticles } from '../lib/utilities/subscribeToUserArticles/subscribeToUserArticles';
 import { fetchArticle } from '../lib/utilities/fetchArticle/fetchArticle';
 import { subscribeToArticle } from '../lib/utilities/subscribeToArticle/subscribeToArticle';
@@ -22,6 +21,7 @@ import {
     fetchAllFilteredArticlesFromFirestore,
     GetFilteredArticlesArgs,
 } from '../lib/utilities/fetchAllFilteredArticlesFromFirestore/fetchAllFilteredArticlesFromFirestore';
+import { updateDocById } from '@/shared/lib/firestore/updateDocById/updateDocById';
 
 export type NewArticleDraft = Omit<Article, 'createdAt'>;
 
@@ -69,7 +69,8 @@ export const articleFirebaseApi = firestoreApi
                         };
                     }
                     return executeQuery(
-                        () => fetchArticlesForUser(userId),
+                        () =>
+                            fetchCollectionForUser<Article>('articles', userId),
                         ERROR_ARTICLE_MESSAGES.ARTICLES_BY_USER_ID_FETCH_FAIL(
                             userId,
                         ),
@@ -136,7 +137,7 @@ export const articleFirebaseApi = firestoreApi
                 async queryFn({ articleId, updates }) {
                     return executeQuery(
                         async () =>
-                            updateArticleInFirestore(articleId, updates),
+                            updateDocById('articles', articleId, updates),
                         ERROR_ARTICLE_MESSAGES.UPDATE_ARTICLE_ERROR(articleId),
                     );
                 },

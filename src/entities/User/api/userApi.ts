@@ -4,7 +4,6 @@ import { User } from '../model/types/user';
 import { fetchUser } from '../lib/utilities/fetchUser/fetchUser';
 import { ERROR_USER_MESSAGES } from '../model/consts/errorUserMessages';
 import { subscribeToUser } from '../lib/utilities/subscribeToUser/subscribeToUser';
-import { updateUserInFirestore } from '../lib/utilities/updateUserInFirestore/updateUserInFirestore';
 import { subscribeToAllUsers } from '../lib/utilities/subscribeToAllUsers/subscribeToAllUsers';
 import {
     deleteDocFromFirestore,
@@ -12,6 +11,7 @@ import {
     fetchCollectionDocsData,
     handleFirestoreSubscription,
 } from '@/shared/lib/firestore';
+import { updateDocById } from '@/shared/lib/firestore/updateDocById/updateDocById';
 
 export const userFirebaseApi = firestoreApi
     .enhanceEndpoints({
@@ -79,7 +79,7 @@ export const userFirebaseApi = firestoreApi
             >({
                 async queryFn({ userId, updates }) {
                     return executeQuery(
-                        async () => updateUserInFirestore(userId, updates),
+                        async () => updateDocById('users', userId, updates),
                         ERROR_USER_MESSAGES.UPDATE_USER_ERROR(userId),
                     );
                 },

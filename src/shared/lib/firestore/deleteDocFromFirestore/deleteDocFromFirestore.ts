@@ -1,8 +1,9 @@
 import { deleteDoc } from 'firebase/firestore';
 import { getDocRefByField } from '../getDocRefByField/getDocRefByField';
+import { FirestoreCollectionType } from '@/shared/types/firestoreCollections';
 
 export const deleteDocFromFirestore = async (
-    collectionName: string,
+    collectionName: FirestoreCollectionType,
     documentId: string,
 ): Promise<string> => {
     try {
