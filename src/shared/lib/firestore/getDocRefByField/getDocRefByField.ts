@@ -4,6 +4,7 @@ import {
     getDocs,
     DocumentReference,
     QueryConstraint,
+    DocumentData,
 } from 'firebase/firestore';
 import { dataPoint } from '../firestore';
 
@@ -18,7 +19,7 @@ export async function getDocRefByField<T extends object>(
     collectionName: string,
     field: keyof T,
     value: any,
-): Promise<DocumentReference | null> {
+): Promise<DocumentReference<T, DocumentData> | null> {
     const collection = dataPoint<T>(collectionName);
     const queryConstraint: QueryConstraint = where(
         field as string,
@@ -29,7 +30,7 @@ export async function getDocRefByField<T extends object>(
     const querySnapshot = await getDocs(q);
 
     if (!querySnapshot.empty) {
-        return querySnapshot.docs[0].ref;
+        return querySnapshot.docs[0].ref as DocumentReference<T, DocumentData>;
     }
     return null;
 }

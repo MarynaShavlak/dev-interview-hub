@@ -9,6 +9,7 @@ import { createArticleReducer } from '@/pages/ArticleEditorPage/testing';
 import { addQuestionFormReducer } from '@/entities/Question/testing';
 import { addLinkFormReducer } from '@/entities/Link/testing';
 import { createHRInterviewQAReducer } from '@/pages/HRInterviewAnswerEditorPage/testing';
+import { addVocabularyFormReducer } from '@/entities/Vocabulary/testing';
 
 /**
  * The `StoreDecorator` function is a Storybook decorator that wraps components in a Redux store
@@ -36,6 +37,7 @@ const defaultAsyncReducers: ReducersList = {
     addCommentForm: addCommentFormReducer,
     addQuestionForm: addQuestionFormReducer,
     addLinkForm: addLinkFormReducer,
+    addVocabularyForm: addVocabularyFormReducer,
     articlesPage: articlesPageReducer,
     createArticle: createArticleReducer,
     createHRInterviewQA: createHRInterviewQAReducer,

@@ -3,17 +3,17 @@ import { firestoreApi } from '@/shared/api/firestoreApi';
 import {
     deleteDocFromFirestore,
     executeQuery,
+    fetchCollectionForUser,
     handleFirestoreSubscription,
+    saveDocToFirestore,
 } from '@/shared/lib/firestore';
 import { ERROR_LINK_MESSAGES } from '../model/consts/errorLinkMessages';
-import {
-    NewLinkDraft,
-    saveLinkToFirestore,
-} from '../lib/utilities/saveLinkToFirestore/saveLinkToFirestore';
-import { fetchLinksForUser } from '../lib/utilities/fetchLinksForUser/fetchLinksForUser';
+
 import { subscribeToLinks } from '../lib/utilities/subscribeToLinks/subscribeToLinks';
-import { updateLinkInFirestore } from '../lib/utilities/updateLinkInFirestore/updateLinkInFirestore';
 import { Link } from '@/entities/Link';
+import { updateDocById } from '@/shared/lib/firestore/updateDocById/updateDocById';
+
+export type NewLinkDraft = Omit<Link, 'createdAt'>;
 
 export const linksManagerFirebaseApi = firestoreApi
     .enhanceEndpoints({ addTagTypes: ['LinksManager'] })
@@ -32,7 +32,7 @@ export const linksManagerFirebaseApi = firestoreApi
                     }
 
                     return executeQuery(
-                        () => fetchLinksForUser(userId),
+                        () => fetchCollectionForUser<Link>('links', userId),
                         ERROR_LINK_MESSAGES.LINKS_BY_USER_ID_FETCH_FAIL(userId),
                     );
                 },
@@ -53,7 +53,12 @@ export const linksManagerFirebaseApi = firestoreApi
                 invalidatesTags: [{ type: 'LinksManager', id: 'linkId' }],
                 async queryFn(newLink) {
                     return executeQuery(
-                        () => saveLinkToFirestore(newLink),
+                        () =>
+                            saveDocToFirestore<Link>(
+                                'links',
+                                newLink,
+                                ERROR_LINK_MESSAGES.LINK_RETRIEVAL_FAIL,
+                            ),
                         ERROR_LINK_MESSAGES.ADD_LINK_FAIL,
                     );
                 },
@@ -73,7 +78,7 @@ export const linksManagerFirebaseApi = firestoreApi
             >({
                 async queryFn({ linkId, updates }) {
                     return executeQuery(
-                        async () => updateLinkInFirestore(linkId, updates),
+                        async () => updateDocById('links', linkId, updates),
                         ERROR_LINK_MESSAGES.UPDATE_LINK_ERROR(linkId),
                     );
                 },

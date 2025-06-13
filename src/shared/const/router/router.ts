@@ -14,6 +14,7 @@ export enum AppRoutes {
     HR_INTERVIEW_QUEUE = 'hr_interview_queue',
     HR_INTERVIEW_EDITOR = 'hr_interview_editor',
     HR_INTERVIEW_ANSWER_EDIT = 'hr_interview_answer_edit',
+    ENGLISH = 'english',
     FORBIDDEN = 'forbidden',
     // last
     NOT_FOUND = 'not_found',
@@ -29,6 +30,7 @@ export const getRouteAdmin = () => '/admin';
 export const getRouteForbidden = () => '/forbidden';
 export const getRouteMyArticles = () => '/my-articles-lib';
 export const getRouteUsefulLinks = () => '/useful-links';
+export const getRouteEnglish = () => '/english';
 export const getRouteHRInterviewQACreate = () => '/hr-interview-qa/new';
 export const getRouteHRInterview = () => '/hr-interview';
 export const getRouteHRInterviewQueue = () => '/hr-interview-queue';
@@ -48,6 +50,7 @@ export const AppRouteByPathPattern: Record<string, AppRoutes> = {
     [getRouteForbidden()]: AppRoutes.FORBIDDEN,
     [getRouteMyArticles()]: AppRoutes.MY_ARTICLES,
     [getRouteUsefulLinks()]: AppRoutes.USEFUL_LINKS,
+    [getRouteEnglish()]: AppRoutes.ENGLISH,
     [getRouteHRInterviewQACreate()]: AppRoutes.HR_INTERVIEW_CREATE,
     [getRouteHRInterview()]: AppRoutes.HR_INTERVIEW,
     [getRouteHRInterviewEditor()]: AppRoutes.HR_INTERVIEW_EDITOR,

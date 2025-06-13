@@ -10,8 +10,10 @@ import ProfileIconDeprecated from '@/shared/assets/icons/profile-20-20.svg';
 import QuizIcon from '@/shared/assets/icons/quiz.svg';
 import LinkIcon from '@/shared/assets/icons/link.svg';
 import InterviewIcon from '@/shared/assets/icons/interview.svg';
+import EnglishIcon from '@/shared/assets/icons/english.svg';
 import {
     getRouteArticles,
+    getRouteEnglish,
     getRouteHRInterview,
     getRouteMain,
     getRouteMyArticles,
@@ -101,6 +103,16 @@ export const useSidebarItems = () => {
                     on: () => LinkIcon,
                 }),
                 text: 'Посилання',
+                authOnly: true,
+            },
+            {
+                path: getRouteEnglish(),
+                Icon: toggleFeatures({
+                    name: 'isAppRedesigned',
+                    off: () => EnglishIcon,
+                    on: () => EnglishIcon,
+                }),
+                text: 'Англійська',
                 authOnly: true,
             },
             {

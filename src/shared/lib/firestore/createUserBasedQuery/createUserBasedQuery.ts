@@ -1,4 +1,4 @@
-import { Query, query, where, orderBy } from 'firebase/firestore';
+import { orderBy, query, Query, where } from 'firebase/firestore';
 import { dataPoint } from '../firestore';
 
 export const createUserBasedQuery = <T extends object>(

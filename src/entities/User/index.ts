@@ -8,7 +8,6 @@ export { deleteUserThunk } from './model/services/deleteUserThunk/deleteUserThun
 
 export { useUserProfileNavigation } from './lib/hooks/useUserProfileNavigation/useUserProfileNavigation';
 
-export { getUserDocRefById } from './lib/utilities/getUserDocRefById/getUserDocRefById';
 export { updateUserDataMutation, getUserDataByIdQuery } from './api/userApi';
 export { initAuthData } from './model/services/initAuthData/initAuthData';
 export { saveJsonSettingsThunk } from '@/entities/User/model/services/saveJsonSettingsThunk/saveJsonSettingsThunk';

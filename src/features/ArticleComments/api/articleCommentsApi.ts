@@ -5,10 +5,7 @@ import { ERROR_COMMENT_MESSAGES } from '../model/consts/errorCommentMessages';
 import { subscribeToArticleComments } from '../lib/utilities/subscribeToArticleComments/subscribeToArticleComments';
 import { subscribeToAllArticlesComments } from '../lib/utilities/subscribeToAllArticlesComments/subscribeToAllArticlesComments';
 import { fetchCommentsForMultipleArticles } from '../lib/utilities/fetchCommentsForMultipleArticles/fetchCommentsForMultipleArticles';
-import {
-    NewCommentDraft,
-    saveCommentToFirestore,
-} from '../lib/utilities/saveCommentToFirestore/saveCommentToFirestore';
+
 import { deleteCommentsFromFirestore } from '../lib/utilities/deleteCommentsFromFirestore/deleteCommentsFromFirestore';
 import { subscribeToMultipleArticlesComments } from '../lib/utilities/subscribeToMultipleArticlesComments/subscribeToMultipleArticlesComments';
 import {
@@ -16,7 +13,10 @@ import {
     executeQuery,
     fetchCollectionDocsData,
     handleFirestoreSubscription,
+    saveDocToFirestore,
 } from '@/shared/lib/firestore';
+
+export type NewCommentDraft = Omit<ArticleComment, 'createdAt'>;
 
 export const articlesCommentsFirebaseApi = firestoreApi
     .enhanceEndpoints({ addTagTypes: ['ArticleComments'] })
@@ -110,7 +110,12 @@ export const articlesCommentsFirebaseApi = firestoreApi
                 invalidatesTags: [{ type: 'ArticleComments', id: 'commentId' }],
                 async queryFn(newComment) {
                     return executeQuery(
-                        () => saveCommentToFirestore(newComment),
+                        () =>
+                            saveDocToFirestore<ArticleComment>(
+                                'comments',
+                                newComment,
+                                ERROR_COMMENT_MESSAGES.COMMENT_RETRIEVAL_FAIL,
+                            ),
                         ERROR_COMMENT_MESSAGES.ADD_COMMENT_FAIL,
                     );
                 },

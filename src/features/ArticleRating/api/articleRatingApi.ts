@@ -8,13 +8,13 @@ import { fetchArticleRateByUser } from '../lib/utilities/fetchArticleRateByUser/
 import { subscribeToArticleRating } from '../lib/utilities/subscribeToArticleRating/subscribeToArticleRating';
 import { fetchRatingsForMultipleArticles } from '../lib/utilities/fetchRatingsForMultipleArticles/fetchRatingsForMultipleArticles';
 import { subscribeToMultipleArticlesRatings } from '../lib/utilities/subscribeToMultipleArticlesRatings/subscribeToMultipleArticlesRatings';
-import { saveRatingToFirestore } from '../lib/utilities/saveRatingToFirestore/saveRatingToFirestore';
 import { fetchRatingsForArticle } from '../lib/utilities/fetchRatingsForArticle/fetchRatingsForArticle';
 import { deleteRatingsFromFirestore } from '../lib/utilities/deleteRatingsFromFirestore/deleteRatingsFromFirestore';
 import {
     executeQuery,
     fetchCollectionDocsData,
     handleFirestoreSubscription,
+    saveDocToFirestore,
 } from '@/shared/lib/firestore';
 
 interface GetArticleRatingArg {
@@ -29,7 +29,7 @@ interface RateArticleArg {
     feedback: string | null;
     id: string;
 }
-
+export type NewRatingDraft = Omit<ArticleRatingType, 'createdAt'>;
 export const articleRatingFirebaseApi = firestoreApi
     .enhanceEndpoints({ addTagTypes: ['ArticleRating'] })
     .injectEndpoints({
@@ -102,9 +102,14 @@ export const articleRatingFirebaseApi = firestoreApi
             }),
             rateArticle: build.mutation<ArticleRatingType, RateArticleArg>({
                 invalidatesTags: [{ type: 'ArticleRating', id: 'ratingId' }],
-                async queryFn(newRating) {
+                async queryFn(newRating: NewRatingDraft) {
                     return executeQuery(
-                        () => saveRatingToFirestore(newRating),
+                        () =>
+                            saveDocToFirestore<ArticleRatingType>(
+                                'ratings',
+                                newRating,
+                                ERROR_RATING_MESSAGES.RATE_RETRIEVAL_FAIL,
+                            ),
                         ERROR_RATING_MESSAGES.ADD_RATING_FAIL,
                     );
                 },

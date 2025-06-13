@@ -2,13 +2,17 @@ import { getDoc, updateDoc } from 'firebase/firestore';
 
 import { Article } from '../../../model/types/article';
 import { ERROR_ARTICLE_MESSAGES } from '../../../model/consts/errorArticleMessages';
-import { getArticleDocRefById } from '../getArticleDocRefById/getArticleDocRefById';
+import { getDocRefByField } from '@/shared/lib/firestore/getDocRefByField/getDocRefByField';
 
 export const updateArticleInFirestore = async (
     articleId: string,
     updates: Partial<Article>,
 ) => {
-    const articleDocRef = await getArticleDocRefById(articleId);
+    const articleDocRef = await getDocRefByField<Article>(
+        'articles',
+        'id',
+        articleId,
+    );
     if (!articleDocRef) {
         throw new Error(ERROR_ARTICLE_MESSAGES.ARTICLE_NOT_FOUND(articleId));
     }

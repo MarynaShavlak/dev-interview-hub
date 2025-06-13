@@ -26,7 +26,7 @@ export const LinksList = memo((props: LinksListProps) => {
         props;
 
     const { t } = useTranslation('articles');
-    const noCommentsMessage = t('Доданих питань у черзі немає');
+    const noCommentsMessage = t('Доданих посилань немає');
 
     if (isLoading) {
         return <LinksListSkeleton />;

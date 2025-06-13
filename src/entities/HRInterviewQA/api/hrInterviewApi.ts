@@ -3,26 +3,25 @@ import { firestoreApi } from '@/shared/api/firestoreApi';
 import {
     deleteDocFromFirestore,
     executeQuery,
+    fetchCollectionForUser,
     handleFirestoreSubscription,
+    saveDocToFirestore,
 } from '@/shared/lib/firestore';
 
 import { ERROR_HR_INTERVIEW_MESSAGES } from '../model/consts/errorHRInterviewMessages';
 import { HRInterviewQA } from '../model/types/hrInterviewQA';
-import {
-    NewHRInterviewQADraft,
-    saveHRInterviewQAToFirestore,
-} from '../lib/utilities/saveHRInterviewQAToFirestore/saveHRInterviewQAToFirestore';
-import { updateHRInterviewQAInFirestore } from '../lib/utilities/updateHRInterviewQAInFirestore/updateHRInterviewQAInFirestore';
+
 import { fetchHRInterviewQA } from '../lib/utilities/fetchHRInterviewQA/fetchHRInterviewQA';
 import { subscribeToHRInterviewQA } from '../lib/utilities/subscribeToHRInterviewQA/subscribeToHRInterviewQA';
 
-import { fetchHRInterviewsForUser } from '../lib/utilities/fetchHRInterviewsForUser/fetchHRInterviewsForUser';
 import { subscribeToUserHRInterviews } from '../lib/utilities/subscribeToUserHRInterviews/subscribeToUserHRInterviews';
+import { updateDocById } from '@/shared/lib/firestore/updateDocById/updateDocById';
 
 interface UpdateHRInterviewQAArgs {
     id: string;
     updates: Partial<HRInterviewQA>;
 }
+export type NewHRInterviewQADraft = Omit<HRInterviewQA, 'createdAt'>;
 
 export const HRInterviewQAFirebaseApi = firestoreApi
     .enhanceEndpoints({
@@ -42,7 +41,11 @@ export const HRInterviewQAFirebaseApi = firestoreApi
                         };
                     }
                     return executeQuery(
-                        () => fetchHRInterviewsForUser(userId),
+                        () =>
+                            fetchCollectionForUser<HRInterviewQA>(
+                                'hrInterviewQA',
+                                userId,
+                            ),
                         ERROR_HR_INTERVIEW_MESSAGES.HR_INTERVIEWS_BY_USER_ID_FETCH_FAIL(
                             userId,
                         ),
@@ -90,7 +93,12 @@ export const HRInterviewQAFirebaseApi = firestoreApi
                 invalidatesTags: ['HRInterviewQAs'],
                 async queryFn(newHRInterviewQA) {
                     return executeQuery(
-                        () => saveHRInterviewQAToFirestore(newHRInterviewQA),
+                        () =>
+                            saveDocToFirestore<HRInterviewQA>(
+                                'hrInterviewQA',
+                                newHRInterviewQA,
+                                ERROR_HR_INTERVIEW_MESSAGES.HR_INTERVIEW_RETRIEVAL_FAIL,
+                            ),
                         ERROR_HR_INTERVIEW_MESSAGES.ADD_HR_INTERVIEW_FAIL,
                     );
                 },
@@ -113,7 +121,7 @@ export const HRInterviewQAFirebaseApi = firestoreApi
                 invalidatesTags: ['HRInterviewQAs'],
                 async queryFn({ id, updates }) {
                     return executeQuery(
-                        async () => updateHRInterviewQAInFirestore(id, updates),
+                        async () => updateDocById('hrInterviewQA', id, updates),
                         ERROR_HR_INTERVIEW_MESSAGES.UPDATE_HR_INTERVIEW_ERROR(
                             id,
                         ),

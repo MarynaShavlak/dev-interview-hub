@@ -1,3 +1,7 @@
+export { saveDocToFirestore } from './saveDocToFirestore/saveDocToFirestore';
+
+export { fetchCollectionForUser } from './fetchCollectionForUser/fetchCollectionForUser';
+
 export { subscribeToUserCollection } from './subscribeToUserCollection/subscribeToUserCollection';
 
 export { createUserBasedQuery } from './createUserBasedQuery/createUserBasedQuery';

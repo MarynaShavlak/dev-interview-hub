@@ -4,17 +4,17 @@ import {
     deleteDocFromFirestore,
     executeQuery,
     handleFirestoreSubscription,
+    saveDocToFirestore,
 } from '@/shared/lib/firestore';
 import { ERROR_QUESTION_MESSAGES } from '../model/consts/errorQuestionMessages';
-import {
-    NewQuestionDraft,
-    saveQuestionToFirestore,
-} from '../lib/utilities/saveQuestionToFirestore/saveQuestionToFirestore';
+
 import { Question } from '@/entities/Question';
 import { fetchQuestionsForUser } from '../lib/utilities/fetchQuestionsForUser/fetchQuestionsForUser';
 import { subscribeToQuestions } from '../lib/utilities/subscribeToQuestions/subscribeToQuestions';
-import { updateQuestionInFirestore } from '../lib/utilities/updateQuestionInFirestore/updateQuestionInFirestore';
 import { EntityType } from '@/shared/types/entityType';
+import { updateDocById } from '@/shared/lib/firestore/updateDocById/updateDocById';
+
+export type NewQuestionDraft = Omit<Question, 'createdAt'>;
 
 export const questionsQueueFirebaseApi = firestoreApi
     .enhanceEndpoints({ addTagTypes: ['QuestionsQueue'] })
@@ -61,7 +61,12 @@ export const questionsQueueFirebaseApi = firestoreApi
                 invalidatesTags: [{ type: 'QuestionsQueue', id: 'questionId' }],
                 async queryFn(newQuestion) {
                     return executeQuery(
-                        () => saveQuestionToFirestore(newQuestion),
+                        () =>
+                            saveDocToFirestore<Question>(
+                                'questions',
+                                newQuestion,
+                                ERROR_QUESTION_MESSAGES.QUESTION_RETRIEVAL_FAIL,
+                            ),
                         ERROR_QUESTION_MESSAGES.ADD_QUESTION_FAIL,
                     );
                 },
@@ -82,7 +87,7 @@ export const questionsQueueFirebaseApi = firestoreApi
                 async queryFn({ questionId, updates }) {
                     return executeQuery(
                         async () =>
-                            updateQuestionInFirestore(questionId, updates),
+                            updateDocById('questions', questionId, updates),
                         ERROR_QUESTION_MESSAGES.UPDATE_QUESTION_ERROR(
                             questionId,
                         ),

@@ -34,6 +34,7 @@ import {
     getRouteHRInterviewQueue,
     getRouteHRInterviewEditor,
     getRouteHRInterviewAnswerEdit,
+    getRouteEnglish,
 } from '@/shared/const/router/router';
 import { AppRoutesProps } from '@/shared/types/router';
 import {
@@ -56,6 +57,7 @@ import {
     HRInterviewEditorTablePage,
     HRInterviewEditorTablePageSkeleton,
 } from '@/pages/HRInterviewEditorTablePage';
+import { EnglishPageSkeleton, EnglishPage } from '@/pages/EnglishPage';
 
 export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
     [AppRoutes.MAIN]: {
@@ -93,6 +95,12 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
         element: <UsefulLinksPage />,
         authOnly: true,
         skeleton: <UsefulLinksPageSkeleton />,
+    },
+    [AppRoutes.ENGLISH]: {
+        path: getRouteEnglish(),
+        element: <EnglishPage />,
+        authOnly: true,
+        skeleton: <EnglishPageSkeleton />,
     },
     [AppRoutes.ARTICLE_DETAILS]: {
         path: getRouteArticleDetails(':id'),

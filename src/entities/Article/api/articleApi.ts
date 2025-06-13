@@ -6,13 +6,11 @@ import {
     deleteDocFromFirestore,
     executeQuery,
     handleFirestoreSubscription,
+    saveDocToFirestore,
 } from '@/shared/lib/firestore';
 
 import { ERROR_ARTICLE_MESSAGES } from '../model/consts/errorArticleMessages';
-import {
-    NewArticleDraft,
-    saveArticleToFirestore,
-} from '../lib/utilities/saveArticleToFirestore/saveArticleToFirestore';
+
 import { updateArticleInFirestore } from '../lib/utilities/updateArticleInFirestore/updateArticleInFirestore';
 import { incrementArticleViewsInFirestore } from '../lib/utilities/incrementArticleViewsInFirestore/incrementArticleViewsInFirestore';
 import { fetchArticlesForUser } from '../lib/utilities/fetchArticlesForUser/fetchArticlesForUser';
@@ -24,6 +22,8 @@ import {
     fetchAllFilteredArticlesFromFirestore,
     GetFilteredArticlesArgs,
 } from '../lib/utilities/fetchAllFilteredArticlesFromFirestore/fetchAllFilteredArticlesFromFirestore';
+
+export type NewArticleDraft = Omit<Article, 'createdAt'>;
 
 interface UpdateArticleArgs {
     articleId: string;
@@ -112,7 +112,12 @@ export const articleFirebaseApi = firestoreApi
                 invalidatesTags: ['Articles'],
                 async queryFn(newArticle) {
                     return executeQuery(
-                        () => saveArticleToFirestore(newArticle),
+                        () =>
+                            saveDocToFirestore<Article>(
+                                'articles',
+                                newArticle,
+                                ERROR_ARTICLE_MESSAGES.ARTICLE_RETRIEVAL_FAIL,
+                            ),
                         ERROR_ARTICLE_MESSAGES.ADD_ARTICLE_FAIL,
                     );
                 },
