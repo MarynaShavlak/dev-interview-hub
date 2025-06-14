@@ -1,1 +1,1 @@
-export { LinksManager } from './ui/LinksManager';
+export { VocabularyManager } from './ui/VocabularyManager/VocabularyManager';

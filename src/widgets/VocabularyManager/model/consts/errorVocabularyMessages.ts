@@ -6,7 +6,8 @@ export const ERROR_VOCABULARY_MESSAGES = {
     VOCABULARY_ID_REQUIRED: 'Vocabulary ID is required.',
     VOCABULARY_RETRIEVAL_FAIL: 'Failed to retrieve created vocabulary.',
     VOCABULARY_TEXT_REQUIRED: 'Vocabulary text cannot be empty.',
-    VOCABULARY_LABEL_REQUIRED: 'Vocabulary label cannot be empty.',
+    VOCABULARY_MEANING_REQUIRED: 'Vocabulary meaning cannot be empty.',
+    VOCABULARY_TRANSLATION_REQUIRED: 'Vocabulary translation cannot be empty.',
     VOCABULARY_BY_USER_ID_FETCH_FAIL: (userId: string) =>
         `Failed to fetch vocabularies for user with ID "${userId}".`,
 

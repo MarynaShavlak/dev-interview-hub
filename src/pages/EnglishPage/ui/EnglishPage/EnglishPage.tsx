@@ -1,7 +1,7 @@
 import { memo, useCallback } from 'react';
 import { Page } from '@/widgets/Page';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
-import { AddVocabularyForm } from '@/entities/Vocabulary';
+import { VocabularyManager } from '@/widgets/VocabularyManager';
 
 interface EnglishPageProps {
     className?: string;
@@ -22,7 +22,7 @@ const EnglishPage = memo((props: EnglishPageProps) => {
             feature="isAppRedesigned"
             on={
                 <main className={className} data-testid="EnglishPage">
-                    <AddVocabularyForm onAddVocabulary={onAddVocabulary} />
+                    <VocabularyManager />
                 </main>
             }
             off={

@@ -106,5 +106,5 @@ export const useVocabularyByUser =
 export const deleteVocabularyMutation =
     vocabularyManagerFirebaseApi.endpoints.deleteVocabulary.initiate;
 
-// export const updateVocabularyMutation =
-//     vocabularyManagerFirebaseApi.endpoints.updateVocabulary.initiate;
+export const updateVocabularyMutation =
+    vocabularyManagerFirebaseApi.endpoints.updateVocabulary.initiate;
