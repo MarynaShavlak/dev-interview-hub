@@ -21,6 +21,9 @@ import { toggleFeatures } from '@/shared/lib/features';
 import { Vocabulary } from '@/entities/Vocabulary';
 import { useManageUserVocabularyTableRow } from '../../lib/hooks/useManageUserVocabularyTableRow/useManageUserVocabularyTableRow';
 import { useUserVocabularyTableData } from '../../lib/hooks/useUserVocabularyTableData/useUserVocabularyTableData';
+import { useFieldKey } from '../../lib/hooks/useFieldKey/useFieldKey';
+import { updateVocabularyThunk } from '../../model/services/updateVocabularyThunk/updateVocabularyThunk';
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 
 interface UserVocabularyTableProps {
     onDeleteVocabulary: (articleId: string) => Promise<string | null>;
@@ -29,10 +32,10 @@ interface UserVocabularyTableProps {
 export const UserVocabularyTable = memo(
     ({ onDeleteVocabulary }: UserVocabularyTableProps) => {
         const { t } = useTranslation('english');
-
+        const { getFieldKey } = useFieldKey();
+        const dispatch = useAppDispatch();
         const {
             handleDeleteClick,
-            handleEditClick,
             confirmDelete,
             articleTitle,
             isLoading,
@@ -50,14 +53,34 @@ export const UserVocabularyTable = memo(
         } = useUserVocabularyTableData({
             data: data || [],
             deleteRow: handleDeleteClick,
-            editRow: handleEditClick,
         });
+
+        const handleUpdateVocabulary = async (vocab: Vocabulary) => {
+            try {
+                const updated = await dispatch(
+                    updateVocabularyThunk(vocab),
+                ).unwrap();
+                return updated;
+            } catch (error) {
+                console.error('Error updating vocabulary:', error);
+                return null;
+            }
+        };
 
         const table = useUserVocabularyTableConfig({
             data: data || [],
             columns,
             globalFilter,
             columnFilters,
+            editRow: (rowIndex, newValue, columnId) => {
+                const edittedObj = data?.[rowIndex] as Vocabulary;
+                const edittedField = getFieldKey(columnId);
+
+                handleUpdateVocabulary({
+                    ...edittedObj,
+                    [edittedField]: newValue,
+                });
+            },
         });
 
         const isFilteredEmpty = table.getRowModel().rows.length === 0;

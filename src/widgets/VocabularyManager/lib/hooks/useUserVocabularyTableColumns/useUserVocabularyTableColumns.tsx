@@ -3,7 +3,7 @@ import { createColumnHelper } from '@tanstack/react-table';
 import { useMemo } from 'react';
 
 import {
-    createStaticTextColumn,
+    createEditableColumn,
     useCreateActionColumn,
     useFlexColumnWidth,
 } from '@/features/Table';
@@ -15,17 +15,15 @@ import { Vocabulary } from '@/entities/Vocabulary';
 
 interface useTableColumnProps {
     deleteRow: (rowIndex: string) => void;
-    editRow: (rowIndex: string) => void;
 }
 
 export const useUserVocabularyTableColumns = (props: useTableColumnProps) => {
     const { t } = useTranslation('english');
-    const { deleteRow, editRow } = props;
-    const createUserTextCol = createStaticTextColumn<Vocabulary>();
+    const { deleteRow } = props;
+    const createUserTextCol = createEditableColumn<Vocabulary>();
     const columnHelper = createColumnHelper<Vocabulary>();
     const actionColumn = useCreateActionColumn<Vocabulary>({
         deleteRow,
-        editRow,
         width: FIXED_COLUMNS_WIDTH.action,
     });
     const titleColumnWidth = useFlexColumnWidth(
@@ -40,8 +38,8 @@ export const useUserVocabularyTableColumns = (props: useTableColumnProps) => {
                 createUserTextCol({
                     id: t('Ідіома'),
                     size: titleColumnWidth,
-                    sortable: true,
-                    link: true,
+                    sortable: false,
+                    filterable: false,
                 }),
             ),
             columnHelper.accessor(
@@ -49,7 +47,8 @@ export const useUserVocabularyTableColumns = (props: useTableColumnProps) => {
                 createUserTextCol({
                     id: t('Пояснення'),
                     size: FIXED_COLUMNS_WIDTH.meaning,
-                    sortable: true,
+                    sortable: false,
+                    filterable: false,
                 }),
             ),
             columnHelper.accessor(
@@ -57,8 +56,8 @@ export const useUserVocabularyTableColumns = (props: useTableColumnProps) => {
                 createUserTextCol({
                     id: t('Переклад'),
                     size: FIXED_COLUMNS_WIDTH.translation,
-                    sortable: true,
-                    filterable: true,
+                    sortable: false,
+                    filterable: false,
                 }),
             ),
 

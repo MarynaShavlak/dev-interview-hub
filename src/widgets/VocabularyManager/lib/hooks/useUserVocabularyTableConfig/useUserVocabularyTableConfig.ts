@@ -17,12 +17,17 @@ interface UseUserVocabularyTableConfigParams {
     columns: ReturnType<typeof useUserVocabularyTableColumns>;
     globalFilter: string;
     columnFilters: CommonFilterType;
+    editRow: (
+        rowIndex: number,
+        newValue: string,
+        columnId: keyof Vocabulary,
+    ) => void;
 }
 
 export const useUserVocabularyTableConfig = (
     params: UseUserVocabularyTableConfigParams,
 ): Table<Vocabulary> => {
-    const { data, columns, globalFilter, columnFilters } = params;
+    const { data, columns, globalFilter, columnFilters, editRow } = params;
 
     const table = useReactTable<Vocabulary>({
         data,
@@ -43,6 +48,15 @@ export const useUserVocabularyTableConfig = (
         getPaginationRowModel: getPaginationRowModel(),
         globalFilterFn: 'includesString',
         columnResizeMode: 'onChange',
+        meta: {
+            updateData: (
+                rowIndex: number,
+                value: string,
+                columnId: keyof Vocabulary,
+            ) => {
+                editRow(rowIndex, value, columnId);
+            },
+        },
     });
 
     return table;

@@ -15,7 +15,7 @@ interface SelectedVocabulary {
 
 interface UseManageUserHRInterviewTableRowReturnType {
     handleDeleteClick: (articleId: string) => void;
-    handleEditClick: (articleIdId: string) => void;
+
     confirmDelete: () => Promise<void>;
     selectedArticle: SelectedVocabulary | null;
     isLoading: boolean;
@@ -37,8 +37,7 @@ export const useManageUserVocabularyTableRow = (
     }, [interviewData, isLoading, data]);
 
     const deleteArticleModal = useToggleVisibility();
-    // const { navigateToEditVocabulary } = useEditVocabularyNavigation();
-    // const { navigateToArticle } = useArticleNavigation();
+
     const [selectedArticle, setSelectedArticle] =
         useState<SelectedVocabulary | null>(null);
 
@@ -82,21 +81,12 @@ export const useManageUserVocabularyTableRow = (
         [data, deleteArticleModal],
     );
 
-    const handleEditClick = useCallback((articleId: string) => {
-        console.log('articleId', articleId);
-        // if (articleId) {
-        //     navigateToEditVocabulary(articleId);
-        // }
-    }, []);
-
     const articleTitle = selectedArticle?.text
         ? `"${selectedArticle.text}"`
         : '';
 
     return {
         handleDeleteClick,
-        handleEditClick,
-
         confirmDelete,
         selectedArticle,
         isLoading,

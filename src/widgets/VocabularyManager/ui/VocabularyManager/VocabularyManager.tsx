@@ -6,9 +6,7 @@ import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch
 import { useUserAuthData } from '@/entities/User';
 
 import { deleteVocabularyThunk } from '../../model/services/deleteVocabularyThunk/deleteVocabularyThunk';
-import { updateVocabularyThunk } from '../../model/services/updateVocabularyThunk/updateVocabularyThunk';
-import { AddVocabularyForm, Vocabulary } from '@/entities/Vocabulary';
-import { useVocabularyByUser } from '../../api/vocabularyManagerApi';
+import { AddVocabularyForm } from '@/entities/Vocabulary';
 import { addVocabularyThunk } from '../../model/services/addVocabularyThunk/addVocabularyThunk';
 import { UserVocabularyTable } from '../UserVocabularyTable/UserVocabularyTable';
 
@@ -23,12 +21,6 @@ export const VocabularyManager = memo(() => {
         [dispatch],
     );
 
-    const {
-        data: vocabularies,
-        isLoading,
-        error,
-    } = useVocabularyByUser(user?.id || '');
-
     const handleDeleteVocabulary = async (vocabId: string) => {
         try {
             const deletedId = await dispatch(
@@ -37,18 +29,6 @@ export const VocabularyManager = memo(() => {
             return deletedId;
         } catch (error) {
             console.error('Error deleting vocabulary:', error);
-            return null;
-        }
-    };
-
-    const handleUpdateVocabulary = async (vocab: Vocabulary) => {
-        try {
-            const updated = await dispatch(
-                updateVocabularyThunk(vocab),
-            ).unwrap();
-            return updated;
-        } catch (error) {
-            console.error('Error updating vocabulary:', error);
             return null;
         }
     };

@@ -3,7 +3,7 @@ import { CellContext, createColumnHelper } from '@tanstack/react-table';
 import { ActionCellsList } from '../../../ui/ActionCellsList/ActionCellsList';
 
 interface UseCreateActionColumnParams {
-    editRow: (id: string) => void;
+    editRow?: (id: string) => void;
     deleteRow?: (id: string) => void;
     width?: number;
 }

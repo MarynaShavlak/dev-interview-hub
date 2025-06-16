@@ -22,7 +22,7 @@ export const EditableCell = <T, IDType>({
     const onBlur = useCallback(() => {
         if (meta?.updateData) {
             const trimmedValue = trimText(value);
-            meta.updateData(row.index, column.id, trimmedValue);
+            meta.updateData(row.index, trimmedValue, column.id);
         }
     }, [column.id, meta, row.index, value]);
 

@@ -23,7 +23,6 @@ export const LinksManager = memo(() => {
     );
 
     const { data: links, isLoading, error } = useLinksByUser(user?.id || '');
-    console.log('links', links);
 
     const handleDeleteLink = async (linkId: string) => {
         try {
