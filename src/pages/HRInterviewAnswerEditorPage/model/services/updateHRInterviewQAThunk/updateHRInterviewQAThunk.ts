@@ -11,6 +11,7 @@ import {
     HRInterviewQA,
     updateHRInterviewQAMutation,
 } from '@/entities/HRInterviewQA';
+import { searchClient } from '@/shared/config/firebase/searchClient';
 
 export const updateHRInterviewQAThunk = createAsyncThunk<
     HRInterviewQA,
@@ -37,6 +38,7 @@ export const updateHRInterviewQAThunk = createAsyncThunk<
                 updates: formData,
             }),
         ).unwrap();
+        await searchClient.clearCache();
 
         if (!updatedHRInterviewQA) {
             return rejectWithValue(

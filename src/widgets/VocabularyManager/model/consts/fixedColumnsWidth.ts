@@ -1,7 +1,7 @@
 export const FIXED_COLUMNS_WIDTH = {
     text: 130,
-    meaning: 160,
-    translation: 160,
+    meaning: 300,
+    translation: 300,
     action: 50,
 };
 
