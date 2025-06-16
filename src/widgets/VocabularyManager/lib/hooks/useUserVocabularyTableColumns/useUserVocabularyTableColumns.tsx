@@ -38,7 +38,7 @@ export const useUserVocabularyTableColumns = (props: useTableColumnProps) => {
                 createUserTextCol({
                     id: t('Ідіома'),
                     size: titleColumnWidth,
-                    sortable: false,
+                    sortable: true,
                     filterable: false,
                 }),
             ),
