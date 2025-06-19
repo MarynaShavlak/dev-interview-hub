@@ -14,6 +14,7 @@ export type HRCategory =
     | 'initiative'
     | 'teamLeadership'
     | 'criticismFeedback'
+    | 'conflicts'
     | 'prioritizeTasks'
     | 'stressAndUnexpected'
     | 'difficultSituations'

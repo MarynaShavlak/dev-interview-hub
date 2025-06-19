@@ -18,6 +18,7 @@ const labelsEng: Record<string, string> = {
     teamLeadership: 'Team and leadership',
     criticismFeedback: 'Criticism, feedback',
     prioritizeTasks: 'Prioritize Tasks',
+    conflicts: 'Conflicts',
     difficultSituations: 'Difficult situations',
     stressAndUnexpected: 'Stress, pressure, changes',
     idealWork: 'Ideal work',
@@ -58,6 +59,7 @@ const labelsUkr: Record<string, string> = {
 
     criticismFeedback: 'Критика, фідбек',
     prioritizeTasks: 'Пріоритети завдань',
+    conflicts: 'Конфлікти',
     difficultSituations: 'Складні ситуації',
     stressAndUnexpected: 'Стрес, тиск, зміни',
 
