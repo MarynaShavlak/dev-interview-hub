@@ -11,17 +11,17 @@ import {
     TableRow,
     EmptyTableState,
 } from '@/features/Table';
-import { VStack } from '@/shared/ui/common/Stack';
+import { HStack, VStack } from '@/shared/ui/common/Stack';
 
 import { useUserHRInterviewTableData } from '../../lib/hooks/useUserHRInterviewTableData/useUserHRInterviewTableData';
 import { LoadingTableSkeleton } from '../LoadingTableSkeleton/LoadingTableSkeleton';
 
 import { useManageUserHRInterviewTableRow } from '../../lib/hooks/useManageUserHRInterviewTableRow/useManageUserHRInterviewTableRow';
 import { Each } from '@/shared/lib/components/Each/Each';
-import { TableActionBar } from '../TableActionBar/TableActionBar';
 import { useUserHRInterviewTableConfig } from '../../lib/hooks/useUserHRInterviewTableConfig/useUserHRInterviewTableConfig';
 import { toggleFeatures } from '@/shared/lib/features';
 import { HRInterviewQA } from '@/entities/HRInterviewQA';
+import { TableActionBar } from '../TableActionBar/TableActionBar';
 
 interface UserHRInterviewTableProps {
     onDeleteArticle: (articleId: string) => Promise<string | null>;
@@ -29,7 +29,7 @@ interface UserHRInterviewTableProps {
 
 export const UserHRInterviewTable = memo(
     ({ onDeleteArticle }: UserHRInterviewTableProps) => {
-        const { t } = useTranslation('articleDetails');
+        const { t } = useTranslation('hrInterviewQA');
 
         const {
             handleDeleteClick,
@@ -68,8 +68,12 @@ export const UserHRInterviewTable = memo(
         }
         if (data?.length === 0) {
             return (
-                <EmptyTableState message={t('Не створено жодної статті')}>
-                    <AddNewEntityButton entityType="article" />
+                <EmptyTableState
+                    message={t(
+                        'Не створено жодної відповіді на питання HR співбесіди',
+                    )}
+                >
+                    <AddNewEntityButton entityType="hrInterviewQA" />
                 </EmptyTableState>
             );
         }
@@ -82,13 +86,17 @@ export const UserHRInterviewTable = memo(
 
         return (
             <VStack gap="24" max>
-                <TableActionBar
-                    globalFilter={globalFilter}
-                    setGlobalFilter={setGlobalFilter}
-                />
+                <HStack justify="between" max>
+                    <TableActionBar
+                        globalFilter={globalFilter}
+                        setGlobalFilter={setGlobalFilter}
+                    />
+                    <AddNewEntityButton entityType="hrInterviewQA" />
+                </HStack>
+
                 {isFilteredEmpty ? (
                     <EmptyTableState
-                        message={t('Не знайдено статей за Вашим запитом')}
+                        message={t('Не знайдено питань за Вашим запитом')}
                     />
                 ) : (
                     <VStack
@@ -119,7 +127,7 @@ export const UserHRInterviewTable = memo(
                     <ConfirmDeleteModal
                         isOpen={deleteArticleModal.isVisible}
                         onCancel={deleteArticleModal.hide}
-                        text={`${t('статтю')} ${articleTitle}`}
+                        text={`${t('питання')} ${articleTitle}`}
                         onConfirm={confirmDelete}
                     />
                 )}
