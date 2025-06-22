@@ -83,5 +83,9 @@
     "Додати нове HR питання": "Add new HR Interview QA",
     "Питання в черзі": "Questions Queue",
 
-    "Редагувати відповіді": "Edit answers"
+    "Редагувати відповіді": "Edit answers",
+    "Зберегти зміни": "Save changes",
+    "Відмінити": "Cancel",
+    "Зберегти": "Save",
+    "Очистити": "Clear"
 }

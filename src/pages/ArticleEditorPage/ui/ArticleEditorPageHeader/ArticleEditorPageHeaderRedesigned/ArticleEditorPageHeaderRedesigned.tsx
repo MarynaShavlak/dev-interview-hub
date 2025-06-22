@@ -4,13 +4,13 @@ import { ConfirmCancelModal } from '@/shared/ui/common/ConfirmCancelModal';
 import { ConfirmDeleteModal } from '@/shared/ui/common/ConfirmDeleteModal';
 import { HStack } from '@/shared/ui/common/Stack';
 
-import { Button } from '@/shared/ui/redesigned/Button';
 import cls from '../ArticleEditorPageHeader.module.scss';
 import { Text } from '@/shared/ui/redesigned/Text';
 
 import { ArticleEditorPageHeaderProps } from '../ArticleEditorPageHeader';
 import { useArticleEditorPageHeader } from '../../../lib/hooks/useArticleEditorPageHeader/useArticleEditorPageHeader';
 import { Skeleton } from '@/shared/ui/redesigned/Skeleton';
+import { EditorPageHeaderButtons } from '@/features/EditorPageHeaderButtons';
 
 export const ArticleEditorPageHeaderRedesigned = memo(
     (props: ArticleEditorPageHeaderProps) => {
@@ -49,42 +49,16 @@ export const ArticleEditorPageHeaderRedesigned = memo(
                 className={cls.pageTitleWrapRedesigned}
             >
                 <Text title={pageTitle} size="l" />
-                <HStack gap="8" className={className}>
-                    {isEditArticlePage && (
-                        <>
-                            <Button
-                                variant="cancel"
-                                onClick={deleteArticleModal.show}
-                            >
-                                {t('Видалити')}
-                            </Button>
-                            <Button onClick={cancelEdit}>
-                                {t('Відмінити')}
-                            </Button>
-                            <Button
-                                variant="save"
-                                onClick={handleUpdate}
-                                disabled={!canSave}
-                            >
-                                {t('Зберегти зміни')}
-                            </Button>
-                        </>
-                    )}
-                    {!isEditArticlePage && (
-                        <>
-                            <Button variant="cancel" onClick={onActions.clear}>
-                                {t('Очистити')}
-                            </Button>
-                            <Button
-                                variant="save"
-                                onClick={handleSave}
-                                disabled={!canSave}
-                            >
-                                {t('Зберегти статтю')}
-                            </Button>
-                        </>
-                    )}
-                </HStack>
+                <EditorPageHeaderButtons
+                    isEditPage={isEditArticlePage}
+                    canSave={canSave}
+                    onClear={onActions.clear}
+                    onCancelEdit={cancelEdit}
+                    onUpdate={handleUpdate}
+                    onSave={handleSave}
+                    onDelete={deleteArticleModal.show}
+                />
+
                 {deleteArticleModal.isVisible && (
                     <ConfirmDeleteModal
                         isOpen={deleteArticleModal.isVisible}

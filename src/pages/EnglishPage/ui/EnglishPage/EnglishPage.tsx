@@ -27,7 +27,7 @@ const EnglishPage = memo((props: EnglishPageProps) => {
             }
             off={
                 <Page className={className} data-testid="EnglishPage">
-                    page
+                    <VocabularyManager />
                 </Page>
             }
         />

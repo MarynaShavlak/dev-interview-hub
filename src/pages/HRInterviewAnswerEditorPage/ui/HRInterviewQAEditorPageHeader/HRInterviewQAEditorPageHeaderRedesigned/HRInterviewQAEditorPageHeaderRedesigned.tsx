@@ -4,13 +4,13 @@ import { ConfirmCancelModal } from '@/shared/ui/common/ConfirmCancelModal';
 import { ConfirmDeleteModal } from '@/shared/ui/common/ConfirmDeleteModal';
 import { HStack } from '@/shared/ui/common/Stack';
 
-import { Button } from '@/shared/ui/redesigned/Button';
 import cls from '../HRInterviewQAEditorPageHeader.module.scss';
 import { Text } from '@/shared/ui/redesigned/Text';
 
 import { HRInterviewQAEditorPageHeaderProps } from '../HRInterviewQAEditorPageHeader';
 import { useHRInterviewQAEditorPageHeader } from '../../../lib/hooks/useHRInterviewQAEditorPageHeader/useHRInterviewQAEditorPageHeader';
 import { Skeleton } from '@/shared/ui/redesigned/Skeleton';
+import { EditorPageHeaderButtons } from '@/features/EditorPageHeaderButtons';
 
 export const HRInterviewQAEditorPageHeaderRedesigned = memo(
     (props: HRInterviewQAEditorPageHeaderProps) => {
@@ -49,54 +49,28 @@ export const HRInterviewQAEditorPageHeaderRedesigned = memo(
                 className={cls.pageTitleWrapRedesigned}
             >
                 <Text title={pageTitle} size="l" />
-                <HStack gap="8" className={className}>
-                    {isEditArticlePage && (
-                        <>
-                            <Button
-                                variant="cancel"
-                                onClick={deleteArticleModal.show}
-                            >
-                                {t('Видалити')}
-                            </Button>
-                            <Button onClick={cancelEdit}>
-                                {t('Відмінити')}
-                            </Button>
-                            <Button
-                                variant="save"
-                                onClick={handleUpdate}
-                                disabled={!canSave}
-                            >
-                                {t('Зберегти зміни')}
-                            </Button>
-                        </>
-                    )}
-                    {!isEditArticlePage && (
-                        <>
-                            <Button variant="cancel" onClick={onActions.clear}>
-                                {t('Очистити')}
-                            </Button>
-                            <Button
-                                variant="save"
-                                onClick={handleSave}
-                                disabled={!canSave}
-                            >
-                                {t('Зберегти відповідь на питання')}
-                            </Button>
-                        </>
-                    )}
-                </HStack>
+                <EditorPageHeaderButtons
+                    isEditPage={isEditArticlePage}
+                    canSave={canSave}
+                    onClear={onActions.clear}
+                    onCancelEdit={cancelEdit}
+                    onUpdate={handleUpdate}
+                    onSave={handleSave}
+                    onDelete={deleteArticleModal.show}
+                />
+
                 {deleteArticleModal.isVisible && (
                     <ConfirmDeleteModal
                         isOpen={deleteArticleModal.isVisible}
                         onCancel={deleteArticleModal.hide}
-                        text={`${t('статтю')} "${articleTitle}"`}
+                        text={`${t('відповідь на питання')} "${articleTitle}"`}
                         onConfirm={handleDelete}
                     />
                 )}
                 {cancelArticleEditing.isVisible && (
                     <ConfirmCancelModal
                         isOpen={cancelArticleEditing.isVisible}
-                        text={t('редагування статті')}
+                        text={t('редагування питання')}
                         cancelBtnText={t('Продовжити редагування')}
                         confirmBtnText={t('Відмінити зміни')}
                         onCancel={cancelArticleEditing.hide}
