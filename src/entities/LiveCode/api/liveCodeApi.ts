@@ -11,17 +11,17 @@ import {
 import { ERROR_LIVE_CODE_MESSAGES } from '../model/consts/errorHRInterviewMessages';
 import { LiveCode } from '../model/types/liveCode';
 
-import { fetchHRInterviewQA } from '../lib/utilities/fetchHRInterviewQA/fetchHRInterviewQA';
-import { subscribeToHRInterviewQA } from '../lib/utilities/subscribeToHRInterviewQA/subscribeToHRInterviewQA';
+import { fetchLiveCode } from '../lib/utilities/fetchLiveCode/fetchLiveCode';
+import { subscribeToLiveCode } from '../lib/utilities/subscribeToLiveCode/subscribeToLiveCode';
 
-import { subscribeToUserHRInterviews } from '../lib/utilities/subscribeToUserHRInterviews/subscribeToUserHRInterviews';
+import { subscribeToUserLiveCodeTasks } from '../lib/utilities/subscribeToUserLiveCodeTasks/subscribeToUserLiveCodeTasks';
 import { updateDocById } from '@/shared/lib/firestore/updateDocById/updateDocById';
 
-interface UpdateHRInterviewQAArgs {
+interface UpdateLiveCodeArgs {
     id: string;
     updates: Partial<LiveCode>;
 }
-export type NewHRInterviewQADraft = Omit<LiveCode, 'createdAt'>;
+export type NewLiveCodeDraft = Omit<LiveCode, 'createdAt'>;
 
 export const liveCodeFirebaseApi = firestoreApi
     .enhanceEndpoints({
@@ -29,7 +29,7 @@ export const liveCodeFirebaseApi = firestoreApi
     })
     .injectEndpoints({
         endpoints: (build) => ({
-            getHRInterviewQAsByUserId: build.query<LiveCode[], string>({
+            getLiveCodesByUserId: build.query<LiveCode[], string>({
                 providesTags: [{ type: 'liveCodeTasks', id: 'userId' }],
                 keepUnusedDataFor: 3600,
                 async queryFn(userId) {
@@ -56,7 +56,7 @@ export const liveCodeFirebaseApi = firestoreApi
                     { updateCachedData, cacheDataLoaded, cacheEntryRemoved },
                 ) {
                     handleFirestoreSubscription({
-                        subscriptionFn: subscribeToUserHRInterviews,
+                        subscriptionFn: subscribeToUserLiveCodeTasks,
                         updateFn: updateCachedData,
                         dependency: userId,
                         cacheDataLoaded,
@@ -64,10 +64,10 @@ export const liveCodeFirebaseApi = firestoreApi
                     });
                 },
             }),
-            getHRInterviewQADataById: build.query<LiveCode, string>({
+            getLiveCodeDataById: build.query<LiveCode, string>({
                 async queryFn(id) {
                     return executeQuery(
-                        () => fetchHRInterviewQA(id),
+                        () => fetchLiveCode(id),
                         ERROR_LIVE_CODE_MESSAGES.FETCH_LIVE_CODE_ERROR(id),
                     );
                 },
@@ -76,7 +76,7 @@ export const liveCodeFirebaseApi = firestoreApi
                     { updateCachedData, cacheDataLoaded, cacheEntryRemoved },
                 ) {
                     handleFirestoreSubscription({
-                        subscriptionFn: subscribeToHRInterviewQA,
+                        subscriptionFn: subscribeToLiveCode,
                         updateFn: updateCachedData,
                         dependency: id,
                         cacheDataLoaded,
@@ -84,21 +84,21 @@ export const liveCodeFirebaseApi = firestoreApi
                     });
                 },
             }),
-            addHRInterviewQA: build.mutation<LiveCode, NewHRInterviewQADraft>({
+            addLiveCode: build.mutation<LiveCode, NewLiveCodeDraft>({
                 invalidatesTags: ['liveCodeTasks'],
-                async queryFn(newHRInterviewQA) {
+                async queryFn(newLiveCode) {
                     return executeQuery(
                         () =>
                             saveDocToFirestore<LiveCode>(
                                 'liveCodeTasks',
-                                newHRInterviewQA,
+                                newLiveCode,
                                 ERROR_LIVE_CODE_MESSAGES.LIVE_CODE_RETRIEVAL_FAIL,
                             ),
                         ERROR_LIVE_CODE_MESSAGES.ADD_LIVE_CODE_FAIL,
                     );
                 },
             }),
-            deleteHRInterviewQA: build.mutation<string, string>({
+            deleteLiveCode: build.mutation<string, string>({
                 invalidatesTags: ['liveCodeTasks'],
                 async queryFn(id) {
                     return executeQuery(
@@ -107,10 +107,7 @@ export const liveCodeFirebaseApi = firestoreApi
                     );
                 },
             }),
-            updateHRInterviewQA: build.mutation<
-                LiveCode,
-                UpdateHRInterviewQAArgs
-            >({
+            updateLiveCode: build.mutation<LiveCode, UpdateLiveCodeArgs>({
                 invalidatesTags: ['liveCodeTasks'],
                 async queryFn({ id, updates }) {
                     return executeQuery(
@@ -124,12 +121,9 @@ export const liveCodeFirebaseApi = firestoreApi
 
 const { endpoints } = liveCodeFirebaseApi;
 
-export const addHRInterviewQAMutation = endpoints.addHRInterviewQA.initiate;
-export const deleteHRInterviewQAMutation =
-    endpoints.deleteHRInterviewQA.initiate;
-export const updateHRInterviewQAMutation =
-    endpoints.updateHRInterviewQA.initiate;
-export const getHRInterviewQADataByIdQuery =
-    endpoints.getHRInterviewQADataById.initiate;
-export const useHRInterviewQAsByUserId =
-    liveCodeFirebaseApi.useGetHRInterviewQAsByUserIdQuery;
+export const addLiveCodeMutation = endpoints.addLiveCode.initiate;
+export const deleteLiveCodeMutation = endpoints.deleteLiveCode.initiate;
+export const updateLiveCodeMutation = endpoints.updateLiveCode.initiate;
+export const getLiveCodeDataByIdQuery = endpoints.getLiveCodeDataById.initiate;
+export const useLiveCodesByUserId =
+    liveCodeFirebaseApi.useGetLiveCodesByUserIdQuery;

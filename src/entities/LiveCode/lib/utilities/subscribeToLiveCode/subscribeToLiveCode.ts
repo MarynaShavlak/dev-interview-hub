@@ -5,9 +5,9 @@ import { handleRequestErrorMessage } from '@/shared/lib/firestore/handleRequestE
 
 import { LiveCode } from '../../../model/types/liveCode';
 import { ERROR_LIVE_CODE_MESSAGES } from '../../../model/consts/errorHRInterviewMessages';
-import { createHRInterviewQAQuery } from '../createHRInterviewQAQuery/createHRInterviewQAQuery';
+import { createLiveCodeQuery } from '../createLiveCodeQuery/createLiveCodeQuery';
 
-export const subscribeToHRInterviewQA = (
+export const subscribeToLiveCode = (
     updateCachedData: (
         updater: (draft: MaybeDrafted<LiveCode>) => void,
     ) => void,
@@ -17,7 +17,7 @@ export const subscribeToHRInterviewQA = (
 
     try {
         if (!id) return undefined;
-        const query = createHRInterviewQAQuery(id);
+        const query = createLiveCodeQuery(id);
 
         unsubscribe = onSnapshot(query, (snapshot) => {
             updateCachedData((draft) => {
@@ -29,7 +29,7 @@ export const subscribeToHRInterviewQA = (
         });
     } catch (error) {
         handleRequestErrorMessage(
-            ERROR_LIVE_CODE_MESSAGES.HR_INTERVIEW_SNAPSHOT_FAIL(id),
+            ERROR_LIVE_CODE_MESSAGES.LIVE_CODE_SNAPSHOT_FAIL(id),
             error,
         );
     }

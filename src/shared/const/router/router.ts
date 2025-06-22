@@ -14,6 +14,7 @@ export enum AppRoutes {
     HR_INTERVIEW_QUEUE = 'hr_interview_queue',
     HR_INTERVIEW_EDITOR = 'hr_interview_editor',
     HR_INTERVIEW_ANSWER_EDIT = 'hr_interview_answer_edit',
+    LIVE_CODE_TASK_EDIT = 'live_code_task_edit',
     ENGLISH = 'english',
     FORBIDDEN = 'forbidden',
     // last
@@ -38,6 +39,9 @@ export const getRouteHRInterviewEditor = () => '/hr-interview-editor';
 export const getRouteHRInterviewAnswerEdit = (id: string) =>
     `/hr-interview-qa/${id}/edit`;
 
+export const getRouteLiveCodeTaskEdit = (id: string) =>
+    `/live-code-task/${id}/edit`;
+
 export const AppRouteByPathPattern: Record<string, AppRoutes> = {
     [getRouteMain()]: AppRoutes.MAIN,
     [getRouteSettings()]: AppRoutes.SETTINGS,
@@ -56,4 +60,5 @@ export const AppRouteByPathPattern: Record<string, AppRoutes> = {
     [getRouteHRInterviewEditor()]: AppRoutes.HR_INTERVIEW_EDITOR,
     [getRouteHRInterviewQueue()]: AppRoutes.HR_INTERVIEW_QUEUE,
     [getRouteHRInterviewAnswerEdit(':id')]: AppRoutes.HR_INTERVIEW_ANSWER_EDIT,
+    [getRouteLiveCodeTaskEdit(':id')]: AppRoutes.LIVE_CODE_TASK_EDIT,
 };

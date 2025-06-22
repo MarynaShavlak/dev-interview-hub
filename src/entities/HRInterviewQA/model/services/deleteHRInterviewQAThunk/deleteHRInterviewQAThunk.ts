@@ -8,7 +8,7 @@ export const deleteHRInterviewQAThunk = createAsyncThunk<
     string,
     string,
     ThunkConfig<string>
->('article/deleteArticle', async (articleId, thunkApi) => {
+>('hrInterviewQA/deleteHrInterviewQA', async (articleId, thunkApi) => {
     const { rejectWithValue, dispatch } = thunkApi;
 
     if (!articleId) {

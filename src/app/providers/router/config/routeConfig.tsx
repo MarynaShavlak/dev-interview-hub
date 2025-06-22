@@ -35,6 +35,7 @@ import {
     getRouteHRInterviewEditor,
     getRouteHRInterviewAnswerEdit,
     getRouteEnglish,
+    getRouteLiveCodeTaskEdit,
 } from '@/shared/const/router/router';
 import { AppRoutesProps } from '@/shared/types/router';
 import {
@@ -58,6 +59,10 @@ import {
     HRInterviewEditorTablePageSkeleton,
 } from '@/pages/HRInterviewEditorTablePage';
 import { EnglishPageSkeleton, EnglishPage } from '@/pages/EnglishPage';
+import {
+    LiveCodeTaskEditorPage,
+    LiveCodeTaskEditorPageSkeleton,
+} from '@/pages/LiveCodeTaskEditorPage';
 
 export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
     [AppRoutes.MAIN]: {
@@ -167,5 +172,12 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
         path: '*',
         element: <NotFoundPage />,
         skeleton: <NotFoundPageSkeleton />,
+    },
+
+    [AppRoutes.LIVE_CODE_TASK_EDIT]: {
+        path: getRouteLiveCodeTaskEdit(':id'),
+        element: <LiveCodeTaskEditorPage />,
+        authOnly: true,
+        skeleton: <LiveCodeTaskEditorPageSkeleton />,
     },
 };

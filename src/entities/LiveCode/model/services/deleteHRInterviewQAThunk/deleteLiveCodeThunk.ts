@@ -1,25 +1,23 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig } from '@/app/providers/StoreProvider';
 import { handleThunkErrorMessage } from '@/shared/lib/firestore';
-import { ERROR_LIVE_CODE_MESSAGES } from '../../../model/consts/errorHRInterviewMessages';
-import { deleteHRInterviewQAMutation } from '../../../api/hrInterviewApi';
+import { ERROR_LIVE_CODE_MESSAGES } from '../../..';
+import { deleteLiveCodeMutation } from '../../../api/liveCodeApi';
 
-export const deleteHRInterviewQAThunk = createAsyncThunk<
+export const deleteLiveCodeThunk = createAsyncThunk<
     string,
     string,
     ThunkConfig<string>
->('article/deleteArticle', async (articleId, thunkApi) => {
+>('liveCodeTask/deleteLiveCodeTask', async (articleId, thunkApi) => {
     const { rejectWithValue, dispatch } = thunkApi;
 
     if (!articleId) {
-        return rejectWithValue(
-            ERROR_LIVE_CODE_MESSAGES.HR_INTERVIEW_ID_REQUIRED,
-        );
+        return rejectWithValue(ERROR_LIVE_CODE_MESSAGES.LIVE_CODE_ID_REQUIRED);
     }
 
     try {
         const deletedArticleId = await dispatch(
-            deleteHRInterviewQAMutation(articleId),
+            deleteLiveCodeMutation(articleId),
         ).unwrap();
 
         return deletedArticleId;
