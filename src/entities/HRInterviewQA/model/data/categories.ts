@@ -1,4 +1,4 @@
-import { generateCategories } from '../../lib/utilities/generateCategories/generateCategories';
+import { generateCategories } from '@/shared/lib/generateCategories/generateCategories';
 
 const labelsEng: Record<string, string> = {
     describeYourself: 'Describe yourself',

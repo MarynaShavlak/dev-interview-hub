@@ -1,9 +1,7 @@
 type LabelsType = Record<string, string>;
 
-function generateCategories(
+export const generateCategories = (
     labels: LabelsType,
-): { key: string; value: string }[] {
+): { key: string; value: string }[] => {
     return Object.keys(labels).map((key) => ({ key, value: labels[key] }));
-}
-
-export { generateCategories };
+};

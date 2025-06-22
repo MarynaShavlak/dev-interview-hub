@@ -9,4 +9,5 @@ export type FirestoreCollectionType =
     | 'hrInterviewQA'
     | 'vocabularies'
     | 'notifications/general/messages'
-    | `notifications/personal/${string}`;
+    | `notifications/personal/${string}`
+    | 'liveCodeTasks';
