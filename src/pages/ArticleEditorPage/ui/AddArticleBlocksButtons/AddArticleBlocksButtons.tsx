@@ -1,24 +1,49 @@
 import React, { memo } from 'react';
 
-import { ToggleFeaturesComponent } from '@/shared/lib/features';
-import { AddArticleBlocksButtonsRedesigned } from './AddArticleBlocksButtonsRedesigned/AddArticleBlocksButtonsRedesigned';
-import { AddArticleBlocksButtonsDeprecated } from './AddArticleBlocksButtonsDeprecated/AddArticleBlocksButtonsDeprecated';
+import {
+    AddBlocksButtons,
+    BlockButtonConfig,
+} from '@/features/AddBlocksButtons';
 
 export interface AddArticleBlocksButtonsProps {
     onAddTextBlockBtnClick: () => void;
     onAddCodeBlockBtnClick: () => void;
-    onAddImageBlockBtnClick?: () => void;
+    onAddImageBlockBtnClick: () => void;
     deleteAllBlocks: () => void;
     isSomeBlockAdded: boolean;
 }
 
 export const AddArticleBlocksButtons = memo(
     (props: AddArticleBlocksButtonsProps) => {
+        const {
+            onAddTextBlockBtnClick,
+            onAddImageBlockBtnClick,
+            onAddCodeBlockBtnClick,
+            deleteAllBlocks,
+            isSomeBlockAdded,
+        } = props;
+        const buttons: BlockButtonConfig[] = [
+            {
+                type: 'text',
+                onClick: onAddTextBlockBtnClick,
+                translationKey: 'тексту',
+            },
+            {
+                type: 'code',
+                onClick: onAddCodeBlockBtnClick,
+                translationKey: 'коду',
+            },
+            {
+                type: 'image',
+                onClick: onAddImageBlockBtnClick,
+                translationKey: 'зображення',
+            },
+        ];
         return (
-            <ToggleFeaturesComponent
-                feature="isAppRedesigned"
-                on={<AddArticleBlocksButtonsRedesigned {...props} />}
-                off={<AddArticleBlocksButtonsDeprecated {...props} />}
+            <AddBlocksButtons
+                buttons={buttons}
+                deleteAllBlocks={deleteAllBlocks}
+                isSomeBlockAdded={isSomeBlockAdded}
             />
         );
     },

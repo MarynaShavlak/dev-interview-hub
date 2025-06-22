@@ -1,8 +1,9 @@
 import React, { memo } from 'react';
 
-import { ToggleFeaturesComponent } from '@/shared/lib/features';
-import { AddHRInterviewQABlocksButtonsRedesigned } from './AddHRInterviewQABlocksButtonsRedesigned/AddHRInterviewQABlocksButtonsRedesigned';
-import { AddHRInterviewQABlocksButtonsDeprecated } from './AddHRInterviewQABlocksButtonsDeprecated/AddHRInterviewQABlocksButtonsDeprecated';
+import {
+    AddBlocksButtons,
+    BlockButtonConfig,
+} from '@/features/AddBlocksButtons';
 
 export interface AddHRInterviewQABlocksButtonsProps {
     onAddTextBlockBtnClick: () => void;
@@ -13,11 +14,24 @@ export interface AddHRInterviewQABlocksButtonsProps {
 
 export const AddHRInterviewQABlocksButtons = memo(
     (props: AddHRInterviewQABlocksButtonsProps) => {
+        const {
+            onAddTextBlockBtnClick,
+
+            deleteAllBlocks,
+            isSomeBlockAdded,
+        } = props;
+        const buttons: BlockButtonConfig[] = [
+            {
+                type: 'text',
+                onClick: onAddTextBlockBtnClick,
+                translationKey: 'тексту',
+            },
+        ];
         return (
-            <ToggleFeaturesComponent
-                feature="isAppRedesigned"
-                on={<AddHRInterviewQABlocksButtonsRedesigned {...props} />}
-                off={<AddHRInterviewQABlocksButtonsDeprecated {...props} />}
+            <AddBlocksButtons
+                buttons={buttons}
+                deleteAllBlocks={deleteAllBlocks}
+                isSomeBlockAdded={isSomeBlockAdded}
             />
         );
     },
