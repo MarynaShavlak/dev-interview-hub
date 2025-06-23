@@ -1,0 +1,33 @@
+import React, { memo } from 'react';
+import { Blocks } from '../Blocks/Blocks';
+import { UseLiveCodeEditorReturn } from '../../lib/hooks/useLiveCodeEditor/useLiveCodeEditor';
+import { VStack } from '@/shared/ui/common/Stack';
+
+import { ContentSkeleton } from './ContentSkeleton/ContentSkeleton';
+
+interface LiveCodeEditorPageProps {
+    metadata: UseLiveCodeEditorReturn['metadata'];
+    validation: UseLiveCodeEditorReturn['validation'];
+    blockActions: UseLiveCodeEditorReturn['blockActions'];
+}
+
+export const LiveCodeEditorPageContent = memo(
+    (props: LiveCodeEditorPageProps) => {
+        const { validation, blockActions, metadata } = props;
+
+        const { blocks, isLoading } = metadata;
+
+        if (isLoading) {
+            return <ContentSkeleton />;
+        }
+
+        return (
+            <VStack gap="24">
+                {/* <LiveCodeTitle titleIndex={1} errors={validation} /> */}
+
+                {/* <AddHRInterviewCategoryForm index={4} /> */}
+                <Blocks index={5} blocks={blocks} blockActions={blockActions} />
+            </VStack>
+        );
+    },
+);

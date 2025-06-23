@@ -4,12 +4,12 @@ import { ConfirmCancelModal } from '@/shared/ui/common/ConfirmCancelModal';
 import { ConfirmDeleteModal } from '@/shared/ui/common/ConfirmDeleteModal';
 import { HStack } from '@/shared/ui/common/Stack';
 
-import cls from '../HRInterviewQAEditorPageHeader.module.scss';
+import cls from '../LiveCodeEditorPageHeader.module.scss';
 import { Text, TextSize } from '@/shared/ui/deprecated/Text';
 import { Loader } from '@/shared/ui/deprecated/Loader';
 
 import { LiveCodeEditorPageHeaderProps } from '../LiveCodeEditorPageHeader';
-import { useHRInterviewQAEditorPageHeader } from '../../../lib/hooks/useHRInterviewQAEditorPageHeader/useHRInterviewQAEditorPageHeader';
+import { useLiveCodeEditorPageHeader } from '../../../lib/hooks/useLiveCodeEditorPageHeader/useLiveCodeEditorPageHeader';
 import { EditorPageHeaderButtons } from '@/features/EditorPageHeaderButtons';
 
 export const LiveCodeEditorPageHeaderDeprecated = memo(
@@ -36,8 +36,7 @@ export const LiveCodeEditorPageHeaderDeprecated = memo(
             canSave,
             articleTitle,
             cancelEdit,
-        } = useHRInterviewQAEditorPageHeader(onActions, hasErrors);
-        console.log('canSave', canSave);
+        } = useLiveCodeEditorPageHeader(onActions, hasErrors);
 
         if (isLoading) {
             return (

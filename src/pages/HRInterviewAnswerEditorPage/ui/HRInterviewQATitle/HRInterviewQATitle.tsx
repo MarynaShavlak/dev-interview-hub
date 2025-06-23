@@ -1,24 +1,47 @@
 import React, { memo } from 'react';
 
-import { ValidationErrors } from '@/shared/lib/hooks/validationHooks/useInputErrors/useInputErrors';
-import { ToggleFeaturesComponent } from '@/shared/lib/features';
-import { HRInterviewQATitleRedesigned } from './HRInterviewQATitleRedesigned/HRInterviewQATitleRedesigned';
-import { HRInterviewQATitleDeprecated } from './HRInterviewQATitleDeprecated/HRInterviewQATitleDeprecated';
+import {
+    EntityTitleInput,
+    EntityTitleProps,
+} from '@/features/EntityTitleInput';
+import { HRInterviewQA } from '@/entities/HRInterviewQA';
+import { useHRInterviewQAFormState } from '../../lib/hooks/useHRInterviewQAFormState/useHRInterviewQAFormState';
+import { HStack, VStack } from '@/shared/ui/common/Stack';
+import { OrderCard as OrderCardRedesigned } from '@/shared/ui/redesigned/OrderCard';
+import { toggleFeatures } from '@/shared/lib/features';
+import { OrderCard as OrderCardDeprecated } from '@/shared/ui/deprecated/OrderCard';
 
 export interface HRInterviewQATitleProps {
     titleIndex: number;
-    errors: {
-        hasInputErrors: boolean;
-        titleErrors: ValidationErrors;
-    };
+    errors: EntityTitleProps<HRInterviewQA>['errors'];
 }
 
 export const HRInterviewQATitle = memo((props: HRInterviewQATitleProps) => {
+    const { titleIndex, errors } = props;
+    const form = useHRInterviewQAFormState();
+
+    const { formData, onChangeTitle } = form;
+
+    if (!formData) {
+        return null;
+    }
+    const OrderCard = toggleFeatures({
+        name: 'isAppRedesigned',
+        on: () => OrderCardRedesigned,
+        off: () => OrderCardDeprecated,
+    });
+
     return (
-        <ToggleFeaturesComponent
-            feature="isAppRedesigned"
-            on={<HRInterviewQATitleRedesigned {...props} />}
-            off={<HRInterviewQATitleDeprecated {...props} />}
-        />
+        <VStack gap="24" max>
+            <HStack gap="16" align="start" max>
+                <OrderCard index={titleIndex} />
+                <EntityTitleInput
+                    errors={errors}
+                    formData={formData}
+                    onChangeTitle={onChangeTitle}
+                    entityType="hrInterviewQA"
+                />
+            </HStack>
+        </VStack>
     );
 });

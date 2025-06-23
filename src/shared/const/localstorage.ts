@@ -8,3 +8,4 @@ export const ADMIN_TAB_KEY = 'adminActiveTab';
 export const MY_ARTICLES_TAB_KEY = 'myArticlesActiveTab';
 export const ARTICLE_TO_CREATE_TITLE = 'newArticleTitle';
 export const HR_INTERVIEW_TO_CREATE_TITLE = 'newHRInterviewTitle';
+export const LIVE_CODE_TO_CREATE_TITLE = 'newLiveCodeTitle';

@@ -15,7 +15,7 @@ import { subscribeToLiveCode } from '../lib/utilities/subscribeToLiveCode/subscr
 
 import { subscribeToUserLiveCodeTasks } from '../lib/utilities/subscribeToUserLiveCodeTasks/subscribeToUserLiveCodeTasks';
 import { updateDocById } from '@/shared/lib/firestore/updateDocById/updateDocById';
-import { ERROR_LIVE_CODE_MESSAGES } from '..';
+import { ERROR_LIVE_CODE_MESSAGES } from '../model/consts/errorLiveCodeMessages';
 
 interface UpdateLiveCodeArgs {
     id: string;

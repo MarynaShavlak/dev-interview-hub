@@ -4,11 +4,11 @@ import { ConfirmCancelModal } from '@/shared/ui/common/ConfirmCancelModal';
 import { ConfirmDeleteModal } from '@/shared/ui/common/ConfirmDeleteModal';
 import { HStack } from '@/shared/ui/common/Stack';
 
-import cls from '../HRInterviewQAEditorPageHeader.module.scss';
+import cls from '../LiveCodeEditorPageHeader.module.scss';
 import { Text } from '@/shared/ui/redesigned/Text';
 
 import { LiveCodeEditorPageHeaderProps } from '../LiveCodeEditorPageHeader';
-import { useHRInterviewQAEditorPageHeader } from '../../../lib/hooks/useHRInterviewQAEditorPageHeader/useHRInterviewQAEditorPageHeader';
+import { useLiveCodeEditorPageHeader } from '../../../lib/hooks/useLiveCodeEditorPageHeader/useLiveCodeEditorPageHeader';
 import { Skeleton } from '@/shared/ui/redesigned/Skeleton';
 import { EditorPageHeaderButtons } from '@/features/EditorPageHeaderButtons';
 
@@ -36,7 +36,7 @@ export const LiveCodeEditorPageHeaderRedesigned = memo(
             canSave,
             articleTitle,
             cancelEdit,
-        } = useHRInterviewQAEditorPageHeader(onActions, hasErrors);
+        } = useLiveCodeEditorPageHeader(onActions, hasErrors);
 
         if (isLoading) {
             return <Skeleton width="100%" height="76px" border="16px" />;

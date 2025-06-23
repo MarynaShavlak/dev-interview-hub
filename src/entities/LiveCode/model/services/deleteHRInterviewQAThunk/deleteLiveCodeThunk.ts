@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig } from '@/app/providers/StoreProvider';
 import { handleThunkErrorMessage } from '@/shared/lib/firestore';
-import { ERROR_LIVE_CODE_MESSAGES } from '../../..';
+import { ERROR_LIVE_CODE_MESSAGES } from '../../../model/consts/errorLiveCodeMessages';
 import { deleteLiveCodeMutation } from '../../../api/liveCodeApi';
 
 export const deleteLiveCodeThunk = createAsyncThunk<
