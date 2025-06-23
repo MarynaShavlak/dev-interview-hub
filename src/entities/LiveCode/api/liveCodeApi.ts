@@ -127,3 +127,5 @@ export const updateLiveCodeMutation = endpoints.updateLiveCode.initiate;
 export const getLiveCodeDataByIdQuery = endpoints.getLiveCodeDataById.initiate;
 export const useLiveCodesByUserId =
     liveCodeFirebaseApi.useGetLiveCodesByUserIdQuery;
+export const useLiveCodeDataById =
+    liveCodeFirebaseApi.useGetLiveCodeDataByIdQuery;

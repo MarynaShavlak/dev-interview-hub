@@ -3,7 +3,7 @@ import React, { memo } from 'react';
 import {
     EntityTitleInput,
     EntityTitleProps,
-} from '@/features/EntityTitleInput';
+} from '@/features/EditorPageComponents';
 import { LiveCode } from '@/entities/LiveCode';
 import { useLiveCodeFormState } from '../../lib/hooks/useLiveCodeFormState/useLiveCodeFormState';
 import { HStack, VStack } from '@/shared/ui/common/Stack';

@@ -5,7 +5,7 @@ The **`ArticleDetailsDeprecatedPage`** component is used to render detailed info
 
 ## Type Definition
 ```typescript
-interface ArticleDetailsPageProps {
+interface LiveCodeTaskDetailsPageProps {
     className?: string;
 }
 ```

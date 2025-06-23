@@ -1,4 +1,5 @@
 import React, { memo } from 'react';
+import { AddBlocksForm } from '@/features/EditorPageComponents';
 import { LiveCodeBlock } from '@/entities/LiveCode';
 
 import { toggleFeatures } from '@/shared/lib/features';
@@ -8,7 +9,6 @@ import { OrderCard as OrderCardDeprecated } from '@/shared/ui/deprecated/OrderCa
 import { HStack, VStack } from '@/shared/ui/common/Stack';
 import cls from './Blocks.module.scss';
 import { Each } from '@/shared/lib/components/Each/Each';
-import { AddBlocksForm } from '@/widgets/AddBlocksForm';
 import { BlockRenderer } from './BlockRenderer/BlockRenderer';
 
 export interface AddBlocksFormProps {

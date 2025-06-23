@@ -1,4 +1,5 @@
 import React, { memo } from 'react';
+import { SaveEntityError } from '@/features/EditorPageComponents';
 import { VStack } from '@/shared/ui/common/Stack';
 import { useLiveCodeEditor } from '../../lib/hooks/useLiveCodeEditor/useLiveCodeEditor';
 
@@ -12,7 +13,6 @@ import { ContentSkeleton } from '../LiveCodeEditorPageContent/ContentSkeleton/Co
 import { createLiveCodeTaskReducer } from '../../model/slices/createLiveCodeSlice';
 import { useLiveCodeEditorPageHeader } from '../../lib/hooks/useLiveCodeEditorPageHeader/useLiveCodeEditorPageHeader';
 import { EditorPageHeader } from '@/widgets/EditorPageHeader';
-import { SaveEntityError } from '@/features/SaveEntityError';
 
 const reducers: ReducersList = {
     createLiveCode: createLiveCodeTaskReducer,

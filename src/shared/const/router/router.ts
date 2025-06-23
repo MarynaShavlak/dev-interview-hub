@@ -17,6 +17,7 @@ export enum AppRoutes {
     LIVE_CODE_TASKS = 'live_code_tasks',
     LIVE_CODE_TASK_EDIT = 'live_code_task_edit',
     LIVE_CODE_TASK_CREATE = 'live_code_task_create',
+    LIVE_CODE_TASK_DETAILS = 'live_code_task_details',
     ENGLISH = 'english',
     FORBIDDEN = 'forbidden',
     // last
@@ -70,4 +71,5 @@ export const AppRouteByPathPattern: Record<string, AppRoutes> = {
     [getRouteLiveCodeTasks()]: AppRoutes.LIVE_CODE_TASKS,
     [getRouteLiveCodeTaskEdit(':id')]: AppRoutes.LIVE_CODE_TASK_EDIT,
     [getRouteLiveCodeTaskCreate()]: AppRoutes.LIVE_CODE_TASK_CREATE,
+    [getRouteLiveCodeTaskDetails(':id')]: AppRoutes.LIVE_CODE_TASK_DETAILS,
 };

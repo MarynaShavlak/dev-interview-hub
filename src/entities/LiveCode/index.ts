@@ -15,6 +15,7 @@ export {
     updateLiveCodeMutation,
     getLiveCodeDataByIdQuery,
     useLiveCodesByUserId,
+    useLiveCodeDataById,
 } from './api/liveCodeApi';
 
 export type { LiveCode, LiveCodeBlock } from './model/types/liveCode';

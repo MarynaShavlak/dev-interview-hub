@@ -4,7 +4,7 @@
 The **`ArticleDetailsRedesignedPage`** module is a core component of the application responsible for presenting detailed information about a specific article. This page is designed according to the Feature-Sliced Design (FSD) methodology, ensuring that it maintains a structured and cohesive layout while efficiently displaying the article's content. The redesign emphasizes modern UI/UX practices, optimizing both the aesthetic and functional aspects of the article details page. This component is rendered when the feature flag `isAppRedesigned` is active, replacing the deprecated version.
 ## Type Definition
 ```typescript
-interface ArticleDetailsPageProps {
+interface LiveCodeTaskDetailsPageProps {
     className?: string;
 }
 ```

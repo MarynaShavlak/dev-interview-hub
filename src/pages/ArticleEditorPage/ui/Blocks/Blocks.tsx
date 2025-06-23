@@ -1,4 +1,5 @@
 import React, { memo } from 'react';
+import { AddBlocksForm } from '@/features/EditorPageComponents';
 import { ArticleBlock } from '@/entities/Article';
 
 import { toggleFeatures } from '@/shared/lib/features';
@@ -9,7 +10,6 @@ import { HStack, VStack } from '@/shared/ui/common/Stack';
 import cls from './Blocks.module.scss';
 import { Each } from '@/shared/lib/components/Each/Each';
 import { BlockRenderer } from './BlockRenderer/BlockRenderer';
-import { AddBlocksForm } from '@/widgets/AddBlocksForm';
 
 export interface AddBlocksFormProps {
     index: number;

@@ -38,6 +38,7 @@ import {
     getRouteLiveCodeTaskEdit,
     getRouteLiveCodeTaskCreate,
     getRouteLiveCodeTasks,
+    getRouteLiveCodeTaskDetails,
 } from '@/shared/const/router/router';
 import { AppRoutesProps } from '@/shared/types/router';
 import {
@@ -69,6 +70,10 @@ import {
     LiveCodeTasksPage,
     LiveCodeTasksPageSkeleton,
 } from '@/pages/LiveCodeTasksPage';
+import {
+    LiveCodeTaskDetailsPageSkeleton,
+    LiveCodeTaskDetailsPage,
+} from '@/pages/LiveCodeTaskDetailsPage';
 
 export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
     [AppRoutes.MAIN]: {
@@ -196,5 +201,11 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
         element: <LiveCodeTaskEditorPage />,
         authOnly: true,
         skeleton: <LiveCodeTaskEditorPageSkeleton />,
+    },
+    [AppRoutes.LIVE_CODE_TASK_DETAILS]: {
+        path: getRouteLiveCodeTaskDetails(':id'),
+        element: <LiveCodeTaskDetailsPage />,
+        authOnly: true,
+        skeleton: <LiveCodeTaskDetailsPageSkeleton />,
     },
 };

@@ -1,5 +1,6 @@
 import React, { memo } from 'react';
 import { useTranslation } from 'react-i18next';
+import { EntityTitleInput } from '@/features/EditorPageComponents';
 import { Input } from '@/shared/ui/redesigned/Input';
 import { Button } from '@/shared/ui/redesigned/Button';
 import { Icon } from '@/shared/ui/redesigned/Icon';
@@ -12,7 +13,6 @@ import { useInputValidationConfig } from '@/shared/lib/hooks/validationHooks/use
 
 import { ArticleMetaFormProps } from '../ArticleMetaForm';
 import { useArticleMetaForm } from '../../../lib/hooks/useArticleMetaForm/useArticleMetaForm';
-import { EntityTitleInput } from '@/features/EntityTitleInput';
 
 export const ArticleMetaFormRedesigned = memo((props: ArticleMetaFormProps) => {
     const { titleIndex, subtitleIndex, errors } = props;

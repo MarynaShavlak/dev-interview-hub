@@ -1,4 +1,5 @@
 import React, { memo } from 'react';
+import { SaveEntityError } from '@/features/EditorPageComponents';
 import { VStack } from '@/shared/ui/common/Stack';
 import { useArticleEditor } from '../../lib/hooks/useArticleEditor/useArticleEditor';
 
@@ -11,7 +12,6 @@ import { ArticleEditorPageContent } from '../ArticleEditorPageContent/ArticleEdi
 import { ContentSkeleton } from '../ArticleEditorPageContent/ContentSkeleton/ContentSkeleton';
 import { useArticleEditorPageHeader } from '../../lib/hooks/useArticleEditorPageHeader/useArticleEditorPageHeader';
 import { EditorPageHeader } from '@/widgets/EditorPageHeader';
-import { SaveEntityError } from '@/features/SaveEntityError';
 
 const reducers: ReducersList = {
     createArticle: createArticleReducer,

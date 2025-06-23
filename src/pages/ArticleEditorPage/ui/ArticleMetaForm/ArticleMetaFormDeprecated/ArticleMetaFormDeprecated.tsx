@@ -1,5 +1,6 @@
 import React, { memo } from 'react';
 import { useTranslation } from 'react-i18next';
+import { EntityTitleInput } from '@/features/EditorPageComponents';
 import { Input } from '@/shared/ui/deprecated/Input';
 import { Button } from '@/shared/ui/deprecated/Button';
 import { Icon } from '@/shared/ui/deprecated/Icon';
@@ -15,7 +16,6 @@ import { ArticleMetaFormProps } from '../ArticleMetaForm';
 import { useArticleMetaForm } from '../../../lib/hooks/useArticleMetaForm/useArticleMetaForm';
 import { getFlexClasses } from '@/shared/lib/classes/getFlexClasses/getFlexClasses';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
-import { EntityTitleInput } from '@/features/EntityTitleInput';
 
 export const ArticleMetaFormDeprecated = memo((props: ArticleMetaFormProps) => {
     const { titleIndex, subtitleIndex, errors } = props;

@@ -1,4 +1,5 @@
 import React, { memo } from 'react';
+import { SaveEntityError } from '@/features/EditorPageComponents';
 import { VStack } from '@/shared/ui/common/Stack';
 import { useHRInterviewQAEditor } from '../../lib/hooks/useHRInterviewQAEditor/useHRInterviewQAEditor';
 import {
@@ -11,7 +12,6 @@ import { ContentSkeleton } from '../HRInterviewQAEditorPageContent/ContentSkelet
 import { createHRInterviewQAReducer } from '../../model/slices/createHRInterviewQASlice';
 import { EditorPageHeader } from '@/widgets/EditorPageHeader';
 import { useHRInterviewQAEditorPageHeader } from '../../lib/hooks/useHRInterviewQAEditorPageHeader/useHRInterviewQAEditorPageHeader';
-import { SaveEntityError } from '@/features/SaveEntityError';
 
 const reducers: ReducersList = {
     createHRInterviewQA: createHRInterviewQAReducer,

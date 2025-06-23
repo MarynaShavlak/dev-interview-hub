@@ -5,7 +5,7 @@ The **`ArticleDetailsPage`** module is responsible for presenting a detailed vie
 
 ## Type Definition
 ```typescript
-interface ArticleDetailsPageProps {
+interface LiveCodeTaskDetailsPageProps {
     className?: string;
 }
 ```

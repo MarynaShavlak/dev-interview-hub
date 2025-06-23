@@ -3,7 +3,7 @@ import React, { memo } from 'react';
 import {
     EntityTitleInput,
     EntityTitleProps,
-} from '@/features/EntityTitleInput';
+} from '@/features/EditorPageComponents';
 import { HRInterviewQA } from '@/entities/HRInterviewQA';
 import { useHRInterviewQAFormState } from '../../lib/hooks/useHRInterviewQAFormState/useHRInterviewQAFormState';
 import { HStack, VStack } from '@/shared/ui/common/Stack';
