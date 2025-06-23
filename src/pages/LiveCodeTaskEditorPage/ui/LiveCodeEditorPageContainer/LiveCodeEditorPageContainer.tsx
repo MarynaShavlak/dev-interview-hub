@@ -1,6 +1,5 @@
 import React, { memo } from 'react';
 import { VStack } from '@/shared/ui/common/Stack';
-import { LiveCodeEditorPageHeader } from '../LiveCodeEditorPageHeader/LiveCodeEditorPageHeader';
 import { useLiveCodeEditor } from '../../lib/hooks/useLiveCodeEditor/useLiveCodeEditor';
 
 import {
@@ -11,6 +10,8 @@ import {
 import { LiveCodeEditorPageContent } from '../LiveCodeEditorPageContent/LiveCodeEditorPageContent';
 import { ContentSkeleton } from '../LiveCodeEditorPageContent/ContentSkeleton/ContentSkeleton';
 import { createLiveCodeTaskReducer } from '../../model/slices/createLiveCodeSlice';
+import { useLiveCodeEditorPageHeader } from '../../lib/hooks/useLiveCodeEditorPageHeader/useLiveCodeEditorPageHeader';
+import { EditorPageHeader } from '@/widgets/EditorPageHeader';
 
 const reducers: ReducersList = {
     createLiveCode: createLiveCodeTaskReducer,
@@ -34,7 +35,7 @@ export const LiveCodeEditorPageContainer = memo(() => {
         <DynamicModuleLoader reducers={reducers}>
             <VStack gap="24" max>
                 {/* {saveError && <SaveLiveCodeError />} */}
-                <LiveCodeEditorPageHeader
+                <EditorPageHeader
                     hasErrors={validation.hasInputErrors}
                     onActions={{
                         clear: onClear,
@@ -43,9 +44,12 @@ export const LiveCodeEditorPageContainer = memo(() => {
                         delete: onDelete,
                         update: onUpdate,
                     }}
-                    isEditArticlePage={isEditArticlePage}
+                    isEditPage={isEditArticlePage}
                     isLoading={isLoading}
+                    entityType="liveCode"
+                    useEditorPageHeader={useLiveCodeEditorPageHeader}
                 />
+
                 <LiveCodeEditorPageContent
                     blockActions={blockActions}
                     metadata={metadata}

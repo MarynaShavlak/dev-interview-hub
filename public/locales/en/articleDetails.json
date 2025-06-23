@@ -89,6 +89,8 @@
     "Введіть назву посилання": "Enter link name",
     "Редагування питання на HR співбесіді": "Edit HR interview Question & Answer",
     "Створення нового питання на HR співбесіді": "Create new HR interview Question & Answer",
+    "Створення нового live coding завдання": "Create new  live coding task",
+    "Редагування live coding завдання": "Edit live coding task",
     "Питання від рекрутера": "Question from recruiter",
     "Блоки відповіді на питання": "Question answer blocks",
     "Категорії питань": "Question categories",
@@ -101,5 +103,5 @@
     "Не знайдено питань за Вашим запитом": "Не знайдено питань за Вашим запитом",
     "редагування питання": "answer editing",
     "Блоки завдання на live coding": "Блоки завдання на live coding",
-  "Назва завдання": "Task title"
+    "Назва завдання": "Task title"
 }

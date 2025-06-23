@@ -1,6 +1,5 @@
 import React, { memo } from 'react';
 import { VStack } from '@/shared/ui/common/Stack';
-import { ArticleEditorPageHeader } from '../ArticleEditorPageHeader/ArticleEditorPageHeader';
 import { useArticleEditor } from '../../lib/hooks/useArticleEditor/useArticleEditor';
 import { SaveArticleError } from '../SaveArticleError/SaveArticleError';
 import {
@@ -10,6 +9,8 @@ import {
 import { createArticleReducer } from '../../model/slices/createArticleSlice';
 import { ArticleEditorPageContent } from '../ArticleEditorPageContent/ArticleEditorPageContent';
 import { ContentSkeleton } from '../ArticleEditorPageContent/ContentSkeleton/ContentSkeleton';
+import { useArticleEditorPageHeader } from '../../lib/hooks/useArticleEditorPageHeader/useArticleEditorPageHeader';
+import { EditorPageHeader } from '@/widgets/EditorPageHeader';
 
 const reducers: ReducersList = {
     createArticle: createArticleReducer,
@@ -34,7 +35,7 @@ export const ArticleEditorPageContainer = memo(() => {
         <DynamicModuleLoader reducers={reducers}>
             <VStack gap="24" max>
                 {saveError && <SaveArticleError />}
-                <ArticleEditorPageHeader
+                <EditorPageHeader
                     hasErrors={validation.hasInputErrors}
                     onActions={{
                         clear: onClear,
@@ -43,9 +44,12 @@ export const ArticleEditorPageContainer = memo(() => {
                         delete: onDelete,
                         update: onUpdate,
                     }}
-                    isEditArticlePage={isEditArticlePage}
+                    isEditPage={isEditArticlePage}
                     isLoading={isLoading}
+                    entityType="article"
+                    useEditorPageHeader={useArticleEditorPageHeader}
                 />
+
                 <ArticleEditorPageContent
                     blockActions={blockActions}
                     metadata={metadata}

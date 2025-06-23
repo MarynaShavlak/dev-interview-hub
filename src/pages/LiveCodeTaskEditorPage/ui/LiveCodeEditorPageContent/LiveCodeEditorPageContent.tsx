@@ -4,6 +4,7 @@ import { UseLiveCodeEditorReturn } from '../../lib/hooks/useLiveCodeEditor/useLi
 import { VStack } from '@/shared/ui/common/Stack';
 
 import { ContentSkeleton } from './ContentSkeleton/ContentSkeleton';
+import { LiveCodeTitle } from '../LiveCodeTitle/LiveCodeTitle';
 
 interface LiveCodeEditorPageProps {
     metadata: UseLiveCodeEditorReturn['metadata'];
@@ -23,7 +24,7 @@ export const LiveCodeEditorPageContent = memo(
 
         return (
             <VStack gap="24">
-                {/* <LiveCodeTitle titleIndex={1} errors={validation} /> */}
+                <LiveCodeTitle titleIndex={1} errors={validation} />
 
                 {/* <AddHRInterviewCategoryForm index={4} /> */}
                 <Blocks index={5} blocks={blocks} blockActions={blockActions} />

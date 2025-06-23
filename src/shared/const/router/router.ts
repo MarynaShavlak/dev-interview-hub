@@ -46,6 +46,8 @@ export const getRouteLiveCodeTasks = () => '/live-code-tasks';
 export const getRouteLiveCodeTaskCreate = () => '/live-code-task/new';
 export const getRouteLiveCodeTaskEdit = (id: string) =>
     `/live-code-task/${id}/edit`;
+export const getRouteLiveCodeTaskDetails = (id: string) =>
+    `/live-code-task/${id}`;
 
 export const AppRouteByPathPattern: Record<string, AppRoutes> = {
     [getRouteMain()]: AppRoutes.MAIN,

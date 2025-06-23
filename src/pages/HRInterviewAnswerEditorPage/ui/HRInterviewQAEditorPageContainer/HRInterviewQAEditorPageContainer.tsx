@@ -1,6 +1,5 @@
 import React, { memo } from 'react';
 import { VStack } from '@/shared/ui/common/Stack';
-import { HRInterviewQAEditorPageHeader } from '../HRInterviewQAEditorPageHeader/HRInterviewQAEditorPageHeader';
 import { useHRInterviewQAEditor } from '../../lib/hooks/useHRInterviewQAEditor/useHRInterviewQAEditor';
 import { SaveHRInterviewQAError } from '../SaveHRInterviewQAError/SaveHRInterviewQAError';
 import {
@@ -11,6 +10,8 @@ import {
 import { HRInterviewQAEditorPageContent } from '../HRInterviewQAEditorPageContent/HRInterviewQAEditorPageContent';
 import { ContentSkeleton } from '../HRInterviewQAEditorPageContent/ContentSkeleton/ContentSkeleton';
 import { createHRInterviewQAReducer } from '../../model/slices/createHRInterviewQASlice';
+import { EditorPageHeader } from '@/widgets/EditorPageHeader';
+import { useHRInterviewQAEditorPageHeader } from '../../lib/hooks/useHRInterviewQAEditorPageHeader/useHRInterviewQAEditorPageHeader';
 
 const reducers: ReducersList = {
     createHRInterviewQA: createHRInterviewQAReducer,
@@ -34,7 +35,7 @@ export const HRInterviewQAEditorPageContainer = memo(() => {
         <DynamicModuleLoader reducers={reducers}>
             <VStack gap="24" max>
                 {saveError && <SaveHRInterviewQAError />}
-                <HRInterviewQAEditorPageHeader
+                <EditorPageHeader
                     hasErrors={validation.hasInputErrors}
                     onActions={{
                         clear: onClear,
@@ -43,9 +44,12 @@ export const HRInterviewQAEditorPageContainer = memo(() => {
                         delete: onDelete,
                         update: onUpdate,
                     }}
-                    isEditArticlePage={isEditArticlePage}
+                    isEditPage={isEditArticlePage}
                     isLoading={isLoading}
+                    entityType="hrInterviewQA"
+                    useEditorPageHeader={useHRInterviewQAEditorPageHeader}
                 />
+
                 <HRInterviewQAEditorPageContent
                     blockActions={blockActions}
                     metadata={metadata}
