@@ -88,5 +88,7 @@
     "Відмінити": "Cancel",
     "Зберегти": "Save",
     "Очистити": "Clear",
-    "Помилка сервера при збереженні данних": "Server error while saving data"
+    "Помилка сервера при збереженні данних": "Server error while saving data",
+    "Категорії завдань": "Task categories",
+    "Оберіть одну категорію": "*Select one category."
 }

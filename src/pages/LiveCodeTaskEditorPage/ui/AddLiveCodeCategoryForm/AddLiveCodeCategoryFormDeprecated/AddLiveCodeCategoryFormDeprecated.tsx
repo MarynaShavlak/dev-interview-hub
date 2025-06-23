@@ -1,30 +1,28 @@
 import React, { memo, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Tabs } from '@/shared/ui/redesigned/Tabs';
-import { OrderCard } from '@/shared/ui/redesigned/OrderCard';
+import { Tabs } from '@/shared/ui/deprecated/Tabs';
+import { OrderCard } from '@/shared/ui/deprecated/OrderCard';
 import { HStack, VStack } from '@/shared/ui/common/Stack';
-import { Text } from '@/shared/ui/redesigned/Text';
+import { Text } from '@/shared/ui/deprecated/Text';
 
-import { AddHRInterviewCategoryFormProps } from '../AddHRInterviewCategoryForm';
-import { useHRInterviewQAFormState } from '../../../lib/hooks/useHRInterviewQAFormState/useHRInterviewQAFormState';
+import { AddLiveCodeCategoryFormProps } from '../AddLiveCodeCategoryForm';
+import { useLiveCodeFormState } from '../../../lib/hooks/useLiveCodeFormState/useLiveCodeFormState';
 import { useHRCategoryTabs } from '@/features/HRInterviewCategoryTabs';
 
-export const AddHRInterviewCategoryFormRedesigned = memo(
-    (props: AddHRInterviewCategoryFormProps) => {
-        const { t } = useTranslation('articleDetails');
+export const AddLiveCodeCategoryFormDeprecated = memo(
+    (props: AddLiveCodeCategoryFormProps) => {
+        const { t } = useTranslation();
         const { index } = props;
-        const { formData, onChangeCategory } = useHRInterviewQAFormState();
+        const { formData, onChangeCategory } = useLiveCodeFormState();
         const rawCategoryTabs = useHRCategoryTabs();
         const categoryTabs = useMemo(() => rawCategoryTabs, [rawCategoryTabs]);
 
         return (
             <HStack gap="16" align="start" max>
                 <OrderCard index={index} />
-
                 <VStack gap="16">
-                    <Text text={t('Категорії питань')} bold />
-                    <Text text={t('Оберіть одну категорію')} italic />
-
+                    <Text title={t('Категорії завдань')} />
+                    <Text text={t('Оберіть одну категорію')} />
                     <Tabs
                         tabs={categoryTabs}
                         value={formData?.category || ''}

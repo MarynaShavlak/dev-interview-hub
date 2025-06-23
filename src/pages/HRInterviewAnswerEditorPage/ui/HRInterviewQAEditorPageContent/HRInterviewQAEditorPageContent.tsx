@@ -26,9 +26,8 @@ export const HRInterviewQAEditorPageContent = memo(
         return (
             <VStack gap="24">
                 <HRInterviewQATitle titleIndex={1} errors={validation} />
-
-                <AddHRInterviewCategoryForm index={4} />
-                <Blocks index={5} blocks={blocks} blockActions={blockActions} />
+                <AddHRInterviewCategoryForm index={2} />
+                <Blocks index={3} blocks={blocks} blockActions={blockActions} />
             </VStack>
         );
     },
