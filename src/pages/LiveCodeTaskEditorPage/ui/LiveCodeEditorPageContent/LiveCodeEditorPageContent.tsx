@@ -24,7 +24,7 @@ export const LiveCodeEditorPageContent = memo(
         }
 
         return (
-            <VStack gap="24">
+            <VStack gap="24" max>
                 <LiveCodeTitle titleIndex={1} errors={validation} />
                 <AddLiveCodeCategoryForm index={2} />
                 <Blocks index={3} blocks={blocks} blockActions={blockActions} />

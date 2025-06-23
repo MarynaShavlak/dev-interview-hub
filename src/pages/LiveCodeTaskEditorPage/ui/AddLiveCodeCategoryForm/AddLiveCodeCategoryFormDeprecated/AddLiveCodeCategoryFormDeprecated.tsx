@@ -7,14 +7,14 @@ import { Text } from '@/shared/ui/deprecated/Text';
 
 import { AddLiveCodeCategoryFormProps } from '../AddLiveCodeCategoryForm';
 import { useLiveCodeFormState } from '../../../lib/hooks/useLiveCodeFormState/useLiveCodeFormState';
-import { useHRCategoryTabs } from '@/features/HRInterviewCategoryTabs';
+import { useLiveCodeCategoryTabs } from '@/features/LiveCodeCategoryTabs';
 
 export const AddLiveCodeCategoryFormDeprecated = memo(
     (props: AddLiveCodeCategoryFormProps) => {
         const { t } = useTranslation();
         const { index } = props;
         const { formData, onChangeCategory } = useLiveCodeFormState();
-        const rawCategoryTabs = useHRCategoryTabs();
+        const rawCategoryTabs = useLiveCodeCategoryTabs();
         const categoryTabs = useMemo(() => rawCategoryTabs, [rawCategoryTabs]);
 
         return (

@@ -9,6 +9,7 @@ import { HStack, VStack } from '@/shared/ui/common/Stack';
 import cls from './Blocks.module.scss';
 import { Each } from '@/shared/lib/components/Each/Each';
 import { AddBlocksForm } from '@/widgets/AddBlocksForm';
+import { BlockRenderer } from './BlockRenderer/BlockRenderer';
 
 export interface AddBlocksFormProps {
     index: number;
@@ -53,16 +54,15 @@ export const Blocks = memo((props: AddBlocksFormProps) => {
                     <Each
                         of={allBlocks}
                         render={(block) => (
-                            <div>block.id</div>
-                            // <BlockRenderer
-                            //     key={block.id}
-                            //     block={block}
-                            //     addBlockInArticle={handleAddLiveCodeBlock}
-                            //     deleteBlockFromArticle={
-                            //         handleDeleteLiveCodeBlock
-                            //     }
-                            //     onEditBlock={handleUpdateLiveCodeBlock}
-                            // />
+                            <BlockRenderer
+                                key={block.id}
+                                block={block}
+                                addBlockInArticle={handleAddLiveCodeBlock}
+                                deleteBlockFromArticle={
+                                    handleDeleteLiveCodeBlock
+                                }
+                                onEditBlock={handleUpdateLiveCodeBlock}
+                            />
                         )}
                     />
                 </VStack>
