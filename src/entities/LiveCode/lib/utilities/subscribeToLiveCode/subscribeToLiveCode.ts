@@ -1,11 +1,9 @@
 import { MaybeDrafted } from '@reduxjs/toolkit/dist/query/core/buildThunks';
 import { onSnapshot } from 'firebase/firestore';
-
 import { handleRequestErrorMessage } from '@/shared/lib/firestore/handleRequestErrorMessage/handleRequestErrorMessage';
-
 import { LiveCode } from '../../../model/types/liveCode';
-import { ERROR_LIVE_CODE_MESSAGES } from '../../../model/consts/errorHRInterviewMessages';
 import { createLiveCodeQuery } from '../createLiveCodeQuery/createLiveCodeQuery';
+import { ERROR_LIVE_CODE_MESSAGES } from '../../../model/consts/errorLiveCodeMessages';
 
 export const subscribeToLiveCode = (
     updateCachedData: (

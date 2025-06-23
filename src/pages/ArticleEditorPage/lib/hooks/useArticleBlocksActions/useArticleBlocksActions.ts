@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 import { useArticleFormState } from '../useArticleFormState/useArticleFormState';
 import { ArticleBlock } from '@/entities/Article';
-import { AddBlocksFormProps } from '../../../ui/AddBlocksForm/AddBlocksForm';
+import { AddBlocksFormProps } from '../../../ui/Blocks/Blocks';
 
 export const useArticleBlocksActions = (
     blockActions: AddBlocksFormProps['blockActions'],

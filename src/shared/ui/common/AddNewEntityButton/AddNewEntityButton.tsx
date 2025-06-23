@@ -6,6 +6,7 @@ import { ToggleFeaturesComponent } from '@/shared/lib/features';
 import {
     getRouteArticleCreate,
     getRouteHRInterviewQACreate,
+    getRouteLiveCodeTaskCreate,
 } from '@/shared/const/router/router';
 import { Button, ButtonSize } from '../../redesigned/Button';
 import {
@@ -26,6 +27,7 @@ interface AddNewEntityButtonProps {
 const namespaceMap: Record<AddNewEntityButtonProps['entityType'], string> = {
     article: 'articles',
     hrInterviewQA: 'hrInterviewQA',
+    liveCode: 'liveCodeTasks',
 };
 
 export const AddNewEntityButton = memo(
@@ -53,6 +55,9 @@ export const AddNewEntityButton = memo(
                     break;
                 case 'hrInterviewQA':
                     navigate(getRouteHRInterviewQACreate());
+                    break;
+                case 'liveCode':
+                    navigate(getRouteLiveCodeTaskCreate());
                     break;
                 default: {
                     // Exhaustive check

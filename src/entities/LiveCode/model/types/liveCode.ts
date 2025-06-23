@@ -30,7 +30,7 @@ export interface TextBlock extends LiveCodeBlockBase {
     type: SectionType.TEXT;
 }
 
-type LiveCodeBlock = CodeBlock | TextBlock;
+export type LiveCodeBlock = CodeBlock | TextBlock;
 
 export interface LiveCode {
     id: string;

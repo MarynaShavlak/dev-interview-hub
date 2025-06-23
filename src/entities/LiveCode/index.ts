@@ -6,7 +6,7 @@ export {
     LiveCodeCategoriesUkr,
 } from './model/data/categories';
 
-export { ERROR_LIVE_CODE_MESSAGES } from './model/consts/errorHRInterviewMessages';
+export { ERROR_LIVE_CODE_MESSAGES } from './model/consts/errorLiveCodeMessages';
 
 export {
     addLiveCodeMutation,
@@ -15,10 +15,5 @@ export {
     useLiveCodesByUserId,
 } from './api/liveCodeApi';
 
-export type {
-    LiveCode,
-    // HRInterviewQABlock,
-    // HRInterviewQACategory,
-    // HRInterviewQASubcategory,
-} from './model/types/liveCode';
+export type { LiveCode, LiveCodeBlock } from './model/types/liveCode';
 export type { LiveCodeCategory } from './model/types/liveCodeCategory';

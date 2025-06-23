@@ -25,6 +25,7 @@ import { CreateArticleSchema } from '@/pages/ArticleEditorPage';
 import { AddQuestionFormSchema } from '@/entities/Question';
 import { AddLinkFormSchema } from '@/entities/Link';
 import { AddVocabularyFormSchema } from '@/entities/Vocabulary';
+import { CreateLiveCodeSchema } from '@/pages/LiveCodeTaskEditorPage';
 
 export interface StateSchema {
     user: UserSchema;
@@ -46,6 +47,7 @@ export interface StateSchema {
     articles?: EntityState<Article>;
     createArticle?: CreateArticleSchema;
     createHRInterviewQA?: CreateHRInterviewQASchema;
+    createLiveCode?: CreateLiveCodeSchema;
 }
 
 export type StateSchemaKey = keyof StateSchema;

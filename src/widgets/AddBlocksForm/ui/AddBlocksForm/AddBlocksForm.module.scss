@@ -1,0 +1,23 @@
+.addBlocksForm {
+    position: relative;
+    flex-grow: 1;
+}
+
+.btnListRedesigned {
+    flex-wrap: wrap;
+    background-color: var(--dark-bg-redesigned);
+    border-radius: 12px;
+    z-index: 2;
+    padding: 16px;
+    border: 1px solid var(--light-bg-redesigned);
+    min-height: 78px;
+}
+
+.btnListDeprecated {
+    flex-wrap: wrap;
+    background-color: var(--card-bg);
+    z-index: 2;
+    padding: 16px;
+    border: 1px solid var(--primary-color);
+    min-height: 72px;
+}

@@ -112,7 +112,7 @@ export const useArticleEditor = (): UseArticleEditorReturn => {
             onFileUpload,
             deleteFromStorage,
         });
-    // console.log('__avatarSrc ', avatarSrc);
+
     const onClearArticle = useCallback(() => {
         onResetArticle();
         blockOperations.clearBlocks();

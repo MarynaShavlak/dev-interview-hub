@@ -1,7 +1,7 @@
 import { MaybeDrafted } from '@reduxjs/toolkit/dist/query/core/buildThunks';
 import { subscribeToUserCollection } from '@/shared/lib/firestore';
 import { LiveCode } from '../../../model/types/liveCode';
-import { ERROR_LIVE_CODE_MESSAGES } from '../../../model/consts/errorHRInterviewMessages';
+import { ERROR_LIVE_CODE_MESSAGES } from '../../../model/consts/errorLiveCodeMessages';
 
 export const subscribeToUserLiveCodeTasks = (
     updateCachedData: (

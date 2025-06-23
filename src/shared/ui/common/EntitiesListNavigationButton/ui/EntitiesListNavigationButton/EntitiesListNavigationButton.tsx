@@ -6,6 +6,7 @@ import { ToggleFeaturesComponent } from '@/shared/lib/features';
 import {
     getRouteArticles,
     getRouteHRInterview,
+    getRouteLiveCodeTasks,
 } from '@/shared/const/router/router';
 import { Button } from '../../../../redesigned/Button';
 import {
@@ -33,6 +34,9 @@ export const EntitiesListNavigationButton = memo(
                     break;
                 case 'hrInterviewQA':
                     navigate(getRouteHRInterview());
+                    break;
+                case 'liveCode':
+                    navigate(getRouteLiveCodeTasks());
                     break;
                 default: {
                     const _exhaustiveCheck: never = type;

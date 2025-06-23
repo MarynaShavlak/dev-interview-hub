@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import { ArticleMetaForm } from '../ArticleMetaForm/ArticleMetaForm';
 import { AddCategoryForm } from '../AddCategoryForm/AddCategoryForm';
-import { AddBlocksForm } from '../AddBlocksForm/AddBlocksForm';
+import { Blocks } from '../Blocks/Blocks';
 import { AddHeroForm } from '../AddHeroForm/AddHeroForm';
 import { UseArticleEditorReturn } from '../../lib/hooks/useArticleEditor/useArticleEditor';
 import { VStack } from '@/shared/ui/common/Stack';
@@ -47,11 +47,7 @@ export const ArticleEditorPageContent = memo(
                     imagePreview={avatarSrc || preview}
                 />
                 <AddCategoryForm index={4} />
-                <AddBlocksForm
-                    index={5}
-                    blocks={blocks}
-                    blockActions={blockActions}
-                />
+                <Blocks index={5} blocks={blocks} blockActions={blockActions} />
             </VStack>
         );
     },

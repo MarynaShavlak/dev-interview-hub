@@ -8,7 +8,6 @@ import {
     saveDocToFirestore,
 } from '@/shared/lib/firestore';
 
-import { ERROR_LIVE_CODE_MESSAGES } from '../model/consts/errorHRInterviewMessages';
 import { LiveCode } from '../model/types/liveCode';
 
 import { fetchLiveCode } from '../lib/utilities/fetchLiveCode/fetchLiveCode';
@@ -16,6 +15,7 @@ import { subscribeToLiveCode } from '../lib/utilities/subscribeToLiveCode/subscr
 
 import { subscribeToUserLiveCodeTasks } from '../lib/utilities/subscribeToUserLiveCodeTasks/subscribeToUserLiveCodeTasks';
 import { updateDocById } from '@/shared/lib/firestore/updateDocById/updateDocById';
+import { ERROR_LIVE_CODE_MESSAGES } from '..';
 
 interface UpdateLiveCodeArgs {
     id: string;

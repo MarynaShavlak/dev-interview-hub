@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import { AddBlocksFormProps } from '../../../ui/AddBlocksForm/AddBlocksForm';
+import { AddBlocksFormProps } from '../../../ui/Blocks/Blocks';
 import { useHRInterviewQAFormState } from '../useHRInterviewQAFormState/useHRInterviewQAFormState';
 import { HRInterviewQABlock } from '@/entities/HRInterviewQA';
 

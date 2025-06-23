@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 import { HRInterviewQATitle } from '../HRInterviewQATitle/HRInterviewQATitle';
-import { AddBlocksForm } from '../AddBlocksForm/AddBlocksForm';
+import { Blocks } from '../Blocks/Blocks';
 import { UseHRInterviewQAEditorReturn } from '../../lib/hooks/useHRInterviewQAEditor/useHRInterviewQAEditor';
 import { VStack } from '@/shared/ui/common/Stack';
 
@@ -28,11 +28,7 @@ export const HRInterviewQAEditorPageContent = memo(
                 <HRInterviewQATitle titleIndex={1} errors={validation} />
 
                 <AddHRInterviewCategoryForm index={4} />
-                <AddBlocksForm
-                    index={5}
-                    blocks={blocks}
-                    blockActions={blockActions}
-                />
+                <Blocks index={5} blocks={blocks} blockActions={blockActions} />
             </VStack>
         );
     },

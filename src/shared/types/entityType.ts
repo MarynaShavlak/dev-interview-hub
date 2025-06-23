@@ -1,1 +1,1 @@
-export type EntityType = 'article' | 'hrInterviewQA';
+export type EntityType = 'article' | 'hrInterviewQA' | 'liveCode';
