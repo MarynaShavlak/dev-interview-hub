@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useState } from 'react';
+import React, { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Input } from '@/shared/ui/deprecated/Input';
 import { Button } from '@/shared/ui/deprecated/Button';
@@ -15,7 +15,7 @@ import { ArticleMetaFormProps } from '../ArticleMetaForm';
 import { useArticleMetaForm } from '../../../lib/hooks/useArticleMetaForm/useArticleMetaForm';
 import { getFlexClasses } from '@/shared/lib/classes/getFlexClasses/getFlexClasses';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
-import { ARTICLE_TO_CREATE_TITLE } from '@/shared/const/localstorage';
+import { EntityTitleInput } from '@/features/EntityTitleInput';
 
 export const ArticleMetaFormDeprecated = memo((props: ArticleMetaFormProps) => {
     const { titleIndex, subtitleIndex, errors } = props;
@@ -36,22 +36,11 @@ export const ArticleMetaFormDeprecated = memo((props: ArticleMetaFormProps) => {
         onChangeSubtitleText,
         onChangeSubtitleLink,
     } = form;
-    const [initialTitle, setInitialTitle] = useState<string>(
-        () => sessionStorage.getItem(ARTICLE_TO_CREATE_TITLE) || '',
-    );
-
-    useEffect(() => {
-        const storedTitle = sessionStorage.getItem(ARTICLE_TO_CREATE_TITLE);
-        if (storedTitle) {
-            sessionStorage.removeItem(ARTICLE_TO_CREATE_TITLE);
-        }
-    }, []);
 
     if (!formData) {
         return null;
     }
     const {
-        title,
         subtitle: { text, link },
     } = formData;
 
@@ -65,18 +54,12 @@ export const ArticleMetaFormDeprecated = memo((props: ArticleMetaFormProps) => {
         <VStack gap="24">
             <HStack gap="16" align="start" max>
                 <OrderCard index={titleIndex} />
-                <VStack gap="8" max>
-                    <Text title={t('Заголовок статті')} size={TextSize.M} />
-                    <Input
-                        value={title || initialTitle || ''}
-                        maxWidth
-                        onChange={onChangeTitle}
-                        validations={validConfig.title}
-                        maxLengthIndicator
-                        errors={errors.titleErrors}
-                        withBorder
-                    />
-                </VStack>
+                <EntityTitleInput
+                    errors={errors}
+                    formData={formData}
+                    onChangeTitle={onChangeTitle}
+                    entityType="article"
+                />
             </HStack>
             <HStack gap="16" align="start" max>
                 <OrderCard index={subtitleIndex} />

@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useState } from 'react';
+import React, { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Input } from '@/shared/ui/redesigned/Input';
 import { Button } from '@/shared/ui/redesigned/Button';
@@ -12,7 +12,7 @@ import { useInputValidationConfig } from '@/shared/lib/hooks/validationHooks/use
 
 import { ArticleMetaFormProps } from '../ArticleMetaForm';
 import { useArticleMetaForm } from '../../../lib/hooks/useArticleMetaForm/useArticleMetaForm';
-import { ARTICLE_TO_CREATE_TITLE } from '@/shared/const/localstorage';
+import { EntityTitleInput } from '@/features/EntityTitleInput';
 
 export const ArticleMetaFormRedesigned = memo((props: ArticleMetaFormProps) => {
     const { titleIndex, subtitleIndex, errors } = props;
@@ -34,23 +34,10 @@ export const ArticleMetaFormRedesigned = memo((props: ArticleMetaFormProps) => {
         onChangeSubtitleLink,
     } = form;
 
-    const [initialTitle, setInitialTitle] = useState<string>(
-        () => sessionStorage.getItem(ARTICLE_TO_CREATE_TITLE) || '',
-    );
-
-    useEffect(() => {
-        const storedTitle = sessionStorage.getItem(ARTICLE_TO_CREATE_TITLE);
-        if (storedTitle) {
-            sessionStorage.removeItem(ARTICLE_TO_CREATE_TITLE);
-        }
-    }, []);
-    //
-
     if (!formData) {
         return null;
     }
     const {
-        title,
         subtitle: { text, link },
     } = formData;
 
@@ -58,17 +45,11 @@ export const ArticleMetaFormRedesigned = memo((props: ArticleMetaFormProps) => {
         <VStack gap="24" max>
             <HStack gap="16" align="start" max>
                 <OrderCard index={titleIndex} />
-
-                <Input
-                    value={title || initialTitle || ''}
-                    label={t('Заголовок статті')}
-                    labelBold
-                    gap="16"
-                    maxWidth
-                    onChange={onChangeTitle}
-                    validations={validConfig.title}
-                    maxLengthIndicator
-                    errors={errors.titleErrors}
+                <EntityTitleInput
+                    errors={errors}
+                    formData={formData}
+                    onChangeTitle={onChangeTitle}
+                    entityType="article"
                 />
             </HStack>
             <HStack gap="16" align="start" max>
