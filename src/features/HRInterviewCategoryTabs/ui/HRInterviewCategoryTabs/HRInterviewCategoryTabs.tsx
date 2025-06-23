@@ -1,6 +1,6 @@
 import React, { memo, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ClearRefinements, RefinementList } from 'react-instantsearch';
+import { ClearRefinements, Menu } from 'react-instantsearch';
 import { VStack } from '@/shared/ui/common/Stack';
 import cls from './HRInterviewCategoryTabs.module.scss';
 import { useHRCategoryTabs } from '../../lib/hooks/useHRCategoryTabs/useHRCategoryTabs';
@@ -42,6 +42,10 @@ export const HRInterviewCategoryTabs = memo(
             cls.MenuItemRedesigned,
             cls.MenuItemDeprecated,
         );
+        const menuLinkClass = getDesignVariantClass(
+            cls.MenuLinkRedesigned,
+            cls.MenuLinkDeprecated,
+        );
 
         const menuListClass = getDesignVariantClass(
             cls.MenuListRedesigned,
@@ -66,7 +70,7 @@ export const HRInterviewCategoryTabs = memo(
                     }}
                 />
 
-                <RefinementList
+                <Menu
                     attribute="category"
                     transformItems={(items) => {
                         return [
@@ -99,8 +103,9 @@ export const HRInterviewCategoryTabs = memo(
                         list: classNames(menuListClass, {}, [cls.MenuList]),
                         label: cls.MenuLabel,
                         item: classNames(menuItemClass, {}, [cls.MenuItem]),
+                        link: classNames(menuLinkClass, {}, [cls.MenuLink]),
                         selectedItem: selectedItemClass,
-                        checkbox: cls.MenuCheckbox,
+                        // checkbox: cls.MenuCheckbox,
                     }}
                 />
             </VStack>
