@@ -12,6 +12,7 @@ import { ContentSkeleton } from '../LiveCodeEditorPageContent/ContentSkeleton/Co
 import { createLiveCodeTaskReducer } from '../../model/slices/createLiveCodeSlice';
 import { useLiveCodeEditorPageHeader } from '../../lib/hooks/useLiveCodeEditorPageHeader/useLiveCodeEditorPageHeader';
 import { EditorPageHeader } from '@/widgets/EditorPageHeader';
+import { SaveEntityError } from '@/features/SaveEntityError';
 
 const reducers: ReducersList = {
     createLiveCode: createLiveCodeTaskReducer,
@@ -34,7 +35,7 @@ export const LiveCodeEditorPageContainer = memo(() => {
     return (
         <DynamicModuleLoader reducers={reducers}>
             <VStack gap="24" max>
-                {/* {saveError && <SaveLiveCodeError />} */}
+                {saveError && <SaveEntityError />}
                 <EditorPageHeader
                     hasErrors={validation.hasInputErrors}
                     onActions={{

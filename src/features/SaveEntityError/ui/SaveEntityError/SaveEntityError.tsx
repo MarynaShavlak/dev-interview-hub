@@ -3,11 +3,11 @@ import React, { memo } from 'react';
 import { VStack } from '@/shared/ui/common/Stack';
 import { Text } from '@/shared/ui/redesigned/Text';
 import { Text as TextDeprecated, TextTheme } from '@/shared/ui/deprecated/Text';
-import cls from './SaveArticleError.module.scss';
+import cls from './SaveEntityError.module.scss';
 import { toggleFeatures, ToggleFeaturesComponent } from '@/shared/lib/features';
 
-export const SaveHRInterviewQAError = memo(() => {
-    const { t } = useTranslation('articleDetails');
+export const SaveEntityError = memo(() => {
+    const { t } = useTranslation();
     const text = t('Помилка сервера при збереженні данних');
 
     const wrapClass = toggleFeatures({

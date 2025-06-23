@@ -87,5 +87,6 @@
     "Зберегти зміни": "Save changes",
     "Відмінити": "Cancel",
     "Зберегти": "Save",
-    "Очистити": "Clear"
+    "Очистити": "Clear",
+    "Помилка сервера при збереженні данних": "Server error while saving data"
 }
