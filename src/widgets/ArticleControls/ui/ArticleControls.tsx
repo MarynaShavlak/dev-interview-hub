@@ -12,6 +12,7 @@ import { ArticleEditNavigationButton } from '@/features/ArticleEditNavigationBut
 import { Article } from '@/entities/Article';
 import { formatDateString } from '@/shared/lib/text/formatDateString/formatDateString';
 import { useGetUserRoles } from '@/entities/User';
+import { EntityEditNavigationButton } from '@/features/EntityEditNavigationButton';
 
 interface ArticleControlsProps {
     className?: string;
@@ -44,7 +45,13 @@ export const ArticleControls = memo((props: ArticleControlsProps) => {
                         />
                         <Text text={convertedDate} />
                     </VStack>
-                    {canEdit && <ArticleEditNavigationButton id={id} max />}
+                    {canEdit && (
+                        <EntityEditNavigationButton
+                            id={id}
+                            entityType="article"
+                            max
+                        />
+                    )}
                     <Text
                         text={t('{{count}} переглядів', { count: views })}
                         data-testid="ArticleDetails.Views"

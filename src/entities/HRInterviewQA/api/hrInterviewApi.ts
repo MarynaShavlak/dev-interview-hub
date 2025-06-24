@@ -142,3 +142,5 @@ export const getHRInterviewQADataByIdQuery =
     endpoints.getHRInterviewQADataById.initiate;
 export const useHRInterviewQAsByUserId =
     HRInterviewQAFirebaseApi.useGetHRInterviewQAsByUserIdQuery;
+export const useHRInterviewQADataById =
+    HRInterviewQAFirebaseApi.useGetHRInterviewQADataByIdQuery;

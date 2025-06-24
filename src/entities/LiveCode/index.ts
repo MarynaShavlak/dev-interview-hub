@@ -18,6 +18,7 @@ export {
     getLiveCodeDataByIdQuery,
     useLiveCodesByUserId,
     useLiveCodeDataById,
+    getLiveCodeTask,
 } from './api/liveCodeApi';
 
 export type { LiveCode, LiveCodeBlock } from './model/types/liveCode';

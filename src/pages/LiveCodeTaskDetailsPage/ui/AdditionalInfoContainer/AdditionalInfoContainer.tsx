@@ -16,8 +16,6 @@ interface ArticleDetailsPageContainerProps {
 export const AdditionalInfoContainer = memo(
     ({ id }: ArticleDetailsPageContainerProps) => {
         const { data: article, isLoading, error } = useArticleDataById(id);
-        // const article = useArticleDetailsData();
-        // const isLoading = useArticleDetailsIsLoading();
 
         if (isLoading) {
             return <AdditionalInfoContainerSkeleton />;

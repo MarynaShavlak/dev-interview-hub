@@ -129,3 +129,4 @@ export const useLiveCodesByUserId =
     liveCodeFirebaseApi.useGetLiveCodesByUserIdQuery;
 export const useLiveCodeDataById =
     liveCodeFirebaseApi.useGetLiveCodeDataByIdQuery;
+export const getLiveCodeTask = endpoints.getLiveCodeDataById;
