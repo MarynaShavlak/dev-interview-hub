@@ -1,36 +1,22 @@
 import { memo } from 'react';
 import { VStack } from '@/shared/ui/common/Stack';
-import {
-    ArticleDetails,
-    useArticleDataById,
-    // useArticleDetailsData,
-    // useArticleDetailsError,
-} from '@/entities/Article';
+
 // import { ArticleComments } from '@/features/ArticleComments';
 // import { ArticleRating } from '@/features/ArticleRating';
 import { Card } from '@/shared/ui/redesigned/Card';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
-import { useUserAuthData } from '@/entities/User';
-import { ArticleControls } from '@/widgets/ArticleControls';
-import { ArticleComments } from '@/features/ArticleComments';
-import { ArticleRating } from '@/features/ArticleRating';
-import { ArticleRecommendationsList } from '@/features/ArticleRecommendationsList';
+import { LiveCodeTaskDetails, useLiveCodeDataById } from '@/entities/LiveCode';
 // import { ArticleRecommendationsList } from '@/features/ArticleRecommendationsList';
 
-interface ArticleDetailsPageContainerProps {
+interface LiveCodeTaskDetailsPageContainerProps {
     id: string;
 }
 
 export const LiveCodeTaskDetailsPageContainer = memo(
-    ({ id }: ArticleDetailsPageContainerProps) => {
-        const { data: article, isLoading, error } = useArticleDataById(id);
+    ({ id }: LiveCodeTaskDetailsPageContainerProps) => {
+        const { data: liveCodeTask } = useLiveCodeDataById(id);
 
-        const currentUserdata = useUserAuthData();
-        const articleAuthorId = article?.user.id;
-
-        const authedUserId = currentUserdata?.id;
-
-        if (!id || !article) return null;
+        if (!id || !liveCodeTask) return null;
 
         return (
             <VStack gap="16" max>
@@ -38,26 +24,16 @@ export const LiveCodeTaskDetailsPageContainer = memo(
                     feature="isAppRedesigned"
                     on={
                         <Card fullHeight border="round" padding="24" max>
-                            <ArticleDetails id={id} />
+                            <LiveCodeTaskDetails id={id} />
                         </Card>
                     }
                     off={
                         <>
-                            <ArticleControls article={article} />
-                            <ArticleDetails id={id} />
+                            {/* <ArticleControls article={liveCodeTask} /> */}
+                            <LiveCodeTaskDetails id={id} />
                         </>
                     }
                 />
-                {article && !error && (
-                    <>
-                        {articleAuthorId !== authedUserId && (
-                            <ArticleRating articleId={id} />
-                        )}
-
-                        <ArticleRecommendationsList id={id} />
-                        <ArticleComments id={id} />
-                    </>
-                )}
             </VStack>
         );
     },

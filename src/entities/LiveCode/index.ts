@@ -1,3 +1,5 @@
+export { LiveCodeTaskDetails } from './ui/LiveCodeTaskDetails/LiveCodeTaskDetails';
+
 export { useLiveCodeTaskNavigation } from './lib/hooks/useLiveCodeTaskNavigation/useLiveCodeTaskNavigation';
 
 export { deleteLiveCodeThunk } from './model/services/deleteHRInterviewQAThunk/deleteLiveCodeThunk';
