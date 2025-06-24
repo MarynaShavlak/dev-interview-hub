@@ -61,7 +61,7 @@ export const EntitiesListNavigationButton = memo(
                     >
                         {type === 'article'
                             ? t('Всі статті')
-                            : t('Всі питання')}
+                            : t('Назад до списку')}
                     </Button>
                 }
                 off={

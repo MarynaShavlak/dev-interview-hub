@@ -23,7 +23,7 @@ export const LiveCodeTaskDetailsRedesigned = memo(
         if (!liveCodeTask) {
             return null;
         }
-        const { title, blocks, createdAt } = liveCodeTask;
+        const { title, blocks } = liveCodeTask;
 
         if (isLoading) {
             return <LiveCodeTaskDetailsSkeleton />;

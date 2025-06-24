@@ -34,7 +34,6 @@ export const LiveCodeTaskDetailsPageContainer = memo(
                                 entity={liveCodeTask}
                                 entityType="liveCode"
                             />
-                            {/* <ArticleControls article={liveCodeTask} /> */}
                             <LiveCodeTaskDetails id={id} />
                         </>
                     }

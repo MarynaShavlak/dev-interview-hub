@@ -4,7 +4,7 @@ import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 
 export default {
-    title: 'features/ArticleListNavigationButton',
+    title: 'shared/common/EntitiesListNavigationButton',
     component: EntitiesListNavigationButton,
     argTypes: {
         backgroundColor: { control: 'color' },

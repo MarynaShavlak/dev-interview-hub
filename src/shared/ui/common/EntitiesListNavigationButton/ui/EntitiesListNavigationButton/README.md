@@ -1,31 +1,48 @@
-# ArticleListNavigationButton Feature
+# EntitiesListNavigationButton 
 
 ## Overview
-The **`ArticleListNavigationButton`** component provides a navigational button that allows users to seamlessly access the list of articles within an application. 
-It dynamically adjusts its appearance and functionality based on the application's design system and feature flags, ensuring a consistent user experience across different contexts. 
-This component integrates tightly with the application's routing and localization systems, facilitating easy navigation to article lists or related content.
-
-## Props
-The **`ArticleListNavigationButton`** component does not accept any props.
+The **`EntitiesListNavigationButton`** is a reusable navigation component that provides contextual back-to-list functionality for different entity types in the application. It dynamically adapts to the application's design system and supports multiple entity routes.
 
 ## Features
-1.**Navigation to Articles**: Directly navigates users to the articles list page using the `getRouteArticles()` function. This ensures users can easily access all articles from any part of the application.
+- **Multi-entity support**: Handles navigation for articles, HR interview Q&A, and live code tasks
+- **Design system adaptation**: Automatically switches between redesigned and deprecated UI based on feature flags
+- **Internationalization**: Supports translated button labels
+- **Type-safe routing**: Ensures all entity types are properly handled
 
-2.**Design Adaptation**: Renders UI elements based on whether the redesigned interface (`isAppRedesigned` feature flag) is enabled.
+## Props
 
+| Prop | Type | Description | Required |  
+|------|------|-------------|----------|  
+| `type` | `EntityType` | Determines which list route to navigate to and button label | Yes |  
 
-## Usage Example
+## EntityType Options
+- `'article'`: Navigates to articles list with label "Всі статті" (All articles)
+- `'hrInterviewQA'`: Navigates to HR interviews list
+- `'liveCode'`: Navigates to live code tasks list
+
+## Implementation Details
+The component uses:
+- React's `memo` for performance optimization
+- `useCallback` for memoized navigation handler
+- Feature flagging via `ToggleFeaturesComponent`
+- TypeScript exhaustive type checking for safety
+
+## Usage Examples
+
+### Basic Usage
 ```typescript jsx
-import { ArticleListNavigationButton } from '@/features/ArticleListNavigationButton';
+import { EntitiesListNavigationButton } from '@/shared/ui';
 
-const App = () => (
-    <div>
-        <ArticleListNavigationButton />
-        {/* The ArticleListNavigationButton component allows users to navigate to the list of articles */}
-    </div>
-);
+// In a component
+<EntitiesListNavigationButton type="article" />
 ```
 ## Conclusion
-The **`ArticleListNavigationButton`** component serves as a crucial navigational element for applications featuring articles. 
-It seamlessly integrates with the application's design and functionality, allowing users to navigate to the articles list with ease. 
-By adapting to the current design system and leveraging feature flags, it ensures a user-friendly interface that enhances overall usability and navigation efficiency.
+
+The `EntitiesListNavigationButton` component provides a flexible and type-safe navigation solution for multiple entity types within the application. Key benefits include:
+
+- **Consistent User Experience**: Maintains uniform navigation patterns across different sections (articles, interviews, code tasks)
+- **Future-Proof Design**: Built-in support for both current and deprecated UI systems via feature flags
+- **Maintainability**: TypeScript exhaustive checking ensures all entity types are properly handled
+- **Localization Ready**: Integrated with i18n for multilingual support
+
+This component serves as a robust building block for list navigation, combining type safety with adaptive design while handling all edge cases through proper error handling. Its implementation demonstrates best practices in React component development including memoization, callback optimization, and clean feature flagging.
