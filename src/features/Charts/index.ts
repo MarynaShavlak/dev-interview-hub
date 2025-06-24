@@ -6,3 +6,10 @@ export { ArticleRatingDistributionChart } from './ArticleRatingDistributionChart
 export { TopCommentedArticlesChart } from './TopCommentedArticlesChart';
 export { UserRatingsBubbleChart } from './UserRatingsBubbleChart';
 export { UsersActivityChart } from './UsersActivityChart';
+export type { ActiveUsersList } from './UsersActivityChart';
+export type { ArticleRatingDistributionChartProps } from './ArticleRatingDistributionChart';
+export type { ArticleCategoriesChartsProps } from './ArticleCategoriesCharts';
+export type { UserRatingsBubbleChartProps } from './UserRatingsBubbleChart';
+export type { TopCommentedArticlesChartProps } from './TopCommentedArticlesChart';
+export type { ArticleCommentersChartProps } from './ArticleCommentersChart';
+export type { ArticleMonthlyDataChartProps } from './ArticleMonthlyDataChart';

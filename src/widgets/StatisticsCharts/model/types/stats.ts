@@ -1,10 +1,12 @@
-import { ActiveUsersList } from 'src/features/Charts/UsersActivityChart';
-import { ArticleRatingDistributionChartProps } from 'src/features/Charts/ArticleRatingDistributionChart';
-import { ArticleCategoriesChartsProps } from 'src/features/Charts/ArticleCategoriesCharts';
-import { UserRatingsBubbleChartProps } from 'src/features/Charts/UserRatingsBubbleChart';
-import { TopCommentedArticlesChartProps } from 'src/features/Charts/TopCommentedArticlesChart';
-import { ArticleCommentersChartProps } from 'src/features/Charts/ArticleCommentersChart';
-import { ArticleMonthlyDataChartProps } from 'src/features/Charts/ArticleMonthlyDataChart';
+import {
+    ActiveUsersList,
+    ArticleRatingDistributionChartProps,
+    ArticleCategoriesChartsProps,
+    UserRatingsBubbleChartProps,
+    TopCommentedArticlesChartProps,
+    ArticleCommentersChartProps,
+    ArticleMonthlyDataChartProps,
+} from '@/features/Charts';
 import { ActiveArticlesList } from '@/features/DashboardStats';
 
 export interface ArticleStats {

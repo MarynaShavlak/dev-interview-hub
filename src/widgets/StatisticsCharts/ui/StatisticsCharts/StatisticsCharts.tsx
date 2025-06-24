@@ -1,12 +1,14 @@
 import React from 'react';
-import { ArticleQuarterlyDataChart } from 'src/features/Charts/ArticleQuarterlyDataChart';
-import { ArticleCommentersChart } from 'src/features/Charts/ArticleCommentersChart';
-import { UsersActivityChart } from 'src/features/Charts/UsersActivityChart';
-import { ArticleCategoriesCharts } from 'src/features/Charts/ArticleCategoriesCharts';
-import { UserRatingsBubbleChart } from 'src/features/Charts/UserRatingsBubbleChart';
-import { ArticleRatingDistributionChart } from 'src/features/Charts/ArticleRatingDistributionChart';
-import { TopCommentedArticlesChart } from 'src/features/Charts/TopCommentedArticlesChart';
-import { ArticleMonthlyDataChart } from 'src/features/Charts/ArticleMonthlyDataChart';
+import {
+    ArticleQuarterlyDataChart,
+    ArticleCommentersChart,
+    UsersActivityChart,
+    ArticleCategoriesCharts,
+    UserRatingsBubbleChart,
+    ArticleRatingDistributionChart,
+    TopCommentedArticlesChart,
+    ArticleMonthlyDataChart,
+} from '@/features/Charts';
 import { DashboardStats } from '@/features/DashboardStats';
 import { processRatings } from '../../lib/dataHandlers/processRatings/processRatings';
 import { initializeData } from '../../lib/dataHandlers/initializeData/initializeData';
