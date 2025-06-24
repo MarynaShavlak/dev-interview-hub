@@ -1,3 +1,5 @@
+export { ArticleEditButton } from './ui/ArticleEditButton/ArticleEditButton';
+
 export { useEditArticleNavigation } from './lib/hooks/useEditArticleNavigation/useEditArticleNavigation';
 
 export { getLimitByView } from './lib/utilities/getLimitByView/getLimitByView';

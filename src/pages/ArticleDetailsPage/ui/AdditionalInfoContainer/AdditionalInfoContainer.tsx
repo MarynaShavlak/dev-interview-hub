@@ -7,7 +7,7 @@ import { AdditionalInfoContainerSkeleton } from './AdditionalInfoContainerSkelet
 import { Card } from '@/shared/ui/redesigned/Card';
 import cls from './AdditionalInfoContainer.module.scss';
 import { useArticleDataById } from '@/entities/Article';
-import { ArticleControls } from '@/widgets/ArticleControls';
+import { EntityControls } from '@/widgets/EntityControls';
 
 interface ArticleDetailsPageContainerProps {
     id: string;
@@ -28,7 +28,7 @@ export const AdditionalInfoContainer = memo(
         }
         return (
             <Card padding="24" border="round" className={cls.card}>
-                <ArticleControls article={article} />
+                <EntityControls entity={article} entityType="article" />
             </Card>
         );
     },

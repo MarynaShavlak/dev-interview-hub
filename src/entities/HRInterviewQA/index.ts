@@ -1,7 +1,6 @@
+export { HRInterviewQAEditButton } from './ui/HRInterviewQAEditButton/HRInterviewQAEditButton';
 export { useInterviewTableNavigation } from './lib/hooks/useInterviewTableNavigation/useInterviewTableNavigation';
-
 export { deleteHRInterviewQAThunk } from './model/services/deleteHRInterviewQAThunk/deleteHRInterviewQAThunk';
-
 export { useEditHRInterviewQANavigation } from './lib/hooks/useEditHRInterviewQANavigation/useEditHRInterviewQANavigation';
 
 export {
@@ -16,7 +15,7 @@ export {
     updateHRInterviewQAMutation,
     getHRInterviewQADataByIdQuery,
     useHRInterviewQAsByUserId,
-    useHRInterviewQADataById,
+    // useHRInterviewQADataById,
 } from './api/hrInterviewApi';
 
 export type {

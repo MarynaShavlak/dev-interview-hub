@@ -42,7 +42,7 @@ export const getCanEditArticle = createSelector(
 import { memo } from 'react';
 import { useSelector } from 'react-redux';
 import { ArticleListNavigationButton } from '@/features/ArticleListNavigationButton';
-import { ArticleEditNavigationButton } from '@/features/ArticleEditNavigationButton';
+import { EntityEditNavigationButton } from '@/features/EntityEditNavigationButton';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { HStack } from '@/shared/ui/redesigned/Stack';
 import { getCanEditArticle } from '../../model/selectors/article';
@@ -63,7 +63,7 @@ export const ArticleDetailsPageHeader = memo(
                 className={classNames('', {}, [className])}
             >
                 <ArticleListNavigationButton />
-                {canEdit && <ArticleEditNavigationButton />}
+                {canEdit && <EntityEditNavigationButton id={id} entityType="article" max />}
             </HStack>
         );
     },

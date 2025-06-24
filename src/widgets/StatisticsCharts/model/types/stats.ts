@@ -1,11 +1,11 @@
+import { ActiveUsersList } from 'src/features/Charts/UsersActivityChart';
+import { ArticleRatingDistributionChartProps } from 'src/features/Charts/ArticleRatingDistributionChart';
+import { ArticleCategoriesChartsProps } from 'src/features/Charts/ArticleCategoriesCharts';
+import { UserRatingsBubbleChartProps } from 'src/features/Charts/UserRatingsBubbleChart';
+import { TopCommentedArticlesChartProps } from 'src/features/Charts/TopCommentedArticlesChart';
+import { ArticleCommentersChartProps } from 'src/features/Charts/ArticleCommentersChart';
+import { ArticleMonthlyDataChartProps } from 'src/features/Charts/ArticleMonthlyDataChart';
 import { ActiveArticlesList } from '@/features/DashboardStats';
-import { ActiveUsersList } from '@/features/UsersActivityChart';
-import { ArticleRatingDistributionChartProps } from '@/features/ArticleRatingDistributionChart';
-import { ArticleCategoriesChartsProps } from '@/features/ArticleCategoriesCharts';
-import { UserRatingsBubbleChartProps } from '@/features/UserRatingsBubbleChart';
-import { TopCommentedArticlesChartProps } from '@/features/TopCommentedArticlesChart';
-import { ArticleCommentersChartProps } from '@/features/ArticleCommentersChart';
-import { ArticleMonthlyDataChartProps } from '@/features/ArticleMonthlyDataChart';
 
 export interface ArticleStats {
     [key: string]: number;

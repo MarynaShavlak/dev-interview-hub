@@ -1,6 +1,12 @@
 import React from 'react';
-import { ArticleQuarterlyDataChart } from '@/features/ArticleQuarterlyDataChart';
-import { ArticleCommentersChart } from '@/features/ArticleCommentersChart';
+import { ArticleQuarterlyDataChart } from 'src/features/Charts/ArticleQuarterlyDataChart';
+import { ArticleCommentersChart } from 'src/features/Charts/ArticleCommentersChart';
+import { UsersActivityChart } from 'src/features/Charts/UsersActivityChart';
+import { ArticleCategoriesCharts } from 'src/features/Charts/ArticleCategoriesCharts';
+import { UserRatingsBubbleChart } from 'src/features/Charts/UserRatingsBubbleChart';
+import { ArticleRatingDistributionChart } from 'src/features/Charts/ArticleRatingDistributionChart';
+import { TopCommentedArticlesChart } from 'src/features/Charts/TopCommentedArticlesChart';
+import { ArticleMonthlyDataChart } from 'src/features/Charts/ArticleMonthlyDataChart';
 import { DashboardStats } from '@/features/DashboardStats';
 import { processRatings } from '../../lib/dataHandlers/processRatings/processRatings';
 import { initializeData } from '../../lib/dataHandlers/initializeData/initializeData';
@@ -9,15 +15,9 @@ import { useStatisticsData } from '../../lib/hooks/useStatisticsData';
 import { StatisticsChartsError } from './StatisticsChartsError';
 import { StatisticsChartsSkeleton } from './StatisticsChartsSkeleton';
 import cls from './StatisticsCharts.module.scss';
-import { UsersActivityChart } from '@/features/UsersActivityChart';
-import { ArticleCategoriesCharts } from '@/features/ArticleCategoriesCharts';
 
 import { processComments } from '../../lib/dataHandlers/processComments/processComments';
-import { UserRatingsBubbleChart } from '@/features/UserRatingsBubbleChart';
-import { ArticleRatingDistributionChart } from '@/features/ArticleRatingDistributionChart';
 import { CHARTS_RECTS } from '../../model/consts/chartsRects';
-import { TopCommentedArticlesChart } from '@/features/TopCommentedArticlesChart';
-import { ArticleMonthlyDataChart } from '@/features/ArticleMonthlyDataChart';
 import { chartsWrap } from '../../model/consts/classes';
 
 export const StatisticsCharts = () => {

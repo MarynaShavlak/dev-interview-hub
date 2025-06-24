@@ -1,46 +1,39 @@
 import { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
+
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
-// import { useArticleDetailsData } from '@/entities/Article';
 import { Button } from '@/shared/ui/redesigned/Button';
 import {
     Button as ButtonDeprecated,
     ButtonTheme,
 } from '@/shared/ui/deprecated/Button';
-import {
-    useArticleDataById,
-    useEditArticleNavigation,
-} from '@/entities/Article';
+import { useArticleDataById } from '../../api/articleApi';
+import { useEditArticleNavigation } from '../../lib/hooks/useEditArticleNavigation/useEditArticleNavigation';
 
-interface ArticleEditNavigationButtonProps {
-    id: string;
-    max?: boolean;
-}
-
-export const ArticleEditNavigationButton = memo(
-    ({ id, max = false }: ArticleEditNavigationButtonProps) => {
-        const { t } = useTranslation('articleDetails');
-        const { data: article, isLoading, error } = useArticleDataById(id);
+export const ArticleEditButton = memo(
+    ({ id, max }: { id: string; max: boolean }) => {
+        const { t } = useTranslation();
+        const articleData = useArticleDataById(id);
         const { navigateToEditArticle } = useEditArticleNavigation();
 
-        const onEditArticle = useCallback(() => {
-            if (article) {
-                navigateToEditArticle(article.id);
+        const onEditEntity = useCallback(() => {
+            if (articleData.data) {
+                navigateToEditArticle(articleData.data.id);
             }
-        }, [article, navigateToEditArticle]);
+        }, [articleData.data, navigateToEditArticle]);
 
         return (
             <ToggleFeaturesComponent
                 feature="isAppRedesigned"
                 on={
-                    <Button onClick={onEditArticle} max={max}>
+                    <Button variant="outline" max={max} onClick={onEditEntity}>
                         {t('Редагувати')}
                     </Button>
                 }
                 off={
                     <ButtonDeprecated
                         theme={ButtonTheme.OUTLINE}
-                        onClick={onEditArticle}
+                        onClick={onEditEntity}
                     >
                         {t('Редагувати статтю')}
                     </ButtonDeprecated>

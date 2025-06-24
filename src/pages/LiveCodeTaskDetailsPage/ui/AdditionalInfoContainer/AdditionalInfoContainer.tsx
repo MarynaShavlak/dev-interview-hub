@@ -6,8 +6,8 @@ import { AdditionalInfoContainerSkeleton } from './AdditionalInfoContainerSkelet
 // } from '@/entities/Article';
 import { Card } from '@/shared/ui/redesigned/Card';
 import cls from './AdditionalInfoContainer.module.scss';
-import { useArticleDataById } from '@/entities/Article';
-import { ArticleControls } from '@/widgets/ArticleControls';
+import { EntityControls } from '@/widgets/EntityControls';
+import { useLiveCodeDataById } from '@/entities/LiveCode';
 
 interface ArticleDetailsPageContainerProps {
     id: string;
@@ -15,18 +15,23 @@ interface ArticleDetailsPageContainerProps {
 
 export const AdditionalInfoContainer = memo(
     ({ id }: ArticleDetailsPageContainerProps) => {
-        const { data: article, isLoading, error } = useArticleDataById(id);
+        const {
+            data: liveCodeTask,
+            isLoading,
+            error,
+        } = useLiveCodeDataById(id);
 
         if (isLoading) {
             return <AdditionalInfoContainerSkeleton />;
         }
 
-        if (!article) {
+        if (!liveCodeTask) {
             return null;
         }
         return (
             <Card padding="24" border="round" className={cls.card}>
-                <ArticleControls article={article} />
+                <EntityControls entity={liveCodeTask} entityType="liveCode" />
+                {/* <ArticleControls article={article} /> */}
             </Card>
         );
     },

@@ -6,6 +6,7 @@ import { VStack } from '@/shared/ui/common/Stack';
 import { Card } from '@/shared/ui/redesigned/Card';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
 import { LiveCodeTaskDetails, useLiveCodeDataById } from '@/entities/LiveCode';
+import { EntityControls } from '@/widgets/EntityControls';
 // import { ArticleRecommendationsList } from '@/features/ArticleRecommendationsList';
 
 interface LiveCodeTaskDetailsPageContainerProps {
@@ -29,6 +30,10 @@ export const LiveCodeTaskDetailsPageContainer = memo(
                     }
                     off={
                         <>
+                            <EntityControls
+                                entity={liveCodeTask}
+                                entityType="liveCode"
+                            />
                             {/* <ArticleControls article={liveCodeTask} /> */}
                             <LiveCodeTaskDetails id={id} />
                         </>
