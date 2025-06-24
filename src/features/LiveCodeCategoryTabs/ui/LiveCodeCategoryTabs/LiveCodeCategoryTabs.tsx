@@ -64,7 +64,7 @@ export const LiveCodeCategoryTabs = memo((props: LiveCodeCategoryTabsProps) => {
             />
 
             <RefinementList
-                attribute="category"
+                attribute=""
                 transformItems={(items) => {
                     return [
                         ...categoryTabs.map((category) => {

@@ -15,6 +15,7 @@ export {
     updateHRInterviewQAMutation,
     getHRInterviewQADataByIdQuery,
     useHRInterviewQAsByUserId,
+    useHRInterviewQACategoryCounts,
     // useHRInterviewQADataById,
 } from './api/hrInterviewApi';
 

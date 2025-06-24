@@ -3,12 +3,13 @@ import { searchClient } from '@/shared/config/firebase/searchClient';
 import { StickyContentLayout } from '@/shared/layouts/StickyContentLayout';
 import { HStack, VStack } from '@/shared/ui/common/Stack';
 
-import { HRInterviewFilters } from '@/widgets/HRInterviewFilters';
 import { AddNewEntityButton } from '@/shared/ui/common/AddNewEntityButton';
 import { HRInterviewPageContent } from '../../HRInterviewPageContent/HRInterviewPageContent';
 import { HRInterviewAlgoliaSearch } from '../../HRInterviewAlgoliaSearch/HRInterviewAlgoliaSearch';
 import { HRInterviewQueueNavigationButton } from '../../HRInterviewQueueNavigationButton/HRInterviewQueueNavigationButton';
 import { HRInterviewEditTableNavigationButton } from '../../HRInterviewEditTableNavigationButton/HRInterviewEditTableNavigationButton';
+import { EntityFilters } from '@/widgets/EntityFilters';
+import { HRInterviewCategoryTabs } from '@/features/HRInterviewCategoryTabs';
 
 export const HRInterviewPageRedesigned = () => {
     return (
@@ -22,7 +23,10 @@ export const HRInterviewPageRedesigned = () => {
                                 <HRInterviewQueueNavigationButton />
                                 <HRInterviewEditTableNavigationButton />
                             </HStack>
-                            <HRInterviewFilters />
+                            <EntityFilters>
+                                <HRInterviewCategoryTabs />
+                            </EntityFilters>
+                            {/* <HRInterviewFilters /> */}
                         </VStack>
                     }
                     content={<HRInterviewPageContent />}

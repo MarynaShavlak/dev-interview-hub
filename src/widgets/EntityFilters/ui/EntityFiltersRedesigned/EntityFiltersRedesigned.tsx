@@ -6,13 +6,12 @@ import { memo } from 'react';
 
 import { Icon } from '@/shared/ui/redesigned/Icon';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
-import cls from '../HRInterviewFilters.module.scss';
+import cls from '../EntityFilters.module.scss';
 import { Card } from '@/shared/ui/redesigned/Card';
 import { VStack } from '@/shared/ui/common/Stack';
 import SearchIcon from '@/shared/assets/icons/search.svg';
 import CloseIcon from '@/shared/assets/icons/close.svg';
-import { HRInterviewCategoryTabs } from '@/features/HRInterviewCategoryTabs';
-import { HRInterviewFiltersProps } from '../HRInterviewFilters';
+import { EntityFiltersProps } from '../EntityFilters';
 
 const ResetIconComponent = memo(() => (
     <Icon Svg={CloseIcon} className={cls.ResetIcon} />
@@ -20,10 +19,8 @@ const ResetIconComponent = memo(() => (
 
 const SubmitIconComponent = memo(() => <Icon Svg={SearchIcon} />);
 
-export const HRInterviewFiltersRedesigned = (
-    props: HRInterviewFiltersProps,
-) => {
-    const { className } = props;
+export const EntityFiltersRedesigned = (props: EntityFiltersProps) => {
+    const { className, children } = props;
     const { t } = useTranslation();
 
     const searchBoxClasses = {
@@ -35,7 +32,7 @@ export const HRInterviewFiltersRedesigned = (
 
     return (
         <Card
-            className={classNames(cls.HRFiltersRedesigned, {}, [className])}
+            className={classNames(cls.EntityFiltersRedesigned, {}, [className])}
             padding="24"
         >
             <VStack gap="32">
@@ -46,7 +43,7 @@ export const HRInterviewFiltersRedesigned = (
                     classNames={searchBoxClasses}
                 />
 
-                <HRInterviewCategoryTabs />
+                {children}
             </VStack>
         </Card>
     );

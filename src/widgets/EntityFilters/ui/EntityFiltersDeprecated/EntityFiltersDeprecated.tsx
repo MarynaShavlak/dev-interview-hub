@@ -6,13 +6,12 @@ import { memo } from 'react';
 
 import { Icon } from '@/shared/ui/deprecated/Icon';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
-import cls from '../HRInterviewFilters.module.scss';
+import cls from '../EntityFilters.module.scss';
 import { Card, CardTheme } from '@/shared/ui/deprecated/Card';
 import { VStack } from '@/shared/ui/common/Stack';
 import SearchIcon from '@/shared/assets/icons/search.svg';
 import CloseIcon from '@/shared/assets/icons/close.svg';
-import { HRInterviewCategoryTabs } from '@/features/HRInterviewCategoryTabs';
-import { HRInterviewFiltersProps } from '../HRInterviewFilters';
+import { EntityFiltersProps } from '../EntityFilters';
 
 const ResetIconComponent = memo(() => (
     <Icon
@@ -25,10 +24,8 @@ const ResetIconComponent = memo(() => (
 
 const SubmitIconComponent = memo(() => <Icon Svg={SearchIcon} />);
 
-export const HRInterviewFiltersDeprecated = (
-    props: HRInterviewFiltersProps,
-) => {
-    const { className } = props;
+export const EntityFiltersDeprecated = (props: EntityFiltersProps) => {
+    const { className, children } = props;
     const { t } = useTranslation();
 
     const searchBoxClasses = {
@@ -42,7 +39,7 @@ export const HRInterviewFiltersDeprecated = (
     return (
         <Card
             theme={CardTheme.OUTLINED}
-            className={classNames(cls.HRFiltersDeprecated, {}, [className])}
+            className={classNames(cls.EntityFiltersDeprecated, {}, [className])}
             padding="24"
         >
             <VStack gap="32">
@@ -53,7 +50,7 @@ export const HRInterviewFiltersDeprecated = (
                     classNames={searchBoxClasses}
                 />
 
-                <HRInterviewCategoryTabs />
+                {children}
             </VStack>
         </Card>
     );

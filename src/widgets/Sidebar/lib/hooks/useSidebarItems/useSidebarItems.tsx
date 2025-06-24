@@ -11,10 +11,12 @@ import QuizIcon from '@/shared/assets/icons/quiz.svg';
 import LinkIcon from '@/shared/assets/icons/link.svg';
 import InterviewIcon from '@/shared/assets/icons/interview.svg';
 import EnglishIcon from '@/shared/assets/icons/english.svg';
+import CodeIcon from '@/shared/assets/icons/code.svg';
 import {
     getRouteArticles,
     getRouteEnglish,
     getRouteHRInterview,
+    getRouteLiveCodeTasks,
     getRouteMain,
     getRouteMyArticles,
     getRouteProfile,
@@ -93,6 +95,16 @@ export const useSidebarItems = () => {
                     on: () => InterviewIcon,
                 }),
                 text: 'HR Співбесіда',
+                authOnly: true,
+            },
+            {
+                path: getRouteLiveCodeTasks(),
+                Icon: toggleFeatures({
+                    name: 'isAppRedesigned',
+                    off: () => CodeIcon,
+                    on: () => CodeIcon,
+                }),
+                text: 'Live Coding',
                 authOnly: true,
             },
             {

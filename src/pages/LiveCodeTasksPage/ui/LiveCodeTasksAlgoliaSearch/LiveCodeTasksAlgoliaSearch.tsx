@@ -6,7 +6,7 @@ import {
 import { ReactNode } from 'react';
 import { searchClient } from '@/shared/config/firebase/searchClient';
 
-interface ArticlesSearchProps {
+interface LiveCodeTasksSearchProps {
     children: ReactNode;
 }
 
@@ -14,16 +14,18 @@ const VirtualPagination = () => {
     usePagination();
     return null;
 };
-export const HRInterviewAlgoliaSearch = ({ children }: ArticlesSearchProps) => {
+export const LiveCodeTasksAlgoliaSearch = ({
+    children,
+}: LiveCodeTasksSearchProps) => {
     return (
         <InstantSearch
             searchClient={searchClient}
-            indexName="hrInterviewQA"
+            indexName="liveCodeTasks"
             future={{
                 preserveSharedStateOnUnmount: true,
             }}
         >
-            <Configure hitsPerPage={10} maxValuesPerFacet={1000} />
+            <Configure hitsPerPage={10} />
             <VirtualPagination />
             {children}
         </InstantSearch>

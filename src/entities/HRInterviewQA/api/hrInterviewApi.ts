@@ -128,6 +128,52 @@ export const HRInterviewQAFirebaseApi = firestoreApi
                     );
                 },
             }),
+            getHRInterviewQACategoryCounts: build.query<
+                Record<string, number>,
+                string
+            >({
+                providesTags: ['HRInterviewQAs'],
+                async queryFn(userId) {
+                    if (!userId) {
+                        return {
+                            error: new Error(
+                                ERROR_HR_INTERVIEW_MESSAGES.USER_NOT_FOUND,
+                            ),
+                        };
+                    }
+
+                    try {
+                        // Get all documents for the user
+                        const querySnapshot =
+                            await fetchCollectionForUser<HRInterviewQA>(
+                                'hrInterviewQA',
+                                userId,
+                            );
+
+                        // Count categories
+                        const categoryCounts: Record<string, number> = {};
+                        querySnapshot.forEach((doc) => {
+                            const { category } = doc;
+                            if (category) {
+                                if (!categoryCounts[category]) {
+                                    categoryCounts[category] = 0;
+                                }
+                                categoryCounts[category] += 1;
+                            }
+                        });
+
+                        return { data: categoryCounts };
+                    } catch (error) {
+                        return {
+                            error: new Error(
+                                ERROR_HR_INTERVIEW_MESSAGES.HR_INTERVIEWS_BY_USER_ID_FETCH_FAIL(
+                                    userId,
+                                ),
+                            ),
+                        };
+                    }
+                },
+            }),
         }),
     });
 
@@ -144,3 +190,5 @@ export const useHRInterviewQAsByUserId =
     HRInterviewQAFirebaseApi.useGetHRInterviewQAsByUserIdQuery;
 export const useHRInterviewQADataById =
     HRInterviewQAFirebaseApi.useGetHRInterviewQADataByIdQuery;
+export const useHRInterviewQACategoryCounts =
+    HRInterviewQAFirebaseApi.useGetHRInterviewQACategoryCountsQuery;

@@ -6,6 +6,11 @@ import cls from './HRInterviewCategoryTabs.module.scss';
 import { useHRCategoryTabs } from '../../lib/hooks/useHRCategoryTabs/useHRCategoryTabs';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { getDesignVariantClass } from '@/shared/lib/classes/getDesignVariantClass/getDesignVariantClass';
+import { useHRInterviewQACategoryCounts } from '@/entities/HRInterviewQA';
+import { useUserAuthData } from '@/entities/User';
+import { Skeleton as SkeletonDeprecated } from '@/shared/ui/deprecated/Skeleton';
+import { toggleFeatures } from '@/shared/lib/features';
+import { Skeleton as SkeletonRedesigned } from '@/shared/ui/redesigned/Skeleton';
 
 export interface HRInterviewCategoryTabsProps {
     className?: string;
@@ -17,6 +22,25 @@ export const HRInterviewCategoryTabs = memo(
         const { t } = useTranslation();
         const rawCategoryTabs = useHRCategoryTabs();
         const categoryTabs = useMemo(() => rawCategoryTabs, [rawCategoryTabs]);
+        const currentUserdata = useUserAuthData();
+        const authedUserId = currentUserdata?.id || '';
+        const {
+            data: categoryCounts,
+            isLoading,
+            error,
+        } = useHRInterviewQACategoryCounts(authedUserId);
+        console.log('categoryCounts', categoryCounts);
+        const Skeleton = toggleFeatures({
+            name: 'isAppRedesigned',
+            on: () => SkeletonRedesigned,
+            off: () => SkeletonDeprecated,
+        });
+        if (isLoading) {
+            return <Skeleton width="450px" height="870px" />;
+        }
+        if (!categoryCounts) {
+            return null;
+        }
 
         const allItemsBtnClass = getDesignVariantClass(
             cls.AllItemsBtnRedesigned,
@@ -78,6 +102,7 @@ export const HRInterviewCategoryTabs = memo(
                                 const matchingItem = items.find(
                                     (item) => item.value === category.value,
                                 );
+
                                 if (matchingItem) {
                                     return {
                                         ...matchingItem,
@@ -88,7 +113,8 @@ export const HRInterviewCategoryTabs = memo(
                                 return (
                                     matchingItem || {
                                         ...category,
-                                        count: 0,
+                                        count:
+                                            categoryCounts[category.value] || 0,
                                         isRefined: false,
                                         label: category.label,
                                     }
@@ -105,6 +131,7 @@ export const HRInterviewCategoryTabs = memo(
                         item: classNames(menuItemClass, {}, [cls.MenuItem]),
                         link: classNames(menuLinkClass, {}, [cls.MenuLink]),
                         selectedItem: selectedItemClass,
+
                         // checkbox: cls.MenuCheckbox,
                     }}
                 />

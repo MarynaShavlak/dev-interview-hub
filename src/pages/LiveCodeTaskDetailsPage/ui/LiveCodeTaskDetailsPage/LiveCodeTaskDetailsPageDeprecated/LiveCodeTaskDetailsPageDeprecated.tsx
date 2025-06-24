@@ -12,7 +12,9 @@ export const LiveCodeTaskDetailsPageDeprecated = memo(
         if (!id) return null;
         return (
             <Page
-                className={classNames(cls.ArticleDetailsPage, {}, [className])}
+                className={classNames(cls.LiveCodeTaskDetailsPage, {}, [
+                    className,
+                ])}
             >
                 <LiveCodeTaskDetailsPageContainer id={id} />
             </Page>
