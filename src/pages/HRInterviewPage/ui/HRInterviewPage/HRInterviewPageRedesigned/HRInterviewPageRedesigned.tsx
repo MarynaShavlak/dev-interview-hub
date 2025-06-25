@@ -1,4 +1,5 @@
 import React from 'react';
+import { HRInterviewCategoryTabs } from '@/widgets/HRInterviewCategoryTabs';
 import { searchClient } from '@/shared/config/firebase/searchClient';
 import { StickyContentLayout } from '@/shared/layouts/StickyContentLayout';
 import { HStack, VStack } from '@/shared/ui/common/Stack';
@@ -9,7 +10,6 @@ import { HRInterviewAlgoliaSearch } from '../../HRInterviewAlgoliaSearch/HRInter
 import { HRInterviewQueueNavigationButton } from '../../HRInterviewQueueNavigationButton/HRInterviewQueueNavigationButton';
 import { HRInterviewEditTableNavigationButton } from '../../HRInterviewEditTableNavigationButton/HRInterviewEditTableNavigationButton';
 import { EntityFilters } from '@/widgets/EntityFilters';
-import { HRInterviewCategoryTabs } from '@/features/HRInterviewCategoryTabs';
 
 export const HRInterviewPageRedesigned = () => {
     return (

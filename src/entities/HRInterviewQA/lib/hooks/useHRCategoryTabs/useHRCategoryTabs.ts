@@ -1,9 +1,10 @@
 import { useTranslation } from 'react-i18next';
+
+import { TabItem } from '@/shared/ui/redesigned/Tabs';
 import {
     HRInterviewQACategoriesEng,
     HRInterviewQACategoriesUkr,
-} from '@/entities/HRInterviewQA';
-import { TabItem } from '@/shared/ui/redesigned/Tabs';
+} from '../../../model/data/categories';
 
 export const useHRCategoryTabs = () => {
     const { t, i18n } = useTranslation();

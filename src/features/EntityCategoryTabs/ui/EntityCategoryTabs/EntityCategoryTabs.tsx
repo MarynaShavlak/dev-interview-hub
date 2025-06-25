@@ -1,21 +1,23 @@
-import React, { memo, useMemo } from 'react';
+import React, { memo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ClearRefinements, RefinementList } from 'react-instantsearch';
+import { ClearRefinements, Menu } from 'react-instantsearch';
 import { VStack } from '@/shared/ui/common/Stack';
-import cls from './LiveCodeCategoryTabs.module.scss';
-import { useLiveCodeCategoryTabs } from '../../lib/hooks/useLiveCodeCategoryTabs/useLiveCodeCategoryTabs';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { getDesignVariantClass } from '@/shared/lib/classes/getDesignVariantClass/getDesignVariantClass';
+import cls from './EntityCategoryTabs.module.scss';
+import { EntityType } from '@/shared/types/entityType';
+import { TabItem } from '@/shared/ui/redesigned/Tabs';
 
-export interface LiveCodeCategoryTabsProps {
+export interface EntityCategoryTabsProps {
     className?: string;
+    entityType: EntityType;
+    categoryTabs: TabItem[];
+    categoryCounts: Record<string, number>;
 }
 
-export const LiveCodeCategoryTabs = memo((props: LiveCodeCategoryTabsProps) => {
-    const { className } = props;
+export const EntityCategoryTabs = memo((props: EntityCategoryTabsProps) => {
+    const { className, entityType, categoryTabs, categoryCounts } = props;
     const { t } = useTranslation();
-    const rawCategoryTabs = useLiveCodeCategoryTabs();
-    const categoryTabs = useMemo(() => rawCategoryTabs, [rawCategoryTabs]);
 
     const allItemsBtnClass = getDesignVariantClass(
         cls.AllItemsBtnRedesigned,
@@ -41,6 +43,10 @@ export const LiveCodeCategoryTabs = memo((props: LiveCodeCategoryTabsProps) => {
         cls.MenuItemRedesigned,
         cls.MenuItemDeprecated,
     );
+    const menuLinkClass = getDesignVariantClass(
+        cls.MenuLinkRedesigned,
+        cls.MenuLinkDeprecated,
+    );
 
     const menuListClass = getDesignVariantClass(
         cls.MenuListRedesigned,
@@ -51,7 +57,10 @@ export const LiveCodeCategoryTabs = memo((props: LiveCodeCategoryTabsProps) => {
         <VStack gap="8" className={className}>
             <ClearRefinements
                 translations={{
-                    resetButtonText: t('Вcі питання'),
+                    resetButtonText:
+                        entityType === 'hrInterviewQA'
+                            ? t('Вcі питання')
+                            : t('Вcі завдання'),
                 }}
                 classNames={{
                     button: classNames(allItemsBtnClass, {}, [cls.AllItemsBtn]),
@@ -63,14 +72,15 @@ export const LiveCodeCategoryTabs = memo((props: LiveCodeCategoryTabsProps) => {
                 }}
             />
 
-            <RefinementList
-                attribute=""
+            <Menu
+                attribute="category"
                 transformItems={(items) => {
                     return [
                         ...categoryTabs.map((category) => {
                             const matchingItem = items.find(
                                 (item) => item.value === category.value,
                             );
+
                             if (matchingItem) {
                                 return {
                                     ...matchingItem,
@@ -81,7 +91,7 @@ export const LiveCodeCategoryTabs = memo((props: LiveCodeCategoryTabsProps) => {
                             return (
                                 matchingItem || {
                                     ...category,
-                                    count: 0,
+                                    count: categoryCounts[category.value] || 0,
                                     isRefined: false,
                                     label: category.label,
                                 }
@@ -96,8 +106,8 @@ export const LiveCodeCategoryTabs = memo((props: LiveCodeCategoryTabsProps) => {
                     list: classNames(menuListClass, {}, [cls.MenuList]),
                     label: cls.MenuLabel,
                     item: classNames(menuItemClass, {}, [cls.MenuItem]),
+                    link: classNames(menuLinkClass, {}, [cls.MenuLink]),
                     selectedItem: selectedItemClass,
-                    checkbox: cls.MenuCheckbox,
                 }}
             />
         </VStack>

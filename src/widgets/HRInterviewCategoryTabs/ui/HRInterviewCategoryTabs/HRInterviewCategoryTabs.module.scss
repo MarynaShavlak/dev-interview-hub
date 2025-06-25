@@ -1,0 +1,130 @@
+/* Category Count Styles */
+.categoryCount {
+    display: inline-flex;
+    justify-content: center;
+    padding: 2px;
+    min-width: 30px;
+    //display: none;
+
+}
+
+.categoryCountRedesigned {
+    background-color: var(--light-bg-redesigned);
+    border-radius: 10px;
+
+}
+.categoryCountDeprecated {
+    display:none;
+
+}
+
+/* Menu Item Styles */
+
+.MenuList {
+    display: flex;
+    gap: 8px;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+}
+
+.MenuListRedesigned {
+    justify-content: space-between;
+}
+
+.MenuItem {
+    padding: 6px 16px;
+    transition: border 300ms ease-in;
+    cursor: pointer;
+    width: fit-content;
+    position: relative;
+}
+
+.MenuItemDeprecated {
+    border: 1px solid var(--primary-color);
+    &:hover {
+        background: var(--card-bg);
+        border: 1px solid transparent;
+    }
+}
+
+.MenuLabel {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+    cursor: pointer;
+    font: var(--font-s-redesigned);
+}
+
+.MenuCheckbox {
+    position: absolute;
+    width: 100%;
+    height: 16px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    cursor: pointer;
+}
+
+
+.AllItemsBtn {
+
+    min-width: 80px;
+    padding: 6px 16px;
+    transition: border 300ms ease-in;
+    width: fit-content;
+    cursor: pointer;
+    background: transparent;
+    display: flex;
+    border: none;
+    align-items: center;
+}
+
+.AllItemsBtnRedesigned,
+.AllItemsBtnNotSelectedRedesigned {
+    border-radius: 40px;
+    font: var(--font-s-redesigned);
+    color: var(--text-redesigned);
+}
+
+.AllItemsBtnDeprecated,
+.AllItemsBtnNotSelectedDeprecated {
+    border: 1px solid var(--primary-color);
+    font: var(--font-s);
+    color: var(--primary-color);
+}
+
+.AllItemsBtnDeprecated {
+    border: 1px solid var(--primary-color);
+
+}
+
+.AllItemsBtnNotSelectedDeprecated {
+    background: var(--card-bg);
+    border: 1px solid transparent;
+
+}
+
+.AllItemsBtnNotSelectedRedesigned {
+    background: var(--light-bg-redesigned);
+}
+
+.SelectedMenuItemRedesigned {
+    border-radius: 40px;
+    background: var(--light-bg-redesigned);
+}
+
+.SelectedMenuItemDeprecated {
+    background: var(--card-bg);
+    border: 1px solid transparent;
+
+}
+
+.MenuLink {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    font: var(--font-m-redesigned);
+    color: var(--text-redesigned);
+}

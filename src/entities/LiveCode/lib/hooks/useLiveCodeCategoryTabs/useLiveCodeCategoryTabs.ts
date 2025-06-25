@@ -4,7 +4,7 @@ import { TabItem } from '@/shared/ui/redesigned/Tabs';
 import {
     LiveCodeCategoriesEng,
     LiveCodeCategoriesUkr,
-} from '@/entities/LiveCode';
+} from '../../../model/data/categories';
 
 export const useLiveCodeCategoryTabs = () => {
     const { t, i18n } = useTranslation();

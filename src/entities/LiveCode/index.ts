@@ -1,3 +1,5 @@
+export { useLiveCodeCategoryTabs } from './lib/hooks/useLiveCodeCategoryTabs/useLiveCodeCategoryTabs';
+
 export { LiveCodeEditButton } from './ui/LiveCodeEditButton/LiveCodeEditButton';
 
 export { LiveCodeTaskDetails } from './ui/LiveCodeTaskDetails/LiveCodeTaskDetails';
@@ -5,11 +7,6 @@ export { LiveCodeTaskDetails } from './ui/LiveCodeTaskDetails/LiveCodeTaskDetail
 export { useLiveCodeTaskNavigation } from './lib/hooks/useLiveCodeTaskNavigation/useLiveCodeTaskNavigation';
 
 export { deleteLiveCodeThunk } from './model/services/deleteHRInterviewQAThunk/deleteLiveCodeThunk';
-
-export {
-    LiveCodeCategoriesEng,
-    LiveCodeCategoriesUkr,
-} from './model/data/categories';
 
 export { ERROR_LIVE_CODE_MESSAGES } from './model/consts/errorLiveCodeMessages';
 
@@ -20,6 +17,7 @@ export {
     useLiveCodesByUserId,
     useLiveCodeDataById,
     getLiveCodeTask,
+    useLiveCodeCategoryCounts,
 } from './api/liveCodeApi';
 
 export type { LiveCode, LiveCodeBlock } from './model/types/liveCode';

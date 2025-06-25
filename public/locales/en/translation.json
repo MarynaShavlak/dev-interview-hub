@@ -91,7 +91,8 @@
     "Помилка сервера при збереженні данних": "Server error while saving data",
     "Категорії завдань": "Task categories",
     "Оберіть одну категорію": "*Select one category.",
-  "Редагувати код": "Edit live code task",
+    "Редагувати код": "Edit live code task",
     "Редагувати питання": "Edit HR question",
-    "Редагувати": "Edit"
+    "Редагувати": "Edit",
+    "Вcі завдання": "All tasks"
 }

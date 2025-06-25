@@ -1,5 +1,6 @@
 import React, { memo, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
+
 import { Tabs } from '@/shared/ui/deprecated/Tabs';
 import { OrderCard } from '@/shared/ui/deprecated/OrderCard';
 import { HStack, VStack } from '@/shared/ui/common/Stack';
@@ -7,7 +8,7 @@ import { Text } from '@/shared/ui/deprecated/Text';
 
 import { AddHRInterviewCategoryFormProps } from '../AddHRInterviewCategoryForm';
 import { useHRInterviewQAFormState } from '../../../lib/hooks/useHRInterviewQAFormState/useHRInterviewQAFormState';
-import { useHRCategoryTabs } from '@/features/HRInterviewCategoryTabs';
+import { useHRCategoryTabs } from '@/entities/HRInterviewQA';
 
 export const AddHRInterviewCategoryFormDeprecated = memo(
     (props: AddHRInterviewCategoryFormProps) => {

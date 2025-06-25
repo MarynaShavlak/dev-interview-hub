@@ -1,8 +1,7 @@
 import { useTranslation } from 'react-i18next';
 
 import { generateHeaderOptionsMapping } from '../../utilities/generateHeaderOptionsMapping/generateHeaderOptionsMapping';
-import { HRInterviewQA } from '@/entities/HRInterviewQA';
-import { useHRCategoryTabs } from '@/features/HRInterviewCategoryTabs';
+import { HRInterviewQA, useHRCategoryTabs } from '@/entities/HRInterviewQA';
 
 export const useGetHeaderOptionsWithTranslation = (data: HRInterviewQA[]) => {
     const { t } = useTranslation('articleDetails');

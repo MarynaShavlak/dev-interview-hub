@@ -4,9 +4,9 @@ import { useUserAuthData } from '@/entities/User';
 import {
     HRCategory,
     HRInterviewQA,
+    useHRCategoryTabs,
     useHRInterviewQAsByUserId,
 } from '@/entities/HRInterviewQA';
-import { useHRCategoryTabs } from '@/features/HRInterviewCategoryTabs';
 
 export const useHRInterviewQAsByUserData = () => {
     const currentUserdata = useUserAuthData();

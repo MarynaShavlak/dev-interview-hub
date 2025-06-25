@@ -116,6 +116,52 @@ export const liveCodeFirebaseApi = firestoreApi
                     );
                 },
             }),
+            getLiveCodeCategoryCounts: build.query<
+                Record<string, number>,
+                string
+            >({
+                providesTags: ['liveCodeTasks'],
+                async queryFn(userId) {
+                    if (!userId) {
+                        return {
+                            error: new Error(
+                                ERROR_LIVE_CODE_MESSAGES.USER_NOT_FOUND,
+                            ),
+                        };
+                    }
+
+                    try {
+                        // Get all documents for the user
+                        const querySnapshot =
+                            await fetchCollectionForUser<LiveCode>(
+                                'liveCodeTasks',
+                                userId,
+                            );
+
+                        // Count categories
+                        const categoryCounts: Record<string, number> = {};
+                        querySnapshot.forEach((doc) => {
+                            const { category } = doc;
+                            if (category) {
+                                if (!categoryCounts[category]) {
+                                    categoryCounts[category] = 0;
+                                }
+                                categoryCounts[category] += 1;
+                            }
+                        });
+
+                        return { data: categoryCounts };
+                    } catch (error) {
+                        return {
+                            error: new Error(
+                                ERROR_LIVE_CODE_MESSAGES.LIVE_CODES_BY_USER_ID_FETCH_FAIL(
+                                    userId,
+                                ),
+                            ),
+                        };
+                    }
+                },
+            }),
         }),
     });
 
@@ -130,3 +176,5 @@ export const useLiveCodesByUserId =
 export const useLiveCodeDataById =
     liveCodeFirebaseApi.useGetLiveCodeDataByIdQuery;
 export const getLiveCodeTask = endpoints.getLiveCodeDataById;
+export const useLiveCodeCategoryCounts =
+    liveCodeFirebaseApi.useGetLiveCodeCategoryCountsQuery;

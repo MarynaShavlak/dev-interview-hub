@@ -1,4 +1,5 @@
 import React from 'react';
+import { HRInterviewCategoryTabs } from '@/widgets/HRInterviewCategoryTabs';
 import { searchClient } from '@/shared/config/firebase/searchClient';
 
 import { HRInterviewPageContent } from '../../HRInterviewPageContent/HRInterviewPageContent';
@@ -7,7 +8,6 @@ import { Page } from '@/widgets/Page';
 import { HStack, VStack } from '@/shared/ui/common/Stack';
 import { HRInterviewQueueNavigationButton } from '../../HRInterviewQueueNavigationButton/HRInterviewQueueNavigationButton';
 import { HRInterviewEditTableNavigationButton } from '../../HRInterviewEditTableNavigationButton/HRInterviewEditTableNavigationButton';
-import { HRInterviewCategoryTabs } from '@/features/HRInterviewCategoryTabs';
 import { EntityFilters } from '@/widgets/EntityFilters';
 
 export const HRInterviewPageDeprecated = () => {
