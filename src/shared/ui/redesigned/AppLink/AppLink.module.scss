@@ -1,17 +1,21 @@
 .primary {
     color: var(--text-redesigned);
-    transition: opacity 300ms ease;
+    transition: opacity 300ms ease, transform 300ms ease;
+
 
     &:hover {
         color: var(--accent-redesigned);
+
     }
 }
 
 .red {
     color: var(--cancel-redesigned);
-    transition: opacity 300ms ease;
+    transition: opacity 300ms ease, transform 300ms ease;
+
 
     &:hover {
         opacity: 0.8;
+
     }
 }

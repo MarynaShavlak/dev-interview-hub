@@ -1,4 +1,5 @@
 .ArticleListItem {
+
     &.LIST {
         width: calc(100% - 40px);
         padding-left: 40px;
@@ -25,6 +26,10 @@
     }
 
     &.GRID {
+        transform: scale(1);
+        &:hover {
+            transform: scale(1.05);
+        }
         width: 230px;
         transition: 0.3s;
         cursor: pointer;
@@ -81,7 +86,12 @@
 }
 
 .ArticleListItemRedesigned {
+
     &.GRID {
+        transform: scale(1);
+        &:hover {
+            transform: scale(1.05);
+        }
         @media (max-width: 1024px) {
             width: 50%;
         }
