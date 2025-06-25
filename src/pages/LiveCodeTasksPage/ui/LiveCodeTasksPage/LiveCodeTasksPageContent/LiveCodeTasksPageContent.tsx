@@ -1,20 +1,21 @@
 import React, { useEffect, useState } from 'react';
+import { Pagination } from 'react-instantsearch';
+
 import { useHits } from 'react-instantsearch-core';
-import cls from '../HRInterviewPageContent.module.scss';
+
+import cls from './LiveCodeTasksPageContent.module.scss';
+
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { VStack } from '@/shared/ui/common/Stack';
 import { Text } from '@/shared/ui/redesigned/Text';
 import { Skeleton } from '@/shared/ui/redesigned/Skeleton';
+
 import { Accordion } from '@/shared/ui/common/Accordion';
 
-import {
-    ArticleTextBlock,
-    ArticleTextBlockComponent,
-} from '@/entities/Article';
-import { NoHRInterviewQAFound } from '../../NoHRInterviewQAFound/NoHRInterviewQAFound';
-import { PagePagination } from '@/widgets/PagePagination';
+import { ArticleTextBlock } from '@/entities/Article';
+import { NoLiveCodeTasksFound } from '../../NoLiveCodeTasksFound/NoLiveCodeTasksFound';
 
-export const HRInterviewPageContentRedesigned = () => {
+export const LiveCodeTasksPageContent = () => {
     const [isLoading, setIsLoading] = useState(true);
     const { items, hits } = useHits({});
 
@@ -26,11 +27,12 @@ export const HRInterviewPageContentRedesigned = () => {
 
     const mappedItems = items.map((item) => {
         const textBlocks = item.blocks.map((block: ArticleTextBlock) => (
-            <ArticleTextBlockComponent
-                key={block.id}
-                block={block}
-                withTags={false}
-            />
+            <div>{block.title}</div>
+            // <ArticleTextBlockComponent
+            //     key={block.id}
+            //     block={block}
+            //     withTags={false}
+            // />
         ));
 
         return {
@@ -45,7 +47,7 @@ export const HRInterviewPageContentRedesigned = () => {
         );
     }
     if (items.length === 0) {
-        return <NoHRInterviewQAFound />;
+        return <NoLiveCodeTasksFound />;
     }
 
     return (
@@ -55,7 +57,17 @@ export const HRInterviewPageContentRedesigned = () => {
             className={classNames(cls.page, {}, [])}
         >
             <Accordion items={mappedItems} collapsible type="single" />
-            <PagePagination />
+
+            <Pagination
+                classNames={{
+                    list: cls.pagList,
+                    root: cls.pagWrap,
+                    item: cls.pagItem,
+                    selectedItem: cls.pagSelectedItem,
+                    link: cls.pagLink,
+                    disabledItem: cls.pagDisabledItem,
+                }}
+            />
         </VStack>
     );
 };

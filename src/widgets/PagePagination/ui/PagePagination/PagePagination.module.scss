@@ -1,0 +1,83 @@
+.pagList {
+  display: flex;
+  gap: 8px;
+}
+
+.pagWrap {
+  display: flex;
+  align-self: center;
+}
+
+.pagItemRedesigned {
+  background-color: transparent;
+  padding: 2px;
+  border-radius: 10px;
+  border: 1px solid var(--light-bg-redesigned);
+  width: 30px;
+  height: 40px;
+
+  &:hover {
+    background-color: var(--light-bg-redesigned);
+  }
+}
+
+.pagItemDeprecated {
+  background-color: transparent;
+  padding: 2px;
+  border: 1px solid var(--card-bg);
+  width: 30px;
+  height: 40px;
+
+  &:hover {
+    border: 1px solid var(--primary-color);
+  }
+}
+
+
+.pagLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  color: var( --inverted-bg-color);
+}
+
+.pagDisabledItem {
+  opacity: 0.5;
+
+  &:hover {
+    background-color: transparent;
+  }
+}
+
+.pagSelectedItemRedesigned {
+  background-color: var(--accent-redesigned);
+  border: 1px solid var(--accent-redesigned);
+
+  &:hover {
+    background-color: var(--accent-redesigned);
+  }
+
+  .pagLink {
+    color: var(--light-bg-redesigned);
+  }
+}
+
+.pagSelectedItemDeprecated {
+  background-color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+
+  .pagLink {
+    color: var(--bg-color);
+  }
+
+  &:hover {
+    background-color: var(--card-bg);
+    .pagLink {
+      color: var(--primary-color);
+    }
+  }
+}
+
+

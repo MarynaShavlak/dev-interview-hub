@@ -1,27 +1,15 @@
-import { memo } from 'react';
-import { Page } from '@/widgets/Page';
+import React, { memo } from 'react';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
 
-interface LiveCodeTasksPageProps {
-    className?: string;
-}
+import { LiveCodeTasksPageRedesigned } from './LiveCodeTasksPageRedesigned/LiveCodeTasksPageRedesigned';
+import { LiveCodeTasksPageDeprecated } from './LiveCodeTasksPageDeprecated/LiveCodeTasksPageDeprecated';
 
-const LiveCodeTasksPage = memo((props: LiveCodeTasksPageProps) => {
-    const { className } = props;
-
+const LiveCodeTasksPage = memo(() => {
     return (
         <ToggleFeaturesComponent
             feature="isAppRedesigned"
-            on={
-                <main className={className} data-testid="LiveCodeTasksPage">
-                    live code tasks
-                </main>
-            }
-            off={
-                <Page className={className} data-testid="LiveCodeTasksPage">
-                    live code tasks
-                </Page>
-            }
+            on={<LiveCodeTasksPageRedesigned />}
+            off={<LiveCodeTasksPageDeprecated />}
         />
     );
 });

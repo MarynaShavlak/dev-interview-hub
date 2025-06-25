@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { Pagination } from 'react-instantsearch';
 
 import { useHits } from 'react-instantsearch-core';
 
@@ -17,6 +16,7 @@ import {
     ArticleTextBlockComponent,
 } from '@/entities/Article';
 import { NoHRInterviewQAFound } from '../../NoHRInterviewQAFound/NoHRInterviewQAFound';
+import { PagePagination } from '@/widgets/PagePagination';
 
 export const HRInterviewPageContentDeprecated = () => {
     const [isLoading, setIsLoading] = useState(true);
@@ -59,17 +59,7 @@ export const HRInterviewPageContentDeprecated = () => {
             className={classNames(cls.pageDeprecated, {}, [])}
         >
             <Accordion items={mappedItems} collapsible type="single" />
-
-            <Pagination
-                classNames={{
-                    list: cls.pagList,
-                    root: cls.pagWrap,
-                    item: cls.pagItemDeprecated,
-                    selectedItem: cls.pagSelectedItemDeprecated,
-                    link: cls.pagLink,
-                    disabledItem: cls.pagDisabledItem,
-                }}
-            />
+            <PagePagination />
         </VStack>
     );
 };
