@@ -16,6 +16,7 @@ import { subscribeToLiveCode } from '../lib/utilities/subscribeToLiveCode/subscr
 import { subscribeToUserLiveCodeTasks } from '../lib/utilities/subscribeToUserLiveCodeTasks/subscribeToUserLiveCodeTasks';
 import { updateDocById } from '@/shared/lib/firestore/updateDocById/updateDocById';
 import { ERROR_LIVE_CODE_MESSAGES } from '../model/consts/errorLiveCodeMessages';
+import { handleRequestErrorMessage } from '@/shared/lib/firestore/handleRequestErrorMessage/handleRequestErrorMessage';
 
 interface UpdateLiveCodeArgs {
     id: string;
@@ -123,25 +124,22 @@ export const liveCodeFirebaseApi = firestoreApi
                 providesTags: ['liveCodeTasks'],
                 async queryFn(userId) {
                     if (!userId) {
-                        return {
-                            error: new Error(
-                                ERROR_LIVE_CODE_MESSAGES.USER_NOT_FOUND,
-                            ),
-                        };
+                        return handleRequestErrorMessage(
+                            ERROR_LIVE_CODE_MESSAGES.USER_NOT_FOUND,
+                        );
                     }
 
                     try {
-                        // Get all documents for the user
                         const querySnapshot =
                             await fetchCollectionForUser<LiveCode>(
                                 'liveCodeTasks',
                                 userId,
                             );
 
-                        // Count categories
                         const categoryCounts: Record<string, number> = {};
                         querySnapshot.forEach((doc) => {
                             const { category } = doc;
+
                             if (category) {
                                 if (!categoryCounts[category]) {
                                     categoryCounts[category] = 0;
@@ -152,13 +150,12 @@ export const liveCodeFirebaseApi = firestoreApi
 
                         return { data: categoryCounts };
                     } catch (error) {
-                        return {
-                            error: new Error(
-                                ERROR_LIVE_CODE_MESSAGES.LIVE_CODES_BY_USER_ID_FETCH_FAIL(
-                                    userId,
-                                ),
+                        return handleRequestErrorMessage(
+                            ERROR_LIVE_CODE_MESSAGES.LIVE_CODES_BY_USER_ID_FETCH_FAIL(
+                                userId,
                             ),
-                        };
+                            error,
+                        );
                     }
                 },
             }),

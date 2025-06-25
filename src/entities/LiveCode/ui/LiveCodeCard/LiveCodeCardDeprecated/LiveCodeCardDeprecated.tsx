@@ -12,7 +12,7 @@ import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { Card } from '@/shared/ui/deprecated/Card';
 import { Text, TextSize } from '@/shared/ui/deprecated/Text';
 import { CodeBlockComponent } from '@/shared/ui/common/CodeBlockComponent';
-import { Button } from '@/shared/ui/redesigned/Button';
+import { Button, ButtonSize, ButtonTheme } from '@/shared/ui/deprecated/Button';
 
 export const LiveCodeCardDeprecated = memo((props: LiveCodeCardProps) => {
     const { className, liveCodeTask, target, handleClick } = props;
@@ -36,7 +36,11 @@ export const LiveCodeCardDeprecated = memo((props: LiveCodeCardProps) => {
                 className={cls.readBtn}
                 target={target}
             >
-                <Button variant="outline" onClick={handleClick} size="s">
+                <Button
+                    theme={ButtonTheme.OUTLINE}
+                    onClick={handleClick}
+                    size={ButtonSize.S}
+                >
                     {t('Читати відповідь')}
                 </Button>
             </AppLink>

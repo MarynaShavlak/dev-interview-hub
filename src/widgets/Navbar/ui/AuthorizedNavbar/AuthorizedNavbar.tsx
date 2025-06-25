@@ -7,6 +7,7 @@ import { AppLink, AppLinkTheme } from '@/shared/ui/deprecated/AppLink';
 import {
     getRouteArticleCreate,
     getRouteHRInterviewQACreate,
+    getRouteLiveCodeTaskCreate,
 } from '@/shared/const/router/router';
 import { HStack, VStack } from '@/shared/ui/common/Stack';
 import { NotificationButton } from '@/features/NotificationButton';
@@ -57,6 +58,13 @@ const AuthorizedDeprecatedNavbar = memo(({ className }: NavbarProps) => {
                     className={cls.createBtn}
                 >
                     {t('Додати нове HR питання')}
+                </AppLink>
+                <AppLink
+                    to={getRouteLiveCodeTaskCreate()}
+                    theme={AppLinkTheme.SECONDARY}
+                    className={cls.createBtn}
+                >
+                    {t('Додати нове live code завдання')}
                 </AppLink>
             </HStack>
 

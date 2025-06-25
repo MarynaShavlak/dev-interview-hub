@@ -19,6 +19,7 @@ export const LiveCodeCategoryTabs = memo((props: LiveCodeCategoryTabsProps) => {
     const categoryTabs = useMemo(() => rawCategoryTabs, [rawCategoryTabs]);
     const currentUserdata = useUserAuthData();
     const authedUserId = currentUserdata?.id || '';
+
     const { data: categoryCounts, isLoading } =
         useLiveCodeCategoryCounts(authedUserId);
     const Skeleton = toggleFeatures({
