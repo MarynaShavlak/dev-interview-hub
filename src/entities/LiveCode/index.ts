@@ -1,3 +1,5 @@
+export { LiveCodeList } from './ui/LiveCodeList/LiveCodeList';
+
 export { useLiveCodeCategoryTabs } from './lib/hooks/useLiveCodeCategoryTabs/useLiveCodeCategoryTabs';
 
 export { LiveCodeEditButton } from './ui/LiveCodeEditButton/LiveCodeEditButton';

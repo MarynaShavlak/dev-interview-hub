@@ -7,6 +7,7 @@ import { LiveCodeTasksAlgoliaSearch } from '../../LiveCodeTasksAlgoliaSearch/Liv
 import { LiveCodeCategoryTabs } from '@/widgets/LiveCodeCategoryTabs';
 
 import { Page } from '@/widgets/Page';
+import { LiveCodeTasksPageContent } from '../LiveCodeTasksPageContent/LiveCodeTasksPageContent';
 
 export const LiveCodeTasksPageDeprecated = () => {
     return (
@@ -17,7 +18,7 @@ export const LiveCodeTasksPageDeprecated = () => {
                         <EntityFilters>
                             <LiveCodeCategoryTabs />
                         </EntityFilters>
-                        {/* <HRInterviewPageContent /> */}
+                        <LiveCodeTasksPageContent />
                     </VStack>
                 </Page>
             </LiveCodeTasksAlgoliaSearch>

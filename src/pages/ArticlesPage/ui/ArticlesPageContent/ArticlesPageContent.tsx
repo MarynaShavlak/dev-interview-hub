@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { Pagination } from 'react-instantsearch';
 
 import { useHits } from 'react-instantsearch-core';
 
@@ -11,6 +10,7 @@ import { ArticleList, NoArticlesFound } from '@/entities/Article';
 import { useArticleFilters } from '../../lib/hooks/useArticleFilters/useArticleFilters';
 import { transformItems } from '../../lib/utilities/transformItems/transformItems';
 import { Skeleton } from '@/shared/ui/redesigned/Skeleton';
+import { PagePagination } from '@/widgets/PagePagination';
 
 export const ArticlesPageContent = () => {
     const { view } = useArticleFilters();
@@ -51,16 +51,7 @@ export const ArticlesPageContent = () => {
                 page={page}
                 articlesToRender={articlesToRender}
             />
-            <Pagination
-                classNames={{
-                    list: cls.pagList,
-                    root: cls.pagWrap,
-                    item: cls.pagItem,
-                    selectedItem: cls.pagSelectedItem,
-                    link: cls.pagLink,
-                    disabledItem: cls.pagDisabledItem,
-                }}
-            />
+            <PagePagination />
         </VStack>
     );
 };

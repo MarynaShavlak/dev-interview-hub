@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { Pagination } from 'react-instantsearch';
 
 import { useHits } from 'react-instantsearch-core';
 
@@ -7,13 +6,12 @@ import cls from './LiveCodeTasksPageContent.module.scss';
 
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { VStack } from '@/shared/ui/common/Stack';
-import { Text } from '@/shared/ui/redesigned/Text';
 import { Skeleton } from '@/shared/ui/redesigned/Skeleton';
 
-import { Accordion } from '@/shared/ui/common/Accordion';
-
-import { ArticleTextBlock } from '@/entities/Article';
 import { NoLiveCodeTasksFound } from '../../NoLiveCodeTasksFound/NoLiveCodeTasksFound';
+import { PagePagination } from '@/widgets/PagePagination';
+import { LiveCodeList } from '@/entities/LiveCode';
+import { transformItems } from '../../../lib/utilities/transformItems/transformItems';
 
 export const LiveCodeTasksPageContent = () => {
     const [isLoading, setIsLoading] = useState(true);
@@ -24,22 +22,6 @@ export const LiveCodeTasksPageContent = () => {
             setIsLoading(false);
         }
     }, [hits]);
-
-    const mappedItems = items.map((item) => {
-        const textBlocks = item.blocks.map((block: ArticleTextBlock) => (
-            <div>{block.title}</div>
-            // <ArticleTextBlockComponent
-            //     key={block.id}
-            //     block={block}
-            //     withTags={false}
-            // />
-        ));
-
-        return {
-            trigger: <Text text={item.title} className={cls.hrQuestion} />,
-            content: <VStack gap="16">{textBlocks}</VStack>,
-        };
-    });
 
     if (isLoading) {
         return (
@@ -56,18 +38,8 @@ export const LiveCodeTasksPageContent = () => {
             justify="between"
             className={classNames(cls.page, {}, [])}
         >
-            <Accordion items={mappedItems} collapsible type="single" />
-
-            <Pagination
-                classNames={{
-                    list: cls.pagList,
-                    root: cls.pagWrap,
-                    item: cls.pagItem,
-                    selectedItem: cls.pagSelectedItem,
-                    link: cls.pagLink,
-                    disabledItem: cls.pagDisabledItem,
-                }}
-            />
+            <LiveCodeList tasks={transformItems(items)} />
+            <PagePagination />
         </VStack>
     );
 };
