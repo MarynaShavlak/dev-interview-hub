@@ -16,6 +16,7 @@ import {
 import ArrowIcon from '@/shared/assets/icons/left-arrow.svg';
 import cls from './EntitiesListNavigationButton.module.scss';
 import { EntityType } from '@/shared/types/entityType';
+import { searchClient } from '@/shared/config/firebase/searchClient';
 
 interface EntitiesListNavigationButtonProps {
     type: EntityType;
@@ -27,7 +28,8 @@ export const EntitiesListNavigationButton = memo(
         const { t } = useTranslation('articleDetails');
         const navigate = useNavigate();
 
-        const onNavigateToList = useCallback(() => {
+        const onNavigateToList = useCallback(async () => {
+            await searchClient.clearCache();
             switch (type) {
                 case 'article':
                     navigate(getRouteArticles());

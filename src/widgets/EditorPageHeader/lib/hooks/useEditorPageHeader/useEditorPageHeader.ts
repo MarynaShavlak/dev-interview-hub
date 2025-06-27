@@ -1,5 +1,6 @@
 import { useCallback } from 'react';
 import { useToggleVisibility } from '@/shared/lib/hooks/useToggleVisibility/useToggleVisibility';
+import { searchClient } from '@/shared/config/firebase/searchClient';
 
 interface UseEditorPageHeaderProps<T> {
     formData?: {
@@ -37,25 +38,30 @@ export const useEditorPageHeader = <T>({
     const handleSave = useCallback(async () => {
         const savedId = await onActions.save();
         if (savedId) navigationHandlers.onSaveSuccess(savedId);
+        await searchClient.clearCache();
     }, [onActions, navigationHandlers]);
 
     const handleUpdate = useCallback(async () => {
         const updatedId = await onActions.update();
         if (updatedId) navigationHandlers.onUpdateSuccess(updatedId);
+        await searchClient.clearCache();
     }, [onActions, navigationHandlers]);
 
     const handleDelete = useCallback(async () => {
         const deletedId = await onActions.delete();
         if (deletedId) navigationHandlers.onDeleteSuccess(deletedId);
+        await searchClient.clearCache();
     }, [onActions, navigationHandlers]);
 
-    const handleCancel = useCallback(() => {
+    const handleCancel = useCallback(async () => {
         if (!hasChanges && formData?.id) {
             onActions.cancel();
             navigationHandlers.onCancel(formData?.id);
+            await searchClient.clearCache();
         } else if (formData?.id) {
             cancelEditing.hide();
             navigationHandlers.onCancel(formData?.id);
+            await searchClient.clearCache();
         }
     }, [
         hasChanges,

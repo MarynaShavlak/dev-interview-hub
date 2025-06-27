@@ -7,6 +7,8 @@ import { useCodeBlockOperations } from '../../lib/hooks/useCodeBlockOperations/u
 import { CodeBlockDisplay } from '../CodeBlockDisplay/CodeBlockDisplay';
 import { useIsEditArticlePage } from '@/shared/lib/hooks/useIsEditArticlePage/useIsEditArticlePage';
 import { SectionType } from '@/shared/types/sectionTypes';
+import { useIsEditHRInterviewAnswerPage } from '@/shared/lib/hooks/useIsEditHRInterviewAnswerPage/useIsEditHRInterviewAnswerPage';
+import { useIsEditLiveCodePage } from '@/shared/lib/hooks/useIsEditLiveCodePage/useIsEditLiveCodePage';
 
 export interface CodeBlockEditorProps {
     block: ArticleCodeBlock;
@@ -22,6 +24,10 @@ export const CodeBlockEditor = memo((props: CodeBlockEditorProps) => {
     const initialTitle = block.title || '';
     const initialCode = block.code || '';
     const isEditArticlePage = useIsEditArticlePage();
+    const isEditHRInterviewAnswerPage = useIsEditHRInterviewAnswerPage();
+    const isEditLiveCodePage = useIsEditLiveCodePage();
+    const isEditPage =
+        isEditArticlePage || isEditHRInterviewAnswerPage || isEditLiveCodePage;
     const isEmptyInfo = !initialTitle && !initialCode;
     const {
         title,
@@ -51,7 +57,7 @@ export const CodeBlockEditor = memo((props: CodeBlockEditorProps) => {
 
     const currentBlockData: ArticleCodeBlock = useMemo(
         () =>
-            isEditArticlePage
+            isEditPage
                 ? block
                 : {
                       id: block.id,
@@ -59,7 +65,7 @@ export const CodeBlockEditor = memo((props: CodeBlockEditorProps) => {
                       code,
                       title: title || '',
                   },
-        [block, code, isEditArticlePage, title],
+        [block, code, isEditPage, title],
     );
 
     const formProps = {
@@ -72,13 +78,13 @@ export const CodeBlockEditor = memo((props: CodeBlockEditorProps) => {
     };
 
     const viewerProps = {
-        editBlock: isEditArticlePage ? enterEditMode : toggleEditMode,
+        editBlock: isEditPage ? enterEditMode : toggleEditMode,
         block: currentBlockData,
     };
 
     return (
         <CodeBlockDisplay
-            isEditArticlePage={isEditArticlePage}
+            isEditArticlePage={isEditPage}
             isEditing={isEditModeActive}
             formProps={formProps}
             onDelete={handleDeleteCodeBlock}

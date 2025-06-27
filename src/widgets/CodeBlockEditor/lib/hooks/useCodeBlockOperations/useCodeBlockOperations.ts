@@ -3,6 +3,8 @@ import { ArticleCodeBlock } from '@/entities/Article';
 import { useToggleVisibility } from '@/shared/lib/hooks/useToggleVisibility/useToggleVisibility';
 import { useIsEditArticlePage } from '@/shared/lib/hooks/useIsEditArticlePage/useIsEditArticlePage';
 import { SectionType } from '@/shared/types/sectionTypes';
+import { useIsEditHRInterviewAnswerPage } from '@/shared/lib/hooks/useIsEditHRInterviewAnswerPage/useIsEditHRInterviewAnswerPage';
+import { useIsEditLiveCodePage } from '@/shared/lib/hooks/useIsEditLiveCodePage/useIsEditLiveCodePage';
 
 interface UseCodeBlockOperationsProps {
     blockId: string;
@@ -22,6 +24,10 @@ export const useCodeBlockOperations = ({
     onEditBlock,
 }: UseCodeBlockOperationsProps) => {
     const isEditArticlePage = useIsEditArticlePage();
+    const isEditHRInterviewAnswerPage = useIsEditHRInterviewAnswerPage();
+    const isEditLiveCodePage = useIsEditLiveCodePage();
+    const isEditPage =
+        isEditArticlePage || isEditHRInterviewAnswerPage || isEditLiveCodePage;
     const {
         isVisible: isEditModeActive,
         toggleVisibility: toggleEditMode,
@@ -52,12 +58,12 @@ export const useCodeBlockOperations = ({
 
     const handleSaveCodeBlock = useCallback(() => {
         saveCodeBlock();
-        if (!isEditArticlePage) {
+        if (!isEditPage) {
             enterEditMode();
         } else {
             exitEditMode();
         }
-    }, [enterEditMode, exitEditMode, isEditArticlePage, saveCodeBlock]);
+    }, [enterEditMode, exitEditMode, isEditPage, saveCodeBlock]);
 
     return {
         isEditModeActive,

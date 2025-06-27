@@ -19,6 +19,12 @@ export const useAppToolbar = () => {
         [AppRoutes.HR_INTERVIEW_ANSWER_EDIT]: <ScrollToolbar />,
         [AppRoutes.HR_INTERVIEW_CREATE]: <ScrollToolbar />,
         [AppRoutes.MY_ARTICLES]: <ScrollToolbar />,
+        [AppRoutes.HR_INTERVIEW]: <ScrollToolbar />,
+        [AppRoutes.LIVE_CODE_TASK_CREATE]: <ScrollToolbar />,
+        [AppRoutes.LIVE_CODE_TASK_EDIT]: <ScrollToolbar />,
+        [AppRoutes.LIVE_CODE_TASK_DETAILS]: <ScrollToolbar />,
+        [AppRoutes.LIVE_CODE_TASKS]: <ScrollToolbar />,
+        [AppRoutes.USEFUL_LINKS]: <ScrollToolbar />,
     };
 
     return toolbarByAppRoute[appRoute];

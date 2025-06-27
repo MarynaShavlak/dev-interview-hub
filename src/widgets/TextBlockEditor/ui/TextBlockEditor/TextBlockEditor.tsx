@@ -7,6 +7,7 @@ import { useIsEditArticlePage } from '@/shared/lib/hooks/useIsEditArticlePage/us
 import { HRInterviewQABlock } from '@/entities/HRInterviewQA';
 import { SectionType } from '@/shared/types/sectionTypes';
 import { useIsEditHRInterviewAnswerPage } from '@/shared/lib/hooks/useIsEditHRInterviewAnswerPage/useIsEditHRInterviewAnswerPage';
+import { useIsEditLiveCodePage } from '@/shared/lib/hooks/useIsEditLiveCodePage/useIsEditLiveCodePage';
 
 export interface TextBlockEditorProps {
     block: ArticleTextBlock | HRInterviewQABlock;
@@ -23,7 +24,9 @@ export const TextBlockEditor = memo((props: TextBlockEditorProps) => {
     const isEmptyInfo = !initialTitle && initialParagraphs.length === 0;
     const isEditArticlePage = useIsEditArticlePage();
     const isEditHRInterviewAnswerPage = useIsEditHRInterviewAnswerPage();
-    const isEditPage = isEditArticlePage || isEditHRInterviewAnswerPage;
+    const isEditLiveCodePage = useIsEditLiveCodePage();
+    const isEditPage =
+        isEditArticlePage || isEditHRInterviewAnswerPage || isEditLiveCodePage;
 
     const {
         title,
