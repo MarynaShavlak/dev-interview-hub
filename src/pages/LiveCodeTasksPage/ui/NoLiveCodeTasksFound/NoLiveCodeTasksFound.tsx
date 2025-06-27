@@ -5,17 +5,12 @@ import { ToggleFeaturesComponent } from '@/shared/lib/features';
 import { Text as TextDeprecated, TextSize } from '@/shared/ui/deprecated/Text';
 import { Text } from '@/shared/ui/redesigned/Text';
 
-interface NoLiveCodeTasksFoundProps {
-    className?: string;
-}
-
-export const NoLiveCodeTasksFound = memo((props: NoLiveCodeTasksFoundProps) => {
-    const { className } = props;
+export const NoLiveCodeTasksFound = memo(() => {
     const { t } = useTranslation('articles');
     const message = t('Завдань не знайдено');
 
     return (
-        <HStack gap="16" className={className} justify="center" align="center">
+        <HStack gap="16" justify="center" align="center">
             <ToggleFeaturesComponent
                 feature="isAppRedesigned"
                 on={<Text size="m" title={message} />}
