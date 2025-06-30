@@ -8,6 +8,7 @@ import CircularDependencyPlugin from 'circular-dependency-plugin';
 import { InjectManifest } from 'workbox-webpack-plugin';
 import  Dotenv from 'dotenv-webpack';
 import FaviconsWebpackPlugin from 'favicons-webpack-plugin';
+import CopyPlugin from 'copy-webpack-plugin';
 import { BuildOptions } from '../types/config';
 
 
@@ -103,15 +104,15 @@ export const buildPlugins = ({
             filename: 'css/[name].[contenthash:8].css',
             chunkFilename: 'css/[name].[contenthash:8].css',
         }));
-        // plugins.push(new CopyPlugin({
-        //     patterns: [
-        //         { from: paths.locales, to: paths.buildLocales },
-        //         { from: `${paths.src}/favicon.ico`, to: paths.build },
-        //         { from: `${paths.src}/manifest.json`, to: paths.build  },
-        //         { from: `${paths.src}/logo192.png`, to: paths.build  },
-        //         { from: `${paths.src}/logo512.png`, to: paths.build  },
-        //     ],
-        // }));
+        plugins.push(new CopyPlugin({
+            patterns: [
+                { from: paths.locales, to: paths.buildLocales },
+                // { from: `${paths.src}/favicon.ico`, to: paths.build },
+                // { from: `${paths.src}/manifest.json`, to: paths.build  },
+                // { from: `${paths.src}/logo192.png`, to: paths.build  },
+                // { from: `${paths.src}/logo512.png`, to: paths.build  },
+            ],
+        }));
         plugins.push(new InjectManifest( {
             swSrc: './config/serviceWorker/config-sw.js',
                       swDest: `${paths.build}/sw.js`,
