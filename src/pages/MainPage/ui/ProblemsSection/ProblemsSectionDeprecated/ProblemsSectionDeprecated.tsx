@@ -17,6 +17,7 @@ export const ProblemsSectionDeprecated = () => {
     const problemsData =
         lang === 'uk' || lang === 'ua' ? problemsDataUkr : problemsDataEng;
     const sectionTitle = t('Які проблеми вирішує Dev Interview Hub?');
+    const valueText = t('Результат');
 
     return (
         <VStack gap="24" align="center">
@@ -54,7 +55,7 @@ export const ProblemsSectionDeprecated = () => {
                                     className={cls.cardText}
                                 />
                                 <Text
-                                    text={`<span>Value:</span> ${value}`}
+                                    text={`<span>${valueText}:</span> ${value}`}
                                     size={TextSize.M}
                                     className={cls.cardTextDeprecated}
                                 />

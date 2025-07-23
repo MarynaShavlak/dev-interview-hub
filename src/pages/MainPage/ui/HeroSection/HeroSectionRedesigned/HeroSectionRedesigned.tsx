@@ -8,6 +8,7 @@ import heroImg from '@/shared/assets/images/hero-final-2.png';
 import { AuthModal } from '@/features/AuthUser';
 import { useToggleVisibility } from '@/shared/lib/hooks/useToggleVisibility/useToggleVisibility';
 import { useHeroTranslations } from '../../../lib/hooks/useHeroTranslations/useHeroTranslations';
+import { useUserAuthData } from '@/entities/User';
 
 export const HeroSectionRedesigned = () => {
     const {
@@ -19,6 +20,7 @@ export const HeroSectionRedesigned = () => {
         subtext2,
         heroImageDesc,
     } = useHeroTranslations();
+    const authData = useUserAuthData();
 
     const {
         isVisible: isAuthModal,
@@ -47,13 +49,15 @@ export const HeroSectionRedesigned = () => {
                         <Text text={subtext1} size="m" align="center" />
                         <Text text={subtext2} size="m" align="center" />
                     </VStack>
-                    <Button
-                        className={cls.startButton}
-                        onClick={onShowModal}
-                        variant="accent"
-                    >
-                        {entryButtonText}
-                    </Button>
+                    {!authData && (
+                        <Button
+                            className={cls.startButton}
+                            onClick={onShowModal}
+                            variant="accent"
+                        >
+                            {entryButtonText}
+                        </Button>
+                    )}
                 </VStack>
                 <img
                     src={heroImg}

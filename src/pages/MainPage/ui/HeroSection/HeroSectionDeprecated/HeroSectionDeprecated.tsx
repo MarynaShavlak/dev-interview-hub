@@ -13,6 +13,7 @@ import heroImg from '@/shared/assets/images/hero-final-2.png';
 import { AuthModal } from '@/features/AuthUser';
 import { useToggleVisibility } from '@/shared/lib/hooks/useToggleVisibility/useToggleVisibility';
 import { useHeroTranslations } from '../../../lib/hooks/useHeroTranslations/useHeroTranslations';
+import { useUserAuthData } from '@/entities/User';
 
 export const HeroSectionDeprecated = () => {
     const {
@@ -30,6 +31,7 @@ export const HeroSectionDeprecated = () => {
         show: onShowModal,
         hide: onCloseModal,
     } = useToggleVisibility();
+    const authData = useUserAuthData();
     return (
         <VStack align="center">
             <Text
@@ -64,13 +66,15 @@ export const HeroSectionDeprecated = () => {
                             align={TextAlign.CENTER}
                         />
                     </VStack>
-                    <Button
-                        className={cls.startButton}
-                        onClick={onShowModal}
-                        theme={ButtonTheme.BACKGROUND_INVERTED}
-                    >
-                        {entryButtonText}
-                    </Button>
+                    {!authData && (
+                        <Button
+                            className={cls.startButton}
+                            onClick={onShowModal}
+                            theme={ButtonTheme.BACKGROUND_INVERTED}
+                        >
+                            {entryButtonText}
+                        </Button>
+                    )}
                 </VStack>
                 <img
                     src={heroImg}
