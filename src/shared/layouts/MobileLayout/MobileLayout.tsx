@@ -3,17 +3,18 @@ import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import cls from './MobileLayout.module.scss';
 import { Icon } from '@/shared/ui/redesigned/Icon';
 import MenuIcon from '@/shared/assets/icons/burger.svg';
+import CloseIcon from '@/shared/assets/icons/close.svg';
 
 interface MobileLayoutProps {
     className?: string;
     header: ReactElement;
     content: ReactElement;
-
+    menu: ReactElement;
     toolbar?: ReactElement;
 }
 
 export const MobileLayout = memo((props: MobileLayoutProps) => {
-    const { className, content, toolbar, header } = props;
+    const { className, content, toolbar, header, menu } = props;
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
     const handleOpenMobileMenu = () => setIsMobileMenuOpen(true);
     const handleCloseMobileMenu = () => setIsMobileMenuOpen(false);
@@ -35,7 +36,16 @@ export const MobileLayout = memo((props: MobileLayoutProps) => {
                 <div className={cls.toolbar}>{toolbar}</div>
             </div>
             {isMobileMenuOpen && (
-                <div>Mobile Menu here</div>
+                <div className={cls.mobileMenu}>
+                    <Icon
+                        variant="primary"
+                        Svg={CloseIcon}
+                        className={cls.closeIcon}
+                        clickable
+                        onClick={handleCloseMobileMenu}
+                    />
+                    {menu}
+                </div>
                 // <MenuMobile
                 //     handleCloseMobileMenu={handleCloseMobileMenu}
                 //     isMobileMenuOpen={isMobileMenuOpen}

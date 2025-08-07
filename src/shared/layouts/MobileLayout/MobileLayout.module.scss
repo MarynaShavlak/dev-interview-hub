@@ -13,6 +13,17 @@
   z-index:2;
   padding: 0 20px;
 }
+
+.mobileMenu {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  height: 100vh;
+  background-color: red;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
 //
 //
 //.appName {
@@ -33,6 +44,8 @@
 
 .contentWrap {
   padding-top: 100px;
+  padding-left:20px;
+  padding-right:20px;
 }
 
 .content {

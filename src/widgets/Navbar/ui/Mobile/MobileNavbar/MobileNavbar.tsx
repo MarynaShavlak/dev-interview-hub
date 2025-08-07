@@ -21,9 +21,7 @@ export const MobileNavbar = memo(({ className }: MobileNavbarProps) => {
                     size="s"
                 />
             </HStack>
-            <div className={cls.headerRight}>
-                <Navbar />
-            </div>
+            <Navbar />
         </div>
     );
 });

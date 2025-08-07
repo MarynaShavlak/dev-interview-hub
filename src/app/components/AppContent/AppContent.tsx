@@ -26,6 +26,7 @@ export const AppContent = () => {
                             <MobileLayout
                                 header={<MobileNavbar />}
                                 content={<AppRouter />}
+                                menu={<Sidebar />}
                                 // sidebar={null}
                                 // toolbar={toolbar}
                             />
