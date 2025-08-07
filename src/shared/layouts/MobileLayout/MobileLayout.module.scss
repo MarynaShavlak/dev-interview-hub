@@ -1,0 +1,73 @@
+.MobileLayout {
+  min-height: 100vh;
+  display: flex;
+}
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--light-bg-redesigned);
+  position:fixed;
+  width: 100%;
+  height:80px;
+  z-index:2;
+  padding: 0 20px;
+}
+//
+//
+//.appName {
+//  width: 80px;
+//}
+//
+//.headerRight {
+//  display: flex;
+//  align-items: center;
+//  gap:16px;
+//}
+
+.iconWrap {
+  height: 47px;
+  display: flex;
+  align-items: center;
+}
+
+.contentWrap {
+  padding-top: 100px;
+}
+
+.content {
+  //max-width: 475px;
+  justify-self: center;
+  width: 100%;
+  padding-bottom: 32px;
+}
+
+.toolbar {
+  height: 100%;
+  width: 100%;
+}
+
+
+//
+//.rightbar {
+//  grid-area: rightbar;
+//  display: flex;
+//  flex-direction: column;
+//  align-items: flex-end;
+//}
+//
+//.rightbar,
+//.sidebar {
+//  position: sticky;
+//  top: 0;
+//  height: 100vh;
+//}
+//
+//.sidebar {
+//  grid-area: sidebar;
+//  padding: 32px;
+//  max-width: 300px;
+//}
+
+
+

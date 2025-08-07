@@ -10,10 +10,11 @@ interface AppLogoProps {
     className?: string;
     size?: number;
     withText?: boolean;
+    max?: boolean;
 }
 
 export const AppLogo = memo(
-    ({ className, size = 50, withText = false }: AppLogoProps) => {
+    ({ className, size = 50, withText = false, max = true }: AppLogoProps) => {
         const logoClass = toggleFeatures({
             name: 'isAppRedesigned',
             on: () => cls.appLogoRedesigned,
@@ -22,7 +23,7 @@ export const AppLogo = memo(
 
         return (
             <HStack
-                max
+                max={max}
                 justify="center"
                 className={classNames(cls.appLogoWrapper, {}, [className])}
             >

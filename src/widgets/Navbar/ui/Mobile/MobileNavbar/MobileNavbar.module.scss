@@ -1,0 +1,17 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+
+.appName {
+  width: 80px;
+}
+
+.headerRight {
+  display: flex;
+  align-items: center;
+  gap:16px;
+}
