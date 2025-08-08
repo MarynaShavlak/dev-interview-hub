@@ -1,4 +1,4 @@
-import React, { memo, useState } from 'react';
+import { cloneElement, memo, ReactElement, useState } from 'react';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import cls from './MobileMenu.module.scss';
 import { Icon } from '@/shared/ui/redesigned/Icon';
@@ -7,13 +7,18 @@ import CloseIcon from '@/shared/assets/icons/close.svg';
 
 interface MobileMenuProps {
     className?: string;
+    menu: ReactElement;
 }
 
 export const MobileMenu = memo((props: MobileMenuProps) => {
-    const { className } = props;
+    const { className, menu } = props;
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
     const handleOpenMobileMenu = () => setIsMobileMenuOpen(true);
     const handleCloseMobileMenu = () => setIsMobileMenuOpen(false);
+
+    const menuWithCloseHandler = cloneElement(menu, {
+        onItemClick: handleCloseMobileMenu,
+    });
 
     return (
         <div className={classNames(cls.menu, {}, [className])}>
@@ -33,7 +38,7 @@ export const MobileMenu = memo((props: MobileMenuProps) => {
                         />
                     </div>
 
-                    <div>Mobile Menu Here</div>
+                    <div>{menuWithCloseHandler}</div>
                 </div>
             )}
         </div>

@@ -5,7 +5,7 @@ import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { MobileNavbar, Navbar } from '@/widgets/Navbar';
 import { ToggleFeaturesComponent } from '@/shared/lib/features';
 import { useTheme } from '@/shared/lib/hooks/useTheme/useTheme';
-import { Sidebar } from '@/widgets/Sidebar';
+import { MobileSidebar, Sidebar } from '@/widgets/Sidebar';
 import { useAppToolbar } from '../../lib/useAppToolbar/useAppToolbar';
 import { AppRouter } from '../../providers/router';
 import { MobileLayout } from '@/shared/layouts/MobileLayout/MobileLayout';
@@ -27,7 +27,9 @@ export const AppContent = () => {
                             <MobileLayout
                                 navbar={<MobileNavbar />}
                                 content={<AppRouter />}
-                                rightbar={<MobileMenu />}
+                                rightbar={
+                                    <MobileMenu menu={<MobileSidebar />} />
+                                }
 
                                 // toolbar={toolbar}
                             />

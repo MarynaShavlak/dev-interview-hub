@@ -17,9 +17,14 @@ import cls from './SidebarItem.module.scss';
 interface SidebarItemProps {
     item: SidebarItemType;
     collapsed?: boolean;
+    onClick?: () => void;
 }
 
-const SidebarItemDeprecated = ({ item, collapsed }: SidebarItemProps) => {
+const SidebarItemDeprecated = ({
+    item,
+    collapsed,
+    onClick,
+}: SidebarItemProps) => {
     const { t } = useTranslation();
 
     return (
@@ -29,6 +34,7 @@ const SidebarItemDeprecated = ({ item, collapsed }: SidebarItemProps) => {
             className={classNames(cls.item, {
                 [cls.collapsed]: collapsed,
             })}
+            onClick={onClick}
         >
             <IconDeprecated
                 Svg={item.Icon}
@@ -42,7 +48,11 @@ const SidebarItemDeprecated = ({ item, collapsed }: SidebarItemProps) => {
     );
 };
 
-const SidebarItemRedesigned = ({ item, collapsed }: SidebarItemProps) => {
+const SidebarItemRedesigned = ({
+    item,
+    collapsed,
+    onClick,
+}: SidebarItemProps) => {
     const { t } = useTranslation();
 
     return (
@@ -53,6 +63,7 @@ const SidebarItemRedesigned = ({ item, collapsed }: SidebarItemProps) => {
             })}
             activeClassName={cls.active}
             target={item.target}
+            onClick={onClick}
         >
             <Icon Svg={item.Icon} />
             <span className={cls.link}>{t(item.text)}</span>
@@ -60,17 +71,31 @@ const SidebarItemRedesigned = ({ item, collapsed }: SidebarItemProps) => {
     );
 };
 
-export const SidebarItem = memo(({ item, collapsed }: SidebarItemProps) => {
-    const isAuth = useUserAuthData();
+export const SidebarItem = memo(
+    ({ item, collapsed, onClick }: SidebarItemProps) => {
+        const isAuth = useUserAuthData();
 
-    if (item.authOnly && !isAuth) {
-        return null;
-    }
-    return (
-        <ToggleFeaturesComponent
-            feature="isAppRedesigned"
-            on={<SidebarItemRedesigned item={item} collapsed={collapsed} />}
-            off={<SidebarItemDeprecated item={item} collapsed={collapsed} />}
-        />
-    );
-});
+        if (item.authOnly && !isAuth) {
+            return null;
+        }
+        return (
+            <ToggleFeaturesComponent
+                feature="isAppRedesigned"
+                on={
+                    <SidebarItemRedesigned
+                        item={item}
+                        collapsed={collapsed}
+                        onClick={onClick}
+                    />
+                }
+                off={
+                    <SidebarItemDeprecated
+                        item={item}
+                        collapsed={collapsed}
+                        onClick={onClick}
+                    />
+                }
+            />
+        );
+    },
+);
