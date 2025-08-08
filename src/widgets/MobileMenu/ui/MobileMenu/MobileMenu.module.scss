@@ -1,0 +1,23 @@
+.menu {
+  display: flex;
+  flex-grow: 1;
+  width: 4Opx;
+}
+
+.mobileMenu {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  height: 100vh;
+  background-color: red;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.iconWrap {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  width:100%;
+}

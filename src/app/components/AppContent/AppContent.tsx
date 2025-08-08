@@ -9,6 +9,7 @@ import { Sidebar } from '@/widgets/Sidebar';
 import { useAppToolbar } from '../../lib/useAppToolbar/useAppToolbar';
 import { AppRouter } from '../../providers/router';
 import { MobileLayout } from '@/shared/layouts/MobileLayout/MobileLayout';
+import { MobileMenu } from '@/widgets/MobileMenu';
 
 export const AppContent = () => {
     const { theme } = useTheme();
@@ -24,10 +25,10 @@ export const AppContent = () => {
                     >
                         <Suspense fallback="">
                             <MobileLayout
-                                header={<MobileNavbar />}
+                                navbar={<MobileNavbar />}
                                 content={<AppRouter />}
-                                menu={<Sidebar />}
-                                // sidebar={null}
+                                rightbar={<MobileMenu />}
+
                                 // toolbar={toolbar}
                             />
                         </Suspense>

@@ -1,56 +1,29 @@
-import React, { memo, ReactElement, useState } from 'react';
+import React, { memo, ReactElement } from 'react';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import cls from './MobileLayout.module.scss';
-import { Icon } from '@/shared/ui/redesigned/Icon';
-import MenuIcon from '@/shared/assets/icons/burger.svg';
-import CloseIcon from '@/shared/assets/icons/close.svg';
 
 interface MobileLayoutProps {
     className?: string;
-    header: ReactElement;
+    navbar: ReactElement;
     content: ReactElement;
-    menu: ReactElement;
+
     toolbar?: ReactElement;
+    rightbar?: ReactElement;
 }
 
 export const MobileLayout = memo((props: MobileLayoutProps) => {
-    const { className, content, toolbar, header, menu } = props;
-    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
-    const handleOpenMobileMenu = () => setIsMobileMenuOpen(true);
-    const handleCloseMobileMenu = () => setIsMobileMenuOpen(false);
+    const { className, content, toolbar, navbar, rightbar } = props;
 
     return (
         <div className={classNames(cls.MainLayout, {}, [className])}>
             <div className={cls.header}>
-                {header}
-                <div className={cls.iconWrap}>
-                    <Icon
-                        Svg={MenuIcon}
-                        clickable
-                        onClick={handleOpenMobileMenu}
-                    />
-                </div>
+                {navbar}
+                {rightbar}
             </div>
             <div className={cls.contentWrap}>
                 <div className={cls.content}>{content}</div>
                 <div className={cls.toolbar}>{toolbar}</div>
             </div>
-            {isMobileMenuOpen && (
-                <div className={cls.mobileMenu}>
-                    <Icon
-                        variant="primary"
-                        Svg={CloseIcon}
-                        className={cls.closeIcon}
-                        clickable
-                        onClick={handleCloseMobileMenu}
-                    />
-                    {menu}
-                </div>
-                // <MenuMobile
-                //     handleCloseMobileMenu={handleCloseMobileMenu}
-                //     isMobileMenuOpen={isMobileMenuOpen}
-                // />
-            )}
         </div>
     );
 });
