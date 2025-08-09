@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next';
+import { isMobile } from 'react-device-detect';
 import { VStack } from '@/shared/ui/common/Stack';
 import { Avatar } from '@/shared/ui/redesigned/Avatar';
 import cls from '../../UserCard.module.scss';
@@ -23,14 +24,18 @@ export const AvatarUploaderRedesigned = ({
     return (
         <VStack justify="center" align="center" max>
             {readonly && (
-                <Avatar size={128} src={avatar} alt={avatarTextPlaceholder} />
+                <Avatar
+                    size={isMobile ? 100 : 128}
+                    src={avatar}
+                    alt={avatarTextPlaceholder}
+                />
             )}
             {!readonly && (
                 <VStack gap="4" align="center">
                     <Box className={cls.avatarWrap}>
                         {preview && (
                             <Avatar
-                                size={128}
+                                size={isMobile ? 100 : 128}
                                 src={preview}
                                 alt={avatarTextPlaceholder}
                             />
@@ -38,7 +43,7 @@ export const AvatarUploaderRedesigned = ({
 
                         {!preview && (
                             <Avatar
-                                size={128}
+                                size={isMobile ? 100 : 128}
                                 src={avatarSrc}
                                 alt={avatarTextPlaceholder}
                             />

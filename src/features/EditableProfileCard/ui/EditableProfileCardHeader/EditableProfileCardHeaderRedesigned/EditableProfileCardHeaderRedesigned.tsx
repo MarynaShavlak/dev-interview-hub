@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next';
 
 import { memo } from 'react';
+import { isMobile } from 'react-device-detect';
 import { classNames } from '@/shared/lib/classes/classNames/classNames';
 import { HStack } from '@/shared/ui/common/Stack';
 import { Button } from '@/shared/ui/redesigned/Button';
@@ -37,7 +38,11 @@ export const EditableProfileCardHeaderRedesigned = memo(
                 className={classNames('', {}, [className, cls.header])}
             >
                 {canEdit && (
-                    <HStack className={cls.wrap} justify="end" max>
+                    <HStack
+                        className={isMobile ? cls.wrapMobile : cls.wrap}
+                        justify={isMobile ? 'center' : 'end'}
+                        max
+                    >
                         {readonly ? (
                             <Button
                                 variant="outline"

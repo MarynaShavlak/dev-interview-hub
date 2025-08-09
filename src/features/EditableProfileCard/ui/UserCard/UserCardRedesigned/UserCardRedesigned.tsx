@@ -12,6 +12,7 @@ import { UserCardProps } from '../UserCard';
 import { useInputValidationConfig } from '@/shared/lib/hooks/validationHooks/useInputValidationConfig/useInputValidationConfig';
 import { useFormValidation } from '@/shared/lib/hooks/validationHooks/useFormValidation/useFormValidation';
 import { AvatarUploader } from '../AvatarUploader/AvatarUploader';
+import cls from '../UserCard.module.scss';
 
 export const UserCardRedesigned = memo((props: UserCardProps) => {
     const {
@@ -138,7 +139,7 @@ export const UserCardRedesigned = memo((props: UserCardProps) => {
                 </HStack>
             )}
             {isMobile && (
-                <VStack gap="16" max>
+                <VStack gap="16" max className={cls.inputsWrapper}>
                     {leftInputs}
                     {rightInputs}
                 </VStack>
