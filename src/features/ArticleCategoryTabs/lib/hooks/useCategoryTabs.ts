@@ -32,6 +32,10 @@ export const useCategoryTabs = () => {
             label: t('React'),
         },
         {
+            value: ArticleCategory.REDUX,
+            label: 'Redux',
+        },
+        {
             value: ArticleCategory.JAVASCRIPT,
             label: t('JavaScript'),
         },

@@ -19,6 +19,7 @@ export enum ArticleCategory {
     SEO = 'SEO',
     ACCESSIBILITY = 'Accessibility',
     PERFORMANCE = 'Performance',
+    REDUX = 'Redux',
 }
 
 export enum ArticleView {
